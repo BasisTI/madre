@@ -1,0 +1,48 @@
+<div class="topbar clearfix">
+    <div class="topbar-left">
+        <div class="logo"></div>
+    </div>
+    <div class="topbar-right">
+        <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
+            <i></i>
+        </a>
+        <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul class="topbar-items animated fadeInDown" [ngClass]="{'topbar-items-visible': app.topbarMenuActive}">
+            <li #settings [ngClass]="{'active-top-menu':app.activeTopbarItem === settings}">
+                <a href="#" (click)="app.onTopbarItemClick($event,settings)">
+                    <i class="topbar-icon material-icons">settings</i>
+                    <span class="topbar-item-name">Settings</span>
+                </a>
+                <ul class="ultima-menu animated fadeInDown">
+                    <li role="menuitem">
+                        <a routerLink="/diario-erros">
+                            <i class="material-icons">error</i>
+                            <span>Diário de Erros</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a routerLink="/logout">
+                            <i class="material-icons">power_settings_new</i>
+                            <span>Sair</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li #user [ngClass]="{'active-top-menu':app.activeTopbarItem === user}">
+                <a href="#" (click)="app.onTopbarItemClick($event,user)">
+                    <i class="topbar-icon material-icons">person</i>
+                    <span class="topbar-item-name">Usuário</span>
+                </a>
+                <ul class="ultima-menu animated fadeInDown">
+                    <li role="menuitem">
+                        <a>
+                            <span><strong>Usuário: </strong>{{ usuario ? usuario.nome : 'Nome do usuário' }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
