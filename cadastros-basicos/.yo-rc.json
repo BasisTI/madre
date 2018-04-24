@@ -32,5 +32,8 @@
     "clientPackageManager": "yarn",
     "skipClient": true,
     "skipUserManagement": true
+  },
+  "generator-jhipster-primeng-entity": {
+    "frontendRoot": "/home/brayan/madre/madre_codigo_fonte/frontend"
   }
 }

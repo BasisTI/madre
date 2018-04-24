@@ -21,7 +21,10 @@ export class AppMenuComponent implements OnInit {
 
   ngOnInit() {
     this.model = [
-      { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] }
+      {
+        label: 'Cadastro Básico', icon: 'dashboard',
+        items: [{ label: 'Unidade Hospitalar', icon: 'dashboard', routerLink: ['/unidadeHospitalar'] }]
+      },
     ];
   }
 
@@ -99,7 +102,7 @@ export class AppSubMenuComponent {
 
   constructor(public app: AppComponent) { }
 
-  itemClick(event: Event, item: MenuItem, index: number)  {
+  itemClick(event: Event, item: MenuItem, index: number) {
     if (this.root) {
       this.app.menuHoverActive = !this.app.menuHoverActive;
     }
@@ -153,7 +156,7 @@ export class AppSubMenuComponent {
   set reset(val: boolean) {
     this._reset = val;
 
-    if (this._reset && (this.app.isHorizontal() ||  this.app.isSlim())) {
+    if (this._reset && (this.app.isHorizontal() || this.app.isSlim())) {
       this.activeIndex = null;
     }
   }
