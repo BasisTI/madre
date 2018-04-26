@@ -939,11 +939,11 @@ body {
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
   .layout-container .topbar .logo {
     display: inline-block;
-    vertical-align: middle;
-    width: 200px;
-    height: 30px;
+    vertical-align: middle; /*voltar aqui*/
+    width: 100%;
+    height: 100%;
     background: url("../images/logo2x.jpg") top left no-repeat;
-    background-size: 200px 30px; }
+    background-size: 200px 100px; }
   .layout-container .topbar .topbar-left {
     box-sizing: border-box;
     padding: 20px;
