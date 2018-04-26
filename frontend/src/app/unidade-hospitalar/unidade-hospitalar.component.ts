@@ -9,6 +9,9 @@ import { environment } from '../../environments/environment';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';
 
+import { ElasticQuery } from '../shared/elastic-query';
+
+
 @Component({
   selector: 'jhi-unidade-hospitalar',
   templateUrl: './unidade-hospitalar.component.html'
@@ -18,6 +21,8 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   searchUrl: string = this.unidadeHospitalarService.searchUrl;
+
+  elasticQuery: ElasticQuery = new ElasticQuery();
 
   constructor(
     private router: Router,
