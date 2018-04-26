@@ -138,7 +138,7 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping("/_search/unidade-hospitalars")
     @Timed
-    public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(@RequestParam(defaultValue="*") String query, Pageable pageable) {
         log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
         Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/unidade-hospitalars");

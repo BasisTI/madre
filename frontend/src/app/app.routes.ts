@@ -12,6 +12,8 @@ export const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'diario-erros', component: DiarioErrosComponent },
   { path: 'unidadeHospitalar', loadChildren: 'app/unidade-hospitalar/unidade-hospitalar.module#CadastrosbasicosUnidadeHospitalarModule' },
+  { path: 'usuario', loadChildren: 'app/usuario/usuario.module#CadastrosbasicosUsuarioModule' },
+  { path: 'preCadastro', loadChildren: 'app/pre-cadastro/pre-cadastro.module#CadastrosbasicosPreCadastroModule' },
   /* jhipster-needle-add-lazy-module - JHipster will add lazy modules here */
 ];
 

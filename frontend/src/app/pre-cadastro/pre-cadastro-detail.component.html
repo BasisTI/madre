@@ -1,0 +1,50 @@
+<div class="ui-g ui-fluid" *ngIf="preCadastro">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Visualizar Pre Cadastro</h1>
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="nome_do_paciente" pInputText [ngModel]="preCadastro.nome_do_paciente" readonly/>
+            <label>Nome Do Paciente</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="nome_social" pInputText [ngModel]="preCadastro.nome_social" readonly/>
+            <label>Nome Social</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="nome_da_mae" pInputText [ngModel]="preCadastro.nome_da_mae" readonly/>
+            <label>Nome Da Mae</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="data_de_nascimento" pInputText [ngModel]="preCadastro.data_de_nascimento|date:'dd/MM/y'" readonly/>
+            <label>Data De Nascimento</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="n_cartao_sus" pInputText [ngModel]="preCadastro.n_cartao_sus" readonly/>
+            <label>N Cartao Sus</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+              <input type="text" name="ativo" pInputText [ngModel]="preCadastro.ativo ? 'Sim' : (preCadastro.ativo != null ? 'Não' : null)" readonly/>
+            <label>Ativo</label>
+          </span>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-2">
+          <button pButton type="button" label="Voltar" routerLink="/preCadastro"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

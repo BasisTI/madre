@@ -1,0 +1,63 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ preCadastro.id ? 'Editar Pre Cadastro' : 'Cadastrar Pre Cadastro' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="preCadastro.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="nome_do_paciente" [(ngModel)]="preCadastro.nome_do_paciente" pInputText/>
+              <label>Nome Do Paciente</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="nome_social" [(ngModel)]="preCadastro.nome_social" pInputText/>
+              <label>Nome Social</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="nome_da_mae" [(ngModel)]="preCadastro.nome_da_mae" pInputText/>
+              <label>Nome Da Mae</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-calendar name="data_de_nascimento" [(ngModel)]="preCadastro.data_de_nascimento" dateFormat="dd/mm/yy"></p-calendar>
+              <label>Data De Nascimento</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="n_cartao_sus" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
+              <label>N Cartao Sus</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-2">
+                  <label>Ativo</label>
+              </div>
+              <div class="ui-g-12 ui-md-2">
+                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="preCadastro.ativo"></p-radioButton>
+              </div>
+              <div class="ui-g-12 ui-md-2">
+                <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="preCadastro.ativo"></p-radioButton>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/preCadastro"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

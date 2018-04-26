@@ -631,7 +631,7 @@
       vertical-align: middle;
       width: 200px;
       height: 30px;
-      background: url("../images/logo.png") top left no-repeat; }
+      background: url("../images/logo.jpg") top left no-repeat; }
     .landing-wrapper #header .header-top #menu {
       float: right;
       list-style: none;
@@ -899,7 +899,7 @@
       padding: 0; } }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .landing-wrapper .header .header-top .logo {
-    background: url("../images/logo2x.png") top left no-repeat;
+    background: url("../images/logo2x.jpg") top left no-repeat;
     background-size: 200px 30px; } }
 html {
   height: 100%; }
@@ -942,7 +942,7 @@ body {
     vertical-align: middle;
     width: 200px;
     height: 30px;
-    background: url("../images/logo2x.png") top left no-repeat;
+    background: url("../images/logo2x.jpg") top left no-repeat;
     background-size: 200px 30px; }
   .layout-container .topbar .topbar-left {
     box-sizing: border-box;
