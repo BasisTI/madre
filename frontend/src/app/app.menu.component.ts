@@ -22,9 +22,9 @@ export class AppMenuComponent implements OnInit {
   ngOnInit() {
     this.model = [
       {
-        label: 'Cadastro', icon: 'dashboard',
-        items: [{ label: 'Unidade Hospitalar', icon: 'dashboard', routerLink: ['/unidadeHospitalar'] },
-                  {label: 'Usuário', icon: 'dashboard', routerLink: ['/usuario']}]
+        label: 'Cadastro', icon: 'widgets',
+        items: [{ label: 'Unidade Hospitalar', icon: 'add', routerLink: ['/unidadeHospitalar'] },
+                  {label: 'Usuário', icon: 'person', routerLink: ['/usuario']}]
       },
       {
         label: 'Emergência', icon: 'add',

@@ -139,9 +139,6 @@ public class UsuarioResource {
     @GetMapping("/_search/usuarios")
     @Timed
     public ResponseEntity<List<Usuario>> searchUsuarios(@RequestParam(defaultValue="*") String query, Pageable pageable) {
-        // if(query=="")
-        //     query="\""+"*"+"\"";
-        // else
         // query="\""+query+"\"";
         
         log.debug("REST request to search for a page of Usuarios for query {}", query);
