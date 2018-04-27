@@ -9,6 +9,8 @@ import { environment } from '../../environments/environment';
 import { PreCadastro } from './pre-cadastro.model';
 import { PreCadastroService } from './pre-cadastro.service';
 
+import { ElasticQuery } from '../shared/elastic-query';
+
 @Component({
   selector: 'jhi-pre-cadastro',
   templateUrl: './pre-cadastro.component.html'
@@ -18,6 +20,8 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   searchUrl: string = this.preCadastroService.searchUrl;
+
+  elasticQuery: ElasticQuery = new ElasticQuery();
 
   constructor(
     private router: Router,
