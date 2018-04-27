@@ -72,13 +72,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     }
   }
   private addErrorMessage() {
-    if (this.isEdit) {
-      this.pageNotificationService.addErrorMessage("Dados inválidos!");
-    }
-    else
-    {
-      this.pageNotificationService.addErrorMessage("Dados inválidos!");
-    }
+    this.pageNotificationService.addErrorMessage("Dados inválidos!");
   }
 
   ngOnDestroy() {

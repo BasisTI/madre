@@ -13,7 +13,7 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="login" [(ngModel)]="usuario.login" pInputText required/>
+              <input type="text" name="login" [(ngModel)]="usuario.login" pInputText required minlength="1"/>
               <label>Login</label>
             </span>
           </div>
@@ -25,13 +25,13 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="email" name="email" [(ngModel)]="usuario.email" pInputText required maxlength="3"/>
+              <input type="email" name="email" [(ngModel)]="usuario.email" pInputText required minlength="3"/>
               <label>Email</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="perfil" [(ngModel)]="usuario.perfil" pInputText required/>
+              <input type="text" name="perfil" [(ngModel)]="usuario.perfil" pInputText/>
               <label>Perfil</label>
             </span>
           </div>
