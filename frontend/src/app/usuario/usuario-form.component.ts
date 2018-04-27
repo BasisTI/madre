@@ -60,6 +60,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
+      this.addErrorMessage();
     });
   }
 
@@ -68,6 +69,15 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.pageNotificationService.addUpdateMsg();
     } else {
       this.pageNotificationService.addCreateMsg();
+    }
+  }
+  private addErrorMessage() {
+    if (this.isEdit) {
+      this.pageNotificationService.addErrorMessage("Dados inválidos!");
+    }
+    else
+    {
+      this.pageNotificationService.addErrorMessage("Dados inválidos!");
     }
   }
 

@@ -7,7 +7,7 @@
           <input type="hidden" name="id" pInputText [(ngModel)]="usuario.id" readonly/>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome" [(ngModel)]="usuario.nome" pInputText/>
+              <input type="text" name="nome" [(ngModel)]="usuario.nome" pInputText required/>
               <label>Nome</label>
             </span>
           </div>
@@ -19,25 +19,25 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="password" name="senha" [(ngModel)]="usuario.senha" pInputText/>
+              <input type="password" name="senha" [(ngModel)]="usuario.senha" pInputText required minlength="4"/>
               <label>Senha</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="email" name="email" [(ngModel)]="usuario.email" pInputText/>
+              <input type="email" name="email" [(ngModel)]="usuario.email" pInputText required maxlength="3"/>
               <label>Email</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="perfil" [(ngModel)]="usuario.perfil" pInputText/>
+              <input type="text" name="perfil" [(ngModel)]="usuario.perfil" pInputText required/>
               <label>Perfil</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="unidade_de_saude" [(ngModel)]="usuario.unidade_de_saude" pInputText/>
+              <input type="text" name="unidade_de_saude" [(ngModel)]="usuario.unidade_de_saude" pInputText required/>
               <label>Unidade De Saude</label>
             </span>
           </div>
@@ -47,7 +47,7 @@
                   <label>Ativo</label>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="usuario.ativo"></p-radioButton>
+                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="usuario.ativo" checked></p-radioButton>
               </div>
               <div class="ui-g-12 ui-md-2">
                 <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="usuario.ativo"></p-radioButton>
