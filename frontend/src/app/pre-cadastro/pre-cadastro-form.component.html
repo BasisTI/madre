@@ -7,7 +7,7 @@
           <input type="hidden" name="id" pInputText [(ngModel)]="preCadastro.id" readonly/>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome_do_paciente" [(ngModel)]="preCadastro.nome_do_paciente" pInputText/>
+              <input type="text" name="nome_do_paciente" required [(ngModel)]="preCadastro.nome_do_paciente" pInputText/>
               <label>Nome Do Paciente</label>
             </span>
           </div>
@@ -19,20 +19,20 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome_da_mae" [(ngModel)]="preCadastro.nome_da_mae" pInputText/>
-              <label>Nome Da Mae</label>
+              <input type="text" name="nome_da_mae" required [(ngModel)]="preCadastro.nome_da_mae" pInputText/>
+              <label>Nome Da Mãe</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <p-calendar name="data_de_nascimento" [(ngModel)]="preCadastro.data_de_nascimento" dateFormat="dd/mm/yy"></p-calendar>
+              <p-calendar name="data_de_nascimento" required [(ngModel)]="preCadastro.data_de_nascimento" dateFormat="dd/mm/yy"></p-calendar>
               <label>Data De Nascimento</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="n_cartao_sus" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
-              <label>N Cartao Sus</label>
+              <input type="text" name="n_cartao_sus" minlength="15" maxlength="15" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
+              <label>Número do Cartao do SUS</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">

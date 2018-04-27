@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>Pre Cadastros</h1>
+      <h1>Pré Cadastros</h1>
       <div class="ui-g">
         <div class="ui-g-12 ui-md-4">
             <span class="md-inputfield">
@@ -23,13 +23,13 @@
           (buttonClick)="datatableClick($event)" #datatable>
           <p-column header="Nome Do Paciente" field="nome_do_paciente"></p-column>
           <p-column header="Nome Social" field="nome_social"></p-column>
-          <p-column header="Nome Da Mae" field="nome_da_mae"></p-column>
+          <p-column header="Nome Da Mãe" field="nome_da_mae"></p-column>
           <p-column header="Data De Nascimento" field="data_de_nascimento">
             <ng-template let-col let-data_de_nascimento="rowData" pTemplate="body">
               {{ data_de_nascimento[col.field]|date:'dd/MM/y' }}
             </ng-template>
           </p-column>
-          <p-column header="N Cartao Sus" field="n_cartao_sus"></p-column>
+          <p-column header="Número do Cartão do SUS" field="n_cartao_sus"></p-column>
           <p-column header="Ativo" field="ativo">
             <ng-template let-col let-ativo="rowData" pTemplate="body">
               {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
