@@ -138,7 +138,7 @@ public class PreCadastroResource {
      */
     @GetMapping("/_search/pre-cadastros")
     @Timed
-    public ResponseEntity<List<PreCadastro>> searchPreCadastros(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<PreCadastro>> searchPreCadastros(@RequestParam(defaultValue = "*") String query, Pageable pageable) {
         log.debug("REST request to search for a page of PreCadastros for query {}", query);
         Page<PreCadastro> page = preCadastroService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/pre-cadastros");
