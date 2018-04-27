@@ -8,7 +8,7 @@ import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';
-
+import {FileUploadModule} from 'primeng/fileupload';
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -72,7 +72,11 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     }
   }
   private addErrorMessage() {
-    this.pageNotificationService.addErrorMessage("Dados inválidos", "Erro");
+     if (this.isEdit) {
+      this.pageNotificationService.addUpdateMsg();
+    } else {
+      this.pageNotificationService.addErrorMessage("Dados inválidos");
+    }
   }
 
 

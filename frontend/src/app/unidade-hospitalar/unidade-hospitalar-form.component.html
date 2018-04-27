@@ -8,32 +8,31 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="hidden" name="logo" [(ngModel)]="unidadeHospitalar.logo"/>
-              <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType"
+              <input type="file" class="form-control" name="logoContentType" id="field_logoContentType"
                   [(ngModel)]="unidadeHospitalar.logoContentType" />
-              <label>Logo</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="sigla" [(ngModel)]="unidadeHospitalar.sigla" pInputText required/>
+              <input type="text" name="sigla" [(ngModel)]="unidadeHospitalar.sigla" pInputText maxlength="10" required/>
               <label>Sigla</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome" [(ngModel)]="unidadeHospitalar.nome" pInputText required/>
+              <input type="text" name="nome" [(ngModel)]="unidadeHospitalar.nome" pInputText maxlength="100" required/>
               <label>Nome</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText required/>
+              <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText maxlength="14" minlength="14" pattern="[0-9]+$" required/>
               <label>Cnpj</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="endereco" [(ngModel)]="unidadeHospitalar.endereco" pInputText required/>
+              <input type="text" name="endereco" [(ngModel)]="unidadeHospitalar.endereco" pInputText maxlength="200" required/>
               <label>Endereco</label>
             </span>
           </div>
@@ -43,10 +42,10 @@
                   <label>Ativo</label>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="unidadeHospitalar.ativo"></p-radioButton>
+                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="unidadeHospitalar.ativo" required></p-radioButton>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="unidadeHospitalar.ativo"></p-radioButton>
+                <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="unidadeHospitalar.ativo" required></p-radioButton>
               </div>
             </div>
           </div>
