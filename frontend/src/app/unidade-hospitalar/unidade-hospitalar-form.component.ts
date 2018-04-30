@@ -60,7 +60,8 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      this.addErrorMessage();
+      this.pageNotificationService.addErrorMessage('Dados Inválidos');
+
     });
   }
 
@@ -72,6 +73,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     }
   }
   private addErrorMessage() {
+    console.log("kk");
      if (this.isEdit) {
       this.pageNotificationService.addUpdateMsg();
     } else {
@@ -84,6 +86,5 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
   }
-  
 
 }
