@@ -26,6 +26,10 @@ import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
+import br.com.basis.madre.cadastros.repository.UsuarioRepository;
+// import br.com.basis.madre.cadastros.repository.UsuarioSearchRepository;
+import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
+
 /**
  * REST controller for managing Usuario.
  */
@@ -39,8 +43,16 @@ public class UsuarioResource {
 
     private final UsuarioService usuarioService;
 
-    public UsuarioResource(UsuarioService usuarioService) {
+    private final Usuario usuario;
+
+    private final UsuarioSearchRepository usuarioSearchRepository;
+
+    public UsuarioResource(UsuarioService usuarioService, UsuarioSearchRepository usuarioSearchRepository,
+        UsuarioRepository usuarioRepository) {
         this.usuarioService = usuarioService;
+        this.usuarioSearchRepository = usuarioSearchRepository;
+        this.usuarioRepository = usuarioRepository;
+
     }
 
     /**
