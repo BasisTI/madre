@@ -53,7 +53,7 @@ public class UnidadeHospitalarResource {
     @PostMapping("/unidade-hospitalars")
     @Timed
     public ResponseEntity<UnidadeHospitalar> createUnidadeHospitalar(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) throws URISyntaxException {
-        log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
+    	log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
         if (unidadeHospitalar.getId() != null) {
             throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -139,7 +139,8 @@ public class UnidadeHospitalarResource {
     @GetMapping("/_search/unidade-hospitalars")
     @Timed
     public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(@RequestParam(defaultValue="*") String query, Pageable pageable) {
-        log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
+        
+    	log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
         Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/unidade-hospitalars");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
