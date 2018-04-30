@@ -7,6 +7,8 @@ import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.hibernate.validator.constraints.br.CNPJ;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,9 @@ import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
+import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
+import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
+
 /**
  * REST controller for managing UnidadeHospitalar.
  */
@@ -38,9 +43,16 @@ public class UnidadeHospitalarResource {
     private static final String ENTITY_NAME = "unidadeHospitalar";
 
     private final UnidadeHospitalarService unidadeHospitalarService;
-
-    public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService) {
+    
+    private final UnidadeHospitalarRepository unidadeHospitalarRepository;
+    
+    private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
+    
+    public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService, UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository,
+    		UnidadeHospitalarRepository unidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
+        this.unidadeHospitalarSearchRepository = unidadeHospitalarSearchRepository;
+        this.unidadeHospitalarRepository = unidadeHospitalarRepository;
     }
 
     /**
@@ -57,10 +69,17 @@ public class UnidadeHospitalarResource {
         if (unidadeHospitalar.getId() != null) {
             throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        else if(unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalar.getCnpj()).isPresent()) {
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cnpjexists", "CNPJ already in use"))
+        			.body(null);
+        }
+        else {
         UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
         return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+        }
     }
 
     /**
