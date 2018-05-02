@@ -24,6 +24,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
@@ -65,7 +66,7 @@ public class PreCadastroResource {
     public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro) throws URISyntaxException {
         log.debug("REST request to save PreCadastro : {}", preCadastro);
         
-        if (preCadastroRepository.findOneBynomeDoPaciente(preCadastro.getNome_do_paciente()).isPresent()) {
+        if (preCadastroRepository.findOneBynomeDoPacienteAndNomeDaMaeAndDataDeNascimento(preCadastro.getNome_do_paciente(), preCadastro.getNome_da_mae(), preCadastro.getData_de_nascimento()).isPresent()) {
     		return ResponseEntity.badRequest()
 	                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
 	                .body(null);
