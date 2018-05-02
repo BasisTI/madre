@@ -1,7 +1,10 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
+import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
 import br.com.basis.madre.cadastros.service.PreCadastroService;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
@@ -39,8 +42,15 @@ public class PreCadastroResource {
 
     private final PreCadastroService preCadastroService;
 
-    public PreCadastroResource(PreCadastroService preCadastroService) {
+	private final PreCadastroRepository preCadastroRepository;
+	
+	private final PreCadastroSearchRepository preCadastroSearchRepository;
+
+    public PreCadastroResource(PreCadastroService preCadastroService, PreCadastroRepository preCadastroRepository, 
+    		PreCadastroSearchRepository preCadastroSearchRepository) {
         this.preCadastroService = preCadastroService;
+        this.preCadastroRepository = preCadastroRepository;
+        this.preCadastroSearchRepository = preCadastroSearchRepository;
     }
 
     /**
@@ -54,6 +64,14 @@ public class PreCadastroResource {
     @Timed
     public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro) throws URISyntaxException {
         log.debug("REST request to save PreCadastro : {}", preCadastro);
+        
+        if (preCadastroRepository.findOneBynomeDoPaciente(preCadastro.getNome_do_paciente()).isPresent()) {
+    		return ResponseEntity.badRequest()
+	                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
+	                .body(null);
+//        	(preCadastroRepository.findOneBydataDeNascimento(preCadastro.getData_de_nascimento()).isPresent())
+//    		(preCadastroRepository.findOneBynomeDaMae(preCadastro.getNome_da_mae()).isPresent())
+        }
         if (preCadastro.getId() != null) {
             throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
         }
