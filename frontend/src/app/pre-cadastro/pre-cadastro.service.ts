@@ -17,6 +17,7 @@ export class PreCadastroService {
   constructor(private http: HttpService, private dateUtils: JhiDateUtils) {}
 
   create(preCadastro: PreCadastro): Observable<PreCadastro> {
+    this.converterSusVazio(preCadastro);
     const copy = this.convert(preCadastro);
     return this.http.post(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();
@@ -24,7 +25,14 @@ export class PreCadastroService {
     });
   }
 
+  private converterSusVazio(preCadastro: PreCadastro) {
+    if (preCadastro.n_cartao_sus === '') {
+      preCadastro.n_cartao_sus = undefined;
+    }
+  }
+
   update(preCadastro: PreCadastro): Observable<PreCadastro> {
+    this.converterSusVazio(preCadastro);
     const copy = this.convert(preCadastro);
     return this.http.put(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();

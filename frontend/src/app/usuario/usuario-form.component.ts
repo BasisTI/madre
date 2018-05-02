@@ -8,6 +8,8 @@ import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Usuario } from './usuario.model';
 import { UsuarioService } from './usuario.service';
+import {MultiSelectModule} from 'primeng/multiselect';
+
 
 @Component({
   selector: 'jhi-usuario-form',
