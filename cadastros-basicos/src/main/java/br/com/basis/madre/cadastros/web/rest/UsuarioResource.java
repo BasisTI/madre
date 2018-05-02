@@ -2,11 +2,15 @@ package br.com.basis.madre.cadastros.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.repository.UsuarioRepository;
+import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
 import br.com.basis.madre.cadastros.service.UsuarioService;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.h2.engine.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -36,11 +40,18 @@ public class UsuarioResource {
     private final Logger log = LoggerFactory.getLogger(UsuarioResource.class);
 
     private static final String ENTITY_NAME = "usuario";
+    
+    private final UsuarioRepository usuarioRepository;
 
     private final UsuarioService usuarioService;
+    
+    private final UsuarioSearchRepository usuarioSearchRepository;
 
-    public UsuarioResource(UsuarioService usuarioService) {
+    public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioSearchRepository usuarioSearchRepository,
+    		UsuarioService usuarioService) {
+    	this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
+        this.usuarioSearchRepository = usuarioSearchRepository;
     }
 
     /**
@@ -56,12 +67,26 @@ public class UsuarioResource {
         log.debug("REST request to save Usuario : {}", usuario);
         if (usuario.getId() != null) {
             throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
+        } else if(usuarioRepository.findOneByNome(usuario.getNome().toLowerCase()).isPresent()) { //
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "nomeexists", "Nome already in use"))
+        			.body(null);
+        } else if(usuarioRepository.findOneByLogin(usuario.getLogin().toLowerCase()).isPresent()) { //
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use"))
+        			.body(null);
+        } else if(usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) { //
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use"))
+        			.body(null);
+        } else {
+        	Usuario result = usuarioService.save(usuario);
+	        return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
+	            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+	            .body(result);
         }
-        //aqui
-        Usuario result = usuarioService.save(usuario);
-        return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        
+        
     }
 
     /**
@@ -79,6 +104,14 @@ public class UsuarioResource {
         log.debug("REST request to update Usuario : {}", usuario);
         if (usuario.getId() == null) {
             return createUsuario(usuario);
+        }
+        Optional<Usuario> existingUser = usuarioRepository.findOneByEmail(usuario.getEmail());
+        if(existingUser.isPresent()) {
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")).body(null);
+        }
+        existingUser = usuarioRepository.findOneByLogin(usuario.getLogin().toLowerCase());
+        if(existingUser.isPresent()) {
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")).body(null);
         }
         Usuario result = usuarioService.save(usuario);
         return ResponseEntity.ok()
