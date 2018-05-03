@@ -10,7 +10,6 @@ import { Usuario } from './usuario.model';
 import { UsuarioService } from './usuario.service';
 import {MultiSelectModule} from 'primeng/multiselect';
 
-
 @Component({
   selector: 'jhi-usuario-form',
   templateUrl: './usuario-form.component.html'
@@ -62,7 +61,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      this.addErrorMessage();
+      this.addErrorMessage(res);
     });
   }
 
@@ -73,8 +72,13 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.pageNotificationService.addCreateMsg();
     }
   }
-  private addErrorMessage() {
-    this.pageNotificationService.addErrorMessage("Dados inválidos!");
+  private addErrorMessage(res: Response) {
+    if(res.headers.toJSON()["x-cadastrosbasicosapp-error"] != null) {
+      this.pageNotificationService.addErrorMessage("Registro já cadastrado!");
+    }
+    else {
+      this.pageNotificationService.addErrorMessage("Dados inválidos!");
+    }
   }
 
   ngOnDestroy() {

@@ -10,7 +10,7 @@ import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
-import org.h2.engine.User;
+//import org.h2.engine.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
