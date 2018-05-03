@@ -89,7 +89,7 @@ public class UnidadeHospitalarResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final UnidadeHospitalarResource unidadeHospitalarResource = new UnidadeHospitalarResource(unidadeHospitalarService);
+        final UnidadeHospitalarResource unidadeHospitalarResource = new UnidadeHospitalarResource(unidadeHospitalarService, unidadeHospitalarSearchRepository, unidadeHospitalarRepository);
         this.restUnidadeHospitalarMockMvc = MockMvcBuilders.standaloneSetup(unidadeHospitalarResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
