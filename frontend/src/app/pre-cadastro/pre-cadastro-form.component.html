@@ -31,7 +31,7 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="n_cartao_sus" minlength="15" maxlength="15" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
+              <input type="text" name="n_cartao_sus" minlength="15" maxlength="15" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
               <label>Número do Cartao do SUS</label>
             </span>
           </div>
