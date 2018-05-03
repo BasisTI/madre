@@ -9,6 +9,7 @@ import { PageNotificationService } from '@basis/angular-components';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';
 import {FileUploadModule} from 'primeng/fileupload';
+import { MessagesModule } from 'primeng/primeng';
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -60,8 +61,12 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      this.pageNotificationService.addErrorMessage('Dados Inválidos');
-
+      if(res.headers.toJSON()["x-cadastrosbasicosapp-error"] != null){
+        this.pageNotificationService.addErrorMessage("Registro já cadastrado");
+      }
+      else{
+        this.pageNotificationService.addErrorMessage("CNPJ Inválido");
+      }
     });
   }
 
@@ -73,7 +78,6 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     }
   }
   private addErrorMessage() {
-    console.log("kk");
      if (this.isEdit) {
       this.pageNotificationService.addUpdateMsg();
     } else {
@@ -86,5 +90,10 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
   }
-
+  uploadedFiles: any[] = [];
+  onUpload(event) {
+      for(let file of event.files) {
+          this.uploadedFiles.push(file);
+      }
+  }
 }

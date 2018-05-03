@@ -69,17 +69,31 @@ public class UnidadeHospitalarResource {
         if (unidadeHospitalar.getId() != null) {
             throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        else if(unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalar.getCnpj()).isPresent()) {
+        if(unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalar.getCnpj()).isPresent()) {
         	return ResponseEntity.badRequest()
-        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cnpjexists", "CNPJ already in use"))
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "CNPJ already in use"))
         			.body(null);
         }
-        else {
+        if(unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent()) {
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Nome already in use"))
+        			.body(null);
+        }
+        if(unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent()) {
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Sigla already in use"))
+        			.body(null);
+        }
+        if(unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalar.getEndereco()).isPresent()) {
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Endereco already in use"))
+        			.body(null);
+        }
         UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
         return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
-        }
+        
     }
 
     /**
@@ -97,6 +111,12 @@ public class UnidadeHospitalarResource {
         log.debug("REST request to update UnidadeHospitalar : {}", unidadeHospitalar);
         if (unidadeHospitalar.getId() == null) {
             return createUnidadeHospitalar(unidadeHospitalar);
+        }
+        if(unidadeHospitalarRepository.findOneByCnpjAndNomeIgnoreCaseAndSiglaIgnoreCaseAndEnderecoIgnoreCase
+        (unidadeHospitalar.getCnpj(), unidadeHospitalar.getNome(), unidadeHospitalar.getSigla(), unidadeHospitalar.getEndereco()).isPresent()) {
+        	return ResponseEntity.badRequest()
+        			.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Endereco already in use"))
+        			.body(null);
         }
         UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
         return ResponseEntity.ok()
