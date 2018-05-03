@@ -66,12 +66,10 @@ public class PreCadastroResource {
     public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro) throws URISyntaxException {
         log.debug("REST request to save PreCadastro : {}", preCadastro);
         
-        if (preCadastroRepository.findOneBynomeDoPacienteAndNomeDaMaeAndDataDeNascimento(preCadastro.getNome_do_paciente(), preCadastro.getNome_da_mae(), preCadastro.getData_de_nascimento()).isPresent()) {
+        if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getNome_do_paciente(), preCadastro.getNome_da_mae(), preCadastro.getData_de_nascimento()).isPresent()) {
     		return ResponseEntity.badRequest()
 	                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
 	                .body(null);
-//        	(preCadastroRepository.findOneBydataDeNascimento(preCadastro.getData_de_nascimento()).isPresent())
-//    		(preCadastroRepository.findOneBynomeDaMae(preCadastro.getNome_da_mae()).isPresent())
         }
         if (preCadastro.getId() != null) {
             throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
@@ -95,6 +93,12 @@ public class PreCadastroResource {
     @Timed
     public ResponseEntity<PreCadastro> updatePreCadastro(@Valid @RequestBody PreCadastro preCadastro) throws URISyntaxException {
         log.debug("REST request to update PreCadastro : {}", preCadastro);
+        
+        if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getNome_do_paciente(), preCadastro.getNome_da_mae(), preCadastro.getData_de_nascimento()).isPresent()) {
+    		return ResponseEntity.badRequest()
+	                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
+	                .body(null);
+        }
         if (preCadastro.getId() == null) {
             return createPreCadastro(preCadastro);
         }
