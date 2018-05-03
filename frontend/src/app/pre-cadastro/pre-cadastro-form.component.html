@@ -31,7 +31,7 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="n_cartao_sus" minlength="15" maxlength="15" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
+              <input type="text" name="n_cartao_sus" minlength="15" maxlength="15" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" [(ngModel)]="preCadastro.n_cartao_sus" pInputText/>
               <label>Número do Cartao do SUS</label>
             </span>
           </div>
@@ -41,10 +41,10 @@
                   <label>Ativo</label>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="preCadastro.ativo"></p-radioButton>
+                <p-radioButton name="ativo" required [value]="true" label="Sim" [(ngModel)]="preCadastro.ativo"></p-radioButton>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="preCadastro.ativo"></p-radioButton>
+                <p-radioButton name="ativo" required [value]="false" label="Não" [(ngModel)]="preCadastro.ativo"></p-radioButton>
               </div>
             </div>
           </div>

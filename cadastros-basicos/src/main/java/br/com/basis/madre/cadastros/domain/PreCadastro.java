@@ -30,24 +30,24 @@ public class PreCadastro implements Serializable {
     @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "nome_do_paciente", length = 150, nullable = false)
-    private String nome_do_paciente;
+    private String nomeDoPaciente;
 
     @Size(max = 150)
     @Column(name = "nome_social", length = 150)
-    private String nome_social;
+    private String nomeSocial;
 
     @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "nome_da_mae", length = 150, nullable = false)
-    private String nome_da_mae;
+    private String nomeDaMae;
 
     @NotNull
     @Column(name = "data_de_nascimento", nullable = false)
-    private LocalDate data_de_nascimento;
+    private LocalDate dataDeNascimento;
 
     @Size(min = 15, max = 15)
     @Column(name = "n_cartao_sus", length = 15)
-    private String n_cartao_sus;
+    private String numCartaoSus;
 
     @NotNull
     @Column(name = "ativo", nullable = false)
@@ -63,68 +63,68 @@ public class PreCadastro implements Serializable {
     }
 
     public String getNome_do_paciente() {
-        return nome_do_paciente;
+        return nomeDoPaciente;
     }
 
     public PreCadastro nome_do_paciente(String nome_do_paciente) {
-        this.nome_do_paciente = nome_do_paciente;
+        this.nomeDoPaciente = nome_do_paciente;
         return this;
     }
 
     public void setNome_do_paciente(String nome_do_paciente) {
-        this.nome_do_paciente = nome_do_paciente;
+        this.nomeDoPaciente = nome_do_paciente;
     }
 
     public String getNome_social() {
-        return nome_social;
+        return nomeSocial;
     }
 
     public PreCadastro nome_social(String nome_social) {
-        this.nome_social = nome_social;
+        this.nomeSocial = nome_social;
         return this;
     }
 
     public void setNome_social(String nome_social) {
-        this.nome_social = nome_social;
+        this.nomeSocial = nome_social;
     }
 
     public String getNome_da_mae() {
-        return nome_da_mae;
+        return nomeDaMae;
     }
 
-    public PreCadastro nome_da_mae(String nome_da_mae) {
-        this.nome_da_mae = nome_da_mae;
+    public PreCadastro nomeDaMae(String nome_da_mae) {
+        this.nomeDaMae = nome_da_mae;
         return this;
     }
 
-    public void setNome_da_mae(String nome_da_mae) {
-        this.nome_da_mae = nome_da_mae;
-    }
-
     public LocalDate getData_de_nascimento() {
-        return data_de_nascimento;
+        return dataDeNascimento;
+    }
+    
+    public void setNome_da_mae(String nome_da_mae) {
+        this.nomeDaMae = nome_da_mae;
     }
 
     public PreCadastro data_de_nascimento(LocalDate data_de_nascimento) {
-        this.data_de_nascimento = data_de_nascimento;
+        this.dataDeNascimento = data_de_nascimento;
         return this;
     }
 
     public void setData_de_nascimento(LocalDate data_de_nascimento) {
-        this.data_de_nascimento = data_de_nascimento;
+        this.dataDeNascimento = data_de_nascimento;
     }
 
     public String getn_cartao_sus() {
-        return n_cartao_sus;
+        return numCartaoSus;
     }
 
     public PreCadastro n_cartao_sus(String n_cartao_sus) {
-        this.n_cartao_sus = n_cartao_sus;
+        this.numCartaoSus = n_cartao_sus;
         return this;
     }
 
     public void setn_cartao_sus(String n_cartao_sus) {
-        this.n_cartao_sus = n_cartao_sus;
+        this.numCartaoSus = n_cartao_sus;
     }
 
     public Boolean isAtivo() {

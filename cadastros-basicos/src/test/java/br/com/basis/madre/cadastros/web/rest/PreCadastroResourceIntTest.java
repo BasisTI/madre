@@ -88,7 +88,7 @@ public class PreCadastroResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService);
+        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService, preCadastroRepository, preCadastroSearchRepository);
         this.restPreCadastroMockMvc = MockMvcBuilders.standaloneSetup(preCadastroResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -106,7 +106,7 @@ public class PreCadastroResourceIntTest {
         PreCadastro preCadastro = new PreCadastro()
             .nome_do_paciente(DEFAULT_NOME_DO_PACIENTE)
             .nome_social(DEFAULT_NOME_SOCIAL)
-            .nome_da_mae(DEFAULT_NOME_DA_MAE)
+            .nomeDaMae(DEFAULT_NOME_DA_MAE)
             .data_de_nascimento(DEFAULT_DATA_DE_NASCIMENTO)
             .n_cartao_sus(DEFAULT_N_CARTAO_SUS)
             .ativo(DEFAULT_ATIVO);
@@ -298,7 +298,7 @@ public class PreCadastroResourceIntTest {
         updatedPreCadastro
             .nome_do_paciente(UPDATED_NOME_DO_PACIENTE)
             .nome_social(UPDATED_NOME_SOCIAL)
-            .nome_da_mae(UPDATED_NOME_DA_MAE)
+            .nomeDaMae(UPDATED_NOME_DA_MAE)
             .data_de_nascimento(UPDATED_DATA_DE_NASCIMENTO)
             .n_cartao_sus(UPDATED_N_CARTAO_SUS)
             .ativo(UPDATED_ATIVO);
