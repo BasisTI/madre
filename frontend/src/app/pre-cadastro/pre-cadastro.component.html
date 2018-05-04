@@ -3,14 +3,15 @@
     <div class="card card-w-title">
       <h1>Pré Cadastros</h1>
       <div class="ui-g">
-        <div class="ui-g-12 ui-md-4">
+        <div class="ui-g-12 ui-md-12">
             <span class="md-inputfield">
               <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
                 (keyup.enter)="datatable.refresh(elasticQuery.query)" />
 
-              <label>Filtro</label>
+              <label>Pesquisar</label>
             </span>
         </div>
+        <div class="ui-g-12 ui-md-3"></div>
         <div class="ui-g-12 ui-md-6">
           <div class="ui-g-12 ui-md-6">
             <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="datatable.refresh(elasticQuery.query)"></button>
@@ -19,6 +20,7 @@
             <button pButton type="button" label="Cadastrar" routerLink="/preCadastro/new" icon="ui-icon-add"></button>
           </div>
         </div>
+        <div class="ui-g-12 ui-md-3"></div>
         <basis-datatable [url]="searchUrl" 
           (buttonClick)="datatableClick($event)" #datatable>
           <p-column header="Nome Do Paciente" field="nome_do_paciente"></p-column>
@@ -36,8 +38,10 @@
             </ng-template>
           </p-column>
         </basis-datatable>
-        <app-botoes-exportacao resourceName="Exportar">
-        </app-botoes-exportacao>
+        <div class="ui-g-12 ui-md-2">
+          <app-botoes-exportacao resourceName="Exportar">
+          </app-botoes-exportacao>
+        </div>
       </div>
     </div>
   </div>
