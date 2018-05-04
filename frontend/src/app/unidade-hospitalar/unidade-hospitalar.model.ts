@@ -12,5 +12,6 @@ export class UnidadeHospitalar implements BaseEntity {
     public cnpj?: string,
     public endereco?: string,
     public ativo?: boolean,
+    public logoId?: number,
   ) {}
 }

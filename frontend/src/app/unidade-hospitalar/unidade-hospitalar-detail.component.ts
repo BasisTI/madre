@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Rx';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';
-
+import { UploadService } from '../upload/upload.service';
 @Component({
   selector: 'jhi-unidade-hospitalar-detail',
   templateUrl: './unidade-hospitalar-detail.component.html'
@@ -14,11 +14,12 @@ export class UnidadeHospitalarDetailComponent implements OnInit, OnDestroy {
 
   unidadeHospitalar: UnidadeHospitalar;
   private subscription: Subscription;
-
+  fileName: string;
   constructor(
     private unidadeHospitalarService: UnidadeHospitalarService,
     private route: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private uploadService: UploadService,
   ) {}
 
   ngOnInit() {
@@ -34,11 +35,21 @@ export class UnidadeHospitalarDetailComponent implements OnInit, OnDestroy {
   load(id) {
     this.unidadeHospitalarService.find(id).subscribe((unidadeHospitalar) => {
       this.unidadeHospitalar = unidadeHospitalar;
+      this.getFileInfo();
     });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.breadcrumbService.reset();
+  }
+
+  getFileInfo() {
+    let fileInfo;
+    this.uploadService.getFileInfo(this.unidadeHospitalar.logoId).subscribe(response => {
+      fileInfo = response;
+
+      this.fileName = fileInfo["originalName"];
+    });
   }
 }

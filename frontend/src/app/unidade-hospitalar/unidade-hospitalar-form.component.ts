@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -10,6 +10,8 @@ import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';
 import {FileUploadModule} from 'primeng/fileupload';
 import { MessagesModule } from 'primeng/primeng';
+import { UploadService } from '../upload/upload.service';
+import { FileUpload } from 'primeng/primeng';
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -17,8 +19,12 @@ import { MessagesModule } from 'primeng/primeng';
 export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   unidadeHospitalar: UnidadeHospitalar;
   isSaving: boolean;
+  loading: boolean;
   isEdit = false;
   private routeSub: Subscription;
+  logo: File;
+
+  @ViewChild('fileInput') fileInput: FileUpload;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +32,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private unidadeHospitalarService: UnidadeHospitalarService,
+    private uploadService: UploadService,
   ) {}
 
   ngOnInit() {
@@ -35,7 +42,10 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.unidadeHospitalar = new UnidadeHospitalar();
       if (params['id']) {
         this.isEdit = true;
-        this.unidadeHospitalarService.find(params['id']).subscribe(unidadeHospitalar => this.unidadeHospitalar = unidadeHospitalar);
+        this.unidadeHospitalarService.find(params['id']).subscribe(unidadeHospitalar =>{
+           this.unidadeHospitalar = unidadeHospitalar;
+           this.getFile();
+          });
         title = 'Editar';
       }
       this.breadcrumbService.setItems([
@@ -70,6 +80,10 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  uploadFile(event){
+    this.logo = event.files[0];
+  }
+
   private addConfirmationMessage() {
     if (this.isEdit) {
       this.pageNotificationService.addUpdateMsg();
@@ -90,10 +104,23 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
   }
-  uploadedFiles: any[] = [];
-  onUpload(event) {
-      for(let file of event.files) {
-          this.uploadedFiles.push(file);
-      }
+  getFile() {
+    this.loading = true;
+    this.uploadService.getFile(this.unidadeHospitalar.logoId).subscribe(response => {
+
+      let fileInfo;
+      this.uploadService.getFileInfo(this.unidadeHospitalar.logoId).subscribe(response => {
+        fileInfo = response;
+
+        this.fileInput.files.push(new File([response["_body"]], fileInfo["originalName"]));
+        this.loading = false;
+      });
+    });
+  }
+
+  getFileInfo() {
+    return this.uploadService.getFile(this.unidadeHospitalar.logoId).subscribe(response => {
+      return response;
+    })
   }
 }
