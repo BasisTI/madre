@@ -21,6 +21,12 @@ import {
   usuarioRoute
 } from './';
 
+import {BlockUIModule} from 'ng-block-ui';
+import { MessageService } from 'primeng/components/common/messageservice';
+import {ToastrModule} from 'ngx-toastr';
+import { BotoesExportacaoComponent } from '../botoes-exportacao/botoes-exportacao.component';
+import { BotoesExportacaoModule } from '../botoes-exportacao/botoes-exportacao.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +41,7 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
+    BotoesExportacaoModule
   ],
   declarations: [
     UsuarioComponent,
