@@ -9,15 +9,7 @@
             <span class="md-inputfield">
        
     
-              <h3 class="first">Logo</h3>
-              <p-fileUpload name="logo" url="" (onUpload)="onUpload($event)" 
-                      accept="image/*" maxFileSize="1000000">
-                  <ng-template pTemplate="content">
-                      <ul *ngIf="uploadedFiles.length">
-                          <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                      </ul>
-                  </ng-template>        
-              </p-fileUpload>
+     
                 </span>
           </div>
           <div class="ui-g-12 ui-md-6"></div>
@@ -66,6 +58,7 @@
           <div class="ui-g-12 ui-md-2">
             <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
           </div>
+  
         </div>
       </form>
     </div>

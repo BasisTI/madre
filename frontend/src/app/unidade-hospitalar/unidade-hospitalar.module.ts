@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BotoesExportacaoModule } from './../botoes-exportacao/botoes-exportacao.module';
 import { DatatableModule } from '@basis/angular-components';
 import {
   ButtonModule,
@@ -19,8 +20,10 @@ import {
   UnidadeHospitalarComponent,
   UnidadeHospitalarDetailComponent,
   UnidadeHospitalarFormComponent,
-  unidadeHospitalarRoute
+  unidadeHospitalarRoute,
+  UnidadeHospitalarService
 } from './';
+import { UploadService } from '../upload/upload.service';
 
 @NgModule({
   imports: [
@@ -37,13 +40,17 @@ import {
     InputTextModule,
     ConfirmDialogModule,
     FileUploadModule,
+    BotoesExportacaoModule
   ],
   declarations: [
     UnidadeHospitalarComponent,
     UnidadeHospitalarDetailComponent,
     UnidadeHospitalarFormComponent
   ],
-  providers: [],
+  providers: [
+    UnidadeHospitalarService,
+    UploadService
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CadastrosbasicosUnidadeHospitalarModule {}

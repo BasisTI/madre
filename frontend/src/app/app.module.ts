@@ -31,6 +31,9 @@ import { LoginSuccessComponent } from './login-success/login-success.component';
 import { LogoutComponent } from './logout/logout.component';
 import { authServiceFactory } from './auth-service-factory';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
+import {BlockUIModule} from 'ng-block-ui';
+import { MessageService } from 'primeng/components/common/messageservice';
+import {ToastrModule} from 'ngx-toastr';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -50,7 +53,8 @@ import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
     AppSharedModule.forRoot(),
     AccessbilityModule.forRoot(),
     PageNotificationModule.forRoot(),
-    BlockUiModule.forRoot()
+    BlockUiModule.forRoot(),
+    ToastrModule.forRoot(),
     /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
   ],
   declarations: [
