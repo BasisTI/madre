@@ -11,7 +11,8 @@ import {
   CalendarModule,
   DropdownModule,
   RadioButtonModule,
-  ConfirmDialogModule
+  ConfirmDialogModule,
+  FileUploadModule
 } from 'primeng/primeng';
 
 import {
@@ -35,6 +36,7 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
+    FileUploadModule,
   ],
   declarations: [
     UnidadeHospitalarComponent,
