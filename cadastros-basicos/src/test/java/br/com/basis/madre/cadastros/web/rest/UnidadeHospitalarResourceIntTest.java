@@ -1,13 +1,11 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.CadastrosbasicosApp;
-
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
-import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
+import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,8 +27,13 @@ import java.util.List;
 import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test class for the UnidadeHospitalarResource REST controller.
@@ -89,7 +92,7 @@ public class UnidadeHospitalarResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final UnidadeHospitalarResource unidadeHospitalarResource = new UnidadeHospitalarResource(unidadeHospitalarService, unidadeHospitalarSearchRepository, unidadeHospitalarRepository);
+        final UnidadeHospitalarResource unidadeHospitalarResource = new UnidadeHospitalarResource(unidadeHospitalarService);
         this.restUnidadeHospitalarMockMvc = MockMvcBuilders.standaloneSetup(unidadeHospitalarResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -310,8 +313,7 @@ public class UnidadeHospitalarResourceIntTest {
     @Transactional
     public void updateUnidadeHospitalar() throws Exception {
         // Initialize the database
-        unidadeHospitalarService.save(unidadeHospitalar);
-
+        unidadeHospitalarRepository.saveAndFlush(unidadeHospitalar);
         int databaseSizeBeforeUpdate = unidadeHospitalarRepository.findAll().size();
 
         // Update the unidadeHospitalar
@@ -371,8 +373,7 @@ public class UnidadeHospitalarResourceIntTest {
     @Transactional
     public void deleteUnidadeHospitalar() throws Exception {
         // Initialize the database
-        unidadeHospitalarService.save(unidadeHospitalar);
-
+        unidadeHospitalarRepository.saveAndFlush(unidadeHospitalar);
         int databaseSizeBeforeDelete = unidadeHospitalarRepository.findAll().size();
 
         // Get the unidadeHospitalar
@@ -393,8 +394,7 @@ public class UnidadeHospitalarResourceIntTest {
     @Transactional
     public void searchUnidadeHospitalar() throws Exception {
         // Initialize the database
-        unidadeHospitalarService.save(unidadeHospitalar);
-
+        unidadeHospitalarRepository.saveAndFlush(unidadeHospitalar);
         // Search the unidadeHospitalar
         restUnidadeHospitalarMockMvc.perform(get("/api/_search/unidade-hospitalars?query=id:" + unidadeHospitalar.getId()))
             .andExpect(status().isOk())

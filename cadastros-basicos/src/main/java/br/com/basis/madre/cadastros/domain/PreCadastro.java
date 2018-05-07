@@ -17,7 +17,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "pre_cadastro")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "precadastro")
+@Document(indexName = "madre", type="precadastro")
 public class PreCadastro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,69 +62,68 @@ public class PreCadastro implements Serializable {
         this.id = id;
     }
 
-    public String getNome_do_paciente() {
+    public String getNomeDoPaciente() {
         return nomeDoPaciente;
     }
 
-    public PreCadastro nome_do_paciente(String nome_do_paciente) {
-        this.nomeDoPaciente = nome_do_paciente;
+    public PreCadastro nomeDoPaciente(String nomeDoPaciente) {
+        this.nomeDoPaciente = nomeDoPaciente;
         return this;
     }
 
-    public void setNome_do_paciente(String nome_do_paciente) {
-        this.nomeDoPaciente = nome_do_paciente;
+    public void setNomeDoPaciente(String nomeDoPaciente) {
+        this.nomeDoPaciente = nomeDoPaciente;
     }
 
-    public String getNome_social() {
+    public String getNomeSocial() {
         return nomeSocial;
     }
 
-    public PreCadastro nome_social(String nome_social) {
-        this.nomeSocial = nome_social;
+    public PreCadastro nomeSocial(String nomeSocial) {
+        this.nomeSocial = nomeSocial;
         return this;
     }
 
-    public void setNome_social(String nome_social) {
-        this.nomeSocial = nome_social;
+    public void setNomeSocial(String nomeSocial) {
+        this.nomeSocial = nomeSocial;
     }
 
-    public String getNome_da_mae() {
+    public String getNomeDaMae() {
         return nomeDaMae;
     }
-
-    public PreCadastro nomeDaMae(String nome_da_mae) {
-        this.nomeDaMae = nome_da_mae;
+    public PreCadastro nomeDaMae(String nomeDaMae) {
+        this.nomeDaMae = nomeDaMae;
         return this;
     }
 
-    public LocalDate getData_de_nascimento() {
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
-    
-    public void setNome_da_mae(String nome_da_mae) {
-        this.nomeDaMae = nome_da_mae;
+
+    public void setNomeDaMae(String nomeDaMae) {
+        this.nomeDaMae = nomeDaMae;
     }
 
-    public PreCadastro data_de_nascimento(LocalDate data_de_nascimento) {
-        this.dataDeNascimento = data_de_nascimento;
+    public PreCadastro dataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
         return this;
     }
 
-    public void setData_de_nascimento(LocalDate data_de_nascimento) {
-        this.dataDeNascimento = data_de_nascimento;
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
 
-    public String getn_cartao_sus() {
+    public String getNumCartaoSus() {
         return numCartaoSus;
     }
 
-    public PreCadastro n_cartao_sus(String n_cartao_sus) {
-        this.numCartaoSus = n_cartao_sus;
+    public PreCadastro numCartaoSus(String numCartaoSus) {
+        this.numCartaoSus = numCartaoSus;
         return this;
     }
 
-    public void setn_cartao_sus(String n_cartao_sus) {
-        this.numCartaoSus = n_cartao_sus;
+    public void setNumCartaoSus(String numCartaoSus) {
+        this.numCartaoSus = numCartaoSus;
     }
 
     public Boolean isAtivo() {
@@ -165,11 +164,11 @@ public class PreCadastro implements Serializable {
     public String toString() {
         return "PreCadastro{" +
             "id=" + getId() +
-            ", nome_do_paciente='" + getNome_do_paciente() + "'" +
-            ", nome_social='" + getNome_social() + "'" +
-            ", nome_da_mae='" + getNome_da_mae() + "'" +
-            ", data_de_nascimento='" + getData_de_nascimento() + "'" +
-            ", n_cartao_sus='" + getn_cartao_sus() + "'" +
+            ", nomeDoPaciente='" + getNomeDoPaciente() + "'" +
+            ", nomesocial='" + getNomeSocial() + "'" +
+            ", nomeDaMae='" + getNomeDaMae() + "'" +
+            ", dataDeNascimento='" + getDataDeNascimento() + "'" +
+            ", numCartaoSus='" + getNumCartaoSus() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }

@@ -1,97 +1,65 @@
 package br.com.basis.madre.cadastros.service;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
-//
-import br.com.basis.madre.cadastros.repository.UsuarioRepository;
-import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.service.exception.UsuarioException;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-//
+import org.springframework.http.ResponseEntity;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import java.util.Optional;
+
+//
+//
 
 
 /**
- * Service Implementation for managing Usuario.
+ * Service managing Usuario.
  */
-@Service
-@Transactional
-public class UsuarioService {
+public interface UsuarioService {
 
-    private final Logger log = LoggerFactory.getLogger(UsuarioService.class);
 
-    private final UsuarioRepository usuarioRepository;
 
-    private final UsuarioSearchRepository usuarioSearchRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioSearchRepository usuarioSearchRepository) {
-        this.usuarioRepository = usuarioRepository;
-        this.usuarioSearchRepository = usuarioSearchRepository;
+
+        /**
+         * Save a Usuario.
+         *
+         * @param usuarioDTO the entity to save
+         * @return the persisted entity
+         */
+        UsuarioDTO save(UsuarioDTO usuarioDTO) throws UsuarioException;
+
+        /**
+         * Get all the Usuario.
+         *
+         * @param pageable the pagination information
+         * @return the list of entities
+         */
+        Page<UsuarioDTO> findAll(Optional<String> query, Pageable pageable);
+
+        /**
+         * Get the "id" Usuario.
+         *
+         * @param id the id of the entity
+         * @return the entity
+         */
+        UsuarioDTO findOne(Long id);
+
+        /**
+         * Delete the "id" Usuario.
+         *
+         * @param id the id of the entity
+         */
+        void delete(Long id);
+
+
+        Page<Usuario> search(String query, Pageable pageable);
+
+        ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio) throws RelatorioException;
     }
 
-    /**
-     * Save a usuario.
-     *
-     * @param usuario the entity to save
-     * @return the persisted entity
-     */
-    public Usuario save(Usuario usuario) {
-        log.debug("Request to save Usuario : {}", usuario);
-        Usuario result = usuarioRepository.save(usuario);
-        usuarioSearchRepository.save(result);
-        return result;
-    }
 
-    /**
-     * Get all the usuarios.
-     *
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<Usuario> findAll(Pageable pageable) {
-        log.debug("Request to get all Usuarios");
-        return usuarioRepository.findAll(pageable);
-    }
 
-    /**
-     * Get one usuario by id.
-     *
-     * @param id the id of the entity
-     * @return the entity
-     */
-    @Transactional(readOnly = true)
-    public Usuario findOne(Long id) {
-        log.debug("Request to get Usuario : {}", id);
-        return usuarioRepository.findOne(id);
-    }
-
-    /**
-     * Delete the usuario by id.
-     *
-     * @param id the id of the entity
-     */
-    public void delete(Long id) {
-        log.debug("Request to delete Usuario : {}", id);
-        usuarioRepository.delete(id);
-        usuarioSearchRepository.delete(id);
-    }
-
-    /**
-     * Search for the usuario corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<Usuario> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Usuarios for query {}", query);
-        Page<Usuario> result = usuarioSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
-    }
-}

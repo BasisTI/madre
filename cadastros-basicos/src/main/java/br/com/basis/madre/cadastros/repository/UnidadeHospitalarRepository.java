@@ -17,11 +17,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface UnidadeHospitalarRepository extends JpaRepository<UnidadeHospitalar, Long> {
-	Optional<UnidadeHospitalar> findOneByCnpj(String cnpj);
-	Optional<UnidadeHospitalar> findOneByNomeIgnoreCase(String nome);
-	Optional<UnidadeHospitalar> findOneBySiglaIgnoreCase(String sigla);
-	Optional<UnidadeHospitalar> findOneByEnderecoIgnoreCase(String endereco);
-	Optional<UnidadeHospitalar> findOneByCnpjAndNomeIgnoreCaseAndSiglaIgnoreCaseAndEnderecoIgnoreCase
-								(String cnpj, String nome, String Sigla, String Endereco);
 
 }

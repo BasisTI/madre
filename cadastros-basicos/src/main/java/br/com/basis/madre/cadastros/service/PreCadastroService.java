@@ -1,95 +1,56 @@
 package br.com.basis.madre.cadastros.service;
 
 import br.com.basis.madre.cadastros.domain.PreCadastro;
-import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
-import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
+import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.ResponseEntity;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing PreCadastro.
  */
-@Service
-@Transactional
-public class PreCadastroService {
 
-    private final Logger log = LoggerFactory.getLogger(PreCadastroService.class);
-
-    private final PreCadastroRepository preCadastroRepository;
-
-    private final PreCadastroSearchRepository preCadastroSearchRepository;
-
-    public PreCadastroService(PreCadastroRepository preCadastroRepository, PreCadastroSearchRepository preCadastroSearchRepository) {
-        this.preCadastroRepository = preCadastroRepository;
-        this.preCadastroSearchRepository = preCadastroSearchRepository;
-    }
+public interface PreCadastroService {
 
     /**
-     * Save a preCadastro.
+     * Save a PreCadastro.
      *
-     * @param preCadastro the entity to save
+     * @param preCadastroDTO the entity to save
      * @return the persisted entity
      */
-    public PreCadastro save(PreCadastro preCadastro) {
-        log.debug("Request to save PreCadastro : {}", preCadastro);
-        PreCadastro result = preCadastroRepository.save(preCadastro);
-        preCadastroSearchRepository.save(result);
-        return result;
-    }
+    PreCadastroDTO save(PreCadastroDTO preCadastroDTO) throws PreCadastroException;
 
     /**
-     * Get all the preCadastros.
+     * Get all the PreCadastro.
      *
      * @param pageable the pagination information
      * @return the list of entities
      */
-    @Transactional(readOnly = true)
-    public Page<PreCadastro> findAll(Pageable pageable) {
-        log.debug("Request to get all PreCadastros");
-        return preCadastroRepository.findAll(pageable);
-    }
+    Page<PreCadastroDTO> findAll(Optional<String> query, Pageable pageable);
 
     /**
-     * Get one preCadastro by id.
+     * Get the "id" PreCadastro.
      *
      * @param id the id of the entity
      * @return the entity
      */
-    @Transactional(readOnly = true)
-    public PreCadastro findOne(Long id) {
-        log.debug("Request to get PreCadastro : {}", id);
-        return preCadastroRepository.findOne(id);
-    }
+    PreCadastroDTO findOne(Long id);
 
     /**
-     * Delete the preCadastro by id.
+     * Delete the "id" PreCadastro.
      *
      * @param id the id of the entity
      */
-    public void delete(Long id) {
-        log.debug("Request to delete PreCadastro : {}", id);
-        preCadastroRepository.delete(id);
-        preCadastroSearchRepository.delete(id);
-    }
+    void delete(Long id);
 
-    /**
-     * Search for the preCadastro corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<PreCadastro> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of PreCadastros for query {}", query);
-        Page<PreCadastro> result = preCadastroSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
-    }
+
+    Page<PreCadastro> search(String query, Pageable pageable);
+
+
+        ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio) throws RelatorioException;
 }

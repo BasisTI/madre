@@ -26,8 +26,8 @@ export class PreCadastroService {
   }
 
   private converterSusVazio(preCadastro: PreCadastro) {
-    if (preCadastro.n_cartao_sus === '') {
-      preCadastro.n_cartao_sus = undefined;
+    if (preCadastro.numCartaoSus === '') {
+      preCadastro.numCartaoSus = undefined;
     }
   }
 
@@ -71,8 +71,8 @@ export class PreCadastroService {
    */
   private convertItemFromServer(json: any): PreCadastro {
     const entity: PreCadastro = Object.assign(new PreCadastro(), json);
-    entity.data_de_nascimento = this.dateUtils
-      .convertLocalDateFromServer(json.data_de_nascimento);
+    entity.dataDeNascimento = this.dateUtils
+      .convertLocalDateFromServer(json.dataDeNascimento);
     return entity;
   }
 
@@ -81,8 +81,8 @@ export class PreCadastroService {
    */
   private convert(preCadastro: PreCadastro): PreCadastro {
     const copy: PreCadastro = Object.assign({}, preCadastro);
-    copy.data_de_nascimento = this.dateUtils
-      .convertLocalDateToServer(preCadastro.data_de_nascimento);
+    copy.dataDeNascimento = this.dateUtils
+      .convertLocalDateToServer(preCadastro.dataDeNascimento);
     return copy;
   }
 }
