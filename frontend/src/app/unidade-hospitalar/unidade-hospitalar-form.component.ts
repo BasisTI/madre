@@ -39,6 +39,8 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     this.isSaving = false;
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
+      let phoneMask: (string | RegExp)[] = ['+','7',' ','(',/\d/,/\d/,/\d/,')',' ',/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
+      new TSMask(<HTMLInputElement>document.getElementById('text-input'), phoneMask);
       this.unidadeHospitalar = new UnidadeHospitalar();
       if (params['id']) {
         this.isEdit = true;
@@ -123,4 +125,5 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       return response;
     })
   }
+  
 }
