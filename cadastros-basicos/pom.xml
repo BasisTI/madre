@@ -413,10 +413,6 @@
                     <groupId>net.sf.jasperreports</groupId>
                     <artifactId>jasperreports</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.apache.poi</groupId>
-                    <artifactId>poi</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
 

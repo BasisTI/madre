@@ -13,10 +13,9 @@ import { NgBlockUI, BlockUI } from 'ng-block-ui';
   templateUrl: 'botoes-exportacao.component.html'
 })
 export class BotoesExportacaoComponent implements OnInit {
-
   @Input() resourceName: string;
   @BlockUI() blockUI: NgBlockUI;
-
+  
   tiposExportacao: MenuItem[] = [];
 
   ngOnInit() {
@@ -40,6 +39,7 @@ export class BotoesExportacaoComponent implements OnInit {
       this.blockUI.start(MessageUtil.GERANDO_RELATORIO);
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
       downloadUrl => {
+        //downloadUrl = `${downloadUrl}?query=`;
         ExportacaoUtil.download(downloadUrl,
           this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
           this.blockUI.stop();
