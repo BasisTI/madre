@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-
+import {NgxMaskModule} from 'ngx-mask';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';

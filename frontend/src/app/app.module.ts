@@ -38,7 +38,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import {ToastrModule} from 'ngx-toastr';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.module';
-
+import {NgxMaskModule} from 'ngx-mask'
 @NgModule({
   imports: [
     BrowserModule,
@@ -58,6 +58,7 @@ import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.mo
     PageNotificationModule.forRoot(),
     BlockUiModule.forRoot(),
     ToastrModule.forRoot(),
+    NgxMaskModule.forRoot(),
     FileUploadModule,
     BotoesExportacaoModule
     /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
