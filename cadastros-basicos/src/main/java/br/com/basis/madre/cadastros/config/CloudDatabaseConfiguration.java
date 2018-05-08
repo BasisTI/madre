@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.config;
 
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;

@@ -1,9 +1,7 @@
 package br.com.basis.madre.cadastros.config;
 
 import br.com.basis.madre.cadastros.aop.logging.LoggingAspect;
-
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 

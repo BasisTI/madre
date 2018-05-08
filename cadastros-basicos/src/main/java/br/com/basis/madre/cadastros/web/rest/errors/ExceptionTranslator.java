@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.web.rest.errors;
 
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="assets">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/maximum.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/fast.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/normal.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/attributes_test.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/fastest.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/linux_arc.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/ultra.zip!/" />
+      <root url="jar://$PROJECT_DIR$/frontend/node_modules/webdriver-js-extender/node_modules/adm-zip/test/assets/store.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
