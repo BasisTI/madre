@@ -48,8 +48,7 @@ import { UploadService } from '../upload/upload.service';
     UnidadeHospitalarFormComponent
   ],
   providers: [
-    UnidadeHospitalarService,
-    UploadService
+    UnidadeHospitalarService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
