@@ -26,7 +26,7 @@
                 <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable>
                     <p-column header="Sigla" field="sigla"></p-column>
                     <p-column header="Nome" field="nome"></p-column>
-                    <p-column header="Cnpj" field="cnpj" n></p-column>
+                    <p-column header="Cnpj" field="cnpj" id="campoSenha"></p-column>
                     <p-column header="Endereco" field="endereco"></p-column>
                     <p-column header="Ativo" field="ativo">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
