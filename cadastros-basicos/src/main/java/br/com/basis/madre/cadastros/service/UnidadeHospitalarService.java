@@ -1,95 +1,70 @@
 package br.com.basis.madre.cadastros.service;
 
+import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
+import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
+import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
+import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing UnidadeHospitalar.
  */
-@Service
-@Transactional
-public class UnidadeHospitalarService {
-
-    private final Logger log = LoggerFactory.getLogger(UnidadeHospitalarService.class);
-
-    private final UnidadeHospitalarRepository unidadeHospitalarRepository;
-
-    private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
-
-    public UnidadeHospitalarService(UnidadeHospitalarRepository unidadeHospitalarRepository, UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository) {
-        this.unidadeHospitalarRepository = unidadeHospitalarRepository;
-        this.unidadeHospitalarSearchRepository = unidadeHospitalarSearchRepository;
-    }
+public interface UnidadeHospitalarService {
 
     /**
-     * Save a unidadeHospitalar.
+     * Save a UnidadeHospitalar.
      *
-     * @param unidadeHospitalar the entity to save
+     * @param unidadeHospitalarDTO the entity to save
      * @return the persisted entity
      */
-    public UnidadeHospitalar save(UnidadeHospitalar unidadeHospitalar) {
-        log.debug("Request to save UnidadeHospitalar : {}", unidadeHospitalar);
-        UnidadeHospitalar result = unidadeHospitalarRepository.save(unidadeHospitalar);
-        unidadeHospitalarSearchRepository.save(result);
-        return result;
-    }
+    UnidadeHospitalarDTO save(UnidadeHospitalarDTO unidadeHospitalarDTO) throws UnidadeHospitalarException;
 
     /**
-     * Get all the unidadeHospitalars.
+     * Get all the UnidadeHospitalar.
      *
      * @param pageable the pagination information
      * @return the list of entities
      */
-    @Transactional(readOnly = true)
-    public Page<UnidadeHospitalar> findAll(Pageable pageable) {
-        log.debug("Request to get all UnidadeHospitalars");
-        return unidadeHospitalarRepository.findAll(pageable);
-    }
+    Page<UnidadeHospitalarDTO> findAll(Optional<String> query, Pageable pageable);
 
     /**
-     * Get one unidadeHospitalar by id.
+     * Get the "id" UnidadeHospitalar.
      *
      * @param id the id of the entity
      * @return the entity
      */
-    @Transactional(readOnly = true)
-    public UnidadeHospitalar findOne(Long id) {
-        log.debug("Request to get UnidadeHospitalar : {}", id);
-        return unidadeHospitalarRepository.findOne(id);
-    }
+    UnidadeHospitalarDTO findOne(Long id);
 
     /**
-     * Delete the unidadeHospitalar by id.
+     * Delete the "id" UnidadeHospitalar.
      *
      * @param id the id of the entity
      */
-    public void delete(Long id) {
-        log.debug("Request to delete UnidadeHospitalar : {}", id);
-        unidadeHospitalarRepository.delete(id);
-        unidadeHospitalarSearchRepository.delete(id);
-    }
+    void delete(Long id);
 
-    /**
-     * Search for the unidadeHospitalar corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Transactional(readOnly = true)
-    public Page<UnidadeHospitalar> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of UnidadeHospitalars for query {}", query);
-        Page<UnidadeHospitalar> result = unidadeHospitalarSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
-    }
+
+    Page<UnidadeHospitalar> search(String query, Pageable pageable);
+
+
+
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio) throws RelatorioException;
+
 }
+
+

@@ -17,5 +17,4 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface PreCadastroRepository extends JpaRepository<PreCadastro, Long> {
-	Optional<PreCadastro> findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(String nome_do_paciente, String nome_da_mae, LocalDate data_de_nascimento);
 }

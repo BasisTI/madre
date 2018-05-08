@@ -1,13 +1,11 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.CadastrosbasicosApp;
-
 import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
-import br.com.basis.madre.cadastros.service.PreCadastroService;
 import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
+import br.com.basis.madre.cadastros.service.PreCadastroService;
 import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,8 +28,13 @@ import java.util.List;
 import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test class for the PreCadastroResource REST controller.
@@ -88,7 +91,7 @@ public class PreCadastroResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService, preCadastroRepository, preCadastroSearchRepository);
+        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService);
         this.restPreCadastroMockMvc = MockMvcBuilders.standaloneSetup(preCadastroResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -104,11 +107,11 @@ public class PreCadastroResourceIntTest {
      */
     public static PreCadastro createEntity(EntityManager em) {
         PreCadastro preCadastro = new PreCadastro()
-            .nome_do_paciente(DEFAULT_NOME_DO_PACIENTE)
-            .nome_social(DEFAULT_NOME_SOCIAL)
+            .nomeDoPaciente(DEFAULT_NOME_DO_PACIENTE)
+            .nomeSocial(DEFAULT_NOME_SOCIAL)
             .nomeDaMae(DEFAULT_NOME_DA_MAE)
-            .data_de_nascimento(DEFAULT_DATA_DE_NASCIMENTO)
-            .n_cartao_sus(DEFAULT_N_CARTAO_SUS)
+            .dataDeNascimento(DEFAULT_DATA_DE_NASCIMENTO)
+            .numCartaoSus(DEFAULT_N_CARTAO_SUS)
             .ativo(DEFAULT_ATIVO);
         return preCadastro;
     }
@@ -134,12 +137,12 @@ public class PreCadastroResourceIntTest {
         List<PreCadastro> preCadastroList = preCadastroRepository.findAll();
         assertThat(preCadastroList).hasSize(databaseSizeBeforeCreate + 1);
         PreCadastro testPreCadastro = preCadastroList.get(preCadastroList.size() - 1);
-        assertThat(testPreCadastro.getNome_do_paciente()).isEqualTo(DEFAULT_NOME_DO_PACIENTE);
-        assertThat(testPreCadastro.getNome_social()).isEqualTo(DEFAULT_NOME_SOCIAL);
-        assertThat(testPreCadastro.getNome_da_mae()).isEqualTo(DEFAULT_NOME_DA_MAE);
-        assertThat(testPreCadastro.getData_de_nascimento()).isEqualTo(DEFAULT_DATA_DE_NASCIMENTO);
-        assertThat(testPreCadastro.getn_cartao_sus()).isEqualTo(DEFAULT_N_CARTAO_SUS);
-        assertThat(testPreCadastro.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testPreCadastro.getNomeDoPaciente()).isEqualTo(UPDATED_NOME_DO_PACIENTE);
+        assertThat(testPreCadastro.getNomeSocial()).isEqualTo(UPDATED_NOME_SOCIAL);
+        assertThat(testPreCadastro.getNomeDaMae()).isEqualTo(UPDATED_NOME_DA_MAE);
+        assertThat(testPreCadastro.getDataDeNascimento()).isEqualTo(UPDATED_DATA_DE_NASCIMENTO);
+        assertThat(testPreCadastro.getNumCartaoSus()).isEqualTo(UPDATED_N_CARTAO_SUS);
+        assertThat(testPreCadastro.isAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the PreCadastro in Elasticsearch
         PreCadastro preCadastroEs = preCadastroSearchRepository.findOne(testPreCadastro.getId());
@@ -170,7 +173,7 @@ public class PreCadastroResourceIntTest {
     public void checkNome_do_pacienteIsRequired() throws Exception {
         int databaseSizeBeforeTest = preCadastroRepository.findAll().size();
         // set the field null
-        preCadastro.setNome_do_paciente(null);
+        preCadastro.setNomeDoPaciente(null);
 
         // Create the PreCadastro, which fails.
 
@@ -188,7 +191,7 @@ public class PreCadastroResourceIntTest {
     public void checkNome_da_maeIsRequired() throws Exception {
         int databaseSizeBeforeTest = preCadastroRepository.findAll().size();
         // set the field null
-        preCadastro.setNome_da_mae(null);
+        preCadastro.setNomeDaMae(null);
 
         // Create the PreCadastro, which fails.
 
@@ -206,7 +209,7 @@ public class PreCadastroResourceIntTest {
     public void checkData_de_nascimentoIsRequired() throws Exception {
         int databaseSizeBeforeTest = preCadastroRepository.findAll().size();
         // set the field null
-        preCadastro.setData_de_nascimento(null);
+        preCadastro.setDataDeNascimento(null);
 
         // Create the PreCadastro, which fails.
 
@@ -287,8 +290,7 @@ public class PreCadastroResourceIntTest {
     @Transactional
     public void updatePreCadastro() throws Exception {
         // Initialize the database
-        preCadastroService.save(preCadastro);
-
+        preCadastroRepository.saveAndFlush(preCadastro);
         int databaseSizeBeforeUpdate = preCadastroRepository.findAll().size();
 
         // Update the preCadastro
@@ -296,11 +298,11 @@ public class PreCadastroResourceIntTest {
         // Disconnect from session so that the updates on updatedPreCadastro are not directly saved in db
         em.detach(updatedPreCadastro);
         updatedPreCadastro
-            .nome_do_paciente(UPDATED_NOME_DO_PACIENTE)
-            .nome_social(UPDATED_NOME_SOCIAL)
+            .nomeDoPaciente(UPDATED_NOME_DO_PACIENTE)
+            .nomeSocial(UPDATED_NOME_SOCIAL)
             .nomeDaMae(UPDATED_NOME_DA_MAE)
-            .data_de_nascimento(UPDATED_DATA_DE_NASCIMENTO)
-            .n_cartao_sus(UPDATED_N_CARTAO_SUS)
+            .dataDeNascimento(UPDATED_DATA_DE_NASCIMENTO)
+            .numCartaoSus(UPDATED_N_CARTAO_SUS)
             .ativo(UPDATED_ATIVO);
 
         restPreCadastroMockMvc.perform(put("/api/pre-cadastros")
@@ -312,11 +314,11 @@ public class PreCadastroResourceIntTest {
         List<PreCadastro> preCadastroList = preCadastroRepository.findAll();
         assertThat(preCadastroList).hasSize(databaseSizeBeforeUpdate);
         PreCadastro testPreCadastro = preCadastroList.get(preCadastroList.size() - 1);
-        assertThat(testPreCadastro.getNome_do_paciente()).isEqualTo(UPDATED_NOME_DO_PACIENTE);
-        assertThat(testPreCadastro.getNome_social()).isEqualTo(UPDATED_NOME_SOCIAL);
-        assertThat(testPreCadastro.getNome_da_mae()).isEqualTo(UPDATED_NOME_DA_MAE);
-        assertThat(testPreCadastro.getData_de_nascimento()).isEqualTo(UPDATED_DATA_DE_NASCIMENTO);
-        assertThat(testPreCadastro.getn_cartao_sus()).isEqualTo(UPDATED_N_CARTAO_SUS);
+        assertThat(testPreCadastro.getNomeDoPaciente()).isEqualTo(UPDATED_NOME_DO_PACIENTE);
+        assertThat(testPreCadastro.getNomeSocial()).isEqualTo(UPDATED_NOME_SOCIAL);
+        assertThat(testPreCadastro.getNomeDaMae()).isEqualTo(UPDATED_NOME_DA_MAE);
+        assertThat(testPreCadastro.getDataDeNascimento()).isEqualTo(UPDATED_DATA_DE_NASCIMENTO);
+        assertThat(testPreCadastro.getNumCartaoSus()).isEqualTo(UPDATED_N_CARTAO_SUS);
         assertThat(testPreCadastro.isAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the PreCadastro in Elasticsearch
@@ -346,8 +348,7 @@ public class PreCadastroResourceIntTest {
     @Transactional
     public void deletePreCadastro() throws Exception {
         // Initialize the database
-        preCadastroService.save(preCadastro);
-
+        preCadastroRepository.saveAndFlush(preCadastro);
         int databaseSizeBeforeDelete = preCadastroRepository.findAll().size();
 
         // Get the preCadastro
@@ -368,8 +369,7 @@ public class PreCadastroResourceIntTest {
     @Transactional
     public void searchPreCadastro() throws Exception {
         // Initialize the database
-        preCadastroService.save(preCadastro);
-
+    preCadastroRepository.saveAndFlush(preCadastro);
         // Search the preCadastro
         restPreCadastroMockMvc.perform(get("/api/_search/pre-cadastros?query=id:" + preCadastro.getId()))
             .andExpect(status().isOk())

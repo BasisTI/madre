@@ -71,11 +71,10 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      if(res.headers.toJSON()["x-cadastrosbasicosapp-error"] != null){
-        this.pageNotificationService.addErrorMessage("Registro já cadastrado");
-      }
-      else{
-        this.pageNotificationService.addErrorMessage("CNPJ Inválido");
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-error'] != null) {
+        this.pageNotificationService.addErrorMessage('Registro já cadastrado');
+      } else {
+        this.pageNotificationService.addErrorMessage('CNPJ Inválido');
       }
     });
   }
@@ -95,10 +94,9 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
      if (this.isEdit) {
       this.pageNotificationService.addUpdateMsg();
     } else {
-      this.pageNotificationService.addErrorMessage("Dados inválidos");
+      this.pageNotificationService.addErrorMessage('Dados inválidos');
     }
   }
-
 
   ngOnDestroy() {
     this.routeSub.unsubscribe();
@@ -112,7 +110,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.uploadService.getFileInfo(this.unidadeHospitalar.logoId).subscribe(response => {
         fileInfo = response;
 
-        this.fileInput.files.push(new File([response["_body"]], fileInfo["originalName"]));
+        this.fileInput.files.push(new File([response['_body']], fileInfo['originalName']));
         this.loading = false;
       });
     });
@@ -121,6 +119,6 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   getFileInfo() {
     return this.uploadService.getFile(this.unidadeHospitalar.logoId).subscribe(response => {
       return response;
-    })
+    });
   }
 }

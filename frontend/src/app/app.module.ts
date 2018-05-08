@@ -55,7 +55,8 @@ import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.mo
     AccessbilityModule.forRoot(),
     PageNotificationModule.forRoot(),
     BlockUiModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    BotoesExportacaoModule
     /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
   ],
   declarations: [

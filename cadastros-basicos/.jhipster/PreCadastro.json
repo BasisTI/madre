@@ -3,7 +3,7 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "nome_do_paciente",
+            "fieldName": "nomeDoPaciente",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required",
@@ -14,7 +14,7 @@
             "fieldValidateRulesMaxlength": "150"
         },
         {
-            "fieldName": "nome_social",
+            "fieldName": "nomeSocial",
             "fieldType": "String",
             "fieldValidateRules": [
                 "maxlength"
@@ -22,7 +22,7 @@
             "fieldValidateRulesMaxlength": "150"
         },
         {
-            "fieldName": "nome_da_mae",
+            "fieldName": "nomeDaMae",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required",
@@ -33,14 +33,14 @@
             "fieldValidateRulesMaxlength": "150"
         },
         {
-            "fieldName": "data_de_nascimento",
+            "fieldName": "dataDeNascimento",
             "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "n_cartao_sus",
+            "fieldName": "numCartaoSus",
             "fieldType": "String",
             "fieldValidateRules": [
                 "minlength",

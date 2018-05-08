@@ -1,54 +1,53 @@
 <div class="ui-g ui-fluid">
-  <div class="ui-g-12">
-    <div class="card card-w-title">
-      <h1>Pré Cadastros</h1>
-      <div class="ui-g">
-        <div class="ui-g-12 ui-md-12">
-            <span class="md-inputfield">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Pré Cadastros</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12">
+                    <span class="md-inputfield">
               <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
                 (keyup.enter)="datatable.refresh(elasticQuery.query)" />
 
               <label>Pesquisar</label>
             </span>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-g-12 ui-md-6">
+                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="datatable.refresh(elasticQuery.query)"></button>
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <button pButton type="button" label="Cadastrar" routerLink="/preCadastro/new" icon="ui-icon-add"></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable>
+                    <p-column header="Nome Do Paciente" field="nomeDoPaciente"></p-column>
+                    <p-column header="Nome Social" field="nomeSocial"></p-column>
+                    <p-column header="Nome Da Mãe" field="nomeDaMae"></p-column>
+                    <p-column header="Data De Nascimento" field="dataDeNascimento">
+                        <ng-template let-col let-dataDeNascimento="rowData" pTemplate="body">
+                            {{ dataDeNascimento[col.field]|date:'dd/MM/y' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Número do Cartão do SUS" field="numCartaoSus"></p-column>
+                    <p-column header="Ativo" field="ativo">
+                        <ng-template let-col let-ativo="rowData" pTemplate="body">
+                            {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
+                        </ng-template>
+                    </p-column>
+                </basis-datatable>
+                <div class="ui-g-12 ui-md-2">
+                    <app-botoes-exportacao resourceName="precadastro">
+                    </app-botoes-exportacao>
+                </div>
+            </div>
         </div>
-        <div class="ui-g-12 ui-md-3"></div>
-        <div class="ui-g-12 ui-md-6">
-          <div class="ui-g-12 ui-md-6">
-            <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="datatable.refresh(elasticQuery.query)"></button>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <button pButton type="button" label="Cadastrar" routerLink="/preCadastro/new" icon="ui-icon-add"></button>
-          </div>
-        </div>
-        <div class="ui-g-12 ui-md-3"></div>
-        <basis-datatable [url]="searchUrl" 
-          (buttonClick)="datatableClick($event)" #datatable>
-          <p-column header="Nome Do Paciente" field="nome_do_paciente"></p-column>
-          <p-column header="Nome Social" field="nome_social"></p-column>
-          <p-column header="Nome Da Mãe" field="nome_da_mae"></p-column>
-          <p-column header="Data De Nascimento" field="data_de_nascimento">
-            <ng-template let-col let-data_de_nascimento="rowData" pTemplate="body">
-              {{ data_de_nascimento[col.field]|date:'dd/MM/y' }}
-            </ng-template>
-          </p-column>
-          <p-column header="Número do Cartão do SUS" field="n_cartao_sus"></p-column>
-          <p-column header="Ativo" field="ativo">
-            <ng-template let-col let-ativo="rowData" pTemplate="body">
-              {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
-            </ng-template>
-          </p-column>
-        </basis-datatable>
-        <div class="ui-g-12 ui-md-2">
-          <app-botoes-exportacao resourceName="Exportar">
-          </app-botoes-exportacao>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <p-confirmDialog header="Confirmação" #dialog>
-  <p-footer>
-    <button type="button" pButton icon="fa-close" label="Não" (click)="dialog.reject()"></button>
-    <button type="button" pButton icon="fa-check" label="Sim" (click)="dialog.accept()"></button>
-  </p-footer>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="Não" (click)="dialog.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="Sim" (click)="dialog.accept()"></button>
+    </p-footer>
 </p-confirmDialog>
