@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 import {
   DatatableModule, SharedModule, HttpService, SecurityModule, AccessbilityModule,
   ErrorStackModule, AuthService, AuthConfig, AUTH_CONFIG, PageNotificationModule,
-  BlockUiModule
+  BlockUiModule, VersionTagModule,
 } from '@basis/angular-components';
 
 import { environment } from '../environments/environment';
@@ -55,6 +55,7 @@ import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.mo
     AccessbilityModule.forRoot(),
     PageNotificationModule.forRoot(),
     BlockUiModule.forRoot(),
+    VersionTagModule.forRoot(),
     ToastrModule.forRoot(),
     BotoesExportacaoModule
     /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
