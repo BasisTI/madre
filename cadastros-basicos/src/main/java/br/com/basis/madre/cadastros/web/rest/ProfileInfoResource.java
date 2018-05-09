@@ -1,9 +1,7 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterProperties;
-
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,0 +1,44 @@
+<div class="ui-g ui-fluid" *ngIf="perfil">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Visualizar Perfil</h1>
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="nmPerfil" pInputText [ngModel]="perfil.nmPerfil" readonly/>
+            <label>Nm Perfil</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="dsPerfil" pInputText [ngModel]="perfil.dsPerfil" readonly/>
+            <label>Ds Perfil</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+              <input type="text" name="stExcluido" pInputText [ngModel]="perfil.stExcluido ? 'Sim' : (perfil.stExcluido != null ? 'Não' : null)" readonly/>
+            <label>St Excluido</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+              <input type="text" name="stAtivo" pInputText [ngModel]="perfil.stAtivo ? 'Sim' : (perfil.stAtivo != null ? 'Não' : null)" readonly/>
+            <label>St Ativo</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="idFuncionalidade" pInputText [ngModel]="perfil.idFuncionalidade" readonly/>
+            <label>Id Funcionalidade</label>
+          </span>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-2">
+          <button pButton type="button" label="Voltar" routerLink="/perfil"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

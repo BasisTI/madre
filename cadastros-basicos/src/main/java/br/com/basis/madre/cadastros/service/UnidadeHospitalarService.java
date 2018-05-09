@@ -1,22 +1,13 @@
 package br.com.basis.madre.cadastros.service;
 
-import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
-import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
-import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
-import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
-import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

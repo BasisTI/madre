@@ -2,9 +2,7 @@ package br.com.basis.madre.cadastros;
 
 import br.com.basis.madre.cadastros.config.ApplicationProperties;
 import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

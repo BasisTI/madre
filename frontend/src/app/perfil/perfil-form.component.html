@@ -1,0 +1,64 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ perfil.id ? 'Editar Perfil' : 'Cadastrar Perfil' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="perfil.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="nmPerfil" [(ngModel)]="perfil.nmPerfil" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Nm Perfil</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="dsPerfil" [(ngModel)]="perfil.dsPerfil" pInputText/>
+              <label>Ds Perfil</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-2">
+                  <label>St Excluido</label>
+              </div>
+              <div class="ui-g-12 ui-md-2">
+                <p-radioButton name="stExcluido" [value]="true" label="Sim" [(ngModel)]="perfil.stExcluido"></p-radioButton>
+              </div>
+              <div class="ui-g-12 ui-md-2">
+                <p-radioButton name="stExcluido" [value]="false" label="Não" [(ngModel)]="perfil.stExcluido"></p-radioButton>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-2">
+                  <label>St Ativo</label>
+              </div>
+              <div class="ui-g-12 ui-md-2">
+                <p-radioButton name="stAtivo" [value]="true" label="Sim" [(ngModel)]="perfil.stAtivo"></p-radioButton>
+              </div>
+              <div class="ui-g-12 ui-md-2">
+                <p-radioButton name="stAtivo" [value]="false" label="Não" [(ngModel)]="perfil.stAtivo"></p-radioButton>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="idFuncionalidade" [(ngModel)]="perfil.idFuncionalidade" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Id Funcionalidade</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/perfil"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

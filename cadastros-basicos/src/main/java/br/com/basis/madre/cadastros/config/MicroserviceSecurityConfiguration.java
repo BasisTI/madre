@@ -3,7 +3,6 @@ package br.com.basis.madre.cadastros.config;
 import br.com.basis.madre.cadastros.security.AuthoritiesConstants;
 import br.com.basis.madre.cadastros.security.jwt.JWTConfigurer;
 import br.com.basis.madre.cadastros.security.jwt.TokenProvider;
-
 import org.springframework.context.annotation.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
