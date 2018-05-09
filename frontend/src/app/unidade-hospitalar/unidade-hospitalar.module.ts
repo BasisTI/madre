@@ -25,6 +25,7 @@ import {
 } from './';
 import { UploadService } from '../upload/upload.service';
 import {NgxMaskModule} from 'ngx-mask';
+import { UtilModule } from '../util/util.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,13 +41,14 @@ import {NgxMaskModule} from 'ngx-mask';
     InputTextModule,
     ConfirmDialogModule,
     FileUploadModule,
+    UtilModule,
     BotoesExportacaoModule,
     NgxMaskModule.forRoot()
   ],
   declarations: [
     UnidadeHospitalarComponent,
     UnidadeHospitalarDetailComponent,
-    UnidadeHospitalarFormComponent
+    UnidadeHospitalarFormComponent,
   ],
   providers: [
     UnidadeHospitalarService
