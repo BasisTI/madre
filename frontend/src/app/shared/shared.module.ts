@@ -4,6 +4,7 @@ import { JhiDateUtils } from './date-util.service';
 import { UnidadeHospitalarService } from '../unidade-hospitalar/unidade-hospitalar.service';
 import { UsuarioService } from '../usuario/usuario.service';
 import { PreCadastroService } from '../pre-cadastro/pre-cadastro.service';
+import { PerfilService } from '../perfil/perfil.service';
 /* jhipster-needle-add-shared-service-import - JHipster will add shared services imports here */
 
 @NgModule({})
@@ -16,6 +17,7 @@ export class SharedModule {
         UnidadeHospitalarService,
         UsuarioService,
         PreCadastroService,
+        PerfilService,
         /* jhipster-needle-add-shared-services - JHipster will add shared services here */
       ]
     };
