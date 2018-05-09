@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cadastros-basicos/target/generated-sources/generated-sources.iml" filepath="$PROJECT_DIR$/cadastros-basicos/target/generated-sources/generated-sources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/src/main/main.iml" filepath="$PROJECT_DIR$/gateway/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cadastros-basicos/src/main/main1.iml" filepath="$PROJECT_DIR$/cadastros-basicos/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pacientes/src/main/main2.iml" filepath="$PROJECT_DIR$/pacientes/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cadastros-basicos/src/test/test.iml" filepath="$PROJECT_DIR$/cadastros-basicos/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/src/test/test1.iml" filepath="$PROJECT_DIR$/gateway/src/test/test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pacientes/src/test/test2.iml" filepath="$PROJECT_DIR$/pacientes/src/test/test2.iml" />
+    </modules>
+  </component>
+</project>
