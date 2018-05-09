@@ -7,6 +7,8 @@ import { HttpService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
+import { PageNotificationService } from '@basis/angular-components';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 @Component({
   selector: 'app-botoes-exportacao',
@@ -25,7 +27,8 @@ export class BotoesExportacaoComponent implements OnInit {
 
   constructor(
     private toastrService: ToastrService,
-    private http: HttpService
+    private http: HttpService,
+    private pageNotificationService: PageNotificationService
   ) {}
 
   getTiposExportacao() {
@@ -37,7 +40,6 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   exportar(tipoRelatorio: string) {
-      this.blockUI.start(MessageUtil.GERANDO_RELATORIO);
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
       downloadUrl => {
         ExportacaoUtil.download(downloadUrl,
@@ -45,23 +47,111 @@ export class BotoesExportacaoComponent implements OnInit {
           this.blockUI.stop();
       },
       err => {
-        this.toastrService.error(MessageUtil.ERRO_EXPORTAR_ARQUIVO);
-        this.blockUI.stop();
+        this.addErrorMessage(false);
       }
     );
   }
 
   imprimir(tipoRelatorio: string) {
-    this.blockUI.start(MessageUtil.GERANDO_IMPRESSAO_RELATORIO);
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
       downloadUrl => {
         ExportacaoUtil.imprimir(downloadUrl);
         this.blockUI.stop();
       },
       err => {
-        this.toastrService.error(MessageUtil.ERRO_IMPRIMIR_ARQUIVO);
-        this.blockUI.stop();
+        // this.toastrService.error(MessageUtil.ERRO_IMPRIMIR_ARQUIVO);
+        // this.blockUI.stop();
+        this.addErrorMessage(true);
       }
     );
+  }
+
+  // private addConfirmationMessage() {
+  //   this.pageNotificationService.addCreateMsg('Exportado com sucesso!');
+  // }
+  private addErrorMessage(isImprimir: boolean) {
+    if (isImprimir)
+      this.pageNotificationService.addErrorMessage('Erro ao imprimir pesquisa!');
+    else
+      this.pageNotificationService.addErrorMessage('Erro ao exportar pesquisa!');
+  }
+}
+
+export class PanelMenuDemo {
+  
+  items: MenuItem[];
+
+  ngOnInit() {
+      this.items = [
+          {
+              label: 'File',
+              icon: 'fa-file-o',
+              items: [{
+                      label: 'New', 
+                      icon: 'fa-plus',
+                      items: [
+                          {label: 'Project'},
+                          {label: 'Other'},
+                      ]
+                  },
+                  {label: 'Open'},
+                  {label: 'Quit'}
+              ]
+          },
+          {
+              label: 'Edit',
+              icon: 'fa-edit',
+              items: [
+                  {label: 'Undo', icon: 'fa-mail-forward'},
+                  {label: 'Redo', icon: 'fa-mail-reply'}
+              ]
+          },
+          {
+              label: 'Help',
+              icon: 'fa-question',
+              items: [
+                  {
+                      label: 'Contents'
+                  },
+                  {
+                      label: 'Search', 
+                      icon: 'fa-search', 
+                      items: [
+                          {
+                              label: 'Text', 
+                              items: [
+                                  {
+                                      label: 'Workspace'
+                                  }
+                              ]
+                          },
+                          {
+                              label: 'File'
+                          }
+                  ]}
+              ]
+          },
+          {
+              label: 'Actions',
+              icon: 'fa-gear',
+              items: [
+                  {
+                      label: 'Edit',
+                      icon: 'fa-refresh',
+                      items: [
+                          {label: 'Save', icon: 'fa-save'},
+                          {label: 'Update', icon: 'fa-save'},
+                      ]
+                  },
+                  {
+                      label: 'Other',
+                      icon: 'fa-phone',
+                      items: [
+                          {label: 'Delete', icon: 'fa-minus'}
+                      ]
+                  }
+              ]
+          }
+      ];
   }
 }
