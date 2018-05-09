@@ -413,10 +413,6 @@
                     <groupId>net.sf.jasperreports</groupId>
                     <artifactId>jasperreports</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.apache.poi</groupId>
-                    <artifactId>poi</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
 
@@ -649,7 +645,7 @@
                     <url>jdbc:postgresql://localhost:5432/cadastrosbasicos</url>
                     <defaultSchemaName></defaultSchemaName>
                     <username>cadastrosbasicos</username>
-                    <password></password>
+                    <password>cadastrosbasicos</password>
                     <referenceUrl>hibernate:spring:br.com.basis.madre.cadastros.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>
