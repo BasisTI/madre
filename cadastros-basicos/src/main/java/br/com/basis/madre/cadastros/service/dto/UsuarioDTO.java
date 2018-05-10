@@ -1,11 +1,12 @@
 package br.com.basis.madre.cadastros.service.dto;
 
-import br.com.basis.dynamicexports.pojo.ReportObject;
+import java.io.Serializable;
+import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Objects;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
 
 public class UsuarioDTO implements ReportObject, Serializable {
 
@@ -133,7 +134,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
                 "id=" + getId() +
                 ", nome='" + getNome() + "'" +
                 ", login='" + getLogin() + "'" +
-                ", senha='" + getSenha() + "'" +
+                ", password='" + getSenha() + "'" +
                 ", email='" + getEmail() + "'" +
                 ", perfil='" + getPerfil() + "'" +
                 ", unidade_de_saude='" + getUnidade_de_saude() + "'" +

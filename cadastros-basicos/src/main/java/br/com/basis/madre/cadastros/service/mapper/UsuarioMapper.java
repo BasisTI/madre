@@ -1,8 +1,9 @@
 package br.com.basis.madre.cadastros.service.mapper;
 
+import org.mapstruct.Mapper;
+
 import br.com.basis.madre.cadastros.domain.Usuario;
 import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
-import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper extends EntityMapper<UsuarioDTO, Usuario> {
