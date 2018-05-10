@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.Usuario;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,10 +9,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UsuarioDTO implements ReportObject, Serializable {
+//public class UsuarioDTO implements Serializable {
 
-    /**
-     * A Usuario.
-     */
+    private static final long serialVersionUID = 1L;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @NotNull
@@ -102,7 +106,9 @@ public class UsuarioDTO implements ReportObject, Serializable {
         return ativo;
     }
 
-    public String getAtivo() { return (this.ativo) ? "Sim" : "Não"; }
+    public String getAtivo() {
+        return (this.ativo) ? "Sim" : "Não";
+    }
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
@@ -117,7 +123,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        br.com.basis.madre.cadastros.domain.Usuario usuario = (br.com.basis.madre.cadastros.domain.Usuario) o;
+        Usuario usuario = (Usuario) o;
         if (usuario.getId() == null || getId() == null) {
             return false;
         }
