@@ -13,8 +13,8 @@ public final class MadreUtil {
 
     public static final String REPORT_LOGO_PATH = "/images/logoFunasa.png";
 
-    public MadreUtil() {
-    }
+   /* public MadreUtil() {
+    }*/
 
     public static String getReportFooter() {
         StringBuilder footer = new StringBuilder();

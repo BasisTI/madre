@@ -127,7 +127,6 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
         public String toString() {
             return "UnidadeHospitalar{" +
                 "id=" + getId() +
-                ", logo='" + getLogo() + "'" +
                 ", logoContentType='" + getLogoContentType() + "'" +
                 ", sigla='" + getSigla() + "'" +
                 ", nome='" + getNome() + "'" +
