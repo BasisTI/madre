@@ -1,18 +1,24 @@
 package br.com.basis.madre.cadastros.service.dto;
 
-import java.io.Serializable;
-import java.util.Objects;
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.Usuario;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
 
-public class UsuarioDTO implements ReportObject, Serializable {
+import java.io.Serializable;
+import java.util.Objects;
 
-    /**
-     * A Usuario.
-     */
+public class UsuarioDTO implements ReportObject, Serializable {
+//public class UsuarioDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @NotNull

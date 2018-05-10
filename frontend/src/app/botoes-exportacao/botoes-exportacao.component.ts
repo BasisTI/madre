@@ -40,6 +40,7 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   exportar(tipoRelatorio: string) {
+    // this.addGenerateMessage(false);
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
       downloadUrl => {
         ExportacaoUtil.download(downloadUrl,
@@ -53,6 +54,7 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   imprimir(tipoRelatorio: string) {
+    // this.addGenerateMessage(true);
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
       downloadUrl => {
         ExportacaoUtil.imprimir(downloadUrl);
@@ -66,9 +68,12 @@ export class BotoesExportacaoComponent implements OnInit {
     );
   }
 
-  // private addConfirmationMessage() {
-  //   this.pageNotificationService.addCreateMsg('Exportado com sucesso!');
-  // }
+//   private addGenerateMessage(isImprimir: boolean) {
+//     if (isImprimir)
+//         this.pageNotificationService.addCreateMsg('Exportando pesquisa!');
+//     else
+//         this.pageNotificationService.addCreateMsg('Imprimindo pesquisa!');
+//   }
   private addErrorMessage(isImprimir: boolean) {
     if (isImprimir)
       this.pageNotificationService.addErrorMessage('Erro ao imprimir pesquisa!');
