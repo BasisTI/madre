@@ -5,8 +5,6 @@ import org.mapstruct.Mapper;
 import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 
-import org.mapstruct.*;
-
 /**
  * Mapper for the entity PreCadastro and its DTO PreCadastroDTO.
  */
