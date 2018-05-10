@@ -1,7 +1,12 @@
 package br.com.basis.madre.cadastros.service;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import br.com.basis.dynamicexports.service.DynamicExportsService;
+import br.com.basis.madre.cadastros.repository.UsuarioRepository;
+import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

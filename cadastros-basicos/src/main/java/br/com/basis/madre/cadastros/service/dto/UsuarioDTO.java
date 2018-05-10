@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 public class UsuarioDTO implements ReportObject, Serializable {
 //public class UsuarioDTO implements Serializable {
 
