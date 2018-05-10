@@ -155,7 +155,7 @@ public class Usuario implements Serializable {
     }
 
     public Boolean isAtivo() {
-        return ativo;
+        return this.ativo;
     }
 
     public Usuario ativo(Boolean ativo) {

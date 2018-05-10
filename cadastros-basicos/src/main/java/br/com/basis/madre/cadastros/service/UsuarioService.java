@@ -1,11 +1,20 @@
 package br.com.basis.madre.cadastros.service;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import br.com.basis.dynamicexports.service.DynamicExportsService;
+import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
+import br.com.basis.madre.cadastros.service.filter.UsuarioFilter;
+import br.com.basis.madre.cadastros.service.mapper.UsuarioMapper;
+import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUsuarioColunas;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
+import net.sf.dynamicreports.report.exception.DRException;
+import net.sf.jasperreports.engine.JRException;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
@@ -17,12 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.basis.madre.cadastros.domain.Usuario;
 import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
-import br.com.basis.madre.cadastros.service.exception.UsuarioException;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 /**
  * Service managing Usuario.
  */
@@ -131,7 +137,7 @@ public class UsuarioService {
      */
     public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio)
         throws RelatorioException {
-        ByteArrayOutputStream byteArrayOutputStream;
+        java.io.ByteArrayOutputStream byteArrayOutputStream;
         try {
             Page<UsuarioDTO> result = usuarioRepository.findAll(dynamicExportsService.obterPageableMaximoExportacao()).map(usuarioMapper::toDto);
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioUsuarioColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));

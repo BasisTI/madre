@@ -186,10 +186,9 @@ public class UsuarioResource {
      */
     @GetMapping("/_search/usuarios")
     @Timed
-    public ResponseEntity<List<Usuario>> searchUsuarios(@RequestParam(defaultValue = "*") String query,
+    public ResponseEntity<List<UsuarioDTO>> searchUsuarios(@RequestParam(defaultValue = "*") String query,
         Pageable pageable) {
         // query="\""+query+"\"";
-
         log.debug("REST request to search for a page of Usuarios for query {}", query);
         Page<UsuarioDTO> page = usuarioService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/usuarios");
