@@ -1,11 +1,12 @@
 package br.com.basis.madre.cadastros.config;
 
-import io.github.jhipster.config.JHipsterConstants;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.Environment;
 
-import java.util.HashMap;
-import java.util.Map;
+import io.github.jhipster.config.JHipsterConstants;
 
 /**
  * Utility class to load a Spring profile to be used as default

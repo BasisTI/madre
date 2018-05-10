@@ -1,11 +1,11 @@
 package br.com.basis.madre.cadastros.web.rest.errors;
 
-import org.zalando.problem.AbstractThrowableProblem;
+import static org.zalando.problem.Status.BAD_REQUEST;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.zalando.problem.Status.BAD_REQUEST;
+import org.zalando.problem.AbstractThrowableProblem;
 
 /**
  * Custom, parameterized exception, which can be translated on the client side.
