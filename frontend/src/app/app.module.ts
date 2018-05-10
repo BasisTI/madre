@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 import {
   DatatableModule, SharedModule, HttpService, SecurityModule, AccessbilityModule,
   ErrorStackModule, AuthService, AuthConfig, AUTH_CONFIG, PageNotificationModule,
-  BlockUiModule
+  BlockUiModule, VersionTagModule,
 } from '@basis/angular-components';
 
 import { environment } from '../environments/environment';
@@ -57,6 +57,7 @@ import {NgxMaskModule} from 'ngx-mask'
     AccessbilityModule.forRoot(),
     PageNotificationModule.forRoot(),
     BlockUiModule.forRoot(),
+    VersionTagModule.forRoot(),
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
     FileUploadModule,

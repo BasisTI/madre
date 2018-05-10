@@ -1,7 +1,7 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import io.github.jhipster.config.JHipsterProperties;
 import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,7 +2,6 @@ package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
-import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
@@ -22,7 +21,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -45,12 +52,9 @@ public class UnidadeHospitalarResource {
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
 
-    private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
-
-    public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService, UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository,
-                                     UnidadeHospitalarRepository unidadeHospitalarRepository) {
+    public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
+        UnidadeHospitalarRepository unidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
-        this.unidadeHospitalarSearchRepository = unidadeHospitalarSearchRepository;
         this.unidadeHospitalarRepository = unidadeHospitalarRepository;
     }
 
@@ -63,25 +67,15 @@ public class UnidadeHospitalarResource {
      */
     @PostMapping("/unidade-hospitalars")
     @Timed
-    public ResponseEntity<UnidadeHospitalarDTO> createUnidadeHospitalar(@Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) throws URISyntaxException {
+    public ResponseEntity<UnidadeHospitalarDTO> createUnidadeHospitalar(
+        @Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) throws URISyntaxException {
         try {
             log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalarDTO);
-                if (unidadeHospitalarDTO.getId() != null) {
-                    throw new BadRequestAlertException("A new parecerPadrao cannot already have an ID", ENTITY_NAME, "idexists");
-                }
-
-                //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-                if( unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalarDTO.getCnpj()).isPresent()  ||
-                    unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalarDTO.getNome()).isPresent() ||
-                    unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalarDTO.getSigla()).isPresent() ||
-                    unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalarDTO.getEndereco()).isPresent()
-                ) {
-                    return ResponseEntity.badRequest()
-                        .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
-                        .body(null);
-                }
-
-
+            if (validaDTO(unidadeHospitalarDTO)) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
+                    .body(null);
+            }
             UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
             return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -95,6 +89,22 @@ public class UnidadeHospitalarResource {
 
     }
 
+    private boolean validaDTO(@Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) {
+        if (unidadeHospitalarDTO.getId() != null) {
+            throw new BadRequestAlertException("A new parecerPadrao cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+
+        //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
+        if (unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalarDTO.getCnpj()).isPresent() ||
+            unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalarDTO.getNome()).isPresent() ||
+            unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalarDTO.getSigla()).isPresent() ||
+            unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalarDTO.getEndereco()).isPresent()
+            ) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
     /**
      * PUT  /unidade-hospitalars : Updates an existing unidadeHospitalar.
      *
@@ -106,18 +116,17 @@ public class UnidadeHospitalarResource {
      */
     @PutMapping("/unidade-hospitalars")
     @Timed
-    public ResponseEntity<UnidadeHospitalarDTO> updateUnidadeHospitalar(@Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) throws URISyntaxException {
+    public ResponseEntity<UnidadeHospitalarDTO> updateUnidadeHospitalar(
+        @Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) throws URISyntaxException {
         try {
             log.debug("REST request to update UnidadeHospitalar : {}", unidadeHospitalarDTO);
             if (unidadeHospitalarDTO.getId() == null) {
                 return createUnidadeHospitalar(unidadeHospitalarDTO);
             }
-            if( unidadeHospitalarRepository.findOneByCnpjAndSiglaIgnoreCase(unidadeHospitalarDTO.getCnpj(), unidadeHospitalarDTO.getSigla()).isPresent()){
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
-                    .body(null);
+            if (validaCnpjSigla(unidadeHospitalarDTO)) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use")).body(null);
             }
-                UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
+            UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
             return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, unidadeHospitalarDTO.getId().toString()))
                 .body(result);
@@ -129,6 +138,13 @@ public class UnidadeHospitalarResource {
         }
     }
 
+    private boolean validaCnpjSigla(@Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) {
+        if (unidadeHospitalarRepository.findOneByCnpjAndSiglaIgnoreCase(unidadeHospitalarDTO.getCnpj(), unidadeHospitalarDTO.getSigla()).isPresent()) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
     /**
      * GET  /unidade-hospitalars : get all the unidadeHospitalars.
      *
@@ -137,8 +153,9 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping("/unidade-hospitalars")
     @Timed
-    public ResponseEntity<List<UnidadeHospitalarDTO>> getAllUnidadeHospitalars (@RequestParam(value = "query") Optional<String> query ,
-            @ApiParam Pageable pageable)  {
+    public ResponseEntity<List<UnidadeHospitalarDTO>> getAllUnidadeHospitalars(
+        @RequestParam(value = "query") Optional<String> query,
+        @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of UnidadeHospitalars");
         Page<UnidadeHospitalarDTO> page = unidadeHospitalarService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/unidade-hospitalars");
@@ -183,13 +200,15 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping("/_search/unidade-hospitalars")
     @Timed
-    public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(@RequestParam(defaultValue="*") String query, Pageable pageable) {
+    public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(
+        @RequestParam(defaultValue = "*") String query, Pageable pageable) {
 
-    	log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
+        log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
         Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/unidade-hospitalars");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
     /**
      * GET  /usuarios/:id : get jasper of  usuarios.
      *
