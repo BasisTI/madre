@@ -63,12 +63,8 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
 
       if(this.logo !== undefined){
         this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-        console.log("A logo é não undefinede")
-      }
-      else{
+      } else {
         this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-        
-        console.log("A logo é undefined")
       }
     }
   }

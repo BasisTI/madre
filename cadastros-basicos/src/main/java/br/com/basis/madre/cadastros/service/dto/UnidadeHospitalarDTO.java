@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
         private String nome;
 
         @NotNull
+        @CNPJ
         @Size(min = 14, max = 14)
         private String cnpj;
 

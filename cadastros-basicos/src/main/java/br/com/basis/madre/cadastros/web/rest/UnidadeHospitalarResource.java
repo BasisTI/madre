@@ -52,8 +52,15 @@ public class UnidadeHospitalarResource {
 
     private final UnidadeHospitalarService unidadeHospitalarService;
 
-    public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService) {
+    private final UnidadeHospitalarRepository unidadeHospitalarRepository;
+
+    private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
+
+    public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService, UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository,
+                                     UnidadeHospitalarRepository unidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
+        this.unidadeHospitalarSearchRepository = unidadeHospitalarSearchRepository;
+        this.unidadeHospitalarRepository = unidadeHospitalarRepository;
     }
 
     /**
@@ -71,6 +78,19 @@ public class UnidadeHospitalarResource {
                 if (unidadeHospitalarDTO.getId() != null) {
                     throw new BadRequestAlertException("A new parecerPadrao cannot already have an ID", ENTITY_NAME, "idexists");
                 }
+
+                //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
+                if( unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalarDTO.getCnpj()).isPresent()  ||
+                    unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalarDTO.getNome()).isPresent() ||
+                    unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalarDTO.getSigla()).isPresent() ||
+                    unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalarDTO.getEndereco()).isPresent()
+                ) {
+                    return ResponseEntity.badRequest()
+                        .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
+                        .body(null);
+                }
+
+
             UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
             return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -101,7 +121,12 @@ public class UnidadeHospitalarResource {
             if (unidadeHospitalarDTO.getId() == null) {
                 return createUnidadeHospitalar(unidadeHospitalarDTO);
             }
-            UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
+            if( unidadeHospitalarRepository.findOneByCnpjAndSiglaIgnoreCase(unidadeHospitalarDTO.getCnpj(), unidadeHospitalarDTO.getSigla()).isPresent()){
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
+                    .body(null);
+            }
+                UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
             return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, unidadeHospitalarDTO.getId().toString()))
                 .body(result);

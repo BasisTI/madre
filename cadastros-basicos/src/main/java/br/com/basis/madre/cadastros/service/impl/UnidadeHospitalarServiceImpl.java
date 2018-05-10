@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -37,6 +38,8 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
     private final Logger log = LoggerFactory.getLogger(UnidadeHospitalarServiceImpl.class);
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
+
+
 
     private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
 
@@ -152,4 +155,7 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
     }
+
+
+
 }

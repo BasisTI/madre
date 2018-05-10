@@ -28,6 +28,7 @@
                             {{ item.cnpj | cpfCnpj }}
                         </ng-template>
                     </p-column>
+                    <p-column header="Enderço" field="endereco"></p-column>
                     <p-column header="Ativo" field="ativo">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
                             {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
@@ -35,7 +36,8 @@
                     </p-column>
                 </basis-datatable>
                 <div class="ui-g-12 ui-md-2">
-                    <app-botoes-exportacao resourceName="unidadehospitalar"></app-botoes-exportacao>
+                    <app-botoes-exportacao resourceName="unidadehospitalar"
+                    ></app-botoes-exportacao>
                 </div>
             </div>
 

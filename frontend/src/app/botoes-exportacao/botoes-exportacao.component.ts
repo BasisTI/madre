@@ -39,7 +39,7 @@ export class BotoesExportacaoComponent implements OnInit {
       this.blockUI.start(MessageUtil.GERANDO_RELATORIO);
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
       downloadUrl => {
-        //downloadUrl = `${downloadUrl}?query=`;
+       // downloadUrl = `${downloadUrl}?query="SELECT NOME FROM UNIDADEHOSPITALARS WHERE NOME  = 'aa'"`;
         ExportacaoUtil.download(downloadUrl,
           this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
           this.blockUI.stop();
