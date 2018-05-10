@@ -9,9 +9,6 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 public class PreCadastroFilter {
 
-    private static final String SIM = "Sim";
-    private static final String NAO = "Não";
-
     public QueryBuilder filterElasticSearch(String parametro) {
 
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();

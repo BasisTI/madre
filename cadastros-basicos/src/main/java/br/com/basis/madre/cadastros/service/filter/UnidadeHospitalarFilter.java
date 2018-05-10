@@ -9,8 +9,6 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 public class UnidadeHospitalarFilter {
 
-    private static final String SIM = "Sim";
-    private static final String NAO = "Não";
 
     public QueryBuilder filterElasticSearch(String parametro) {
 

@@ -1,9 +1,8 @@
 package br.com.basis.madre.cadastros.service.mapper;
 
-import br.com.basis.madre.cadastros.domain.*;
+import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.service.dto.PerfilDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity Perfil and its DTO PerfilDTO.
