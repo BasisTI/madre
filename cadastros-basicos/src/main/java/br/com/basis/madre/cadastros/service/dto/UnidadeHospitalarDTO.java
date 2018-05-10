@@ -1,12 +1,13 @@
 package br.com.basis.madre.cadastros.service.dto;
 
-import br.com.basis.dynamicexports.pojo.ReportObject;
+import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Objects;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
 
 public class UnidadeHospitalarDTO implements ReportObject, Serializable {
 

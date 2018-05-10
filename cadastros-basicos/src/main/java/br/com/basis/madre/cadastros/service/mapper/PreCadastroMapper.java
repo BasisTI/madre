@@ -1,6 +1,8 @@
 package br.com.basis.madre.cadastros.service.mapper;
 
-import br.com.basis.madre.cadastros.domain.*;
+import org.mapstruct.Mapper;
+
+import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 
 import org.mapstruct.*;
