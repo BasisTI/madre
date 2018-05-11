@@ -1,10 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-
-
-
-            <h1>Unidade Hospitalares</h1>
+          <h1>Unidade Hospitalares</h1>
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12">
                     <span class="md-inputfield">
@@ -26,8 +23,12 @@
                 <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable>
                     <p-column header="Sigla" field="sigla"></p-column>
                     <p-column header="Nome" field="nome"></p-column>
-                    <p-column header="Cnpj" field="cnpj"></p-column>
-                    <p-column header="Endereco" field="endereco"></p-column>
+                    <p-column header="Cnpj" field="cnpj" >
+                        <ng-template  let-col let-item="rowData" pTemplate="body">
+                            {{ item.cnpj | cpfCnpj }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Enderço" field="endereco"></p-column>
                     <p-column header="Ativo" field="ativo">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
                             {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
@@ -35,7 +36,8 @@
                     </p-column>
                 </basis-datatable>
                 <div class="ui-g-12 ui-md-2">
-                    <app-botoes-exportacao resourceName="unidadehospitalar"></app-botoes-exportacao>
+                    <app-botoes-exportacao resourceName="unidadehospitalar"
+                    ></app-botoes-exportacao>
                 </div>
             </div>
 

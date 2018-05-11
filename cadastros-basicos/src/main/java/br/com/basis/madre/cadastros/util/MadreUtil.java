@@ -8,11 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class MadreUtil {
-
-    private static final Logger log = LoggerFactory.getLogger(MadreUtil.class);
-
+    //utils para madre
     public static final String REPORT_LOGO_PATH = "/images/logoFunasa.png";
+    private MadreUtil(){
 
+    }
     public static String getReportFooter() {
         StringBuilder footer = new StringBuilder();
         //TODO Informar o nome do Usuário Logado

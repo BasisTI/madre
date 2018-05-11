@@ -1,9 +1,8 @@
 package br.com.basis.madre.cadastros.service.mapper;
 
-import org.mapstruct.Mapper;
-
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity UnidadeHospitalar and its DTO UnidadeHospitalarDTO.

@@ -34,6 +34,6 @@
     "skipUserManagement": true
   },
   "generator-jhipster-primeng-entity": {
-    "frontendRoot": "/home/jefferson/Basis/projetos/madre/madre_codigo_fonte/frontend"
+    "frontendRoot": "/home/helio/projetos/madre/madre_codigo_fonte/frontend"
   }
 }

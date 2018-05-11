@@ -36,6 +36,7 @@
     "moment": "^2.17.1",
     "nanoscroller": "0.8.7",
     "ng-block-ui": "^1.0.4",
+    "ngx-mask": "^2.7.3",
     "ngx-toastr": "^8.4.0",
     "primeng": "^5.0.2",
     "quill": "^1.1.8",

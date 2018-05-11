@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { SelectItem } from 'primeng/primeng';
-
+import {NgxMaskModule} from 'ngx-mask';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
@@ -60,7 +60,12 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     if (this.unidadeHospitalar.id !== undefined) {
       this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
     } else {
-      this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
+
+      if(this.logo !== undefined){
+        this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
+      } else {
+        this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
+      }
     }
   }
 

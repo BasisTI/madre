@@ -36,7 +36,8 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText maxlength="14" minlength="14" pattern="[0-9]+$" required/>
+              <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText maxlength="18" 
+              minlength="14" mask="99.999.999/9999-99" pattern="[0-9]+$" required/>
               <label>Cnpj</label>
             </span>
           </div>

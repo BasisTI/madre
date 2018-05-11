@@ -5,7 +5,6 @@ export class UnidadeHospitalar implements BaseEntity {
 
   constructor(
     public id?: number,
-    public logoContentType?: string,
     public logo?: any,
     public sigla?: string,
     public nome?: string,

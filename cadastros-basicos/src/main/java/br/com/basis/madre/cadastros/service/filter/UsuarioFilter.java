@@ -9,6 +9,8 @@ import org.elasticsearch.index.query.QueryBuilders;
 
 public class UsuarioFilter {
 
+
+
     public QueryBuilder filterElasticSearch(String parametro) {
 
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();

@@ -124,5 +124,6 @@ public class PreCadastroServiceImpl implements PreCadastroService {
             "relatorio." + tipoRelatorio);
     }
 
+
 }
 
