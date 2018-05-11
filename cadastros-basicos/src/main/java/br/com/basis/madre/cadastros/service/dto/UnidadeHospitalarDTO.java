@@ -6,8 +6,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Objects;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
 
 public class UnidadeHospitalarDTO implements ReportObject, Serializable {
 
@@ -128,7 +128,6 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
         public String toString() {
             return "UnidadeHospitalar{" +
                 "id=" + getId() +
-                ", logo='" + getLogo() + "'" +
                 ", logoContentType='" + getLogoContentType() + "'" +
                 ", sigla='" + getSigla() + "'" +
                 ", nome='" + getNome() + "'" +

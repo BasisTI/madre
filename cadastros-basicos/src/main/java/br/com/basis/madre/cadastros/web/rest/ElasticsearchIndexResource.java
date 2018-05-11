@@ -1,14 +1,16 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import br.com.basis.madre.cadastros.service.ElasticsearchIndexService;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import com.codahale.metrics.annotation.Timed;
+import java.net.URISyntaxException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URISyntaxException;
+import com.codahale.metrics.annotation.Timed;
+
+import br.com.basis.madre.cadastros.service.ElasticsearchIndexService;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 
 @RestController
 @RequestMapping("/api")
