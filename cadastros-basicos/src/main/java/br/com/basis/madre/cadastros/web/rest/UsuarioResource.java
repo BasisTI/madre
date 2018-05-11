@@ -83,7 +83,7 @@ public class UsuarioResource {
 //            return ResponseEntity.badRequest()
 //                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
 //                .body(usuarioDTO);
-//        }
+//        }     mexer aqui, duplicidade
             log.debug("REST request to save Usuario : {}", usuarioDTO);
             if (usuarioDTO.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");

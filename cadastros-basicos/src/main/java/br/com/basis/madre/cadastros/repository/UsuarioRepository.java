@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
 
-//vali
-//vali
+import java.util.Optional;
 
 
 /**
@@ -15,5 +14,7 @@ import br.com.basis.madre.cadastros.domain.Usuario;
 @SuppressWarnings("unused")
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
+//    Optional<Usuario> findOneByLogin(String login);
+//    Optional<Usuario> findOneByNome(String nome);
+//    Optional<Usuario> findOneBtEmail(String email);
 }

@@ -158,8 +158,6 @@ public class Usuario implements Serializable {
         return this.ativo;
     }
 
-    public String getAtivo() { return (ativo) ? "Sim" : "Não"; } //revisar
-
     public Usuario ativo(Boolean ativo) {
         this.ativo = ativo;
         return this;
