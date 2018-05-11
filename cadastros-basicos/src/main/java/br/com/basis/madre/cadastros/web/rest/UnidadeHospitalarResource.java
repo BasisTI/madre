@@ -227,7 +227,6 @@ public class UnidadeHospitalarResource {
     @Timed
     public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(
         @RequestParam(defaultValue = "*") String query, Pageable pageable) {
-        filterValue = query;
         log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
         Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/unidade-hospitalars");
@@ -242,10 +241,9 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping(value = "/unidadehospitalar/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
-
-            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio, (filterValue!= null) ? filterValue : "*");
+            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio,query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);

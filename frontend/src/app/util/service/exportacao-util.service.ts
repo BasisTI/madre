@@ -37,10 +37,9 @@ export class ExportacaoUtilService {
         return options;
     }
 
-    static exportarRelatorio(tipoRelatorio: string, resourceUrl: string, http: HttpService) {
-  
+    static exportarRelatorio(tipoRelatorio: string, resourceUrl: string, http: HttpService, query: string) {
         return ExportacaoUtilService.gerar(
-            `${resourceUrl}/exportacao/` + tipoRelatorio,
+            `${resourceUrl}/exportacao/` + tipoRelatorio + '?query=' + query,
             ExportacaoUtilService.getContentType(tipoRelatorio),
             http
         );

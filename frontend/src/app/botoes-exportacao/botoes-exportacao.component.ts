@@ -21,6 +21,7 @@ import { ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 export class BotoesExportacaoComponent implements OnInit {
   @Input() resourceName: string;
+  @Input() query: string;
   @BlockUI() blockUI: NgBlockUI;
   
   tiposExportacao: MenuItem[] = [];
@@ -45,7 +46,7 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   exportar(tipoRelatorio: string) {
-    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
+    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
       downloadUrl => {
        // downloadUrl = `${downloadUrl}?query="SELECT NOME FROM UNIDADEHOSPITALARS WHERE NOME  = 'aa'"`;
         ExportacaoUtil.download(downloadUrl,
@@ -59,7 +60,7 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   imprimir(tipoRelatorio: string) {
-    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http).subscribe(
+    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
       downloadUrl => {
         ExportacaoUtil.imprimir(downloadUrl);
         this.blockUI.stop();
