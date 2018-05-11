@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
+import java.time.LocalDate;
+import java.util.Optional;
 
 
 /**
@@ -12,4 +15,5 @@ import br.com.basis.madre.cadastros.domain.PreCadastro;
 @SuppressWarnings("unused")
 @Repository
 public interface PreCadastroRepository extends JpaRepository<PreCadastro, Long> {
+    Optional<PreCadastroDTO> findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(String nomeDoPaciente, String nomeDaMae, LocalDate dataDeNascimento);
 }
