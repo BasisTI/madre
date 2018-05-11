@@ -15,4 +15,5 @@ import br.com.basis.madre.cadastros.domain.Usuario;
 @SuppressWarnings("unused")
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
 }

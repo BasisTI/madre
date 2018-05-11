@@ -119,7 +119,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        br.com.basis.madre.cadastros.domain.Usuario usuario = (br.com.basis.madre.cadastros.domain.Usuario) o;
+        Usuario usuario = (Usuario) o;
         if (usuario.getId() == null || getId() == null) {
             return false;
         }
