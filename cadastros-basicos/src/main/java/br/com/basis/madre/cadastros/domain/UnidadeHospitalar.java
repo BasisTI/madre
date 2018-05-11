@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.basis.dynamicexports.pojo.ReportObject;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -26,7 +27,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Table(name = "unidade_hospitalar")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "unidadehospitalar")
-public class UnidadeHospitalar implements Serializable {
+public class UnidadeHospitalar implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
 

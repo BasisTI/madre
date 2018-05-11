@@ -9,11 +9,16 @@ import { ToastrService } from 'ngx-toastr';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
 import { PageNotificationService } from '@basis/angular-components';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { ElasticQuery } from '../shared/elastic-query';
+import { ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-botoes-exportacao',
   templateUrl: 'botoes-exportacao.component.html'
 })
+
+
+
 export class BotoesExportacaoComponent implements OnInit {
   @Input() resourceName: string;
   @BlockUI() blockUI: NgBlockUI;
@@ -29,6 +34,7 @@ export class BotoesExportacaoComponent implements OnInit {
     private http: HttpService,
     private pageNotificationService: PageNotificationService
   ) {}
+
 
   getTiposExportacao() {
     this.tiposExportacao = [

@@ -6,7 +6,7 @@
                 <div class="ui-g-12 ui-md-12">
                     <span class="md-inputfield">
               <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
-              (keyup.enter)="datatable.refresh(elasticQuery.query)" />
+              (keyup.enter)="datatable.refresh(elasticQuery.query)" name="filtro"/>
               <label>Pesquisar</label>
             </span>
                 </div>
@@ -36,8 +36,8 @@
                     </p-column>
                 </basis-datatable>
                 <div class="ui-g-12 ui-md-2">
-                    <app-botoes-exportacao resourceName="unidadehospitalar"
-                    ></app-botoes-exportacao>
+                    <app-botoes-exportacao resourceName="unidadehospitalar">
+                    </app-botoes-exportacao>
                 </div>
             </div>
 

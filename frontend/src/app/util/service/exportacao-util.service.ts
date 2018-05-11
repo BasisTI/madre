@@ -1,6 +1,7 @@
 import { Headers, RequestOptions, ResponseContentType } from '@angular/http';
 import { HttpService } from '@basis/angular-components';
-
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 export class ExportacaoUtilService {
 
@@ -37,6 +38,7 @@ export class ExportacaoUtilService {
     }
 
     static exportarRelatorio(tipoRelatorio: string, resourceUrl: string, http: HttpService) {
+  
         return ExportacaoUtilService.gerar(
             `${resourceUrl}/exportacao/` + tipoRelatorio,
             ExportacaoUtilService.getContentType(tipoRelatorio),

@@ -75,6 +75,8 @@ public class UnidadeHospitalarResource {
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
 
+    private static String filterValue;
+
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
         UnidadeHospitalarRepository unidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
@@ -225,7 +227,7 @@ public class UnidadeHospitalarResource {
     @Timed
     public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(
         @RequestParam(defaultValue = "*") String query, Pageable pageable) {
-
+        filterValue = query;
         log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
         Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/unidade-hospitalars");
@@ -242,7 +244,8 @@ public class UnidadeHospitalarResource {
     @Timed
     public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio) {
         try {
-            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio);
+
+            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio, (filterValue!= null) ? filterValue : "*");
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
