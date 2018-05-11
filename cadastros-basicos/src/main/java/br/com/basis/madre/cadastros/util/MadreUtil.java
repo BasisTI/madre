@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public final class MadreUtil {
     //utils para madre
-
+    public static final String REPORT_LOGO_PATH = "/images/logoFunasa.png";
     private MadreUtil(){
 
     }

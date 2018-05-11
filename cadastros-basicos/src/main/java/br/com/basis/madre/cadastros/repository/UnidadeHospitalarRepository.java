@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 
+import java.util.Optional;
+
 
 /**
  * Spring Data JPA repository for the UnidadeHospitalar entity.
@@ -16,7 +18,7 @@ public interface UnidadeHospitalarRepository extends JpaRepository<UnidadeHospit
 
     /*
     * Busca no elastich para verificação de duplicidade de dados
-    *
+    *a
     *
     * */
 
