@@ -1,12 +1,12 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.Usuario;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
-import br.com.basis.madre.cadastros.domain.Usuario;
 public class UsuarioDTO implements ReportObject, Serializable {
 
     /**
@@ -115,7 +115,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            Usuario usuario = (br.com.basis.madre.cadastros.domain.Usuario) o;
+            Usuario usuario = (Usuario) o;
             if (usuario.getId() == null || getId() == null) {
                 return false;
             }

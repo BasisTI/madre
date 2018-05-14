@@ -1,13 +1,13 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
-import  br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
 public class UnidadeHospitalarDTO implements ReportObject, Serializable {
 
         private Long id;
@@ -93,7 +93,7 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            UnidadeHospitalar unidadeHospitalar = (br.com.basis.madre.cadastros.domain.UnidadeHospitalar) o;
+            UnidadeHospitalar unidadeHospitalar = (UnidadeHospitalar) o;
             if (unidadeHospitalar.getId() == null || getId() == null) {
                 return false;
             }
