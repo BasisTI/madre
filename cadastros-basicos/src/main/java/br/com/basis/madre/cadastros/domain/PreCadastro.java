@@ -24,7 +24,7 @@ import java.util.Objects;
 @Table(name = "pre_cadastro")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "madre", type="precadastro")
-public class PreCadastro implements Serializable {
+public class PreCadastro implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
 
@@ -58,6 +58,8 @@ public class PreCadastro implements Serializable {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
+    
+    private String dataNascimentoString;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -177,5 +179,14 @@ public class PreCadastro implements Serializable {
             ", numCartaoSus='" + getNumCartaoSus() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
+    }
+    
+    public void setDataNascimentoString(String dataNascimentoString) {
+        this.dataNascimentoString = dataNascimentoString;
+    }
+
+    public String getDataNascimentoString() {
+        dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
+        return dataNascimentoString;
     }
 }

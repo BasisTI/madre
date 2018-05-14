@@ -30,7 +30,6 @@ import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-
 @Service
 @Transactional
 public class PreCadastroServiceImpl implements PreCadastroService {
@@ -107,12 +106,13 @@ public class PreCadastroServiceImpl implements PreCadastroService {
      *
      * @param tipoRelatorio
      */
+    
     @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio)
-        throws RelatorioException {
+    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
         try {
-            Page<PreCadastroDTO> result = preCadastroRepository.findAll(dynamicExportsService.obterPageableMaximoExportacao()).map(preCadastroMapper::toDto);
+            SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
+            Page<PreCadastro> result =  preCadastroSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioPreCadastroColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
         } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
             log.error(e.getMessage(), e);
@@ -120,7 +120,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
         }
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
-    }
+     }
 
 
 }
