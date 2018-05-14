@@ -36,7 +36,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
 
         @NotNull
         @Size(min = 1, max = 80)
-        private String unidade_de_saude;
+        private String unidadeDeSaude;
 
         @NotNull
         private Boolean ativo;
@@ -90,12 +90,12 @@ public class UsuarioDTO implements ReportObject, Serializable {
             this.perfil = perfil;
         }
 
-        public String getUnidade_de_saude() {
-            return unidade_de_saude;
+        public String getUnidadeDeSaude() {
+            return unidadeDeSaude;
         }
 
-        public void setUnidade_de_saude(String unidade_de_saude) {
-            this.unidade_de_saude = unidade_de_saude;
+        public void setUnidadeDeSaude(String unidadeDeSaude) {
+            this.unidadeDeSaude = unidadeDeSaude;
         }
 
         public Boolean isAtivo() {
@@ -135,7 +135,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
                 ", login='" + getLogin() + "'" +
                 ", email='" + getEmail() + "'" +
                 ", perfil='" + getPerfil() + "'" +
-                ", unidadeDeSaude='" + getUnidade_de_saude() + "'" +
+                ", unidadeDeSaude='" + getUnidadeDeSaude() + "'" +
                 ", ativo='" + isAtivo() + "'" +
                 "}";
         }
