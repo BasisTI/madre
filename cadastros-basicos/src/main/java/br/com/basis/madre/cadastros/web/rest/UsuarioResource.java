@@ -69,21 +69,7 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<UsuarioDTO> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
         throws URISyntaxException {
-//        try {
-//            log.debug("REST request to save Usuario : {}", usuarioDTO);
-//            if (usuarioDTO.getId() != null) {
-//                throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
-//            }
-//            UsuarioDTO result = usuarioService.save(usuarioDTO);
-//            return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
-//                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-//                .body(result);
-//        } catch (UsuarioException e) {
-//            log.error(e.getMessage(), e);
-//            return ResponseEntity.badRequest()
-//                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
-//                .body(usuarioDTO);
-//        }     mexer aqui, duplicidade
+        try {
             log.debug("REST request to save Usuario : {}", usuarioDTO);
             if (usuarioDTO.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
@@ -92,6 +78,12 @@ public class UsuarioResource {
             return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
+        } catch (UsuarioException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
+                .body(usuarioDTO);
+        }
     }
 
     /**
@@ -108,28 +100,21 @@ public class UsuarioResource {
     public ResponseEntity<UsuarioDTO> updateUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
         throws URISyntaxException {
         log.debug("REST request to update Usuario : {}", usuarioDTO);
-//        try {
-//            log.debug("REST request to update UnidadeHospitalar : {}", usuarioDTO);
-//            if (usuarioDTO.getId() == null) {
-//                return createUsuario(usuarioDTO);
-//            }
-//            UsuarioDTO result = usuarioService.save(usuarioDTO);
-//            return ResponseEntity.ok()
-//                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuarioDTO.getId().toString()))
-//                .body(result);
-//        } catch (UsuarioException e) {
-//            log.error(e.getMessage(), e);
-//            return ResponseEntity.badRequest()
-//                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
-//                .body(usuarioDTO);
-//        }
-        if (usuarioDTO.getId() == null) {
-            return createUsuario(usuarioDTO);
+        try {
+            log.debug("REST request to update UnidadeHospitalar : {}", usuarioDTO);
+            if (usuarioDTO.getId() == null) {
+                return createUsuario(usuarioDTO);
+            }
+            UsuarioDTO result = usuarioService.save(usuarioDTO);
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuarioDTO.getId().toString()))
+                .body(result);
+        } catch (UsuarioException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
+                .body(usuarioDTO);
         }
-        UsuarioDTO result = usuarioService.save(usuarioDTO);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuarioDTO.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -141,7 +126,7 @@ public class UsuarioResource {
     @GetMapping("/usuarios")
     @Timed
     public ResponseEntity<List<UsuarioDTO>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
-        @ApiParam Pageable pageable) {
+                                                           @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Usuarios");
         Page<UsuarioDTO> page = usuarioService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/usuarios");
@@ -186,11 +171,12 @@ public class UsuarioResource {
      */
     @GetMapping("/_search/usuarios")
     @Timed
-    public ResponseEntity<List<UsuarioDTO>> searchUsuarios(@RequestParam(defaultValue = "*") String query,
-        Pageable pageable) {
+    public ResponseEntity<List<Usuario>> searchUsuarios(@RequestParam(defaultValue = "*") String query,
+                                                        Pageable pageable) {
         // query="\""+query+"\"";
+
         log.debug("REST request to search for a page of Usuarios for query {}", query);
-        Page<UsuarioDTO> page = usuarioService.search(query, pageable);
+        Page<Usuario> page = usuarioService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/usuarios");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -203,9 +189,9 @@ public class UsuarioResource {
      */
     @GetMapping(value = "/usuario/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
-            return usuarioService.gerarRelatorioExportacao(tipoRelatorio);
+            return usuarioService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
