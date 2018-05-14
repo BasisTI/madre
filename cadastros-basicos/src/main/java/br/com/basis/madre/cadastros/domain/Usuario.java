@@ -60,7 +60,7 @@ public class Usuario implements Serializable, ReportObject {
 
     @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "unidadeDeSaude", length = 80, nullable = false)
+    @Column(name = "unidade_de_saude", length = 80, nullable = false)
     private String unidadeDeSaude;
 
     @NotNull
