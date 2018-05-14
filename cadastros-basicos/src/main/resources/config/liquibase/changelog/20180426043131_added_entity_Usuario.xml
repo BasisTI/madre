@@ -39,7 +39,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="unidade_de_saude" type="varchar(80)">
+            <column name="unidadeDeSaude" type="varchar(80)">
                 <constraints nullable="false" />
             </column>
 

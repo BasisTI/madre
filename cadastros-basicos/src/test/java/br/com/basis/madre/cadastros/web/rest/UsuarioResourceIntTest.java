@@ -115,7 +115,7 @@ public class UsuarioResourceIntTest {
             .senha(DEFAULT_SENHA)
             .email(DEFAULT_EMAIL)
             .perfil(DEFAULT_PERFIL)
-            .unidade_de_saude(DEFAULT_UNIDADE_DE_SAUDE)
+            .unidadeDeSaude(DEFAULT_UNIDADE_DE_SAUDE)
             .ativo(DEFAULT_ATIVO);
         return usuario;
     }
@@ -146,7 +146,7 @@ public class UsuarioResourceIntTest {
         assertThat(testUsuario.getSenha()).isEqualTo(DEFAULT_SENHA);
         assertThat(testUsuario.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testUsuario.getPerfil()).isEqualTo(DEFAULT_PERFIL);
-        assertThat(testUsuario.getUnidade_de_saude()).isEqualTo(DEFAULT_UNIDADE_DE_SAUDE);
+        assertThat(testUsuario.getUnidadeDeSaude()).isEqualTo(DEFAULT_UNIDADE_DE_SAUDE);
         assertThat(testUsuario.isAtivo()).isEqualTo(DEFAULT_ATIVO);
 
         // Validate the Usuario in Elasticsearch
@@ -268,7 +268,7 @@ public class UsuarioResourceIntTest {
     public void checkUnidade_de_saudeIsRequired() throws Exception {
         int databaseSizeBeforeTest = usuarioRepository.findAll().size();
         // set the field null
-        usuario.setUnidade_de_saude(null);
+        usuario.setUnidadeDeSaude(null);
 
         // Create the Usuario, which fails.
 
@@ -315,7 +315,7 @@ public class UsuarioResourceIntTest {
             .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].perfil").value(hasItem(DEFAULT_PERFIL.toString())))
-            .andExpect(jsonPath("$.[*].unidade_de_saude").value(hasItem(DEFAULT_UNIDADE_DE_SAUDE.toString())))
+            .andExpect(jsonPath("$.[*].unidadeDeSaude").value(hasItem(DEFAULT_UNIDADE_DE_SAUDE.toString())))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 
@@ -335,7 +335,7 @@ public class UsuarioResourceIntTest {
             .andExpect(jsonPath("$.senha").value(DEFAULT_SENHA.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.perfil").value(DEFAULT_PERFIL.toString()))
-            .andExpect(jsonPath("$.unidade_de_saude").value(DEFAULT_UNIDADE_DE_SAUDE.toString()))
+            .andExpect(jsonPath("$.unidadeDeSaude").value(DEFAULT_UNIDADE_DE_SAUDE.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
     }
 
@@ -364,7 +364,7 @@ public class UsuarioResourceIntTest {
             .senha(UPDATED_SENHA)
             .email(UPDATED_EMAIL)
             .perfil(UPDATED_PERFIL)
-            .unidade_de_saude(UPDATED_UNIDADE_DE_SAUDE)
+            .unidadeDeSaude(UPDATED_UNIDADE_DE_SAUDE)
             .ativo(UPDATED_ATIVO);
 
         restUsuarioMockMvc.perform(put("/api/usuarios")
@@ -381,7 +381,7 @@ public class UsuarioResourceIntTest {
         assertThat(testUsuario.getSenha()).isEqualTo(UPDATED_SENHA);
         assertThat(testUsuario.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testUsuario.getPerfil()).isEqualTo(UPDATED_PERFIL);
-        assertThat(testUsuario.getUnidade_de_saude()).isEqualTo(UPDATED_UNIDADE_DE_SAUDE);
+        assertThat(testUsuario.getUnidadeDeSaude()).isEqualTo(UPDATED_UNIDADE_DE_SAUDE);
         assertThat(testUsuario.isAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the Usuario in Elasticsearch
@@ -445,7 +445,7 @@ public class UsuarioResourceIntTest {
             .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].perfil").value(hasItem(DEFAULT_PERFIL.toString())))
-            .andExpect(jsonPath("$.[*].unidade_de_saude").value(hasItem(DEFAULT_UNIDADE_DE_SAUDE.toString())))
+            .andExpect(jsonPath("$.[*].unidadeDeSaude").value(hasItem(DEFAULT_UNIDADE_DE_SAUDE.toString())))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 

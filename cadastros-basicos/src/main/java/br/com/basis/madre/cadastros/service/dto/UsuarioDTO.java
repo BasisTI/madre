@@ -135,7 +135,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
                 ", login='" + getLogin() + "'" +
                 ", email='" + getEmail() + "'" +
                 ", perfil='" + getPerfil() + "'" +
-                ", unidade_de_saude='" + getUnidade_de_saude() + "'" +
+                ", unidadeDeSaude='" + getUnidade_de_saude() + "'" +
                 ", ativo='" + isAtivo() + "'" +
                 "}";
         }

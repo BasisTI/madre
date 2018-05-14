@@ -97,7 +97,7 @@
          <column name="senha" type="VARCHAR(40)">
             <constraints nullable="false"/>
          </column>
-         <column name="unidade_de_saude" type="VARCHAR(80)">
+         <column name="unidadeDeSaude" type="VARCHAR(80)">
             <constraints nullable="false"/>
          </column>
       </createTable>
