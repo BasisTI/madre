@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
+
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;

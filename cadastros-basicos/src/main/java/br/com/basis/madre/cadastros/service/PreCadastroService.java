@@ -53,5 +53,5 @@ public interface PreCadastroService {
     Page<PreCadastro> search(String query, Pageable pageable);
 
 
-        ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio) throws RelatorioException;
+        ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 }

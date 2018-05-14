@@ -49,7 +49,6 @@ public class UnidadeHospitalarResourceIntTest {
     private static final byte[] DEFAULT_LOGO = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_LOGO = TestUtil.createByteArray(2, "1");
     private static final String DEFAULT_LOGO_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_LOGO_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_SIGLA = "AAAAAAAAAA";
     private static final String UPDATED_SIGLA = "BBBBBBBBBB";
@@ -109,8 +108,6 @@ public class UnidadeHospitalarResourceIntTest {
      */
     public static UnidadeHospitalar createEntity(EntityManager em) {
         UnidadeHospitalar unidadeHospitalar = new UnidadeHospitalar()
-            .logo(DEFAULT_LOGO)
-            .logoContentType(DEFAULT_LOGO_CONTENT_TYPE)
             .sigla(DEFAULT_SIGLA)
             .nome(DEFAULT_NOME)
             .cnpj(DEFAULT_CNPJ)
@@ -140,8 +137,6 @@ public class UnidadeHospitalarResourceIntTest {
         List<UnidadeHospitalar> unidadeHospitalarList = unidadeHospitalarRepository.findAll();
         assertThat(unidadeHospitalarList).hasSize(databaseSizeBeforeCreate + 1);
         UnidadeHospitalar testUnidadeHospitalar = unidadeHospitalarList.get(unidadeHospitalarList.size() - 1);
-        assertThat(testUnidadeHospitalar.getLogo()).isEqualTo(DEFAULT_LOGO);
-        assertThat(testUnidadeHospitalar.getLogoContentType()).isEqualTo(DEFAULT_LOGO_CONTENT_TYPE);
         assertThat(testUnidadeHospitalar.getSigla()).isEqualTo(DEFAULT_SIGLA);
         assertThat(testUnidadeHospitalar.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testUnidadeHospitalar.getCnpj()).isEqualTo(DEFAULT_CNPJ);
@@ -322,8 +317,6 @@ public class UnidadeHospitalarResourceIntTest {
         // Disconnect from session so that the updates on updatedUnidadeHospitalar are not directly saved in db
         em.detach(updatedUnidadeHospitalar);
         updatedUnidadeHospitalar
-            .logo(UPDATED_LOGO)
-            .logoContentType(UPDATED_LOGO_CONTENT_TYPE)
             .sigla(UPDATED_SIGLA)
             .nome(UPDATED_NOME)
             .cnpj(UPDATED_CNPJ)
@@ -339,8 +332,6 @@ public class UnidadeHospitalarResourceIntTest {
         List<UnidadeHospitalar> unidadeHospitalarList = unidadeHospitalarRepository.findAll();
         assertThat(unidadeHospitalarList).hasSize(databaseSizeBeforeUpdate);
         UnidadeHospitalar testUnidadeHospitalar = unidadeHospitalarList.get(unidadeHospitalarList.size() - 1);
-        assertThat(testUnidadeHospitalar.getLogo()).isEqualTo(UPDATED_LOGO);
-        assertThat(testUnidadeHospitalar.getLogoContentType()).isEqualTo(UPDATED_LOGO_CONTENT_TYPE);
         assertThat(testUnidadeHospitalar.getSigla()).isEqualTo(UPDATED_SIGLA);
         assertThat(testUnidadeHospitalar.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testUnidadeHospitalar.getCnpj()).isEqualTo(UPDATED_CNPJ);
