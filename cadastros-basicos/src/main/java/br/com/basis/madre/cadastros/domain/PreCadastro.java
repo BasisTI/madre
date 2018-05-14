@@ -14,9 +14,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.util.MadreUtil;
 
 /**
  * A PreCadastro.
@@ -25,7 +28,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Table(name = "pre_cadastro")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "madre", type="precadastro")
-public class PreCadastro implements Serializable {
+public class PreCadastro implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,6 +62,8 @@ public class PreCadastro implements Serializable {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
+    
+    private String dataNascimentoString;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -178,5 +183,14 @@ public class PreCadastro implements Serializable {
             ", numCartaoSus='" + getNumCartaoSus() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
+    }
+    
+    public void setDataNascimentoString(String dataNascimentoString) {
+        this.dataNascimentoString = dataNascimentoString;
+    }
+
+    public String getDataNascimentoString() {
+        dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
+        return dataNascimentoString;
     }
 }
