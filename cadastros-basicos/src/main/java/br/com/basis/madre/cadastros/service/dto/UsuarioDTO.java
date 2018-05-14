@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.Usuario;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -54,7 +55,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -62,7 +63,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public String getLogin() {
-        return login;
+        return this.login;
     }
 
     public void setLogin(String login) {
@@ -70,7 +71,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public String getSenha() {
-        return senha;
+        return this.senha;
     }
 
     public void setSenha(String senha) {
@@ -78,7 +79,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -86,7 +87,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public String getPerfil() {
-        return perfil;
+        return this.perfil;
     }
 
     public void setPerfil(String perfil) {
@@ -94,7 +95,7 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public String getUnidade_de_saude() {
-        return unidade_de_saude;
+        return this.unidade_de_saude;
     }
 
     public void setUnidade_de_saude(String unidade_de_saude) {
@@ -102,8 +103,10 @@ public class UsuarioDTO implements ReportObject, Serializable {
     }
 
     public Boolean isAtivo() {
-        return ativo;
+        return this.ativo;
     }
+
+    public String getAtivo() { return (this.ativo) ? "Sim" : "Não"; }
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;

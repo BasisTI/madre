@@ -23,7 +23,7 @@ export class BotoesExportacaoComponent implements OnInit {
   @Input() resourceName: string;
   @Input() query: string;
   @BlockUI() blockUI: NgBlockUI;
-  
+
   tiposExportacao: MenuItem[] = [];
 
   ngOnInit() {

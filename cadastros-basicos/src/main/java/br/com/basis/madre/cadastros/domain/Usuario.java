@@ -1,5 +1,6 @@
 package br.com.basis.madre.cadastros.domain;
 
+import br.com.basis.dynamicexports.pojo.ReportObject;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -23,7 +24,7 @@ import java.util.Objects;
 @Table(name = "usuario")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "usuario")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
 
@@ -68,7 +69,7 @@ public class Usuario implements Serializable {
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -76,7 +77,7 @@ public class Usuario implements Serializable {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public Usuario nome(String nome) {
@@ -89,7 +90,7 @@ public class Usuario implements Serializable {
     }
 
     public String getLogin() {
-        return login;
+        return this.login;
     }
 
     public Usuario login(String login) {
@@ -102,7 +103,7 @@ public class Usuario implements Serializable {
     }
 
     public String getSenha() {
-        return senha;
+        return this.senha;
     }
 
     public Usuario senha(String senha) {
@@ -115,7 +116,7 @@ public class Usuario implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public Usuario email(String email) {
@@ -128,7 +129,7 @@ public class Usuario implements Serializable {
     }
 
     public String getPerfil() {
-        return perfil;
+        return this.perfil;
     }
 
     public Usuario perfil(String perfil) {
@@ -141,7 +142,7 @@ public class Usuario implements Serializable {
     }
 
     public String getUnidade_de_saude() {
-        return unidade_de_saude;
+        return this.unidade_de_saude;
     }
 
     public Usuario unidade_de_saude(String unidade_de_saude) {
