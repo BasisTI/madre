@@ -1,5 +1,8 @@
 package br.com.basis.madre.cadastros.domain;
 
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -58,7 +61,7 @@ public class PreCadastro implements Serializable, ReportObject {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
-    
+
     private String dataNascimentoString;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -180,7 +183,7 @@ public class PreCadastro implements Serializable, ReportObject {
             ", ativo='" + isAtivo() + "'" +
             "}";
     }
-    
+
     public void setDataNascimentoString(String dataNascimentoString) {
         this.dataNascimentoString = dataNascimentoString;
     }

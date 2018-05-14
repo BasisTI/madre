@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.service.impl;
 
-<<<<<<< HEAD
-=======
+
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -21,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
->>>>>>> bac6642cf4ead1355307437306d72abfb8de4dca
 import br.com.basis.dynamicexports.service.DynamicExportsService;
 import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;

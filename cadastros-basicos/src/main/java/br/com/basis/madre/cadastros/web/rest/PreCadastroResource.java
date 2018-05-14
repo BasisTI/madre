@@ -66,23 +66,21 @@ public class PreCadastroResource {
      */
     @PostMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastroDTO> createPreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO) throws URISyntaxException {
-        try{
-        log.debug("REST request to save PreCadastro : {}", preCadastroDTO);
+    public ResponseEntity<PreCadastroDTO> createPreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO)
+        throws URISyntaxException {
+        try {
+            log.debug("REST request to save PreCadastro : {}", preCadastroDTO);
 
             if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
-<<<<<<< HEAD
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
-=======
                 return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
                     .body(null);
->>>>>>> bac6642cf4ead1355307437306d72abfb8de4dca
-                }
+            }
             if (preCadastroDTO.getId() != null) {
                 throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
             }
             PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
-            return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            return ResponseEntity.created(new URI("/api/pre-cadastros/"
+                + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
@@ -102,7 +100,8 @@ public class PreCadastroResource {
      */
     @PutMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastroDTO> updatePreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO) throws URISyntaxException {
+    public ResponseEntity<PreCadastroDTO> updatePreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO)
+        throws URISyntaxException {
         try {
             log.debug("REST request to update PreCadastro : {}", preCadastroDTO);
 
@@ -133,14 +132,14 @@ public class PreCadastroResource {
      */
     @GetMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<List<PreCadastroDTO>> getAllParecerPadraos(@RequestParam(value = "query") Optional<String> query ,
+    public ResponseEntity<List<PreCadastroDTO>> getAllParecerPadraos(
+        @RequestParam(value = "query") Optional<String> query,
         @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of ParecerPadraos");
         Page<PreCadastroDTO> page = preCadastroService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pre-cadastros");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
 
     /**
      * GET  /pre-cadastros/:id : get the "id" preCadastro.
@@ -155,6 +154,7 @@ public class PreCadastroResource {
         PreCadastroDTO preCadastroDTO = preCadastroService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(preCadastroDTO));
     }
+
     /**
      * DELETE  /pre-cadastros/:id : delete the "id" preCadastro.
      *
@@ -180,12 +180,13 @@ public class PreCadastroResource {
     @GetMapping("/_search/pre-cadastros")
     @Timed
     public ResponseEntity<List<PreCadastro>> searchPreCadastros(
-    	@RequestParam(defaultValue = "*") String query, Pageable pageable) {
+        @RequestParam(defaultValue = "*") String query, Pageable pageable) {
         log.debug("REST request to search for a page of PreCadastros for query {}", query);
         Page<PreCadastro> page = preCadastroService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/pre-cadastros");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
     /**
      * GET  /precadastro/:id : get jasper of  usuarios.
      *
@@ -194,9 +195,10 @@ public class PreCadastroResource {
      */
     @GetMapping(value = "/precadastro/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
+        @RequestParam(defaultValue = "*") String query) {
         try {
-            return preCadastroService.gerarRelatorioExportacao(tipoRelatorio,query);
+            return preCadastroService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
