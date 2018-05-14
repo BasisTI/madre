@@ -9,8 +9,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 
 public class UsuarioFilter {
 
-    private static final String SIM = "Sim";
-    private static final String NAO = "Não";
+
 
     public QueryBuilder filterElasticSearch(String parametro) {
 

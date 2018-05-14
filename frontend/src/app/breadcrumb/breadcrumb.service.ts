@@ -11,6 +11,7 @@ export class BreadcrumbService {
   itemsHandler = this.itemsSource.asObservable();
 
   setItems(items: MenuItem[]) {
+    console.log(items);
     this.itemsSource.next(items);
   }
 

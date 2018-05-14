@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 
 import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
+import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
 import br.com.basis.madre.cadastros.service.PreCadastroService;
 import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
@@ -52,9 +55,14 @@ public class PreCadastroResource {
 
     private final PreCadastroService preCadastroService;
 
-    public PreCadastroResource(PreCadastroService preCadastroService) {
+    private final PreCadastroRepository preCadastroRepository;
+
+    public PreCadastroResource(PreCadastroService preCadastroService, PreCadastroRepository preCadastroRepository,
+   		PreCadastroSearchRepository preCadastroSearchRepository) {
         this.preCadastroService = preCadastroService;
+        this.preCadastroRepository = preCadastroRepository;
     }
+
     /**
      * POST  /pre-cadastros : Create a new preCadastro.
      *
@@ -67,6 +75,12 @@ public class PreCadastroResource {
     public ResponseEntity<PreCadastroDTO> createPreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO) throws URISyntaxException {
         try{
         log.debug("REST request to save PreCadastro : {}", preCadastroDTO);
+
+            if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
+                    .body(null);
+                }
             if (preCadastroDTO.getId() != null) {
                 throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
             }
@@ -93,9 +107,16 @@ public class PreCadastroResource {
      */
     @PutMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastroDTO> updateParecerPadrao(@Valid @RequestBody PreCadastroDTO preCadastroDTO) throws URISyntaxException {
+    public ResponseEntity<PreCadastroDTO> updatePreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO) throws URISyntaxException {
         try {
-            log.debug("REST request to update ParecerPadrao : {}", preCadastroDTO);
+            log.debug("REST request to update PreCadastro : {}", preCadastroDTO);
+
+            if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
+                    .body(null);
+            }
+
             if (preCadastroDTO.getId() == null) {
                 return createPreCadastro(preCadastroDTO);
             }

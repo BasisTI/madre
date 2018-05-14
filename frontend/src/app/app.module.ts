@@ -31,12 +31,14 @@ import { LoginSuccessComponent } from './login-success/login-success.component';
 import { LogoutComponent } from './logout/logout.component';
 import { authServiceFactory } from './auth-service-factory';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
+import { UploadService } from './upload/upload.service';
+import { FileUploadModule } from 'primeng/primeng';
 import {BlockUIModule} from 'ng-block-ui';
 import { MessageService } from 'primeng/components/common/messageservice';
 import {ToastrModule} from 'ngx-toastr';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.module';
-
+import {NgxMaskModule} from 'ngx-mask'
 @NgModule({
   imports: [
     BrowserModule,
@@ -57,6 +59,8 @@ import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.mo
     BlockUiModule.forRoot(),
     VersionTagModule.forRoot(),
     ToastrModule.forRoot(),
+    NgxMaskModule.forRoot(),
+    FileUploadModule,
     BotoesExportacaoModule
     /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
   ],
@@ -79,6 +83,7 @@ import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.mo
     { provide: AUTH_CONFIG, useValue: environment.auth },
     { provide: AuthService, deps: [HttpService, AUTH_CONFIG], useFactory: authServiceFactory },
     BreadcrumbService,
+    UploadService,
     ConfirmationService
   ],
   bootstrap: [AppComponent]

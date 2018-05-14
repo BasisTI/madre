@@ -3,7 +3,7 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { HttpService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
-
+import { UploadService } from '../upload/upload.service';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { ResponseWrapper, createRequestOption, JhiDateUtils } from '../shared';
 
@@ -14,7 +14,10 @@ export class UnidadeHospitalarService {
 
   searchUrl = environment.apiUrl + '/_search/unidade-hospitalars';
 
-  constructor(private http: HttpService) {}
+  constructor(
+    private http: HttpService,
+    private uploadService: UploadService
+  ) {}
 
   create(unidadeHospitalar: UnidadeHospitalar): Observable<UnidadeHospitalar> {
     const copy = this.convert(unidadeHospitalar);
@@ -35,13 +38,11 @@ export class UnidadeHospitalarService {
   find(id: number): Observable<UnidadeHospitalar> {
     return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
       const jsonResponse = res.json();
-      
       return this.convertItemFromServer(jsonResponse);
     });
   }
 
   query(req?: any): Observable<ResponseWrapper> {
-   
     const options = createRequestOption(req);
     return this.http.get(this.resourceUrl, options)
       .map((res: Response) => this.convertResponse(res));

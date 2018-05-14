@@ -14,7 +14,7 @@ import { MessageUtil } from './../util/message.util';
 import { ExportacaoUtil } from './../util/exportacao.util';
 import { ExportacaoUtilService } from './../util/service/exportacao-util.service';
 import { ElasticQuery } from '../shared/elastic-query';
-
+import {NgxMaskModule} from 'ngx-mask';
 
 @Component({
   selector: 'jhi-unidade-hospitalar',

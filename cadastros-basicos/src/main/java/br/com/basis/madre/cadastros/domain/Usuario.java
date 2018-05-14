@@ -194,7 +194,6 @@ public class Usuario implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", login='" + getLogin() + "'" +
-            ", senha='" + getSenha() + "'" +
             ", email='" + getEmail() + "'" +
             ", perfil='" + getPerfil() + "'" +
             ", unidade_de_saude='" + getUnidade_de_saude() + "'" +

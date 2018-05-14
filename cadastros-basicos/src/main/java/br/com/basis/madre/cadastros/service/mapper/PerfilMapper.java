@@ -1,7 +1,12 @@
 package br.com.basis.madre.cadastros.service.mapper;
 
+<<<<<<< HEAD
 import br.com.basis.madre.cadastros.domain.*;
+=======
+import br.com.basis.madre.cadastros.domain.Perfil;
+>>>>>>> master
 import br.com.basis.madre.cadastros.service.dto.PerfilDTO;
+import org.mapstruct.Mapper;
 
 import org.mapstruct.*;
 

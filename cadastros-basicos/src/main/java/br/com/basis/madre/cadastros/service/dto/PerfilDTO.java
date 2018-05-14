@@ -1,6 +1,6 @@
 package br.com.basis.madre.cadastros.service.dto;
 
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 

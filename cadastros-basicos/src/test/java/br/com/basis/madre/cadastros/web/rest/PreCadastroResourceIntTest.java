@@ -93,7 +93,7 @@ public class PreCadastroResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService);
+        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService, preCadastroRepository, preCadastroSearchRepository);
         this.restPreCadastroMockMvc = MockMvcBuilders.standaloneSetup(preCadastroResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
