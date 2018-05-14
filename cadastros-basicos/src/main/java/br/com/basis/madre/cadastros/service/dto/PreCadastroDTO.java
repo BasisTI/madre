@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import br.com.basis.madre.cadastros.domain.PreCadastro;
 
 public class PreCadastroDTO implements ReportObject, Serializable {
 
@@ -101,7 +102,7 @@ public class PreCadastroDTO implements ReportObject, Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        br.com.basis.madre.cadastros.domain.PreCadastro preCadastro = (br.com.basis.madre.cadastros.domain.PreCadastro) o;
+        PreCadastro preCadastro = (br.com.basis.madre.cadastros.domain.PreCadastro) o;
         if (preCadastro.getId() == null || getId() == null) {
             return false;
         }
