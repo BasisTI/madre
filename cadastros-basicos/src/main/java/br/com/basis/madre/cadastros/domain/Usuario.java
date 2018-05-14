@@ -60,8 +60,8 @@ public class Usuario implements Serializable, ReportObject {
 
     @NotNull
     @Size(min = 1, max = 80)
-    @Column(name = "unidade_de_saude", length = 80, nullable = false)
-    private String unidade_de_saude;
+    @Column(name = "unidadeDeSaude", length = 80, nullable = false)
+    private String unidadeDeSaude;
 
     @NotNull
     @Column(name = "ativo", nullable = false)
@@ -141,17 +141,17 @@ public class Usuario implements Serializable, ReportObject {
         this.perfil = perfil;
     }
 
-    public String getUnidade_de_saude() {
-        return this.unidade_de_saude;
+    public String getUnidadeDeSaude() {
+        return unidadeDeSaude;
     }
 
-    public Usuario unidade_de_saude(String unidade_de_saude) {
-        this.unidade_de_saude = unidade_de_saude;
+    public Usuario unidadeDeSaude(String unidadeDeSaude) {
+        this.unidadeDeSaude = unidadeDeSaude;
         return this;
     }
 
-    public void setUnidade_de_saude(String unidade_de_saude) {
-        this.unidade_de_saude = unidade_de_saude;
+    public void setUnidadeDeSaude(String unidadeDeSaude) {
+        this.unidadeDeSaude = unidadeDeSaude;
     }
 
     public Boolean isAtivo() {
@@ -196,7 +196,7 @@ public class Usuario implements Serializable, ReportObject {
             ", login='" + getLogin() + "'" +
             ", email='" + getEmail() + "'" +
             ", perfil='" + getPerfil() + "'" +
-            ", unidade_de_saude='" + getUnidade_de_saude() + "'" +
+            ", unidadeDeSaude='" + getUnidadeDeSaude() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }

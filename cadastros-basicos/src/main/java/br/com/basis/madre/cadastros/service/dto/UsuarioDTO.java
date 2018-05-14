@@ -7,10 +7,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
+<<<<<<< HEAD
 
 import java.io.Serializable;
 import java.util.Objects;
 
+=======
+>>>>>>> master
 public class UsuarioDTO implements ReportObject, Serializable {
 //public class UsuarioDTO implements Serializable {
 
@@ -38,113 +41,111 @@ public class UsuarioDTO implements ReportObject, Serializable {
     @Size(min = 1, max = 80)
     private String perfil;
 
-    @NotNull
-    @Size(min = 1, max = 80)
-    private String unidade_de_saude;
+        @NotNull
+        @Size(min = 1, max = 80)
+        private String unidade_de_saude;
 
-    @NotNull
-    private Boolean ativo;
+        @NotNull
+        private Boolean ativo;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getLogin() {
-        return this.login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return this.senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPerfil() {
-        return this.perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
-
-    public String getUnidade_de_saude() {
-        return this.unidade_de_saude;
-    }
-
-    public void setUnidade_de_saude(String unidade_de_saude) {
-        this.unidade_de_saude = unidade_de_saude;
-    }
-
-    public Boolean isAtivo() {
-        return this.ativo;
-    }
-
-    public String getAtivo() { return (this.ativo) ? "Sim" : "Não"; }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+        public Long getId() {
+            return id;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Usuario usuario = (Usuario) o;
-        if (usuario.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), usuario.getId());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-            "id=" + getId() +
-            ", nome='" + getNome() + "'" +
-            ", login='" + getLogin() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", perfil='" + getPerfil() + "'" +
-            ", unidade_de_saude='" + getUnidade_de_saude() + "'" +
-            ", ativo='" + isAtivo() + "'" +
-            "}";
-    }
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getLogin() {
+            return login;
+        }
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+
+        public String getSenha() {
+            return senha;
+        }
+
+        public void setSenha(String senha) {
+            this.senha = senha;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getPerfil() {
+            return perfil;
+        }
+
+        public void setPerfil(String perfil) {
+            this.perfil = perfil;
+        }
+
+        public String getUnidade_de_saude() {
+            return unidade_de_saude;
+        }
+
+        public void setUnidade_de_saude(String unidade_de_saude) {
+            this.unidade_de_saude = unidade_de_saude;
+        }
+
+        public Boolean isAtivo() {
+            return ativo;
+        }
+
+        public void setAtivo(Boolean ativo) {
+            this.ativo = ativo;
+        }
+        // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Usuario usuario = (Usuario) o;
+            if (usuario.getId() == null || getId() == null) {
+                return false;
+            }
+            return Objects.equals(getId(), usuario.getId());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(getId());
+        }
+
+        @Override
+        public String toString() {
+            return "Usuario{" +
+                "id=" + getId() +
+                ", nome='" + getNome() + "'" +
+                ", login='" + getLogin() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", perfil='" + getPerfil() + "'" +
+                ", unidadeDeSaude='" + getUnidade_de_saude() + "'" +
+                ", ativo='" + isAtivo() + "'" +
+                "}";
+        }
 }
 
 

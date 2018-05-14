@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.config;
 
-import javax.sql.DataSource;
-
+import io.github.jhipster.config.JHipsterConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import io.github.jhipster.config.JHipsterConstants;
+import javax.sql.DataSource;
 
 @Configuration
 @Profile(JHipsterConstants.SPRING_PROFILE_CLOUD)

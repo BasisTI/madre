@@ -1,10 +1,5 @@
 package br.com.basis.madre.cadastros.domain;
 
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -17,6 +12,10 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Persist AuditEvent managed by the Spring Boot actuator.

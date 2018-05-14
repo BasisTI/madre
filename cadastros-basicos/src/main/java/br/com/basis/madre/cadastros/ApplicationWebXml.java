@@ -1,9 +1,8 @@
 package br.com.basis.madre.cadastros;
 
+import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-
-import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
 
 /**
  * This is a helper Java class that provides an alternative to creating a web.xml.

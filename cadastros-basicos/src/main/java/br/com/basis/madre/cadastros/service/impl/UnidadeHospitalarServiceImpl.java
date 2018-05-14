@@ -1,25 +1,5 @@
 package br.com.basis.madre.cadastros.service.impl;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Optional;
-
-import org.apache.commons.lang3.StringUtils;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import br.com.basis.dynamicexports.service.DynamicExportsService;
 import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
@@ -42,7 +22,6 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -159,30 +138,11 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
     }
 
 
-    /**
-     * gera relatório by entity
-     *
-     * @param tipoRelatorio
-
-    @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio) throws RelatorioException {
-        ByteArrayOutputStream byteArrayOutputStream;
-        try {
-            Page<UnidadeHospitalarDTO> result = unidadeHospitalarRepository.findAll(dynamicExportsService.obterPageableMaximoExportacao()).map(unidadeHospitalarMapper::toDto);
-            byteArrayOutputStream = dynamicExportsService.export(new RelatorioUnidadeHospitalarColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
-        } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
-            log.error(e.getMessage(), e);
-            throw new RelatorioException(e);
-        }
-        return DynamicExporter.output(byteArrayOutputStream,
-            "relatorio." + tipoRelatorio);
-    }*/
-
     @Override
     public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
         try {
-            SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
+            new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
             Page<UnidadeHospitalar> result =  unidadeHospitalarSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioUnidadeHospitalarColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
         } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {

@@ -2,14 +2,25 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-   <changeSet author="jefferson (generated)" id="1525798639514-1">
+   <changeSet author="helio (generated)" id="1526326536154-1">
+      <addColumn tableName="pre_cadastro">
+         <column name="data_nascimento_string" type="varchar(255)"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="helio (generated)" id="1526326536154-2">
       <createIndex indexName="IX_unidade_hospitalarPK"
                    tableName="unidade_hospitalar"
                    unique="true">
          <column name="id"/>
       </createIndex>
    </changeSet>
-   <changeSet author="jefferson (generated)" id="1525798639514-2">
+   <changeSet author="helio (generated)" id="1526326536154-3">
+      <dropColumn columnName="logo" tableName="unidade_hospitalar"/>
+   </changeSet>
+   <changeSet author="helio (generated)" id="1526326536154-4">
+      <dropColumn columnName="logo_content_type" tableName="unidade_hospitalar"/>
+   </changeSet>
+   <changeSet author="helio (generated)" id="1526326536154-5">
       <dropPrimaryKey tableName="unidade_hospitalar"/>
       <addPrimaryKey columnNames="id"
                      constraintName="unidade_hospitalarPK"

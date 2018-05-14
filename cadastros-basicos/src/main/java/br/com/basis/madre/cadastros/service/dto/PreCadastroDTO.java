@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import org.apache.commons.lang3.ObjectUtils;
 
@@ -101,7 +102,7 @@ public class PreCadastroDTO implements ReportObject, Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        br.com.basis.madre.cadastros.domain.PreCadastro preCadastro = (br.com.basis.madre.cadastros.domain.PreCadastro) o;
+        PreCadastro preCadastro = (PreCadastro) o;
         if (preCadastro.getId() == null || getId() == null) {
             return false;
         }
