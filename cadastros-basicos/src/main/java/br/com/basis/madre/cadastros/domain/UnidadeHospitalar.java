@@ -1,24 +1,22 @@
 package br.com.basis.madre.cadastros.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import br.com.basis.dynamicexports.pojo.ReportObject;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.constraints.br.CNPJ;
-import org.springframework.data.elasticsearch.annotations.Document;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * A UnidadeHospitalar.
@@ -36,12 +34,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Lob
-    @Column(name = "logo")
-    private byte[] logo;
-
-    @Column(name = "logo_content_type")
-    private String logoContentType;
 
     @NotNull
     @Size(min = 1, max = 10)
@@ -77,31 +69,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         this.id = id;
     }
 
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public UnidadeHospitalar logo(byte[] logo) {
-        this.logo = logo;
-        return this;
-    }
-
-    public void setLogo(byte[] logo) {
-        this.logo = logo;
-    }
-
-    public String getLogoContentType() {
-        return logoContentType;
-    }
-
-    public UnidadeHospitalar logoContentType(String logoContentType) {
-        this.logoContentType = logoContentType;
-        return this;
-    }
-
-    public void setLogoContentType(String logoContentType) {
-        this.logoContentType = logoContentType;
-    }
 
     public String getSigla() {
         return sigla;
@@ -193,8 +160,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     public String toString() {
         return "UnidadeHospitalar{" +
             "id=" + getId() +
-            ", logo='" + getLogo() + "'" +
-            ", logoContentType='" + getLogoContentType() + "'" +
             ", sigla='" + getSigla() + "'" +
             ", nome='" + getNome() + "'" +
             ", cnpj='" + getCnpj() + "'" +

@@ -1,8 +1,11 @@
 package br.com.basis.madre.cadastros.domain;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Objects;
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +16,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A PreCadastro.
@@ -25,7 +27,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Table(name = "pre_cadastro")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "madre", type="precadastro")
-public class PreCadastro implements Serializable {
+public class PreCadastro implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,6 +61,8 @@ public class PreCadastro implements Serializable {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
+
+    private String dataNascimentoString;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -178,5 +182,14 @@ public class PreCadastro implements Serializable {
             ", numCartaoSus='" + getNumCartaoSus() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
+    }
+
+    public void setDataNascimentoString(String dataNascimentoString) {
+        this.dataNascimentoString = dataNascimentoString;
+    }
+
+    public String getDataNascimentoString() {
+        dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
+        return dataNascimentoString;
     }
 }

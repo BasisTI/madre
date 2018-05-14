@@ -1,16 +1,14 @@
 package br.com.basis.madre.cadastros.service.dto;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Objects;
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import org.apache.commons.lang3.ObjectUtils;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.apache.commons.lang3.ObjectUtils;
-
-import br.com.basis.dynamicexports.pojo.ReportObject;
-import br.com.basis.madre.cadastros.util.MadreUtil;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 public class PreCadastroDTO implements ReportObject, Serializable {
 

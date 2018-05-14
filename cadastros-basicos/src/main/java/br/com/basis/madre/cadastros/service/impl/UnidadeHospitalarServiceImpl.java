@@ -1,5 +1,6 @@
 package br.com.basis.madre.cadastros.service.impl;
 
+
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -11,8 +12,8 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.data.domain.*;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.ResponseEntity;
@@ -40,15 +41,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 import java.util.Optional;
 
+import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @Service
@@ -152,8 +154,8 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
     @Transactional(readOnly = true)
     public Page<UnidadeHospitalar> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of UnidadeHospitalars for query {}", query);
-        Page<UnidadeHospitalar> result = unidadeHospitalarSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return unidadeHospitalarSearchRepository.search(queryStringQuery(query), pageable);
+
     }
 
 

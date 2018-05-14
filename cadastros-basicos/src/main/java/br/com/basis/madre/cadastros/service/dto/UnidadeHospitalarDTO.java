@@ -3,12 +3,8 @@ package br.com.basis.madre.cadastros.service.dto;
 import br.com.basis.dynamicexports.pojo.ReportObject;
 import org.hibernate.validator.constraints.br.CNPJ;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import br.com.basis.dynamicexports.pojo.ReportObject;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -16,10 +12,7 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
 
         private Long id;
 
-        @Lob
-        private byte[] logo;
 
-        private String logoContentType;
 
         @NotNull
         @Size(min = 1, max = 10)
@@ -50,21 +43,6 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
             this.id = id;
         }
 
-        public byte[] getLogo() {
-            return logo;
-        }
-
-        public void setLogo(byte[] logo) {
-            this.logo = logo;
-        }
-
-        public String getLogoContentType() {
-            return logoContentType;
-        }
-
-        public void setLogoContentType(String logoContentType) {
-            this.logoContentType = logoContentType;
-        }
 
         public String getSigla() {
             return sigla;
@@ -131,7 +109,6 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
         public String toString() {
             return "UnidadeHospitalar{" +
                 "id=" + getId() +
-                ", logoContentType='" + getLogoContentType() + "'" +
                 ", sigla='" + getSigla() + "'" +
                 ", nome='" + getNome() + "'" +
                 ", cnpj='" + getCnpj() + "'" +
