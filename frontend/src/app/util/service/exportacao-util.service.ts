@@ -1,6 +1,7 @@
 import { Headers, RequestOptions, ResponseContentType } from '@angular/http';
 import { HttpService } from '@basis/angular-components';
-
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 export class ExportacaoUtilService {
 
@@ -36,9 +37,15 @@ export class ExportacaoUtilService {
         return options;
     }
 
-    static exportarRelatorio(tipoRelatorio: string, resourceUrl: string, http: HttpService) {
+    static exportarRelatorio(tipoRelatorio: string, resourceUrl: string, http: HttpService, query: string) {
+        if(query == undefined){
+            query = "*";
+        }
+        else{
+            query = "*" + query +"*";
+        }
         return ExportacaoUtilService.gerar(
-            `${resourceUrl}/exportacao/` + tipoRelatorio,
+            `${resourceUrl}/exportacao/` + tipoRelatorio + '?query=' + query,
             ExportacaoUtilService.getContentType(tipoRelatorio),
             http
         );
