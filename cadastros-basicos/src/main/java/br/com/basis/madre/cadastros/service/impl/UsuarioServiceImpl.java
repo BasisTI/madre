@@ -129,8 +129,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional(readOnly = true)
     public Page<Usuario> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Usuarios for query {}", query);
-        Page<Usuario> result = usuarioSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return usuarioSearchRepository.search(queryStringQuery(query), pageable);
+
     }
     /**
      * gera relatório by entity

@@ -100,8 +100,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
     @Transactional(readOnly = true)
     public Page<PreCadastro> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of PreCadastros for query {}", query);
-        Page<PreCadastro> result = preCadastroSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return preCadastroSearchRepository.search(queryStringQuery(query), pageable);
     }
 
     /**

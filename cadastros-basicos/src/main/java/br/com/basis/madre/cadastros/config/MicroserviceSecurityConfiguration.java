@@ -47,10 +47,7 @@ public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdap
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf()
-            .disable()
-            .exceptionHandling()
+        http.csrf().disable().exceptionHandling()
             .authenticationEntryPoint(problemSupport)
             .accessDeniedHandler(problemSupport)
         .and()

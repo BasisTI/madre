@@ -93,11 +93,9 @@ public class TokenProvider {
     }
 
     public boolean validateToken(String authToken) {
-        try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
+        try { Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException e) {
-            log.info("Invalid JWT signature.");
+        } catch (SignatureException e) { log.info("Invalid JWT signature.");
             log.trace("Invalid JWT signature trace: {}", e);
         } catch (MalformedJwtException e) {
             log.info("Invalid JWT token.");
