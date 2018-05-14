@@ -38,6 +38,12 @@ export class ExportacaoUtilService {
     }
 
     static exportarRelatorio(tipoRelatorio: string, resourceUrl: string, http: HttpService, query: string) {
+        if(query == undefined){
+            query = "*";
+        }
+        else{
+            query = "*" + query +"*";
+        }
         return ExportacaoUtilService.gerar(
             `${resourceUrl}/exportacao/` + tipoRelatorio + '?query=' + query,
             ExportacaoUtilService.getContentType(tipoRelatorio),
