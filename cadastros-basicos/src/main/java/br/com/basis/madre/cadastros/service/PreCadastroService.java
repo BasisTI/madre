@@ -1,16 +1,15 @@
 package br.com.basis.madre.cadastros.service;
 
-import java.util.Optional;
-
+import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
+import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
-import br.com.basis.madre.cadastros.domain.PreCadastro;
-import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
-import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
-import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing PreCadastro.

@@ -1,13 +1,17 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import java.util.Locale;
-
-import javax.validation.Valid;
-
+import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
+import br.com.basis.madre.cadastros.service.PreCadastroService;
+import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
+import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
+import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
@@ -27,20 +31,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codahale.metrics.annotation.Timed;
-
-import br.com.basis.madre.cadastros.domain.PreCadastro;
-import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
-import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
-import br.com.basis.madre.cadastros.service.PreCadastroService;
-import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
-import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
-import br.com.basis.madre.cadastros.service.exception.RelatorioException;
-import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
-import io.swagger.annotations.ApiParam;
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing PreCadastro.
@@ -57,8 +52,7 @@ public class PreCadastroResource {
 
     private final PreCadastroRepository preCadastroRepository;
 
-    public PreCadastroResource(PreCadastroService preCadastroService, PreCadastroRepository preCadastroRepository,
-   		PreCadastroSearchRepository preCadastroSearchRepository) {
+    public PreCadastroResource(PreCadastroService preCadastroService, PreCadastroRepository preCadastroRepository) {
         this.preCadastroService = preCadastroService;
         this.preCadastroRepository = preCadastroRepository;
     }
@@ -77,16 +71,13 @@ public class PreCadastroResource {
         log.debug("REST request to save PreCadastro : {}", preCadastroDTO);
 
             if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
-                    .body(null);
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
                 }
             if (preCadastroDTO.getId() != null) {
                 throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
             }
             PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
-            return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
@@ -112,8 +103,7 @@ public class PreCadastroResource {
             log.debug("REST request to update PreCadastro : {}", preCadastroDTO);
 
             if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
                     .body(null);
             }
 
@@ -121,8 +111,7 @@ public class PreCadastroResource {
                 return createPreCadastro(preCadastroDTO);
             }
             PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
-            return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastroDTO.getId().toString()))
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastroDTO.getId().toString()))
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
