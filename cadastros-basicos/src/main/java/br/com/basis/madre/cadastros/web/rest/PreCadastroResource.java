@@ -79,12 +79,7 @@ public class PreCadastroResource {
                 throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
             }
             PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
-<<<<<<< HEAD
-            return ResponseEntity.created(new URI("/api/pre-cadastros/"
-                + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-=======
             return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
->>>>>>> precadastro
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
@@ -110,26 +105,17 @@ public class PreCadastroResource {
             log.debug("REST request to update PreCadastro : {}", preCadastroDTO);
 
             if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
-<<<<<<< HEAD
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
-                    .body(null);
-=======
                 return ResponseEntity.badRequest() 
                 	.headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")) 
                 	.body(null);
->>>>>>> precadastro
             }
 
             if (preCadastroDTO.getId() == null) {
                 return createPreCadastro(preCadastroDTO);
             }
             PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
-<<<<<<< HEAD
-            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastroDTO.getId().toString()))
-=======
             return ResponseEntity.ok() 
             	.headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastroDTO.getId().toString()))
->>>>>>> precadastro
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
