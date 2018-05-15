@@ -61,7 +61,7 @@ export class PreCadastroFormComponent implements OnInit, OnDestroy {
     }, (res: Response) => {
       this.isSaving = false;
 
-      if(res.headers.toJSON()["x-cadastrosbasicosapp-error"] != null){
+      if(res.headers != null){
         this.pageNotificationService.addErrorMessage("Registro já cadastrado");
       } else {
         this.pageNotificationService.addErrorMessage("Dados inválidos!");
