@@ -60,17 +60,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     /**
      * Save a usuario.
      *
-     * @param usuarioDTO the entity to save
+     * @param usuario the entity to save
      * @return the persisted entity
      */
 
     @Override
-    public UsuarioDTO save(UsuarioDTO usuarioDTO) {
-        log.debug("Request to save Usuario : {}", usuarioDTO);
-        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+    public Usuario save(Usuario usuario) {
+        log.debug("Request to save Usuario : {}", usuario);
+//        usuario = usuarioMapper.toEntity(usuario);
         usuario = usuarioRepository.save(usuario);
         usuarioSearchRepository.save(usuario);
-        return usuarioMapper.toDto(usuario);
+//        return usuarioMapper.(usuario);
+        return usuario;
     }
 
     /**

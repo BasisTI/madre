@@ -163,6 +163,8 @@ public class Usuario implements Serializable, ReportObject {
         return this;
     }
 
+    public String getStringAtivo() { return (this.ativo) ? "Sim" : "Não"; }
+
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }

@@ -24,10 +24,10 @@ public interface UsuarioService {
     /**
      * Save a Usuario.
      *
-     * @param usuarioDTO the entity to save
+     * @param usuario the entity to save
      * @return the persisted entity
      */
-    UsuarioDTO save(UsuarioDTO usuarioDTO) throws UsuarioException;
+    Usuario save(Usuario usuario) throws UsuarioException;
 
     /**
      * Get all the Usuario.
