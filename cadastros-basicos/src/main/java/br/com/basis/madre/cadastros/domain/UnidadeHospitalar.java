@@ -1,22 +1,24 @@
 package br.com.basis.madre.cadastros.domain;
 
-import br.com.basis.dynamicexports.pojo.ReportObject;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.constraints.br.CNPJ;
-import org.springframework.data.elasticsearch.annotations.Document;
+import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Objects;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * A UnidadeHospitalar.
@@ -34,6 +36,13 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Lob
+    @Column(name = "logo")
+    private byte[] logo;
+
+    @Column(name = "logo_content_type")
+    private String logoContentType;
+
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "sigla", length = 10, nullable = false)
@@ -47,7 +56,7 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @NotNull
     @Size(min = 14, max = 14)
     @Column(name = "cnpj", length = 14, nullable = false)
-    @CNPJ(message = "CNPJ inválido")
+    @CNPJ(message="CNPJ inválido")
     private String cnpj;
 
     @NotNull
@@ -59,6 +68,9 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
+    @Column(name = "logo_id")
+    private int logoId;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -68,12 +80,34 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         this.id = id;
     }
 
-    public String getSigla() {
-        return sigla;
+    public byte[] getLogo() {
+        return logo;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public UnidadeHospitalar logo(byte[] logo) {
+        this.logo = logo;
+        return this;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public String getLogoContentType() {
+        return logoContentType;
+    }
+
+    public UnidadeHospitalar logoContentType(String logoContentType) {
+        this.logoContentType = logoContentType;
+        return this;
+    }
+
+    public void setLogoContentType(String logoContentType) {
+        this.logoContentType = logoContentType;
+    }
+
+    public String getSigla() {
+        return sigla;
     }
 
     public UnidadeHospitalar sigla(String sigla) {
@@ -81,12 +115,12 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
-    public String getNome() {
-        return nome;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getNome() {
+        return nome;
     }
 
     public UnidadeHospitalar nome(String nome) {
@@ -94,12 +128,12 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public String getCnpj() {
+        return cnpj;
     }
 
     public UnidadeHospitalar cnpj(String cnpj) {
@@ -107,17 +141,21 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public String getEndereco() {
+        return endereco;
     }
 
     public UnidadeHospitalar endereco(String endereco) {
         this.endereco = endereco;
         return this;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public Boolean isAtivo() {
@@ -158,11 +196,21 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     public String toString() {
         return "UnidadeHospitalar{" +
             "id=" + getId() +
+            ", logo='" + getLogo() + "'" +
+            ", logoContentType='" + getLogoContentType() + "'" +
             ", sigla='" + getSigla() + "'" +
             ", nome='" + getNome() + "'" +
             ", cnpj='" + getCnpj() + "'" +
             ", endereco='" + getEndereco() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
+    }
+
+    public int getLogoId() {
+        return logoId;
+    }
+
+    public void setLogoId(int logoId) {
+        this.logoId = logoId;
     }
 }

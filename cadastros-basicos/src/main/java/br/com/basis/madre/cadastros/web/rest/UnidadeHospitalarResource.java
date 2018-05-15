@@ -1,19 +1,24 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
+import br.com.basis.madre.cadastros.domain.UploadFile;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
+import br.com.basis.madre.cadastros.repository.UploadedFilesRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.errors.UploadException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,10 +35,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.xml.bind.DatatypeConverter;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,13 +61,18 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class UnidadeHospitalarResource {
 
-    private static final String ENTITY_NAME = "unidadeHospitalar";
-
     private final Logger log = LoggerFactory.getLogger(UnidadeHospitalarResource.class);
+
+    private static final String ENTITY_NAME = "unidadeHospitalar";
 
     private final UnidadeHospitalarService unidadeHospitalarService;
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
+
+    private static String filterValue;
+
+    @Autowired
+    private UploadedFilesRepository filesRepository;
 
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
         UnidadeHospitalarRepository unidadeHospitalarRepository) {
@@ -216,13 +238,51 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping(value = "/unidadehospitalar/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
-        @RequestParam(defaultValue = "*") String query) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
-            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio, query);
+            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio,query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
         }
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<UploadFile> singleFileUpload(@RequestParam("file") MultipartFile file,
+        HttpServletRequest request,
+        RedirectAttributes redirectAttributes) {
+
+        UploadFile uploadFile = new UploadFile();
+        try {
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+
+            String classPathString = this.getClass().getClassLoader().getResource("").toString();
+            Path classPath = Paths.get(classPathString).toAbsolutePath();
+            String folderPathString = classPath.toString();
+
+            File directory = new File(folderPathString);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis()))
+                .getBytes("UTF-8");
+            String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));
+            String ext = FilenameUtils.getExtension(file.getOriginalFilename());
+            filename += "." + ext;
+            Path path = Paths.get(folderPathString + "/" + filename);
+            System.out.println(path);
+            Files.write(path, bytes);
+
+            uploadFile.setDateOf(new Date());
+            uploadFile.setOriginalName(file.getOriginalFilename());
+            uploadFile.setFilename(filename);
+            uploadFile.setSizeOf(bytes.length);
+            filesRepository.save(uploadFile);
+        } catch (IOException | NoSuchAlgorithmException e) {
+            throw new UploadException("Erro ao efetuar o upload do arquivo", e);
+        }
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(uploadFile));
     }
 }
