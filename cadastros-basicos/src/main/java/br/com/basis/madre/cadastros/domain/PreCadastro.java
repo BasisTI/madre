@@ -61,10 +61,8 @@ public class PreCadastro implements Serializable, ReportObject {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
-
-    private String dataNascimentoString;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove    
     public Long getId() {
         return id;
     }
@@ -183,13 +181,14 @@ public class PreCadastro implements Serializable, ReportObject {
             ", ativo='" + isAtivo() + "'" +
             "}";
     }
-
-    public void setDataNascimentoString(String dataNascimentoString) {
-        this.dataNascimentoString = dataNascimentoString;
-    }
-
+    
     public String getDataNascimentoString() {
+        String dataNascimentoString;
         dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
         return dataNascimentoString;
+    }
+
+    public String getStringAtivo() {
+        return (this.ativo) ? "Sim" : "Não";
     }
 }
