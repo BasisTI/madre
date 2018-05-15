@@ -106,14 +106,11 @@ public class PreCadastroResource {
             log.debug("REST request to update PreCadastro : {}", preCadastro);
 
             if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getNomeDoPaciente(), preCadastro.getNomeDaMae(), preCadastro.getDataDeNascimento()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
                     .body(null);
             }
 
-            if (preCadastro.getId() == null) {
-                return createPreCadastro(preCadastro);
-            }
+            if (preCadastro.getId() == null) { return createPreCadastro(preCadastro); }
             PreCadastro result = preCadastroService.save(preCadastro);
             return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastro.getId().toString()))
