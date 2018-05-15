@@ -34,19 +34,15 @@ public class ExceptionTranslator implements ProblemHandling {
      */
     @Override
     public ResponseEntity<Problem> process(@Nullable ResponseEntity<Problem> entity, NativeWebRequest request) {
-        if (entity == null || entity.getBody() == null) {
-            return entity;
+        if (entity == null || entity.getBody() == null) { return entity;
         }
         Problem problem = entity.getBody();
-        if (!(problem instanceof ConstraintViolationProblem || problem instanceof DefaultProblem)) {
-            return entity;
+        if (!(problem instanceof ConstraintViolationProblem || problem instanceof DefaultProblem)) { return entity;
         }
-        ProblemBuilder builder = Problem.builder()
-            .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
+        ProblemBuilder builder = Problem.builder().withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
             .withStatus(problem.getStatus()).withTitle(problem.getTitle()).with("path", request.getNativeRequest(HttpServletRequest.class).getRequestURI());
 
-        if (problem instanceof ConstraintViolationProblem) {
-            builder.with("violations", ((ConstraintViolationProblem) problem).getViolations()).with(MENSAGEM, ErrorConstants.ERR_VALIDATION);
+        if (problem instanceof ConstraintViolationProblem) { builder.with("violations", ((ConstraintViolationProblem) problem).getViolations()).with(MENSAGEM, ErrorConstants.ERR_VALIDATION);
             return new ResponseEntity<>(builder.build(), entity.getHeaders(), entity.getStatusCode());
         } else {
             builder.withCause(((DefaultProblem) problem).getCause()).withDetail(problem.getDetail()).withInstance(problem.getInstance());

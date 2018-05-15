@@ -49,9 +49,7 @@ public class CadastrosbasicosApp {
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";
         }
-        log.info("\n----------------------------------------------------------\n\t"
-                + "Application '{}' is running! Access URLs:\n\t" + "Local: \t\t{}://localhost:{}\n\t"
-                + "External: \t{}://{}:{}\n\t"
+        log.info("\n----------------------------------------------------------\n\t" + "Application '{}' is running! Access URLs:\n\t" + "Local: \t\t{}://localhost:{}\n\t" + "External: \t{}://{}:{}\n\t"
                 + "Profile(s): \t{}\n----------------------------------------------------------", env.getProperty("spring.application.name"),
             protocol,
             env.getProperty("server.port"),
@@ -61,8 +59,7 @@ public class CadastrosbasicosApp {
             env.getActiveProfiles());
 
         String configServerStatus = env.getProperty("configserver.status");
-        log.info("\n----------------------------------------------------------\n\t" +
-                "Config Server: \t{}\n----------------------------------------------------------",
+        log.info("\n----------------------------------------------------------\n\t" + "Config Server: \t{}\n----------------------------------------------------------",
             configServerStatus == null ? "Not found or not setup for this application" : configServerStatus);
     }
 
