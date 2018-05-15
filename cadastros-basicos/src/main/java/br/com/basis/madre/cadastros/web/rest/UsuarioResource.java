@@ -121,10 +121,10 @@ public class UsuarioResource {
      */
     @GetMapping("/usuarios")
     @Timed
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
+    public ResponseEntity<List<Usuario>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
                                                            @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Usuarios");
-        Page<UsuarioDTO> page = usuarioService.findAll(query, pageable);
+        Page<Usuario> page = usuarioService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/usuarios");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -137,10 +137,10 @@ public class UsuarioResource {
      */
     @GetMapping("/usuarios/{id}")
     @Timed
-    public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable Long id) {
+    public ResponseEntity<Usuario> getUsuario(@PathVariable Long id) {
         log.debug("REST request to get Usuario : {}", id);
-        UsuarioDTO usuarioDTO = usuarioService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+        Usuario usuario = usuarioService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
     }
 
     /**

@@ -35,7 +35,7 @@ public interface UsuarioService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<UsuarioDTO> findAll(Optional<String> query, Pageable pageable);
+    Page<Usuario> findAll(Optional<String> query, Pageable pageable);
 
     /**
      * Get the "id" Usuario.
@@ -43,7 +43,7 @@ public interface UsuarioService {
      * @param id the id of the entity
      * @return the entity
      */
-    UsuarioDTO findOne(Long id);
+    Usuario findOne(Long id);
 
     /**
      * Delete the "id" Usuario.

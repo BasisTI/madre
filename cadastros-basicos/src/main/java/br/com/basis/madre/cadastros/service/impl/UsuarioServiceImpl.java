@@ -83,7 +83,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<UsuarioDTO> findAll(Optional<String> query, Pageable pageable) {
+    public Page<Usuario> findAll(Optional<String> query, Pageable pageable) {
         log.debug("Request to get all Usuarios");
         UsuarioFilter filter = new UsuarioFilter();
         QueryBuilder queryBuilder;
@@ -94,7 +94,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         } else {
             result = usuarioRepository.findAll(pageable);
         }
-        return result.map(usuarioMapper::toDto);
+//        return result.map(usuarioMapper::toDto);
+            return result;
     }
 
     /**
@@ -105,11 +106,11 @@ public class UsuarioServiceImpl implements UsuarioService {
      */
     @Override
     @Transactional(readOnly = true)
-    public UsuarioDTO findOne(Long id) {
+    public Usuario findOne(Long id) {
         log.debug("Request to get Usuario : {}", id);
         Usuario usuario = usuarioRepository.findOne(id);
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-        return (usuarioDTO);
+        //Usuario usuario = usuarioMapper.toDto(usuario);
+        return (usuario);
     }
 
     /**
