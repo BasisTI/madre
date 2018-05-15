@@ -24,7 +24,8 @@ export class AppMenuComponent implements OnInit {
       {
         label: 'Cadastro', icon: 'widgets',
         items: [{ label: 'Unidade Hospitalar', icon: 'add', routerLink: ['/unidadeHospitalar'] },
-                  {label: 'Usuário', icon: 'person', routerLink: ['/usuario']}]
+                { label: 'Usuário', icon: 'person', routerLink: ['/usuario']},
+                { label: 'Especialidade', icon: 'add', routerLink: ['/especialidade'] }]
       },
       {
         label: 'Emergência', icon: 'add',
