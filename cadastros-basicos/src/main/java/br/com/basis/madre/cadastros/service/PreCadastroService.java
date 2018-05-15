@@ -24,7 +24,7 @@ public interface PreCadastroService {
      * @param preCadastroDTO the entity to save
      * @return the persisted entity
      */
-    PreCadastroDTO save(PreCadastroDTO preCadastroDTO) throws PreCadastroException;
+    PreCadastro save(PreCadastro preCadastro) throws PreCadastroException;
 
     /**
      * Get all the PreCadastro.
