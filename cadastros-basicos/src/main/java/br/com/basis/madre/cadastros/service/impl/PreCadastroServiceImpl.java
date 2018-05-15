@@ -57,12 +57,11 @@ public class PreCadastroServiceImpl implements PreCadastroService {
     }
 
     @Override
-    public PreCadastroDTO save(PreCadastroDTO preCadastroDTO) {
-        log.debug("Request to save PreCadastro : {}", preCadastroDTO);
-        PreCadastro preCadastro = preCadastroMapper.toEntity(preCadastroDTO);
+    public PreCadastro save(PreCadastro preCadastro) {
+        log.debug("Request to save PreCadastro : {}", preCadastro);
         preCadastro = preCadastroRepository.save(preCadastro);
         preCadastroSearchRepository.save(preCadastro);
-        return preCadastroMapper.toDto(preCadastro);
+        return (preCadastro);
     }
 
     @Override
