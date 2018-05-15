@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UsuarioDTO implements ReportObject, Serializable {
-//public class UsuarioDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -110,17 +109,15 @@ public class UsuarioDTO implements ReportObject, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        if (o instanceof UsuarioDTO) {
+        	return getId().equals(((UsuarioDTO)o).getId());
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        else if (o instanceof String) {
+        	return getId().equals(o);
         }
-        Usuario usuario = (Usuario) o;
-        if (usuario.getId() == null || getId() == null) {
-            return false;
+        else {
+        	return false;
         }
-        return Objects.equals(getId(), usuario.getId());
     }
 
     @Override

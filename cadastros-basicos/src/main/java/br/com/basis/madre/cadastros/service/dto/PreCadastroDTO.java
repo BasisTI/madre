@@ -96,17 +96,15 @@ public class PreCadastroDTO implements ReportObject, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        if (o instanceof PreCadastroDTO) {
+        	return getId().equals(((PreCadastroDTO)o).getId());
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        else if (o instanceof String) {
+        	return getId().equals(o);
         }
-        PreCadastro preCadastro = (PreCadastro) o;
-        if (preCadastro.getId() == null || getId() == null) {
-            return false;
+        else {
+        	return false;
         }
-        return Objects.equals(getId(), preCadastro.getId());
     }
 
     @Override

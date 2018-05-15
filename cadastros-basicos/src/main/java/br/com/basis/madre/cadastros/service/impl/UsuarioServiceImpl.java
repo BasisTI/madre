@@ -1,6 +1,5 @@
 package br.com.basis.madre.cadastros.service.impl;
 
-
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -47,7 +46,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final DynamicExportsService dynamicExportsService;
 
-    private final UsuarioMapper usuarioMapper;
+	protected UsuarioMapper usuarioMapper;
+
 
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioSearchRepository usuarioSearchRepository,
                               DynamicExportsService dynamicExportsService, UsuarioMapper usuarioMapper) {
@@ -67,10 +67,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario save(Usuario usuario) {
         log.debug("Request to save Usuario : {}", usuario);
-//        usuario = usuarioMapper.toEntity(usuario);
         usuario = usuarioRepository.save(usuario);
         usuarioSearchRepository.save(usuario);
-//        return usuarioMapper.(usuario);
         return usuario;
     }
 
@@ -94,8 +92,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         } else {
             result = usuarioRepository.findAll(pageable);
         }
-//        return result.map(usuarioMapper::toDto);
-            return result;
+        return result;
     }
 
     /**
@@ -109,7 +106,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario findOne(Long id) {
         log.debug("Request to get Usuario : {}", id);
         Usuario usuario = usuarioRepository.findOne(id);
-        //Usuario usuario = usuarioMapper.toDto(usuario);
         return (usuario);
     }
 
@@ -145,20 +141,6 @@ public class UsuarioServiceImpl implements UsuarioService {
      *
      * @param tipoRelatorio
      */
-//    @Override
-//    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
-//        ByteArrayOutputStream byteArrayOutputStream;
-//        try {
-//            SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
-//            Page<Usuario> result =  usuarioSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
-//            byteArrayOutputStream = dynamicExportsService.export(new RelatorioUsuarioColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
-//        } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
-//            log.error(e.getMessage(), e);
-//            throw new RelatorioException(e);
-//        }
-//        return DynamicExporter.output(byteArrayOutputStream,
-//            "relatorio." + tipoRelatorio);
-//    }
     @Override
     public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
