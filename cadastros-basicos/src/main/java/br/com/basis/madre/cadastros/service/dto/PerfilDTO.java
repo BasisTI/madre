@@ -1,6 +1,9 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import javax.validation.constraints.NotNull;
+
+import br.com.basis.madre.cadastros.domain.Usuario;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -72,18 +75,15 @@ public class PerfilDTO implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        if (o instanceof PerfilDTO) {
+        	return getId().equals(((PerfilDTO)o).getId());
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        else if (o instanceof String) {
+        	return getId().equals(o);
         }
-
-        PerfilDTO perfilDTO = (PerfilDTO) o;
-        if(perfilDTO.getId() == null || getId() == null) {
-            return false;
+        else {
+        	return false;
         }
-        return Objects.equals(getId(), perfilDTO.getId());
     }
 
     @Override

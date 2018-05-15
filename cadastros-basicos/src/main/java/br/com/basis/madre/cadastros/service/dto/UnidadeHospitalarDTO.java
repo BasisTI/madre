@@ -87,17 +87,15 @@ public class UnidadeHospitalarDTO implements ReportObject, Serializable {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) {
-                return true;
+            if (o instanceof UnidadeHospitalarDTO) {
+            	return getId().equals(((UnidadeHospitalarDTO)o).getId());
             }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
+            else if (o instanceof String) {
+            	return getId().equals(o);
             }
-            UnidadeHospitalar unidadeHospitalar = (UnidadeHospitalar) o;
-            if (unidadeHospitalar.getId() == null || getId() == null) {
-                return false;
+            else {
+            	return false;
             }
-            return Objects.equals(getId(), unidadeHospitalar.getId());
         }
 
         @Override
