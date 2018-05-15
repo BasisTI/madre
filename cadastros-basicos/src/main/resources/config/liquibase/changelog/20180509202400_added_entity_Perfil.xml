@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <property name="now" value="now()" dbms="h2"/>
@@ -20,23 +20,23 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nm_perfil" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="ds_perfil" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="st_excluido" type="boolean">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="st_ativo" type="boolean">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="id_funcionalidade" type="integer">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

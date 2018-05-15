@@ -44,14 +44,13 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class UnidadeHospitalarResource {
 
-    private final Logger log = LoggerFactory.getLogger(UnidadeHospitalarResource.class);
-
     private static final String ENTITY_NAME = "unidadeHospitalar";
+
+    private final Logger log = LoggerFactory.getLogger(UnidadeHospitalarResource.class);
 
     private final UnidadeHospitalarService unidadeHospitalarService;
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
-
 
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
         UnidadeHospitalarRepository unidadeHospitalarRepository) {
@@ -217,9 +216,10 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping(value = "/unidadehospitalar/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
+        @RequestParam(defaultValue = "*") String query) {
         try {
-            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio,query);
+            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);

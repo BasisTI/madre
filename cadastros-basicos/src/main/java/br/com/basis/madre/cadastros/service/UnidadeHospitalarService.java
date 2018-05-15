@@ -47,12 +47,10 @@ public interface UnidadeHospitalarService {
      */
     void delete(Long id);
 
-
     Page<UnidadeHospitalar> search(String query, Pageable pageable);
 
-
-
-    ResponseEntity<InputStreamResource>     gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
+        throws RelatorioException;
 
 }
 

@@ -210,7 +210,8 @@ public class WebConfigurerTest {
     static class MockFilterRegistration implements FilterRegistration, FilterRegistration.Dynamic {
 
         @Override
-        public void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter, String... servletNames) {
+        public void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
+            String... servletNames) {
 
         }
 
@@ -220,7 +221,8 @@ public class WebConfigurerTest {
         }
 
         @Override
-        public void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter, String... urlPatterns) {
+        public void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
+            String... urlPatterns) {
 
         }
 
@@ -283,11 +285,6 @@ public class WebConfigurerTest {
         }
 
         @Override
-        public void setRunAsRole(String roleName) {
-
-        }
-
-        @Override
         public void setAsyncSupported(boolean isAsyncSupported) {
 
         }
@@ -305,6 +302,11 @@ public class WebConfigurerTest {
         @Override
         public String getRunAsRole() {
             return null;
+        }
+
+        @Override
+        public void setRunAsRole(String roleName) {
+
         }
 
         @Override

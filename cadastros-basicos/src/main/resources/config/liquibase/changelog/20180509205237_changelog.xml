@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-   <changeSet author="jefferson (generated)" id="1525899164687-1">
-      <createTable tableName="perfil">
-         <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true" primaryKeyName="perfilPK"/>
-         </column>
-         <column name="ds_perfil" type="VARCHAR(255)"/>
-         <column name="id_funcionalidade" type="INT">
-            <constraints nullable="false"/>
-         </column>
-         <column name="nm_perfil" type="INT"/>
-         <column name="st_ativo" type="BOOLEAN"/>
-         <column name="st_excluido" type="BOOLEAN"/>
-      </createTable>
-   </changeSet>
+    <changeSet author="jefferson (generated)" id="1525899164687-1">
+        <createTable tableName="perfil">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="perfilPK"/>
+            </column>
+            <column name="ds_perfil" type="VARCHAR(255)"/>
+            <column name="id_funcionalidade" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nm_perfil" type="INT"/>
+            <column name="st_ativo" type="BOOLEAN"/>
+            <column name="st_excluido" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

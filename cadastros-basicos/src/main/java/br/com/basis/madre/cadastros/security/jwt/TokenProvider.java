@@ -26,17 +26,17 @@ import java.util.stream.Collectors;
 @Component
 public class TokenProvider {
 
+    private static final String AUTHORITIES_KEY = "auth";
+
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
-    private static final String AUTHORITIES_KEY = "auth";
+    private final JHipsterProperties jHipsterProperties;
 
     private String secretKey;
 
     private long tokenValidityInMilliseconds;
 
     private long tokenValidityInMillisecondsForRememberMe;
-
-    private final JHipsterProperties jHipsterProperties;
 
     public TokenProvider(JHipsterProperties jHipsterProperties) {
         this.jHipsterProperties = jHipsterProperties;
@@ -50,7 +50,8 @@ public class TokenProvider {
         this.tokenValidityInMilliseconds =
             1000 * jHipsterProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSeconds();
         this.tokenValidityInMillisecondsForRememberMe =
-            1000 * jHipsterProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe();
+            1000
+                * jHipsterProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe();
     }
 
     public String createToken(Authentication authentication, boolean rememberMe) {
@@ -91,9 +92,11 @@ public class TokenProvider {
     }
 
     public boolean validateToken(String authToken) {
-        try { Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
+        try {
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException e) { log.info("Invalid JWT signature.");
+        } catch (SignatureException e) {
+            log.info("Invalid JWT signature.");
             log.trace("Invalid JWT signature trace: {}", e);
         } catch (MalformedJwtException e) {
             log.info("Invalid JWT token.");

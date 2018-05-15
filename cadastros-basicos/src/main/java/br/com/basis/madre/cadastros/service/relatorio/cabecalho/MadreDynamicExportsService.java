@@ -12,7 +12,6 @@ public class MadreDynamicExportsService extends DynamicExportsServiceImpl {
 
     private static final String REPORT_NOME_SISTEMA = "Madre - Sistema de Gestão Hospitalar Basis.";
 
-
     public MadreDynamicExportsService(DynamicExportsBuilder dynamicExportsBuilder) {
         super(dynamicExportsBuilder);
     }

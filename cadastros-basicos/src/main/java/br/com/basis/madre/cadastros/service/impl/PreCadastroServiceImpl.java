@@ -47,9 +47,9 @@ public class PreCadastroServiceImpl implements PreCadastroService {
 
     private final DynamicExportsService dynamicExportsService;
 
-
     public PreCadastroServiceImpl(PreCadastroRepository preCadastroRepository,
-        PreCadastroSearchRepository preCadastroSearchRepository, PreCadastroMapper preCadastroMapper, DynamicExportsService dynamicExportsService) {
+        PreCadastroSearchRepository preCadastroSearchRepository, PreCadastroMapper preCadastroMapper,
+        DynamicExportsService dynamicExportsService) {
         this.preCadastroRepository = preCadastroRepository;
         this.preCadastroSearchRepository = preCadastroSearchRepository;
         this.preCadastroMapper = preCadastroMapper;
@@ -75,7 +75,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
             queryBuilder = filter.filterElasticSearch(query.get());
             result = preCadastroSearchRepository.search(queryBuilder, pageable);
         } else {
-            result =  preCadastroRepository.findAll(pageable);
+            result = preCadastroRepository.findAll(pageable);
         }
         return result.map(preCadastroMapper::toDto);
     }
@@ -110,11 +110,12 @@ public class PreCadastroServiceImpl implements PreCadastroService {
      */
 
     @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
+    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
+        throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
         try {
             SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
-            Page<PreCadastro> result =  preCadastroSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
+            Page<PreCadastro> result = preCadastroSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioPreCadastroColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
         } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
             log.error(e.getMessage(), e);
@@ -122,8 +123,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
         }
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
-     }
-
+    }
 
 }
 

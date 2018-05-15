@@ -40,16 +40,15 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
 
-
-
     private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
 
     private final UnidadeHospitalarMapper unidadeHospitalarMapper;
 
     private final DynamicExportsService dynamicExportsService;
 
-    public UnidadeHospitalarServiceImpl(UnidadeHospitalarRepository unidadeHospitalarRepository, UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository,
-    UnidadeHospitalarMapper unidadeHospitalarMapper, DynamicExportsService dynamicExportsService) {
+    public UnidadeHospitalarServiceImpl(UnidadeHospitalarRepository unidadeHospitalarRepository,
+        UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository,
+        UnidadeHospitalarMapper unidadeHospitalarMapper, DynamicExportsService dynamicExportsService) {
         this.unidadeHospitalarRepository = unidadeHospitalarRepository;
         this.unidadeHospitalarSearchRepository = unidadeHospitalarSearchRepository;
         this.unidadeHospitalarMapper = unidadeHospitalarMapper;
@@ -65,12 +64,12 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
 
     @Override
     public UnidadeHospitalarDTO save(UnidadeHospitalarDTO unidadeHospitalarDTO) {
-            log.debug("Request to save PreCadastro : {}", unidadeHospitalarDTO);
-            UnidadeHospitalar unidadeHospitalar = unidadeHospitalarMapper.toEntity(unidadeHospitalarDTO);
-            unidadeHospitalar = unidadeHospitalarRepository.save(unidadeHospitalar);
-            unidadeHospitalarSearchRepository.save(unidadeHospitalar);
-            return unidadeHospitalarMapper.toDto(unidadeHospitalar);
-        }
+        log.debug("Request to save PreCadastro : {}", unidadeHospitalarDTO);
+        UnidadeHospitalar unidadeHospitalar = unidadeHospitalarMapper.toEntity(unidadeHospitalarDTO);
+        unidadeHospitalar = unidadeHospitalarRepository.save(unidadeHospitalar);
+        unidadeHospitalarSearchRepository.save(unidadeHospitalar);
+        return unidadeHospitalarMapper.toDto(unidadeHospitalar);
+    }
 
     /**
      * Get all the unidadeHospitalars.
@@ -89,11 +88,10 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
             queryBuilder = filter.filterElasticSearch(query.get());
             result = unidadeHospitalarSearchRepository.search(queryBuilder, pageable);
         } else {
-            result =  unidadeHospitalarRepository.findAll(pageable);
+            result = unidadeHospitalarRepository.findAll(pageable);
         }
         return result.map(unidadeHospitalarMapper::toDto);
     }
-
 
     /**
      * Get one unidadeHospitalar by id.
@@ -137,13 +135,13 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
 
     }
 
-
     @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
+    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
+        throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
         try {
             new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
-            Page<UnidadeHospitalar> result =  unidadeHospitalarSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
+            Page<UnidadeHospitalar> result = unidadeHospitalarSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioUnidadeHospitalarColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
         } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
             log.error(e.getMessage(), e);
@@ -152,7 +150,5 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
     }
-
-
 
 }

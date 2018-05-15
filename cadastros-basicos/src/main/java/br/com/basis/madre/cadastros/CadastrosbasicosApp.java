@@ -36,6 +36,37 @@ public class CadastrosbasicosApp {
     }
 
     /**
+     * Main method, used to run the application.
+     *
+     * @param args the command line arguments
+     * @throws UnknownHostException if the local host name could not be resolved into an address
+     */
+    public static void main(String[] args) throws UnknownHostException {
+        SpringApplication app = new SpringApplication(CadastrosbasicosApp.class);
+        DefaultProfileUtil.addDefaultProfile(app);
+        Environment env = app.run(args).getEnvironment();
+        String protocol = "http";
+        if (env.getProperty("server.ssl.key-store") != null) {
+            protocol = "https";
+        }
+        log.info("\n----------------------------------------------------------\n\t"
+                + "Application '{}' is running! Access URLs:\n\t" + "Local: \t\t{}://localhost:{}\n\t"
+                + "External: \t{}://{}:{}\n\t"
+                + "Profile(s): \t{}\n----------------------------------------------------------", env.getProperty("spring.application.name"),
+            protocol,
+            env.getProperty("server.port"),
+            protocol,
+            InetAddress.getLocalHost().getHostAddress(),
+            env.getProperty("server.port"),
+            env.getActiveProfiles());
+
+        String configServerStatus = env.getProperty("configserver.status");
+        log.info("\n----------------------------------------------------------\n\t" +
+                "Config Server: \t{}\n----------------------------------------------------------",
+            configServerStatus == null ? "Not found or not setup for this application" : configServerStatus);
+    }
+
+    /**
      * Initializes cadastrosbasicos.
      * <p>
      * Spring profiles can be configured with a program arguments --spring.profiles.active=your-active-profile
@@ -55,33 +86,5 @@ public class CadastrosbasicosApp {
             log.error("You have misconfigured your application! It should not " +
                 "run with both the 'dev' and 'cloud' profiles at the same time.");
         }
-    }
-
-    /**
-     * Main method, used to run the application.
-     *
-     * @param args the command line arguments
-     * @throws UnknownHostException if the local host name could not be resolved into an address
-     */
-    public static void main(String[] args) throws UnknownHostException {
-        SpringApplication app = new SpringApplication(CadastrosbasicosApp.class);
-        DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
-        String protocol = "http";
-        if (env.getProperty("server.ssl.key-store") != null) {
-            protocol = "https";
-        }
-        log.info("\n----------------------------------------------------------\n\t" +"Application '{}' is running! Access URLs:\n\t" +"Local: \t\t{}://localhost:{}\n\t" + "External: \t{}://{}:{}\n\t" + "Profile(s): \t{}\n----------------------------------------------------------", env.getProperty("spring.application.name"),
-            protocol,
-            env.getProperty("server.port"),
-            protocol,
-            InetAddress.getLocalHost().getHostAddress(),
-            env.getProperty("server.port"),
-            env.getActiveProfiles());
-
-        String configServerStatus = env.getProperty("configserver.status");
-        log.info("\n----------------------------------------------------------\n\t" +
-                "Config Server: \t{}\n----------------------------------------------------------",
-            configServerStatus == null ? "Not found or not setup for this application" : configServerStatus);
     }
 }

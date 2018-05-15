@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ExceptionTranslator implements ProblemHandling {
     private static final String MENSAGEM = "message";
+
     /**
      * Post-process Problem payload to add the message key for front-end if needed
      */
@@ -47,16 +48,20 @@ public class ExceptionTranslator implements ProblemHandling {
         if (problem instanceof ConstraintViolationProblem) {
             builder.with("violations", ((ConstraintViolationProblem) problem).getViolations()).with(MENSAGEM, ErrorConstants.ERR_VALIDATION);
             return new ResponseEntity<>(builder.build(), entity.getHeaders(), entity.getStatusCode());
-        } else { builder.withCause(((DefaultProblem) problem).getCause()).withDetail(problem.getDetail()).withInstance(problem.getInstance());
+        } else {
+            builder.withCause(((DefaultProblem) problem).getCause()).withDetail(problem.getDetail()).withInstance(problem.getInstance());
             problem.getParameters().forEach(builder::with);
 
-            if (!problem.getParameters().containsKey(MENSAGEM) && problem.getStatus() != null) { builder.with(MENSAGEM, "error.http." + problem.getStatus().getStatusCode()); }
+            if (!problem.getParameters().containsKey(MENSAGEM) && problem.getStatus() != null) {
+                builder.with(MENSAGEM, "error.http." + problem.getStatus().getStatusCode());
+            }
             return new ResponseEntity<>(builder.build(), entity.getHeaders(), entity.getStatusCode());
         }
     }
 
     @Override
-    public ResponseEntity<Problem> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, @Nonnull NativeWebRequest request) {
+    public ResponseEntity<Problem> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+        @Nonnull NativeWebRequest request) {
         BindingResult result = ex.getBindingResult();
         List<FieldErrorVM> fieldErrors = result.getFieldErrors().stream()
             .map(f -> new FieldErrorVM(f.getObjectName(), f.getField(), f.getCode()))
@@ -73,7 +78,8 @@ public class ExceptionTranslator implements ProblemHandling {
     }
 
     @ExceptionHandler(BadRequestAlertException.class)
-    public ResponseEntity<Problem> handleBadRequestAlertException(BadRequestAlertException ex, NativeWebRequest request) {
+    public ResponseEntity<Problem> handleBadRequestAlertException(BadRequestAlertException ex,
+        NativeWebRequest request) {
         return create(ex, request, HeaderUtil.createFailureAlert(ex.getEntityName(), ex.getErrorKey(), ex.getMessage()));
     }
 

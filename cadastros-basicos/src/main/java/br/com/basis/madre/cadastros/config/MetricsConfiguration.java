@@ -38,19 +38,24 @@ import java.util.concurrent.TimeUnit;
 public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
     private static final String PROP_METRIC_REG_JVM_MEMORY = "jvm.memory";
+
     private static final String PROP_METRIC_REG_JVM_GARBAGE = "jvm.garbage";
+
     private static final String PROP_METRIC_REG_JVM_THREADS = "jvm.threads";
+
     private static final String PROP_METRIC_REG_JVM_FILES = "jvm.files";
+
     private static final String PROP_METRIC_REG_JVM_BUFFERS = "jvm.buffers";
+
     private static final String PROP_METRIC_REG_JVM_ATTRIBUTE_SET = "jvm.attributes";
 
     private final Logger log = LoggerFactory.getLogger(MetricsConfiguration.class);
 
+    private final JHipsterProperties jHipsterProperties;
+
     private MetricRegistry metricRegistry = new MetricRegistry();
 
     private HealthCheckRegistry healthCheckRegistry = new HealthCheckRegistry();
-
-    private final JHipsterProperties jHipsterProperties;
 
     private HikariDataSource hikariDataSource;
 
@@ -84,17 +89,21 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
         metricRegistry.register(PROP_METRIC_REG_JVM_FILES, new FileDescriptorRatioGauge());
         metricRegistry.register(PROP_METRIC_REG_JVM_BUFFERS, new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
         metricRegistry.register(PROP_METRIC_REG_JVM_ATTRIBUTE_SET, new JvmAttributeGaugeSet());
-        if (hikariDataSource != null) { log.debug("Monitoring the datasource");
-            hikariDataSource.setMetricRegistry(metricRegistry); }
+        if (hikariDataSource != null) {
+            log.debug("Monitoring the datasource");
+            hikariDataSource.setMetricRegistry(metricRegistry);
+        }
         if (jHipsterProperties.getMetrics().getJmx().isEnabled()) {
             log.debug("Initializing Metrics JMX reporting");
             JmxReporter jmxReporter = JmxReporter.forRegistry(metricRegistry).build();
-            jmxReporter.start(); }
+            jmxReporter.start();
+        }
         if (jHipsterProperties.getMetrics().getLogs().isEnabled()) {
             log.info("Initializing Metrics Log reporting");
             Marker metricsMarker = MarkerFactory.getMarker("metrics");
             final Slf4jReporter reporter = Slf4jReporter.forRegistry(metricRegistry).outputTo(LoggerFactory.getLogger("metrics")).markWith(metricsMarker).convertRatesTo(TimeUnit.SECONDS).convertDurationsTo(TimeUnit.MILLISECONDS).build();
-            reporter.start(jHipsterProperties.getMetrics().getLogs().getReportFrequency(), TimeUnit.SECONDS); }
+            reporter.start(jHipsterProperties.getMetrics().getLogs().getReportFrequency(), TimeUnit.SECONDS);
+        }
     }
 
     /* Spectator metrics log reporting */

@@ -7,9 +7,11 @@ import java.time.format.DateTimeFormatter;
 public final class MadreUtil {
     //utils para madre
     public static final String REPORT_LOGO_PATH = "/images/logoFunasa.png";
-    private MadreUtil(){
+
+    private MadreUtil() {
 
     }
+
     public static String getReportFooter() {
         StringBuilder footer = new StringBuilder();
         //TODO Informar o nome do Usuário Logado

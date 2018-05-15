@@ -9,8 +9,6 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 public class UsuarioFilter {
 
-
-
     public QueryBuilder filterElasticSearch(String parametro) {
 
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
@@ -20,8 +18,9 @@ public class UsuarioFilter {
 
         return queryBuilder;
     }
+
     private void getLongFilter(BoolQueryBuilder queryBuilder, String parametro) {
-        if(parametro.matches("^[0-9]*$")) {
+        if (parametro.matches("^[0-9]*$")) {
             queryBuilder
                 .should(matchQuery("id", parametro));
         }

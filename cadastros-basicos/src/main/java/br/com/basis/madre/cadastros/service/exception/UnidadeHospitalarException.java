@@ -8,12 +8,12 @@ public class UnidadeHospitalarException extends Exception {
 
     public static final String CODE_REGISTRO_EXISTE_BASE = "unidadeHospitalar";
 
-    public static String getCodeRegistroExisteBase() {
-        return CODE_REGISTRO_EXISTE_BASE;
-    }
-
     public UnidadeHospitalarException(String message) {
         super(message);
+    }
+
+    public static String getCodeRegistroExisteBase() {
+        return CODE_REGISTRO_EXISTE_BASE;
     }
 }
 

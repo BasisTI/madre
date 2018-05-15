@@ -20,11 +20,12 @@ import java.net.URLEncoder;
  */
 public final class PaginationUtil {
 
+    private static final String QUEST = "&query=";
+
+    private static final Logger log = LoggerFactory.getLogger(PaginationUtil.class);
+
     private PaginationUtil() {
     }
-
-    private static final String QUEST = "&query=";
-    private static final Logger log = LoggerFactory.getLogger(PaginationUtil.class);
 
     public static HttpHeaders generatePaginationHttpHeaders(Page page, String baseUrl) {
 
@@ -51,7 +52,7 @@ public final class PaginationUtil {
 
     private static String generateUri(String baseUrl, int page, int size) {
         return UriComponentsBuilder.fromUriString(baseUrl).queryParam("page", page).queryParam("size", size)
-                .toUriString();
+            .toUriString();
     }
 
     public static HttpHeaders generateSearchPaginationHttpHeaders(String query, Page page, String baseUrl) {
@@ -72,7 +73,7 @@ public final class PaginationUtil {
         String link = "";
         if ((page.getNumber() + 1) < page.getTotalPages()) {
             link = "<" + generateUri(baseUrl, page.getNumber() + 1, page.getSize()) + QUEST + escapedQuery
-                    + ">; rel=\"next\",";
+                + ">; rel=\"next\",";
         }
         int lastPage = 0;
         if (page.getTotalPages() > 0) {

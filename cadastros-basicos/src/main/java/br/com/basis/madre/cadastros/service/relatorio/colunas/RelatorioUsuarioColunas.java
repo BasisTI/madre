@@ -4,7 +4,7 @@ import br.com.basis.dynamicexports.constants.DynamicExportsConstants;
 import br.com.basis.dynamicexports.pojo.ColunasPropriedadeRelatorio;
 import br.com.basis.dynamicexports.pojo.PropriedadesRelatorio;
 
-public class RelatorioUsuarioColunas extends  PropriedadesRelatorio {
+public class RelatorioUsuarioColunas extends PropriedadesRelatorio {
 
     public RelatorioUsuarioColunas() {
         super("Listagem de Usuários", "Total de Usuários");

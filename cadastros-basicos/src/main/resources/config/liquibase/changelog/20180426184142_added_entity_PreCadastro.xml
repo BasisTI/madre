@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <property name="now" value="now()" dbms="h2"/>
@@ -20,27 +20,27 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nome_do_paciente" type="varchar(150)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <column name="nome_social" type="varchar(150)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="nome_da_mae" type="varchar(150)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <column name="data_de_nascimento" type="date">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <column name="n_cartao_sus" type="varchar(15)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="ativo" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

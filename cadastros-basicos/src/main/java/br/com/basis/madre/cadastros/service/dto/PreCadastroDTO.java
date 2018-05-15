@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
-import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import org.apache.commons.lang3.ObjectUtils;
 
@@ -65,12 +64,12 @@ public class PreCadastroDTO implements ReportObject, Serializable {
         return nomeDaMae;
     }
 
-    public LocalDate getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
     public void setNomeDaMae(String nomeDaMae) {
         this.nomeDaMae = nomeDaMae;
+    }
+
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
     }
 
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
@@ -97,13 +96,11 @@ public class PreCadastroDTO implements ReportObject, Serializable {
     @Override
     public boolean equals(Object o) {
         if (o instanceof PreCadastroDTO) {
-        	return getId().equals(((PreCadastroDTO)o).getId());
-        }
-        else if (o instanceof String) {
-        	return getId().equals(o);
-        }
-        else {
-        	return false;
+            return getId().equals(((PreCadastroDTO) o).getId());
+        } else if (o instanceof String) {
+            return getId().equals(o);
+        } else {
+            return false;
         }
     }
 
@@ -125,13 +122,15 @@ public class PreCadastroDTO implements ReportObject, Serializable {
             "}";
     }
 
-    public void setDataNascimentoString(String dataNascimentoString) {
-        this.dataNascimentoString = dataNascimentoString;
+    public String getDataNascimentoString() {
+        dataNascimentoString = ObjectUtils.allNotNull(this.dataDeNascimento) ?
+            MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) :
+            null;
+        return dataNascimentoString;
     }
 
-    public String getDataNascimentoString() {
-        dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
-        return dataNascimentoString;
+    public void setDataNascimentoString(String dataNascimentoString) {
+        this.dataNascimentoString = dataNascimentoString;
     }
 }
 

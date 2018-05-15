@@ -8,12 +8,12 @@ public class UsuarioException extends Exception {
 
     public static final String CODE_REGISTRO_EXISTE_BASE = "preCadastro";
 
-    public static String getCodeRegistroExisteBase() {
-        return CODE_REGISTRO_EXISTE_BASE;
-    }
-
     public UsuarioException(String message) {
         super(message);
+    }
+
+    public static String getCodeRegistroExisteBase() {
+        return CODE_REGISTRO_EXISTE_BASE;
     }
 }
 

@@ -34,7 +34,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "sigla", length = 10, nullable = false)
@@ -48,7 +47,7 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @NotNull
     @Size(min = 14, max = 14)
     @Column(name = "cnpj", length = 14, nullable = false)
-    @CNPJ(message="CNPJ inválido")
+    @CNPJ(message = "CNPJ inválido")
     private String cnpj;
 
     @NotNull
@@ -69,9 +68,12 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         this.id = id;
     }
 
-
     public String getSigla() {
         return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
     public UnidadeHospitalar sigla(String sigla) {
@@ -79,12 +81,12 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public UnidadeHospitalar nome(String nome) {
@@ -92,12 +94,12 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getCnpj() {
         return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public UnidadeHospitalar cnpj(String cnpj) {
@@ -105,21 +107,17 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getEndereco() {
         return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public UnidadeHospitalar endereco(String endereco) {
         this.endereco = endereco;
         return this;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
     }
 
     public Boolean isAtivo() {

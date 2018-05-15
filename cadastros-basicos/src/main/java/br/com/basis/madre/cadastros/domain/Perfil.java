@@ -60,26 +60,26 @@ public class Perfil implements Serializable {
         return nmPerfil;
     }
 
+    public void setNmPerfil(Integer nmPerfil) {
+        this.nmPerfil = nmPerfil;
+    }
+
     public Perfil nmPerfil(Integer nmPerfil) {
         this.nmPerfil = nmPerfil;
         return this;
-    }
-
-    public void setNmPerfil(Integer nmPerfil) {
-        this.nmPerfil = nmPerfil;
     }
 
     public String getDsPerfil() {
         return dsPerfil;
     }
 
+    public void setDsPerfil(String dsPerfil) {
+        this.dsPerfil = dsPerfil;
+    }
+
     public Perfil dsPerfil(String dsPerfil) {
         this.dsPerfil = dsPerfil;
         return this;
-    }
-
-    public void setDsPerfil(String dsPerfil) {
-        this.dsPerfil = dsPerfil;
     }
 
     public Boolean isStExcluido() {
@@ -112,13 +112,13 @@ public class Perfil implements Serializable {
         return idFuncionalidade;
     }
 
+    public void setIdFuncionalidade(Integer idFuncionalidade) {
+        this.idFuncionalidade = idFuncionalidade;
+    }
+
     public Perfil idFuncionalidade(Integer idFuncionalidade) {
         this.idFuncionalidade = idFuncionalidade;
         return this;
-    }
-
-    public void setIdFuncionalidade(Integer idFuncionalidade) {
-        this.idFuncionalidade = idFuncionalidade;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

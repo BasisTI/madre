@@ -29,11 +29,11 @@ public class ElasticsearchIndexService {
 
     public static final String INDEX_NAME = "madre";
 
+    private static final String REINDEX_SUCCESSFULL = "Elasticsearch: Indexed all rows for : {} ";
+
     private final Logger log = LoggerFactory.getLogger(ElasticsearchIndexService.class);
 
     private final ElasticsearchTemplate elasticsearchTemplate;
-
-    private static final String REINDEX_SUCCESSFULL = "Elasticsearch: Indexed all rows for : {} ";
 
     private final UsuarioRepository usuarioRepository;
 
@@ -46,7 +46,6 @@ public class ElasticsearchIndexService {
     private final PreCadastroRepository preCadastroRepository;
 
     private final PreCadastroSearchRepository preCadastroSearchRepository;
-
 
     public ElasticsearchIndexService(
         ElasticsearchTemplate elasticsearchTemplate,
