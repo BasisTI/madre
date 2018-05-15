@@ -60,7 +60,7 @@ public class PreCadastroResource {
     /**
      * POST  /pre-cadastros : Create a new preCadastro.
      *
-     * @param preCadastroDTO the preCadastro to create
+     * @param preCadastro the preCadastro to create
      * @return the ResponseEntity with status 201 (Created) and with body the new preCadastro, or with status 400 (Bad Request) if the preCadastro has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
@@ -92,7 +92,7 @@ public class PreCadastroResource {
     /**
      * PUT  /pre-cadastros : Updates an existing preCadastro.
      *
-     * @param preCadastroDTO the preCadastro to update
+     * @param preCadastro the preCadastro to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated preCadastro,
      * or with status 400 (Bad Request) if the preCadastro is not valid,
      * or with status 500 (Internal Server Error) if the preCadastro couldn't be updated
