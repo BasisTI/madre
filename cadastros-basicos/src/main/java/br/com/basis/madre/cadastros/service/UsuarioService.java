@@ -21,45 +21,40 @@ import java.util.Optional;
 public interface UsuarioService {
 
 
+    /**
+     * Save a Usuario.
+     *
+     * @param usuario the entity to save
+     * @return the persisted entity
+     */
+    Usuario save(Usuario usuario) throws UsuarioException;
 
+    /**
+     * Get all the Usuario.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    Page<Usuario> findAll(Optional<String> query, Pageable pageable);
 
+    /**
+     * Get the "id" Usuario.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    Usuario findOne(Long id);
 
-        /**
-         * Save a Usuario.
-         *
-         * @param usuarioDTO the entity to save
-         * @return the persisted entity
-         */
-        UsuarioDTO save(UsuarioDTO usuarioDTO) throws UsuarioException;
+    /**
+     * Delete the "id" Usuario.
+     *
+     * @param id the id of the entity
+     */
+    void delete(Long id);
 
-        /**
-         * Get all the Usuario.
-         *
-         * @param pageable the pagination information
-         * @return the list of entities
-         */
-        Page<UsuarioDTO> findAll(Optional<String> query, Pageable pageable);
+    Page<Usuario> search(String query, Pageable pageable);
 
-        /**
-         * Get the "id" Usuario.
-         *
-         * @param id the id of the entity
-         * @return the entity
-         */
-        UsuarioDTO findOne(Long id);
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 
-        /**
-         * Delete the "id" Usuario.
-         *
-         * @param id the id of the entity
-         */
-        void delete(Long id);
-
-
-        Page<Usuario> search(String query, Pageable pageable);
-
-        ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio) throws RelatorioException;
-    }
-
-
+}
 

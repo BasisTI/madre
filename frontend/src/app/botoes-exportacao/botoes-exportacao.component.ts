@@ -23,7 +23,7 @@ export class BotoesExportacaoComponent implements OnInit {
   @Input() resourceName: string;
   @Input() query: string;
   @BlockUI() blockUI: NgBlockUI;
-  
+
   tiposExportacao: MenuItem[] = [];
 
   ngOnInit() {
@@ -73,9 +73,12 @@ export class BotoesExportacaoComponent implements OnInit {
     );
   }
 
-  // private addConfirmationMessage() {
-  //   this.pageNotificationService.addCreateMsg('Exportado com sucesso!');
-  // }
+//   private addGenerateMessage(isImprimir: boolean) {
+//     if (isImprimir)
+//         this.pageNotificationService.addCreateMsg('Exportando pesquisa!');
+//     else
+//         this.pageNotificationService.addCreateMsg('Imprimindo pesquisa!');
+//   }
   private addErrorMessage(isImprimir: boolean) {
     if (isImprimir)
       this.pageNotificationService.addErrorMessage('Erro ao imprimir pesquisa!');

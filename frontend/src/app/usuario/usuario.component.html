@@ -6,7 +6,7 @@
                 <div class="ui-g-12 ui-md-12">
                     <span class="md-inputfield">
               <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
-                (keyup.enter)="datatable.refresh(elasticQuery.query)" />
+                (keyup.enter)="datatable.refresh(elasticQuery.query)" name="filtro"/>
               
               <label>Pesquisar</label>
             </span>
@@ -25,7 +25,7 @@
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Login" field="login"></p-column>
                     <p-column header="Email" field="email"></p-column>
-                    <p-column header="Unidade de Saude" field="unidade_de_saude"></p-column>
+                    <p-column header="Unidade de Saude" field="unidadeDeSaude"></p-column>
                     <p-column header="Ativo" field="ativo">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
                             {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
@@ -33,7 +33,7 @@
                     </p-column>
                 </basis-datatable>
                 <div class="ui-g-6 ui-md-2">
-                    <app-botoes-exportacao resourceName="usuario"></app-botoes-exportacao>
+                    <app-botoes-exportacao resourceName="usuario" [query]="elasticQuery.value"></app-botoes-exportacao>
                 </div>
             </div>
         </div>

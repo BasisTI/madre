@@ -4,6 +4,8 @@ import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.service.dto.PerfilDTO;
 import org.mapstruct.Mapper;
 
+import org.mapstruct.*;
+
 /**
  * Mapper for the entity Perfil and its DTO PerfilDTO.
  */

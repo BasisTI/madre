@@ -57,20 +57,20 @@ public class UsuarioResource {
     /**
      * POST  /usuarios : Create a new usuario.
      *
-     * @param usuarioDTO the usuario to create
+     * @param usuario the usuario to create
      * @return the ResponseEntity with status 201 (Created) and with body the new usuario, or with status 400 (Bad Request) if the usuario has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/usuarios")
     @Timed
-    public ResponseEntity<UsuarioDTO> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
+    public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario)
         throws URISyntaxException {
         try {
-            log.debug("REST request to save Usuario : {}", usuarioDTO);
-            if (usuarioDTO.getId() != null) {
+            log.debug("REST request to save Usuario : {}", usuario);
+            if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
             }
-            UsuarioDTO result = usuarioService.save(usuarioDTO);
+            Usuario result = usuarioService.save(usuario);
             return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
@@ -78,14 +78,14 @@ public class UsuarioResource {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(usuarioDTO);
+                .body(usuario);
         }
     }
 
     /**
      * PUT  /usuarios : Updates an existing usuario.
      *
-     * @param usuarioDTO the usuario to update
+     * @param usuario the usuario to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated usuario,
      * or with status 400 (Bad Request) if the usuario is not valid,
      * or with status 500 (Internal Server Error) if the usuario couldn't be updated
@@ -93,23 +93,23 @@ public class UsuarioResource {
      */
     @PutMapping("/usuarios")
     @Timed
-    public ResponseEntity<UsuarioDTO> updateUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
+    public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody Usuario usuario)
         throws URISyntaxException {
-        log.debug("REST request to update Usuario : {}", usuarioDTO);
+        log.debug("REST request to update Usuario : {}", usuario);
         try {
-            log.debug("REST request to update UnidadeHospitalar : {}", usuarioDTO);
-            if (usuarioDTO.getId() == null) {
-                return createUsuario(usuarioDTO);
+            log.debug("REST request to update UnidadeHospitalar : {}", usuario);
+            if (usuario.getId() == null) {
+                return createUsuario(usuario);
             }
-            UsuarioDTO result = usuarioService.save(usuarioDTO);
+            Usuario result = usuarioService.save(usuario);
             return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuarioDTO.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString()))
                 .body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(usuarioDTO);
+                .body(usuario);
         }
     }
 
@@ -121,10 +121,10 @@ public class UsuarioResource {
      */
     @GetMapping("/usuarios")
     @Timed
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
-        @ApiParam Pageable pageable) {
+    public ResponseEntity<List<Usuario>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
+                                                           @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Usuarios");
-        Page<UsuarioDTO> page = usuarioService.findAll(query, pageable);
+        Page<Usuario> page = usuarioService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/usuarios");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -137,10 +137,10 @@ public class UsuarioResource {
      */
     @GetMapping("/usuarios/{id}")
     @Timed
-    public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable Long id) {
+    public ResponseEntity<Usuario> getUsuario(@PathVariable Long id) {
         log.debug("REST request to get Usuario : {}", id);
-        UsuarioDTO usuarioDTO = usuarioService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+        Usuario usuario = usuarioService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
     }
 
     /**
@@ -184,9 +184,9 @@ public class UsuarioResource {
      */
     @GetMapping(value = "/usuario/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
-            return usuarioService.gerarRelatorioExportacao(tipoRelatorio);
+            return usuarioService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
