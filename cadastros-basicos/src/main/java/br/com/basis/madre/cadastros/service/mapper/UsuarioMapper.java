@@ -1,10 +1,9 @@
 package br.com.basis.madre.cadastros.service.mapper;
 
-import br.com.basis.madre.cadastros.domain.Usuario;
-import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
 import org.mapstruct.Mapper;
 
-import org.mapstruct.*;
+import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
 
 /**
  * Mapper for the entity Usuario and its DTO UsuarioDTO.

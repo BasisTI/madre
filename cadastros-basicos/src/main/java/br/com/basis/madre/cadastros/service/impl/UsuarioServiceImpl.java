@@ -1,6 +1,5 @@
 package br.com.basis.madre.cadastros.service.impl;
 
-
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -46,6 +45,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioSearchRepository usuarioSearchRepository;
 
     private final DynamicExportsService dynamicExportsService;
+
+	private UsuarioMapper usuarioMapper;
 
 
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioSearchRepository usuarioSearchRepository,

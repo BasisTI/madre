@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UsuarioDTO implements ReportObject, Serializable {
-//public class UsuarioDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
