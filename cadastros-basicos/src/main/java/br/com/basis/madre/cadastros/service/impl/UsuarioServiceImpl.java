@@ -8,7 +8,6 @@ import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
 import br.com.basis.madre.cadastros.service.UsuarioService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.filter.UsuarioFilter;
-import br.com.basis.madre.cadastros.service.mapper.UsuarioMapper;
 import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUsuarioColunas;
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import net.sf.dynamicreports.report.exception.DRException;
@@ -43,14 +42,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final DynamicExportsService dynamicExportsService;
 
-    protected UsuarioMapper usuarioMapper;
 
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioSearchRepository usuarioSearchRepository,
-        DynamicExportsService dynamicExportsService, UsuarioMapper usuarioMapper) {
+        DynamicExportsService dynamicExportsService) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioSearchRepository = usuarioSearchRepository;
         this.dynamicExportsService = dynamicExportsService;
-        this.usuarioMapper = usuarioMapper;
     }
 
     /**

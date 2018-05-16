@@ -6,10 +6,8 @@ import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
 import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
 import br.com.basis.madre.cadastros.service.PreCadastroService;
-import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.filter.PreCadastroFilter;
-import br.com.basis.madre.cadastros.service.mapper.PreCadastroMapper;
 import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioPreCadastroColunas;
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import net.sf.dynamicreports.report.exception.DRException;
@@ -42,31 +40,28 @@ public class PreCadastroServiceImpl implements PreCadastroService {
 
     private final PreCadastroSearchRepository preCadastroSearchRepository;
 
-    private final PreCadastroMapper preCadastroMapper;
 
     private final DynamicExportsService dynamicExportsService;
 
 
     public PreCadastroServiceImpl(PreCadastroRepository preCadastroRepository,
-        PreCadastroSearchRepository preCadastroSearchRepository, PreCadastroMapper preCadastroMapper, DynamicExportsService dynamicExportsService) {
+        PreCadastroSearchRepository preCadastroSearchRepository, DynamicExportsService dynamicExportsService) {
         this.preCadastroRepository = preCadastroRepository;
         this.preCadastroSearchRepository = preCadastroSearchRepository;
-        this.preCadastroMapper = preCadastroMapper;
         this.dynamicExportsService = dynamicExportsService;
     }
 
     @Override
-    public PreCadastroDTO save(PreCadastroDTO preCadastroDTO) {
-        log.debug("Request to save PreCadastro : {}", preCadastroDTO);
-        PreCadastro preCadastro = preCadastroMapper.toEntity(preCadastroDTO);
+    public PreCadastro save(PreCadastro preCadastro) {
+        log.debug("Request to save PreCadastro : {}", preCadastro);
         preCadastro = preCadastroRepository.save(preCadastro);
         preCadastroSearchRepository.save(preCadastro);
-        return preCadastroMapper.toDto(preCadastro);
+        return preCadastro;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<PreCadastroDTO> findAll(Optional<String> query, Pageable pageable) {
+    public Page<PreCadastro> findAll(Optional<String> query, Pageable pageable) {
         log.debug("Request to get all PreCadastros");
         PreCadastroFilter filter = new PreCadastroFilter();
         QueryBuilder queryBuilder;
@@ -77,16 +72,15 @@ public class PreCadastroServiceImpl implements PreCadastroService {
         } else {
             result =  preCadastroRepository.findAll(pageable);
         }
-        return result.map(preCadastroMapper::toDto);
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public PreCadastroDTO findOne(Long id) {
+    public PreCadastro findOne(Long id) {
         log.debug("Request to get PreCadastro : {}", id);
         PreCadastro preCadastro = preCadastroRepository.findOne(id);
-        PreCadastroDTO preCadastroDTO = preCadastroMapper.toDto(preCadastro);
-        return (preCadastroDTO);
+        return (preCadastro);
     }
 
     @Override
