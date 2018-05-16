@@ -1,12 +1,12 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import br.com.basis.madre.cadastros.service.PerfilService;
-import br.com.basis.madre.cadastros.service.dto.PerfilDTO;
-import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
-import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,11 +24,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import com.codahale.metrics.annotation.Timed;
+
+import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.service.PerfilService;
+import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
+import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Perfil.
@@ -50,18 +53,18 @@ public class PerfilResource {
     /**
      * POST  /perfils : Create a new perfil.
      *
-     * @param perfilDTO the perfilDTO to create
+     * @param perfil the perfilDTO to create
      * @return the ResponseEntity with status 201 (Created) and with body the new perfilDTO, or with status 400 (Bad Request) if the perfil has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/perfils")
     @Timed
-    public ResponseEntity<PerfilDTO> createPerfil(@Valid @RequestBody PerfilDTO perfilDTO) throws URISyntaxException {
-        log.debug("REST request to save Perfil : {}", perfilDTO);
-        if (perfilDTO.getId() != null) {
+    public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
+        log.debug("REST request to save Perfil : {}", perfil);
+        if (perfil.getId() != null) {
             throw new BadRequestAlertException("A new perfil cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        PerfilDTO result = perfilService.save(perfilDTO);
+        Perfil result = perfilService.save(perfil);
         return ResponseEntity.created(new URI("/api/perfils/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -70,7 +73,7 @@ public class PerfilResource {
     /**
      * PUT  /perfils : Updates an existing perfil.
      *
-     * @param perfilDTO the perfilDTO to update
+     * @param perfil the perfilDTO to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated perfilDTO,
      * or with status 400 (Bad Request) if the perfilDTO is not valid,
      * or with status 500 (Internal Server Error) if the perfilDTO couldn't be updated
@@ -78,14 +81,14 @@ public class PerfilResource {
      */
     @PutMapping("/perfils")
     @Timed
-    public ResponseEntity<PerfilDTO> updatePerfil(@Valid @RequestBody PerfilDTO perfilDTO) throws URISyntaxException {
-        log.debug("REST request to update Perfil : {}", perfilDTO);
-        if (perfilDTO.getId() == null) {
-            return createPerfil(perfilDTO);
+    public ResponseEntity<Perfil> updatePerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
+        log.debug("REST request to update Perfil : {}", perfil);
+        if (perfil.getId() == null) {
+            return createPerfil(perfil);
         }
-        PerfilDTO result = perfilService.save(perfilDTO);
+        Perfil result = perfilService.save(perfil);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, perfilDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, perfil.getId().toString()))
             .body(result);
     }
 
@@ -97,9 +100,9 @@ public class PerfilResource {
      */
     @GetMapping("/perfils")
     @Timed
-    public ResponseEntity<List<PerfilDTO>> getAllPerfils(Pageable pageable) {
+    public ResponseEntity<List<Perfil>> getAllPerfils(Pageable pageable) {
         log.debug("REST request to get a page of Perfils");
-        Page<PerfilDTO> page = perfilService.findAll(pageable);
+        Page<Perfil> page = perfilService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/perfils");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -112,10 +115,10 @@ public class PerfilResource {
      */
     @GetMapping("/perfils/{id}")
     @Timed
-    public ResponseEntity<PerfilDTO> getPerfil(@PathVariable Long id) {
+    public ResponseEntity<Perfil> getPerfil(@PathVariable Long id) {
         log.debug("REST request to get Perfil : {}", id);
-        PerfilDTO perfilDTO = perfilService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(perfilDTO));
+        Perfil perfil = perfilService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(perfil));
     }
 
     /**
@@ -142,9 +145,9 @@ public class PerfilResource {
      */
     @GetMapping("/_search/perfils")
     @Timed
-    public ResponseEntity<List<PerfilDTO>> searchPerfils(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<Perfil>> searchPerfils(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Perfils for query {}", query);
-        Page<PerfilDTO> page = perfilService.search(query, pageable);
+        Page<Perfil> page = perfilService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/perfils");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

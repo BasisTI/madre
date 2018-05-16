@@ -1,19 +1,11 @@
 package br.com.basis.madre.cadastros.service.impl;
 
-import br.com.basis.dynamicexports.service.DynamicExportsService;
-import br.com.basis.dynamicexports.util.DynamicExporter;
-import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
-import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
-import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
-import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
-import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
-import br.com.basis.madre.cadastros.service.exception.RelatorioException;
-import br.com.basis.madre.cadastros.service.filter.UnidadeHospitalarFilter;
-import br.com.basis.madre.cadastros.service.mapper.UnidadeHospitalarMapper;
-import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUnidadeHospitalarColunas;
-import br.com.basis.madre.cadastros.util.MadreUtil;
-import net.sf.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRException;
+import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Optional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.slf4j.Logger;
@@ -26,11 +18,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import br.com.basis.dynamicexports.service.DynamicExportsService;
+import br.com.basis.dynamicexports.util.DynamicExporter;
+import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
+import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
+import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
+import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.service.filter.UnidadeHospitalarFilter;
+import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUnidadeHospitalarColunas;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import net.sf.dynamicreports.report.exception.DRException;
+import net.sf.jasperreports.engine.JRException;
 
 @Service
 @Transactional
@@ -44,32 +43,29 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
 
     private final UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository;
 
-    private final UnidadeHospitalarMapper unidadeHospitalarMapper;
 
     private final DynamicExportsService dynamicExportsService;
 
     public UnidadeHospitalarServiceImpl(UnidadeHospitalarRepository unidadeHospitalarRepository, UnidadeHospitalarSearchRepository unidadeHospitalarSearchRepository,
-    UnidadeHospitalarMapper unidadeHospitalarMapper, DynamicExportsService dynamicExportsService) {
+    DynamicExportsService dynamicExportsService) {
         this.unidadeHospitalarRepository = unidadeHospitalarRepository;
         this.unidadeHospitalarSearchRepository = unidadeHospitalarSearchRepository;
-        this.unidadeHospitalarMapper = unidadeHospitalarMapper;
         this.dynamicExportsService = dynamicExportsService;
     }
 
     /**
      * Save a unidadeHospitalar.
      *
-     * @param unidadeHospitalarDTO the entity to save
+     * @param unidadeHospitalar the entity to save
      * @return the persisted entity
      */
 
     @Override
-    public UnidadeHospitalarDTO save(UnidadeHospitalarDTO unidadeHospitalarDTO) {
-            log.debug("Request to save PreCadastro : {}", unidadeHospitalarDTO);
-            UnidadeHospitalar unidadeHospitalar = unidadeHospitalarMapper.toEntity(unidadeHospitalarDTO);
+    public UnidadeHospitalar save(UnidadeHospitalar unidadeHospitalar) {
+            log.debug("Request to save PreCadastro : {}", unidadeHospitalar);
             unidadeHospitalar = unidadeHospitalarRepository.save(unidadeHospitalar);
             unidadeHospitalarSearchRepository.save(unidadeHospitalar);
-            return unidadeHospitalarMapper.toDto(unidadeHospitalar);
+            return unidadeHospitalar;
         }
 
     /**
@@ -80,7 +76,7 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<UnidadeHospitalarDTO> findAll(Optional<String> query, Pageable pageable) {
+    public Page<UnidadeHospitalar> findAll(Optional<String> query, Pageable pageable) {
         log.debug("Request to get all UnidadeHospitalars");
         UnidadeHospitalarFilter filter = new UnidadeHospitalarFilter();
         QueryBuilder queryBuilder;
@@ -91,7 +87,7 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
         } else {
             result =  unidadeHospitalarRepository.findAll(pageable);
         }
-        return result.map(unidadeHospitalarMapper::toDto);
+        return result;
     }
 
 
@@ -103,11 +99,10 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
      */
     @Override
     @Transactional(readOnly = true)
-    public UnidadeHospitalarDTO findOne(Long id) {
+    public UnidadeHospitalar findOne(Long id) {
         log.debug("Request to get UnidadeHospitalar : {}", id);
         UnidadeHospitalar unidadeHospitalar = unidadeHospitalarRepository.findOne(id);
-        UnidadeHospitalarDTO unidadeHospitalarDTO = unidadeHospitalarMapper.toDto(unidadeHospitalar);
-        return (unidadeHospitalarDTO);
+        return (unidadeHospitalar);
     }
 
     /**

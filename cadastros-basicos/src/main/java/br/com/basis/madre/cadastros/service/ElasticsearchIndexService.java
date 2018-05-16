@@ -1,15 +1,7 @@
 package br.com.basis.madre.cadastros.service;
 
-import br.com.basis.madre.cadastros.domain.PreCadastro;
-import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
-import br.com.basis.madre.cadastros.domain.Usuario;
-import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
-import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
-import br.com.basis.madre.cadastros.repository.UsuarioRepository;
-import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
-import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
-import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
-import com.codahale.metrics.annotation.Timed;
+import java.io.Serializable;
+
 import org.elasticsearch.indices.IndexAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +13,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
+import com.codahale.metrics.annotation.Timed;
+
+import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
+import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
+import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
+import br.com.basis.madre.cadastros.repository.UsuarioRepository;
+import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
+import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
+import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)

@@ -1,30 +1,43 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import br.com.basis.madre.cadastros.domain.Especialidade;
-import br.com.basis.madre.cadastros.service.EspecialidadeService;
-import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.codahale.metrics.annotation.Timed;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import br.com.basis.madre.cadastros.domain.Especialidade;
+import br.com.basis.madre.cadastros.repository.EspecialidadeRepository;
+import br.com.basis.madre.cadastros.service.EspecialidadeService;
+import br.com.basis.madre.cadastros.service.exception.EspecialidadeException;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
+import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 
 /**
  * REST controller for managing Especialidade.
@@ -39,8 +52,11 @@ public class EspecialidadeResource {
 
     private final EspecialidadeService especialidadeService;
 
-    public EspecialidadeResource(EspecialidadeService especialidadeService) {
+    private final EspecialidadeRepository especialidadeRepository;
+
+    public EspecialidadeResource(EspecialidadeService especialidadeService, EspecialidadeRepository especialidadeRepository) {
         this.especialidadeService = especialidadeService;
+        this.especialidadeRepository = especialidadeRepository;
     }
 
     /**
@@ -52,15 +68,27 @@ public class EspecialidadeResource {
      */
     @PostMapping("/especialidades")
     @Timed
-    public ResponseEntity<Especialidade> createEspecialidade(@Valid @RequestBody Especialidade especialidade) throws URISyntaxException {
-        log.debug("REST request to save Especialidade : {}", especialidade);
-        if (especialidade.getId() != null) {
-            throw new BadRequestAlertException("A new especialidade cannot already have an ID", ENTITY_NAME, "idexists");
+    public ResponseEntity<Especialidade> createEspecialidade(@Valid @RequestBody Especialidade especialidade)
+        throws URISyntaxException {
+        try {
+            log.debug("REST request to save Especialidade : {}", especialidade);
+
+            if (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada"))
+                    .body(null);
+            }
+            if (especialidade.getId() != null) {
+                throw new BadRequestAlertException("A new especialidade cannot already have an ID", ENTITY_NAME, "idexists");
+            }
+            Especialidade result = especialidadeService.save(especialidade);
+            return ResponseEntity.created(new URI("/api/especialidades/"
+                + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+        } catch (EspecialidadeException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, EspecialidadeException.getCodeRegistroExisteBase(), e.getMessage()))
+                .body(especialidade);
         }
-        Especialidade result = especialidadeService.save(especialidade);
-        return ResponseEntity.created(new URI("/api/especialidades/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -74,15 +102,28 @@ public class EspecialidadeResource {
      */
     @PutMapping("/especialidades")
     @Timed
-    public ResponseEntity<Especialidade> updateEspecialidade(@Valid @RequestBody Especialidade especialidade) throws URISyntaxException {
-        log.debug("REST request to update Especialidade : {}", especialidade);
-        if (especialidade.getId() == null) {
-            return createEspecialidade(especialidade);
+    public ResponseEntity<Especialidade> updateEspecialidade(@Valid @RequestBody Especialidade especialidade)
+        throws URISyntaxException {
+        try {
+            log.debug("REST request to update Especialidade : {}", especialidade);
+
+            if (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada")).body(null);
+            }
+
+            if (especialidade.getId() == null) {
+                return createEspecialidade(especialidade);
+            }
+            Especialidade result = especialidadeService.save(especialidade);
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, especialidade.getId().toString()))
+                .body(result);
+        } catch (EspecialidadeException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, EspecialidadeException.getCodeRegistroExisteBase(), e.getMessage()))
+                .body(especialidade);
         }
-        Especialidade result = especialidadeService.save(especialidade);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, especialidade.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -93,9 +134,11 @@ public class EspecialidadeResource {
      */
     @GetMapping("/especialidades")
     @Timed
-    public ResponseEntity<List<Especialidade>> getAllEspecialidades(Pageable pageable) {
-        log.debug("REST request to get a page of Especialidades");
-        Page<Especialidade> page = especialidadeService.findAll(pageable);
+    public ResponseEntity<List<Especialidade>> getAllParecerPadraos(
+        @RequestParam(value = "query") Optional<String> query,
+        @ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of ParecerPadraos");
+        Page<Especialidade> page = especialidadeService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/especialidades");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -138,11 +181,30 @@ public class EspecialidadeResource {
      */
     @GetMapping("/_search/especialidades")
     @Timed
-    public ResponseEntity<List<Especialidade>> searchEspecialidades(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<Especialidade>> searchEspecialidades(
+        @RequestParam(defaultValue = "*") String query, Pageable pageable) {
         log.debug("REST request to search for a page of Especialidades for query {}", query);
         Page<Especialidade> page = especialidadeService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/especialidades");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /especialidade/:id : get jasper of  usuarios.
+     *
+     * @param tipoRelatorio
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @GetMapping(value = "/especialidade/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @Timed
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
+        @RequestParam(defaultValue = "*") String query) {
+        try {
+            return especialidadeService.gerarRelatorioExportacao(tipoRelatorio, query);
+        } catch (RelatorioException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
+        }
     }
 
 }

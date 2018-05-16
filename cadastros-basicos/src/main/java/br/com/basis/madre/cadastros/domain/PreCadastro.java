@@ -1,11 +1,8 @@
 package br.com.basis.madre.cadastros.domain;
 
-import br.com.basis.dynamicexports.pojo.ReportObject;
-import br.com.basis.madre.cadastros.util.MadreUtil;
-import org.apache.commons.lang3.ObjectUtils;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +13,17 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Objects;
+
+import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.util.MadreUtil;
 
 /**
-  A PreCadastro.
+ * A PreCadastro.
  */
 @Entity
 @Table(name = "pre_cadastro")
