@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.service;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
-import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UsuarioException;
 import org.springframework.core.io.InputStreamResource;

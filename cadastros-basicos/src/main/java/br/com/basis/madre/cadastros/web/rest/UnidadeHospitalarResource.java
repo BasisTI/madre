@@ -69,8 +69,6 @@ public class UnidadeHospitalarResource {
 
     private final UnidadeHospitalarRepository unidadeHospitalarRepository;
 
-    private static String filterValue;
-
     @Autowired
     private UploadedFilesRepository filesRepository;
 
@@ -262,12 +260,9 @@ public class UnidadeHospitalarResource {
             String folderPathString = classPath.toString();
 
             File directory = new File(folderPathString);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
+            if (!directory.exists()) { directory.mkdirs(); }
 
-            byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis()))
-                .getBytes("UTF-8");
+            byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis())).getBytes("UTF-8");
             String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));
             String ext = FilenameUtils.getExtension(file.getOriginalFilename());
             filename += "." + ext;
@@ -275,14 +270,17 @@ public class UnidadeHospitalarResource {
             System.out.println(path);
             Files.write(path, bytes);
 
-            uploadFile.setDateOf(new Date());
-            uploadFile.setOriginalName(file.getOriginalFilename());
-            uploadFile.setFilename(filename);
-            uploadFile.setSizeOf(bytes.length);
-            filesRepository.save(uploadFile);
-        } catch (IOException | NoSuchAlgorithmException e) {
-            throw new UploadException("Erro ao efetuar o upload do arquivo", e);
-        }
+            setUploadFile(uploadFile, file,filename, bytes);
+
+        } catch (IOException | NoSuchAlgorithmException e) { throw new UploadException("Erro ao efetuar o upload do arquivo", e); }
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(uploadFile));
     }
+    public void setUploadFile(UploadFile uploadFile, MultipartFile file, String filename,  byte[] bytes){
+        uploadFile.setDateOf(new Date());
+        uploadFile.setOriginalName(file.getOriginalFilename());
+        uploadFile.setFilename(filename);
+        uploadFile.setSizeOf(bytes.length);
+        filesRepository.save(uploadFile);
+    }
+
 }
