@@ -2,7 +2,6 @@ package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
 import br.com.basis.madre.cadastros.service.UsuarioService;
-import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UsuarioException;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;

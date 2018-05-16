@@ -22,7 +22,6 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,7 +113,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
     public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
         try {
-            SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
+            new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
             Page<PreCadastro> result =  preCadastroSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioPreCadastroColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
         } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
