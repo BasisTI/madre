@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * Spring Data JPA repository for the Usuario entity.
  */
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findOneByLogin(String login);

@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.service.UsuarioService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UsuarioException;
@@ -49,7 +50,10 @@ public class UsuarioResource {
 
     private final UsuarioService usuarioService;
 
-    public UsuarioResource(UsuarioService usuarioService) {
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
+        this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
     }
 
@@ -68,11 +72,24 @@ public class UsuarioResource {
             log.debug("REST request to save Usuario : {}", usuario);
             if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
+            } else if (usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Nome already in use"))
+                    .body(null);
+            } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Email already in use"))
+                    .body(null);
+            } else if (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Login already in use"))
+                    .body(null);
+            } else {
+                Usuario result = usuarioService.save(usuario);
+                return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
+                    .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                    .body(result);
             }
-            Usuario result = usuarioService.save(usuario);
-            return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-                .body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
@@ -100,10 +117,24 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);
             }
-            Usuario result = usuarioService.save(usuario);
-            return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString()))
-                .body(result);
+            if(usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Nome already in use"))
+                    .body(null);
+            } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Email already in use"))
+                    .body(null);
+            } else if (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()) {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Login already in use"))
+                    .body(null);
+            } else {
+                Usuario result = usuarioService.save(usuario);
+                return ResponseEntity.ok()
+                    .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString()))
+                    .body(result);
+            }
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
