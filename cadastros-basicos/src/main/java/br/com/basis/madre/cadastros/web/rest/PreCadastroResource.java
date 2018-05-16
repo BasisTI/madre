@@ -59,7 +59,7 @@ public class PreCadastroResource {
 
     /**
      * POST  /pre-cadastros : Create a new preCadastro.
-     *
+     
      * @param preCadastroDTO the preCadastro to create
      * @return the ResponseEntity with status 201 (Created) and with body the new preCadastro, or with status 400 (Bad Request) if the preCadastro has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
