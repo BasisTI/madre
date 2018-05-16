@@ -6,6 +6,6 @@ export const environment = {
     loginUrl: '/api/login',
     logoutUrl: '/api/logout',
     userStorage: localStorage,
-    userStorageIndex: 'user'
+    userStorageIndex: 'cadastrosbasicos'
   }
 };
