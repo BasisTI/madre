@@ -41,7 +41,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 
     private final JHipsterProperties jHipsterProperties;
 
-    private final HazelcastInstance hazelcastInstance;
+    protected final HazelcastInstance hazelcastInstance;
 
     private MetricRegistry metricRegistry;
 

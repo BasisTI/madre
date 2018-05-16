@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -34,13 +33,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @Lob
-    @Column(name = "logo")
-    private byte[] logo;
-
-    @Column(name = "logo_content_type")
-    private String logoContentType;
 
     @NotNull
     @Size(min = 1, max = 10)
@@ -77,32 +69,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public UnidadeHospitalar logo(byte[] logo) {
-        this.logo = logo;
-        return this;
-    }
-
-    public void setLogo(byte[] logo) {
-        this.logo = logo;
-    }
-
-    public String getLogoContentType() {
-        return logoContentType;
-    }
-
-    public UnidadeHospitalar logoContentType(String logoContentType) {
-        this.logoContentType = logoContentType;
-        return this;
-    }
-
-    public void setLogoContentType(String logoContentType) {
-        this.logoContentType = logoContentType;
     }
 
     public String getSigla() {
@@ -195,8 +161,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     public String toString() {
         return "UnidadeHospitalar{" +
             "id=" + getId() +
-            ", logo='" + getLogo() + "'" +
-            ", logoContentType='" + getLogoContentType() + "'" +
             ", sigla='" + getSigla() + "'" +
             ", nome='" + getNome() + "'" +
             ", cnpj='" + getCnpj() + "'" +

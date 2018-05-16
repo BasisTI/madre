@@ -89,7 +89,6 @@ public class EspecialidadeService {
     @Transactional(readOnly = true)
     public Page<Especialidade> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Especialidades for query {}", query);
-        Page<Especialidade> result = especialidadeSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return especialidadeSearchRepository.search(queryStringQuery(query), pageable);
     }
 }
