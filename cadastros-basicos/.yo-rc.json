@@ -1,39 +1,39 @@
 {
-    "generator-jhipster": {
-        "promptValues": {
-            "packageName": "br.com.basis.madre.cadastros"
-        },
-        "jhipsterVersion": "4.14.3",
-        "baseName": "cadastrosbasicos",
-        "packageName": "br.com.basis.madre.cadastros",
-        "packageFolder": "br/com/basis/madre/cadastros",
-        "serverPort": "8081",
-        "authenticationType": "jwt",
-        "cacheProvider": "hazelcast",
-        "enableHibernateCache": true,
-        "websocket": false,
-        "databaseType": "sql",
-        "devDatabaseType": "postgresql",
-        "prodDatabaseType": "postgresql",
-        "searchEngine": "elasticsearch",
-        "messageBroker": false,
-        "serviceDiscoveryType": "eureka",
-        "buildTool": "maven",
-        "enableSocialSignIn": false,
-        "enableSwaggerCodegen": false,
-        "jwtSecretKey": "5feeed0aa783999dbaf8eb1f25b22318f9d3f338",
-        "enableTranslation": false,
-        "applicationType": "microservice",
-        "testFrameworks": [
-            "gatling",
-            "cucumber"
-        ],
-        "jhiPrefix": "jhi",
-        "clientPackageManager": "yarn",
-        "skipClient": true,
-        "skipUserManagement": true
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre.cadastros"
     },
-    "generator-jhipster-primeng-entity": {
-        "frontendRoot": "/home/helio/projetos/madre/madre_codigo_fonte/frontend"
-    }
+    "jhipsterVersion": "4.14.3",
+    "baseName": "cadastrosbasicos",
+    "packageName": "br.com.basis.madre.cadastros",
+    "packageFolder": "br/com/basis/madre/cadastros",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSocialSignIn": false,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "5feeed0aa783999dbaf8eb1f25b22318f9d3f338",
+    "enableTranslation": false,
+    "applicationType": "microservice",
+    "testFrameworks": [
+      "gatling",
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "yarn",
+    "skipClient": true,
+    "skipUserManagement": true
+  },
+  "generator-jhipster-primeng-entity": {
+    "frontendRoot": "/home/helio/projetos/madre/madre_codigo_fonte/frontend"
+  }
 }

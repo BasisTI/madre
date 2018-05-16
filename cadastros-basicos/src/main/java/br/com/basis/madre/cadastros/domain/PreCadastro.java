@@ -26,7 +26,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "pre_cadastro")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "madre", type = "precadastro")
+@Document(indexName = "madre", type="precadastro")
 public class PreCadastro implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
@@ -61,8 +61,8 @@ public class PreCadastro implements Serializable, ReportObject {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove    
     public Long getId() {
         return id;
     }
@@ -75,21 +75,17 @@ public class PreCadastro implements Serializable, ReportObject {
         return nomeDoPaciente;
     }
 
-    public void setNomeDoPaciente(String nomeDoPaciente) {
-        this.nomeDoPaciente = nomeDoPaciente;
-    }
-
     public PreCadastro nomeDoPaciente(String nomeDoPaciente) {
         this.nomeDoPaciente = nomeDoPaciente;
         return this;
     }
 
-    public String getNomeSocial() {
-        return nomeSocial;
+    public void setNomeDoPaciente(String nomeDoPaciente) {
+        this.nomeDoPaciente = nomeDoPaciente;
     }
 
-    public void setNomeSocial(String nomeSocial) {
-        this.nomeSocial = nomeSocial;
+    public String getNomeSocial() {
+        return nomeSocial;
     }
 
     public PreCadastro nomeSocial(String nomeSocial) {
@@ -97,14 +93,13 @@ public class PreCadastro implements Serializable, ReportObject {
         return this;
     }
 
+    public void setNomeSocial(String nomeSocial) {
+        this.nomeSocial = nomeSocial;
+    }
+
     public String getNomeDaMae() {
         return nomeDaMae;
     }
-
-    public void setNomeDaMae(String nomeDaMae) {
-        this.nomeDaMae = nomeDaMae;
-    }
-
     public PreCadastro nomeDaMae(String nomeDaMae) {
         this.nomeDaMae = nomeDaMae;
         return this;
@@ -114,8 +109,8 @@ public class PreCadastro implements Serializable, ReportObject {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
+    public void setNomeDaMae(String nomeDaMae) {
+        this.nomeDaMae = nomeDaMae;
     }
 
     public PreCadastro dataDeNascimento(LocalDate dataDeNascimento) {
@@ -123,17 +118,21 @@ public class PreCadastro implements Serializable, ReportObject {
         return this;
     }
 
-    public String getNumCartaoSus() {
-        return numCartaoSus;
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
 
-    public void setNumCartaoSus(String numCartaoSus) {
-        this.numCartaoSus = numCartaoSus;
+    public String getNumCartaoSus() {
+        return numCartaoSus;
     }
 
     public PreCadastro numCartaoSus(String numCartaoSus) {
         this.numCartaoSus = numCartaoSus;
         return this;
+    }
+
+    public void setNumCartaoSus(String numCartaoSus) {
+        this.numCartaoSus = numCartaoSus;
     }
 
     public Boolean isAtivo() {
@@ -182,12 +181,10 @@ public class PreCadastro implements Serializable, ReportObject {
             ", ativo='" + isAtivo() + "'" +
             "}";
     }
-
+    
     public String getDataNascimentoString() {
         String dataNascimentoString;
-        dataNascimentoString = ObjectUtils.allNotNull(this.dataDeNascimento) ?
-            MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) :
-            null;
+        dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
         return dataNascimentoString;
     }
 

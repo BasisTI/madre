@@ -10,6 +10,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {})
 public interface PreCadastroMapper extends EntityMapper<PreCadastroDTO, PreCadastro> {
 
+
+
     default PreCadastro fromId(Long id) {
         if (id == null) {
             return null;

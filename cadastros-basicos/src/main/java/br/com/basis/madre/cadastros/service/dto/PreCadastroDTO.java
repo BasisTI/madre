@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import org.apache.commons.lang3.ObjectUtils;
 
@@ -64,12 +65,12 @@ public class PreCadastroDTO implements ReportObject, Serializable {
         return nomeDaMae;
     }
 
-    public void setNomeDaMae(String nomeDaMae) {
-        this.nomeDaMae = nomeDaMae;
-    }
-
     public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
+    }
+
+    public void setNomeDaMae(String nomeDaMae) {
+        this.nomeDaMae = nomeDaMae;
     }
 
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
@@ -95,13 +96,17 @@ public class PreCadastroDTO implements ReportObject, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof PreCadastroDTO) {
-            return getId().equals(((PreCadastroDTO) o).getId());
-        } else if (o instanceof String) {
-            return getId().equals(o);
-        } else {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        PreCadastro preCadastro = (PreCadastro) o;
+        if (preCadastro.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), preCadastro.getId());
     }
 
     @Override
@@ -122,15 +127,13 @@ public class PreCadastroDTO implements ReportObject, Serializable {
             "}";
     }
 
-    public String getDataNascimentoString() {
-        dataNascimentoString = ObjectUtils.allNotNull(this.dataDeNascimento) ?
-            MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) :
-            null;
-        return dataNascimentoString;
-    }
-
     public void setDataNascimentoString(String dataNascimentoString) {
         this.dataNascimentoString = dataNascimentoString;
+    }
+
+    public String getDataNascimentoString() {
+        dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
+        return dataNascimentoString;
     }
 }
 

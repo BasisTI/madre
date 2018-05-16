@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="jefferson (generated)" id="1526054497998-1">
-        <createIndex indexName="IX_unidade_hospitalarPK"
-                     tableName="unidade_hospitalar"
-                     unique="true">
-            <column name="id"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1526054497998-2">
-        <dropPrimaryKey tableName="unidade_hospitalar"/>
-        <addPrimaryKey columnNames="id"
-                       constraintName="unidade_hospitalarPK"
-                       tableName="unidade_hospitalar"/>
-    </changeSet>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+   <changeSet author="jefferson (generated)" id="1526054497998-1">
+      <createIndex indexName="IX_unidade_hospitalarPK"
+                   tableName="unidade_hospitalar"
+                   unique="true">
+         <column name="id"/>
+      </createIndex>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1526054497998-2">
+      <dropPrimaryKey tableName="unidade_hospitalar"/>
+      <addPrimaryKey columnNames="id"
+                     constraintName="unidade_hospitalarPK"
+                     tableName="unidade_hospitalar"/>
+   </changeSet>
 </databaseChangeLog>

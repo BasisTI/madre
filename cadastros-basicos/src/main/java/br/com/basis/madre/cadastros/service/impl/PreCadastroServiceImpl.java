@@ -22,6 +22,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,9 +47,9 @@ public class PreCadastroServiceImpl implements PreCadastroService {
 
     private final DynamicExportsService dynamicExportsService;
 
+
     public PreCadastroServiceImpl(PreCadastroRepository preCadastroRepository,
-        PreCadastroSearchRepository preCadastroSearchRepository, PreCadastroMapper preCadastroMapper,
-        DynamicExportsService dynamicExportsService) {
+        PreCadastroSearchRepository preCadastroSearchRepository, PreCadastroMapper preCadastroMapper, DynamicExportsService dynamicExportsService) {
         this.preCadastroRepository = preCadastroRepository;
         this.preCadastroSearchRepository = preCadastroSearchRepository;
         this.preCadastroMapper = preCadastroMapper;
@@ -56,11 +57,12 @@ public class PreCadastroServiceImpl implements PreCadastroService {
     }
 
     @Override
-    public PreCadastro save(PreCadastro preCadastro) {
-        log.debug("Request to save PreCadastro : {}", preCadastro);
+    public PreCadastroDTO save(PreCadastroDTO preCadastroDTO) {
+        log.debug("Request to save PreCadastro : {}", preCadastroDTO);
+        PreCadastro preCadastro = preCadastroMapper.toEntity(preCadastroDTO);
         preCadastro = preCadastroRepository.save(preCadastro);
         preCadastroSearchRepository.save(preCadastro);
-        return (preCadastro);
+        return preCadastroMapper.toDto(preCadastro);
     }
 
     @Override
@@ -74,7 +76,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
             queryBuilder = filter.filterElasticSearch(query.get());
             result = preCadastroSearchRepository.search(queryBuilder, pageable);
         } else {
-            result = preCadastroRepository.findAll(pageable);
+            result =  preCadastroRepository.findAll(pageable);
         }
         return result.map(preCadastroMapper::toDto);
     }
@@ -109,12 +111,11 @@ public class PreCadastroServiceImpl implements PreCadastroService {
      */
 
     @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
-        throws RelatorioException {
+    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
         try {
-            new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
-            Page<PreCadastro> result = preCadastroSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
+            SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
+            Page<PreCadastro> result =  preCadastroSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioPreCadastroColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
         } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
             log.error(e.getMessage(), e);
@@ -122,7 +123,8 @@ public class PreCadastroServiceImpl implements PreCadastroService {
         }
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
-    }
+     }
+
 
 }
 

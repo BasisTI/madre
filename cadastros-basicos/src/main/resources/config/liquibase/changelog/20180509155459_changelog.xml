@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="jefferson (generated)" id="1525881306486-1">
-        <createSequence sequenceName="hibernate_sequence"/>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-2">
-        <createTable tableName="jhi_persistent_audit_event">
-            <column autoIncrement="true" name="event_id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
-            </column>
-            <column name="event_date" type="BYTEA"/>
-            <column name="event_type" type="VARCHAR(255)"/>
-            <column name="principal" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-3">
-        <createTable tableName="jhi_persistent_audit_evt_data">
-            <column name="event_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="value" type="VARCHAR(255)"/>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-4">
-        <createTable tableName="pre_cadastro">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="pre_cadastroPK"/>
-            </column>
-            <column name="ativo" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="data_de_nascimento" type="BYTEA">
-                <constraints nullable="false"/>
-            </column>
-            <column name="nome_da_mae" type="VARCHAR(150)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="nome_do_paciente" type="VARCHAR(150)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="nome_social" type="VARCHAR(150)"/>
-            <column name="n_cartao_sus" type="VARCHAR(15)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-5">
-        <createTable tableName="unidade_hospitalar">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="unidade_hospitalarPK"/>
-            </column>
-            <column name="ativo" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="cnpj" type="VARCHAR(14)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="endereco" type="VARCHAR(200)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="logo" type="OID"/>
-            <column name="logo_content_type" type="VARCHAR(255)"/>
-            <column name="nome" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="sigla" type="VARCHAR(10)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-6">
-        <createTable tableName="usuario">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="usuarioPK"/>
-            </column>
-            <column name="ativo" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="email" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="login" type="VARCHAR(60)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="nome" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="perfil" type="VARCHAR(80)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="senha" type="VARCHAR(40)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="unidadeDeSaude" type="VARCHAR(80)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-7">
-        <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
-    </changeSet>
-    <changeSet author="jefferson (generated)" id="1525881306486-8">
-        <addForeignKeyConstraint baseColumnNames="event_id"
-                                 baseTableName="jhi_persistent_audit_evt_data"
-                                 constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m"
-                                 deferrable="false"
-                                 initiallyDeferred="false"
-                                 referencedColumnNames="event_id"
-                                 referencedTableName="jhi_persistent_audit_event"/>
-    </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-1">
+      <createSequence sequenceName="hibernate_sequence"/>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-2">
+      <createTable tableName="jhi_persistent_audit_event">
+         <column autoIncrement="true" name="event_id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+         </column>
+         <column name="event_date" type="BYTEA"/>
+         <column name="event_type" type="VARCHAR(255)"/>
+         <column name="principal" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-3">
+      <createTable tableName="jhi_persistent_audit_evt_data">
+         <column name="event_id" type="BIGINT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="value" type="VARCHAR(255)"/>
+         <column name="name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-4">
+      <createTable tableName="pre_cadastro">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="pre_cadastroPK"/>
+         </column>
+         <column name="ativo" type="BOOLEAN">
+            <constraints nullable="false"/>
+         </column>
+         <column name="data_de_nascimento" type="BYTEA">
+            <constraints nullable="false"/>
+         </column>
+         <column name="nome_da_mae" type="VARCHAR(150)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="nome_do_paciente" type="VARCHAR(150)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="nome_social" type="VARCHAR(150)"/>
+         <column name="n_cartao_sus" type="VARCHAR(15)"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-5">
+      <createTable tableName="unidade_hospitalar">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="unidade_hospitalarPK"/>
+         </column>
+         <column name="ativo" type="BOOLEAN">
+            <constraints nullable="false"/>
+         </column>
+         <column name="cnpj" type="VARCHAR(14)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="endereco" type="VARCHAR(200)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="logo" type="OID"/>
+         <column name="logo_content_type" type="VARCHAR(255)"/>
+         <column name="nome" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="sigla" type="VARCHAR(10)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-6">
+      <createTable tableName="usuario">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="usuarioPK"/>
+         </column>
+         <column name="ativo" type="BOOLEAN">
+            <constraints nullable="false"/>
+         </column>
+         <column name="email" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="login" type="VARCHAR(60)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="nome" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="perfil" type="VARCHAR(80)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="senha" type="VARCHAR(40)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="unidadeDeSaude" type="VARCHAR(80)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-7">
+      <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+   </changeSet>
+   <changeSet author="jefferson (generated)" id="1525881306486-8">
+      <addForeignKeyConstraint baseColumnNames="event_id"
+                               baseTableName="jhi_persistent_audit_evt_data"
+                               constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="event_id"
+                               referencedTableName="jhi_persistent_audit_event"/>
+   </changeSet>
 </databaseChangeLog>

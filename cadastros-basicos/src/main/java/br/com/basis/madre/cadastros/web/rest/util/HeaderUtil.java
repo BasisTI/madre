@@ -36,7 +36,7 @@ public final class HeaderUtil {
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         log.error("Entity processing failed, {}", defaultMessage);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-cadastrosbasicosApp-error" + errorKey, defaultMessage);
+        headers.add("X-cadastrosbasicosApp-error"+errorKey, defaultMessage);
         headers.add("X-cadastrosbasicosApp-params", entityName);
         return headers;
     }

@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.service.dto.UsuarioDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UsuarioException;
 import org.springframework.core.io.InputStreamResource;
@@ -13,10 +14,12 @@ import java.util.Optional;
 //
 //
 
+
 /**
  * Service managing Usuario.
  */
 public interface UsuarioService {
+
 
     /**
      * Save a Usuario.
@@ -51,8 +54,7 @@ public interface UsuarioService {
 
     Page<Usuario> search(String query, Pageable pageable);
 
-    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
-        throws RelatorioException;
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 
 }
 

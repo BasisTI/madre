@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <property name="now" value="now()" dbms="h2"/>
@@ -20,31 +20,31 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nome" type="varchar(100)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <column name="login" type="varchar(60)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <column name="senha" type="varchar(40)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <column name="email" type="varchar(100)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <column name="perfil" type="varchar(80)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <column name="unidade_de_saude" type="varchar(80)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <column name="ativo" type="boolean">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

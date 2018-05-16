@@ -72,13 +72,18 @@ public class PerfilDTO implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof PerfilDTO) {
-            return getId().equals(((PerfilDTO) o).getId());
-        } else if (o instanceof String) {
-            return getId().equals(o);
-        } else {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+
+        PerfilDTO perfilDTO = (PerfilDTO) o;
+        if(perfilDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), perfilDTO.getId());
     }
 
     @Override

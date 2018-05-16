@@ -29,8 +29,7 @@ public class PerfilService {
 
     private final PerfilSearchRepository perfilSearchRepository;
 
-    public PerfilService(PerfilRepository perfilRepository, PerfilMapper perfilMapper,
-        PerfilSearchRepository perfilSearchRepository) {
+    public PerfilService(PerfilRepository perfilRepository, PerfilMapper perfilMapper, PerfilSearchRepository perfilSearchRepository) {
         this.perfilRepository = perfilRepository;
         this.perfilMapper = perfilMapper;
         this.perfilSearchRepository = perfilSearchRepository;

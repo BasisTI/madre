@@ -1,7 +1,14 @@
 package br.com.basis.madre.cadastros.config;
 
-import javax.annotation.PreDestroy;
-
+import com.hazelcast.config.Config;
+import com.hazelcast.config.EvictionPolicy;
+import com.hazelcast.config.ManagementCenterConfig;
+import com.hazelcast.config.MapConfig;
+import com.hazelcast.config.MaxSizeConfig;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import io.github.jhipster.config.JHipsterConstants;
+import io.github.jhipster.config.JHipsterProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +24,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.EvictionPolicy;
-import com.hazelcast.config.ManagementCenterConfig;
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.MaxSizeConfig;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
-
-import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.config.JHipsterProperties;
+import javax.annotation.PreDestroy;
 
 @Configuration
 @EnableCaching
@@ -64,50 +62,28 @@ public class CacheConfiguration {
     @Bean
     public CacheManager cacheManager(HazelcastInstance hazelcastInstance) {
         log.debug("Starting HazelcastCacheManager");
-        CacheManager cacheManager = new com.hazelcast.spring.cache.HazelcastCacheManager(hazelcastInstance);
-        return cacheManager;
+        return new com.hazelcast.spring.cache.HazelcastCacheManager(hazelcastInstance);
     }
 
     @Bean
-    public HazelcastInstance hazelcastInstance(JHipsterProperties jHipsterProperties) {
-        log.debug("Configuring Hazelcast");
-        HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("cadastrosbasicos");
-        if (hazelCastInstance != null) {
-            log.debug("Hazelcast already initialized");
-            return hazelCastInstance;
-        }
-        Config config = new Config();
-        config.setInstanceName("cadastrosbasicos");
-        config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
-        if (this.registration == null) {
-            log.warn("No discovery service is set up, Hazelcast cannot create a cluster.");
-        } else {
-            // The serviceId is by default the application's name, see Spring Boot's eureka.instance.appname property
-            String serviceId = registration.getServiceId();
-            log.debug("Configuring Hazelcast clustering for instanceId: {}", serviceId);
-            // In development, everything goes through 127.0.0.1, with a different port
-            if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)) {
-                log.debug("Application is running with the \"dev\" profile, Hazelcast " +
-                    "cluster will only work with localhost instances");
+    public HazelcastInstance hazelcastInstance(JHipsterProperties jHipsterProperties) { log.debug("Configuring Hazelcast"); HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("cadastrosbasicos");
+        if (hazelCastInstance != null) {log.debug("Hazelcast already initialized"); return hazelCastInstance; }
 
+        Config config = new Config(); config.setInstanceName("cadastrosbasicos"); config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+
+        if (this.registration == null) { log.warn("No discovery service is set up, Hazelcast cannot create a cluster."); }
+        else { String serviceId = registration.getServiceId(); log.debug("Configuring Hazelcast clustering for instanceId: {}", serviceId);
+            // In development, everything goes through 127.0.0.1, with a different port
+            if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)) { log.debug("Application is running with the \"dev\" profile, Hazelcast " + "cluster will only work with localhost instances");
                 System.setProperty("hazelcast.local.localAddress", "127.0.0.1");
                 config.getNetworkConfig().setPort(serverProperties.getPort() + 5701);
                 config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
-                for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) {
-                    String clusterMember = "127.0.0.1:" + (instance.getPort() + 5701);
-                    log.debug("Adding Hazelcast (dev) cluster member " + clusterMember);
-                    config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
-                }
-            } else { // Production configuration, one host per instance all using port 5701
-                config.getNetworkConfig().setPort(5701);
-                config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
-                for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) {
-                    String clusterMember = instance.getHost() + ":5701";
+                for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) { String clusterMember = "127.0.0.1:" + (instance.getPort() + 5701); log.debug("Adding Hazelcast (dev) cluster member " + clusterMember);
+                    config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember); }
+            } else { config.getNetworkConfig().setPort(5701); config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
+                for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) { String clusterMember = instance.getHost() + ":5701";
                     log.debug("Adding Hazelcast (prod) cluster member " + clusterMember);
-                    config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
-                }
-            }
-        }
+                    config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember); } } }
         config.getMapConfigs().put("default", initializeDefaultMapConfig());
 
         // Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
