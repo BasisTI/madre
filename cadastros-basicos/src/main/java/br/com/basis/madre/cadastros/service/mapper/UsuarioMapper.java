@@ -10,6 +10,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {})
 public interface UsuarioMapper extends EntityMapper<UsuarioDTO, Usuario> {
 
+
+
     default Usuario fromId(Long id) {
         if (id == null) {
             return null;

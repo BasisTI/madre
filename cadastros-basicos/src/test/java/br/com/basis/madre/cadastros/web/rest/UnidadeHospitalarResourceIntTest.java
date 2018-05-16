@@ -45,24 +45,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CadastrosbasicosApp.class)
 public class UnidadeHospitalarResourceIntTest {
 
-    private static final String DEFAULT_SIGLA = "AAAAAAAAAA";
 
+    private static final String DEFAULT_SIGLA = "AAAAAAAAAA";
     private static final String UPDATED_SIGLA = "BBBBBBBBBB";
 
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
-
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
     private static final String DEFAULT_CNPJ = "AAAAAAAAAAAAAA";
-
     private static final String UPDATED_CNPJ = "BBBBBBBBBBBBBB";
 
     private static final String DEFAULT_ENDERECO = "AAAAAAAAAA";
-
     private static final String UPDATED_ENDERECO = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_ATIVO = false;
-
     private static final Boolean UPDATED_ATIVO = true;
 
     @Autowired
@@ -90,9 +86,19 @@ public class UnidadeHospitalarResourceIntTest {
 
     private UnidadeHospitalar unidadeHospitalar;
 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final UnidadeHospitalarResource unidadeHospitalarResource = new UnidadeHospitalarResource(unidadeHospitalarService, unidadeHospitalarRepository); this.restUnidadeHospitalarMockMvc = MockMvcBuilders.standaloneSetup(unidadeHospitalarResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+    }
+
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -104,17 +110,6 @@ public class UnidadeHospitalarResourceIntTest {
             .endereco(DEFAULT_ENDERECO)
             .ativo(DEFAULT_ATIVO);
         return unidadeHospitalar;
-    }
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final UnidadeHospitalarResource unidadeHospitalarResource = new UnidadeHospitalarResource(unidadeHospitalarService, unidadeHospitalarRepository);
-        this.restUnidadeHospitalarMockMvc = MockMvcBuilders.standaloneSetup(unidadeHospitalarResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before
@@ -385,8 +380,7 @@ public class UnidadeHospitalarResourceIntTest {
         // Initialize the database
         unidadeHospitalarRepository.saveAndFlush(unidadeHospitalar);
         // Search the unidadeHospitalar
-        restUnidadeHospitalarMockMvc.perform(get(
-            "/api/_search/unidade-hospitalars?query=id:" + unidadeHospitalar.getId()))
+        restUnidadeHospitalarMockMvc.perform(get("/api/_search/unidade-hospitalars?query=id:" + unidadeHospitalar.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(unidadeHospitalar.getId().intValue())))

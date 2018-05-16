@@ -13,10 +13,12 @@ import java.util.Optional;
 //
 //
 
+
 /**
  * Service managing Usuario.
  */
 public interface UsuarioService {
+
 
     /**
      * Save a Usuario.
@@ -51,8 +53,7 @@ public interface UsuarioService {
 
     Page<Usuario> search(String query, Pageable pageable);
 
-    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
-        throws RelatorioException;
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 
 }
 

@@ -37,9 +37,9 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class PerfilResource {
 
-    private static final String ENTITY_NAME = "perfil";
-
     private final Logger log = LoggerFactory.getLogger(PerfilResource.class);
+
+    private static final String ENTITY_NAME = "perfil";
 
     private final PerfilService perfilService;
 

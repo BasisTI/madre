@@ -10,6 +10,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {})
 public interface UnidadeHospitalarMapper extends EntityMapper<UnidadeHospitalarDTO, UnidadeHospitalar> {
 
+
+
     default UnidadeHospitalar fromId(Long id) {
         if (id == null) {
             return null;

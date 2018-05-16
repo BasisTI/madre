@@ -15,8 +15,7 @@ import java.io.IOException;
 public class ElasticsearchConfiguration {
 
     @Bean
-    public ElasticsearchTemplate elasticsearchTemplate(Client client,
-        Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
+    public ElasticsearchTemplate elasticsearchTemplate(Client client, Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
         return new ElasticsearchTemplate(client, new CustomEntityMapper(jackson2ObjectMapperBuilder.createXmlMapper(false).build()));
     }
 

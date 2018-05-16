@@ -46,23 +46,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PerfilResourceIntTest {
 
     private static final Integer DEFAULT_NM_PERFIL = 1;
-
     private static final Integer UPDATED_NM_PERFIL = 2;
 
     private static final String DEFAULT_DS_PERFIL = "AAAAAAAAAA";
-
     private static final String UPDATED_DS_PERFIL = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_ST_EXCLUIDO = false;
-
     private static final Boolean UPDATED_ST_EXCLUIDO = true;
 
     private static final Boolean DEFAULT_ST_ATIVO = false;
-
     private static final Boolean UPDATED_ST_ATIVO = true;
 
     private static final Integer DEFAULT_ID_FUNCIONALIDADE = 1;
-
     private static final Integer UPDATED_ID_FUNCIONALIDADE = 2;
 
     @Autowired
@@ -93,9 +88,20 @@ public class PerfilResourceIntTest {
 
     private Perfil perfil;
 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final PerfilResource perfilResource = new PerfilResource(perfilService);
+        this.restPerfilMockMvc = MockMvcBuilders.standaloneSetup(perfilResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+    }
+
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -107,17 +113,6 @@ public class PerfilResourceIntTest {
             .stAtivo(DEFAULT_ST_ATIVO)
             .idFuncionalidade(DEFAULT_ID_FUNCIONALIDADE);
         return perfil;
-    }
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final PerfilResource perfilResource = new PerfilResource(perfilService);
-        this.restPerfilMockMvc = MockMvcBuilders.standaloneSetup(perfilResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before

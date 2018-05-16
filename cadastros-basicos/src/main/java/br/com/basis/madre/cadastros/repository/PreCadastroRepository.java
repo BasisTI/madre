@@ -1,11 +1,13 @@
 package br.com.basis.madre.cadastros.repository;
 
 import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
 
 /**
  * Spring Data JPA repository for the PreCadastro entity.
@@ -13,6 +15,5 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 @Repository
 public interface PreCadastroRepository extends JpaRepository<PreCadastro, Long> {
-    Optional<PreCadastro> findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(
-        String nomeDoPaciente, String nomeDaMae, LocalDate dataDeNascimento);
+    Optional<PreCadastroDTO> findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(String nomeDoPaciente, String nomeDaMae, LocalDate dataDeNascimento);
 }

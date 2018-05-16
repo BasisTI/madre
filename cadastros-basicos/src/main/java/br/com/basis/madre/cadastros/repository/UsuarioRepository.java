@@ -9,6 +9,7 @@ import java.util.Optional;
 //vali
 //vali
 
+
 /**
  * Spring Data JPA repository for the Usuario entity.
  */
@@ -16,8 +17,6 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findOneByLogin(String login);
-
     Optional<Usuario> findOneByNome(String nome);
-
     Optional<Usuario> findOneByEmail(String email);
 }

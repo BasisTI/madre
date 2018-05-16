@@ -6,6 +6,11 @@ public class RelatorioException extends Exception {
 
     private static final String CODE_ENTIDADE = "ENTIDADE";
 
+    @Override
+    public String getMessage() {
+        return ERRO_IMPRIMIR_RELATORIO;
+    }
+
     public RelatorioException(Throwable var1) {
         super(var1);
     }
@@ -15,11 +20,6 @@ public class RelatorioException extends Exception {
 
     public static String getCodeEntidade() {
         return CODE_ENTIDADE;
-    }
-
-    @Override
-    public String getMessage() {
-        return ERRO_IMPRIMIR_RELATORIO;
     }
 }
 

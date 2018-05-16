@@ -44,9 +44,9 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class PreCadastroResource {
 
-    private static final String ENTITY_NAME = "preCadastro";
-
     private final Logger log = LoggerFactory.getLogger(PreCadastroResource.class);
+
+    private static final String ENTITY_NAME = "preCadastro";
 
     private final PreCadastroService preCadastroService;
 
@@ -66,26 +66,26 @@ public class PreCadastroResource {
      */
     @PostMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro)
+    public ResponseEntity<PreCadastroDTO> createPreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO)
         throws URISyntaxException {
         try {
-            log.debug("REST request to save PreCadastro : {}", preCadastro);
+            log.debug("REST request to save PreCadastro : {}", preCadastroDTO);
 
-            if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getNomeDoPaciente(), preCadastro.getNomeDaMae(), preCadastro.getDataDeNascimento()).isPresent()) {
+            if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
                 return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
                     .body(null);
             }
-            if (preCadastro.getId() != null) {
+            if (preCadastroDTO.getId() != null) {
                 throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
             }
-            PreCadastro result = preCadastroService.save(preCadastro);
+            PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
             return ResponseEntity.created(new URI("/api/pre-cadastros/"
                 + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(preCadastro);
+                .body(preCadastroDTO);
         }
     }
 
@@ -100,26 +100,25 @@ public class PreCadastroResource {
      */
     @PutMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastro> updatePreCadastro(@Valid @RequestBody PreCadastro preCadastro)
+    public ResponseEntity<PreCadastroDTO> updatePreCadastro(@Valid @RequestBody PreCadastroDTO preCadastroDTO)
         throws URISyntaxException {
         try {
-            log.debug("REST request to update PreCadastro : {}", preCadastro);
+            log.debug("REST request to update PreCadastro : {}", preCadastroDTO);
 
-            if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getNomeDoPaciente(), preCadastro.getNomeDaMae(), preCadastro.getDataDeNascimento()).isPresent()) {
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
-                    .body(null);
+            if (preCadastroRepository.findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastroDTO.getNomeDoPaciente(), preCadastroDTO.getNomeDaMae(), preCadastroDTO.getDataDeNascimento()).isPresent()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
             }
 
-            if (preCadastro.getId() == null) { return createPreCadastro(preCadastro); }
-            PreCadastro result = preCadastroService.save(preCadastro);
+            if (preCadastroDTO.getId() == null) { return createPreCadastro(preCadastroDTO); }
+            PreCadastroDTO result = preCadastroService.save(preCadastroDTO);
             return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastro.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastroDTO.getId().toString()))
                 .body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(preCadastro);
+                .body(preCadastroDTO);
         }
     }
 

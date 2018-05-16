@@ -35,13 +35,13 @@ import java.util.EnumSet;
 @Configuration
 public class WebConfigurer implements ServletContextInitializer, EmbeddedServletContainerCustomizer {
 
-    protected final HazelcastInstance hazelcastInstance;
-
     private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
 
     private final Environment env;
 
     private final JHipsterProperties jHipsterProperties;
+
+    private final HazelcastInstance hazelcastInstance;
 
     private MetricRegistry metricRegistry;
 

@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.service.dto;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.domain.Usuario;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -108,13 +109,17 @@ public class UsuarioDTO implements ReportObject, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof UsuarioDTO) {
-            return getId().equals(((UsuarioDTO) o).getId());
-        } else if (o instanceof String) {
-            return getId().equals(o);
-        } else {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        Usuario usuario = (Usuario) o;
+        if (usuario.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), usuario.getId());
     }
 
     @Override

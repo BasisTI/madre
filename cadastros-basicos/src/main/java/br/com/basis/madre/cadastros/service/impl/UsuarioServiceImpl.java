@@ -43,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final DynamicExportsService dynamicExportsService;
 
-    protected UsuarioMapper usuarioMapper;
+    private UsuarioMapper usuarioMapper;
 
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioSearchRepository usuarioSearchRepository,
         DynamicExportsService dynamicExportsService, UsuarioMapper usuarioMapper) {

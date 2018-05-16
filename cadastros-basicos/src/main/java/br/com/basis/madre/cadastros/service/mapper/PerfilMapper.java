@@ -10,6 +10,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {})
 public interface PerfilMapper extends EntityMapper<PerfilDTO, Perfil> {
 
+
+
     default Perfil fromId(Long id) {
         if (id == null) {
             return null;

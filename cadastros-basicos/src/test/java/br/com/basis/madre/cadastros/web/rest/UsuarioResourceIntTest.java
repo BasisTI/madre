@@ -46,31 +46,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UsuarioResourceIntTest {
 
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
-
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
     private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
-
     private static final String UPDATED_LOGIN = "BBBBBBBBBB";
 
     private static final String DEFAULT_SENHA = "AAAAAAAAAA";
-
     private static final String UPDATED_SENHA = "BBBBBBBBBB";
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
     private static final String DEFAULT_PERFIL = "AAAAAAAAAA";
-
     private static final String UPDATED_PERFIL = "BBBBBBBBBB";
 
     private static final String DEFAULT_UNIDADE_DE_SAUDE = "AAAAAAAAAA";
-
     private static final String UPDATED_UNIDADE_DE_SAUDE = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_ATIVO = false;
-
     private static final Boolean UPDATED_ATIVO = true;
 
     @Autowired
@@ -98,9 +91,20 @@ public class UsuarioResourceIntTest {
 
     private Usuario usuario;
 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final UsuarioResource usuarioResource = new UsuarioResource(usuarioService);
+        this.restUsuarioMockMvc = MockMvcBuilders.standaloneSetup(usuarioResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+    }
+
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -114,17 +118,6 @@ public class UsuarioResourceIntTest {
             .unidadeDeSaude(DEFAULT_UNIDADE_DE_SAUDE)
             .ativo(DEFAULT_ATIVO);
         return usuario;
-    }
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final UsuarioResource usuarioResource = new UsuarioResource(usuarioService);
-        this.restUsuarioMockMvc = MockMvcBuilders.standaloneSetup(usuarioResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before

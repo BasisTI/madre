@@ -23,7 +23,7 @@ public interface PreCadastroService {
      * @param preCadastroDTO the entity to save
      * @return the persisted entity
      */
-    PreCadastro save(PreCadastro preCadastro) throws PreCadastroException;
+    PreCadastroDTO save(PreCadastroDTO preCadastroDTO) throws PreCadastroException;
 
     /**
      * Get all the PreCadastro.
@@ -48,8 +48,9 @@ public interface PreCadastroService {
      */
     void delete(Long id);
 
+
     Page<PreCadastro> search(String query, Pageable pageable);
 
-    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
-        throws RelatorioException;
+
+        ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 }

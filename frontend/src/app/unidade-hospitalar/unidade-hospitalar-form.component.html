@@ -5,22 +5,24 @@
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="unidadeHospitalar.id" readonly/>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-       
-              <h3 class="first">Logo</h3>
-              <p-fileUpload name="demo[]" url="./upload.php" 
-                      accept="image/*" maxFileSize="1000000">
-                  <ng-template pTemplate="content">
-                      <ul>
-                          <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                      </ul>
-                  </ng-template>        
-              </p-fileUpload>
-              
      
+            <div class="ui-g">
+              <div class="ui-g-12" style="margin-bottom: 25px">
+                <label>Logo</label>
+                <span class="md-inputfield">
+                  <p-fileUpload 
+                    #fileInput 
+                    chooseLabel="Selecionar arquivo" 
+                    [showUploadButton]="false" 
+                    [showCancelButton]="false" 
+                    name="logo" 
+                    (onSelect)="uploadFile($event)" 
+                    accept="image/*">
+                  </p-fileUpload>
                 </span>
-          </div>
+              </div>
+            </div>
+    
           <div class="ui-g-12 ui-md-6"></div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">

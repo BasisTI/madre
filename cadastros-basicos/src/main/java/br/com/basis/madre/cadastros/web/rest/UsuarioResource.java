@@ -35,6 +35,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+
 /**
  * REST controller for managing Usuario.
  */
@@ -42,9 +43,9 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class UsuarioResource {
 
-    private static final String ENTITY_NAME = "usuario";
-
     private final Logger log = LoggerFactory.getLogger(UsuarioResource.class);
+
+    private static final String ENTITY_NAME = "usuario";
 
     private final UsuarioService usuarioService;
 
@@ -120,7 +121,7 @@ public class UsuarioResource {
     @GetMapping("/usuarios")
     @Timed
     public ResponseEntity<List<Usuario>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
-        @ApiParam Pageable pageable) {
+                                                           @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Usuarios");
         Page<Usuario> page = usuarioService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/usuarios");
@@ -182,8 +183,7 @@ public class UsuarioResource {
      */
     @GetMapping(value = "/usuario/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
-        @RequestParam(defaultValue = "*") String query) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
             return usuarioService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {

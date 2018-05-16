@@ -19,9 +19,8 @@ public class PreCadastroFilter {
 
         return queryBuilder;
     }
-
     private void getLongFilter(BoolQueryBuilder queryBuilder, String parametro) {
-        if (parametro.matches("^[0-9]*$")) {
+        if(parametro.matches("^[0-9]*$")) {
             queryBuilder
                 .should(matchQuery("id", parametro));
         }

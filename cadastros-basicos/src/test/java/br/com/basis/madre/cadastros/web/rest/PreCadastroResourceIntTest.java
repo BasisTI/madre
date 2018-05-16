@@ -48,27 +48,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PreCadastroResourceIntTest {
 
     private static final String DEFAULT_NOME_DO_PACIENTE = "AAAAAAAAAA";
-
     private static final String UPDATED_NOME_DO_PACIENTE = "BBBBBBBBBB";
 
     private static final String DEFAULT_NOME_SOCIAL = "AAAAAAAAAA";
-
     private static final String UPDATED_NOME_SOCIAL = "BBBBBBBBBB";
 
     private static final String DEFAULT_NOME_DA_MAE = "AAAAAAAAAA";
-
     private static final String UPDATED_NOME_DA_MAE = "BBBBBBBBBB";
 
     private static final LocalDate DEFAULT_DATA_DE_NASCIMENTO = LocalDate.ofEpochDay(0L);
-
     private static final LocalDate UPDATED_DATA_DE_NASCIMENTO = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_N_CARTAO_SUS = "AAAAAAAAAAAAAAA";
-
     private static final String UPDATED_N_CARTAO_SUS = "BBBBBBBBBBBBBBB";
 
     private static final Boolean DEFAULT_ATIVO = false;
-
     private static final Boolean UPDATED_ATIVO = true;
 
     @Autowired
@@ -96,9 +90,20 @@ public class PreCadastroResourceIntTest {
 
     private PreCadastro preCadastro;
 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService, preCadastroRepository);
+        this.restPreCadastroMockMvc = MockMvcBuilders.standaloneSetup(preCadastroResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+    }
+
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -111,17 +116,6 @@ public class PreCadastroResourceIntTest {
             .numCartaoSus(DEFAULT_N_CARTAO_SUS)
             .ativo(DEFAULT_ATIVO);
         return preCadastro;
-    }
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final PreCadastroResource preCadastroResource = new PreCadastroResource(preCadastroService, preCadastroRepository);
-        this.restPreCadastroMockMvc = MockMvcBuilders.standaloneSetup(preCadastroResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before
@@ -377,7 +371,7 @@ public class PreCadastroResourceIntTest {
     @Transactional
     public void searchPreCadastro() throws Exception {
         // Initialize the database
-        preCadastroRepository.saveAndFlush(preCadastro);
+    preCadastroRepository.saveAndFlush(preCadastro);
         // Search the preCadastro
         restPreCadastroMockMvc.perform(get("/api/_search/pre-cadastros?query=id:" + preCadastro.getId()))
             .andExpect(status().isOk())
