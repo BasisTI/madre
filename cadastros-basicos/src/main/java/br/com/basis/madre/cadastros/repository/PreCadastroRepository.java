@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 /**
- * Spring Data JPA repository for the PreCadastro entity.
+Spring Data JPA repository for the PreCadastro entity.
  */
 @SuppressWarnings("unused")
 @Repository

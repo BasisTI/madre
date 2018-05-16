@@ -21,7 +21,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * A PreCadastro.
+  A PreCadastro.
  */
 @Entity
 @Table(name = "pre_cadastro")

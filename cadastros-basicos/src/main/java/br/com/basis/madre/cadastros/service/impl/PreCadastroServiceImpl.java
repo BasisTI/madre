@@ -104,7 +104,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
     }
 
     /**
-     * gera relatório by entity
+     * gera relatório by entity a
      *
      * @param tipoRelatorio
      */
