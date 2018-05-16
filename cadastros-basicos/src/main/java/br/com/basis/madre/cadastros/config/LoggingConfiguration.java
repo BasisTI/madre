@@ -78,12 +78,8 @@ public class LoggingConfiguration {
         logstashAppender.setName(LOGSTASH_APPENDER_NAME);
         logstashAppender.setContext(context);
         String optionalFields = "";
-        if (eurekaInstanceConfigBean != null) {
-            optionalFields = "\"instance_id\":\"" + eurekaInstanceConfigBean.getInstanceId() + "\",";
-        }
-        String customFields =
-            "{\"app_name\":\"" + appName + "\",\"app_port\":\"" + serverPort + "\"," + optionalFields + "\"version\":\""
-                + version + "\"}";
+        if (eurekaInstanceConfigBean != null) {optionalFields = "\"instance_id\":\"" + eurekaInstanceConfigBean.getInstanceId() + "\","; }
+        String customFields = "{\"app_name\":\"" + appName + "\",\"app_port\":\"" + serverPort + "\"," + optionalFields + "\"version\":\"" + version + "\"}";
 
         // More documentation is available at: https://github.com/logstash/logstash-logback-encoder
         LogstashEncoder logstashEncoder = new LogstashEncoder();
@@ -100,6 +96,11 @@ public class LoggingConfiguration {
         logstashAppender.setEncoder(logstashEncoder);
         logstashAppender.start();
 
+        AsyncAppender asyncLogstashAppender = configuracao(logstashAppender);
+
+        context.getLogger("ROOT").addAppender(asyncLogstashAppender);
+    }
+    private AsyncAppender configuracao(LogstashTcpSocketAppender logstashAppender){
         // Wrap the appender in an Async appender for performance
         AsyncAppender asyncLogstashAppender = new AsyncAppender();
         asyncLogstashAppender.setContext(context);
@@ -107,10 +108,8 @@ public class LoggingConfiguration {
         asyncLogstashAppender.setQueueSize(jHipsterProperties.getLogging().getLogstash().getQueueSize());
         asyncLogstashAppender.addAppender(logstashAppender);
         asyncLogstashAppender.start();
-
-        context.getLogger("ROOT").addAppender(asyncLogstashAppender);
+        return asyncLogstashAppender;
     }
-
     // Configure a log filter to remove "metrics" logs from all appenders except the "LOGSTASH" appender
     private void setMetricsMarkerLogbackFilter(LoggerContext context) {
         log.info("Filtering metrics logs from all appenders except the {} appender", LOGSTASH_APPENDER_NAME);
@@ -128,9 +127,7 @@ public class LoggingConfiguration {
             for (Iterator<Appender<ILoggingEvent>> it = logger.iteratorForAppenders(); it.hasNext(); ) {
                 Appender<ILoggingEvent> appender = it.next();
                 if (!appender.getName().equals(ASYNC_LOGSTASH_APPENDER_NAME)) { log.debug("Filter metrics logs from the {} appender", appender.getName());
-                    appender.setContext(context);
-                    appender.addFilter(metricsFilter);
-                    appender.start();
+                    appender.setContext(context); appender.addFilter(metricsFilter); appender.start();
                 }
             }
         }

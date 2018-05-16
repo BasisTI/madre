@@ -76,4 +76,5 @@ export class UnidadeHospitalarService {
     const copy: UnidadeHospitalar = Object.assign({}, unidadeHospitalar);
     return copy;
   }
+  
 }

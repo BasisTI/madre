@@ -54,21 +54,46 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       ]);
     });
   }
-
+/*
   save() {
     this.isSaving = true;
     if (this.unidadeHospitalar.id !== undefined) {
       this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
     } else {
 
-      if(this.logo !== undefined){
+      if (this.logo !== undefined) {
         this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
       } else {
         this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
       }
     }
   }
+*/
+save() {
+  this.isSaving = true;
+  if (this.unidadeHospitalar.id !== undefined) {
+    this.unidadeHospitalarService.find(this.unidadeHospitalar.id).subscribe(response => {
 
+      if(this.logo !== undefined) {
+        this.uploadService.uploadFile(this.logo).subscribe(response => {
+          this.unidadeHospitalar.logoId = JSON.parse(response["_body"]).id;
+          this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
+        })
+      } else {
+          this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
+      }
+    })
+  } else {
+    if(this.logo !== undefined) {
+        this.uploadService.uploadFile(this.logo).subscribe(response => {
+          this.unidadeHospitalar.logoId = JSON.parse(response["_body"]).id;
+          this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
+        })
+    } else {
+      this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
+    }
+  }
+}
   private subscribeToSaveResponse(result: Observable<UnidadeHospitalar>) {
     result.subscribe((res: UnidadeHospitalar) => {
       this.isSaving = false;
