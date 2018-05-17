@@ -1,20 +1,11 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
+import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
+import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
+import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
+import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
+import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,12 +21,19 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.basis.madre.cadastros.CadastrosbasicosApp;
-import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
-import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
-import br.com.basis.madre.cadastros.repository.search.UnidadeHospitalarSearchRepository;
-import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
-import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
+import javax.persistence.EntityManager;
+import java.util.List;
+
+import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test class for the UnidadeHospitalarResource REST controller.

@@ -1,12 +1,11 @@
 package br.com.basis.madre.cadastros.repository;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
+import br.com.basis.madre.cadastros.domain.PreCadastro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.basis.madre.cadastros.domain.PreCadastro;
+import java.time.LocalDate;
+import java.util.Optional;
 
 
 /**

@@ -1,7 +1,8 @@
 package br.com.basis.madre.cadastros.config;
 
-import javax.sql.DataSource;
-
+import io.github.jhipster.config.JHipsterConstants;
+import io.github.jhipster.config.liquibase.AsyncSpringLiquibase;
+import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,9 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.config.liquibase.AsyncSpringLiquibase;
-import liquibase.integration.spring.SpringLiquibase;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories("br.com.basis.madre.cadastros.repository")

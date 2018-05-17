@@ -1,7 +1,8 @@
 package br.com.basis.madre.cadastros.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
+import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.repository.PerfilRepository;
+import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -9,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.basis.madre.cadastros.domain.Perfil;
-import br.com.basis.madre.cadastros.repository.PerfilRepository;
-import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Perfil.

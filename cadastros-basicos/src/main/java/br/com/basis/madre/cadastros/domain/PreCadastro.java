@@ -1,8 +1,11 @@
 package br.com.basis.madre.cadastros.domain;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Objects;
+import br.com.basis.dynamicexports.pojo.ReportObject;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,14 +16,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.apache.commons.lang3.ObjectUtils;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-
-import br.com.basis.dynamicexports.pojo.ReportObject;
-import br.com.basis.madre.cadastros.util.MadreUtil;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A PreCadastro.
@@ -63,8 +61,8 @@ public class PreCadastro implements Serializable, ReportObject {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
-    
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove    
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -183,7 +181,7 @@ public class PreCadastro implements Serializable, ReportObject {
             ", ativo='" + isAtivo() + "'" +
             "}";
     }
-    
+
     public String getDataNascimentoString() {
         String dataNascimentoString;
         dataNascimentoString =  ObjectUtils.allNotNull(this.dataDeNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataDeNascimento) : null;
