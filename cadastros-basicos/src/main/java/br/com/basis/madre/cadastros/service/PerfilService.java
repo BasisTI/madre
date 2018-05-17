@@ -66,8 +66,7 @@ public class PerfilService {
     @Transactional(readOnly = true)
     public Perfil findOne(Long id) {
         log.debug("Request to get Perfil : {}", id);
-        Perfil perfil = perfilRepository.findOne(id);
-        return perfil;
+        return perfilRepository.findOne(id);
     }
 
     /**
@@ -91,7 +90,6 @@ public class PerfilService {
     @Transactional(readOnly = true)
     public Page<Perfil> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Perfils for query {}", query);
-        Page<Perfil> result = perfilSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return perfilSearchRepository.search(queryStringQuery(query), pageable);
     }
 }

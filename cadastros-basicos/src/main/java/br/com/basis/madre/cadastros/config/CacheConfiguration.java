@@ -123,7 +123,8 @@ public class CacheConfiguration {
         config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
         for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) {
             String clusterMember = instance.getHost() + ":5701";
-            log.debug("Adding Hazelcast (prod) cluster member " + clusterMember);
+            String logServer = "Adding Hazelcast (dev) cluster member " + clusterMember;
+            log.debug(logServer);
             config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
         }
     }
