@@ -257,9 +257,17 @@ public class UnidadeHospitalarResource {
             String classPathString = this.getClass().getClassLoader().getResource("").toString();
             Path classPath = Paths.get(classPathString).toAbsolutePath();
             String folderPathString = classPath.toString();
-
+            boolean isDirectory = false;
             File directory = new File(folderPathString);
-            if (!directory.exists()) { directory.mkdirs(); }
+            if (!directory.exists()) {
+                isDirectory = directory.mkdirs();
+                if(isDirectory) {
+                    log.debug("Directory sucessfull created");
+                }
+                else{
+                    log.debug("Directory is not sucessfull created");
+                }
+            }
 
             byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis())).getBytes("UTF-8");
             String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));
