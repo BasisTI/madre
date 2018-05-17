@@ -1,9 +1,9 @@
 package br.com.basis.madre.cadastros.service.relatorio.cabecalho;
 
+import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
+
 import br.com.basis.dynamicexports.pojo.CabecalhoRodapeRelatorioInterface;
 import net.sf.dynamicreports.report.builder.component.VerticalListBuilder;
-
-import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
 
 public class MadreCabecalhoRodapeRelatorio implements CabecalhoRodapeRelatorioInterface {
 

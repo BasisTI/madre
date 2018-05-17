@@ -1,8 +1,5 @@
 package br.com.basis.madre.cadastros.config;
 
-import br.com.basis.madre.cadastros.security.AuthoritiesConstants;
-import br.com.basis.madre.cadastros.security.jwt.JWTConfigurer;
-import br.com.basis.madre.cadastros.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -15,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
+
+import br.com.basis.madre.cadastros.security.AuthoritiesConstants;
+import br.com.basis.madre.cadastros.security.jwt.JWTConfigurer;
+import br.com.basis.madre.cadastros.security.jwt.TokenProvider;
 
 @Configuration
 @Import(SecurityProblemSupport.class)

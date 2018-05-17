@@ -1,12 +1,19 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.basis.madre.cadastros.domain.Especialidade;
-import br.com.basis.madre.cadastros.repository.EspecialidadeRepository;
-import br.com.basis.madre.cadastros.service.EspecialidadeService;
-import br.com.basis.madre.cadastros.repository.search.EspecialidadeSearchRepository;
-import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,14 +29,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+import br.com.basis.madre.cadastros.domain.Especialidade;
+import br.com.basis.madre.cadastros.repository.EspecialidadeRepository;
+import br.com.basis.madre.cadastros.repository.search.EspecialidadeSearchRepository;
+import br.com.basis.madre.cadastros.service.EspecialidadeService;
+import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
 
 /**
  * Test class for the EspecialidadeResource REST controller.
@@ -74,7 +79,7 @@ public class EspecialidadeResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EspecialidadeResource especialidadeResource = new EspecialidadeResource(especialidadeService);
+        final EspecialidadeResource especialidadeResource = new EspecialidadeResource(especialidadeService, especialidadeRepository);
         this.restEspecialidadeMockMvc = MockMvcBuilders.standaloneSetup(especialidadeResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -7,15 +7,15 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
-public class UnidadeHospitalarFilter {
-
+public class EspecialidadeFilter {
 
     public QueryBuilder filterElasticSearch(String parametro) {
 
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         getLongFilter(queryBuilder, parametro);
         queryBuilder
-            .should(matchPhrasePrefixQuery("nome", parametro.trim()));
+            .should(matchPhrasePrefixQuery("nmTitulo", parametro.trim()))
+            .should(matchPhrasePrefixQuery("txParecer", parametro.trim()));
 
         return queryBuilder;
     }

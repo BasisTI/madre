@@ -26,7 +26,7 @@
             </column>
 
             <column name="descricao" type="varchar(250)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
