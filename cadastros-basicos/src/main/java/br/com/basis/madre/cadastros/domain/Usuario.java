@@ -53,15 +53,15 @@ public class Usuario implements Serializable, ReportObject {
     @Column(name = "email", length = 100, nullable = false)
     private String email;
 
-    @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "perfil", length = 80, nullable = false)
-    private String perfil;
-
-    @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "unidade_de_saude", length = 80, nullable = false)
-    private String unidadeDeSaude;
+//    @NotNull
+//    @Size(min = 1, max = 80)
+//    @Column(name = "perfil", length = 80, nullable = false)
+//    private String perfil;
+//
+//    @NotNull
+//    @Size(min = 1, max = 80)
+//    @Column(name = "unidade_de_saude", length = 80, nullable = false)
+//    private String unidadeDeSaude;
 
     @NotNull
     @Column(name = "ativo", nullable = false)
@@ -128,31 +128,31 @@ public class Usuario implements Serializable, ReportObject {
         this.email = email;
     }
 
-    public String getPerfil() {
-        return this.perfil;
-    }
-
-    public Usuario perfil(String perfil) {
-        this.perfil = perfil;
-        return this;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
-
-    public String getUnidadeDeSaude() {
-        return unidadeDeSaude;
-    }
-
-    public Usuario unidadeDeSaude(String unidadeDeSaude) {
-        this.unidadeDeSaude = unidadeDeSaude;
-        return this;
-    }
-
-    public void setUnidadeDeSaude(String unidadeDeSaude) {
-        this.unidadeDeSaude = unidadeDeSaude;
-    }
+//    public String getPerfil() {
+//        return this.perfil;
+//    }
+//
+//    public Usuario perfil(String perfil) {
+//        this.perfil = perfil;
+//        return this;
+//    }
+//
+//    public void setPerfil(String perfil) {
+//        this.perfil = perfil;
+//    }
+//
+//    public String getUnidadeDeSaude() {
+//        return unidadeDeSaude;
+//    }
+//
+//    public Usuario unidadeDeSaude(String unidadeDeSaude) {
+//        this.unidadeDeSaude = unidadeDeSaude;
+//        return this;
+//    }
+//
+//    public void setUnidadeDeSaude(String unidadeDeSaude) {
+//        this.unidadeDeSaude = unidadeDeSaude;
+//    }
 
     public Boolean isAtivo() {
         return this.ativo;

@@ -94,7 +94,7 @@ public class UsuarioResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final UsuarioResource usuarioResource = new UsuarioResource(usuarioService);
+        final UsuarioResource usuarioResource = new UsuarioResource(usuarioRepository, usuarioService);
         this.restUsuarioMockMvc = MockMvcBuilders.standaloneSetup(usuarioResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
