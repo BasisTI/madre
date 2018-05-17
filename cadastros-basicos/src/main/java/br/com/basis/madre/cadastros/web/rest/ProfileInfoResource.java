@@ -53,7 +53,7 @@ public class ProfileInfoResource {
 
         private String ribbonEnv;
 
-        ProfileInfoVM(String[] activeProfiles, String ribbonEnv) {
+        public ProfileInfoVM(String[] activeProfiles, String ribbonEnv) {
             this.activeProfiles = activeProfiles.clone();
             this.ribbonEnv = ribbonEnv;
         }

@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.service;
 
 import br.com.basis.madre.cadastros.domain.PreCadastro;
-import br.com.basis.madre.cadastros.service.dto.PreCadastroDTO;
 import br.com.basis.madre.cadastros.service.exception.PreCadastroException;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import org.springframework.core.io.InputStreamResource;
@@ -20,10 +19,10 @@ public interface PreCadastroService {
     /**
      * Save a PreCadastro.
      *
-     * @param preCadastroDTO the entity to save
+     * @param preCadastro the entity to save
      * @return the persisted entity
      */
-    PreCadastroDTO save(PreCadastroDTO preCadastroDTO) throws PreCadastroException;
+    PreCadastro save(PreCadastro preCadastro) throws PreCadastroException;
 
     /**
      * Get all the PreCadastro.
@@ -31,7 +30,7 @@ public interface PreCadastroService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<PreCadastroDTO> findAll(Optional<String> query, Pageable pageable);
+    Page<PreCadastro> findAll(Optional<String> query, Pageable pageable);
 
     /**
      * Get the "id" PreCadastro.
@@ -39,11 +38,11 @@ public interface PreCadastroService {
      * @param id the id of the entity
      * @return the entity
      */
-    PreCadastroDTO findOne(Long id);
+    PreCadastro findOne(Long id);
 
     /**
      * Delete the "id" PreCadastro.
-     *
+
      * @param id the id of the entity
      */
     void delete(Long id);

@@ -5,7 +5,6 @@ import br.com.basis.madre.cadastros.domain.UploadFile;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UploadedFilesRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
-import br.com.basis.madre.cadastros.service.dto.UnidadeHospitalarDTO;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
@@ -81,22 +80,22 @@ public class UnidadeHospitalarResource {
     /**
      * POST  /unidade-hospitalars : Create a new unidadeHospitalar.
      *
-     * @param unidadeHospitalarDTO the unidadeHospitalar to create
+     * @param unidadeHospitalar the unidadeHospitalar to create
      * @return the ResponseEntity with status 201 (Created) and with body the new unidadeHospitalar, or with status 400 (Bad Request) if the unidadeHospitalar has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/unidade-hospitalars")
     @Timed
-    public ResponseEntity<UnidadeHospitalarDTO> createUnidadeHospitalar(
-        @Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) throws URISyntaxException {
+    public ResponseEntity<UnidadeHospitalar> createUnidadeHospitalar(
+        @Valid @RequestBody UnidadeHospitalar unidadeHospitalar) throws URISyntaxException {
         try {
-            log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalarDTO);
-            if (validaDTO(unidadeHospitalarDTO)) {
+            log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
+            if (valida(unidadeHospitalar)) {
                 return ResponseEntity.badRequest()
                     .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
                     .body(null);
             }
-            UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
+            UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
             return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
@@ -104,21 +103,21 @@ public class UnidadeHospitalarResource {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(unidadeHospitalarDTO);
+                .body(unidadeHospitalar);
         }
 
     }
 
-    private boolean validaDTO(@Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) {
-        if (unidadeHospitalarDTO.getId() != null) {
+    private boolean valida(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
+        if (unidadeHospitalar.getId() != null) {
             throw new BadRequestAlertException("A new parecerPadrao cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-        if (unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalarDTO.getCnpj()).isPresent() ||
-            unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalarDTO.getNome()).isPresent() ||
-            unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalarDTO.getSigla()).isPresent() ||
-            unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalarDTO.getEndereco()).isPresent()
+        if (unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalar.getCnpj()).isPresent() ||
+            unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent() ||
+            unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent() ||
+            unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalar.getEndereco()).isPresent()
             ) {
             return Boolean.TRUE;
         }
@@ -128,7 +127,7 @@ public class UnidadeHospitalarResource {
     /**
      * PUT  /unidade-hospitalars : Updates an existing unidadeHospitalar.
      *
-     * @param unidadeHospitalarDTO the unidadeHospitalar to update
+     * @param unidadeHospitalar the unidadeHospitalar to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated unidadeHospitalar,
      * or with status 400 (Bad Request) if the unidadeHospitalar is not valid,
      * or with status 500 (Internal Server Error) if the unidadeHospitalar couldn't be updated
@@ -136,30 +135,30 @@ public class UnidadeHospitalarResource {
      */
     @PutMapping("/unidade-hospitalars")
     @Timed
-    public ResponseEntity<UnidadeHospitalarDTO> updateUnidadeHospitalar(
-        @Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) throws URISyntaxException {
+    public ResponseEntity<UnidadeHospitalar> updateUnidadeHospitalar(
+        @Valid @RequestBody UnidadeHospitalar unidadeHospitalar) throws URISyntaxException {
         try {
-            log.debug("REST request to update UnidadeHospitalar : {}", unidadeHospitalarDTO);
-            if (unidadeHospitalarDTO.getId() == null) {
-                return createUnidadeHospitalar(unidadeHospitalarDTO);
+            log.debug("REST request to update UnidadeHospitalar : {}", unidadeHospitalar);
+            if (unidadeHospitalar.getId() == null) {
+                return createUnidadeHospitalar(unidadeHospitalar);
             }
-            if (validaCnpjSigla(unidadeHospitalarDTO)) {
+            if (validaCnpjSigla(unidadeHospitalar)) {
                 return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use")).body(null);
             }
-            UnidadeHospitalarDTO result = unidadeHospitalarService.save(unidadeHospitalarDTO);
+            UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
             return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, unidadeHospitalarDTO.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, unidadeHospitalar.getId().toString()))
                 .body(result);
         } catch (UnidadeHospitalarException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(unidadeHospitalarDTO);
+                .body(unidadeHospitalar);
         }
     }
 
-    private boolean validaCnpjSigla(@Valid @RequestBody UnidadeHospitalarDTO unidadeHospitalarDTO) {
-        if (unidadeHospitalarRepository.findOneByCnpjAndSiglaIgnoreCase(unidadeHospitalarDTO.getCnpj(), unidadeHospitalarDTO.getSigla()).isPresent()) {
+    private boolean validaCnpjSigla(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
+        if (unidadeHospitalarRepository.findOneByCnpjAndSiglaIgnoreCase(unidadeHospitalar.getCnpj(), unidadeHospitalar.getSigla()).isPresent()) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -173,11 +172,11 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping("/unidade-hospitalars")
     @Timed
-    public ResponseEntity<List<UnidadeHospitalarDTO>> getAllUnidadeHospitalars(
+    public ResponseEntity<List<UnidadeHospitalar>> getAllUnidadeHospitalars(
         @RequestParam(value = "query") Optional<String> query,
         @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of UnidadeHospitalars");
-        Page<UnidadeHospitalarDTO> page = unidadeHospitalarService.findAll(query, pageable);
+        Page<UnidadeHospitalar> page = unidadeHospitalarService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/unidade-hospitalars");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -190,10 +189,10 @@ public class UnidadeHospitalarResource {
      */
     @GetMapping("/unidade-hospitalars/{id}")
     @Timed
-    public ResponseEntity<UnidadeHospitalarDTO> getUnidadeHospitalar(@PathVariable Long id) {
+    public ResponseEntity<UnidadeHospitalar> getUnidadeHospitalar(@PathVariable Long id) {
         log.debug("REST request to get UnidadeHospitalar : {}", id);
-        UnidadeHospitalarDTO unidadeHospitalarDTO = unidadeHospitalarService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(unidadeHospitalarDTO));
+        UnidadeHospitalar unidadeHospitalar = unidadeHospitalarService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(unidadeHospitalar));
     }
 
     /**
@@ -258,9 +257,17 @@ public class UnidadeHospitalarResource {
             String classPathString = this.getClass().getClassLoader().getResource("").toString();
             Path classPath = Paths.get(classPathString).toAbsolutePath();
             String folderPathString = classPath.toString();
-
+            boolean isDirectory = false;
             File directory = new File(folderPathString);
-            if (!directory.exists()) { directory.mkdirs(); }
+            if (!directory.exists()) {
+                isDirectory = directory.mkdirs();
+                if(isDirectory) {
+                    log.debug("Directory sucessfull created");
+                }
+                else{
+                    log.debug("Directory is not sucessfull created");
+                }
+            }
 
             byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis())).getBytes("UTF-8");
             String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));

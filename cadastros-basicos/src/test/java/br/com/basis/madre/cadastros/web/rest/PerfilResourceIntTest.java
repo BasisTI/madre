@@ -5,8 +5,6 @@ import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
 import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
 import br.com.basis.madre.cadastros.service.PerfilService;
-import br.com.basis.madre.cadastros.service.dto.PerfilDTO;
-import br.com.basis.madre.cadastros.service.mapper.PerfilMapper;
 import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,8 +61,6 @@ public class PerfilResourceIntTest {
     @Autowired
     private PerfilRepository perfilRepository;
 
-    @Autowired
-    private PerfilMapper perfilMapper;
 
     @Autowired
     private PerfilService perfilService;
@@ -127,10 +123,10 @@ public class PerfilResourceIntTest {
         int databaseSizeBeforeCreate = perfilRepository.findAll().size();
 
         // Create the Perfil
-        PerfilDTO perfilDTO = perfilMapper.toDto(perfil);
+        Perfil perfil = new Perfil();
         restPerfilMockMvc.perform(post("/api/perfils")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(perfilDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(perfil)))
             .andExpect(status().isCreated());
 
         // Validate the Perfil in the database
@@ -155,12 +151,12 @@ public class PerfilResourceIntTest {
 
         // Create the Perfil with an existing ID
         perfil.setId(1L);
-        PerfilDTO perfilDTO = perfilMapper.toDto(perfil);
+        Perfil perfil = new Perfil();
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPerfilMockMvc.perform(post("/api/perfils")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(perfilDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(perfil)))
             .andExpect(status().isBadRequest());
 
         // Validate the Perfil in the database
@@ -176,11 +172,11 @@ public class PerfilResourceIntTest {
         perfil.setIdFuncionalidade(null);
 
         // Create the Perfil, which fails.
-        PerfilDTO perfilDTO = perfilMapper.toDto(perfil);
+        Perfil perfil = new Perfil();
 
         restPerfilMockMvc.perform(post("/api/perfils")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(perfilDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(perfil)))
             .andExpect(status().isBadRequest());
 
         List<Perfil> perfilList = perfilRepository.findAll();
@@ -249,11 +245,11 @@ public class PerfilResourceIntTest {
             .stExcluido(UPDATED_ST_EXCLUIDO)
             .stAtivo(UPDATED_ST_ATIVO)
             .idFuncionalidade(UPDATED_ID_FUNCIONALIDADE);
-        PerfilDTO perfilDTO = perfilMapper.toDto(updatedPerfil);
+        Perfil perfil = updatedPerfil;
 
         restPerfilMockMvc.perform(put("/api/perfils")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(perfilDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(perfil)))
             .andExpect(status().isOk());
 
         // Validate the Perfil in the database
@@ -277,12 +273,12 @@ public class PerfilResourceIntTest {
         int databaseSizeBeforeUpdate = perfilRepository.findAll().size();
 
         // Create the Perfil
-        PerfilDTO perfilDTO = perfilMapper.toDto(perfil);
+        Perfil perfil = new Perfil();
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restPerfilMockMvc.perform(put("/api/perfils")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(perfilDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(perfil)))
             .andExpect(status().isCreated());
 
         // Validate the Perfil in the database
@@ -349,23 +345,23 @@ public class PerfilResourceIntTest {
     @Test
     @Transactional
     public void dtoEqualsVerifier() throws Exception {
-        TestUtil.equalsVerifier(PerfilDTO.class);
-        PerfilDTO perfilDTO1 = new PerfilDTO();
-        perfilDTO1.setId(1L);
-        PerfilDTO perfilDTO2 = new PerfilDTO();
-        assertThat(perfilDTO1).isNotEqualTo(perfilDTO2);
-        perfilDTO2.setId(perfilDTO1.getId());
-        assertThat(perfilDTO1).isEqualTo(perfilDTO2);
-        perfilDTO2.setId(2L);
-        assertThat(perfilDTO1).isNotEqualTo(perfilDTO2);
-        perfilDTO1.setId(null);
-        assertThat(perfilDTO1).isNotEqualTo(perfilDTO2);
+        TestUtil.equalsVerifier(Perfil.class);
+        Perfil perfil1 = new Perfil();
+        perfil1.setId(1L);
+        Perfil perfil2 = new Perfil();
+        assertThat(perfil1).isNotEqualTo(perfil2);
+        perfil2.setId(perfil1.getId());
+        assertThat(perfil1).isEqualTo(perfil2);
+        perfil2.setId(2L);
+        assertThat(perfil1).isNotEqualTo(perfil2);
+        perfil1.setId(null);
+        assertThat(perfil1).isNotEqualTo(perfil2);
     }
 
     @Test
     @Transactional
     public void testEntityFromId() {
-        assertThat(perfilMapper.fromId(42L).getId()).isEqualTo(42);
-        assertThat(perfilMapper.fromId(null)).isNull();
+        assertThat(perfil.getId()).isEqualTo(42);
+        assertThat(perfil.getId()).isNull();
     }
 }

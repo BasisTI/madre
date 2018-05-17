@@ -39,8 +39,8 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/gatewaymadre
-        username: gatewaymadre
+        url: jdbc:postgresql://localhost:5432/cadastrosbasicos
+        username: cadastrosbasicos
         password:
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect

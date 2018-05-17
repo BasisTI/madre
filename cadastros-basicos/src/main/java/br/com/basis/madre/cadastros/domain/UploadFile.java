@@ -66,11 +66,11 @@ public class UploadFile {
     }
 
     public Date getDateOf() {
-        return dateOf;
+        return (Date) dateOf.clone();
     }
 
     public void setDateOf(Date dateOf) {
-        this.dateOf = dateOf;
+        this.dateOf = (Date) dateOf.clone();
     }
 
     public Integer getSizeOf() {
