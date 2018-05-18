@@ -1,17 +1,16 @@
 package br.com.basis.madre.cadastros.config.audit;
 
+import br.com.basis.madre.cadastros.domain.PersistentAuditEvent;
+import org.springframework.boot.actuate.audit.AuditEvent;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.boot.actuate.audit.AuditEvent;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.springframework.stereotype.Component;
-
-import br.com.basis.madre.cadastros.domain.PersistentAuditEvent;
 
 @Component
 public class AuditEventConverter {

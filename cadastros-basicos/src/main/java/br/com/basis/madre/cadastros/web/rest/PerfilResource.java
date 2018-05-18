@@ -1,12 +1,12 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
+import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.service.PerfilService;
+import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
+import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,14 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codahale.metrics.annotation.Timed;
-
-import br.com.basis.madre.cadastros.domain.Perfil;
-import br.com.basis.madre.cadastros.service.PerfilService;
-import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing Perfil.

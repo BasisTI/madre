@@ -257,9 +257,7 @@ public class UnidadeHospitalarResource {
             String classPathString = this.getClass().getClassLoader().getResource("").toString();
             Path classPath = Paths.get(classPathString).toAbsolutePath();
             String folderPathString = classPath.toString();
-
-            File directory = new File(folderPathString);
-            if (!directory.exists()) { directory.mkdirs(); }
+            criaDiretorios(folderPathString);
 
             byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis())).getBytes("UTF-8");
             String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));
@@ -273,6 +271,17 @@ public class UnidadeHospitalarResource {
 
         } catch (IOException | NoSuchAlgorithmException e) { throw new UploadException("Erro ao efetuar o upload do arquivo", e); }
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(uploadFile));
+    }
+
+    public void criaDiretorios(String folderPathString){
+        File directory = new File(folderPathString);
+        boolean isDirectory;
+        if (!directory.exists()) {
+            isDirectory = directory.mkdirs();
+            if(isDirectory) { log.debug("Directory sucessfull created"); }
+            else{ log.debug("Directory is not sucessfull created"); }
+        }
+
     }
     public void setUploadFile(UploadFile uploadFile, MultipartFile file, String filename,  byte[] bytes){
         uploadFile.setDateOf(new Date());

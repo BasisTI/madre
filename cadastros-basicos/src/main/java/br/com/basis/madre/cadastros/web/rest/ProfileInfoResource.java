@@ -1,16 +1,15 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
+import io.github.jhipster.config.JHipsterProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
-import io.github.jhipster.config.JHipsterProperties;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Resource to return information about the currently running Spring profiles.
@@ -54,7 +53,7 @@ public class ProfileInfoResource {
 
         private String ribbonEnv;
 
-        ProfileInfoVM(String[] activeProfiles, String ribbonEnv) {
+        public ProfileInfoVM(String[] activeProfiles, String ribbonEnv) {
             this.activeProfiles = activeProfiles.clone();
             this.ribbonEnv = ribbonEnv;
         }

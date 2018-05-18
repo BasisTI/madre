@@ -1,7 +1,8 @@
 package br.com.basis.madre.cadastros.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
+import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.repository.PerfilRepository;
+import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -9,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.basis.madre.cadastros.domain.Perfil;
-import br.com.basis.madre.cadastros.repository.PerfilRepository;
-import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Perfil.
@@ -66,8 +65,7 @@ public class PerfilService {
     @Transactional(readOnly = true)
     public Perfil findOne(Long id) {
         log.debug("Request to get Perfil : {}", id);
-        Perfil perfil = perfilRepository.findOne(id);
-        return perfil;
+        return perfilRepository.findOne(id);
     }
 
     /**
@@ -91,7 +89,6 @@ public class PerfilService {
     @Transactional(readOnly = true)
     public Page<Perfil> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Perfils for query {}", query);
-        Page<Perfil> result = perfilSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return perfilSearchRepository.search(queryStringQuery(query), pageable);
     }
 }

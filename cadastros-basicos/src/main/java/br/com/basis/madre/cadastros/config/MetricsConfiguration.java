@@ -1,23 +1,5 @@
 package br.com.basis.madre.cadastros.config;
 
-import java.lang.management.ManagementFactory;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.PostConstruct;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.ExportMetricReader;
-import org.springframework.boot.actuate.autoconfigure.ExportMetricWriter;
-import org.springframework.boot.actuate.metrics.writer.MetricWriter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.cloud.netflix.metrics.spectator.SpectatorMetricReader;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.JvmAttributeGaugeSet;
 import com.codahale.metrics.MetricRegistry;
@@ -32,9 +14,24 @@ import com.netflix.spectator.api.Registry;
 import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 import com.ryantenney.metrics.spring.config.annotation.MetricsConfigurerAdapter;
 import com.zaxxer.hikari.HikariDataSource;
-
 import io.github.jhipster.config.JHipsterProperties;
 import io.github.jhipster.config.metrics.SpectatorLogMetricWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.ExportMetricReader;
+import org.springframework.boot.actuate.autoconfigure.ExportMetricWriter;
+import org.springframework.boot.actuate.metrics.writer.MetricWriter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cloud.netflix.metrics.spectator.SpectatorMetricReader;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.PostConstruct;
+import java.lang.management.ManagementFactory;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableMetrics(proxyTargetClass = true)

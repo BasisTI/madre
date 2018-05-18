@@ -40,6 +40,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.unidadeHospitalar = new UnidadeHospitalar();
+      this.unidadeHospitalar.ativo = true;
       if (params['id']) {
         this.isEdit = true;
         this.unidadeHospitalarService.find(params['id']).subscribe(unidadeHospitalar =>{
@@ -84,7 +85,7 @@ save() {
       }
     })
   } else {
-    if(this.logo !== undefined) {
+      if(this.logo !== undefined) {
         this.uploadService.uploadFile(this.logo).subscribe(response => {
           this.unidadeHospitalar.logoId = JSON.parse(response["_body"]).id;
           this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
@@ -101,7 +102,8 @@ save() {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      if (res.headers.toJSON()['x-cadastrosbasicosapp-error'] != null) {
+      console.log(res.headers.toJSON());
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-errordataexists'] != null) {
         this.pageNotificationService.addErrorMessage('Registro já cadastrado');
       } else {
         this.pageNotificationService.addErrorMessage('CNPJ Inválido');

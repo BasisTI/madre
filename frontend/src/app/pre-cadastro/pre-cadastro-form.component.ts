@@ -32,6 +32,7 @@ export class PreCadastroFormComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.preCadastro = new PreCadastro();
+      this.preCadastro.ativo = true;
       if (params['id']) {
         this.isEdit = true;
         this.preCadastroService.find(params['id']).subscribe(preCadastro => this.preCadastro = preCadastro);
