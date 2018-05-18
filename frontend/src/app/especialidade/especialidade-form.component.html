@@ -8,13 +8,13 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nome" required [(ngModel)]="especialidade.nome" pInputText/>
-              <label>Nome da Especialidade</label>
+              <label>Nome da Especialidade *</label>
             </span>
           </div>
-          <div class="ui-g-12 ui-md-6">
+          <div class="ui-g-12 ui-md-12">
             <span class="md-inputfield">
-              <input type="text" name="descricao" [(ngModel)]="especialidade.descricao" pInputText/>
-              <label>Descrição da Especialidade</label>
+            <label>Descrição da Especialidade</label> <br>
+              <textarea [rows]="12" [cols]="67" name="descricao"  pInputTextarea [(ngModel)]="especialidade.descricao"></textarea>
             </span>
           </div>
         </div>
