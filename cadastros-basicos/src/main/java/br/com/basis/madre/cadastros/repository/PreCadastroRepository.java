@@ -14,5 +14,8 @@ Spring Data JPA repository for the PreCadastro entity.
 @SuppressWarnings("unused")
 @Repository
 public interface PreCadastroRepository extends JpaRepository<PreCadastro, Long> {
-    Optional<PreCadastro> findOneBynomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(String nomeDoPaciente, String nomeDaMae, LocalDate dataDeNascimento);
+    Optional<PreCadastro> findOneByNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento (String nomeDoPaciente, String nomeDaMae, LocalDate dataDeNascimento);
+    Optional<PreCadastro> findOneByNumCartaoSus (String numCartaoSus);
+    Optional<PreCadastro> findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento (Long id, String nomeDoPaciente, String nomeDaMae, LocalDate dataDeNascimento);
+    Optional<PreCadastro> findOneByIdAndNumCartaoSus (Long id, String numCartaoSus);
 }

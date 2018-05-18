@@ -62,12 +62,13 @@ export class PreCadastroFormComponent implements OnInit, OnDestroy {
     }, (res: Response) => {
       this.isSaving = false;
 
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.headers.values);
-      if(res.headers != null){
-        this.pageNotificationService.addErrorMessage("Registro já cadastrado");
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-errorsusexists'] == "Cartão do SUS já cadastrado" ){
+        this.pageNotificationService.addErrorMessage('Cartão do SUS já cadastrado para outro paciente!');
+      } else if (res.headers.toJSON()['x-cadastrosbasicosapp-errorpacienteexists'] == "Paciente já cadastrado" ){
+        this.pageNotificationService.addErrorMessage('Paciente já cadastrado(a)!');
       } else {
-        this.pageNotificationService.addErrorMessage("Dados inválidos!");
-        }
+        this.pageNotificationService.addErrorMessage('Dados inválidos!');
+      }
     });
   }
 
