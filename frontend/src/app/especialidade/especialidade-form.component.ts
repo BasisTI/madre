@@ -61,11 +61,11 @@ export class EspecialidadeFormComponent implements OnInit, OnDestroy {
     }, (res: Response) => {
       this.isSaving = false;
       
-      if(res.headers != null){
-        this.pageNotificationService.addErrorMessage("Registro já cadastrado");
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-errorespecialidadeexists'] == "Especialidade já cadastrada" ){
+        this.pageNotificationService.addErrorMessage('Especialidade já cadastrada!');
       } else {
-        this.pageNotificationService.addErrorMessage("Dados inválidos!");
-        }
+        this.pageNotificationService.addErrorMessage('Dados inválidos!');
+      }
     });
   }
 
