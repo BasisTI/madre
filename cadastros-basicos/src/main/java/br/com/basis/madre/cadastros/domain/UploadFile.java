@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "files")
+@Table(name = "anexo")
 public class UploadFile {
 
     private static final long serialVersionUID = 1L;

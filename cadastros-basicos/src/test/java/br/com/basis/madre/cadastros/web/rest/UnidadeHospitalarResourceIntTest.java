@@ -40,7 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see UnidadeHospitalarResource
  */
-@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CadastrosbasicosApp.class)
 public class UnidadeHospitalarResourceIntTest {
