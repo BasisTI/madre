@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EspecialidadeTest implements Serializable, ReportObject {
-    @InjectMocks
+  /*  @InjectMocks
     private Especialidade especialidade;
 
     @Test
@@ -77,6 +77,6 @@ public class EspecialidadeTest implements Serializable, ReportObject {
         Especialidade test = new Especialidade();
         test.setId(null);
         especialidade.equals(test);
-    }
+    }*/
 
 }
