@@ -40,6 +40,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.unidadeHospitalar = new UnidadeHospitalar();
+      this.unidadeHospitalar.ativo = true;
       if (params['id']) {
         this.isEdit = true;
         this.unidadeHospitalarService.find(params['id']).subscribe(unidadeHospitalar =>{
