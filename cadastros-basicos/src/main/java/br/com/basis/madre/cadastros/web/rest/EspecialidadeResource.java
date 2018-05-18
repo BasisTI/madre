@@ -104,8 +104,10 @@ public class EspecialidadeResource {
         try {
             log.debug("REST request to update Especialidade : {}", especialidade);
 
-            if (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent()) {
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada")).body(null);
+            if (!(especialidadeRepository.findOneByIdAndNomeIgnoreCase(especialidade.getId(), especialidade.getNome()).isPresent())){
+                if (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent()) {
+                    return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada")).body(null);
+                }
             }
 
             if (especialidade.getId() == null) {

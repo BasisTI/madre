@@ -33,6 +33,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.usuario = new Usuario();
+      this.usuario.ativo = true;
       if (params['id']) {
         this.isEdit = true;
         this.usuarioService.find(params['id']).subscribe(usuario => this.usuario = usuario);
