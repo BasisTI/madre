@@ -27,26 +27,26 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="sigla" [(ngModel)]="unidadeHospitalar.sigla" pInputText maxlength="10" required/>
-              <label>Sigla</label>
+              <label>Sigla*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nome" [(ngModel)]="unidadeHospitalar.nome" pInputText maxlength="100" required/>
-              <label>Nome</label>
+              <label>Nome*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText maxlength="18" 
               minlength="14" mask="99.999.999/9999-99" pattern="[0-9]+$" required/>
-              <label>Cnpj</label>
+              <label>Cnpj*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="endereco" [(ngModel)]="unidadeHospitalar.endereco" pInputText maxlength="200" required/>
-              <label>Endereco</label>
+              <label>Endereco*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
@@ -55,7 +55,7 @@
                   <label>Ativo</label>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="unidadeHospitalar.ativo" required></p-radioButton>
+                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="unidadeHospitalar.ativo" checked></p-radioButton>
               </div>
               <div class="ui-g-12 ui-md-2">
                 <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="unidadeHospitalar.ativo" required></p-radioButton>
