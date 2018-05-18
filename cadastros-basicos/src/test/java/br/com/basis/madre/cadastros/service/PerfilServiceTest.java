@@ -8,6 +8,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.data.domain.Page;
+
+import org.springframework.data.domain.Pageable;
 
 import static org.mockito.Mockito.when;
 
@@ -25,10 +28,34 @@ public class PerfilServiceTest {
     @Mock
     PerfilSearchRepository perfilSearchRepository;
 
+    @Mock
+    Pageable pageable;
+
     @Test
     public void saveTest(){
         when(perfilRepository.save(perfil)).thenReturn(perfil);
-
         Perfil test = perfilService.save(perfil);
     }
+
+    @Test
+    public void findAllTest(){
+        Page<Perfil> test = perfilService.findAll(pageable);
+    }
+
+    @Test
+    public void findOneTest(){
+        Perfil test = perfilService.findOne(0L);
+
+    }
+
+    @Test
+    public void deleteTest(){
+        perfilService.delete(0L);
+    }
+
+    @Test
+    public void searchTest(){
+        Page<Perfil> test = perfilService.search("query",pageable);
+    }
+
 }
