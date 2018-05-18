@@ -128,31 +128,7 @@ public class Usuario implements Serializable, ReportObject {
         this.email = email;
     }
 
-//    public String getPerfil() {
-//        return this.perfil;
-//    }
-//
-//    public Usuario perfil(String perfil) {
-//        this.perfil = perfil;
-//        return this;
-//    }
-//
-//    public void setPerfil(String perfil) {
-//        this.perfil = perfil;
-//    }
-//
-//    public String getUnidadeDeSaude() {
-//        return unidadeDeSaude;
-//    }
-//
-//    public Usuario unidadeDeSaude(String unidadeDeSaude) {
-//        this.unidadeDeSaude = unidadeDeSaude;
-//        return this;
-//    }
-//
-//    public void setUnidadeDeSaude(String unidadeDeSaude) {
-//        this.unidadeDeSaude = unidadeDeSaude;
-//    }
+
 
     public Boolean isAtivo() {
         return this.ativo;
@@ -197,8 +173,6 @@ public class Usuario implements Serializable, ReportObject {
             ", nome='" + getNome() + "'" +
             ", login='" + getLogin() + "'" +
             ", email='" + getEmail() + "'" +
-            ", perfil='" + getPerfil() + "'" +
-            ", unidadeDeSaude='" + getUnidadeDeSaude() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }
