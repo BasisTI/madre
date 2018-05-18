@@ -1,7 +1,6 @@
 package br.com.basis.madre.cadastros.domain;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,14 +8,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.Serializable;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.when;
-
 @RunWith(MockitoJUnitRunner.class)
 public class EspecialidadeTest implements Serializable, ReportObject {
-  /*  @InjectMocks
+    @InjectMocks
     private Especialidade especialidade;
 
     @Test
@@ -77,6 +71,6 @@ public class EspecialidadeTest implements Serializable, ReportObject {
         Especialidade test = new Especialidade();
         test.setId(null);
         especialidade.equals(test);
-    }*/
+    }
 
 }
