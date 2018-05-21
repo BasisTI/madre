@@ -5,13 +5,19 @@ import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.Usuario;
 import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
-import net.sf.jasperreports.repo.InputStreamResource;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUsuarioColunas;
+import net.sf.dynamicreports.report.exception.DRException;
+import net.sf.jasperreports.engine.JRException;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +25,9 @@ import org.springframework.http.ResponseEntity;
 import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
@@ -86,7 +94,7 @@ public class UsuarioServiceImplTest {
     public void searchTest() {
         Page<Usuario> test = usuarioServiceImpl.search("test", pageable);
 
-    }/*
+    }
     @Test
     public void gerarRelatorioExportacaoTest()
         throws JRException, DRException, ClassNotFoundException, RelatorioException {
@@ -96,7 +104,7 @@ public class UsuarioServiceImplTest {
         when(optional.ofNullable("teste")).thenReturn(optional);
         when(dynamicExportsService.export(any(RelatorioUsuarioColunas.class),any(Page.class),anyString(),any(Optional.class),any(Optional.class),any(Optional.class))).thenReturn(byteArrayOutputStream);
         PowerMockito.mockStatic(DynamicExporter.class);
-        usuarioServiceImpl.gerarRelatorioExportacao("PDF", "TST");
+        usuarioServiceImpl.gerarRelatorioExportacao("pdf", "TST");
 
-    }*/
+    }
 }

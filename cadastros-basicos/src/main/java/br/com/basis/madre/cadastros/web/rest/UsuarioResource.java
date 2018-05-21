@@ -52,6 +52,8 @@ public class UsuarioResource {
 
     private final UsuarioRepository usuarioRepository;
 
+    private static final String DATA_EXISTS = "exists";
+
     public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
@@ -73,16 +75,14 @@ public class UsuarioResource {
             if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
             } else if (usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Nome already in use"))
-                    .body(null);
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "Nome already in use")).body(null);
             } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
                 return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Email already in use"))
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "Email already in use"))
                     .body(null);
             } else if (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()) {
                 return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Login already in use"))
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "Login already in use"))
                     .body(null);
             } else {
                 Usuario result = usuarioService.save(usuario);

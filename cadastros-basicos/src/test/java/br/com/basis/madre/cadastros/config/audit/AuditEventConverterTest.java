@@ -8,10 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.actuate.audit.AuditEvent;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AuditEventConverterTest {
