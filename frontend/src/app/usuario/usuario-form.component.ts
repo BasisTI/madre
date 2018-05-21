@@ -8,7 +8,8 @@ import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Usuario } from './usuario.model';
 import { UsuarioService } from './usuario.service';
-import {MultiSelectModule} from 'primeng/multiselect';
+import { MultiSelectModule } from 'primeng/multiselect';
+import {  } from '../rel-usuario-unidadehospitalar';// falta fazer primeiro do rel_usu....
 
 @Component({
   selector: 'jhi-usuario-form',
@@ -74,7 +75,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     }
   }
   private addErrorMessage(res: Response) {
-    if (res.headers.toJSON()['x-cadastrosbasicosapp-error'] != null) {
+    if (res.headers.toJSON()['x-cadastrosbasicosapp-errorexists'] != null) {
       this.pageNotificationService.addErrorMessage('Registro já cadastrado!');
     } else {
       this.pageNotificationService.addErrorMessage('Dados inválidos!');

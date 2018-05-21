@@ -128,31 +128,31 @@ public class Usuario implements Serializable, ReportObject {
         this.email = email;
     }
 
-    public String getPerfil() {
-        return this.perfil;
-    }
+   public String getPerfil() {
+       return this.perfil;
+   }
 
-    public Usuario perfil(String perfil) {
-        this.perfil = perfil;
-        return this;
-    }
+   public Usuario perfil(String perfil) {
+       this.perfil = perfil;
+       return this;
+   }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
+   public void setPerfil(String perfil) {
+       this.perfil = perfil;
+   }
 
-    public String getUnidadeDeSaude() {
-        return unidadeDeSaude;
-    }
+   public String getUnidadeDeSaude() {
+       return unidadeDeSaude;
+   }
 
-    public Usuario unidadeDeSaude(String unidadeDeSaude) {
-        this.unidadeDeSaude = unidadeDeSaude;
-        return this;
-    }
+   public Usuario unidadeDeSaude(String unidadeDeSaude) {
+       this.unidadeDeSaude = unidadeDeSaude;
+       return this;
+   }
 
-    public void setUnidadeDeSaude(String unidadeDeSaude) {
-        this.unidadeDeSaude = unidadeDeSaude;
-    }
+   public void setUnidadeDeSaude(String unidadeDeSaude) {
+       this.unidadeDeSaude = unidadeDeSaude;
+   }
 
     public Boolean isAtivo() {
         return this.ativo;

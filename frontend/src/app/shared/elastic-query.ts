@@ -12,5 +12,5 @@ export class ElasticQuery {
         this.value = '';
     }
 
-} 
+}
 // resolver
