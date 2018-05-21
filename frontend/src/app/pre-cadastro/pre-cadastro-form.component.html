@@ -8,7 +8,7 @@
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
               <input type="text" name="nome_do_paciente" required [(ngModel)]="preCadastro.nomeDoPaciente" pInputText/>
-              <label>Nome Do Paciente</label>
+              <label>Nome Do Paciente *</label>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
@@ -20,13 +20,13 @@
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
               <input type="text" name="nome_da_mae" required [(ngModel)]="preCadastro.nomeDaMae" pInputText/>
-              <label>Nome Da Mãe</label>
+              <label>Nome Da Mãe *</label>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
               <p-calendar name="data_de_nascimento" required [(ngModel)]="preCadastro.dataDeNascimento" dateFormat="dd/mm/yy"></p-calendar>
-              <label>Data De Nascimento</label>
+              <label>Data De Nascimento *</label>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
@@ -41,10 +41,10 @@
                                 <label>Ativo</label>
                             </div>
                             <div class="ui-g-12 ui-md-2">
-                                <p-radioButton name="ativo" required [value]="true" label="Sim"></p-radioButton>
+                                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="preCadastro.ativo"></p-radioButton>
                             </div>
                             <div class="ui-g-12 ui-md-2">
-                                <p-radioButton name="ativo" required [value]="false" label="Não"></p-radioButton>
+                                <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="preCadastro.ativo"></p-radioButton>
                             </div>
                         </div>
                     </div>
