@@ -113,7 +113,7 @@ public class PreCadastroResource {
                         return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado"))
                         .body(null);
                     }    
-                }else if (!(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), preCadastro.getNomeDoPaciente(), preCadastro.getNomeDaMae(), preCadastro.getDataDeNascimento()).isPresent())){
+                }if (!(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), preCadastro.getNomeDoPaciente(), preCadastro.getNomeDaMae(), preCadastro.getDataDeNascimento()).isPresent())){
                     if (preCadastroRepository.findOneByNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getNomeDoPaciente(), preCadastro.getNomeDaMae(), preCadastro.getDataDeNascimento()).isPresent()){
                         return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado"))
                         .body(null);                
