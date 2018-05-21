@@ -104,24 +104,17 @@ public class EspecialidadeResource {
         try {
             log.debug("REST request to update Especialidade : {}", especialidade);
 
-            if (!(especialidadeRepository.findOneByIdAndNomeIgnoreCase(especialidade.getId(), especialidade.getNome()).isPresent())){
-                if (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent()) {
+            if (!(especialidadeRepository.findOneByIdAndNomeIgnoreCase(especialidade.getId(), especialidade.getNome()).isPresent()) && (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent())){
                     return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada")).body(null);
-                }
             }
-
             if (especialidade.getId() == null) {
                 return createEspecialidade(especialidade);
             }
             Especialidade result = especialidadeService.save(especialidade);
-            return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, especialidade.getId().toString()))
-                .body(result);
+            return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, especialidade.getId().toString())) .body(result);
         } catch (EspecialidadeException e) {
             log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest()
-                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, EspecialidadeException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(especialidade);
+            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, EspecialidadeException.getCodeRegistroExisteBase(), e.getMessage())) .body(especialidade);
         }
     }
 
