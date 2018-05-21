@@ -118,7 +118,6 @@ public class UsuarioResource {
                 return createUsuario(usuario);
             }
             if(usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
-            if(usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
                 return ResponseEntity.badRequest()
                     .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Nome already in use"))
                     .body(null);
@@ -131,12 +130,7 @@ public class UsuarioResource {
                     .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Login already in use"))
                     .body(null);
             } else {
-                Usuario result = null;
-                try {
-                    result = usuarioService.save(usuario);
-                } catch (UsuarioException e) {
-                    e.printStackTrace();
-                }
+                Usuario result = usuarioService.save(usuario);
                 return ResponseEntity.ok()
                     .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString()))
                     .body(result);
