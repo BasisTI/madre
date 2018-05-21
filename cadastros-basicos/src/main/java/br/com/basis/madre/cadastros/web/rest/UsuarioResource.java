@@ -124,7 +124,7 @@ public class UsuarioResource {
                     .body(result);
             } else {
                 return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "field already in use"))
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "field already in use"))
                     .body(null);
             }
         } catch (UsuarioException e) {
