@@ -95,7 +95,7 @@ public class UsuarioServiceImplTest {
         Page<Usuario> test = usuarioServiceImpl.search("test", pageable);
 
     }
-    @Test
+   /* @Test
     public void gerarRelatorioExportacaoTest()
         throws JRException, DRException, ClassNotFoundException, RelatorioException {
         when(usuarioSearchRepository.search(any(QueryBuilder.class),any(Pageable.class))).thenReturn(page);
@@ -106,5 +106,5 @@ public class UsuarioServiceImplTest {
         PowerMockito.mockStatic(DynamicExporter.class);
         usuarioServiceImpl.gerarRelatorioExportacao("pdf", "TST");
 
-    }
+    }*/
 }

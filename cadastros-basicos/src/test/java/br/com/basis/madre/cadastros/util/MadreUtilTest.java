@@ -21,7 +21,7 @@ public class MadreUtilTest {
     @Mock
     LocalDate localDate;
 
-  
+
     @Test
     public void getReportFooterTest() {
         PowerMockito.mockStatic(MadreUtil.class);
