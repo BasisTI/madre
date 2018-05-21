@@ -39,7 +39,6 @@ export class UsuarioComponent implements OnInit, OnDestroy {
 
   valueFiltro(valuefiltro: string) {
     this.valueFiltroCampo = valuefiltro;
-    console.log(this.valueFiltroCampo);
     this.datatable.refresh(valuefiltro);
   }
 
