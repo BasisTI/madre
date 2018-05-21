@@ -28,5 +28,5 @@ public class AuditEventConverterTest {
         List<AuditEvent> test = auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
- 
+
 }

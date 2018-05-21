@@ -119,4 +119,16 @@ public class PerfilTest {
         perfil.equals(test);
     }
 
+
+    @Test
+    public void equalsNullTest(){
+        Perfil test = new  Perfil();
+        Perfil myTest = new  Perfil();
+        test.setId(0l);
+        myTest.setId(2l);
+        test.equals(myTest);
+
+    }
+
+
 }

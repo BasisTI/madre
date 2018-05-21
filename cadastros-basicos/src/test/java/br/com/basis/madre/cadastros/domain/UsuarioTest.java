@@ -1,15 +1,21 @@
 package br.com.basis.madre.cadastros.domain;
 
+import cucumber.api.java.ca.I;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Objects;
+
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
 public class UsuarioTest {
     @InjectMocks
     Usuario usuario;
-
+    @InjectMocks
+    UnidadeHospitalar unidadeHospitalar;
     @Test
     public void getIdTest(){
         usuario.getId();
@@ -143,6 +149,15 @@ public class UsuarioTest {
         Usuario test = new Usuario();
         test.setId(null);
         usuario.equals(test);
+    }
+    @Test
+    public void equalsNullTest(){
+        Usuario test = new  Usuario();
+        Usuario myTest = new  Usuario();
+        test.setId(0l);
+        myTest.setId(2l);
+        test.equals(myTest);
+
     }
 
     @Test
