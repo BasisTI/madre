@@ -28,6 +28,8 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
 
   elasticQuery: ElasticQuery = new ElasticQuery();
 
+  valueFiltroCampo: string;
+
   constructor(
     private router: Router,
     private unidadeHospitalarService: UnidadeHospitalarService,
@@ -38,6 +40,11 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.breadcrumbService.setItems([{ label: 'Unidade Hospitalars' }]);
+  }
+
+  valueFiltro(valuefiltro: string) {
+    this.valueFiltroCampo = valuefiltro;
+    this.datatable.refresh(valuefiltro);
   }
 
   datatableClick(event: DatatableClickEvent) {

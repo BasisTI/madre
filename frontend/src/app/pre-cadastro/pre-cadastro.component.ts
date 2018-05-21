@@ -23,6 +23,8 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
 
   elasticQuery: ElasticQuery = new ElasticQuery();
 
+  valueFiltroCampo: string;
+
   constructor(
     private router: Router,
     private preCadastroService: PreCadastroService,
@@ -33,6 +35,11 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.breadcrumbService.setItems([{ label: 'Pre Cadastros' }]);
+  }
+
+  valueFiltro(valuefiltro: string) {
+    this.valueFiltroCampo = valuefiltro;
+    this.datatable.refresh(valuefiltro);
   }
 
   datatableClick(event: DatatableClickEvent) {
