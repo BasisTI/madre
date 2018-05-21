@@ -125,5 +125,14 @@ public class UnidadeHospitalarTest {
         unidadeHospitalar.setLogoId(0);
     }
 
+    @Test
+    public void equalsNullTest(){
+        UnidadeHospitalar test = new UnidadeHospitalar();
+        UnidadeHospitalar myTest = new  UnidadeHospitalar();
+        test.setId(0l);
+        myTest.setId(2l);
+        test.equals(myTest);
+
+    }
 
 }

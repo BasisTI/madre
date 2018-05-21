@@ -34,7 +34,6 @@ export class UnidadeHospitalarDetailComponent implements OnInit, OnDestroy {
 
   load(id) {
     this.unidadeHospitalarService.find(id).subscribe((unidadeHospitalar) => {
-      console.log(this.unidadeHospitalar);
       this.unidadeHospitalar = unidadeHospitalar;
       this.getFileInfo();
     });

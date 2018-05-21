@@ -73,4 +73,14 @@ public class EspecialidadeTest implements Serializable, ReportObject {
         especialidade.equals(test);
     }
 
+    @Test
+    public void equalsNullTest(){
+        Especialidade test = new  Especialidade();
+        Especialidade myTest = new Especialidade();
+        test.setId(0l);
+        myTest.setId(2l);
+        test.equals(myTest);
+
+    }
+
 }

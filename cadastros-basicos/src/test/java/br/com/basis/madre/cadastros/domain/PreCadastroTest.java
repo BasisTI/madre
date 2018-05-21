@@ -137,6 +137,16 @@ public class PreCadastroTest {
     }
 
     @Test
+    public void equalsNullTest(){
+        PreCadastro test = new  PreCadastro();
+        PreCadastro myTest = new  PreCadastro();
+        test.setId(0l);
+        myTest.setId(2l);
+        test.equals(myTest);
+
+    }
+
+    @Test
     public void getDataNascimentoStringTest(){
         String test = preCadastro.getDataNascimentoString();
     }
