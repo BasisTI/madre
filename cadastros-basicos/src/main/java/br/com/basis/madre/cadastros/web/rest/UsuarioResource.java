@@ -117,23 +117,15 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);
             }
-            if(usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Nome already in use"))
-                    .body(null);
-            } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Email already in use"))
-                    .body(null);
-            } else if (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "Login already in use"))
-                    .body(null);
-            } else {
+            if(validaEditar()) {
                 Usuario result = usuarioService.save(usuario);
                 return ResponseEntity.ok()
                     .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString()))
                     .body(result);
+            } else {
+                return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "exists", "field already in use"))
+                    .body(null);
             }
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
@@ -220,6 +212,18 @@ public class UsuarioResource {
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
+        }
+    }
+
+    public boolean validaEditar() {
+        if(usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
+            return false;
+        } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
+            return false;
+        } else if (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()) {
+            return false;
+        } else {
+            return true;
         }
     }
 }
