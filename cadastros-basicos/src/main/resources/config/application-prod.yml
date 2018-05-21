@@ -94,7 +94,7 @@ server:
     port: 8081
     compression:
         enabled: true
-        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/octet-stream
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
         min-response-size: 1024
 
 # ===================================================================
