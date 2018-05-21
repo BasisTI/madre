@@ -102,7 +102,6 @@ save() {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      console.log(res.headers.toJSON());
       if (res.headers.toJSON()['x-cadastrosbasicosapp-errordataexists'] != null) {
         this.pageNotificationService.addErrorMessage('Registro já cadastrado');
       } else {
