@@ -5,32 +5,21 @@ import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.Usuario;
 import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
-import br.com.basis.madre.cadastros.service.exception.RelatorioException;
-import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUsuarioColunas;
-import net.sf.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.repo.InputStreamResource;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import br.com.basis.dynamicexports.util.DynamicExporter;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
