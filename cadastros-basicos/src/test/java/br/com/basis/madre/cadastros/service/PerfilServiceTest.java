@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.data.domain.Page;
-
 import org.springframework.data.domain.Pageable;
 
 import static org.mockito.Mockito.when;

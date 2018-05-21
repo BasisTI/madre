@@ -2,7 +2,6 @@ package br.com.basis.madre.cadastros.repository;
 
 import br.com.basis.madre.cadastros.domain.Especialidade;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

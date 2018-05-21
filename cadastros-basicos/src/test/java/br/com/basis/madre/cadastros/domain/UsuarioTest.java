@@ -1,14 +1,9 @@
 package br.com.basis.madre.cadastros.domain;
 
-import cucumber.api.java.ca.I;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.Objects;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UsuarioTest {

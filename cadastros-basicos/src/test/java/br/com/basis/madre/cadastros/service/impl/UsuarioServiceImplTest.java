@@ -9,6 +9,7 @@ import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioUsuarioColunas;
 import net.sf.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.JRException;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,11 +17,11 @@ import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.elasticsearch.index.query.QueryBuilder;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.core.io.InputStreamResource;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 
