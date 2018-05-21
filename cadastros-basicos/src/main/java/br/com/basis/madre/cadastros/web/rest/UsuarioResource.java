@@ -117,7 +117,7 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);
             }
-            if(validaEditar()) {
+            if(validaEditar(usuario)) {
                 Usuario result = usuarioService.save(usuario);
                 return ResponseEntity.ok()
                     .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString()))
@@ -215,7 +215,7 @@ public class UsuarioResource {
         }
     }
 
-    public boolean validaEditar() {
+    public boolean validaEditar(Usuario usuario) {
         if(usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
             return false;
         } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
