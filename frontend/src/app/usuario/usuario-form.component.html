@@ -8,25 +8,25 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nome" [(ngModel)]="usuario.nome" pInputText required/>
-              <label>Nome</label>
+              <label>Nome*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="login" [(ngModel)]="usuario.login" pInputText required minlength="1"/>
-              <label>Login</label>
+              <label>Login*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="password" name="senha" [(ngModel)]="usuario.senha" pInputText required minlength="4"/>
-              <label>Senha</label>
+              <label>Senha*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="email" name="email" [(ngModel)]="usuario.email" pInputText required minlength="3"/>
-              <label>Email</label>
+              <label>Email*</label>
             </span>
           </div>
           <!-- <div class="ui-g-12 ui-md-6">
@@ -57,13 +57,13 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="multiSelect" name="perfil" [(ngModel)]="usuario.perfil" pInputText/>
-              <label>Perfil</label>
+              <label>Perfil*</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="unidadeDeSaude" [(ngModel)]="usuario.unidadeDeSaude" pInputText required/>
-              <label>Unidade De Saude</label>
+              <label>Unidade De Saude*</label>
             </span>
           </div>
         </div>

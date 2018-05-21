@@ -23,6 +23,8 @@ export class UsuarioComponent implements OnInit, OnDestroy {
 
   elasticQuery: ElasticQuery = new ElasticQuery();
 
+  valueFiltroCampo: string;
+
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
@@ -33,6 +35,12 @@ export class UsuarioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.breadcrumbService.setItems([{ label: 'Usuarios' }]);
+  }
+
+  valueFiltro(valuefiltro: string) {
+    this.valueFiltroCampo = valuefiltro;
+    console.log(this.valueFiltroCampo);
+    this.datatable.refresh(valuefiltro);
   }
 
   datatableClick(event: DatatableClickEvent) {

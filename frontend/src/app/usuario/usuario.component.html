@@ -6,7 +6,7 @@
                 <div class="ui-g-12 ui-md-12">
                     <span class="md-inputfield">
               <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
-                (keyup.enter)="datatable.refresh(elasticQuery.query)" name="filtro"/>
+                (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro"/>
               
               <label>Pesquisar</label>
             </span>
@@ -14,7 +14,7 @@
                 <div class="ui-g-12 ui-md-3"></div>
                 <div class="ui-g-12 ui-md-6">
                     <div class="ui-g-12 ui-md-6">
-                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="datatable.refresh(elasticQuery.query)"></button>
+                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="valueFiltro(elasticQuery.query)"></button>
                     </div>
                     <div class="ui-g-12 ui-md-6">
                         <button pButton type="button" label="Cadastrar" routerLink="/usuario/new" icon="ui-icon-add"></button>
@@ -33,7 +33,7 @@
                     </p-column>
                 </basis-datatable>
                 <div class="ui-g-6 ui-md-2">
-                    <app-botoes-exportacao resourceName="usuario" [query]="elasticQuery.value"></app-botoes-exportacao>
+                    <app-botoes-exportacao resourceName="usuario" [query]="valueFiltroCampo"></app-botoes-exportacao>
                 </div>
             </div>
         </div>
