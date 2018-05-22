@@ -107,7 +107,7 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);
             }
-            if(validaEditar(usuario)) {
+            if(!((usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) || (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) || (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()))) {
                 Usuario result = usuarioService.save(usuario);
                 return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
             } else {
@@ -197,12 +197,5 @@ public class UsuarioResource {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
         }
-    }
-
-    public boolean validaEditar(Usuario usuario) {
-        if((usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) || (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) || (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent())) {
-            return false;
-        }
-		return true;
     }
 }
