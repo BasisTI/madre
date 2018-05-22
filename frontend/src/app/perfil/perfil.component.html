@@ -17,8 +17,7 @@
             <button pButton type="button" label="Cadastrar" routerLink="/perfil/new" icon="ui-icon-add"></button>
           </div>
         </div>
-        <basis-datatable [url]="searchUrl" 
-          (buttonClick)="datatableClick($event)" #datatable>
+        <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
           <p-column header="Nm Perfil" field="nmPerfil"></p-column>
           <p-column header="Ds Perfil" field="dsPerfil"></p-column>
           <p-column header="St Excluido" field="stExcluido">

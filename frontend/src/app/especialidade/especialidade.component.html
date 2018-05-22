@@ -22,7 +22,7 @@
         </div>
         <div class="ui-g-12 ui-md-3"></div>
         <basis-datatable [url]="searchUrl" 
-          (buttonClick)="datatableClick($event)" #datatable>
+          (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
           <p-column header="Nome da Especialidade" field="nome"></p-column>
           <p-column header="Descrição da Especialidade" field="descricao"></p-column>
         </basis-datatable>

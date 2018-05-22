@@ -73,12 +73,10 @@ public class UsuarioResource {
         try { log.debug("REST request to save Usuario : {}", usuario);
             if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
-            } else if (usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) {
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "Nome already in use")).body(null);
-            } else if (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "Email already in use")) .body(null);
-            } else if (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()) {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "Login already in use")) .body(null);
+            } else if (usuarioRepository.findOneByEmailIgnoreCase(usuario.getEmail()).isPresent()) {
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);
+            } else if (usuarioRepository.findOneByLoginIgnoreCase(usuario.getLogin()).isPresent()) {
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);
             } else {
                 Usuario result = usuarioService.save(usuario);
                 return ResponseEntity.created(new URI("/api/usuarios/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
@@ -104,15 +102,14 @@ public class UsuarioResource {
         log.debug("REST request to update Usuario : {}", usuario);
         try {
             log.debug("REST request to update UnidadeHospitalar : {}", usuario);
+            if(!(usuarioRepository.findOneByIdAndEmailIgnoreCase(usuario.getId(), usuario.getEmail()).isPresent())) {if (usuarioRepository.findOneByEmailIgnoreCase(usuario.getEmail()).isPresent()){
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);}
+            }if (!(usuarioRepository.findOneByIdAndLoginIgnoreCase(usuario.getId(), usuario.getLogin()).isPresent())){if (usuarioRepository.findOneByLoginIgnoreCase(usuario.getLogin()).isPresent()){
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);}}
             if (usuario.getId() == null) {
-                return createUsuario(usuario);
-            }
-            if(!((usuarioRepository.findOneByNome(usuario.getNome()).isPresent()) || (usuarioRepository.findOneByEmail(usuario.getEmail()).isPresent()) || (usuarioRepository.findOneByLogin(usuario.getLogin()).isPresent()))) {
-                Usuario result = usuarioService.save(usuario);
-                return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
-            } else {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, DATA_EXISTS, "field already in use")) .body(null);
-            }
+                return createUsuario(usuario);}
+            Usuario result = usuarioService.save(usuario);
+            return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())) .body(usuario);

@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable>
+                <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
                     <p-column header="Sigla" field="sigla"></p-column>
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Cnpj" field="cnpj" >
