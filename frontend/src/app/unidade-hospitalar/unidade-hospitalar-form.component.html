@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>{{ unidadeHospitalar.id ? 'Editar Unidade Hospitalar' : 'Cadastrar Unidade Hospitalar' }}</h1>
+      <h1>{{ unidadeHospitalar.id ? 'Editar Unidade de Saúde' : 'Cadastrar Unidade de Saúde' }}</h1>
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="unidadeHospitalar.id" readonly/>
@@ -26,27 +26,27 @@
           <div class="ui-g-12 ui-md-6"></div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="sigla" [(ngModel)]="unidadeHospitalar.sigla" pInputText maxlength="10" required/>
-              <label>Sigla*</label>
+              <input type="text" name="sigla" [(ngModel)]="unidadeHospitalar.sigla" pInputText maxlength="10"/>
+              <label>Sigla *</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome" [(ngModel)]="unidadeHospitalar.nome" pInputText maxlength="100" required/>
-              <label>Nome*</label>
+              <input type="text" name="nome" [(ngModel)]="unidadeHospitalar.nome" pInputText maxlength="100"/>
+              <label>Nome *</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText maxlength="18" 
-              minlength="14" mask="99.999.999/9999-99" pattern="[0-9]+$" required/>
-              <label>Cnpj*</label>
+              minlength="14" mask="99.999.999/9999-99" pattern="[0-9]+$" />
+              <label>CNPJ *</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="endereco" [(ngModel)]="unidadeHospitalar.endereco" pInputText maxlength="200" required/>
-              <label>Endereco*</label>
+              <input type="text" name="endereco" [(ngModel)]="unidadeHospitalar.endereco" pInputText maxlength="200"/>
+              <label>Endereço *</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">

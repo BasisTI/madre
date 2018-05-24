@@ -7,7 +7,7 @@
           <input type="hidden" name="id" pInputText [(ngModel)]="especialidade.id" readonly/>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome" required [(ngModel)]="especialidade.nome" pInputText/>
+              <input type="text" name="nome" minlength="1" [(ngModel)]="especialidade.nome" pInputText/>
               <label>Nome da Especialidade *</label>
             </span>
           </div>

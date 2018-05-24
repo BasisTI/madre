@@ -50,26 +50,12 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
         title = 'Editar';
       }
       this.breadcrumbService.setItems([
-        { label: 'Unidade Hospitalars', routerLink: '/unidadeHospitalar' },
+        { label: 'Unidade de Saúde', routerLink: '/unidadeHospitalar' },
         { label: title }
       ]);
     });
   }
-/*
-  save() {
-    this.isSaving = true;
-    if (this.unidadeHospitalar.id !== undefined) {
-      this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
-    } else {
 
-      if (this.logo !== undefined) {
-        this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-      } else {
-        this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-      }
-    }
-  }
-*/
 save() {
   this.isSaving = true;
   if (this.unidadeHospitalar.id !== undefined) {

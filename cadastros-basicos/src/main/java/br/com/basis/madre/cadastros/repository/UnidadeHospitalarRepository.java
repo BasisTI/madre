@@ -15,14 +15,12 @@ import java.util.Optional;
 public interface UnidadeHospitalarRepository extends JpaRepository<UnidadeHospitalar, Long> {
 
     /*
-    * Busca no elastich para verificação de duplicidade de dados
-    *a
+    * Busca para verificação de duplicidade de dados
+    *
     *
     * */
-
-    Optional<UnidadeHospitalar> findOneByCnpj(String cnpj);
-    Optional<UnidadeHospitalar> findOneByCnpjAndSiglaIgnoreCase(String cnpj, String sigla);
     Optional<UnidadeHospitalar> findOneByNomeIgnoreCase(String nome);
+    Optional<UnidadeHospitalar> findOneByIdAndNomeIgnoreCase(Long id, String nome);
+    Optional<UnidadeHospitalar> findOneByIdAndSiglaIgnoreCase(Long id, String sigla);
     Optional<UnidadeHospitalar> findOneBySiglaIgnoreCase(String sigla);
-    Optional<UnidadeHospitalar> findOneByEnderecoIgnoreCase(String endereco);
 }
