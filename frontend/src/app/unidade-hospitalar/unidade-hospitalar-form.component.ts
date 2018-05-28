@@ -12,6 +12,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { MessagesModule } from 'primeng/primeng';
 import { UploadService } from '../upload/upload.service';
 import { FileUpload } from 'primeng/primeng';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -24,6 +25,12 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   logo: File;
 
+  rForm: FormGroup;
+  post:any;
+  siglaValid:string = '';
+  nomeValid:string = '';
+  titleAlert:string = 'Campo obrigatório!';
+
   @ViewChild('fileInput') fileInput: FileUpload;
 
   constructor(
@@ -33,7 +40,16 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     private pageNotificationService: PageNotificationService,
     private unidadeHospitalarService: UnidadeHospitalarService,
     private uploadService: UploadService,
-  ) {}
+    private fb: FormBuilder,
+    ) 
+  {
+    this.rForm = fb.group({
+      'nomeValid' : [null, Validators.required],
+      'siglaValid' : [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(10)])],
+      'enderecoValid' : [null, Validators.required],
+      'cnpjValid' : [null, Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.isSaving = false;
@@ -56,7 +72,9 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     });
   }
 
-save() {
+save(post) {
+  this.siglaValid = post.siglaValid;
+  this.nomeValid = post.nomeValid;
   this.isSaving = true;
   if (this.unidadeHospitalar.id !== undefined) {
     this.unidadeHospitalarService.find(this.unidadeHospitalar.id).subscribe(response => {

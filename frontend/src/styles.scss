@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.alert {
+    padding-top: 7px;
+    font-size: .9em;
+    color: red;
+    animation: 2s alertAnim forwards;
+}
