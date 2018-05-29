@@ -31,22 +31,14 @@ public class MadreUtilTest {
 
     @Test
     public void localDateTimeEmStringTest(){
+
         String test = localDateTimeEmString(null);
     }
 
     @Test
-    public void transformaLocalDateTimeEmString(){
-
-        madreUtil.transformaLocalDateTimeEmString(null);
-
+    public void transformaDataLocalEmStringTest(){
+        String test = transformaLocalDateTimeEmString(LocalDate.now());
+        test = transformaLocalDateTimeEmString(null);
     }
 
-    @Test
-    public void transformaLocalDateTimeEmStringFromatoCorreto(){
-
-        PowerMockito.mockStatic(LocalDate.class);
-        String transformaLocalDateTimeEmString = madreUtil.transformaLocalDateTimeEmString(null);
-
-
-       }
 }
