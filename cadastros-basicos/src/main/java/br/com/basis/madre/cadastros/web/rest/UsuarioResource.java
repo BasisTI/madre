@@ -100,10 +100,10 @@ public class UsuarioResource {
         log.debug("REST request to update Usuario : {}", usuario);
         try {
             log.debug("REST request to update UnidadeHospitalar : {}", usuario);
-            if(!(usuarioRepository.findOneByIdAndEmailIgnoreCase(usuario.getId(), usuario.getEmail()).isPresent())) {if (usuarioRepository.findOneByEmailIgnoreCase(usuario.getEmail()).isPresent()){
+            if(!(usuarioRepository.findOneByIdAndEmailIgnoreCase(usuario.getId(), usuario.getEmail()).isPresent()) && (usuarioRepository.findOneByEmailIgnoreCase(usuario.getEmail()).isPresent())) {
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);}
-            }if (!(usuarioRepository.findOneByIdAndLoginIgnoreCase(usuario.getId(), usuario.getLogin()).isPresent())){if (usuarioRepository.findOneByLoginIgnoreCase(usuario.getLogin()).isPresent()){
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);}}
+            if (!(usuarioRepository.findOneByIdAndLoginIgnoreCase(usuario.getId(), usuario.getLogin()).isPresent()) && (usuarioRepository.findOneByLoginIgnoreCase(usuario.getLogin()).isPresent())){
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);}
             if (usuario.getId() == null) {
                 return createUsuario(usuario);}
             Usuario result = usuarioService.save(usuario);

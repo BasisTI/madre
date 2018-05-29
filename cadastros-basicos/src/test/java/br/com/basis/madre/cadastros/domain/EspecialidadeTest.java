@@ -13,6 +13,12 @@ public class EspecialidadeTest implements Serializable, ReportObject {
     @InjectMocks
     private Especialidade especialidade;
 
+    @InjectMocks
+    private Especialidade test;
+
+    @InjectMocks
+    private Usuario usuario;
+
     @Test
     public void getIdTest(){
         especialidade.getId();
@@ -65,21 +71,41 @@ public class EspecialidadeTest implements Serializable, ReportObject {
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTestOne(){
         especialidade.equals(especialidade);
-        especialidade.equals(null);
-        Especialidade test = new Especialidade();
+    }
+
+    @Test
+    public void equalsTesTwo(){
+        // o != null e o.getClass != getClass
+        especialidade.equals(usuario);
+
+        // o == null e o.getClass == getClass
+        test = null;
+        especialidade.equals(test);
+
+
+    }
+
+    @Test
+    public void equalsTesThree(){
+        // true and true
+        especialidade.equals(test);
+        // false and true
+        test.setId(0l);
+        especialidade.equals(test);
+        // true and false
         test.setId(null);
+        especialidade.setId(0l);
         especialidade.equals(test);
     }
 
     @Test
-    public void equalsNullTest(){
-        Especialidade test = new  Especialidade();
-        Especialidade myTest = new Especialidade();
+    public void equalsTestFour(){
+        especialidade.setId(1l);
         test.setId(0l);
-        myTest.setId(2l);
-        test.equals(myTest);
+        especialidade.equals(test);
+
 
     }
 
