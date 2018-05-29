@@ -183,9 +183,11 @@ public class UsuarioTest {
     }
 
     @Test
-    public void getStringAtivoTest() {
+    public void getStringAtivoTest(){
         usuario.setAtivo(true);
-        usuario.getStringAtivo();
+        String test = usuario.getStringAtivo();
+        usuario.setAtivo(false);
+        test = usuario.getStringAtivo();
     }
 
 }

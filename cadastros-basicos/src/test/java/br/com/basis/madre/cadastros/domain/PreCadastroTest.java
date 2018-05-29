@@ -176,7 +176,8 @@ public class PreCadastroTest {
     @Test
     public void getDataNascimentoStringTest(){
         String test = preCadastro.getDataNascimentoString();
-        test = null;
+        preCadastro.setDataDeNascimento(null);
+        test = preCadastro.getDataNascimentoString();
     }
 
     @Test
