@@ -27,12 +27,12 @@ public class PreCadastroTest {
 
     @Test
     public void nomeDoPacienteTest(){
-        PreCadastro test = preCadastro.nomeDoPaciente("test");
+        PreCadastro test = preCadastro.nomeDoPaciente("Danilo Gonçalves");
     }
 
     @Test
     public void setNomeDoPacienteTest(){
-        preCadastro.setNomeDoPaciente("test");
+        preCadastro.setNomeDoPaciente("Danilo Gonçalves");
     }
 
 
@@ -44,12 +44,12 @@ public class PreCadastroTest {
 
     @Test
     public void nomeSocialTest(){
-        PreCadastro teste = preCadastro.nomeSocial("test");
+        PreCadastro test = preCadastro.nomeSocial("Maria");
     }
 
     @Test
     public void setNomeSocialTest(){
-        preCadastro.setNomeSocial("test");
+        preCadastro.setNomeSocial("Maria");
     }
 
     @Test
@@ -59,12 +59,12 @@ public class PreCadastroTest {
 
     @Test
     public void setNomeDaMaeTest(){
-        preCadastro.setNomeDaMae("teste");
+        preCadastro.setNomeDaMae("Rita de Cássia");
     }
 
     @Test
     public void nomeDaMaeTest(){
-        PreCadastro test = preCadastro.nomeDaMae("teste");
+        PreCadastro test = preCadastro.nomeDaMae("Rita de Cássia");
     }
 
     @Test
@@ -90,13 +90,13 @@ public class PreCadastroTest {
 
     @Test
     public void setNumCartaoSusTest(){
-        preCadastro.setNumCartaoSus("1");
+        preCadastro.setNumCartaoSus("704201205468582");
     }
 
 
     @Test
     public void numCartaoSusTest(){
-        PreCadastro test = preCadastro.numCartaoSus("0");
+        PreCadastro test = preCadastro.numCartaoSus("704201205468582");
     }
 
     @Test
