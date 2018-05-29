@@ -92,7 +92,7 @@ public class UnidadeHospitalarResource {
             log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
             if (validaNome(unidadeHospitalar) || validaSigla(unidadeHospitalar)) {
                 return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use"))
                     .body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
@@ -151,7 +151,7 @@ public class UnidadeHospitalarResource {
                 return createUnidadeHospitalar(unidadeHospitalar);
             }
             if (validaEdicao(unidadeHospitalar)) {
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use")).body(null);
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use")).body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
             return ResponseEntity.ok()
@@ -166,16 +166,12 @@ public class UnidadeHospitalarResource {
     }
 
     private boolean validaEdicao(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getNome()).isPresent())) {
-            if(validaNome(unidadeHospitalar)){
+        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getNome()).isPresent()) && (validaNome(unidadeHospitalar))) {
                 return Boolean.TRUE;
-            }
         }
 
-        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getSigla()).isPresent())) {
-            if(validaSigla(unidadeHospitalar)){
-                return Boolean.TRUE;
-            }
+        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getSigla()).isPresent()) && (validaSigla(unidadeHospitalar))) {
+            return Boolean.TRUE;
         }
 
         return Boolean.FALSE;

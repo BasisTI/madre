@@ -52,8 +52,6 @@ public class UsuarioResource {
 
     private final UsuarioRepository usuarioRepository;
 
-    private static final String DATA_EXISTS = "exists";
-
     public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
