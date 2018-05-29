@@ -7,26 +7,35 @@
                     <input type="hidden" name="id" pInputText [(ngModel)]="preCadastro.id" readonly/>
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
-              <input type="text" name="nome_do_paciente" [(ngModel)]="preCadastro.nomeDoPaciente" pInputText/>
+              <input type="text" name="nome_do_paciente" [(ngModel)]="preCadastro.nomeDoPaciente" pInputText required/>
               <label>Nome Do Paciente *</label>
+              <div *ngIf="editForm.controls['nome_do_paciente'] && !editForm.controls['nome_do_paciente'].valid && (editForm.controls['nome_do_paciente'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
-              <input type="text" name="nome_social" [(ngModel)]="preCadastro.nomeSocial" pInputText/>
+              <input type="text" name="nome_social" [(ngModel)]="preCadastro.nomeSocial" pInputText required/>
               <label>Nome Social</label>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
-              <input type="text" name="nome_da_mae" [(ngModel)]="preCadastro.nomeDaMae" pInputText/>
+              <input type="text" name="nome_da_mae" [(ngModel)]="preCadastro.nomeDaMae" pInputText required/>
               <label>Nome Da Mãe *</label>
+              <div *ngIf="editForm.controls['nome_da_mae'] && !editForm.controls['nome_da_mae'].valid && (editForm.controls['nome_da_mae'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
-              <p-calendar name="data_de_nascimento" [(ngModel)]="preCadastro.dataDeNascimento" dateFormat="dd/mm/yy"></p-calendar>
+              <p-calendar required name="data_de_nascimento" [(ngModel)]="preCadastro.dataDeNascimento" dateFormat="dd/mm/yy"></p-calendar>
               <label>Data De Nascimento *</label>
+              <div *ngIf="editForm.controls['data_de_nascimento'] && !editForm.controls['data_de_nascimento'].valid && (editForm.controls['data_de_nascimento'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
@@ -54,7 +63,7 @@
                         <button pButton type="button" label="Cancelar" routerLink="/preCadastro"></button>
                     </div>
                     <div class="ui-g-12 ui-md-2">
-                        <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving"></button>
+                        <button pButton type="submit" label="Salvar" [disabled]="isSaving"></button>
                     </div>
                 </div>
             </form>
