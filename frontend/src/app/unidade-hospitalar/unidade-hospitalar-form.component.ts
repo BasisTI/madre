@@ -89,8 +89,8 @@ save() {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      if (res.headers.toJSON()['x-cadastrosbasicosapp-errorunidadeexists'] == "Nome/Sigla already in use") {
-        this.pageNotificationService.addErrorMessage('Unidade de Saúde já cadastrada');
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-errordataexists'] != null) {
+        this.pageNotificationService.addErrorMessage('Registro já cadastrado');
       } else {
         this.pageNotificationService.addErrorMessage('CNPJ Inválido');
       }
@@ -139,4 +139,4 @@ save() {
       return response;
     });
   }
-}
+} 
