@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.LocalDate;
+
 @RunWith(MockitoJUnitRunner.class)
 public class PreCadastroTest {
     @InjectMocks
@@ -176,7 +178,7 @@ public class PreCadastroTest {
     @Test
     public void getDataNascimentoStringTest(){
         String test = preCadastro.getDataNascimentoString();
-        preCadastro.setDataDeNascimento(null);
+        preCadastro.setDataDeNascimento(LocalDate.now());
         test = preCadastro.getDataNascimentoString();
     }
 
