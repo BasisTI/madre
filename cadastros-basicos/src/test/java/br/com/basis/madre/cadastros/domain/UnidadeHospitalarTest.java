@@ -116,10 +116,6 @@ public class UnidadeHospitalarTest {
     @Test
     public void equalsTestOne(){
         unidadeHospitalar.equals(unidadeHospitalar);
-//        unidadeHospitalar.equals(null);
-//        UnidadeHospitalar test = new UnidadeHospitalar();
-//        test.setId(null);
-//        unidadeHospitalar.equals(test);
     }
 
     @Test

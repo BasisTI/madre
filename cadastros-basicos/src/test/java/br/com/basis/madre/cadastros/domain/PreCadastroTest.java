@@ -10,6 +10,12 @@ public class PreCadastroTest {
     @InjectMocks
     private PreCadastro preCadastro;
 
+    @InjectMocks
+    private PreCadastro test;
+
+    @InjectMocks
+    private Usuario usuario;
+
     @Test
     public void getIdTest(){
         preCadastro.getId();
@@ -128,23 +134,44 @@ public class PreCadastroTest {
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTestOne(){
         preCadastro.equals(preCadastro);
-        preCadastro.equals(null);
-        PreCadastro test = new PreCadastro();
+    }
+
+    @Test
+    public void equalsTesTwo(){
+        // o != null e o.getClass != getClass
+        preCadastro.equals(usuario);
+
+        // o == null e o.getClass == getClass
+        test = null;
+        preCadastro.equals(test);
+
+
+    }
+
+    @Test
+    public void equalsTesThree(){
+        // true and true
+        preCadastro.equals(test);
+        // false and true
+        test.setId(0l);
+        preCadastro.equals(test);
+        // true and false
         test.setId(null);
+        preCadastro.setId(0l);
         preCadastro.equals(test);
     }
 
     @Test
-    public void equalsNullTest(){
-        PreCadastro test = new  PreCadastro();
-        PreCadastro myTest = new  PreCadastro();
+    public void equalsTestFour(){
+        preCadastro.setId(1l);
         test.setId(0l);
-        myTest.setId(2l);
-        test.equals(myTest);
+        preCadastro.equals(test);
+
 
     }
+
 
     @Test
     public void getDataNascimentoStringTest(){
