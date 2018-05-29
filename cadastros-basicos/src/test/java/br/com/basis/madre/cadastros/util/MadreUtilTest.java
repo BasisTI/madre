@@ -37,8 +37,8 @@ public class MadreUtilTest {
 
     @Test
     public void transformaDataLocalEmStringTest(){
-        String test = transformaLocalDateTimeEmString(LocalDate.now());
-        test = transformaLocalDateTimeEmString(null);
+        String test = madreUtil.transformaLocalDateTimeEmString(LocalDate.now());
+        test = madreUtil.transformaLocalDateTimeEmString(null);
     }
 
 }
