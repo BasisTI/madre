@@ -176,12 +176,15 @@ public class PreCadastroTest {
     @Test
     public void getDataNascimentoStringTest(){
         String test = preCadastro.getDataNascimentoString();
+        test = null;
     }
 
     @Test
     public void getStringAtivoTest(){
         preCadastro.setAtivo(true);
         String test = preCadastro.getStringAtivo();
+        preCadastro.setAtivo(false);
+        test = preCadastro.getStringAtivo();
     }
 
 
