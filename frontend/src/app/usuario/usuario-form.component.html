@@ -8,56 +8,68 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nome" [(ngModel)]="usuario.nome" pInputText required/>
-              <label>Nome*</label>
+              <label>Nome *</label>
+              <div *ngIf="editForm.controls['nome'] && !editForm.controls['nome'].valid && (editForm.controls['nome'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="login" [(ngModel)]="usuario.login" pInputText required minlength="1"/>
-              <label>Login*</label>
+              <input type="text" name="login" [(ngModel)]="usuario.login" pInputText minlength="1" required/>
+              <label>Login *</label>
+              <div *ngIf="editForm.controls['login'] && !editForm.controls['login'].valid && (editForm.controls['login'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="password" name="senha" [(ngModel)]="usuario.senha" pInputText required minlength="4"/>
-              <label>Senha*</label>
+              <input type="password" name="senha" [(ngModel)]="usuario.senha" pInputText minlength="4" required/>
+              <label>Senha *</label>
+              <div *ngIf="editForm.controls['senha'] && !editForm.controls['senha'].valid && (editForm.controls['senha'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="email" name="email" [(ngModel)]="usuario.email" pInputText required minlength="3"/>
-              <label>Email*</label>
+              <input type="email" name="email" [(ngModel)]="usuario.email" pInputText minlength="3" required/>
+              <label>Email *</label>
+              <div *ngIf="editForm.controls['email'] && !editForm.controls['email'].valid && (editForm.controls['email'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
-          <!-- <div class="ui-g-12 ui-md-6">
-            <p-dropdown [options]="perfils" optionLabel="id" placeholder="Perfis" name="perfil" [(ngModel)]="usuario.perfil" [autoWidth]="false" dataKey="id"></p-dropdown>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <p-dropdown [options]="unidade_de_saude" optionLabel="id" placeholder="Unidades de Saude" name="unidade_de_saude" [(ngModel)]="usuario.unidade_de_saude" [autoWidth]="false" dataKey="id"></p-dropdown>
-          </div> -->
           <div class="ui-g-12 ui-md-6">
               <div class="ui-g">
                 <div class="ui-g-12 ui-md-2">
                   <label>Ativo</label>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="true" label="Sim"></p-radioButton>
+                <p-radioButton name="ativo" [value]="true" label="Sim" [(ngModel)]="usuario.ativo"></p-radioButton>
               </div>
               <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="ativo" [value]="false" label="Não"></p-radioButton>
+                <p-radioButton name="ativo" [value]="false" label="Não" [(ngModel)]="usuario.ativo"></p-radioButton>
               </div>
             </div>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="multiSelect" name="perfil" [(ngModel)]="usuario.perfil" pInputText/>
-              <label>Perfil*</label>
+              <input type="multiSelect" name="perfil" [(ngModel)]="usuario.perfil" pInputText required/>
+              <label>Perfil *</label>
+              <div *ngIf="editForm.controls['perfil'] && !editForm.controls['perfil'].valid && (editForm.controls['perfil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="unidadeDeSaude" [(ngModel)]="usuario.unidadeDeSaude" pInputText required/>
-              <label>Unidade De Saude*</label>
+              <label>Unidade De Saude *</label>
+              <div *ngIf="editForm.controls['unidadeDeSaude'] && !editForm.controls['unidadeDeSaude'].valid && (editForm.controls['unidadeDeSaude'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
         </div>
@@ -66,7 +78,7 @@
             <button pButton type="button" label="Cancelar" routerLink="/usuario"></button>
           </div>
           <div class="ui-g-12 ui-md-2">
-            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+            <button pButton type="submit" label="Salvar" [disabled]="isSaving" ></button>
           </div>
         </div>
       </form>

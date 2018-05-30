@@ -9,8 +9,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class UsuarioTest {
     @InjectMocks
     Usuario usuario;
+
+    @InjectMocks
+    Usuario test;
+
     @InjectMocks
     UnidadeHospitalar unidadeHospitalar;
+
+
     @Test
     public void getIdTest(){
         usuario.getId();
@@ -138,27 +144,50 @@ public class UsuarioTest {
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTestOne(){
         usuario.equals(usuario);
-        usuario.equals(null);
-        Usuario test = new Usuario();
+    }
+
+    @Test
+    public void equalsTesTwo(){
+        // o != null e o.getClass != getClass
+        usuario.equals(unidadeHospitalar);
+
+        // o == null e o.getClass == getClass
+        test = null;
+        usuario.equals(test);
+
+
+    }
+
+    @Test
+    public void equalsTesThree(){
+        // true and true
+        usuario.equals(test);
+        // false and true
+        test.setId(0l);
+        usuario.equals(test);
+        // true and false
         test.setId(null);
+        usuario.setId(0l);
         usuario.equals(test);
     }
+
     @Test
-    public void equalsNullTest(){
-        Usuario test = new  Usuario();
-        Usuario myTest = new  Usuario();
+    public void equalsTestFour(){
+        usuario.setId(1l);
         test.setId(0l);
-        myTest.setId(2l);
-        test.equals(myTest);
+        usuario.equals(test);
+
 
     }
 
     @Test
-    public void getStringAtivoTest() {
+    public void getStringAtivoTest(){
         usuario.setAtivo(true);
-        usuario.getStringAtivo();
+        String test = usuario.getStringAtivo();
+        usuario.setAtivo(false);
+        test = usuario.getStringAtivo();
     }
 
 }

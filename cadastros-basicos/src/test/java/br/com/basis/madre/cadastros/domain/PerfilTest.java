@@ -10,6 +10,12 @@ public class PerfilTest {
     @InjectMocks
     private Perfil perfil;
 
+    @InjectMocks
+    private Perfil test;
+
+    @InjectMocks
+    private Usuario usuario;
+
 
     @Test
     public void getIdTest(){
@@ -108,22 +114,41 @@ public class PerfilTest {
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTestOne(){
         perfil.equals(perfil);
-        perfil.equals(null);
-        Perfil test = new Perfil();
+    }
+
+    @Test
+    public void equalsTesTwo(){
+        // o != null e o.getClass != getClass
+        perfil.equals(usuario);
+
+        // o == null e o.getClass == getClass
+        test = null;
+        perfil.equals(test);
+
+
+    }
+
+    @Test
+    public void equalsTesThree(){
+        // true and true
+        perfil.equals(test);
+        // false and true
+        test.setId(0l);
+        perfil.equals(test);
+        // true and false
         test.setId(null);
+        perfil.setId(0l);
         perfil.equals(test);
     }
 
-
     @Test
-    public void equalsNullTest(){
-        Perfil test = new  Perfil();
-        Perfil myTest = new  Perfil();
+    public void equalsTestFour(){
+        perfil.setId(1l);
         test.setId(0l);
-        myTest.setId(2l);
-        test.equals(myTest);
+        perfil.equals(test);
+
 
     }
 

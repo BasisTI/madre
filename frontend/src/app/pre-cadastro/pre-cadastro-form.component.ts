@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { SelectItem } from 'primeng/primeng';
-
+import {NgxMaskModule} from 'ngx-mask';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { PreCadastro } from './pre-cadastro.model';

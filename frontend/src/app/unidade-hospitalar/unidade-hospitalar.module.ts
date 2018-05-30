@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BotoesExportacaoModule } from './../botoes-exportacao/botoes-exportacao.module';
 import { DatatableModule } from '@basis/angular-components';
 import {
@@ -31,6 +31,7 @@ import { UtilModule } from '../util/util.module';
     CommonModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(unidadeHospitalarRoute),
     DatatableModule,
     ButtonModule,

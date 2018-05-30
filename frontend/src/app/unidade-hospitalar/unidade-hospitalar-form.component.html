@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>{{ unidadeHospitalar.id ? 'Editar Unidade Hospitalar' : 'Cadastrar Unidade Hospitalar' }}</h1>
+      <h1>{{ unidadeHospitalar.id ? 'Editar Unidade de Saúde' : 'Cadastrar Unidade de Saúde' }}</h1>
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="unidadeHospitalar.id" readonly/>
@@ -27,26 +27,38 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="sigla" [(ngModel)]="unidadeHospitalar.sigla" pInputText maxlength="10" required/>
-              <label>Sigla*</label>
+              <label>Sigla *</label>
+              <div *ngIf="editForm.controls['sigla'] && !editForm.controls['sigla'].valid && (editForm.controls['sigla'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nome" [(ngModel)]="unidadeHospitalar.nome" pInputText maxlength="100" required/>
-              <label>Nome*</label>
+              <label>Nome *</label>
+              <div *ngIf="editForm.controls['nome'] && !editForm.controls['nome'].valid && (editForm.controls['nome'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="cnpj" [(ngModel)]="unidadeHospitalar.cnpj" pInputText maxlength="18" 
               minlength="14" mask="99.999.999/9999-99" pattern="[0-9]+$" required/>
-              <label>Cnpj*</label>
+              <label>CNPJ *</label>
+              <div *ngIf="editForm.controls['cnpj'] && !editForm.controls['cnpj'].valid && (editForm.controls['cnpj'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="endereco" [(ngModel)]="unidadeHospitalar.endereco" pInputText maxlength="200" required/>
-              <label>Endereco*</label>
+              <label>Endereço *</label>
+              <div *ngIf="editForm.controls['endereco'] && !editForm.controls['endereco'].valid && (editForm.controls['endereco'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
@@ -68,7 +80,7 @@
             <button pButton type="button" label="Cancelar" routerLink="/unidadeHospitalar"></button>
           </div>
           <div class="ui-g-12 ui-md-2">
-            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+            <button pButton type="submit" label="Salvar" [disabled]="isSaving" ></button>
           </div>
   
         </div>

@@ -75,8 +75,10 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     }
   }
   private addErrorMessage(res: Response) {
-    if (res.headers.toJSON()['x-cadastrosbasicosapp-errorexists'] != null) {
-      this.pageNotificationService.addErrorMessage('Registro já cadastrado!');
+    if (res.headers.toJSON()['x-cadastrosbasicosapp-erroremailexists'] == "Email already in use") {
+      this.pageNotificationService.addErrorMessage('Email já cadastrado!');
+    } else if (res.headers.toJSON()['x-cadastrosbasicosapp-errorloginexists'] == "Login already in use") {
+      this.pageNotificationService.addErrorMessage('Login já cadastrado!');
     } else {
       this.pageNotificationService.addErrorMessage('Dados inválidos!');
     }

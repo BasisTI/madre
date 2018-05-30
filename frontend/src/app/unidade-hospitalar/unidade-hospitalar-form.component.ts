@@ -12,6 +12,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { MessagesModule } from 'primeng/primeng';
 import { UploadService } from '../upload/upload.service';
 import { FileUpload } from 'primeng/primeng';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -33,7 +34,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     private pageNotificationService: PageNotificationService,
     private unidadeHospitalarService: UnidadeHospitalarService,
     private uploadService: UploadService,
-  ) {}
+    ){}
 
   ngOnInit() {
     this.isSaving = false;
@@ -50,26 +51,12 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
         title = 'Editar';
       }
       this.breadcrumbService.setItems([
-        { label: 'Unidade Hospitalars', routerLink: '/unidadeHospitalar' },
+        { label: 'Unidade de Saúde', routerLink: '/unidadeHospitalar' },
         { label: title }
       ]);
     });
   }
-/*
-  save() {
-    this.isSaving = true;
-    if (this.unidadeHospitalar.id !== undefined) {
-      this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
-    } else {
 
-      if (this.logo !== undefined) {
-        this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-      } else {
-        this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-      }
-    }
-  }
-*/
 save() {
   this.isSaving = true;
   if (this.unidadeHospitalar.id !== undefined) {
@@ -152,4 +139,4 @@ save() {
       return response;
     });
   }
-}
+} 

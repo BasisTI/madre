@@ -10,6 +10,13 @@ public class UnidadeHospitalarTest {
     @InjectMocks
     private UnidadeHospitalar unidadeHospitalar;
 
+    @InjectMocks
+    private UnidadeHospitalar test;
+
+    @InjectMocks
+    private Usuario usuario;
+
+
     @Test
     public void getIdTest(){
         unidadeHospitalar.getId();
@@ -107,12 +114,42 @@ public class UnidadeHospitalarTest {
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTestOne(){
         unidadeHospitalar.equals(unidadeHospitalar);
-        unidadeHospitalar.equals(null);
-        UnidadeHospitalar test = new UnidadeHospitalar();
-        test.setId(null);
+    }
+
+    @Test
+    public void equalsTesTwo(){
+        // o != null e o.getClass != getClass
+        unidadeHospitalar.equals(usuario);
+
+        // o == null e o.getClass == getClass
+        test = null;
         unidadeHospitalar.equals(test);
+
+
+    }
+
+    @Test
+    public void equalsTesThree(){
+        // true and true
+        unidadeHospitalar.equals(test);
+        // false and true
+        test.setId(0l);
+        unidadeHospitalar.equals(test);
+        // true and false
+        test.setId(null);
+        unidadeHospitalar.setId(0l);
+        unidadeHospitalar.equals(test);
+    }
+
+    @Test
+    public void equalsTestFour(){
+        unidadeHospitalar.setId(1l);
+        test.setId(0l);
+        unidadeHospitalar.equals(test);
+
+
     }
 
     @Test
@@ -123,16 +160,6 @@ public class UnidadeHospitalarTest {
     @Test
     public void setLogoIdTest() {
         unidadeHospitalar.setLogoId(0);
-    }
-
-    @Test
-    public void equalsNullTest(){
-        UnidadeHospitalar test = new UnidadeHospitalar();
-        UnidadeHospitalar myTest = new  UnidadeHospitalar();
-        test.setId(0l);
-        myTest.setId(2l);
-        test.equals(myTest);
-
     }
 
 }

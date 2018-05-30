@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-          <h1>Unidade Hospitalares</h1>
+          <h1>Unidade de Saúde</h1>
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12">
                     <span class="md-inputfield">
@@ -21,15 +21,15 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
-                    <p-column header="Sigla" field="sigla"></p-column>
-                    <p-column header="Nome" field="nome"></p-column>
-                    <p-column header="Cnpj" field="cnpj" >
+                    <p-column header="Sigla" field="sigla" [sortable]="true"></p-column>
+                    <p-column header="Nome" field="nome" [sortable]="true"></p-column>
+                    <p-column header="CNPJ" field="cnpj" [sortable]="true">
                         <ng-template  let-col let-item="rowData" pTemplate="body">
                             {{ item.cnpj | cpfCnpj }}
                         </ng-template>
                     </p-column>
-                    <p-column header="Enderço" field="endereco"></p-column>
-                    <p-column header="Ativo" field="ativo">
+                    <p-column header="Endereço" field="endereco" [sortable]="true"></p-column>
+                    <p-column header="Ativo" field="ativo" [sortable]="true">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
                             {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
                         </ng-template>

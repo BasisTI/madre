@@ -90,9 +90,9 @@ public class UnidadeHospitalarResource {
         @Valid @RequestBody UnidadeHospitalar unidadeHospitalar) throws URISyntaxException {
         try {
             log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
-            if (valida(unidadeHospitalar)) {
+            if (validaNome(unidadeHospitalar) || validaSigla(unidadeHospitalar)) {
                 return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use"))
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use"))
                     .body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
@@ -108,17 +108,25 @@ public class UnidadeHospitalarResource {
 
     }
 
-    private boolean valida(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
+    private boolean validaNome(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
         if (unidadeHospitalar.getId() != null) {
-            throw new BadRequestAlertException("A new parecerPadrao cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-        if (unidadeHospitalarRepository.findOneByCnpj(unidadeHospitalar.getCnpj()).isPresent() ||
-            unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent() ||
-            unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent() ||
-            unidadeHospitalarRepository.findOneByEnderecoIgnoreCase(unidadeHospitalar.getEndereco()).isPresent()
-            ) {
+        if (unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent()) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    private boolean validaSigla(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
+        if (unidadeHospitalar.getId() != null) {
+            throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+
+        //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
+        if (unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent()) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -142,8 +150,8 @@ public class UnidadeHospitalarResource {
             if (unidadeHospitalar.getId() == null) {
                 return createUnidadeHospitalar(unidadeHospitalar);
             }
-            if (validaCnpjSigla(unidadeHospitalar)) {
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dataexists", "Data already in use")).body(null);
+            if (validaEdicao(unidadeHospitalar)) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use")).body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
             return ResponseEntity.ok()
@@ -157,10 +165,15 @@ public class UnidadeHospitalarResource {
         }
     }
 
-    private boolean validaCnpjSigla(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (unidadeHospitalarRepository.findOneByCnpjAndSiglaIgnoreCase(unidadeHospitalar.getCnpj(), unidadeHospitalar.getSigla()).isPresent()) {
+    private boolean validaEdicao(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
+        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getNome()).isPresent()) && (validaNome(unidadeHospitalar))) {
+                return Boolean.TRUE;
+        }
+
+        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getSigla()).isPresent()) && (validaSigla(unidadeHospitalar))) {
             return Boolean.TRUE;
         }
+
         return Boolean.FALSE;
     }
 

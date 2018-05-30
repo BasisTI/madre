@@ -39,7 +39,7 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.breadcrumbService.setItems([{ label: 'Unidade Hospitalars' }]);
+    this.breadcrumbService.setItems([{ label: 'Unidade de Saúde' }]);
   }
 
   valueFiltro(valuefiltro: string) {

@@ -27,7 +27,7 @@ export class UnidadeHospitalarDetailComponent implements OnInit, OnDestroy {
       this.load(params['id']);
     });
     this.breadcrumbService.setItems([
-      { label: 'Unidade Hospitalars', routerLink: '/unidadeHospitalar' },
+      { label: 'Unidade de Saúde', routerLink: '/unidadeHospitalar' },
       { label: 'Visualizar' }
     ]);
   }
