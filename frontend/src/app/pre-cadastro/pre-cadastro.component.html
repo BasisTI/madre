@@ -22,16 +22,16 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
-                    <p-column header="Nome Do Paciente" field="nomeDoPaciente"></p-column>
-                    <p-column header="Nome Social" field="nomeSocial"></p-column>
-                    <p-column header="Nome Da Mãe" field="nomeDaMae"></p-column>
-                    <p-column header="Data De Nascimento" field="dataDeNascimento">
+                    <p-column header="Nome Do Paciente" field="nomeDoPaciente" [sortable]="true"></p-column>
+                    <p-column header="Nome Social" field="nomeSocial" [sortable]="true"></p-column>
+                    <p-column header="Nome Da Mãe" field="nomeDaMae" [sortable]="true"></p-column>
+                    <p-column header="Data De Nascimento" field="dataDeNascimento" [sortable]="true">
                         <ng-template let-col let-dataDeNascimento="rowData" pTemplate="body">
                             {{ dataDeNascimento[col.field]|date:'dd/MM/y' }}
                         </ng-template>
                     </p-column>
-                    <p-column header="Número do Cartão do SUS" field="numCartaoSus"></p-column>
-                    <p-column header="Ativo" field="ativo">
+                    <p-column header="Número do Cartão do SUS" field="numCartaoSus" [sortable]="true"></p-column>
+                    <p-column header="Ativo" field="ativo" [sortable]="true">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
                             {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
                         </ng-template>

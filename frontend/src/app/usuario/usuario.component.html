@@ -22,11 +22,11 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
-                    <p-column header="Nome" field="nome"></p-column>
-                    <p-column header="Login" field="login"></p-column>
-                    <p-column header="Email" field="email"></p-column>
-                    <p-column header="Unidade de Saude" field="unidadeDeSaude"></p-column>
-                    <p-column header="Ativo" field="ativo">
+                    <p-column header="Nome" field="nome" [sortable]="true"></p-column>
+                    <p-column header="Login" field="login" [sortable]="true"></p-column>
+                    <p-column header="Email" field="email" [sortable]="true"></p-column>
+                    <p-column header="Unidade de Saude" field="unidadeDeSaude" [sortable]="true"></p-column>
+                    <p-column header="Ativo" field="ativo" [sortable]="true">
                         <ng-template let-col let-ativo="rowData" pTemplate="body">
                             {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
                         </ng-template>

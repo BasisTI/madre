@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
 import { BotoesExportacaoModule } from './../botoes-exportacao/botoes-exportacao.module';
 import {
@@ -22,6 +22,8 @@ import {
   preCadastroRoute
 } from './';
 import { BotoesExportacaoComponent } from '../botoes-exportacao/botoes-exportacao.component';
+import {NgxMaskModule} from 'ngx-mask';
+import { UtilModule } from '../util/util.module';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { BotoesExportacaoComponent } from '../botoes-exportacao/botoes-exportaca
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
-    BotoesExportacaoModule
+    BotoesExportacaoModule,
+    UtilModule,
+    NgxMaskModule.forRoot(),
   ],
   declarations: [
     PreCadastroComponent,
