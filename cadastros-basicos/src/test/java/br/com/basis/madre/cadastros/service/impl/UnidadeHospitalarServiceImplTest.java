@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Optional;
+
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -53,6 +55,7 @@ public class UnidadeHospitalarServiceImplTest {
     @Test
     public void findAllTest() {
         Page<UnidadeHospitalar> test = unidadeHospitalarServiceImpl.findAll(java.util.Optional.of("test"), pageable);
+        unidadeHospitalarServiceImpl.findAll(Optional.empty(),pageable);
     }
 
     @Test

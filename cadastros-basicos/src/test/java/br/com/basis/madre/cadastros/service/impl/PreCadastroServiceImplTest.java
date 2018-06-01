@@ -5,14 +5,13 @@ import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.repository.PreCadastroRepository;
 import br.com.basis.madre.cadastros.repository.search.PreCadastroSearchRepository;
-import br.com.basis.madre.cadastros.service.filter.UsuarioFilter;
 import net.sf.jasperreports.repo.InputStreamResource;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.data.domain.Page;
@@ -78,6 +77,13 @@ public class PreCadastroServiceImplTest {
         Page<PreCadastro> test = preCadastroServiceImpl.findAll(java.util.Optional.of("test"), pageable);
         preCadastroServiceImpl.findAll(optional,pageable);
         StringUtils.isNotBlank(null);
+
+
+    }
+    @Test
+    public void findAllCase4Test() {
+        preCadastroServiceImpl.findAll(optional.empty(),pageable);
+        Assert.assertEquals(false,optional.isPresent());
     }
 
     @Test

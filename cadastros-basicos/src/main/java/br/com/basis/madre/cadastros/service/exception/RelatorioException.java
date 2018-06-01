@@ -21,6 +21,8 @@ public class RelatorioException extends Exception {
     public static String getCodeEntidade() {
         return CODE_ENTIDADE;
     }
+
+
 }
 
 
