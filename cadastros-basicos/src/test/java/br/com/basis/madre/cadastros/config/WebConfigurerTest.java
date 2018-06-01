@@ -10,6 +10,8 @@ import io.undertow.Undertow.Builder;
 import io.undertow.UndertowOptions;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.mock.env.MockEnvironment;
@@ -18,6 +20,9 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.xnio.OptionMap;
+
+import afu.org.checkerframework.checker.units.qual.m;
+import akka.actor.Props;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
@@ -54,17 +59,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 public class WebConfigurerTest {
-
+    @InjectMocks
     private WebConfigurer webConfigurer;
 
     private MockServletContext servletContext;
 
     private MockEnvironment env;
-
+    @Mock
     private JHipsterProperties props;
 
     private MetricRegistry metricRegistry;
-
+    
     @Before
     public void setup() {
         servletContext = spy(new MockServletContext());
@@ -337,5 +342,12 @@ public class WebConfigurerTest {
         public Map<String, String> getInitParameters() {
             return null;
         }
+        // @Test
+        // public void customizeTestCase4(){
+        //    // when(props.getHttp().getVersion().equals(JHipsterProperties.Http.Version.V_2_0) == false);
+        //    webConfigurer.customize(JHipsterProperties.Http.Version.V_2_0);
+        // }
     }
+    
+    
 }

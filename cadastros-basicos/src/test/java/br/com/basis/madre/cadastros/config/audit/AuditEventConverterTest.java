@@ -18,12 +18,18 @@ public class AuditEventConverterTest {
     @Mock
     Iterable<PersistentAuditEvent> persistentAuditEvents;
 
+    @Mock
+    private List<PersistentAuditEvent> lista;
+
+    Object o;
 
     @Test
     public void convertToAuditEventNullTest(){
         persistentAuditEvents = null;
         List<AuditEvent> test = auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
+
+
 
 
 }
