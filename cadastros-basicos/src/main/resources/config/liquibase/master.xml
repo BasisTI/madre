@@ -9,9 +9,7 @@
     <include file="config/liquibase/changelog/20180426043131_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180426184142_added_entity_PreCadastro.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180509202400_added_entity_Perfil.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180515193559_createtable_files_column_logoId_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180515201921_added_entity_Especialidade.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180516160348_drop_collumns_logo_logo_content_type.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180517183451_changelog_add_table_anexo.xml" relativeToChangelogFile="false"/>   
  
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->

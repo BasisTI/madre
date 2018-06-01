@@ -152,14 +152,4 @@ public class UnidadeHospitalarTest {
 
     }
 
-    @Test
-    public void getLogoIdTest() {
-        unidadeHospitalar.getLogoId();
-    }
-
-    @Test
-    public void setLogoIdTest() {
-        unidadeHospitalar.setLogoId(0);
-    }
-
 }

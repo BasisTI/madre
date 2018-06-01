@@ -72,7 +72,7 @@ public class UnidadeHospitalarResource {
     private UploadedFilesRepository filesRepository;
 
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
-        UnidadeHospitalarRepository unidadeHospitalarRepository) {
+                                     UnidadeHospitalarRepository unidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
         this.unidadeHospitalarRepository = unidadeHospitalarRepository;
     }
@@ -167,7 +167,7 @@ public class UnidadeHospitalarResource {
 
     private boolean validaEdicao(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
         if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getNome()).isPresent()) && (validaNome(unidadeHospitalar))) {
-                return Boolean.TRUE;
+            return Boolean.TRUE;
         }
 
         if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getSigla()).isPresent()) && (validaSigla(unidadeHospitalar))) {
@@ -226,7 +226,7 @@ public class UnidadeHospitalarResource {
      * SEARCH  /_search/unidade-hospitalars?query=:query : search for the unidadeHospitalar corresponding
      * to the query.
      *
-     * @param query the query of the unidadeHospitalar search
+     * @param query    the query of the unidadeHospitalar search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -250,7 +250,7 @@ public class UnidadeHospitalarResource {
     @Timed
     public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
-            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio,query);
+            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
@@ -258,50 +258,10 @@ public class UnidadeHospitalarResource {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<UploadFile> singleFileUpload(@RequestParam("file") MultipartFile file,
-        HttpServletRequest request,
-        RedirectAttributes redirectAttributes) {
-
-        UploadFile uploadFile = new UploadFile();
-        try {
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-
-            String classPathString = this.getClass().getClassLoader().getResource("").toString();
-            Path classPath = Paths.get(classPathString).toAbsolutePath();
-            String folderPathString = classPath.toString();
-            criaDiretorios(folderPathString);
-
-            byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis())).getBytes("UTF-8");
-            String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));
-            String ext = FilenameUtils.getExtension(file.getOriginalFilename());
-            filename += "." + ext;
-            Path path = Paths.get(folderPathString + "/" + filename);
-            System.out.println(path);
-            Files.write(path, bytes);
-
-            setUploadFile(uploadFile, file,filename, bytes);
-
-        } catch (IOException | NoSuchAlgorithmException e) { throw new UploadException("Erro ao efetuar o upload do arquivo", e); }
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(uploadFile));
+    public UnidadeHospitalar singleFileUpload(@RequestParam("file") MultipartFile file) throws Exception {
+        byte[] bytes = file.getBytes();
+        UnidadeHospitalar unidadeHospitalar = new UnidadeHospitalar();
+        unidadeHospitalar.setLogo(bytes);
+        return unidadeHospitalar;
     }
-
-    public void criaDiretorios(String folderPathString){
-        File directory = new File(folderPathString);
-        boolean isDirectory;
-        if (!directory.exists()) {
-            isDirectory = directory.mkdirs();
-            if(isDirectory) { log.debug("Directory sucessfull created"); }
-            else{ log.debug("Directory is not sucessfull created"); }
-        }
-
-    }
-    public void setUploadFile(UploadFile uploadFile, MultipartFile file, String filename,  byte[] bytes){
-        uploadFile.setDateOf(new Date());
-        uploadFile.setOriginalName(file.getOriginalFilename());
-        uploadFile.setFilename(filename);
-        uploadFile.setSizeOf(bytes.length);
-        filesRepository.save(uploadFile);
-    }
-
 }

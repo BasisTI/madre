@@ -6,13 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -34,6 +28,13 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Lob
+    @Column(name = "logo")
+    private byte[] logo;
+
+    @Column(name = "logo_content_type")
+    private String logoContentType;
+
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "sigla", length = 10, nullable = false)
@@ -47,7 +48,7 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @NotNull
     @Size(min = 14, max = 14)
     @Column(name = "cnpj", length = 14, nullable = false)
-    @CNPJ(message="CNPJ inválido")
+    @CNPJ(message = "CNPJ inválido")
     private String cnpj;
 
     @NotNull
@@ -59,9 +60,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
-    @Column(name = "logo_id")
-    private int logoId;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -69,6 +67,32 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public UnidadeHospitalar logo(byte[] logo) {
+        this.logo = logo;
+        return this;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public String getLogoContentType() {
+        return logoContentType;
+    }
+
+    public UnidadeHospitalar logoContentType(String logoContentType) {
+        this.logoContentType = logoContentType;
+        return this;
+    }
+
+    public void setLogoContentType(String logoContentType) {
+        this.logoContentType = logoContentType;
     }
 
     public String getSigla() {
@@ -166,14 +190,8 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
             ", cnpj='" + getCnpj() + "'" +
             ", endereco='" + getEndereco() + "'" +
             ", ativo='" + isAtivo() + "'" +
+            ", logo='" + getLogo() + "'" +
+            ", logoContentType='" + getLogoContentType() + " '" +
             "}";
-    }
-
-    public int getLogoId() {
-        return logoId;
-    }
-
-    public void setLogoId(int logoId) {
-        this.logoId = logoId;
     }
 }
