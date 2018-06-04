@@ -70,7 +70,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      if (res.headers.toJSON()['x-cadastrosbasicosapp-errordataexists'] != null) {
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-errorunidadeexists'] == "Nome/Sigla already in use") {
         this.pageNotificationService.addErrorMessage('Registro já cadastrado');
       } else {
         this.pageNotificationService.addErrorMessage('CNPJ Inválido');
