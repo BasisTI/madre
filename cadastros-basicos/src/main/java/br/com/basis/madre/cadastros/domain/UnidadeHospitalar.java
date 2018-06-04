@@ -6,7 +6,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -70,16 +77,16 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     }
 
     public byte[] getLogo() {
-        return logo;
+        return logo.clone();
     }
 
     public UnidadeHospitalar logo(byte[] logo) {
-        this.logo = logo;
+        this.logo = logo.clone();
         return this;
     }
 
     public void setLogo(byte[] logo) {
-        this.logo = logo;
+        this.logo = logo.clone();
     }
 
     public String getLogoContentType() {

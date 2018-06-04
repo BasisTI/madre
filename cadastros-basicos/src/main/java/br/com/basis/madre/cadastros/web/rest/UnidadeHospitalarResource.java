@@ -1,20 +1,17 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
-import br.com.basis.madre.cadastros.domain.UploadFile;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UploadedFilesRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.errors.UploadException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +32,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.xml.bind.DatatypeConverter;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,19 +81,13 @@ public class UnidadeHospitalarResource {
                 throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
             }
             if (validaNome(unidadeHospitalar) || validaSigla(unidadeHospitalar)) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use"))
-                    .body(null);
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use")) .body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
-            return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-                .body(result);
+            return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
         } catch (UnidadeHospitalarException e) {
             log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest()
-                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(unidadeHospitalar);
+            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage())) .body(unidadeHospitalar);
         }
 
     }
@@ -253,7 +234,7 @@ public class UnidadeHospitalarResource {
     }
 
     @PostMapping("/upload")
-    public UnidadeHospitalar singleFileUpload(@RequestParam("file") MultipartFile file) throws Exception {
+    public UnidadeHospitalar singleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
         byte[] bytes = file.getBytes();
         UnidadeHospitalar unidadeHospitalar = new UnidadeHospitalar();
         unidadeHospitalar.setLogo(bytes);
