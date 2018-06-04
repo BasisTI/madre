@@ -24,7 +24,7 @@ export class UploadService {
     body.append('file', file)
 
     return this.http.post(this.resources.upload, body).map(response => {
-      return response;
+      return response.json();
     });
   }
 

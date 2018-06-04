@@ -14,12 +14,4 @@
          <column name="size_of" type="INT"/>
       </createTable>
    </changeSet>
-   <changeSet author="helio (generated)" id="1526582096278-2">
-      <dropTable tableName="files"/>
-   </changeSet>
-   <changeSet author="helio (generated)" id="1526582096278-3">
-      <dropNotNullConstraint columnDataType="varchar(250)"
-                             columnName="descricao"
-                             tableName="especialidade"/>
-   </changeSet>
 </databaseChangeLog>

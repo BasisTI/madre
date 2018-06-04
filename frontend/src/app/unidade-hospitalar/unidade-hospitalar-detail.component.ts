@@ -35,21 +35,11 @@ export class UnidadeHospitalarDetailComponent implements OnInit, OnDestroy {
   load(id) {
     this.unidadeHospitalarService.find(id).subscribe((unidadeHospitalar) => {
       this.unidadeHospitalar = unidadeHospitalar;
-      this.getFileInfo();
     });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.breadcrumbService.reset();
-  }
-
-  getFileInfo() {
-    let fileInfo;
-    this.uploadService.getFileInfo(this.unidadeHospitalar.logoId).subscribe(response => {
-      fileInfo = response;
-
-      this.fileName = fileInfo["originalName"];
-    });
   }
 }

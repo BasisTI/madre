@@ -10,12 +10,12 @@
               <div class="ui-g-12" style="margin-bottom: 25px">
                 <label>Logo</label>
                 <span class="md-inputfield">
-                  <p-fileUpload 
-                    #fileInput 
-                    chooseLabel="Selecionar arquivo" 
-                    [showUploadButton]="false" 
-                    [showCancelButton]="false" 
-                    name="logo" 
+                  <p-fileUpload
+                    #fileInput
+                    chooseLabel="Selecionar arquivo"
+                    [showUploadButton]="false"
+                    [showCancelButton]="false"
+                    name="logo"
                     (onSelect)="uploadFile($event)" 
                     accept="image/*">
                   </p-fileUpload>

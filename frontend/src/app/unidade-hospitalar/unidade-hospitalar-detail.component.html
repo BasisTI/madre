@@ -3,10 +3,10 @@
     <div class="card card-w-title">
       <h1>Visualizar Unidade de Saúde</h1>
       <div class="ui-g form-group">
-        <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-12 ui-md-12">
           <span class="md-inputfield">
-            <input type="text" name="logo" pInputText [ngModel]="unidadeHospitalar.logo" readonly/>
-            <label>Logo</label>
+            <img src="data:{{unidadeHospitalar.logoContentType}};base64,{{unidadeHospitalar.logo}}" style="max-width: 150px; max-height: 150px;">
+            <label></label>
           </span>
         </div>
         <div class="ui-g-12 ui-md-6">
