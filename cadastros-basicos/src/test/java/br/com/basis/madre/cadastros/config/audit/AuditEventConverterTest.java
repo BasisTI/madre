@@ -24,12 +24,10 @@ public class AuditEventConverterTest {
     Object o;
 
     @Test
-    public void convertToAuditEventNullTest(){
+    public void convertToAuditEventNullTest() {
         persistentAuditEvents = null;
         List<AuditEvent> test = auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
-
-
 
 
 }

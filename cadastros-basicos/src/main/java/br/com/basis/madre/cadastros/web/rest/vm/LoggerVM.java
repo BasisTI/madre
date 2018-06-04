@@ -18,6 +18,7 @@ public class LoggerVM {
 
     public LoggerVM() {
         // Empty public constructor used by Jackson.
+
     }
 
     public String getName() {
