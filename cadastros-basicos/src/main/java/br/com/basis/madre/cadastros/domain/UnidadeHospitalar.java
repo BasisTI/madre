@@ -197,7 +197,6 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
             ", cnpj='" + getCnpj() + "'" +
             ", endereco='" + getEndereco() + "'" +
             ", ativo='" + isAtivo() + "'" +
-            ", logo='" + getLogo() + "'" +
             ", logoContentType='" + getLogoContentType() + " '" +
             "}";
     }
