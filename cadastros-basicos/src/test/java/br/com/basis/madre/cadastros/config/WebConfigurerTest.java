@@ -69,7 +69,7 @@ public class WebConfigurerTest {
     private JHipsterProperties props;
 
     private MetricRegistry metricRegistry;
-    
+
     @Before
     public void setup() {
         servletContext = spy(new MockServletContext());
@@ -342,12 +342,7 @@ public class WebConfigurerTest {
         public Map<String, String> getInitParameters() {
             return null;
         }
-        // @Test
-        // public void customizeTestCase4(){
-        //    // when(props.getHttp().getVersion().equals(JHipsterProperties.Http.Version.V_2_0) == false);
-        //    webConfigurer.customize(JHipsterProperties.Http.Version.V_2_0);
-        // }
     }
-    
-    
+
+
 }

@@ -26,17 +26,4 @@ Optional<String>  optinional;
 Pageable pageable;
 
 
-
-//    @Test
-//    public void updateUsuarioTest() throws URISyntaxException {usuarioResource.updateUsuario(usuario.nome(null));}
-//
-//    @Test
-//    public void getAllUsuariosTest(){usuarioResource.getAllUsuarios(optinional,pageable);}
-//
-//    @Test
-//    public void createUsuarioTest() throws URISyntaxException {
-//        usuario = new Usuario(usuario.nome("Nome"),usuario.);
-//        when(usuarioResource.createUsuario(usuario));
-//    }
-
 }

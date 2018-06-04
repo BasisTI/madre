@@ -87,12 +87,6 @@ public class EspecialidadeServiceImplTest {
 
     }
 
-//    @Test(expected = RelatorioException.class)
-//    public void gerarRelatorioExportacao() throws RelatorioException {
-//
-//    Assert.assertEquals("ENTIDADE",RelatorioException.getCodeEntidade());
-//    //when(especialidadeServiceImpl.gerarRelatorioExportacao(tipoRelatorio,query)).thenThrow(new RelatorioException());
-//
-//    }
+
 
 }

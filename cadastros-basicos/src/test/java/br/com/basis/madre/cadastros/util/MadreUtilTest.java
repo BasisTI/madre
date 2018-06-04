@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.time.LocalDate;
@@ -15,8 +14,6 @@ import static br.com.basis.madre.cadastros.util.MadreUtil.localDateTimeEmString;
 
 @RunWith(MockitoJUnitRunner.class)
 @PrepareForTest({ LocalDate.class })
-//@RunWith(PowerMockRunner.class)
-
 public class MadreUtilTest {
     @InjectMocks
     MadreUtil madreUtil;
