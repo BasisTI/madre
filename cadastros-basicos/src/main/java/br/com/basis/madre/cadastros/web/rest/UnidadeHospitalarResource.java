@@ -90,6 +90,9 @@ public class UnidadeHospitalarResource {
         @Valid @RequestBody UnidadeHospitalar unidadeHospitalar) throws URISyntaxException {
         try {
             log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
+            if (unidadeHospitalar.getId() != null) {
+                throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
+            }
             if (validaNome(unidadeHospitalar) || validaSigla(unidadeHospitalar)) {
                 return ResponseEntity.badRequest()
                     .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use"))
@@ -109,10 +112,6 @@ public class UnidadeHospitalarResource {
     }
 
     private boolean validaNome(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (unidadeHospitalar.getId() != null) {
-            throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
         if (unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent()) {
             return Boolean.TRUE;
@@ -121,10 +120,6 @@ public class UnidadeHospitalarResource {
     }
 
     private boolean validaSigla(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (unidadeHospitalar.getId() != null) {
-            throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
         if (unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent()) {
             return Boolean.TRUE;
