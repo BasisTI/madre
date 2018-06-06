@@ -4,9 +4,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(PowerMockRunner.class)
 public class UnidadeHospitalarTest {
+
+    byte[] bytes = {69, 121, 101, 45, 62, 118, 101, 114, (byte) 196, (byte) 195, 61, 101, 98};
+
     @InjectMocks
     private UnidadeHospitalar unidadeHospitalar;
 
@@ -16,6 +20,31 @@ public class UnidadeHospitalarTest {
     @InjectMocks
     private Usuario usuario;
 
+//    @Test
+//    public void getLogoTest() { unidadeHospitalar.getLogo();
+//    }
+
+    @Test
+    public void setLogoTest() { unidadeHospitalar.setLogo(bytes);
+    }
+
+    @Test
+    public void logoTest(){
+        UnidadeHospitalar test = unidadeHospitalar.logo(bytes);
+    }
+
+    @Test
+    public void getLogoContentTest() { unidadeHospitalar.getLogoContentType();
+    }
+
+    @Test
+    public void setLogoContentTest() { unidadeHospitalar.setLogoContentType("imagem/png");
+    }
+
+    @Test
+    public void logoContentTest(){
+        UnidadeHospitalar test = unidadeHospitalar.logoContentType("imagem/png");
+    }
 
     @Test
     public void getIdTest(){
@@ -34,12 +63,12 @@ public class UnidadeHospitalarTest {
 
     @Test
     public void setSiglaTest(){
-        unidadeHospitalar.setSigla("test");
+        unidadeHospitalar.setSigla("HFA");
     }
 
     @Test
     public void siglaTest(){
-        UnidadeHospitalar test = unidadeHospitalar.sigla("test");
+        UnidadeHospitalar test = unidadeHospitalar.sigla("HFA");
     }
 
     @Test
@@ -49,12 +78,12 @@ public class UnidadeHospitalarTest {
 
     @Test
     public void setNomeTest(){
-        unidadeHospitalar.setNome("test");
+        unidadeHospitalar.setNome("Hospital das forças armadas");
     }
 
     @Test
     public void nomeTest(){
-        UnidadeHospitalar test = unidadeHospitalar.nome("test");
+        UnidadeHospitalar test = unidadeHospitalar.nome("Hospital das forças armadas");
     }
 
     @Test
@@ -80,12 +109,12 @@ public class UnidadeHospitalarTest {
 
     @Test
     public void setEnderecoTest(){
-        unidadeHospitalar.setEndereco("test");
+        unidadeHospitalar.setEndereco("SQS 17, Lote 500, Setor de teste");
     }
 
     @Test
     public void enderecoTest(){
-        UnidadeHospitalar test = unidadeHospitalar.endereco("test");
+        UnidadeHospitalar test = unidadeHospitalar.endereco("SQS 17, Lote 500, Setor de teste");
     }
 
     @Test

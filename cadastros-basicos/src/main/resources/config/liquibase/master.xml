@@ -8,7 +8,6 @@
     <include file="config/liquibase/changelog/20180423210557_added_entity_UnidadeHospitalar.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180426043131_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180426184142_added_entity_PreCadastro.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180509202400_added_entity_Perfil.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180515201921_added_entity_Especialidade.xml" relativeToChangelogFile="false"/>
  
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
