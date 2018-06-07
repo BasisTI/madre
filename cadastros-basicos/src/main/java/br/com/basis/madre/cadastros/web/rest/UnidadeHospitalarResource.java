@@ -1,20 +1,18 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
-import br.com.basis.madre.cadastros.domain.UploadFile;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UploadedFilesRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
+import br.com.basis.madre.cadastros.util.MadreUtil;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.errors.UploadException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +33,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.xml.bind.DatatypeConverter;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,7 +60,7 @@ public class UnidadeHospitalarResource {
     private UploadedFilesRepository filesRepository;
 
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
-        UnidadeHospitalarRepository unidadeHospitalarRepository) {
+                                     UnidadeHospitalarRepository unidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
         this.unidadeHospitalarRepository = unidadeHospitalarRepository;
     }
@@ -90,43 +78,32 @@ public class UnidadeHospitalarResource {
         @Valid @RequestBody UnidadeHospitalar unidadeHospitalar) throws URISyntaxException {
         try {
             log.debug("REST request to save UnidadeHospitalar : {}", unidadeHospitalar);
+            if (unidadeHospitalar.getId() != null) {
+                throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
+            }
             if (validaNome(unidadeHospitalar) || validaSigla(unidadeHospitalar)) {
-                return ResponseEntity.badRequest()
-                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use"))
-                    .body(null);
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use")) .body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
-            return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-                .body(result);
+            return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
         } catch (UnidadeHospitalarException e) {
             log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest()
-                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage()))
-                .body(unidadeHospitalar);
+            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage())) .body(unidadeHospitalar);
         }
 
     }
 
     private boolean validaNome(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (unidadeHospitalar.getId() != null) {
-            throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-        if (unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent()) {
+        if (unidadeHospitalarRepository.findOneByNomeIgnoreCase(MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getNome())).isPresent()) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
     private boolean validaSigla(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (unidadeHospitalar.getId() != null) {
-            throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-        if (unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent()) {
+        if (unidadeHospitalarRepository.findOneBySiglaIgnoreCase(MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getSigla())).isPresent()) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -166,11 +143,11 @@ public class UnidadeHospitalarResource {
     }
 
     private boolean validaEdicao(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getNome()).isPresent()) && (validaNome(unidadeHospitalar))) {
-                return Boolean.TRUE;
+        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getNome())).isPresent()) && (validaNome(unidadeHospitalar))) {
+            return Boolean.TRUE;
         }
 
-        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getSigla()).isPresent()) && (validaSigla(unidadeHospitalar))) {
+        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getSigla())).isPresent()) && (validaSigla(unidadeHospitalar))) {
             return Boolean.TRUE;
         }
 
@@ -226,7 +203,7 @@ public class UnidadeHospitalarResource {
      * SEARCH  /_search/unidade-hospitalars?query=:query : search for the unidadeHospitalar corresponding
      * to the query.
      *
-     * @param query the query of the unidadeHospitalar search
+     * @param query    the query of the unidadeHospitalar search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -250,7 +227,7 @@ public class UnidadeHospitalarResource {
     @Timed
     public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
         try {
-            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio,query);
+            return unidadeHospitalarService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
@@ -258,50 +235,10 @@ public class UnidadeHospitalarResource {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<UploadFile> singleFileUpload(@RequestParam("file") MultipartFile file,
-        HttpServletRequest request,
-        RedirectAttributes redirectAttributes) {
-
-        UploadFile uploadFile = new UploadFile();
-        try {
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-
-            String classPathString = this.getClass().getClassLoader().getResource("").toString();
-            Path classPath = Paths.get(classPathString).toAbsolutePath();
-            String folderPathString = classPath.toString();
-            criaDiretorios(folderPathString);
-
-            byte[] bytesFileName = (file.getOriginalFilename() + String.valueOf(System.currentTimeMillis())).getBytes("UTF-8");
-            String filename = DatatypeConverter.printHexBinary(MessageDigest.getInstance("MD5").digest(bytesFileName));
-            String ext = FilenameUtils.getExtension(file.getOriginalFilename());
-            filename += "." + ext;
-            Path path = Paths.get(folderPathString + "/" + filename);
-            System.out.println(path);
-            Files.write(path, bytes);
-
-            setUploadFile(uploadFile, file,filename, bytes);
-
-        } catch (IOException | NoSuchAlgorithmException e) { throw new UploadException("Erro ao efetuar o upload do arquivo", e); }
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(uploadFile));
+    public UnidadeHospitalar singleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+        byte[] bytes = file.getBytes();
+        UnidadeHospitalar unidadeHospitalar = new UnidadeHospitalar();
+        unidadeHospitalar.setLogo(bytes);
+        return unidadeHospitalar;
     }
-
-    public void criaDiretorios(String folderPathString){
-        File directory = new File(folderPathString);
-        boolean isDirectory;
-        if (!directory.exists()) {
-            isDirectory = directory.mkdirs();
-            if(isDirectory) { log.debug("Directory sucessfull created"); }
-            else{ log.debug("Directory is not sucessfull created"); }
-        }
-
-    }
-    public void setUploadFile(UploadFile uploadFile, MultipartFile file, String filename,  byte[] bytes){
-        uploadFile.setDateOf(new Date());
-        uploadFile.setOriginalName(file.getOriginalFilename());
-        uploadFile.setFilename(filename);
-        uploadFile.setSizeOf(bytes.length);
-        filesRepository.save(uploadFile);
-    }
-
 }

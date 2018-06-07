@@ -35,7 +35,7 @@
             </column>
 
             <column name="cnpj" type="varchar(14)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints nullable="false" />
             </column>
 
             <column name="endereco" type="varchar(200)">

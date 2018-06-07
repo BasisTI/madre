@@ -6,23 +6,28 @@
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="unidadeHospitalar.id" readonly/>
      
-            <div class="ui-g">
-              <div class="ui-g-12" style="margin-bottom: 25px">
-                <label>Logo</label>
-                <span class="md-inputfield">
-                  <p-fileUpload 
-                    #fileInput 
-                    chooseLabel="Selecionar arquivo" 
-                    [showUploadButton]="false" 
-                    [showCancelButton]="false" 
-                    name="logo" 
-                    (onSelect)="uploadFile($event)" 
-                    accept="image/*">
-                  </p-fileUpload>
-                </span>
-              </div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-12" style="margin-bottom: 25px">
+              <label>Logo</label>
+              <span class="md-inputfield">
+                <p-fileUpload
+                  #fileInput
+                  maxFileSize="1048576"
+                  chooseLabel="Selecionar arquivo"
+                  [showUploadButton]="false"
+                  [showCancelButton]="false"
+                  name="logo"
+                  (onSelect)="uploadFile($event)" 
+                  accept="image/*" >
+                </p-fileUpload>
+              </span>
             </div>
-    
+          </div>
+          <div class="ui-g-12 ui-md-3" *ngIf="unidadeHospitalar.logoContentType != null">
+              <span class="md-inputfield">
+                <img src="data:{{unidadeHospitalar.logoContentType}};base64,{{unidadeHospitalar.logo}}" style="max-width: 75px; max-height: 75px; margin-top: 10%;">
+              </span>
+          </div>
           <div class="ui-g-12 ui-md-6"></div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">

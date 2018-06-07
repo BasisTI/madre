@@ -5,6 +5,7 @@ import br.com.basis.madre.cadastros.repository.EspecialidadeRepository;
 import br.com.basis.madre.cadastros.service.EspecialidadeService;
 import br.com.basis.madre.cadastros.service.exception.EspecialidadeException;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.util.MadreUtil;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
@@ -70,7 +71,7 @@ public class EspecialidadeResource {
         try {
             log.debug("REST request to save Especialidade : {}", especialidade);
 
-            if (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent()) {
+            if (especialidadeRepository.findOneByNomeIgnoreCase(MadreUtil.removeCaracteresEmBranco(especialidade.getNome())).isPresent()) {
                 return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada"))
                     .body(null);
             }
@@ -104,7 +105,7 @@ public class EspecialidadeResource {
         try {
             log.debug("REST request to update Especialidade : {}", especialidade);
 
-            if (!(especialidadeRepository.findOneByIdAndNomeIgnoreCase(especialidade.getId(), especialidade.getNome()).isPresent()) && (especialidadeRepository.findOneByNomeIgnoreCase(especialidade.getNome()).isPresent())){
+            if (!(especialidadeRepository.findOneByIdAndNomeIgnoreCase(especialidade.getId(), MadreUtil.removeCaracteresEmBranco(especialidade.getNome())).isPresent()) && (especialidadeRepository.findOneByNomeIgnoreCase(MadreUtil.removeCaracteresEmBranco(especialidade.getNome())).isPresent())){
                     return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "especialidadeexists", "Especialidade já cadastrada")).body(null);
             }
             if (especialidade.getId() == null) {

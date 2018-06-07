@@ -3,16 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { SelectItem } from 'primeng/primeng';
-import {NgxMaskModule} from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { UnidadeHospitalar } from './unidade-hospitalar.model';
 import { UnidadeHospitalarService } from './unidade-hospitalar.service';
-import {FileUploadModule} from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
 import { MessagesModule } from 'primeng/primeng';
 import { UploadService } from '../upload/upload.service';
 import { FileUpload } from 'primeng/primeng';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidacaoUtil } from '../util/validacao.util'
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -24,6 +25,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   isEdit = false;
   private routeSub: Subscription;
   logo: File;
+  verifica = false;
 
   @ViewChild('fileInput') fileInput: FileUpload;
 
@@ -34,7 +36,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     private pageNotificationService: PageNotificationService,
     private unidadeHospitalarService: UnidadeHospitalarService,
     private uploadService: UploadService,
-    ){}
+  ) { }
 
   ngOnInit() {
     this.isSaving = false;
@@ -44,10 +46,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.unidadeHospitalar.ativo = true;
       if (params['id']) {
         this.isEdit = true;
-        this.unidadeHospitalarService.find(params['id']).subscribe(unidadeHospitalar =>{
-           this.unidadeHospitalar = unidadeHospitalar;
-           this.getFile();
-          });
+        this.unidadeHospitalarService.find(params['id']).subscribe(unidadeHospitalar =>  this.unidadeHospitalar = unidadeHospitalar);
         title = 'Editar';
       }
       this.breadcrumbService.setItems([
@@ -57,31 +56,16 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
     });
   }
 
-save() {
-  this.isSaving = true;
-  if (this.unidadeHospitalar.id !== undefined) {
-    this.unidadeHospitalarService.find(this.unidadeHospitalar.id).subscribe(response => {
-
-      if(this.logo !== undefined) {
-        this.uploadService.uploadFile(this.logo).subscribe(response => {
-          this.unidadeHospitalar.logoId = JSON.parse(response["_body"]).id;
-          this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
-        })
-      } else {
-          this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
-      }
-    })
-  } else {
-      if(this.logo !== undefined) {
-        this.uploadService.uploadFile(this.logo).subscribe(response => {
-          this.unidadeHospitalar.logoId = JSON.parse(response["_body"]).id;
-          this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-        })
-    } else {
-      this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
-    }
+  save() {
+    if (!(this.verifica || this.isEdit)){ this.unidadeHospitalar.logo = ''; }
+    this.isSaving = true;
+    if (this.unidadeHospitalar.id) {
+      this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
+      return;
+    } 
+    this.subscribeToSaveResponse(this.unidadeHospitalarService.create(this.unidadeHospitalar));
   }
-}
+
   private subscribeToSaveResponse(result: Observable<UnidadeHospitalar>) {
     result.subscribe((res: UnidadeHospitalar) => {
       this.isSaving = false;
@@ -89,16 +73,25 @@ save() {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      if (res.headers.toJSON()['x-cadastrosbasicosapp-errordataexists'] != null) {
-        this.pageNotificationService.addErrorMessage('Registro já cadastrado');
-      } else {
-        this.pageNotificationService.addErrorMessage('CNPJ Inválido');
+      if (!ValidacaoUtil.validarCNPJ(this.unidadeHospitalar.cnpj)) {
+        this.pageNotificationService.addErrorMessage('CNPJ inválido');
+        return;
       }
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-errorunidadeexists'] == "Nome/Sigla already in use") {
+        this.pageNotificationService.addErrorMessage('Registro já cadastrado');
+        return
+      } 
+        this.pageNotificationService.addErrorMessage('Dados inválidos');
     });
   }
 
-  uploadFile(event){
+  uploadFile(event) {
+    this.verifica = true;
     this.logo = event.files[0];
+    this.unidadeHospitalar.logoContentType = this.logo.type;
+    this.uploadService.uploadFile(this.logo).subscribe((response: any) => {
+      this.unidadeHospitalar.logo = response.logo;
+    });
   }
 
   private addConfirmationMessage() {
@@ -109,7 +102,7 @@ save() {
     }
   }
   private addErrorMessage() {
-     if (this.isEdit) {
+    if (this.isEdit) {
       this.pageNotificationService.addUpdateMsg();
     } else {
       this.pageNotificationService.addErrorMessage('Dados inválidos');
@@ -119,24 +112,5 @@ save() {
   ngOnDestroy() {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
-  }
-  getFile() {
-    this.loading = true;
-    this.uploadService.getFile(this.unidadeHospitalar.logoId).subscribe(response => {
-
-      let fileInfo;
-      this.uploadService.getFileInfo(this.unidadeHospitalar.logoId).subscribe(response => {
-        fileInfo = response;
-
-        this.fileInput.files.push(new File([response['_body']], fileInfo['originalName']));
-        this.loading = false;
-      });
-    });
-  }
-
-  getFileInfo() {
-    return this.uploadService.getFile(this.unidadeHospitalar.logoId).subscribe(response => {
-      return response;
-    });
   }
 } 

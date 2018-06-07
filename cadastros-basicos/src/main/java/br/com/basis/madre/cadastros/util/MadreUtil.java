@@ -1,5 +1,7 @@
 package br.com.basis.madre.cadastros.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,5 +35,12 @@ public final class MadreUtil {
             return date.format(formatter);
         }
         return null;
+    }
+
+    public static String removeCaracteresEmBranco(String str) {
+        if (StringUtils.isNotEmpty(str)){
+            str = (str.trim().replaceAll("\\s+", ""));
+        }
+        return str;
     }
 }

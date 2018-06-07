@@ -9,16 +9,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Optional;
+
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(PowerMockRunner.class)
 public class EspecialidadeServiceImplTest {
     @InjectMocks
     private EspecialidadeServiceImpl especialidadeServiceImpl;
@@ -47,6 +50,15 @@ public class EspecialidadeServiceImplTest {
     @Mock
     QueryBuilder queryBuilder;
 
+    @Mock
+    String tipoRelatorio;
+
+    @Mock
+    ByteArrayOutputStream byteArrayOutputStream;
+
+    @Mock
+    String query;
+
     @Test
     public void saveTest() {
         when(especialidadeServiceImpl.save(especialidade)).thenReturn(especialidade);
@@ -61,6 +73,7 @@ public class EspecialidadeServiceImplTest {
     @Test
     public void findAllTest() {
         Page<Especialidade> test = especialidadeServiceImpl.findAll(java.util.Optional.of("test"), pageable);
+        especialidadeServiceImpl.findAll(Optional.empty(),pageable);
     }
 
     @Test
@@ -73,5 +86,7 @@ public class EspecialidadeServiceImplTest {
         Page<Especialidade> test = especialidadeServiceImpl.search("test", pageable);
 
     }
+
+
 
 }

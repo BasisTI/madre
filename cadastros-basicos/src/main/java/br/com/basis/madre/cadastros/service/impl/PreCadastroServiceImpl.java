@@ -45,7 +45,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
 
 
     public PreCadastroServiceImpl(PreCadastroRepository preCadastroRepository,
-        PreCadastroSearchRepository preCadastroSearchRepository, DynamicExportsService dynamicExportsService) {
+                                  PreCadastroSearchRepository preCadastroSearchRepository, DynamicExportsService dynamicExportsService) {
         this.preCadastroRepository = preCadastroRepository;
         this.preCadastroSearchRepository = preCadastroSearchRepository;
         this.dynamicExportsService = dynamicExportsService;
@@ -116,7 +116,7 @@ public class PreCadastroServiceImpl implements PreCadastroService {
         }
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
-     }
+    }
 
 
 }
