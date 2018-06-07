@@ -24,6 +24,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   isEdit = false;
   private routeSub: Subscription;
   logo: File;
+  verifica = false;
 
   @ViewChild('fileInput') fileInput: FileUpload;
 
@@ -55,6 +56,8 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    if (!(this.verifica || this.isEdit)){ this.unidadeHospitalar.logo = ''; }
+    
     this.isSaving = true;
     if (this.unidadeHospitalar.id) {
       this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
@@ -79,6 +82,7 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
   }
 
   uploadFile(event) {
+    this.verifica = true;
     this.logo = event.files[0];
     this.unidadeHospitalar.logoContentType = this.logo.type;
     this.uploadService.uploadFile(this.logo).subscribe((response: any) => {
