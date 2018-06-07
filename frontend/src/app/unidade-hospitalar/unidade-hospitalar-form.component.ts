@@ -13,6 +13,7 @@ import { MessagesModule } from 'primeng/primeng';
 import { UploadService } from '../upload/upload.service';
 import { FileUpload } from 'primeng/primeng';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidacaoUtil } from '../util/validacao.util'
 @Component({
   selector: 'jhi-unidade-hospitalar-form',
   templateUrl: './unidade-hospitalar-form.component.html'
@@ -57,7 +58,6 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
 
   save() {
     if (!(this.verifica || this.isEdit)){ this.unidadeHospitalar.logo = ''; }
-    
     this.isSaving = true;
     if (this.unidadeHospitalar.id) {
       this.subscribeToSaveResponse(this.unidadeHospitalarService.update(this.unidadeHospitalar));
@@ -73,11 +73,15 @@ export class UnidadeHospitalarFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
+      if (!ValidacaoUtil.validarCNPJ(this.unidadeHospitalar.cnpj)) {
+        this.pageNotificationService.addErrorMessage('CNPJ inválido');
+        return;
+      }
       if (res.headers.toJSON()['x-cadastrosbasicosapp-errorunidadeexists'] == "Nome/Sigla already in use") {
         this.pageNotificationService.addErrorMessage('Registro já cadastrado');
-      } else {
-        this.pageNotificationService.addErrorMessage('CNPJ Inválido');
-      }
+        return
+      } 
+        this.pageNotificationService.addErrorMessage('Dados inválidos');
     });
   }
 

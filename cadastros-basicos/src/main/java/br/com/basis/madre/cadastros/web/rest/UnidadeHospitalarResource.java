@@ -6,6 +6,7 @@ import br.com.basis.madre.cadastros.repository.UploadedFilesRepository;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
+import br.com.basis.madre.cadastros.util.MadreUtil;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
@@ -94,7 +95,7 @@ public class UnidadeHospitalarResource {
 
     private boolean validaNome(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-        if (unidadeHospitalarRepository.findOneByNomeIgnoreCase(unidadeHospitalar.getNome()).isPresent()) {
+        if (unidadeHospitalarRepository.findOneByNomeIgnoreCase(MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getNome())).isPresent()) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -102,7 +103,7 @@ public class UnidadeHospitalarResource {
 
     private boolean validaSigla(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
         //Lança uma  exceção se um dos campos já estiver cadastrado no banco de dados
-        if (unidadeHospitalarRepository.findOneBySiglaIgnoreCase(unidadeHospitalar.getSigla()).isPresent()) {
+        if (unidadeHospitalarRepository.findOneBySiglaIgnoreCase(MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getSigla())).isPresent()) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -142,11 +143,11 @@ public class UnidadeHospitalarResource {
     }
 
     private boolean validaEdicao(@Valid @RequestBody UnidadeHospitalar unidadeHospitalar) {
-        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getNome()).isPresent()) && (validaNome(unidadeHospitalar))) {
+        if (!(unidadeHospitalarRepository.findOneByIdAndNomeIgnoreCase(unidadeHospitalar.getId(), MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getNome())).isPresent()) && (validaNome(unidadeHospitalar))) {
             return Boolean.TRUE;
         }
 
-        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), unidadeHospitalar.getSigla()).isPresent()) && (validaSigla(unidadeHospitalar))) {
+        if (!(unidadeHospitalarRepository.findOneByIdAndSiglaIgnoreCase(unidadeHospitalar.getId(), MadreUtil.removeCaracteresEmBranco(unidadeHospitalar.getSigla())).isPresent()) && (validaSigla(unidadeHospitalar))) {
             return Boolean.TRUE;
         }
 
