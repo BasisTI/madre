@@ -3,7 +3,6 @@ package br.com.basis.madre.cadastros.domain;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
@@ -20,9 +19,11 @@ public class UnidadeHospitalarTest {
     @InjectMocks
     private Usuario usuario;
 
-//    @Test
-//    public void getLogoTest() { unidadeHospitalar.getLogo();
-//    }
+    @Test
+    public void getLogoTest() {
+        unidadeHospitalar.setLogo(bytes);
+        unidadeHospitalar.getLogo();
+    }
 
     @Test
     public void setLogoTest() { unidadeHospitalar.setLogo(bytes);
