@@ -5,6 +5,8 @@ import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.Usuario;
 import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.repository.search.UsuarioSearchRepository;
+import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -60,8 +62,21 @@ public class UsuarioServiceImplTest {
 
     @Mock
     private ByteArrayOutputStream byteArrayOutputStream;
+
+    @Mock
+    private Optional<String> query;
+
     @Mock
     private DynamicExporter dynamicExporter;
+
+    @Mock
+    private StringUtils stringUtils;
+
+    @Mock
+    private Page<Usuario> result;
+
+    @Mock
+    private QueryStringQueryBuilder queryStringQuery;
 
     @Test
     public void saveTest() {
@@ -76,10 +91,19 @@ public class UsuarioServiceImplTest {
 
     @Test
     public void findAllTest() {
+        when(query.isPresent()).thenReturn(true).thenReturn(false);
+        when(stringUtils.isNotBlank(query.get())).thenReturn(true);
         Page<Usuario> test = usuarioServiceImpl.findAll(java.util.Optional.of("test"), pageable);
-        usuarioServiceImpl.findAll(optional,pageable);
     }
 
+    @Test
+    public void findAllTestfalse() {
+
+        when(query.isPresent()).thenReturn(false);
+        when(stringUtils.isNotBlank(query.get())).thenReturn(false);
+        usuarioServiceImpl.findAll(optional,pageable);
+        Page<Usuario> test = usuarioServiceImpl.findAll(java.util.Optional.of("test"), pageable);
+    }
 
     @Test
     public void especialidadeFindOneTest() {
