@@ -103,7 +103,7 @@ public class PreCadastroServiceImplTest {
     }
 
     @Test
-    public void teste() throws RelatorioException, JRException, DRException, ClassNotFoundException {
+    public void gerarRelatorioteste() throws RelatorioException, JRException, DRException, ClassNotFoundException {
         ResponseEntity responseEntity = mock(ResponseEntity.class);
 
         PowerMockito.mockStatic(DynamicExporter.class);

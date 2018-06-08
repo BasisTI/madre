@@ -58,7 +58,6 @@ public class PreCadastroResourceTest{
     }
 
     @Test
-    @PowerMockIgnore
     public void searchPreCadastroTest(){
         ResponseEntity<List<PreCadastro>> teste = preCadastroResource.searchPreCadastros("*", null);
     }
