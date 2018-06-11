@@ -62,7 +62,6 @@ public class UsuarioServiceImplTest {
     private ByteArrayOutputStream byteArrayOutputStream;
     @Mock
     private DynamicExporter dynamicExporter;
-
     @Test
     public void saveTest() {
         when(usuarioServiceImpl.save(usuario)).thenReturn(usuario);
@@ -76,8 +75,8 @@ public class UsuarioServiceImplTest {
 
     @Test
     public void findAllTest() {
-        Page<Usuario> test = usuarioServiceImpl.findAll(java.util.Optional.of("test"), pageable);
-        usuarioServiceImpl.findAll(optional,pageable);
+      Page<Usuario> test = usuarioServiceImpl.findAll(java.util.Optional.of("test"), pageable);
+      usuarioServiceImpl.findAll(optional,pageable);
     }
 
 

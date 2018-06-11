@@ -104,6 +104,8 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
         return (unidadeHospitalar);
     }
 
+
+
     /**
      * Delete the unidadeHospitalar by id.
      *
