@@ -135,10 +135,10 @@ public class UsuarioServiceImpl implements UsuarioService {
      * @param tipoRelatorio
      */
     @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
+            public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query)
         throws RelatorioException {
-        ByteArrayOutputStream byteArrayOutputStream;
-        try {
+                ByteArrayOutputStream byteArrayOutputStream;
+                try {
             new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
             Page<Usuario> result = usuarioSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioUsuarioColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));

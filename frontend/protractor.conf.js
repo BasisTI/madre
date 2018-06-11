@@ -11,6 +11,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
+  suites:{teste:'e2e/user/user-form-test.spec.ts'},
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
@@ -25,4 +26,6 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
+
+
 };
