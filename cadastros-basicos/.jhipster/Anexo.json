@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "dataCriacao",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nomeArquivo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "tamanhoArquivo",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "arquivoAnexo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20180613170017",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "anexo",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager",
+    "microserviceName": "cadastrosbasicos",
+    "searchEngine": "elasticsearch"
+}

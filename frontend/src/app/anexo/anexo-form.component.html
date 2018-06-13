@@ -1,0 +1,46 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ anexo.id ? 'Editar Anexo' : 'Cadastrar Anexo' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="anexo.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-calendar name="dataCriacao" [(ngModel)]="anexo.dataCriacao" dateFormat="dd/mm/yy"></p-calendar>
+              <label>Data Criacao</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="nomeArquivo" [(ngModel)]="anexo.nomeArquivo" pInputText/>
+              <label>Nome Arquivo</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="tamanhoArquivo" [(ngModel)]="anexo.tamanhoArquivo" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Tamanho Arquivo</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="hidden" name="arquivoAnexo" [(ngModel)]="anexo.arquivoAnexo"/>
+              <input type="hidden" class="form-control" name="arquivoAnexoContentType" id="field_arquivoAnexoContentType"
+                  [(ngModel)]="anexo.arquivoAnexoContentType" />
+              <label>Arquivo Anexo</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/anexo"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
