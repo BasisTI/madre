@@ -16,6 +16,7 @@ export const routes: Routes = [
   { path: 'preCadastro', loadChildren: 'app/pre-cadastro/pre-cadastro.module#CadastrosbasicosPreCadastroModule' },
   { path: 'perfil', loadChildren: 'app/perfil/perfil.module#CadastrosbasicosPerfilModule' },
   { path: 'especialidade', loadChildren: 'app/especialidade/especialidade.module#CadastrosbasicosEspecialidadeModule' },
+  { path: 'tipoPergunta', loadChildren: 'app/tipo-pergunta/tipo-pergunta.module#CadastrosbasicosTipoPerguntaModule' },
   /* jhipster-needle-add-lazy-module - JHipster will add lazy modules here */
 ];
 

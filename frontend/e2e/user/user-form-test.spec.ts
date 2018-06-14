@@ -16,15 +16,15 @@ beforeAll(function(){
   
   
 
-function add(){
+// function add(){
 
-}
+// }
 
 
-it('input', function(){
-  expect(browser.getTitle()).toEqual('Google');
+// it('input', function(){
+//   expect(browser.getTitle()).toEqual('Google');
 
-});
+// });
 
 
 
