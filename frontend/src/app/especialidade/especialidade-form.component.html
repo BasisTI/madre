@@ -7,7 +7,7 @@
           <input type="hidden" name="id" pInputText [(ngModel)]="especialidade.id" readonly/>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nome" minlength="1" [(ngModel)]="especialidade.nome" pInputText required/>
+              <input type="text" name="nome" minlength="1" [(ngModel)]="especialidade.nome" pInputText required maxlength="100"
               <label>Nome da Especialidade *</label>
               <div *ngIf="editForm.controls['nome'] && !editForm.controls['nome'].valid && (editForm.controls['nome'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
