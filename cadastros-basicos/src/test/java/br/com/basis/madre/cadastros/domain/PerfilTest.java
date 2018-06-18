@@ -29,12 +29,12 @@ public class PerfilTest {
 
     @Test
     public void getNmPerfilTest(){
-        perfil.getNmPerfil();
+        perfil.getNomePerfil();
     }
 
     @Test
     public void setNmPerfilTest(){
-        perfil.setNmPerfil(1);
+        perfil.setNomePerfil("Administrador");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class PerfilTest {
 
     @Test
     public void setDsPerfilTest(){
-        perfil.setDsPerfil("teste");
+        perfil.setDsPerfil("Perfil com as permissões X e Y");
     }
 
     @Test
@@ -54,54 +54,38 @@ public class PerfilTest {
 
     @Test
     public void nmPerfilTest(){
-        Perfil test = perfil.nmPerfil(1);
+        Perfil test = perfil.nomePerfil("adm");
     }
 
-    @Test
-    public void isStExcluidoTest(){
-        Boolean test = perfil.isStExcluido();
-    }
+    // @Test
+    // public void isStExcluidoTest(){
+    //     Boolean test = perfil.isStExcluido();
+    // }
 
-    @Test
-    public void stExcluidoTest(){
-        Perfil test = perfil.stExcluido(true);
-    }
+    // @Test
+    // public void stExcluidoTest(){
+    //     Perfil test = perfil.stExcluido(true);
+    // }
 
-    @Test
-    public void setStExcluidoTest(){
-        perfil.setStExcluido(true);
-    }
+    // @Test
+    // public void setStExcluidoTest(){
+    //     perfil.setStExcluido(true);
+    // }
 
-    @Test
-    public void isStAtivoTest(){
-        Boolean bool = perfil.isStAtivo();
-    }
+    // @Test
+    // public void isStAtivoTest(){
+    //     Boolean bool = perfil.isStAtivo();
+    // }
 
-    @Test
-    public void stAtivoTest(){
-        Perfil test = perfil.stAtivo(true);
-    }
+    // @Test
+    // public void stAtivoTest(){
+    //     Perfil test = perfil.stAtivo(true);
+    // }
 
-    @Test
-    public void setStAtivoTeste(){
-        perfil.setStAtivo(true);
-    }
-
-    @Test
-    public void getIdFuncionalidadeTest(){
-        perfil.getIdFuncionalidade();
-    }
-
-    @Test
-    public void idFuncionalidade(){
-        Perfil teste = perfil.idFuncionalidade(1);
-    }
-
-    @Test
-    public void setIdFuncionalidadeTest(){
-        perfil.setIdFuncionalidade(1);
-
-    }
+    // @Test
+    // public void setStAtivoTeste(){
+    //     perfil.setStAtivo(true);
+    // }
 
     @Test
     public void hashCodeTest(){
@@ -121,7 +105,7 @@ public class PerfilTest {
     @Test
     public void equalsTesTwo(){
         // o != null e o.getClass != getClass
-        perfil.equals(usuario);
+        perfil.equals(perfil);
 
         // o == null e o.getClass == getClass
         test = null;

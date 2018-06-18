@@ -17,20 +17,10 @@
             <button pButton type="button" label="Cadastrar" routerLink="/perfil/new" icon="ui-icon-add"></button>
           </div>
         </div>
-        <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
-          <p-column header="Nm Perfil" field="nmPerfil"></p-column>
+        <basis-datatable [url]="searchUrl" 
+          (buttonClick)="datatableClick($event)" #datatable>
+          <p-column header="Nome Perfil" field="nomePerfil"></p-column>
           <p-column header="Ds Perfil" field="dsPerfil"></p-column>
-          <p-column header="St Excluido" field="stExcluido">
-            <ng-template let-col let-stExcluido="rowData" pTemplate="body">
-              {{ stExcluido[col.field] ? 'Sim' : (stExcluido[col.field] != null ? 'Não' : null) }}
-            </ng-template>
-          </p-column>
-          <p-column header="St Ativo" field="stAtivo">
-            <ng-template let-col let-stAtivo="rowData" pTemplate="body">
-              {{ stAtivo[col.field] ? 'Sim' : (stAtivo[col.field] != null ? 'Não' : null) }}
-            </ng-template>
-          </p-column>
-          <p-column header="Id Funcionalidade" field="idFuncionalidade"></p-column>
         </basis-datatable>
       </div>
     </div>

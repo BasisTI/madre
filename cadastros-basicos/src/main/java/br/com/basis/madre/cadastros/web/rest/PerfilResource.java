@@ -1,12 +1,14 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import br.com.basis.madre.cadastros.domain.Perfil;
-import br.com.basis.madre.cadastros.service.PerfilService;
-import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,11 +26,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.service.PerfilService;
+import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
+import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Perfil.
@@ -50,8 +53,8 @@ public class PerfilResource {
     /**
      * POST  /perfils : Create a new perfil.
      *
-     * @param perfil the perfilDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new perfilDTO, or with status 400 (Bad Request) if the perfil has already an ID
+     * @param perfil the perfil to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new perfil, or with status 400 (Bad Request) if the perfil has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/perfils")
@@ -70,10 +73,10 @@ public class PerfilResource {
     /**
      * PUT  /perfils : Updates an existing perfil.
      *
-     * @param perfil the perfilDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated perfilDTO,
-     * or with status 400 (Bad Request) if the perfilDTO is not valid,
-     * or with status 500 (Internal Server Error) if the perfilDTO couldn't be updated
+     * @param perfil the perfil to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated perfil,
+     * or with status 400 (Bad Request) if the perfil is not valid,
+     * or with status 500 (Internal Server Error) if the perfil couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/perfils")
@@ -107,8 +110,8 @@ public class PerfilResource {
     /**
      * GET  /perfils/:id : get the "id" perfil.
      *
-     * @param id the id of the perfilDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the perfilDTO, or with status 404 (Not Found)
+     * @param id the id of the perfil to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the perfil, or with status 404 (Not Found)
      */
     @GetMapping("/perfils/{id}")
     @Timed
@@ -121,7 +124,7 @@ public class PerfilResource {
     /**
      * DELETE  /perfils/:id : delete the "id" perfil.
      *
-     * @param id the id of the perfilDTO to delete
+     * @param id the id of the perfil to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/perfils/{id}")

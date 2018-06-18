@@ -1,8 +1,7 @@
 package br.com.basis.madre.cadastros.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
+import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.util.Objects;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * A Perfil.
@@ -31,21 +33,14 @@ public class Perfil implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "nm_perfil")
-    private Integer nmPerfil;
-
-    @Column(name = "ds_perfil")
-    private String dsPerfil;
-
-    @Column(name = "st_excluido")
-    private Boolean stExcluido;
-
-    @Column(name = "st_ativo")
-    private Boolean stAtivo;
-
     @NotNull
-    @Column(name = "id_funcionalidade", nullable = false)
-    private Integer idFuncionalidade;
+    @Size(min = 1, max = 80)
+    @Column(name = "nome_perfil", length = 80, nullable = false)
+    private String nomePerfil;
+
+    @Size(max = 255)
+    @Column(name = "ds_perfil", length = 255)
+    private String dsPerfil;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -56,17 +51,17 @@ public class Perfil implements Serializable {
         this.id = id;
     }
 
-    public Integer getNmPerfil() {
-        return nmPerfil;
+    public String getNomePerfil() {
+        return nomePerfil;
     }
 
-    public Perfil nmPerfil(Integer nmPerfil) {
-        this.nmPerfil = nmPerfil;
+    public Perfil nomePerfil(String nomePerfil) {
+        this.nomePerfil = nomePerfil;
         return this;
     }
 
-    public void setNmPerfil(Integer nmPerfil) {
-        this.nmPerfil = nmPerfil;
+    public void setNomePerfil(String nomePerfil) {
+        this.nomePerfil = nomePerfil;
     }
 
     public String getDsPerfil() {
@@ -80,45 +75,6 @@ public class Perfil implements Serializable {
 
     public void setDsPerfil(String dsPerfil) {
         this.dsPerfil = dsPerfil;
-    }
-
-    public Boolean isStExcluido() {
-        return stExcluido;
-    }
-
-    public Perfil stExcluido(Boolean stExcluido) {
-        this.stExcluido = stExcluido;
-        return this;
-    }
-
-    public void setStExcluido(Boolean stExcluido) {
-        this.stExcluido = stExcluido;
-    }
-
-    public Boolean isStAtivo() {
-        return stAtivo;
-    }
-
-    public Perfil stAtivo(Boolean stAtivo) {
-        this.stAtivo = stAtivo;
-        return this;
-    }
-
-    public void setStAtivo(Boolean stAtivo) {
-        this.stAtivo = stAtivo;
-    }
-
-    public Integer getIdFuncionalidade() {
-        return idFuncionalidade;
-    }
-
-    public Perfil idFuncionalidade(Integer idFuncionalidade) {
-        this.idFuncionalidade = idFuncionalidade;
-        return this;
-    }
-
-    public void setIdFuncionalidade(Integer idFuncionalidade) {
-        this.idFuncionalidade = idFuncionalidade;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -146,11 +102,8 @@ public class Perfil implements Serializable {
     public String toString() {
         return "Perfil{" +
             "id=" + getId() +
-            ", nmPerfil=" + getNmPerfil() +
+            ", nomePerfil='" + getNomePerfil() + "'" +
             ", dsPerfil='" + getDsPerfil() + "'" +
-            ", stExcluido='" + isStExcluido() + "'" +
-            ", stAtivo='" + isStAtivo() + "'" +
-            ", idFuncionalidade=" + getIdFuncionalidade() +
             "}";
     }
 }

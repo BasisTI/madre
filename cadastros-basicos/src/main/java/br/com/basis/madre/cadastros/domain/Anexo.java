@@ -1,15 +1,22 @@
 package br.com.basis.madre.cadastros.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * A Anexo.
@@ -93,16 +100,16 @@ public class Anexo implements Serializable {
     }
 
     public byte[] getArquivoAnexo() {
-        return arquivoAnexo;
+        return arquivoAnexo.clone();
     }
 
     public Anexo arquivoAnexo(byte[] arquivoAnexo) {
-        this.arquivoAnexo = arquivoAnexo;
+        this.arquivoAnexo = arquivoAnexo.clone();
         return this;
     }
 
     public void setArquivoAnexo(byte[] arquivoAnexo) {
-        this.arquivoAnexo = arquivoAnexo;
+        this.arquivoAnexo = arquivoAnexo.clone();
     }
 
     public String getArquivoAnexoContentType() {

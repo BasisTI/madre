@@ -68,7 +68,7 @@ class PerfilGatlingTest extends Simulation {
             .exec(http("Create new perfil")
             .post("/cadastrosbasicos/api/perfils")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nmPerfil":"0", "dsPerfil":"SAMPLE_TEXT", "stExcluido":null, "stAtivo":null, "idFuncionalidade":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "nomePerfil":"SAMPLE_TEXT", "dsPerfil":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_perfil_url"))).exitHereIfFailed
             .pause(10)

@@ -7,46 +7,14 @@
           <input type="hidden" name="id" pInputText [(ngModel)]="perfil.id" readonly/>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <p-spinner size="30" name="nmPerfil" [(ngModel)]="perfil.nmPerfil" decimalSeparator="" thousandSeparator=""></p-spinner>
-              <label>Nm Perfil</label>
+              <input type="text" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" pInputText/>
+              <label>Nome Perfil</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="dsPerfil" [(ngModel)]="perfil.dsPerfil" pInputText/>
               <label>Ds Perfil</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-              <div class="ui-g">
-                <div class="ui-g-12 ui-md-2">
-                  <label>St Excluido</label>
-              </div>
-              <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="stExcluido" [value]="true" label="Sim" [(ngModel)]="perfil.stExcluido"></p-radioButton>
-              </div>
-              <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="stExcluido" [value]="false" label="Não" [(ngModel)]="perfil.stExcluido"></p-radioButton>
-              </div>
-            </div>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-              <div class="ui-g">
-                <div class="ui-g-12 ui-md-2">
-                  <label>St Ativo</label>
-              </div>
-              <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="stAtivo" [value]="true" label="Sim" [(ngModel)]="perfil.stAtivo"></p-radioButton>
-              </div>
-              <div class="ui-g-12 ui-md-2">
-                <p-radioButton name="stAtivo" [value]="false" label="Não" [(ngModel)]="perfil.stAtivo"></p-radioButton>
-              </div>
-            </div>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <p-spinner size="30" name="idFuncionalidade" [(ngModel)]="perfil.idFuncionalidade" decimalSeparator="" thousandSeparator=""></p-spinner>
-              <label>Id Funcionalidade</label>
             </span>
           </div>
         </div>

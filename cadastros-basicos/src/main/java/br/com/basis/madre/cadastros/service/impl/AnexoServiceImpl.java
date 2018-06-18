@@ -95,7 +95,6 @@ public class AnexoServiceImpl implements AnexoService {
     @Transactional(readOnly = true)
     public Page<Anexo> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Anexos for query {}", query);
-        Page<Anexo> result = anexoSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return anexoSearchRepository.search(queryStringQuery(query), pageable);
     }
 }
