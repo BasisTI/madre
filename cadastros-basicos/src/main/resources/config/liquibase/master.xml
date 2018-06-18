@@ -11,6 +11,7 @@
     <include file="config/liquibase/changelog/20180515201921_added_entity_Especialidade.xml" relativeToChangelogFile="false"/>
  
     <include file="config/liquibase/changelog/20180613170017_added_entity_Anexo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180613155657_added_entity_TipoPergunta.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

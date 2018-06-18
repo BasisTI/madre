@@ -39,6 +39,8 @@ import {ToastrModule} from 'ngx-toastr';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 import { BotoesExportacaoModule } from './botoes-exportacao/botoes-exportacao.module';
 import {NgxMaskModule} from 'ngx-mask'
+
+
 @NgModule({
   imports: [
     BrowserModule,

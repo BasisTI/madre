@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "enunciadoPergunta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "changelogDate": "20180613155657",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "tipo_pergunta",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager",
+    "microserviceName": "cadastrosbasicos",
+    "searchEngine": "elasticsearch"
+}
