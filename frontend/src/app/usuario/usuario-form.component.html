@@ -55,22 +55,10 @@
             </div>
           </div>
           <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="multiSelect" name="perfil" [(ngModel)]="usuario.perfil" pInputText required/>
-              <label>Perfil *</label>
-              <div *ngIf="editForm.controls['perfil'] && !editForm.controls['perfil'].valid && (editForm.controls['perfil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
-                Campo obrigatório!
-              </div>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="unidadeDeSaude" [(ngModel)]="usuario.unidadeDeSaude" pInputText required/>
-              <label>Unidade De Saude *</label>
-              <div *ngIf="editForm.controls['unidadeDeSaude'] && !editForm.controls['unidadeDeSaude'].valid && (editForm.controls['unidadeDeSaude'].touched || editForm.submitted)" class="ui-message ui-messages-error">
-                Campo obrigatório!
-              </div>
-            </span>
+            <p-dropdown [options]="perfils" optionLabel="nomePerfil" placeholder="Perfil" name="perfil" [(ngModel)]="usuario.perfil" [autoWidth]="false" dataKey="id"></p-dropdown>
+            <div *ngIf="editForm.controls['perfil'] && !editForm.controls['perfil'].valid && (editForm.controls['perfil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+              Campo obrigatório!
+            </div>
           </div>
         </div>
         <div class="ui-g">
