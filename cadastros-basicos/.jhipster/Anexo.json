@@ -25,7 +25,7 @@
         }
     ],
     "changelogDate": "20180613170017",
-    "dto": "mapstruct",
+    "dto": "no",
     "service": "serviceImpl",
     "entityTableName": "anexo",
     "jpaMetamodelFiltering": false,

@@ -4,8 +4,6 @@ import br.com.basis.madre.cadastros.service.AnexoService;
 import br.com.basis.madre.cadastros.domain.Anexo;
 import br.com.basis.madre.cadastros.repository.AnexoRepository;
 import br.com.basis.madre.cadastros.repository.search.AnexoSearchRepository;
-import br.com.basis.madre.cadastros.service.dto.AnexoDTO;
-import br.com.basis.madre.cadastros.service.mapper.AnexoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -27,29 +25,24 @@ public class AnexoServiceImpl implements AnexoService {
 
     private final AnexoRepository anexoRepository;
 
-    private final AnexoMapper anexoMapper;
-
     private final AnexoSearchRepository anexoSearchRepository;
 
-    public AnexoServiceImpl(AnexoRepository anexoRepository, AnexoMapper anexoMapper, AnexoSearchRepository anexoSearchRepository) {
+    public AnexoServiceImpl(AnexoRepository anexoRepository, AnexoSearchRepository anexoSearchRepository) {
         this.anexoRepository = anexoRepository;
-        this.anexoMapper = anexoMapper;
         this.anexoSearchRepository = anexoSearchRepository;
     }
 
     /**
      * Save a anexo.
      *
-     * @param anexoDTO the entity to save
+     * @param anexo the entity to save
      * @return the persisted entity
      */
     @Override
-    public AnexoDTO save(AnexoDTO anexoDTO) {
-        log.debug("Request to save Anexo : {}", anexoDTO);
-        Anexo anexo = anexoMapper.toEntity(anexoDTO);
-        anexo = anexoRepository.save(anexo);
-        AnexoDTO result = anexoMapper.toDto(anexo);
-        anexoSearchRepository.save(anexo);
+    public Anexo save(Anexo anexo) {
+        log.debug("Request to save Anexo : {}", anexo);
+        Anexo result = anexoRepository.save(anexo);
+        anexoSearchRepository.save(result);
         return result;
     }
 
@@ -61,10 +54,9 @@ public class AnexoServiceImpl implements AnexoService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<AnexoDTO> findAll(Pageable pageable) {
+    public Page<Anexo> findAll(Pageable pageable) {
         log.debug("Request to get all Anexos");
-        return anexoRepository.findAll(pageable)
-            .map(anexoMapper::toDto);
+        return anexoRepository.findAll(pageable);
     }
 
     /**
@@ -75,10 +67,9 @@ public class AnexoServiceImpl implements AnexoService {
      */
     @Override
     @Transactional(readOnly = true)
-    public AnexoDTO findOne(Long id) {
+    public Anexo findOne(Long id) {
         log.debug("Request to get Anexo : {}", id);
-        Anexo anexo = anexoRepository.findOne(id);
-        return anexoMapper.toDto(anexo);
+        return anexoRepository.findOne(id);
     }
 
     /**
@@ -102,9 +93,9 @@ public class AnexoServiceImpl implements AnexoService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<AnexoDTO> search(String query, Pageable pageable) {
+    public Page<Anexo> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Anexos for query {}", query);
         Page<Anexo> result = anexoSearchRepository.search(queryStringQuery(query), pageable);
-        return result.map(anexoMapper::toDto);
+        return result;
     }
 }

@@ -6,8 +6,6 @@ import br.com.basis.madre.cadastros.domain.Anexo;
 import br.com.basis.madre.cadastros.repository.AnexoRepository;
 import br.com.basis.madre.cadastros.service.AnexoService;
 import br.com.basis.madre.cadastros.repository.search.AnexoSearchRepository;
-import br.com.basis.madre.cadastros.service.dto.AnexoDTO;
-import br.com.basis.madre.cadastros.service.mapper.AnexoMapper;
 import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -61,9 +59,6 @@ public class AnexoResourceIntTest {
 
     @Autowired
     private AnexoRepository anexoRepository;
-
-    @Autowired
-    private AnexoMapper anexoMapper;
 
     @Autowired
     private AnexoService anexoService;
@@ -126,10 +121,9 @@ public class AnexoResourceIntTest {
         int databaseSizeBeforeCreate = anexoRepository.findAll().size();
 
         // Create the Anexo
-        AnexoDTO anexoDTO = anexoMapper.toDto(anexo);
         restAnexoMockMvc.perform(post("/api/anexos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(anexoDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(anexo)))
             .andExpect(status().isCreated());
 
         // Validate the Anexo in the database
@@ -154,12 +148,11 @@ public class AnexoResourceIntTest {
 
         // Create the Anexo with an existing ID
         anexo.setId(1L);
-        AnexoDTO anexoDTO = anexoMapper.toDto(anexo);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAnexoMockMvc.perform(post("/api/anexos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(anexoDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(anexo)))
             .andExpect(status().isBadRequest());
 
         // Validate the Anexo in the database
@@ -215,8 +208,8 @@ public class AnexoResourceIntTest {
     @Transactional
     public void updateAnexo() throws Exception {
         // Initialize the database
-        anexoRepository.saveAndFlush(anexo);
-        anexoSearchRepository.save(anexo);
+        anexoService.save(anexo);
+
         int databaseSizeBeforeUpdate = anexoRepository.findAll().size();
 
         // Update the anexo
@@ -229,11 +222,10 @@ public class AnexoResourceIntTest {
             .tamanhoArquivo(UPDATED_TAMANHO_ARQUIVO)
             .arquivoAnexo(UPDATED_ARQUIVO_ANEXO)
             .arquivoAnexoContentType(UPDATED_ARQUIVO_ANEXO_CONTENT_TYPE);
-        AnexoDTO anexoDTO = anexoMapper.toDto(updatedAnexo);
 
         restAnexoMockMvc.perform(put("/api/anexos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(anexoDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(updatedAnexo)))
             .andExpect(status().isOk());
 
         // Validate the Anexo in the database
@@ -257,12 +249,11 @@ public class AnexoResourceIntTest {
         int databaseSizeBeforeUpdate = anexoRepository.findAll().size();
 
         // Create the Anexo
-        AnexoDTO anexoDTO = anexoMapper.toDto(anexo);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restAnexoMockMvc.perform(put("/api/anexos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(anexoDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(anexo)))
             .andExpect(status().isCreated());
 
         // Validate the Anexo in the database
@@ -274,8 +265,8 @@ public class AnexoResourceIntTest {
     @Transactional
     public void deleteAnexo() throws Exception {
         // Initialize the database
-        anexoRepository.saveAndFlush(anexo);
-        anexoSearchRepository.save(anexo);
+        anexoService.save(anexo);
+
         int databaseSizeBeforeDelete = anexoRepository.findAll().size();
 
         // Get the anexo
@@ -296,8 +287,7 @@ public class AnexoResourceIntTest {
     @Transactional
     public void searchAnexo() throws Exception {
         // Initialize the database
-        anexoRepository.saveAndFlush(anexo);
-        anexoSearchRepository.save(anexo);
+        anexoService.save(anexo);
 
         // Search the anexo
         restAnexoMockMvc.perform(get("/api/_search/anexos?query=id:" + anexo.getId()))
@@ -324,28 +314,5 @@ public class AnexoResourceIntTest {
         assertThat(anexo1).isNotEqualTo(anexo2);
         anexo1.setId(null);
         assertThat(anexo1).isNotEqualTo(anexo2);
-    }
-
-    @Test
-    @Transactional
-    public void dtoEqualsVerifier() throws Exception {
-        TestUtil.equalsVerifier(AnexoDTO.class);
-        AnexoDTO anexoDTO1 = new AnexoDTO();
-        anexoDTO1.setId(1L);
-        AnexoDTO anexoDTO2 = new AnexoDTO();
-        assertThat(anexoDTO1).isNotEqualTo(anexoDTO2);
-        anexoDTO2.setId(anexoDTO1.getId());
-        assertThat(anexoDTO1).isEqualTo(anexoDTO2);
-        anexoDTO2.setId(2L);
-        assertThat(anexoDTO1).isNotEqualTo(anexoDTO2);
-        anexoDTO1.setId(null);
-        assertThat(anexoDTO1).isNotEqualTo(anexoDTO2);
-    }
-
-    @Test
-    @Transactional
-    public void testEntityFromId() {
-        assertThat(anexoMapper.fromId(42L).getId()).isEqualTo(42);
-        assertThat(anexoMapper.fromId(null)).isNull();
     }
 }

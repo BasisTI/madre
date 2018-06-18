@@ -1,6 +1,6 @@
 package br.com.basis.madre.cadastros.service;
 
-import br.com.basis.madre.cadastros.service.dto.AnexoDTO;
+import br.com.basis.madre.cadastros.domain.Anexo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,10 +12,10 @@ public interface AnexoService {
     /**
      * Save a anexo.
      *
-     * @param anexoDTO the entity to save
+     * @param anexo the entity to save
      * @return the persisted entity
      */
-    AnexoDTO save(AnexoDTO anexoDTO);
+    Anexo save(Anexo anexo);
 
     /**
      * Get all the anexos.
@@ -23,7 +23,7 @@ public interface AnexoService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<AnexoDTO> findAll(Pageable pageable);
+    Page<Anexo> findAll(Pageable pageable);
 
     /**
      * Get the "id" anexo.
@@ -31,7 +31,7 @@ public interface AnexoService {
      * @param id the id of the entity
      * @return the entity
      */
-    AnexoDTO findOne(Long id);
+    Anexo findOne(Long id);
 
     /**
      * Delete the "id" anexo.
@@ -48,5 +48,5 @@ public interface AnexoService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<AnexoDTO> search(String query, Pageable pageable);
+    Page<Anexo> search(String query, Pageable pageable);
 }
