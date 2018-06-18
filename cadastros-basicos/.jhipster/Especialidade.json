@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "150"
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "250"
+        }
+    ],
+    "changelogDate": "20180515201921",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "especialidade",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager",
+    "microserviceName": "cadastrosbasicos",
+    "searchEngine": "elasticsearch"
+}

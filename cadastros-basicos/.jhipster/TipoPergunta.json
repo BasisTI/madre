@@ -13,7 +13,7 @@
         }
     ],
     "changelogDate": "20180613155657",
-    "dto": "mapstruct",
+    "dto": "no",
     "service": "serviceImpl",
     "entityTableName": "tipo_pergunta",
     "jpaMetamodelFiltering": false,
