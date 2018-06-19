@@ -1,6 +1,6 @@
 package br.com.basis.madre.cadastros.service;
 
-import br.com.basis.madre.cadastros.service.dto.TipoPerguntaDTO;
+import br.com.basis.madre.cadastros.domain.TipoPergunta;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,10 +12,10 @@ public interface TipoPerguntaService {
     /**
      * Save a tipoPergunta.
      *
-     * @param tipoPerguntaDTO the entity to save
+     * @param tipoPergunta the entity to save
      * @return the persisted entity
      */
-    TipoPerguntaDTO save(TipoPerguntaDTO tipoPerguntaDTO);
+    TipoPergunta save(TipoPergunta tipoPergunta);
 
     /**
      * Get all the tipoPerguntas.
@@ -23,7 +23,7 @@ public interface TipoPerguntaService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<TipoPerguntaDTO> findAll(Pageable pageable);
+    Page<TipoPergunta> findAll(Pageable pageable);
 
     /**
      * Get the "id" tipoPergunta.
@@ -31,7 +31,7 @@ public interface TipoPerguntaService {
      * @param id the id of the entity
      * @return the entity
      */
-    TipoPerguntaDTO findOne(Long id);
+    TipoPergunta findOne(Long id);
 
     /**
      * Delete the "id" tipoPergunta.
@@ -48,5 +48,5 @@ public interface TipoPerguntaService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<TipoPerguntaDTO> search(String query, Pageable pageable);
+    Page<TipoPergunta> search(String query, Pageable pageable);
 }
