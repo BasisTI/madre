@@ -7,12 +7,6 @@
         Added the constraints for entity Usuario.
     -->
     <changeSet id="20180426043131-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="perfil_id"
-                                 baseTableName="usuario"
-                                 constraintName="fk_usuario_perfil_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="perfil"/>
 
         <dropColumn columnName="perfil" tableName="usuario"/>
         <dropColumn columnName="unidade_de_saude" tableName="usuario"/>
@@ -22,6 +16,12 @@
                 <constraints nullable="false"/>
             </column>
         </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="perfil_id"
+                                 baseTableName="usuario"
+                                 constraintName="fk_usuario_perfil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="perfil"/>
 
     </changeSet>
 </databaseChangeLog>
