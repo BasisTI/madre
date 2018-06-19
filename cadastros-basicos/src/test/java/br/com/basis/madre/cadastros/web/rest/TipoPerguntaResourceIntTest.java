@@ -1,13 +1,13 @@
 package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+
 import br.com.basis.madre.cadastros.domain.TipoPergunta;
 import br.com.basis.madre.cadastros.repository.TipoPerguntaRepository;
-import br.com.basis.madre.cadastros.repository.search.TipoPerguntaSearchRepository;
 import br.com.basis.madre.cadastros.service.TipoPerguntaService;
-import br.com.basis.madre.cadastros.service.dto.TipoPerguntaDTO;
-import br.com.basis.madre.cadastros.service.mapper.TipoPerguntaMapper;
+import br.com.basis.madre.cadastros.repository.search.TipoPerguntaSearchRepository;
 import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,8 +31,6 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-;
-
 /**
  * Test class for the TipoPerguntaResource REST controller.
  *
@@ -47,9 +45,6 @@ public class TipoPerguntaResourceIntTest {
 
     @Autowired
     private TipoPerguntaRepository tipoPerguntaRepository;
-
-    @Autowired
-    private TipoPerguntaMapper tipoPerguntaMapper;
 
     @Autowired
     private TipoPerguntaService tipoPerguntaService;
@@ -76,7 +71,7 @@ public class TipoPerguntaResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TipoPerguntaResource tipoPerguntaResource = new TipoPerguntaResource(tipoPerguntaService);
+        final TipoPerguntaResource tipoPerguntaResource = new TipoPerguntaResource(tipoPerguntaService,tipoPerguntaRepository);
         this.restTipoPerguntaMockMvc = MockMvcBuilders.standaloneSetup(tipoPerguntaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -108,10 +103,9 @@ public class TipoPerguntaResourceIntTest {
         int databaseSizeBeforeCreate = tipoPerguntaRepository.findAll().size();
 
         // Create the TipoPergunta
-        TipoPerguntaDTO tipoPerguntaDTO = tipoPerguntaMapper.toDto(tipoPergunta);
         restTipoPerguntaMockMvc.perform(post("/api/tipo-perguntas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tipoPerguntaDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(tipoPergunta)))
             .andExpect(status().isCreated());
 
         // Validate the TipoPergunta in the database
@@ -132,12 +126,11 @@ public class TipoPerguntaResourceIntTest {
 
         // Create the TipoPergunta with an existing ID
         tipoPergunta.setId(1L);
-        TipoPerguntaDTO tipoPerguntaDTO = tipoPerguntaMapper.toDto(tipoPergunta);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTipoPerguntaMockMvc.perform(post("/api/tipo-perguntas")
-            .contentType(br.com.basis.madre.cadastros.web.rest.TestUtil.APPLICATION_JSON_UTF8)
-            .content(br.com.basis.madre.cadastros.web.rest.TestUtil.convertObjectToJsonBytes(tipoPerguntaDTO)))
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tipoPergunta)))
             .andExpect(status().isBadRequest());
 
         // Validate the TipoPergunta in the database
@@ -153,11 +146,10 @@ public class TipoPerguntaResourceIntTest {
         tipoPergunta.setEnunciadoPergunta(null);
 
         // Create the TipoPergunta, which fails.
-        TipoPerguntaDTO tipoPerguntaDTO = tipoPerguntaMapper.toDto(tipoPergunta);
 
         restTipoPerguntaMockMvc.perform(post("/api/tipo-perguntas")
-            .contentType(br.com.basis.madre.cadastros.web.rest.TestUtil.APPLICATION_JSON_UTF8)
-            .content(br.com.basis.madre.cadastros.web.rest.TestUtil.convertObjectToJsonBytes(tipoPerguntaDTO)))
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tipoPergunta)))
             .andExpect(status().isBadRequest());
 
         List<TipoPergunta> tipoPerguntaList = tipoPerguntaRepository.findAll();
@@ -204,8 +196,8 @@ public class TipoPerguntaResourceIntTest {
     @Transactional
     public void updateTipoPergunta() throws Exception {
         // Initialize the database
-        tipoPerguntaRepository.saveAndFlush(tipoPergunta);
-        tipoPerguntaSearchRepository.save(tipoPergunta);
+        tipoPerguntaService.save(tipoPergunta);
+
         int databaseSizeBeforeUpdate = tipoPerguntaRepository.findAll().size();
 
         // Update the tipoPergunta
@@ -214,11 +206,10 @@ public class TipoPerguntaResourceIntTest {
         em.detach(updatedTipoPergunta);
         updatedTipoPergunta
             .enunciadoPergunta(UPDATED_ENUNCIADO_PERGUNTA);
-        TipoPerguntaDTO tipoPerguntaDTO = tipoPerguntaMapper.toDto(updatedTipoPergunta);
 
         restTipoPerguntaMockMvc.perform(put("/api/tipo-perguntas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tipoPerguntaDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(updatedTipoPergunta)))
             .andExpect(status().isOk());
 
         // Validate the TipoPergunta in the database
@@ -238,12 +229,11 @@ public class TipoPerguntaResourceIntTest {
         int databaseSizeBeforeUpdate = tipoPerguntaRepository.findAll().size();
 
         // Create the TipoPergunta
-        TipoPerguntaDTO tipoPerguntaDTO = tipoPerguntaMapper.toDto(tipoPergunta);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restTipoPerguntaMockMvc.perform(put("/api/tipo-perguntas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tipoPerguntaDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(tipoPergunta)))
             .andExpect(status().isCreated());
 
         // Validate the TipoPergunta in the database
@@ -255,8 +245,8 @@ public class TipoPerguntaResourceIntTest {
     @Transactional
     public void deleteTipoPergunta() throws Exception {
         // Initialize the database
-        tipoPerguntaRepository.saveAndFlush(tipoPergunta);
-        tipoPerguntaSearchRepository.save(tipoPergunta);
+        tipoPerguntaService.save(tipoPergunta);
+
         int databaseSizeBeforeDelete = tipoPerguntaRepository.findAll().size();
 
         // Get the tipoPergunta
@@ -277,8 +267,7 @@ public class TipoPerguntaResourceIntTest {
     @Transactional
     public void searchTipoPergunta() throws Exception {
         // Initialize the database
-        tipoPerguntaRepository.saveAndFlush(tipoPergunta);
-        tipoPerguntaSearchRepository.save(tipoPergunta);
+        tipoPerguntaService.save(tipoPergunta);
 
         // Search the tipoPergunta
         restTipoPerguntaMockMvc.perform(get("/api/_search/tipo-perguntas?query=id:" + tipoPergunta.getId()))
@@ -301,28 +290,5 @@ public class TipoPerguntaResourceIntTest {
         assertThat(tipoPergunta1).isNotEqualTo(tipoPergunta2);
         tipoPergunta1.setId(null);
         assertThat(tipoPergunta1).isNotEqualTo(tipoPergunta2);
-    }
-
-    @Test
-    @Transactional
-    public void dtoEqualsVerifier() throws Exception {
-        TestUtil.equalsVerifier(TipoPerguntaDTO.class);
-        TipoPerguntaDTO tipoPerguntaDTO1 = new TipoPerguntaDTO();
-        tipoPerguntaDTO1.setId(1L);
-        TipoPerguntaDTO tipoPerguntaDTO2 = new TipoPerguntaDTO();
-        assertThat(tipoPerguntaDTO1).isNotEqualTo(tipoPerguntaDTO2);
-        tipoPerguntaDTO2.setId(tipoPerguntaDTO1.getId());
-        assertThat(tipoPerguntaDTO1).isEqualTo(tipoPerguntaDTO2);
-        tipoPerguntaDTO2.setId(2L);
-        assertThat(tipoPerguntaDTO1).isNotEqualTo(tipoPerguntaDTO2);
-        tipoPerguntaDTO1.setId(null);
-        assertThat(tipoPerguntaDTO1).isNotEqualTo(tipoPerguntaDTO2);
-    }
-
-    @Test
-    @Transactional
-    public void testEntityFromId() {
-        assertThat(tipoPerguntaMapper.fromId(42L).getId()).isEqualTo(42);
-        assertThat(tipoPerguntaMapper.fromId(null)).isNull();
     }
 }

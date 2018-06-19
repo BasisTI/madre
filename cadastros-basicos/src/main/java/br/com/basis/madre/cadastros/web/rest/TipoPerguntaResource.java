@@ -1,11 +1,13 @@
 package br.com.basis.madre.cadastros.web.rest;
 
+import br.com.basis.madre.cadastros.repository.TipoPerguntaRepository;
+import br.com.basis.madre.cadastros.util.MadreUtil;
 import com.codahale.metrics.annotation.Timed;
+import br.com.basis.madre.cadastros.domain.TipoPergunta;
 import br.com.basis.madre.cadastros.service.TipoPerguntaService;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
-import br.com.basis.madre.cadastros.service.dto.TipoPerguntaDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,25 +41,32 @@ public class TipoPerguntaResource {
 
     private final TipoPerguntaService tipoPerguntaService;
 
-    public TipoPerguntaResource(TipoPerguntaService tipoPerguntaService) {
+    private final TipoPerguntaRepository tipoPerguntaRepository;
+
+    public TipoPerguntaResource(TipoPerguntaService tipoPerguntaService, TipoPerguntaRepository tipoPerguntaRepository) {
         this.tipoPerguntaService = tipoPerguntaService;
+        this.tipoPerguntaRepository = tipoPerguntaRepository;
     }
 
     /**
      * POST  /tipo-perguntas : Create a new tipoPergunta.
      *
-     * @param tipoPerguntaDTO the tipoPerguntaDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new tipoPerguntaDTO, or with status 400 (Bad Request) if the tipoPergunta has already an ID
+     * @param tipoPergunta the tipoPergunta to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new tipoPergunta, or with status 400 (Bad Request) if the tipoPergunta has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/tipo-perguntas")
     @Timed
-    public ResponseEntity<TipoPerguntaDTO> createTipoPergunta(@Valid @RequestBody TipoPerguntaDTO tipoPerguntaDTO) throws URISyntaxException {
-        log.debug("REST request to save TipoPergunta : {}", tipoPerguntaDTO);
-        if (tipoPerguntaDTO.getId() != null) {
+    public ResponseEntity<TipoPergunta> createTipoPergunta(@Valid @RequestBody TipoPergunta tipoPergunta) throws URISyntaxException {
+        log.debug("REST request to save TipoPergunta : {}", tipoPergunta);
+        if (tipoPergunta.getId() != null) {
             throw new BadRequestAlertException("A new tipoPergunta cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TipoPerguntaDTO result = tipoPerguntaService.save(tipoPerguntaDTO);
+        if(tipoPerguntaRepository.findOneByEnunciadoPerguntaIgnoreCase(MadreUtil.removeCaracteresEmBranco(tipoPergunta.getEnunciadoPergunta())).isPresent()){
+            throw new BadRequestAlertException("O enunciado é existente", ENTITY_NAME, "enunciadoexists");
+        }
+
+        TipoPergunta result = tipoPerguntaService.save(tipoPergunta);
         return ResponseEntity.created(new URI("/api/tipo-perguntas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -66,22 +75,22 @@ public class TipoPerguntaResource {
     /**
      * PUT  /tipo-perguntas : Updates an existing tipoPergunta.
      *
-     * @param tipoPerguntaDTO the tipoPerguntaDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated tipoPerguntaDTO,
-     * or with status 400 (Bad Request) if the tipoPerguntaDTO is not valid,
-     * or with status 500 (Internal Server Error) if the tipoPerguntaDTO couldn't be updated
+     * @param tipoPergunta the tipoPergunta to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated tipoPergunta,
+     * or with status 400 (Bad Request) if the tipoPergunta is not valid,
+     * or with status 500 (Internal Server Error) if the tipoPergunta couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/tipo-perguntas")
     @Timed
-    public ResponseEntity<TipoPerguntaDTO> updateTipoPergunta(@Valid @RequestBody TipoPerguntaDTO tipoPerguntaDTO) throws URISyntaxException {
-        log.debug("REST request to update TipoPergunta : {}", tipoPerguntaDTO);
-        if (tipoPerguntaDTO.getId() == null) {
-            return createTipoPergunta(tipoPerguntaDTO);
+    public ResponseEntity<TipoPergunta> updateTipoPergunta(@Valid @RequestBody TipoPergunta tipoPergunta) throws URISyntaxException {
+        log.debug("REST request to update TipoPergunta : {}", tipoPergunta);
+        if (tipoPergunta.getId() == null) {
+            return createTipoPergunta(tipoPergunta);
         }
-        TipoPerguntaDTO result = tipoPerguntaService.save(tipoPerguntaDTO);
+        TipoPergunta result = tipoPerguntaService.save(tipoPergunta);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, tipoPerguntaDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, tipoPergunta.getId().toString()))
             .body(result);
     }
 
@@ -93,9 +102,9 @@ public class TipoPerguntaResource {
      */
     @GetMapping("/tipo-perguntas")
     @Timed
-    public ResponseEntity<List<TipoPerguntaDTO>> getAllTipoPerguntas(Pageable pageable) {
+    public ResponseEntity<List<TipoPergunta>> getAllTipoPerguntas(Pageable pageable) {
         log.debug("REST request to get a page of TipoPerguntas");
-        Page<TipoPerguntaDTO> page = tipoPerguntaService.findAll(pageable);
+        Page<TipoPergunta> page = tipoPerguntaService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/tipo-perguntas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -103,21 +112,21 @@ public class TipoPerguntaResource {
     /**
      * GET  /tipo-perguntas/:id : get the "id" tipoPergunta.
      *
-     * @param id the id of the tipoPerguntaDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the tipoPerguntaDTO, or with status 404 (Not Found)
+     * @param id the id of the tipoPergunta to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the tipoPergunta, or with status 404 (Not Found)
      */
     @GetMapping("/tipo-perguntas/{id}")
     @Timed
-    public ResponseEntity<TipoPerguntaDTO> getTipoPergunta(@PathVariable Long id) {
+    public ResponseEntity<TipoPergunta> getTipoPergunta(@PathVariable Long id) {
         log.debug("REST request to get TipoPergunta : {}", id);
-        TipoPerguntaDTO tipoPerguntaDTO = tipoPerguntaService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(tipoPerguntaDTO));
+        TipoPergunta tipoPergunta = tipoPerguntaService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(tipoPergunta));
     }
 
     /**
      * DELETE  /tipo-perguntas/:id : delete the "id" tipoPergunta.
      *
-     * @param id the id of the tipoPerguntaDTO to delete
+     * @param id the id of the tipoPergunta to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/tipo-perguntas/{id}")
@@ -138,9 +147,9 @@ public class TipoPerguntaResource {
      */
     @GetMapping("/_search/tipo-perguntas")
     @Timed
-    public ResponseEntity<List<TipoPerguntaDTO>> searchTipoPerguntas(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<TipoPergunta>> searchTipoPerguntas(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of TipoPerguntas for query {}", query);
-        Page<TipoPerguntaDTO> page = tipoPerguntaService.search(query, pageable);
+        Page<TipoPergunta> page = tipoPerguntaService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/tipo-perguntas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
