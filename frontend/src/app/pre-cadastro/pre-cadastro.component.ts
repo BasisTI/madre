@@ -38,7 +38,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
   }
 
   valueFiltro(valuefiltro: string) {
-    this.valueFiltroCampo = valuefiltro;
+    //this.valueFiltroCampo = valuefiltro;
     this.datatable.refresh(valuefiltro);
   }
 

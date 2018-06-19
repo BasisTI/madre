@@ -71,7 +71,7 @@ public class TipoPerguntaResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TipoPerguntaResource tipoPerguntaResource = new TipoPerguntaResource(tipoPerguntaService);
+        final TipoPerguntaResource tipoPerguntaResource = new TipoPerguntaResource(tipoPerguntaService,tipoPerguntaRepository);
         this.restTipoPerguntaMockMvc = MockMvcBuilders.standaloneSetup(tipoPerguntaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
