@@ -13,7 +13,7 @@
 
         <addColumn tableName="usuario">
             <column name="perfil_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </addColumn>
 

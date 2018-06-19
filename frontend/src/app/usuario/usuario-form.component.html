@@ -55,10 +55,11 @@
             </div>
           </div>
           <div class="ui-g-12 ui-md-6">
-            <p-dropdown [options]="perfils" optionLabel="nomePerfil" placeholder="Perfil" name="perfil" [(ngModel)]="usuario.perfil" [autoWidth]="false" dataKey="id"></p-dropdown>
-            <div *ngIf="editForm.controls['perfil'] && !editForm.controls['perfil'].valid && (editForm.controls['perfil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
-              Campo obrigatório!
-            </div>
+          <span class="md-inputfield">
+            <Label>Perfil</Label> <br/>
+            <p-listbox [options]="perfils" [(ngModel)]="usuario.perfil" name="perfil" optionLabel="nomePerfil" dataKey="id" [listStyle]="{'max-height':'200px'}">
+            </p-listbox>
+          </span>
           </div>
         </div>
         <div class="ui-g">
