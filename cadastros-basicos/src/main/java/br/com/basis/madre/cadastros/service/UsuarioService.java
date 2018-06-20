@@ -10,18 +10,13 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
-//
-//
-
-
 /**
- * Service managing Usuario.
+ * Service Interface for managing Usuario.
  */
 public interface UsuarioService {
 
-
     /**
-     * Save a Usuario.
+     * Save a usuario.
      *
      * @param usuario the entity to save
      * @return the persisted entity
@@ -29,7 +24,7 @@ public interface UsuarioService {
     Usuario save(Usuario usuario) throws UsuarioException;
 
     /**
-     * Get all the Usuario.
+     * Get all the usuarios.
      *
      * @param pageable the pagination information
      * @return the list of entities
@@ -37,7 +32,7 @@ public interface UsuarioService {
     Page<Usuario> findAll(Optional<String> query, Pageable pageable);
 
     /**
-     * Get the "id" Usuario.
+     * Get the "id" usuario.
      *
      * @param id the id of the entity
      * @return the entity
@@ -45,15 +40,20 @@ public interface UsuarioService {
     Usuario findOne(Long id);
 
     /**
-     * Delete the "id" Usuario.
+     * Delete the "id" usuario.
      *
      * @param id the id of the entity
      */
     void delete(Long id);
 
+    /**
+     * Search for the usuario corresponding to the query.
+     *
+     * @param query the query of the search
+     * 
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
     Page<Usuario> search(String query, Pageable pageable);
-
     ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
-
 }
-

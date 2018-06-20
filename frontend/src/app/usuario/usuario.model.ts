@@ -9,8 +9,7 @@ export class Usuario implements BaseEntity {
     public login?: string,
     public senha?: string,
     public email?: string,
-    public perfil?: BaseEntity,
-    public unidadeDeSaude?: BaseEntity,
     public ativo?: boolean,
+    public perfil?: BaseEntity,
   ) {}
 }

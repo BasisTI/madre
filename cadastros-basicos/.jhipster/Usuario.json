@@ -1,6 +1,16 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "perfil",
+            "otherEntityName": "perfil",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nomePerfil"
+        }
+    ],
     "fields": [
         {
             "fieldName": "nome",
