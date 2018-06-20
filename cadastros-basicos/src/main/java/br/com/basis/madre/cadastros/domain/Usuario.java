@@ -181,7 +181,6 @@ public class Usuario implements Serializable, ReportObject {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", login='" + getLogin() + "'" +
-            ", senha='" + getSenha() + "'" +
             ", email='" + getEmail() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";

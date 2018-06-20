@@ -1,12 +1,12 @@
 package br.com.basis.madre.cadastros.repository;
 
-import br.com.basis.madre.cadastros.domain.PreCadastro;
-import br.com.basis.madre.cadastros.domain.TipoPergunta;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.*;
-
-import java.util.Optional;
+import br.com.basis.madre.cadastros.domain.PreCadastro;
+import br.com.basis.madre.cadastros.domain.TipoPergunta;
 
 
 /**

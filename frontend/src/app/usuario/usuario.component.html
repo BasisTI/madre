@@ -25,12 +25,12 @@
                     <p-column header="Nome" field="nome" [sortable]="true"></p-column>
                     <p-column header="Login" field="login" [sortable]="true"></p-column>
                     <p-column header="Email" field="email" [sortable]="true"></p-column>
+                    <p-column header="Perfil" field="perfil.nomePerfil" [sortable]="true"></p-column>
                     <p-column header="Ativo" field="ativo" [sortable]="true">
             <ng-template let-col let-ativo="rowData" pTemplate="body">
               {{ ativo[col.field] ? 'Sim' : (ativo[col.field] != null ? 'Não' : null) }}
             </ng-template>
           </p-column>
-          <p-column header="Perfil" field="perfil.nomePerfil"></p-column>
         </basis-datatable>
         <div class="ui-g-6 ui-md-2">
           <app-botoes-exportacao resourceName="usuario" [query]="valueFiltroCampo"></app-botoes-exportacao>

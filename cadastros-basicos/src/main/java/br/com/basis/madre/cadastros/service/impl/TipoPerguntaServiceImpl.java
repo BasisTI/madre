@@ -1,7 +1,21 @@
 package br.com.basis.madre.cadastros.service.impl;
 
-import br.com.basis.dynamicexports.pojo.PropriedadesRelatorio;
-import br.com.basis.dynamicexports.pojo.ReportObject;
+import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.basis.dynamicexports.service.DynamicExportsService;
 import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.TipoPergunta;
@@ -13,21 +27,6 @@ import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioTipoPergu
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import net.sf.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.JRException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing TipoPergunta.
@@ -113,8 +112,7 @@ public class TipoPerguntaServiceImpl implements TipoPerguntaService {
     @Transactional(readOnly = true)
     public Page<TipoPergunta> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of TipoPerguntas for query {}", query);
-        Page<TipoPergunta> result = tipoPerguntaSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return tipoPerguntaSearchRepository.search(queryStringQuery(query), pageable);
     }
 
     @Override
