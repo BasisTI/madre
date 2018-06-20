@@ -6,7 +6,7 @@
         <div class="ui-g-12 ui-md-12">
             <span class="md-inputfield">
                 <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
-                (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro"/>
+                (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro">
 
               <label>Pesquisar</label>
             </span>
@@ -22,10 +22,10 @@
         </div>
         <div class="ui-g-12 ui-md-3"></div>
         <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)"  #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]" >
-          <p-column header="Enunciado Pergunta" field="enunciadoPergunta"></p-column>
+          <p-column header="Enunciado" field="enunciadoPergunta"></p-column>
         </basis-datatable>
         <div class="ui-g-12 ui-md-2">
-            <app-botoes-exportacao resourceName="precadastro" [query]="valueFiltroCampo">
+            <app-botoes-exportacao resourceName="tipoPergunta" [query]="valueFiltroCampo">
             </app-botoes-exportacao>
         </div>
       </div>

@@ -1,5 +1,6 @@
 package br.com.basis.madre.cadastros.domain;
 
+import br.com.basis.dynamicexports.pojo.ReportObject;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -17,7 +18,7 @@ import java.util.Objects;
 @Table(name = "tipo_pergunta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "tipopergunta")
-public class TipoPergunta implements Serializable {
+public class TipoPergunta implements Serializable,ReportObject {
 
     private static final long serialVersionUID = 1L;
 

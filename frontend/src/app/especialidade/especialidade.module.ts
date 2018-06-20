@@ -21,7 +21,7 @@ import {
   EspecialidadeFormComponent,
   especialidadeRoute
 } from './';
-import { BotoesExportacaoComponent } from '../botoes-exportacao/botoes-exportacao.component';
+
 
 @NgModule({
   imports: [
