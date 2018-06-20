@@ -1,3 +1,4 @@
+<!-- Pagina Editar -->
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
@@ -8,13 +9,13 @@
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" pInputText/>
-              <label>Nome Perfil</label>
+              <label>Perfil</label>
             </span>
           </div>
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="dsPerfil" [(ngModel)]="perfil.dsPerfil" pInputText/>
-              <label>Ds Perfil</label>
+              <label>Descrição</label>
             </span>
           </div>
         </div>
@@ -23,7 +24,7 @@
             <button pButton type="button" label="Cancelar" routerLink="/perfil"></button>
           </div>
           <div class="ui-g-12 ui-md-2">
-            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving"></button>
           </div>
         </div>
       </form>

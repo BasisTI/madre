@@ -1,7 +1,8 @@
+<!-- Perfis e Permissões HOME -->
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>Perfils</h1>
+      <h1>Perfis e Permissões</h1>
       <div class="ui-g">
         <div class="ui-g-12 ui-md-4">
             <span class="md-inputfield">
@@ -19,8 +20,8 @@
         </div>
         <basis-datatable [url]="searchUrl" 
           (buttonClick)="datatableClick($event)" #datatable>
-          <p-column header="Nome Perfil" field="nomePerfil"></p-column>
-          <p-column header="Ds Perfil" field="dsPerfil"></p-column>
+          <p-column header="Perfil" field="nomePerfil"></p-column>
+          <p-column header="Descrição" field="dsPerfil"></p-column>
         </basis-datatable>
       </div>
     </div>
