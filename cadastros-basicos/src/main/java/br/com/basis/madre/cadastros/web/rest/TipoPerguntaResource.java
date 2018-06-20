@@ -150,19 +150,13 @@ public class TipoPerguntaResource {
      */
     @GetMapping("/_search/tipo-perguntas")
     @Timed
-    public ResponseEntity<List<TipoPergunta>> searchTipoPerguntas(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<TipoPergunta>> searchTipoPerguntas(@RequestParam(defaultValue = "*") String query, Pageable pageable) {
         log.debug("REST request to search for a page of TipoPerguntas for query {}", query);
         Page<TipoPergunta> page = tipoPerguntaService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/tipo-perguntas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    /**
-     * GET  /tipopergunta/:id : get jasper of  usuarios.
-     *
-     * @param tipoRelatorio
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @GetMapping(value = "/tipoPergunta/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
     public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
@@ -173,4 +167,5 @@ public class TipoPerguntaResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
         }
     }
+
 }
