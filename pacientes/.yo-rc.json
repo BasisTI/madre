@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "br.com.basis.madre.pacientes"
     },
-    "jhipsterVersion": "4.14.3",
+    "jhipsterVersion": "4.14.4",
     "baseName": "pacientes",
     "packageName": "br.com.basis.madre.pacientes",
     "packageFolder": "br/com/basis/madre/pacientes",

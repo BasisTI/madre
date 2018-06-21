@@ -6,6 +6,6 @@ services:
         #     - ~/volumes/jhipster/pacientes/postgresql/:/var/lib/postgresql/data/
         environment:
             - POSTGRES_USER=pacientes
-            - POSTGRES_PASSWORD=
+            - POSTGRES_PASSWORD=pacientes
         ports:
             - 5432:5432
