@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>{{ paciente.id ? 'Editar Paciente' : 'Cadastrar Paciente' }}</h1>
+      <h1>{{ paciente.id ? 'Editar Paciente' : 'Incluir Paciente' }}</h1>
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="paciente.id" readonly/>
