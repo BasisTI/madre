@@ -18,6 +18,7 @@ export const routes: Routes = [
   { path: 'especialidade', loadChildren: 'app/especialidade/especialidade.module#CadastrosbasicosEspecialidadeModule' },
   { path: 'anexo', loadChildren: 'app/anexo/anexo.module#CadastrosbasicosAnexoModule' },
   { path: 'tipoPergunta', loadChildren: 'app/tipo-pergunta/tipo-pergunta.module#CadastrosbasicosTipoPerguntaModule' },
+  { path: 'paciente', loadChildren: 'app/paciente/paciente.module#PacientesPacienteModule' },
   /* jhipster-needle-add-lazy-module - JHipster will add lazy modules here */
 ];
 

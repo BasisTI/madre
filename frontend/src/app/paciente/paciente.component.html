@@ -1,0 +1,47 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Pacientes</h1>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+            <span class="md-inputfield">
+              <input type="text" pInputText class="ui-inputtext" #filter/>
+              <label>Descrição</label>
+            </span>
+        </div>
+        <div class="ui-g-12 ui-md-3"></div>
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-g-12 ui-md-6">
+            <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="datatable.refresh(filter.value)"></button>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <button pButton type="button" label="Cadastrar" routerLink="/paciente/new" icon="ui-icon-add"></button>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-3"></div>
+        <basis-datatable [url]="searchUrl" 
+          (buttonClick)="datatableClick($event)" #datatable>
+
+          <p-column header="Paciente" field="nomePaciente"></p-column>
+          <p-column header="RG" field="rg"></p-column>
+          <p-column header="CPF" field="cpf"></p-column>
+          <p-column header="Sexo" field="sexo"></p-column>
+          <p-column header="Data de Nascimento" field="dataNascimento">
+            <ng-template let-col let-dataNascimento="rowData" pTemplate="body">
+              {{ dataNascimento[col.field]|date:'dd/MM/y' }}
+            </ng-template>
+          </p-column>
+          <p-column header="CEP" field="cep"></p-column>
+          <p-column header="Prontuário" field="prontuario"></p-column>
+
+        </basis-datatable>
+      </div>
+    </div>
+  </div>
+</div>
+<p-confirmDialog header="Confirmação" #dialog>
+  <p-footer>
+    <button type="button" pButton icon="fa-close" label="Não" (click)="dialog.reject()"></button>
+    <button type="button" pButton icon="fa-check" label="Sim" (click)="dialog.accept()"></button>
+  </p-footer>
+</p-confirmDialog>

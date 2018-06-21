@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Paciente.
+    -->
+    <changeSet id="20180621144135-1" author="jhipster">
+        <createTable tableName="paciente">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rg" type="varchar(15)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="cpf" type="varchar(11)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="sexo" type="varchar(1)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="data_nascimento" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="cep" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="prontuario" type="varchar(10)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nome_paciente" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nome_social" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="raca_cor" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="estado_civil" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nome_pai" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nome_mae" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="nacionalidade" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cartao_sus" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="endereco" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="complemento" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bairro" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cidade" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="estado" type="varchar(2)">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>
