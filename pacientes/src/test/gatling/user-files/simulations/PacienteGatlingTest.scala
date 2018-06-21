@@ -68,7 +68,7 @@ class PacienteGatlingTest extends Simulation {
             .exec(http("Create new paciente")
             .post("/pacientes/api/pacientes")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "rg":"SAMPLE_TEXT", "cpf":"SAMPLE_TEXT", "sexo":"SAMPLE_TEXT", "dataNascimento":"2020-01-01T00:00:00.000Z", "cep":"SAMPLE_TEXT", "prontuario":"SAMPLE_TEXT", "nomePaciente":"SAMPLE_TEXT", "nomeSocial":"SAMPLE_TEXT", "racaCor":"SAMPLE_TEXT", "estadoCivil":"SAMPLE_TEXT", "nomePai":"SAMPLE_TEXT", "nomeMae":"SAMPLE_TEXT", "nacionalidade":"SAMPLE_TEXT", "cartaoSus":"SAMPLE_TEXT", "endereco":"SAMPLE_TEXT", "complemento":"SAMPLE_TEXT", "bairro":"SAMPLE_TEXT", "cidade":"SAMPLE_TEXT", "estado":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "rg":"SAMPLE_TEXT", "cpf":"SAMPLE_TEXT", "sexo":"SAMPLE_TEXT", "dataNascimento":"2020-01-01T00:00:00.000Z", "cep":"SAMPLE_TEXT", "prontuario":"SAMPLE_TEXT", "nomePaciente":"SAMPLE_TEXT", "nomeSocial":"SAMPLE_TEXT", "racaCor":"SAMPLE_TEXT", "estadoCivil":"SAMPLE_TEXT", "nomePai":"SAMPLE_TEXT", "nomeMae":"SAMPLE_TEXT", "nacionalidade":"SAMPLE_TEXT", "cartaoSus":"SAMPLE_TEXT", "endereco":"SAMPLE_TEXT", "complemento":"SAMPLE_TEXT", "bairro":"SAMPLE_TEXT", "cidade":"SAMPLE_TEXT", "estado":"SAMPLE_TEXT", "telefonePrincipal":"SAMPLE_TEXT", "telefoneAlternativo":"SAMPLE_TEXT", "emailPrincipal":"SAMPLE_TEXT", "emailAlternativo":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_paciente_url"))).exitHereIfFailed
             .pause(10)

@@ -45,8 +45,8 @@ public class PacienteResourceIntTest {
     private static final String DEFAULT_RG = "AAAAAAAAAA";
     private static final String UPDATED_RG = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CPF = "AAAAAAAAAA";
-    private static final String UPDATED_CPF = "BBBBBBBBBB";
+    private static final String DEFAULT_CPF = "AAAAAAAAAAA";
+    private static final String UPDATED_CPF = "BBBBBBBBBBB";
 
     private static final String DEFAULT_SEXO = "A";
     private static final String UPDATED_SEXO = "B";
@@ -81,8 +81,8 @@ public class PacienteResourceIntTest {
     private static final String DEFAULT_NACIONALIDADE = "AAAAAAAAAA";
     private static final String UPDATED_NACIONALIDADE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CARTAO_SUS = "AAAAAAAAAA";
-    private static final String UPDATED_CARTAO_SUS = "BBBBBBBBBB";
+    private static final String DEFAULT_CARTAO_SUS = "AAAAAAAAAAAAAAAAAAAA";
+    private static final String UPDATED_CARTAO_SUS = "BBBBBBBBBBBBBBBBBBBB";
 
     private static final String DEFAULT_ENDERECO = "AAAAAAAAAA";
     private static final String UPDATED_ENDERECO = "BBBBBBBBBB";
@@ -98,6 +98,18 @@ public class PacienteResourceIntTest {
 
     private static final String DEFAULT_ESTADO = "AA";
     private static final String UPDATED_ESTADO = "BB";
+
+    private static final String DEFAULT_TELEFONE_PRINCIPAL = "AAAAAAAAAA";
+    private static final String UPDATED_TELEFONE_PRINCIPAL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TELEFONE_ALTERNATIVO = "AAAAAAAAAA";
+    private static final String UPDATED_TELEFONE_ALTERNATIVO = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL_PRINCIPAL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL_PRINCIPAL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL_ALTERNATIVO = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL_ALTERNATIVO = "BBBBBBBBBB";
 
     @Autowired
     private PacienteRepository pacienteRepository;
@@ -161,7 +173,11 @@ public class PacienteResourceIntTest {
             .complemento(DEFAULT_COMPLEMENTO)
             .bairro(DEFAULT_BAIRRO)
             .cidade(DEFAULT_CIDADE)
-            .estado(DEFAULT_ESTADO);
+            .estado(DEFAULT_ESTADO)
+            .telefonePrincipal(DEFAULT_TELEFONE_PRINCIPAL)
+            .telefoneAlternativo(DEFAULT_TELEFONE_ALTERNATIVO)
+            .emailPrincipal(DEFAULT_EMAIL_PRINCIPAL)
+            .emailAlternativo(DEFAULT_EMAIL_ALTERNATIVO);
         return paciente;
     }
 
@@ -205,6 +221,10 @@ public class PacienteResourceIntTest {
         assertThat(testPaciente.getBairro()).isEqualTo(DEFAULT_BAIRRO);
         assertThat(testPaciente.getCidade()).isEqualTo(DEFAULT_CIDADE);
         assertThat(testPaciente.getEstado()).isEqualTo(DEFAULT_ESTADO);
+        assertThat(testPaciente.getTelefonePrincipal()).isEqualTo(DEFAULT_TELEFONE_PRINCIPAL);
+        assertThat(testPaciente.getTelefoneAlternativo()).isEqualTo(DEFAULT_TELEFONE_ALTERNATIVO);
+        assertThat(testPaciente.getEmailPrincipal()).isEqualTo(DEFAULT_EMAIL_PRINCIPAL);
+        assertThat(testPaciente.getEmailAlternativo()).isEqualTo(DEFAULT_EMAIL_ALTERNATIVO);
 
         // Validate the Paciente in Elasticsearch
         Paciente pacienteEs = pacienteSearchRepository.findOne(testPaciente.getId());
@@ -367,7 +387,11 @@ public class PacienteResourceIntTest {
             .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())))
             .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO.toString())))
             .andExpect(jsonPath("$.[*].cidade").value(hasItem(DEFAULT_CIDADE.toString())))
-            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())));
+            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())))
+            .andExpect(jsonPath("$.[*].telefonePrincipal").value(hasItem(DEFAULT_TELEFONE_PRINCIPAL.toString())))
+            .andExpect(jsonPath("$.[*].telefoneAlternativo").value(hasItem(DEFAULT_TELEFONE_ALTERNATIVO.toString())))
+            .andExpect(jsonPath("$.[*].emailPrincipal").value(hasItem(DEFAULT_EMAIL_PRINCIPAL.toString())))
+            .andExpect(jsonPath("$.[*].emailAlternativo").value(hasItem(DEFAULT_EMAIL_ALTERNATIVO.toString())));
     }
 
     @Test
@@ -399,7 +423,11 @@ public class PacienteResourceIntTest {
             .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO.toString()))
             .andExpect(jsonPath("$.bairro").value(DEFAULT_BAIRRO.toString()))
             .andExpect(jsonPath("$.cidade").value(DEFAULT_CIDADE.toString()))
-            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.toString()));
+            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.toString()))
+            .andExpect(jsonPath("$.telefonePrincipal").value(DEFAULT_TELEFONE_PRINCIPAL.toString()))
+            .andExpect(jsonPath("$.telefoneAlternativo").value(DEFAULT_TELEFONE_ALTERNATIVO.toString()))
+            .andExpect(jsonPath("$.emailPrincipal").value(DEFAULT_EMAIL_PRINCIPAL.toString()))
+            .andExpect(jsonPath("$.emailAlternativo").value(DEFAULT_EMAIL_ALTERNATIVO.toString()));
     }
 
     @Test
@@ -441,7 +469,11 @@ public class PacienteResourceIntTest {
             .complemento(UPDATED_COMPLEMENTO)
             .bairro(UPDATED_BAIRRO)
             .cidade(UPDATED_CIDADE)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .telefonePrincipal(UPDATED_TELEFONE_PRINCIPAL)
+            .telefoneAlternativo(UPDATED_TELEFONE_ALTERNATIVO)
+            .emailPrincipal(UPDATED_EMAIL_PRINCIPAL)
+            .emailAlternativo(UPDATED_EMAIL_ALTERNATIVO);
 
         restPacienteMockMvc.perform(put("/api/pacientes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -471,6 +503,10 @@ public class PacienteResourceIntTest {
         assertThat(testPaciente.getBairro()).isEqualTo(UPDATED_BAIRRO);
         assertThat(testPaciente.getCidade()).isEqualTo(UPDATED_CIDADE);
         assertThat(testPaciente.getEstado()).isEqualTo(UPDATED_ESTADO);
+        assertThat(testPaciente.getTelefonePrincipal()).isEqualTo(UPDATED_TELEFONE_PRINCIPAL);
+        assertThat(testPaciente.getTelefoneAlternativo()).isEqualTo(UPDATED_TELEFONE_ALTERNATIVO);
+        assertThat(testPaciente.getEmailPrincipal()).isEqualTo(UPDATED_EMAIL_PRINCIPAL);
+        assertThat(testPaciente.getEmailAlternativo()).isEqualTo(UPDATED_EMAIL_ALTERNATIVO);
 
         // Validate the Paciente in Elasticsearch
         Paciente pacienteEs = pacienteSearchRepository.findOne(testPaciente.getId());
@@ -546,7 +582,11 @@ public class PacienteResourceIntTest {
             .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())))
             .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO.toString())))
             .andExpect(jsonPath("$.[*].cidade").value(hasItem(DEFAULT_CIDADE.toString())))
-            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())));
+            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())))
+            .andExpect(jsonPath("$.[*].telefonePrincipal").value(hasItem(DEFAULT_TELEFONE_PRINCIPAL.toString())))
+            .andExpect(jsonPath("$.[*].telefoneAlternativo").value(hasItem(DEFAULT_TELEFONE_ALTERNATIVO.toString())))
+            .andExpect(jsonPath("$.[*].emailPrincipal").value(hasItem(DEFAULT_EMAIL_PRINCIPAL.toString())))
+            .andExpect(jsonPath("$.[*].emailAlternativo").value(hasItem(DEFAULT_EMAIL_ALTERNATIVO.toString())));
     }
 
     @Test

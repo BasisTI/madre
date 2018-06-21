@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>Pacientes</h1>
+      <h1>Paciente</h1>
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
             <span class="md-inputfield">
@@ -9,6 +9,7 @@
               <label>Descrição</label>
             </span>
         </div>
+
         <div class="ui-g-12 ui-md-3"></div>
         <div class="ui-g-12 ui-md-6">
           <div class="ui-g-12 ui-md-6">
@@ -19,10 +20,9 @@
           </div>
         </div>
         <div class="ui-g-12 ui-md-3"></div>
-        <basis-datatable [url]="searchUrl" 
-          (buttonClick)="datatableClick($event)" #datatable>
 
-          <p-column header="Paciente" field="nomePaciente"></p-column>
+        <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)"  #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]" >
+          <p-column header="Nome Paciente" field="nomePaciente"></p-column>
           <p-column header="RG" field="rg"></p-column>
           <p-column header="CPF" field="cpf"></p-column>
           <p-column header="Sexo" field="sexo"></p-column>
@@ -33,7 +33,6 @@
           </p-column>
           <p-column header="CEP" field="cep"></p-column>
           <p-column header="Prontuário" field="prontuario"></p-column>
-
         </basis-datatable>
       </div>
     </div>

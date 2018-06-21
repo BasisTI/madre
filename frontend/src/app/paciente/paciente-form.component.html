@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>{{ paciente.id ? 'Editar Paciente' : 'Incluir Paciente' }}</h1>
+      <h1>{{ paciente.id ? 'Editar Paciente' : 'Cadastrar Paciente' }}</h1>
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="paciente.id" readonly/>
@@ -117,6 +117,30 @@
             <span class="md-inputfield">
               <input type="text" name="estado" [(ngModel)]="paciente.estado" pInputText/>
               <label>Estado</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="telefonePrincipal" [(ngModel)]="paciente.telefonePrincipal" pInputText/>
+              <label>Telefone Principal</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="telefoneAlternativo" [(ngModel)]="paciente.telefoneAlternativo" pInputText/>
+              <label>Telefone Alternativo</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="emailPrincipal" [(ngModel)]="paciente.emailPrincipal" pInputText/>
+              <label>Email Principal</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="emailAlternativo" [(ngModel)]="paciente.emailAlternativo" pInputText/>
+              <label>Email Alternativo</label>
             </span>
           </div>
         </div>

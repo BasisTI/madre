@@ -24,5 +24,9 @@ export class Paciente implements BaseEntity {
     public bairro?: string,
     public cidade?: string,
     public estado?: string,
+    public telefonePrincipal?: string,
+    public telefoneAlternativo?: string,
+    public emailPrincipal?: string,
+    public emailAlternativo?: string,
   ) {}
 }

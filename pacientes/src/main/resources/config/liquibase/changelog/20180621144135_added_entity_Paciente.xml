@@ -97,6 +97,22 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="telefone_principal" type="varchar(11)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="telefone_alternativo" type="varchar(11)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="email_principal" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="email_alternativo" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

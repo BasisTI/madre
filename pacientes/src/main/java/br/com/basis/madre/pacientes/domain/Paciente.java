@@ -33,7 +33,7 @@ public class Paciente implements Serializable {
     private String rg;
 
     @NotNull
-    @Size(max = 11)
+    @Size(min = 11, max = 11)
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
@@ -46,7 +46,7 @@ public class Paciente implements Serializable {
     private LocalDate dataNascimento;
 
     @NotNull
-    @Size(max = 10)
+    @Size(min = 8, max = 10)
     @Column(name = "cep", length = 10, nullable = false)
     private String cep;
 
@@ -54,7 +54,7 @@ public class Paciente implements Serializable {
     @Column(name = "prontuario", length = 10)
     private String prontuario;
 
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Column(name = "nome_paciente", length = 100)
     private String nomePaciente;
 
@@ -75,7 +75,7 @@ public class Paciente implements Serializable {
     private String nomePai;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Column(name = "nome_mae", length = 100, nullable = false)
     private String nomeMae;
 
@@ -84,7 +84,7 @@ public class Paciente implements Serializable {
     private String nacionalidade;
 
     @NotNull
-    @Size(max = 20)
+    @Size(min = 20, max = 20)
     @Column(name = "cartao_sus", length = 20, nullable = false)
     private String cartaoSus;
 
@@ -107,6 +107,22 @@ public class Paciente implements Serializable {
     @Size(max = 2)
     @Column(name = "estado", length = 2)
     private String estado;
+
+    @Size(max = 11)
+    @Column(name = "telefone_principal", length = 11)
+    private String telefonePrincipal;
+
+    @Size(max = 11)
+    @Column(name = "telefone_alternativo", length = 11)
+    private String telefoneAlternativo;
+
+    @Size(max = 100)
+    @Column(name = "email_principal", length = 100)
+    private String emailPrincipal;
+
+    @Size(max = 100)
+    @Column(name = "email_alternativo", length = 100)
+    private String emailAlternativo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -363,6 +379,58 @@ public class Paciente implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String getTelefonePrincipal() {
+        return telefonePrincipal;
+    }
+
+    public Paciente telefonePrincipal(String telefonePrincipal) {
+        this.telefonePrincipal = telefonePrincipal;
+        return this;
+    }
+
+    public void setTelefonePrincipal(String telefonePrincipal) {
+        this.telefonePrincipal = telefonePrincipal;
+    }
+
+    public String getTelefoneAlternativo() {
+        return telefoneAlternativo;
+    }
+
+    public Paciente telefoneAlternativo(String telefoneAlternativo) {
+        this.telefoneAlternativo = telefoneAlternativo;
+        return this;
+    }
+
+    public void setTelefoneAlternativo(String telefoneAlternativo) {
+        this.telefoneAlternativo = telefoneAlternativo;
+    }
+
+    public String getEmailPrincipal() {
+        return emailPrincipal;
+    }
+
+    public Paciente emailPrincipal(String emailPrincipal) {
+        this.emailPrincipal = emailPrincipal;
+        return this;
+    }
+
+    public void setEmailPrincipal(String emailPrincipal) {
+        this.emailPrincipal = emailPrincipal;
+    }
+
+    public String getEmailAlternativo() {
+        return emailAlternativo;
+    }
+
+    public Paciente emailAlternativo(String emailAlternativo) {
+        this.emailAlternativo = emailAlternativo;
+        return this;
+    }
+
+    public void setEmailAlternativo(String emailAlternativo) {
+        this.emailAlternativo = emailAlternativo;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -408,6 +476,10 @@ public class Paciente implements Serializable {
             ", bairro='" + getBairro() + "'" +
             ", cidade='" + getCidade() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", telefonePrincipal='" + getTelefonePrincipal() + "'" +
+            ", telefoneAlternativo='" + getTelefoneAlternativo() + "'" +
+            ", emailPrincipal='" + getEmailPrincipal() + "'" +
+            ", emailAlternativo='" + getEmailAlternativo() + "'" +
             "}";
     }
 }
