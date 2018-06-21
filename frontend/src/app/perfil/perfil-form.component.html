@@ -1,4 +1,9 @@
 <!-- Pagina Editar -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
@@ -17,6 +22,70 @@
               <input type="text" name="dsPerfil" [(ngModel)]="perfil.dsPerfil" pInputText/>
               <label>Descrição</label>
             </span>
+          </div>
+          <div class="container">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Funcionalidade</th>
+                  <th>Pesquisar</th>
+                  <th>Incluir</th>
+                  <th>Alterar</th>
+                  <th>Exluir</th>
+                  <th>Visualizar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Unidade de Saúde</td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                  <td>Usuário</td>
+                 <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                  <td>Perfis e Permissões</td>
+                  <td><input type="checkbox"/></td>
+                 <td><input type="checkbox"/></td>
+                 <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                  <td>Pré Cadastro</td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                  <td>Triagem</td>
+                 <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                  <td>Paciente</td>
+                  <td><input type="checkbox"/></td>
+                 <td><input type="checkbox"/></td>
+                 <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                  <td><input type="checkbox"/></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="ui-g">
