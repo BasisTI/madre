@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
+// import { BotoesExportacaoModule } from '/home/mateus/Madre/madre_codigo_fonte/frontend/src/app/botoes-exportacao/botoes-exportacao.module'
 import {
   ButtonModule,
   InputTextModule,
@@ -11,7 +12,8 @@ import {
   CalendarModule,
   DropdownModule,
   RadioButtonModule,
-  ConfirmDialogModule
+  ConfirmDialogModule,
+  CheckboxModule
 } from 'primeng/primeng';
 
 import {
@@ -35,6 +37,8 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
+    // BotoesExportacaoModule,
+    CheckboxModule,
   ],
   declarations: [
     PerfilComponent,

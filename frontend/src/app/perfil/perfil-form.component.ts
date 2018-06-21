@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, TRANSLATIONS_FORMAT } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem, CheckboxModule, CHECKBOX_VALUE_ACCESSOR } from 'primeng/primeng';
 
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
@@ -46,6 +46,27 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
 
   save() {
     this.isSaving = true;
+    //   let unidadedeSaude = [
+    //     document.getElementById("pesquisaUS").nodeValue,
+    //     document.getElementById("incluirUS").nodeValue,
+    //     document.getElementById("alterarUS").nodeValue,
+    //     document.getElementById("exluirUS").nodeValue,
+    //     document.getElementById("visualizarUS").nodeValue
+    //   ];
+    // unidadedeSaude.forEach(cb =>{
+    //   console.log("checkboxs: "+cb);
+    // });
+    // var pes = document.getElementById("pesquisaUS");
+    // var inc = document.getElementById("incluirUS");
+    // var alt = document.getElementById("alterarUS");
+    
+    let p = document.getElementById("pesquisaUS");
+    let i = document.getElementById("incluirUS");
+    let a = document.getElementById("alterarUS");
+    console.log(p);
+    console.log(i);
+    console.log(a);
+
     if (this.perfil.id !== undefined) {
       this.subscribeToSaveResponse(this.perfilService.update(this.perfil));
     } else {
@@ -75,4 +96,40 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
   }
+}
+
+// let unidadedeSaude = [
+    let p = document.getElementById("pesquisaUS");
+    let i = document.getElementById("incluirUS");
+    let a = document.getElementById("alterarUS");
+    console.log(p);
+    console.log(i);
+    console.log(a);
+//   document.getElementById("exluirUS"),
+//   document.getElementById("visualizarUS")
+// ];
+
+// unidadedeSaude.forEach(cb =>{
+//   console.log("checkboxs: "+cb);
+// });
+
+// function pegaCheckBox(){
+//   let r;
+//   if (document.getElementById("pesquisaUS").isChe){
+//     r = true;
+//   }else{
+//     r = false;
+//   }
+//   console.log("Valor da funcao: " + r);
+// }
+
+// function ligarEvento(event){
+//   if(event.target.checked){
+//     this.contentEditable = true;
+//   }
+// }
+
+function ligarEvento(){
+  document.getElementById("pesquisaUS").click();
+  console.log("cliclk");
 }
