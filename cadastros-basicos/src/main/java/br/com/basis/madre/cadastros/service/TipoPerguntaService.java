@@ -1,8 +1,11 @@
 package br.com.basis.madre.cadastros.service;
 
 import br.com.basis.madre.cadastros.domain.TipoPergunta;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 /**
  * Service Interface for managing TipoPergunta.
@@ -44,9 +47,13 @@ public interface TipoPerguntaService {
      * Search for the tipoPergunta corresponding to the query.
      *
      * @param query the query of the search
-     * 
+     *
      * @param pageable the pagination information
      * @return the list of entities
      */
     Page<TipoPergunta> search(String query, Pageable pageable);
+
+
+
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 }

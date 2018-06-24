@@ -46,6 +46,7 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   exportar(tipoRelatorio: string) {
+                                
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
       downloadUrl => {
         ExportacaoUtil.download(downloadUrl,

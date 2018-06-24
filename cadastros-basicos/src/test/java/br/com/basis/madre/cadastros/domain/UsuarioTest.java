@@ -92,30 +92,6 @@ public class UsuarioTest {
         usuario.getPerfil();
     }
 
-    @Test
-    public void setPerfilTest(){
-        usuario.setPerfil("test");
-    }
-
-    @Test
-    public void perfilTest(){
-        Usuario test = usuario.perfil("test");
-    }
-
-    @Test
-    public void getUnidadeDeSaudeTest(){
-        usuario.getUnidadeDeSaude();
-    }
-
-    @Test
-    public void setUnidadeDeSaudeTest(){
-        usuario.setUnidadeDeSaude("test");
-    }
-
-    @Test
-    public void unidadeDeSaudeTest(){
-        Usuario test = usuario.unidadeDeSaude("test");
-    }
 
     @Test
     public void isAtivoTest(){
