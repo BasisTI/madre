@@ -3,11 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { SelectItem } from 'primeng/primeng';
-
+import {DropdownModule} from 'primeng/dropdown';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Paciente } from './paciente.model';
 import { PacienteService } from './paciente.service';
+
+
 
 @Component({
   selector: 'jhi-paciente-form',
@@ -16,6 +18,7 @@ import { PacienteService } from './paciente.service';
 export class PacienteFormComponent implements OnInit, OnDestroy {
   paciente: Paciente;
   isSaving: boolean;
+  estadoCivil: EstadoCivil[];
   isEdit = false;
   private routeSub: Subscription;
 
@@ -25,7 +28,10 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private pacienteService: PacienteService,
-  ) {}
+  ) {this.estadoCivil = [
+    {nome:'solteiro'},
+    {nome:'casado'},
+];}
 
   ngOnInit() {
     this.isSaving = false;
@@ -76,3 +82,22 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     this.breadcrumbService.reset();
   }
 }
+
+interface EstadoCivil {
+  nome: string;
+
+}
+
+// export class DropdownEstadoCivil {
+
+//   civil: SelectItem[];
+//   estadoCivil1: EstadoCivil[];
+
+//   constructor() {
+//     //SelectItem API with label-value pairs
+//      this.estadoCivil1 = [
+//          {nome:'solteiro'},
+//          {nome:'casado'},
+//      ];
+// }
+// }

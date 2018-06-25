@@ -1,3 +1,7 @@
+
+<!-- Alterar cadastrar -->
+
+
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
@@ -5,154 +9,230 @@
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
         <div class="ui-g form-group">
           <input type="hidden" name="id" pInputText [(ngModel)]="paciente.id" readonly/>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="rg" [(ngModel)]="paciente.rg" pInputText/>
-              <label>Rg</label>
+              <input type="text" name="nomePaciente" [(ngModel)]="paciente.nomePaciente" pInputText required/>
+              <label>Nome Paciente *</label>
+              <div *ngIf="editForm.controls['nomePaciente'] && !editForm.controls['nomePaciente'].valid && (editForm.controls['nomePaciente'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="cpf" [(ngModel)]="paciente.cpf" pInputText/>
-              <label>Cpf</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="sexo" [(ngModel)]="paciente.sexo" pInputText/>
-              <label>Sexo</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <p-calendar name="dataNascimento" [(ngModel)]="paciente.dataNascimento" dateFormat="dd/mm/yy"></p-calendar>
-              <label>Data Nascimento</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="cep" [(ngModel)]="paciente.cep" pInputText/>
-              <label>Cep</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="prontuario" [(ngModel)]="paciente.prontuario" pInputText/>
-              <label>Prontuario</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="nomePaciente" [(ngModel)]="paciente.nomePaciente" pInputText/>
-              <label>Nome Paciente</label>
-            </span>
-          </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nomeSocial" [(ngModel)]="paciente.nomeSocial" pInputText/>
               <label>Nome Social</label>
             </span>
           </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="racaCor" [(ngModel)]="paciente.racaCor" pInputText/>
-              <label>Raca Cor</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="estadoCivil" [(ngModel)]="paciente.estadoCivil" pInputText/>
-              <label>Estado Civil</label>
-            </span>
-          </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nomePai" [(ngModel)]="paciente.nomePai" pInputText/>
               <label>Nome Pai</label>
             </span>
           </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nomeMae" [(ngModel)]="paciente.nomeMae" pInputText/>
-              <label>Nome Mae</label>
+              <input type="text" name="nomeMae" [(ngModel)]="paciente.nomeMae" pInputText required/>
+              <label>Nome Mãe *</label>
+              <div *ngIf="editForm.controls['nomeMae'] && !editForm.controls['nomeMae'].valid && (editForm.controls['nomeMae'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="racaCor" [(ngModel)]="paciente.racaCor" pInputText/>
+              <label>Raça/Cor</label>
+            </span>
+          </div>
+
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="nacionalidade" [(ngModel)]="paciente.nacionalidade" pInputText/>
               <label>Nacionalidade</label>
             </span>
           </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cartaoSus" [(ngModel)]="paciente.cartaoSus" pInputText/>
-              <label>Cartao Sus</label>
+              <input type="text" name="sexo" [(ngModel)]="paciente.sexo" pInputText/>
+              <label>Sexo</label>
             </span>
           </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <!-- <span class="md-inputfield"> -->
+                <p-dropdown [options]="estadoCivil"
+                optionLabel="nome" dataKey="nome" placeholder="Estado Civil *"required></p-dropdown>
+                <div *ngIf="editForm.controls['estadoCivil'] && !editForm.controls['estadoCivil'].valid && (editForm.controls['estadoCivil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                    Campo obrigatório!
+                  </div>
+                <!-- <label>Estado Civil</label> -->
+            <!-- </span> -->
+          </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="endereco" [(ngModel)]="paciente.endereco" pInputText/>
-              <label>Endereco</label>
+              <p-calendar name="dataNascimento" [(ngModel)]="paciente.dataNascimento" dateFormat="dd/mm/yy" required></p-calendar>
+              <label>Data Nascimento *</label>
+              <div *ngIf="editForm.controls['dataNascimento'] && !editForm.controls['dataNascimento'].valid && (editForm.controls['dataNascimento'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="complemento" [(ngModel)]="paciente.complemento" pInputText/>
-              <label>Complemento</label>
+              <input type="text" name="telefonePrincipal" [(ngModel)]="paciente.telefonePrincipal" pInputText required/>
+              <label>Telefone Principal *</label>
+              <div *ngIf="editForm.controls['telefonePrincipal'] && !editForm.controls['telefonePrincipal'].valid && (editForm.controls['telefonePrincipal'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
           </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="bairro" [(ngModel)]="paciente.bairro" pInputText/>
-              <label>Bairro</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="cidade" [(ngModel)]="paciente.cidade" pInputText/>
-              <label>Cidade</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="estado" [(ngModel)]="paciente.estado" pInputText/>
-              <label>Estado</label>
-            </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="telefonePrincipal" [(ngModel)]="paciente.telefonePrincipal" pInputText/>
-              <label>Telefone Principal</label>
-            </span>
-          </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="telefoneAlternativo" [(ngModel)]="paciente.telefoneAlternativo" pInputText/>
               <label>Telefone Alternativo</label>
             </span>
           </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="emailPrincipal" [(ngModel)]="paciente.emailPrincipal" pInputText/>
               <label>Email Principal</label>
             </span>
           </div>
+          
+
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="emailAlternativo" [(ngModel)]="paciente.emailAlternativo" pInputText/>
               <label>Email Alternativo</label>
             </span>
           </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="cep" [(ngModel)]="paciente.cep" pInputText required/>
+              <label>CEP *</label>
+              <div *ngIf="editForm.controls['cep'] && !editForm.controls['cep'].valid && (editForm.controls['cep'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="endereco" [(ngModel)]="paciente.endereco" pInputText/>
+              <label>Endereço</label>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="complemento" [(ngModel)]="paciente.complemento" pInputText/>
+              <label>Complemento</label>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="bairro" [(ngModel)]="paciente.bairro" pInputText/>
+              <label>Bairro</label>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="cidade" [(ngModel)]="paciente.cidade" pInputText/>
+              <label>Cidade</label>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="estado" [(ngModel)]="paciente.estado" pInputText/>
+              <label>Estado</label>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="cpf" [(ngModel)]="paciente.cpf" pInputText required/>
+              <label>CPF *</label>
+              <div *ngIf="editForm.controls['cpf'] && !editForm.controls['cpf'].valid && (editForm.controls['cpf'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="rg" [(ngModel)]="paciente.rg" pInputText required/>
+              <label>RG *</label>
+              <div *ngIf="editForm.controls['rg'] && !editForm.controls['rg'].valid && (editForm.controls['rg'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
+            </span>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="cartaoSus" [(ngModel)]="paciente.cartaoSus" pInputText required/>
+              <label>Cartão SUS *</label>
+              <div *ngIf="editForm.controls['cartaoSus'] && !editForm.controls['cartaoSus'].valid && (editForm.controls['cartaoSus'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
+            </span>
+          </div> 
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="prontuario" [(ngModel)]="paciente.prontuario" pInputText/>
+              <label>Prontuário</label>
+            </span>
         </div>
-        <div class="ui-g">
+      </div>
+       
+      
+      <div class="ui-g">
           <div class="ui-g-12 ui-md-2">
             <button pButton type="button" label="Cancelar" routerLink="/paciente"></button>
           </div>
           <div class="ui-g-12 ui-md-2">
-            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+            <button pButton type="submit" label="Salvar"  isSaving></button>
           </div>
         </div>
       </form>
     </div>
   </div>
-</div>
+</div> 
