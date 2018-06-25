@@ -34,6 +34,6 @@
     "skipUserManagement": true
   },
   "generator-jhipster-primeng-entity": {
-    "frontendRoot": "/home/pedro-ramalho/Documents/Repository/BASIS/madre_codigo_fonte/frontend"
+    "frontendRoot": "/home/mateus/Madre/madre_codigo_fonte/frontend"
   }
 }

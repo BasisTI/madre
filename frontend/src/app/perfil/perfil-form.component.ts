@@ -14,6 +14,7 @@ import { PerfilService } from './perfil.service';
   templateUrl: './perfil-form.component.html'
 })
 export class PerfilFormComponent implements OnInit, OnDestroy {
+
   perfil: Perfil;
   isSaving: boolean;
   isEdit = false;
@@ -32,6 +33,43 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.perfil = new Perfil();
+      // Para iniciar com false tem q setar antes, se n fica undefined
+      //-------Unidade de Saude-------
+      this.perfil.pesquisarUS  = false;
+      this.perfil.incluirUS    = false;
+      this.perfil.alterarUS    = false;
+      this.perfil.excluirUS    = false;
+      this.perfil.visualizarUS = false;
+      //-------Usuario-------
+      this.perfil.pesquisarU  = false;
+      this.perfil.incluirU    = false;
+      this.perfil.alterarU    = false;
+      this.perfil.excluirU    = false;
+      this.perfil.visualizarU = false;
+      //-------Perfis Permissoes-------
+      this.perfil.pesquisarPP  = false;
+      this.perfil.incluirPP    = false;
+      this.perfil.alterarPP    = false;
+      this.perfil.excluirPP    = false;
+      this.perfil.visualizarPP = false;
+      //-------Pre Cadastro-------
+      this.perfil.pesquisarPC  = false;
+      this.perfil.incluirPC    = false;
+      this.perfil.alterarPC    = false;
+      this.perfil.excluirPC    = false;
+      this.perfil.visualizarPC = false;
+      //-------Triagem-------
+      this.perfil.pesquisarT  = false;
+      this.perfil.incluirT    = false;
+      this.perfil.alterarT    = false;
+      this.perfil.excluirT    = false;
+      this.perfil.visualizarT = false;
+      //-------Paciente-------
+      this.perfil.pesquisarP  = false;
+      this.perfil.incluirP    = false;
+      this.perfil.alterarP    = false;
+      this.perfil.excluirP    = false;
+      this.perfil.visualizarP = false;
       if (params['id']) {
         this.isEdit = true;
         this.perfilService.find(params['id']).subscribe(perfil => this.perfil = perfil);
@@ -45,28 +83,52 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    this.isSaving = true;
-    //   let unidadedeSaude = [
-    //     document.getElementById("pesquisaUS").nodeValue,
-    //     document.getElementById("incluirUS").nodeValue,
-    //     document.getElementById("alterarUS").nodeValue,
-    //     document.getElementById("exluirUS").nodeValue,
-    //     document.getElementById("visualizarUS").nodeValue
-    //   ];
-    // unidadedeSaude.forEach(cb =>{
-    //   console.log("checkboxs: "+cb);
-    // });
-    // var pes = document.getElementById("pesquisaUS");
-    // var inc = document.getElementById("incluirUS");
-    // var alt = document.getElementById("alterarUS");
+    // this.perfil.unidadeSaude = [
+    //   this.perfil.pesquisarUS, 
+    //   this.perfil.incluirUS,
+    //   this.perfil.alterarUS,
+    //   this.perfil.excluirUS,
+    //   this.perfil.visualizarUS
+    // ];
+    // console.log(this.unidadeSaude[0]);
     
-    let p = document.getElementById("pesquisaUS");
-    let i = document.getElementById("incluirUS");
-    let a = document.getElementById("alterarUS");
-    console.log(p);
-    console.log(i);
-    console.log(a);
-
+    console.log("----------Unidade de Saude----------");
+    console.log("Pesquisar: "  + this.perfil.pesquisarUS);
+    console.log("Incluir: "    + this.perfil.incluirUS);
+    console.log("Alterar: "    + this.perfil.alterarUS);
+    console.log("Excluir: "    + this.perfil.excluirUS);
+    console.log("Visualizar: " + this.perfil.visualizarUS);
+    console.log("----------Usuario----------");
+    console.log("Pesquisar: "  + this.perfil.pesquisarU);
+    console.log("Incluir: "    + this.perfil.incluirU);
+    console.log("Alterar: "    + this.perfil.alterarU);
+    console.log("Excluir: "    + this.perfil.excluirU);
+    console.log("Visualizar: " + this.perfil.visualizarU);
+    console.log("----------Perfis Permissoes----------");
+    console.log("Pesquisar: "  + this.perfil.pesquisarPP);
+    console.log("Incluir: "    + this.perfil.incluirPP);
+    console.log("Alterar: "    + this.perfil.alterarPP);
+    console.log("Excluir: "    + this.perfil.excluirPP);
+    console.log("Visualizar: " + this.perfil.visualizarPP);
+    console.log("----------Pre Cadastro----------");
+    console.log("Pesquisar: "  + this.perfil.pesquisarPC);
+    console.log("Incluir: "    + this.perfil.incluirPC);
+    console.log("Alterar: "    + this.perfil.alterarPC);
+    console.log("Excluir: "    + this.perfil.excluirPC);
+    console.log("Visualizar: " + this.perfil.visualizarPC);
+    console.log("----------Triagem----------");
+    console.log("Pesquisar: "  + this.perfil.pesquisarT);
+    console.log("Incluir: "    + this.perfil.incluirT);
+    console.log("Alterar: "    + this.perfil.alterarT);
+    console.log("Excluir: "    + this.perfil.excluirT);
+    console.log("Visualizar: " + this.perfil.visualizarT);
+    console.log("----------Paciente----------");
+    console.log("Pesquisar: "  + this.perfil.pesquisarP);
+    console.log("Incluir: "    + this.perfil.incluirP);
+    console.log("Alterar: "    + this.perfil.alterarP);
+    console.log("Excluir: "    + this.perfil.excluirP);
+    console.log("Visualizar: " + this.perfil.visualizarP);
+    this.isSaving = true;
     if (this.perfil.id !== undefined) {
       this.subscribeToSaveResponse(this.perfilService.update(this.perfil));
     } else {
@@ -96,40 +158,4 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
   }
-}
-
-// let unidadedeSaude = [
-    let p = document.getElementById("pesquisaUS");
-    let i = document.getElementById("incluirUS");
-    let a = document.getElementById("alterarUS");
-    console.log(p);
-    console.log(i);
-    console.log(a);
-//   document.getElementById("exluirUS"),
-//   document.getElementById("visualizarUS")
-// ];
-
-// unidadedeSaude.forEach(cb =>{
-//   console.log("checkboxs: "+cb);
-// });
-
-// function pegaCheckBox(){
-//   let r;
-//   if (document.getElementById("pesquisaUS").isChe){
-//     r = true;
-//   }else{
-//     r = false;
-//   }
-//   console.log("Valor da funcao: " + r);
-// }
-
-// function ligarEvento(event){
-//   if(event.target.checked){
-//     this.contentEditable = true;
-//   }
-// }
-
-function ligarEvento(){
-  document.getElementById("pesquisaUS").click();
-  console.log("cliclk");
 }
