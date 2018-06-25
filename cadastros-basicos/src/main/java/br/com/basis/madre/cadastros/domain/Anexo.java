@@ -153,7 +153,6 @@ public class Anexo implements Serializable {
             ", dataCriacao='" + getDataCriacao() + "'" +
             ", nomeArquivo='" + getNomeArquivo() + "'" +
             ", tamanhoArquivo=" + getTamanhoArquivo() +
-            ", arquivoAnexo='" + getArquivoAnexo() + "'" +
             ", arquivoAnexoContentType='" + getArquivoAnexoContentType() + "'" +
             "}";
     }

@@ -1,21 +1,24 @@
 package br.com.basis.madre.cadastros.domain;
 
-import br.com.basis.dynamicexports.pojo.ReportObject;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
+import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Objects;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
 
 /**
  * A Usuario.
@@ -54,22 +57,16 @@ public class Usuario implements Serializable, ReportObject {
     private String email;
 
     @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "perfil", length = 80, nullable = false)
-    private String perfil;
-
-    @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "unidade_de_saude", length = 80, nullable = false)
-    private String unidadeDeSaude;
-
-    @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    private Perfil perfil;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -77,7 +74,7 @@ public class Usuario implements Serializable, ReportObject {
     }
 
     public String getNome() {
-        return this.nome;
+        return nome;
     }
 
     public Usuario nome(String nome) {
@@ -90,7 +87,7 @@ public class Usuario implements Serializable, ReportObject {
     }
 
     public String getLogin() {
-        return this.login;
+        return login;
     }
 
     public Usuario login(String login) {
@@ -103,7 +100,7 @@ public class Usuario implements Serializable, ReportObject {
     }
 
     public String getSenha() {
-        return this.senha;
+        return senha;
     }
 
     public Usuario senha(String senha) {
@@ -116,7 +113,7 @@ public class Usuario implements Serializable, ReportObject {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public Usuario email(String email) {
@@ -128,34 +125,8 @@ public class Usuario implements Serializable, ReportObject {
         this.email = email;
     }
 
-   public String getPerfil() {
-       return this.perfil;
-   }
-
-   public Usuario perfil(String perfil) {
-       this.perfil = perfil;
-       return this;
-   }
-
-   public void setPerfil(String perfil) {
-       this.perfil = perfil;
-   }
-
-   public String getUnidadeDeSaude() {
-       return unidadeDeSaude;
-   }
-
-   public Usuario unidadeDeSaude(String unidadeDeSaude) {
-       this.unidadeDeSaude = unidadeDeSaude;
-       return this;
-   }
-
-   public void setUnidadeDeSaude(String unidadeDeSaude) {
-       this.unidadeDeSaude = unidadeDeSaude;
-   }
-
     public Boolean isAtivo() {
-        return this.ativo;
+        return ativo;
     }
 
     public Usuario ativo(Boolean ativo) {
@@ -163,11 +134,25 @@ public class Usuario implements Serializable, ReportObject {
         return this;
     }
 
-    public String getStringAtivo() { return (this.ativo) ? "Sim" : "Não"; }
-
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public Usuario perfil(Perfil perfil) {
+        this.perfil = perfil;
+        return this;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public String getStringAtivo() { return (this.ativo) ? "Sim" : "Não"; }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -197,8 +182,6 @@ public class Usuario implements Serializable, ReportObject {
             ", nome='" + getNome() + "'" +
             ", login='" + getLogin() + "'" +
             ", email='" + getEmail() + "'" +
-            ", perfil='" + getPerfil() + "'" +
-            ", unidadeDeSaude='" + getUnidadeDeSaude() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }

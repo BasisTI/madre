@@ -51,6 +51,6 @@ public interface UnidadeHospitalarService {
 
 
 
-    ResponseEntity<InputStreamResource>     gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 
 }

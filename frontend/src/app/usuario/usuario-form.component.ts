@@ -2,20 +2,24 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem, ListboxModule } from 'primeng/primeng';
 
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Usuario } from './usuario.model';
 import { UsuarioService } from './usuario.service';
 import { MultiSelectModule } from 'primeng/multiselect';
-import {  } from '../rel-usuario-unidadehospitalar';// falta fazer primeiro do rel_usu....
+
+import { Perfil, PerfilService } from '../perfil';
+import { ResponseWrapper } from '../shared';
 
 @Component({
   selector: 'jhi-usuario-form',
   templateUrl: './usuario-form.component.html'
 })
 export class UsuarioFormComponent implements OnInit, OnDestroy {
+
+  perfils: Perfil[];
   usuario: Usuario;
   isSaving: boolean;
   isEdit = false;
@@ -27,10 +31,14 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private usuarioService: UsuarioService,
+    private perfilService: PerfilService,
   ) {}
 
   ngOnInit() {
     this.isSaving = false;
+    this.perfilService.query().subscribe((res: ResponseWrapper) => {
+      this.perfils = res.json;
+    });
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.usuario = new Usuario();
@@ -63,7 +71,6 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      this.addErrorMessage(res);
     });
   }
 
