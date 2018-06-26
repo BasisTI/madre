@@ -19,6 +19,9 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
   paciente: Paciente;
   isSaving: boolean;
   estadoCivil: EstadoCivil[];
+  sexo: EscolhaSexo[];
+  nacionalidade: EscolhaNacionalidade[];
+  racaCor: EscolhaRacaCor[];
   isEdit = false;
   private routeSub: Subscription;
 
@@ -31,7 +34,22 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
   ) {this.estadoCivil = [
     {nome:'solteiro'},
     {nome:'casado'},
-];}
+    ];
+    this.sexo = [
+    {nomeSexo:'M'},
+    {nomeSexo:'F'},
+    ];
+    this.nacionalidade = [
+      {nomeNacionalidade:'brasileira'},
+      {nomeNacionalidade:'estrangeira'},
+    ]
+    this.racaCor = [
+      {nomeRacaCor:'branca'},
+      {nomeRacaCor:'negra'},
+      {nomeRacaCor:'amarela'},
+    ]
+}
+
 
   ngOnInit() {
     this.isSaving = false;
@@ -87,17 +105,17 @@ interface EstadoCivil {
   nome: string;
 
 }
+interface EscolhaSexo {
+  nomeSexo: string;
 
-// export class DropdownEstadoCivil {
+}
 
-//   civil: SelectItem[];
-//   estadoCivil1: EstadoCivil[];
+interface EscolhaNacionalidade {
+  nomeNacionalidade: string;
 
-//   constructor() {
-//     //SelectItem API with label-value pairs
-//      this.estadoCivil1 = [
-//          {nome:'solteiro'},
-//          {nome:'casado'},
-//      ];
-// }
-// }
+}
+
+interface EscolhaRacaCor {
+  nomeRacaCor: string;
+
+}
