@@ -50,38 +50,25 @@
           
 
           <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="racaCor" [(ngModel)]="paciente.racaCor" pInputText/>
-              <label>Raça/Cor</label>
-            </span>
+              <p-dropdown [options]="racaCor" optionLabel="nomeRacaCor" placeholder="Raça/Cor"></p-dropdown>
           </div>
 
 
           <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="nacionalidade" [(ngModel)]="paciente.nacionalidade" pInputText/>
-              <label>Nacionalidade</label>
-            </span>
+              <p-dropdown [options]="nacionalidade" optionLabel="nomeNacionalidade" placeholder="Nacionalidade"></p-dropdown>
           </div>
           
 
           <div class="ui-g-12 ui-md-6">
-            <span class="md-inputfield">
-              <input type="text" name="sexo" [(ngModel)]="paciente.sexo" pInputText/>
-              <label>Sexo</label>
-            </span>
+              <p-dropdown [options]="sexo" optionLabel="nomeSexo" placeholder="Sexo"></p-dropdown>
           </div>
           
 
           <div class="ui-g-12 ui-md-6">
-            <!-- <span class="md-inputfield"> -->
-                <p-dropdown [options]="estadoCivil"
-                optionLabel="nome" dataKey="nome" placeholder="Estado Civil *"required></p-dropdown>
-                <div *ngIf="editForm.controls['estadoCivil'] && !editForm.controls['estadoCivil'].valid && (editForm.controls['estadoCivil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
-                    Campo obrigatório!
-                  </div>
-                <!-- <label>Estado Civil</label> -->
-            <!-- </span> -->
+            <p-dropdown [options]="estadoCivil" optionLabel="nome" placeholder="Estado Civil *"required></p-dropdown>
+            <div *ngIf="editForm.controls['estadoCivil'] && !editForm.controls['estadoCivil'].valid && (editForm.controls['estadoCivil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+              Campo obrigatório!
+            </div>
           </div>
           
 
