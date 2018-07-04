@@ -18,10 +18,10 @@ import { PacienteService } from './paciente.service';
 export class PacienteFormComponent implements OnInit, OnDestroy {
   paciente: Paciente;
   isSaving: boolean;
-  estadoCivil: EstadoCivil[];
-  sexo: EscolhaSexo[];
-  nacionalidade: EscolhaNacionalidade[];
-  racaCor: EscolhaRacaCor[];
+  estadoCivil: SelectItem[];
+  sexo: SelectItem[];
+  nacionalidade: SelectItem[];
+  racaCor: SelectItem[];
   isEdit = false;
   private routeSub: Subscription;
 
@@ -31,27 +31,45 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private pacienteService: PacienteService,
-  ) {this.estadoCivil = [
-    {nome:'solteiro'},
-    {nome:'casado'},
-    ];
-    this.sexo = [
-    {nomeSexo:'M'},
-    {nomeSexo:'F'},
-    ];
-    this.nacionalidade = [
-      {nomeNacionalidade:'brasileira'},
-      {nomeNacionalidade:'estrangeira'},
-    ]
-    this.racaCor = [
-      {nomeRacaCor:'branca'},
-      {nomeRacaCor:'negra'},
-      {nomeRacaCor:'amarela'},
-    ]
-}
+  ) {
+    
+    // this.estadoCivil = [
+    //  {nome:'solteiro'},
+    //  {nome:'casado'},
+    // ];
+  
+    // this.nacionalidade = [
+    //   {nomeNacionalidade:'brasileira'},
+    //   {nomeNacionalidade:'estrangeira'},
+    // ];
+  }
 
 
   ngOnInit() {
+    
+    
+    this.sexo = [
+      {label: 'Masculino', value: 'M'},
+      {label: 'Feminino', value: 'F'}
+  ]
+
+    this.nacionalidade = [
+      {label: 'Brasileira', value: 'brasileira'},
+      {label: 'Estrangeira', value: 'estrangeira'}
+]
+
+    this.estadoCivil = [
+      {label: 'Solteiro', value: 'solteiro'},
+      {label: 'Casado', value: 'casado'}
+]
+
+    this.racaCor = [
+      {label: 'Branco', value: 'branco'},
+      {label: 'Preto', value: 'preto'}
+]
+
+
+
     this.isSaving = false;
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
@@ -69,6 +87,7 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    console.log(this.paciente);
     this.isSaving = true;
     if (this.paciente.id !== undefined) {
       this.subscribeToSaveResponse(this.pacienteService.update(this.paciente));
@@ -101,21 +120,21 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
   }
 }
 
-interface EstadoCivil {
-  nome: string;
+// interface EstadoCivil {
+//   nome: string;
 
-}
-interface EscolhaSexo {
-  nomeSexo: string;
+// }
+// interface EscolhaSexo {
+//   nomeSexo: string;
 
-}
+// }
 
-interface EscolhaNacionalidade {
-  nomeNacionalidade: string;
+// interface EscolhaNacionalidade {
+//   nomeNacionalidade: string;
 
-}
+// }
 
-interface EscolhaRacaCor {
-  nomeRacaCor: string;
+// interface EscolhaRacaCor {
+//   nomeRacaCor: string;
 
-}
+// }

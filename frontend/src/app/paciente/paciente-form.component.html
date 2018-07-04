@@ -50,22 +50,22 @@
           
 
           <div class="ui-g-12 ui-md-6">
-              <p-dropdown [options]="racaCor" optionLabel="nomeRacaCor" placeholder="Raça/Cor"></p-dropdown>
+              <p-dropdown name="racaCor" [options]="racaCor" [(ngModel)]='paciente.racaCor' placeholder="Raça/Cor"></p-dropdown>
           </div>
 
 
           <div class="ui-g-12 ui-md-6">
-              <p-dropdown [options]="nacionalidade" optionLabel="nomeNacionalidade" placeholder="Nacionalidade"></p-dropdown>
-          </div>
-          
-
-          <div class="ui-g-12 ui-md-6">
-              <p-dropdown [options]="sexo" optionLabel="nomeSexo" placeholder="Sexo"></p-dropdown>
+              <p-dropdown name='nacionalidade' [options]="nacionalidade" [(ngModel)]='paciente.nacionalidade' placeholder="Nacionalidade"></p-dropdown>
           </div>
           
 
           <div class="ui-g-12 ui-md-6">
-            <p-dropdown [options]="estadoCivil" optionLabel="nome" placeholder="Estado Civil *"required></p-dropdown>
+              <p-dropdown name="sexo" [options]="sexo" [(ngModel)]='paciente.sexo' placeholder="Sexo"></p-dropdown>
+          </div>
+          
+
+          <div class="ui-g-12 ui-md-6">
+            <p-dropdown name="estadoCivil" [options]="estadoCivil" [(ngModel)]='paciente.estadoCivil' placeholder="Estado Civil *"required></p-dropdown>
             <div *ngIf="editForm.controls['estadoCivil'] && !editForm.controls['estadoCivil'].valid && (editForm.controls['estadoCivil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
               Campo obrigatório!
             </div>
@@ -81,7 +81,7 @@
               </div>
             </span>
           </div>
-          
+
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
