@@ -102,9 +102,9 @@ public class PreCadastroResource {
             log.debug("REST request to update PreCadastro : {}", preCadastro);
             if (!(preCadastroRepository.findOneByIdAndNumCartaoSus(preCadastro.getId(),MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent()) || !(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent())) {
                 if (!(preCadastroRepository.findOneByIdAndNumCartaoSus(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent()) && (MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus()) != null) && (preCadastroRepository.findOneByNumCartaoSus(MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent())){
-                        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")) .body(null);    
+                        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")) .body(null);
                 }if (!(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent()) && (preCadastroRepository.findOneByNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent())){
-                        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")) .body(null);   
+                        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")) .body(null);
                 }
             }
             if (preCadastro.getId() == null) {

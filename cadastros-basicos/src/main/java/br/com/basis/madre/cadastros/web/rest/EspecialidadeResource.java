@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -175,13 +177,14 @@ public class EspecialidadeResource {
     @GetMapping("/_search/especialidades")
     @Timed
     public ResponseEntity<List<Especialidade>> searchEspecialidades(
-        @RequestParam(defaultValue = "*") String query, Pageable pageable) {
+        @RequestParam(defaultValue = "*") String query, Pageable pageable,@RequestParam String order, @RequestParam int size, @RequestParam(name="page") int pageNumber,@RequestParam(defaultValue="id") String sort) {
         log.debug("REST request to search for a page of Especialidades for query {}", query);
-        Page<Especialidade> page = especialidadeService.search(query, pageable);
+        Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
+        Pageable newPageable = new PageRequest(pageNumber, size, sortOrder, sort);
+        Page<Especialidade> page = especialidadeService.search(query, newPageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/especialidades");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
     /**
      * GET  /especialidade/:id : get jasper of  usuarios.
      *

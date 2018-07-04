@@ -1,9 +1,9 @@
 package br.com.basis.madre.pacientes.service.impl;
 
-import br.com.basis.madre.pacientes.service.PacienteService;
 import br.com.basis.madre.pacientes.domain.Paciente;
 import br.com.basis.madre.pacientes.repository.PacienteRepository;
 import br.com.basis.madre.pacientes.repository.search.PacienteSearchRepository;
+import br.com.basis.madre.pacientes.service.PacienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -11,8 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Paciente.
@@ -27,9 +26,12 @@ public class PacienteServiceImpl implements PacienteService {
 
     private final PacienteSearchRepository pacienteSearchRepository;
 
-    public PacienteServiceImpl(PacienteRepository pacienteRepository, PacienteSearchRepository pacienteSearchRepository) {
+   // private final DynamicExportsService dynamicExportsService;
+
+    public PacienteServiceImpl(PacienteRepository pacienteRepository, PacienteSearchRepository pacienteSearchRepository) { //,  DynamicExportsService dynamicExportsService)
         this.pacienteRepository = pacienteRepository;
         this.pacienteSearchRepository = pacienteSearchRepository;
+        //this.dynamicExportsService = dynamicExportsService;
     }
 
     /**
@@ -98,4 +100,29 @@ public class PacienteServiceImpl implements PacienteService {
         Page<Paciente> result = pacienteSearchRepository.search(queryStringQuery(query), pageable);
         return result;
     }
+
+    /**
+     * geraRelatórioExportacao by entity a
+     *
+     * @param tipoRelatorio
+     */
+
+//    @Override
+//    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException {
+//        ByteArrayOutputStream byteArrayOutputStream;
+//        try {
+//            new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query)).build();
+//            Page<Paciente> result = pacienteSearchRepository.search(queryStringQuery(query), dynamicExportsService.obterPageableMaximoExportacao());
+//            byteArrayOutputStream = dynamicExportsService.export(new RelatorioPacienteColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
+//        } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
+//            log.error(e.getMessage(), e);
+//            throw new RelatorioException(e);
+//        }
+//        return DynamicExporter.output(byteArrayOutputStream,
+//            "relatorio." + tipoRelatorio);
+//    }
+
+
+
+
 }

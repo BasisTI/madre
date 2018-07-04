@@ -1,11 +1,14 @@
 package br.com.basis.madre.pacientes.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import br.com.basis.madre.pacientes.domain.Paciente;
+import br.com.basis.madre.pacientes.repository.PacienteRepository;
 import br.com.basis.madre.pacientes.service.PacienteService;
+import br.com.basis.madre.pacientes.service.exception.PacienteException;
 import br.com.basis.madre.pacientes.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.pacientes.web.rest.util.HeaderUtil;
+import br.com.basis.madre.pacientes.web.rest.util.MadreUtil;
 import br.com.basis.madre.pacientes.web.rest.util.PaginationUtil;
+import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,16 +18,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import br.com.basis.madre.pacientes.web.rest.util.PaginationUtil;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Paciente.
@@ -37,10 +40,15 @@ public class PacienteResource {
 
     private static final String ENTITY_NAME = "paciente";
 
+    private final PacienteRepository pacienteRepository;
+
     private final PacienteService pacienteService;
 
-    public PacienteResource(PacienteService pacienteService) {
+     Paciente paciente;
+
+    public PacienteResource(PacienteService pacienteService, PacienteRepository pacienteRepository) {
         this.pacienteService = pacienteService;
+        this.pacienteRepository = pacienteRepository;
     }
 
     /**
@@ -54,14 +62,49 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
         log.debug("REST request to save Paciente : {}", paciente);
-        if (paciente.getId() != null) {
-            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        Paciente result = pacienteService.save(paciente);
-        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+
+//        try {
+            //Validação de pacientes e dados já existentes
+            if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null);
+            }
+            if ((pacienteRepository.findOneByCpf(paciente.getCpf())).isPresent()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cpfexists", "CPF já cadastrado")).body(null);
+            }
+            if ((pacienteRepository.findOneByNomePacienteIgnoreCaseAndNomeSocialIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getNomePaciente()), MadreUtil.removeCaracteresEmBranco(paciente.getNomeSocial()))).isPresent()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
+            }
+
+            if((pacienteRepository.findOneByEmailPrincipalIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getEmailPrincipal()))).isPresent()){
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "E-mail já cadastrado")).body(null);
+            }
+
+            if ((pacienteRepository.findOneByCartaoSus(paciente.getCartaoSus()).isPresent())
+                && (MadreUtil.removeCaracteresEmBranco(paciente.getCartaoSus()) != null)) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
+            }
+
+
+
+
+            if (paciente.getId() != null) {
+                throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
+            }
+
+
+            Paciente result = pacienteService.save(paciente);
+            return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+
+//        } catch (PacienteException e) {
+//            log.error(e.getMessage(), e);
+//            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PacienteException.getCodeRegistroExisteBase(), e.getMessage())).body(paciente);
+//        }
     }
+
+
+
 
     /**
      * PUT  /pacientes : Updates an existing paciente.
@@ -138,10 +181,14 @@ public class PacienteResource {
      */
     @GetMapping("/_search/pacientes")
     @Timed
-    public ResponseEntity<List<Paciente>> searchPacientes(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<Paciente>> searchPacientes(@RequestParam(defaultValue = "*") String query,@RequestParam String order,@RequestParam(name="page") int pageNumber,@RequestParam int size, @RequestParam(defaultValue="id") String sort) {
         log.debug("REST request to search for a page of Pacientes for query {}", query);
-        Page<Paciente> page = pacienteService.search(query, pageable);
+        Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
+        Pageable newPageable = new PageRequest(pageNumber, size, sortOrder, sort);
+        Page<Paciente> page = pacienteService.search(query, newPageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/pacientes");
+
+
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
