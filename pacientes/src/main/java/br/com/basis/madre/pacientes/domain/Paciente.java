@@ -1,15 +1,19 @@
 package br.com.basis.madre.pacientes.domain;
 
+import br.com.basis.madre.pacientes.web.rest.util.MadreUtil;
+import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.Document;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+
 
 /**
  * A Paciente.
@@ -18,7 +22,7 @@ import java.util.Objects;
 @Table(name = "paciente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "paciente")
-public class Paciente implements Serializable {
+public class Paciente implements Serializable { // ,ReportObject
 
     private static final long serialVersionUID = 1L;
 
@@ -33,6 +37,7 @@ public class Paciente implements Serializable {
     private String rg;
 
     @NotNull
+    @CPF
     @Size(min = 11, max = 11)
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
@@ -481,5 +486,12 @@ public class Paciente implements Serializable {
             ", emailPrincipal='" + getEmailPrincipal() + "'" +
             ", emailAlternativo='" + getEmailAlternativo() + "'" +
             "}";
+
+    }
+
+    public String getDataNascimentoString(){
+        String dataNascimentoString;
+        dataNascimentoString = ObjectUtils.allNotNull(this.dataNascimento) ? MadreUtil.transformaLocalDateTimeEmString(this.dataNascimento) : null;
+        return dataNascimentoString;
     }
 }

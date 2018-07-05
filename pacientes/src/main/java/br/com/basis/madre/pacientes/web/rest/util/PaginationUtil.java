@@ -1,6 +1,7 @@
 package br.com.basis.madre.pacientes.web.rest.util;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -73,4 +74,23 @@ public final class PaginationUtil {
         headers.add(HttpHeaders.LINK, link);
         return headers;
     }
+
+    public static  Sort.Direction getSortDirection(String order) {
+        Sort.Direction sortOrder = null;
+
+        switch(order) {
+            case "asc": {
+                sortOrder = Sort.Direction.ASC;
+            } break;
+            case "desc": {
+                sortOrder = Sort.Direction.DESC;
+            }break;
+            default: {
+                // Do nothing
+            }
+        }
+
+        return sortOrder;
+    }
+
 }
