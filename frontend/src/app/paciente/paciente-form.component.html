@@ -66,9 +66,11 @@
 
           <div class="ui-g-12 ui-md-6">
             <p-dropdown name="estadoCivil" [options]="estadoCivil" [(ngModel)]='paciente.estadoCivil' placeholder="Estado Civil *"required></p-dropdown>
-            <div *ngIf="editForm.controls['estadoCivil'] && !editForm.controls['estadoCivil'].valid && (editForm.controls['estadoCivil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
-              Campo obrigatório!
-            </div>
+              <span class="md-inputfield">
+                <div *ngIf="editForm.controls['estadoCivil'] && !editForm.controls['estadoCivil'].valid && (editForm.controls['estadoCivil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                  Campo obrigatório!
+                </div>
+              </span>
           </div>
           
 

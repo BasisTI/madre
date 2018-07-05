@@ -31,18 +31,7 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private pacienteService: PacienteService,
-  ) {
-    
-    // this.estadoCivil = [
-    //  {nome:'solteiro'},
-    //  {nome:'casado'},
-    // ];
-  
-    // this.nacionalidade = [
-    //   {nomeNacionalidade:'brasileira'},
-    //   {nomeNacionalidade:'estrangeira'},
-    // ];
-  }
+  ) {}
 
 
   ngOnInit() {
@@ -60,12 +49,18 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
 
     this.estadoCivil = [
       {label: 'Solteiro', value: 'solteiro'},
-      {label: 'Casado', value: 'casado'}
+      {label: 'Casado', value: 'casado'},
+      {label: 'Separado', value: 'separado'},
+      {label: 'Divorciado', value: 'divorciado'},
+      {label: 'Viúvo', value: 'viuvo'}
 ]
 
     this.racaCor = [
       {label: 'Branco', value: 'branco'},
-      {label: 'Preto', value: 'preto'}
+      {label: 'Preto', value: 'preto'},
+      {label: 'Pardo', value: 'pardo'},
+      {label: 'Amarelo', value: 'amarelo'},
+      {label: 'Indígena', value: 'indigena'}
 ]
 
 
@@ -103,6 +98,7 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
+      this.pageNotificationService.addErrorMessage('Dados inválidos!');
     });
   }
 
@@ -119,22 +115,3 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     this.breadcrumbService.reset();
   }
 }
-
-// interface EstadoCivil {
-//   nome: string;
-
-// }
-// interface EscolhaSexo {
-//   nomeSexo: string;
-
-// }
-
-// interface EscolhaNacionalidade {
-//   nomeNacionalidade: string;
-
-// }
-
-// interface EscolhaRacaCor {
-//   nomeRacaCor: string;
-
-// }
