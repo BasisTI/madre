@@ -130,6 +130,8 @@ jhipster:
     ribbon:
         display-on-active-profiles: dev
 
+dynamicExports:
+    maximoRegistros: 2500
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

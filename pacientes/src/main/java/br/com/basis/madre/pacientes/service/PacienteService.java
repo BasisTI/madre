@@ -1,8 +1,11 @@
 package br.com.basis.madre.pacientes.service;
 
 import br.com.basis.madre.pacientes.domain.Paciente;
+import br.com.basis.madre.pacientes.service.exception.RelatorioException;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 /**
  * Service Interface for managing Paciente.
@@ -52,6 +55,6 @@ public interface PacienteService {
 
 
 
-    //ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
 
 }

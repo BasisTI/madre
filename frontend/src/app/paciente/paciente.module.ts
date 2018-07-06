@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
+import { BotoesExportacaoModule } from './../botoes-exportacao/botoes-exportacao.module';
 import {
   ButtonModule,
   InputTextModule,
@@ -34,6 +35,7 @@ import {
     DropdownModule,
     RadioButtonModule,
     InputTextModule,
+    BotoesExportacaoModule,
     ConfirmDialogModule,
   ],
   declarations: [

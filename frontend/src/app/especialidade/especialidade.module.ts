@@ -37,7 +37,7 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
-    BotoesExportacaoModule
+    BotoesExportacaoModule,
   ],
   declarations: [
     EspecialidadeComponent,

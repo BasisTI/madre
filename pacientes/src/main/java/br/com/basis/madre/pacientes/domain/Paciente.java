@@ -1,5 +1,6 @@
 package br.com.basis.madre.pacientes.domain;
 
+import br.com.basis.dynamicexports.pojo.ReportObject;
 import br.com.basis.madre.pacientes.web.rest.util.MadreUtil;
 import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.Cache;
@@ -22,7 +23,7 @@ import java.util.Objects;
 @Table(name = "paciente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "paciente")
-public class Paciente implements Serializable { // ,ReportObject
+public class Paciente implements Serializable,ReportObject {
 
     private static final long serialVersionUID = 1L;
 

@@ -8,6 +8,7 @@ import { PageNotificationService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
 import { Paciente } from './paciente.model';
 import { PacienteService } from './paciente.service';
+import { ElasticQuery } from '../shared/elastic-query';
 
 @Component({
   selector: 'jhi-paciente',
@@ -19,6 +20,10 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   searchUrl: string = this.pacienteService.searchUrl;
 
+  elasticQuery: ElasticQuery = new ElasticQuery();
+
+  valueFiltroCampo: string;
+
   constructor(
     private router: Router,
     private pacienteService: PacienteService,
@@ -29,6 +34,11 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.breadcrumbService.setItems([{ label: 'Pacientes' }]);
+  }
+
+  valueFiltro(valuefiltro: string) {
+    this.valueFiltroCampo = valuefiltro;
+    this.datatable.refresh(valuefiltro);
   }
 
   datatableClick(event: DatatableClickEvent) {
