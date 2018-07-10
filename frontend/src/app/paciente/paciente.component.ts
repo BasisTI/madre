@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
-import { DatatableComponent, DatatableClickEvent } from '@basis/angular-components';
+import { DatatableComponent, DatatableClickEvent, HttpService } from '@basis/angular-components';
 
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 import { Paciente } from './paciente.model';
 import { PacienteService } from './paciente.service';
 import { ElasticQuery } from '../shared/elastic-query';
+import { ajaxGetJSON } from 'rxjs/observable/dom/AjaxObservable';
 
 @Component({
   selector: 'jhi-paciente',
@@ -22,6 +23,12 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   elasticQuery: ElasticQuery = new ElasticQuery();
 
+   paciente : Paciente;
+   contador = [0];
+   a : string;
+    pacientes = this.pacienteService.query("*");
+              
+
   valueFiltroCampo: string;
 
   constructor(
@@ -29,10 +36,13 @@ export class PacienteComponent implements OnInit, OnDestroy {
     private pacienteService: PacienteService,
     private confirmationService: ConfirmationService,
     private breadcrumbService: BreadcrumbService,
-    private pageNotificationService: PageNotificationService
+    private pageNotificationService: PageNotificationService,
+    private http: HttpService
   ) {}
 
   ngOnInit() {
+
+    this.autoIncrment();
     this.breadcrumbService.setItems([{ label: 'Pacientes' }]);
   }
 
@@ -69,6 +79,17 @@ export class PacienteComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  private autoIncrment(){
+
+    var pacientesArray = new Array();
+    pacientesArray.push('http://localhost:4200/api/_search/pacientes');
+    var jsonArray = JSON.parse(JSON.stringify(pacientesArray));
+  
+    console.log(jsonArray);
+
+    }
+ 
 
   ngOnDestroy() {
     this.breadcrumbService.reset();

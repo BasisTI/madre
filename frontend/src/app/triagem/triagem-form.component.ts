@@ -6,15 +6,15 @@ import { SelectItem } from 'primeng/primeng';
 
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
-import { Perfil } from './perfil.model';
-import { PerfilService } from './perfil.service';
+import { Triagem } from './triagem.model';
+import { TriagemService } from './triagem.service';
 
 @Component({
-  selector: 'jhi-perfil-form',
-  templateUrl: './perfil-form.component.html'
+  selector: 'jhi-triagem-form',
+  templateUrl: './triagem-form.component.html'
 })
-export class PerfilFormComponent implements OnInit, OnDestroy {
-  perfil: Perfil;
+export class TriagemFormComponent implements OnInit, OnDestroy {
+  triagem: Triagem;
   isSaving: boolean;
   isEdit = false;
   private routeSub: Subscription;
@@ -24,21 +24,21 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
-    private perfilService: PerfilService,
+    private triagemService: TriagemService,
   ) {}
 
   ngOnInit() {
     this.isSaving = false;
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
-      this.perfil = new Perfil();
+      this.triagem = new Triagem();
       if (params['id']) {
         this.isEdit = true;
-        this.perfilService.find(params['id']).subscribe(perfil => this.perfil = perfil);
+        this.triagemService.find(params['id']).subscribe(triagem => this.triagem = triagem);
         title = 'Editar';
       }
       this.breadcrumbService.setItems([
-        { label: 'Perfils', routerLink: '/perfil' },
+        { label: 'Triagems', routerLink: '/triagem' },
         { label: title }
       ]);
     });
@@ -46,21 +46,17 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
 
   save() {
     this.isSaving = true;
-    if (this.perfil.id !== undefined) {
-      this.subscribeToSaveResponse(this.perfilService.update(this.perfil));
+    if (this.triagem.id !== undefined) {
+      this.subscribeToSaveResponse(this.triagemService.update(this.triagem));
     } else {
-      this.subscribeToSaveResponse(this.perfilService.create(this.perfil));
+      this.subscribeToSaveResponse(this.triagemService.create(this.triagem));
     }
   }
 
-  private subscribeToSaveResponse(result: Observable<Perfil>) {
-    result.subscribe((res: Perfil) => {
+  private subscribeToSaveResponse(result: Observable<Triagem>) {
+    result.subscribe((res: Triagem) => {
       this.isSaving = false;
-      // if (!ValidacaoUtil.validarCNPJ(this.unidadeHospitalar.cnpj)) {
-      //   this.pageNotificationService.addErrorMessage('CNPJ inválido');
-      //   return;
-      // }
-      this.router.navigate(['/perfil']);
+      this.router.navigate(['/triagem']);
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
@@ -74,8 +70,6 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
       this.pageNotificationService.addCreateMsg();
     }
   }
-
-
 
   ngOnDestroy() {
     this.routeSub.unsubscribe();

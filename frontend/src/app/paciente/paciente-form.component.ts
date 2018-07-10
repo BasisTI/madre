@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -8,6 +8,9 @@ import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Paciente } from './paciente.model';
 import { PacienteService } from './paciente.service';
+import {NgxMaskModule} from 'ngx-mask';
+import { ValidacaoUtil } from '../util/validacao.util'
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -25,6 +28,7 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
   isEdit = false;
   private routeSub: Subscription;
 
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,8 +39,8 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    
-    
+
+        
     this.sexo = [
       {label: 'Masculino', value: 'M'},
       {label: 'Feminino', value: 'F'}
@@ -98,6 +102,16 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
+      
+      // if(!ValidacaoUtil.validaCep(this.paciente.cs)){
+      //   this.pageNotificationService.addErrorMessage('CPF inválido !');
+      // }
+      // if(!ValidacaoUtil.validaCpf(this.paciente.cpf)){
+      //   this.pageNotificationService.addErrorMessage('CPF inválido !');
+      // }
+      // if(!ValidacaoUtil.validaCNS(this.paciente.cartaoSus)){
+      //   this.pageNotificationService.addErrorMessage('Número cartão SUS inválido !');
+      // }
       this.pageNotificationService.addErrorMessage('Dados inválidos!');
     });
   }
@@ -109,6 +123,8 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       this.pageNotificationService.addCreateMsg();
     }
   }
+
+
 
   ngOnDestroy() {
     this.routeSub.unsubscribe();

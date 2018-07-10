@@ -87,10 +87,26 @@ public class PacienteResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
         }
 
+        if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null);
+        }
+
 
         if (paciente.getId() != null) {
             throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+//        log.debug("ProntuarioPORRRRRRRRRAAAAA !!!!!! AQUI CARALHO ZE BUCETA: "+this.paciente.getProntuario());
+//        try {
+//
+//            if(this.paciente.getProntuario() != null) {
+//                paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
+//            }
+//
+//        }catch (Exception e){
+//            log.debug("Caiu no catch !!!!");
+//        }
+
 
 
         Paciente result = pacienteService.save(paciente);
@@ -136,6 +152,7 @@ public class PacienteResource {
     @GetMapping("/pacientes")
     @Timed
     public ResponseEntity<List<Paciente>> getAllPacientes(Pageable pageable) {
+
         log.debug("REST request to get a page of Pacientes");
         Page<Paciente> page = pacienteService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pacientes");

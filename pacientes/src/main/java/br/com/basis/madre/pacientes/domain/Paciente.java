@@ -5,6 +5,7 @@ import br.com.basis.madre.pacientes.web.rest.util.MadreUtil;
 import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.elasticsearch.annotations.Document;
 
@@ -56,6 +57,7 @@ public class Paciente implements Serializable,ReportObject {
     @Column(name = "cep", length = 10, nullable = false)
     private String cep;
 
+
     @Size(max = 10)
     @Column(name = "prontuario", length = 10)
     private String prontuario;
@@ -90,8 +92,8 @@ public class Paciente implements Serializable,ReportObject {
     private String nacionalidade;
 
     @NotNull
-    @Size(min = 20, max = 20)
-    @Column(name = "cartao_sus", length = 20, nullable = false)
+    @Size(min = 15, max = 15)
+    @Column(name = "cartao_sus", length = 15, nullable = false)
     private String cartaoSus;
 
     @Size(max = 100)
@@ -102,8 +104,8 @@ public class Paciente implements Serializable,ReportObject {
     @Column(name = "complemento", length = 100)
     private String complemento;
 
-    @Size(max = 20)
-    @Column(name = "bairro", length = 20)
+    @Size(max = 200)
+    @Column(name = "bairro", length = 200)
     private String bairro;
 
     @Size(max = 100)
@@ -114,6 +116,7 @@ public class Paciente implements Serializable,ReportObject {
     @Column(name = "estado", length = 2)
     private String estado;
 
+
     @Size(max = 11)
     @Column(name = "telefone_principal", length = 11)
     private String telefonePrincipal;
@@ -122,10 +125,12 @@ public class Paciente implements Serializable,ReportObject {
     @Column(name = "telefone_alternativo", length = 11)
     private String telefoneAlternativo;
 
+    @Email
     @Size(max = 100)
     @Column(name = "email_principal", length = 100)
     private String emailPrincipal;
 
+    @Email
     @Size(max = 100)
     @Column(name = "email_alternativo", length = 100)
     private String emailAlternativo;

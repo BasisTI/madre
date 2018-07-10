@@ -1,0 +1,124 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ triagem.id ? 'Editar Triagem' : 'Cadastrar Triagem' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="triagem.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-calendar name="dataAtendimento" [(ngModel)]="triagem.dataAtendimento" dateFormat="dd/mm/yy"></p-calendar>
+              <label>Data Atendimento</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="pressaoArterial" [(ngModel)]="triagem.pressaoArterial" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Pressao Arterial</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="frequenciaRespiratoria" [(ngModel)]="triagem.frequenciaRespiratoria" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Frequencia Respiratoria</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="temperatura" [(ngModel)]="triagem.temperatura" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Temperatura</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="peso" [(ngModel)]="triagem.peso" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Peso</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <div class="d-flex">
+                  <input id="field_horaAtendimento" type="datetime-local" class="form-control" name="horaAtendimento" [(ngModel)]="triagem.horaAtendimento">
+              </div>
+              <label>Hora Atendimento</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="frequenciaCardiaca" [(ngModel)]="triagem.frequenciaCardiaca" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Frequencia Cardiaca</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="glicemia" [(ngModel)]="triagem.glicemia" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Glicemia</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="saturacao" [(ngModel)]="triagem.saturacao" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Saturacao</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="altura" [(ngModel)]="triagem.altura" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Altura</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="medicacaoContinua" [(ngModel)]="triagem.medicacaoContinua" pInputText/>
+              <label>Medicacao Continua</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="feridaLesao" [(ngModel)]="triagem.feridaLesao" pInputText/>
+              <label>Ferida Lesao</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="alergias" [(ngModel)]="triagem.alergias" pInputText/>
+              <label>Alergias</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="estadoPaciente" [(ngModel)]="triagem.estadoPaciente" pInputText/>
+              <label>Estado Paciente</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="sintomaAlerta" [(ngModel)]="triagem.sintomaAlerta" pInputText/>
+              <label>Sintoma Alerta</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="historicoSaude" [(ngModel)]="triagem.historicoSaude" pInputText/>
+              <label>Historico Saude</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="estadoGeral" [(ngModel)]="triagem.estadoGeral" pInputText/>
+              <label>Estado Geral</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/triagem"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

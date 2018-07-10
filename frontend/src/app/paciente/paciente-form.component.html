@@ -87,7 +87,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="telefonePrincipal" [(ngModel)]="paciente.telefonePrincipal" pInputText required/>
+              <input type="text" name="telefonePrincipal" [(ngModel)]="paciente.telefonePrincipal" pInputText mask="(99)9999-99999" required/>
               <label>Telefone Principal *</label>
               <div *ngIf="editForm.controls['telefonePrincipal'] && !editForm.controls['telefonePrincipal'].valid && (editForm.controls['telefonePrincipal'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -98,7 +98,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="telefoneAlternativo" [(ngModel)]="paciente.telefoneAlternativo" pInputText/>
+              <input type="text" name="telefoneAlternativo" [(ngModel)]="paciente.telefoneAlternativo" pInputText mask="(99)9999-99999"/>
               <label>Telefone Alternativo</label>
             </span>
           </div>
@@ -122,7 +122,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cep" [(ngModel)]="paciente.cep" pInputText required/>
+              <input type="text" name="cep" [(ngModel)]="paciente.cep" pInputText maxlength="11" mask="99999-999"  required/>
               <label>CEP *</label>
               <div *ngIf="editForm.controls['cep'] && !editForm.controls['cep'].valid && (editForm.controls['cep'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -173,7 +173,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cpf" [(ngModel)]="paciente.cpf" pInputText required/>
+              <input type="text" name="cpf" [(ngModel)]="paciente.cpf" pInputText pInputText maxlength="14"mask="999.999.999-99" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" required />
               <label>CPF *</label>
               <div *ngIf="editForm.controls['cpf'] && !editForm.controls['cpf'].valid && (editForm.controls['cpf'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -184,7 +184,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="rg" [(ngModel)]="paciente.rg" pInputText required/>
+              <input type="text" name="rg" [(ngModel)]="paciente.rg" pInputText mask="99.999.999-9" required/>
               <label>RG *</label>
               <div *ngIf="editForm.controls['rg'] && !editForm.controls['rg'].valid && (editForm.controls['rg'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -195,7 +195,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cartaoSus" [(ngModel)]="paciente.cartaoSus" pInputText required/>
+              <input type="text" name="cartaoSus" [(ngModel)]="paciente.cartaoSus"  pInputText  maxlength="15" required/>
               <label>Cartão SUS *</label>
               <div *ngIf="editForm.controls['cartaoSus'] && !editForm.controls['cartaoSus'].valid && (editForm.controls['cartaoSus'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -206,8 +206,8 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="prontuario" [(ngModel)]="paciente.prontuario" pInputText/>
-              <label>Prontuário</label>
+              <input type="text" name="prontuario" id="prontuario" [(ngModel)]="paciente.prontuario" maxlength="7"  pattern="[0-9]+$"  pInputText   />
+              <label id="tst">Prontuário</label>
             </span>
         </div>
       </div>

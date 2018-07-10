@@ -6,32 +6,29 @@ import { DatatableComponent, DatatableClickEvent } from '@basis/angular-componen
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
-import { Perfil } from './perfil.model';
-import { PerfilService } from './perfil.service';
-import { PacienteService } from '../paciente';
+import { Triagem } from './triagem.model';
+import { TriagemService } from './triagem.service';
 
 @Component({
-  selector: 'jhi-perfil',
-  templateUrl: './perfil.component.html'
+  selector: 'jhi-triagem',
+  templateUrl: './triagem.component.html'
 })
-export class PerfilComponent implements OnInit, OnDestroy {
+export class TriagemComponent implements OnInit, OnDestroy {
 
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
-  searchUrl: string = this.perfilService.searchUrl;
+  searchUrl: string = this.triagemService.searchUrl;
 
   constructor(
     private router: Router,
-    private perfilService: PerfilService,
+    private triagemService: TriagemService,
     private confirmationService: ConfirmationService,
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService
   ) {}
 
   ngOnInit() {
- 
-
-    this.breadcrumbService.setItems([{ label: 'Perfils' }]);
+    this.breadcrumbService.setItems([{ label: 'Triagems' }]);
   }
 
   datatableClick(event: DatatableClickEvent) {
@@ -40,13 +37,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
     }
     switch (event.button) {
       case 'edit':
-        this.router.navigate(['/perfil', event.selection.id, 'edit']);
+        this.router.navigate(['/triagem', event.selection.id, 'edit']);
         break;
       case 'delete':
         this.confirmDelete(event.selection.id);
         break;
       case 'view':
-        this.router.navigate(['/perfil', event.selection.id]);
+        this.router.navigate(['/triagem', event.selection.id]);
         break;
     }
   }
@@ -55,7 +52,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir o registro?',
       accept: () => {
-        this.perfilService.delete(id).subscribe(() => {
+        this.triagemService.delete(id).subscribe(() => {
           this.datatable.refresh(undefined);
           this.pageNotificationService.addDeleteMsg();
         });

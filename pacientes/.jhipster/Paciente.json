@@ -150,7 +150,7 @@
             "fieldValidateRules": [
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": "20"
+            "fieldValidateRulesMaxlength": "200"
         },
         {
             "fieldName": "cidade",

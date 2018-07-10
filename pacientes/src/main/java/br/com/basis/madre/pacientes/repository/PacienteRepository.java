@@ -19,4 +19,9 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 //  Optional<Paciente> findOneByNomeMaeIgnoreCaseAndNomePaiIgnoreCase(String nomeMae, String nomePai);
     Optional<Paciente> findOneByCartaoSus(String cartaoSus);
     Optional<Paciente> findOneByEmailPrincipalIgnoreCase(String emailPrincipal);
+
+    Optional<Paciente> findOneByProntuario(String prontuario);
+
+    @Query(value = "SELECT COUNT(nome_paciente) FROM Paciente ")
+    int indexPacientes();
 }

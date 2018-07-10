@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
-import { BotoesExportacaoModule } from './../botoes-exportacao/botoes-exportacao.module';
 import {
   ButtonModule,
   InputTextModule,
@@ -16,19 +15,18 @@ import {
 } from 'primeng/primeng';
 
 import {
-  PacienteComponent,
-  PacienteDetailComponent,
-  PacienteFormComponent,
-  pacienteRoute
+  TriagemComponent,
+  TriagemDetailComponent,
+  TriagemFormComponent,
+  triagemRoute
 } from './';
-import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
     FormsModule,
-    RouterModule.forChild(pacienteRoute),
+    RouterModule.forChild(triagemRoute),
     DatatableModule,
     ButtonModule,
     SpinnerModule,
@@ -36,16 +34,14 @@ import {NgxMaskModule} from 'ngx-mask';
     DropdownModule,
     RadioButtonModule,
     InputTextModule,
-    BotoesExportacaoModule,
     ConfirmDialogModule,
-    NgxMaskModule.forRoot(),
   ],
   declarations: [
-    PacienteComponent,
-    PacienteDetailComponent,
-    PacienteFormComponent
+    TriagemComponent,
+    TriagemDetailComponent,
+    TriagemFormComponent
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PacientesPacienteModule {}
+export class PacientesTriagemModule {}
