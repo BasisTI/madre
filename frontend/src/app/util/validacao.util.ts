@@ -1,5 +1,7 @@
 export class ValidacaoUtil {
 
+
+    //Validação Email
     public static validarEmail(email): boolean {
         let regexp = new RegExp('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$');
         return regexp.test(email);
@@ -59,7 +61,7 @@ export class ValidacaoUtil {
     }
 
 
-
+    //Valida CPF
     public static validaCpf(cpf: string): boolean {
         if (cpf == null) {
             return false;
@@ -119,69 +121,90 @@ export class ValidacaoUtil {
     }
 
 
+    //Valida Telefone
+    public static validaTelefone(tel){
+            var exp = /[0-9]{2}[0-9]{8,9}/;
+           
+            if(exp.test(tel)){
+                
+               return true;
+            }
+                    
+    }
+
+    //Valida CEP
+    public static validaCep(cep){
+        var exp = /^[0-9]{5}[0-9]{3}$/
+        if(exp.test(cep)){
+           
+            return true;     
+        }
+                     
+        }
+
 
 
     
     // Validação CNS
-// public static  validaCNS(vlrCNS : string) {
-//     console.log("Validar CNS");
-//     console.log("Numero: "+vlrCNS);
-//     // Formulário que contem o campo CNS
-//     var soma = new Number;
-//     var resto = new Number;
-//     var dv = new Number;
-//     var pis = new String;
-//     var resultado = new String;
-//     var tamCNS = vlrCNS.length;
-//     if ((tamCNS) != 15) {
-//         alert("Numero de CNS invalido");
-//         return false;
-//     }
-//     pis = vlrCNS.substring(0,11);
-//     soma = (((Number(pis.substring(0,1))) * 15) +   
-//             ((Number(pis.substring(1,2))) * 14) +
-//             ((Number(pis.substring(2,3))) * 13) +
-//             ((Number(pis.substring(3,4))) * 12) +
-//             ((Number(pis.substring(4,5))) * 11) +
-//             ((Number(pis.substring(5,6))) * 10) +
-//             ((Number(pis.substring(6,7))) * 9) +
-//             ((Number(pis.substring(7,8))) * 8) +
-//             ((Number(pis.substring(8,9))) * 7) +
-//             ((Number(pis.substring(9,10))) * 6) +
-//             ((Number(pis.substring(10,11))) * 5));
-//             console.log("oi");
-//             console.log("soma: "+soma);
-//      resto = soma % 11;
-//     console.log("resto: "+resto);
-//     dv = 11 - resto;
-//     console.log("dv: "+dv);
-//     if (dv == 11) {
-//         dv = 0;
-//     }
-//     if (dv == 10) {
-//         soma = (((Number(pis.substring(0,1))) * 15) +   
-//                 ((Number(pis.substring(1,2))) * 14) +
-//                 ((Number(pis.substring(2,3))) * 13) +
-//                 ((Number(pis.substring(3,4))) * 12) +
-//                 ((Number(pis.substring(4,5))) * 11) +
-//                 ((Number(pis.substring(5,6))) * 10) +
-//                 ((Number(pis.substring(6,7))) * 9) +
-//                 ((Number(pis.substring(7,8))) * 8) +
-//                 ((Number(pis.substring(8,9))) * 7) +
-//                 ((Number(pis.substring(9,10))) * 6) +
-//                 ((Number(pis.substring(10,11))) * 5) + 2);
-//         resto = soma % 11;
-//         dv = 11 - resto;
-//         resultado = pis + "001" + String(dv);
-//     } else { 
-//         resultado = pis + "000" + String(dv);
-//     }
-//     if (vlrCNS != resultado) {
-//       return false;
-//     } else {
-//        return true;
-//     }
-// }
+public static  validaCNS(vlrCNS : string) {
+    console.log("Validar CNS");
+    console.log("Numero: "+vlrCNS);
+    // Formulário que contem o campo CNS
+    var soma : any ;
+     var resto : any;
+    var dv = new Number;
+    var pis = new String;
+    var resultado = new String;
+    var tamCNS = vlrCNS.length;
+    if ((tamCNS) != 15) {
+        alert("Numero de CNS invalido");
+        return false;
+    }
+    pis = vlrCNS.substring(0,11);
+    soma = (((Number(pis.substring(0,1))) * 15) +   
+            ((Number(pis.substring(1,2))) * 14) +
+            ((Number(pis.substring(2,3))) * 13) +
+            ((Number(pis.substring(3,4))) * 12) +
+            ((Number(pis.substring(4,5))) * 11) +
+            ((Number(pis.substring(5,6))) * 10) +
+            ((Number(pis.substring(6,7))) * 9) +
+            ((Number(pis.substring(7,8))) * 8) +
+            ((Number(pis.substring(8,9))) * 7) +
+            ((Number(pis.substring(9,10))) * 6) +
+            ((Number(pis.substring(10,11))) * 5));
+            console.log("oi");
+            console.log("soma: "+soma);
+     resto = soma % 11;
+    console.log("resto: "+resto);
+    dv = 11 - resto;
+    console.log("dv: "+dv);
+    if (dv == 11) {
+        dv = 0;
+    }
+    if (dv == 10) {
+        soma = (((Number(pis.substring(0,1))) * 15) +   
+                ((Number(pis.substring(1,2))) * 14) +
+                ((Number(pis.substring(2,3))) * 13) +
+                ((Number(pis.substring(3,4))) * 12) +
+                ((Number(pis.substring(4,5))) * 11) +
+                ((Number(pis.substring(5,6))) * 10) +
+                ((Number(pis.substring(6,7))) * 9) +
+                ((Number(pis.substring(7,8))) * 8) +
+                ((Number(pis.substring(8,9))) * 7) +
+                ((Number(pis.substring(9,10))) * 6) +
+                ((Number(pis.substring(10,11))) * 5) + 2);
+        resto = soma % 11;
+        dv = 11 - resto;
+        resultado = pis + "001" + String(dv);
+    } else { 
+        resultado = pis + "000" + String(dv);
+    }
+    if (vlrCNS != resultado) {
+      return false;
+    } else {
+       return true;
+    }
+}
 
  
 }

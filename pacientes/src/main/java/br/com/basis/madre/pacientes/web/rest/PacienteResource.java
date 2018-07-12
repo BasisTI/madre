@@ -64,7 +64,21 @@ public class PacienteResource {
     @PostMapping("/pacientes")
     @Timed
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
+        //log.debug("+++++++++++++++++++++++++++++ RETORNO: "+ paciente.getProntuario()+" +++++++++++++++++++++++++++++++++++++");
         log.debug("REST request to save Paciente : {}", paciente);
+
+        if(paciente.getProntuario() == null || paciente.getProntuario() == ""){
+
+            paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
+
+
+//            if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){
+//                log.debug("+++++++++++++++++++++++++++++ RETORNO 3: "+ paciente.getProntuario()+" +++++++++++++++++++++++++++++++++++++");
+//                paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()+1));
+//          }
+
+        }
+
 
 //        try {
         //Validação de pacientes e dados já existentes
@@ -96,16 +110,7 @@ public class PacienteResource {
             throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
-//        log.debug("ProntuarioPORRRRRRRRRAAAAA !!!!!! AQUI CARALHO ZE BUCETA: "+this.paciente.getProntuario());
-//        try {
-//
-//            if(this.paciente.getProntuario() != null) {
-//                paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
-//            }
-//
-//        }catch (Exception e){
-//            log.debug("Caiu no catch !!!!");
-//        }
+
 
 
 

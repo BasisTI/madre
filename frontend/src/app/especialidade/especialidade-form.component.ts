@@ -66,6 +66,8 @@ export class EspecialidadeFormComponent implements OnInit, OnDestroy {
       } else {
         this.pageNotificationService.addErrorMessage('Dados inválidos!');
       }
+
+     
     });
   }
 

@@ -39,7 +39,7 @@ public final class MadreUtil {
 
     public static String removeCaracteresEmBranco(String str) {
         if (StringUtils.isNotEmpty(str)){
-            str = (str.trim().replaceAll("\\s+", ""));
+            str = (str.trim());
         }
         return str;
     }

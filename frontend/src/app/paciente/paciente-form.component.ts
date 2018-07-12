@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { SelectItem } from 'primeng/primeng';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Paciente } from './paciente.model';
 import { PacienteService } from './paciente.service';
-import {NgxMaskModule} from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { ValidacaoUtil } from '../util/validacao.util'
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 
@@ -35,37 +35,37 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private pacienteService: PacienteService,
-  ) {}
+  ) { }
 
 
   ngOnInit() {
 
-        
+    this.upCaseLetters();
     this.sexo = [
-      {label: 'Masculino', value: 'M'},
-      {label: 'Feminino', value: 'F'}
-  ]
+      { label: 'Masculino', value: 'M' },
+      { label: 'Feminino', value: 'F' }
+    ]
 
     this.nacionalidade = [
-      {label: 'Brasileira', value: 'brasileira'},
-      {label: 'Estrangeira', value: 'estrangeira'}
-]
+      { label: 'Brasileira', value: 'brasileira' },
+      { label: 'Estrangeira', value: 'estrangeira' }
+    ]
 
     this.estadoCivil = [
-      {label: 'Solteiro', value: 'solteiro'},
-      {label: 'Casado', value: 'casado'},
-      {label: 'Separado', value: 'separado'},
-      {label: 'Divorciado', value: 'divorciado'},
-      {label: 'Viúvo', value: 'viuvo'}
-]
+      { label: 'Solteiro', value: 'solteiro' },
+      { label: 'Casado', value: 'casado' },
+      { label: 'Separado', value: 'separado' },
+      { label: 'Divorciado', value: 'divorciado' },
+      { label: 'Viúvo', value: 'viuvo' }
+    ]
 
     this.racaCor = [
-      {label: 'Branco', value: 'branco'},
-      {label: 'Preto', value: 'preto'},
-      {label: 'Pardo', value: 'pardo'},
-      {label: 'Amarelo', value: 'amarelo'},
-      {label: 'Indígena', value: 'indigena'}
-]
+      { label: 'Branco', value: 'branco' },
+      { label: 'Preto', value: 'preto' },
+      { label: 'Pardo', value: 'pardo' },
+      { label: 'Amarelo', value: 'amarelo' },
+      { label: 'Indígena', value: 'indigena' }
+    ]
 
 
 
@@ -102,17 +102,29 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      
-      // if(!ValidacaoUtil.validaCep(this.paciente.cs)){
-      //   this.pageNotificationService.addErrorMessage('CPF inválido !');
-      // }
-      // if(!ValidacaoUtil.validaCpf(this.paciente.cpf)){
-      //   this.pageNotificationService.addErrorMessage('CPF inválido !');
-      // }
-      // if(!ValidacaoUtil.validaCNS(this.paciente.cartaoSus)){
-      //   this.pageNotificationService.addErrorMessage('Número cartão SUS inválido !');
-      // }
-      this.pageNotificationService.addErrorMessage('Dados inválidos!');
+      console.log();
+      if (!ValidacaoUtil.validaTelefone(this.paciente.telefonePrincipal) || ValidacaoUtil.validaTelefone(this.paciente.telefoneAlternativo)) {
+        this.pageNotificationService.addErrorMessage('Telefone inválido !');
+      }
+
+      if (!ValidacaoUtil.validaCep(this.paciente.cep)) {
+        this.pageNotificationService.addErrorMessage('CEP inválido !');
+      }
+      if (!ValidacaoUtil.validarEmail(this.paciente.emailPrincipal) || ValidacaoUtil.validarEmail(this.paciente.emailAlternativo)) {
+        this.pageNotificationService.addErrorMessage('Email inválido !');
+      }
+      if (!ValidacaoUtil.validaCpf(this.paciente.cpf)) {
+        this.pageNotificationService.addErrorMessage('CPF inválido !');
+      }
+      if (!ValidacaoUtil.validaCNS(this.paciente.cartaoSus)) {
+        this.pageNotificationService.addErrorMessage('Número cartão SUS inválido !');
+      }
+      if (res.headers.toJSON()["x-pacientesapp-error"][0] == "Prontuário já registrado") {
+        this.pageNotificationService.addErrorMessage('Prontuário já cadastrado!');
+      } else {
+        this.pageNotificationService.addErrorMessage('Dados inválidos!');
+      }
+      // this.pageNotificationService.addErrorMessage('Dados inválidos!');
     });
   }
 
@@ -124,6 +136,10 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  upCaseLetters() {
+    document.getElementById("estado").style.textTransform = "uppercase"
+  }
 
 
   ngOnDestroy() {

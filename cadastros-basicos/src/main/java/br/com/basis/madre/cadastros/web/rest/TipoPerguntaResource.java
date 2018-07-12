@@ -68,7 +68,12 @@ public class TipoPerguntaResource {
     @PostMapping("/tipo-perguntas")
     @Timed
     public ResponseEntity<TipoPergunta> createTipoPergunta(@Valid @RequestBody TipoPergunta tipoPergunta) throws URISyntaxException {
+    
         log.debug("REST request to save TipoPergunta : {}", tipoPergunta);
+
+        tipoPergunta.setEnunciadoPergunta(MadreUtil.removeCaracteresEmBranco(tipoPergunta.getEnunciadoPergunta()));
+        
+    
         if (tipoPergunta.getId() != null) {
             throw new BadRequestAlertException("A new tipoPergunta cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -95,9 +100,17 @@ public class TipoPerguntaResource {
     @Timed
     public ResponseEntity<TipoPergunta> updateTipoPergunta(@Valid @RequestBody TipoPergunta tipoPergunta) throws URISyntaxException {
         log.debug("REST request to update TipoPergunta : {}", tipoPergunta);
+
+        tipoPergunta.setEnunciadoPergunta(MadreUtil.removeCaracteresEmBranco(tipoPergunta.getEnunciadoPergunta()));
+      
         if (tipoPergunta.getId() == null) {
             return createTipoPergunta(tipoPergunta);
         }
+
+        if(tipoPerguntaRepository.findOneByEnunciadoPerguntaIgnoreCase(MadreUtil.removeCaracteresEmBranco(tipoPergunta.getEnunciadoPergunta())).isPresent()){
+            throw new BadRequestAlertException("O enunciado é existente", ENTITY_NAME, "enunciadoexists");
+        }
+        
         TipoPergunta result = tipoPerguntaService.save(tipoPergunta);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, tipoPergunta.getId().toString()))

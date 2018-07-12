@@ -23,7 +23,7 @@
 
         <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)"  #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]" >
           <p-column header="Nome Paciente" field="nomePaciente" [sortable]="true"></p-column>
-          <p-column header="RG" field="rg" [sortable]="true"></p-column>
+          <p-column header="RG" field="rg" [sortable]="true" mask="99.999.999-9"></p-column>
           <p-column header="CPF" field="cpf" [sortable]="true"></p-column>
           <p-column header="Sexo" field="sexo" [sortable]="true"></p-column>
           <p-column header="Data de Nascimento" field="dataNascimento" [sortable]="true">

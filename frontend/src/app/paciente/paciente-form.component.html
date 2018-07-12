@@ -165,7 +165,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="estado" [(ngModel)]="paciente.estado" pInputText/>
+              <input id="estado" type="text" name="estado" [(ngModel)]="paciente.estado" maxlength="2"  pInputText/>
               <label>Estado</label>
             </span>
           </div>
@@ -173,7 +173,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cpf" [(ngModel)]="paciente.cpf" pInputText pInputText maxlength="14"mask="999.999.999-99" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" required />
+              <input type="text" name="cpf" [(ngModel)]="paciente.cpf" pInputText pInputText maxlength="14" mask="999.999.999-99" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" required />
               <label>CPF *</label>
               <div *ngIf="editForm.controls['cpf'] && !editForm.controls['cpf'].valid && (editForm.controls['cpf'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -195,7 +195,7 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="cartaoSus" [(ngModel)]="paciente.cartaoSus"  pInputText  maxlength="15" required/>
+              <input type="text" name="cartaoSus" [(ngModel)]="paciente.cartaoSus"  pInputText  maxlength="15" mask="999999999999999" required/>
               <label>Cartão SUS *</label>
               <div *ngIf="editForm.controls['cartaoSus'] && !editForm.controls['cartaoSus'].valid && (editForm.controls['cartaoSus'].touched || editForm.submitted)" class="ui-message ui-messages-error">
                 Campo obrigatório!
@@ -206,8 +206,8 @@
 
           <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="prontuario" id="prontuario" [(ngModel)]="paciente.prontuario" maxlength="7"  pattern="[0-9]+$"  pInputText   />
-              <label id="tst">Prontuário</label>
+              <input type="text" name="prontuario" [(ngModel)]="paciente.prontuario" maxlength="7"  mask="9999999" pattern="[0-9]+$"  pInputText [readonly]="!isEdit"  />
+              <label>Prontuário</label>
             </span>
         </div>
       </div>
