@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
-import { BotoesExportacaoModule } from "/home/eduardoaires/projetos-estagio/project-madri/madre_codigo_fonte/frontend/src/app/botoes-exportacao/botoes-exportacao.module";
 import {
   ButtonModule,
   InputTextModule,
@@ -12,15 +11,14 @@ import {
   CalendarModule,
   DropdownModule,
   RadioButtonModule,
-  ConfirmDialogModule,
-  CheckboxModule
+  ConfirmDialogModule
 } from 'primeng/primeng';
 
 import {
-  PerfilComponent,
-  PerfilDetailComponent,
-  PerfilFormComponent,
-  perfilRoute
+  AcaoComponent,
+  AcaoDetailComponent,
+  AcaoFormComponent,
+  acaoRoute
 } from './';
 
 @NgModule({
@@ -28,7 +26,7 @@ import {
     CommonModule,
     HttpModule,
     FormsModule,
-    RouterModule.forChild(perfilRoute),
+    RouterModule.forChild(acaoRoute),
     DatatableModule,
     ButtonModule,
     SpinnerModule,
@@ -37,15 +35,13 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
-    BotoesExportacaoModule,
-    CheckboxModule,
   ],
   declarations: [
-    PerfilComponent,
-    PerfilDetailComponent,
-    PerfilFormComponent
+    AcaoComponent,
+    AcaoDetailComponent,
+    AcaoFormComponent
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CadastrosbasicosPerfilModule {}
+export class CadastrosbasicosAcaoModule {}

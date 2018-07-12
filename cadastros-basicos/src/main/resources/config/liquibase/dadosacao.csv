@@ -1,0 +1,6 @@
+id;nm_acao;cd_acao
+1;Pesquisar;PESQUISAR
+2;Incluir;INCLUIR
+3;Alterar;ALTERAR
+4;Excluir;EXCLUIR
+5;Visualizar;VISUALIZAR

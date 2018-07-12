@@ -143,6 +143,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
+      this.pageNotificationService.addErrorMessage('Registro já cadastrado!')
     });
   }
 

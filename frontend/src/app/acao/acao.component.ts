@@ -6,40 +6,29 @@ import { DatatableComponent, DatatableClickEvent } from '@basis/angular-componen
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
-import { Perfil } from './perfil.model';
-import { PerfilService } from './perfil.service';
-
-import { ElasticQuery } from '../shared/elastic-query';
+import { Acao } from './acao.model';
+import { AcaoService } from './acao.service';
 
 @Component({
-  selector: 'jhi-perfil',
-  templateUrl: './perfil.component.html'
+  selector: 'jhi-acao',
+  templateUrl: './acao.component.html'
 })
-export class PerfilComponent implements OnInit, OnDestroy {
+export class AcaoComponent implements OnInit, OnDestroy {
 
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
-  searchUrl: string = this.perfilService.searchUrl;
-
-  elasticQuery: ElasticQuery = new ElasticQuery();
-
-  valueFiltroCampo: string;
+  searchUrl: string = this.acaoService.searchUrl;
 
   constructor(
     private router: Router,
-    private perfilService: PerfilService,
+    private acaoService: AcaoService,
     private confirmationService: ConfirmationService,
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService
   ) {}
 
   ngOnInit() {
-    this.breadcrumbService.setItems([{ label: 'Perfils' }]);
-  }
-
-  valueFiltro(valuefiltro: string) {
-    this.valueFiltroCampo = valuefiltro;
-    this.datatable.refresh(valuefiltro);
+    this.breadcrumbService.setItems([{ label: 'Acaos' }]);
   }
 
   datatableClick(event: DatatableClickEvent) {
@@ -48,13 +37,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
     }
     switch (event.button) {
       case 'edit':
-        this.router.navigate(['/perfil', event.selection.id, 'edit']);
+        this.router.navigate(['/acao', event.selection.id, 'edit']);
         break;
       case 'delete':
         this.confirmDelete(event.selection.id);
         break;
       case 'view':
-        this.router.navigate(['/perfil', event.selection.id]);
+        this.router.navigate(['/acao', event.selection.id]);
         break;
     }
   }
@@ -63,7 +52,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir o registro?',
       accept: () => {
-        this.perfilService.delete(id).subscribe(() => {
+        this.acaoService.delete(id).subscribe(() => {
           this.datatable.refresh(undefined);
           this.pageNotificationService.addDeleteMsg();
         });

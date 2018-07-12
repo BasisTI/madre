@@ -1,18 +1,32 @@
 package br.com.basis.madre.cadastros.service.impl;
 
+import br.com.basis.dynamicexports.service.DynamicExportsService;
+import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.service.PerfilService;
 import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
 import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.service.relatorio.colunas.RelatorioPerfilColunas;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import net.sf.dynamicreports.report.exception.DRException;
+import net.sf.jasperreports.engine.JRException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.io.ByteArrayOutputStream;
+import java.util.Optional;
+
 import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Perfil.
@@ -27,9 +41,12 @@ public class PerfilServiceImpl implements PerfilService {
 
     private final PerfilSearchRepository perfilSearchRepository;
 
-    public PerfilServiceImpl(PerfilRepository perfilRepository, PerfilSearchRepository perfilSearchRepository) {
+    private final DynamicExportsService dynamicExportsService;
+
+    public PerfilServiceImpl(PerfilRepository perfilRepository, PerfilSearchRepository perfilSearchRepository, DynamicExportsService dynamicExportsService) {
         this.perfilRepository = perfilRepository;
         this.perfilSearchRepository = perfilSearchRepository;
+        this.dynamicExportsService = dynamicExportsService;
     }
 
     /**
@@ -96,5 +113,20 @@ public class PerfilServiceImpl implements PerfilService {
     public Page<Perfil> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Perfils for query {}", query);
         return perfilSearchRepository.search(queryStringQuery(query), pageable);
+    }
+
+    @Override
+    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String querry) throws  RelatorioException {
+        ByteArrayOutputStream byteArrayOutputStream;
+
+        try {
+            new NativeSearchQueryBuilder().withQuery(multiMatchQuery(querry)).build();
+            Page<Perfil> result = perfilSearchRepository.search(queryStringQuery(querry), dynamicExportsService.obterPageableMaximoExportacao());
+            byteArrayOutputStream = dynamicExportsService.export(new RelatorioPerfilColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
+        } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e){
+            log.error(e.getMessage(),e);
+            throw new RelatorioException(e);
+        }
+        return DynamicExporter.output(byteArrayOutputStream, "relatorio." + tipoRelatorio);
     }
 }

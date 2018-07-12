@@ -74,7 +74,7 @@ public class PerfilResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PerfilResource perfilResource = new PerfilResource(perfilService);
+        final PerfilResource perfilResource = new PerfilResource(perfilService, perfilRepository);
         this.restPerfilMockMvc = MockMvcBuilders.standaloneSetup(perfilResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
