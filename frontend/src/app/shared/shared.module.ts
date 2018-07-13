@@ -9,6 +9,7 @@ import { EspecialidadeService } from '../especialidade/especialidade.service';
 import { AnexoService } from '../anexo/anexo.service';
 import { TipoPerguntaService } from '../tipo-pergunta/tipo-pergunta.service';
 import { PacienteService } from '../paciente/paciente.service';
+import { TipoRespostaService } from '../tipo-resposta/tipo-resposta.service';
 /* jhipster-needle-add-shared-service-import - JHipster will add shared services imports here */
 
 @NgModule({})
@@ -26,6 +27,7 @@ export class SharedModule {
         AnexoService,
         TipoPerguntaService,
         PacienteService,
+        TipoRespostaService,
         /* jhipster-needle-add-shared-services - JHipster will add shared services here */
       ]
     };

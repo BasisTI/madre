@@ -1,0 +1,31 @@
+  <div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ tipoResposta.id ? 'Editar Resposta' : 'Cadastrar Resposta' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="tipoResposta.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="resposta" [(ngModel)]="tipoResposta.resposta" pInputText required minlength="2" maxlength="255"/>
+              <label>Resposta</label>
+              <div *ngIf= "editForm.controls['resposta'] && !editForm.controls['resposta'].valid && (editForm.controls['resposta'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-4"></div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/tipoResposta"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+          <div class="ui-g-12 ui-md-4"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

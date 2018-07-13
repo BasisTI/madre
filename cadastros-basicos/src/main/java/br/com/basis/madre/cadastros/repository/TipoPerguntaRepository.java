@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.basis.madre.cadastros.domain.PreCadastro;
 import br.com.basis.madre.cadastros.domain.TipoPergunta;
 
 
@@ -16,7 +15,5 @@ import br.com.basis.madre.cadastros.domain.TipoPergunta;
 @Repository
 public interface TipoPerguntaRepository extends JpaRepository<TipoPergunta, Long> {
 
-    Optional<PreCadastro> findOneByEnunciadoPerguntaIgnoreCase(String enunciadoPergunta);
-
-
+    Optional<TipoPergunta> findOneByEnunciadoPerguntaIgnoreCase(String enunciadoPergunta);
 }

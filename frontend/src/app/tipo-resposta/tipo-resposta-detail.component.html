@@ -1,0 +1,20 @@
+<div class="ui-g ui-fluid" *ngIf="tipoResposta">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Visualizar Tipo Resposta</h1>
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="resposta" pInputText [ngModel]="tipoResposta.resposta" readonly/>
+            <label>Resposta</label>
+          </span>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-2">
+          <button pButton type="button" label="Voltar" routerLink="/tipoResposta"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

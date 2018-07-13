@@ -1,13 +1,12 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
-      <h1>Pesquisar Pergunta</h1>
+      <h1>Pesquisar Resposta</h1>
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
             <span class="md-inputfield">
-                <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
-                (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro">
-
+              <input type="text" pInputText class="ui-inputtext"[(ngModel)]="elasticQuery.value" 
+              (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro" />
               <label>Pesquisar</label>
             </span>
         </div>
@@ -17,17 +16,17 @@
             <button pButton type="button" label="Pesquisar" icon="ui-icon-search"  (click)="valueFiltro(elasticQuery.query)"></button>
           </div>
           <div class="ui-g-12 ui-md-6">
-            <button pButton type="button" label="Cadastrar" routerLink="/tipoPergunta/new" icon="ui-icon-add"></button>
+            <button pButton type="button" label="Cadastrar" routerLink="/tipoResposta/new" icon="ui-icon-add"></button>
           </div>
         </div>
         <div class="ui-g-12 ui-md-3"></div>
         <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)"  #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]" >
-          <p-column header="Enunciado" field="enunciadoPergunta"></p-column>
+          <p-column header="Resposta" field="resposta"></p-column>
         </basis-datatable>
         <div class="ui-g-12 ui-md-2">
-            <app-botoes-exportacao resourceName="tipoPergunta" [query]="valueFiltroCampo">
-            </app-botoes-exportacao>
-        </div>
+          <app-botoes-exportacao resourceName="tipoResposta" [query]="valueFiltroCampo">
+          </app-botoes-exportacao>
+      </div>
       </div>
     </div>
   </div>

@@ -38,10 +38,8 @@ public final class MadreUtil {
     }
 
     public static String removeCaracteresEmBranco(String str) {
-
-        String removerStr = str;
-        if (StringUtils.isNotEmpty(removerStr)){
-            removerStr = (removerStr.trim());
+        if (StringUtils.isNotEmpty(str)){
+            str = str.trim();
         }
         return removerStr;
     }

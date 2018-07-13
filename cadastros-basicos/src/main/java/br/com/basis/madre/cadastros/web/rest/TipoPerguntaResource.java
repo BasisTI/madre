@@ -59,7 +59,7 @@ public class TipoPerguntaResource {
     }
 
     /**
-     * POST  /tipo-perguntas : Create a new tipoPergunta.
+     * POST  /tipo-perguntas :  Create a new tipoPergunta.
      *
      * @param tipoPergunta the tipoPergunta to create
      * @return the ResponseEntity with status 201 (Created) and with body the new tipoPergunta, or with status 400 (Bad Request) if the tipoPergunta has already an ID
