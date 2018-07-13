@@ -50,7 +50,6 @@ public class PacienteResource {
 
     private final PacienteService pacienteService;
 
-    Paciente paciente;
 
     public PacienteResource(PacienteService pacienteService, PacienteRepository pacienteRepository) {
         this.pacienteService = pacienteService;
@@ -67,68 +66,17 @@ public class PacienteResource {
     @PostMapping("/pacientes")
     @Timed
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
-        //log.debug("+++++++++++++++++++++++++++++ RETORNO: "+ paciente.getProntuario()+" +++++++++++++++++++++++++++++++++++++");
         log.debug("REST request to save Paciente : {}", paciente);
-
-        if(paciente.getProntuario() == null || paciente.getProntuario() == ""){
-
-            paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
-
-
-//            if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){
-//                log.debug("+++++++++++++++++++++++++++++ RETORNO 3: "+ paciente.getProntuario()+" +++++++++++++++++++++++++++++++++++++");
-//                paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()+1));
-//          }
-
-        }
-
-
-//        try {
-        //Validação de pacientes e dados já existentes
-        if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null);
-        }
-        if ((pacienteRepository.findOneByCpf(paciente.getCpf())).isPresent()) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cpfexists", "CPF já cadastrado")).body(null);
-        }
-        if ((pacienteRepository.findOneByNomePacienteIgnoreCaseAndNomeSocialIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getNomePaciente()), MadreUtil.removeCaracteresEmBranco(paciente.getNomeSocial()))).isPresent()) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
-        }
-
-        if ((pacienteRepository.findOneByEmailPrincipalIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getEmailPrincipal()))).isPresent()) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "E-mail já cadastrado")).body(null);
-        }
-
-        if ((pacienteRepository.findOneByCartaoSus(paciente.getCartaoSus()).isPresent())
-            && (MadreUtil.removeCaracteresEmBranco(paciente.getCartaoSus()) != null)) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
-        }
-
-        if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null);
-        }
-
-
-        if (paciente.getId() != null) {
-            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-
-
-
-
-
+        if(paciente.getProntuario() == null || paciente.getProntuario().equals("")){paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));}
+        if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null); }
+        if ((pacienteRepository.findOneByCpf(paciente.getCpf())).isPresent()) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cpfexists", "CPF já cadastrado")).body(null); }
+        if ((pacienteRepository.findOneByEmailPrincipalIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getEmailPrincipal()))).isPresent()) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "E-mail já cadastrado")).body(null); }
+        if ((pacienteRepository.findOneByCartaoSus(paciente.getCartaoSus()).isPresent()) && (MadreUtil.removeCaracteresEmBranco(paciente.getCartaoSus()) != null)) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null); }
+        if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){ return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null); }
+        if (paciente.getId() != null) { throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists"); }
         Paciente result = pacienteService.save(paciente);
-        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-
-//        } catch (PacienteException e) {
-//            log.error(e.getMessage(), e);
-//            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PacienteException.getCodeRegistroExisteBase(), e.getMessage())).body(paciente);
-//        }
+        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
-
-
     /**
      * PUT  /pacientes : Updates an existing paciente.
      *
@@ -177,8 +125,8 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
-        Paciente paciente = pacienteService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(paciente));
+        Paciente pacienteId = pacienteService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pacienteId));
     }
 
     /**

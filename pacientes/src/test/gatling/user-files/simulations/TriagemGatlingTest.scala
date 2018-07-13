@@ -68,7 +68,7 @@ class TriagemGatlingTest extends Simulation {
             .exec(http("Create new triagem")
             .post("/pacientes/api/triagems")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "dataAtendimento":"2020-01-01T00:00:00.000Z", "pressaoArterial":"0", "frequenciaRespiratoria":"0", "temperatura":"0", "peso":"0", "horaAtendimento":"2020-01-01T00:00:00.000Z", "frequenciaCardiaca":"0", "glicemia":"0", "saturacao":"0", "altura":null, "medicacaoContinua":"SAMPLE_TEXT", "feridaLesao":"SAMPLE_TEXT", "alergias":"SAMPLE_TEXT", "estadoPaciente":"SAMPLE_TEXT", "sintomaAlerta":"SAMPLE_TEXT", "historicoSaude":"SAMPLE_TEXT", "estadoGeral":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_triagem_url"))).exitHereIfFailed
             .pause(10)

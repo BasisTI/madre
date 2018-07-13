@@ -60,9 +60,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario save(Usuario usuario) {
         log.debug("Request to save Usuario : {}", usuario);
-        usuario = usuarioRepository.save(usuario);
-        usuarioSearchRepository.save(usuario);
-        return usuario;
+        Usuario usuarioSave = usuario;
+        usuario = usuarioRepository.save(usuarioSave);
+        usuarioSearchRepository.save(usuarioSave);
+        return usuarioSave;
     }
 
     /**

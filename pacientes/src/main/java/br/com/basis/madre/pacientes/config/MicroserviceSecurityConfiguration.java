@@ -3,8 +3,9 @@ package br.com.basis.madre.pacientes.config;
 import br.com.basis.madre.pacientes.security.AuthoritiesConstants;
 import br.com.basis.madre.pacientes.security.jwt.JWTConfigurer;
 import br.com.basis.madre.pacientes.security.jwt.TokenProvider;
-
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

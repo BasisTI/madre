@@ -2,13 +2,12 @@ package br.com.basis.madre.pacientes;
 
 import br.com.basis.madre.pacientes.config.ApplicationProperties;
 import br.com.basis.madre.pacientes.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.*;
+import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.MetricRepositoryAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

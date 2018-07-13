@@ -1,7 +1,6 @@
 package br.com.basis.madre.pacientes.security;
 
 import br.com.basis.madre.pacientes.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

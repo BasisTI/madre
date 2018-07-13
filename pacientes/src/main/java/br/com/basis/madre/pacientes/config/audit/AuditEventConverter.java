@@ -1,7 +1,6 @@
 package br.com.basis.madre.pacientes.config.audit;
 
 import br.com.basis.madre.pacientes.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;

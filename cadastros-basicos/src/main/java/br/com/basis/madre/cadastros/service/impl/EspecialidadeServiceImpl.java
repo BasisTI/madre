@@ -54,9 +54,10 @@ public class EspecialidadeServiceImpl implements EspecialidadeService {
     @Override
     public Especialidade save(Especialidade especialidade) {
         log.debug("Request to save Especialidade : {}", especialidade);
-        especialidade = especialidadeRepository.save(especialidade);
-        especialidadeSearchRepository.save(especialidade);
-        return especialidade;
+        Especialidade especialidadeSave = especialidade;
+        especialidadeSave = especialidadeRepository.save(especialidadeSave);
+        especialidadeSearchRepository.save(especialidadeSave);
+        return especialidadeSave;
     }
 
     @Override
