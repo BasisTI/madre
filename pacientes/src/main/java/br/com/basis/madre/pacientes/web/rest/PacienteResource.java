@@ -3,7 +3,6 @@ package br.com.basis.madre.pacientes.web.rest;
 import br.com.basis.madre.pacientes.domain.Paciente;
 import br.com.basis.madre.pacientes.repository.PacienteRepository;
 import br.com.basis.madre.pacientes.service.PacienteService;
-import br.com.basis.madre.pacientes.service.exception.PacienteException;
 import br.com.basis.madre.pacientes.service.exception.RelatorioException;
 import br.com.basis.madre.pacientes.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.pacientes.web.rest.util.HeaderUtil;
@@ -20,17 +19,21 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import br.com.basis.madre.pacientes.web.rest.util.PaginationUtil;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Paciente.
