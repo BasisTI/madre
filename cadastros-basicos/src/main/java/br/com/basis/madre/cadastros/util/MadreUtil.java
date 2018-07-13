@@ -41,6 +41,6 @@ public final class MadreUtil {
         if (StringUtils.isNotEmpty(str)){
             str = str.trim();
         }
-        return removerStr;
+        return str;
     }
 }
