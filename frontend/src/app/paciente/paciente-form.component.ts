@@ -121,10 +121,20 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       }
       if (res.headers.toJSON()["x-pacientesapp-error"][0] == "Prontuário já registrado") {
         this.pageNotificationService.addErrorMessage('Prontuário já cadastrado!');
-      } else {
+      } else if  (res.headers.toJSON()["x-pacientesapp-error"][0] == "RG já cadastrado"){
+        this.pageNotificationService.addErrorMessage('RG já cadastrado!');
+      } else if  (res.headers.toJSON()["x-pacientesapp-error"][0] == "CPF já cadastrado"){
+        this.pageNotificationService.addErrorMessage('CPF já cadastrado');
+      } else if  (res.headers.toJSON()["x-pacientesapp-error"][0] == "Paciente já cadastrado"){
+        this.pageNotificationService.addErrorMessage('Paciente já cadastrado');
+      }else if  (res.headers.toJSON()["x-pacientesapp-error"][0] == "E-mail já cadastrado"){
+        this.pageNotificationService.addErrorMessage('E-mail já cadastrado');
+      }else if  (res.headers.toJSON()["x-pacientesapp-error"][0] == "Cartão do SUS já cadastrado"){
+        this.pageNotificationService.addErrorMessage('Cartão do SUS já cadastrado');
+      }else{
         this.pageNotificationService.addErrorMessage('Dados inválidos!');
       }
-      // this.pageNotificationService.addErrorMessage('Dados inválidos!');
+      
     });
   }
 

@@ -3,7 +3,6 @@ package br.com.basis.madre.pacientes.web.rest;
 import br.com.basis.madre.pacientes.domain.Paciente;
 import br.com.basis.madre.pacientes.repository.PacienteRepository;
 import br.com.basis.madre.pacientes.service.PacienteService;
-import br.com.basis.madre.pacientes.service.exception.PacienteException;
 import br.com.basis.madre.pacientes.service.exception.RelatorioException;
 import br.com.basis.madre.pacientes.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.pacientes.web.rest.util.HeaderUtil;
@@ -21,16 +20,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import br.com.basis.madre.pacientes.web.rest.util.PaginationUtil;
+
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing Paciente.
@@ -47,7 +42,7 @@ public class PacienteResource {
 
     private final PacienteService pacienteService;
 
-    Paciente paciente;
+    private Paciente paciente;
 
     public PacienteResource(PacienteService pacienteService, PacienteRepository pacienteRepository) {
         this.pacienteService = pacienteService;
@@ -64,24 +59,14 @@ public class PacienteResource {
     @PostMapping("/pacientes")
     @Timed
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
-        //log.debug("+++++++++++++++++++++++++++++ RETORNO: "+ paciente.getProntuario()+" +++++++++++++++++++++++++++++++++++++");
+
         log.debug("REST request to save Paciente : {}", paciente);
 
-        if(paciente.getProntuario() == null || paciente.getProntuario() == ""){
-
+        if(paciente.getProntuario() == null || paciente.getProntuario().equals("")){
             paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
-
-
-//            if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){
-//                log.debug("+++++++++++++++++++++++++++++ RETORNO 3: "+ paciente.getProntuario()+" +++++++++++++++++++++++++++++++++++++");
-//                paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()+1));
-//          }
-
         }
 
 
-//        try {
-        //Validação de pacientes e dados já existentes
         if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null);
         }
@@ -118,11 +103,6 @@ public class PacienteResource {
         return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
-
-//        } catch (PacienteException e) {
-//            log.error(e.getMessage(), e);
-//            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PacienteException.getCodeRegistroExisteBase(), e.getMessage())).body(paciente);
-//        }
     }
 
 
@@ -174,8 +154,8 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
-        Paciente paciente = pacienteService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(paciente));
+        Paciente pacienteId = pacienteService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pacienteId));
     }
 
     /**

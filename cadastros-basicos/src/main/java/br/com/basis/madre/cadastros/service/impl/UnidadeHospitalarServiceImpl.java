@@ -62,9 +62,10 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
     @Override
     public UnidadeHospitalar save(UnidadeHospitalar unidadeHospitalar) {
             log.debug("Request to save PreCadastro : {}", unidadeHospitalar);
-            unidadeHospitalar = unidadeHospitalarRepository.save(unidadeHospitalar);
-            unidadeHospitalarSearchRepository.save(unidadeHospitalar);
-            return unidadeHospitalar;
+             UnidadeHospitalar unidadeHospitalarSave = unidadeHospitalar;
+            unidadeHospitalar = unidadeHospitalarRepository.save(unidadeHospitalarSave);
+            unidadeHospitalarSearchRepository.save(unidadeHospitalarSave);
+            return unidadeHospitalarSave;
         }
 
     /**
