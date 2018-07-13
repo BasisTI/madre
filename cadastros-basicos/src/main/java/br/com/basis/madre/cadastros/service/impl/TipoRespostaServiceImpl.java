@@ -114,8 +114,7 @@ public class TipoRespostaServiceImpl implements TipoRespostaService {
     @Transactional(readOnly = true)
     public Page<TipoResposta> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of TipoRespostas for query {}", query);
-        Page<TipoResposta> result = tipoRespostaSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return tipoRespostaSearchRepository.search(queryStringQuery(query), pageable);
     }
 
     @Override
