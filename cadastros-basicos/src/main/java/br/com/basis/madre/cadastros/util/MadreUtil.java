@@ -41,7 +41,7 @@ public final class MadreUtil {
 
         String removerStr = str;
         if (StringUtils.isNotEmpty(removerStr)){
-            str = (removerStr.trim());
+            removerStr = (removerStr.trim());
         }
         return removerStr;
     }
