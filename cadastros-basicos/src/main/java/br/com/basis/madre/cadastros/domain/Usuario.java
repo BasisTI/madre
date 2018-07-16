@@ -64,6 +64,9 @@ public class Usuario implements Serializable, ReportObject {
     @NotNull
     private Perfil perfil;
 
+    @ManyToOne
+    private Especialidade especialidade;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -151,6 +154,18 @@ public class Usuario implements Serializable, ReportObject {
         this.perfil = perfil;
     }
 
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+
+    public Usuario especialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+        return this;
+    }
+
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+    }
     public String getStringAtivo() { return (this.ativo) ? "Sim" : "Não"; }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

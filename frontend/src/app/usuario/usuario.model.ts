@@ -1,4 +1,6 @@
 import { BaseEntity } from '../shared';
+import { Perfil } from '../perfil';
+import { Especialidade } from '../especialidade';
 
 
 export class Usuario implements BaseEntity {
@@ -10,6 +12,7 @@ export class Usuario implements BaseEntity {
     public senha?: string,
     public email?: string,
     public ativo?: boolean,
-    public perfil?: BaseEntity,
+    public perfil?: Perfil,
+    public especialidade?: Especialidade,
   ) {}
 }
