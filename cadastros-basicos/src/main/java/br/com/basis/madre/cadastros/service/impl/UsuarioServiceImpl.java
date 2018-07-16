@@ -61,7 +61,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario save(Usuario usuario) {
         log.debug("Request to save Usuario : {}", usuario);
         Usuario usuarioSave = usuario;
-        usuario = usuarioRepository.save(usuarioSave);
+        usuarioSave = usuarioRepository.save(usuarioSave);
         usuarioSearchRepository.save(usuarioSave);
         return usuarioSave;
     }

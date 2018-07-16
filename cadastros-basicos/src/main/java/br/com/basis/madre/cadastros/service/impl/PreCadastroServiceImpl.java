@@ -55,9 +55,9 @@ public class PreCadastroServiceImpl implements PreCadastroService {
     public PreCadastro save(PreCadastro preCadastro) {
         log.debug("Request to save PreCadastro : {}", preCadastro);
         PreCadastro preCadastroSave = preCadastro;
-        preCadastro = preCadastroRepository.save(preCadastro);
-        preCadastroSearchRepository.save(preCadastro);
-        return preCadastro;
+        preCadastroSave = preCadastroRepository.save(preCadastroSave);
+        preCadastroSearchRepository.save(preCadastroSave);
+        return preCadastroSave;
     }
 
     @Override

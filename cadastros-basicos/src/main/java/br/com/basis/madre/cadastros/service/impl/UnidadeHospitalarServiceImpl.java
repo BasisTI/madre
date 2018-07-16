@@ -63,7 +63,7 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
     public UnidadeHospitalar save(UnidadeHospitalar unidadeHospitalar) {
             log.debug("Request to save PreCadastro : {}", unidadeHospitalar);
              UnidadeHospitalar unidadeHospitalarSave = unidadeHospitalar;
-            unidadeHospitalar = unidadeHospitalarRepository.save(unidadeHospitalarSave);
+             unidadeHospitalarSave = unidadeHospitalarRepository.save(unidadeHospitalarSave);
             unidadeHospitalarSearchRepository.save(unidadeHospitalarSave);
             return unidadeHospitalarSave;
         }
