@@ -103,16 +103,7 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     }, (res: Response) => {
       this.isSaving = false;
       console.log();
-      if (!ValidacaoUtil.validaTelefone(this.paciente.telefonePrincipal) || ValidacaoUtil.validaTelefone(this.paciente.telefoneAlternativo)) {
-        this.pageNotificationService.addErrorMessage('Telefone inválido !');
-      }
 
-      if (!ValidacaoUtil.validaCep(this.paciente.cep)) {
-        this.pageNotificationService.addErrorMessage('CEP inválido !');
-      }
-      if (!ValidacaoUtil.validarEmail(this.paciente.emailPrincipal) || ValidacaoUtil.validarEmail(this.paciente.emailAlternativo)) {
-        this.pageNotificationService.addErrorMessage('Email inválido !');
-      }
       if (!ValidacaoUtil.validaCpf(this.paciente.cpf)) {
         this.pageNotificationService.addErrorMessage('CPF inválido !');
       }
