@@ -7,7 +7,6 @@ export class Funcionalidade implements BaseEntity {
     public id?: number,
     public nm_funcionalidade?: string,
     public cd_funcionalidade?: string,
-    public dh_cadastro?: any,
     public st_excluido?: string,
   ) {}
 }

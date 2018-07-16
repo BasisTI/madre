@@ -21,10 +21,6 @@
             "fieldValidateRulesMaxlength": 20
         },
         {
-            "fieldName": "dh_cadastro",
-            "fieldType": "LocalDate"
-        },
-        {
             "fieldName": "st_excluido",
             "fieldType": "String",
             "fieldValidateRules": [

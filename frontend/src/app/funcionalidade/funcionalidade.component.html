@@ -21,11 +21,6 @@
           (buttonClick)="datatableClick($event)" #datatable>
           <p-column header="Nm Funcionalidade" field="nm_funcionalidade"></p-column>
           <p-column header="Cd Funcionalidade" field="cd_funcionalidade"></p-column>
-          <p-column header="Dh Cadastro" field="dh_cadastro">
-            <ng-template let-col let-dh_cadastro="rowData" pTemplate="body">
-              {{ dh_cadastro[col.field]|date:'dd/MM/y' }}
-            </ng-template>
-          </p-column>
           <p-column header="St Excluido" field="st_excluido"></p-column>
         </basis-datatable>
       </div>

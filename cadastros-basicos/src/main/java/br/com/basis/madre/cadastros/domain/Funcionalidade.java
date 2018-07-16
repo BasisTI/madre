@@ -8,7 +8,6 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -36,9 +35,6 @@ public class Funcionalidade implements Serializable {
     @Size(max = 20)
     @Column(name = "cd_funcionalidade", length = 20, nullable = false)
     private String cd_funcionalidade;
-
-    @Column(name = "dh_cadastro")
-    private LocalDate dh_cadastro;
 
     @NotNull
     @Size(max = 1)
@@ -78,19 +74,6 @@ public class Funcionalidade implements Serializable {
 
     public void setCd_funcionalidade(String cd_funcionalidade) {
         this.cd_funcionalidade = cd_funcionalidade;
-    }
-
-    public LocalDate getDh_cadastro() {
-        return dh_cadastro;
-    }
-
-    public Funcionalidade dh_cadastro(LocalDate dh_cadastro) {
-        this.dh_cadastro = dh_cadastro;
-        return this;
-    }
-
-    public void setDh_cadastro(LocalDate dh_cadastro) {
-        this.dh_cadastro = dh_cadastro;
     }
 
     public String getSt_excluido() {
@@ -133,7 +116,6 @@ public class Funcionalidade implements Serializable {
             "id=" + getId() +
             ", nm_funcionalidade='" + getNm_funcionalidade() + "'" +
             ", cd_funcionalidade='" + getCd_funcionalidade() + "'" +
-            ", dh_cadastro='" + getDh_cadastro() + "'" +
             ", st_excluido='" + getSt_excluido() + "'" +
             "}";
     }

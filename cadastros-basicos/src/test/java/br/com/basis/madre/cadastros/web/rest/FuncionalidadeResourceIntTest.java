@@ -23,8 +23,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
@@ -47,9 +45,6 @@ public class FuncionalidadeResourceIntTest {
 
     private static final String DEFAULT_CD_FUNCIONALIDADE = "AAAAAAAAAA";
     private static final String UPDATED_CD_FUNCIONALIDADE = "BBBBBBBBBB";
-
-    private static final LocalDate DEFAULT_DH_CADASTRO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DH_CADASTRO = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_ST_EXCLUIDO = "A";
     private static final String UPDATED_ST_EXCLUIDO = "B";
@@ -100,7 +95,6 @@ public class FuncionalidadeResourceIntTest {
         Funcionalidade funcionalidade = new Funcionalidade()
             .nm_funcionalidade(DEFAULT_NM_FUNCIONALIDADE)
             .cd_funcionalidade(DEFAULT_CD_FUNCIONALIDADE)
-            .dh_cadastro(DEFAULT_DH_CADASTRO)
             .st_excluido(DEFAULT_ST_EXCLUIDO);
         return funcionalidade;
     }
@@ -128,7 +122,6 @@ public class FuncionalidadeResourceIntTest {
         Funcionalidade testFuncionalidade = funcionalidadeList.get(funcionalidadeList.size() - 1);
         assertThat(testFuncionalidade.getNm_funcionalidade()).isEqualTo(DEFAULT_NM_FUNCIONALIDADE);
         assertThat(testFuncionalidade.getCd_funcionalidade()).isEqualTo(DEFAULT_CD_FUNCIONALIDADE);
-        assertThat(testFuncionalidade.getDh_cadastro()).isEqualTo(DEFAULT_DH_CADASTRO);
         assertThat(testFuncionalidade.getSt_excluido()).isEqualTo(DEFAULT_ST_EXCLUIDO);
 
         // Validate the Funcionalidade in Elasticsearch
@@ -222,7 +215,6 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(funcionalidade.getId().intValue())))
             .andExpect(jsonPath("$.[*].nm_funcionalidade").value(hasItem(DEFAULT_NM_FUNCIONALIDADE.toString())))
             .andExpect(jsonPath("$.[*].cd_funcionalidade").value(hasItem(DEFAULT_CD_FUNCIONALIDADE.toString())))
-            .andExpect(jsonPath("$.[*].dh_cadastro").value(hasItem(DEFAULT_DH_CADASTRO.toString())))
             .andExpect(jsonPath("$.[*].st_excluido").value(hasItem(DEFAULT_ST_EXCLUIDO.toString())));
     }
 
@@ -239,7 +231,6 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(jsonPath("$.id").value(funcionalidade.getId().intValue()))
             .andExpect(jsonPath("$.nm_funcionalidade").value(DEFAULT_NM_FUNCIONALIDADE.toString()))
             .andExpect(jsonPath("$.cd_funcionalidade").value(DEFAULT_CD_FUNCIONALIDADE.toString()))
-            .andExpect(jsonPath("$.dh_cadastro").value(DEFAULT_DH_CADASTRO.toString()))
             .andExpect(jsonPath("$.st_excluido").value(DEFAULT_ST_EXCLUIDO.toString()));
     }
 
@@ -266,7 +257,6 @@ public class FuncionalidadeResourceIntTest {
         updatedFuncionalidade
             .nm_funcionalidade(UPDATED_NM_FUNCIONALIDADE)
             .cd_funcionalidade(UPDATED_CD_FUNCIONALIDADE)
-            .dh_cadastro(UPDATED_DH_CADASTRO)
             .st_excluido(UPDATED_ST_EXCLUIDO);
 
         restFuncionalidadeMockMvc.perform(put("/api/funcionalidades")
@@ -280,7 +270,6 @@ public class FuncionalidadeResourceIntTest {
         Funcionalidade testFuncionalidade = funcionalidadeList.get(funcionalidadeList.size() - 1);
         assertThat(testFuncionalidade.getNm_funcionalidade()).isEqualTo(UPDATED_NM_FUNCIONALIDADE);
         assertThat(testFuncionalidade.getCd_funcionalidade()).isEqualTo(UPDATED_CD_FUNCIONALIDADE);
-        assertThat(testFuncionalidade.getDh_cadastro()).isEqualTo(UPDATED_DH_CADASTRO);
         assertThat(testFuncionalidade.getSt_excluido()).isEqualTo(UPDATED_ST_EXCLUIDO);
 
         // Validate the Funcionalidade in Elasticsearch
@@ -341,7 +330,6 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(funcionalidade.getId().intValue())))
             .andExpect(jsonPath("$.[*].nm_funcionalidade").value(hasItem(DEFAULT_NM_FUNCIONALIDADE.toString())))
             .andExpect(jsonPath("$.[*].cd_funcionalidade").value(hasItem(DEFAULT_CD_FUNCIONALIDADE.toString())))
-            .andExpect(jsonPath("$.[*].dh_cadastro").value(hasItem(DEFAULT_DH_CADASTRO.toString())))
             .andExpect(jsonPath("$.[*].st_excluido").value(hasItem(DEFAULT_ST_EXCLUIDO.toString())));
     }
 

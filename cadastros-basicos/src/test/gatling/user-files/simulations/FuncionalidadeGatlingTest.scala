@@ -68,7 +68,7 @@ class FuncionalidadeGatlingTest extends Simulation {
             .exec(http("Create new funcionalidade")
             .post("/cadastrosbasicos/api/funcionalidades")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nm_funcionalidade":"SAMPLE_TEXT", "cd_funcionalidade":"SAMPLE_TEXT", "dh_cadastro":"2020-01-01T00:00:00.000Z", "st_excluido":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nm_funcionalidade":"SAMPLE_TEXT", "cd_funcionalidade":"SAMPLE_TEXT", "st_excluido":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_funcionalidade_url"))).exitHereIfFailed
             .pause(10)

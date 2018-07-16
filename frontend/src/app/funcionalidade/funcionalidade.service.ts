@@ -14,7 +14,7 @@ export class FuncionalidadeService {
 
   searchUrl = environment.apiUrl + '/_search/funcionalidades';
 
-  constructor(private http: HttpService, private dateUtils: JhiDateUtils) {}
+  constructor(private http: HttpService) {}
 
   create(funcionalidade: Funcionalidade): Observable<Funcionalidade> {
     const copy = this.convert(funcionalidade);
@@ -63,8 +63,6 @@ export class FuncionalidadeService {
    */
   private convertItemFromServer(json: any): Funcionalidade {
     const entity: Funcionalidade = Object.assign(new Funcionalidade(), json);
-    entity.dh_cadastro = this.dateUtils
-      .convertLocalDateFromServer(json.dh_cadastro);
     return entity;
   }
 
@@ -73,8 +71,6 @@ export class FuncionalidadeService {
    */
   private convert(funcionalidade: Funcionalidade): Funcionalidade {
     const copy: Funcionalidade = Object.assign({}, funcionalidade);
-    copy.dh_cadastro = this.dateUtils
-      .convertLocalDateToServer(funcionalidade.dh_cadastro);
     return copy;
   }
 }
