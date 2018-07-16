@@ -9,6 +9,12 @@
                 "required"
             ],
             "otherEntityField": "nomePerfil"
+        },
+        {
+            "relationshipName": "especialidade",
+            "otherEntityName": "especialidade",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nome"
         }
     ],
     "fields": [

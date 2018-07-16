@@ -15,5 +15,7 @@
     <include file="config/liquibase/changelog/20180509202400_added_entity_Perfil.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180426043131_added_entity_constraints_Usuario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180426043131_added_entity_constraints_Usuario_especialidade.xml" relativeToChangelogFile="false"/>
+
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

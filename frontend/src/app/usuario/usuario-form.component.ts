@@ -11,6 +11,7 @@ import { UsuarioService } from './usuario.service';
 import { MultiSelectModule } from 'primeng/multiselect';
 
 import { Perfil, PerfilService } from '../perfil';
+import { Especialidade, EspecialidadeService } from '../especialidade';
 import { ResponseWrapper } from '../shared';
 
 @Component({
@@ -20,6 +21,10 @@ import { ResponseWrapper } from '../shared';
 export class UsuarioFormComponent implements OnInit, OnDestroy {
 
   perfils: Perfil[];
+  esconde: boolean;
+  especialidades: Especialidade[];
+  myEspecialidade: Especialidade;
+  myPerfil: Perfil;
   usuario: Usuario;
   isSaving: boolean;
   isEdit = false;
@@ -32,12 +37,18 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     private pageNotificationService: PageNotificationService,
     private usuarioService: UsuarioService,
     private perfilService: PerfilService,
+    private especialidadeService: EspecialidadeService,
   ) {}
 
   ngOnInit() {
+    this.esconde = true;
+    this.myPerfil = new Perfil();
     this.isSaving = false;
     this.perfilService.query().subscribe((res: ResponseWrapper) => {
       this.perfils = res.json;
+    });
+    this.especialidadeService.query().subscribe((res: ResponseWrapper) => {
+      this.especialidades = res.json;
     });
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
@@ -45,6 +56,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.usuario.ativo = true;
       if (params['id']) {
         this.isEdit = true;
+        this.esconde = false;
         this.usuarioService.find(params['id']).subscribe(usuario => this.usuario = usuario);
         title = 'Editar';
       }
@@ -95,5 +107,14 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.routeSub.unsubscribe();
     this.breadcrumbService.reset();
+  }
+  trocaPerfil(){
+    this.myPerfil = this.usuario.perfil;
+    if (this.myPerfil.nomePerfil == 'Médico'){
+      this.esconde = false;
+    }else {
+      this.esconde = true;
+      this.usuario.especialidade = null;
+    }
   }
 }

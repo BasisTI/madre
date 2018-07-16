@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Usuario.
+    -->
+    <changeSet id="20180426043131-3" author="jhipster">
+    
+        
+        <addColumn tableName="usuario">
+            <column name="especialidade_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="especialidade_id"
+                                 baseTableName="usuario"
+                                 constraintName="fk_usuario_especialidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especialidade"/>
+
+    </changeSet>
+</databaseChangeLog>
