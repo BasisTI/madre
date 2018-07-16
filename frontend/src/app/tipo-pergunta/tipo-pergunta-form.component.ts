@@ -48,6 +48,7 @@ export class TipoPerguntaFormComponent implements OnInit, OnDestroy {
   save() {
 
     //validar se o campo estiver vazio
+
     if(this.tipoPergunta.enunciadoPergunta == undefined || this.tipoPergunta.enunciadoPergunta == ""){
       return this.pageNotificationService.addErrorMessage('Dados inválidos');
     }else{
@@ -69,7 +70,12 @@ export class TipoPerguntaFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      this.pageNotificationService.addErrorMessage('Dados inválidos');
+      if (res.headers.toJSON()["x-cadastrosbasicosapp-errorenunciadoexists"][0] == "O enunciado é existente") {
+        this.pageNotificationService.addErrorMessage('Registro já cadastrado!');
+      }else{
+        this.pageNotificationService.addErrorMessage('Dados inválidos');
+      }
+   
     });
   }
 

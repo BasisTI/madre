@@ -107,6 +107,12 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       if (!ValidacaoUtil.validaCpf(this.paciente.cpf)) {
         this.pageNotificationService.addErrorMessage('CPF inválido !');
       }
+      if (!ValidacaoUtil.validarEmail(this.paciente.emailPrincipal)){
+        this.pageNotificationService.addErrorMessage('Email inválido !');
+      }
+      if (!ValidacaoUtil.validarEmail(this.paciente.emailAlternativo)){
+        this.pageNotificationService.addErrorMessage('Email inválido !');
+      }
       if (!ValidacaoUtil.validaCNS(this.paciente.cartaoSus)) {
         this.pageNotificationService.addErrorMessage('Número cartão SUS inválido !');
       }

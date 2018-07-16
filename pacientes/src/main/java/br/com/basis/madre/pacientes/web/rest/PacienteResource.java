@@ -90,6 +90,7 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> updatePaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
         log.debug("REST request to update Paciente : {}", paciente);
+        if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){ return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null);}
         if (paciente.getId() == null) {
             return createPaciente(paciente);
         }

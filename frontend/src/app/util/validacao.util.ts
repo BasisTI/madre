@@ -157,7 +157,6 @@ public static  validaCNS(vlrCNS : string) {
     var resultado = new String;
     var tamCNS = vlrCNS.length;
     if ((tamCNS) != 15) {
-        alert("Numero de CNS invalido");
         return false;
     }
     pis = vlrCNS.substring(0,11);
