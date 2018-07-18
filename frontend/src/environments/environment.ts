@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: '/api',
+  apiPaciente: '/api',
   auth: {
     detailsUrl: '/api/user/details',
     loginUrl: '/api/login',

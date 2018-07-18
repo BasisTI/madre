@@ -27,6 +27,8 @@ export class BotoesExportacaoComponent implements OnInit {
   tiposExportacao: MenuItem[] = [];
 
   ngOnInit() {
+
+    this.gateway();
     this.getTiposExportacao();
   }
 
@@ -45,18 +47,29 @@ export class BotoesExportacaoComponent implements OnInit {
     ];
   }
 
+  //Direcionador de rota para fazer a exportação de acordo com seu resourceName
+  gateway(){
+
+    switch (this.resourceName) {
+        case 'paciente':
+            environment.apiUrl = environment.apiPaciente;
+            break;
+    }
+
+
+  }
+
   exportar(tipoRelatorio: string) {
-                                
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
-      downloadUrl => {
-        ExportacaoUtil.download(downloadUrl,
-          this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
-          this.blockUI.stop();
-      },
-      err => {
-        this.addErrorMessage(false);
-      }
-    );
+        downloadUrl => {
+          ExportacaoUtil.download(downloadUrl,
+            this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
+            this.blockUI.stop();
+        },
+        err => {
+          this.addErrorMessage(false);
+        }
+      );
   }
 
   imprimir(tipoRelatorio: string) {
