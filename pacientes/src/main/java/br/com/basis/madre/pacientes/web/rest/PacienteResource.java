@@ -81,9 +81,6 @@ public class PacienteResource {
         if ((pacienteRepository.findOneByCartaoSus(paciente.getCartaoSus()).isPresent()) && (MadreUtil.removeCaracteresEmBranco(paciente.getCartaoSus()) != null)) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
         }
-        if ((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null);
-        }
         if (paciente.getId() != null) {
             throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
         }
