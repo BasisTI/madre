@@ -10,9 +10,9 @@ import { ResponseWrapper, createRequestOption, JhiDateUtils } from '../shared';
 @Injectable()
 export class PacienteService {
 
-  resourceUrl =  environment.apiUrl + '/pacientes';
+  resourceUrl =  environment.apiPaciente + '/pacientes';
   
-  searchUrl =  environment.apiUrl + '/_search/pacientes';
+  searchUrl =  environment.apiPaciente + '/_search/pacientes';
 
   constructor(private http: HttpService, private dateUtils: JhiDateUtils) {}
 
