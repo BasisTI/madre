@@ -28,7 +28,7 @@ export class BotoesExportacaoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.gateway();
+    //this.gateway();
     this.getTiposExportacao();
   }
 
@@ -48,20 +48,23 @@ export class BotoesExportacaoComponent implements OnInit {
   }
 
   //Direcionador de rota para fazer a exportação de acordo com seu resourceName
-  gateway(){
+ // gateway(){
 
-    switch (this.resourceName) {
-        case 'paciente':
-            environment.apiUrl = environment.apiPaciente;
-            break;
-    }
+    
 
 
-  }
+  //}
 
   exportar(tipoRelatorio: string) {
+    
+    if(this.resourceName.includes('paciente')){
+        console.log('1')
+        environment.apiUrl = environment.apiPaciente;
+    }
+
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
         downloadUrl => {
+            console.log(environment.apiUrl);
           ExportacaoUtil.download(downloadUrl,
             this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
             this.blockUI.stop();
