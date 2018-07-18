@@ -59,12 +59,10 @@ export class BotoesExportacaoComponent implements OnInit {
     
     if(this.resourceName.includes('paciente')){
         console.log('1')
-        environment.apiUrl = environment.apiPaciente;
-    }
-
-    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
+       // environment.apiUrl = environment.apiPaciente;
+       ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiPaciente + '/' + this.resourceName, this.http, this.query).subscribe(
         downloadUrl => {
-            console.log(environment.apiUrl);
+            console.log(environment.apiPaciente);
           ExportacaoUtil.download(downloadUrl,
             this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
             this.blockUI.stop();
@@ -73,6 +71,22 @@ export class BotoesExportacaoComponent implements OnInit {
           this.addErrorMessage(false);
         }
       );
+
+    }else{
+        ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
+            downloadUrl => {
+                console.log(environment.apiUrl);
+              ExportacaoUtil.download(downloadUrl,
+                this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
+                this.blockUI.stop();
+            },
+            err => {
+              this.addErrorMessage(false);
+            }
+          );
+    }
+
+    
   }
 
   imprimir(tipoRelatorio: string) {
