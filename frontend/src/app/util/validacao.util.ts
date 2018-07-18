@@ -147,8 +147,6 @@ export class ValidacaoUtil {
     
     // Validação CNS
 public static  validaCNS(vlrCNS : string) {
-    console.log("Validar CNS");
-    console.log("Numero: "+vlrCNS);
     // Formulário que contem o campo CNS
     var soma : any ;
      var resto : any;
@@ -174,9 +172,9 @@ public static  validaCNS(vlrCNS : string) {
             console.log("oi");
             console.log("soma: "+soma);
      resto = soma % 11;
-    console.log("resto: "+resto);
+    
     dv = 11 - resto;
-    console.log("dv: "+dv);
+    
     if (dv == 11) {
         dv = 0;
     }

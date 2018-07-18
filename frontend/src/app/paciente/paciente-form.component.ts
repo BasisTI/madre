@@ -115,10 +115,10 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       }
 
       if(this.paciente.emailAlternativo !== undefined){
-        console.log('email: '+this.paciente.emailAlternativo);
         if (!ValidacaoUtil.validarEmail(this.paciente.emailPrincipal)){
           this.pageNotificationService.addErrorMessage('Email inválido !');
         }
+      }
 
       if (!ValidacaoUtil.validaCNS(this.paciente.cartaoSus)) {
         this.pageNotificationService.addErrorMessage('Número cartão SUS inválido !');
