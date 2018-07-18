@@ -67,14 +67,8 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
         log.debug("REST request to save Paciente : {}", paciente);
-        if (paciente.getProntuario() == null || paciente.getProntuario().equals("")) {
-            paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
-            while (MadreUtil.verificaProntuario(pacienteRepository, paciente)) {
-                MadreUtil.verificaProntuario(pacienteRepository, paciente);
-            }
-
-        }
-
+        if (paciente.getProntuario() == null || paciente.getProntuario().equals("")) {paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
+            while (MadreUtil.verificaProntuario(pacienteRepository, paciente)) {MadreUtil.verificaProntuario(pacienteRepository, paciente);}}
         if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null);
         }
