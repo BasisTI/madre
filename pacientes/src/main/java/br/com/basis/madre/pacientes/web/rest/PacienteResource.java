@@ -67,16 +67,36 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> createPaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
         log.debug("REST request to save Paciente : {}", paciente);
-        if(paciente.getProntuario() == null || paciente.getProntuario().equals("")){paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));}
-        if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null); }
-        if ((pacienteRepository.findOneByCpf(paciente.getCpf())).isPresent()) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cpfexists", "CPF já cadastrado")).body(null); }
-        if ((pacienteRepository.findOneByEmailPrincipalIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getEmailPrincipal()))).isPresent()) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "E-mail já cadastrado")).body(null); }
-        if ((pacienteRepository.findOneByCartaoSus(paciente.getCartaoSus()).isPresent()) && (MadreUtil.removeCaracteresEmBranco(paciente.getCartaoSus()) != null)) { return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null); }
-        if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){ return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null); }
-        if (paciente.getId() != null) { throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists"); }
+        if (paciente.getProntuario() == null || paciente.getProntuario().equals("")) {
+            paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));
+            while (MadreUtil.verificaProntuario(pacienteRepository, paciente)) {
+                MadreUtil.verificaProntuario(pacienteRepository, paciente);
+            }
+
+        }
+
+        if ((pacienteRepository.findOneByRg(paciente.getRg())).isPresent()) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "rgexists", "RG já cadastrado")).body(null);
+        }
+        if ((pacienteRepository.findOneByCpf(paciente.getCpf())).isPresent()) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cpfexists", "CPF já cadastrado")).body(null);
+        }
+        if ((pacienteRepository.findOneByEmailPrincipalIgnoreCase(MadreUtil.removeCaracteresEmBranco(paciente.getEmailPrincipal()))).isPresent()) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "E-mail já cadastrado")).body(null);
+        }
+        if ((pacienteRepository.findOneByCartaoSus(paciente.getCartaoSus()).isPresent()) && (MadreUtil.removeCaracteresEmBranco(paciente.getCartaoSus()) != null)) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
+        }
+        if ((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null);
+        }
+        if (paciente.getId() != null) {
+            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
+        }
         Paciente result = pacienteService.save(paciente);
         return ResponseEntity.created(new URI("/api/pacientes/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
+
     /**
      * PUT  /pacientes : Updates an existing paciente.
      *
@@ -90,7 +110,9 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<Paciente> updatePaciente(@Valid @RequestBody Paciente paciente) throws URISyntaxException {
         log.debug("REST request to update Paciente : {}", paciente);
-        if((pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent())){ return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null);}
+
+        if(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario()).equals("")){paciente.setProntuario(String.valueOf(pacienteRepository.indexPacientes()));}
+        if(verificacaoEdicao(paciente)){return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "prontuarioexists", "Prontuário já registrado")).body(null); }
         if (paciente.getId() == null) {
             return createPaciente(paciente);
         }
@@ -99,6 +121,15 @@ public class PacienteResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, paciente.getId().toString()))
             .body(result);
     }
+
+
+        private boolean verificacaoEdicao(Paciente paciente) {
+        if(!(pacienteRepository.findOneByIdAndProntuario(paciente.getId(),paciente.getProntuario()).isPresent()) && (validaProntuario(paciente))){ return Boolean.TRUE;}return Boolean.FALSE;
+        }
+
+        private boolean validaProntuario(Paciente paciente){
+            if(pacienteRepository.findOneByProntuario(MadreUtil.removeCaracteresEmBranco(paciente.getProntuario())).isPresent()) { return Boolean.TRUE; }return Boolean.FALSE;
+          }
 
     /**
      * GET  /pacientes : get all the pacientes.

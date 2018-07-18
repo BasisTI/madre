@@ -23,9 +23,9 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   elasticQuery: ElasticQuery = new ElasticQuery();
 
-   paciente : Paciente;
+  paciente: Paciente;
 
-              
+
 
   valueFiltroCampo: string;
 
@@ -36,11 +36,11 @@ export class PacienteComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private http: HttpService
-  ) {}
+  ) { }
 
   ngOnInit() {
 
-  
+
     this.breadcrumbService.setItems([{ label: 'Pacientes' }]);
   }
 
@@ -76,7 +76,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
         });
       }
     });
-  } 
+  }
 
   ngOnDestroy() {
     this.breadcrumbService.reset();
