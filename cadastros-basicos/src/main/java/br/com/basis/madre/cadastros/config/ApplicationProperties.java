@@ -3,7 +3,7 @@ package br.com.basis.madre.cadastros.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Properties specific to Cadastrosbasicos.
+ * Properties specific to .
  * <p>
  * Properties are configured in the application.yml file.
  * See {@link io.github.jhipster.config.JHipsterProperties} for a good example.

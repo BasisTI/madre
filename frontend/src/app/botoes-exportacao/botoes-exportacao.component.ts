@@ -24,10 +24,13 @@ export class BotoesExportacaoComponent implements OnInit {
   @Input() query: string;
   @BlockUI() blockUI: NgBlockUI;
 
-  tiposExportacao: MenuItem[] = [];
 
+  tiposExportacao: MenuItem[] = [];
+  url: string;
   ngOnInit() {
     this.getTiposExportacao();
+    this.gateway();                            
+
   }
 
   constructor(
@@ -45,9 +48,23 @@ export class BotoesExportacaoComponent implements OnInit {
     ];
   }
 
+    gateway(){
+
+        switch(this.resourceName){
+
+            case '/paciente':
+                this.url = environment.apiPaciente;
+                break;
+            default:
+                this.url = this.resourceName;
+                break;    
+
+        }
+        
+    }
+
   exportar(tipoRelatorio: string) {
-                                
-    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
+    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, this.url + '/' + this.resourceName, this.http, this.query).subscribe(
       downloadUrl => {
         ExportacaoUtil.download(downloadUrl,
           this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
@@ -59,6 +76,7 @@ export class BotoesExportacaoComponent implements OnInit {
     );
   }
 
+  
   imprimir(tipoRelatorio: string) {
     ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
       downloadUrl => {

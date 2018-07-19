@@ -17,6 +17,7 @@ export class PacienteService {
   constructor(private http: HttpService, private dateUtils: JhiDateUtils) {}
 
   create(paciente: Paciente): Observable<Paciente> {
+    
     const copy = this.convert(paciente);
     return this.http.post(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();
@@ -46,6 +47,7 @@ export class PacienteService {
   }
 
   delete(id: number): Observable<Response> {
+    console.log(this.resourceUrl);
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
 
