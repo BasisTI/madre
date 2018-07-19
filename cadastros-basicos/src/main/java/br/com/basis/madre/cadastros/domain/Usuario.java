@@ -61,7 +61,6 @@ public class Usuario implements Serializable, ReportObject {
     private Boolean ativo;
 
     @ManyToOne(optional = false)
-    @NotNull
     private Perfil perfil;
 
     @ManyToOne

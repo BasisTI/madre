@@ -5,9 +5,6 @@
             "relationshipName": "perfil",
             "otherEntityName": "perfil",
             "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
             "otherEntityField": "nomePerfil"
         },
         {
