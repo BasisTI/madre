@@ -82,7 +82,7 @@ export class BotoesExportacaoComponent implements OnInit {
 
   
   imprimir(tipoRelatorio: string) {
-    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
+    ExportacaoUtilService.exportarRelatorio(tipoRelatorio,this.url + '/' + this.resourceName, this.http, this.query).subscribe(
       downloadUrl => {
         ExportacaoUtil.imprimir(downloadUrl);
         this.blockUI.stop();
