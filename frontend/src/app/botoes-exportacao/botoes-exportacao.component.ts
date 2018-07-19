@@ -27,8 +27,6 @@ export class BotoesExportacaoComponent implements OnInit {
   tiposExportacao: MenuItem[] = [];
 
   ngOnInit() {
-
-    //this.gateway();
     this.getTiposExportacao();
   }
 
@@ -47,47 +45,18 @@ export class BotoesExportacaoComponent implements OnInit {
     ];
   }
 
-  //Direcionador de rota para fazer a exportação de acordo com seu resourceName
- // gateway(){
-
-    
-
-
-  //}
-
   exportar(tipoRelatorio: string) {
-    
-    if(this.resourceName.includes('paciente')){
-        console.log('1')
-       // environment.apiUrl = environment.apiPaciente;
-    //    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiPaciente + '/' + this.resourceName, this.http, this.query).subscribe(
-    //     downloadUrl => {
-    //         console.log(environment.apiPaciente);
-    //       ExportacaoUtil.download(downloadUrl,
-    //         this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
-    //         this.blockUI.stop();
-    //     },
-    //     err => {
-    //       this.addErrorMessage(false);
-    //     }
-    //   );
-    // }
-    // }else{
-        ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
-            downloadUrl => {
-                console.log(environment.apiUrl);
-              ExportacaoUtil.download(downloadUrl,
-                this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
-                this.blockUI.stop();
-            },
-            err => {
-              this.addErrorMessage(false);
-            }
-          );
-        }
-  //  }
-
-    
+                                
+    ExportacaoUtilService.exportarRelatorio(tipoRelatorio, environment.apiUrl + '/' + this.resourceName, this.http, this.query).subscribe(
+      downloadUrl => {
+        ExportacaoUtil.download(downloadUrl,
+          this.resourceName + ExportacaoUtilService.getExtension(tipoRelatorio));
+          this.blockUI.stop();
+      },
+      err => {
+        this.addErrorMessage(false);
+      }
+    );
   }
 
   imprimir(tipoRelatorio: string) {
