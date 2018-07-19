@@ -52,7 +52,7 @@ export class BotoesExportacaoComponent implements OnInit {
 
         switch(this.resourceName){
 
-            case '/paciente':
+            case 'paciente':
                 this.url = 'pacientes/api';
                 break;
             default:
