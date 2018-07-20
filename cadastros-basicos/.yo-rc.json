@@ -34,6 +34,6 @@
     "skipUserManagement": true
   },
   "generator-jhipster-primeng-entity": {
-    "frontendRoot": "/home/eduardoaires/projetos-estagio/project-madri/madre_codigo_fonte/frontend"
+    "frontendRoot": "/home/mateus/Madre/madre_codigo_fonte/frontend"
   }
 }

@@ -4,35 +4,35 @@ import { Observable } from 'rxjs/Rx';
 import { HttpService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
 
-import { Acao } from './acao.model';
+import { Funcionalidade_acao } from './funcionalidade-acao.model';
 import { ResponseWrapper, createRequestOption, JhiDateUtils } from '../shared';
 
 @Injectable()
-export class AcaoService {
+export class Funcionalidade_acaoService {
 
-  resourceUrl = environment.apiUrl + '/acaos';
+  resourceUrl = environment.apiUrl + '/funcionalidade-acaos';
 
-  searchUrl = environment.apiUrl + '/_search/acaos';
+  searchUrl = environment.apiUrl + '/_search/funcionalidade-acaos';
 
   constructor(private http: HttpService) {}
 
-  create(acao: Acao): Observable<Acao> {
-    const copy = this.convert(acao);
+  create(funcionalidade_acao: Funcionalidade_acao): Observable<Funcionalidade_acao> {
+    const copy = this.convert(funcionalidade_acao);
     return this.http.post(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();
       return this.convertItemFromServer(jsonResponse);
     });
   }
 
-  update(acao: Acao): Observable<Acao> {
-    const copy = this.convert(acao);
+  update(funcionalidade_acao: Funcionalidade_acao): Observable<Funcionalidade_acao> {
+    const copy = this.convert(funcionalidade_acao);
     return this.http.put(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();
       return this.convertItemFromServer(jsonResponse);
     });
   }
 
-  find(id: number): Observable<Acao> {
+  find(id: number): Observable<Funcionalidade_acao> {
     return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
       const jsonResponse = res.json();
       return this.convertItemFromServer(jsonResponse);
@@ -49,12 +49,6 @@ export class AcaoService {
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
 
-  getAllAcaos(): Observable<Acao[]>{
-    return this.http.get(`${this.resourceUrl}`).map((res: Response) => {
-      return res.json();
-    });
-  }
-
   private convertResponse(res: Response): ResponseWrapper {
     const jsonResponse = res.json();
     const result = [];
@@ -65,18 +59,18 @@ export class AcaoService {
   }
 
   /**
-   * Convert a returned JSON object to Acao.
+   * Convert a returned JSON object to Funcionalidade_acao.
    */
-  private convertItemFromServer(json: any): Acao {
-    const entity: Acao = Object.assign(new Acao(), json);
+  private convertItemFromServer(json: any): Funcionalidade_acao {
+    const entity: Funcionalidade_acao = Object.assign(new Funcionalidade_acao(), json);
     return entity;
   }
 
   /**
-   * Convert a Acao to a JSON which can be sent to the server.
+   * Convert a Funcionalidade_acao to a JSON which can be sent to the server.
    */
-  private convert(acao: Acao): Acao {
-    const copy: Acao = Object.assign({}, acao);
+  private convert(funcionalidade_acao: Funcionalidade_acao): Funcionalidade_acao {
+    const copy: Funcionalidade_acao = Object.assign({}, funcionalidade_acao);
     return copy;
   }
 }

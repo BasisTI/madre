@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.service.impl.FuncionalidadeServiceImpl;
+
 import com.codahale.metrics.annotation.Timed;
 
 import org.slf4j.Logger;
@@ -68,7 +70,7 @@ public class PerfilResource {
     @PostMapping("/perfils")
     @Timed
     public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
-        log.debug("REST request to save Perfil : {}", perfil);
+    	log.debug("REST request to save Perfil : {}", perfil);
         perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
         if (perfil.getId() != null) {
             throw new BadRequestAlertException("A new perfil cannot already have an ID", ENTITY_NAME, "idexists");

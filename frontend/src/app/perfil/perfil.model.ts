@@ -10,11 +10,11 @@ export class Perfil implements BaseEntity {
     // Campos da tabela Permissões
     
     //-------Unidade de Saude-------
-    public pesquisarUS?:  boolean,
-    public incluirUS?:    boolean,
-    public alterarUS?:    boolean,
-    public excluirUS?:    boolean,
-    public visualizarUS?: boolean,
+    public pesquisarUS?:  string[] ,
+    public incluirUS?:    string,
+    public alterarUS?:    string,
+    public excluirUS?:    string,
+    public visualizarUS?: string,
     //-------Usuario-------
     public pesquisarU?:  boolean,
     public incluirU?:    boolean,

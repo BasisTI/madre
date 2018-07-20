@@ -1,9 +1,5 @@
 <!-- Pagina Editar -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div class="card card-w-title">
@@ -23,70 +19,15 @@
               <label>Descrição</label>
             </span>
           </div>
-          <div class="container">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Funcionalidade</th>
-                  <th>Pesquisar</th>
-                  <th>Incluir</th>
-                  <th>Alterar</th>
-                  <th>Exluir</th>
-                  <th>Visualizar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Unidade de Saúde</td>
-                  <td><p-checkbox name="unidadeSaude" binary="true" [(ngModel)]="perfil.pesquisarUS" inputId="pesquisaUS"></p-checkbox></td>
-                  <td><p-checkbox name="unidadeSaude" binary="true" [(ngModel)]="perfil.incluirUS" inputId="incluirUS"></p-checkbox></td>
-                  <td><p-checkbox name="unidadeSaude" binary="true" [(ngModel)]="perfil.alterarUS" inputId="alterarUS"></p-checkbox></td>
-                  <td><p-checkbox name="unidadeSaude" binary="true" [(ngModel)]="perfil.excluirUS" inputId="exluirUS"></p-checkbox></td>
-                  <td><p-checkbox name="unidadeSaude" binary="true" [(ngModel)]="perfil.visualizarUS" inputId="visualizarUS"></p-checkbox></td>
-                </tr>
-                <tr>
-                  <td>Usuário</td>
-                  <td><p-checkbox name="usuario" binary="true" [(ngModel)]="perfil.pesquisarU" inputId="pesquisaU"></p-checkbox></td>
-                  <td><p-checkbox name="usuario" binary="true" [(ngModel)]="perfil.incluirU" inputId="incluirU"></p-checkbox></td>
-                  <td><p-checkbox name="usuario" binary="true" [(ngModel)]="perfil.alterarU" inputId="alterarU"></p-checkbox></td>
-                  <td><p-checkbox name="usuario" binary="true" [(ngModel)]="perfil.excluirU" inputId="exluirU"></p-checkbox></td>
-                  <td><p-checkbox name="usuario" binary="true" [(ngModel)]="perfil.visualizarU" inputId="visualizarU"></p-checkbox></td>
-                </tr>
-                <tr>
-                  <td>Perfis e Permissões</td>
-                  <td><p-checkbox name="perfisPermissoes" binary="true" [(ngModel)]="perfil.pesquisarPP" inputId="pesquisaPP"></p-checkbox></td>
-                  <td><p-checkbox name="perfisPermissoes" binary="true" [(ngModel)]="perfil.incluirPP" inputId="incluirPP"></p-checkbox></td>
-                  <td><p-checkbox name="perfisPermissoes" binary="true" [(ngModel)]="perfil.alterarPP" inputId="alterarPP"></p-checkbox></td>
-                  <td><p-checkbox name="perfisPermissoes" binary="true" [(ngModel)]="perfil.excluirPP" inputId="exluirPP"></p-checkbox></td>
-                  <td><p-checkbox name="perfisPermissoes" binary="true" [(ngModel)]="perfil.visualizarPP" inputId="visualizarPP"></p-checkbox></td>
-                </tr>
-                <tr>
-                  <td>Pré Cadastro</td>
-                  <td><p-checkbox name="preCadastro" binary="true" [(ngModel)]="perfil.pesquisarPC" inputId="pesquisaPC"></p-checkbox></td>
-                  <td><p-checkbox name="preCadastro" binary="true" [(ngModel)]="perfil.incluirPC" inputId="incluirPC"></p-checkbox></td>
-                  <td><p-checkbox name="preCadastro" binary="true" [(ngModel)]="perfil.alterarPC" inputId="alterarPC"></p-checkbox></td>
-                  <td><p-checkbox name="preCadastro" binary="true" [(ngModel)]="perfil.excluirPC" inputId="exluirPC"></p-checkbox></td>
-                  <td><p-checkbox name="preCadastro" binary="true" [(ngModel)]="perfil.visualizarPC" inputId="visualizarPC"></p-checkbox></td>
-                </tr>
-                <tr>
-                  <td>Triagem</td>
-                  <td><p-checkbox name="triagem" binary="true" [(ngModel)]="perfil.pesquisarT" inputId="pesquisaT"></p-checkbox></td>
-                  <td><p-checkbox name="triagem" binary="true" [(ngModel)]="perfil.incluirT" inputId="incluirT"></p-checkbox></td>
-                  <td><p-checkbox name="triagem" binary="true" [(ngModel)]="perfil.alterarT" inputId="alterarT"></p-checkbox></td>
-                  <td><p-checkbox name="triagem" binary="true" [(ngModel)]="perfil.excluirT" inputId="exluirT"></p-checkbox></td>
-                  <td><p-checkbox name="triagem" binary="true" [(ngModel)]="perfil.visualizarT" inputId="visualizarT"></p-checkbox></td>
-                </tr>
-                <tr>
-                  <td>Paciente</td>
-                  <td><p-checkbox name="paciente" binary="true" [(ngModel)]="perfil.pesquisarP" inputId="pesquisaP"></p-checkbox></td>
-                  <td><p-checkbox name="paciente" binary="true" [(ngModel)]="perfil.incluirP" inputId="incluirP"></p-checkbox></td>
-                  <td><p-checkbox name="paciente" binary="true" [(ngModel)]="perfil.alterarP" inputId="alterarP"></p-checkbox></td>
-                  <td><p-checkbox name="paciente" binary="true" [(ngModel)]="perfil.excluirP" inputId="exluirP"></p-checkbox></td>
-                  <td><p-checkbox name="paciente" binary="true" [(ngModel)]="perfil.visualizarP" inputId="visualizarP"></p-checkbox></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <div class="ui-g-12 ui-md-12">
+          <p-pickList [source]="pega" [target]="coloca"  sourceHeader="Procurar por Funcionalidades" targetHeader="Funcionalidades Selecionadas" [responsive]="true" 
+          dragdrop="true" dragdropScope="true"[sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" sourceFilterPlaceholder="Procurar por Funcionalidades" targetFilterPlaceholder="Funcionalidades Selecionadas">
+            <ng-template let-perfil pTemplate="item">
+                 {{perfil}}
+               </ng-template>
+           </p-pickList>
+
+      </div>
         </div>
         <div class="ui-g">
           <div class="ui-g-12 ui-md-2">

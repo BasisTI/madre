@@ -1,0 +1,32 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ funcionalidade_acao.id ? 'Editar Funcionalidade Acao' : 'Cadastrar Funcionalidade Acao' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="funcionalidade_acao.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="id_funcionalidade" [(ngModel)]="funcionalidade_acao.id_funcionalidade" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Id Funcionalidade</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <p-spinner size="30" name="id_acao" [(ngModel)]="funcionalidade_acao.id_acao" decimalSeparator="" thousandSeparator=""></p-spinner>
+              <label>Id Acao</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/funcionalidade_acao"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

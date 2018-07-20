@@ -4,8 +4,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
-import { BotoesExportacaoModule } from "/home/mateus/Madre/madre_codigo_fonte/frontend/src/app/botoes-exportacao/botoes-exportacao.module";
-import {PickListModule} from 'primeng/picklist';
 import {
   ButtonModule,
   InputTextModule,
@@ -13,15 +11,14 @@ import {
   CalendarModule,
   DropdownModule,
   RadioButtonModule,
-  ConfirmDialogModule,
-  CheckboxModule
+  ConfirmDialogModule
 } from 'primeng/primeng';
 
 import {
-  PerfilComponent,
-  PerfilDetailComponent,
-  PerfilFormComponent,
-  perfilRoute
+  Funcionalidade_acaoComponent,
+  Funcionalidade_acaoDetailComponent,
+  Funcionalidade_acaoFormComponent,
+  funcionalidade_acaoRoute
 } from './';
 
 @NgModule({
@@ -29,7 +26,7 @@ import {
     CommonModule,
     HttpModule,
     FormsModule,
-    RouterModule.forChild(perfilRoute),
+    RouterModule.forChild(funcionalidade_acaoRoute),
     DatatableModule,
     ButtonModule,
     SpinnerModule,
@@ -38,16 +35,13 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
-    BotoesExportacaoModule,
-    CheckboxModule,
-    PickListModule,
   ],
   declarations: [
-    PerfilComponent,
-    PerfilDetailComponent,
-    PerfilFormComponent
+    Funcionalidade_acaoComponent,
+    Funcionalidade_acaoDetailComponent,
+    Funcionalidade_acaoFormComponent
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CadastrosbasicosPerfilModule {}
+export class CadastrosbasicosFuncionalidade_acaoModule {}
