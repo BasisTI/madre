@@ -142,6 +142,16 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  validaEmail() {
+    if (!this.paciente.emailAlternativo) {
+    return;
+    }
+    if (this.paciente.emailAlternativo === this.paciente.emailPrincipal) {
+    this.pageNotificationService.addErrorMessage('Os emails alternativos e principais não podem ser iguais!');
+    }
+    this.paciente.emailAlternativo = '';
+    }
+
   private addConfirmationMessage() {
     if (this.isEdit) {
       this.pageNotificationService.addUpdateMsg();
