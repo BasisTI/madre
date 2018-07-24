@@ -11,6 +11,7 @@ import { PerfilService } from './perfil.service';
 import { PickListModule } from 'primeng/picklist';
 import { AcaoService } from '../acao/acao.service';
 import { FuncionalidadeService } from '../funcionalidade';
+import { element } from 'protractor';
 
 @Component({
   selector: 'jhi-perfil-form',
@@ -21,7 +22,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   coloca: string[];
 
   listaAcao: string[];
-  listaFunc: string[];
+  listaFunc: any[];
 
   isSaving: boolean;
   isEdit = false;
@@ -50,20 +51,13 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
       this.listaAcao = [];
       this.listaFunc = [];
 
-      this.populaListaAcao().then(resolve => {
         this.populaListaFuncionalidade().then(resolve => {
-          console.log("Lista Acao")
-          console.log(this.listaAcao);
-          console.log("Lista Func")
-          console.log(this.listaFunc);
-
-          this.listaAcao.forEach(element => {
-            this.pega.push(element);
-
-            
-          });
+          this.listaFunc.forEach( element =>{
+            element.acaos.forEach(abaco => {
+              this.pega.push(`${element.cd_funcionalidade} - ${abaco.cd_acao}`);
+            });
+          })  
         });
-      });
 
 
       if (params['id']) {
@@ -128,7 +122,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     return new Promise(resolve => {
       this.funcionalidadeservice.getAllFuncionalidades().subscribe(res => {
         res.forEach(item => {
-          this.listaFunc.push(item.nm_funcionalidade);
+          this.listaFunc.push(item);
         });
         return resolve(true);
       });

@@ -36,5 +36,11 @@
 			baseTableName="funcionalidade_acao"
 			constraintName="fk_funcionalidade_acao_acao_id"
 			referencedColumnNames="id" referencedTableName="acao" />
+
+		<loadData encoding="UTF-8"
+                  file="config/liquibase/dadosfuncionalidadeacao.csv"
+                  separator=";"
+                  tableName="funcionalidade_acao"/>
+
 	</changeSet>
 </databaseChangeLog>

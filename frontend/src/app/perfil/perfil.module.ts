@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
-import { BotoesExportacaoModule } from "/home/mateus/Madre/madre_codigo_fonte/frontend/src/app/botoes-exportacao/botoes-exportacao.module";
+import { BotoesExportacaoModule } from "../botoes-exportacao/botoes-exportacao.module";
 import {PickListModule} from 'primeng/picklist';
 import {
   ButtonModule,
