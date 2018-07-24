@@ -14,7 +14,7 @@ export class FuncionalidadeService {
 
   searchUrl = environment.apiUrl + '/_search/funcionalidades';
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) { }
 
   create(funcionalidade: Funcionalidade): Observable<Funcionalidade> {
     const copy = this.convert(funcionalidade);
@@ -49,6 +49,12 @@ export class FuncionalidadeService {
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
 
+  getAllFuncionalidades(): Observable<Funcionalidade[]> {
+    return this.http.get(`${this.resourceUrl}`).map((res: Response) => {
+      return res.json();
+    });
+  }
+  
   private convertResponse(res: Response): ResponseWrapper {
     const jsonResponse = res.json();
     const result = [];

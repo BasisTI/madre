@@ -72,7 +72,7 @@ public class Funcionalidade implements Serializable {
 	public Set<Acao> getacaos() {
 		return acaos;
 	}
-	
+
 	public void setacaos(Set<Acao> acaos) {
 		this.acaos = acaos;
 	}

@@ -22,8 +22,8 @@
           <div class="ui-g-12 ui-md-12">
           <p-pickList [source]="pega" [target]="coloca"  sourceHeader="Procurar por Funcionalidades" targetHeader="Funcionalidades Selecionadas" [responsive]="true" 
           dragdrop="true" dragdropScope="true"[sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" sourceFilterPlaceholder="Procurar por Funcionalidades" targetFilterPlaceholder="Funcionalidades Selecionadas">
-            <ng-template let-perfil pTemplate="item">
-                 {{perfil}}
+            <ng-template let-acao pTemplate="item">
+                 {{acao}}
                </ng-template>
            </p-pickList>
 

@@ -8,8 +8,9 @@ import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Perfil } from './perfil.model';
 import { PerfilService } from './perfil.service';
-import {PickListModule} from 'primeng/picklist';
+import { PickListModule } from 'primeng/picklist';
 import { AcaoService } from '../acao/acao.service';
+import { FuncionalidadeService } from '../funcionalidade';
 
 @Component({
   selector: 'jhi-perfil-form',
@@ -19,7 +20,9 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   pega: string[];
   coloca: string[];
 
-  
+  listaAcao: string[];
+  listaFunc: string[];
+
   isSaving: boolean;
   isEdit = false;
   private routeSub: Subscription;
@@ -32,7 +35,8 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     private pageNotificationService: PageNotificationService,
     private perfilService: PerfilService,
     private acaoService: AcaoService,
-  ) {}
+    private funcionalidadeservice: FuncionalidadeService,
+  ) { }
 
   ngOnInit() {
     this.isSaving = false;
@@ -40,12 +44,28 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
       let title = 'Cadastrar';
       this.perfil = new Perfil();
 
-      this.perfil.pesquisarUS = ["UnidadeSaude gg", "MAteus"];
-      this.perfil.incluirUS = "Unidade de Saude - Incluir";
-      this.perfil.alterarUS = "Unidade de Saude - Alterar";
       this.coloca = [];
       this.pega = [];
-      this.populaDropdown();
+
+      this.listaAcao = [];
+      this.listaFunc = [];
+
+      this.populaListaAcao().then(resolve => {
+        this.populaListaFuncionalidade().then(resolve => {
+          console.log("Lista Acao")
+          console.log(this.listaAcao);
+          console.log("Lista Func")
+          console.log(this.listaFunc);
+
+          this.listaAcao.forEach(element => {
+            this.pega.push(element);
+
+            
+          });
+        });
+      });
+
+
       if (params['id']) {
         this.isEdit = true;
         this.perfilService.find(params['id']).subscribe(perfil => this.perfil = perfil);
@@ -91,11 +111,28 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     this.breadcrumbService.reset();
   }
 
-  populaDropdown() {
-    this.acaoService.getAllAcaos().subscribe( res => {
-      res.forEach( item => {
-        this.pega.push(item.cd_acao);
+  populaListaAcao() {
+    const that = this;
+    return new Promise(resolve => {
+      this.acaoService.getAllAcaos().subscribe(res => {
+        res.forEach((item, index) => {
+          this.listaAcao.push(item.nm_acao);
+        });
+        return resolve(true);
       });
-    })
+    });
   }
+
+  populaListaFuncionalidade() {
+    const that = this;
+    return new Promise(resolve => {
+      this.funcionalidadeservice.getAllFuncionalidades().subscribe(res => {
+        res.forEach(item => {
+          this.listaFunc.push(item.nm_funcionalidade);
+        });
+        return resolve(true);
+      });
+    });
+  }
+
 }
