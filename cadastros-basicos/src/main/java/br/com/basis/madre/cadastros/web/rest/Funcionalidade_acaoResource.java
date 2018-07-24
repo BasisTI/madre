@@ -64,10 +64,7 @@ public class Funcionalidade_acaoResource {
     @Timed
     public ResponseEntity<Funcionalidade_acao> createFuncionalidade_acao(@Valid @RequestBody Funcionalidade_acao funcionalidade_acao) throws URISyntaxException {
     	log.debug("REST request to save Funcionalidade_acao : {}", funcionalidade_acao);
-        log.debug("---AAA---AAA---AAA---AAA---AAA---AAA---AAA---AAA---AAA---AAA");
-//    	log.debug(funcionalidadeRepository.pegaIds().toString());
-//        log.debug(acaoRepository.pegaIds().toString());
-        
+
     	if (funcionalidade_acao.getId() != null) {
             throw new BadRequestAlertException("A new funcionalidade_acao cannot already have an ID", ENTITY_NAME, "idexists");
         }

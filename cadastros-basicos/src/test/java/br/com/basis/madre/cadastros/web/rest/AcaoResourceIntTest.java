@@ -113,9 +113,9 @@ public class AcaoResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the Acao in the database
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeCreate + 1);
-        Acao testAcao = acaoList.get(acaoList.size() - 1);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeCreate + 1);
+        Acao testAcao = acaos.get(acaos.size() - 1);
         assertThat(testAcao.getNm_acao()).isEqualTo(DEFAULT_NM_ACAO);
         assertThat(testAcao.getCd_acao()).isEqualTo(DEFAULT_CD_ACAO);
 
@@ -139,8 +139,8 @@ public class AcaoResourceIntTest {
             .andExpect(status().isBadRequest());
 
         // Validate the Acao in the database
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeCreate);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeCreate);
     }
 
     @Test
@@ -157,8 +157,8 @@ public class AcaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(acao)))
             .andExpect(status().isBadRequest());
 
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeTest);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -175,8 +175,8 @@ public class AcaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(acao)))
             .andExpect(status().isBadRequest());
 
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeTest);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class AcaoResourceIntTest {
         // Initialize the database
         acaoRepository.saveAndFlush(acao);
 
-        // Get all the acaoList
+        // Get all the acaos
         restAcaoMockMvc.perform(get("/api/acaos?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -239,9 +239,9 @@ public class AcaoResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the Acao in the database
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeUpdate);
-        Acao testAcao = acaoList.get(acaoList.size() - 1);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeUpdate);
+        Acao testAcao = acaos.get(acaos.size() - 1);
         assertThat(testAcao.getNm_acao()).isEqualTo(UPDATED_NM_ACAO);
         assertThat(testAcao.getCd_acao()).isEqualTo(UPDATED_CD_ACAO);
 
@@ -264,8 +264,8 @@ public class AcaoResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the Acao in the database
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeUpdate + 1);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
     @Test
@@ -286,8 +286,8 @@ public class AcaoResourceIntTest {
         assertThat(acaoExistsInEs).isFalse();
 
         // Validate the database is empty
-        List<Acao> acaoList = acaoRepository.findAll();
-        assertThat(acaoList).hasSize(databaseSizeBeforeDelete - 1);
+        List<Acao> acaos = acaoRepository.findAll();
+        assertThat(acaos).hasSize(databaseSizeBeforeDelete - 1);
     }
 
     @Test

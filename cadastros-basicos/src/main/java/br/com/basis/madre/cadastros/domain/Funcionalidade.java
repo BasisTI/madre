@@ -1,11 +1,15 @@
 package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +20,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -33,6 +39,7 @@ public class Funcionalidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column (name="ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
 	@SequenceGenerator(name = "sequenceGenerator")
 	private Long id;
@@ -52,22 +59,22 @@ public class Funcionalidade implements Serializable {
 	@Column(name = "st_excluido", length = 1, nullable = false)
 	private String st_excluido;
 
-	@ManyToMany//(mappedBy = "funcionalidades")
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "funcionalidade_acao",
-	joinColumns = @JoinColumn(name = "funcionalidade_id", referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name = "acao_id", referencedColumnName = "id"))
-
-	private List<Acao> acaoList; //= new ArrayList<>();
+	joinColumns = @JoinColumn(name = "id_funcionalidade", referencedColumnName = "ID"),
+	inverseJoinColumns = @JoinColumn(name = "id_acao", referencedColumnName = "ID"))
+	// private List<Acao> acaos = new ArrayList<>();
+	private Set<Acao> acaos = new HashSet<>();
 
 	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
 	// remove
 
-	public List<Acao> getAcaoList() {
-		return acaoList;
+	public Set<Acao> getacaos() {
+		return acaos;
 	}
 	
-	public void setAcaoList(List<Acao> acaoList) {
-		this.acaoList = acaoList;
+	public void setacaos(Set<Acao> acaos) {
+		this.acaos = acaos;
 	}
 
 	public Long getId() {

@@ -117,9 +117,9 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the Funcionalidade in the database
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeCreate + 1);
-        Funcionalidade testFuncionalidade = funcionalidadeList.get(funcionalidadeList.size() - 1);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeCreate + 1);
+        Funcionalidade testFuncionalidade = funcionalidades.get(funcionalidades.size() - 1);
         assertThat(testFuncionalidade.getNm_funcionalidade()).isEqualTo(DEFAULT_NM_FUNCIONALIDADE);
         assertThat(testFuncionalidade.getCd_funcionalidade()).isEqualTo(DEFAULT_CD_FUNCIONALIDADE);
         assertThat(testFuncionalidade.getSt_excluido()).isEqualTo(DEFAULT_ST_EXCLUIDO);
@@ -144,8 +144,8 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isBadRequest());
 
         // Validate the Funcionalidade in the database
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeCreate);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeCreate);
     }
 
     @Test
@@ -162,8 +162,8 @@ public class FuncionalidadeResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade)))
             .andExpect(status().isBadRequest());
 
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeTest);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -180,8 +180,8 @@ public class FuncionalidadeResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade)))
             .andExpect(status().isBadRequest());
 
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeTest);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -198,8 +198,8 @@ public class FuncionalidadeResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade)))
             .andExpect(status().isBadRequest());
 
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeTest);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -208,7 +208,7 @@ public class FuncionalidadeResourceIntTest {
         // Initialize the database
         funcionalidadeRepository.saveAndFlush(funcionalidade);
 
-        // Get all the funcionalidadeList
+        // Get all the funcionalidades
         restFuncionalidadeMockMvc.perform(get("/api/funcionalidades?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -265,9 +265,9 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the Funcionalidade in the database
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeUpdate);
-        Funcionalidade testFuncionalidade = funcionalidadeList.get(funcionalidadeList.size() - 1);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeUpdate);
+        Funcionalidade testFuncionalidade = funcionalidades.get(funcionalidades.size() - 1);
         assertThat(testFuncionalidade.getNm_funcionalidade()).isEqualTo(UPDATED_NM_FUNCIONALIDADE);
         assertThat(testFuncionalidade.getCd_funcionalidade()).isEqualTo(UPDATED_CD_FUNCIONALIDADE);
         assertThat(testFuncionalidade.getSt_excluido()).isEqualTo(UPDATED_ST_EXCLUIDO);
@@ -291,8 +291,8 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the Funcionalidade in the database
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeUpdate + 1);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
     @Test
@@ -313,8 +313,8 @@ public class FuncionalidadeResourceIntTest {
         assertThat(funcionalidadeExistsInEs).isFalse();
 
         // Validate the database is empty
-        List<Funcionalidade> funcionalidadeList = funcionalidadeRepository.findAll();
-        assertThat(funcionalidadeList).hasSize(databaseSizeBeforeDelete - 1);
+        List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
+        assertThat(funcionalidades).hasSize(databaseSizeBeforeDelete - 1);
     }
 
     @Test

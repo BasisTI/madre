@@ -1,11 +1,16 @@
 package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +19,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -31,6 +39,7 @@ public class Acao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column (name="ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
 	@SequenceGenerator(name = "sequenceGenerator")
 	private Long id;
@@ -45,17 +54,18 @@ public class Acao implements Serializable {
 	@Column(name = "cd_acao", length = 8, nullable = false)
 	private String cd_acao;
 
-	@ManyToMany(mappedBy = "acaoList")
-	private List<Funcionalidade> funcionalidadeList; // = new ArrayList<>();
-
+	@JsonIgnore
+	@ManyToMany(mappedBy = "acaos")
+	// private List<Funcionalidade> funcionalidades = new ArrayList<>();
+	private Set<Funcionalidade> funcionalidades = new HashSet<>();
 	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
 	// remove
-	public List<Funcionalidade> getFuncionalidadeList() {
-		return funcionalidadeList;
+	public Set<Funcionalidade> getFuncionalidades() {
+		return funcionalidades;
 	}
 
-	public void setFuncionalidadeList(List<Funcionalidade> funcionalidadeList) {
-		this.funcionalidadeList = funcionalidadeList;
+	public void setFuncionalidades(Set<Funcionalidade> funcionalidades) {
+		this.funcionalidades = funcionalidades;
 	}
 
 	public Long getId() {
