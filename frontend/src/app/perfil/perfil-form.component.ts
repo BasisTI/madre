@@ -10,19 +10,21 @@ import { Perfil } from './perfil.model';
 import { PerfilService } from './perfil.service';
 import { PickListModule } from 'primeng/picklist';
 import { AcaoService } from '../acao/acao.service';
-import { FuncionalidadeService } from '../funcionalidade';
+import { FuncionalidadeService, Funcionalidade } from '../funcionalidade';
 import { element } from 'protractor';
+import { Acao } from '../acao';
+import { AcaoTemp } from '../acao/acao-temp.model';
 
 @Component({
   selector: 'jhi-perfil-form',
   templateUrl: './perfil-form.component.html'
 })
 export class PerfilFormComponent implements OnInit, OnDestroy {
-  pega: string[];
-  coloca: string[];
+  pega: AcaoTemp[];
+  coloca: AcaoTemp[];
 
   listaAcao: string[];
-  listaFunc: any[];
+  listaFunc: Funcionalidade[];
 
   isSaving: boolean;
   isEdit = false;
@@ -41,6 +43,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isSaving = false;
+    let acaoTemp: AcaoTemp = new AcaoTemp();
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
       this.perfil = new Perfil();
@@ -50,14 +53,19 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
 
       this.listaAcao = [];
       this.listaFunc = [];
-
-        this.populaListaFuncionalidade().then(resolve => {
-          this.listaFunc.forEach( element =>{
-            element.acaos.forEach(abaco => {
-              this.pega.push(`${element.cd_funcionalidade} - ${abaco.cd_acao}`);
+      
+      this.populaListaFuncionalidade().then(resolve => {
+        this.listaFunc.forEach(item => {
+            item.acaos.forEach(abaco => {
+              acaoTemp.cd_funcionalidade = item.cd_funcionalidade;
+              acaoTemp.cd_acao = abaco.cd_acao;
+              acaoTemp.id_funcionalidade = item.id;
+              acaoTemp.nm_acao = abaco.nm_acao;
+              acaoTemp.id = abaco.id;
+              this.pega.push(Object.assign({}, acaoTemp));
             });
-          })  
         });
+      });
 
 
       if (params['id']) {
@@ -70,6 +78,12 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
         { label: title }
       ]);
     });
+  }
+
+  teste() {
+    console.log(this.pega);
+    console.log(this.listaFunc);
+    console.log(this.coloca);
   }
 
   save() {
