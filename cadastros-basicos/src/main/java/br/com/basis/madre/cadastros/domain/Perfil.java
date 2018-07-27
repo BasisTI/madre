@@ -42,8 +42,18 @@ public class Perfil implements Serializable, ReportObject {
     @Size(max = 255)
     @Column(name = "ds_perfil", length = 255)
     private String dsPerfil;
+    
+    //Contrutor
+    public Perfil(String nomePerfil, String dsPerfil) {
+		super();
+		this.nomePerfil = nomePerfil;
+		this.dsPerfil = dsPerfil;
+	}
+    
+    public Perfil() {
+	}
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+	// jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }

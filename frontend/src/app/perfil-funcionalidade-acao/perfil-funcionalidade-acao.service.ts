@@ -4,35 +4,35 @@ import { Observable } from 'rxjs/Rx';
 import { HttpService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
 
-import { Acao } from './acao.model'
-import { AcaoTemp } from './acao-temp.model';
+import { Perfil_funcionalidade_acao } from './perfil-funcionalidade-acao.model';
 import { ResponseWrapper, createRequestOption, JhiDateUtils } from '../shared';
 
 @Injectable()
-export class AcaoService {
+export class Perfil_funcionalidade_acaoService {
 
-  resourceUrl = environment.apiUrl + '/acaos';
+  resourceUrl = environment.apiUrl + '/perfil-funcionalidade-acaos';
 
-  searchUrl = environment.apiUrl + '/_search/acaos';
+  searchUrl = environment.apiUrl + '/_search/perfil-funcionalidade-acaos';
 
   constructor(private http: HttpService) {}
 
-  create(acao: Acao): Observable<Acao> {
-    const copy = this.convert(acao);
+  create(perfil_funcionalidade_acao: Perfil_funcionalidade_acao): Observable<Perfil_funcionalidade_acao> {
+    const copy = this.convert(perfil_funcionalidade_acao);
     return this.http.post(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();
       return this.convertItemFromServer(jsonResponse);
     });
   }
-  update(acao: Acao): Observable<Acao> {
-    const copy = this.convert(acao);
+
+  update(perfil_funcionalidade_acao: Perfil_funcionalidade_acao): Observable<Perfil_funcionalidade_acao> {
+    const copy = this.convert(perfil_funcionalidade_acao);
     return this.http.put(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();
       return this.convertItemFromServer(jsonResponse);
     });
   }
 
-  find(id: number): Observable<Acao> {
+  find(id: number): Observable<Perfil_funcionalidade_acao> {
     return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
       const jsonResponse = res.json();
       return this.convertItemFromServer(jsonResponse);
@@ -49,12 +49,6 @@ export class AcaoService {
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
 
-  getAllAcaos(): Observable<Acao[]>{
-    return this.http.get(`${this.resourceUrl}`).map((res: Response) => {
-      return res.json();
-    });
-  }
-
   private convertResponse(res: Response): ResponseWrapper {
     const jsonResponse = res.json();
     const result = [];
@@ -65,23 +59,18 @@ export class AcaoService {
   }
 
   /**
-   * Convert a returned JSON object to Acao.
+   * Convert a returned JSON object to Perfil_funcionalidade_acao.
    */
-  private convertItemFromServer(json: any): Acao {
-    const entity: Acao = Object.assign(new Acao(), json);
-    return entity;
-  }
-
-  private convertItemFromServerTemo(json: any): AcaoTemp {
-    const entity: AcaoTemp = Object.assign(new AcaoTemp(), json);
+  private convertItemFromServer(json: any): Perfil_funcionalidade_acao {
+    const entity: Perfil_funcionalidade_acao = Object.assign(new Perfil_funcionalidade_acao(), json);
     return entity;
   }
 
   /**
-   * Convert a Acao to a JSON which can be sent to the server.
+   * Convert a Perfil_funcionalidade_acao to a JSON which can be sent to the server.
    */
-  private convert(acao: Acao): Acao {
-    const copy: Acao = Object.assign({}, acao);
+  private convert(perfil_funcionalidade_acao: Perfil_funcionalidade_acao): Perfil_funcionalidade_acao {
+    const copy: Perfil_funcionalidade_acao = Object.assign({}, perfil_funcionalidade_acao);
     return copy;
   }
 }

@@ -30,6 +30,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   isEdit = false;
   private routeSub: Subscription;
   perfil: Perfil;
+  acaoTemp: AcaoTemp;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,9 +44,10 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isSaving = false;
-    let acaoTemp: AcaoTemp = new AcaoTemp();
     this.routeSub = this.route.params.subscribe(params => {
       let title = 'Cadastrar';
+
+      this.acaoTemp = new AcaoTemp();
       this.perfil = new Perfil();
 
       this.coloca = [];
@@ -53,17 +55,20 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
 
       this.listaAcao = [];
       this.listaFunc = [];
-      
+
+      this.perfil.acaoTemp = [];
+
       this.populaListaFuncionalidade().then(resolve => {
         this.listaFunc.forEach(item => {
-            item.acaos.forEach(abaco => {
-              acaoTemp.cd_funcionalidade = item.cd_funcionalidade;
-              acaoTemp.cd_acao = abaco.cd_acao;
-              acaoTemp.id_funcionalidade = item.id;
-              acaoTemp.nm_acao = abaco.nm_acao;
-              acaoTemp.id = abaco.id;
-              this.pega.push(Object.assign({}, acaoTemp));
-            });
+          item.acaos.forEach(abaco => {
+            this.acaoTemp.id = abaco.id;
+            this.acaoTemp.id_funcionalidade = item.id;
+            this.acaoTemp.nm_funcionalidade = item.nm_funcionalidade;
+            this.acaoTemp.cd_funcionalidade = item.cd_funcionalidade;
+            this.acaoTemp.nm_acao = abaco.nm_acao;
+            this.acaoTemp.cd_acao = abaco.cd_acao;
+            this.pega.push(Object.assign({}, this.acaoTemp));
+          });
         });
       });
 
@@ -81,17 +86,30 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   }
 
   teste() {
-    console.log(this.pega);
-    console.log(this.listaFunc);
-    console.log(this.coloca);
+    // console.log(this.pega);
+    // console.log(this.listaFunc);
+    // console.log(this.coloca);
   }
 
   save() {
+    // this.perfil.acaoTemp = this.coloca;
+    // console.log(this.coloca)
+
+    this.coloca.forEach(elementos => {
+      this.perfil.acaoTemp.push(elementos);
+    });
+
+    console.log(this.coloca);
+    console.log(this.listaFunc);
+    console.log(this.perfil);
+
     this.isSaving = true;
     if (this.perfil.id !== undefined) {
       this.subscribeToSaveResponse(this.perfilService.update(this.perfil));
+
     } else {
       this.subscribeToSaveResponse(this.perfilService.create(this.perfil));
+
     }
   }
 

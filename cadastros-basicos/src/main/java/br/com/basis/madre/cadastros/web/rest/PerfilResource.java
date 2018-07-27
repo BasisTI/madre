@@ -2,15 +2,11 @@ package br.com.basis.madre.cadastros.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
-import br.com.basis.madre.cadastros.service.exception.RelatorioException;
-import br.com.basis.madre.cadastros.service.impl.FuncionalidadeServiceImpl;
-
-import com.codahale.metrics.annotation.Timed;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +27,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codahale.metrics.annotation.Timed;
+
 import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.domain.PerfilDTO;
+import br.com.basis.madre.cadastros.repository.Funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
 import br.com.basis.madre.cadastros.service.PerfilService;
+import br.com.basis.madre.cadastros.service.Perfil_funcionalidade_acaoService;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.util.MadreUtil;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
@@ -54,10 +56,16 @@ public class PerfilResource {
     private final PerfilService perfilService;
 
     private final PerfilRepository perfilRepository;
+    
+    private final Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService;
+    
+    private final Funcionalidade_acaoRepository funcionalidade_acaoRepository;
 
-    public PerfilResource(PerfilService perfilService, PerfilRepository perfilRepository) {
+    public PerfilResource(PerfilService perfilService, PerfilRepository perfilRepository, Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService, Funcionalidade_acaoRepository funcionalidade_acaoRepository) {
         this.perfilService = perfilService;
         this.perfilRepository = perfilRepository;
+        this.perfil_funcionalidade_acaoService = perfil_funcionalidade_acaoService;
+        this.funcionalidade_acaoRepository = funcionalidade_acaoRepository;
     }
 
     /**
@@ -69,7 +77,9 @@ public class PerfilResource {
      */
     @PostMapping("/perfils")
     @Timed
-    public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
+    public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody PerfilDTO dto) throws URISyntaxException {
+    	Perfil perfil = perfilService.convertAcaoTempToPerfil(dto);
+    	
     	log.debug("REST request to save Perfil : {}", perfil);
         perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
         if (perfil.getId() != null) {
@@ -79,14 +89,27 @@ public class PerfilResource {
         if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil())).isPresent()){
             throw new BadRequestAlertException("Perfil já cadastrado", ENTITY_NAME, "perfilexists");
         }
-
+        log.debug("============INICIO DO ARRAY============");
         Perfil result = perfilService.save(perfil);
+        pegaIdFuncionalidadeAcao(dto);
         return ResponseEntity.created(new URI("/api/perfils/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
-    /**
+    private List<Integer> pegaIdFuncionalidadeAcao(PerfilDTO dto) {
+    	List<Integer> idAcoes = new ArrayList<>();
+    	List<Integer> idFunc = new ArrayList<>();
+    	for(int i = 0; i < dto.getacaoTemp().size(); i ++) {
+    		idAcoes.add(dto.getacaoTemp().get(i).getId());
+    		idFunc.add(dto.getacaoTemp().get(i).getId_funcionalidade());
+    	}
+    	
+//    	funcionalidade_acaoRepository.selectIds(1, 1);
+    	return null;
+    }
+
+	/**
      * PUT  /perfils : Updates an existing perfil.
      *
      * @param perfil the perfil to update
@@ -101,7 +124,8 @@ public class PerfilResource {
         log.debug("REST request to update Perfil : {}", perfil);
         perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
         if (perfil.getId() == null) {
-            return createPerfil(perfil);
+            //return createPerfil(perfil);
+        	return null;
         }
 
         if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil())).isPresent()){

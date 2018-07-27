@@ -5,6 +5,7 @@ import br.com.basis.madre.cadastros.CadastrosbasicosApp;
 import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
 import br.com.basis.madre.cadastros.service.PerfilService;
+import br.com.basis.madre.cadastros.service.Perfil_funcionalidade_acaoService;
 import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
 import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
 
@@ -66,6 +67,9 @@ public class PerfilResourceIntTest {
 
     @Autowired
     private EntityManager em;
+    
+    @Autowired
+    private Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService;
 
     private MockMvc restPerfilMockMvc;
 
@@ -74,7 +78,7 @@ public class PerfilResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PerfilResource perfilResource = new PerfilResource(perfilService, perfilRepository);
+        final PerfilResource perfilResource = new PerfilResource(perfilService, perfilRepository,perfil_funcionalidade_acaoService);
         this.restPerfilMockMvc = MockMvcBuilders.standaloneSetup(perfilResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -19,6 +19,7 @@ export const routes: Routes = [
   { path: 'anexo', loadChildren: 'app/anexo/anexo.module#CadastrosbasicosAnexoModule' },
   { path: 'tipoPergunta', loadChildren: 'app/tipo-pergunta/tipo-pergunta.module#CadastrosbasicosTipoPerguntaModule' },
   { path: 'funcionalidade_acao', loadChildren: 'app/funcionalidade-acao/funcionalidade-acao.module#CadastrosbasicosFuncionalidade_acaoModule' },
+  { path: 'perfil_funcionalidade_acao', loadChildren: 'app/perfil-funcionalidade-acao/perfil-funcionalidade-acao.module#CadastrosbasicosPerfil_funcionalidade_acaoModule' },
   /* jhipster-needle-add-lazy-module - JHipster will add lazy modules here */
 ];
 

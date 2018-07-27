@@ -1,4 +1,5 @@
 import { BaseEntity } from '../shared';
+import { AcaoTemp } from '../acao/acao-temp.model';
 
 
 export class Perfil implements BaseEntity {
@@ -7,6 +8,7 @@ export class Perfil implements BaseEntity {
     public id?: number,
     public nomePerfil?: string,
     public dsPerfil?: string,
+    public acaoTemp?: AcaoTemp[]
   ) { }
 }
 

@@ -1,7 +1,7 @@
 id;nm_funcionalidade;cd_funcionalidade;st_excluido
-1;unidade_de_saude;UNIDADE_DE_SAUDE;S
-2;usuario;USUARIO;S
-3;perfis_e_permissoes;PERFIS_E_PERMISSOES;S
-4;pre_cadastro;PRE_CADASTRO;S
-5;triagem;TRIAGEM;S
-6;pacientes;PACIENTES;S
+1;Unidade de Saude;UNIDADE_DE_SAUDE;S
+2;Usuario;USUARIO;S
+3;Perfis e Permissoes;PERFIS_E_PERMISSOES;S
+4;Pre Cadastro;PRE_CADASTRO;S
+5;Triagem;TRIAGEM;S
+6;Pacientes;PACIENTES;S

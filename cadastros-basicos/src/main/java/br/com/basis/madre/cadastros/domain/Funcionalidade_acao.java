@@ -34,11 +34,11 @@ public class Funcionalidade_acao implements Serializable {
 
     @NotNull
     @Column(name = "id_funcionalidade", nullable = false)
-    private Integer id_funcionalidade;
+    private Long id_funcionalidade;
 
     @NotNull
     @Column(name = "id_acao", nullable = false)
-    private Integer id_acao;
+    private Long id_acao;
 
 //    @ManyToMany
 //	private List<Funcionalidade> funcionalidades = new ArrayList<>();
@@ -55,29 +55,29 @@ public class Funcionalidade_acao implements Serializable {
         this.id = id;
     }
 
-    public Integer getId_funcionalidade() {
+    public Long getId_funcionalidade() {
         return id_funcionalidade;
     }
 
-    public Funcionalidade_acao id_funcionalidade(Integer id_funcionalidade) {
+    public Funcionalidade_acao id_funcionalidade(Long id_funcionalidade) {
         this.id_funcionalidade = id_funcionalidade;
         return this;
     }
 
-    public void setId_funcionalidade(Integer id_funcionalidade) {
+    public void setId_funcionalidade(Long id_funcionalidade) {
         this.id_funcionalidade = id_funcionalidade;
     }
 
-    public Integer getId_acao() {
+    public Long getId_acao() {
         return id_acao;
     }
 
-    public Funcionalidade_acao id_acao(Integer id_acao) {
+    public Funcionalidade_acao id_acao(Long id_acao) {
         this.id_acao = id_acao;
         return this;
     }
 
-    public void setId_acao(Integer id_acao) {
+    public void setId_acao(Long id_acao) {
         this.id_acao = id_acao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

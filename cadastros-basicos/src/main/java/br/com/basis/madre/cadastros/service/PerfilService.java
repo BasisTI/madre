@@ -1,5 +1,6 @@
 package br.com.basis.madre.cadastros.service;
 
+import br.com.basis.madre.cadastros.domain.PerfilDTO;
 import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import org.springframework.core.io.InputStreamResource;
@@ -52,6 +53,8 @@ public interface PerfilService {
      * @return the list of entities
      */
     Page<Perfil> search(String query, Pageable pageable);
+    
+    Perfil convertAcaoTempToPerfil(PerfilDTO acaoTemp);
 
     ResponseEntity<InputStreamResource> gerarRelatorioExportacao (String tipoRelatorio, String querry) throws RelatorioException;
 }
