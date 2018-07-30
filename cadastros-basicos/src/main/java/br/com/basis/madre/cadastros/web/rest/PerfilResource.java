@@ -31,8 +31,10 @@ import com.codahale.metrics.annotation.Timed;
 
 import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.domain.PerfilDTO;
+import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
 import br.com.basis.madre.cadastros.repository.Funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
+import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.service.PerfilService;
 import br.com.basis.madre.cadastros.service.Perfil_funcionalidade_acaoService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
@@ -49,163 +51,192 @@ import io.github.jhipster.web.util.ResponseUtil;
 @RequestMapping("/api")
 public class PerfilResource {
 
-    private final Logger log = LoggerFactory.getLogger(PerfilResource.class);
+	private final Logger log = LoggerFactory.getLogger(PerfilResource.class);
 
-    private static final String ENTITY_NAME = "perfil";
+	private static final String ENTITY_NAME = "perfil";
 
-    private final PerfilService perfilService;
+	private final PerfilService perfilService;
 
-    private final PerfilRepository perfilRepository;
-    
-    private final Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService;
-    
-    private final Funcionalidade_acaoRepository funcionalidade_acaoRepository;
+	private final PerfilRepository perfilRepository;
 
-    public PerfilResource(PerfilService perfilService, PerfilRepository perfilRepository, Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService, Funcionalidade_acaoRepository funcionalidade_acaoRepository) {
-        this.perfilService = perfilService;
-        this.perfilRepository = perfilRepository;
-        this.perfil_funcionalidade_acaoService = perfil_funcionalidade_acaoService;
-        this.funcionalidade_acaoRepository = funcionalidade_acaoRepository;
-    }
+	private final Funcionalidade_acaoRepository funcionalidade_acaoRepository;
+	
+	private final Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository;
 
-    /**
-     * POST  /perfils : Create a new perfil.
-     *
-     * @param perfil the perfil to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new perfil, or with status 400 (Bad Request) if the perfil has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PostMapping("/perfils")
-    @Timed
-    public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody PerfilDTO dto) throws URISyntaxException {
-    	Perfil perfil = perfilService.convertAcaoTempToPerfil(dto);
-    	
-    	log.debug("REST request to save Perfil : {}", perfil);
-        perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
-        if (perfil.getId() != null) {
-            throw new BadRequestAlertException("A new perfil cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-
-        if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil())).isPresent()){
-            throw new BadRequestAlertException("Perfil já cadastrado", ENTITY_NAME, "perfilexists");
-        }
-        log.debug("============INICIO DO ARRAY============");
-        Perfil result = perfilService.save(perfil);
-        pegaIdFuncionalidadeAcao(dto);
-        return ResponseEntity.created(new URI("/api/perfils/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
-
-    private List<Integer> pegaIdFuncionalidadeAcao(PerfilDTO dto) {
-    	List<Integer> idAcoes = new ArrayList<>();
-    	List<Integer> idFunc = new ArrayList<>();
-    	for(int i = 0; i < dto.getacaoTemp().size(); i ++) {
-    		idAcoes.add(dto.getacaoTemp().get(i).getId());
-    		idFunc.add(dto.getacaoTemp().get(i).getId_funcionalidade());
-    	}
-    	
-//    	funcionalidade_acaoRepository.selectIds(1, 1);
-    	return null;
-    }
+	public PerfilResource(PerfilService perfilService, PerfilRepository perfilRepository,
+			Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService,
+			Funcionalidade_acaoRepository funcionalidade_acaoRepository,
+			Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository) {
+		this.perfilService = perfilService;
+		this.perfilRepository = perfilRepository;
+		this.funcionalidade_acaoRepository = funcionalidade_acaoRepository;
+		this.perfil_funcionalidade_acaoRepository = perfil_funcionalidade_acaoRepository;
+	}
 
 	/**
-     * PUT  /perfils : Updates an existing perfil.
-     *
-     * @param perfil the perfil to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated perfil,
-     * or with status 400 (Bad Request) if the perfil is not valid,
-     * or with status 500 (Internal Server Error) if the perfil couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/perfils")
-    @Timed
-    public ResponseEntity<Perfil> updatePerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
-        log.debug("REST request to update Perfil : {}", perfil);
-        perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
-        if (perfil.getId() == null) {
-            //return createPerfil(perfil);
-        	return null;
-        }
+	 * POST /perfils : Create a new perfil.
+	 *
+	 * @param perfil
+	 *            the perfil to create
+	 * @return the ResponseEntity with status 201 (Created) and with body the new
+	 *         perfil, or with status 400 (Bad Request) if the perfil has already an
+	 *         ID
+	 * @throws URISyntaxException
+	 *             if the Location URI syntax is incorrect
+	 */
+	@PostMapping("/perfils")
+	@Timed
+	public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody PerfilDTO dto) throws URISyntaxException {
+		Perfil perfil = perfilService.convertAcaoTempToPerfil(dto);
+		log.debug("REST request to save Perfil : {}", perfil);
+		perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
+		if (perfil.getId() != null) {
+			throw new BadRequestAlertException("A new perfil cannot already have an ID", ENTITY_NAME, "idexists");
+		}
 
-        if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil())).isPresent()){
-            throw new BadRequestAlertException("Perfil já cadastrado", ENTITY_NAME, "perfilexists");
-        }
+		if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()))
+				.isPresent()) {
+			throw new BadRequestAlertException("Perfil já cadastrado", ENTITY_NAME, "perfilexists");
+		}
+		Perfil result = perfilService.save(perfil);
 
-        Perfil result = perfilService.save(perfil);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, perfil.getId().toString()))
-            .body(result);
-    }
+		for (int i = 0; i < dto.getacaoTemp().size(); i++) {
+			Perfil_funcionalidade_acao pfc = new Perfil_funcionalidade_acao(perfil.getId(),
+					pegaIdFuncionalidadeAcao(dto).get(i));
+			perfil_funcionalidade_acaoRepository.save(pfc);
+		}
+		return ResponseEntity.created(new URI("/api/perfils/" + result.getId()))
+				.headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
+	}
 
-    /**
-     * GET  /perfils : get all the perfils.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of perfils in body
-     */
-    @GetMapping("/perfils")
-    @Timed
-    public ResponseEntity<List<Perfil>> getAllPerfils(Pageable pageable) {
-        log.debug("REST request to get a page of Perfils");
-        Page<Perfil> page = perfilService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/perfils");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
+	private List<Integer> pegaIdFuncionalidadeAcao(PerfilDTO dto) {
+		List<Integer> idAcoes = new ArrayList<>();
+		List<Integer> idFunc = new ArrayList<>();
+		List<Integer> idFuncAcao = new ArrayList<>();
 
-    /**
-     * GET  /perfils/:id : get the "id" perfil.
-     *
-     * @param id the id of the perfil to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the perfil, or with status 404 (Not Found)
-     */
-    @GetMapping("/perfils/{id}")
-    @Timed
-    public ResponseEntity<Perfil> getPerfil(@PathVariable Long id) {
-        log.debug("REST request to get Perfil : {}", id);
-        Perfil perfil = perfilService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(perfil));
-    }
+		for (int i = 0; i < dto.getacaoTemp().size(); i++) {
+			idAcoes.add(dto.getacaoTemp().get(i).getId());
+			idFunc.add(dto.getacaoTemp().get(i).getId_funcionalidade());
+		}
 
-    /**
-     * DELETE  /perfils/:id : delete the "id" perfil.
-     *
-     * @param id the id of the perfil to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/perfils/{id}")
-    @Timed
-    public ResponseEntity<Void> deletePerfil(@PathVariable Long id) {
-        log.debug("REST request to delete Perfil : {}", id);
-        perfilService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
+		for (int i = 0; i < dto.getacaoTemp().size(); i++) {
+			idFuncAcao.add(funcionalidade_acaoRepository.pegarIds(idAcoes.get(i), idFunc.get(i)));
+		}
 
-    /**
-     * SEARCH  /_search/perfils?query=:query : search for the perfil corresponding
-     * to the query.
-     *
-     * @param query the query of the perfil search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/perfils")
-    @Timed
-    public ResponseEntity<List<Perfil>> searchPerfils(@RequestParam(defaultValue = "*") String query, Pageable pageable) {
-        log.debug("REST request to search for a page of Perfils for query {}", query);
-        Page<Perfil> page = perfilService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/perfils");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
+		return idFuncAcao;
+	}
 
-    @GetMapping(value = "/perfil/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao (@PathVariable String tipoRelatorio,@RequestParam (defaultValue = "*")String query){
-            try {
-                return perfilService.gerarRelatorioExportacao(tipoRelatorio,query);
-            } catch (RelatorioException e){
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage())).body(null);
-            }
-    }
+	/**
+	 * PUT /perfils : Updates an existing perfil.
+	 *
+	 * @param perfil
+	 *            the perfil to update
+	 * @return the ResponseEntity with status 200 (OK) and with body the updated
+	 *         perfil, or with status 400 (Bad Request) if the perfil is not valid,
+	 *         or with status 500 (Internal Server Error) if the perfil couldn't be
+	 *         updated
+	 * @throws URISyntaxException
+	 *             if the Location URI syntax is incorrect
+	 */
+	@PutMapping("/perfils")
+	@Timed
+	public ResponseEntity<Perfil> updatePerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
+		log.debug("REST request to update Perfil : {}", perfil);
+		perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
+		if (perfil.getId() == null) {
+			// return createPerfil(perfil);
+			return null;
+		}
+
+		if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()))
+				.isPresent()) {
+			throw new BadRequestAlertException("Perfil já cadastrado", ENTITY_NAME, "perfilexists");
+		}
+
+		Perfil result = perfilService.save(perfil);
+		return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, perfil.getId().toString()))
+				.body(result);
+	}
+
+	/**
+	 * GET /perfils : get all the perfils.
+	 *
+	 * @param pageable
+	 *            the pagination information
+	 * @return the ResponseEntity with status 200 (OK) and the list of perfils in
+	 *         body
+	 */
+	@GetMapping("/perfils")
+	@Timed
+	public ResponseEntity<List<Perfil>> getAllPerfils(Pageable pageable) {
+		log.debug("REST request to get a page of Perfils");
+		Page<Perfil> page = perfilService.findAll(pageable);
+		HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/perfils");
+		return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+	}
+
+	/**
+	 * GET /perfils/:id : get the "id" perfil.
+	 *
+	 * @param id
+	 *            the id of the perfil to retrieve
+	 * @return the ResponseEntity with status 200 (OK) and with body the perfil, or
+	 *         with status 404 (Not Found)
+	 */
+	@GetMapping("/perfils/{id}")
+	@Timed
+	public ResponseEntity<Perfil> getPerfil(@PathVariable Long id) {
+		log.debug("REST request to get Perfil : {}", id);
+		Perfil perfil = perfilService.findOne(id);
+		return ResponseUtil.wrapOrNotFound(Optional.ofNullable(perfil));
+	}
+
+	/**
+	 * DELETE /perfils/:id : delete the "id" perfil.
+	 *
+	 * @param id
+	 *            the id of the perfil to delete
+	 * @return the ResponseEntity with status 200 (OK)
+	 */
+	@DeleteMapping("/perfils/{id}")
+	@Timed
+	public ResponseEntity<Void> deletePerfil(@PathVariable Long id) {
+		log.debug("REST request to delete Perfil : {}", id);
+		perfilService.delete(id);
+		return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+	}
+
+	/**
+	 * SEARCH /_search/perfils?query=:query : search for the perfil corresponding to
+	 * the query.
+	 *
+	 * @param query
+	 *            the query of the perfil search
+	 * @param pageable
+	 *            the pagination information
+	 * @return the result of the search
+	 */
+	@GetMapping("/_search/perfils")
+	@Timed
+	public ResponseEntity<List<Perfil>> searchPerfils(@RequestParam(defaultValue = "*") String query,
+			Pageable pageable) {
+		log.debug("REST request to search for a page of Perfils for query {}", query);
+		Page<Perfil> page = perfilService.search(query, pageable);
+		HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/perfils");
+		return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/perfil/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@Timed
+	public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
+			@RequestParam(defaultValue = "*") String query) {
+		try {
+			return perfilService.gerarRelatorioExportacao(tipoRelatorio, query);
+		} catch (RelatorioException e) {
+			return ResponseEntity.badRequest().headers(
+					HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage()))
+					.body(null);
+		}
+	}
 
 }

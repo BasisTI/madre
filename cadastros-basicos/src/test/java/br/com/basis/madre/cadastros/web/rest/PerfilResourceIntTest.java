@@ -1,13 +1,19 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.basis.madre.cadastros.domain.Perfil;
-import br.com.basis.madre.cadastros.repository.PerfilRepository;
-import br.com.basis.madre.cadastros.service.PerfilService;
-import br.com.basis.madre.cadastros.service.Perfil_funcionalidade_acaoService;
-import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
-import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,14 +29,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static br.com.basis.madre.cadastros.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import br.com.basis.madre.cadastros.CadastrosbasicosApp;
+import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.repository.Funcionalidade_acaoRepository;
+import br.com.basis.madre.cadastros.repository.PerfilRepository;
+import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
+import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
+import br.com.basis.madre.cadastros.service.PerfilService;
+import br.com.basis.madre.cadastros.web.rest.errors.ExceptionTranslator;
 
 /**
  * Test class for the PerfilResource REST controller.
@@ -69,8 +75,10 @@ public class PerfilResourceIntTest {
     private EntityManager em;
     
     @Autowired
-    private Perfil_funcionalidade_acaoService perfil_funcionalidade_acaoService;
-
+    private Funcionalidade_acaoRepository funcionalidade_acaoRepository;
+    
+    @Autowired
+    private Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository;
     private MockMvc restPerfilMockMvc;
 
     private Perfil perfil;
@@ -78,7 +86,13 @@ public class PerfilResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PerfilResource perfilResource = new PerfilResource(perfilService, perfilRepository,perfil_funcionalidade_acaoService);
+
+        
+        final PerfilResource perfilResource = new PerfilResource(
+        		perfilService,
+        		perfilRepository,
+        		null, funcionalidade_acaoRepository,
+        		perfil_funcionalidade_acaoRepository);
         this.restPerfilMockMvc = MockMvcBuilders.standaloneSetup(perfilResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -40,8 +40,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CadastrosbasicosApp.class)
 public class Perfil_funcionalidade_acaoResourceIntTest {
 
-    private static final Integer DEFAULT_ID_PERFIL = 1;
-    private static final Integer UPDATED_ID_PERFIL = 2;
+    private static final Long DEFAULT_ID_PERFIL = (long) 1;
+    private static final Long UPDATED_ID_PERFIL = (long) 2;
 
     private static final Integer DEFAULT_ID_FUNCIONALIDADE_ACAO = 1;
     private static final Integer UPDATED_ID_FUNCIONALIDADE_ACAO = 2;

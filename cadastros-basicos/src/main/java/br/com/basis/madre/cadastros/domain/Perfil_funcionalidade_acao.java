@@ -28,13 +28,13 @@ public class Perfil_funcionalidade_acao implements Serializable {
 
     @NotNull
     @Column(name = "id_perfil", nullable = false)
-    private Integer id_perfil;
+    private Long id_perfil;
 
     @NotNull
     @Column(name = "id_funcionalidade_acao", nullable = false)
     private Integer id_funcionalidade_acao;
 
-    public Perfil_funcionalidade_acao(Integer id_perfil, Integer id_funcionalidade_acao) {
+    public Perfil_funcionalidade_acao(Long id_perfil, Integer id_funcionalidade_acao) {
 		super();
 		this.id_perfil = id_perfil;
 		this.id_funcionalidade_acao = id_funcionalidade_acao;
@@ -52,16 +52,16 @@ public class Perfil_funcionalidade_acao implements Serializable {
         this.id = id;
     }
 
-    public Integer getId_perfil() {
+    public Long getId_perfil() {
         return id_perfil;
     }
 
-    public Perfil_funcionalidade_acao id_perfil(Integer id_perfil) {
+    public Perfil_funcionalidade_acao id_perfil(Long id_perfil) {
         this.id_perfil = id_perfil;
         return this;
     }
 
-    public void setId_perfil(Integer id_perfil) {
+    public void setId_perfil(Long id_perfil) {
         this.id_perfil = id_perfil;
     }
 

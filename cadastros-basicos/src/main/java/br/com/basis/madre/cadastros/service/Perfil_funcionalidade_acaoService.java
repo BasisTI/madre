@@ -1,9 +1,7 @@
 package br.com.basis.madre.cadastros.service;
 
-import br.com.basis.madre.cadastros.domain.PerfilDTO;
-import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
-import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
-import br.com.basis.madre.cadastros.repository.search.Perfil_funcionalidade_acaoSearchRepository;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -11,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
+import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
+import br.com.basis.madre.cadastros.repository.search.Perfil_funcionalidade_acaoSearchRepository;
 
 /**
  * Service Implementation for managing Perfil_funcionalidade_acao.
@@ -99,12 +99,5 @@ public class Perfil_funcionalidade_acaoService {
 		Page<Perfil_funcionalidade_acao> result = perfil_funcionalidade_acaoSearchRepository
 				.search(queryStringQuery(query), pageable);
 		return result;
-	}
-
-	public Perfil_funcionalidade_acao convertAcaoTempToPerfil_funcionalidade_acao(PerfilDTO dto) {
-		Perfil_funcionalidade_acao perfil_funcionalidade_acao = new Perfil_funcionalidade_acao(
-				dto.getacaoTemp().get(0).getId(), dto.getacaoTemp().get(0).getId_funcionalidade());
-		
-		return perfil_funcionalidade_acao;
 	}
 }
