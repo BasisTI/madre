@@ -34,6 +34,13 @@ public class Perfil_funcionalidade_acao implements Serializable {
     @Column(name = "id_funcionalidade_acao", nullable = false)
     private Integer id_funcionalidade_acao;
 
+    // @ManyToOne
+    // private Perfil perfil;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id")
+    private Funcionalidade_acao funcionalidade_acao;
+
     public Perfil_funcionalidade_acao(Long id_perfil, Integer id_funcionalidade_acao) {
 		super();
 		this.id_perfil = id_perfil;
@@ -43,7 +50,35 @@ public class Perfil_funcionalidade_acao implements Serializable {
     public Perfil_funcionalidade_acao() {
 	}
 
-	// jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    /**
+     * @return the funcionalidade_acao
+     */
+    public Funcionalidade_acao getFuncionalidade_acao() {
+        return funcionalidade_acao;
+    }
+
+    /**
+     * @param funcionalidade_acao the funcionalidade_acao to set
+     */
+    public void setFuncionalidade_acao(Funcionalidade_acao funcionalidade_acao) {
+        this.funcionalidade_acao = funcionalidade_acao;
+    }
+    
+    // /**
+    //  * @return the perfil
+    //  */
+    // public Perfil getPerfil() {
+    //     return perfil;
+    // }
+
+    // /**
+    //  * @param perfil the perfil to set
+    //  */
+    // public void setPerfil(Perfil perfil) {
+    //     this.perfil = perfil;
+    // }
+
     public Long getId() {
         return id;
     }

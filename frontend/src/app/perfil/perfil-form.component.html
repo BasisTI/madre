@@ -20,8 +20,9 @@
             </span>
           </div>
           <div class="ui-g-12 ui-md-12">
-          <p-pickList [source]="pega" [target]="coloca"  sourceHeader="Procurar por Funcionalidades" targetHeader="Funcionalidades Selecionadas" [responsive]="true" 
-          dragdrop="true" dragdropScope="true"[sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" sourceFilterPlaceholder="Procurar por Funcionalidades" targetFilterPlaceholder="Funcionalidades Selecionadas">
+          <p-pickList [source]="pega" [target]="coloca" filterBy="nm_funcionalidade" 
+          sourceHeader="Selecionar Funcionalidades" targetHeader="Funcionalidades Selecionadas" [responsive]="true" 
+          dragdrop="true" dragdropScope="true"[sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
             <ng-template let-acao pTemplate="item">
                  {{acao.nm_funcionalidade + ' - ' + acao.nm_acao}}
             </ng-template>

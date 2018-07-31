@@ -5,9 +5,11 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -40,12 +42,28 @@ public class Funcionalidade_acao implements Serializable {
     @Column(name = "id_acao", nullable = false)
     private Integer id_acao;
 
+    @OneToOne(mappedBy="funcionalidade_acao", fetch=FetchType.LAZY)
+    private Perfil_funcionalidade_acao perfil_funcionalidade_acao;
+
 //    @ManyToMany
 //	private List<Funcionalidade> funcionalidades = new ArrayList<>();
 //    @ManyToMany
 //    private List<Acao> acoes = new ArrayList<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    /**
+     * @return the perfil_funcionalidade_acao
+     */
+    public Perfil_funcionalidade_acao getPerfil_funcionalidade_acao() {
+        return perfil_funcionalidade_acao;
+    }
+
+    /**
+     * @param perfil_funcionalidade_acao the perfil_funcionalidade_acao to set
+     */
+    public void setPerfil_funcionalidade_acao(Perfil_funcionalidade_acao perfil_funcionalidade_acao) {
+        this.perfil_funcionalidade_acao = perfil_funcionalidade_acao;
+    }
     
     public Long getId() {
         return id;
