@@ -61,7 +61,10 @@
             </p-listbox>
           </span>
           </div>
-
+          <div class="ui-g-12 ui-md-6">
+              <Label>Unidade Hospitalar</Label> <br/>
+              <p-multiSelect [options]="unidadeHospitalares" [(ngModel)]="usuario.unidadeHospitalar" name="unidadeHospitalar" optionLabel="nome" dataKey="id" label="AAAAAAAAAAAAAAAAA" [listStyle]="{'max-height':'200px'}"></p-multiSelect>
+            </div>
           <div *ngIf="!(isEdit) || usuario.especialidade || myPerfil.nomePerfil == 'Médico'" [hidden]='esconde' class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <Label>Especialidade</Label> <br/>

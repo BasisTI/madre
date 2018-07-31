@@ -3,16 +3,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { SelectItem, ListboxModule } from 'primeng/primeng';
-
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { Usuario } from './usuario.model';
 import { UsuarioService } from './usuario.service';
 import { MultiSelectModule } from 'primeng/multiselect';
-
 import { Perfil, PerfilService } from '../perfil';
 import { Especialidade, EspecialidadeService } from '../especialidade';
 import { ResponseWrapper } from '../shared';
+import { UnidadeHospitalar, UnidadeHospitalarService } from '../unidade-hospitalar';
+import { JSONP_ERR_NO_CALLBACK } from '@angular/common/http/src/jsonp';
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import { element } from 'protractor';
 
 @Component({
   selector: 'jhi-usuario-form',
@@ -20,7 +22,9 @@ import { ResponseWrapper } from '../shared';
 })
 export class UsuarioFormComponent implements OnInit, OnDestroy {
 
+  uhs: Object[];
   perfils: Perfil[];
+  unidadeHospitalares: UnidadeHospitalar[];
   esconde: boolean;
   especialidades: Especialidade[];
   myEspecialidade: Especialidade;
@@ -36,14 +40,20 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     private breadcrumbService: BreadcrumbService,
     private pageNotificationService: PageNotificationService,
     private usuarioService: UsuarioService,
+    private unidadeHospitalarService: UnidadeHospitalarService,
     private perfilService: PerfilService,
     private especialidadeService: EspecialidadeService,
   ) {}
 
   ngOnInit() {
+
     this.esconde = true;
     this.myPerfil = new Perfil();
     this.isSaving = false;
+   
+      this.unidadeHospitalarService.query().subscribe((res: ResponseWrapper) => {
+      this.unidadeHospitalares = res.json;
+    });
     this.perfilService.query().subscribe((res: ResponseWrapper) => {
       this.perfils = res.json;
     });
@@ -67,11 +77,24 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     });
   }
 
+
+ 
+  
+
   save() {
     this.isSaving = true;
     if (this.usuario.id !== undefined) {
       this.subscribeToSaveResponse(this.usuarioService.update(this.usuario));
     } else {
+
+      console.log(this.uhs);
+
+     for (let i = 0; 0 < this.uhs.length; i++) {
+      this.usuario.unidadeHospitalar.push(this.uhs[i]);
+      console.log("BATEU AQUI")
+     }
+     console.log("Aqui"+this.unidadeHospitalares.values());
+
       this.subscribeToSaveResponse(this.usuarioService.create(this.usuario));
     }
   }

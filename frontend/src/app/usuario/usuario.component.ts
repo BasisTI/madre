@@ -58,6 +58,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         break;
     }
   }
+  
 
   confirmDelete(id: any) {
     this.confirmationService.confirm({

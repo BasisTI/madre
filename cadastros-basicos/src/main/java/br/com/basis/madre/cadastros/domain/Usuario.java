@@ -1,16 +1,10 @@
 package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -65,6 +59,16 @@ public class Usuario implements Serializable, ReportObject {
 
     @ManyToOne
     private Especialidade especialidade;
+
+    @OneToMany
+    @JoinTable(name = "ta_usuario_unidade_hospitalar",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "unidade_hospitalar_id"))
+    private List<UnidadeHospitalar> unidadeHospitalares;
+
+    //private UnidadeHospitalar unidadeHospitalar;
+
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -160,6 +164,15 @@ public class Usuario implements Serializable, ReportObject {
     public Usuario especialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
         return this;
+    }
+
+
+    public List<UnidadeHospitalar> getUnidadeHospitalares() {
+        return unidadeHospitalares;
+    }
+
+    public void setUnidadeHospitalares(List<UnidadeHospitalar> unidadeHospitalares) {
+        this.unidadeHospitalares = unidadeHospitalares;
     }
 
     public void setEspecialidade(Especialidade especialidade) {

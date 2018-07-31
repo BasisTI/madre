@@ -6,17 +6,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -66,6 +60,9 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
+
+//    @ManyToMany
+//    private List<Usuario> usuarios;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -162,6 +159,7 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         this.ativo = ativo;
         return this;
     }
+
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;

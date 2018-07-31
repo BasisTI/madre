@@ -1,6 +1,7 @@
 import { BaseEntity } from '../shared';
 import { Perfil } from '../perfil';
 import { Especialidade } from '../especialidade';
+import { UnidadeHospitalar } from '../unidade-hospitalar';
 
 
 export class Usuario implements BaseEntity {
@@ -14,5 +15,8 @@ export class Usuario implements BaseEntity {
     public ativo?: boolean,
     public perfil?: Perfil,
     public especialidade?: Especialidade,
-  ) {}
+    public unidadeHospitalar?: Array<UnidadeHospitalar>,
+  ) {
+    unidadeHospitalar = new Array<UnidadeHospitalar>();
+  }
 }

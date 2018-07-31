@@ -14,6 +14,7 @@ import {
   RadioButtonModule,
   ConfirmDialogModule,
   ListboxModule,
+  MultiSelectModule,
 } from 'primeng/primeng';
 
 import {
@@ -41,6 +42,7 @@ import {ToastrModule} from 'ngx-toastr';
     RadioButtonModule,
     InputTextModule,
     ListboxModule,
+    MultiSelectModule,
     ConfirmDialogModule,
     BotoesExportacaoModule
   ],
