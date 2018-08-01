@@ -15,8 +15,8 @@ export class Usuario implements BaseEntity {
     public ativo?: boolean,
     public perfil?: Perfil,
     public especialidade?: Especialidade,
-    public unidadeHospitalar?: Array<UnidadeHospitalar>,
+    public unidadeHospitalar?: UnidadeHospitalar[],
   ) {
-    unidadeHospitalar = new Array<UnidadeHospitalar>();
+   
   }
 }

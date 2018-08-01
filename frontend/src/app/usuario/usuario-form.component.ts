@@ -15,6 +15,7 @@ import { UnidadeHospitalar, UnidadeHospitalarService } from '../unidade-hospital
 import { JSONP_ERR_NO_CALLBACK } from '@angular/common/http/src/jsonp';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { element } from 'protractor';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'jhi-usuario-form',
@@ -22,7 +23,7 @@ import { element } from 'protractor';
 })
 export class UsuarioFormComponent implements OnInit, OnDestroy {
 
-  uhs: Object[];
+  uhs:UnidadeHospitalar[];
   perfils: Perfil[];
   unidadeHospitalares: UnidadeHospitalar[];
   esconde: boolean;
@@ -51,6 +52,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
     this.myPerfil = new Perfil();
     this.isSaving = false;
    
+
       this.unidadeHospitalarService.query().subscribe((res: ResponseWrapper) => {
       this.unidadeHospitalares = res.json;
     });
@@ -82,21 +84,33 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
   
 
   save() {
+
     this.isSaving = true;
-    if (this.usuario.id !== undefined) {
-      this.subscribeToSaveResponse(this.usuarioService.update(this.usuario));
-    } else {
 
-      console.log(this.uhs);
+    if (this.usuario && this.usuario.id) {
 
-     for (let i = 0; 0 < this.uhs.length; i++) {
-      this.usuario.unidadeHospitalar.push(this.uhs[i]);
-      console.log("BATEU AQUI")
-     }
-     console.log("Aqui"+this.unidadeHospitalares.values());
+      this.atualizarUsuario();
+      return;
+    } 
+    
+    this.criarUsuario();
+  }
 
-      this.subscribeToSaveResponse(this.usuarioService.create(this.usuario));
-    }
+  private atualizarUsuario() {
+
+    this.subscribeToSaveResponse(this.usuarioService.update(this.usuario));
+  }
+
+  private criarUsuario() {
+
+    this.usuario.unidadeHospitalar = [];
+
+    this.usuario.unidadeHospitalar=this.uhs
+
+    console.log(this.usuario)
+    console.log(this.usuario.unidadeHospitalar)
+
+    this.subscribeToSaveResponse(this.usuarioService.create(this.usuario));
   }
 
   private subscribeToSaveResponse(result: Observable<Usuario>) {
