@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "id_perfil",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "id_funcionalidade_acao",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180726163711",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "perfil_funcionalidade_acao",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager",
+    "microserviceName": "cadastrosbasicos",
+    "searchEngine": "elasticsearch"
+}

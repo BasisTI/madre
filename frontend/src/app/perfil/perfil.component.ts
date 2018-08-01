@@ -10,6 +10,8 @@ import { Perfil } from './perfil.model';
 import { PerfilService } from './perfil.service';
 import { PacienteService } from '../paciente';
 
+import { ElasticQuery } from '../shared/elastic-query';
+
 @Component({
   selector: 'jhi-perfil',
   templateUrl: './perfil.component.html'
@@ -19,6 +21,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   searchUrl: string = this.perfilService.searchUrl;
+
+  elasticQuery: ElasticQuery = new ElasticQuery();
+
+  valueFiltroCampo: string;
 
   constructor(
     private router: Router,
@@ -32,6 +38,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
  
 
     this.breadcrumbService.setItems([{ label: 'Perfils' }]);
+  }
+
+  valueFiltro(valuefiltro: string) {
+    this.valueFiltroCampo = valuefiltro;
+    this.datatable.refresh(valuefiltro);
   }
 
   datatableClick(event: DatatableClickEvent) {

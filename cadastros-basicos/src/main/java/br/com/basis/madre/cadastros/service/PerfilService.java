@@ -1,8 +1,12 @@
 package br.com.basis.madre.cadastros.service;
 
+import br.com.basis.madre.cadastros.domain.PerfilDTO;
 import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 /**
  * Service Interface for managing Perfil.
@@ -44,9 +48,13 @@ public interface PerfilService {
      * Search for the perfil corresponding to the query.
      *
      * @param query the query of the search
-     * 
+     *
      * @param pageable the pagination information
      * @return the list of entities
      */
     Page<Perfil> search(String query, Pageable pageable);
+    
+    Perfil convertAcaoTempToPerfil(PerfilDTO acaoTemp);
+
+    ResponseEntity<InputStreamResource> gerarRelatorioExportacao (String tipoRelatorio, String querry) throws RelatorioException;
 }
