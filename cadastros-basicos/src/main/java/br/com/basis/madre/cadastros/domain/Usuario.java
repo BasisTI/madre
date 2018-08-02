@@ -210,6 +210,7 @@ public class Usuario implements Serializable, ReportObject {
             ", login='" + getLogin() + "'" +
             ", email='" + getEmail() + "'" +
             ", ativo='" + isAtivo() + "'" +
+            ", Un_hosp='"+ getUnidadeHospitalares() +"'"+
             "}";
     }
 }
