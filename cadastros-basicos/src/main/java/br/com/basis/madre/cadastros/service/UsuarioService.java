@@ -50,10 +50,13 @@ public interface UsuarioService {
      * Search for the usuario corresponding to the query.
      *
      * @param query the query of the search
-     * 
+     *
      * @param pageable the pagination information
      * @return the list of entities
      */
     Page<Usuario> search(String query, Pageable pageable);
     ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String query) throws RelatorioException;
+
 }
+
+

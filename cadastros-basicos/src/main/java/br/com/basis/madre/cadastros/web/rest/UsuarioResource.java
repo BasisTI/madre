@@ -1,6 +1,8 @@
 package br.com.basis.madre.cadastros.web.rest;
 
+import br.com.basis.madre.cadastros.domain.TaUsuarioUnidadeHospitalar;
 import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.repository.TaUsuarioUnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.service.UsuarioService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
@@ -21,19 +23,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,9 +48,12 @@ public class UsuarioResource {
 
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
+    private final TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
+
+    public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioService usuarioService, TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
+        this.taUsuarioUnidadeHospitalarRepository=taUsuarioUnidadeHospitalarRepository;
     }
 
     /**
@@ -69,6 +67,7 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario)
         throws URISyntaxException {
+        log.debug("======================="+ usuario.getUnidadeHospitalar());
         try { log.debug("REST request to save Usuario : {}", usuario);
             if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
@@ -108,12 +107,27 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);}
             Usuario result = usuarioService.save(usuario);
+
+            for(int i=0; i<usuario.getUnidadeHospitalar().size(); i++){
+                TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar = new TaUsuarioUnidadeHospitalar(usuario.getId(),
+                    pegaIdUnidadeHospitalar(usuario).get(i));
+                taUsuarioUnidadeHospitalarRepository.save(taUsuarioUnidadeHospitalar);
+            }
+
             return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())) .body(usuario);
         }
     }
+
+    private List<Long> pegaIdUnidadeHospitalar(Usuario usuario) {
+      List<Long> idUnidadeHospitalar = new ArrayList<>();
+        for(int i = 0; i < usuario.getUnidadeHospitalar().size(); i ++) {
+            idUnidadeHospitalar.add(usuario.getUnidadeHospitalar().get(i).getId());
+        }
+            return idUnidadeHospitalar;
+      }
 
     /**
      * GET  /usuarios : get all the usuarios.

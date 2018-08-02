@@ -25,6 +25,18 @@ public class TaUsuarioUnidadeHospitalar implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    private Long usuadio_id;
+
+    private Long unidade_hospitalar_id;
+
+    public TaUsuarioUnidadeHospitalar() {
+    }
+
+    public TaUsuarioUnidadeHospitalar(Long usuadio_id, Long unidade_hospitalar_id) {
+        this.usuadio_id = usuadio_id;
+        this.unidade_hospitalar_id = unidade_hospitalar_id;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -34,6 +46,23 @@ public class TaUsuarioUnidadeHospitalar implements Serializable {
         this.id = id;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+
+    public Long getUsuadio_id() {
+        return usuadio_id;
+    }
+
+    public void setUsuadio_id(Long usuadio_id) {
+        this.usuadio_id = usuadio_id;
+    }
+
+    public Long getUnidade_hospitalar_id() {
+        return unidade_hospitalar_id;
+    }
+
+    public void setUnidade_hospitalar_id(Long unidade_hospitalar_id) {
+        this.unidade_hospitalar_id = unidade_hospitalar_id;
+    }
 
     @Override
     public boolean equals(Object o) {

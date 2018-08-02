@@ -64,11 +64,23 @@ public class Usuario implements Serializable, ReportObject {
     @JoinTable(name = "ta_usuario_unidade_hospitalar",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "unidade_hospitalar_id"))
-    private List<UnidadeHospitalar> unidadeHospitalares;
+    private List<UnidadeHospitalar> unidadeHospitalar;
 
     //private UnidadeHospitalar unidadeHospitalar;
 
 
+    public Usuario() {
+    }
+
+    public Usuario(String nome, String login, String senha, String email, Boolean ativo, Perfil perfil, Especialidade especialidade) {
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.email = email;
+        this.ativo = ativo;
+        this.perfil = perfil;
+        this.especialidade = especialidade;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -167,12 +179,12 @@ public class Usuario implements Serializable, ReportObject {
     }
 
 
-    public List<UnidadeHospitalar> getUnidadeHospitalares() {
-        return unidadeHospitalares;
+    public List<UnidadeHospitalar> getUnidadeHospitalar() {
+        return unidadeHospitalar;
     }
 
-    public void setUnidadeHospitalares(List<UnidadeHospitalar> unidadeHospitalares) {
-        this.unidadeHospitalares = unidadeHospitalares;
+    public void setUnidadeHospitalar(List<UnidadeHospitalar> unidadeHospitalar) {
+        this.unidadeHospitalar = unidadeHospitalar;
     }
 
     public void setEspecialidade(Especialidade especialidade) {
@@ -210,7 +222,7 @@ public class Usuario implements Serializable, ReportObject {
             ", login='" + getLogin() + "'" +
             ", email='" + getEmail() + "'" +
             ", ativo='" + isAtivo() + "'" +
-            ", Un_hosp='"+ getUnidadeHospitalares() +"'"+
+            ", Un_hosp='"+ getUnidadeHospitalar() +"'"+
             "}";
     }
 }

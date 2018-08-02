@@ -150,4 +150,5 @@ public class UsuarioServiceImpl implements UsuarioService {
         return DynamicExporter.output(byteArrayOutputStream,
             "relatorio." + tipoRelatorio);
     }
+
 }

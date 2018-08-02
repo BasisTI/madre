@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.web.rest.vm;
 
 import br.com.basis.madre.cadastros.domain.Usuario;
+import br.com.basis.madre.cadastros.repository.TaUsuarioUnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UsuarioRepository;
 import br.com.basis.madre.cadastros.service.UsuarioService;
 import br.com.basis.madre.cadastros.web.rest.UsuarioResource;
@@ -36,6 +37,9 @@ public class UsuarioResourceTest {
     ResponseEntity<Usuario> responseEntity;
 
     @Mock
+    TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
+
+    @Mock
     Pageable pageable;
 
     @Mock
@@ -45,7 +49,7 @@ public class UsuarioResourceTest {
     String query;
 
     @Test
-    public void usuarioResourceTest(){new UsuarioResource(usuarioRepository,usuarioService);}
+    public void usuarioResourceTest(){new UsuarioResource(usuarioRepository,usuarioService, taUsuarioUnidadeHospitalarRepository);}
 
     @Test
     public void deleteUsuarioTest(){usuarioResource.deleteUsuario(1l);}
