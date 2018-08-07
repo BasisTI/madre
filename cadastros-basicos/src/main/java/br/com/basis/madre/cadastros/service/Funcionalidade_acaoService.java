@@ -1,11 +1,11 @@
 package br.com.basis.madre.cadastros.service;
 
-import br.com.basis.madre.cadastros.domain.Funcionalidade_acao;
+import br.com.basis.madre.cadastros.domain.FuncionalidadeAcao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
- * Service Interface for managing Funcionalidade_acao.
+ * Service Interface for managing FuncionalidadeAcao.
  */
 public interface Funcionalidade_acaoService {
 
@@ -15,7 +15,7 @@ public interface Funcionalidade_acaoService {
      * @param funcionalidade_acao the entity to save
      * @return the persisted entity
      */
-    Funcionalidade_acao save(Funcionalidade_acao funcionalidade_acao);
+    FuncionalidadeAcao save(FuncionalidadeAcao funcionalidade_acao);
 
     /**
      * Get all the funcionalidade_acaos.
@@ -23,7 +23,7 @@ public interface Funcionalidade_acaoService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<Funcionalidade_acao> findAll(Pageable pageable);
+    Page<FuncionalidadeAcao> findAll(Pageable pageable);
 
     /**
      * Get the "id" funcionalidade_acao.
@@ -31,7 +31,7 @@ public interface Funcionalidade_acaoService {
      * @param id the id of the entity
      * @return the entity
      */
-    Funcionalidade_acao findOne(Long id);
+    FuncionalidadeAcao findOne(Long id);
 
     /**
      * Delete the "id" funcionalidade_acao.
@@ -44,9 +44,9 @@ public interface Funcionalidade_acaoService {
      * Search for the funcionalidade_acao corresponding to the query.
      *
      * @param query the query of the search
-     * 
+     *
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<Funcionalidade_acao> search(String query, Pageable pageable);
+    Page<FuncionalidadeAcao> search(String query, Pageable pageable);
 }

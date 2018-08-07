@@ -1,7 +1,7 @@
 package br.com.basis.madre.cadastros.web.rest;
 
+import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
 import com.codahale.metrics.annotation.Timed;
-import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
 import br.com.basis.madre.cadastros.service.Perfil_funcionalidade_acaoService;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
@@ -22,12 +22,9 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
- * REST controller for managing Perfil_funcionalidade_acao.
+ * REST controller for managing PerfilFuncionalidadeAcao.
  */
 @RestController
 @RequestMapping("/api")
@@ -52,12 +49,12 @@ public class Perfil_funcionalidade_acaoResource {
      */
     @PostMapping("/perfil-funcionalidade-acaos")
     @Timed
-    public ResponseEntity<Perfil_funcionalidade_acao> createPerfil_funcionalidade_acao(@Valid @RequestBody Perfil_funcionalidade_acao perfil_funcionalidade_acao) throws URISyntaxException {
-        log.debug("REST request to save Perfil_funcionalidade_acao : {}", perfil_funcionalidade_acao);
+    public ResponseEntity<PerfilFuncionalidadeAcao> createPerfil_funcionalidade_acao(@Valid @RequestBody PerfilFuncionalidadeAcao perfil_funcionalidade_acao) throws URISyntaxException {
+        log.debug("REST request to save PerfilFuncionalidadeAcao : {}", perfil_funcionalidade_acao);
         if (perfil_funcionalidade_acao.getId() != null) {
             throw new BadRequestAlertException("A new perfil_funcionalidade_acao cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Perfil_funcionalidade_acao result = perfil_funcionalidade_acaoService.save(perfil_funcionalidade_acao);
+        PerfilFuncionalidadeAcao result = perfil_funcionalidade_acaoService.save(perfil_funcionalidade_acao);
         return ResponseEntity.created(new URI("/api/perfil-funcionalidade-acaos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -74,12 +71,12 @@ public class Perfil_funcionalidade_acaoResource {
      */
     @PutMapping("/perfil-funcionalidade-acaos")
     @Timed
-    public ResponseEntity<Perfil_funcionalidade_acao> updatePerfil_funcionalidade_acao(@Valid @RequestBody Perfil_funcionalidade_acao perfil_funcionalidade_acao) throws URISyntaxException {
-        log.debug("REST request to update Perfil_funcionalidade_acao : {}", perfil_funcionalidade_acao);
+    public ResponseEntity<PerfilFuncionalidadeAcao> updatePerfil_funcionalidade_acao(@Valid @RequestBody PerfilFuncionalidadeAcao perfil_funcionalidade_acao) throws URISyntaxException {
+        log.debug("REST request to update PerfilFuncionalidadeAcao : {}", perfil_funcionalidade_acao);
         if (perfil_funcionalidade_acao.getId() == null) {
             return createPerfil_funcionalidade_acao(perfil_funcionalidade_acao);
         }
-        Perfil_funcionalidade_acao result = perfil_funcionalidade_acaoService.save(perfil_funcionalidade_acao);
+        PerfilFuncionalidadeAcao result = perfil_funcionalidade_acaoService.save(perfil_funcionalidade_acao);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, perfil_funcionalidade_acao.getId().toString()))
             .body(result);
@@ -93,9 +90,9 @@ public class Perfil_funcionalidade_acaoResource {
      */
     @GetMapping("/perfil-funcionalidade-acaos")
     @Timed
-    public ResponseEntity<List<Perfil_funcionalidade_acao>> getAllPerfil_funcionalidade_acaos(Pageable pageable) {
+    public ResponseEntity<List<PerfilFuncionalidadeAcao>> getAllPerfil_funcionalidade_acaos(Pageable pageable) {
         log.debug("REST request to get a page of Perfil_funcionalidade_acaos");
-        Page<Perfil_funcionalidade_acao> page = perfil_funcionalidade_acaoService.findAll(pageable);
+        Page<PerfilFuncionalidadeAcao> page = perfil_funcionalidade_acaoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/perfil-funcionalidade-acaos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -108,9 +105,9 @@ public class Perfil_funcionalidade_acaoResource {
      */
     @GetMapping("/perfil-funcionalidade-acaos/{id}")
     @Timed
-    public ResponseEntity<Perfil_funcionalidade_acao> getPerfil_funcionalidade_acao(@PathVariable Long id) {
-        log.debug("REST request to get Perfil_funcionalidade_acao : {}", id);
-        Perfil_funcionalidade_acao perfil_funcionalidade_acao = perfil_funcionalidade_acaoService.findOne(id);
+    public ResponseEntity<PerfilFuncionalidadeAcao> getPerfil_funcionalidade_acao(@PathVariable Long id) {
+        log.debug("REST request to get PerfilFuncionalidadeAcao : {}", id);
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acao = perfil_funcionalidade_acaoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(perfil_funcionalidade_acao));
     }
 
@@ -123,7 +120,7 @@ public class Perfil_funcionalidade_acaoResource {
     @DeleteMapping("/perfil-funcionalidade-acaos/{id}")
     @Timed
     public ResponseEntity<Void> deletePerfil_funcionalidade_acao(@PathVariable Long id) {
-        log.debug("REST request to delete Perfil_funcionalidade_acao : {}", id);
+        log.debug("REST request to delete PerfilFuncionalidadeAcao : {}", id);
         perfil_funcionalidade_acaoService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
@@ -138,9 +135,9 @@ public class Perfil_funcionalidade_acaoResource {
      */
     @GetMapping("/_search/perfil-funcionalidade-acaos")
     @Timed
-    public ResponseEntity<List<Perfil_funcionalidade_acao>> searchPerfil_funcionalidade_acaos(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<PerfilFuncionalidadeAcao>> searchPerfil_funcionalidade_acaos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Perfil_funcionalidade_acaos for query {}", query);
-        Page<Perfil_funcionalidade_acao> page = perfil_funcionalidade_acaoService.search(query, pageable);
+        Page<PerfilFuncionalidadeAcao> page = perfil_funcionalidade_acaoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/perfil-funcionalidade-acaos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

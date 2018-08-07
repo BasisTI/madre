@@ -11,13 +11,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A Perfil_funcionalidade_acao.
+ * A PerfilFuncionalidadeAcao.
  */
 @Entity
 @Table(name = "perfil_funcionalidade_acao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "perfil_funcionalidade_acao")
-public class Perfil_funcionalidade_acao implements Serializable {
+public class PerfilFuncionalidadeAcao implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,50 +34,32 @@ public class Perfil_funcionalidade_acao implements Serializable {
     @Column(name = "id_funcionalidade_acao", nullable = false)
     private Integer id_funcionalidade_acao;
 
-    // @ManyToOne
-    // private Perfil perfil;
-
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id")
-    private Funcionalidade_acao funcionalidade_acao;
+    private FuncionalidadeAcao funcionalidade_acao;
 
-    public Perfil_funcionalidade_acao(Long id_perfil, Integer id_funcionalidade_acao) {
+    public PerfilFuncionalidadeAcao(Long id_perfil, Integer id_funcionalidade_acao) {
 		super();
 		this.id_perfil = id_perfil;
 		this.id_funcionalidade_acao = id_funcionalidade_acao;
 	}
-    
-    public Perfil_funcionalidade_acao() {
+
+    public PerfilFuncionalidadeAcao() {
 	}
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     /**
      * @return the funcionalidade_acao
      */
-    public Funcionalidade_acao getFuncionalidade_acao() {
+    public FuncionalidadeAcao getFuncionalidade_acao() {
         return funcionalidade_acao;
     }
 
     /**
      * @param funcionalidade_acao the funcionalidade_acao to set
      */
-    public void setFuncionalidade_acao(Funcionalidade_acao funcionalidade_acao) {
+    public void setFuncionalidade_acao(FuncionalidadeAcao funcionalidade_acao) {
         this.funcionalidade_acao = funcionalidade_acao;
     }
-    
-    // /**
-    //  * @return the perfil
-    //  */
-    // public Perfil getPerfil() {
-    //     return perfil;
-    // }
-
-    // /**
-    //  * @param perfil the perfil to set
-    //  */
-    // public void setPerfil(Perfil perfil) {
-    //     this.perfil = perfil;
-    // }
 
     public Long getId() {
         return id;
@@ -91,7 +73,7 @@ public class Perfil_funcionalidade_acao implements Serializable {
         return id_perfil;
     }
 
-    public Perfil_funcionalidade_acao id_perfil(Long id_perfil) {
+    public PerfilFuncionalidadeAcao id_perfil(Long id_perfil) {
         this.id_perfil = id_perfil;
         return this;
     }
@@ -104,7 +86,7 @@ public class Perfil_funcionalidade_acao implements Serializable {
         return id_funcionalidade_acao;
     }
 
-    public Perfil_funcionalidade_acao id_funcionalidade_acao(Integer id_funcionalidade_acao) {
+    public PerfilFuncionalidadeAcao id_funcionalidade_acao(Integer id_funcionalidade_acao) {
         this.id_funcionalidade_acao = id_funcionalidade_acao;
         return this;
     }
@@ -112,7 +94,6 @@ public class Perfil_funcionalidade_acao implements Serializable {
     public void setId_funcionalidade_acao(Integer id_funcionalidade_acao) {
         this.id_funcionalidade_acao = id_funcionalidade_acao;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -122,7 +103,7 @@ public class Perfil_funcionalidade_acao implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Perfil_funcionalidade_acao perfil_funcionalidade_acao = (Perfil_funcionalidade_acao) o;
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acao = (PerfilFuncionalidadeAcao) o;
         if (perfil_funcionalidade_acao.getId() == null || getId() == null) {
             return false;
         }
@@ -136,7 +117,7 @@ public class Perfil_funcionalidade_acao implements Serializable {
 
     @Override
     public String toString() {
-        return "Perfil_funcionalidade_acao{" +
+        return "PerfilFuncionalidadeAcao{" +
             "id=" + getId() +
             ", id_perfil=" + getId_perfil() +
             ", id_funcionalidade_acao=" + getId_funcionalidade_acao() +

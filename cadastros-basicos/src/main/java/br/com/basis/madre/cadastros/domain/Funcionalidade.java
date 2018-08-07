@@ -63,11 +63,7 @@ public class Funcionalidade implements Serializable {
 	@JoinTable(name = "funcionalidade_acao",
 	joinColumns = @JoinColumn(name = "id_funcionalidade", referencedColumnName = "ID"),
 	inverseJoinColumns = @JoinColumn(name = "id_acao", referencedColumnName = "ID"))
-	// private List<Acao> acaos = new ArrayList<>();
 	private Set<Acao> acaos = new HashSet<>();
-
-	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
-	// remove
 
 	public Set<Acao> getacaos() {
 		return acaos;
@@ -123,8 +119,6 @@ public class Funcionalidade implements Serializable {
 	public void setSt_excluido(String st_excluido) {
 		this.st_excluido = st_excluido;
 	}
-	// jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-	// setters here, do not remove
 
 	@Override
 	public boolean equals(Object o) {

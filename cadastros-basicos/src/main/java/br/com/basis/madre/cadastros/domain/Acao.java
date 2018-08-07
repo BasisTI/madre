@@ -51,10 +51,8 @@ public class Acao implements Serializable {
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "acaos")
-	// private List<Funcionalidade> funcionalidades = new ArrayList<>();
 	private Set<Funcionalidade> funcionalidades = new HashSet<>();
-	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
-	// remove
+
 	public Set<Funcionalidade> getFuncionalidades() {
 		return funcionalidades;
 	}
@@ -96,8 +94,6 @@ public class Acao implements Serializable {
 	public void setCd_acao(String cd_acao) {
 		this.cd_acao = cd_acao;
 	}
-	// jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-	// setters here, do not remove
 
 	@Override
 	public boolean equals(Object o) {

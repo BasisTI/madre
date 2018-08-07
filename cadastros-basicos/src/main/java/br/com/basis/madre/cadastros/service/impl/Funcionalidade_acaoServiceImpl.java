@@ -1,7 +1,7 @@
 package br.com.basis.madre.cadastros.service.impl;
 
+import br.com.basis.madre.cadastros.domain.FuncionalidadeAcao;
 import br.com.basis.madre.cadastros.service.Funcionalidade_acaoService;
-import br.com.basis.madre.cadastros.domain.Funcionalidade_acao;
 import br.com.basis.madre.cadastros.repository.Funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.repository.search.Funcionalidade_acaoSearchRepository;
 import org.slf4j.Logger;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
- * Service Implementation for managing Funcionalidade_acao.
+ * Service Implementation for managing FuncionalidadeAcao.
  */
 @Service
 @Transactional
@@ -39,9 +39,9 @@ public class Funcionalidade_acaoServiceImpl implements Funcionalidade_acaoServic
      * @return the persisted entity
      */
     @Override
-    public Funcionalidade_acao save(Funcionalidade_acao funcionalidade_acao) {
-        log.debug("Request to save Funcionalidade_acao : {}", funcionalidade_acao);
-        Funcionalidade_acao result = funcionalidade_acaoRepository.save(funcionalidade_acao);
+    public FuncionalidadeAcao save(FuncionalidadeAcao funcionalidade_acao) {
+        log.debug("Request to save FuncionalidadeAcao : {}", funcionalidade_acao);
+        FuncionalidadeAcao result = funcionalidade_acaoRepository.save(funcionalidade_acao);
         funcionalidade_acaoSearchRepository.save(result);
         return result;
     }
@@ -54,7 +54,7 @@ public class Funcionalidade_acaoServiceImpl implements Funcionalidade_acaoServic
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Funcionalidade_acao> findAll(Pageable pageable) {
+    public Page<FuncionalidadeAcao> findAll(Pageable pageable) {
         log.debug("Request to get all Funcionalidade_acaos");
         return funcionalidade_acaoRepository.findAll(pageable);
     }
@@ -67,8 +67,8 @@ public class Funcionalidade_acaoServiceImpl implements Funcionalidade_acaoServic
      */
     @Override
     @Transactional(readOnly = true)
-    public Funcionalidade_acao findOne(Long id) {
-        log.debug("Request to get Funcionalidade_acao : {}", id);
+    public FuncionalidadeAcao findOne(Long id) {
+        log.debug("Request to get FuncionalidadeAcao : {}", id);
         return funcionalidade_acaoRepository.findOne(id);
     }
 
@@ -79,7 +79,7 @@ public class Funcionalidade_acaoServiceImpl implements Funcionalidade_acaoServic
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Funcionalidade_acao : {}", id);
+        log.debug("Request to delete FuncionalidadeAcao : {}", id);
         funcionalidade_acaoRepository.delete(id);
         funcionalidade_acaoSearchRepository.delete(id);
     }
@@ -93,9 +93,9 @@ public class Funcionalidade_acaoServiceImpl implements Funcionalidade_acaoServic
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Funcionalidade_acao> search(String query, Pageable pageable) {
+    public Page<FuncionalidadeAcao> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Funcionalidade_acaos for query {}", query);
-        Page<Funcionalidade_acao> result = funcionalidade_acaoSearchRepository.search(queryStringQuery(query), pageable);
+        Page<FuncionalidadeAcao> result = funcionalidade_acaoSearchRepository.search(queryStringQuery(query), pageable);
         return result;
     }
 }

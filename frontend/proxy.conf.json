@@ -3,7 +3,7 @@
         "target": "http://localhost:8081",
         "secure": false,
 
-        "target": "http://localhost:8082",
+        "target": "http://localhost:8081",
         "secure": false
     }
 }

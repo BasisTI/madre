@@ -2,10 +2,8 @@ package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,31 +49,29 @@ public class Perfil implements Serializable, ReportObject {
 
     @OneToMany
     @JoinColumn(name="id_perfil")
-    private List<Perfil_funcionalidade_acao> perfil_funcionalidade_acao = new ArrayList<>();
-    // private Set<Perfil_funcionalidade_acao> perfil_funcionalidade_acao = new HashSet<>();
-    
+    private List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acao = new ArrayList<>();
+
     //Contrutor
     public Perfil(String nomePerfil, String dsPerfil) {
 		super();
 		this.nomePerfil = nomePerfil;
 		this.dsPerfil = dsPerfil;
 	}
-    
+
     public Perfil() {
 	}
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     /**
      * @return the perfil_funcionalidade_acao
      */
-    public List<Perfil_funcionalidade_acao> getPerfil_funcionalidade_acao() {
+    public List<PerfilFuncionalidadeAcao> getPerfil_funcionalidade_acao() {
         return perfil_funcionalidade_acao;
     }
 
     /**
      * @param perfil_funcionalidade_acao the perfil_funcionalidade_acao to set
      */
-    public void setPerfil_funcionalidade_acao(List<Perfil_funcionalidade_acao> perfil_funcionalidade_acao) {
+    public void setPerfil_funcionalidade_acao(List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acao) {
         this.perfil_funcionalidade_acao = perfil_funcionalidade_acao;
     }
 
@@ -112,7 +108,6 @@ public class Perfil implements Serializable, ReportObject {
     public void setDsPerfil(String dsPerfil) {
         this.dsPerfil = dsPerfil;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

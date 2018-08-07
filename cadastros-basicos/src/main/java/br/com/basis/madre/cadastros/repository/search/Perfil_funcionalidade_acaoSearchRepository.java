@@ -1,10 +1,10 @@
 package br.com.basis.madre.cadastros.repository.search;
 
-import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
+import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
- * Spring Data Elasticsearch repository for the Perfil_funcionalidade_acao entity.
+ * Spring Data Elasticsearch repository for the PerfilFuncionalidadeAcao entity.
  */
-public interface Perfil_funcionalidade_acaoSearchRepository extends ElasticsearchRepository<Perfil_funcionalidade_acao, Long> {
+public interface Perfil_funcionalidade_acaoSearchRepository extends ElasticsearchRepository<PerfilFuncionalidadeAcao, Long> {
 }

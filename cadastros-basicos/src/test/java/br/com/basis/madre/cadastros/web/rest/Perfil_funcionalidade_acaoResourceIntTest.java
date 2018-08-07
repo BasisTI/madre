@@ -2,7 +2,7 @@ package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.CadastrosbasicosApp;
 
-import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
+import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
 import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.service.Perfil_funcionalidade_acaoService;
 import br.com.basis.madre.cadastros.repository.search.Perfil_funcionalidade_acaoSearchRepository;
@@ -69,7 +69,7 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
 
     private MockMvc restPerfil_funcionalidade_acaoMockMvc;
 
-    private Perfil_funcionalidade_acao perfil_funcionalidade_acao;
+    private PerfilFuncionalidadeAcao perfil_funcionalidade_acao;
 
     @Before
     public void setup() {
@@ -88,8 +88,8 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Perfil_funcionalidade_acao createEntity(EntityManager em) {
-        Perfil_funcionalidade_acao perfil_funcionalidade_acao = new Perfil_funcionalidade_acao()
+    public static PerfilFuncionalidadeAcao createEntity(EntityManager em) {
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acao = new PerfilFuncionalidadeAcao()
             .id_perfil(DEFAULT_ID_PERFIL)
             .id_funcionalidade_acao(DEFAULT_ID_FUNCIONALIDADE_ACAO);
         return perfil_funcionalidade_acao;
@@ -106,21 +106,21 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
     public void createPerfil_funcionalidade_acao() throws Exception {
         int databaseSizeBeforeCreate = perfil_funcionalidade_acaoRepository.findAll().size();
 
-        // Create the Perfil_funcionalidade_acao
+        // Create the PerfilFuncionalidadeAcao
         restPerfil_funcionalidade_acaoMockMvc.perform(post("/api/perfil-funcionalidade-acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(perfil_funcionalidade_acao)))
             .andExpect(status().isCreated());
 
-        // Validate the Perfil_funcionalidade_acao in the database
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        // Validate the PerfilFuncionalidadeAcao in the database
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeCreate + 1);
-        Perfil_funcionalidade_acao testPerfil_funcionalidade_acao = perfil_funcionalidade_acaoList.get(perfil_funcionalidade_acaoList.size() - 1);
+        PerfilFuncionalidadeAcao testPerfil_funcionalidade_acao = perfil_funcionalidade_acaoList.get(perfil_funcionalidade_acaoList.size() - 1);
         assertThat(testPerfil_funcionalidade_acao.getId_perfil()).isEqualTo(DEFAULT_ID_PERFIL);
         assertThat(testPerfil_funcionalidade_acao.getId_funcionalidade_acao()).isEqualTo(DEFAULT_ID_FUNCIONALIDADE_ACAO);
 
-        // Validate the Perfil_funcionalidade_acao in Elasticsearch
-        Perfil_funcionalidade_acao perfil_funcionalidade_acaoEs = perfil_funcionalidade_acaoSearchRepository.findOne(testPerfil_funcionalidade_acao.getId());
+        // Validate the PerfilFuncionalidadeAcao in Elasticsearch
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acaoEs = perfil_funcionalidade_acaoSearchRepository.findOne(testPerfil_funcionalidade_acao.getId());
         assertThat(perfil_funcionalidade_acaoEs).isEqualToIgnoringGivenFields(testPerfil_funcionalidade_acao);
     }
 
@@ -129,7 +129,7 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
     public void createPerfil_funcionalidade_acaoWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = perfil_funcionalidade_acaoRepository.findAll().size();
 
-        // Create the Perfil_funcionalidade_acao with an existing ID
+        // Create the PerfilFuncionalidadeAcao with an existing ID
         perfil_funcionalidade_acao.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -138,8 +138,8 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(perfil_funcionalidade_acao)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Perfil_funcionalidade_acao in the database
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        // Validate the PerfilFuncionalidadeAcao in the database
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeCreate);
     }
 
@@ -150,14 +150,14 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
         // set the field null
         perfil_funcionalidade_acao.setId_perfil(null);
 
-        // Create the Perfil_funcionalidade_acao, which fails.
+        // Create the PerfilFuncionalidadeAcao, which fails.
 
         restPerfil_funcionalidade_acaoMockMvc.perform(post("/api/perfil-funcionalidade-acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(perfil_funcionalidade_acao)))
             .andExpect(status().isBadRequest());
 
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -168,14 +168,14 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
         // set the field null
         perfil_funcionalidade_acao.setId_funcionalidade_acao(null);
 
-        // Create the Perfil_funcionalidade_acao, which fails.
+        // Create the PerfilFuncionalidadeAcao, which fails.
 
         restPerfil_funcionalidade_acaoMockMvc.perform(post("/api/perfil-funcionalidade-acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(perfil_funcionalidade_acao)))
             .andExpect(status().isBadRequest());
 
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -226,7 +226,7 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
         int databaseSizeBeforeUpdate = perfil_funcionalidade_acaoRepository.findAll().size();
 
         // Update the perfil_funcionalidade_acao
-        Perfil_funcionalidade_acao updatedPerfil_funcionalidade_acao = perfil_funcionalidade_acaoRepository.findOne(perfil_funcionalidade_acao.getId());
+        PerfilFuncionalidadeAcao updatedPerfil_funcionalidade_acao = perfil_funcionalidade_acaoRepository.findOne(perfil_funcionalidade_acao.getId());
         // Disconnect from session so that the updates on updatedPerfil_funcionalidade_acao are not directly saved in db
         em.detach(updatedPerfil_funcionalidade_acao);
         updatedPerfil_funcionalidade_acao
@@ -238,15 +238,15 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(updatedPerfil_funcionalidade_acao)))
             .andExpect(status().isOk());
 
-        // Validate the Perfil_funcionalidade_acao in the database
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        // Validate the PerfilFuncionalidadeAcao in the database
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeUpdate);
-        Perfil_funcionalidade_acao testPerfil_funcionalidade_acao = perfil_funcionalidade_acaoList.get(perfil_funcionalidade_acaoList.size() - 1);
+        PerfilFuncionalidadeAcao testPerfil_funcionalidade_acao = perfil_funcionalidade_acaoList.get(perfil_funcionalidade_acaoList.size() - 1);
         assertThat(testPerfil_funcionalidade_acao.getId_perfil()).isEqualTo(UPDATED_ID_PERFIL);
         assertThat(testPerfil_funcionalidade_acao.getId_funcionalidade_acao()).isEqualTo(UPDATED_ID_FUNCIONALIDADE_ACAO);
 
-        // Validate the Perfil_funcionalidade_acao in Elasticsearch
-        Perfil_funcionalidade_acao perfil_funcionalidade_acaoEs = perfil_funcionalidade_acaoSearchRepository.findOne(testPerfil_funcionalidade_acao.getId());
+        // Validate the PerfilFuncionalidadeAcao in Elasticsearch
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acaoEs = perfil_funcionalidade_acaoSearchRepository.findOne(testPerfil_funcionalidade_acao.getId());
         assertThat(perfil_funcionalidade_acaoEs).isEqualToIgnoringGivenFields(testPerfil_funcionalidade_acao);
     }
 
@@ -255,7 +255,7 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
     public void updateNonExistingPerfil_funcionalidade_acao() throws Exception {
         int databaseSizeBeforeUpdate = perfil_funcionalidade_acaoRepository.findAll().size();
 
-        // Create the Perfil_funcionalidade_acao
+        // Create the PerfilFuncionalidadeAcao
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restPerfil_funcionalidade_acaoMockMvc.perform(put("/api/perfil-funcionalidade-acaos")
@@ -263,8 +263,8 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(perfil_funcionalidade_acao)))
             .andExpect(status().isCreated());
 
-        // Validate the Perfil_funcionalidade_acao in the database
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        // Validate the PerfilFuncionalidadeAcao in the database
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
@@ -286,7 +286,7 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
         assertThat(perfil_funcionalidade_acaoExistsInEs).isFalse();
 
         // Validate the database is empty
-        List<Perfil_funcionalidade_acao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
+        List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acaoList = perfil_funcionalidade_acaoRepository.findAll();
         assertThat(perfil_funcionalidade_acaoList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
@@ -308,10 +308,10 @@ public class Perfil_funcionalidade_acaoResourceIntTest {
     @Test
     @Transactional
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Perfil_funcionalidade_acao.class);
-        Perfil_funcionalidade_acao perfil_funcionalidade_acao1 = new Perfil_funcionalidade_acao();
+        TestUtil.equalsVerifier(PerfilFuncionalidadeAcao.class);
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acao1 = new PerfilFuncionalidadeAcao();
         perfil_funcionalidade_acao1.setId(1L);
-        Perfil_funcionalidade_acao perfil_funcionalidade_acao2 = new Perfil_funcionalidade_acao();
+        PerfilFuncionalidadeAcao perfil_funcionalidade_acao2 = new PerfilFuncionalidadeAcao();
         perfil_funcionalidade_acao2.setId(perfil_funcionalidade_acao1.getId());
         assertThat(perfil_funcionalidade_acao1).isEqualTo(perfil_funcionalidade_acao2);
         perfil_funcionalidade_acao2.setId(2L);

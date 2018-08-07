@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.basis.madre.cadastros.domain.FuncionalidadeAcao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,9 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 
-import br.com.basis.madre.cadastros.domain.Funcionalidade_acao;
-import br.com.basis.madre.cadastros.repository.AcaoRepository;
-import br.com.basis.madre.cadastros.repository.FuncionalidadeRepository;
 import br.com.basis.madre.cadastros.service.Funcionalidade_acaoService;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
@@ -36,7 +34,7 @@ import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing Funcionalidade_acao.
+ * REST controller for managing FuncionalidadeAcao.
  */
 @RestController
 @RequestMapping("/api")
@@ -47,7 +45,7 @@ public class Funcionalidade_acaoResource {
     private static final String ENTITY_NAME = "funcionalidade_acao";
 
     private final Funcionalidade_acaoService funcionalidade_acaoService;
-    
+
 
     public Funcionalidade_acaoResource(Funcionalidade_acaoService funcionalidade_acaoService) {
         this.funcionalidade_acaoService = funcionalidade_acaoService;
@@ -62,15 +60,15 @@ public class Funcionalidade_acaoResource {
      */
     @PostMapping("/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<Funcionalidade_acao> createFuncionalidade_acao(@Valid @RequestBody Funcionalidade_acao funcionalidade_acao) throws URISyntaxException {
-    	log.debug("REST request to save Funcionalidade_acao : {}", funcionalidade_acao);
+    public ResponseEntity<FuncionalidadeAcao> createFuncionalidade_acao(@Valid @RequestBody FuncionalidadeAcao funcionalidade_acao) throws URISyntaxException {
+    	log.debug("REST request to save FuncionalidadeAcao : {}", funcionalidade_acao);
 
     	if (funcionalidade_acao.getId() != null) {
             throw new BadRequestAlertException("A new funcionalidade_acao cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        
-    	Funcionalidade_acao result = funcionalidade_acaoService.save(funcionalidade_acao);
-        
+
+    	FuncionalidadeAcao result = funcionalidade_acaoService.save(funcionalidade_acao);
+
         return ResponseEntity.created(new URI("/api/funcionalidade-acaos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -87,12 +85,12 @@ public class Funcionalidade_acaoResource {
      */
     @PutMapping("/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<Funcionalidade_acao> updateFuncionalidade_acao(@Valid @RequestBody Funcionalidade_acao funcionalidade_acao) throws URISyntaxException {
-        log.debug("REST request to update Funcionalidade_acao : {}", funcionalidade_acao);
+    public ResponseEntity<FuncionalidadeAcao> updateFuncionalidade_acao(@Valid @RequestBody FuncionalidadeAcao funcionalidade_acao) throws URISyntaxException {
+        log.debug("REST request to update FuncionalidadeAcao : {}", funcionalidade_acao);
         if (funcionalidade_acao.getId() == null) {
             return createFuncionalidade_acao(funcionalidade_acao);
         }
-        Funcionalidade_acao result = funcionalidade_acaoService.save(funcionalidade_acao);
+        FuncionalidadeAcao result = funcionalidade_acaoService.save(funcionalidade_acao);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, funcionalidade_acao.getId().toString()))
             .body(result);
@@ -106,9 +104,9 @@ public class Funcionalidade_acaoResource {
      */
     @GetMapping("/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<List<Funcionalidade_acao>> getAllFuncionalidade_acaos(Pageable pageable) {
+    public ResponseEntity<List<FuncionalidadeAcao>> getAllFuncionalidade_acaos(Pageable pageable) {
         log.debug("REST request to get a page of Funcionalidade_acaos");
-        Page<Funcionalidade_acao> page = funcionalidade_acaoService.findAll(pageable);
+        Page<FuncionalidadeAcao> page = funcionalidade_acaoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/funcionalidade-acaos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -121,9 +119,9 @@ public class Funcionalidade_acaoResource {
      */
     @GetMapping("/funcionalidade-acaos/{id}")
     @Timed
-    public ResponseEntity<Funcionalidade_acao> getFuncionalidade_acao(@PathVariable Long id) {
-        log.debug("REST request to get Funcionalidade_acao : {}", id);
-        Funcionalidade_acao funcionalidade_acao = funcionalidade_acaoService.findOne(id);
+    public ResponseEntity<FuncionalidadeAcao> getFuncionalidade_acao(@PathVariable Long id) {
+        log.debug("REST request to get FuncionalidadeAcao : {}", id);
+        FuncionalidadeAcao funcionalidade_acao = funcionalidade_acaoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(funcionalidade_acao));
     }
 
@@ -136,7 +134,7 @@ public class Funcionalidade_acaoResource {
     @DeleteMapping("/funcionalidade-acaos/{id}")
     @Timed
     public ResponseEntity<Void> deleteFuncionalidade_acao(@PathVariable Long id) {
-        log.debug("REST request to delete Funcionalidade_acao : {}", id);
+        log.debug("REST request to delete FuncionalidadeAcao : {}", id);
         funcionalidade_acaoService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
@@ -151,9 +149,9 @@ public class Funcionalidade_acaoResource {
      */
     @GetMapping("/_search/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<List<Funcionalidade_acao>> searchFuncionalidade_acaos(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<FuncionalidadeAcao>> searchFuncionalidade_acaos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Funcionalidade_acaos for query {}", query);
-        Page<Funcionalidade_acao> page = funcionalidade_acaoService.search(query, pageable);
+        Page<FuncionalidadeAcao> page = funcionalidade_acaoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/funcionalidade-acaos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

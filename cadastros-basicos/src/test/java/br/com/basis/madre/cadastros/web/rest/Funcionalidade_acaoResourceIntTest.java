@@ -2,7 +2,7 @@ package br.com.basis.madre.cadastros.web.rest;
 
 import br.com.basis.madre.cadastros.CadastrosbasicosApp;
 
-import br.com.basis.madre.cadastros.domain.Funcionalidade_acao;
+import br.com.basis.madre.cadastros.domain.FuncionalidadeAcao;
 import br.com.basis.madre.cadastros.repository.Funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.service.Funcionalidade_acaoService;
 import br.com.basis.madre.cadastros.repository.search.Funcionalidade_acaoSearchRepository;
@@ -69,7 +69,7 @@ public class Funcionalidade_acaoResourceIntTest {
 
     private MockMvc restFuncionalidade_acaoMockMvc;
 
-    private Funcionalidade_acao funcionalidade_acao;
+    private FuncionalidadeAcao funcionalidade_acao;
 
     @Before
     public void setup() {
@@ -88,8 +88,8 @@ public class Funcionalidade_acaoResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Funcionalidade_acao createEntity(EntityManager em) {
-        Funcionalidade_acao funcionalidade_acao = new Funcionalidade_acao()
+    public static FuncionalidadeAcao createEntity(EntityManager em) {
+        FuncionalidadeAcao funcionalidade_acao = new FuncionalidadeAcao()
             .id_funcionalidade(DEFAULT_ID_FUNCIONALIDADE)
             .id_acao(DEFAULT_ID_ACAO);
         return funcionalidade_acao;
@@ -106,21 +106,21 @@ public class Funcionalidade_acaoResourceIntTest {
     public void createFuncionalidade_acao() throws Exception {
         int databaseSizeBeforeCreate = funcionalidade_acaoRepository.findAll().size();
 
-        // Create the Funcionalidade_acao
+        // Create the FuncionalidadeAcao
         restFuncionalidade_acaoMockMvc.perform(post("/api/funcionalidade-acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade_acao)))
             .andExpect(status().isCreated());
 
-        // Validate the Funcionalidade_acao in the database
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        // Validate the FuncionalidadeAcao in the database
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeCreate + 1);
-        Funcionalidade_acao testFuncionalidade_acao = funcionalidade_acaos.get(funcionalidade_acaos.size() - 1);
+        FuncionalidadeAcao testFuncionalidade_acao = funcionalidade_acaos.get(funcionalidade_acaos.size() - 1);
         assertThat(testFuncionalidade_acao.getId_funcionalidade()).isEqualTo(DEFAULT_ID_FUNCIONALIDADE);
         assertThat(testFuncionalidade_acao.getId_acao()).isEqualTo(DEFAULT_ID_ACAO);
 
-        // Validate the Funcionalidade_acao in Elasticsearch
-        Funcionalidade_acao funcionalidade_acaoEs = funcionalidade_acaoSearchRepository.findOne(testFuncionalidade_acao.getId());
+        // Validate the FuncionalidadeAcao in Elasticsearch
+        FuncionalidadeAcao funcionalidade_acaoEs = funcionalidade_acaoSearchRepository.findOne(testFuncionalidade_acao.getId());
         assertThat(funcionalidade_acaoEs).isEqualToIgnoringGivenFields(testFuncionalidade_acao);
     }
 
@@ -129,7 +129,7 @@ public class Funcionalidade_acaoResourceIntTest {
     public void createFuncionalidade_acaoWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = funcionalidade_acaoRepository.findAll().size();
 
-        // Create the Funcionalidade_acao with an existing ID
+        // Create the FuncionalidadeAcao with an existing ID
         funcionalidade_acao.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -138,8 +138,8 @@ public class Funcionalidade_acaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade_acao)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Funcionalidade_acao in the database
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        // Validate the FuncionalidadeAcao in the database
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeCreate);
     }
 
@@ -150,14 +150,14 @@ public class Funcionalidade_acaoResourceIntTest {
         // set the field null
         funcionalidade_acao.setId_funcionalidade(null);
 
-        // Create the Funcionalidade_acao, which fails.
+        // Create the FuncionalidadeAcao, which fails.
 
         restFuncionalidade_acaoMockMvc.perform(post("/api/funcionalidade-acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade_acao)))
             .andExpect(status().isBadRequest());
 
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeTest);
     }
 
@@ -168,14 +168,14 @@ public class Funcionalidade_acaoResourceIntTest {
         // set the field null
         funcionalidade_acao.setId_acao(null);
 
-        // Create the Funcionalidade_acao, which fails.
+        // Create the FuncionalidadeAcao, which fails.
 
         restFuncionalidade_acaoMockMvc.perform(post("/api/funcionalidade-acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade_acao)))
             .andExpect(status().isBadRequest());
 
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeTest);
     }
 
@@ -226,7 +226,7 @@ public class Funcionalidade_acaoResourceIntTest {
         int databaseSizeBeforeUpdate = funcionalidade_acaoRepository.findAll().size();
 
         // Update the funcionalidade_acao
-        Funcionalidade_acao updatedFuncionalidade_acao = funcionalidade_acaoRepository.findOne(funcionalidade_acao.getId());
+        FuncionalidadeAcao updatedFuncionalidade_acao = funcionalidade_acaoRepository.findOne(funcionalidade_acao.getId());
         // Disconnect from session so that the updates on updatedFuncionalidade_acao are not directly saved in db
         em.detach(updatedFuncionalidade_acao);
         updatedFuncionalidade_acao
@@ -238,15 +238,15 @@ public class Funcionalidade_acaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(updatedFuncionalidade_acao)))
             .andExpect(status().isOk());
 
-        // Validate the Funcionalidade_acao in the database
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        // Validate the FuncionalidadeAcao in the database
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeUpdate);
-        Funcionalidade_acao testFuncionalidade_acao = funcionalidade_acaos.get(funcionalidade_acaos.size() - 1);
+        FuncionalidadeAcao testFuncionalidade_acao = funcionalidade_acaos.get(funcionalidade_acaos.size() - 1);
         assertThat(testFuncionalidade_acao.getId_funcionalidade()).isEqualTo(UPDATED_ID_FUNCIONALIDADE);
         assertThat(testFuncionalidade_acao.getId_acao()).isEqualTo(UPDATED_ID_ACAO);
 
-        // Validate the Funcionalidade_acao in Elasticsearch
-        Funcionalidade_acao funcionalidade_acaoEs = funcionalidade_acaoSearchRepository.findOne(testFuncionalidade_acao.getId());
+        // Validate the FuncionalidadeAcao in Elasticsearch
+        FuncionalidadeAcao funcionalidade_acaoEs = funcionalidade_acaoSearchRepository.findOne(testFuncionalidade_acao.getId());
         assertThat(funcionalidade_acaoEs).isEqualToIgnoringGivenFields(testFuncionalidade_acao);
     }
 
@@ -255,7 +255,7 @@ public class Funcionalidade_acaoResourceIntTest {
     public void updateNonExistingFuncionalidade_acao() throws Exception {
         int databaseSizeBeforeUpdate = funcionalidade_acaoRepository.findAll().size();
 
-        // Create the Funcionalidade_acao
+        // Create the FuncionalidadeAcao
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restFuncionalidade_acaoMockMvc.perform(put("/api/funcionalidade-acaos")
@@ -263,8 +263,8 @@ public class Funcionalidade_acaoResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(funcionalidade_acao)))
             .andExpect(status().isCreated());
 
-        // Validate the Funcionalidade_acao in the database
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        // Validate the FuncionalidadeAcao in the database
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
@@ -286,7 +286,7 @@ public class Funcionalidade_acaoResourceIntTest {
         assertThat(funcionalidade_acaoExistsInEs).isFalse();
 
         // Validate the database is empty
-        List<Funcionalidade_acao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
+        List<FuncionalidadeAcao> funcionalidade_acaos = funcionalidade_acaoRepository.findAll();
         assertThat(funcionalidade_acaos).hasSize(databaseSizeBeforeDelete - 1);
     }
 
@@ -308,10 +308,10 @@ public class Funcionalidade_acaoResourceIntTest {
     @Test
     @Transactional
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Funcionalidade_acao.class);
-        Funcionalidade_acao funcionalidade_acao1 = new Funcionalidade_acao();
+        TestUtil.equalsVerifier(FuncionalidadeAcao.class);
+        FuncionalidadeAcao funcionalidade_acao1 = new FuncionalidadeAcao();
         funcionalidade_acao1.setId(1L);
-        Funcionalidade_acao funcionalidade_acao2 = new Funcionalidade_acao();
+        FuncionalidadeAcao funcionalidade_acao2 = new FuncionalidadeAcao();
         funcionalidade_acao2.setId(funcionalidade_acao1.getId());
         assertThat(funcionalidade_acao1).isEqualTo(funcionalidade_acao2);
         funcionalidade_acao2.setId(2L);

@@ -31,7 +31,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.domain.PerfilDTO;
-import br.com.basis.madre.cadastros.domain.Perfil_funcionalidade_acao;
+import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
 import br.com.basis.madre.cadastros.repository.Funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
 import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
@@ -60,7 +60,7 @@ public class PerfilResource {
 	private final PerfilRepository perfilRepository;
 
 	private final Funcionalidade_acaoRepository funcionalidade_acaoRepository;
-	
+
 	private final Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository;
 
 	public PerfilResource(PerfilService perfilService, PerfilRepository perfilRepository,
@@ -101,7 +101,7 @@ public class PerfilResource {
 		Perfil result = perfilService.save(perfil);
 
 		for (int i = 0; i < dto.getacaoTemp().size(); i++) {
-			Perfil_funcionalidade_acao pfc = new Perfil_funcionalidade_acao(perfil.getId(),
+			PerfilFuncionalidadeAcao pfc = new PerfilFuncionalidadeAcao(perfil.getId(),
 					pegaIdFuncionalidadeAcao(dto).get(i));
 			perfil_funcionalidade_acaoRepository.save(pfc);
 		}
@@ -144,7 +144,6 @@ public class PerfilResource {
 		log.debug("REST request to update Perfil : {}", perfil);
 		perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
 		if (perfil.getId() == null) {
-			// return createPerfil(perfil);
 			return null;
 		}
 

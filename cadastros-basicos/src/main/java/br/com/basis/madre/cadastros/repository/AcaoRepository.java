@@ -16,6 +16,4 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface AcaoRepository extends JpaRepository<Acao, Long> {
-//	@Query("SELECT id FROM Acao")
-//	List<Integer> pegaIds();
 }

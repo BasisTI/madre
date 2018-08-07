@@ -14,7 +14,7 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Perfil_funcionalidade_acao.
+        Added the entity PerfilFuncionalidadeAcao.
     -->
     <changeSet id="20180726163711-1" author="jhipster">
         <createTable tableName="perfil_funcionalidade_acao">
@@ -31,7 +31,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
