@@ -43,9 +43,10 @@ export class TipoRespostaFormComponent implements OnInit, OnDestroy {
       ]);
     });
   }
-
+  
   save() {
     this.isSaving = true;
+    console.log("Id Resposta: "+this.tipoResposta.id);
     if (this.tipoResposta.id !== undefined) {
       this.subscribeToSaveResponse(this.tipoRespostaService.update(this.tipoResposta));
     } else {

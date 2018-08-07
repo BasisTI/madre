@@ -23,7 +23,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   pega: AcaoTemp[];
   coloca: AcaoTemp[];
 
-  listaAcao: string[];
+  // listaAcao: string[];
   listaFunc: Funcionalidade[];
 
   isSaving: boolean;
@@ -53,7 +53,7 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
       this.coloca = [];
       this.pega = [];
 
-      this.listaAcao = [];
+      // this.listaAcao = [];
       this.listaFunc = [];
 
       this.perfil.acaoTemp = [];
@@ -85,26 +85,14 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  teste() {
-    // console.log(this.pega);
-    // console.log(this.listaFunc);
-    // console.log(this.coloca);
-  }
-
   save() {
-    // this.perfil.acaoTemp = this.coloca;
-    // console.log(this.coloca)
-
     this.coloca.forEach(elementos => {
       this.perfil.acaoTemp.push(elementos);
     });
 
-    console.log(this.coloca);
-    console.log(this.listaFunc);
-    console.log(this.perfil);
-
     this.isSaving = true;
     if (this.perfil.id !== undefined) {
+      // console.log("ID perfil: "+this.perfil.id);
       this.subscribeToSaveResponse(this.perfilService.update(this.perfil));
 
     } else {
@@ -116,10 +104,6 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
   private subscribeToSaveResponse(result: Observable<Perfil>) {
     result.subscribe((res: Perfil) => {
       this.isSaving = false;
-      // if (!ValidacaoUtil.validarCNPJ(this.unidadeHospitalar.cnpj)) {
-      //   this.pageNotificationService.addErrorMessage('CNPJ inválido');
-      //   return;
-      // }
       this.router.navigate(['/perfil']);
       this.addConfirmationMessage();
     }, (res: Response) => {
@@ -143,17 +127,17 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     this.breadcrumbService.reset();
   }
 
-  populaListaAcao() {
-    const that = this;
-    return new Promise(resolve => {
-      this.acaoService.getAllAcaos().subscribe(res => {
-        res.forEach((item, index) => {
-          this.listaAcao.push(item.nm_acao);
-        });
-        return resolve(true);
-      });
-    });
-  }
+  // populaListaAcao() {
+  //   const that = this;
+  //   return new Promise(resolve => {
+  //     this.acaoService.getAllAcaos().subscribe(res => {
+  //       res.forEach((item, index) => {
+  //         this.listaAcao.push(item.nm_acao);
+  //       });
+  //       return resolve(true);
+  //     });
+  //   });
+  // }
 
   populaListaFuncionalidade() {
     const that = this;

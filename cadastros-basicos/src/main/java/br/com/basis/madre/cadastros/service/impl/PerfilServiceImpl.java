@@ -18,9 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.basis.dynamicexports.service.DynamicExportsService;
 import br.com.basis.dynamicexports.util.DynamicExporter;
-import br.com.basis.madre.cadastros.domain.PerfilDTO;
 import br.com.basis.madre.cadastros.domain.Perfil;
+import br.com.basis.madre.cadastros.domain.PerfilDTO;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
+import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
 import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
 import br.com.basis.madre.cadastros.service.PerfilService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
@@ -40,16 +41,18 @@ public class PerfilServiceImpl implements PerfilService {
 
     private final PerfilRepository perfilRepository;
 
+    private final Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository;
+    
     private final PerfilSearchRepository perfilSearchRepository;
 
     private final DynamicExportsService dynamicExportsService;
-    
+        
 
-    public PerfilServiceImpl(PerfilRepository perfilRepository, PerfilSearchRepository perfilSearchRepository, DynamicExportsService dynamicExportsService) {
+    public PerfilServiceImpl(PerfilRepository perfilRepository, PerfilSearchRepository perfilSearchRepository, DynamicExportsService dynamicExportsService, Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository) {
         this.perfilRepository = perfilRepository;
         this.perfilSearchRepository = perfilSearchRepository;
         this.dynamicExportsService = dynamicExportsService;
-        
+        this.perfil_funcionalidade_acaoRepository = perfil_funcionalidade_acaoRepository;
     }
 
     /**
@@ -97,9 +100,12 @@ public class PerfilServiceImpl implements PerfilService {
      *
      * @param id the id of the entity
      */
+    @Transactional
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Perfil : {}", id);
+        
+        perfil_funcionalidade_acaoRepository.apagar(id);
         perfilRepository.delete(id);
         perfilSearchRepository.delete(id);
     }
@@ -137,6 +143,14 @@ public class PerfilServiceImpl implements PerfilService {
 	public Perfil convertAcaoTempToPerfil (PerfilDTO acaoTemp) {
     	
     	Perfil perfil = new Perfil(acaoTemp.getNomePerfil(), acaoTemp.getDsPerfil());
+    	
+    	return perfil;
+    }
+    
+    @Override
+	public Perfil convertAcaoTempToPerfil (PerfilDTO acaoTemp, String tipo) {
+    	
+    	Perfil perfil = new Perfil(acaoTemp.getId(), acaoTemp.getNomePerfil(), acaoTemp.getDsPerfil());
     	
     	return perfil;
     }

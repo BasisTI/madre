@@ -25,6 +25,7 @@ export class PerfilService {
   }
 
   update(perfil: Perfil): Observable<Perfil> {
+    console.log("ID perfil: "+ perfil.id);
     const copy = this.convert(perfil);
     return this.http.put(this.resourceUrl, copy).map((res: Response) => {
       const jsonResponse = res.json();

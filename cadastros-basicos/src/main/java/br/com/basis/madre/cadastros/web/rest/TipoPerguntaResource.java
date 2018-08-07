@@ -100,7 +100,6 @@ public class TipoPerguntaResource {
     @Timed
     public ResponseEntity<TipoPergunta> updateTipoPergunta(@Valid @RequestBody TipoPergunta tipoPergunta) throws URISyntaxException {
         log.debug("REST request to update TipoPergunta : {}", tipoPergunta);
-
         tipoPergunta.setEnunciadoPergunta(MadreUtil.removeCaracteresEmBranco(tipoPergunta.getEnunciadoPergunta()));
       
         if (tipoPergunta.getId() == null) {

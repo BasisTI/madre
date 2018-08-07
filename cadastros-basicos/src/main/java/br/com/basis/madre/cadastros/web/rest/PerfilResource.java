@@ -140,19 +140,26 @@ public class PerfilResource {
 	 */
 	@PutMapping("/perfils")
 	@Timed
-	public ResponseEntity<Perfil> updatePerfil(@Valid @RequestBody Perfil perfil) throws URISyntaxException {
+	public ResponseEntity<Perfil> updatePerfil(@Valid @RequestBody PerfilDTO dto) throws URISyntaxException {
+		Perfil perfil = perfilService.convertAcaoTempToPerfil(dto,"update");
+		log.debug("==============ID PERFIL: "+perfil);
+		
 		log.debug("REST request to update Perfil : {}", perfil);
 		perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
 		if (perfil.getId() == null) {
-			return null;
+		log.debug("=======DENTRO DO IF NULL=======ID PERFIL: "+perfil);
+			return createPerfil(dto);
 		}
 
 		if (perfilRepository.findOneByNomePerfilIgnoreCase(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()))
 				.isPresent()) {
+			log.debug("=======DENTRO DO IF Perfil já cadastrado=======ID PERFIL: "+perfil);
 			throw new BadRequestAlertException("Perfil já cadastrado", ENTITY_NAME, "perfilexists");
 		}
-
+		
+		log.debug("=======ANTES DO SAVE========: "+perfil);
 		Perfil result = perfilService.save(perfil);
+		log.debug("=======DEPOIS DO SAVE========: "+perfil);
 		return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, perfil.getId().toString()))
 				.body(result);
 	}
