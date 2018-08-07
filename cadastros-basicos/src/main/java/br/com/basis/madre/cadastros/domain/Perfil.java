@@ -1,6 +1,8 @@
 package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,11 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.basis.dynamicexports.pojo.ReportObject;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -24,7 +29,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Table(name = "perfil")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "perfil")
-public class Perfil implements Serializable {
+public class Perfil implements Serializable, ReportObject {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,7 +47,34 @@ public class Perfil implements Serializable {
     @Column(name = "ds_perfil", length = 255)
     private String dsPerfil;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    @OneToMany
+    @JoinColumn(name="id_perfil")
+    private List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acao = new ArrayList<>();
+
+    //Contrutor
+    public Perfil(String nomePerfil, String dsPerfil) {
+		super();
+		this.nomePerfil = nomePerfil;
+		this.dsPerfil = dsPerfil;
+	}
+
+    public Perfil() {
+	}
+
+    /**
+     * @return the perfil_funcionalidade_acao
+     */
+    public List<PerfilFuncionalidadeAcao> getPerfil_funcionalidade_acao() {
+        return perfil_funcionalidade_acao;
+    }
+
+    /**
+     * @param perfil_funcionalidade_acao the perfil_funcionalidade_acao to set
+     */
+    public void setPerfil_funcionalidade_acao(List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acao) {
+        this.perfil_funcionalidade_acao = perfil_funcionalidade_acao;
+    }
+
     public Long getId() {
         return id;
     }
@@ -76,7 +108,6 @@ public class Perfil implements Serializable {
     public void setDsPerfil(String dsPerfil) {
         this.dsPerfil = dsPerfil;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

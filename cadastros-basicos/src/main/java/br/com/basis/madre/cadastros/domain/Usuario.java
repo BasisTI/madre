@@ -1,8 +1,7 @@
 package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -60,14 +59,11 @@ public class Usuario implements Serializable, ReportObject {
     @ManyToOne
     private Especialidade especialidade;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "ta_usuario_unidade_hospitalar",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "unidade_hospitalar_id"))
-    private List<UnidadeHospitalar> unidadeHospitalar;
-
-    //private UnidadeHospitalar unidadeHospitalar;
-
+    private List<UnidadeHospitalar> unidadeHospitalar = new ArrayList<>();
 
     public Usuario() {
     }
@@ -82,7 +78,6 @@ public class Usuario implements Serializable, ReportObject {
         this.especialidade = especialidade;
     }
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -191,8 +186,6 @@ public class Usuario implements Serializable, ReportObject {
         this.especialidade = especialidade;
     }
     public String getStringAtivo() { return (this.ativo) ? "Sim" : "Não"; }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

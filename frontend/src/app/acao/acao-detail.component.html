@@ -1,0 +1,26 @@
+<div class="ui-g ui-fluid" *ngIf="acao">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Visualizar Acao</h1>
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="nm_acao" pInputText [ngModel]="acao.nm_acao" readonly/>
+            <label>Nm Acao</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <span class="md-inputfield">
+            <input type="text" name="cd_acao" pInputText [ngModel]="acao.cd_acao" readonly/>
+            <label>Cd Acao</label>
+          </span>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-2">
+          <button pButton type="button" label="Voltar" routerLink="/acao"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatatableModule } from '@basis/angular-components';
+import { BotoesExportacaoModule } from "../botoes-exportacao/botoes-exportacao.module";
+import {PickListModule} from 'primeng/picklist';
 import {
   ButtonModule,
   InputTextModule,
@@ -11,7 +13,8 @@ import {
   CalendarModule,
   DropdownModule,
   RadioButtonModule,
-  ConfirmDialogModule
+  ConfirmDialogModule,
+  CheckboxModule
 } from 'primeng/primeng';
 
 import {
@@ -35,6 +38,9 @@ import {
     RadioButtonModule,
     InputTextModule,
     ConfirmDialogModule,
+    BotoesExportacaoModule,
+    CheckboxModule,
+    PickListModule,
   ],
   declarations: [
     PerfilComponent,

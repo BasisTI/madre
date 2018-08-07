@@ -96,10 +96,8 @@ public class UsuarioResource {
     @PutMapping("/usuarios")
     @Timed
     public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody Usuario usuario)
-        throws URISyntaxException {
-        log.debug("REST request to update Usuario : {}", usuario);
-        try {
-            log.debug("REST request to update UnidadeHospitalar : {}", usuario);
+        throws URISyntaxException { log.debug("REST request to update Usuario : {}", usuario);
+        try { log.debug("REST request to update UnidadeHospitalar : {}", usuario);
             if(!(usuarioRepository.findOneByIdAndEmailIgnoreCase(usuario.getId(), MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent()) && (usuarioRepository.findOneByEmailIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent())) {
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);}
             if (!(usuarioRepository.findOneByIdAndLoginIgnoreCase(usuario.getId(), MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent()) && (usuarioRepository.findOneByLoginIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent())){
@@ -107,13 +105,11 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);}
             Usuario result = usuarioService.save(usuario);
-
             for(int i=0; i<usuario.getUnidadeHospitalar().size(); i++){
                 TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar = new TaUsuarioUnidadeHospitalar(usuario.getId(),
                     pegaIdUnidadeHospitalar(usuario).get(i));
                 taUsuarioUnidadeHospitalarRepository.save(taUsuarioUnidadeHospitalar);
             }
-
             return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);

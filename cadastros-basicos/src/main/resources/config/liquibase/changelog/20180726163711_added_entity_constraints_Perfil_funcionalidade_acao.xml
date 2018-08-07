@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<!-- Added the constraints for entity Usuario. -->
+	<changeSet id="20180726163711-2" author="jhipster">
+
+
+		<addForeignKeyConstraint
+			baseColumnNames="id_perfil"
+			baseTableName="perfil_funcionalidade_acao"
+			constraintName="fk_perfil_funcionalidade_acao_perfil_id"
+			referencedColumnNames="id" referencedTableName="perfil" />
+
+		<addForeignKeyConstraint
+			baseColumnNames="id_funcionalidade_acao"
+			baseTableName="perfil_funcionalidade_acao"
+			constraintName="fk_perfil_funcionalidade_acao_funcionalidade_acao_id"
+			referencedColumnNames="id" referencedTableName="funcionalidade_acao" />
+
+	</changeSet>
+</databaseChangeLog>

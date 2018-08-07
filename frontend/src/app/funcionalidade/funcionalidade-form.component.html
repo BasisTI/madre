@@ -1,0 +1,38 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>{{ funcionalidade.id ? 'Editar Funcionalidade' : 'Cadastrar Funcionalidade' }}</h1>
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <div class="ui-g form-group">
+          <input type="hidden" name="id" pInputText [(ngModel)]="funcionalidade.id" readonly/>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="nm_funcionalidade" [(ngModel)]="funcionalidade.nm_funcionalidade" pInputText/>
+              <label>Nm Funcionalidade</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="cd_funcionalidade" [(ngModel)]="funcionalidade.cd_funcionalidade" pInputText/>
+              <label>Cd Funcionalidade</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="md-inputfield">
+              <input type="text" name="st_excluido" [(ngModel)]="funcionalidade.st_excluido" pInputText/>
+              <label>St Excluido</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="button" label="Cancelar" routerLink="/funcionalidade"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving" ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
