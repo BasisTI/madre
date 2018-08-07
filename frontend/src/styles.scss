@@ -5,3 +5,10 @@
     color: red;
     animation: 2s alertAnim forwards;
 }
+.error-required{
+    background-color: transparent !important;
+    border: 0 none !important;
+    margin: 0px !important;
+    color: #e62a10 !important;
+    font-size: .75em !important; 
+}
