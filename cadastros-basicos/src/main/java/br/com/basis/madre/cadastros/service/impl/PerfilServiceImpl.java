@@ -21,7 +21,7 @@ import br.com.basis.dynamicexports.util.DynamicExporter;
 import br.com.basis.madre.cadastros.domain.Perfil;
 import br.com.basis.madre.cadastros.domain.PerfilDTO;
 import br.com.basis.madre.cadastros.repository.PerfilRepository;
-import br.com.basis.madre.cadastros.repository.Perfil_funcionalidade_acaoRepository;
+import br.com.basis.madre.cadastros.repository.PerfilFuncionalidadeAcaoRepository;
 import br.com.basis.madre.cadastros.repository.search.PerfilSearchRepository;
 import br.com.basis.madre.cadastros.service.PerfilService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
@@ -41,18 +41,17 @@ public class PerfilServiceImpl implements PerfilService {
 
     private final PerfilRepository perfilRepository;
 
-    private final Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository;
-    
+    private final PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository;
+
     private final PerfilSearchRepository perfilSearchRepository;
 
     private final DynamicExportsService dynamicExportsService;
-        
 
-    public PerfilServiceImpl(PerfilRepository perfilRepository, PerfilSearchRepository perfilSearchRepository, DynamicExportsService dynamicExportsService, Perfil_funcionalidade_acaoRepository perfil_funcionalidade_acaoRepository) {
+    public PerfilServiceImpl(PerfilRepository perfilRepository, PerfilSearchRepository perfilSearchRepository, DynamicExportsService dynamicExportsService, PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository) {
         this.perfilRepository = perfilRepository;
         this.perfilSearchRepository = perfilSearchRepository;
         this.dynamicExportsService = dynamicExportsService;
-        this.perfil_funcionalidade_acaoRepository = perfil_funcionalidade_acaoRepository;
+        this.perfilFuncionalidadeAcaoRepository = perfilFuncionalidadeAcaoRepository;
     }
 
     /**
@@ -104,8 +103,8 @@ public class PerfilServiceImpl implements PerfilService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Perfil : {}", id);
-        
-        perfil_funcionalidade_acaoRepository.apagar(id);
+
+        perfilFuncionalidadeAcaoRepository.apagar(id);
         perfilRepository.delete(id);
         perfilSearchRepository.delete(id);
     }
@@ -113,7 +112,7 @@ public class PerfilServiceImpl implements PerfilService {
     /**
      * Search for the perfil corresponding to the query.
      *
-     * @param query the query of the search
+     * @param query    the query of the search
      * @param pageable the pagination information
      * @return the list of entities
      */
@@ -125,33 +124,29 @@ public class PerfilServiceImpl implements PerfilService {
     }
 
     @Override
-    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String querry) throws  RelatorioException {
+    public ResponseEntity<InputStreamResource> gerarRelatorioExportacao(String tipoRelatorio, String querry) throws RelatorioException {
         ByteArrayOutputStream byteArrayOutputStream;
 
         try {
             new NativeSearchQueryBuilder().withQuery(multiMatchQuery(querry)).build();
             Page<Perfil> result = perfilSearchRepository.search(queryStringQuery(querry), dynamicExportsService.obterPageableMaximoExportacao());
             byteArrayOutputStream = dynamicExportsService.export(new RelatorioPerfilColunas(), result, tipoRelatorio, Optional.empty(), Optional.ofNullable(MadreUtil.REPORT_LOGO_PATH), Optional.ofNullable(MadreUtil.getReportFooter()));
-        } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e){
-            log.error(e.getMessage(),e);
+        } catch (DRException | ClassNotFoundException | JRException | NoClassDefFoundError e) {
+            log.error(e.getMessage(), e);
             throw new RelatorioException(e);
         }
         return DynamicExporter.output(byteArrayOutputStream, "relatorio." + tipoRelatorio);
     }
-    
+
     @Override
-	public Perfil convertAcaoTempToPerfil (PerfilDTO acaoTemp) {
-    	
-    	Perfil perfil = new Perfil(acaoTemp.getNomePerfil(), acaoTemp.getDsPerfil());
-    	
-    	return perfil;
+    public Perfil convertAcaoTempToPerfil(PerfilDTO acaoTemp) {
+
+        return new Perfil(acaoTemp.getNomePerfil(), acaoTemp.getDsPerfil());
     }
-    
+
     @Override
-	public Perfil convertAcaoTempToPerfil (PerfilDTO acaoTemp, String tipo) {
-    	
-    	Perfil perfil = new Perfil(acaoTemp.getId(), acaoTemp.getNomePerfil(), acaoTemp.getDsPerfil());
-    	
-    	return perfil;
+    public Perfil convertAcaoTempToPerfil(PerfilDTO acaoTemp, String tipo) {
+
+        return new Perfil(acaoTemp.getId(), acaoTemp.getNomePerfil(), acaoTemp.getDsPerfil());
     }
 }

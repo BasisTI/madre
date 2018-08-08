@@ -115,6 +115,7 @@ public class UnidadeHospitalarServiceImpl implements UnidadeHospitalarService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete UnidadeHospitalar : {}", id);
+
         unidadeHospitalarRepository.delete(id);
         unidadeHospitalarSearchRepository.delete(id);
     }

@@ -49,8 +49,8 @@ public class Perfil implements Serializable, ReportObject {
     private String dsPerfil;
 
     @OneToMany
-    @JoinColumn(name="id_perfil")
-    private List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acao = new ArrayList<>();
+    @JoinColumn(name = "id_perfil")
+    private List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcao = new ArrayList<>();
 
     //Contrutor
     public Perfil(String nomePerfil, String dsPerfil) {
@@ -65,20 +65,24 @@ public class Perfil implements Serializable, ReportObject {
 	}
     
     public Perfil() {
-	}
-
-    /**
-     * @return the perfil_funcionalidade_acao
-     */
-    public List<PerfilFuncionalidadeAcao> getPerfil_funcionalidade_acao() {
-        return perfil_funcionalidade_acao;
     }
 
     /**
-     * @param perfil_funcionalidade_acao the perfil_funcionalidade_acao to set
+     * @return the perfilFuncionalidadeAcao
      */
-    public void setPerfil_funcionalidade_acao(List<PerfilFuncionalidadeAcao> perfil_funcionalidade_acao) {
-        this.perfil_funcionalidade_acao = perfil_funcionalidade_acao;
+    public List<PerfilFuncionalidadeAcao> getPerfilFuncionalidadeAcao() {
+        List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcaos1 = new ArrayList<>();
+        perfilFuncionalidadeAcaos1 = perfilFuncionalidadeAcao;
+        return perfilFuncionalidadeAcaos1;
+    }
+
+    /**
+     * @param perfilFuncionalidadeAcao the perfilFuncionalidadeAcao to set
+     */
+    public void setPerfilFuncionalidadeAcao(List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcao) {
+        List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcaos1 = new ArrayList<>();
+        perfilFuncionalidadeAcaos1 = perfilFuncionalidadeAcao;
+        this.perfilFuncionalidadeAcao = perfilFuncionalidadeAcaos1;
     }
 
     public Long getId() {

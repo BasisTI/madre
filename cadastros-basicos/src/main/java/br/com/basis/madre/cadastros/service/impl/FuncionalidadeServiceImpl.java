@@ -97,18 +97,7 @@ public class FuncionalidadeServiceImpl implements FuncionalidadeService {
     @Transactional(readOnly = true)
     public Page<Funcionalidade> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Funcionalidades for query {}", query);
-        Page<Funcionalidade> result = funcionalidadeSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return funcionalidadeSearchRepository.search(queryStringQuery(query), pageable);
     }
-    
-    public List<Funcionalidade> pegaIds(){
-    	List<Funcionalidade> listaFunc = funcionalidadeRepository.findAll();
-    	log.debug(listaFunc.toString());
-    	for(int i = 0; i<listaFunc.size();i++) {
-    		
-    		
-    	}
-    	
-    	return listaFunc;
-    }
+
 }

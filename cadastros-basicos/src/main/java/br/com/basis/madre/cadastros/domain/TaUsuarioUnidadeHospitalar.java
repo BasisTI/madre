@@ -3,7 +3,12 @@ package br.com.basis.madre.cadastros.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -25,16 +30,16 @@ public class TaUsuarioUnidadeHospitalar implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    private Long usuadio_id;
+    private Long usuarioId;
 
-    private Long unidade_hospitalar_id;
+    private Long unidadeHospitalarId;
 
     public TaUsuarioUnidadeHospitalar() {
     }
 
-    public TaUsuarioUnidadeHospitalar(Long usuadio_id, Long unidade_hospitalar_id) {
-        this.usuadio_id = usuadio_id;
-        this.unidade_hospitalar_id = unidade_hospitalar_id;
+    public TaUsuarioUnidadeHospitalar(Long usuarioId, Long unidadeHospitalarId) {
+        this.usuarioId = usuarioId;
+        this.unidadeHospitalarId = unidadeHospitalarId;
     }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -48,20 +53,20 @@ public class TaUsuarioUnidadeHospitalar implements Serializable {
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
 
-    public Long getUsuadio_id() {
-        return usuadio_id;
+    public Long getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuadio_id(Long usuadio_id) {
-        this.usuadio_id = usuadio_id;
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public Long getUnidade_hospitalar_id() {
-        return unidade_hospitalar_id;
+    public Long getUnidadeHospitalarId() {
+        return unidadeHospitalarId;
     }
 
-    public void setUnidade_hospitalar_id(Long unidade_hospitalar_id) {
-        this.unidade_hospitalar_id = unidade_hospitalar_id;
+    public void setUnidadeHospitalarId(Long unidadeHospitalarId) {
+        this.unidadeHospitalarId = unidadeHospitalarId;
     }
 
     @Override

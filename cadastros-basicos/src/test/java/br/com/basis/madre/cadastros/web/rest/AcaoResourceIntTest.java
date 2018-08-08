@@ -90,8 +90,8 @@ public class AcaoResourceIntTest {
      */
     public static Acao createEntity(EntityManager em) {
         Acao acao = new Acao()
-            .nm_acao(DEFAULT_NM_ACAO)
-            .cd_acao(DEFAULT_CD_ACAO);
+            .nmAcao(DEFAULT_NM_ACAO)
+            .cdAcao(DEFAULT_CD_ACAO);
         return acao;
     }
 
@@ -116,8 +116,8 @@ public class AcaoResourceIntTest {
         List<Acao> acaos = acaoRepository.findAll();
         assertThat(acaos).hasSize(databaseSizeBeforeCreate + 1);
         Acao testAcao = acaos.get(acaos.size() - 1);
-        assertThat(testAcao.getNm_acao()).isEqualTo(DEFAULT_NM_ACAO);
-        assertThat(testAcao.getCd_acao()).isEqualTo(DEFAULT_CD_ACAO);
+        assertThat(testAcao.getNmAcao()).isEqualTo(DEFAULT_NM_ACAO);
+        assertThat(testAcao.getCdAcao()).isEqualTo(DEFAULT_CD_ACAO);
 
         // Validate the Acao in Elasticsearch
         Acao acaoEs = acaoSearchRepository.findOne(testAcao.getId());
@@ -148,7 +148,7 @@ public class AcaoResourceIntTest {
     public void checkNm_acaoIsRequired() throws Exception {
         int databaseSizeBeforeTest = acaoRepository.findAll().size();
         // set the field null
-        acao.setNm_acao(null);
+        acao.setNmAcao(null);
 
         // Create the Acao, which fails.
 
@@ -166,7 +166,7 @@ public class AcaoResourceIntTest {
     public void checkCd_acaoIsRequired() throws Exception {
         int databaseSizeBeforeTest = acaoRepository.findAll().size();
         // set the field null
-        acao.setCd_acao(null);
+        acao.setCdAcao(null);
 
         // Create the Acao, which fails.
 
@@ -190,8 +190,8 @@ public class AcaoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(acao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nm_acao").value(hasItem(DEFAULT_NM_ACAO.toString())))
-            .andExpect(jsonPath("$.[*].cd_acao").value(hasItem(DEFAULT_CD_ACAO.toString())));
+            .andExpect(jsonPath("$.[*].nmAcao").value(hasItem(DEFAULT_NM_ACAO.toString())))
+            .andExpect(jsonPath("$.[*].cdAcao").value(hasItem(DEFAULT_CD_ACAO.toString())));
     }
 
     @Test
@@ -205,8 +205,8 @@ public class AcaoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(acao.getId().intValue()))
-            .andExpect(jsonPath("$.nm_acao").value(DEFAULT_NM_ACAO.toString()))
-            .andExpect(jsonPath("$.cd_acao").value(DEFAULT_CD_ACAO.toString()));
+            .andExpect(jsonPath("$.nmAcao").value(DEFAULT_NM_ACAO.toString()))
+            .andExpect(jsonPath("$.cdAcao").value(DEFAULT_CD_ACAO.toString()));
     }
 
     @Test
@@ -230,8 +230,8 @@ public class AcaoResourceIntTest {
         // Disconnect from session so that the updates on updatedAcao are not directly saved in db
         em.detach(updatedAcao);
         updatedAcao
-            .nm_acao(UPDATED_NM_ACAO)
-            .cd_acao(UPDATED_CD_ACAO);
+            .nmAcao(UPDATED_NM_ACAO)
+            .cdAcao(UPDATED_CD_ACAO);
 
         restAcaoMockMvc.perform(put("/api/acaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -242,8 +242,8 @@ public class AcaoResourceIntTest {
         List<Acao> acaos = acaoRepository.findAll();
         assertThat(acaos).hasSize(databaseSizeBeforeUpdate);
         Acao testAcao = acaos.get(acaos.size() - 1);
-        assertThat(testAcao.getNm_acao()).isEqualTo(UPDATED_NM_ACAO);
-        assertThat(testAcao.getCd_acao()).isEqualTo(UPDATED_CD_ACAO);
+        assertThat(testAcao.getNmAcao()).isEqualTo(UPDATED_NM_ACAO);
+        assertThat(testAcao.getCdAcao()).isEqualTo(UPDATED_CD_ACAO);
 
         // Validate the Acao in Elasticsearch
         Acao acaoEs = acaoSearchRepository.findOne(testAcao.getId());
@@ -301,8 +301,8 @@ public class AcaoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(acao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nm_acao").value(hasItem(DEFAULT_NM_ACAO.toString())))
-            .andExpect(jsonPath("$.[*].cd_acao").value(hasItem(DEFAULT_CD_ACAO.toString())));
+            .andExpect(jsonPath("$.[*].nmAcao").value(hasItem(DEFAULT_NM_ACAO.toString())))
+            .andExpect(jsonPath("$.[*].cdAcao").value(hasItem(DEFAULT_CD_ACAO.toString())));
     }
 
     @Test

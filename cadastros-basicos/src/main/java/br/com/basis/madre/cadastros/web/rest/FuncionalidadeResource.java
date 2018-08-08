@@ -60,7 +60,7 @@ public class FuncionalidadeResource {
     @PostMapping("/funcionalidades")
     @Timed
     public ResponseEntity<Funcionalidade> createFuncionalidade(@Valid @RequestBody Funcionalidade funcionalidade) throws URISyntaxException {
-    	log.debug("REST request to save Funcionalidade : {}", funcionalidade);
+        log.debug("REST request to save Funcionalidade : {}", funcionalidade);
         if (funcionalidade.getId() != null) {
             throw new BadRequestAlertException("A new funcionalidade cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -139,7 +139,7 @@ public class FuncionalidadeResource {
      * SEARCH  /_search/funcionalidades?query=:query : search for the funcionalidade corresponding
      * to the query.
      *
-     * @param query the query of the funcionalidade search
+     * @param query    the query of the funcionalidade search
      * @param pageable the pagination information
      * @return the result of the search
      */

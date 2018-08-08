@@ -93,9 +93,9 @@ public class FuncionalidadeResourceIntTest {
      */
     public static Funcionalidade createEntity(EntityManager em) {
         Funcionalidade funcionalidade = new Funcionalidade()
-            .nm_funcionalidade(DEFAULT_NM_FUNCIONALIDADE)
-            .cd_funcionalidade(DEFAULT_CD_FUNCIONALIDADE)
-            .st_excluido(DEFAULT_ST_EXCLUIDO);
+            .nmFuncionalidade(DEFAULT_NM_FUNCIONALIDADE)
+            .cdFuncionalidade(DEFAULT_CD_FUNCIONALIDADE)
+            .stExcluido(DEFAULT_ST_EXCLUIDO);
         return funcionalidade;
     }
 
@@ -120,9 +120,9 @@ public class FuncionalidadeResourceIntTest {
         List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
         assertThat(funcionalidades).hasSize(databaseSizeBeforeCreate + 1);
         Funcionalidade testFuncionalidade = funcionalidades.get(funcionalidades.size() - 1);
-        assertThat(testFuncionalidade.getNm_funcionalidade()).isEqualTo(DEFAULT_NM_FUNCIONALIDADE);
-        assertThat(testFuncionalidade.getCd_funcionalidade()).isEqualTo(DEFAULT_CD_FUNCIONALIDADE);
-        assertThat(testFuncionalidade.getSt_excluido()).isEqualTo(DEFAULT_ST_EXCLUIDO);
+        assertThat(testFuncionalidade.getNmFuncionalidade()).isEqualTo(DEFAULT_NM_FUNCIONALIDADE);
+        assertThat(testFuncionalidade.getCdFuncionalidade()).isEqualTo(DEFAULT_CD_FUNCIONALIDADE);
+        assertThat(testFuncionalidade.getStExcluido()).isEqualTo(DEFAULT_ST_EXCLUIDO);
 
         // Validate the Funcionalidade in Elasticsearch
         Funcionalidade funcionalidadeEs = funcionalidadeSearchRepository.findOne(testFuncionalidade.getId());
@@ -153,7 +153,7 @@ public class FuncionalidadeResourceIntTest {
     public void checkNm_funcionalidadeIsRequired() throws Exception {
         int databaseSizeBeforeTest = funcionalidadeRepository.findAll().size();
         // set the field null
-        funcionalidade.setNm_funcionalidade(null);
+        funcionalidade.setNmFuncionalidade(null);
 
         // Create the Funcionalidade, which fails.
 
@@ -171,7 +171,7 @@ public class FuncionalidadeResourceIntTest {
     public void checkCd_funcionalidadeIsRequired() throws Exception {
         int databaseSizeBeforeTest = funcionalidadeRepository.findAll().size();
         // set the field null
-        funcionalidade.setCd_funcionalidade(null);
+        funcionalidade.setCdFuncionalidade(null);
 
         // Create the Funcionalidade, which fails.
 
@@ -189,7 +189,7 @@ public class FuncionalidadeResourceIntTest {
     public void checkSt_excluidoIsRequired() throws Exception {
         int databaseSizeBeforeTest = funcionalidadeRepository.findAll().size();
         // set the field null
-        funcionalidade.setSt_excluido(null);
+        funcionalidade.setStExcluido(null);
 
         // Create the Funcionalidade, which fails.
 
@@ -213,9 +213,9 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(funcionalidade.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nm_funcionalidade").value(hasItem(DEFAULT_NM_FUNCIONALIDADE.toString())))
-            .andExpect(jsonPath("$.[*].cd_funcionalidade").value(hasItem(DEFAULT_CD_FUNCIONALIDADE.toString())))
-            .andExpect(jsonPath("$.[*].st_excluido").value(hasItem(DEFAULT_ST_EXCLUIDO.toString())));
+            .andExpect(jsonPath("$.[*].nmFuncionalidade").value(hasItem(DEFAULT_NM_FUNCIONALIDADE.toString())))
+            .andExpect(jsonPath("$.[*].cdFuncionalidade").value(hasItem(DEFAULT_CD_FUNCIONALIDADE.toString())))
+            .andExpect(jsonPath("$.[*].stExcluido").value(hasItem(DEFAULT_ST_EXCLUIDO.toString())));
     }
 
     @Test
@@ -229,9 +229,9 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(funcionalidade.getId().intValue()))
-            .andExpect(jsonPath("$.nm_funcionalidade").value(DEFAULT_NM_FUNCIONALIDADE.toString()))
-            .andExpect(jsonPath("$.cd_funcionalidade").value(DEFAULT_CD_FUNCIONALIDADE.toString()))
-            .andExpect(jsonPath("$.st_excluido").value(DEFAULT_ST_EXCLUIDO.toString()));
+            .andExpect(jsonPath("$.nmFuncionalidade").value(DEFAULT_NM_FUNCIONALIDADE.toString()))
+            .andExpect(jsonPath("$.cdFuncionalidade").value(DEFAULT_CD_FUNCIONALIDADE.toString()))
+            .andExpect(jsonPath("$.stExcluido").value(DEFAULT_ST_EXCLUIDO.toString()));
     }
 
     @Test
@@ -255,9 +255,9 @@ public class FuncionalidadeResourceIntTest {
         // Disconnect from session so that the updates on updatedFuncionalidade are not directly saved in db
         em.detach(updatedFuncionalidade);
         updatedFuncionalidade
-            .nm_funcionalidade(UPDATED_NM_FUNCIONALIDADE)
-            .cd_funcionalidade(UPDATED_CD_FUNCIONALIDADE)
-            .st_excluido(UPDATED_ST_EXCLUIDO);
+            .nmFuncionalidade(UPDATED_NM_FUNCIONALIDADE)
+            .cdFuncionalidade(UPDATED_CD_FUNCIONALIDADE)
+            .stExcluido(UPDATED_ST_EXCLUIDO);
 
         restFuncionalidadeMockMvc.perform(put("/api/funcionalidades")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -268,9 +268,9 @@ public class FuncionalidadeResourceIntTest {
         List<Funcionalidade> funcionalidades = funcionalidadeRepository.findAll();
         assertThat(funcionalidades).hasSize(databaseSizeBeforeUpdate);
         Funcionalidade testFuncionalidade = funcionalidades.get(funcionalidades.size() - 1);
-        assertThat(testFuncionalidade.getNm_funcionalidade()).isEqualTo(UPDATED_NM_FUNCIONALIDADE);
-        assertThat(testFuncionalidade.getCd_funcionalidade()).isEqualTo(UPDATED_CD_FUNCIONALIDADE);
-        assertThat(testFuncionalidade.getSt_excluido()).isEqualTo(UPDATED_ST_EXCLUIDO);
+        assertThat(testFuncionalidade.getNmFuncionalidade()).isEqualTo(UPDATED_NM_FUNCIONALIDADE);
+        assertThat(testFuncionalidade.getCdFuncionalidade()).isEqualTo(UPDATED_CD_FUNCIONALIDADE);
+        assertThat(testFuncionalidade.getStExcluido()).isEqualTo(UPDATED_ST_EXCLUIDO);
 
         // Validate the Funcionalidade in Elasticsearch
         Funcionalidade funcionalidadeEs = funcionalidadeSearchRepository.findOne(testFuncionalidade.getId());
@@ -328,9 +328,9 @@ public class FuncionalidadeResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(funcionalidade.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nm_funcionalidade").value(hasItem(DEFAULT_NM_FUNCIONALIDADE.toString())))
-            .andExpect(jsonPath("$.[*].cd_funcionalidade").value(hasItem(DEFAULT_CD_FUNCIONALIDADE.toString())))
-            .andExpect(jsonPath("$.[*].st_excluido").value(hasItem(DEFAULT_ST_EXCLUIDO.toString())));
+            .andExpect(jsonPath("$.[*].nmFuncionalidade").value(hasItem(DEFAULT_NM_FUNCIONALIDADE.toString())))
+            .andExpect(jsonPath("$.[*].cdFuncionalidade").value(hasItem(DEFAULT_CD_FUNCIONALIDADE.toString())))
+            .andExpect(jsonPath("$.[*].stExcluido").value(hasItem(DEFAULT_ST_EXCLUIDO.toString())));
     }
 
     @Test

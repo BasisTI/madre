@@ -16,7 +16,7 @@ import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface Perfil_funcionalidade_acaoRepository extends JpaRepository<PerfilFuncionalidadeAcao, Long> {
+public interface PerfilFuncionalidadeAcaoRepository extends JpaRepository<PerfilFuncionalidadeAcao, Long> {
     @Modifying
 	@Query(value = "DELETE FROM PerfilFuncionalidadeAcao WHERE id_perfil = :#{#id_perfil}")
 	void apagar(@Param("id_perfil") Long id_perfil);

@@ -33,7 +33,8 @@ import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
-
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing Acao.
@@ -63,9 +64,9 @@ public class AcaoResource {
     @Timed
     public ResponseEntity<Acao> createAcao(@Valid @RequestBody Acao acao) throws URISyntaxException {
         log.debug("REST request to save Acao : {}", acao);
-        acao.setNm_acao("pesquisar");
-        acao.setNm_acao("incluir");
-        acao.setNm_acao("excluir");
+        acao.setNmAcao("pesquisar");
+        acao.setNmAcao("incluir");
+        acao.setNmAcao("excluir");
         if (acao.getId() != null) {
             throw new BadRequestAlertException("A new acao cannot already have an ID", ENTITY_NAME, "idexists");
         }

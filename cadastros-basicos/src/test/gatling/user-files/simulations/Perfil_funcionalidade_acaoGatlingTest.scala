@@ -68,7 +68,7 @@ class Perfil_funcionalidade_acaoGatlingTest extends Simulation {
             .exec(http("Create new perfil_funcionalidade_acao")
             .post("/cadastrosbasicos/api/perfil-funcionalidade-acaos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "id_perfil":"0", "id_funcionalidade_acao":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "idPerfil":"0", "idFuncionalidadeAcao":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_perfil_funcionalidade_acao_url"))).exitHereIfFailed
             .pause(10)

@@ -1,7 +1,7 @@
 package br.com.basis.madre.cadastros.service.impl;
 
 import br.com.basis.madre.cadastros.domain.FuncionalidadeAcao;
-import br.com.basis.madre.cadastros.service.Funcionalidade_acaoService;
+import br.com.basis.madre.cadastros.service.FuncionalidadeAcaoService;
 import br.com.basis.madre.cadastros.repository.FuncionalidadeAcaoRepository;
 import br.com.basis.madre.cadastros.repository.search.FuncionalidadeAcaoSearchRepository;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  */
 @Service
 @Transactional
-public class FuncionalidadeAcaoServiceImpl implements Funcionalidade_acaoService {
+public class FuncionalidadeAcaoServiceImpl implements FuncionalidadeAcaoService {
 
     private final Logger log = LoggerFactory.getLogger(FuncionalidadeAcaoServiceImpl.class);
 
@@ -95,7 +95,6 @@ public class FuncionalidadeAcaoServiceImpl implements Funcionalidade_acaoService
     @Transactional(readOnly = true)
     public Page<FuncionalidadeAcao> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Funcionalidade_acaos for query {}", query);
-        Page<FuncionalidadeAcao> result = funcionalidadeAcaoSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return funcionalidadeAcaoSearchRepository.search(queryStringQuery(query), pageable);
     }
 }

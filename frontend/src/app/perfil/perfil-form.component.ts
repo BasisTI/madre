@@ -62,11 +62,11 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
         this.listaFunc.forEach(item => {
           item.acaos.forEach(abaco => {
             this.acaoTemp.id = abaco.id;
-            this.acaoTemp.id_funcionalidade = item.id;
-            this.acaoTemp.nm_funcionalidade = item.nm_funcionalidade;
-            this.acaoTemp.cd_funcionalidade = item.cd_funcionalidade;
-            this.acaoTemp.nm_acao = abaco.nm_acao;
-            this.acaoTemp.cd_acao = abaco.cd_acao;
+            this.acaoTemp.idFuncionalidade = item.id;
+            this.acaoTemp.nmFuncionalidade = item.nmFuncionalidade;
+            this.acaoTemp.cdFuncionalidade = item.cdFuncionalidade;
+            this.acaoTemp.nmAcao = abaco.nmAcao;
+            this.acaoTemp.cdAcao = abaco.cdAcao;
             this.pega.push(Object.assign({}, this.acaoTemp));
           });
         });

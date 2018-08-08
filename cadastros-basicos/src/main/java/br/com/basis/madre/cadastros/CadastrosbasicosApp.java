@@ -21,8 +21,6 @@ import org.springframework.core.env.Environment;
 
 import br.com.basis.madre.cadastros.config.ApplicationProperties;
 import br.com.basis.madre.cadastros.config.DefaultProfileUtil;
-import br.com.basis.madre.cadastros.domain.Funcionalidade;
-import br.com.basis.madre.cadastros.service.impl.FuncionalidadeServiceImpl;
 import io.github.jhipster.config.JHipsterConstants;
 
 @ComponentScan(value = {"br.com.basis.madre.cadastros"})

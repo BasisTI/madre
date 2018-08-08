@@ -36,27 +36,26 @@ public class FuncionalidadeAcao implements Serializable {
 
     @NotNull
     @Column(name = "id_funcionalidade", nullable = false)
-    private Integer id_funcionalidade;
+    private Integer idFuncionalidade;
 
     @NotNull
     @Column(name = "id_acao", nullable = false)
-    private Integer id_acao;
+    private Integer idAcao;
 
-    @OneToOne(mappedBy="funcionalidade_acao", fetch=FetchType.LAZY)
-    private PerfilFuncionalidadeAcao perfil_funcionalidade_acao;
+    private PerfilFuncionalidadeAcao perfilFuncionalidadeAcao;
 
     /**
-     * @return the perfil_funcionalidade_acao
+     * @return the perfilFuncionalidadeAcao
      */
-    public PerfilFuncionalidadeAcao getPerfil_funcionalidade_acao() {
-        return perfil_funcionalidade_acao;
+    public PerfilFuncionalidadeAcao getPerfilFuncionalidadeAcao() {
+        return perfilFuncionalidadeAcao;
     }
 
     /**
-     * @param perfil_funcionalidade_acao the perfil_funcionalidade_acao to set
+     * @param perfilFuncionalidadeAcao the perfilFuncionalidadeAcao to set
      */
-    public void setPerfil_funcionalidade_acao(PerfilFuncionalidadeAcao perfil_funcionalidade_acao) {
-        this.perfil_funcionalidade_acao = perfil_funcionalidade_acao;
+    public void setPerfilFuncionalidadeAcao(PerfilFuncionalidadeAcao perfilFuncionalidadeAcao) {
+        this.perfilFuncionalidadeAcao = perfilFuncionalidadeAcao;
     }
 
     public Long getId() {
@@ -67,30 +66,30 @@ public class FuncionalidadeAcao implements Serializable {
         this.id = id;
     }
 
-    public Integer getId_funcionalidade() {
-        return id_funcionalidade;
+    public Integer getIdFuncionalidade() {
+        return idFuncionalidade;
     }
 
-    public FuncionalidadeAcao id_funcionalidade(Integer id_funcionalidade) {
-        this.id_funcionalidade = id_funcionalidade;
+    public FuncionalidadeAcao idFuncionalidade(Integer idFuncionalidade) {
+        this.idFuncionalidade = idFuncionalidade;
         return this;
     }
 
-    public void setId_funcionalidade(Integer id_funcionalidade) {
-        this.id_funcionalidade = id_funcionalidade;
+    public void setIdFuncionalidade(Integer idFuncionalidade) {
+        this.idFuncionalidade = idFuncionalidade;
     }
 
-    public Integer getId_acao() {
-        return id_acao;
+    public Integer getIdAcao() {
+        return idAcao;
     }
 
-    public FuncionalidadeAcao id_acao(Integer id_acao) {
-        this.id_acao = id_acao;
+    public FuncionalidadeAcao idAcao(Integer idAcao) {
+        this.idAcao = idAcao;
         return this;
     }
 
-    public void setId_acao(Integer id_acao) {
-        this.id_acao = id_acao;
+    public void setIdAcao(Integer idAcao) {
+        this.idAcao = idAcao;
     }
 
     @Override
@@ -101,11 +100,11 @@ public class FuncionalidadeAcao implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FuncionalidadeAcao funcionalidade_acao = (FuncionalidadeAcao) o;
-        if (funcionalidade_acao.getId() == null || getId() == null) {
+        FuncionalidadeAcao funcionalidadeAcao = (FuncionalidadeAcao) o;
+        if (funcionalidadeAcao.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), funcionalidade_acao.getId());
+        return Objects.equals(getId(), funcionalidadeAcao.getId());
     }
 
     @Override
@@ -117,8 +116,8 @@ public class FuncionalidadeAcao implements Serializable {
     public String toString() {
         return "FuncionalidadeAcao{" +
             "id=" + getId() +
-            ", id_funcionalidade=" + getId_funcionalidade() +
-            ", id_acao=" + getId_acao() +
+            ", idFuncionalidade=" + getIdFuncionalidade() +
+            ", idAcao=" + getIdAcao() +
             "}";
     }
 }

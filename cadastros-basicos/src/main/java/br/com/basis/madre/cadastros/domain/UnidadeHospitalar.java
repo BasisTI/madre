@@ -1,15 +1,24 @@
 package br.com.basis.madre.cadastros.domain;
 
 import br.com.basis.dynamicexports.pojo.ReportObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.data.elasticsearch.annotations.Document;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,6 +34,7 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column (name="ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
@@ -60,6 +70,10 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "unidadeHospitalar")
+    private List<Usuario> usuarios = new ArrayList<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -157,6 +171,17 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
         return this;
     }
 
+    public List<Usuario> getUsuarios() {
+        List<Usuario> usuarios1 = new ArrayList<>();
+        usuarios1 = usuarios;
+        return usuarios1;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        List<Usuario> usuarios1 = new ArrayList<>();
+        usuarios1 = usuarios;
+        this.usuarios = usuarios1;
+    }
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;

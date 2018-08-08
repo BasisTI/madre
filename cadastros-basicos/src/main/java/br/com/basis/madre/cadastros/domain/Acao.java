@@ -31,93 +31,97 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Document(indexName = "acao")
 public class Acao implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column (name="ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-	@SequenceGenerator(name = "sequenceGenerator")
-	private Long id;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    private Long id;
 
-	@NotNull
-	@Size(max = 20)
-	@Column(name = "nm_acao", length = 20, nullable = false)
-	private String nm_acao;
+    @NotNull
+    @Size(max = 20)
+    @Column(name = "nm_acao", length = 20, nullable = false)
+    private String nmAcao;
 
-	@NotNull
-	@Size(max = 8)
-	@Column(name = "cd_acao", length = 8, nullable = false)
-	private String cd_acao;
+    @NotNull
+    @Size(max = 8)
+    @Column(name = "cd_acao", length = 8, nullable = false)
+    private String cdAcao;
 
-	@JsonIgnore
-	@ManyToMany(mappedBy = "acaos")
-	private Set<Funcionalidade> funcionalidades = new HashSet<>();
-	
-	public Set<Funcionalidade> getFuncionalidades() {
-		return funcionalidades;
-	}
+    @JsonIgnore
+    @ManyToMany(mappedBy = "acaos")
+    private Set<Funcionalidade> funcionalidades = new HashSet<>();
 
-	public void setFuncionalidades(Set<Funcionalidade> funcionalidades) {
-		this.funcionalidades = funcionalidades;
-	}
+    public Set<Funcionalidade> getFuncionalidades() {
+        Set<Funcionalidade> funcionalidades1 = new HashSet<>();
+        funcionalidades1 = funcionalidades;
+        return funcionalidades1;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setFuncionalidades(Set<Funcionalidade> funcionalidades) {
+        Set<Funcionalidade> funcionalidades1 = new HashSet<>();
+        funcionalidades1 = funcionalidades;
+        this.funcionalidades = funcionalidades1;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getNm_acao() {
-		return nm_acao;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Acao nm_acao(String nm_acao) {
-		this.nm_acao = nm_acao;
-		return this;
-	}
+    public String getNmAcao() {
+        return nmAcao;
+    }
 
-	public void setNm_acao(String nm_acao) {
-		this.nm_acao = nm_acao;
-	}
+    public Acao nmAcao(String nmAcao) {
+        this.nmAcao = nmAcao;
+        return this;
+    }
 
-	public String getCd_acao() {
-		return cd_acao;
-	}
+    public void setNmAcao(String nmAcao) {
+        this.nmAcao = nmAcao;
+    }
 
-	public Acao cd_acao(String cd_acao) {
-		this.cd_acao = cd_acao;
-		return this;
-	}
+    public String getCdAcao() {
+        return cdAcao;
+    }
 
-	public void setCd_acao(String cd_acao) {
-		this.cd_acao = cd_acao;
-	}
+    public Acao cdAcao(String cdAcao) {
+        this.cdAcao = cdAcao;
+        return this;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		Acao acao = (Acao) o;
-		if (acao.getId() == null || getId() == null) {
-			return false;
-		}
-		return Objects.equals(getId(), acao.getId());
-	}
+    public void setCdAcao(String cdAcao) {
+        this.cdAcao = cdAcao;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(getId());
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Acao acao = (Acao) o;
+        if (acao.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), acao.getId());
+    }
 
-	@Override
-	public String toString() {
-		return "Acao{" + "id=" + getId() + ", nm_acao='" + getNm_acao() + "'" + ", cd_acao='" + getCd_acao() + "'"
-				+ "}";
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Acao{" + "id=" + getId() + ", nmAcao='" + getNmAcao() + "'" + ", cdAcao='" + getCdAcao() + "'"
+            + "}";
+    }
 }

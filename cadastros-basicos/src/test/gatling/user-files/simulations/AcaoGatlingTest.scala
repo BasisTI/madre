@@ -68,7 +68,7 @@ class AcaoGatlingTest extends Simulation {
             .exec(http("Create new acao")
             .post("/cadastrosbasicos/api/acaos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nm_acao":"SAMPLE_TEXT", "cd_acao":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nmAcao":"SAMPLE_TEXT", "cdAcao":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_acao_url"))).exitHereIfFailed
             .pause(10)
