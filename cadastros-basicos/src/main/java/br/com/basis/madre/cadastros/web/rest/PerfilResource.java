@@ -221,6 +221,7 @@ public class PerfilResource {
         try {
             return perfilService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
+            log.info("", e);
     return ResponseEntity.badRequest().headers(
                 HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage()))
                 .body(null);

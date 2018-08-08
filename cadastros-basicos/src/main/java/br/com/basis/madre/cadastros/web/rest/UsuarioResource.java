@@ -75,7 +75,6 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario)
         throws URISyntaxException {
-        log.debug("======================="+ usuario.getUnidadeHospitalar());
         try { log.debug("REST request to save Usuario : {}", usuario);
             if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
