@@ -17,10 +17,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.basis.dynamicexports.pojo.ReportObject;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+
+import br.com.basis.dynamicexports.pojo.ReportObject;
 
 /**
  * A Perfil.
@@ -53,11 +54,16 @@ public class Perfil implements Serializable, ReportObject {
 
     //Contrutor
     public Perfil(String nomePerfil, String dsPerfil) {
-		super();
 		this.nomePerfil = nomePerfil;
 		this.dsPerfil = dsPerfil;
 	}
-
+    
+    public Perfil(Long id, String nomePerfil, String dsPerfil) {
+		this.nomePerfil = nomePerfil;
+		this.dsPerfil = dsPerfil;
+		this.id = id;
+	}
+    
     public Perfil() {
 	}
 

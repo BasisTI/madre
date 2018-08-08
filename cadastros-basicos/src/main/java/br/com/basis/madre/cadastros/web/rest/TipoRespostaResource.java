@@ -1,44 +1,42 @@
 package br.com.basis.madre.cadastros.web.rest;
 
-import br.com.basis.madre.cadastros.repository.TipoRespostaRepository;
-import br.com.basis.madre.cadastros.service.exception.RelatorioException;
-import br.com.basis.madre.cadastros.util.MadreUtil;
-import com.codahale.metrics.annotation.Timed;
-import br.com.basis.madre.cadastros.domain.TipoResposta;
-import br.com.basis.madre.cadastros.service.TipoRespostaService;
-import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
-import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
-import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
-import org.springframework.core.io.InputStreamResource;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.codahale.metrics.annotation.Timed;
 
-import javax.print.DocFlavor;
-import javax.validation.Valid;
-import javax.xml.ws.Response;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
+import br.com.basis.madre.cadastros.domain.TipoResposta;
+import br.com.basis.madre.cadastros.repository.TipoRespostaRepository;
+import br.com.basis.madre.cadastros.service.TipoRespostaService;
+import br.com.basis.madre.cadastros.service.exception.RelatorioException;
+import br.com.basis.madre.cadastros.util.MadreUtil;
+import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
+import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing TipoResposta.

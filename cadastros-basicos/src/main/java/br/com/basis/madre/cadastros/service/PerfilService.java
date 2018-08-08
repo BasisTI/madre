@@ -55,6 +55,7 @@ public interface PerfilService {
     Page<Perfil> search(String query, Pageable pageable);
     
     Perfil convertAcaoTempToPerfil(PerfilDTO acaoTemp);
+    Perfil convertAcaoTempToPerfil(PerfilDTO acaoTemp, String tipo);
 
     ResponseEntity<InputStreamResource> gerarRelatorioExportacao (String tipoRelatorio, String querry) throws RelatorioException;
 }

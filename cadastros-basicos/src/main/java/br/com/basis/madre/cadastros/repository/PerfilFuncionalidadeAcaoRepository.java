@@ -1,9 +1,14 @@
 package br.com.basis.madre.cadastros.repository;
 
-import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.*;
+import br.com.basis.madre.cadastros.domain.PerfilFuncionalidadeAcao;
+
+
 
 
 /**
@@ -11,6 +16,8 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PerfilFuncionalidadeAcaoRepository extends JpaRepository<PerfilFuncionalidadeAcao, Long> {
-
+public interface Perfil_funcionalidade_acaoRepository extends JpaRepository<PerfilFuncionalidadeAcao, Long> {
+    @Modifying
+	@Query(value = "DELETE FROM PerfilFuncionalidadeAcao WHERE id_perfil = :#{#id_perfil}")
+	void apagar(@Param("id_perfil") Long id_perfil);
 }

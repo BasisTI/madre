@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "acao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "acao")
-public class Acao implements Serializable {
+public class Acao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class Acao implements Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "acaos")
 	private Set<Funcionalidade> funcionalidades = new HashSet<>();
-
+	
 	public Set<Funcionalidade> getFuncionalidades() {
 		return funcionalidades;
 	}
