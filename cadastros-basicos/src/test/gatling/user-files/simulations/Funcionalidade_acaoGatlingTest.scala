@@ -65,20 +65,20 @@ class Funcionalidade_acaoGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new funcionalidade_acao")
+            .exec(http("Create new funcionalidadeAcao")
             .post("/cadastrosbasicos/api/funcionalidade-acaos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "id_funcionalidade":"0", "id_acao":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "idFuncionalidade":"0", "id_acao":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_funcionalidade_acao_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created funcionalidade_acao")
+                exec(http("Get created funcionalidadeAcao")
                 .get("/cadastrosbasicos${new_funcionalidade_acao_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created funcionalidade_acao")
+            .exec(http("Delete created funcionalidadeAcao")
             .delete("/cadastrosbasicos${new_funcionalidade_acao_url}")
             .headers(headers_http_authenticated))
             .pause(10)

@@ -14,7 +14,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -22,9 +30,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Acao.
@@ -54,9 +59,9 @@ public class AcaoResource {
     @Timed
     public ResponseEntity<Acao> createAcao(@Valid @RequestBody Acao acao) throws URISyntaxException {
         log.debug("REST request to save Acao : {}", acao);
-        acao.setNm_acao("pesquisar");
-        acao.setNm_acao("incluir");
-        acao.setNm_acao("excluir");
+        acao.setNmAcao("pesquisar");
+        acao.setNmAcao("incluir");
+        acao.setNmAcao("excluir");
         if (acao.getId() != null) {
             throw new BadRequestAlertException("A new acao cannot already have an ID", ENTITY_NAME, "idexists");
         }

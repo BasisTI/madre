@@ -1,6 +1,5 @@
 package br.com.basis.madre.cadastros.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,11 +16,11 @@ import br.com.basis.madre.cadastros.domain.Funcionalidade;
 @Repository
 public interface FuncionalidadeRepository extends JpaRepository<Funcionalidade, Long> {
 
-	@Query("SELECT a.id FROM Acao a")
-	List<Integer>pegaIdsAcao();
+    @Query("SELECT a.id FROM Acao a")
+    List<Integer> pegaIdsAcao();
 
-	@Query("SELECT f.id FROM Funcionalidade f")
-	List<Integer>pegaIdsFuncionalidade();
+    @Query("SELECT f.id FROM Funcionalidade f")
+    List<Integer> pegaIdsFuncionalidade();
 
 
 }

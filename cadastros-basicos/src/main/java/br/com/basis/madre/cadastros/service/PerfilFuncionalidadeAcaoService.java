@@ -20,84 +20,77 @@ import br.com.basis.madre.cadastros.repository.search.PerfilFuncionalidadeAcaoSe
 @Transactional
 public class PerfilFuncionalidadeAcaoService {
 
-	private final Logger log = LoggerFactory.getLogger(PerfilFuncionalidadeAcaoService.class);
+    private final Logger log = LoggerFactory.getLogger(PerfilFuncionalidadeAcaoService.class);
 
-	private final PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository;
+    private final PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository;
 
-	private final PerfilFuncionalidadeAcaoSearchRepository perfilFuncionalidadeAcaoSearchRepository;
+    private final PerfilFuncionalidadeAcaoSearchRepository perfilFuncionalidadeAcaoSearchRepository;
 
-	public PerfilFuncionalidadeAcaoService(PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository,
+    public PerfilFuncionalidadeAcaoService(PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository,
                                            PerfilFuncionalidadeAcaoSearchRepository perfilFuncionalidadeAcaoSearchRepository) {
-		this.perfilFuncionalidadeAcaoRepository = perfilFuncionalidadeAcaoRepository;
-		this.perfilFuncionalidadeAcaoSearchRepository = perfilFuncionalidadeAcaoSearchRepository;
-	}
+        this.perfilFuncionalidadeAcaoRepository = perfilFuncionalidadeAcaoRepository;
+        this.perfilFuncionalidadeAcaoSearchRepository = perfilFuncionalidadeAcaoSearchRepository;
+    }
 
-	/**
-	 * Save a perfil_funcionalidade_acao.
-	 *
-	 * @param perfil_funcionalidade_acao
-	 *            the entity to save
-	 * @return the persisted entity
-	 */
-	public PerfilFuncionalidadeAcao save(PerfilFuncionalidadeAcao perfil_funcionalidade_acao) {
-		log.debug("Request to save PerfilFuncionalidadeAcao : {}", perfil_funcionalidade_acao);
-		PerfilFuncionalidadeAcao result = perfilFuncionalidadeAcaoRepository.save(perfil_funcionalidade_acao);
-		perfilFuncionalidadeAcaoSearchRepository.save(result);
-		return result;
-	}
+    /**
+     * Save a perfil_funcionalidade_acao.
+     *
+     * @param perfilFuncionalidadeAcao the entity to save
+     * @return the persisted entity
+     */
+    public PerfilFuncionalidadeAcao save(PerfilFuncionalidadeAcao perfilFuncionalidadeAcao) {
+        log.debug("Request to save PerfilFuncionalidadeAcao : {}", perfilFuncionalidadeAcao);
+        PerfilFuncionalidadeAcao result = perfilFuncionalidadeAcaoRepository.save(perfilFuncionalidadeAcao);
+        perfilFuncionalidadeAcaoSearchRepository.save(result);
+        return result;
+    }
 
-	/**
-	 * Get all the perfil_funcionalidade_acaos.
-	 *
-	 * @param pageable
-	 *            the pagination information
-	 * @return the list of entities
-	 */
-	@Transactional(readOnly = true)
-	public Page<PerfilFuncionalidadeAcao> findAll(Pageable pageable) {
-		log.debug("Request to get all Perfil_funcionalidade_acaos");
-		return perfilFuncionalidadeAcaoRepository.findAll(pageable);
-	}
+    /**
+     * Get all the perfil_funcionalidade_acaos.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<PerfilFuncionalidadeAcao> findAll(Pageable pageable) {
+        log.debug("Request to get all Perfil_funcionalidade_acaos");
+        return perfilFuncionalidadeAcaoRepository.findAll(pageable);
+    }
 
-	/**
-	 * Get one perfil_funcionalidade_acao by id.
-	 *
-	 * @param id
-	 *            the id of the entity
-	 * @return the entity
-	 */
-	@Transactional(readOnly = true)
-	public PerfilFuncionalidadeAcao findOne(Long id) {
-		log.debug("Request to get PerfilFuncionalidadeAcao : {}", id);
-		return perfilFuncionalidadeAcaoRepository.findOne(id);
-	}
+    /**
+     * Get one perfil_funcionalidade_acao by id.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    @Transactional(readOnly = true)
+    public PerfilFuncionalidadeAcao findOne(Long id) {
+        log.debug("Request to get PerfilFuncionalidadeAcao : {}", id);
+        return perfilFuncionalidadeAcaoRepository.findOne(id);
+    }
 
-	/**
-	 * Delete the perfil_funcionalidade_acao by id.
-	 *
-	 * @param id
-	 *            the id of the entity
-	 */
-	public void delete(Long id) {
-		log.debug("Request to delete PerfilFuncionalidadeAcao : {}", id);
-		perfilFuncionalidadeAcaoRepository.delete(id);
-		perfilFuncionalidadeAcaoSearchRepository.delete(id);
-	}
+    /**
+     * Delete the perfil_funcionalidade_acao by id.
+     *
+     * @param id the id of the entity
+     */
+    public void delete(Long id) {
+        log.debug("Request to delete PerfilFuncionalidadeAcao : {}", id);
+        perfilFuncionalidadeAcaoRepository.delete(id);
+        perfilFuncionalidadeAcaoSearchRepository.delete(id);
+    }
 
-	/**
-	 * Search for the perfil_funcionalidade_acao corresponding to the query.
-	 *
-	 * @param query
-	 *            the query of the search
-	 * @param pageable
-	 *            the pagination information
-	 * @return the list of entities
-	 */
-	@Transactional(readOnly = true)
-	public Page<PerfilFuncionalidadeAcao> search(String query, Pageable pageable) {
-		log.debug("Request to search for a page of Perfil_funcionalidade_acaos for query {}", query);
-		Page<PerfilFuncionalidadeAcao> result = perfilFuncionalidadeAcaoSearchRepository
-				.search(queryStringQuery(query), pageable);
-		return result;
-	}
+    /**
+     * Search for the perfil_funcionalidade_acao corresponding to the query.
+     *
+     * @param query    the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<PerfilFuncionalidadeAcao> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of Perfil_funcionalidade_acaos for query {}", query);
+        return perfilFuncionalidadeAcaoSearchRepository
+            .search(queryStringQuery(query), pageable);
+    }
 }

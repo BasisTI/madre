@@ -95,7 +95,6 @@ public class TaUsuarioUnidadeHospitalarServiceImpl implements TaUsuarioUnidadeHo
     @Transactional(readOnly = true)
     public Page<TaUsuarioUnidadeHospitalar> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of TaUsuarioUnidadeHospitalars for query {}", query);
-        Page<TaUsuarioUnidadeHospitalar> result = taUsuarioUnidadeHospitalarSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return taUsuarioUnidadeHospitalarSearchRepository.search(queryStringQuery(query), pageable);
     }
 }

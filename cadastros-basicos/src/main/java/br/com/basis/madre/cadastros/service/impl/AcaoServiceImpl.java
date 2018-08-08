@@ -95,7 +95,6 @@ public class AcaoServiceImpl implements AcaoService {
     @Transactional(readOnly = true)
     public Page<Acao> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Acaos for query {}", query);
-        Page<Acao> result = acaoSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return acaoSearchRepository.search(queryStringQuery(query), pageable);
     }
 }

@@ -1,9 +1,22 @@
 package br.com.basis.madre.cadastros.domain;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,6 +38,7 @@ public class Usuario implements Serializable, ReportObject {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column (name="ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
@@ -59,10 +73,10 @@ public class Usuario implements Serializable, ReportObject {
     @ManyToOne
     private Especialidade especialidade;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ta_usuario_unidade_hospitalar",
-        joinColumns = @JoinColumn(name = "usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "unidade_hospitalar_id"))
+        joinColumns = @JoinColumn(name = "usuarioId", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "unidadeHospitalarId", referencedColumnName = "ID"))
     private List<UnidadeHospitalar> unidadeHospitalar = new ArrayList<>();
 
     public Usuario() {
@@ -175,11 +189,15 @@ public class Usuario implements Serializable, ReportObject {
 
 
     public List<UnidadeHospitalar> getUnidadeHospitalar() {
-        return unidadeHospitalar;
+        List<UnidadeHospitalar> unidadeHospitalars1 = new ArrayList<>();
+        unidadeHospitalars1 = unidadeHospitalar;
+        return unidadeHospitalars1;
     }
 
     public void setUnidadeHospitalar(List<UnidadeHospitalar> unidadeHospitalar) {
-        this.unidadeHospitalar = unidadeHospitalar;
+        List<UnidadeHospitalar> unidadeHospitalars1 = new ArrayList<>();
+        unidadeHospitalars1 = unidadeHospitalar;
+        this.unidadeHospitalar = unidadeHospitalars1;
     }
 
     public void setEspecialidade(Especialidade especialidade) {

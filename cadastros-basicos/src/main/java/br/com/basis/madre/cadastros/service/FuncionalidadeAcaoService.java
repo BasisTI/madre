@@ -7,15 +7,15 @@ import org.springframework.data.domain.Pageable;
 /**
  * Service Interface for managing FuncionalidadeAcao.
  */
-public interface Funcionalidade_acaoService {
+public interface FuncionalidadeAcaoService {
 
     /**
      * Save a funcionalidade_acao.
      *
-     * @param funcionalidade_acao the entity to save
+     * @param funcionalidadeAcao the entity to save
      * @return the persisted entity
      */
-    FuncionalidadeAcao save(FuncionalidadeAcao funcionalidade_acao);
+    FuncionalidadeAcao save(FuncionalidadeAcao funcionalidadeAcao);
 
     /**
      * Get all the funcionalidade_acaos.

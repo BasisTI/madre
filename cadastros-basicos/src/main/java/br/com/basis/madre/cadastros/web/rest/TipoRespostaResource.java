@@ -29,11 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import javax.print.DocFlavor;
 import javax.validation.Valid;
-import javax.xml.ws.Response;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 

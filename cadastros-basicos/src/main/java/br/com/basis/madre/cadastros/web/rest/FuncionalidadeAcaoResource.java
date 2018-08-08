@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 
-import br.com.basis.madre.cadastros.service.Funcionalidade_acaoService;
+import br.com.basis.madre.cadastros.service.FuncionalidadeAcaoService;
 import br.com.basis.madre.cadastros.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
@@ -44,30 +44,30 @@ public class FuncionalidadeAcaoResource {
 
     private static final String ENTITY_NAME = "funcionalidade_acao";
 
-    private final Funcionalidade_acaoService funcionalidade_acaoService;
+    private final FuncionalidadeAcaoService funcionalidadeAcaoService;
 
 
-    public FuncionalidadeAcaoResource(Funcionalidade_acaoService funcionalidade_acaoService) {
-        this.funcionalidade_acaoService = funcionalidade_acaoService;
+    public FuncionalidadeAcaoResource(FuncionalidadeAcaoService funcionalidadeAcaoService) {
+        this.funcionalidadeAcaoService = funcionalidadeAcaoService;
     }
 
     /**
      * POST  /funcionalidade-acaos : Create a new funcionalidade_acao.
      *
-     * @param funcionalidade_acao the funcionalidade_acao to create
+     * @param funcionalidadeAcao the funcionalidade_acao to create
      * @return the ResponseEntity with status 201 (Created) and with body the new funcionalidade_acao, or with status 400 (Bad Request) if the funcionalidade_acao has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<FuncionalidadeAcao> createFuncionalidade_acao(@Valid @RequestBody FuncionalidadeAcao funcionalidade_acao) throws URISyntaxException {
-    	log.debug("REST request to save FuncionalidadeAcao : {}", funcionalidade_acao);
+    public ResponseEntity<FuncionalidadeAcao> createFuncionalidadeAcao(@Valid @RequestBody FuncionalidadeAcao funcionalidadeAcao) throws URISyntaxException {
+        log.debug("REST request to save FuncionalidadeAcao : {}", funcionalidadeAcao);
 
-    	if (funcionalidade_acao.getId() != null) {
+        if (funcionalidadeAcao.getId() != null) {
             throw new BadRequestAlertException("A new funcionalidade_acao cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
-    	FuncionalidadeAcao result = funcionalidade_acaoService.save(funcionalidade_acao);
+        FuncionalidadeAcao result = funcionalidadeAcaoService.save(funcionalidadeAcao);
 
         return ResponseEntity.created(new URI("/api/funcionalidade-acaos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -77,7 +77,7 @@ public class FuncionalidadeAcaoResource {
     /**
      * PUT  /funcionalidade-acaos : Updates an existing funcionalidade_acao.
      *
-     * @param funcionalidade_acao the funcionalidade_acao to update
+     * @param funcionalidadeAcao the funcionalidade_acao to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated funcionalidade_acao,
      * or with status 400 (Bad Request) if the funcionalidade_acao is not valid,
      * or with status 500 (Internal Server Error) if the funcionalidade_acao couldn't be updated
@@ -85,14 +85,14 @@ public class FuncionalidadeAcaoResource {
      */
     @PutMapping("/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<FuncionalidadeAcao> updateFuncionalidade_acao(@Valid @RequestBody FuncionalidadeAcao funcionalidade_acao) throws URISyntaxException {
-        log.debug("REST request to update FuncionalidadeAcao : {}", funcionalidade_acao);
-        if (funcionalidade_acao.getId() == null) {
-            return createFuncionalidade_acao(funcionalidade_acao);
+    public ResponseEntity<FuncionalidadeAcao> updateFuncionalidadeAcao(@Valid @RequestBody FuncionalidadeAcao funcionalidadeAcao) throws URISyntaxException {
+        log.debug("REST request to update FuncionalidadeAcao : {}", funcionalidadeAcao);
+        if (funcionalidadeAcao.getId() == null) {
+            return createFuncionalidadeAcao(funcionalidadeAcao);
         }
-        FuncionalidadeAcao result = funcionalidade_acaoService.save(funcionalidade_acao);
+        FuncionalidadeAcao result = funcionalidadeAcaoService.save(funcionalidadeAcao);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, funcionalidade_acao.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, funcionalidadeAcao.getId().toString()))
             .body(result);
     }
 
@@ -104,9 +104,9 @@ public class FuncionalidadeAcaoResource {
      */
     @GetMapping("/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<List<FuncionalidadeAcao>> getAllFuncionalidade_acaos(Pageable pageable) {
+    public ResponseEntity<List<FuncionalidadeAcao>> getAllFuncionalidadeAcaos(Pageable pageable) {
         log.debug("REST request to get a page of Funcionalidade_acaos");
-        Page<FuncionalidadeAcao> page = funcionalidade_acaoService.findAll(pageable);
+        Page<FuncionalidadeAcao> page = funcionalidadeAcaoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/funcionalidade-acaos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -119,10 +119,10 @@ public class FuncionalidadeAcaoResource {
      */
     @GetMapping("/funcionalidade-acaos/{id}")
     @Timed
-    public ResponseEntity<FuncionalidadeAcao> getFuncionalidade_acao(@PathVariable Long id) {
+    public ResponseEntity<FuncionalidadeAcao> getFuncionalidadeAcao(@PathVariable Long id) {
         log.debug("REST request to get FuncionalidadeAcao : {}", id);
-        FuncionalidadeAcao funcionalidade_acao = funcionalidade_acaoService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(funcionalidade_acao));
+        FuncionalidadeAcao funcionalidadeAcao = funcionalidadeAcaoService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(funcionalidadeAcao));
     }
 
     /**
@@ -133,9 +133,9 @@ public class FuncionalidadeAcaoResource {
      */
     @DeleteMapping("/funcionalidade-acaos/{id}")
     @Timed
-    public ResponseEntity<Void> deleteFuncionalidade_acao(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteFuncionalidadeAcao(@PathVariable Long id) {
         log.debug("REST request to delete FuncionalidadeAcao : {}", id);
-        funcionalidade_acaoService.delete(id);
+        funcionalidadeAcaoService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -143,15 +143,15 @@ public class FuncionalidadeAcaoResource {
      * SEARCH  /_search/funcionalidade-acaos?query=:query : search for the funcionalidade_acao corresponding
      * to the query.
      *
-     * @param query the query of the funcionalidade_acao search
+     * @param query    the query of the funcionalidade_acao search
      * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/funcionalidade-acaos")
     @Timed
-    public ResponseEntity<List<FuncionalidadeAcao>> searchFuncionalidade_acaos(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<FuncionalidadeAcao>> searchFuncionalidadeAcaos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Funcionalidade_acaos for query {}", query);
-        Page<FuncionalidadeAcao> page = funcionalidade_acaoService.search(query, pageable);
+        Page<FuncionalidadeAcao> page = funcionalidadeAcaoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/funcionalidade-acaos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
