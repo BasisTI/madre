@@ -19,9 +19,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 /**
  * A PerfilFuncionalidadeAcao.
  */
@@ -31,12 +28,12 @@ import java.util.Objects;
 @Document(indexName = "perfil_funcionalidade_acao")
 public class PerfilFuncionalidadeAcao implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-	@SequenceGenerator(name = "sequenceGenerator")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    private Long id;
 
     @NotNull
     @Column(name = "id_perfil", nullable = false)

@@ -54,16 +54,16 @@ public class Perfil implements Serializable, ReportObject {
 
     //Contrutor
     public Perfil(String nomePerfil, String dsPerfil) {
-		this.nomePerfil = nomePerfil;
-		this.dsPerfil = dsPerfil;
-	}
-    
+        this.nomePerfil = nomePerfil;
+        this.dsPerfil = dsPerfil;
+    }
+
     public Perfil(Long id, String nomePerfil, String dsPerfil) {
-		this.nomePerfil = nomePerfil;
-		this.dsPerfil = dsPerfil;
-		this.id = id;
-	}
-    
+        this.nomePerfil = nomePerfil;
+        this.dsPerfil = dsPerfil;
+        this.id = id;
+    }
+
     public Perfil() {
     }
 

@@ -7,9 +7,9 @@ import java.util.List;
 public class PerfilDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String nomePerfil;
-	private String dsPerfil;
+    private Long id;
+    private String nomePerfil;
+    private String dsPerfil;
 
     private List<AcaoTemp> acaoTemp;
 

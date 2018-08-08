@@ -33,9 +33,6 @@ import br.com.basis.madre.cadastros.web.rest.util.HeaderUtil;
 import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
  * REST controller for managing Acao.
  */
