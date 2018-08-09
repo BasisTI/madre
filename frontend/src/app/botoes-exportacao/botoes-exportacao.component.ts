@@ -45,6 +45,7 @@ export class BotoesExportacaoComponent implements OnInit {
 
     switch(this.resourceName){
 
+        debbuger
         case 'paciente':
             this.url = environment.apiPaciente;
             break;
