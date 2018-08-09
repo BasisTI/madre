@@ -41,21 +41,14 @@ export class BotoesExportacaoComponent implements OnInit {
   ) {}
 
 
-  gateway(){
-    
-    debugger
+    gateway(){
 
     switch(this.resourceName){
-
     
         case 'paciente':
             this.url = environment.apiPaciente;
             break;
 
-        case 'cadastrosbasicos':
-            this.url = environment.apiCadastrosBasicos;
-            break;
-             
         default:
             this.url = environment.apiUrl;
             break;    
