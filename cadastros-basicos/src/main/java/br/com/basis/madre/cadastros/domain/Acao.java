@@ -54,13 +54,13 @@ public class Acao implements Serializable{
     private Set<Funcionalidade> funcionalidades = new HashSet<>();
 
     public Set<Funcionalidade> getFuncionalidades() {
-        Set<Funcionalidade> funcionalidades1 = new HashSet<>();
+        Set<Funcionalidade> funcionalidades1;
         funcionalidades1 = funcionalidades;
         return funcionalidades1;
     }
 
     public void setFuncionalidades(Set<Funcionalidade> funcionalidades) {
-        Set<Funcionalidade> funcionalidades1 = new HashSet<>();
+        Set<Funcionalidade> funcionalidades1;
         funcionalidades1 = funcionalidades;
         this.funcionalidades = funcionalidades1;
     }

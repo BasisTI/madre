@@ -71,7 +71,7 @@ public class Perfil implements Serializable, ReportObject {
      * @return the perfilFuncionalidadeAcao
      */
     public List<PerfilFuncionalidadeAcao> getPerfilFuncionalidadeAcao() {
-        List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcaos1 = new ArrayList<>();
+        List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcaos1;
         perfilFuncionalidadeAcaos1 = perfilFuncionalidadeAcao;
         return perfilFuncionalidadeAcaos1;
     }
@@ -80,7 +80,7 @@ public class Perfil implements Serializable, ReportObject {
      * @param perfilFuncionalidadeAcao the perfilFuncionalidadeAcao to set
      */
     public void setPerfilFuncionalidadeAcao(List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcao) {
-        List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcaos1 = new ArrayList<>();
+        List<PerfilFuncionalidadeAcao> perfilFuncionalidadeAcaos1;
         perfilFuncionalidadeAcaos1 = perfilFuncionalidadeAcao;
         this.perfilFuncionalidadeAcao = perfilFuncionalidadeAcaos1;
     }

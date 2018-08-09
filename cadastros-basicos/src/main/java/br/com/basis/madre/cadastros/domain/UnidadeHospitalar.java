@@ -172,7 +172,7 @@ public class UnidadeHospitalar implements Serializable, ReportObject {
     }
 
     public List<Usuario> getUsuarios() {
-        List<Usuario> usuarios1 = new ArrayList<>();
+        List<Usuario> usuarios1;
         usuarios1 = usuarios;
         return usuarios1;
     }

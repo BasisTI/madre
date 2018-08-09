@@ -62,13 +62,13 @@ public class Funcionalidade implements Serializable {
     private Set<Acao> acaos = new HashSet<>();
 
     public Set<Acao> getacaos() {
-        Set<Acao> acaos2 = new HashSet<>();
+        Set<Acao> acaos2;
         acaos2 = acaos;
         return acaos2;
     }
 
     public void setacaos(Set<Acao> acaos) {
-        Set<Acao> acaos2 = new HashSet<>();
+        Set<Acao> acaos2;
         acaos2 = acaos;
         this.acaos = acaos2;
     }

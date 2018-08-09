@@ -22,13 +22,13 @@ public class PerfilDTO implements Serializable {
     }
 
     public List<AcaoTemp> getacaoTemp() {
-        List<AcaoTemp> acaoTemps1 = new ArrayList<>();
+        List<AcaoTemp> acaoTemps1;
         acaoTemps1 = acaoTemp;
         return acaoTemps1;
     }
 
     public void setacaoTemp(List<AcaoTemp> acaoTemp) {
-        List<AcaoTemp> acaoTemps1 = new ArrayList<>();
+        List<AcaoTemp> acaoTemps1;
         acaoTemps1 = acaoTemp;
         this.acaoTemp = acaoTemps1;
     }

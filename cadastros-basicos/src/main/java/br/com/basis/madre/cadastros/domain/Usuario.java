@@ -189,13 +189,13 @@ public class Usuario implements Serializable, ReportObject {
 
 
     public List<UnidadeHospitalar> getUnidadeHospitalar() {
-        List<UnidadeHospitalar> unidadeHospitalars1 = new ArrayList<>();
+        List<UnidadeHospitalar> unidadeHospitalars1;
         unidadeHospitalars1 = unidadeHospitalar;
         return unidadeHospitalars1;
     }
 
     public void setUnidadeHospitalar(List<UnidadeHospitalar> unidadeHospitalar) {
-        List<UnidadeHospitalar> unidadeHospitalars1 = new ArrayList<>();
+        List<UnidadeHospitalar> unidadeHospitalars1;
         unidadeHospitalars1 = unidadeHospitalar;
         this.unidadeHospitalar = unidadeHospitalars1;
     }
