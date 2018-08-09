@@ -49,9 +49,9 @@ export class BotoesExportacaoComponent implements OnInit {
             this.url = environment.apiPaciente;
             break;
 
-        case 'cadastrosbasicos':
-            this.url = environment.apiCadastrosBasicos;
-            break; 
+        // case 'cadastrosbasicos':
+        //     this.url = environment.apiCadastrosBasicos;
+        //     break; 
         default:
             this.url = environment.apiUrl;
             break;    
