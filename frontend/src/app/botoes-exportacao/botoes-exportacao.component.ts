@@ -53,7 +53,7 @@ export class BotoesExportacaoComponent implements OnInit {
             this.url = environment.apiCadastrosBasicos;
             break; 
         default:
-            this.url = environment.apiLocalhost;
+            this.url = environment.apiUrl;
             break;    
 
     }
