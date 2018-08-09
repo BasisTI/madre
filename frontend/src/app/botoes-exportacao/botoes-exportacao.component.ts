@@ -42,10 +42,12 @@ export class BotoesExportacaoComponent implements OnInit {
 
 
   gateway(){
+    
+    debugger
 
     switch(this.resourceName){
 
-        debugger
+    
         case 'paciente':
             this.url = environment.apiPaciente;
             break;
