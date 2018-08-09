@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl:'/api',
-  apiCadastrosBasicos: 'cadastrosbasicos/api',
+  apiUrl:'cadastrosbasicos/api',
   apiPaciente: 'pacientes/api',
   auth: {
     detailsUrl: '/api/user/details',
