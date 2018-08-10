@@ -18,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -210,9 +212,11 @@ public class UnidadeHospitalarResource {
     @GetMapping("/_search/unidade-hospitalars")
     @Timed
     public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(
-        @RequestParam(defaultValue = "*") String query, Pageable pageable) {
+        @RequestParam(defaultValue = "*") String query, Pageable pageable,@RequestParam String order, @RequestParam int size, @RequestParam(name="page") int pageNumber,@RequestParam(defaultValue="id") String sort) {
         log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
-        Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, pageable);
+        Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
+        Pageable newPageable = new PageRequest(pageNumber, size, sortOrder, sort);
+        Page<UnidadeHospitalar> page = unidadeHospitalarService.search(query, newPageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/unidade-hospitalars");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
