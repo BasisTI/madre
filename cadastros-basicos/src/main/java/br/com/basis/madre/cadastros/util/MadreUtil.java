@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.util.StringUtil;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,5 +43,12 @@ public final class MadreUtil {
             str = str.trim();
         }
         return str;
+    }
+
+    public static boolean verificaoAlfanumerica(String str){
+        if(str.matches("^[a-z\\u00C0-\\u00ff A-Z]+$")){
+            return true;
+        }
+        return false;
     }
 }

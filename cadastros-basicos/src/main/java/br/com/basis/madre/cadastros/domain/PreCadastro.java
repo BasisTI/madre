@@ -5,6 +5,7 @@ import br.com.basis.madre.cadastros.util.MadreUtil;
 import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Column;
@@ -36,7 +37,7 @@ public class PreCadastro implements Serializable, ReportObject {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 150)
     @Column(name = "nome_do_paciente", length = 150, nullable = false)
     private String nomeDoPaciente;
@@ -45,7 +46,7 @@ public class PreCadastro implements Serializable, ReportObject {
     @Column(name = "nome_social", length = 150)
     private String nomeSocial;
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 150)
     @Column(name = "nome_da_mae", length = 150, nullable = false)
     private String nomeDaMae;
