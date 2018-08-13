@@ -39,6 +39,11 @@
             <label>Perfil</label>
           </span>
         </div>
+        <div class="ui-g-12 ui-md-6">
+          <p-dataTable [value]="usuario.unidadeHospitalar">
+            <p-column field="nome" header="Unidade de Saúde"></p-column>
+          </p-dataTable>
+          </div>
         <div *ngIf="usuario.especialidade" class="ui-g-12 ui-md-6">
           <span class="md-inputfield">
             <input type="text" name="especialidade" pInputText [ngModel]="usuario.especialidade.nome" readonly/>
