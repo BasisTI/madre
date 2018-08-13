@@ -46,7 +46,7 @@ public final class MadreUtil {
     }
 
     public static boolean verificaoAlfanumerica(String str){
-        if(str.matches("[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]*")){
+        if(str.matches("^[a-z\\u00C0-\\u00ff A-Z]+$")){
             return true;
         }
         return false;

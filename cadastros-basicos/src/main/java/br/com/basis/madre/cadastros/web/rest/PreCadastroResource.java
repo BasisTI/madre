@@ -74,10 +74,6 @@ public class PreCadastroResource {
         preCadastro.setNomeDoPaciente(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()));
         preCadastro.setNomeDaMae(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()));
 
-        if(!MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDoPaciente()) ||
-            !MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDaMae())){
-            log.debug("=========ENTROU NO IF MULEKI!!!========== ==> "+preCadastro.getNomeDoPaciente());
-        }
         try {log.debug("REST request to save PreCadastro : {}", preCadastro);
             if(!MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDoPaciente()) || !MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDaMae())){
                 return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dadosinvalidos", "Dados Invalidos")) .body(null);
