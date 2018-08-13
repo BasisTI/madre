@@ -103,9 +103,9 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
 
   private criarUsuario() {
 
-    this.usuario.unidadeHospitalar = [];
+    // this.usuario.unidadeHospitalar = [];
 
-    this.usuario.unidadeHospitalar=this.uhs
+//    this.usuario.unidadeHospitalar=this.uhs
 
     console.log(this.usuario)
     console.log(this.usuario.unidadeHospitalar)

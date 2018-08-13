@@ -63,7 +63,7 @@
           </div>
           <div class="ui-g-12 ui-md-6">
             <span >
-                <p-multiSelect [options]="unidadeHospitalares"  [(ngModel)]="uhs" name="unidadeHospitalar"  optionLabel="nome" dataKey="id" defaultLabel="Unidade de Saúde*" [listStyle]="{'max-height':'200px'}" required></p-multiSelect> 
+                <p-multiSelect [options]="unidadeHospitalares"  [(ngModel)]="usuario.unidadeHospitalar" name="unidadeHospitalar"  optionLabel="nome" dataKey="id" defaultLabel="Unidade de Saúde*" [listStyle]="{'max-height':'200px'}" required></p-multiSelect> 
                 <div *ngIf="editForm.controls['unidadeHospitalar'] && !editForm.controls['unidadeHospitalar'].valid && (editForm.controls['unidadeHospitalar'].touched || editForm.submitted)" class="ui-message ui-messages-error ng-star-inserted error-required">
                     Campo obrigatório!
                   </div> 
