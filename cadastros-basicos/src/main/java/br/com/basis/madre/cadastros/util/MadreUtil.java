@@ -41,10 +41,11 @@ public final class MadreUtil {
     }
 
     public static String removeCaracteresEmBranco(String linha) {
+        String linhaVazia = linha;
         if (StringUtils.isNotEmpty(linha)) {
-            linha = linha.trim();
+            linhaVazia = linha.trim();
         }
-        return linha;
+        return linhaVazia;
     }
 
     public static boolean verificaoAlfanumerica(String str) {

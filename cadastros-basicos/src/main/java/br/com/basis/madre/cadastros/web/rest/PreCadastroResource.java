@@ -68,12 +68,9 @@ public class PreCadastroResource {
      */
     @PostMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro)
-        throws URISyntaxException {
-
+    public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro) throws URISyntaxException {
         preCadastro.setNomeDoPaciente(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()));
         preCadastro.setNomeDaMae(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()));
-
         try {
             log.debug("REST request to save PreCadastro : {}", preCadastro);
             if (!MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDoPaciente()) || !MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDaMae())) {
