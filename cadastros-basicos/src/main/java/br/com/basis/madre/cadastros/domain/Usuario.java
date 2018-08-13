@@ -38,7 +38,7 @@ public class Usuario implements Serializable, ReportObject {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column (name="ID")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
@@ -203,7 +203,10 @@ public class Usuario implements Serializable, ReportObject {
     public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
-    public String getStringAtivo() { return (this.ativo) ? "Sim" : "Não"; }
+
+    public String getStringAtivo() {
+        return (this.ativo) ? "Sim" : "Não";
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -233,7 +236,7 @@ public class Usuario implements Serializable, ReportObject {
             ", login='" + getLogin() + "'" +
             ", email='" + getEmail() + "'" +
             ", ativo='" + isAtivo() + "'" +
-            ", Un_hosp='"+ getUnidadeHospitalar() +"'"+
+            ", Un_hosp='" + getUnidadeHospitalar() + "'" +
             "}";
     }
 }
