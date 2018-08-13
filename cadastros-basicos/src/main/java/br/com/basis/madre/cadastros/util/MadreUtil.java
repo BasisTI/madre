@@ -10,9 +10,11 @@ import java.time.format.DateTimeFormatter;
 public final class MadreUtil {
     //utils para madre
     public static final String REPORT_LOGO_PATH = "/images/logoFunasa.png";
-    private MadreUtil(){
+
+    private MadreUtil() {
 
     }
+
     public static String getReportFooter() {
         StringBuilder footer = new StringBuilder();
         //TODO Informar o nome do Usuário Logado
@@ -38,17 +40,14 @@ public final class MadreUtil {
         return null;
     }
 
-    public static String removeCaracteresEmBranco(String str) {
-        if (StringUtils.isNotEmpty(str)){
-            str = str.trim();
+    public static String removeCaracteresEmBranco(String linha) {
+        if (StringUtils.isNotEmpty(linha)) {
+            linha = linha.trim();
         }
-        return str;
+        return linha;
     }
 
-    public static boolean verificaoAlfanumerica(String str){
-        if(str.matches("^[a-z\\u00C0-\\u00ff A-Z]+$")){
-            return true;
-        }
-        return false;
+    public static boolean verificaoAlfanumerica(String str) {
+        return str.matches("^[a-z\\u00C0-\\u00ff A-Z]+$");
     }
 }
