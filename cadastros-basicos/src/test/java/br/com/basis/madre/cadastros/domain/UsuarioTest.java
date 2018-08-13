@@ -3,7 +3,11 @@ package br.com.basis.madre.cadastros.domain;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UsuarioTest {
@@ -13,9 +17,18 @@ public class UsuarioTest {
     @InjectMocks
     Usuario test;
 
+    @Mock
+    Perfil perfil;
+
+    @Mock
+    Especialidade especialidade;
+
     @InjectMocks
     UnidadeHospitalar unidadeHospitalar;
 
+
+    @Test
+    public void usuarioTest(){ new Usuario();}
 
     @Test
     public void getIdTest(){
@@ -87,11 +100,18 @@ public class UsuarioTest {
         Usuario test = usuario.email("test");
     }
 
+
     @Test
     public void getPerfilTest(){
         usuario.getPerfil();
     }
 
+
+    @Test
+    public void setPerfilTest() {usuario.setPerfil(perfil);}
+
+    @Test
+    public void perfilTest() { Usuario test = usuario.perfil(perfil); }
 
     @Test
     public void isAtivoTest(){
@@ -108,11 +128,23 @@ public class UsuarioTest {
         Usuario test = usuario.ativo(false);
     }
 
+    @Test
+    public void getEspecialidadeTest() { usuario.getEspecialidade(); }
+
+    @Test
+    public void setEspecialidadeTest() { usuario.setEspecialidade(especialidade); }
+
+    @Test
+    public void especialidadeTest() { Usuario test = usuario.especialidade(especialidade); }
+
+    @Test
+    public void unidadeHospitalarTest(){usuario.setUnidadeHospitalar(Arrays.asList(unidadeHospitalar));}
 
     @Test
     public void hashCodeTest(){
         usuario.hashCode();
     }
+
 
     @Test
     public void toStringTest(){
@@ -123,6 +155,8 @@ public class UsuarioTest {
     public void equalsTestOne(){
         usuario.equals(usuario);
     }
+
+
 
     @Test
     public void equalsTesTwo(){

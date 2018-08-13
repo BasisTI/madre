@@ -12,6 +12,8 @@ import br.com.basis.madre.cadastros.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
@@ -66,22 +68,28 @@ public class PreCadastroResource {
      */
     @PostMapping("/pre-cadastros")
     @Timed
-    public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro)
-        throws URISyntaxException {
-        try {log.debug("REST request to save PreCadastro : {}", preCadastro);
-
+    public ResponseEntity<PreCadastro> createPreCadastro(@Valid @RequestBody PreCadastro preCadastro) throws URISyntaxException {
+        preCadastro.setNomeDoPaciente(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()));
+        preCadastro.setNomeDaMae(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()));
+        try {
+            log.debug("REST request to save PreCadastro : {}", preCadastro);
+            if (!MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDoPaciente()) || !MadreUtil.verificaoAlfanumerica(preCadastro.getNomeDaMae())) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "dadosinvalidos", "Dados Invalidos")).body(null);
+            }
             if (preCadastroRepository.findOneByNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent()) {
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")) .body(null);
-            } if ((preCadastro.getNumCartaoSus() != null) && (preCadastroRepository.findOneByNumCartaoSus(MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent())){
-                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")) .body(null);
-            } if (preCadastro.getId() != null) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
+            }
+            if ((preCadastro.getNumCartaoSus() != null) && (preCadastroRepository.findOneByNumCartaoSus(MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent())) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
+            }
+            if (preCadastro.getId() != null) {
                 throw new BadRequestAlertException("A new preCadastro cannot already have an ID", ENTITY_NAME, "idexists");
             }
             PreCadastro result = preCadastroService.save(preCadastro);
-            return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
+            return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
         } catch (PreCadastroException e) {
             log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage())) .body(preCadastro);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage())).body(preCadastro);
         }
     }
 
@@ -100,20 +108,22 @@ public class PreCadastroResource {
         throws URISyntaxException {
         try {
             log.debug("REST request to update PreCadastro : {}", preCadastro);
-            if (!(preCadastroRepository.findOneByIdAndNumCartaoSus(preCadastro.getId(),MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent()) || !(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent())) {
-                if (!(preCadastroRepository.findOneByIdAndNumCartaoSus(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent()) && (MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus()) != null) && (preCadastroRepository.findOneByNumCartaoSus(MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent())){
-                        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")) .body(null);
-                }if (!(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent()) && (preCadastroRepository.findOneByNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent())){
-                        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")) .body(null);
+            if (!(preCadastroRepository.findOneByIdAndNumCartaoSus(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent()) || !(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent())) {
+                if (!(preCadastroRepository.findOneByIdAndNumCartaoSus(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent()) && (MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus()) != null) && (preCadastroRepository.findOneByNumCartaoSus(MadreUtil.removeCaracteresEmBranco(preCadastro.getNumCartaoSus())).isPresent())) {
+                    return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "susexists", "Cartão do SUS já cadastrado")).body(null);
+                }
+                if (!(preCadastroRepository.findOneByIdAndNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(preCadastro.getId(), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent()) && (preCadastroRepository.findOneByNomeDoPacienteIgnoreCaseAndNomeDaMaeIgnoreCaseAndDataDeNascimento(MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDoPaciente()), MadreUtil.removeCaracteresEmBranco(preCadastro.getNomeDaMae()), preCadastro.getDataDeNascimento()).isPresent())) {
+                    return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "pacienteexists", "Paciente já cadastrado")).body(null);
                 }
             }
             if (preCadastro.getId() == null) {
                 return createPreCadastro(preCadastro);
             }
             PreCadastro result = preCadastroService.save(preCadastro);
-            return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastro.getId().toString())) .body(result);
-        } catch (PreCadastroException e) { log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage())) .body(preCadastro);
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastro.getId().toString())).body(result);
+        } catch (PreCadastroException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage())).body(preCadastro);
         }
     }
 
@@ -166,7 +176,7 @@ public class PreCadastroResource {
      * SEARCH  /_search/pre-cadastros?query=:query : search for the preCadastro corresponding
      * to the query.
      *
-     * @param query the query of the preCadastro search
+     * @param query    the query of the preCadastro search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -189,7 +199,7 @@ public class PreCadastroResource {
     @GetMapping(value = "/precadastro/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
     public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
-        @RequestParam(defaultValue = "*") String query) {
+                                                                      @RequestParam(defaultValue = "*") String query) {
         try {
             return preCadastroService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {

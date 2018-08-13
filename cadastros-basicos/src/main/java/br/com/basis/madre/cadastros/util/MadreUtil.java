@@ -1,6 +1,7 @@
 package br.com.basis.madre.cadastros.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.util.StringUtil;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,9 +10,11 @@ import java.time.format.DateTimeFormatter;
 public final class MadreUtil {
     //utils para madre
     public static final String REPORT_LOGO_PATH = "/images/logoFunasa.png";
-    private MadreUtil(){
+
+    private MadreUtil() {
 
     }
+
     public static String getReportFooter() {
         StringBuilder footer = new StringBuilder();
         //TODO Informar o nome do Usuário Logado
@@ -37,10 +40,15 @@ public final class MadreUtil {
         return null;
     }
 
-    public static String removeCaracteresEmBranco(String str) {
-        if (StringUtils.isNotEmpty(str)){
-            str = str.trim();
+    public static String removeCaracteresEmBranco(String linha) {
+        String linhaVazia = linha;
+        if (StringUtils.isNotEmpty(linha)) {
+            linhaVazia = linha.trim();
         }
-        return str;
+        return linhaVazia;
+    }
+
+    public static boolean verificaoAlfanumerica(String str) {
+        return str.matches("^[a-z\\u00C0-\\u00ff A-Z]+$");
     }
 }
