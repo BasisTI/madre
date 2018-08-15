@@ -65,14 +65,14 @@ public class UnidadeHospitalarResource {
     private UploadedFilesRepository filesRepository;
 
     @Autowired
-    TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
+   private TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
 
     @Autowired
-    TaUsuarioUnidadeHospitalarService taUsuarioUnidadeHospitalarService;
+    private TaUsuarioUnidadeHospitalarService taUsuarioUnidadeHospitalarService;
 
-    UnidadeHospitalar unidadeHospitalar;
+    private UnidadeHospitalar unidadeHospitalar;
 
-    TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar;
+    private TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar;
 
 
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
