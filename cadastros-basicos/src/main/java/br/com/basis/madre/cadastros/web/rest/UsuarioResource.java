@@ -37,6 +37,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,8 @@ public class UsuarioResource {
     private final UsuarioRepository usuarioRepository;
 
     private final TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
+
+    private TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar;
 
     public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioService usuarioService, TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -172,9 +175,10 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         log.debug("REST request to delete Usuario : {}", id);
-        usuarioService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+            usuarioService.delete(id);
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
 
     /**
      * SEARCH  /_search/usuarios?query=:query : search for the usuario corresponding

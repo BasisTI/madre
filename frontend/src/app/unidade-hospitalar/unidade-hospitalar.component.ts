@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
 import { DatatableComponent, DatatableClickEvent } from '@basis/angular-components';
-
+import { Response } from '@angular/http';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { PageNotificationService } from '@basis/angular-components';
 import { environment } from '../../environments/environment';
@@ -71,6 +71,11 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
         this.unidadeHospitalarService.delete(id).subscribe(() => {
           this.datatable.refresh(undefined);
           this.pageNotificationService.addDeleteMsg();
+        },(error: Response) => {
+          console.log(error.headers.toJSON());
+          if (error.headers.toJSON()['x-cadastrosbasicosapp-errorunidaderelacionada'][0] == 'Unidade relacionada com usuario') {
+            this.pageNotificationService.addErrorMessage('Unidade relacionada com usuário ');
+              }
         });
       }
     });

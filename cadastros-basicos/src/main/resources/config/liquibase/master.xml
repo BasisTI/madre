@@ -29,4 +29,6 @@
     <include file="config/liquibase/changelog/20180718155455_added_entity_constraints_Funcionalidade_acao.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180726163711_added_entity_constraints_Perfil_funcionalidade_acao.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!--<include file="config/liquibase/changelog/20180730143118_added_entity_TaUsuarioUnidadeHospitalar_add_id.xml" relativeToChangelogFile="false"/>-->
+
 </databaseChangeLog>

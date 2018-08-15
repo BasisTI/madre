@@ -1,8 +1,11 @@
 package br.com.basis.madre.cadastros.web.rest;
 
+import br.com.basis.madre.cadastros.domain.TaUsuarioUnidadeHospitalar;
 import br.com.basis.madre.cadastros.domain.UnidadeHospitalar;
+import br.com.basis.madre.cadastros.repository.TaUsuarioUnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UnidadeHospitalarRepository;
 import br.com.basis.madre.cadastros.repository.UploadedFilesRepository;
+import br.com.basis.madre.cadastros.service.TaUsuarioUnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.UnidadeHospitalarService;
 import br.com.basis.madre.cadastros.service.exception.RelatorioException;
 import br.com.basis.madre.cadastros.service.exception.UnidadeHospitalarException;
@@ -61,10 +64,23 @@ public class UnidadeHospitalarResource {
     @Autowired
     private UploadedFilesRepository filesRepository;
 
+    @Autowired
+    TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
+
+    @Autowired
+    TaUsuarioUnidadeHospitalarService taUsuarioUnidadeHospitalarService;
+
+    UnidadeHospitalar unidadeHospitalar;
+
+    TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar;
+
+
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
-                                     UnidadeHospitalarRepository unidadeHospitalarRepository) {
+                                     UnidadeHospitalarRepository unidadeHospitalarRepository, TaUsuarioUnidadeHospitalarService taUsuarioUnidadeHospitalarService, TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository) {
         this.unidadeHospitalarService = unidadeHospitalarService;
         this.unidadeHospitalarRepository = unidadeHospitalarRepository;
+        this.taUsuarioUnidadeHospitalarService = taUsuarioUnidadeHospitalarService;
+        this.taUsuarioUnidadeHospitalarRepository = taUsuarioUnidadeHospitalarRepository;
     }
 
     /**
@@ -84,13 +100,13 @@ public class UnidadeHospitalarResource {
                 throw new BadRequestAlertException("A new unidadeHospitalar cannot already have an ID", ENTITY_NAME, "idexists");
             }
             if (validaNome(unidadeHospitalar) || validaSigla(unidadeHospitalar)) {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use")) .body(null);
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadeexists", "Nome/Sigla already in use")).body(null);
             }
             UnidadeHospitalar result = unidadeHospitalarService.save(unidadeHospitalar);
-            return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
+            return ResponseEntity.created(new URI("/api/unidade-hospitalars/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
         } catch (UnidadeHospitalarException e) {
             log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage())) .body(unidadeHospitalar);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UnidadeHospitalarException.getCodeRegistroExisteBase(), e.getMessage())).body(unidadeHospitalar);
         }
 
     }
@@ -197,8 +213,12 @@ public class UnidadeHospitalarResource {
     @Timed
     public ResponseEntity<Void> deleteUnidadeHospitalar(@PathVariable Long id) {
         log.debug("REST request to delete UnidadeHospitalar : {}", id);
-        unidadeHospitalarService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        if (!taUsuarioUnidadeHospitalarRepository.buscarUmId(id).isEmpty()) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidaderelacionada", "Unidade relacionada com usuario")).body(null);
+        } else {
+            unidadeHospitalarService.delete(id);
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        }
     }
 
     /**
@@ -212,7 +232,7 @@ public class UnidadeHospitalarResource {
     @GetMapping("/_search/unidade-hospitalars")
     @Timed
     public ResponseEntity<List<UnidadeHospitalar>> searchUnidadeHospitalars(
-        @RequestParam(defaultValue = "*") String query, Pageable pageable,@RequestParam String order, @RequestParam int size, @RequestParam(name="page") int pageNumber,@RequestParam(defaultValue="id") String sort) {
+        @RequestParam(defaultValue = "*") String query, Pageable pageable, @RequestParam String order, @RequestParam int size, @RequestParam(name = "page") int pageNumber, @RequestParam(defaultValue = "id") String sort) {
         log.debug("REST request to search for a page of UnidadeHospitalars for query {}", query);
         Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
         Pageable newPageable = new PageRequest(pageNumber, size, sortOrder, sort);
