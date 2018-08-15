@@ -115,25 +115,12 @@ public class UsuarioResource {
             if (usuario.getId() == null) {
                 return createUsuario(usuario);}
             Usuario result = usuarioService.save(usuario);
-            for(int i=0; i<usuario.getUnidadeHospitalar().size(); i++){
-                TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar = new TaUsuarioUnidadeHospitalar(usuario.getId(),
-                    pegaIdUnidadeHospitalar(usuario).get(i));
-                taUsuarioUnidadeHospitalarRepository.save(taUsuarioUnidadeHospitalar);
-            }
             return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
             return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())) .body(usuario);
         }
     }
-
-    private List<Long> pegaIdUnidadeHospitalar(Usuario usuario) {
-      List<Long> idUnidadeHospitalar = new ArrayList<>();
-        for(int i = 0; i < usuario.getUnidadeHospitalar().size(); i ++) {
-            idUnidadeHospitalar.add(usuario.getUnidadeHospitalar().get(i).getId());
-        }
-            return idUnidadeHospitalar;
-      }
 
     /**
      * GET  /usuarios : get all the usuarios.
