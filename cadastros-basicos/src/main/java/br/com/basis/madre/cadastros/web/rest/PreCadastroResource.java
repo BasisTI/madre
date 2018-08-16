@@ -84,8 +84,7 @@ public class PreCadastroResource {
             }
             PreCadastro result = preCadastroService.save(preCadastro);
             return ResponseEntity.created(new URI("/api/pre-cadastros/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
-        } catch (PreCadastroException e) {
-            log.error(e.getMessage(), e);
+        } catch (PreCadastroException e) {log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage())).body(preCadastro);
         }
     }
@@ -117,8 +116,7 @@ public class PreCadastroResource {
             }
             PreCadastro result = preCadastroService.save(preCadastro);
             return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, preCadastro.getId().toString())).body(result);
-        } catch (PreCadastroException e) {
-            log.error(e.getMessage(), e);
+        } catch (PreCadastroException e) { log.error(e.getMessage(), e);
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, PreCadastroException.getCodeRegistroExisteBase(), e.getMessage())).body(preCadastro);
         }
     }

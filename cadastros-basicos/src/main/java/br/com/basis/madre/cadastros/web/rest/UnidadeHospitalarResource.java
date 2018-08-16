@@ -69,10 +69,7 @@ public class UnidadeHospitalarResource {
 
     @Autowired
     private TaUsuarioUnidadeHospitalarService taUsuarioUnidadeHospitalarService;
-
-    private UnidadeHospitalar unidadeHospitalar;
-
-    private TaUsuarioUnidadeHospitalar taUsuarioUnidadeHospitalar;
+    
 
 
     public UnidadeHospitalarResource(UnidadeHospitalarService unidadeHospitalarService,
