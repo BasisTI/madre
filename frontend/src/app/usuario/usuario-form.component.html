@@ -57,12 +57,13 @@
           <div class="ui-g-12 ui-md-6">
           <span class="md-inputfield">
             <Label>Perfil</Label> <br/>
-              <p-dropdown [options]="perfils" (onChange)="trocaPerfil()"  [(ngModel)]="usuario.perfil"  name="perfil"  optionLabel="nomePerfil" dataKey="id" [style]="{'max-height':'200px'}" editable="true" [autoWidth]="false" #medico></p-dropdown>
+              <p-dropdown [options]="perfils" (onChange)="trocaPerfil()"  [(ngModel)]="usuario.perfil"  name="perfil"  optionLabel="nomePerfil" dataKey="id" [style]="{'max-height':'200px'}" dataKey="id" editable="false" [autoWidth]="false" #medico></p-dropdown>
           </span>
           </div>
+
           <div class="ui-g-12 ui-md-6">
-            <span >
-                <p-multiSelect [options]="unidadeHospitalares"  [(ngModel)]="uhs" name="unidadeHospitalar"  optionLabel="nome" dataKey="id" defaultLabel="Unidade de Saúde*" [listStyle]="{'max-height':'200px'}" required></p-multiSelect> 
+            <span>
+                <p-multiSelect [options]="unidadeHospitalares"  [(ngModel)]="usuario.unidadeHospitalar" name="unidadeHospitalar"  dataKey="id" optionLabel="nome" defaultLabel="Unidade de Saúde*" [listStyle]="{'max-height':'200px'}" required></p-multiSelect> 
                 <div *ngIf="editForm.controls['unidadeHospitalar'] && !editForm.controls['unidadeHospitalar'].valid && (editForm.controls['unidadeHospitalar'].touched || editForm.submitted)" class="ui-message ui-messages-error ng-star-inserted error-required">
                     Campo obrigatório!
                   </div> 
