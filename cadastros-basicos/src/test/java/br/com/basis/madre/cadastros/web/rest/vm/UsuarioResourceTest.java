@@ -37,9 +37,6 @@ public class UsuarioResourceTest {
     ResponseEntity<Usuario> responseEntity;
 
     @Mock
-    TaUsuarioUnidadeHospitalarRepository taUsuarioUnidadeHospitalarRepository;
-
-    @Mock
     Pageable pageable;
 
     @Mock
@@ -49,7 +46,7 @@ public class UsuarioResourceTest {
     String query;
 
     @Test
-    public void usuarioResourceTest(){new UsuarioResource(usuarioRepository,usuarioService, taUsuarioUnidadeHospitalarRepository);}
+    public void usuarioResourceTest(){new UsuarioResource(usuarioRepository,usuarioService);}
 
     @Test
     public void deleteUsuarioTest(){usuarioResource.deleteUsuario(1l);}
