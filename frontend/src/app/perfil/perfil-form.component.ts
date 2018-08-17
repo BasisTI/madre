@@ -127,17 +127,6 @@ export class PerfilFormComponent implements OnInit, OnDestroy {
     this.breadcrumbService.reset();
   }
 
-  // populaListaAcao() {
-  //   const that = this;
-  //   return new Promise(resolve => {
-  //     this.acaoService.getAllAcaos().subscribe(res => {
-  //       res.forEach((item, index) => {
-  //         this.listaAcao.push(item.nm_acao);
-  //       });
-  //       return resolve(true);
-  //     });
-  //   });
-  // }
 
   populaListaFuncionalidade() {
     const that = this;

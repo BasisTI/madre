@@ -12,10 +12,12 @@ import { Perfil, PerfilService } from '../perfil';
 import { Especialidade, EspecialidadeService } from '../especialidade';
 import { ResponseWrapper } from '../shared';
 import { UnidadeHospitalar, UnidadeHospitalarService } from '../unidade-hospitalar';
+import { ValidacaoUtil } from '../util/validacao.util'
 import { JSONP_ERR_NO_CALLBACK } from '@angular/common/http/src/jsonp';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { element } from 'protractor';
 import { DOCUMENT } from '@angular/common';
+import { empty } from 'rxjs/Observer';
 
 @Component({
   selector: 'jhi-usuario-form',
@@ -23,7 +25,6 @@ import { DOCUMENT } from '@angular/common';
 })
 export class UsuarioFormComponent implements OnInit, OnDestroy {
 
-  uhs:UnidadeHospitalar[];
   perfils: Perfil[];
   unidadeHospitalares: UnidadeHospitalar[];
   esconde: boolean;
@@ -47,6 +48,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
 
     this.esconde = true;
     this.myPerfil = new Perfil();
@@ -84,17 +86,16 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
   
 
   save() {
+   
+      this.isSaving = true;
+      if (this.usuario && this.usuario.id) {
 
-    this.isSaving = true;
-
-    if (this.usuario && this.usuario.id) {
-
-      this.atualizarUsuario();
-      return;
-    } 
-    
-    this.criarUsuario();
-  }
+        this.atualizarUsuario();
+        return;
+      } 
+      
+      this.criarUsuario();
+    }
 
   private atualizarUsuario() {
 
@@ -103,12 +104,9 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
 
   private criarUsuario() {
 
-    // this.usuario.unidadeHospitalar = [];
 
-//    this.usuario.unidadeHospitalar=this.uhs
-
-    console.log(this.usuario)
-    console.log(this.usuario.unidadeHospitalar)
+    // console.log(this.usuario)
+    // console.log(this.usuario.unidadeHospitalar)
 
     this.subscribeToSaveResponse(this.usuarioService.create(this.usuario));
   }
@@ -120,6 +118,16 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
+      if(!ValidacaoUtil.validarEmail(this.usuario.email)){
+        this.pageNotificationService.addErrorMessage('Email incorreto!');
+      }
+      if (res.headers.toJSON()['x-cadastrosbasicosapp-erroremailexists'] == "Email already in use") {
+        this.pageNotificationService.addErrorMessage('Email já cadastrado!');
+      } else if (res.headers.toJSON()['x-cadastrosbasicosapp-errorloginexists'] == "Login already in use") {
+        this.pageNotificationService.addErrorMessage('Login já cadastrado!');
+      } else {
+        this.pageNotificationService.addErrorMessage('Dados inválidos!');
+      }
     });
   }
 

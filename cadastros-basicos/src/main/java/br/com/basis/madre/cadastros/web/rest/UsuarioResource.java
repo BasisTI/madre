@@ -76,7 +76,11 @@ public class UsuarioResource {
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);
             } else if (usuarioRepository.findOneByLoginIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent()) {
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);
-            } else {
+            } else if(usuario.getUnidadeHospitalar().equals(null)){
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotnull", "Unidade hospitalar not null")) .body(null);
+            }else if(usuario.getUnidadeHospitalar().isEmpty()){
+                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotempty", "Unidade hospitalar not empty")) .body(null);
+            }else {
                 Usuario result = usuarioService.save(usuario);
                 return ResponseEntity.created(new URI("/api/usuarios/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
             }

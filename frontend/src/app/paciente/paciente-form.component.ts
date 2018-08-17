@@ -101,7 +101,6 @@ export class PacienteFormComponent implements OnInit, OnDestroy {
       this.addConfirmationMessage();
     }, (res: Response) => {
       this.isSaving = false;
-      console.log();
 
       if (!ValidacaoUtil.validaCpf(this.paciente.cpf)) {
         this.pageNotificationService.addErrorMessage('CPF inválido !');
