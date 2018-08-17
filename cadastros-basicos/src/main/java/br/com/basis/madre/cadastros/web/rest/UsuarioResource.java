@@ -76,7 +76,7 @@ public class UsuarioResource {
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);
             } else if (usuarioRepository.findOneByLoginIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent()) {
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);
-            } else if(usuario.getUnidadeHospitalar().equals(null)){
+            } else if(usuario.getUnidadeHospitalar() == null){
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotnull", "Unidade hospitalar not null")) .body(null);
             }else if(usuario.getUnidadeHospitalar().isEmpty()){
                 return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotempty", "Unidade hospitalar not empty")) .body(null);
