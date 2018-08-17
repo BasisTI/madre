@@ -74,7 +74,7 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
         },(error: Response) => {
           console.log(error.headers.toJSON());
           if (error.headers.toJSON()['x-cadastrosbasicosapp-errorunidaderelacionada'][0] == 'Unidade relacionada com usuario') {
-            this.pageNotificationService.addErrorMessage('Unidade relacionada com usuário ');
+            this.pageNotificationService.addErrorMessage('Não é possivel excluir o registro selecionado!');
               }
         });
       }
