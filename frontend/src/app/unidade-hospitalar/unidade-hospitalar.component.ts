@@ -56,8 +56,8 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
         this.router.navigate(['/unidadeHospitalar', event.selection.id, 'edit']);
         break;
       case 'delete':
-        this.confirmDelete(event.selection.id);
-        break;
+      this.confirmDelete(event.selection.id);
+      break;
       case 'view':
         this.router.navigate(['/unidadeHospitalar', event.selection.id]);
         break;
@@ -71,11 +71,6 @@ export class UnidadeHospitalarComponent implements OnInit, OnDestroy {
         this.unidadeHospitalarService.delete(id).subscribe(() => {
           this.datatable.refresh(undefined);
           this.pageNotificationService.addDeleteMsg();
-        },(error: Response) => {
-          console.log(error.headers.toJSON());
-          if (error.headers.toJSON()['x-cadastrosbasicosapp-errorunidaderelacionada'][0] == 'Unidade relacionada com usuario') {
-            this.pageNotificationService.addErrorMessage('Não é possivel excluir o registro selecionado!');
-              }
         });
       }
     });
