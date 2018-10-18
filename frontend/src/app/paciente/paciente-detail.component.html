@@ -4,142 +4,142 @@
       <h1>Visualizar Paciente</h1>
       <div class="ui-g form-group">
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="rg" pInputText [ngModel]="paciente.rg" readonly/>
-            <label>Rg</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="nomePaciente" pInputText [ngModel]="paciente.nomePaciente" readonly/>
+          <label>Nome Paciente</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="cpf" pInputText [ngModel]="paciente.cpf" readonly/>
-            <label>Cpf</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="nomeSocial" pInputText [ngModel]="paciente.nomeSocial" readonly/>
+          <label>Nome Social</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="sexo" pInputText [ngModel]="paciente.sexo" readonly/>
-            <label>Sexo</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="nomePai" pInputText [ngModel]="paciente.nomePai" readonly/>
+          <label>Nome Pai</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="dataNascimento" pInputText [ngModel]="paciente.dataNascimento|date:'dd/MM/y'" readonly/>
-            <label>Data Nascimento</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="nomeMae" pInputText [ngModel]="paciente.nomeMae" readonly/>
+          <label>Nome Mae</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="cep" pInputText [ngModel]="paciente.cep" readonly/>
-            <label>Cep</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="racaCor" pInputText [ngModel]="paciente.racaCor" readonly/>
+          <label>Raça/Cor</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="prontuario" pInputText [ngModel]="paciente.prontuario" readonly/>
-            <label>Prontuário</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="nacionalidade" pInputText [ngModel]="paciente.nacionalidade" readonly/>
+          <label>Nacionalidade</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="nomePaciente" pInputText [ngModel]="paciente.nomePaciente" readonly/>
-            <label>Nome Paciente</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="sexo" pInputText [ngModel]="paciente.sexo" readonly/>
+          <label>Sexo</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="nomeSocial" pInputText [ngModel]="paciente.nomeSocial" readonly/>
-            <label>Nome Social</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="estadoCivil" pInputText [ngModel]="paciente.estadoCivil" readonly/>
+          <label>Estado Civil</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="racaCor" pInputText [ngModel]="paciente.racaCor" readonly/>
-            <label>Raca Cor</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="dataNascimento" pInputText [ngModel]="paciente.dataNascimento|date:'dd/MM/y'" readonly/>
+          <label>Data Nascimento</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="estadoCivil" pInputText [ngModel]="paciente.estadoCivil" readonly/>
-            <label>Estado Civil</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="telefonePrincipal" pInputText [ngModel]="paciente.telefonePrincipal" readonly/>
+          <label>Telefone Principal</label>
+        </span>
+        </div>
+        <div class="ui-g-12 ui-md-6"*ngIf="paciente.telefoneAlternativo != null">
+        <span class="md-inputfield">
+          <input type="text" name="telefoneAlternativo" pInputText [ngModel]="paciente.telefoneAlternativo" readonly/>
+          <label>Telefone Alternativo</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="nomePai" pInputText [ngModel]="paciente.nomePai" readonly/>
-            <label>Nome Pai</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="cep" pInputText [ngModel]="paciente.cep" readonly/>
+          <label>CEP</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="nomeMae" pInputText [ngModel]="paciente.nomeMae" readonly/>
-            <label>Nome Mae</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="endereco" pInputText [ngModel]="paciente.endereco" readonly/>
+          <label>Endereco</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="nacionalidade" pInputText [ngModel]="paciente.nacionalidade" readonly/>
-            <label>Nacionalidade</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="complemento" pInputText [ngModel]="paciente.complemento" readonly/>
+          <label>Complemento</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="cartaoSus" pInputText [ngModel]="paciente.cartaoSus" readonly/>
-            <label>Cartao Sus</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="bairro" pInputText [ngModel]="paciente.bairro" readonly/>
+          <label>Bairro</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="endereco" pInputText [ngModel]="paciente.endereco" readonly/>
-            <label>Endereco</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="cidade" pInputText [ngModel]="paciente.cidade" readonly/>
+          <label>Cidade</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="complemento" pInputText [ngModel]="paciente.complemento" readonly/>
-            <label>Complemento</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="estado" pInputText [ngModel]="paciente.estado" readonly/>
+          <label>Estado</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="bairro" pInputText [ngModel]="paciente.bairro" readonly/>
-            <label>Bairro</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="emailPrincipal" pInputText [ngModel]="paciente.emailPrincipal" readonly/>
+          <label>Email Principal</label>
+        </span>
+        </div>
+        <div class="ui-g-12 ui-md-6" *ngIf="paciente.emailAlternativo != null">
+        <span class="md-inputfield">
+          <input type="text" name="emailAlternativo" pInputText [ngModel]="paciente.emailAlternativo" readonly/>
+          <label>Email Alternativo</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="cidade" pInputText [ngModel]="paciente.cidade" readonly/>
-            <label>Cidade</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="rg" pInputText [ngModel]="paciente.rg" readonly/>
+          <label>RG</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="estado" pInputText [ngModel]="paciente.estado" readonly/>
-            <label>Estado</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="cpf" pInputText [ngModel]="paciente.cpf" readonly/>
+          <label>cpf</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="telefonePrincipal" pInputText [ngModel]="paciente.telefonePrincipal" readonly/>
-            <label>Telefone Principal</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="cartaoSus" pInputText [ngModel]="paciente.cartaoSus" readonly/>
+          <label>Cartao Sus</label>
+        </span>
         </div>
         <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="telefoneAlternativo" pInputText [ngModel]="paciente.telefoneAlternativo" readonly/>
-            <label>Telefone Alternativo</label>
-          </span>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="emailPrincipal" pInputText [ngModel]="paciente.emailPrincipal" readonly/>
-            <label>Email Principal</label>
-          </span>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-          <span class="md-inputfield">
-            <input type="text" name="emailAlternativo" pInputText [ngModel]="paciente.emailAlternativo" readonly/>
-            <label>Email Alternativo</label>
-          </span>
+        <span class="md-inputfield">
+          <input type="text" name="prontuario" pInputText [ngModel]="paciente.prontuario" readonly/>
+          <label>Prontuário</label>
+        </span>
         </div>
       </div>
       <div class="ui-g">
