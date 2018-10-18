@@ -72,8 +72,8 @@
           <div *ngIf="!(isEdit) || usuario.especialidade || myPerfil.nomePerfil == 'Médico'" [hidden]='esconde' class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <Label>Especialidade</Label> <br/>
-                <p-listbox [options]="especialidades" [(ngModel)]="usuario.especialidade" name="especialidade" optionLabel="nome" dataKey="id"  >
-              </p-listbox>
+                <p-dropdown [options]="especialidades" [(ngModel)]="usuario.especialidade" name="especialidade" optionLabel="nome" dataKey="id" [style]="{'max-height': '200px'}" datakey="id" editable="false" [autoWidth]="false">
+              </p-dropdown>
             </span>
           </div>
 
