@@ -64,7 +64,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   confirmDelete(id: any) {
     this.confirmationService.confirm({
-      message: 'Tem certeza que deseja excluir o registro?',
+      message: 'Tem certeza que deseja excluir o perfil?',
       accept: () => {
         this.perfilService.delete(id).subscribe(() => {
           this.datatable.refresh(undefined);
