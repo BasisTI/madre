@@ -41,7 +41,7 @@ export class EspecialidadeService {
 
   query(req?: any): Observable<ResponseWrapper> {
     const options = createRequestOption(req);
-    return this.http.get(this.resourceUrl, options)
+      return this.http.get(this.resourceUrl, options)
       .map((res: Response) => this.convertResponse(res));
   }
 

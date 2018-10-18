@@ -1,51 +1,53 @@
 <div class="ui-g ui-fluid">
-  <div class="ui-g-12">
-    <div class="card card-w-title">
-      <h1>Paciente</h1>
-      <div class="ui-g">
-        <div class="ui-g-12 ui-md-12">
-          <span class="md-inputfield">
-            <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
-            (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro"/>
-            <label>Descrição</label>
-          </span>
-        </div>
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Paciente</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12">
+                <span class="md-inputfield">
+                <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value"
+                       (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro"/>
+                <label>Descrição</label>
+                </span>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-g-12 ui-md-6">
+                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
+                                (click)="valueFiltro(elasticQuery.query)"></button>
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <button pButton type="button" label="Cadastrar" routerLink="/paciente/new"
+                                icon="ui-icon-add"></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
 
-        <div class="ui-g-12 ui-md-3"></div>
-        <div class="ui-g-12 ui-md-6">
-          <div class="ui-g-12 ui-md-6">
-            <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="valueFiltro(elasticQuery.query)"></button>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <button pButton type="button" label="Cadastrar" routerLink="/paciente/new" icon="ui-icon-add"></button>
-          </div>
+                <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10"
+                                 [rowsPerPageOptions]="[5,10,20,30,40,50]">
+                    <p-column header="Nome Paciente" field="nomePaciente" [sortable]="true"></p-column>
+                    <p-column header="RG" field="rg" [sortable]="true" mask="99.999.999-9"></p-column>
+                    <p-column header="CPF" field="cpf" [sortable]="true"></p-column>
+                    <p-column header="Sexo" field="sexo" [sortable]="true"></p-column>
+                    <p-column header="Data de Nascimento" field="dataNascimento" [sortable]="true">
+                        <ng-template let-col let-dataNascimento="rowData" pTempleate="body">
+                            {{ dataNascimento[col.field]|date:'dd/MM/y' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="CEP" field="cep" [sortable]="true"></p-column>
+                    <p-column header="Prontuário" field="prontuario" [sortable]="true"></p-column>
+                </basis-datatable>
+                <div class="ui-g-12 ui-md-2">
+                    <app-botoes-exportacao resourceName="paciente" [query]="valueFiltroCampo">
+                    </app-botoes-exportacao>
+                </div>
+            </div>
         </div>
-        <div class="ui-g-12 ui-md-3"></div>
-
-        <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
-          <p-column header="Nome Paciente" field="nomePaciente" [sortable]="true"></p-column>
-          <p-column header="RG" field="rg" [sortable]="true" mask="99.999.999-9"></p-column>
-          <p-column header="CPF" field="cpf" [sortable]="true"></p-column>
-          <p-column header="Sexo" field="sexo" [sortable]="true"></p-column>
-          <p-column header="Data de Nascimento" field="dataNascimento" [sortable]="true">
-            <ng-template let-col let-dataNascimento="rowData" pTempleate="body">
-              {{ dataNascimento[col.field]|date:'dd/MM/y' }}
-            </ng-template>
-          </p-column>
-          <p-column header="CEP" field="cep" [sortable]="true"></p-column>
-          <p-column header="Prontuário" field="prontuario" [sortable]="true"></p-column>
-        </basis-datatable>
-        <div class="ui-g-12 ui-md-2">
-          <app-botoes-exportacao resourceName="paciente" [query]="valueFiltroCampo">
-          </app-botoes-exportacao>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <p-confirmDialog header="Confirmação" #dialog>
-  <p-footer>
-    <button type="button" pButton icon="fa-close" label="Não" (click)="dialog.reject()"></button>
-    <button type="button" pButton icon="fa-check" label="Sim" (click)="dialog.accept()"></button>
-  </p-footer>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="Não" (click)="dialog.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="Sim" (click)="dialog.accept()"></button>
+    </p-footer>
 </p-confirmDialog>

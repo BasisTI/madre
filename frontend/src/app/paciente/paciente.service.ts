@@ -36,12 +36,14 @@ export class PacienteService {
   find(id: number): Observable<Paciente> {
     return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
       const jsonResponse = res.json();
-      return this.convertItemFromServer(jsonResponse);
+        console.log(jsonResponse);
+        return this.convertItemFromServer(jsonResponse);
     });
   }
 
   query(req?: any): Observable<ResponseWrapper> {
     const options = createRequestOption(req);
+    console.log(options);
     return this.http.get(this.resourceUrl, options)
       .map((res: Response) => this.convertResponse(res));
   }
