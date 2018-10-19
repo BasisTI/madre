@@ -24,9 +24,11 @@
         <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)"  #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]" >
           <p-column header="Enunciado" field="enunciadoPergunta"></p-column>
         </basis-datatable>
-        <div class="ui-g-12 ui-md-2">
+        <div class="ui-g-12 ui-md-11" style="margin-left: 8px;">
+          <div class="ui-g-12 ui-md-2" style="float: right">
             <app-botoes-exportacao resourceName="tipoPergunta" [query]="valueFiltroCampo">
             </app-botoes-exportacao>
+          </div>
         </div>
       </div>
     </div>

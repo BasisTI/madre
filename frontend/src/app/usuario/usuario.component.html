@@ -32,9 +32,11 @@
             </ng-template>
           </p-column>
         </basis-datatable>
-        <div class="ui-g-6 ui-md-2">
-          <app-botoes-exportacao resourceName="usuario" [query]="valueFiltroCampo"></app-botoes-exportacao>
-      </div>
+          <div class="ui-g-12 ui-md-11" style="margin-left: 8px;">
+              <div class="ui-g-12 ui-md-2" style="float: right">
+                  <app-botoes-exportacao resourceName="usuario" [query]="valueFiltroCampo"></app-botoes-exportacao>
+              </div>
+          </div>
       </div>
     </div>
   </div>

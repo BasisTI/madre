@@ -37,9 +37,11 @@
                     <p-column header="CEP" field="cep" [sortable]="true"></p-column>
                     <p-column header="Prontuário" field="prontuario" [sortable]="true"></p-column>
                 </basis-datatable>
-                <div class="ui-g-12 ui-md-2">
-                    <app-botoes-exportacao resourceName="paciente" [query]="valueFiltroCampo">
-                    </app-botoes-exportacao>
+                <div class="ui-g-12 ui-md-11" style="margin-left: 8px;">
+                    <div class="ui-g-12 ui-md-2" style="float: right">
+                        <app-botoes-exportacao resourceName="paciente" [query]="valueFiltroCampo">
+                        </app-botoes-exportacao>
+                    </div>
                 </div>
             </div>
         </div>
