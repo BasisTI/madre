@@ -16,7 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,7 +38,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
 
 /**
  * REST controller for managing Usuario.
@@ -69,23 +70,26 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario)
         throws URISyntaxException {
-        try { log.debug("REST request to save Usuario : {}", usuario);
+        try {
+            log.debug("REST request to save Usuario : {}", usuario);
             if (usuario.getId() != null) {
                 throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
             } else if (usuarioRepository.findOneByEmailIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent()) {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")).body(null);
             } else if (usuarioRepository.findOneByLoginIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent()) {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);
-            } else if(usuario.getUnidadeHospitalar() == null){
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotnull", "Unidade hospitalar not null")) .body(null);
-            }else if(usuario.getUnidadeHospitalar().isEmpty()){
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotempty", "Unidade hospitalar not empty")) .body(null);
-            }else {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")).body(null);
+            } else if (usuario.getUnidadeHospitalar() == null) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotnull", "Unidade hospitalar not null")).body(null);
+            } else if (usuario.getUnidadeHospitalar().isEmpty()) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "unidadehospitalarnotempty", "Unidade hospitalar not empty")).body(null);
+            } else {
                 Usuario result = usuarioService.save(usuario);
-                return ResponseEntity.created(new URI("/api/usuarios/" + result.getId())) .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())) .body(result);
+                return ResponseEntity.created(new URI("/api/usuarios/"
+                    + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
             }
-        } catch (UsuarioException e) { log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())) .body(usuario);
+        } catch (UsuarioException e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())).body(usuario);
         }
     }
 
@@ -101,19 +105,26 @@ public class UsuarioResource {
     @PutMapping("/usuarios")
     @Timed
     public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody Usuario usuario)
-        throws URISyntaxException { log.debug("REST request to update Usuario : {}", usuario);
-        try { log.debug("REST request to update UnidadeHospitalar : {}", usuario);
-            if(!(usuarioRepository.findOneByIdAndEmailIgnoreCase(usuario.getId(), MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent()) && (usuarioRepository.findOneByEmailIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent())) {
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")) .body(null);}
-            if (!(usuarioRepository.findOneByIdAndLoginIgnoreCase(usuario.getId(), MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent()) && (usuarioRepository.findOneByLoginIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent())){
-                return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")) .body(null);}
+        throws URISyntaxException {
+        log.debug("REST request to update Usuario : {}", usuario);
+        try {
+            log.debug("REST request to update UnidadeHospitalar : {}", usuario);
+            if (!(usuarioRepository.findOneByIdAndEmailIgnoreCase(usuario.getId(), MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent())
+                && (usuarioRepository.findOneByEmailIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getEmail())).isPresent())) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", "Email already in use")).body(null);
+            }
+            if (!(usuarioRepository.findOneByIdAndLoginIgnoreCase(usuario.getId(), MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent())
+                && (usuarioRepository.findOneByLoginIgnoreCase(MadreUtil.removeCaracteresEmBranco(usuario.getLogin())).isPresent())) {
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "loginexists", "Login already in use")).body(null);
+            }
             if (usuario.getId() == null) {
-                return createUsuario(usuario);}
+                return createUsuario(usuario);
+            }
             Usuario result = usuarioService.save(usuario);
-            return ResponseEntity.ok() .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())) .body(result);
+            return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuario.getId().toString())).body(result);
         } catch (UsuarioException e) {
             log.error(e.getMessage(), e);
-            return ResponseEntity.badRequest() .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())) .body(usuario);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, UsuarioException.getCodeRegistroExisteBase(), e.getMessage())).body(usuario);
         }
     }
 
@@ -126,7 +137,7 @@ public class UsuarioResource {
     @GetMapping("/usuarios")
     @Timed
     public ResponseEntity<List<Usuario>> getAllUsuarios(@RequestParam(value = "query") Optional<String> query,
-                                                           @ApiParam Pageable pageable) {
+        @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Usuarios");
         Page<Usuario> page = usuarioService.findAll(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/usuarios");
@@ -157,10 +168,9 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         log.debug("REST request to delete Usuario : {}", id);
-            usuarioService.delete(id);
-            return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        usuarioService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 
     /**
      * SEARCH  /_search/usuarios?query=:query : search for the usuario corresponding
@@ -173,10 +183,13 @@ public class UsuarioResource {
     @GetMapping("/_search/usuarios")
     @Timed
     public ResponseEntity<List<Usuario>> searchUsuarios(@RequestParam(defaultValue = "*") String query,
-        Pageable pageable) {
-
+        Pageable pageable,
+        @RequestParam String order,
+        @RequestParam(name = "sort", defaultValue = "nome") String usuarioCampoOrdenacao) {
         log.debug("REST request to search for a page of Usuarios for query {}", query);
-        Page<Usuario> page = usuarioService.search(query, pageable);
+        Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
+        Pageable newPageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), sortOrder, usuarioCampoOrdenacao);
+        Page<Usuario> page = usuarioService.search(query, newPageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/usuarios");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -189,7 +202,8 @@ public class UsuarioResource {
      */
     @GetMapping(value = "/usuario/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
-    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio, @RequestParam(defaultValue = "*") String query) {
+    public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
+        @RequestParam(defaultValue = "*") String query) {
         try {
             return usuarioService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
