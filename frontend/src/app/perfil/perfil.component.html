@@ -24,9 +24,15 @@
           <p-column header="Perfil" field="nomePerfil"></p-column>
           <p-column header="Descrição" field="dsPerfil"></p-column>
         </basis-datatable>
-        <div class="ui-g-12 ui-md-2">
+        <div class="ui-g-12 ui-md-11">
+          <p style="text-align: center">Total de Registros: {{perfil.length}}</p>
+        </div>
+        <div class="ui-g-12 ui-md-11">
+        <div class="ui-g-12 ui-md-2" style="float:right">
+          
             <app-botoes-exportacao resourceName="perfil" [query]="valueFiltroCampo">
             </app-botoes-exportacao>  
+        </div>
         </div>
       </div>
     </div>
