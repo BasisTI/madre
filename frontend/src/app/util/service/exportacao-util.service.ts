@@ -1,7 +1,6 @@
 import { Headers, RequestOptions, ResponseContentType } from '@angular/http';
 import { HttpService } from '@basis/angular-components';
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 export class ExportacaoUtilService {
 
@@ -11,6 +10,7 @@ export class ExportacaoUtilService {
     static PDF = 'pdf';
     static EXCEL = 'xls';
     static CSV = 'csv';
+
     headers: Headers;
     options: RequestOptions;
 
