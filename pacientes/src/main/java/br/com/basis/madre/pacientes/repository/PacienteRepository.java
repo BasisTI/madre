@@ -27,4 +27,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     @Query(value = "SELECT COUNT(nome_paciente) FROM Paciente ")
     int indexPacientes();
+
+    @Query(value = "SELECT COUNT(*) FROM Paciente", nativeQuery = true)
+    int sizePacientes();
 }

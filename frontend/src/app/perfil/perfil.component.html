@@ -19,7 +19,7 @@
             <button pButton type="button" label="Cadastrar" routerLink="/perfil/new" icon="ui-icon-add"></button>
           </div>
         </div>
-        <basis-datatable [url]="searchUrl" 
+        <basis-datatable [url]="searchUrl"
           (buttonClick)="datatableClick($event)" #datatable>
           <p-column header="Perfil" field="nomePerfil"></p-column>
           <p-column header="Descrição" field="dsPerfil"></p-column>

@@ -28,5 +28,6 @@ export class Paciente implements BaseEntity {
     public telefoneAlternativo?: string,
     public emailPrincipal?: string,
     public emailAlternativo?: string,
+    public total?: number
   ) {}
 }

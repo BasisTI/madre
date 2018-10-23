@@ -10,6 +10,7 @@ import { Paciente } from './paciente.model';
 import { PacienteService } from './paciente.service';
 import { ElasticQuery } from '../shared/elastic-query';
 import { ajaxGetJSON } from 'rxjs/observable/dom/AjaxObservable';
+import {ResponseWrapper} from "../shared";
 
 @Component({
   selector: 'jhi-paciente',
@@ -25,7 +26,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   paciente: Paciente;
 
-
+  total: number;
 
   valueFiltroCampo: string;
 
@@ -42,6 +43,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
 
     this.breadcrumbService.setItems([{ label: 'Pacientes' }]);
+    this.getSizePacientes();
   }
 
   valueFiltro(valuefiltro: string) {
@@ -78,6 +80,11 @@ export class PacienteComponent implements OnInit, OnDestroy {
     });
   }
 
+    getSizePacientes(){
+        this.pacienteService.getSizePacientes().subscribe((res:  Paciente) => {
+          this.total = res.total;
+        });
+    }
   ngOnDestroy() {
     this.breadcrumbService.reset();
   }

@@ -1,6 +1,7 @@
 package br.com.basis.madre.pacientes.web.rest;
 
 import br.com.basis.madre.pacientes.domain.Paciente;
+import br.com.basis.madre.pacientes.domain.dto.PacienteDTO;
 import br.com.basis.madre.pacientes.repository.PacienteRepository;
 import br.com.basis.madre.pacientes.service.PacienteService;
 import br.com.basis.madre.pacientes.service.exception.RelatorioException;
@@ -140,6 +141,14 @@ public class PacienteResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/pacientes/size")
+    @Timed
+    public ResponseEntity<PacienteDTO> getSizeAllPacientes() {
+        log.debug("REST request to get a page of size Pacientes");
+        PacienteDTO paciente = new PacienteDTO(pacienteRepository.sizePacientes());
+        return new ResponseEntity<>(paciente, HttpStatus.OK);
+    }
+
     /**
      * GET  /pacientes/:id : get the "id" paciente.
      *
@@ -185,12 +194,10 @@ public class PacienteResource {
         Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
         Pageable newPageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), sortOrder, nomeCampoOrdenacao);
         Page<Paciente> page = pacienteService.search(query, newPageable);
+        long totalElements = page.getTotalElements();
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/pacientes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
-
-
 
     @GetMapping(value = "/paciente/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed

@@ -35,7 +35,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
- 
+
 
     this.breadcrumbService.setItems([{ label: 'Perfils' }]);
   }

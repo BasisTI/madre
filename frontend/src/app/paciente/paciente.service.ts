@@ -15,7 +15,6 @@ export class PacienteService {
   searchUrl =  environment.apiPaciente + '/_search/pacientes';
 
   constructor(private http: HttpService, private dateUtils: JhiDateUtils) {}
-
   create(paciente: Paciente): Observable<Paciente> {
     
     const copy = this.convert(paciente);
@@ -52,7 +51,12 @@ export class PacienteService {
     console.log(this.resourceUrl);
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
-
+    getSizePacientes(): Observable<Paciente> {
+        return this.http.get(`${this.resourceUrl}/size`).map((res: Response) => {
+            const entity: Paciente = Object.assign(new Paciente(), res.json());
+            return entity;
+        });
+    }
   private convertResponse(res: Response): ResponseWrapper {
     const jsonResponse = res.json();
     const result = [];
