@@ -11,7 +11,8 @@
             <span class="md-inputfield">
               <input type="text" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" pInputText required/>
               <label>Perfil *</label>
-                 <div *ngIf="editForm.controls['nomePerfil'] && !editForm.controls['nomePerfil'].valid && (editForm.controls['nomePerfil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                 <div *ngIf="editForm.controls['nomePerfil'] && !editForm.controls['nomePerfil'].valid && (editForm.controls['nomePerfil'].touched || editForm.submitted)"
+                      class="ui-message ui-messages-error">
                 Campo obrigatório!
               </div>
             </span>
@@ -23,7 +24,7 @@
             </span>
                     </div>
                     <div class="ui-g-12 ui-md-12">
-                     lo   <p-pickList [source]="pega" [target]="coloca" filterBy="nmFuncionalidade"
+                        <p-pickList [source]="pega" [target]="coloca" filterBy="nmFuncionalidade"
                                     sourceHeader="Selecionar Funcionalidades"
                                     targetHeader="Funcionalidades Selecionadas" [responsive]="true"
                                     dragdrop="true" dragdropScope="true" [sourceStyle]="{'height':'300px'}"
