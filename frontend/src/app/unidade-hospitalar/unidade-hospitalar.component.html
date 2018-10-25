@@ -40,12 +40,14 @@
                         </ng-template>
                     </p-column>
                 </basis-datatable>
-                <div class="ui-g-12 ui-md-2">
-                    <app-botoes-exportacao resourceName="unidadehospitalar" [query]="valueFiltroCampo">
+                
+                <div class="ui-g-12 ui-md-11">
+                    <div class="ui-g-12 ui-md-3" style="float: right">                    
+                        <app-botoes-exportacao resourceName="unidadehospitalar" [query]="valueFiltroCampo">
                     </app-botoes-exportacao>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
