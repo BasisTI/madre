@@ -1,4 +1,4 @@
-export const environment_prod = {
+export const environment = {
   production: true,
   apiUrl:'cadastrosbasicos/api',
   apiPaciente: 'pacientes/api',
