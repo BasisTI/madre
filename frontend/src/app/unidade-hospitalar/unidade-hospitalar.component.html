@@ -1,34 +1,31 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <h1>Unidade de Saúde</h1>
+          <h1>Unidade de Saúde</h1>
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12">
-                <span class="md-inputfield">
-                <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value"
-                       (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro"/>
-                <label>Pesquisar</label>
-                </span>
+                    <span class="md-inputfield">
+              <input type="text" pInputText class="ui-inputtext" [(ngModel)]="elasticQuery.value" 
+              (keyup.enter)="valueFiltro(elasticQuery.query)" name="filtro"/>
+              <label>Pesquisar</label>
+            </span>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <div class="ui-g-12 ui-md-6">
                     <div class="ui-g-12 ui-md-6">
-                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
-                                (click)="valueFiltro(elasticQuery.query)"></button>
+                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search" (click)="valueFiltro(elasticQuery.query)"></button>
                     </div>
                     <div class="ui-g-12 ui-md-6">
-                        <button pButton type="button" label="Cadastrar" routerLink="/unidadeHospitalar/new"
-                                icon="ui-icon-add"></button>
+                        <button pButton type="button" label="Cadastrar" routerLink="/unidadeHospitalar/new" icon="ui-icon-add"></button>
                     </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10"
-                                 [rowsPerPageOptions]="[5,10,20,30,40,50]">
+                <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
                     <p-column header="Sigla" field="sigla" [sortable]="true"></p-column>
                     <p-column header="Nome" field="nome" [sortable]="true"></p-column>
                     <p-column header="CNPJ" field="cnpj" [sortable]="true">
-                        <ng-template let-col let-item="rowData" pTemplate="body">
-                            {{item.cnpj | cpfCnpj }}
+                        <ng-template  let-col let-item="rowData" pTemplate="body">
+                            {{ item.cnpj | cpfCnpj }}
                         </ng-template>
                     </p-column>
                     <p-column header="Endereço" field="endereco" [sortable]="true"></p-column>
@@ -38,11 +35,9 @@
                         </ng-template>
                     </p-column>
                 </basis-datatable>
-                <div class="ui-g-12 ui-md-11" style="margin-left: 8px;">
-                    <div class="ui-g-12 ui-md-2" style="float: right">
-                        <app-botoes-exportacao resourceName="unidadehospitalar" [query]="valueFiltroCampo">
-                        </app-botoes-exportacao>
-                    </div>
+                <div class="ui-g-12 ui-md-2">
+                    <app-botoes-exportacao resourceName="unidadehospitalar" [query]="valueFiltroCampo">
+                    </app-botoes-exportacao>
                 </div>
             </div>
 
