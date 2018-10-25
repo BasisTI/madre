@@ -194,7 +194,6 @@ public class PacienteResource {
         Sort.Direction sortOrder = PaginationUtil.getSortDirection(order);
         Pageable newPageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), sortOrder, nomeCampoOrdenacao);
         Page<Paciente> page = pacienteService.search(query, newPageable);
-        long totalElements = page.getTotalElements();
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/pacientes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
