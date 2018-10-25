@@ -21,6 +21,11 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable [url]="searchUrl" (buttonClick)="datatableClick($event)" #datatable [rows]="10" [rowsPerPageOptions]="[5,10,20,30,40,50]">
+                    <p-column header="Logo" field="logo">
+                            <ng-template  let-col let-item="rowData" pTemplate="body">
+                                <img src="data:{{item.logoContentType}};base64,{{item.logo}}" style="max-width: 150px; max-height: 150px;">
+                        </ng-template>
+                    </p-column>
                     <p-column header="Sigla" field="sigla" [sortable]="true"></p-column>
                     <p-column header="Nome" field="nome" [sortable]="true"></p-column>
                     <p-column header="CNPJ" field="cnpj" [sortable]="true">
