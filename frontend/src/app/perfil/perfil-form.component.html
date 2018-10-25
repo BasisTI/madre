@@ -1,44 +1,49 @@
 <!-- Pagina Editar -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="ui-g ui-fluid">
-  <div class="ui-g-12">
-    <div class="card card-w-title">
-      <h1>{{ perfil.id ? 'Editar Perfil' : 'Cadastrar Perfil' }}</h1>
-      <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-        <div class="ui-g form-group">
-          <input type="hidden" name="id" pInputText [(ngModel)]="perfil.id" readonly/>
-          <div class="ui-g-12 ui-md-6">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>{{ perfil.id ? 'Editar Perfil' : 'Cadastrar Perfil' }}</h1>
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                <div class="ui-g form-group">
+                    <input type="hidden" name="id" pInputText [(ngModel)]="perfil.id" readonly/>
+                    <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
-              <input type="text" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" pInputText/>
-              <label>Perfil</label>
+              <input type="text" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" pInputText required/>
+              <label>Perfil *</label>
+                 <div *ngIf="editForm.controls['nomePerfil'] && !editForm.controls['nomePerfil'].valid && (editForm.controls['nomePerfil'].touched || editForm.submitted)" class="ui-message ui-messages-error">
+                Campo obrigatório!
+              </div>
             </span>
-          </div>
-          <div class="ui-g-12 ui-md-6">
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
             <span class="md-inputfield">
               <input type="text" name="dsPerfil" [(ngModel)]="perfil.dsPerfil" pInputText/>
               <label>Descrição</label>
             </span>
-          </div>
-          <div class="ui-g-12 ui-md-12">
-          <p-pickList [source]="pega" [target]="coloca" filterBy="nmFuncionalidade" 
-          sourceHeader="Selecionar Funcionalidades" targetHeader="Funcionalidades Selecionadas" [responsive]="true" 
-          dragdrop="true" dragdropScope="true"[sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
-            <ng-template let-acao pTemplate="item">
-                 {{acao.nmFuncionalidade + ' - ' + acao.nmAcao}}
-            </ng-template>
-           </p-pickList>
-
-      </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                     lo   <p-pickList [source]="pega" [target]="coloca" filterBy="nmFuncionalidade"
+                                    sourceHeader="Selecionar Funcionalidades"
+                                    targetHeader="Funcionalidades Selecionadas" [responsive]="true"
+                                    dragdrop="true" dragdropScope="true" [sourceStyle]="{'height':'300px'}"
+                                    [targetStyle]="{'height':'300px'}">
+                            <ng-template let-acao pTemplate="item">
+                                {{acao.nmFuncionalidade + ' - ' + acao.nmAcao}}
+                            </ng-template>
+                        </p-pickList>
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-2">
+                        <button pButton type="button" label="Cancelar" routerLink="/perfil"></button>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <button pButton type="submit" label="Salvar"
+                                [disabled]="editForm.form.invalid || isSaving"></button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="ui-g">
-          <div class="ui-g-12 ui-md-2">
-            <button pButton type="button" label="Cancelar"  routerLink="/perfil"></button>
-          </div>
-          <div class="ui-g-12 ui-md-2">
-            <button pButton type="submit" label="Salvar" [disabled]="editForm.form.invalid || isSaving"></button>
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
 </div>

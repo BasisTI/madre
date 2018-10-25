@@ -63,8 +63,8 @@ public class PerfilResource {
     private final PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository;
 
     public PerfilResource(PerfilService perfilService, PerfilRepository perfilRepository,
-                          FuncionalidadeAcaoRepository funcionalidadeAcaoRepository,
-                          PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository) {
+        FuncionalidadeAcaoRepository funcionalidadeAcaoRepository,
+        PerfilFuncionalidadeAcaoRepository perfilFuncionalidadeAcaoRepository) {
         this.perfilService = perfilService;
         this.perfilRepository = perfilRepository;
         this.funcionalidadeAcaoRepository = funcionalidadeAcaoRepository;
@@ -84,7 +84,6 @@ public class PerfilResource {
     @Timed
     public ResponseEntity<Perfil> createPerfil(@Valid @RequestBody PerfilDTO dto) throws URISyntaxException {
         Perfil perfil = perfilService.convertAcaoTempToPerfil(dto);
-        log.debug("REST request to save Perfil : {}", perfil);
         perfil.setNomePerfil(MadreUtil.removeCaracteresEmBranco(perfil.getNomePerfil()));
         if (perfil.getId() != null) {
             throw new BadRequestAlertException("A new perfil cannot already have an ID", ENTITY_NAME, "idexists");
@@ -118,7 +117,6 @@ public class PerfilResource {
         for (int i = 0; i < dto.getacaoTemp().size(); i++) {
             idFuncAcao.add(funcionalidadeAcaoRepository.pegarIds(idAcoes.get(i), idFunc.get(i)));
         }
-
         return idFuncAcao;
     }
 
@@ -200,14 +198,14 @@ public class PerfilResource {
      * SEARCH /_search/perfils?query=:query : search for the perfil corresponding to
      * the query.
      *
-     * @param query    the query of the perfil search
+     * @param query the query of the perfil search
      * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/perfils")
     @Timed
     public ResponseEntity<List<Perfil>> searchPerfils(@RequestParam(defaultValue = "*") String query,
-                                                      Pageable pageable) {
+        Pageable pageable) {
         log.debug("REST request to search for a page of Perfils for query {}", query);
         Page<Perfil> page = perfilService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/perfils");
@@ -217,15 +215,15 @@ public class PerfilResource {
     @GetMapping(value = "/perfil/exportacao/{tipoRelatorio}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
     public ResponseEntity<InputStreamResource> getRelatorioExportacao(@PathVariable String tipoRelatorio,
-                                                                      @RequestParam(defaultValue = "*") String query) {
+        @RequestParam(defaultValue = "*") String query) {
         try {
             return perfilService.gerarRelatorioExportacao(tipoRelatorio, query);
         } catch (RelatorioException e) {
             log.info("", e);
-    return ResponseEntity.badRequest().headers(
+            return ResponseEntity.badRequest().headers(
                 HeaderUtil.createFailureAlert(ENTITY_NAME, RelatorioException.getCodeEntidade(), e.getMessage()))
                 .body(null);
-                }
         }
     }
+}
 
