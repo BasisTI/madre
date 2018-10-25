@@ -4,13 +4,14 @@ import { ExportacaoUtilService } from './../util/service/exportacao-util.service
 import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { MenuItem, DataTable } from 'primeng/primeng';
 import { HttpService } from '@basis/angular-components';
-import { environment_prod } from '../../environments/environment.prod';
+// import { environment_prod } from '../../environments/environment.prod';
 import { ToastrService } from 'ngx-toastr';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
 import { PageNotificationService } from '@basis/angular-components';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { ElasticQuery } from '../shared/elastic-query';
 import { ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-botoes-exportacao',
@@ -46,11 +47,11 @@ export class BotoesExportacaoComponent implements OnInit {
     switch(this.resourceName){
     
         case 'paciente':
-            this.url = environment_prod.apiPaciente;
+            this.url = environment.apiPaciente;
             break;
 
         default:
-            this.url = environment_prod.apiUrl;
+            this.url = environment.apiUrl;
             break;    
 
     }
