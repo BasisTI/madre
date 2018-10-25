@@ -4,7 +4,7 @@ import { ExportacaoUtilService } from './../util/service/exportacao-util.service
 import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { MenuItem, DataTable } from 'primeng/primeng';
 import { HttpService } from '@basis/angular-components';
-import { environment } from '../../environments/environment.prod';
+import { environment_prod } from '../../environments/environment.prod';
 import { ToastrService } from 'ngx-toastr';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
 import { PageNotificationService } from '@basis/angular-components';
@@ -46,11 +46,11 @@ export class BotoesExportacaoComponent implements OnInit {
     switch(this.resourceName){
     
         case 'paciente':
-            this.url = environment.apiPaciente;
+            this.url = environment_prod.apiPaciente;
             break;
 
         default:
-            this.url = environment.apiUrl;
+            this.url = environment_prod.apiUrl;
             break;    
 
     }
