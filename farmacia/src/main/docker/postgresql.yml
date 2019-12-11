@@ -1,0 +1,11 @@
+version: '2'
+services:
+  farmacia-postgresql:
+    image: postgres:11.5
+    # volumes:
+    #     - ~/volumes/jhipster/farmacia/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=farmacia
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

@@ -1,0 +1,11 @@
+version: '2'
+services:
+  consulta-postgresql:
+    image: postgres:11.5
+    # volumes:
+    #     - ~/volumes/jhipster/consulta/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=consulta
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

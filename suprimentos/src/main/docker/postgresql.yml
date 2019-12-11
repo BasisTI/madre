@@ -1,0 +1,11 @@
+version: '2'
+services:
+  suprimentos-postgresql:
+    image: postgres:11.5
+    # volumes:
+    #     - ~/volumes/jhipster/suprimentos/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=suprimentos
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

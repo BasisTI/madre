@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre.consulta"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "consulta",
+    "packageName": "br.com.basis.madre.consulta",
+    "packageFolder": "br/com/basis/madre/consulta",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZWY1MzVmYjFlMjM5ZDhhOTI0Yzg5N2Y5ZjdlNDUyYzQ0NTE2OTllNjExOWRhMDcyYzI4MDU5NWNkODA3MDBmYTRjYTdiZDdkMTc2YTliOWE2ODU1YTM4MTkwYzM1MDA3NGVhMDNhN2FmN2I2MDk0MjM4ZDg5YTQ4M2ZhNGY0ODg=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre.suprimentos"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "suprimentos",
+    "packageName": "br.com.basis.madre.suprimentos",
+    "packageFolder": "br/com/basis/madre/suprimentos",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NDllZDFmMzA2ZDBmODk2MGVmMzc4NzQxMWI3MmI5YzYxMzBmMDEzOTUxNGI3OWM5YTFlMTI1ZmI1YTFmNzNjOTQ3NWNhYWQ2ZWViZjc4OGQ1NGJiZjFlNThiNDViZWQ1NGZmYzM0OTQxYmJlNTIwNjIxZjc3MWYwNDQ2MTI0NDc=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

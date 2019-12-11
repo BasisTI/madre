@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre.farmacia"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "farmacia",
+    "packageName": "br.com.basis.madre.farmacia",
+    "packageFolder": "br/com/basis/madre/farmacia",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MjhjZmEyNjBkM2YxYWNjMGUyM2QwOGY2YjU5YWVmMDhhN2E5ZDU1OTJjODFkOWI5OWE2M2VhMzc4ZjVhMTkyMGYwMWYzOThkOWYyYTFlMDExNTIxZDUzZmJiN2JlYzdmMjg1ZWQxODE1N2RjOGNmNjA5MmYxOTdlNzA5N2UxYmQ=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
