@@ -76,7 +76,7 @@ export const AmbulatorioRoute: Routes = [
 
   {
     path: 'pacientes',
-    component: AgendamentoComponent
+    component: PacientesComponent
   },
   {
     path: 'pacientes/new',

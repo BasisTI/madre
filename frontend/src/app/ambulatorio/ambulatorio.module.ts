@@ -10,12 +10,15 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AmbulatorioRoute } from './ambulatorio.route';
 import { FormsModule } from '@angular/forms';
+import { DropdownModule, CalendarModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
     FormsModule,
+    DropdownModule,
+    CalendarModule,
     RouterModule.forChild(AmbulatorioRoute)
   ],
   declarations: [

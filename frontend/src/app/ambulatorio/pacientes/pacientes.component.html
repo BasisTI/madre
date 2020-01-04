@@ -1,3 +1,26 @@
-<p>
-  pacientes works!
-</p>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Lista de Pacientes</h1>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-12 ui-md-3">
+            <span class="md-inputfield">
+              <p-calendar name="data" [locale]="locale" dateFormat="dd/mm/yy"></p-calendar>
+              <label>Data *</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <p-dropdown name="unidadeFuncional" placeholder="Unidade Funcional *"></p-dropdown>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <p-dropdown name="sala" placeholder="Sala"></p-dropdown>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <p-dropdown name="turno" placeholder="Turno"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
