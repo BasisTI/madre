@@ -11,14 +11,37 @@
             </span>
           </div>
           <div class="ui-g-12 ui-md-3">
-            <p-dropdown name="unidadeFuncional" placeholder="Unidade Funcional *"></p-dropdown>
+            <p-dropdown name="unidadeFuncional" [autoWidth]="false" filter=true placeholder="Unidade Funcional *"></p-dropdown>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3">
+              <p-dropdown name="sala" [autoWidth]="false" placeholder="Sala"></p-dropdown>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <p-dropdown name="turno" [autoWidth]="false" placeholder="Turno"></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-12 ui-md-3">
+            <p-dropdown name="especialidade" [autoWidth]="false" filter=true placeholder="Especialidade / Agenda"></p-dropdown>
           </div>
           <div class="ui-g-12 ui-md-3">
-            <p-dropdown name="sala" placeholder="Sala"></p-dropdown>
+            <p-dropdown name="equipe" [autoWidth]="false" filter=true placeholder="Equipe"></p-dropdown>
           </div>
           <div class="ui-g-12 ui-md-3">
-            <p-dropdown name="turno" placeholder="Turno"></p-dropdown>
+            <p-dropdown name="profissional" [autoWidth]="false" filter=true placeholder="Profissional"></p-dropdown>
           </div>
+        </div>
+      </div>
+
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-2">
+          <button pButton type="button" label="Pesquisar" routerLink="/"></button>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <button pButton type="submit" label="Limpar" [disabled]="" ></button>
         </div>
       </div>
     </div>
