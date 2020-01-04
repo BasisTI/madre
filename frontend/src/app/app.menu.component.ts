@@ -42,6 +42,17 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Paciente', icon: 'person',
                 items: [{label: 'Cadastro de Paciente', icon: 'remove', routerLink: ['/paciente']}]
+            },
+
+            {
+                label: 'Ambulatório', icon:'assignment',
+                items: [
+                    {label: 'Lista de Pacientes', icon: 'remove', routerLink: ['/']},
+                    {label: 'Consultas', icon: 'remove', routerLink: ['/']},
+                    {label: 'Condição de Atendimento', icon: 'remove', routerLink: ['/']},
+                    {label: 'Grades de Agendamento', icon: 'remove', routerLink: ['/']},
+                    {label: 'Cadastros', icon: 'remove', routerLink: ['/']},
+                ]
             }
         ];
     }
