@@ -5,7 +5,7 @@ import { ConsultasComponent } from './consultas/consultas.component';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { Routes } from '@angular/router';
 
-export const ambulatorioRoute: Routes = [
+export const AmbulatorioRoute: Routes = [
   {
     path: 'agendamento',
     component: AgendamentoComponent

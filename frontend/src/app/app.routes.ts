@@ -22,6 +22,7 @@ export const routes: Routes = [
   { path: 'tipoResposta', loadChildren: 'app/tipo-resposta/tipo-resposta.module#CadastrosbasicosTipoRespostaModule' },
   { path: 'funcionalidade_acao', loadChildren: 'app/funcionalidade-acao/funcionalidade-acao.module#CadastrosbasicosFuncionalidade_acaoModule' },
   { path: 'perfil_funcionalidade_acao', loadChildren: 'app/perfil-funcionalidade-acao/perfil-funcionalidade-acao.module#CadastrosbasicosPerfil_funcionalidade_acaoModule' },
+  { path: 'ambulatorio', loadChildren: 'app/ambulatorio/ambulatorio.module#AmbulatorioModule'}
   /* jhipster-needle-add-lazy-module - JHipster will add lazy modules here */
 ];
 
