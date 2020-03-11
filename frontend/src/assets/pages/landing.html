@@ -12,26 +12,6 @@
       <link rel="stylesheet" type="text/css" href="../theme/theme-indigo.css">
       <link rel="stylesheet" type="text/css" href="../layout/css/layout-indigo.css">
       <link rel="stylesheet" type="text/css" href="primeng.min.css">
-
-      <script src="jquery.js"></script>
-      <script type="text/javascript">
-          $(function() {
-              $('#menu-button').on('click', function(e) {
-                  var menu = $('#menu');
-                  if(menu.hasClass('lmenu-active')) {
-                      menu.addClass('fadeOutUp');
-                      
-                      setTimeout(function() {
-                          menu.removeClass('fadeOutUp fadeInDown lmenu-active');
-                      },500);
-                  }
-                  else {
-                      menu.addClass('lmenu-active fadeInDown');
-                  }
-                  e.preventDefault();
-              });
-          });
-      </script>
   </head>
   
   <body class="landing-body">
@@ -231,5 +211,55 @@
              </div>
          </div>
       </div>
+      <script>
+          UltimaLanding = {
+              addClass: function(element, className) {
+                  if (element.classList)
+                      element.classList.add(className);
+                  else
+                      element.className += ' ' + className;
+              },
+
+              removeClass: function(element, className) {
+                  if (element.classList)
+                      element.classList.remove(className);
+                  else
+                      element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+              },
+
+              hasClass: function(element, className) {
+                  if (element.classList)
+                      return element.classList.contains(className);
+                  else
+                      return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+              },
+
+              hideMenu: function() {
+                  this.removeClass(document.getElementById('menu'), 'lmenu-active');
+              },
+
+              showMenu: function() {
+                  this.addClass(document.getElementById('menu'), 'lmenu-active');
+              }
+          };
+
+          document.getElementById('menu-button').addEventListener('click', function(e) {
+              var menu = document.getElementById('menu');
+
+              if(UltimaLanding.hasClass(menu, 'lmenu-active'))
+                  UltimaLanding.hideMenu();
+              else
+                  UltimaLanding.showMenu();
+
+              e.preventDefault();
+          });
+
+          var menuLinks = document.querySelectorAll('#menu a');
+          for (i = 0; i < menuLinks.length; i++) {
+              menuLinks[i].addEventListener('click', function(e) {
+                  UltimaLanding.hideMenu();
+              });
+          }
+      </script>
   </body>
 </html>

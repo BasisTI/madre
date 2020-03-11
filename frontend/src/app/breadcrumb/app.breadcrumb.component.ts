@@ -1,16 +1,15 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { MenuItem } from 'primeng/primeng';
-import { AccessbilityService } from '@basis/angular-components';
+import { Component, OnDestroy, AfterViewInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MenuItem, MessageService, Message } from 'primeng/primeng';
+import { AccessbilityService } from '@nuvem/angular-base';
 
-import { AppComponent } from '../app.component';
 import { BreadcrumbService } from './breadcrumb.service';
 
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './app.breadcrumb.component.html'
 })
-export class AppBreadcrumbComponent implements OnDestroy {
+export class AppBreadcrumbComponent implements OnDestroy, AfterViewInit {
 
   subscription: Subscription;
 
@@ -18,7 +17,11 @@ export class AppBreadcrumbComponent implements OnDestroy {
 
   highContrastEnabled = false;
 
-  constructor(public breadcrumbService: BreadcrumbService, private accessibilityService: AccessbilityService) {
+  constructor(
+    public breadcrumbService: BreadcrumbService, 
+    private messages: MessageService,
+    private accessibilityService: AccessbilityService
+    ) {
     this.subscription = breadcrumbService.itemsHandler.subscribe(response => {
       this.items = response;
     });
@@ -46,5 +49,14 @@ export class AppBreadcrumbComponent implements OnDestroy {
 
   decreaseFontSize() {
     this.accessibilityService.decreaseFontSize();
+  }
+
+  ngAfterViewInit() {
+    this.messages.messageObserver.subscribe(
+      (msg: Message) => {
+          this.accessibilityService.addAccessibilityMessages({severity: msg.severity});
+      }
+    );
+    this.accessibilityService.addAccessibilityIcons();
   }
 }

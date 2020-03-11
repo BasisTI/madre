@@ -13,21 +13,6 @@
     <link rel="stylesheet" type="text/css" href="../theme/theme-indigo.css">
     <link rel="stylesheet" type="text/css" href="../layout/css/layout-indigo.css">
     <link rel="stylesheet" type="text/css" href="primeng.min.css">
-    
-    <!-- Ripple -->
-    <script src="jquery.js"></script>
-    <script src="../layout/js/ripple.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('input').on('blur', function(e) {
-                var el = $(this);
-                if(el.val() != '')
-                    el.addClass('ui-state-filled');
-                else
-                    el.removeClass('ui-state-filled');
-            });
-        });
-    </script>
   </head>
 
   <!-- 3. Display the application -->
@@ -39,13 +24,13 @@
               </div>
               <div class="ui-g-12">
                     <span class="md-inputfield">
-                        <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                        <input id="user" type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                         <label>Username</label>
                     </span>
               </div>
               <div class="ui-g-12">
                   <span class="md-inputfield">
-                      <input type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                      <input id="pass" type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                       <label>Password</label>
                   </span>
               </div>
@@ -56,12 +41,42 @@
                   </button>
                   <button type="button" class="secondary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
                       <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-help"></span>
-                      <span class="ui-button-text ui-c">Sign In</span>
+                      <span class="ui-button-text ui-c">Forgot Password</span>
                   </button>
               </div>
           </div>
-             
+
       </div>
+  <script>
+      UltimaLogin = {
+          addClass: function(element, className) {
+              if (element.classList)
+                  element.classList.add(className);
+              else
+                  element.className += ' ' + className;
+          },
+
+          removeClass: function(element, className) {
+              if (element.classList)
+                  element.classList.remove(className);
+              else
+                  element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+          }
+      };
+      document.getElementById('user').addEventListener('blur', function () {
+          if(this.value !== '')
+              UltimaLogin.addClass(document.getElementById('user'), 'ui-state-filled');
+          else
+              UltimaLogin.removeClass(document.getElementById('user'), 'ui-state-filled');
+      })
+      document.getElementById('pass').addEventListener('blur', function () {
+          if(this.value !== '')
+              UltimaLogin.addClass(document.getElementById('pass'), 'ui-state-filled');
+          else
+              UltimaLogin.removeClass(document.getElementById('pass'), 'ui-state-filled');
+      })
+  </script>
+
   </body>
 
 </html>

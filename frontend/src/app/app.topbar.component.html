@@ -1,5 +1,5 @@
-<div style="max-height: 60px;"  class="topbar clearfix">
-    <div style="max-height: 60px" class="topbar-left">
+<div class="topbar clearfix">
+    <div class="topbar-left">
         <div class="logo"></div>
     </div>
     <div class="topbar-right">
@@ -23,14 +23,14 @@
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a routerLink="/logout">
+                        <a logout>
                             <i class="material-icons">power_settings_new</i>
                             <span>Sair</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li #user [ngClass]="{'active-top-menu':app.activeTopbarItem === user}">
+            <li #user [ngClass]="{'active-top-menu':app.activeTopbarItem === user}" *ngIf="usuario">
                 <a href="#" (click)="app.onTopbarItemClick($event,user)">
                     <i class="topbar-icon material-icons">person</i>
                     <span class="topbar-item-name">Usuário</span>
@@ -38,7 +38,7 @@
                 <ul class="ultima-menu animated fadeInDown">
                     <li role="menuitem">
                         <a>
-                            <span><strong>Usuário: </strong>{{ usuario ? usuario.nome : 'Nome do usuário' }}</span>
+                            <span user><strong>Usuário: </strong></span>
                         </a>
                     </li>
                 </ul>

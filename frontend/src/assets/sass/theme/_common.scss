@@ -6,44 +6,32 @@ body {
     }
 
     .ui-widget-content {
-        background-color: #ffffff;
+        background-color: $contentBgColor;
         font-size: $contentFontSize;
         border: 1px solid $dividerColor;
-        
-        .fa {
-            color: #757575;
+
+        .pi {
+            color: $contentIconColor;
         }
     }
-    
+
     .ui-widget-header {
-        background-color: $primaryColor;
-        color: #ffffff;
+        background-color: $headerBgColor;
+        color: $headerTextColor;
         font-size: $headerFontSize;
         border: 1px solid $primaryColor;
-        
-        .fa {
-            color: #ffffff;
+
+        .pi {
+            color: $headerIconColor;
         }
-    }
-
-    .ui-state-default {
-
-    }
-
-    .ui-state-hover {
-
-    }
-
-    .ui-state-focus {
-
     }
 
     .ui-state-active, .ui-state-highlight {
         background-color: $accentColor;
         color: $accentTextColor;
-        
-        .fa {
-            color: #ffffff;
+
+        .pi {
+            color: $accentTextColor;
         }
     }
 
@@ -76,15 +64,7 @@ body {
     }
 
     .ui-widget-overlay {
-        background-color: #58575c;
+        background-color: $overlayBgColor;
         opacity: .8;
-    }
-    
-    .ui-shadow {
-
-    }
-    
-    a {
-        
     }
 }

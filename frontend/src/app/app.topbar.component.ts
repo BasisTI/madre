@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@basis/angular-components';
-
+import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
-import { Usuario } from './usuario/usuario';
+import { AbstractAuthorization, User } from '@nuvem/angular-base';
 
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html'
 })
-export class AppTopBarComponent implements OnInit {
+export class AppTopbarComponent {
 
-    usuario: Usuario;
-
-    constructor(public app: AppComponent, private auth: AuthService<Usuario>) {}
-
-    ngOnInit() {
-        this.usuario = this.auth.getUser();
+    constructor(public app: AppComponent, private authorization: AbstractAuthorization<User>) {
     }
+
+    get usuario() {
+        return this.authorization.getUser();
+    }
+
 }

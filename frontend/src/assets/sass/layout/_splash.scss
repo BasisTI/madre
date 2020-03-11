@@ -26,7 +26,7 @@ $duration: 1.4s;
   100% { transform: rotate(270deg); }
 }
 
-.path {
+.splash-path {
   stroke-dasharray: $offset;
   stroke-dashoffset: 0;
   transform-origin: center;

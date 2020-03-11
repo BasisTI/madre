@@ -1,40 +1,44 @@
-.fa-sort {@include icon-override("sort");}
-.fa-sort-asc {@include icon-override("keyboard_arrow_up");}
-.fa-sort-desc {@include icon-override("keyboard_arrow_down");}
-.fa-angle-up {@include icon-override("play_arrow"); @include rotate(-90deg);}
-.fa-angle-double-up { @include icon-override("skip_next"); @include rotate(-90deg);}
-.fa-angle-down {@include icon-override("play_arrow"); @include rotate(90deg);}
-.fa-angle-double-down {@include icon-override("skip_previous"); @include rotate(-90deg);}
-.fa-angle-right {@include icon-override("play_arrow");}
-.fa-angle-double-right {@include icon-override("fast_forward");}
-.fa-angle-left {@include icon-override("play_arrow"); @include rotate(180deg);}
-.fa-angle-double-left {@include icon-override("fast_rewind");}
-.fa-check {@include icon-override("check");}
-.fa-caret-up {@include icon-override("keyboard_arrow_up");}
-.fa-caret-down {@include icon-override("keyboard_arrow_down");}
-.fa-caret-right {@include icon-override("keyboard_arrow_right");}
-.fa-caret-left {@include icon-override("keyboard_arrow_left");}
-.fa-search {@include icon-override("search");}
-.fa-close {@include icon-override("close");}
-.fa-minus {@include icon-override("remove");}
-.fa-plus {@include icon-override("add");}
-.fa-check {@include icon-override("check");}
-.fa-info-circle {@include icon-override("info");}
-.fa-upload  {@include icon-override("file_upload");}
-.fa-chevron-circle-left {@include icon-override("keyboard_arrow_left");}
-.fa-chevron-circle-right {@include icon-override("keyboard_arrow_right");}
-.fa-chevron-circle-down {@include icon-override("keyboard_arrow_down");}
-.fa-chevron-circle-up {@include icon-override("keyboard_arrow_up");}
-.fa-home {@include icon-override("home");}
-.fa-chevron-right {@include icon-override("chevron_right");}
-.fa-chevron-left {@include icon-override("chevron_left");}
-.fa-circle-o{@include icon-override("radio_button_unchecked");}
-.fa-dot-circle-o{@include icon-override("radio_button_checked");}
-.fa-arrow-circle-right {@include icon-override("play_circle_outline"); }
-.fa-arrow-circle-left {@include icon-override("play_circle_outline"); @include rotate(180deg);}
-.fa-calendar { @include icon-override("date_range"); }
-.fa-arrow-down{ @include icon-override("arrow_downward"); } 
-.fa-arrow-up { @include icon-override("arrow_upward"); }
+.pi {
+    &.pi-arrow-circle-right {@include icon-override("play_circle_outline"); }
+    &.pi-arrow-circle-left {@include icon-override("play_circle_outline"); @include rotate(180deg);}
+    &.pi-arrow-down{ @include icon-override("arrow_downward"); }
+    &.pi-arrow-up { @include icon-override("arrow_upward"); }
+    &.pi-angle-up {@include icon-override("play_arrow"); @include rotate(-90deg);}
+    &.pi-angle-double-up { @include icon-override("skip_next"); @include rotate(-90deg);}
+    &.pi-angle-down {@include icon-override("play_arrow"); @include rotate(90deg);}
+    &.pi-angle-double-down {@include icon-override("skip_previous"); @include rotate(-90deg);}
+    &.pi-angle-right {@include icon-override("play_arrow");}
+    &.pi-angle-double-right {@include icon-override("fast_forward");}
+    &.pi-angle-left {@include icon-override("play_arrow"); @include rotate(180deg);}
+    &.pi-angle-double-left {@include icon-override("fast_rewind");}
+    &.pi-bars{@include icon-override("view_list");}
+    &.pi-calendar { @include icon-override("date_range"); }
+    &.pi-caret-up {@include icon-override("keyboard_arrow_up");}
+    &.pi-caret-down {@include icon-override("keyboard_arrow_down");}
+    &.pi-caret-right {@include icon-override("keyboard_arrow_right");}
+    &.pi-caret-left {@include icon-override("keyboard_arrow_left");}
+    &.pi-check {@include icon-override("check");}
+    &.pi-chevron-circle-left {@include icon-override("keyboard_arrow_left");}
+    &.pi-chevron-circle-right {@include icon-override("keyboard_arrow_right");}
+    &.pi-chevron-circle-down {@include icon-override("keyboard_arrow_down");}
+    &.pi-chevron-circle-up {@include icon-override("keyboard_arrow_up");}
+    &.pi-chevron-right {@include icon-override("chevron_right");}
+    &.pi-chevron-left {@include icon-override("chevron_left");}
+    &.pi-chevron-down {@include icon-override("keyboard_arrow_down");}
+    &.pi-circle-off{@include icon-override("radio_button_unchecked");}
+    &.pi-circle-on{@include icon-override("radio_button_checked");}
+    &.pi-minus {@include icon-override("remove");}
+    &.pi-plus {@include icon-override("add");}
+    &.pi-info-circle {@include icon-override("info");}
+    &.pi-upload  {@include icon-override("file_upload");}
+    &.pi-home {@include icon-override("home");}
+    &.pi-times {@include icon-override("close");}
+    &.pi-th-large {@include icon-override("view_module");}
+    &.pi-search {@include icon-override("search");}
+    &.pi-sort {@include icon-override("sort");}
+    &.pi-sort-up {@include icon-override("keyboard_arrow_up");}
+    &.pi-sort-down {@include icon-override("keyboard_arrow_down");}
+}
 
 .ui-icon-carat-2-n-s {@include icon-override("sort");}
 .ui-icon-triangle-1-n { @include icon-override("keyboard_arrow_up"); }
@@ -372,7 +376,7 @@
 .ui-icon-fiber-dvr { @include icon-override("fiber_dvr"); }
 .ui-icon-fiber-manual-record { @include icon-override("fiber_manual_record"); }
 .ui-icon-fiber-new { @include icon-override("fiber_new"); }
-.ui-icon-fiber-pin { @include icon-override("fiber_pin"); }
+.ui-icon-fibern { @include icon-override("fiber_pin"); }
 .ui-icon-fiber-smart-record { @include icon-override("fiber_smart_record"); }
 .ui-icon-file-download { @include icon-override("file_download"); }
 .ui-icon-file-upload { @include icon-override("file_upload"); }
@@ -1013,7 +1017,7 @@
 .ui-icon-zoom-out { @include icon-override("zoom_out"); }
 .ui-icon-zoom-out-map { @include icon-override("zoom_out_map"); }
 
-.material-icons, .fa {
+.material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;

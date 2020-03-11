@@ -1,14 +1,13 @@
-import {Component, Input, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/primeng';
 import {AppComponent} from './app.component';
 
 @Component({
     selector: 'app-menu',
     template: `
-        <ul app-submenu [item]="model" root="true" class="ultima-menu ultima-main-menu clearfix" [reset]="reset" visible="true"></ul>
+        <ul app-submenu [item]="model" root="true" class="ultima-menu ultima-main-menu clearfix"
+            [reset]="reset" visible="true" parentActive="true"></ul>
     `
 })
 export class AppMenuComponent implements OnInit {
@@ -17,38 +16,17 @@ export class AppMenuComponent implements OnInit {
 
     model: any[];
 
-    constructor(public app: AppComponent) {
-    }
+    constructor(public app: AppComponent) {}
 
     ngOnInit() {
         this.model = [
-            {
-                label: 'Cadastro', icon: 'widgets',
-                items: [{label: 'Unidade de Saúde', icon: 'remove', routerLink: ['/unidadeHospitalar']},
-                    {label: 'Usuário', icon: 'remove', routerLink: ['/usuario']},
-                    {label: 'Perfis e Permissões', icon: 'remove', routerLink: ['/perfil']},
-                    {label: 'Tipo de Pergunta', icon: 'remove', routerLink: ['/tipoPergunta']},
-                    {label: 'Tipo de Resposta', icon: 'remove', routerLink: ['/tipoResposta']},
-                    {label: 'Protocolo', icon: 'remove', routerLink: ['/protocolo']},
-                    {label: 'Especialidade', icon: 'remove', routerLink: ['/especialidade']}]
-            },
-            {
-                label: 'Emergência', icon: 'warning',
-                items: [{label: 'Pré Cadastro', icon: 'remove', routerLink: ['/preCadastro']},
-                    {label: 'Triagem', icon: 'remove', routerLink: ['/triagem']},
-                    {label: 'Atendimento', icon: 'remove', routerLink: ['/atendimento']}]
-            },
-
-            {
-                label: 'Paciente', icon: 'person',
-                items: [{label: 'Cadastro de Paciente', icon: 'remove', routerLink: ['/paciente']}]
-            }
+            {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']}
         ];
     }
 
     changeTheme(theme) {
-        const themeLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('theme-css');
-        const layoutLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('layout-css');
+        const themeLink: HTMLLinkElement = <HTMLLinkElement> document.getElementById('theme-css');
+        const layoutLink: HTMLLinkElement = <HTMLLinkElement> document.getElementById('layout-css');
 
         themeLink.href = 'assets/theme/theme-' + theme + '.css';
         layoutLink.href = 'assets/layout/css/layout-' + theme + '.css';
@@ -56,22 +34,25 @@ export class AppMenuComponent implements OnInit {
 }
 
 @Component({
-    // tslint:disable-next-line:component-selector
+  /* tslint:disable:component-selector */
     selector: '[app-submenu]',
+  /* tslint:enable:component-selector */
     template: `
         <ng-template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
             <li [ngClass]="{'active-menuitem': isActive(i)}" [class]="child.badgeStyleClass" *ngIf="child.visible === false ? false : true">
-                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)" class="ripplelink"
-                   *ngIf="!child.routerLink" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
-                    <i class="material-icons">{{child.icon}}</i>
+                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)"
+                   class="ripplelink" *ngIf="!child.routerLink"
+                    [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
+                    <i *ngIf="child.icon" class="material-icons">{{child.icon}}</i>
                     <span>{{child.label}}</span>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
                     <i class="material-icons submenu-icon" *ngIf="child.items">keyboard_arrow_down</i>
                 </a>
+
                 <a (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)" class="ripplelink" *ngIf="child.routerLink"
-                   [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink"
+                    [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink"
                    [routerLinkActiveOptions]="{exact: true}" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
-                    <i class="material-icons">{{child.icon}}</i>
+                    <i *ngIf="child.icon" class="material-icons">{{child.icon}}</i>
                     <span>{{child.label}}</span>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
                     <i class="material-icons submenu-icon" *ngIf="child.items">keyboard_arrow_down</i>
@@ -80,10 +61,9 @@ export class AppMenuComponent implements OnInit {
                     <div class="layout-menu-tooltip-arrow"></div>
                     <div class="layout-menu-tooltip-text">{{child.label}}</div>
                 </div>
-                <ul app-submenu [item]="child" *ngIf="child.items" [visible]="isActive(i)" [reset]="reset"
-                    [@children]="(app.isSlim() || app.isHorizontal()) && root ? isActive(i) ?
-            'visible' : 'hidden' : isActive(i) ? 'visibleAnimated' : 'hiddenAnimated'">
-                </ul>
+                <ul app-submenu [item]="child" *ngIf="child.items" [visible]="isActive(i)" [reset]="reset" [parentActive]="isActive(i)"
+                    [@children]="(app.isSlim()||app.isHorizontal())&&root ? isActive(i) ?
+                    'visible' : 'hidden' : isActive(i) ? 'visibleAnimated' : 'hiddenAnimated'"></ul>
             </li>
         </ng-template>
     `,
@@ -96,10 +76,12 @@ export class AppMenuComponent implements OnInit {
                 height: '*'
             })),
             state('visible', style({
-                height: '*'
+                height: '*',
+              'z-index': 100
             })),
             state('hidden', style({
-                height: '0px'
+                height: '0px',
+              'z-index': '*'
             })),
             transition('visibleAnimated => hiddenAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
             transition('hiddenAnimated => visibleAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
@@ -116,12 +98,13 @@ export class AppSubMenuComponent {
 
     _reset: boolean;
 
+    _parentActive: boolean;
+
     activeIndex: number;
 
-    constructor(public app: AppComponent) {
-    }
+    constructor(public app: AppComponent) {}
 
-    itemClick(event: Event, item: MenuItem, index: number) {
+    itemClick(event: Event, item: MenuItem, index: number) {
         if (this.root) {
             this.app.menuHoverActive = !this.app.menuHoverActive;
         }
@@ -142,16 +125,18 @@ export class AppSubMenuComponent {
 
         // prevent hash change
         if (item.items || (!item.url && !item.routerLink)) {
+            setTimeout(() => {
+              this.app.layoutMenuScrollerViewChild.moveBar();
+            }, 450);
             event.preventDefault();
         }
 
         // hide menu
         if (!item.items) {
             if (this.app.isHorizontal() || this.app.isSlim()) {
-                this.app.resetMenu = true;
-            } else {
-                this.app.resetMenu = false;
-            }
+                this.app.resetMenu = true; } else {
+                this.app.resetMenu = false; }
+
             this.app.overlayMenuActive = false;
             this.app.staticMenuMobileActive = false;
             this.app.menuHoverActive = !this.app.menuHoverActive;
@@ -159,7 +144,8 @@ export class AppSubMenuComponent {
     }
 
     onMouseEnter(index: number) {
-        if (this.root && this.app.menuHoverActive && (this.app.isHorizontal() || this.app.isSlim())) {
+        if (this.root && this.app.menuHoverActive && (this.app.isHorizontal() || this.app.isSlim())
+          && !this.app.isMobile() && !this.app.isTablet()) {
             this.activeIndex = index;
         }
     }
@@ -175,7 +161,19 @@ export class AppSubMenuComponent {
     set reset(val: boolean) {
         this._reset = val;
 
-        if (this._reset && (this.app.isHorizontal() || this.app.isSlim())) {
+        if (this._reset && (this.app.isHorizontal() || this.app.isSlim())) {
+            this.activeIndex = null;
+        }
+    }
+
+    @Input() get parentActive(): boolean {
+        return this._parentActive;
+    }
+
+    set parentActive(val: boolean) {
+        this._parentActive = val;
+
+        if (!this._parentActive) {
             this.activeIndex = null;
         }
     }

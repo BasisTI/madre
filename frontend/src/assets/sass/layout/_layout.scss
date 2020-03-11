@@ -1,4 +1,5 @@
-@import '../_variables';
+@import './_variables';
+@import '../overrides/layout_variables';
 @import '../_mixins';
 @import '../_fonts';
 @import './_utils.scss';
@@ -9,3 +10,4 @@
 @import './_landing.scss';
 @import './_main.scss';
 @import './_compact.scss';
+@import '../overrides/layout_styles';

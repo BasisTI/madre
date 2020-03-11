@@ -6,12 +6,16 @@
 export const environment = {
   production: false,
   apiUrl: '/api',
-  apiPaciente: '/api',
   auth: {
+    baseUrl: '',
+    authUrl: '/login/cas',
+    loginUrl: '/login/cas',
+    logoutUrl: '/cas/logout',
     detailsUrl: '/api/user/details',
-    loginUrl: '/api/login',
-    logoutUrl: '/api/logout',
-    userStorage: localStorage,
-    userStorageIndex: 'user'
+    tokenValidationUrl: '/api/token/validate',
+    storage: localStorage,
+    tokenStorageIndex: 'token',
+    userStorageIndex: 'user',
+    loginSuccessRoute: ''
   }
 };

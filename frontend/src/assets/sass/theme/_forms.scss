@@ -1,19 +1,21 @@
 body {
     .ui-inputtext {
-        background: transparent;
-        border-width: 0 0 1px 0;
-        padding: 2px 2px 1px 2px;
+        background: $inputBgColor no-repeat;
+        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor);
+        background-size: 0 2px, 100% 1px;
+        background-position: 50% 100%, 50% 100%;
+        transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+        border-width: 0;
+        padding: 2px;
         font-size: $inputFontSize;
-        border-color: $inputBorderColor;
-        border-style: solid;
-        @include transition(border-color .3s);
         @include border-radius(0px);
 
         &:focus,
         &.ui-state-focus {
-            border-width: 0 0 2px 0;
-            border-color: $primaryColor;
-            padding-bottom: 0px;
+            border-width: 0;
+            background-size: 100% 2px, 100% 1px;
+            outline: none;
+            padding-bottom: 2px;
         }
 
         &:disabled {
@@ -22,10 +24,29 @@ body {
 
         &.ui-widget-content {
             border-width: 1px;
+            background: $inputBgColor;
+            background-image: none;
         }
 
         &.ui-state-error {
             border-color: $inputBorderErrorColor;
+        }
+
+    }
+
+    .ui-inputtext:-webkit-autofill {
+        border-color: $inputAutoFillBorderColor;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+
+        &.ui-state-focus {
+            padding-bottom: 0px;
+        }
+    }
+
+    .ui-widget-header:not(.ui-dataview-header) {
+        .ui-inputtext {
+            background-image: linear-gradient(to bottom, $headerTextColor, $headerTextColor), linear-gradient(to bottom, lighten($primaryColor,25%),  lighten($primaryColor,25%));
         }
     }
 
@@ -33,8 +54,8 @@ body {
         display: block;
         position:relative;
 
-        label {
-          color:#999;
+        > label {
+          color:$inputFieldLabelTextColor;
           font-weight:normal;
           position:absolute;
           pointer-events:none;
@@ -45,6 +66,17 @@ body {
           -webkit-transition: 0.3s ease all;
         }
 
+        input[placeholder] ~ label,
+        textarea[placeholder] ~ label,
+        p-autoComplete[placeholder] ~ label,
+        p-calendar[placeholder] ~ label,
+        p-inputMask[placeholder] ~ label,
+        p-spinner[placeholder] ~ label,
+        p-dropdown ~ label,
+        p-multiSelect ~ label,
+        p-chips ~ label,
+        textarea:focus ~ label,
+        textarea.ui-state-filled ~ label,
         input:focus ~ label,
         input.ui-state-filled ~ label,
         .ui-inputwrapper-focus ~ label,
@@ -54,19 +86,30 @@ body {
           color:$primaryColor;
         }
 
+        .textarea:-webkit-autofill ~ label,
         .input:-webkit-autofill ~ label {
           top:-20px;
           font-size:12px;
           color:$primaryColor;
         }
 
+        p-autoComplete.ng-dirty.ng-invalid ~ label,
+        p-dropdown.ng-dirty.ng-invalid ~ label,
+        p-multiSelect.ng-dirty.ng-invalid ~ label,
+        p-calendar.ng-dirty.ng-invalid ~ label,
+        p-inputMask.ng-dirty.ng-invalid ~ label,
+        p-spinner.ng-dirty.ng-invalid ~ label,
+        p-chips.ng-dirty.ng-invalid ~ label,
+        textarea.ng-dirty.ng-invalid ~ label,
         input.ng-dirty.ng-invalid ~ label {
-            color: $invalidInputLabelColor;
+            color: $inputErrorTextColor;
         }
 
         .ui-message {
+            position: absolute;
+
             &.ui-messages-error {
-                background-color: transparent;
+                background-color: $inputBgColor;
                 border: 0 none;
                 margin: 0px;
                 color: $inputErrorTextColor;
@@ -75,8 +118,12 @@ body {
         }
 
         &.md-inputfield-fill {
+            .ui-chips,
+            .ui-multiselect,
+            .ui-dropdown,
+            textarea,
             input {
-              background-color: $textboxBgColor;
+              background-color: $inputFieldFillBgColor;
               padding-left: 4px;
               padding-right: 4px;
               padding-top: 4px;
@@ -85,6 +132,18 @@ body {
             label {
               top: 2px;
             }
+
+            input[placeholder] ~ label,
+            textarea[placeholder] ~ label,
+            p-autoComplete[placeholder] ~ label,
+            p-calendar[placeholder] ~ label,
+            p-inputMask[placeholder] ~ label,
+            p-spinner[placeholder] ~ label,
+            p-dropdown ~ label,
+            p-multiSelect ~ label,
+            p-chips ~ label,
+            textarea:focus ~ label,
+            textarea.ui-state-filled ~ label,
             input:focus ~ label,
             input.ui-state-filled ~ label,
             .ui-inputwrapper-focus ~ label,
@@ -96,13 +155,13 @@ body {
         }
 
         &.md-inputfield-box {
-            background-color: #f7f7f7;
+            background-color: $inputFieldBoxBgColor;
             height: 44px;
 
             >*:not(label) {
                 bottom: 0px;
                 position: absolute;
-                background-color: $textboxBgColor;
+                background-color: $inputFieldBoxBgColor;
                 padding-left: 4px;
                 padding-right: 4px;
                 padding-top: 24px;
@@ -112,6 +171,17 @@ body {
                 top: 23px;
             }
 
+            input[placeholder] ~ label,
+            textarea[placeholder] ~ label,
+            p-autoComplete[placeholder] ~ label,
+            p-calendar[placeholder] ~ label,
+            p-inputMask[placeholder] ~ label,
+            p-spinner[placeholder] ~ label,
+            p-dropdown ~ label,
+            p-multiSelect ~ label,
+            p-chips ~ label,
+            textarea:focus ~ label,
+            textarea.ui-state-filled ~ label,
             input:focus ~ label,
             input.ui-state-filled ~ label,
             .ui-inputwrapper-focus ~ label,
@@ -125,14 +195,13 @@ body {
         }
     }
 
-
     .ui-material-message {
         &.ui-message {
             &.ui-messages-error {
-                background-color: transparent;
+                background-color: $inputBgColor;
+                color: $inputErrorTextColor;
                 border: 0 none;
                 margin: 0px;
-                color: #e62a10;
                 font-size: .75em;
 
                 label {
@@ -144,7 +213,7 @@ body {
 
     .ui-listbox {
         min-width: 12.5em;
-        background-color: #ffffff;
+        background-color: $inputListItemBgColor;
         @include border-radius($borderRadius);
 
         &.ui-inputtext {
@@ -185,23 +254,18 @@ body {
 
             .ui-chkbox {
                 .ui-chkbox-box {
-                    border-color: #ffffff;
+                    border-color: $inputListItemCheckboxBorderColor;
                 }
             }
 
             .ui-listbox-filter-container {
                 .ui-inputtext {
-                    color: #ffffff;
-                    padding: 2px 2px 1px 2px;
+                    padding: 2px;
                     padding-left: 1.5em;
-
-                    &:focus {
-                        padding-bottom: 0;
-                        border-bottom-color: #ffffff;
-                    }
+                    color: $inputListItemFilterTextColor;
                 }
 
-                .fa {
+                .pi {
                     top: 0;
                     left: 0;
                 }
@@ -212,7 +276,7 @@ body {
     .ui-button, .ui-datepicker-buttonpane > button {
         overflow: hidden;
         background-color: $primaryColor;
-        color: #ffffff;
+        color: $buttonTextColor;
         font-size: $buttonFontSize;
         height: 2.25em;
         padding: 0 1em;
@@ -221,6 +285,7 @@ body {
         -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
     	box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
         @include transition(background-color .3s);
+        vertical-align: middle;
 
         &:enabled:not(:focus):hover {
             background-color: $primaryDarkColor;
@@ -236,8 +301,8 @@ body {
             line-height: 2.25em;
         }
 
-        .fa {
-            color: #ffffff;
+        .pi {
+            color: $buttonTextColor;
         }
 
         &.ui-button-icon-only {
@@ -245,7 +310,7 @@ body {
             width: 2.5em;
             height: 2.5em;
 
-            .fa {
+            .pi {
                 margin-left: -.5em;
             }
         }
@@ -273,173 +338,172 @@ body {
         }
 
         &.blue-grey-btn {
-            background-color: #607D8B;
+            background-color: $blueGrey;
 
            &:enabled:not(:focus):hover {
-                background-color: #37474F;
+                background-color: $blueGreyHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#607D8B,10%);
+                background-color: lighten($blueGrey,10%);
             }
         }
 
         &.cyan-btn {
-            background-color: #00BCD4;
+            background-color: $cyan;
 
             &:enabled:not(:focus):hover {
-                background-color: #00838F;
+                background-color: $cyanHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#00BCD4,10%);
+                background-color: lighten($cyan,4%);
             }
         }
 
         &.teal-btn {
-            background-color: #009688;
+            background-color: $teal;
 
             &:enabled:not(:focus):hover {
-                background-color: #00695C;
+                background-color: $tealHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#009688,10%);
+                background-color: lighten($teal,10%);
             }
         }
 
         &.red-btn, &.ui-danger-button {
-            background-color: #F44336;
+            background-color: $red;
 
             &:enabled:not(:focus):hover {
-                background-color: #C62828;
+                background-color: $redHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#F44336,10%);
+                background-color: lighten($red,10%);
             }
         }
 
         &.green-btn, &.ui-success-button {
-            background-color: #4CAF50;
+            background-color: $green;
 
            &:enabled:not(:focus):hover {
-                background-color: #2E7D32;
+                background-color: $greenHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#4CAF50,10%);
+                background-color: lighten($green,10%);
             }
         }
 
         &.deep-orange-btn {
-            background-color: #FF5722;
+            background-color: $deepOrange;
 
             &:enabled:not(:focus):hover {
-                background-color: #D84315;
+                background-color: $deepOrangeHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#FF5722,10%);
+                background-color: lighten($deepOrange,10%);
             }
         }
 
         &.purple-btn {
-            background-color: #673AB7;
+            background-color: $purple;
 
             &:enabled:not(:focus):hover {
-                background-color: #4527A0;
+                background-color: $purpleHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#673AB7,10%);
+                background-color: lighten($purple,10%);
             }
         }
 
         &.pink-btn {
-            background-color: #E91E63;
+            background-color: $pink;
 
             &:enabled:not(:focus):hover {
-                background-color: #AD1457;
+                background-color: $pinkHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#E91E63,10%);
+                background-color: lighten($pink,10%);
             }
         }
 
         &.amber-btn, &.ui-warning-button {
-            background-color: #FFC107;
-            color: #212121;
+            background-color: $amber;
+            color: $textColor;
 
             &:enabled:not(:focus):hover {
-                background-color: #FF8F00;
+                background-color: $amberHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#FFC107,10%);
+                background-color: lighten($amber,10%);
             }
         }
 
         &.orange-btn {
-            background-color: #FF9800;
+            background-color: $orange;
 
             &:enabled:not(:focus):hover {
-                background-color: #EF6C00;
+                background-color: $orangeHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#FF9800,10%);
+                background-color: lighten($orange,10%);
             }
         }
 
         &.brown-btn {
-            background-color: #795548;
+            background-color: $brown;
 
             &:enabled:not(:focus):hover {
-                background-color: #4E342E;
+                background-color: $brownHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#795548,10%);
+                background-color: lighten($brown,10%);
             }
         }
 
         &.indigo-btn {
-            background-color: #3F51B5;
+            background-color: $indigo;
 
             &:enabled:not(:focus):hover {
-                background-color: #283593;
+                background-color: $indigoHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#3F51B5,10%);
+                background-color: lighten($indigo,10%);
             }
         }
 
         &.blue-btn, &.ui-info-button {
-            background-color: #03A9F4;
-            color: #ffffff;
+            background-color: $blue;
 
             &:enabled:not(:focus):hover {
-                background-color: #0277BD;
+                background-color: $blueHover;
             }
 
             &:focus {
                 outline: 0 none;
-                background-color: lighten(#03A9F4,10%);
+                background-color: lighten($blue,10%);
             }
         }
 
@@ -448,7 +512,81 @@ body {
         }
     }
 
-    .ui-buttonset {
+    .ui-button.ui-state-default.ui-button-secondary, .ui-buttonset.ui-button-secondary > .ui-button.ui-state-default  {
+        color: $textColor;
+        background-color: $secondary;
+
+        .ui-button-icon-left {
+            color: $textSecondaryColor;
+        }
+
+        .ui-button-icon-right {
+            color: $textSecondaryColor;
+        }
+
+        &:enabled:hover {
+            @include hover-element();
+        }
+
+        &:enabled:focus {
+            background-color: darken($secondary, 10%);
+        }
+    }
+
+    .ui-button.ui-state-default.ui-button-info, .ui-buttonset.ui-button-info > .ui-button.ui-state-default  {
+        background-color: $blue;
+
+        &:enabled:hover {
+            background-color: $blueHover;
+        }
+
+        &:enabled:focus {
+            outline: 0 none;
+            background-color: lighten($blue,10%);
+        }
+    }
+
+    .ui-button.ui-state-default.ui-button-success, .ui-buttonset.ui-button-success > .ui-button.ui-state-default  {
+        background-color: $green;
+
+        &:enabled:hover {
+            background-color: $greenHover;
+        }
+
+        &:enabled:focus {
+            outline: 0 none;
+            background-color: lighten($green,10%);
+        }
+    }
+
+    .ui-button.ui-state-default.ui-button-warning, .ui-buttonset.ui-button-warning > .ui-button.ui-state-default  {
+        color: $textColor;
+        background-color: $amber;
+
+        &:enabled:hover {
+            background-color: $amberHover;
+        }
+
+        &:enabled:focus {
+            outline: 0 none;
+            background-color: lighten($amber,10%);
+        }
+    }
+
+    .ui-button.ui-state-default.ui-button-danger, .ui-buttonset.ui-button-danger > .ui-button.ui-state-default  {
+        background-color: $red;
+
+        &:enabled:hover {
+            background-color: $redHover;
+        }
+
+        &:enabled:focus {
+            outline: 0 none;
+            background-color: lighten($red,10%);
+        }
+    }
+
+    .ui-buttonset:not(.ui-button-danger,ui-button-secondary,ui-button-success,ui-button-info,ui-button-warning) {
         .ui-button {
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 background-color: $primaryDarkColor;
@@ -457,6 +595,18 @@ body {
             &.ui-state-active {
                 background-color: $accentColor;
                 color: $accentTextColor;
+            }
+        }
+
+
+        &.ui-button-danger {
+            &:enabled:not(:focus):hover {
+                background-color: $redHover;
+            }
+
+            &:focus {
+                outline: 0 none;
+                background-color: lighten($red,10%);
             }
         }
     }
@@ -491,9 +641,10 @@ body {
             @include border-radius-left(0);
             @include border-radius-right($borderRadius);
         }
-        
+
         .ui-menu {
-            min-width: 100%;
+            width: 100%;
+            min-width: 12.5em;
         }
     }
 
@@ -501,6 +652,16 @@ body {
         .ui-splitbutton {
             .ui-button:first-child {
                 width: calc(100% - 2em);
+            }
+        }
+    }
+
+    p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box {
+        &.ui-state-active {
+            border-color: $inputBorderErrorColor;
+            background-color: $inputBgColor;
+            .ui-chkbox-icon {
+                color: $inputBorderErrorColor;
             }
         }
     }
@@ -514,7 +675,7 @@ body {
         cursor: default;
 
         .ui-chkbox-box {
-            border: 2px solid #757575;
+            border: 2px solid $checkboxBorderColor;
             width: 1.25em;
             height: 1.25em;
             overflow: hidden;
@@ -539,13 +700,27 @@ body {
         }
     }
 
+    .ui-chkbox-label {
+        margin-left: $inlineSpacing;
+    }
+
+    p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box {
+        &.ui-state-active {
+            border-color: $inputBorderErrorColor;
+            background-color: $inputBgColor;
+            .pi-circle-on {
+                background-color: $inputBorderErrorColor;
+            }
+        }
+    }
+
     .ui-radiobutton {
         position: relative;
         margin: 0 .25em 0 0;
         vertical-align: middle;
 
         .ui-radiobutton-box {
-            border: 2px solid #757575;
+            border: 2px solid $radioButtonBorderColor;
             width: 1.25em;
             height: 1.25em;
             @include transition(box-shadow .3s);
@@ -574,12 +749,23 @@ body {
                 margin: 0;
             }
 
-            .fa-circle {
+            .pi-circle-on {
+                &.pi:before {
+                    content: "circle";
+                }
                 background-color: $primaryColor;
                 -webkit-transform: scale(0.5);
                 transform: scale(0.5);
+                top: 50%;
+                left: 50%;
+                margin-top: -.5em;
+                margin-left: -.5em;
             }
         }
+    }
+
+    .ui-radiobutton-label {
+        margin-left: $inlineSpacing;
     }
 
     .ui-autocomplete-panel {
@@ -631,7 +817,7 @@ body {
                     display: none;
                 }
 
-                .fa {
+                .pi {
                     color: $textSecondaryColor;
                 }
             }
@@ -641,11 +827,7 @@ body {
             .ui-autocomplete-multiple-container {
                 &.ui-inputtext {
                     box-sizing: border-box;
-                    padding: 2px 2px 1px 2px;
-                }
-
-                &.ui-state-focus {
-                    padding-bottom: 0;
+                    padding: 2px;
                 }
 
                 &.ui-state-disabled {
@@ -693,40 +875,53 @@ body {
                 }
             }
         }
+        .ui-inputgroup{
+            .md-inputfield {
+                .ui-autocomplete{
+                    top: 5px;
+                }
+            }
+        }
     }
 
     .ui-dropdown {
-        border-bottom: 1px solid $inputBorderColor;
+        border-width: 0;
+        background: transparent no-repeat;
+        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor);
+        background-size: 0 2px, 100% 1px;
+        background-position: 50% 100%, 50% 100%;
+        transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+        padding-bottom: 2px;
         box-sizing: border-box;
         @include border-radius(0);
-        @include transition(border-color .3s);
 
         .ui-dropdown-trigger {
             height: 1.5em;
             width: 1.5em;
             margin-top: 0;
             padding: 0;
-            top: 0;
+            top: 2px;
             margin-right: 0;
 
-            .fa {
+            .pi {
                 color: $textSecondaryColor;
-                margin-top: 0;
-                margin-left: 0;
             }
         }
 
         .ui-dropdown-label {
+            background: none;
             &.ui-inputtext {
                 font: $inputFontSize "Roboto","Helvetica Neue",sans-serif;
             }
         }
 
-        &.ui-state-focus {
-            border-bottom: 2px solid $primaryColor;
+        &:not(.ui-state-disabled).ui-state-focus {
+            border-width: 0;
+            background-size: 100% 2px, 100% 1px;
+            padding-bottom: 2px;
 
             .ui-dropdown-label {
-                padding-bottom: 0;
+                padding-bottom: 2px;
             }
         }
     }
@@ -746,13 +941,13 @@ body {
             @include transition(background-color .3s);
             @include border-radius(0);
 
-            &:hover {
-                @include hover-element();
-            }
-
             &.ui-state-highlight {
                 background-color: $accentColor;
                 color: $accentTextColor;
+            }
+
+            &:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+                @include hover-element();
             }
         }
 
@@ -767,26 +962,31 @@ body {
             padding: $inputHeaderPadding;
 
             input {
-                color: #ffffff;
+                color: $inputListItemFilterTextColor;
 
                 &:focus {
-                    border-bottom-color: #ffffff;
+                    border-bottom-color: $inputListItemFilterTextColor;
                 }
             }
 
-            .fa {
+            .pi {
                 top: .325em;
                 right: .75em;
-                color: #ffffff;
+                color: $inputListItemFilterTextColor;
             }
         }
     }
 
     .ui-multiselect {
-        border-bottom: 1px solid $inputBorderColor;
+        border-width: 0;
+        background: transparent no-repeat;
+        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor);
+        background-size: 0 2px, 100% 1px;
+        background-position: 50% 100%, 50% 100%;
+        transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+        padding-bottom: 2px;
         box-sizing: border-box;
         @include border-radius(0);
-        @include transition(border-color .3s);
 
         .ui-multiselect-label-container {
             padding-right: 1.5em;
@@ -801,17 +1001,17 @@ body {
             width: 1.5em;
             margin-top: 0;
             padding: 0;
-            top: .063em;
+            top: -2px;
 
-            .fa {
+            .pi {
                 color: $textSecondaryColor;
-                margin-top: auto;
-                margin-left: auto;
             }
         }
 
-        &.ui-state-focus {
-            border-bottom: 2px solid $primaryColor;
+        &:not(.ui-state-disabled).ui-state-focus {
+            border-width: 0;
+            background-size: 100% 2px, 100% 1px;
+            padding-bottom: 2px;
         }
     }
 
@@ -832,15 +1032,15 @@ body {
                 position: static;
 
                 .ui-chkbox-box {
-                    border-color: #ffffff;
+                    border-color: $inputListItemCheckboxBorderColor;
 
                     .ui-chkbox-icon {
-                        border-color: #ffffff;
+                        border-color: $inputListItemFilterTextColor;
                     }
 
                     &.ui-state-active {
                         .ui-chkbox-icon {
-                            border-color: #ffffff;
+                            border-color: $inputListItemFilterTextColor;
                         }
                     }
 
@@ -858,20 +1058,20 @@ body {
                 float: none;
                 margin-left: 0;
 
-                .fa {
+                .pi {
                     top: 0;
                     left: 0;
-                    color: #ffffff;
                 }
 
                 .ui-inputtext {
-                    color: #ffffff;
+                    padding: 2px;
                     padding-left: 1.5em;
                     width: 100%;
                     box-sizing: border-box;
+                    color: $inputListItemFilterTextColor;
 
                     &:focus {
-                        border-bottom-color: #ffffff;
+                        border-bottom-color: $inputListItemFilterTextColor;
                     }
                 }
             }
@@ -884,7 +1084,14 @@ body {
                 width: 1.5em;
 
                 span {
-                    color: #ffffff;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 1em;
+                    height: 1em;
+                    margin-top: -.5em;
+                    margin-left: -.5em;
+                    color: $inputListItemFilterTextColor;
                 }
 
                 &:hover {
@@ -901,7 +1108,7 @@ body {
             color: $textColor;
             @include border-radius(0);
 
-            &:not(.ui-state-highlight):hover {
+            &:not(.ui-state-highlight):not(.ui-state-disabled):hover {
                 @include hover-element();
             }
 
@@ -922,15 +1129,15 @@ body {
             z-index: auto;
             @include no-shadow();
 
-            .fa-triangle-1-n {
+            .pi-triangle-1-n {
                 color: $textColor;
             }
 
-            .fa-triangle-1-s {
+            .pi-triangle-1-s {
                 color: $textColor;
             }
 
-            .fa {
+            .pi {
                 top: 0px;
                 height: .5em;
                 color: $textSecondaryColor;
@@ -943,13 +1150,13 @@ body {
         }
 
         .ui-spinner-up {
-            .fa {
+            .pi {
                 top: .25em;
             }
         }
 
         .ui-spinner-down {
-            .fa {
+            .pi {
                 top: .167em;
             }
         }
@@ -965,7 +1172,7 @@ body {
                 width: 1em;
                 height: .75em;
 
-                .fa {
+                .pi {
                     left: auto;
                 }
             }
@@ -975,40 +1182,66 @@ body {
     .ui-inputswitch {
         height: 14px;
         width: 34px !important;
-        overflow: visible;
-        background-color: rgb(158,158,158);
-        border-color: rgb(158,158,158);
-        @include border-radius(8px);
 
-        .ui-inputswitch-handle {
-            top: -4px;
-            background-color: #ffffff;
-            @include border-radius(50%);
+        .ui-inputswitch-slider {
+            background-color: rgb(158,158,158);
+            @include border-radius(8px);
             @include transition(background-color .3s);
-            width: 20px !important;
-            height: 20px !important;
-            -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
-            -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
-        }
 
-        .ui-inputswitch-on {
-            visibility: hidden;
-        }
-
-        .ui-inputswitch-off, .ui-inputswitch-on {
-            span {
-                visibility: hidden;
+            &:before {
+                background-color: $inputSwitchOffHandleBgColor;
+                height: 1.429em;
+                width: 1.429em;
+                left: 0;
+                bottom: -0.214em;
+                border-radius: 50%;
+                -webkit-transition: $transitionDuration;
+                transition: $transitionDuration;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
+                -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
             }
         }
 
         &.ui-inputswitch-checked {
-            background-color: $accentLightColor;
-            border-color: $accentLightColor;
+            .ui-inputswitch-slider:before {
+                -webkit-transform: translateX(1.250em);
+                -ms-transform: translateX(1.250em);
+                transform: translateX(1.250em);
+            }
+        }
 
-            .ui-inputswitch-handle {
-                background-color: $accentColor;
-                color: $accentTextColor;
+        &.ui-inputswitch-focus {
+            .ui-inputswitch-slider {
+                background-color: rgb(158,158,158);
+            }
+        }
+
+        &:not(.ui-state-disabled):hover {
+            .ui-inputswitch-slider {
+                background-color: rgb(158,158,158);
+            }
+        }
+
+        &.ui-inputswitch-checked {
+            .ui-inputswitch-slider {
+                background-color: $accentLightColor;
+
+                &:before {
+                    background-color: $accentColor
+                }
+            }
+
+            &:not(.ui-state-disabled):hover {
+                .ui-inputswitch-slider {
+                    background-color: $accentLightColor;
+                }
+            }
+
+            &.ui-inputswitch-focus {
+                .ui-inputswitch-slider {
+                    background: $accentLightColor;
+                }
             }
         }
     }
@@ -1067,7 +1300,11 @@ body {
     }
 
     .ui-calendar {
+        .ui-datepicker {
+            min-width: auto;
+        }
         .ui-datepicker-trigger {
+            position: absolute;
             bottom: 2px;
             right: 0;
             background-color: transparent;
@@ -1077,7 +1314,7 @@ body {
             @include no-shadow();
             @include border-radius(0);
 
-            .fa {
+            .pi {
                 color: $textSecondaryColor;
             }
 
@@ -1097,10 +1334,35 @@ body {
 
     .ui-datepicker {
         padding: 0;
-        width: 17.5em;
+        width: 20em;
 
         &.ui-shadow {
             @include overlay-input-shadow();
+        }
+
+        &:not(.ui-state-disabled) {
+            .ui-datepicker-header {
+                .ui-datepicker-prev,
+                .ui-datepicker-next {
+                    &:hover {
+                        background-color: $primaryLightColor;
+                    }
+                }
+            }
+
+            table {
+                td {
+                    a:not(.ui-state-active):not(.ui-state-highlight):hover {
+                        @include hover-element();
+                    }
+                }
+            }
+
+            .ui-monthpicker {
+                a.ui-monthpicker-month:not(.ui-state-active):hover {
+                    @include hover-element();
+                }
+            }
         }
 
         .ui-datepicker-header {
@@ -1118,14 +1380,10 @@ body {
                 @include border-radius(50%);
                 @include material-icon("keyboard_arrow_left");
                 @include transition(background-color .3s);
-                color: #ffffff;
+                color: $calendarNavIconColor;
 
-                .fa {
+                .pi {
                     display: none;
-                }
-
-                &:hover {
-                    background-color: $primaryLightColor;
                 }
             }
 
@@ -1136,14 +1394,10 @@ body {
                 @include material-icon("keyboard_arrow_right");
                 @include border-radius(50%);
                 @include transition(background-color .3s);
-                color: #ffffff;
+                color: $calendarNavIconColor;
 
-                .fa {
+                .pi {
                     display: none;
-                }
-
-                &:hover {
-                    background-color: $primaryLightColor;
                 }
             }
 
@@ -1162,7 +1416,7 @@ body {
 
         thead {
             tr {
-                color: #ffffff;
+                color: $calendarCellTextColor;
                 background: $primaryColor;
             }
         }
@@ -1174,11 +1428,10 @@ body {
 
                 &.ui-datepicker-today {
                     a {
-                        color: #ffffff;
+                        color: $calendarCellTextColor;
                         background: lighten($primaryColor,20%);
 
                         &.ui-state-active {
-                            color: #ffffff;
                             background-color: $accentColor;
                             color: $accentTextColor;
                         }
@@ -1197,13 +1450,8 @@ body {
                     line-height: 1.8em;
 
                     &.ui-state-active {
-                        color: #ffffff;
                         background-color: $accentColor;
                         color: $accentTextColor;
-                    }
-
-                    &:not(.ui-state-active):not(.ui-state-highlight):hover {
-                        @include hover-element();
                     }
 
                     span {
@@ -1227,17 +1475,53 @@ body {
                         margin-bottom: .25em;
                     }
 
-                    .fa {
-                        &.fa-angle-up {
+                    .pi {
+                        &.pi-angle-up {
                             @include rotate(0);
                             @include material-icon("keyboard_arrow_up");
                         }
 
-                        &.fa-angle-down {
+                        &.pi-angle-down {
                             @include rotate(0);
                             @include material-icon("keyboard_arrow_down");
                         }
                     }
+                }
+            }
+        }
+
+        .ui-monthpicker {
+            .ui-monthpicker-month {
+                color: $textColor;
+
+                &.ui-state-active {
+                    color: $accentTextColor;
+                    background-color: $accentColor;
+                }
+            }
+        }
+
+        &.ui-datepicker-multiple-month {
+            width: auto;
+            .ui-datepicker-group {
+                border-right: 1px solid $dividerColor;
+                padding-top: 0;
+                padding-bottom: 0;
+
+                .ui-datepicker-calendar-container {
+                    tbody {
+                        padding-right: .25em;
+                        padding-left: .25em;
+                    }
+                }
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                    border-right: 0 none;
                 }
             }
         }
@@ -1248,19 +1532,20 @@ body {
     }
 
     .ui-rating {
+        font-size: inherit;
         min-height: 1.5em;
 
-        .fa-ban {
+        .pi-ban {
             @include material-icon("cancel");
             color: $textSecondaryColor;
         }
 
-        .fa-star {
+        .pi-star {
             @include material-icon("star");
             color: $textSecondaryColor;
         }
 
-        .fa-star-o {
+        .pi-star-o {
             @include material-icon("star_border");
             color: $textSecondaryColor;
         }
@@ -1268,18 +1553,14 @@ body {
 
     .ui-chips {
         > ul.ui-inputtext {
-            padding: 2px 2px 1px 2px;
 
             &.ui-state-disabled {
                 border-bottom: 1px dotted;
             }
 
-            &.ui-state-focus {
-                padding-bottom: 0;
-            }
-
             .ui-chips-input-token {
                 padding-bottom: 2px;
+                margin-bottom: 2px;
 
                 > input {
                     padding: 0;
@@ -1298,6 +1579,7 @@ body {
                 float: none;
                 vertical-align: middle;
                 font-size: 1em;
+                margin-bottom: 2px;
 
                 .ui-chips-token-label {
                     display: inline-block;
@@ -1317,7 +1599,7 @@ body {
         .ui-fileupload-buttonbar {
             padding: $headerPadding;
 
-            .fa-arrowreturnthick-1-n {
+            .pi-arrowreturnthick-1-n {
                 @include icon_override('file_upload');
             }
 
@@ -1332,8 +1614,8 @@ body {
 
         .ui-fileupload-content {
             .ui-messages-error {
-                .fa {
-                    color: #ffffff;
+                .pi {
+                    color: $errorMessageTextColor;
                 }
             }
         }
@@ -1354,19 +1636,16 @@ body {
 
     .ui-editor-container {
         .ui-editor-toolbar {
-            background-color: #e8e8e8;
-        }
-
-        .ql-picker.ql-expanded {
-            .ql-picker-label {
-                color: #444444;
-            }
+            background-color: $editorHeaderBgColor;
         }
     }
 
     /* InputGroup */
     .ui-inputgroup {
         .ui-inputgroup-addon {
+            &.ui-inputgroup-addon-fill {
+                background-color: $inputFieldFillBgColor;
+            }
             border-width: 0 0 1px 0;
             border-color: $inputBorderColor;
             color: $textSecondaryColor;
@@ -1393,10 +1672,33 @@ body {
             label {
                 top: 5px;
             }
+            .ui-inputwrapper-filled ~ label {
+                top:-20px;
+            }
+            .ui-inputwrapper-focus ~ label {
+                top:-20px;
+            }
+
+            .ui-message {
+                top: 100%;
+            }
         }
 
         .ui-chkbox, .ui-radiobutton {
             margin-bottom: .125em;
+        }
+    }
+
+    .ui-selectbutton {
+        .ui-button {
+            &:not(.ui-state-active):not(.ui-state-disabled):hover {
+                background-color: $primaryDarkColor;
+            }
+
+            &.ui-state-active {
+                background-color: $accentColor;
+                color: $accentTextColor;
+            }
         }
     }
 
@@ -1418,17 +1720,16 @@ body {
     .ui-inputtext.ng-dirty.ng-invalid,
     p-dropdown.ng-dirty.ng-invalid > .ui-dropdown,
     p-autocomplete.ng-dirty.ng-invalid > .ui-autocomplete > .ui-inputtext,
-    p-calendar.ng-dirty.ng-invalid > .ui-inputtext,
+    p-calendar.ng-dirty.ng-invalid > .ui-calendar > .ui-inputtext,
+    p-chips.ng-dirty.ng-invalid > .ui-inputtext,
     p-inputmask.ng-dirty.ng-invalid > .ui-inputtext,
-    p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box,
-    p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box,
     p-inputswitch.ng-dirty.ng-invalid .ui-inputswitch,
     p-listbox.ng-dirty.ng-invalid .ui-inputtext,
     p-multiselect.ng-dirty.ng-invalid > .ui-multiselect,
     p-spinner.ng-dirty.ng-invalid > .ui-inputtext,
     p-selectbutton.ng-dirty.ng-invalid .ui-button,
     p-togglebutton.ng-dirty.ng-invalid .ui-button {
-        border-bottom-color: $invalidInputBorderColor;
+        background-image: linear-gradient(to bottom, $inputBorderErrorColor, $inputBorderErrorColor), linear-gradient(to bottom, $inputBorderErrorColor, $inputBorderErrorColor);
     }
 }
 

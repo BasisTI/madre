@@ -1,207 +1,313 @@
-import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy } from '@angular/core';
+import {Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnDestroy, OnInit, NgZone} from '@angular/core';
+import { ScrollPanel} from 'primeng/primeng';
 
 enum MenuOrientation {
-  STATIC,
-  OVERLAY,
-  SLIM,
-  HORIZONTAL
+    STATIC,
+    OVERLAY,
+    SLIM,
+    HORIZONTAL
 }
-
-declare var jQuery: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
-  layoutCompact: boolean = true;
+    layoutCompact = true;
 
-  layoutMode: MenuOrientation = MenuOrientation.STATIC;
+    layoutMode: MenuOrientation = MenuOrientation.STATIC;
 
-  darkMenu: boolean = false;
+    darkMenu = false;
 
-  profileMode: string = 'inline';
+    profileMode = 'inline';
 
-  rotateMenuButton: boolean;
+    rotateMenuButton: boolean;
 
-  topbarMenuActive: boolean;
+    topbarMenuActive: boolean;
 
-  overlayMenuActive: boolean;
+    overlayMenuActive: boolean;
 
-  staticMenuDesktopInactive: boolean;
+    staticMenuDesktopInactive: boolean;
 
-  staticMenuMobileActive: boolean;
+    staticMenuMobileActive: boolean;
 
-  rightPanelActive: boolean;
+    rightPanelActive: boolean;
 
-  rightPanelClick: boolean;
+    rightPanelClick: boolean;
 
-  layoutContainer: HTMLDivElement;
+    layoutContainer: HTMLDivElement;
 
-  layoutMenuScroller: HTMLDivElement;
+    layoutMenuScroller: HTMLDivElement;
 
-  menuClick: boolean;
+    menuClick: boolean;
 
-  topbarItemClick: boolean;
+    topbarItemClick: boolean;
 
-  activeTopbarItem: any;
+    activeTopbarItem: any;
 
-  resetMenu: boolean;
+    resetMenu: boolean;
 
-  menuHoverActive: boolean;
+    menuHoverActive: boolean;
 
-  @ViewChild('layoutContainer') layourContainerViewChild: ElementRef;
+    @ViewChild('layoutContainer', { static: true }) layourContainerViewChild: ElementRef;
 
-  @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
+    @ViewChild('scrollPanel', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
 
-  constructor(public renderer: Renderer) { }
+    rippleInitListener: any;
 
-  ngAfterViewInit() {
-    this.layoutContainer = <HTMLDivElement>this.layourContainerViewChild.nativeElement;
-    this.layoutMenuScroller = <HTMLDivElement>this.layoutMenuScrollerViewChild.nativeElement;
+    rippleMouseDownListener: any;
 
-    setTimeout(() => {
-      jQuery(this.layoutMenuScroller).nanoScroller({ flash: true });
-    }, 10);
-  }
+    constructor(public renderer2: Renderer2, public zone: NgZone) {}
 
-  onLayoutClick() {
-    if (!this.topbarItemClick) {
-      this.activeTopbarItem = null;
-      this.topbarMenuActive = false;
+    ngOnInit() {
+        this.zone.runOutsideAngular(() => {this.bindRipple(); });
     }
 
-    if (!this.menuClick) {
-      if (this.isHorizontal() || this.isSlim()) {
-        this.resetMenu = true;
-      }
+    bindRipple() {
+        this.rippleInitListener = this.init.bind(this);
+        document.addEventListener('DOMContentLoaded', this.rippleInitListener);
+    }
 
-      if (this.overlayMenuActive || this.staticMenuMobileActive) {
+    init() {
+        this.rippleMouseDownListener = this.rippleMouseDown.bind(this);
+        document.addEventListener('mousedown', this.rippleMouseDownListener, false);
+    }
+
+    rippleMouseDown(e) {
+        for (let target = e.target; target && target !== this; target = target['parentNode']) {
+            if (!this.isVisible(target)) {
+              continue;
+            }
+
+            // Element.matches() -> https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+            if (this.selectorMatches(target, '.ripplelink, .ui-button')) {
+                const element = target;
+                this.rippleEffect(element, e);
+                break;
+            }
+        }
+    }
+
+    selectorMatches(el, selector) {
+        const p = Element.prototype;
+        const f = p['matches'] || p['webkitMatchesSelector'] || p['mozMatchesSelector'] || p['msMatchesSelector'] || function (s) {
+            return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+        };
+        return f.call(el, selector);
+    }
+
+    isVisible(el) {
+        return !!(el.offsetWidth || el.offsetHeight);
+    }
+
+    rippleEffect(element, e) {
+        if (element.querySelector('.ink') === null) {
+            const inkEl = document.createElement('span');
+            this.addClass(inkEl, 'ink');
+
+            if (this.hasClass(element, 'ripplelink') && element.querySelector('span')) {
+                element.querySelector('span').insertAdjacentHTML('afterend', '<span class=\'ink\'></span>');
+            } else {
+                element.appendChild(inkEl);
+            }
+        }
+
+        const ink = element.querySelector('.ink');
+        this.removeClass(ink, 'ripple-animate');
+
+        if (!ink.offsetHeight && !ink.offsetWidth) {
+            const d = Math.max(element.offsetWidth, element.offsetHeight);
+            ink.style.height = d + 'px';
+            ink.style.width = d + 'px';
+        }
+
+        const x = e.pageX - this.getOffset(element).left - (ink.offsetWidth / 2);
+        const y = e.pageY - this.getOffset(element).top - (ink.offsetHeight / 2);
+
+        ink.style.top = y + 'px';
+        ink.style.left = x + 'px';
+        ink.style.pointerEvents = 'none';
+        this.addClass(ink, 'ripple-animate');
+    }
+    hasClass(element, className) {
+        if (element.classList) {
+            return element.classList.contains(className);
+        } else {
+            return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+        }
+    }
+
+    addClass(element, className) {
+        if (element.classList) {
+            element.classList.add(className);
+        } else {
+            element.className += ' ' + className;
+        }
+    }
+
+    removeClass(element, className) {
+        if (element.classList) {
+            element.classList.remove(className);
+        } else {
+            element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        }
+    }
+
+    getOffset(el) {
+        const rect = el.getBoundingClientRect();
+
+        return {
+          top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
+          left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
+        };
+    }
+
+    unbindRipple() {
+        if (this.rippleInitListener) {
+            document.removeEventListener('DOMContentLoaded', this.rippleInitListener);
+        }
+        if (this.rippleMouseDownListener) {
+            document.removeEventListener('mousedown', this.rippleMouseDownListener);
+        }
+    }
+
+    ngAfterViewInit() {
+        this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;
+        setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
+    }
+
+    onLayoutClick() {
+        if (!this.topbarItemClick) {
+            this.activeTopbarItem = null;
+            this.topbarMenuActive = false;
+        }
+
+        if (!this.menuClick) {
+            if (this.isHorizontal() || this.isSlim()) {
+                this.resetMenu = true;
+            }
+
+            if (this.overlayMenuActive || this.staticMenuMobileActive) {
+                this.hideOverlayMenu();
+            }
+
+            this.menuHoverActive = false;
+        }
+
+        if (!this.rightPanelClick) {
+            this.rightPanelActive = false;
+        }
+
+        this.topbarItemClick = false;
+        this.menuClick = false;
+        this.rightPanelClick = false;
+    }
+
+    onMenuButtonClick(event) {
+        this.menuClick = true;
+        this.rotateMenuButton = !this.rotateMenuButton;
+        this.topbarMenuActive = false;
+
+        if (this.layoutMode === MenuOrientation.OVERLAY) {
+            this.overlayMenuActive = !this.overlayMenuActive;
+        } else {
+            if (this.isDesktop()) {
+                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive; } else {
+                this.staticMenuMobileActive = !this.staticMenuMobileActive; }
+        }
+
+        event.preventDefault();
+    }
+
+    onMenuClick($event) {
+        this.menuClick = true;
+        this.resetMenu = false;
+    }
+
+    onTopbarMenuButtonClick(event) {
+        this.topbarItemClick = true;
+        this.topbarMenuActive = !this.topbarMenuActive;
+
         this.hideOverlayMenu();
-      }
 
-      this.menuHoverActive = false;
+        event.preventDefault();
     }
 
-    if (!this.rightPanelClick) {
-      this.rightPanelActive = false;
+    onTopbarItemClick(event, item) {
+        this.topbarItemClick = true;
+
+        if (this.activeTopbarItem === item) {
+            this.activeTopbarItem = null; } else {
+            this.activeTopbarItem = item; }
+
+        event.preventDefault();
     }
 
-    this.topbarItemClick = false;
-    this.menuClick = false;
-    this.rightPanelClick = false;
-  }
-
-  onMenuButtonClick(event) {
-    this.menuClick = true;
-    this.rotateMenuButton = !this.rotateMenuButton;
-    this.topbarMenuActive = false;
-
-    if (this.layoutMode === MenuOrientation.OVERLAY) {
-      this.overlayMenuActive = !this.overlayMenuActive;
-    } else {
-      if (this.isDesktop()) {
-        this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
-      } else {
-        this.staticMenuMobileActive = !this.staticMenuMobileActive;
-      }
+    onTopbarSubItemClick(event) {
+        event.preventDefault();
     }
 
-    event.preventDefault();
-  }
-
-  onMenuClick($event) {
-    this.menuClick = true;
-    this.resetMenu = false;
-
-    if (!this.isHorizontal()) {
-      setTimeout(() => {
-        jQuery(this.layoutMenuScroller).nanoScroller();
-      }, 500);
-    }
-  }
-
-  onTopbarMenuButtonClick(event) {
-    this.topbarItemClick = true;
-    this.topbarMenuActive = !this.topbarMenuActive;
-
-    this.hideOverlayMenu();
-
-    event.preventDefault();
-  }
-
-  onTopbarItemClick(event, item) {
-    this.topbarItemClick = true;
-
-    if (this.activeTopbarItem === item) {
-      this.activeTopbarItem = null;
-    } else {
-      this.activeTopbarItem = item;
+    onRightPanelButtonClick(event) {
+        this.rightPanelClick = true;
+        this.rightPanelActive = !this.rightPanelActive;
+        event.preventDefault();
     }
 
-    event.preventDefault();
-  }
+    onRightPanelClick() {
+        this.rightPanelClick = true;
+    }
 
-  onRightPanelButtonClick(event) {
-    this.rightPanelClick = true;
-    this.rightPanelActive = !this.rightPanelActive;
-    event.preventDefault();
-  }
+    hideOverlayMenu() {
+        this.rotateMenuButton = false;
+        this.overlayMenuActive = false;
+        this.staticMenuMobileActive = false;
+    }
 
-  onRightPanelClick() {
-    this.rightPanelClick = true;
-  }
+    isTablet() {
+        const width = window.innerWidth;
+        return width <= 1024 && width > 640;
+    }
 
-  hideOverlayMenu() {
-    this.rotateMenuButton = false;
-    this.overlayMenuActive = false;
-    this.staticMenuMobileActive = false;
-  }
+    isDesktop() {
+        return window.innerWidth > 1024;
+    }
 
-  isTablet() {
-    const width = window.innerWidth;
-    return width <= 1024 && width > 640;
-  }
+    isMobile() {
+        return window.innerWidth <= 640;
+    }
 
-  isDesktop() {
-    return window.innerWidth > 1024;
-  }
+    isOverlay() {
+        return this.layoutMode === MenuOrientation.OVERLAY;
+    }
 
-  isMobile() {
-    return window.innerWidth <= 640;
-  }
+    isHorizontal() {
+        return this.layoutMode === MenuOrientation.HORIZONTAL;
+    }
 
-  isOverlay() {
-    return this.layoutMode === MenuOrientation.OVERLAY;
-  }
+    isSlim() {
+        return this.layoutMode === MenuOrientation.SLIM;
+    }
 
-  isHorizontal() {
-    return this.layoutMode === MenuOrientation.HORIZONTAL;
-  }
+    changeToStaticMenu() {
+        this.layoutMode = MenuOrientation.STATIC;
+    }
 
-  isSlim() {
-    return this.layoutMode === MenuOrientation.SLIM;
-  }
+    changeToOverlayMenu() {
+        this.layoutMode = MenuOrientation.OVERLAY;
+    }
 
-  changeToStaticMenu() {
-    this.layoutMode = MenuOrientation.STATIC;
-  }
+    changeToHorizontalMenu() {
+        this.layoutMode = MenuOrientation.HORIZONTAL;
+    }
 
-  changeToOverlayMenu() {
-    this.layoutMode = MenuOrientation.OVERLAY;
-  }
+    changeToSlimMenu() {
+        this.layoutMode = MenuOrientation.SLIM;
+    }
 
-  changeToHorizontalMenu() {
-    this.layoutMode = MenuOrientation.HORIZONTAL;
-  }
+    ngOnDestroy() {
+        this.unbindRipple();
+    }
 
-  changeToSlimMenu() {
-    this.layoutMode = MenuOrientation.SLIM;
-  }
-
-  ngOnDestroy() {
-    jQuery(this.layoutMenuScroller).nanoScroller({ flash: true });
-  }
 }

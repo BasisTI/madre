@@ -1,9 +1,8 @@
-import { Headers } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 
 export class ResponseWrapper {
-  array: any;
   constructor(
-    public headers: Headers,
+    public headers: HttpHeaders,
     public json: any,
     public status: number
   ) {}
