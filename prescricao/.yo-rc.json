@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre.prescricao"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "prescricao",
+    "packageName": "br.com.basis.madre.prescricao",
+    "packageFolder": "br/com/basis/madre/prescricao",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NWM1ODkwN2MxMTJlMjI3NjM1YTBkMmE0MjgzNjFmZTk0MDg5ZGVjMGRlNmJiNzViYTFhOWZjZWQ4YzViYzNmZDNhM2MxM2NmMjRjMDQyZTg5Zjk2MDU1ZTE1ZjM0NDUyNDI0MTgzYTk2NTg0MjI0YjZkZTU5MTljNWVkMjZkNzk=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
