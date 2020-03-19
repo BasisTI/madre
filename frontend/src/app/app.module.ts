@@ -16,7 +16,7 @@ import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
 import { BreadcrumbService } from './breadcrumb/breadcrumb.service';
 import { AppRightpanelComponent } from './app.rightpanel.component';
 import { AppInlineProfileComponent } from './app.profile.component';
-
+import { PrescricaoComponent } from './prescricao/prescricao.component';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -38,7 +38,7 @@ import {
 } from '@nuvem/angular-base';
 
 import {
-    PageNotificationModule, BlockUiModule, DatatableModule, 
+    PageNotificationModule, BlockUiModule, DatatableModule,
     ErrorStackModule
 } from '@nuvem/primeng-components';
 import { environment } from '../environments/environment';
@@ -71,7 +71,8 @@ import { environment } from '../environments/environment';
         AppBreadcrumbComponent,
         AppRightpanelComponent,
         AppInlineProfileComponent,
-        DiarioErrosComponent
+        DiarioErrosComponent,
+        PrescricaoComponent
     ],
     providers: [
         {
@@ -88,7 +89,7 @@ import { environment } from '../environments/environment';
         { provide: AuthenticationService, deps: [AUTH_CONFIG] },
         { provide: AbstractAuthorization, useClass: AuthorizationService },
         { provide: AbstractAuthentication, useClass: AuthenticationService },
-        
+
         BreadcrumbService
     ],
     bootstrap: [AppComponent]

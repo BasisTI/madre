@@ -813,8 +813,7 @@
   vertical-align: middle;
   width: 200px;
   height: 30px;
-  background: url("../images/logo2x.jpg") top left no-repeat;
-  background-size: 175px 60px;
+  background: url("../images/logo.jpg") top left no-repeat;
 }
 .landing-wrapper #header .header-top #menu {
   float: right;
@@ -1156,7 +1155,7 @@
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .landing-wrapper .header .header-top .logo {
-    background: url("../images/logo2x.png") top left no-repeat;
+    background: url("../images/logo2x.jpg") top left no-repeat;
     background-size: 200px 30px;
   }
 }
