@@ -29,7 +29,7 @@ export class AppMenuComponent implements OnInit {
                       label: 'Médica',
                       icon: 'remove',
                       items: [
-                        {label: 'Prescrever', routerLink: ['/prescricao']},
+                        {label: 'Prescrever', routerLink: ['/prescricao-medica']},
                       ]
                     },
                     {

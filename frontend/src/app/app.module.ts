@@ -16,9 +16,9 @@ import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
 import { BreadcrumbService } from './breadcrumb/breadcrumb.service';
 import { AppRightpanelComponent } from './app.rightpanel.component';
 import { AppInlineProfileComponent } from './app.profile.component';
-import { PrescricaoComponent } from './prescricao/prescricao.component';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { SharedModule } from './shared/shared.module';
+import { PrescricaoMedicaModule } from './prescricao-medica/prescricao-medica.module';
 
 import {
     SecurityModule,
@@ -55,12 +55,13 @@ import { environment } from '../environments/environment';
         VersionTagModule.forRoot(),
         SharedModule.forRoot(),
         BlockUiModule.forRoot(),
-        DatatableModule.forRoot(),
         PageNotificationModule,
         ErrorStackModule.forRoot(),
         ClipboardModule.forRoot(),
         ErrorModule.forRoot(),
-        SecurityModule.forRoot()
+        SecurityModule.forRoot(),
+        PrescricaoMedicaModule,
+        DatatableModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -72,7 +73,6 @@ import { environment } from '../environments/environment';
         AppRightpanelComponent,
         AppInlineProfileComponent,
         DiarioErrosComponent,
-        PrescricaoComponent
     ],
     providers: [
         {
