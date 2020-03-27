@@ -36,6 +36,7 @@ spring:
     active: dev
     include:
       - swagger
+      - login-automatico
       # Uncomment to activate TLS for the dev profile
       #- tls
   devtools:
@@ -71,9 +72,9 @@ spring:
       hibernate.cache.hazelcast.use_lite_member: true
   data:
     elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
+      cluster-nodes: localhost:9300
+    jest:
+      uri: http://localhost:9200   
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker

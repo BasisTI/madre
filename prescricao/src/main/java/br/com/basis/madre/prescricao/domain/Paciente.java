@@ -1,20 +1,46 @@
 package br.com.basis.madre.prescricao.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.Id;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Document(indexName = "paciente")
 public class Paciente {
 	
+	@Id
 	private Long id;
+	
+	@Field(type = FieldType.Text)
 	private String nome;
-	private Date dataNascimento;
+	
+	@Field(type = FieldType.Date)
+	private LocalDate dataNascimento;
+	
+	@Field(type = FieldType.Text)
 	private String prontuario;
+	
+	@Field(type = FieldType.Text)
 	private String responsavel;
-	private String dataAtendimento;
 	
+	@Field(type = FieldType.Date)
+	private LocalDateTime dataAtendimento;
+	public Paciente () {
+		
+	}
 	
+	public Paciente(String nome, LocalDate dataNascimento, String prontuario, String responsavel, LocalDateTime dataAtendimento) {
+		
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.prontuario = prontuario;
+		this.responsavel = responsavel;
+		this.dataAtendimento = dataAtendimento;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -27,10 +53,10 @@ public class Paciente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getProntuario() {
@@ -45,10 +71,10 @@ public class Paciente {
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
-	public String getDataAtendimento() {
+	public LocalDateTime getDataAtendimento() {
 		return dataAtendimento;
 	}
-	public void setDataAtendimento(String dataAtendimento) {
+	public void setDataAtendimento(LocalDateTime dataAtendimento) {
 		this.dataAtendimento = dataAtendimento;
 	}
 	@Override
