@@ -16,7 +16,7 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
 
-                <basis-datatable type="memory" [value]="pacientes" [disableView]="true" [disableEdit]="true" [disableDelete]="true">
+                <basis-datatable type="server" [url]="searchUrl" [rows]="10" [value]="pacientes" [disableView]="true" [disableEdit]="true" [disableDelete]="true">
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Idade" field="idade"></p-column>
                     <p-column header="Prontuário" field="prontuario"></p-column>

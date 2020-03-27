@@ -42,6 +42,7 @@ import {
     ErrorStackModule
 } from '@nuvem/primeng-components';
 import { environment } from '../environments/environment';
+import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
 
 @NgModule({
     imports: [
@@ -61,7 +62,9 @@ import { environment } from '../environments/environment';
         ErrorModule.forRoot(),
         SecurityModule.forRoot(),
         PrescricaoMedicaModule,
-        DatatableModule.forRoot()
+        DatatableModule.forRoot(),
+
+        PrescricaoMedicaModule
     ],
     declarations: [
         AppComponent,
@@ -90,7 +93,8 @@ import { environment } from '../environments/environment';
         { provide: AbstractAuthorization, useClass: AuthorizationService },
         { provide: AbstractAuthentication, useClass: AuthenticationService },
 
-        BreadcrumbService
+        BreadcrumbService,
+        PrescricaoMedicaService
     ],
     bootstrap: [AppComponent]
 })
