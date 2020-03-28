@@ -48,4 +48,9 @@ public class FeriadoServiceImpl implements FeriadoService {
         entity = feriadoRepository.save(entity);
         return feriadoMapper.toDto(entity);
     }
+
+    @Override
+    public void delete(Long id) {
+        feriadoRepository.deleteById(id);
+    }
 }

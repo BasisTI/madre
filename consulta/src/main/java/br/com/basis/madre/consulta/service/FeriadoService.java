@@ -13,4 +13,6 @@ public interface FeriadoService {
     Optional<FeriadoDTO> findById(Long id);
 
     FeriadoDTO save(FeriadoDTO feriadoDTO);
+
+    void delete(Long id);
 }

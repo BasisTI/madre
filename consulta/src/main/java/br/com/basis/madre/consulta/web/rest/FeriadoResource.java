@@ -4,7 +4,6 @@ import br.com.basis.madre.consulta.service.FeriadoService;
 import br.com.basis.madre.consulta.service.dto.FeriadoDTO;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,25 +35,32 @@ public class FeriadoResource {
     private static final String APP_NAME = "Madre";
 
     @PostMapping("/filter")
-    @Timed
     public ResponseEntity<Page<FeriadoDTO>> listar(@RequestBody FeriadoDTO feriadoDTO, @ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Feriados");
         Page<FeriadoDTO> feriado = feriadoService.findAll(feriadoDTO, pageable);
         return new ResponseEntity<>(feriado, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    @Timed
-    public ResponseEntity<FeriadoDTO> buscaPorId(@PathVariable Long id) {
+    @GetMapping
+    public ResponseEntity<FeriadoDTO> buscaPorId(@RequestBody Long id) {
+        log.debug("REST request to get Feriado : {}", id);
         Optional<FeriadoDTO> feriado = feriadoService.findById(id);
         return ResponseUtil.wrapOrNotFound(feriado);
     }
 
     @PostMapping
-    @Timed
     public ResponseEntity<FeriadoDTO> create(@RequestBody FeriadoDTO feriadoDTO) throws URISyntaxException {
+        log.debug("REST request to save Feriado : {}", feriadoDTO);
         FeriadoDTO result = feriadoService.save(feriadoDTO);
         return ResponseEntity.created(new URI(BASE_URL + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(APP_NAME, false, result.getId().toString(), ENTITY_NAME))
             .body(result);
+    }
+
+    @DeleteMapping
+    public ResponseEntity delete(@RequestBody Long id) {
+        log.debug("REST request to delete Feriado : {}", id);
+        feriadoService.delete(id);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityCreationAlert(APP_NAME, false, ENTITY_NAME, id.toString())).build();
     }
 }
