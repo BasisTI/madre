@@ -43,7 +43,7 @@ public class FeriadoServiceImpl implements FeriadoService {
 
     @Override
     public FeriadoDTO save(FeriadoDTO feriadoDTO) {
-
+        log.debug("REST request to save Feriado : {}", feriadoDTO);
         Feriado entity = feriadoMapper.toEntity(feriadoDTO);
         entity = feriadoRepository.save(entity);
         return feriadoMapper.toDto(entity);
@@ -51,6 +51,7 @@ public class FeriadoServiceImpl implements FeriadoService {
 
     @Override
     public void delete(Long id) {
+        log.debug("REST request to delete Feriado : {}", id);
         feriadoRepository.deleteById(id);
     }
 }
