@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="marlon.onorio" id="1">
+        <createTable tableName="TB_FERIADO">
+
+            <column name="ID_FERIADO" type="NUMBER(19, 0)" remarks="Identificador do feriado">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="DATA_FERIADO" type="timestamp" remarks="Data do feriado">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TURNO" type="VARCHAR(20)" remarks="Turno do feriado">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DIA_SEMANA" type="VARCHAR(40)" remarks="dia da semana do feriado">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="SITUACAO" type="boolean" remarks="Situacao do feriado">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createSequence sequenceName="SQ_FERIADO"
+                        startValue="1" incrementBy="1"/>
+    </changeSet>
+</databaseChangeLog>
