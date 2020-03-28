@@ -27,12 +27,14 @@ public class FeriadoServiceImpl implements FeriadoService {
     private final FeriadoRepository feriadoRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Page<FeriadoDTO> findAll(FeriadoDTO feriadoDTO, Pageable pageable) {
         log.debug("Request to get all Feriado");
         return feriadoRepository.findAllByFilter(feriadoDTO, pageable);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<FeriadoDTO> findById(Long id) {
         log.debug("Request to get Feriado: {}", id);
         return feriadoRepository.findById(id)
