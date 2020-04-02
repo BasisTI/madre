@@ -1,17 +1,20 @@
 FROM openjdk:8-jre-alpine
 
-RUN apk --no-cache add msttcorefonts-installer fontconfig && \
-update-ms-fonts && \
-fc-cache -f
-
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \
     JAVA_OPTS=""
 
-CMD echo "The application will start in ${JHIPSTER_SLEEP}s..." && \
-    sleep ${JHIPSTER_SLEEP} && \
-    java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.war
+# Add a jhipster user to run our application so that it doesn't need to run as root
+RUN adduser -D -s /bin/sh jhipster
+WORKDIR /home/jhipster
 
-EXPOSE 8082 5701/udp
+ADD entrypoint.sh entrypoint.sh
+RUN chmod 755 entrypoint.sh && chown jhipster:jhipster entrypoint.sh
+USER jhipster
 
-ADD *.war /app.war
+ENTRYPOINT ["./entrypoint.sh"]
+
+EXPOSE 8081 5701/udp
+
+ADD *.jar app.jar
+

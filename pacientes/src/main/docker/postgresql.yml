@@ -1,11 +1,11 @@
 version: '2'
 services:
-    pacientes-postgresql:
-        image: postgres:9.6.5
-        # volumes:
-        #     - ~/volumes/jhipster/pacientes/postgresql/:/var/lib/postgresql/data/
-        environment:
-            - POSTGRES_USER=pacientes
-            - POSTGRES_PASSWORD=
-        ports:
-            - 5432:5432
+  pacientes-postgresql:
+    image: postgres:11.5
+    # volumes:
+    #     - ~/volumes/jhipster/pacientes/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=pacientes
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

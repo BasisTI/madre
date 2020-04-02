@@ -1,5 +1,6 @@
 # pacientes
-This application was generated using JHipster 4.14.3, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.3](http://www.jhipster.tech/documentation-archive/v4.14.3).
+
+This application was generated using JHipster 6.4.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.4.1](https://www.jhipster.tech/documentation-archive/v6.4.1).
 
 This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 
@@ -11,36 +12,61 @@ To start your application in the dev profile, simply run:
 
     ./mvnw
 
-
 For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
-
 
 ## Building for production
 
-To optimize the pacientes application for production, run:
+### Packaging as jar
 
-    ./mvnw -Pprod clean package
+To build the final jar and optimize the pacientes application for production, run:
+
+    ./mvnw -Pprod clean verify
 
 To ensure everything worked, run:
 
-    java -jar target/*.war
-
+    java -jar target/*.jar
 
 Refer to [Using JHipster in production][] for more details.
+
+### Packaging as war
+
+To package your application as a war in order to deploy it to an application server, run:
+
+    ./mvnw -Pprod,war clean verify
 
 ## Testing
 
 To launch your application's tests, run:
 
-    ./mvnw clean test
-### Other tests
-
-Performance tests are run by [Gatling][] and written in Scala. They're located in [src/test/gatling](src/test/gatling) and can be run with:
-
-    ./mvnw gatling:execute
+    ./mvnw verify
 
 For more information, refer to the [Running tests page][].
+
+### Code quality
+
+Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
+
+```
+docker-compose -f src/main/docker/sonar.yml up -d
+```
+
+You can run a Sonar analysis with using the [sonar-scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner) or by using the maven plugin.
+
+Then, run a Sonar analysis:
+
+```
+./mvnw -Pprod clean verify sonar:sonar
+```
+
+If you need to re-run the Sonar phase, please be sure to specify at least the `initialize` phase since Sonar properties are loaded from the sonar-project.properties file.
+
+```
+./mvnw initialize sonar:sonar
+```
+
+or
+
+For more information, refer to the [Code quality page][].
 
 ## Using Docker to simplify development (optional)
 
@@ -57,7 +83,7 @@ To stop it and remove the container, run:
 You can also fully dockerize your application and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
 
-    ./mvnw verify -Pprod dockerfile:build
+    ./mvnw -Pprod verify jib:dockerBuild
 
 Then run:
 
@@ -69,14 +95,13 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
-[JHipster Homepage and latest documentation]: http://www.jhipster.tech
-[JHipster 4.14.3 archive]: http://www.jhipster.tech/documentation-archive/v4.14.3
-[Doing microservices with JHipster]: http://www.jhipster.tech/documentation-archive/v4.14.3/microservices-architecture/
-[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.14.3/development/
-[Service Discovery and Configuration with the JHipster-Registry]: http://www.jhipster.tech/documentation-archive/v4.14.3/microservices-architecture/#jhipster-registry
-[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.14.3/docker-compose
-[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.14.3/production/
-[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.14.3/running-tests/
-[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.14.3/setting-up-ci/
-
-[Gatling]: http://gatling.io/
+[jhipster homepage and latest documentation]: https://www.jhipster.tech
+[jhipster 6.4.1 archive]: https://www.jhipster.tech/documentation-archive/v6.4.1
+[doing microservices with jhipster]: https://www.jhipster.tech/documentation-archive/v6.4.1/microservices-architecture/
+[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v6.4.1/development/
+[service discovery and configuration with the jhipster-registry]: https://www.jhipster.tech/documentation-archive/v6.4.1/microservices-architecture/#jhipster-registry
+[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v6.4.1/docker-compose
+[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v6.4.1/production/
+[running tests page]: https://www.jhipster.tech/documentation-archive/v6.4.1/running-tests/
+[code quality page]: https://www.jhipster.tech/documentation-archive/v6.4.1/code-quality/
+[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v6.4.1/setting-up-ci/
