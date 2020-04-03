@@ -1,0 +1,187 @@
+entity Paciente {
+    nome String required
+    nomeSocial String
+    dataDeNascimento LocalDate required
+    horaDeNascimento Instant
+    email String unique
+    observacao String
+    grauDeInstrucao GrauDeInstrucao required
+    sexo Sexo required
+    raca Raca required
+    estadoCivil EstadoCivil required
+    // naturalidade_nacionalidade -> table | required
+}
+
+relationship OneToMany {
+    Paciente{contato} to Contato,
+    Paciente{endereco} to Endereco,
+    Municipio to Endereco
+}
+
+relationship OneToOne {
+    Paciente{responsavel} to Responsavel,
+    Paciente{documentos} to Documentos,
+    Paciente{certidao} to Certidao,
+    Paciente{cartaoSUS} to CartaoSUS,
+    Paciente{Ocupacao} to Ocupacao,
+    Paciente{religiao} to Religiao,
+    Paciente{etnia} to Etinia,
+    Paciente{pais} to Pais,
+    Municipio{uf} to UF,
+    Responsavel{contato} to Contato,
+    Documentos{orgaoEmissor} to OrgaoEmissor,
+    Documentos{ufDoOrgaoEmissor} to UF
+}
+
+entity Etinia {
+    descricao String required
+}
+
+entity Pais {
+    prontuarioDaMae String
+    nomeDaMae String required
+    nomeDoPai String required // precisa ser required?
+}
+
+entity Ocupacao {
+    codigo Integer required
+    descricao String required
+}
+
+entity Religiao {
+    codigo Integer required
+    descricao String required
+}
+
+entity Contato {
+    ddd String required
+    numero String required
+    tipo TipoDoContato
+    observacao String
+}
+
+entity UF {
+    codigo Integer required
+    descricao String required
+}
+
+entity Municipio {
+    codigo Integer required
+    descricao String required
+    nomeDoDistrito String
+}
+
+entity Endereco {
+    cep String required
+    ibge String required
+    logradouro String required
+    numero String required
+    complemento String
+    bairro String required
+    correspondencia Boolean required
+    tipoDoEndereco TipoDoEndereco
+}
+
+entity Responsavel {
+    nomeDoResponsavel String
+    // grauDeParentensco -> table ou enum?
+}
+
+entity OrgaoEmissor {
+    codigo Integer required
+    descricao String required
+}
+
+entity Documentos {
+    numeroDaIdentidade String
+    data LocalDate
+    cpf String
+    pisPasep String
+    validadeDaCnh LocalDate
+    documentosApresentados Boolean
+}
+
+entity Certidao {
+    registroDeNascimento String
+    tipoDaCertidao TipoDaCertidao
+    nomeDoCartorio String
+    livro String
+    folhas String
+    termo String
+    dataDeEmissao LocalDate
+    numeroDaDeclaracaoDeNascimento String
+}
+
+entity CartaoSUS {
+    numero String required
+    documentoDeReferencia DocumentoDeReferencia
+    cartaoNacionalSaudeMae String
+    dataDeEntradaNoBrasil LocalDate
+    dataDeNaturalizacao LocalDate
+    portaria String
+    // justificativa -> table ou enum?
+    // motivoDoCadastro -> table ou enum?
+}
+
+enum DocumentoDeReferencia {
+    APAC,
+    AIH
+}
+
+enum TipoDaCertidao {
+    NASCIMENTO,
+    CASAMENTO,
+    SEPARACAO_DIVORCIO,
+    INDIGENA
+}
+
+enum TipoDoEndereco {
+    COMERCIAL,
+    RESIDENCIAL,
+    CONTATO,
+    OUTROS
+}
+
+enum TipoDoContato {
+    CELULAR,
+    RESIDENCIAL,
+    RECADO,
+    COMERCIAL,
+    EMERGENCIAL
+}
+
+enum GrauDeInstrucao {
+    NENHUM,
+    IGNORADO,
+    PRIMEIRO_GRAU_INCOMPLETO,
+    PRIMEIRO_GRAU_COMPLETO,
+    SEGUNDO_GRAU_INCOMPLETO,
+    SEGUNDO_GRAU_COMPLETO,
+    SUPERIOR_INCOMPLETO,
+    SUPERIOR_COMPLETO
+}
+
+enum Sexo {
+    MASCULINO,
+    FEMININO,
+    IGNORADO
+}
+
+enum Raca {
+    BRANCA,
+    PRETA,
+    PARDA,
+    AMARELA,
+    INDIGENA,
+    SEM_DECLARACAO
+}
+
+enum EstadoCivil {
+    SOLTEIRO,
+    CASADO,
+    SEPARADO,
+    DESQUITADO_SEPARADO,
+    UNIAO_ESTAVEL,
+    VIUVO,
+    OUTRO
+}
