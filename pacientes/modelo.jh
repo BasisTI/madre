@@ -9,7 +9,6 @@ entity Paciente {
     sexo Sexo required
     raca Raca required
     estadoCivil EstadoCivil required
-    // naturalidade_nacionalidade -> table | required
 }
 
 relationship OneToMany {
@@ -27,10 +26,24 @@ relationship OneToOne {
     Paciente{religiao} to Religiao,
     Paciente{etnia} to Etinia,
     Paciente{pais} to Pais,
+    Paciente{nacionalidade} to Nacionalidade,
+    Paciente{naturalidade} to Naturalidade,
     Municipio{uf} to UF,
     Responsavel{contato} to Contato,
     Documentos{orgaoEmissor} to OrgaoEmissor,
-    Documentos{ufDoOrgaoEmissor} to UF
+    Documentos{ufDoOrgaoEmissor} to UF,
+    CartaoSUS{justificativa} to Justificativa,
+    CartaoSUS{motivo} to MotivoDoCadastro
+}
+
+entity Nacionalidade {
+    codigo Integer required
+    descricao String required
+}
+
+entity Naturalidade {
+    codigo Integer required
+    descricao String required
 }
 
 entity Etinia {
@@ -40,7 +53,7 @@ entity Etinia {
 entity Pais {
     prontuarioDaMae String
     nomeDaMae String required
-    nomeDoPai String required // precisa ser required?
+    nomeDoPai String required
 }
 
 entity Ocupacao {
@@ -84,7 +97,7 @@ entity Endereco {
 
 entity Responsavel {
     nomeDoResponsavel String
-    // grauDeParentensco -> table ou enum?
+    grauDeParentesco GrauDeParentesco
 }
 
 entity OrgaoEmissor {
@@ -119,8 +132,30 @@ entity CartaoSUS {
     dataDeEntradaNoBrasil LocalDate
     dataDeNaturalizacao LocalDate
     portaria String
-    // justificativa -> table ou enum?
-    // motivoDoCadastro -> table ou enum?
+}
+
+entity Justificativa {
+    justificativa String required
+}
+
+entity MotivoDoCadastro {
+    motivo String required
+}
+
+enum GrauDeParentesco {
+    CONJUGUE,
+    NETO_NETA,
+    TIO_TIA,
+    SOBRINHO_SOBRINHA,
+    PAI,
+    MAE,
+    IRMAO_IRMA,
+    PRIMO_PRIMA,
+    CLIENTE,
+    AMIGO_AMIGA,
+    RESPONSAVEL_LEGAL,
+    DESCONHECIDO,
+    NAO_INFORMADO
 }
 
 enum DocumentoDeReferencia {
