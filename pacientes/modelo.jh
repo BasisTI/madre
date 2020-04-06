@@ -7,47 +7,46 @@ entity Paciente {
     observacao String
     grauDeInstrucao GrauDeInstrucao required
     sexo Sexo required
-    raca Raca required
-    estadoCivil EstadoCivil required
 }
 
 relationship OneToMany {
-    Paciente{contato} to Contato,
-    Paciente{endereco} to Endereco,
-    Municipio to Endereco
+    Paciente{contato} to Telefone,
+    Paciente{endereco} to Endereco
 }
 
-relationship OneToOne {
+relationship ManyToOne {
+    Endereco{municipio} to Municipio
+    Municipio{uf} to UF,
     Paciente{responsavel} to Responsavel,
-    Paciente{documentos} to Documentos,
+    Paciente{documento} to Documento ,
     Paciente{certidao} to Certidao,
     Paciente{cartaoSUS} to CartaoSUS,
-    Paciente{Ocupacao} to Ocupacao,
+    Paciente{ocupacao} to Ocupacao,
     Paciente{religiao} to Religiao,
-    Paciente{etnia} to Etinia,
+    Paciente{etnia} to Etnia,
     Paciente{pais} to Pais,
     Paciente{nacionalidade} to Nacionalidade,
     Paciente{naturalidade} to Naturalidade,
-    Municipio{uf} to UF,
-    Responsavel{contato} to Contato,
-    Documentos{orgaoEmissor} to OrgaoEmissor,
-    Documentos{ufDoOrgaoEmissor} to UF,
-    CartaoSUS{justificativa} to Justificativa,
-    CartaoSUS{motivo} to MotivoDoCadastro
+    Paciente{raca} to Raca,
+    Paciente{estadoCivil} to EstadoCivil,
+    Responsavel to Telefone,
+    Responsavel to GrauDeParentesco,
+    Documento to OrgaoEmissor,
+    Documento to UF,
+    CartaoSUS to Justificativa,
+    CartaoSUS to MotivoDoCadastro
 }
 
 entity Nacionalidade {
-    codigo Integer required
-    descricao String required
+    valor String required
 }
 
 entity Naturalidade {
-    codigo Integer required
-    descricao String required
+    valor String required
 }
 
-entity Etinia {
-    descricao String required
+entity Etnia {
+    valor String required
 }
 
 entity Pais {
@@ -57,16 +56,14 @@ entity Pais {
 }
 
 entity Ocupacao {
-    codigo Integer required
-    descricao String required
+    valor String required
 }
 
 entity Religiao {
-    codigo Integer required
-    descricao String required
+    valor String required
 }
 
-entity Contato {
+entity Telefone {
     ddd String required
     numero String required
     tipo TipoDoContato
@@ -74,19 +71,18 @@ entity Contato {
 }
 
 entity UF {
-    codigo Integer required
-    descricao String required
+    unidadeFederativa String required
+    sigla String required
 }
 
 entity Municipio {
-    codigo Integer required
-    descricao String required
+    nome String required
     nomeDoDistrito String
+    ibge String required
 }
 
 entity Endereco {
     cep String required
-    ibge String required
     logradouro String required
     numero String required
     complemento String
@@ -97,15 +93,13 @@ entity Endereco {
 
 entity Responsavel {
     nomeDoResponsavel String
-    grauDeParentesco GrauDeParentesco
 }
 
 entity OrgaoEmissor {
-    codigo Integer required
-    descricao String required
+    valor String required
 }
 
-entity Documentos {
+entity Documento {
     numeroDaIdentidade String
     data LocalDate
     cpf String
@@ -135,27 +129,23 @@ entity CartaoSUS {
 }
 
 entity Justificativa {
-    justificativa String required
+    valor String required
 }
 
 entity MotivoDoCadastro {
-    motivo String required
+    valor String required
 }
 
-enum GrauDeParentesco {
-    CONJUGUE,
-    NETO_NETA,
-    TIO_TIA,
-    SOBRINHO_SOBRINHA,
-    PAI,
-    MAE,
-    IRMAO_IRMA,
-    PRIMO_PRIMA,
-    CLIENTE,
-    AMIGO_AMIGA,
-    RESPONSAVEL_LEGAL,
-    DESCONHECIDO,
-    NAO_INFORMADO
+entity Raca {
+    valor String required
+}
+
+entity EstadoCivil {
+    valor String required
+}
+
+entity GrauDeParentesco {
+    valor String required
 }
 
 enum DocumentoDeReferencia {
@@ -202,21 +192,7 @@ enum Sexo {
     IGNORADO
 }
 
-enum Raca {
-    BRANCA,
-    PRETA,
-    PARDA,
-    AMARELA,
-    INDIGENA,
-    SEM_DECLARACAO
-}
-
-enum EstadoCivil {
-    SOLTEIRO,
-    CASADO,
-    SEPARADO,
-    DESQUITADO_SEPARADO,
-    UNIAO_ESTAVEL,
-    VIUVO,
-    OUTRO
-}
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
