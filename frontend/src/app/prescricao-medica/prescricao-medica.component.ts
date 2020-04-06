@@ -22,9 +22,9 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
         this.listar();
     }
 
-        listar() {
-            this.prescricaoMedicaService.listarPacientes();
-        }
+    listar() {
+        this.prescricaoMedicaService.listarPacientes();
+    }
     ngOnDestroy() {
         this.breadcrumbService.reset();
     }

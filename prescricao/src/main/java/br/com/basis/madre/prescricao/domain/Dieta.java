@@ -1,5 +1,6 @@
 package br.com.basis.madre.prescricao.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
@@ -34,11 +34,11 @@ public class Dieta {
 	@Column(name = "bomba_infusao")
 	private Boolean bombaInfusao;
 	
-	@JsonIgnoreProperties("item_dieta")
+	@JsonIgnoreProperties("dieta")
 	@Valid
 	@NotEmpty
 	@OneToMany(mappedBy = "dieta", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ItemDieta> itemDieta;
+	private List<ItemDieta> itemDieta = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -83,6 +83,15 @@ public class Dieta {
 	}
 	
 	public Dieta () {}
+	
+	
+
+	public Dieta(Long idPaciente, String observacao, Boolean bombaInfusao, @Valid List<ItemDieta> itemDieta) {
+		this.idPaciente = idPaciente;
+		this.observacao = observacao;
+		this.bombaInfusao = bombaInfusao;
+		this.itemDieta = itemDieta;
+	}
 
 	@Override
 	public int hashCode() {

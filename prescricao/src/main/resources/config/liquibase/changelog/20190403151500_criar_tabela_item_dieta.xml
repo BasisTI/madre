@@ -19,11 +19,13 @@
             </column>
             <column name="quantidade" type="decimal(10,2)" />
             <column name="frequencia" type="int(10)" />
-            <column name="numero_vezes" type="int(10)" />
-            <column name="id_dieta" type="bigint" />	
+            <column name="numero_vezes" type="int(10)" />	
             <column name="id_tipo_item" type="bigint" />
             <column name="id_tipo_unidade" type="bigint" />
             <column name="id_tipo_aprazamento" type="bigint" />
+            <column name="id_dieta" type="bigint">
+            	<constraints nullable="true" />
+            </column>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="id_tipo_item"

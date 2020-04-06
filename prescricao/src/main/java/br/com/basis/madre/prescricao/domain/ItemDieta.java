@@ -13,42 +13,52 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "item_dieta")
 public class ItemDieta {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
 	@SequenceGenerator(name = "sequenceGenerator")
 	private Long id;
-	
+
 	private BigDecimal quantidade;
-	
+
 	private Integer frequencia;
-	
+
 	private Integer numeroVezes;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_tipo_item")
 	private TipoItem tipoItem;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_tipo_unidade")
 	private TipoUnidade tipoUnidade;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_tipo_aprazamento")
 	private TipoAprazamento tipoAprazamento;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_dieta")
-	@JsonIgnore
+	@JoinColumn(name = "id_dieta", nullable = false)
 	private Dieta dieta;
-	
+
 	public ItemDieta() {}
 	
+	public ItemDieta(BigDecimal quantidade, Integer frequencia, Integer numeroVezes, TipoItem tipoItem,
+			TipoUnidade tipoUnidade, TipoAprazamento tipoAprazamento, Dieta dieta) {
+		this.quantidade = quantidade;
+		this.frequencia = frequencia;
+		this.numeroVezes = numeroVezes;
+		this.tipoItem = tipoItem;
+		this.tipoUnidade = tipoUnidade;
+		this.tipoAprazamento = tipoAprazamento;
+		this.dieta = dieta;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -104,8 +114,8 @@ public class ItemDieta {
 	public void setTipoAprazamento(TipoAprazamento tipoAprazamento) {
 		this.tipoAprazamento = tipoAprazamento;
 	}
-	
-	
+
+
 
 }
 

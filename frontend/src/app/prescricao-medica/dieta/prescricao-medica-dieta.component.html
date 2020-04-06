@@ -1,1 +1,104 @@
-<p>Dieta!!</p>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+
+        <div class="ui-g ">
+
+            <div class="card card-w-title">
+
+                <h1>Prescrever dieta</h1>
+
+                <form autocomplete="off" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+                    <div class="ui-g-12">
+
+                        <div class="ui-g-4">
+                            <span class="md-inputfield">
+                                <p-dropdown id="descricao" [autoWidth]="false" placeholder="Selecione..."
+                                    [options]="optItem" [(ngModel)]="dieta.descricao" name="descricao" required
+
+                                    #descricaoItem></p-dropdown>
+                                <label>Item</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-2">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="quantidade" name="quantidade" [(ngModel)]="dieta.quantidade" />
+                                <label>Quantidade</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-2">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="frequencia" name="frequencia" [(ngModel)]="dieta.frequencia" />
+                                <label>Frequência</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-4">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="aprazamento" name="aprazamento" [(ngModel)]="dieta.tipoAprazamento" />
+                                <label>Aprazamento</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12">
+
+                        <div class="ui-g-2">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="numeroVezes" name="numeroVezes" [(ngModel)]="dieta.numeroVezes" />
+                                <label>Número vezes</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-8">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="observacao" name="observacao" [(ngModel)]="dieta.observacao" />
+                                <label>Observações</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-2">
+                            <span>
+                                <label>Bomba infusão</label>
+                                <p-checkbox pCheckBox id="bombaInfusao" name="bombaInfusao" [(ngModel)]="dieta.bombaInfusao"></p-checkbox>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-6">
+                            <div class="ui-g-12 ui-md-6">
+                                <button pButton type="submit" label="Prescrever"
+                                    [disabled]="!descricaoItem.value">
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ui-g-12 ui-md-3"></div>
+            <div class="ui-g-12">
+                <basis-datatable type="server" [url]="baseUrl" [rows]="10" [value]="dietas" [disableView]="true"
+                    [disableEdit]="true" [disableDelete]="true">
+                    <p-column header="Descrição" field="descricao"></p-column>
+                    <p-column header="Quantidade" field="quantidade"></p-column>
+                    <p-column header="Frequência" field="frequencia"></p-column>
+                    <p-column header="Aprazamento" field="tipoAprazamento"></p-column>
+                    <p-column header="Número de vezes" field="numeroVezes"></p-column>
+                    <p-column header="Observações" field="observacao"></p-column>
+                    <p-column header="Bomba de Infusão" field="bombaInfusao">
+                        <ng-template let-l="rowData" pTemplate="body">
+                            <span href="javascript:;">{{l.bombaInfusao ? 'Sim' : ''}}</span>
+                        </ng-template>
+                    </p-column>
+
+                    <!-- <basis-datatable-button icon="add-box" name="criar-dieta" bTooltip="Criar Dieta"
+                class="ui-button-info">
+            </basis-datatable-button> -->
+                </basis-datatable>
+            </div>
+
+        </div>
+    </div>
+</div>
