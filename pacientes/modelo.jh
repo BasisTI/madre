@@ -9,8 +9,12 @@ entity Paciente {
     sexo Sexo required
 }
 
+relationship OneToOne {
+    Paciente to CartaoSUS
+}
+
 relationship OneToMany {
-    Paciente{contato} to Telefone,
+    Paciente{telefone} to Telefone,
     Paciente{endereco} to Endereco
 }
 
@@ -20,21 +24,20 @@ relationship ManyToOne {
     Paciente{responsavel} to Responsavel,
     Paciente{documento} to Documento ,
     Paciente{certidao} to Certidao,
-    Paciente{cartaoSUS} to CartaoSUS,
     Paciente{ocupacao} to Ocupacao,
     Paciente{religiao} to Religiao,
     Paciente{etnia} to Etnia,
-    Paciente{pais} to Pais,
+    Paciente{genitores} to Genitores,
     Paciente{nacionalidade} to Nacionalidade,
     Paciente{naturalidade} to Naturalidade,
     Paciente{raca} to Raca,
     Paciente{estadoCivil} to EstadoCivil,
-    Responsavel to Telefone,
-    Responsavel to GrauDeParentesco,
-    Documento to OrgaoEmissor,
-    Documento to UF,
-    CartaoSUS to Justificativa,
-    CartaoSUS to MotivoDoCadastro
+    Responsavel{telefone} to Telefone,
+    Responsavel{grauDeParentesco} to GrauDeParentesco,
+    Documento{orgaoEmissor} to OrgaoEmissor,
+    Documento{uf} to UF,
+    CartaoSUS{justificativa} to Justificativa,
+    CartaoSUS{motivoDoCadastro} to MotivoDoCadastro
 }
 
 entity Nacionalidade {
@@ -49,7 +52,7 @@ entity Etnia {
     valor String required
 }
 
-entity Pais {
+entity Genitores {
     prontuarioDaMae String
     nomeDaMae String required
     nomeDoPai String required
