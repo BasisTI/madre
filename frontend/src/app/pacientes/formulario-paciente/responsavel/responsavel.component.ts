@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ResponsavelComponent {
   responsavel: FormGroup = this.fb.group({
-    nomeDoResponsalvel: [''],
+    nomeDoResponsavel: [''],
     grauDeParentesco: [''],
     ddd: [''],
     telefone: [''],
