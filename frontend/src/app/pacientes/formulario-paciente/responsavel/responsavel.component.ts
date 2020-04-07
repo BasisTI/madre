@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-responsavel',
   templateUrl: './responsavel.component.html',
-  styles: []
+  styles: [],
 })
-export class ResponsavelComponent implements OnInit {
+export class ResponsavelComponent {
+  responsavel: FormGroup = this.fb.group({
+    nomeDoResponsalvel: [''],
+    grauDeParentesco: [''],
+    ddd: [''],
+    telefone: [''],
+    observacao: [''],
+  });
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private fb: FormBuilder) {}
 }

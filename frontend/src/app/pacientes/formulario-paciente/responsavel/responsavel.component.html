@@ -1,1 +1,29 @@
-<p>responsavel works!</p>
+<form class="ui-g ui-fluid" [formGroup]="responsavel">
+  <div class="ui-g-12">
+    <div class="ui-g-4">
+      <input
+        type="text"
+        pInputText
+        placeholder="Nome do Responsável"
+        formControlName="nomeDoResponsavel"
+      />
+    </div>
+    <div class="ui-g-2">
+      <input
+        type="text"
+        pInputText
+        placeholder="Grau Parentesco"
+        formControlName="grauDeParentesco"
+      />
+    </div>
+    <div class="ui-g-1">
+      <input type="text" pInputText placeholder="DDD" formControlName="ddd" />
+    </div>
+    <div class="ui-g-2">
+      <input type="text" pInputText placeholder="Telefone" formControlName="telefone" />
+    </div>
+    <div class="ui-g-3">
+      <input type="text" pInputText placeholder="Observação" formControlName="observacao" />
+    </div>
+  </div>
+</form>
