@@ -1,1 +1,59 @@
-<p>cartao-sus works!</p>
+<form class="ui-g ui-fluid" [formGroup]="cartaoSUS">
+  <div class="ui-g-12">
+    <div class="ui-g-3">
+      <input type="text" pInputText placeholder="Número" formControlName="numero" />
+    </div>
+    <div class="ui-g-3">
+      <input
+        type="text"
+        pInputText
+        placeholder="Justificativa da Ausência CNS"
+        formControlName="justificativa"
+      />
+    </div>
+
+    <div class="ui-g-2">
+      <input
+        type="text"
+        pInputText
+        placeholder="Motivo Cadastro"
+        formControlName="motivoCadastro"
+      />
+    </div>
+
+    <div class="ui-g-2">
+      <input type="text" pInputText placeholder="Doc Referência" formControlName="docReferencia" />
+    </div>
+
+    <div class="ui-g-2">
+      <input
+        type="text"
+        pInputText
+        placeholder="Cartão Nacional Saúde Mãe"
+        formControlName="cartaoNacional"
+      />
+    </div>
+
+    <div class="ui-g-2">
+      <input
+        type="text"
+        pInputText
+        placeholder="Data de Entrada no Brasil"
+        formControlName="dataDeEntrada"
+      />
+    </div>
+
+    <div class="ui-g-2">
+      <input
+        type="text"
+        pInputText
+        placeholder="Data de Naturalização"
+        formControlName="dataDeNaturalizacao"
+      />
+    </div>
+
+    <div class="ui-g-2">
+      <input type="text" pInputText placeholder="Portaria" formControlName="portaria" />
+    </div>
+  </div>
+</form>
