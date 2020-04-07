@@ -36,7 +36,7 @@ public class CartaoSUSResource {
 
     private final Logger log = LoggerFactory.getLogger(CartaoSUSResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaCartaoSus";
+    private static final String ENTITY_NAME = "pacientesCartaoSus";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

@@ -35,7 +35,7 @@ public class DocumentoResource {
 
     private final Logger log = LoggerFactory.getLogger(DocumentoResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaDocumento";
+    private static final String ENTITY_NAME = "pacientesDocumento";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

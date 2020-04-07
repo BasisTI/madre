@@ -36,7 +36,7 @@ public class UFResource {
 
     private final Logger log = LoggerFactory.getLogger(UFResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaUf";
+    private static final String ENTITY_NAME = "pacientesUf";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

@@ -36,7 +36,7 @@ public class TelefoneResource {
 
     private final Logger log = LoggerFactory.getLogger(TelefoneResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaTelefone";
+    private static final String ENTITY_NAME = "pacientesTelefone";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

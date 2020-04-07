@@ -36,7 +36,7 @@ public class EstadoCivilResource {
 
     private final Logger log = LoggerFactory.getLogger(EstadoCivilResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaEstadoCivil";
+    private static final String ENTITY_NAME = "pacientesEstadoCivil";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

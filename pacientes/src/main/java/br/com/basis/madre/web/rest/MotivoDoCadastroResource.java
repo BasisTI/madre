@@ -36,7 +36,7 @@ public class MotivoDoCadastroResource {
 
     private final Logger log = LoggerFactory.getLogger(MotivoDoCadastroResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaMotivoDoCadastro";
+    private static final String ENTITY_NAME = "pacientesMotivoDoCadastro";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

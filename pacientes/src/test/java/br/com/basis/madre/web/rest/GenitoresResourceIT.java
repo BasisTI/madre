@@ -1,6 +1,6 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.SnffaturaApp;
+import br.com.basis.madre.PacientesApp;
 import br.com.basis.madre.domain.Genitores;
 import br.com.basis.madre.repository.GenitoresRepository;
 import br.com.basis.madre.repository.search.GenitoresSearchRepository;
@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link GenitoresResource} REST controller.
  */
-@SpringBootTest(classes = SnffaturaApp.class)
+@SpringBootTest(classes = PacientesApp.class)
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser

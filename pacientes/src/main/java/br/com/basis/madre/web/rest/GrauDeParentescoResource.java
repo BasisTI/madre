@@ -36,7 +36,7 @@ public class GrauDeParentescoResource {
 
     private final Logger log = LoggerFactory.getLogger(GrauDeParentescoResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaGrauDeParentesco";
+    private static final String ENTITY_NAME = "pacientesGrauDeParentesco";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

@@ -35,7 +35,7 @@ public class ResponsavelResource {
 
     private final Logger log = LoggerFactory.getLogger(ResponsavelResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaResponsavel";
+    private static final String ENTITY_NAME = "pacientesResponsavel";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

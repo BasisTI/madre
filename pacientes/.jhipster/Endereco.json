@@ -71,8 +71,8 @@
     "fluentMethods": true,
     "readOnly": false,
     "embedded": false,
-    "clientRootFolder": "snffatura",
+    "clientRootFolder": "pacientes",
     "applications": "*",
-    "microserviceName": "snffatura",
+    "microserviceName": "pacientes",
     "skipClient": true
 }

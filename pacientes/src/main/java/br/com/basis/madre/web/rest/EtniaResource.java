@@ -36,7 +36,7 @@ public class EtniaResource {
 
     private final Logger log = LoggerFactory.getLogger(EtniaResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaEtnia";
+    private static final String ENTITY_NAME = "pacientesEtnia";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

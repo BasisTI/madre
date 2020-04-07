@@ -36,7 +36,7 @@ public class RacaResource {
 
     private final Logger log = LoggerFactory.getLogger(RacaResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaRaca";
+    private static final String ENTITY_NAME = "pacientesRaca";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

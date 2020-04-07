@@ -36,7 +36,7 @@ public class OrgaoEmissorResource {
 
     private final Logger log = LoggerFactory.getLogger(OrgaoEmissorResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaOrgaoEmissor";
+    private static final String ENTITY_NAME = "pacientesOrgaoEmissor";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;

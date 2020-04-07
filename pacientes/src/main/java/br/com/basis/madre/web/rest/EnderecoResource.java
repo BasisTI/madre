@@ -36,7 +36,7 @@ public class EnderecoResource {
 
     private final Logger log = LoggerFactory.getLogger(EnderecoResource.class);
 
-    private static final String ENTITY_NAME = "snffaturaEndereco";
+    private static final String ENTITY_NAME = "pacientesEndereco";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
