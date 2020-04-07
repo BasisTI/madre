@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-documentos',
   templateUrl: './documentos.component.html',
-  styles: []
 })
-export class DocumentosComponent implements OnInit {
+export class DocumentosComponent {
+  documentos: FormGroup = this.fb.group({
+    numeroIdentidade: [''],
+    nomeSocial: [''],
+    orgaoEmissor: [''],
+    uf: [''],
+    data: [''],
+    cpf: [''],
+    pisPasep: [''],
+    cnh: [''],
+    validadeCNH: [''],
+  });
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private fb: FormBuilder) {}
 }
