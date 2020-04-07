@@ -1,1 +1,41 @@
-<p>telefone works!</p>
+<form [formGroup]="telefone">
+  <div class="ui-g">
+    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="DDD" formControlName="DDD" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="telefone" formControlName="telefone" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="tipo do telefone" formControlName="tipo" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="observação" formControlName="observacao" />
+      </div>
+    </div>
+    <p-button label="adicionar"></p-button>
+  </div>
+</form>
+<p-table [value]="fakeData">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>tipo</th>
+      <th>telefone</th>
+      <th>observação</th>
+      <th>açoẽs</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-telefone>
+    <tr>
+      <td>{{ telefone.tipoDeTelefone }}</td>
+      <td>{{ telefone.telefone }}</td>
+      <td>{{ telefone.observacao }}</td>
+      <td>
+        <p-button label="Editar" pTooltip="Editar" tooltipPosition="top"></p-button>
+        {{ ' ' }}
+        <p-button label="EXcluir" pTooltip="Excluir" tooltipPosition="top"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
