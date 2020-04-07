@@ -1,13 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "br.com.basis.snf"
+      "packageName": "br.com.basis.madre"
     },
     "jhipsterVersion": "5.7.2",
     "applicationType": "microservice",
     "baseName": "snffatura",
-    "packageName": "br.com.basis.snf",
-    "packageFolder": "br/com/basis/snf",
+    "packageName": "br.com.basis.madre",
+    "packageFolder": "br/com/basis/madre",
     "serverPort": "8082",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
