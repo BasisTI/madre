@@ -34,12 +34,14 @@ import {
     AbstractAuthorization,
     AbstractAuthentication,
     ClipboardModule,
-    ErrorModule
+    ErrorModule,
 } from '@nuvem/angular-base';
 
 import {
-    PageNotificationModule, BlockUiModule, DatatableModule, 
-    ErrorStackModule
+    PageNotificationModule,
+    BlockUiModule,
+    DatatableModule,
+    ErrorStackModule,
 } from '@nuvem/primeng-components';
 import { environment } from '../environments/environment';
 
@@ -60,7 +62,7 @@ import { environment } from '../environments/environment';
         ErrorStackModule.forRoot(),
         ClipboardModule.forRoot(),
         ErrorModule.forRoot(),
-        SecurityModule.forRoot()
+        SecurityModule.forRoot(),
     ],
     declarations: [
         AppComponent,
@@ -71,12 +73,12 @@ import { environment } from '../environments/environment';
         AppBreadcrumbComponent,
         AppRightpanelComponent,
         AppInlineProfileComponent,
-        DiarioErrosComponent
+        DiarioErrosComponent,
     ],
     providers: [
         {
             provide: LocationStrategy,
-            useClass: HashLocationStrategy
+            useClass: HashLocationStrategy,
         },
 
         { provide: AUTH_CONFIG, useValue: environment.auth },
@@ -88,9 +90,9 @@ import { environment } from '../environments/environment';
         { provide: AuthenticationService, deps: [AUTH_CONFIG] },
         { provide: AbstractAuthorization, useClass: AuthorizationService },
         { provide: AbstractAuthentication, useClass: AuthenticationService },
-        
-        BreadcrumbService
+
+        BreadcrumbService,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

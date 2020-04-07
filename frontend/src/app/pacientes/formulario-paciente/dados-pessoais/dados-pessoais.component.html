@@ -1,0 +1,173 @@
+<!-- <p-fieldset legend="Dados Pessoais" [toggleable]="true"> -->
+<form
+    class="ui-g ui-fluid"
+    autocomplete="off"
+    [formGroup]="dadosPessoais"
+    (ngSubmit)="onSubmit()"
+>
+    <div class="ui-g-12">
+        <div class="ui-g-5">
+            <input
+                type="text"
+                pInputText
+                placeholder="Nome"
+                formControlName="nome"
+            />
+        </div>
+        <div class="ui-g-4">
+            <input
+                type="text"
+                pInputText
+                placeholder="Nome Social"
+                formControlName="nomeSocial"
+            />
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Sexo"
+                formControlName="sexo"
+            />
+        </div>
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Raça"
+                formControlName="raca"
+            />
+        </div>
+        <div class="ui-g-4">
+            <input
+                type="text"
+                pInputText
+                placeholder="Etnia"
+                formControlName="etnia"
+            />
+        </div>
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Estado Civil"
+                formControlName="estadoCivil"
+            />
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Prontuário Mãe"
+                formControlName="prontuarioMae"
+            />
+        </div>
+        <div class="ui-g-4">
+            <input
+                type="text"
+                pInputText
+                placeholder="Nome da Mãe"
+                formControlName="nomeDaMae"
+            />
+        </div>
+        <div class="ui-g-4">
+            <input
+                type="text"
+                pInputText
+                placeholder="Nome do Pai"
+                formControlName="nomeDoPai"
+            />
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Data de Nascimento"
+                formControlName="dataDeNascimento"
+            />
+        </div>
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Hora do Nascimento"
+                formControlName="horaDoNascimento"
+            />
+        </div>
+        <div class="ui-g-1">
+            <input
+                type="text"
+                pInputText
+                placeholder="Idade"
+                formControlName="idade"
+            />
+        </div>
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Nacionalidade"
+                formControlName="nacionalidade"
+            />
+        </div>
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Naturalidade"
+                formControlName="naturalidade"
+            />
+        </div>
+        <div class="ui-g-1">
+            <input
+                type="text"
+                pInputText
+                placeholder="UF"
+                formControlName="uf"
+            />
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-2">
+            <input
+                type="text"
+                pInputText
+                placeholder="Grau de Instrução"
+                formControlName="grauDeInstrucao"
+            />
+        </div>
+        <div class="ui-g-4">
+            <input
+                type="text"
+                pInputText
+                placeholder="Ocupação"
+                formControlName="ocupacao"
+            />
+        </div>
+        <div class="ui-g-4">
+            <input
+                type="text"
+                pInputText
+                placeholder="Religião"
+                formControlName="religiao"
+            />
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-3">
+            <input
+                type="text"
+                pInputText
+                placeholder="Email"
+                formControlName="email"
+            />
+        </div>
+    </div>
+</form>
+<!-- {{ dadosPessoais.value | json }} -->
