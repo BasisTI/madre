@@ -1,6 +1,6 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.SnffaturaApp;
+import br.com.basis.madre.PacientesApp;
 import br.com.basis.madre.domain.Endereco;
 import br.com.basis.madre.repository.EnderecoRepository;
 import br.com.basis.madre.repository.search.EnderecoSearchRepository;
@@ -37,7 +37,7 @@ import br.com.basis.madre.domain.enumeration.TipoDoEndereco;
 /**
  * Integration tests for the {@link EnderecoResource} REST controller.
  */
-@SpringBootTest(classes = SnffaturaApp.class)
+@SpringBootTest(classes = PacientesApp.class)
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser

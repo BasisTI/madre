@@ -1,6 +1,6 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.SnffaturaApp;
+import br.com.basis.madre.PacientesApp;
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
@@ -42,7 +42,7 @@ import br.com.basis.madre.domain.enumeration.Sexo;
 /**
  * Integration tests for the {@link PacienteResource} REST controller.
  */
-@SpringBootTest(classes = SnffaturaApp.class)
+@SpringBootTest(classes = PacientesApp.class)
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser

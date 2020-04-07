@@ -1,6 +1,6 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.SnffaturaApp;
+import br.com.basis.madre.PacientesApp;
 import br.com.basis.madre.domain.Certidao;
 import br.com.basis.madre.repository.CertidaoRepository;
 import br.com.basis.madre.repository.search.CertidaoSearchRepository;
@@ -39,7 +39,7 @@ import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
 /**
  * Integration tests for the {@link CertidaoResource} REST controller.
  */
-@SpringBootTest(classes = SnffaturaApp.class)
+@SpringBootTest(classes = PacientesApp.class)
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
