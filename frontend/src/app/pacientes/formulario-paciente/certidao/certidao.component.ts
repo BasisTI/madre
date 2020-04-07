@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-certidao',
   templateUrl: './certidao.component.html',
-  styles: []
+  styles: [],
 })
-export class CertidaoComponent implements OnInit {
+export class CertidaoComponent {
+  certidao: FormGroup = this.fb.group({
+    registroDeNascimento: [''],
+    tipoCertidao: [''],
+    nomeDoCartorio: [''],
+    livro: [''],
+    folhas: [''],
+    termo: [''],
+    dataDeEmissao: [''],
+    numeroDaDN: [''],
+  });
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private fb: FormBuilder) {}
 }
