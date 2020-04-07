@@ -1,1 +1,75 @@
-<p>endereco works!</p>
+<form [formGroup]="endereco">
+  <div class="ui-g">
+    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="Municipio" formControlName="municipio" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="CEP" formControlName="CEP" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="UF" formControlName="UF" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="logradouro" formControlName="logradouro" />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="Numero" formControlName="Numero" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="Complemento" formControlName="Complemento" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="Bairro" formControlName="Bairro" />
+      </div>
+      <div class="ui-g-3">
+        <input pInputText type="text" placeholder="tipo" formControlName="tipo" />
+      </div>
+      <div class="ui-g-3">
+        <input
+          pInputText
+          type="text"
+          placeholder="corespondencia"
+          formControlName="corespondencia"
+        />
+      </div>
+    </div>
+    <p-button label="adicionar"></p-button>
+  </div>
+</form>
+<p-table [value]="fakeData">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Municipio</th>
+      <th>CEP</th>
+      <th>UF</th>
+      <th>logradouro</th>
+      <th>Numero</th>
+      <th>Complemento</th>
+      <th>Bairro</th>
+      <th>tipo</th>
+      <th>corespondencia</th>
+      <th>açoẽs</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-endereco>
+    <tr>
+      <td>{{ endereco.municipio }}</td>
+      <td>{{ endereco.CEP }}</td>
+      <td>{{ endereco.UF }}</td>
+      <td>{{ endereco.logradouro }}</td>
+      <td>{{ endereco.Numero }}</td>
+      <td>{{ endereco.Complemento }}</td>
+      <td>{{ endereco.Bairro }}</td>
+      <td>{{ endereco.tipo }}</td>
+      <td>{{ endereco.corespondencia }}</td>
+      <td>
+        <p-button label="Editar" pTooltip="Editar" tooltipPosition="top"></p-button>
+        {{ ' ' }}
+        <p-button label="Excluir" pTooltip="Excluir" tooltipPosition="top"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
