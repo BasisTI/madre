@@ -1,0 +1,37 @@
+{
+    "name": "Genitores",
+    "fields": [
+        {
+            "fieldName": "prontuarioDaMae",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nomeDaMae",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nomeDoPai",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200407124600",
+    "entityTableName": "genitores",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "snffatura",
+    "applications": "*",
+    "microserviceName": "snffatura",
+    "skipClient": true
+}

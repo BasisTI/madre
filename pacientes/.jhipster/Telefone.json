@@ -1,0 +1,50 @@
+{
+    "name": "Telefone",
+    "fields": [
+        {
+            "fieldName": "ddd",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoDoContato",
+            "fieldValues": "CELULAR,RESIDENCIAL,RECADO,COMERCIAL,EMERGENCIAL"
+        },
+        {
+            "fieldName": "observacao",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paciente",
+            "otherEntityRelationshipName": "telefone",
+            "relationshipName": "paciente",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200407124900",
+    "entityTableName": "telefone",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "snffatura",
+    "applications": "*",
+    "microserviceName": "snffatura",
+    "skipClient": true
+}

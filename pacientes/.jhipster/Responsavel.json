@@ -1,0 +1,38 @@
+{
+    "name": "Responsavel",
+    "fields": [
+        {
+            "fieldName": "nomeDoResponsavel",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "telefone",
+            "otherEntityRelationshipName": "responsavel",
+            "relationshipName": "telefone",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "grauDeParentesco",
+            "otherEntityRelationshipName": "responsavel",
+            "relationshipName": "grauDeParentesco",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200407125300",
+    "entityTableName": "responsavel",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "snffatura",
+    "applications": "*",
+    "microserviceName": "snffatura",
+    "skipClient": true
+}

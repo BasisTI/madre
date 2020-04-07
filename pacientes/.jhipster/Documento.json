@@ -1,0 +1,58 @@
+{
+    "name": "Documento",
+    "fields": [
+        {
+            "fieldName": "numeroDaIdentidade",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "cpf",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pisPasep",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "validadeDaCnh",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "documentosApresentados",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "orgaoEmissor",
+            "otherEntityRelationshipName": "documento",
+            "relationshipName": "orgaoEmissor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "uF",
+            "otherEntityRelationshipName": "documento",
+            "relationshipName": "uf",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200407125500",
+    "entityTableName": "documento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "snffatura",
+    "applications": "*",
+    "microserviceName": "snffatura",
+    "skipClient": true
+}

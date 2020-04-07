@@ -1,0 +1,33 @@
+{
+    "name": "UF",
+    "fields": [
+        {
+            "fieldName": "unidadeFederativa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sigla",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200407125000",
+    "entityTableName": "uf",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "snffatura",
+    "applications": "*",
+    "microserviceName": "snffatura",
+    "skipClient": true
+}
