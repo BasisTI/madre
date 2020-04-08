@@ -9,13 +9,30 @@
       />
     </div>
     <div class="ui-g-4">
-      <input type="text" pInputText placeholder="Órgão Emissor" formControlName="orgaoEmissor" />
+      <p-dropdown
+        [options]="listaDeOrgaos"
+        placeholder="Órgão Emissor"
+        formControlName="orgaoEmissor"
+        [filter]="true"
+      >
+      </p-dropdown>
     </div>
     <div class="ui-g-2">
-      <input type="text" pInputText placeholder="UF" formControlName="uf" />
+      <p-dropdown [options]="listaDeUF" placeholder="UF" formControlName="uf" [filter]="true">
+      </p-dropdown>
     </div>
     <div class="ui-g-2">
-      <input type="text" pInputText placeholder="Data" formControlName="data" />
+      <p-calendar
+        [locale]="localizacao"
+        [yearRange]="yearRange"
+        dateFormat="dd/mm/yy"
+        [maxDate]="maxDate"
+        monthNavigator="true"
+        yearNavigator="true"
+        formControlName="data"
+        required="true"
+        placeholder="Data"
+      ></p-calendar>
     </div>
   </div>
   <div class="ui-g-12">
@@ -29,7 +46,16 @@
       <input type="text" pInputText placeholder="CNH" formControlName="cnh" />
     </div>
     <div class="ui-g-2">
-      <input type="text" pInputText placeholder="Validade CNH" formControlName="validadeCNH" />
+      <p-calendar
+        [locale]="validade"
+        [yearRange]="yearValidade"
+        dateFormat="dd/mm/yy"
+        monthNavigator="true"
+        yearNavigator="true"
+        formControlName="validadeCNH"
+        required="true"
+        placeholder="Validade da CNH"
+      ></p-calendar>
     </div>
   </div>
 </form>

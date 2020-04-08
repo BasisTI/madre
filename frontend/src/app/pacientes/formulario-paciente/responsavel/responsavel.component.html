@@ -9,12 +9,11 @@
       />
     </div>
     <div class="ui-g-2">
-      <input
-        type="text"
-        pInputText
-        placeholder="Grau Parentesco"
+      <p-dropdown
+        [options]="grausDeParentesco"
+        placeholder="Grau de Parentesco"
         formControlName="grauDeParentesco"
-      />
+      ></p-dropdown>
     </div>
     <div class="ui-g-1">
       <input type="text" pInputText placeholder="DDD" formControlName="ddd" />
