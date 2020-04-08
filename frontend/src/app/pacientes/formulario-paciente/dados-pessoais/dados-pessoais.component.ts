@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import * as moment from 'moment';
+
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
 
 @Component({
@@ -9,13 +11,13 @@ import { ptBR } from '../../../shared/calendar.pt-br.locale';
   templateUrl: './dados-pessoais.component.html',
   styles: [
     `
-      .ui-widget.read-only:disabled {
-        opacity: 1;
-        background-color: #dddddd;
-      }
-
       div {
         margin: 3px;
+      }
+
+      input:disabled {
+        color: black;
+        opacity: unset;
       }
     `,
   ],
@@ -33,15 +35,16 @@ export class DadosPessoaisComponent {
     nomeDoPai: [''],
     dataDeNascimento: [''],
     horaDoNascimento: [''],
-    idade: [''],
     nacionalidade: [''],
     naturalidade: [''],
-    uf: [''],
     grauDeInstrucao: [''],
     ocupacao: [''],
     religiao: [''],
     email: [''],
   });
+
+  idade = '';
+  uf = '';
 
   opcoesDeSexo = [
     {
@@ -124,15 +127,15 @@ export class DadosPessoaisComponent {
     },
     {
       label: 'Brasília',
-      value: 'BRASILIA',
+      value: { value: 'BRASILIA', uf: 'DF' },
     },
     {
       label: 'Goiás',
-      value: 'GOIAS',
+      value: { value: 'GOIAS', uf: 'GO' },
     },
     {
       label: 'Curitiba',
-      value: 'CURITIBA',
+      value: { value: 'CURITIBA', uf: 'PR' },
     },
   ];
 
@@ -197,12 +200,33 @@ export class DadosPessoaisComponent {
   ];
 
   localizacao = ptBR;
-  maxDate = new Date();
-  yearRange = `1900:${this.maxDate.getFullYear()}`;
+  dataLimite = new Date();
+  anosDisponiveis = `1900:${this.dataLimite.getFullYear()}`;
+  formatoDeData = 'dd/mm/yy';
 
   constructor(private fb: FormBuilder) {}
 
-  onSubmit() {
-    console.log(this.dadosPessoais.value);
+  aoSelecionarDataDeNascimento() {
+    const { dataDeNascimento } = this.dadosPessoais.value;
+
+    if (dataDeNascimento) {
+      this.idade = String(moment().diff(moment(dataDeNascimento), 'years'));
+      return;
+    }
+
+    this.idade = '';
+  }
+
+  aoSelecionarNaturalidade() {
+    const { naturalidade } = this.dadosPessoais.value;
+
+    if (naturalidade) {
+      if (naturalidade.uf) {
+        this.uf = naturalidade.uf;
+        return;
+      }
+    }
+
+    this.uf = '';
   }
 }

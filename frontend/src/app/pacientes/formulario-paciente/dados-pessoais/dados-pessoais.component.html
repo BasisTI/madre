@@ -73,12 +73,12 @@
   <div class="ui-g-12">
     <div class="ui-g-2 ui-sm-12">
       <span class="ui-float-label">
-        <input
-          type="text"
-          pInputText
+        <p-inputMask
+          mask="9999999/9"
           pTooltip="Digite o número do prontuário da mãe do paciente."
+          placeholder="_______/_"
           formControlName="prontuarioMae"
-        />
+        ></p-inputMask>
         <label>Prontuário da Mãe</label>
       </span>
     </div>
@@ -112,14 +112,16 @@
       <span class="ui-float-label">
         <p-calendar
           [locale]="localizacao"
-          [yearRange]="yearRange"
-          dateFormat="dd/mm/yy"
-          [maxDate]="maxDate"
+          [yearRange]="anosDisponiveis"
+          [dateFormat]="formatoDeData"
+          [maxDate]="dataLimite"
           monthNavigator="true"
           yearNavigator="true"
           pTooltip="Informe a data de nascimento do paciente."
           formControlName="dataDeNascimento"
           required="true"
+          (onSelect)="aoSelecionarDataDeNascimento()"
+          (onBlur)="aoSelecionarDataDeNascimento()"
         ></p-calendar>
         <label>Data de Nascimento</label>
       </span>
@@ -138,12 +140,13 @@
     <div class="ui-g-1 ui-sm-12">
       <span class="ui-float-label">
         <input
-          class="read-only"
-          type="number"
+          type="text"
+          name="idade"
           pInputText
-          pTooltip="Idade do paciente."
-          formControlName="idade"
-          disabled="true"
+          value="0"
+          disabled
+          [(ngModel)]="idade"
+          [ngModelOptions]="{ standalone: true }"
         />
         <label>Idade</label>
       </span>
@@ -168,6 +171,7 @@
           formControlName="naturalidade"
           filter="true"
           required="true"
+          (onChange)="aoSelecionarNaturalidade()"
         ></p-dropdown>
         <label>Naturalidade</label>
       </span>
@@ -175,12 +179,14 @@
     <div class="ui-g-1 ui-sm-12">
       <span class="ui-float-label">
         <input
-          class="read-only"
           type="text"
+          name="uf"
+          value="0"
           pInputText
           pTooltip="Unidade Federativa da naturalidade do paciente."
-          formControlName="uf"
           disabled="true"
+          [(ngModel)]="uf"
+          [ngModelOptions]="{ standalone: true }"
         />
         <label>UF</label>
       </span>
