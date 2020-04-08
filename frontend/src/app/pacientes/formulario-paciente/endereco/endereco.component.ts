@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-endereco',
   templateUrl: './endereco.component.html',
+  styles: [
+    `
+      div {
+        margin: 3px;
+      }
+    `,
+  ],
 })
 export class EnderecoComponent {
-  cities1 = [
+  opcao = [
     { label: 'selecione' },
     { label: 'residencial' },
     { label: 'comercial' },
@@ -16,15 +23,15 @@ export class EnderecoComponent {
 
   enderecos: Array<any>;
   endereco: FormGroup = this.fb.group({
-    municipio: [''],
-    CEP: [''],
-    UF: [''],
-    logradouro: [''],
-    Numero: [''],
+    municipio: ['', Validators.required],
+    CEP: ['', Validators.required],
+    UF: ['', Validators.required],
+    logradouro: ['', Validators.required],
+    Numero: ['', Validators.required],
     Complemento: [''],
-    Bairro: [''],
-    tipo: [''],
-    corespondencia: [''],
+    Bairro: ['', Validators.required],
+    tipo: ['', Validators.required],
+    corespondencia: ['', Validators.required],
   });
 
   fakeData = [

@@ -4,14 +4,13 @@
       <div class="ui-g-3">
         <span class="ui-float-label">
           <p-dropdown
-            [options]="cities1"
+            [options]="opcao"
             formControlName="municipio"
             filter="true"
-            required
-            pTooltip="Imforme um municipio"
+            pTooltip="Imforme um municipio."
             tooltipPosition="top"
           ></p-dropdown>
-          <label>municipio</label>
+          <label>Municipio</label>
         </span>
       </div>
       <div class="ui-g-3">
@@ -20,8 +19,7 @@
             placeholder="__.___-___"
             mask="99.999-999"
             formControlName="CEP"
-            required
-            pTooltip="Informe o CEP"
+            pTooltip="Informe o CEP."
             tooltipPosition="top"
           ></p-inputMask>
           <label>CEP</label>
@@ -29,21 +27,20 @@
       </div>
       <div class="ui-g-3">
         <span class="ui-float-label">
-          <p-dropdown [options]="cities1" formControlName="UF"></p-dropdown>
+          <p-dropdown [options]="opcao" formControlName="UF"></p-dropdown>
           <label>UF</label>
         </span>
       </div>
       <div class="ui-g-3">
         <span class="ui-float-label">
           <p-dropdown
-            [options]="cities1"
+            [options]="opcao"
             formControlName="logradouro"
             filter="true"
-            required
-            pTooltip="Informe o logradouro"
+            pTooltip="Informe o logradouro."
             tooltipPosition="top"
           ></p-dropdown>
-          <Label>logradouro</Label>
+          <Label>Logradouro</Label>
         </span>
       </div>
     </div>
@@ -54,8 +51,7 @@
             pInputText
             type="text"
             formControlName="Numero"
-            required
-            pTooltip="Informe o Numero"
+            pTooltip="Informe o Numero."
             tooltipPosition="top"
           />
           <Label>Numero</Label>
@@ -67,7 +63,7 @@
             pInputText
             type="text"
             formControlName="Complemento"
-            pTooltip="Informe o Complemento"
+            pTooltip="Informe o Complemento."
             tooltipPosition="top"
           />
           <label>Complemento</label>
@@ -79,8 +75,7 @@
             pInputText
             type="text"
             formControlName="Bairro"
-            required
-            pTooltip="Informe o Bairro"
+            pTooltip="Informe o Bairro."
             tooltipPosition="top"
           />
           <label>Bairro</label>
@@ -91,18 +86,16 @@
           <p-dropdown
             [options]="cities1"
             formControlName="tipo"
-            required
-            pTooltip="Informe o tipo de enderoço"
+            pTooltip="Informe o tipo de endereço."
             tooltipPosition="top"
           ></p-dropdown>
-          <label>tiopo de endereço</label>
+          <label>Tipo de endereço</label>
         </span>
       </div>
       <div class="ui-g-3">
         <p-triStateCheckbox
           formControlName="corespondencia"
           label="corespondencia"
-          required
         ></p-triStateCheckbox>
       </div>
       <div class="ui-g-3">
