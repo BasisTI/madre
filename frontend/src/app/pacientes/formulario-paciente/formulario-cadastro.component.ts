@@ -2,21 +2,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 
 @Component({
-    selector: 'app-formulario-cadastro',
-    templateUrl: './formulario-cadastro.component.html',
+  selector: 'app-formulario-cadastro',
+  templateUrl: './formulario-cadastro.component.html',
 })
 export class FormularioCadastroComponent implements OnInit, OnDestroy {
-    constructor(private breadCrumbService: BreadcrumbService) {}
+  constructor(private breadCrumbService: BreadcrumbService) {}
 
-    ngOnInit(): void {
-        console.log('aqui');
+  ngOnInit(): void {
+    this.breadCrumbService.setItems([
+      { label: 'Pacientes', routerLink: 'pacientes' },
+      { label: 'Cadastro de Paciente' },
+    ]);
+  }
 
-        this.breadCrumbService.setItems([
-            { label: 'Cadastro de Paciente', routerLink: 'pacientes' },
-        ]);
-    }
-
-    ngOnDestroy(): void {
-        this.breadCrumbService.reset();
-    }
+  ngOnDestroy(): void {
+    this.breadCrumbService.reset();
+  }
 }
