@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class TelefoneComponent {
   constructor(private fb: FormBuilder) {}
+  cities1 = [
+    { label: 'selecione' },
+    { label: 'celular' },
+    { label: 'residencial' },
+    { label: 'comercial' },
+    { label: 'emergencial' },
+  ];
+
   telefone: FormGroup = this.fb.group({
     tipo: [''],
     telefone: [''],

@@ -2,40 +2,83 @@
   <div class="ui-g">
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="DDD" formControlName="DDD" />
+        <span class="ui-float-label">
+          <p-inputMask
+            pInputText
+            mask="(99)"
+            type="text"
+            placeholder="(__)"
+            formControlName="DDD"
+            pTooltip="Informe o DDD"
+            tooltipPosition="top"
+          ></p-inputMask>
+          <label>DDD</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="telefone" formControlName="telefone" />
+        <span class="ui-float-label">
+          <p-inputMask
+            pInputText
+            placeholder="_ ____-____"
+            mask="9 9999-9999"
+            type="text"
+            formControlName="telefone"
+            pTooltip="Informe o telefone"
+            tooltipPosition="top"
+          ></p-inputMask>
+          <label>telefone</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="tipo do telefone" formControlName="tipo" />
+        <span class="ui-float-label">
+          <p-dropdown
+            [options]="cities1"
+            formControlName="tipo"
+            pTooltip="Informe o tipo de telefone"
+            tooltipPosition="top"
+          ></p-dropdown>
+          <label>tipo de telefone</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="observação" formControlName="observacao" />
+        <span class="ui-float-label">
+          <input
+            pInputText
+            type="text"
+            formControlName="observacao"
+            pTooltip="Informe o observação"
+            tooltipPosition="top"
+          />
+          <label>observação</label>
+        </span>
       </div>
     </div>
     <p-button label="adicionar"></p-button>
   </div>
 </form>
-<p-table [value]="fakeData">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>tipo</th>
-      <th>telefone</th>
-      <th>observação</th>
-      <th>açoẽs</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-telefone>
-    <tr>
-      <td>{{ telefone.tipoDeTelefone }}</td>
-      <td>{{ telefone.telefone }}</td>
-      <td>{{ telefone.observacao }}</td>
-      <td>
-        <p-button label="Editar" pTooltip="Editar" tooltipPosition="top"></p-button>
-        {{ ' ' }}
-        <p-button label="EXcluir" pTooltip="Excluir" tooltipPosition="top"></p-button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+
+<basis-datatable
+  type="memory"
+  [value]="fakeData"
+  [disableView]="true"
+  [disableEdit]="true"
+  [disableDelete]="true"
+>
+  <p-column header="tipo" field="tipoDeTelefone"></p-column>
+  <p-column header="telefone" field="telefone"></p-column>
+  <p-column header="observação" field="observacao"></p-column>
+  <p-column header="acoẽs" field="acoes">
+    <ng-template pTemplate="body">
+      <basis-datatable-button
+        icon="edit"
+        name="telefone"
+        bTooltip="Editar"
+      ></basis-datatable-button>
+      <basis-datatable-button
+        icon="trash"
+        name="telefone"
+        bTooltip="Excluir"
+      ></basis-datatable-button>
+    </ng-template>
+  </p-column>
+</basis-datatable>
