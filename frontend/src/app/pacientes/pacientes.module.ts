@@ -11,21 +11,23 @@ import { CartaoSusComponent } from './formulario-paciente/cartao-sus/cartao-sus.
 import { TelefoneComponent } from './formulario-paciente/telefone/telefone.component';
 import { EnderecoComponent } from './formulario-paciente/endereco/endereco.component';
 import { FormularioCadastroComponent } from './formulario-paciente/formulario-cadastro.component';
+import { ListaDePacientes } from './lista-de-pacientes.component';
 
 import { routes } from './pacientes.routes';
 
 @NgModule({
-    declarations: [
-        DadosPessoaisComponent,
-        ResponsavelComponent,
-        DocumentosComponent,
-        CertidaoComponent,
-        CartaoSusComponent,
-        TelefoneComponent,
-        EnderecoComponent,
-        FormularioCadastroComponent,
-    ],
-    imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-    exports: [],
+  declarations: [
+    DadosPessoaisComponent,
+    ResponsavelComponent,
+    DocumentosComponent,
+    CertidaoComponent,
+    CartaoSusComponent,
+    TelefoneComponent,
+    EnderecoComponent,
+    FormularioCadastroComponent,
+    ListaDePacientes,
+  ],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  exports: [],
 })
 export class PacientesModule {}
