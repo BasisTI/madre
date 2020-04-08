@@ -1,38 +1,68 @@
 <form class="ui-g ui-fluid" [formGroup]="certidao">
   <div class="ui-g-12">
     <div class="ui-g-4">
-      <input
-        type="text"
-        pInputText
-        placeholder="Registro de Nascimento"
-        formControlName="registroDeNascimento"
-      />
-    </div>
-    <div class="ui-g-3">
-      <input type="text" pInputText placeholder="Tipo Certidão" formControlName="tipoCertidao" />
+      <span class="ui-float-label">
+        <input
+          type="text"
+          pInputText
+          pTooltip="Informe o número do Registro de Nascimento."
+          formControlName="registroDeNascimento"
+        />
+        <label>Registro de Nascimento</label>
+      </span>
     </div>
     <div class="ui-g-2">
-      <input
-        type="text"
-        pInputText
-        placeholder="Nome do Cartório"
-        formControlName="nomeDoCartorio"
-      />
+      <span class="ui-float-label">
+        <p-dropdown [options]="listaCertidao" formControlName="tipoCertidao"></p-dropdown>
+        <label>Tipo de Certidão</label>
+      </span>
+    </div>
+    <div class="ui-g-2">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="nomeDoCartorio" />
+        <label>Nome do Cartório</label>
+      </span>
     </div>
     <div class="ui-g-1">
-      <input type="text" pInputText placeholder="Livro" formControlName="livro" />
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="livro" />
+        <label>Livro</label>
+      </span>
     </div>
     <div class="ui-g-1">
-      <input type="text" pInputText placeholder="Folhas" formControlName="folhas" />
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="folhas" />
+        <label>Folhas</label>
+      </span>
     </div>
-    <div class="ui-g-3">
-      <input type="text" pInputText placeholder="Termo" formControlName="termo" />
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-2">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="termo" />
+        <label>Termo</label>
+      </span>
     </div>
-    <div class="ui-g-3">
-      <input type="text" pInputText placeholder="Data de Emissão" formControlName="dataDeEmissao" />
+    <div class="ui-g-2">
+      <span class="ui-float-label">
+        <p-calendar
+          [locale]="localizacao"
+          [yearRange]="yearRange"
+          dateFormat="dd/mm/yy"
+          [maxDate]="maxDate"
+          monthNavigator="true"
+          yearNavigator="true"
+          pTooltip="Informe a data de emissão da Certidão."
+          formControlName="dataDeEmissao"
+        ></p-calendar>
+        <label>Data de Emissão</label>
+      </span>
     </div>
-    <div class="ui-g-3">
-      <input type="text" pInputText placeholder="Número da DN" formControlName="numeroDaDN" />
+    <div class="ui-g-2">
+      <span class="ui-float-label">
+        <input type="text" pInputText formControlName="numeroDaDN" />
+        <label>Número da DN</label>
+      </span>
     </div>
   </div>
 </form>
