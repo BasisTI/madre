@@ -1,17 +1,32 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-telefone',
   templateUrl: './telefone.component.html',
+  styles: [
+    `
+      div {
+        margin: 3px;
+      }
+    `,
+  ],
 })
 export class TelefoneComponent {
   constructor(private fb: FormBuilder) {}
+  opcao = [
+    { label: 'selecione' },
+    { label: 'celular' },
+    { label: 'residencial' },
+    { label: 'comercial' },
+    { label: 'emergencial' },
+  ];
+
   telefone: FormGroup = this.fb.group({
     tipo: [''],
-    telefone: [''],
+    telefone: ['', Validators.required],
     observacao: [''],
-    DDD: [''],
+    DDD: ['', Validators.required],
   });
 
   fakeData = [

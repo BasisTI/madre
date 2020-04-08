@@ -1,61 +1,104 @@
 <form class="ui-g ui-fluid" [formGroup]="documentos">
   <div class="ui-g-12">
-    <div class="ui-g-4">
-      <input
-        type="text"
-        pInputText
-        placeholder="Número Identidade"
-        formControlName="numeroIdentidade"
-      />
+    <div class="ui-g-4 ui-sm-12">
+      <span class="ui-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="numeroIdentidade"
+          pTooltip="Digite o número da identidade do paciente."
+        />
+        <label>Número da Identidade</label>
+      </span>
     </div>
-    <div class="ui-g-4">
-      <p-dropdown
-        [options]="listaDeOrgaos"
-        placeholder="Órgão Emissor"
-        formControlName="orgaoEmissor"
-        [filter]="true"
-      >
-      </p-dropdown>
+    <div class="ui-g-4 ui-sm-12">
+      <span class="ui-float-label">
+        <p-dropdown
+          [options]="listaDeOrgaos"
+          formControlName="orgaoEmissor"
+          [filter]="true"
+          pTooltip="Selecione o órgão emissor da identidade do paciente."
+        >
+        </p-dropdown>
+        <label>Órgão Emissor</label>
+      </span>
     </div>
-    <div class="ui-g-2">
-      <p-dropdown [options]="listaDeUF" placeholder="UF" formControlName="uf" [filter]="true">
-      </p-dropdown>
+    <div class="ui-g-2 ui-sm-12">
+      <span class="ui-float-label">
+        <p-dropdown
+          [options]="listaDeUF"
+          formControlName="uf"
+          [filter]="true"
+          pTooltip="Selecione a UF da identidade do paciente."
+        >
+        </p-dropdown>
+        <label>UF</label>
+      </span>
     </div>
-    <div class="ui-g-2">
-      <p-calendar
-        [locale]="localizacao"
-        [yearRange]="yearRange"
-        dateFormat="dd/mm/yy"
-        [maxDate]="maxDate"
-        monthNavigator="true"
-        yearNavigator="true"
-        formControlName="data"
-        required="true"
-        placeholder="Data"
-      ></p-calendar>
+    <div class="ui-g-2 ui-sm-12">
+      <span class="ui-float-label">
+        <p-calendar
+          [locale]="localizacao"
+          [yearRange]="yearRange"
+          dateFormat="dd/mm/yy"
+          [maxDate]="maxDate"
+          monthNavigator="true"
+          yearNavigator="true"
+          formControlName="data"
+          required="true"
+          pTooltip="Informe a data de emissão da identidade do paciente."
+        ></p-calendar>
+        <label>Data</label>
+      </span>
     </div>
   </div>
   <div class="ui-g-12">
-    <div class="ui-g-4">
-      <input type="text" pInputText placeholder="CPF" formControlName="cpf" />
+    <div class="ui-g-4 ui-sm-12">
+      <span class="ui-float-label">
+        <p-inputMask
+          formControlName="cpf"
+          mask="999.999.999-99"
+          placeholder="___.___.___-__"
+          pTooltip="Digite o CPF do paciente."
+        ></p-inputMask>
+        <label>CPF</label>
+      </span>
     </div>
-    <div class="ui-g-2">
-      <input type="text" pInputText placeholder="PIS/PASEP" formControlName="pisPasep" />
+    <div class="ui-g-2 ui-sm-12">
+      <span class="ui-float-label">
+        <p-inputMask
+          formControlName="pisPasep"
+          mask="999.99999.99-9"
+          placeholder="___._____.__-_"
+          pTooltip="Digite o PIS/PASEP do paciente."
+        ></p-inputMask>
+        <label>PIS/PASEP</label>
+      </span>
     </div>
-    <div class="ui-g-4">
-      <input type="text" pInputText placeholder="CNH" formControlName="cnh" />
+    <div class="ui-g-4 ui-sm-12">
+      <span class="ui-float-label">
+        <p-inputMask
+          formControlName="cnh"
+          placeholder="___________"
+          mask="99999999999"
+          pTooltip="Digite a CNH do paciente."
+        ></p-inputMask>
+        <label>CNH</label>
+      </span>
     </div>
-    <div class="ui-g-2">
-      <p-calendar
-        [locale]="validade"
-        [yearRange]="yearValidade"
-        dateFormat="dd/mm/yy"
-        monthNavigator="true"
-        yearNavigator="true"
-        formControlName="validadeCNH"
-        required="true"
-        placeholder="Validade da CNH"
-      ></p-calendar>
+    <div class="ui-g-2 ui-sm-12">
+      <span class="ui-float-label">
+        <p-calendar
+          [locale]="validade"
+          [yearRange]="yearValidade"
+          dateFormat="dd/mm/yy"
+          monthNavigator="true"
+          yearNavigator="true"
+          formControlName="validadeCNH"
+          pTooltip="Informe a validade da CNH do paciente."
+        ></p-calendar>
+        <label>Validade da CNH</label>
+      </span>
     </div>
   </div>
 </form>
