@@ -4,13 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-responsavel',
   templateUrl: './responsavel.component.html',
-  styles: [
-    `
-      div {
-        margin: 3px;
-      }
-    `,
-  ],
 })
 export class ResponsavelComponent {
   responsavel: FormGroup = this.fb.group({
