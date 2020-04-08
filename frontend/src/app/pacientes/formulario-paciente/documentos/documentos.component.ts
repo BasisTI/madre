@@ -5,6 +5,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-documentos',
   templateUrl: './documentos.component.html',
+  styles: [
+    `
+      div {
+        margin: 3px;
+      }
+    `,
+  ],
 })
 export class DocumentosComponent {
   documentos: FormGroup = this.fb.group({
