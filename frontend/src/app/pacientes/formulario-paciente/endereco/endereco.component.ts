@@ -7,6 +7,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './endereco.component.html',
 })
 export class EnderecoComponent {
+  cities1 = [
+    { label: 'selecione' },
+    { label: 'residencial' },
+    { label: 'comercial' },
+    { label: 'outros' },
+  ];
+
+  enderecos: Array<any>;
   endereco: FormGroup = this.fb.group({
     municipio: [''],
     CEP: [''],

@@ -2,74 +2,148 @@
   <div class="ui-g">
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="Municipio" formControlName="municipio" />
+        <span class="ui-float-label">
+          <p-dropdown
+            [options]="cities1"
+            formControlName="municipio"
+            filter="true"
+            required
+            pTooltip="Imforme um municipio"
+            tooltipPosition="top"
+          ></p-dropdown>
+          <label>municipio</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="CEP" formControlName="CEP" />
+        <span class="ui-float-label">
+          <p-inputMask
+            placeholder="__.___-___"
+            mask="99.999-999"
+            formControlName="CEP"
+            required
+            pTooltip="Informe o CEP"
+            tooltipPosition="top"
+          ></p-inputMask>
+          <label>CEP</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="UF" formControlName="UF" />
+        <span class="ui-float-label">
+          <p-dropdown [options]="cities1" formControlName="UF"></p-dropdown>
+          <label>UF</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="logradouro" formControlName="logradouro" />
+        <span class="ui-float-label">
+          <p-dropdown
+            [options]="cities1"
+            formControlName="logradouro"
+            filter="true"
+            required
+            pTooltip="Informe o logradouro"
+            tooltipPosition="top"
+          ></p-dropdown>
+          <Label>logradouro</Label>
+        </span>
       </div>
     </div>
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="Numero" formControlName="Numero" />
+        <span class="ui-float-label">
+          <input
+            pInputText
+            type="text"
+            formControlName="Numero"
+            required
+            pTooltip="Informe o Numero"
+            tooltipPosition="top"
+          />
+          <Label>Numero</Label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="Complemento" formControlName="Complemento" />
+        <span class="ui-float-label">
+          <input
+            pInputText
+            type="text"
+            formControlName="Complemento"
+            pTooltip="Informe o Complemento"
+            tooltipPosition="top"
+          />
+          <label>Complemento</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="Bairro" formControlName="Bairro" />
+        <span class="ui-float-label">
+          <input
+            pInputText
+            type="text"
+            formControlName="Bairro"
+            required
+            pTooltip="Informe o Bairro"
+            tooltipPosition="top"
+          />
+          <label>Bairro</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input pInputText type="text" placeholder="tipo" formControlName="tipo" />
+        <span class="ui-float-label">
+          <p-dropdown
+            [options]="cities1"
+            formControlName="tipo"
+            required
+            pTooltip="Informe o tipo de enderoço"
+            tooltipPosition="top"
+          ></p-dropdown>
+          <label>tiopo de endereço</label>
+        </span>
       </div>
       <div class="ui-g-3">
-        <input
-          pInputText
-          type="text"
-          placeholder="corespondencia"
+        <p-triStateCheckbox
           formControlName="corespondencia"
-        />
+          label="corespondencia"
+          required
+        ></p-triStateCheckbox>
+      </div>
+      <div class="ui-g-3">
+        <p-triStateCheckbox
+          formControlName="corespondencia"
+          label="Não Localizei o Endereço"
+        ></p-triStateCheckbox>
       </div>
     </div>
     <p-button label="adicionar"></p-button>
   </div>
 </form>
-<p-table [value]="fakeData">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Municipio</th>
-      <th>CEP</th>
-      <th>UF</th>
-      <th>logradouro</th>
-      <th>Numero</th>
-      <th>Complemento</th>
-      <th>Bairro</th>
-      <th>tipo</th>
-      <th>corespondencia</th>
-      <th>açoẽs</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-endereco>
-    <tr>
-      <td>{{ endereco.municipio }}</td>
-      <td>{{ endereco.CEP }}</td>
-      <td>{{ endereco.UF }}</td>
-      <td>{{ endereco.logradouro }}</td>
-      <td>{{ endereco.Numero }}</td>
-      <td>{{ endereco.Complemento }}</td>
-      <td>{{ endereco.Bairro }}</td>
-      <td>{{ endereco.tipo }}</td>
-      <td>{{ endereco.corespondencia }}</td>
-      <td>
-        <p-button label="Editar" pTooltip="Editar" tooltipPosition="top"></p-button>
-        {{ ' ' }}
-        <p-button label="Excluir" pTooltip="Excluir" tooltipPosition="top"></p-button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+
+<basis-datatable
+  type="memory"
+  [value]="fakeData"
+  [disableView]="true"
+  [disableEdit]="true"
+  [disableDelete]="true"
+>
+  <p-column header="municipio" field="municipio"></p-column>
+  <p-column header="CEP" field="CEP"></p-column>
+  <p-column header="UF" field="UF"></p-column>
+  <p-column header="logradouro" field="logradouro"></p-column>
+  <p-column header="Numero" field="Numero"></p-column>
+  <p-column header="Complemento" field="Complemento"></p-column>
+  <p-column header="Bairro" field="Bairro"></p-column>
+  <p-column header="tipo" field="tipo"></p-column>
+  <p-column header="corespondencia" field="corespondencia"></p-column>
+  <p-column header="açoẽs" field="acoess"
+    ><ng-template pTemplate="body">
+      <basis-datatable-button
+        icon="edit"
+        name="endereco"
+        bTooltip="Editar"
+      ></basis-datatable-button>
+      <basis-datatable-button
+        icon="trash"
+        name="endereco"
+        bTooltip="Excluir"
+      ></basis-datatable-button>
+    </ng-template>
+  </p-column>
+</basis-datatable>
