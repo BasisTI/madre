@@ -1,8 +1,10 @@
+import { ChartModule } from 'primeng/chart';
 import { Component } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-cartao-sus',
