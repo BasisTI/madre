@@ -20,6 +20,15 @@ export class EnderecoComponent {
     { label: 'comercial' },
     { label: 'outros' },
   ];
+  UF = [{ label: 'selecione' }, { label: 'RJ' }, { label: 'SP' }, { label: 'BA' }, { label: 'DF' }];
+  municipios = [
+    { label: 'selecione' },
+    { label: 'São Paulo' },
+    { label: 'Rio de Janeiro' },
+    { label: 'Goias' },
+    { label: 'Rio Grande do Sul' },
+  ];
+  logradorus = [''];
 
   enderecos: Array<any>;
   endereco: FormGroup = this.fb.group({
