@@ -1,5 +1,9 @@
 <form class="ui-g ui-fluid" [formGroup]="responsavel">
   <div class="ui-g-12">
+    <p *ngIf="responsavel.invalid">
+      Ao informar o nome do responsável ou observação do responsável, os campos, ddd, telefone e
+      grau de parentesco da aba Responsável devem ser preenchidos
+    </p>
     <div class="ui-g-3 ui-sm-12">
       <span class="ui-float-label">
         <input
