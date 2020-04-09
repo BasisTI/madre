@@ -34,13 +34,15 @@ export class CartaoSusComponent {
 
   listaAusenciaCns = [
     { label: 'Selecione' },
-    { label: 'Extravio', value: 'extravio'[''] },
-    { label: 'Perda', value: 'perda'[''] },
-    { label: 'Estrangeiro', value: 'estrangeiro'[''] },
-    { label: 'Especiais', value: 'especiais'[''] },
-    { label: 'Outros', value: 'outros'[''] },
+    { label: 'Indivíduo acidentado grave', value: 'cns1407867196'[''] },
+    { label: 'Indivíduo psiquiátrico encontrado em via pública', value: 'cns1049140526'[''] },
+    { label: 'Indivíduo com problema neurológico grave ou comatoso', value: 'cns2064078612'[''] },
+    {
+      label: 'Indivíduo incapacitado por motivos sociais e/ou culturais',
+      value: 'cns518398246'[''],
+    },
+    { label: 'Indivíduo doador de órgãos falecido', value: 'cns378164643'[''] },
   ];
-
   listaDocReferencia = [
     { label: 'Selecione' },
     { label: 'APAC', value: 'a1' },

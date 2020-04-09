@@ -1,6 +1,6 @@
 <form class="ui-g ui-fluid" [formGroup]="cartaoSUS">
   <div class="ui-g-12">
-    <div class="ui-g-3">
+    <div class="ui-g-2">
       <span class="ui-float-label">
         <p-inputMask
           pInputText
@@ -22,7 +22,6 @@
         <label>Justificativa da Ausência CNS</label>
       </span>
     </div>
-
     <div class="ui-g-2">
       <span class="ui-float-label">
         <p-dropdown
@@ -38,7 +37,6 @@
         <p-dropdown
           [options]="listaDocReferencia"
           pTooltip="Selecione o Documento de Referência."
-          pInputText
           formControlName="docReferencia"
         ></p-dropdown>
         <label>Doc Referência</label>
@@ -58,7 +56,9 @@
     </div>
   </div>
   <div class="ui-g-12">
-    <div class="ui-g-4 ui-sm-12">
+    <legend>Se Naturalizado Brasileiro</legend>
+    <div class="ui-g-12">
+      <div class="ui-g-3 ui-sm-12"></div>
       <span class="ui-float-label">
         <p-calendar
           [locale]="localizacao"
@@ -73,7 +73,7 @@
         <label>Data de Entrada no Brasil</label>
       </span>
     </div>
-    <div class="ui-g-4 ui-sm-12">
+    <div class="ui-g-3 ui-sm-12">
       <span class="ui-float-label">
         <p-calendar
           [locale]="localizacao"
@@ -93,6 +93,14 @@
         <label>Portaria</label>
         <input type="text" pTooltip="Informe a Portaria" pInputText formControlName="portaria" />
       </span>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-2">
+        <button pButton type="submit" label="Visualizar impressão"></button>
+      </div>
+      <div class="ui-g-2">
+        <button pButton type="submit" label="Imprimir"></button>
+      </div>
     </div>
   </div>
 </form>
