@@ -6,16 +6,16 @@ import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
   templateUrl: './formulario-cadastro.component.html',
 })
 export class FormularioCadastroComponent implements OnInit, OnDestroy {
-  constructor(private breadCrumbService: BreadcrumbService) {}
+  constructor(private breadcrumbService: BreadcrumbService) {}
 
   ngOnInit(): void {
-    this.breadCrumbService.setItems([
+    this.breadcrumbService.setItems([
       { label: 'Pacientes', routerLink: 'pacientes' },
       { label: 'Cadastro de Paciente' },
     ]);
   }
 
   ngOnDestroy(): void {
-    this.breadCrumbService.reset();
+    this.breadcrumbService.reset();
   }
 }
