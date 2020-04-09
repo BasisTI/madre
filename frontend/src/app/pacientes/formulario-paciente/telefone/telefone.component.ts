@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
@@ -26,15 +26,18 @@ export class TelefoneComponent {
     tipo: [''],
     telefone: ['', Validators.required],
     observacao: [''],
-    DDD: ['', Validators.required],
+    DDD: new FormControl('', Validators.required),
   });
 
   fakeData = [
     {
       tipoDeTelefone: 'residencial',
-      telefone: '999999999',
+      telefone: '9 999-999',
       observacao: 'teste',
     },
-    { tipoDeTelefone: 'comercial', telefone: '9888888888', observacao: 'teste2' },
+    { tipoDeTelefone: 'comercial', telefone: '9 8889-8888', observacao: 'teste2' },
   ];
+  adicionar(telefone) {
+    this.telefone = telefone;
+  }
 }

@@ -1,97 +1,83 @@
 <form [formGroup]="endereco">
-  <div class="ui-g">
-    <div class="ui-g-12 ui-fluid">
-      <div class="ui-g-3">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+      <div class="ui-g-5 ui-sm-12">
         <span class="ui-float-label">
           <p-dropdown
-            [options]="opcao"
+            [options]="municipios"
             formControlName="municipio"
             filter="true"
             pTooltip="Imforme um municipio."
-            tooltipPosition="top"
           ></p-dropdown>
           <label>Municipio</label>
         </span>
       </div>
-      <div class="ui-g-3">
+      <div class="ui-g-5 ui-sm-12">
         <span class="ui-float-label">
           <p-inputMask
             placeholder="__.___-___"
             mask="99.999-999"
             formControlName="CEP"
             pTooltip="Informe o CEP."
-            tooltipPosition="top"
           ></p-inputMask>
           <label>CEP</label>
         </span>
       </div>
-      <div class="ui-g-3">
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-2 ui-sm-12">
         <span class="ui-float-label">
-          <p-dropdown [options]="opcao" formControlName="UF"></p-dropdown>
+          <p-dropdown [options]="UF" formControlName="UF"></p-dropdown>
           <label>UF</label>
         </span>
       </div>
-      <div class="ui-g-3">
+      <div class="ui-g-4 ui-sm-12">
         <span class="ui-float-label">
           <p-dropdown
-            [options]="opcao"
+            [options]="logradorus"
             formControlName="logradouro"
             filter="true"
             pTooltip="Informe o logradouro."
-            tooltipPosition="top"
           ></p-dropdown>
           <Label>Logradouro</Label>
+        </span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-float-label">
+          <p-dropdown
+            [options]="opcao"
+            formControlName="tipo"
+            pTooltip="Informe o tipo de endereço."
+          ></p-dropdown>
+          <label>Tipo de endereço</label>
         </span>
       </div>
     </div>
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-3">
         <span class="ui-float-label">
-          <input
-            pInputText
-            type="text"
-            formControlName="Numero"
-            pTooltip="Informe o Numero."
-            tooltipPosition="top"
-          />
+          <input pInputText type="text" formControlName="Numero" pTooltip="Informe o Numero." />
           <Label>Numero</Label>
         </span>
       </div>
-      <div class="ui-g-3">
+      <div class="ui-g-4">
         <span class="ui-float-label">
           <input
             pInputText
             type="text"
             formControlName="Complemento"
             pTooltip="Informe o Complemento."
-            tooltipPosition="top"
           />
           <label>Complemento</label>
         </span>
       </div>
       <div class="ui-g-3">
         <span class="ui-float-label">
-          <input
-            pInputText
-            type="text"
-            formControlName="Bairro"
-            pTooltip="Informe o Bairro."
-            tooltipPosition="top"
-          />
+          <input pInputText type="text" formControlName="Bairro" pTooltip="Informe o Bairro." />
           <label>Bairro</label>
         </span>
       </div>
-      <div class="ui-g-3">
-        <span class="ui-float-label">
-          <p-dropdown
-            [options]="cities1"
-            formControlName="tipo"
-            pTooltip="Informe o tipo de endereço."
-            tooltipPosition="top"
-          ></p-dropdown>
-          <label>Tipo de endereço</label>
-        </span>
-      </div>
+
       <div class="ui-g-3">
         <p-triStateCheckbox
           formControlName="corespondencia"
@@ -106,37 +92,14 @@
       </div>
     </div>
     <p-button label="adicionar"></p-button>
+
+    <basis-datatable type="memory" [value]="fakeData">
+      <p-column header="municipio" field="municipio"></p-column>
+      <p-column header="CEP" field="CEP"></p-column>
+      <p-column header="UF" field="UF"></p-column>
+      <p-column header="Bairro" field="Bairro"></p-column>
+      <p-column header="tipo" field="tipo"></p-column>
+      <p-column header="corespondencia" field="corespondencia"></p-column>
+    </basis-datatable>
   </div>
 </form>
-
-<basis-datatable
-  type="memory"
-  [value]="fakeData"
-  [disableView]="true"
-  [disableEdit]="true"
-  [disableDelete]="true"
->
-  <p-column header="municipio" field="municipio"></p-column>
-  <p-column header="CEP" field="CEP"></p-column>
-  <p-column header="UF" field="UF"></p-column>
-  <p-column header="logradouro" field="logradouro"></p-column>
-  <p-column header="Numero" field="Numero"></p-column>
-  <p-column header="Complemento" field="Complemento"></p-column>
-  <p-column header="Bairro" field="Bairro"></p-column>
-  <p-column header="tipo" field="tipo"></p-column>
-  <p-column header="corespondencia" field="corespondencia"></p-column>
-  <p-column header="açoẽs" field="acoess"
-    ><ng-template pTemplate="body">
-      <basis-datatable-button
-        icon="edit"
-        name="endereco"
-        bTooltip="Editar"
-      ></basis-datatable-button>
-      <basis-datatable-button
-        icon="trash"
-        name="endereco"
-        bTooltip="Excluir"
-      ></basis-datatable-button>
-    </ng-template>
-  </p-column>
-</basis-datatable>
