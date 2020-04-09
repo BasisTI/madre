@@ -15,6 +15,8 @@ import { ObservacaoComponent } from './formulario-paciente/observacao/observacao
 
 import { routes } from './pacientes.routes';
 import { ListaDePacientesComponent } from './lista-de-pacientes/lista-de-pacientes.component';
+import { ProntuarioPipe } from './pipes/prontuario.pipe';
+import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ListaDePacientesComponent } from './lista-de-pacientes/lista-de-pacient
     FormularioCadastroComponent,
     ObservacaoComponent,
     ListaDePacientesComponent,
+    ProntuarioPipe,
+    CartaoSusPipe,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   exports: [],
