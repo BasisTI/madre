@@ -96,11 +96,11 @@ public class PacienteResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pacientes in body.
      */
     @GetMapping("/pacientes")
-    public ResponseEntity<List<PacienteDTO>> getAllPacientes(Pageable pageable) {
+    public ResponseEntity<Page<PacienteDTO>> getAllPacientes(Pageable pageable) {
         log.debug("REST request to get a page of Pacientes");
         Page<PacienteDTO> page = pacienteService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        return ResponseEntity.ok().headers(headers).body(page);
     }
 
     /**
