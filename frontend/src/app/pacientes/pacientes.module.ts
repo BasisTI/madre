@@ -12,7 +12,6 @@ import { TelefoneComponent } from './formulario-paciente/telefone/telefone.compo
 import { EnderecoComponent } from './formulario-paciente/endereco/endereco.component';
 import { FormularioCadastroComponent } from './formulario-paciente/formulario-cadastro.component';
 import { ObservacaoComponent } from './formulario-paciente/observacao/observacao.component';
-import { ListaDePacientes } from './lista-de-pacientes.component';
 
 import { routes } from './pacientes.routes';
 
@@ -26,7 +25,6 @@ import { routes } from './pacientes.routes';
     TelefoneComponent,
     EnderecoComponent,
     FormularioCadastroComponent,
-    ListaDePacientes,
     ObservacaoComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
