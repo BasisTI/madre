@@ -33,17 +33,16 @@
         </div>
         <div class="ui-g-12 ui-md-3"></div>
         <basis-datatable
-          type="memory"
+          type="server"
           [url]="searchUrl"
-          [value]="listaDePacientes"
-          [rows]="2"
+          [value]="paginaDePacientes"
           [rowsPerPageOptions]="[2, 5, 10, 15]"
           [showPaginationFooter]="true"
           #datatable
         >
           <p-column header="Prontuário" field="prontuario">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-              <span> {{ rowData[col.field] | prontuario }}</span>
+              <span> {{ rowData[col.field] }}</span>
             </ng-template>
           </p-column>
           <p-column header="Nome" field="nome"></p-column>
@@ -55,7 +54,7 @@
           </p-column>
           <p-column header="Nº Cartão SUS" field="numeroDoCartaoSUS">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-              <span> {{ rowData[col.field] | cartaoSUS }}</span>
+              <span> {{ rowData[col.field] }}</span>
             </ng-template>
           </p-column>
         </basis-datatable>
