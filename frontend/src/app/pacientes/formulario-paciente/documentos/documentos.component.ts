@@ -1,6 +1,6 @@
 import { ptBR } from './../../../shared/calendar.pt-br.locale';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-documentos',
@@ -16,7 +16,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class DocumentosComponent {
   documentos: FormGroup = this.fb.group({
     numeroIdentidade: [''],
-    nomeSocial: [''],
     orgaoEmissor: [''],
     uf: [''],
     data: [''],

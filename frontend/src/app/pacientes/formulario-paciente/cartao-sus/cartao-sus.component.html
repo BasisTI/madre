@@ -1,4 +1,4 @@
-<form class="ui-g ui-fluid" [formGroup]="cartaoSUS">
+<form class="ui-g ui-fluid" [formGroup]="cartaoSUS"></form>
   <div class="ui-g-12">
     <div class="ui-g-2">
       <span class="ui-float-label">
@@ -6,12 +6,12 @@
           pInputText
           formControlName="numero"
           mask="999 9999 9999 9999"
-          placeholder="____ ____ ____ ____"
           pTooltip="Informe o número do Cartão SUS (CNS)."
         ></p-inputMask>
         <label>Número</label>
       </span>
-    </div>
+
+       </div>
     <div class="ui-g-2">
       <span class="ui-float-label">
         <p-dropdown
@@ -55,10 +55,9 @@
       </span>
     </div>
   </div>
+  <legend>Se Naturalizado Brasileiro</legend>
   <div class="ui-g-12">
-    <legend>Se Naturalizado Brasileiro</legend>
-    <div class="ui-g-12">
-      <div class="ui-g-3 ui-sm-12"></div>
+    <div class="ui-g-2 ui-sm-12">
       <span class="ui-float-label">
         <p-calendar
           [locale]="localizacao"
@@ -73,13 +72,12 @@
         <label>Data de Entrada no Brasil</label>
       </span>
     </div>
-    <div class="ui-g-3 ui-sm-12">
+    <div class="ui-g-2 ui-sm-12">
       <span class="ui-float-label">
         <p-calendar
           [locale]="localizacao"
           [yearRange]="yearRange"
-          dateFormat="dd/mm/yy"
-          [maxDate]="maxDate"
+          [dateFormat]="formatoDeData"
           monthNavigator="true"
           yearNavigator="true"
           pTooltip="Informe a data de Naturalização no Brasil."
@@ -88,17 +86,17 @@
         <label>Data de Naturalização</label>
       </span>
     </div>
-    <div class="ui-g-3">
+    <div class="ui-g-2 ui-sm-12">
       <span class="ui-float-label">
         <label>Portaria</label>
         <input type="text" pTooltip="Informe a Portaria" pInputText formControlName="portaria" />
       </span>
     </div>
     <div class="ui-g-12">
-      <div class="ui-g-2">
+      <div class="ui-g-2 ui-sm-12">
         <button pButton type="submit" label="Visualizar impressão"></button>
       </div>
-      <div class="ui-g-2">
+      <div class="ui-g-2 ui-sm-12">
         <button pButton type="submit" label="Imprimir"></button>
       </div>
     </div>

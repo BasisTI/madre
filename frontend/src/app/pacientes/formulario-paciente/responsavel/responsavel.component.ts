@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-responsavel',
@@ -13,13 +13,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   ],
 })
 export class ResponsavelComponent {
-  responsavel: FormGroup = this.fb.group({
-    nomeDoResponsavel: [''],
-    grauDeParentesco: [''],
-    ddd: [''],
-    telefone: [''],
-    observacao: [''],
-  });
+  responsavel: FormGroup = this.fb.group(
+    {
+      nomeDoResponsavel: ['', [this.customRequired]],
+      grauDeParentesco: ['', [this.customRequired]],
+      ddd: ['', [this.customRequired]],
+      telefone: ['', [this.customRequired]],
+      observacao: ['', [this.customRequired]],
+    },
+    { updateOn: 'blur', validators: this.validateGroup },
+  );
 
   grausDeParentesco = [
     { label: 'Selecione', value: null },
@@ -45,6 +48,27 @@ export class ResponsavelComponent {
     { label: 'Desconhecido', value: 'desconhecido' },
     { label: 'Não Informado', value: 'naoInformado' },
   ];
+
+  customRequired(control: AbstractControl): { [key: string]: boolean } | null {
+    if (
+      control.parent &&
+      (control.parent.get('nomeDoResponsavel').value || control.parent.get('observacao').value) &&
+      !control.value
+    ) {
+      return { required: true };
+    }
+
+    return null;
+  }
+
+  validateGroup(group: FormGroup): { [key: string]: boolean } | null {
+    if (group.get('nomeDoResponsavel').value || group.get('observacao').value) {
+      group.markAsDirty();
+      return { required: true };
+    }
+
+    return null;
+  }
 
   constructor(private fb: FormBuilder) {}
 }
