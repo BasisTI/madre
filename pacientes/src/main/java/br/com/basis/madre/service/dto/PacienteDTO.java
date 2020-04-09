@@ -12,7 +12,7 @@ import br.com.basis.madre.domain.enumeration.Sexo;
  * A DTO for the {@link br.com.basis.madre.domain.Paciente} entity.
  */
 public class PacienteDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -25,7 +25,7 @@ public class PacienteDTO implements Serializable {
 
     private Instant horaDeNascimento;
 
-    
+
     private String email;
 
     private String observacao;
@@ -36,8 +36,9 @@ public class PacienteDTO implements Serializable {
     @NotNull
     private Sexo sexo;
 
-
     private Long cartaoSUSId;
+
+    private String numeroDoCartaoSUS;
 
     private Long responsavelId;
 
@@ -53,6 +54,8 @@ public class PacienteDTO implements Serializable {
 
     private Long genitoresId;
 
+    private String nomeDaMae;
+
     private Long nacionalidadeId;
 
     private Long naturalidadeId;
@@ -60,7 +63,7 @@ public class PacienteDTO implements Serializable {
     private Long racaId;
 
     private Long estadoCivilId;
-    
+
     public Long getId() {
         return id;
     }
@@ -229,6 +232,22 @@ public class PacienteDTO implements Serializable {
         this.estadoCivilId = estadoCivilId;
     }
 
+    public String getNumeroDoCartaoSUS() {
+        return numeroDoCartaoSUS;
+    }
+
+    public void setNumeroDoCartaoSUS(String numeroDoCartaoSUS) {
+        this.numeroDoCartaoSUS = numeroDoCartaoSUS;
+    }
+
+    public String getNomeDaMae() {
+        return nomeDaMae;
+    }
+
+    public void setNomeDaMae(String nomeDaMae) {
+        this.nomeDaMae = nomeDaMae;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -253,27 +272,28 @@ public class PacienteDTO implements Serializable {
     @Override
     public String toString() {
         return "PacienteDTO{" +
-            "id=" + getId() +
-            ", nome='" + getNome() + "'" +
-            ", nomeSocial='" + getNomeSocial() + "'" +
-            ", dataDeNascimento='" + getDataDeNascimento() + "'" +
-            ", horaDeNascimento='" + getHoraDeNascimento() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", observacao='" + getObservacao() + "'" +
-            ", grauDeInstrucao='" + getGrauDeInstrucao() + "'" +
-            ", sexo='" + getSexo() + "'" +
-            ", cartaoSUSId=" + getCartaoSUSId() +
-            ", responsavelId=" + getResponsavelId() +
-            ", documentoId=" + getDocumentoId() +
-            ", certidaoId=" + getCertidaoId() +
-            ", ocupacaoId=" + getOcupacaoId() +
-            ", religiaoId=" + getReligiaoId() +
-            ", etniaId=" + getEtniaId() +
-            ", genitoresId=" + getGenitoresId() +
-            ", nacionalidadeId=" + getNacionalidadeId() +
-            ", naturalidadeId=" + getNaturalidadeId() +
-            ", racaId=" + getRacaId() +
-            ", estadoCivilId=" + getEstadoCivilId() +
-            "}";
+            "id=" + id +
+            ", nome='" + nome + '\'' +
+            ", nomeSocial='" + nomeSocial + '\'' +
+            ", dataDeNascimento=" + dataDeNascimento +
+            ", horaDeNascimento=" + horaDeNascimento +
+            ", email='" + email + '\'' +
+            ", observacao='" + observacao + '\'' +
+            ", grauDeInstrucao=" + grauDeInstrucao +
+            ", sexo=" + sexo +
+            ", cartaoSUSId=" + cartaoSUSId +
+            ", numeroDoCartaoSUS='" + numeroDoCartaoSUS + '\'' +
+            ", responsavelId=" + responsavelId +
+            ", documentoId=" + documentoId +
+            ", certidaoId=" + certidaoId +
+            ", ocupacaoId=" + ocupacaoId +
+            ", religiaoId=" + religiaoId +
+            ", etniaId=" + etniaId +
+            ", genitoresId=" + genitoresId +
+            ", nacionalidadeId=" + nacionalidadeId +
+            ", naturalidadeId=" + naturalidadeId +
+            ", racaId=" + racaId +
+            ", estadoCivilId=" + estadoCivilId +
+            '}';
     }
 }

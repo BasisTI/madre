@@ -13,6 +13,7 @@ import org.mapstruct.*;
 public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
 
     @Mapping(source = "cartaoSUS.id", target = "cartaoSUSId")
+    @Mapping(source = "cartaoSUS.numero", target = "numeroDoCartaoSUS")
     @Mapping(source = "responsavel.id", target = "responsavelId")
     @Mapping(source = "documento.id", target = "documentoId")
     @Mapping(source = "certidao.id", target = "certidaoId")
@@ -20,6 +21,7 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "religiao.id", target = "religiaoId")
     @Mapping(source = "etnia.id", target = "etniaId")
     @Mapping(source = "genitores.id", target = "genitoresId")
+    @Mapping(source = "genitores.nomeDaMae", target = "nomeDaMae")
     @Mapping(source = "nacionalidade.id", target = "nacionalidadeId")
     @Mapping(source = "naturalidade.id", target = "naturalidadeId")
     @Mapping(source = "raca.id", target = "racaId")
