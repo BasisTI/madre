@@ -1,24 +1,26 @@
-<p-fieldset legend="Dados Pessoais" [toggleable]="true">
-  <app-dados-pessoais></app-dados-pessoais>
-</p-fieldset>
-<p-fieldset legend="Contatos do Paciente" [toggleable]="true">
-  <app-telefone></app-telefone>
-</p-fieldset>
-<p-fieldset legend="Endereço" [toggleable]="true">
-  <app-endereco></app-endereco>
-</p-fieldset>
-<p-fieldset legend="Responsável" [toggleable]="true">
-  <app-responsavel></app-responsavel>
-</p-fieldset>
-<p-fieldset legend="Documentos" [toggleable]="true">
-  <app-documentos></app-documentos>
-</p-fieldset>
-<p-fieldset legend="Certidão" [toggleable]="true">
-  <app-certidao></app-certidao>
-</p-fieldset>
-<p-fieldset legend="Cartão SUS" [toggleable]="true">
-  <app-cartao-sus></app-cartao-sus>
-</p-fieldset>
-<p-fieldset legend="Observação">
-  <app-observacao></app-observacao>
-</p-fieldset>
+<p-accordion>
+  <p-accordionTab header="Dados Pessoais">
+    <app-dados-pessoais></app-dados-pessoais>
+  </p-accordionTab>
+  <p-accordionTab header="Contatos do Paciente">
+    <app-telefone></app-telefone>
+  </p-accordionTab>
+  <p-accordionTab header="Endereço">
+    <app-endereco></app-endereco>
+  </p-accordionTab>
+  <p-accordionTab header="Responsável">
+    <app-responsavel></app-responsavel>
+  </p-accordionTab>
+  <p-accordionTab header="Documentos">
+    <app-documentos></app-documentos>
+  </p-accordionTab>
+  <p-accordionTab header="Certidão">
+    <app-certidao></app-certidao>
+  </p-accordionTab>
+  <p-accordionTab header="Cartão SUS">
+    <app-cartao-sus></app-cartao-sus>
+  </p-accordionTab>
+  <p-accordionTab header="Observação">
+    <app-observacao></app-observacao>
+  </p-accordionTab>
+</p-accordion>
