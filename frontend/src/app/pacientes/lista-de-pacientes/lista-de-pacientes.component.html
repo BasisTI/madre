@@ -1,23 +1,80 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
-    <basis-datatable [value]="listaDePacientes">
-      <p-column header="Prontuário" field="prontuario">
-        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-          <span> {{ rowData[col.field] | prontuario }}</span>
-        </ng-template>
-      </p-column>
-      <p-column header="Nome" field="nome"></p-column>
-      <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
-      <p-column header="Data de Nascimento" field="dataDeNascimento">
-        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-          <span> {{ rowData[col.field] | date: 'dd/MM/y' }}</span>
-        </ng-template>
-      </p-column>
-      <p-column header="Nº Cartão SUS" field="numeroDoCartaoSUS">
-        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-          <span> {{ rowData[col.field] | cartaoSUS }}</span>
-        </ng-template>
-      </p-column>
-    </basis-datatable>
+    <div class="card card-w-title">
+      <h1>Pacientes</h1>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12 ui-fluid">
+          <span class="md-inputfield" style="margin-top: 5px;">
+            <input type="text" pInputText class="ui-inputtext" name="filtro" />
+            <label>Nome paciente</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-g-12 ui-md-6">
+            <button
+              pButton
+              type="button"
+              label="Pesquisar"
+              icon="ui-icon-search"
+              bTooltip="Pesquisar paciente por nome."
+            ></button>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <button
+              pButton
+              type="button"
+              label="Cadastrar"
+              icon="ui-icon-add"
+              routerLink="/pacientes/cadastro"
+              bTooltip="Cadastrar novo paciente."
+            ></button>
+          </div>
+        </div>
+
+        <!-- <button
+                pButton
+                type="button"
+                label="Pesquisar"
+                icon="ui-icon-search"
+                bTooltip="Pesquisar paciente por nome."
+              ></button>
+              <button
+                pButton
+                type="button"
+                label="Cadastrar"
+                icon="ui-icon-add"
+                routerLink="/pacientes/cadastro"
+                bTooltip="Cadastrar novo paciente."
+              ></button> -->
+        <div class="ui-g-12 ui-md-3"></div>
+        <basis-datatable
+          type="memory"
+          [url]="searchUrl"
+          [value]="listaDePacientes"
+          [rows]="2"
+          [rowsPerPageOptions]="[2, 5, 10, 15]"
+          [showPaginationFooter]="true"
+          #datatable
+        >
+          <p-column header="Prontuário" field="prontuario">
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+              <span> {{ rowData[col.field] | prontuario }}</span>
+            </ng-template>
+          </p-column>
+          <p-column header="Nome" field="nome"></p-column>
+          <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
+          <p-column header="Data de Nascimento" field="dataDeNascimento">
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+              <span> {{ rowData[col.field] | date: 'dd/MM/y' }}</span>
+            </ng-template>
+          </p-column>
+          <p-column header="Nº Cartão SUS" field="numeroDoCartaoSUS">
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+              <span> {{ rowData[col.field] | cartaoSUS }}</span>
+            </ng-template>
+          </p-column>
+        </basis-datatable>
+      </div>
+    </div>
   </div>
 </div>
