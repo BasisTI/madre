@@ -14,6 +14,7 @@ import { FormularioCadastroComponent } from './formulario-paciente/formulario-ca
 import { ObservacaoComponent } from './formulario-paciente/observacao/observacao.component';
 
 import { routes } from './pacientes.routes';
+import { ListaDePacientesComponent } from './lista-de-pacientes/lista-de-pacientes.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { routes } from './pacientes.routes';
     EnderecoComponent,
     FormularioCadastroComponent,
     ObservacaoComponent,
+    ListaDePacientesComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   exports: [],
