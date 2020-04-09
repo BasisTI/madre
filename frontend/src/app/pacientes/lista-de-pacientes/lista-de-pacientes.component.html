@@ -1,1 +1,23 @@
-<p>lista-de-pacientes works!</p>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <basis-datatable [value]="listaDePacientes">
+      <p-column header="Prontuário" field="prontuario">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+          <span> {{ rowData[col.field] | prontuario }}</span>
+        </ng-template>
+      </p-column>
+      <p-column header="Nome" field="nome"></p-column>
+      <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
+      <p-column header="Data de Nascimento" field="dataDeNascimento">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+          <span> {{ rowData[col.field] | date: 'dd/MM/y' }}</span>
+        </ng-template>
+      </p-column>
+      <p-column header="Nº Cartão SUS" field="numeroDoCartaoSUS">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+          <span> {{ rowData[col.field] | cartaoSUS }}</span>
+        </ng-template>
+      </p-column>
+    </basis-datatable>
+  </div>
+</div>
