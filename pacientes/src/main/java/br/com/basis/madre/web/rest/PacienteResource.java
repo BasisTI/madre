@@ -2,6 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.PacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
+import br.com.basis.madre.service.projection.PacienteSummary;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -53,18 +54,22 @@ public class PacienteResource {
      * {@code POST  /pacientes} : Create a new paciente.
      *
      * @param pacienteDTO the pacienteDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pacienteDTO, or with status {@code 400 (Bad Request)} if the paciente has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
+     * pacienteDTO, or with status {@code 400 (Bad Request)} if the paciente has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/pacientes")
-    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody PacienteDTO pacienteDTO) throws URISyntaxException {
+    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody PacienteDTO pacienteDTO)
+        throws URISyntaxException {
         log.debug("REST request to save Paciente : {}", pacienteDTO);
         if (pacienteDTO.getId() != null) {
-            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new paciente cannot already have an ID",
+                ENTITY_NAME, "idexists");
         }
         PacienteDTO result = pacienteService.save(pacienteDTO);
         return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
             .body(result);
     }
 
@@ -72,34 +77,52 @@ public class PacienteResource {
      * {@code PUT  /pacientes} : Updates an existing paciente.
      *
      * @param pacienteDTO the pacienteDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated pacienteDTO,
-     * or with status {@code 400 (Bad Request)} if the pacienteDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the pacienteDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
+     * pacienteDTO, or with status {@code 400 (Bad Request)} if the pacienteDTO is not valid, or
+     * with status {@code 500 (Internal Server Error)} if the pacienteDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/pacientes")
-    public ResponseEntity<PacienteDTO> updatePaciente(@Valid @RequestBody PacienteDTO pacienteDTO) throws URISyntaxException {
+    public ResponseEntity<PacienteDTO> updatePaciente(@Valid @RequestBody PacienteDTO pacienteDTO)
+        throws URISyntaxException {
         log.debug("REST request to update Paciente : {}", pacienteDTO);
         if (pacienteDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         PacienteDTO result = pacienteService.save(pacienteDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, pacienteDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+                pacienteDTO.getId().toString()))
             .body(result);
+    }
+
+    /**
+     * {@code GET /pacientes/custom} : retorna uma lista de pacientes.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pacientes in
+     * body.
+     */
+    @GetMapping("/pacientes/summary")
+    public ResponseEntity<Page<PacienteSummary>> getAllPacientesSummaries(Pageable pageable) {
+        log.debug("REST request to get a custom page of Pacientes");
+        Page<PacienteSummary> page = pacienteService.getPacienteSummary(pageable);
+        return ResponseEntity.ok().body(page);
     }
 
     /**
      * {@code GET  /pacientes} : get all the pacientes.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pacientes in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pacientes in
+     * body.
      */
     @GetMapping("/pacientes")
     public ResponseEntity<Page<PacienteDTO>> getAllPacientes(Pageable pageable) {
         log.debug("REST request to get a page of Pacientes");
         Page<PacienteDTO> page = pacienteService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page);
     }
 
@@ -107,7 +130,8 @@ public class PacienteResource {
      * {@code GET  /pacientes/:id} : get the "id" paciente.
      *
      * @param id the id of the pacienteDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the pacienteDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
+     * pacienteDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/pacientes/{id}")
     public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id) {
@@ -126,22 +150,25 @@ public class PacienteResource {
     public ResponseEntity<Void> deletePaciente(@PathVariable Long id) {
         log.debug("REST request to delete Paciente : {}", id);
         pacienteService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil
+            .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * {@code SEARCH  /_search/pacientes?query=:query} : search for the paciente corresponding
-     * to the query.
+     * {@code SEARCH  /_search/pacientes?query=:query} : search for the paciente corresponding to
+     * the query.
      *
-     * @param query the query of the paciente search.
+     * @param query    the query of the paciente search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
     @GetMapping("/_search/pacientes")
-    public ResponseEntity<List<PacienteDTO>> searchPacientes(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<PacienteDTO>> searchPacientes(@RequestParam String query,
+        Pageable pageable) {
         log.debug("REST request to search for a page of Pacientes for query {}", query);
         Page<PacienteDTO> page = pacienteService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }
