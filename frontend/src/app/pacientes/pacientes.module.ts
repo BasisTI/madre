@@ -17,6 +17,7 @@ import { routes } from './pacientes.routes';
 import { ListaDePacientesComponent } from './lista-de-pacientes/lista-de-pacientes.component';
 import { ProntuarioPipe } from './pipes/prontuario.pipe';
 import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
+import { PacientesService } from './pacientes.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
     ProntuarioPipe,
     CartaoSusPipe,
   ],
+  providers: [PacientesService],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   exports: [],
 })
