@@ -105,6 +105,6 @@ public class PacienteService {
     }
 
     public Page<PacienteSummary> getPacienteSummary(Pageable pageable) {
-        return pacienteRepository.getPacienteSummary(pageable);
+        return pacienteRepository.findAllProjectedBy(pageable);
     }
 }
