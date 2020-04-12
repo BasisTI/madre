@@ -32,29 +32,23 @@
           </div>
         </div>
         <div class="ui-g-12 ui-md-3"></div>
-        <basis-datatable
-          type="server"
-          [url]="searchUrl"
-          [value]="paginaDePacientes"
-          [rowsPerPageOptions]="[2, 5, 10, 15]"
-          [showPaginationFooter]="true"
-          #datatable
-        >
+        <basis-datatable type="memory" [value]="pacientes">
           <p-column header="Prontuário" field="prontuario">
-            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-              <span> {{ rowData[col.field] }}</span>
-            </ng-template>
+            <!-- <ng-template let-data="rowData" pTemplate="body">
+              {{ data['prontuario'] | prontuario }}
+            </ng-template> -->
           </p-column>
           <p-column header="Nome" field="nome"></p-column>
-          <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
-          <p-column header="Data de Nascimento" field="dataDeNascimento">
-            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-              <span> {{ rowData[col.field] | date: 'dd/MM/y' }}</span>
+          <p-column header="Nome da Mãe" field="genitores">
+            <ng-template let-data="rowData" pTemplate="body">
+              {{ data['genitores'].nomeDaMae }}
             </ng-template>
           </p-column>
-          <p-column header="Nº Cartão SUS" field="numeroDoCartaoSUS">
-            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-              <span> {{ rowData[col.field] | cartaoSUS }}</span>
+          <p-column header="Data de Nascimento" field="dataDeNascimento"> </p-column>
+          <p-column header="Nº Cartão SUS" field="cartaoSUS">
+            <ng-template let-data="rowData" pTemplate="body">
+              {{ data['cartaoSUS'].numero }}
+              <!-- {{ data['cartaoSUS'].numero | cartaoSUS}} -->
             </ng-template>
           </p-column>
         </basis-datatable>

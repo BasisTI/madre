@@ -96,16 +96,9 @@ public class PacienteResource {
             .body(result);
     }
 
-    /**
-     * {@code GET /pacientes/custom} : retorna uma lista de pacientes.
-     *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pacientes in
-     * body.
-     */
-    @GetMapping("/pacientes/summary")
+    @GetMapping("/pacientes/lista-de-pacientes")
     public ResponseEntity<Page<PacienteSummary>> getAllPacientesSummaries(Pageable pageable) {
-        log.debug("REST request to get a custom page of Pacientes");
+        log.debug("REST request to get a custom page of PacientesSummaries");
         Page<PacienteSummary> page = pacienteService.getPacienteSummary(pageable);
         return ResponseEntity.ok().body(page);
     }
