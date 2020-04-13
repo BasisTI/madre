@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PacienteSummary } from './interfaces/paciente.summary';
+import { Pageable } from '../shared/pageable';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PacientesService {
-  baseUrl = 'pacientes/api';
+  private readonly apiUrl = 'pacientes/api/pacientes';
 
   constructor(private httpService: HttpClient) {}
 
-  getListaDePacientes(): Promise<any> {
-    return this.httpService.get(`${this.baseUrl}/pacientes`).toPromise();
+  getListaDePacientes(): Observable<Pageable<PacienteSummary>> {
+    return this.httpService.get<Pageable<PacienteSummary>>(`${this.apiUrl}/lista-de-pacientes`);
   }
 }

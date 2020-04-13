@@ -1,21 +1,20 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.mapper.PacienteMapper;
+import br.com.basis.madre.service.projection.PacienteSummary;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link Paciente}.
@@ -32,7 +31,8 @@ public class PacienteService {
 
     private final PacienteSearchRepository pacienteSearchRepository;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository) {
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper,
+        PacienteSearchRepository pacienteSearchRepository) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
@@ -93,7 +93,7 @@ public class PacienteService {
     /**
      * Search for the paciente corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -102,5 +102,9 @@ public class PacienteService {
         log.debug("Request to search for a page of Pacientes for query {}", query);
         return pacienteSearchRepository.search(queryStringQuery(query), pageable)
             .map(pacienteMapper::toDto);
+    }
+
+    public Page<PacienteSummary> getPacienteSummary(Pageable pageable) {
+        return pacienteRepository.findAllProjectedBy(pageable);
     }
 }
