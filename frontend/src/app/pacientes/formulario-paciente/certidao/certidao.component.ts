@@ -21,20 +21,7 @@ import { ptBR } from '../../../shared/calendar.pt-br.locale';
     ],
 })
 export class CertidaoComponent {
-<<<<<<< HEAD
     @Input() certidao: FormGroup;
-=======
-    certidao: FormGroup = this.fb.group({
-        registroDeNascimento: [''],
-        tipoCertidao: [''],
-        nomeDoCartorio: [''],
-        livro: [''],
-        folhas: [''],
-        termo: [''],
-        dataDeEmissao: [''],
-        numeroDaDN: [''],
-    });
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 
     listaCertidao = [
         { label: 'Selecione' },

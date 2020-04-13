@@ -13,20 +13,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
     ],
 })
 export class ResponsavelComponent {
-<<<<<<< HEAD
     @Input() responsavel: FormGroup;
-=======
-    responsavel: FormGroup = this.fb.group(
-        {
-            nomeDoResponsavel: ['', [this.customRequired]],
-            grauDeParentesco: ['', [this.customRequired]],
-            ddd: ['', [this.customRequired]],
-            telefone: ['', [this.customRequired]],
-            observacao: ['', [this.customRequired]],
-        },
-        { updateOn: 'blur', validators: this.validateGroup },
-    );
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 
     grausDeParentesco = [
         { label: 'Selecione', value: null },
@@ -53,30 +40,5 @@ export class ResponsavelComponent {
         { label: 'Não Informado', value: 'naoInformado' },
     ];
 
-<<<<<<< HEAD
-=======
-    customRequired(control: AbstractControl): { [key: string]: boolean } | null {
-        if (
-            control.parent &&
-            (control.parent.get('nomeDoResponsavel').value ||
-                control.parent.get('observacao').value) &&
-            !control.value
-        ) {
-            return { required: true };
-        }
-
-        return null;
-    }
-
-    validateGroup(group: FormGroup): { [key: string]: boolean } | null {
-        if (group.get('nomeDoResponsavel').value || group.get('observacao').value) {
-            group.markAsDirty();
-            return { required: true };
-        }
-
-        return null;
-    }
-
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
     constructor(private fb: FormBuilder) {}
 }

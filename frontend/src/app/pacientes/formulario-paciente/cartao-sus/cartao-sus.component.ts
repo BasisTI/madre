@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import { ChartModule } from 'primeng/chart';
 import { Component, Input } from '@angular/core';
-=======
-import { Component } from '@angular/core';
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
@@ -26,20 +22,7 @@ import { ptBR } from '../../../shared/calendar.pt-br.locale';
     ],
 })
 export class CartaoSusComponent {
-<<<<<<< HEAD
     @Input() cartaoSUS: FormGroup;
-=======
-    cartaoSUS: FormGroup = this.fb.group({
-        numero: ['', [Validators.required, this.validarNumero]],
-        justificativa: [''],
-        motivoCadastro: [''],
-        docReferencia: [''],
-        cartaoNacional: [''],
-        dataDeEntrada: [''],
-        dataDeNaturalizacao: [''],
-        portaria: [''],
-    });
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 
     listaAusenciaCns = [
         { label: 'Selecione' },
@@ -77,11 +60,7 @@ export class CartaoSusComponent {
         { label: 'Quantificação Carga Viral HIV', value: 'quantHiv' },
         { label: 'Demais proc. que exigem autorização prévia', value: 'autPrevia' },
         { label: 'Cirurgia Eletivas de Transplante', value: 'cirurgiaTranplante' },
-<<<<<<< HEAD
         { label: 'Demais Cirurgias Eletivas', value: 'tuberculos' },
-=======
-        { label: 'Demais Cirurgias Eletivas', value: 'eletivas' },
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
         { label: 'Tuberculose', value: 'tuberculose' },
         { label: 'Outros', value: 'outros' },
     ];
@@ -90,27 +69,5 @@ export class CartaoSusComponent {
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
 
-<<<<<<< HEAD
-=======
-    validarNumero(control: AbstractControl) {
-        let cns = control.value;
-        cns = cns.replace(/\D/g, '');
-
-        if (cns.length !== 15) {
-            return { customCns: true };
-        }
-
-        const soma =
-            cns
-                .split('')
-                .reduce(
-                    (somaParcial: number, atual: string, posicao: number) =>
-                        somaParcial + parseInt(atual, 10) * (15 - posicao),
-                    0,
-                ) % 11;
-
-        return soma % 11 === 0 ? null : { customCns: true };
-    }
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
     constructor(private fb: FormBuilder) {}
 }

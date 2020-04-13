@@ -27,7 +27,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             religiao: [''],
             email: [''],
         }),
-<<<<<<< HEAD
         telefones: this.fb.group({
             tipo: [''],
             telefone: ['', Validators.required],
@@ -91,8 +90,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         observacao: this.fb.group({
             valor: [],
         }),
-=======
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
     });
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
@@ -102,16 +99,12 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'Cadastro de Paciente' },
         ]);
-<<<<<<< HEAD
         console.log(this.formularioDeCadastro);
-=======
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
     }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
     }
-<<<<<<< HEAD
 
     cadastrar() {
         console.log();
@@ -138,8 +131,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
 
         return null;
     }
-
-    // fica calmo
 
     customRequired1(control: AbstractControl): { [key: string]: boolean } | null {
         if (control.parent && control.parent.get('numeroIdentidade').value && !control.value) {
@@ -174,7 +165,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
 
         return null;
     }
-    // fica mais calmo
+
     validarNumero(control: AbstractControl) {
         let cns = control.value;
         cns = cns.replace(/\D/g, '');
@@ -191,6 +182,4 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
 
         return soma % 11 === 0 ? null : { customCns: true };
     }
-=======
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 }

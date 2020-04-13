@@ -14,11 +14,5 @@ import { FormControl, FormGroup } from '@angular/forms';
     ],
 })
 export class ObservacaoComponent {
-<<<<<<< HEAD
     @Input() observacao: FormGroup;
-=======
-    observacao = new FormGroup({
-        valor: new FormControl(''),
-    });
->>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 }
