@@ -4,18 +4,18 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: '/api',
-  auth: {
-    baseUrl: '',
-    authUrl: '/login/cas',
-    loginUrl: '/login/cas',
-    logoutUrl: '/cas/logout',
-    detailsUrl: '/api/user/details',
-    tokenValidationUrl: '/api/token/validate',
-    storage: localStorage,
-    tokenStorageIndex: 'token',
-    userStorageIndex: 'user',
-    loginSuccessRoute: ''
-  }
+    production: false,
+    apiUrl: '/api',
+    auth: {
+        baseUrl: '',
+        authUrl: '/login/cas',
+        loginUrl: '/login/cas',
+        logoutUrl: '/cas/logout',
+        detailsUrl: '/api/user/details',
+        tokenValidationUrl: '/api/token/validate',
+        storage: localStorage,
+        tokenStorageIndex: 'token',
+        userStorageIndex: 'user',
+        loginSuccessRoute: '',
+    },
 };

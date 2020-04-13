@@ -20,22 +20,22 @@ import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 import { PacientesService } from './pacientes.service';
 
 @NgModule({
-  declarations: [
-    DadosPessoaisComponent,
-    ResponsavelComponent,
-    DocumentosComponent,
-    CertidaoComponent,
-    CartaoSusComponent,
-    TelefoneComponent,
-    EnderecoComponent,
-    FormularioCadastroComponent,
-    ObservacaoComponent,
-    ListaDePacientesComponent,
-    ProntuarioPipe,
-    CartaoSusPipe,
-  ],
-  providers: [PacientesService],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  exports: [],
+    declarations: [
+        DadosPessoaisComponent,
+        ResponsavelComponent,
+        DocumentosComponent,
+        CertidaoComponent,
+        CartaoSusComponent,
+        TelefoneComponent,
+        EnderecoComponent,
+        FormularioCadastroComponent,
+        ObservacaoComponent,
+        ListaDePacientesComponent,
+        ProntuarioPipe,
+        CartaoSusPipe,
+    ],
+    providers: [PacientesService],
+    imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+    exports: [],
 })
 export class PacientesModule {}
