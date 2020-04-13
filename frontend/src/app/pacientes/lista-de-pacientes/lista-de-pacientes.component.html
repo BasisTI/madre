@@ -47,8 +47,7 @@
           <p-column header="Data de Nascimento" field="dataDeNascimento"> </p-column>
           <p-column header="Nº Cartão SUS" field="cartaoSUS">
             <ng-template let-data="rowData" pTemplate="body">
-              {{ data['cartaoSUS'].numero }}
-              <!-- {{ data['cartaoSUS'].numero | cartaoSUS}} -->
+              {{ data['cartaoSUS'].numero | cartaoSUS }}
             </ng-template>
           </p-column>
         </basis-datatable>
