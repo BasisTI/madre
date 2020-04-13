@@ -1,103 +1,114 @@
-<form [formGroup]="endereco" (ngSubmit)="adicionar()">
-  <div class="ui-g ui-fluid">
-    <div class="ui-g-12">
-      <div class="ui-g-5 ui-sm-12">
-        <span class="ui-float-label">
-          <p-dropdown
-            [options]="municipios"
-            formControlName="municipio"
-            filter="true"
-            pTooltip="Imforme um municipio."
-          ></p-dropdown>
-          <label>Municipio</label>
-        </span>
-      </div>
-      <div class="ui-g-5 ui-sm-12">
-        <span class="ui-float-label">
-          <p-inputMask
-            placeholder="__.___-___"
-            mask="99.999-999"
-            formControlName="CEP"
-            pTooltip="Informe o CEP."
-          ></p-inputMask>
-          <label>CEP</label>
-        </span>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-2 ui-sm-12">
-        <span class="ui-float-label">
-          <p-dropdown [options]="UF" formControlName="UF"></p-dropdown>
-          <label>UF</label>
-        </span>
-      </div>
-      <div class="ui-g-4 ui-sm-12">
-        <span class="ui-float-label">
-          <input
-            pInputText
-            type="text"
-            formControlName="logradouro"
-            pTooltip="Informe o logradouro."
-          />
-          <Label>Logradouro</Label>
-        </span>
-      </div>
-      <div class="ui-g-4">
-        <span class="ui-float-label">
-          <p-dropdown
-            [options]="opcao"
-            formControlName="tipo"
-            pTooltip="Informe o tipo de endereço."
-          ></p-dropdown>
-          <label>Tipo de endereço</label>
-        </span>
-      </div>
-    </div>
-    <div class="ui-g-12 ui-fluid">
-      <div class="ui-g-3">
-        <span class="ui-float-label">
-          <input pInputText type="text" formControlName="Numero" pTooltip="Informe o Numero." />
-          <Label>Numero</Label>
-        </span>
-      </div>
-      <div class="ui-g-4">
-        <span class="ui-float-label">
-          <input
-            pInputText
-            type="text"
-            formControlName="Complemento"
-            pTooltip="Informe o Complemento."
-          />
-          <label>Complemento</label>
-        </span>
-      </div>
-      <div class="ui-g-3">
-        <span class="ui-float-label">
-          <input pInputText type="text" formControlName="Bairro" pTooltip="Informe o Bairro." />
-          <label>Bairro</label>
-        </span>
-      </div>
+<div [formGroup]="enderecos" (ngSubmit)="adicionar()">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        [options]="municipios"
+                        formControlName="municipio"
+                        filter="true"
+                        pTooltip="Imforme um municipio."
+                    ></p-dropdown>
+                    <label>Municipio</label>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        placeholder="__.___-___"
+                        mask="99.999-999"
+                        formControlName="CEP"
+                        pTooltip="Informe o CEP."
+                    ></p-inputMask>
+                    <label>CEP</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown [options]="UF" formControlName="UF"></p-dropdown>
+                    <label>UF</label>
+                </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="logradouro"
+                        pTooltip="Informe o logradouro."
+                    />
+                    <Label>Logradouro</Label>
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        [options]="opcao"
+                        formControlName="tipo"
+                        pTooltip="Informe o tipo de endereço."
+                    ></p-dropdown>
+                    <label>Tipo de endereço</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-3">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="Numero"
+                        pTooltip="Informe o Numero."
+                    />
+                    <Label>Numero</Label>
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="Complemento"
+                        pTooltip="Informe o Complemento."
+                    />
+                    <label>Complemento</label>
+                </span>
+            </div>
+            <div class="ui-g-3">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="Bairro"
+                        pTooltip="Informe o Bairro."
+                    />
+                    <label>Bairro</label>
+                </span>
+            </div>
 
-      <div class="ui-g-3">
-        <p-triStateCheckbox
-          name="corespondencia"
-          formControlName="corespondencia"
-          label="corespondencia"
-        ></p-triStateCheckbox>
-      </div>
-      <div class="ui-g-3">
-        <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
-      </div>
-    </div>
-    <p-button label="adicionar" type="submit" [disabled]="endereco.invalid"></p-button>
+            <div class="ui-g-3">
+                <p-triStateCheckbox
+                    name="corespondencia"
+                    formControlName="corespondencia"
+                    label="corespondencia"
+                ></p-triStateCheckbox>
+            </div>
+            <div class="ui-g-3">
+                <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
+            </div>
+        </div>
+        <!-- [disabled]="endereco.invalid" -->
+        <p-button label="adicionar" type="submit"></p-button>
 
-    <basis-datatable type="memory" [value]="fakeData">
-      <p-column header="municipio" field="municipio"></p-column>
-      <p-column header="CEP" field="CEP"></p-column>
-      <p-column header="UF" field="UF"></p-column>
-      <p-column header="Bairro" field="Bairro"></p-column>
-      <p-column header="tipo" field="tipo"></p-column>
-      <p-column header="corespondencia" field="corespondencia"></p-column>
-    </basis-datatable>
-  </div>
-</form>
+        <basis-datatable type="memory" [value]="fakeData">
+            <p-column header="municipio" field="municipio"></p-column>
+            <p-column header="CEP" field="CEP"></p-column>
+            <p-column header="UF" field="UF"></p-column>
+            <p-column header="Bairro" field="Bairro"></p-column>
+            <p-column header="tipo" field="tipo"></p-column>
+            <p-column header="corespondencia" field="corespondencia"></p-column>
+        </basis-datatable>
+    </div>
+</div>

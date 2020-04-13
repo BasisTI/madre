@@ -1,63 +1,63 @@
-<form [formGroup]="telefone" (ngSubmit)="adicionar()">
-  <div class="ui-g ui-fluid">
-    <div class="ui-g-12">
-      <div class="ui-g-5 ui-sm-12">
-        <span class="ui-float-label">
-          <p-inputMask
-            pInputText
-            mask="(99)"
-            type="text"
-            placeholder="(__)"
-            formControlName="DDD"
-            pTooltip="Informe o DDD."
-          ></p-inputMask>
-          <label>DDD</label>
-        </span>
-      </div>
-      <div class="ui-g-5 ui-sm-12">
-        <span class="ui-float-label">
-          <p-inputMask
-            pInputText
-            placeholder="_ ____-____"
-            mask="9 9999-9999"
-            type="text"
-            formControlName="telefone"
-            pTooltip="Informe o telefone."
-          ></p-inputMask>
-          <label>Telefone</label>
-        </span>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-5 ui-sm-12">
-        <span class="ui-float-label">
-          <p-dropdown
-            [options]="opcao"
-            formControlName="tipo"
-            pTooltip="Informe o tipo de telefone."
-          ></p-dropdown>
-          <label>Tipo de telefone</label>
-        </span>
-      </div>
-      <div class="ui-g-5 ui-sm-12">
-        <span class="ui-float-label">
-          <input
-            pInputText
-            type="text"
-            formControlName="observacao"
-            pTooltip="Informe o observação."
-          />
-          <label>Observação</label>
-        </span>
-      </div>
-    </div>
-    <p-button label="adicionar" type="submit" [disabled]="telefone.invalid"></p-button>
+<div [formGroup]="telefones" (ngSubmit)="adicionar()">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        pInputText
+                        mask="(99)"
+                        type="text"
+                        placeholder="(__)"
+                        formControlName="DDD"
+                        pTooltip="Informe o DDD."
+                    ></p-inputMask>
+                    <label>DDD</label>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        pInputText
+                        placeholder="_ ____-____"
+                        mask="9 9999-9999"
+                        type="text"
+                        formControlName="telefone"
+                        pTooltip="Informe o telefone."
+                    ></p-inputMask>
+                    <label>Telefone</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        [options]="opcao"
+                        formControlName="tipo"
+                        pTooltip="Informe o tipo de telefone."
+                    ></p-dropdown>
+                    <label>Tipo de telefone</label>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="observacao"
+                        pTooltip="Informe o observação."
+                    />
+                    <label>Observação</label>
+                </span>
+            </div>
+        </div>
+        <p-button label="adicionar" type="submit" [disabled]="telefone.invalid"></p-button>
 
-    <basis-datatable type="memory" [value]="fakeData">
-      <p-column header="tipo" field="tipo"></p-column>
-      <p-column header="DDD" field="DDD"></p-column>
-      <p-column header="telefone" field="telefone"></p-column>
-      <p-column header="observação" field="observacao"></p-column>
-    </basis-datatable>
-  </div>
-</form>
+        <basis-datatable type="memory" [value]="fakeData">
+            <p-column header="tipo" field="tipo"></p-column>
+            <p-column header="DDD" field="DDD"></p-column>
+            <p-column header="telefone" field="telefone"></p-column>
+            <p-column header="observação" field="observacao"></p-column>
+        </basis-datatable>
+    </div>
+</div>
