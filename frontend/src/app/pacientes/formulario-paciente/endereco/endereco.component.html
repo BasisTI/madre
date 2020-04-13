@@ -1,4 +1,4 @@
-<form [formGroup]="endereco">
+<form [formGroup]="endereco" (ngSubmit)="adicionar()">
   <div class="ui-g ui-fluid">
     <div class="ui-g-12">
       <div class="ui-g-5 ui-sm-12">
@@ -33,12 +33,12 @@
       </div>
       <div class="ui-g-4 ui-sm-12">
         <span class="ui-float-label">
-          <p-dropdown
-            [options]="logradorus"
+          <input
+            pInputText
+            type="text"
             formControlName="logradouro"
-            filter="true"
             pTooltip="Informe o logradouro."
-          ></p-dropdown>
+          />
           <Label>Logradouro</Label>
         </span>
       </div>
@@ -80,18 +80,16 @@
 
       <div class="ui-g-3">
         <p-triStateCheckbox
+          name="corespondencia"
           formControlName="corespondencia"
           label="corespondencia"
         ></p-triStateCheckbox>
       </div>
       <div class="ui-g-3">
-        <p-triStateCheckbox
-          formControlName="corespondencia"
-          label="Não Localizei o Endereço"
-        ></p-triStateCheckbox>
+        <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
       </div>
     </div>
-    <p-button label="adicionar"></p-button>
+    <p-button label="adicionar" type="submit" [disabled]="endereco.invalid"></p-button>
 
     <basis-datatable type="memory" [value]="fakeData">
       <p-column header="municipio" field="municipio"></p-column>
