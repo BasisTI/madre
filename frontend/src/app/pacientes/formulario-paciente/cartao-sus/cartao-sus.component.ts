@@ -91,58 +91,5 @@ export class CartaoSusComponent {
 
     return soma % 11 === 0 ? null : { customCns: true };
   }
-
-  //   validarNumero(control: AbstractControl) {
-  //     let cns = control.value;
-  //     cns = cns.replace(/\D/g, '');
-
-  //     if (cns.length !== 15) {
-  //       return { customCns: true };
-  //     }
-
-  //     const primeiroDigito = cns.charAt(0);
-
-  //     // Validação para CNS provisório
-  //     if (['7', '8', '9'].includes(primeiroDigito)) {
-  //       let soma = cns
-  //         .split('')
-  //         .map((digito, index) => parseInt(digito) * (15 - index))
-  //         .reduce((acumulado, valor) => acumulado + valor);
-
-  //       return soma % 11 === 0 ? null : { customCns: true };
-  //     }
-
-  //     // Validação para CNS definitivo
-  //     if (['1', '2'].includes(primeiroDigito)) {
-  //       const base = cns.substring(0, 11);
-
-  //       let soma = base
-  //         .split('')
-  //         .map((digito, index) => parseInt(digito) * (15 - index))
-  //         .reduce((acumulado, valor) => acumulado + valor);
-
-  //       let dv = 11 - (soma % 11);
-
-  //       if (dv == 11) {
-  //         dv = 0;
-  //       }
-
-  //       let resultado = '';
-
-  //       if (dv == 10) {
-  //         soma += 2;
-  //         dv = 11 - (soma % 11);
-
-  //         resultado = `${base}001${dv}`;
-  //       } else {
-  //         resultado = `${base}000${dv}`;
-  //       }
-
-  //       return resultado === cns ? null : { customCns: true };
-  //     }
-
-  //     return { customCns: true };
-  //   }
-
   constructor(private fb: FormBuilder) {}
 }
