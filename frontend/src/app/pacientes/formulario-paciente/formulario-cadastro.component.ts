@@ -166,6 +166,9 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         return null;
     }
 
+    /**
+     * fé em deus
+     */
     validarNumero(control: AbstractControl) {
         let cns = control.value;
         cns = cns.replace(/\D/g, '');
@@ -174,11 +177,14 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             return { customCns: true };
         }
 
-        let soma = cns
-            .split('')
-            // tslint:disable-next-line: radix
-            .map((digito, index) => parseInt(digito) * (15 - index))
-            .reduce((acumulado, valor) => acumulado + valor);
+        const soma =
+            cns
+                .split('')
+                .reduce(
+                    (somaParcial: number, atual: string, posicao: number) =>
+                        somaParcial + parseInt(atual, 10) * (15 - posicao),
+                    0,
+                ) % 11;
 
         return soma % 11 === 0 ? null : { customCns: true };
     }
