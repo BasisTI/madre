@@ -1,10 +1,8 @@
-import { ChartModule } from 'primeng/chart';
 import { Component } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
-import { strict } from 'assert';
 
 @Component({
   selector: 'app-cartao-sus',
@@ -84,11 +82,11 @@ export class CartaoSusComponent {
       return { customCns: true };
     }
 
-    let soma = cns
+    const soma = cns
       .split('')
       // tslint:disable-next-line: radix
-      .map((digito, index) => parseInt(digito) * (15 - index))
-      .reduce((acumulado, valor) => acumulado + valor);
+      .map((digito: any, index: number) => parseInt(digito) * (15 - index))
+      .reduce((acumulado: any, valor: number) => acumulado + valor);
 
     return soma % 11 === 0 ? null : { customCns: true };
   }
