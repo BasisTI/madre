@@ -1,243 +1,282 @@
-<form class="ui-g ui-fluid" autocomplete="off" [formGroup]="dadosPessoais" (ngSubmit)="onSubmit()">
-  <div class="ui-g-12">
-    <div class="ui-g-6 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="text"
-          pInputText
-          pTooltip="Digite o nome do paciente."
-          formControlName="nome"
-          required
-        />
-        <label>Nome Completo</label>
-      </span>
+<div class="ui-g ui-fluid" [formGroup]="dadosPessoais">
+    <!-- Start of first row -->
+    <div class="ui-g-12">
+        <!-- Start of first column -->
+        <div class="ui-g-6">
+            <span class="ui-float-label">
+                <input
+                    type="text"
+                    pInputText
+                    pTooltip="Digite o nome do paciente."
+                    formControlName="nome"
+                />
+                <label>Nome Completo</label>
+            </span>
+        </div>
+        <!-- End of first column -->
+        <!-- Start of second column -->
+        <div class="ui-g-6">
+            <span class="ui-float-label">
+                <input
+                    type="text"
+                    pInputText
+                    pTooltip="Digite o nome social do paciente."
+                    formControlName="nomeSocial"
+                />
+                <label>Nome Social</label>
+            </span>
+        </div>
+        <!-- End of second column -->
     </div>
-    <div class="ui-g-4 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="text"
-          pInputText
-          pTooltip="Digite o nome social do paciente."
-          formControlName="nomeSocial"
-        />
-        <label>Nome Social</label>
-      </span>
+    <!-- End of first row -->
+    <!-- Start of second row -->
+    <div class="ui-g-12">
+        <!-- Start of first column -->
+        <div class="ui-g-3">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeSexo"
+                    pTooltip="Selecione o sexo do paciente."
+                    formControlName="sexo"
+                ></p-dropdown>
+                <label>Sexo</label>
+            </span>
+        </div>
+        <!-- End of first column -->
+        <!-- Start of second column -->
+        <div class="ui-g-3">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeRaca"
+                    pTooltip="Selecione a raça do paciente."
+                    formControlName="raca"
+                ></p-dropdown>
+                <label>Raça</label>
+            </span>
+        </div>
+        <!-- End of second column -->
+        <!-- Start of third column -->
+        <div class="ui-g-3">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeEtnia"
+                    pTooltip="Selecione o etnia do paciente."
+                    formControlName="etnia"
+                    filter="true"
+                ></p-dropdown>
+                <label>Etnia</label>
+            </span>
+        </div>
+        <!-- End of third column -->
+        <!-- Start of third column -->
+        <div class="ui-g-3">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeEstadoCivil"
+                    pTooltip="Selecione o estado civil do paciente."
+                    formControlName="estadoCivil"
+                ></p-dropdown>
+                <label>Estado Civil</label>
+            </span>
+        </div>
+        <!-- End of third column -->
     </div>
-  </div>
-  <div class="ui-g-12">
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeSexo"
-          pTooltip="Selecione o sexo do paciente."
-          formControlName="sexo"
-          required="true"
-        ></p-dropdown>
-        <label>Sexo</label>
-      </span>
+    <!-- End of second row -->
+    <!-- Start of third row -->
+    <div class="ui-g-12">
+        <!-- Start of first column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-inputMask
+                    mask="9999999/9"
+                    pTooltip="Digite o número do prontuário da mãe do paciente."
+                    placeholder="_______/_"
+                    formControlName="prontuarioDaMae"
+                ></p-inputMask>
+                <label>Prontuário da Mãe</label>
+            </span>
+        </div>
+        <!-- End of first column -->
+        <!-- Start of second column -->
+        <div class="ui-g-5">
+            <span class="ui-float-label">
+                <input
+                    type="text"
+                    pInputText
+                    pTooltip="Digite o nome da mãe do paciente."
+                    formControlName="nomeDaMae"
+                />
+                <label>Nome da Mãe</label>
+            </span>
+        </div>
+        <!-- End of second column -->
+        <!-- Start of third column -->
+        <div class="ui-g-5">
+            <span class="ui-float-label">
+                <input
+                    type="text"
+                    pInputText
+                    pTooltip="Digite o nome do pai do paciente."
+                    formControlName="nomeDoPai"
+                />
+                <label>Nome do Pai</label>
+            </span>
+        </div>
+        <!-- End of third column -->
     </div>
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeRaca"
-          pTooltip="Selecione a raça do paciente."
-          formControlName="raca"
-          required="true"
-        ></p-dropdown>
-        <label>Raça</label>
-      </span>
+    <!-- End of third row -->
+    <!-- Start of fourth row -->
+    <div class="ui-g-12">
+        <!-- Start of first column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-calendar
+                    [locale]="localizacao"
+                    [yearRange]="anosDisponiveis"
+                    [dateFormat]="formatoDeData"
+                    [maxDate]="dataLimite"
+                    monthNavigator="true"
+                    yearNavigator="true"
+                    pTooltip="Informe a data de nascimento do paciente."
+                    formControlName="dataDeNascimento"
+                    (onSelect)="aoSelecionarDataDeNascimento()"
+                    (onBlur)="aoSelecionarDataDeNascimento()"
+                ></p-calendar>
+                <label>Data de Nascimento</label>
+            </span>
+        </div>
+        <!-- End of first column -->
+        <!-- Start of second column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-calendar
+                    timeOnly="true"
+                    pTooltip="Informe o horário do nascimento do paciente."
+                    formControlName="horaDoNascimento"
+                ></p-calendar>
+                <label>Hora do Nascimento</label>
+            </span>
+        </div>
+        <!-- End of second column -->
+        <!-- Start of third column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <input
+                    type="text"
+                    name="idade"
+                    pInputText
+                    value="0"
+                    disabled
+                    [(ngModel)]="idade"
+                    [ngModelOptions]="{ standalone: true }"
+                />
+                <label>Idade</label>
+            </span>
+        </div>
+        <!-- End of third column -->
+        <!-- Start of fourth column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeNacionalidade"
+                    pTooltip="Selecione a nacionalidade do paciente."
+                    formControlName="nacionalidade"
+                    filter="true"
+                ></p-dropdown>
+                <label>Nacionalidade</label>
+            </span>
+        </div>
+        <!-- End of fourth column -->
+        <!-- Start of fifth column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeNaturalidade"
+                    pTooltip="Selecione a naturalidade do paciente."
+                    formControlName="naturalidade"
+                    filter="true"
+                    (onChange)="aoSelecionarNaturalidade()"
+                ></p-dropdown>
+                <label>Naturalidade</label>
+            </span>
+        </div>
+        <!-- End of fifth column -->
+        <!-- Start of sixth column -->
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <input
+                    type="text"
+                    name="uf"
+                    value="0"
+                    pInputText
+                    pTooltip="Unidade Federativa da naturalidade do paciente."
+                    disabled="true"
+                    [(ngModel)]="uf"
+                    [ngModelOptions]="{ standalone: true }"
+                />
+                <label>UF</label>
+            </span>
+        </div>
+        <!-- End of sixth column -->
     </div>
-    <div class="ui-g-4 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeEtnia"
-          pTooltip="Selecione o etnia do paciente."
-          formControlName="etnia"
-          filter="true"
-        ></p-dropdown>
-        <label>Etnia</label>
-      </span>
+    <!-- End of fourth row -->
+    <!-- Start of fifth row -->
+    <div class="ui-g-12">
+        <!-- Start of first column -->
+        <div class="ui-g-4">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeGrauDeInstrucao"
+                    pTooltip="Selecione o grau de instrução do paciente."
+                    formControlName="grauDeInstrucao"
+                ></p-dropdown>
+                <label>Grau de Instrução</label>
+            </span>
+        </div>
+        <!-- End of first column -->
+        <!-- Start of second column -->
+        <div class="ui-g-4">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeOcupacao"
+                    pTooltip="Selecione a ocupação do paciente."
+                    formControlName="ocupacao"
+                    filter="true"
+                ></p-dropdown>
+                <label>Ocupação</label>
+            </span>
+        </div>
+        <!-- End of second column -->
+        <!-- Start of third column -->
+        <div class="ui-g-4">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeReligiao"
+                    pTooltip="Selecione a religião do paciente."
+                    formControlName="religiao"
+                    filter="true"
+                ></p-dropdown>
+                <label>Religião</label>
+            </span>
+        </div>
+        <!-- End of third column -->
     </div>
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeEstadoCivil"
-          pTooltip="Selecione o estado civil do paciente."
-          formControlName="estadoCivil"
-          required="true"
-        ></p-dropdown>
-        <label>Estado Civil</label>
-      </span>
+    <!-- End of fifth row -->
+    <!-- Start of seventh row -->
+    <div class="ui-g-12">
+        <!-- Start of first column -->
+        <div class="ui-g-12">
+            <span class="ui-float-label">
+                <input
+                    type="email"
+                    pInputText
+                    pTooltip="Digite o email do paciente."
+                    formControlName="email"
+                />
+                <label>Email</label>
+            </span>
+        </div>
+        <!-- End of first column -->
     </div>
-  </div>
-  <div class="ui-g-12">
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-inputMask
-          mask="9999999/9"
-          pTooltip="Digite o número do prontuário da mãe do paciente."
-          placeholder="_______/_"
-          formControlName="prontuarioMae"
-        ></p-inputMask>
-        <label>Prontuário da Mãe</label>
-      </span>
-    </div>
-    <div class="ui-g-4 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="text"
-          pInputText
-          pTooltip="Digite o nome da mãe do paciente."
-          formControlName="nomeDaMae"
-          required="true"
-        />
-        <label>Nome da Mãe</label>
-      </span>
-    </div>
-    <div class="ui-g-4 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="text"
-          pInputText
-          pTooltip="Digite o nome do pai do paciente."
-          formControlName="nomeDoPai"
-          required="true"
-        />
-        <label>Nome do Pai</label>
-      </span>
-    </div>
-  </div>
-  <div class="ui-g-12">
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-calendar
-          [locale]="localizacao"
-          [yearRange]="anosDisponiveis"
-          [dateFormat]="formatoDeData"
-          [maxDate]="dataLimite"
-          monthNavigator="true"
-          yearNavigator="true"
-          pTooltip="Informe a data de nascimento do paciente."
-          formControlName="dataDeNascimento"
-          required="true"
-          (onSelect)="aoSelecionarDataDeNascimento()"
-          (onBlur)="aoSelecionarDataDeNascimento()"
-        ></p-calendar>
-        <label>Data de Nascimento</label>
-      </span>
-    </div>
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-calendar
-          timeOnly="true"
-          pTooltip="Informe o horário do nascimento do paciente."
-          formControlName="horaDoNascimento"
-          required="true"
-        ></p-calendar>
-        <label>Hora do Nascimento</label>
-      </span>
-    </div>
-    <div class="ui-g-1 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="text"
-          name="idade"
-          pInputText
-          value="0"
-          disabled
-          [(ngModel)]="idade"
-          [ngModelOptions]="{ standalone: true }"
-        />
-        <label>Idade</label>
-      </span>
-    </div>
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeNacionalidade"
-          pTooltip="Selecione a nacionalidade do paciente."
-          formControlName="nacionalidade"
-          filter="true"
-          required="true"
-        ></p-dropdown>
-        <label>Nacionalidade</label>
-      </span>
-    </div>
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeNaturalidade"
-          pTooltip="Selecione a naturalidade do paciente."
-          formControlName="naturalidade"
-          filter="true"
-          required="true"
-          (onChange)="aoSelecionarNaturalidade()"
-        ></p-dropdown>
-        <label>Naturalidade</label>
-      </span>
-    </div>
-    <div class="ui-g-1 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="text"
-          name="uf"
-          value="0"
-          pInputText
-          pTooltip="Unidade Federativa da naturalidade do paciente."
-          disabled="true"
-          [(ngModel)]="uf"
-          [ngModelOptions]="{ standalone: true }"
-        />
-        <label>UF</label>
-      </span>
-    </div>
-  </div>
-  <div class="ui-g-12">
-    <div class="ui-g-2 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeGrauDeInstrucao"
-          pTooltip="Selecione o grau de instrução do paciente."
-          formControlName="grauDeInstrucao"
-          required="true"
-        ></p-dropdown>
-        <label>Grau de Instrução</label>
-      </span>
-    </div>
-    <div class="ui-g-4 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeOcupacao"
-          pTooltip="Selecione a ocupação do paciente."
-          formControlName="ocupacao"
-          filter="true"
-        ></p-dropdown>
-        <label>Ocupação</label>
-      </span>
-    </div>
-    <div class="ui-g-4 ui-sm-12">
-      <span class="ui-float-label">
-        <p-dropdown
-          [options]="opcoesDeReligiao"
-          pTooltip="Selecione a religião do paciente."
-          formControlName="religiao"
-          filter="true"
-        ></p-dropdown>
-        <label>Religião</label>
-      </span>
-    </div>
-  </div>
-  <div class="ui-g-12">
-    <div class="ui-g-3 ui-sm-12">
-      <span class="ui-float-label">
-        <input
-          type="email"
-          pInputText
-          pTooltip="Digite o email do paciente."
-          formControlName="email"
-        />
-        <label>Email</label>
-      </span>
-    </div>
-  </div>
-</form>
+    <!-- End of seventh row -->
+</div>
