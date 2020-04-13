@@ -1,57 +1,57 @@
 <div class="ui-g ui-fluid">
-  <div class="ui-g-12">
-    <div class="card card-w-title">
-      <h1>Pacientes</h1>
-      <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 ui-fluid">
-          <span class="md-inputfield" style="margin-top: 5px;">
-            <input type="text" pInputText class="ui-inputtext" name="filtro" />
-            <label>Nome paciente</label>
-          </span>
-        </div>
-        <div class="ui-g-12">
-          <div class="ui-g-2"></div>
-          <div class="ui-g-3">
-            <button
-              pButton
-              type="button"
-              label="Pesquisar"
-              icon="ui-icon-search"
-              bTooltip="Pesquisar paciente por nome."
-            ></button>
-          </div>
-          <div class="ui-g-3">
-            <button
-              pButton
-              type="button"
-              label="Cadastrar"
-              icon="ui-icon-add"
-              routerLink="/pacientes/cadastro"
-              bTooltip="Cadastrar novo paciente."
-            ></button>
-          </div>
-        </div>
-        <div class="ui-g-12 ui-md-3"></div>
-        <basis-datatable type="memory" [value]="pacientes">
-          <p-column header="Prontuário" field="prontuario">
-            <!-- <ng-template let-data="rowData" pTemplate="body">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Pacientes</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input type="text" pInputText class="ui-inputtext" name="filtro" />
+                        <label>Nome paciente</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                            bTooltip="Pesquisar paciente por nome."
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Cadastrar"
+                            icon="ui-icon-add"
+                            routerLink="/pacientes/cadastro"
+                            bTooltip="Cadastrar novo paciente."
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable type="memory" [value]="pacientes">
+                    <p-column header="Prontuário" field="prontuario">
+                        <!-- <ng-template let-data="rowData" pTemplate="body">
               {{ data['prontuario'] | prontuario }}
             </ng-template> -->
-          </p-column>
-          <p-column header="Nome" field="nome"></p-column>
-          <p-column header="Nome da Mãe" field="genitores">
-            <ng-template let-data="rowData" pTemplate="body">
-              {{ data['genitores'].nomeDaMae }}
-            </ng-template>
-          </p-column>
-          <p-column header="Data de Nascimento" field="dataDeNascimento"> </p-column>
-          <p-column header="Nº Cartão SUS" field="cartaoSUS">
-            <ng-template let-data="rowData" pTemplate="body">
-              {{ data['cartaoSUS'].numero | cartaoSUS }}
-            </ng-template>
-          </p-column>
-        </basis-datatable>
-      </div>
+                    </p-column>
+                    <p-column header="Nome" field="nome"></p-column>
+                    <p-column header="Nome da Mãe" field="genitores">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data['genitores']?.nomeDaMae }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Data de Nascimento" field="dataDeNascimento"> </p-column>
+                    <p-column header="Nº Cartão SUS" field="cartaoSUS">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data['cartaoSUS']?.numero }}
+                        </ng-template>
+                    </p-column>
+                </basis-datatable>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
