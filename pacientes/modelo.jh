@@ -26,10 +26,10 @@ relationship ManyToOne {
     Paciente{certidao} to Certidao,
     Paciente{ocupacao} to Ocupacao,
     Paciente{religiao} to Religiao,
+    Paciente{naturalidade} to Municipio,
     Paciente{etnia} to Etnia,
     Paciente{genitores} to Genitores,
     Paciente{nacionalidade} to Nacionalidade,
-    Paciente{naturalidade} to Naturalidade,
     Paciente{raca} to Raca,
     Paciente{estadoCivil} to EstadoCivil,
     Responsavel{telefone} to Telefone,
@@ -41,10 +41,6 @@ relationship ManyToOne {
 }
 
 entity Nacionalidade {
-    valor String required
-}
-
-entity Naturalidade {
     valor String required
 }
 
