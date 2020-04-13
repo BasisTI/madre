@@ -15,29 +15,22 @@ import { Component } from '@angular/core';
 export class TelefoneComponent {
   constructor(private fb: FormBuilder) {}
   opcao = [
-    { label: 'selecione' },
-    { label: 'celular' },
-    { label: 'residencial' },
-    { label: 'comercial' },
-    { label: 'emergencial' },
+    { label: 'selecione', value: null },
+    { label: 'celular', value: 'celular' },
+    { label: 'residencial', value: 'residencial' },
+    { label: 'comercial', value: 'comercial' },
+    { label: 'emergencial', value: 'emergencial' },
   ];
 
   telefone: FormGroup = this.fb.group({
     tipo: [''],
     telefone: ['', Validators.required],
     observacao: [''],
-    DDD: new FormControl('', Validators.required),
+    DDD: ['', Validators.required],
   });
 
-  fakeData = [
-    {
-      tipoDeTelefone: 'residencial',
-      telefone: '9 999-999',
-      observacao: 'teste',
-    },
-    { tipoDeTelefone: 'comercial', telefone: '9 8889-8888', observacao: 'teste2' },
-  ];
-  adicionar(telefone) {
-    this.telefone = telefone;
+  fakeData = [];
+  adicionar() {
+    this.fakeData.push(this.telefone.value);
   }
 }
