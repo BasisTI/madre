@@ -51,6 +51,19 @@ public class PacienteResource {
     }
 
     /**
+     * {@code GET  /pacientes/lista-de-pacientes} : Retorna uma lista de {@link PacienteSummary}.
+     *
+     * @param pageable informação para paginação
+     * @return A {@link ResponseEntity} com status {@code 200 (OK)} e a lista de PacienteSummary no body.
+     */
+    @GetMapping("/pacientes/lista-de-pacientes")
+    public ResponseEntity<Page<PacienteSummary>> getAllPacientesSummaries(Pageable pageable) {
+        log.debug("REST request to get a custom page of PacienteSummary");
+        Page<PacienteSummary> page = pacienteService.findAllPacienteSummary(pageable);
+        return ResponseEntity.ok().body(page);
+    }
+
+    /**
      * {@code POST  /pacientes} : Create a new paciente.
      *
      * @param pacienteDTO the pacienteDTO to create.
@@ -94,13 +107,6 @@ public class PacienteResource {
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
                 pacienteDTO.getId().toString()))
             .body(result);
-    }
-
-    @GetMapping("/pacientes/lista-de-pacientes")
-    public ResponseEntity<Page<PacienteSummary>> getAllPacientesSummaries(Pageable pageable) {
-        log.debug("REST request to get a custom page of PacientesSummaries");
-        Page<PacienteSummary> page = pacienteService.getPacienteSummary(pageable);
-        return ResponseEntity.ok().body(page);
     }
 
     /**

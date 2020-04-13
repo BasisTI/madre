@@ -104,7 +104,13 @@ public class PacienteService {
             .map(pacienteMapper::toDto);
     }
 
-    public Page<PacienteSummary> getPacienteSummary(Pageable pageable) {
+    /**
+     * Recupera todos os registros do tipo {@link PacienteSummary}.
+     *
+     * @param pageable informação para paginação
+     * @return Lista de PacienteSummary
+     */
+    public Page<PacienteSummary> findAllPacienteSummary(Pageable pageable) {
         return pacienteRepository.findAllProjectedBy(pageable);
     }
 }

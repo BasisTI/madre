@@ -38,8 +38,6 @@ public class PacienteDTO implements Serializable {
 
     private Long cartaoSUSId;
 
-    private String numeroDoCartaoSUS;
-
     private Long responsavelId;
 
     private Long documentoId;
@@ -54,11 +52,9 @@ public class PacienteDTO implements Serializable {
 
     private Long genitoresId;
 
-    private String nomeDaMae;
-
     private Long nacionalidadeId;
 
-    private Long naturalidadeId;
+    private Long municipioId;
 
     private Long racaId;
 
@@ -208,14 +204,6 @@ public class PacienteDTO implements Serializable {
         this.nacionalidadeId = nacionalidadeId;
     }
 
-    public Long getNaturalidadeId() {
-        return naturalidadeId;
-    }
-
-    public void setNaturalidadeId(Long naturalidadeId) {
-        this.naturalidadeId = naturalidadeId;
-    }
-
     public Long getRacaId() {
         return racaId;
     }
@@ -232,20 +220,12 @@ public class PacienteDTO implements Serializable {
         this.estadoCivilId = estadoCivilId;
     }
 
-    public String getNumeroDoCartaoSUS() {
-        return numeroDoCartaoSUS;
+    public Long getMunicipioId() {
+        return municipioId;
     }
 
-    public void setNumeroDoCartaoSUS(String numeroDoCartaoSUS) {
-        this.numeroDoCartaoSUS = numeroDoCartaoSUS;
-    }
-
-    public String getNomeDaMae() {
-        return nomeDaMae;
-    }
-
-    public void setNomeDaMae(String nomeDaMae) {
-        this.nomeDaMae = nomeDaMae;
+    public void setMunicipioId(Long municipioId) {
+        this.municipioId = municipioId;
     }
 
     @Override
@@ -282,7 +262,6 @@ public class PacienteDTO implements Serializable {
             ", grauDeInstrucao=" + grauDeInstrucao +
             ", sexo=" + sexo +
             ", cartaoSUSId=" + cartaoSUSId +
-            ", numeroDoCartaoSUS='" + numeroDoCartaoSUS + '\'' +
             ", responsavelId=" + responsavelId +
             ", documentoId=" + documentoId +
             ", certidaoId=" + certidaoId +
@@ -291,7 +270,7 @@ public class PacienteDTO implements Serializable {
             ", etniaId=" + etniaId +
             ", genitoresId=" + genitoresId +
             ", nacionalidadeId=" + nacionalidadeId +
-            ", naturalidadeId=" + naturalidadeId +
+            ", municipioId=" + municipioId +
             ", racaId=" + racaId +
             ", estadoCivilId=" + estadoCivilId +
             '}';

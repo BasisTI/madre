@@ -1,16 +1,10 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.PacientesApp;
-import br.com.basis.madre.domain.Naturalidade;
-import br.com.basis.madre.repository.NaturalidadeRepository;
 import br.com.basis.madre.repository.search.NaturalidadeSearchRepository;
-import br.com.basis.madre.service.NaturalidadeService;
-import br.com.basis.madre.service.dto.NaturalidadeDTO;
-import br.com.basis.madre.service.mapper.NaturalidadeMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -176,7 +170,7 @@ public class NaturalidadeResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(naturalidade.getId().intValue())))
             .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR)));
     }
-    
+
     @Test
     @Transactional
     public void getNaturalidade() throws Exception {
