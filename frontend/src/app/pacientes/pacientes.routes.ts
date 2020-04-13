@@ -4,6 +4,6 @@ import { ListaDePacientesComponent } from './lista-de-pacientes/lista-de-pacient
 import { FormularioCadastroComponent } from './formulario-paciente/formulario-cadastro.component';
 
 export const routes: Routes = [
-  { path: '', component: ListaDePacientesComponent },
-  { path: 'cadastro', component: FormularioCadastroComponent },
+    { path: '', component: ListaDePacientesComponent },
+    { path: 'cadastro', component: FormularioCadastroComponent },
 ];

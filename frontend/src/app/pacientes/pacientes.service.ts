@@ -5,14 +5,14 @@ import { PacienteSummary } from './models/paciente.summary';
 import { Pageable } from '../shared/pageable';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class PacientesService {
-  private readonly apiUrl = 'pacientes/api/pacientes';
+    private readonly apiUrl = 'pacientes/api/pacientes';
 
-  constructor(private httpService: HttpClient) {}
+    constructor(private httpService: HttpClient) {}
 
-  getListaDePacientes(): Observable<Pageable<PacienteSummary>> {
-    return this.httpService.get<Pageable<PacienteSummary>>(`${this.apiUrl}/lista-de-pacientes`);
-  }
+    getListaDePacientes(): Observable<Pageable<PacienteSummary>> {
+        return this.httpService.get<Pageable<PacienteSummary>>(`${this.apiUrl}/lista-de-pacientes`);
+    }
 }

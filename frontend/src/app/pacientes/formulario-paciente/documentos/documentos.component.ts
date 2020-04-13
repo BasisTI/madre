@@ -14,7 +14,23 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
     ],
 })
 export class DocumentosComponent {
+<<<<<<< HEAD
     @Input() documentos: FormGroup;
+=======
+    documentos: FormGroup = this.fb.group(
+        {
+            numeroIdentidade: ['', [this.customRequired]],
+            orgaoEmissor: ['', [this.customRequired]],
+            uf: ['', [this.customRequired]],
+            data: ['', [this.customRequired]],
+            cpf: [''],
+            pisPasep: [''],
+            cnh: [''],
+            validadeCNH: ['', this.customRequiredCNH],
+        },
+        { updateOn: 'blur', validators: [this.validateGroup, this.validateGroupCNH] },
+    );
+>>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
 
     listaDeOrgaos = [
         { label: 'Selecione', value: null },
@@ -46,5 +62,42 @@ export class DocumentosComponent {
     validade = ptBR;
     yearValidade = '2010:2030';
 
+<<<<<<< HEAD
+=======
+    customRequired(control: AbstractControl): { [key: string]: boolean } | null {
+        if (control.parent && control.parent.get('numeroIdentidade').value && !control.value) {
+            return { required: true };
+        } else {
+            return null;
+        }
+    }
+
+    validateGroup(group: FormGroup): { [key: string]: boolean } | null {
+        if (group.get('numeroIdentidade').value) {
+            group.markAsDirty();
+            return { required: true };
+        } else {
+            return null;
+        }
+    }
+
+    validateGroupCNH(group: FormGroup): { [key: string]: boolean } | null {
+        if (group.get('cnh').value) {
+            group.markAsDirty();
+            return { required: true };
+        }
+
+        return null;
+    }
+
+    customRequiredCNH(control: AbstractControl): { [key: string]: boolean } | null {
+        if (control.parent && control.parent.get('cnh').value && !control.value) {
+            return { required: true };
+        }
+
+        return null;
+    }
+
+>>>>>>> 81ac57c75e9a9f5ca2f456eb3fc383ef469fe000
     constructor(private fb: FormBuilder) {}
 }

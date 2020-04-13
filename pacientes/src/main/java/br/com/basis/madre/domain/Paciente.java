@@ -106,6 +106,10 @@ public class Paciente implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
+    private Municipio naturalidade;
+
+    @ManyToOne
+    @JsonIgnoreProperties("pacientes")
     private Etnia etnia;
 
     @ManyToOne
@@ -115,10 +119,6 @@ public class Paciente implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Nacionalidade nacionalidade;
-
-    @ManyToOne
-    @JsonIgnoreProperties("pacientes")
-    private Municipio naturalidade;
 
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
@@ -369,6 +369,19 @@ public class Paciente implements Serializable {
         this.religiao = religiao;
     }
 
+    public Municipio getNaturalidade() {
+        return naturalidade;
+    }
+
+    public Paciente naturalidade(Municipio municipio) {
+        this.naturalidade = municipio;
+        return this;
+    }
+
+    public void setNaturalidade(Municipio municipio) {
+        this.naturalidade = municipio;
+    }
+
     public Etnia getEtnia() {
         return etnia;
     }
@@ -433,18 +446,6 @@ public class Paciente implements Serializable {
     public void setEstadoCivil(EstadoCivil estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Municipio getNaturalidade() {
-        return naturalidade;
-    }
-
-    public void setNaturalidade(Municipio naturalidade) {
-        this.naturalidade = naturalidade;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -466,29 +467,15 @@ public class Paciente implements Serializable {
     @Override
     public String toString() {
         return "Paciente{" +
-            "id=" + id +
-            ", nome='" + nome + '\'' +
-            ", nomeSocial='" + nomeSocial + '\'' +
-            ", dataDeNascimento=" + dataDeNascimento +
-            ", horaDeNascimento=" + horaDeNascimento +
-            ", email='" + email + '\'' +
-            ", observacao='" + observacao + '\'' +
-            ", grauDeInstrucao=" + grauDeInstrucao +
-            ", sexo=" + sexo +
-            ", cartaoSUS=" + cartaoSUS +
-            ", telefones=" + telefones +
-            ", enderecos=" + enderecos +
-            ", responsavel=" + responsavel +
-            ", documento=" + documento +
-            ", certidao=" + certidao +
-            ", ocupacao=" + ocupacao +
-            ", religiao=" + religiao +
-            ", etnia=" + etnia +
-            ", genitores=" + genitores +
-            ", nacionalidade=" + nacionalidade +
-            ", naturalidade=" + naturalidade +
-            ", raca=" + raca +
-            ", estadoCivil=" + estadoCivil +
-            '}';
+            "id=" + getId() +
+            ", nome='" + getNome() + "'" +
+            ", nomeSocial='" + getNomeSocial() + "'" +
+            ", dataDeNascimento='" + getDataDeNascimento() + "'" +
+            ", horaDeNascimento='" + getHoraDeNascimento() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", observacao='" + getObservacao() + "'" +
+            ", grauDeInstrucao='" + getGrauDeInstrucao() + "'" +
+            ", sexo='" + getSexo() + "'" +
+            "}";
     }
 }

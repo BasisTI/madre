@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Paciente} and its DTO {@link PacienteDTO}.
  */
-@Mapper(componentModel = "spring", uses = {CartaoSUSMapper.class, ResponsavelMapper.class, DocumentoMapper.class, CertidaoMapper.class, OcupacaoMapper.class, ReligiaoMapper.class, EtniaMapper.class, GenitoresMapper.class, NacionalidadeMapper.class, Municipio.class, RacaMapper.class, EstadoCivilMapper.class})
+@Mapper(componentModel = "spring", uses = {CartaoSUSMapper.class, ResponsavelMapper.class, DocumentoMapper.class, CertidaoMapper.class, OcupacaoMapper.class, ReligiaoMapper.class, MunicipioMapper.class, EtniaMapper.class, GenitoresMapper.class, NacionalidadeMapper.class, RacaMapper.class, EstadoCivilMapper.class})
 public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
 
     @Mapping(source = "cartaoSUS.id", target = "cartaoSUSId")
@@ -18,12 +18,12 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "certidao.id", target = "certidaoId")
     @Mapping(source = "ocupacao.id", target = "ocupacaoId")
     @Mapping(source = "religiao.id", target = "religiaoId")
+    @Mapping(source = "naturalidade.id", target = "naturalidadeId")
     @Mapping(source = "etnia.id", target = "etniaId")
     @Mapping(source = "genitores.id", target = "genitoresId")
     @Mapping(source = "nacionalidade.id", target = "nacionalidadeId")
     @Mapping(source = "raca.id", target = "racaId")
     @Mapping(source = "estadoCivil.id", target = "estadoCivilId")
-    @Mapping(source = "naturalidade.id", target = "municipioId")
     PacienteDTO toDto(Paciente paciente);
 
     @Mapping(source = "cartaoSUSId", target = "cartaoSUS")
@@ -36,10 +36,10 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "certidaoId", target = "certidao")
     @Mapping(source = "ocupacaoId", target = "ocupacao")
     @Mapping(source = "religiaoId", target = "religiao")
+    @Mapping(source = "naturalidadeId", target = "naturalidade")
     @Mapping(source = "etniaId", target = "etnia")
     @Mapping(source = "genitoresId", target = "genitores")
     @Mapping(source = "nacionalidadeId", target = "nacionalidade")
-    @Mapping(source = "naturalidadeId", target = "naturalidade")
     @Mapping(source = "racaId", target = "raca")
     @Mapping(source = "estadoCivilId", target = "estadoCivil")
     Paciente toEntity(PacienteDTO pacienteDTO);

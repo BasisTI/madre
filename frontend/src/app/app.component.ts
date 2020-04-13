@@ -1,20 +1,28 @@
-import {Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnDestroy, OnInit, NgZone} from '@angular/core';
-import { ScrollPanel} from 'primeng/primeng';
+import {
+    Component,
+    AfterViewInit,
+    ElementRef,
+    Renderer2,
+    ViewChild,
+    OnDestroy,
+    OnInit,
+    NgZone,
+} from '@angular/core';
+import { ScrollPanel } from 'primeng/primeng';
 
 enum MenuOrientation {
     STATIC,
     OVERLAY,
     SLIM,
-    HORIZONTAL
+    HORIZONTAL,
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
-
     layoutCompact = true;
 
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
@@ -62,7 +70,9 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     constructor(public renderer2: Renderer2, public zone: NgZone) {}
 
     ngOnInit() {
-        this.zone.runOutsideAngular(() => {this.bindRipple(); });
+        this.zone.runOutsideAngular(() => {
+            this.bindRipple();
+        });
     }
 
     bindRipple() {
@@ -78,7 +88,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     rippleMouseDown(e) {
         for (let target = e.target; target && target !== this; target = target['parentNode']) {
             if (!this.isVisible(target)) {
-              continue;
+                continue;
             }
 
             // Element.matches() -> https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
@@ -92,9 +102,14 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     selectorMatches(el, selector) {
         const p = Element.prototype;
-        const f = p['matches'] || p['webkitMatchesSelector'] || p['mozMatchesSelector'] || p['msMatchesSelector'] || function (s) {
-            return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
-        };
+        const f =
+            p['matches'] ||
+            p['webkitMatchesSelector'] ||
+            p['mozMatchesSelector'] ||
+            p['msMatchesSelector'] ||
+            function (s) {
+                return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+            };
         return f.call(el, selector);
     }
 
@@ -108,7 +123,9 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             this.addClass(inkEl, 'ink');
 
             if (this.hasClass(element, 'ripplelink') && element.querySelector('span')) {
-                element.querySelector('span').insertAdjacentHTML('afterend', '<span class=\'ink\'></span>');
+                element
+                    .querySelector('span')
+                    .insertAdjacentHTML('afterend', "<span class='ink'></span>");
             } else {
                 element.appendChild(inkEl);
             }
@@ -123,8 +140,8 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             ink.style.width = d + 'px';
         }
 
-        const x = e.pageX - this.getOffset(element).left - (ink.offsetWidth / 2);
-        const y = e.pageY - this.getOffset(element).top - (ink.offsetHeight / 2);
+        const x = e.pageX - this.getOffset(element).left - ink.offsetWidth / 2;
+        const y = e.pageY - this.getOffset(element).top - ink.offsetHeight / 2;
 
         ink.style.top = y + 'px';
         ink.style.left = x + 'px';
@@ -151,7 +168,10 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         if (element.classList) {
             element.classList.remove(className);
         } else {
-            element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            element.className = element.className.replace(
+                new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'),
+                ' ',
+            );
         }
     }
 
@@ -159,8 +179,18 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         const rect = el.getBoundingClientRect();
 
         return {
-          top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
-          left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
+            top:
+                rect.top +
+                (window.pageYOffset ||
+                    document.documentElement.scrollTop ||
+                    document.body.scrollTop ||
+                    0),
+            left:
+                rect.left +
+                (window.pageXOffset ||
+                    document.documentElement.scrollLeft ||
+                    document.body.scrollLeft ||
+                    0),
         };
     }
 
@@ -174,8 +204,10 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     ngAfterViewInit() {
-        this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;
-        setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
+        this.layoutContainer = <HTMLDivElement>this.layourContainerViewChild.nativeElement;
+        setTimeout(() => {
+            this.layoutMenuScrollerViewChild.moveBar();
+        }, 100);
     }
 
     onLayoutClick() {
@@ -214,8 +246,10 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             this.overlayMenuActive = !this.overlayMenuActive;
         } else {
             if (this.isDesktop()) {
-                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive; } else {
-                this.staticMenuMobileActive = !this.staticMenuMobileActive; }
+                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
+            } else {
+                this.staticMenuMobileActive = !this.staticMenuMobileActive;
+            }
         }
 
         event.preventDefault();
@@ -239,8 +273,10 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         this.topbarItemClick = true;
 
         if (this.activeTopbarItem === item) {
-            this.activeTopbarItem = null; } else {
-            this.activeTopbarItem = item; }
+            this.activeTopbarItem = null;
+        } else {
+            this.activeTopbarItem = item;
+        }
 
         event.preventDefault();
     }
@@ -309,5 +345,4 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     ngOnDestroy() {
         this.unbindRipple();
     }
-
 }

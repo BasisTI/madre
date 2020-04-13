@@ -9,29 +9,29 @@ import { DatatableModule } from '@nuvem/primeng-components';
 /* jhipster-needle-add-shared-service-import - JHipster will add shared services imports here */
 
 @NgModule({
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    PRIMENG_IMPORTS,
-    DatatableModule,
-    TriStateCheckboxModule,
-  ],
-  exports: [
-    ReactiveFormsModule,
-    FormsModule,
-    PRIMENG_IMPORTS,
-    DatatableModule,
-    TriStateCheckboxModule,
-  ],
+    imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        PRIMENG_IMPORTS,
+        DatatableModule,
+        TriStateCheckboxModule,
+    ],
+    exports: [
+        ReactiveFormsModule,
+        FormsModule,
+        PRIMENG_IMPORTS,
+        DatatableModule,
+        TriStateCheckboxModule,
+    ],
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: SharedModule,
-      providers: [
-        JhiDateUtils,
-        /* jhipster-needle-add-shared-services - JHipster will add shared services here */
-      ],
-    };
-  }
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: SharedModule,
+            providers: [
+                JhiDateUtils,
+                /* jhipster-needle-add-shared-services - JHipster will add shared services here */
+            ],
+        };
+    }
 }
