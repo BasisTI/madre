@@ -86,6 +86,7 @@ export class CartaoSusComponent {
 
     let soma = cns
       .split('')
+      // tslint:disable-next-line: radix
       .map((digito, index) => parseInt(digito) * (15 - index))
       .reduce((acumulado, valor) => acumulado + valor);
 
