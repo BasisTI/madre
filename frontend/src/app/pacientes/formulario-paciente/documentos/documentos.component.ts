@@ -1,6 +1,6 @@
 import { ptBR } from './../../../shared/calendar.pt-br.locale';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-documentos',
@@ -14,16 +14,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   ],
 })
 export class DocumentosComponent {
-  documentos: FormGroup = this.fb.group({
-    numeroIdentidade: [''],
-    orgaoEmissor: [''],
-    uf: [''],
-    data: [''],
-    cpf: [''],
-    pisPasep: [''],
-    cnh: [''],
-    validadeCNH: [''],
-  });
+  documentos: FormGroup = this.fb.group(
+    {
+      numeroIdentidade: ['', [this.customRequired]],
+      orgaoEmissor: ['', [this.customRequired]],
+      uf: ['', [this.customRequired]],
+      data: ['', [this.customRequired]],
+      cpf: [''],
+      pisPasep: [''],
+      cnh: [''],
+      validadeCNH: ['', this.customRequiredCNH],
+    },
+    { updateOn: 'blur', validators: [this.validateGroup, this.validateGroupCNH] },
+  );
 
   listaDeOrgaos = [
     { label: 'Selecione', value: null },
@@ -51,6 +54,40 @@ export class DocumentosComponent {
 
   validade = ptBR;
   yearValidade = '2010:2030';
+
+  customRequired(control: AbstractControl): { [key: string]: boolean } | null {
+    if (control.parent && control.parent.get('numeroIdentidade').value && !control.value) {
+      return { required: true };
+    } else {
+      return null;
+    }
+  }
+
+  validateGroup(group: FormGroup): { [key: string]: boolean } | null {
+    if (group.get('numeroIdentidade').value) {
+      group.markAsDirty();
+      return { required: true };
+    } else {
+      return null;
+    }
+  }
+
+  validateGroupCNH(group: FormGroup): { [key: string]: boolean } | null {
+    if (group.get('cnh').value) {
+      group.markAsDirty();
+      return { required: true };
+    }
+
+    return null;
+  }
+
+  customRequiredCNH(control: AbstractControl): { [key: string]: boolean } | null {
+    if (control.parent && control.parent.get('cnh').value && !control.value) {
+      return { required: true };
+    }
+
+    return null;
+  }
 
   constructor(private fb: FormBuilder) {}
 }
