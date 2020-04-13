@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 import { PacientesService } from '../pacientes.service';
-import { PacienteSummary } from '../interfaces/paciente.summary';
+import { PacienteSummary } from '../models/paciente.summary';
 
 @Component({
   selector: 'app-lista-de-pacientes',
