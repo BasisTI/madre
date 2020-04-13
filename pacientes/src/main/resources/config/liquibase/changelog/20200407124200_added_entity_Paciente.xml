@@ -57,6 +57,9 @@
             <column name="religiao_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="naturalidade_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="etnia_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -64,9 +67,6 @@
                 <constraints nullable="true" />
             </column>
             <column name="nacionalidade_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="naturalidade_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="raca_id" type="bigint">

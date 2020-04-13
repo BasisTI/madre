@@ -109,6 +109,13 @@
         },
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "municipio",
+            "otherEntityRelationshipName": "paciente",
+            "relationshipName": "naturalidade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "otherEntityName": "etnia",
             "otherEntityRelationshipName": "paciente",
             "relationshipName": "etnia",
@@ -126,13 +133,6 @@
             "otherEntityName": "nacionalidade",
             "otherEntityRelationshipName": "paciente",
             "relationshipName": "nacionalidade",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "naturalidade",
-            "otherEntityRelationshipName": "paciente",
-            "relationshipName": "naturalidade",
             "otherEntityField": "id"
         },
         {

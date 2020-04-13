@@ -44,6 +44,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="religiao"/>
 
+        <addForeignKeyConstraint baseColumnNames="naturalidade_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_naturalidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="municipio"/>
+
         <addForeignKeyConstraint baseColumnNames="etnia_id"
                                  baseTableName="paciente"
                                  constraintName="fk_paciente_etnia_id"
@@ -61,12 +67,6 @@
                                  constraintName="fk_paciente_nacionalidade_id"
                                  referencedColumnNames="id"
                                  referencedTableName="nacionalidade"/>
-
-        <addForeignKeyConstraint baseColumnNames="naturalidade_id"
-                                 baseTableName="paciente"
-                                 constraintName="fk_paciente_naturalidade_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="naturalidade"/>
 
         <addForeignKeyConstraint baseColumnNames="raca_id"
                                  baseTableName="paciente"
