@@ -16,19 +16,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EnderecoComponent {
   opcao = [
     { label: 'selecione' },
-    { label: 'residencial' },
-    { label: 'comercial' },
-    { label: 'outros' },
+    { label: 'residencial', value: 'residencial' },
+    { label: 'comercial', value: 'comercial' },
+    { label: 'outros', value: 'outros' },
   ];
-  UF = [{ label: 'selecione' }, { label: 'RJ' }, { label: 'SP' }, { label: 'BA' }, { label: 'DF' }];
+  UF = [
+    { label: 'selecione' },
+    { label: 'RJ', value: 'RJ' },
+    { label: 'SP', value: 'SP' },
+    { label: 'BA', value: 'BA' },
+    { label: 'DF', value: 'DF' },
+  ];
   municipios = [
     { label: 'selecione' },
-    { label: 'São Paulo' },
-    { label: 'Rio de Janeiro' },
-    { label: 'Goias' },
-    { label: 'Rio Grande do Sul' },
+    { label: 'São Paulo', value: 'São Paulo' },
+    { label: 'Rio de Janeiro', value: 'Rio de Janeiro' },
+    { label: 'Goias', value: 'Goias' },
+    { label: 'Rio Grande do Sul', value: 'Rio Grande do Sul' },
   ];
-  logradorus = [''];
 
   enderecos: Array<any>;
   endereco: FormGroup = this.fb.group({
@@ -43,30 +48,10 @@ export class EnderecoComponent {
     corespondencia: ['', Validators.required],
   });
 
-  fakeData = [
-    {
-      municipio: 'São paulo',
-      CEP: '71717771771',
-      UF: 'SP',
-      logradouro: 'casa 12',
-      Numero: '22',
-      Complemento: 'teste',
-      Bairro: 'flamengo',
-      tipo: 'recidencia',
-      corespondencia: 'sim',
-    },
-    {
-      municipio: 'Acre ',
-      CEP: '727272772',
-      UF: 'AC',
-      logradouro: 'casa 33',
-      Numero: '33',
-      Complemento: 'teste2',
-      Bairro: 'Rio Branco',
-      tipo: 'comercial',
-      corespondencia: 'nao',
-    },
-  ];
+  fakeData = [];
+  adicionar() {
+    this.fakeData.push(this.endereco.value);
+  }
 
   constructor(private fb: FormBuilder) {}
 }

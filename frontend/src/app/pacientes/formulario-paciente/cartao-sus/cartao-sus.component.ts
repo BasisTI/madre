@@ -1,7 +1,7 @@
 import { ChartModule } from 'primeng/chart';
 import { Component } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
 import { strict } from 'assert';
@@ -24,7 +24,7 @@ import { strict } from 'assert';
 })
 export class CartaoSusComponent {
   cartaoSUS: FormGroup = this.fb.group({
-    numero: ['', Validators.required],
+    numero: ['', [Validators.required, this.validarNumero]],
     justificativa: [''],
     motivoCadastro: [''],
     docReferencia: [''],
@@ -76,5 +76,21 @@ export class CartaoSusComponent {
   maxDate = new Date();
   yearRange = `1900:${this.maxDate.getFullYear()}`;
 
+  validarNumero(control: AbstractControl) {
+    let cns = control.value;
+    cns = cns.replace(/\D/g, '');
+
+    if (cns.length !== 15) {
+      return { customCns: true };
+    }
+
+    let soma = cns
+      .split('')
+      // tslint:disable-next-line: radix
+      .map((digito, index) => parseInt(digito) * (15 - index))
+      .reduce((acumulado, valor) => acumulado + valor);
+
+    return soma % 11 === 0 ? null : { customCns: true };
+  }
   constructor(private fb: FormBuilder) {}
 }
