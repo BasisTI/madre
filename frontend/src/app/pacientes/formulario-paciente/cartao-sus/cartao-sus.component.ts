@@ -65,7 +65,7 @@ export class CartaoSusComponent {
     { label: 'Quantificação Carga Viral HIV', value: 'quantHiv' },
     { label: 'Demais proc. que exigem autorização prévia', value: 'autPrevia' },
     { label: 'Cirurgia Eletivas de Transplante', value: 'cirurgiaTranplante' },
-    { label: 'Demais Cirurgias Eletivas', value: 'tuberculos' },
+    { label: 'Demais Cirurgias Eletivas', value: 'eletivas' },
     { label: 'Tuberculose', value: 'tuberculose' },
     { label: 'Outros', value: 'outros' },
   ];
@@ -82,11 +82,14 @@ export class CartaoSusComponent {
       return { customCns: true };
     }
 
-    const soma = cns
-      .split('')
-      // tslint:disable-next-line: radix
-      .map((digito: any, index: number) => parseInt(digito) * (15 - index))
-      .reduce((acumulado: any, valor: number) => acumulado + valor);
+    const soma =
+      cns
+        .split('')
+        .reduce(
+          (somaParcial: number, atual: string, posicao: number) =>
+            somaParcial + parseInt(atual, 10) * (15 - posicao),
+          0,
+        ) % 11;
 
     return soma % 11 === 0 ? null : { customCns: true };
   }
