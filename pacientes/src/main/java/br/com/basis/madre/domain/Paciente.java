@@ -1,23 +1,29 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
+import br.com.basis.madre.domain.enumeration.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
-import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
-
-import br.com.basis.madre.domain.enumeration.Sexo;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * A Paciente.
@@ -49,7 +55,7 @@ public class Paciente implements Serializable {
     @Column(name = "hora_de_nascimento")
     private Instant horaDeNascimento;
 
-    
+
     @Column(name = "email", unique = true)
     private String email;
 
@@ -100,6 +106,10 @@ public class Paciente implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
+    private Municipio naturalidade;
+
+    @ManyToOne
+    @JsonIgnoreProperties("pacientes")
     private Etnia etnia;
 
     @ManyToOne
@@ -109,10 +119,6 @@ public class Paciente implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Nacionalidade nacionalidade;
-
-    @ManyToOne
-    @JsonIgnoreProperties("pacientes")
-    private Naturalidade naturalidade;
 
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
@@ -363,6 +369,19 @@ public class Paciente implements Serializable {
         this.religiao = religiao;
     }
 
+    public Municipio getNaturalidade() {
+        return naturalidade;
+    }
+
+    public Paciente naturalidade(Municipio municipio) {
+        this.naturalidade = municipio;
+        return this;
+    }
+
+    public void setNaturalidade(Municipio municipio) {
+        this.naturalidade = municipio;
+    }
+
     public Etnia getEtnia() {
         return etnia;
     }
@@ -400,19 +419,6 @@ public class Paciente implements Serializable {
 
     public void setNacionalidade(Nacionalidade nacionalidade) {
         this.nacionalidade = nacionalidade;
-    }
-
-    public Naturalidade getNaturalidade() {
-        return naturalidade;
-    }
-
-    public Paciente naturalidade(Naturalidade naturalidade) {
-        this.naturalidade = naturalidade;
-        return this;
-    }
-
-    public void setNaturalidade(Naturalidade naturalidade) {
-        this.naturalidade = naturalidade;
     }
 
     public Raca getRaca() {

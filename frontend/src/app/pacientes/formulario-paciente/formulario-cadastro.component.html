@@ -1,26 +1,32 @@
-<p-accordion>
-  <p-accordionTab header="Dados Pessoais">
-    <app-dados-pessoais></app-dados-pessoais>
-  </p-accordionTab>
-  <p-accordionTab header="Contatos do Paciente">
-    <app-telefone></app-telefone>
-  </p-accordionTab>
-  <p-accordionTab header="Endereço">
-    <app-endereco></app-endereco>
-  </p-accordionTab>
-  <p-accordionTab header="Responsável">
-    <app-responsavel></app-responsavel>
-  </p-accordionTab>
-  <p-accordionTab header="Documentos">
-    <app-documentos></app-documentos>
-  </p-accordionTab>
-  <p-accordionTab header="Certidão">
-    <app-certidao></app-certidao>
-  </p-accordionTab>
-  <p-accordionTab header="Cartão SUS">
-    <app-cartao-sus></app-cartao-sus>
-  </p-accordionTab>
-  <p-accordionTab header="Observação">
-    <app-observacao></app-observacao>
-  </p-accordionTab>
-</p-accordion>
+<div class="ui-g ui-fluid">
+  <p-accordion>
+    <p-accordionTab header="Dados Pessoais">
+      <div [formGroup]="formularioDeCadastro">
+        <app-dados-pessoais
+          [dadosPessoais]="formularioDeCadastro.controls.dadosPessoais"
+        ></app-dados-pessoais>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Contatos do Paciente">
+      <app-telefone></app-telefone>
+    </p-accordionTab>
+    <p-accordionTab header="Endereço">
+      <app-endereco></app-endereco>
+    </p-accordionTab>
+    <p-accordionTab header="Responsável">
+      <app-responsavel></app-responsavel>
+    </p-accordionTab>
+    <p-accordionTab header="Documentos">
+      <app-documentos></app-documentos>
+    </p-accordionTab>
+    <p-accordionTab header="Certidão">
+      <app-certidao></app-certidao>
+    </p-accordionTab>
+    <p-accordionTab header="Cartão SUS">
+      <app-cartao-sus></app-cartao-sus>
+    </p-accordionTab>
+    <p-accordionTab header="Observação">
+      <app-observacao></app-observacao>
+    </p-accordionTab>
+  </p-accordion>
+</div>

@@ -31,11 +31,20 @@ public class PacienteService {
 
     private final PacienteSearchRepository pacienteSearchRepository;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper,
-        PacienteSearchRepository pacienteSearchRepository) {
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
+    }
+
+    /**
+     * Recupera lista do tipo {@link br.com.basis.madre.service.projection.PacienteSummary}
+     *
+     * @param pageable informação para paginação
+     * @return A página que contem uma lista de {@link br.com.basis.madre.service.projection.PacienteSummary}
+     */
+    public Page<PacienteSummary> findAllPacienteSummary(Pageable pageable) {
+        return pacienteRepository.findAllProjectedBy(pageable);
     }
 
     /**
@@ -93,7 +102,7 @@ public class PacienteService {
     /**
      * Search for the paciente corresponding to the query.
      *
-     * @param query    the query of the search.
+     * @param query the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -102,9 +111,5 @@ public class PacienteService {
         log.debug("Request to search for a page of Pacientes for query {}", query);
         return pacienteSearchRepository.search(queryStringQuery(query), pageable)
             .map(pacienteMapper::toDto);
-    }
-
-    public Page<PacienteSummary> getPacienteSummary(Pageable pageable) {
-        return pacienteRepository.findAllProjectedBy(pageable);
     }
 }

@@ -12,7 +12,7 @@ import br.com.basis.madre.domain.enumeration.Sexo;
  * A DTO for the {@link br.com.basis.madre.domain.Paciente} entity.
  */
 public class PacienteDTO implements Serializable {
-
+    
     private Long id;
 
     @NotNull
@@ -25,7 +25,7 @@ public class PacienteDTO implements Serializable {
 
     private Instant horaDeNascimento;
 
-
+    
     private String email;
 
     private String observacao;
@@ -36,9 +36,8 @@ public class PacienteDTO implements Serializable {
     @NotNull
     private Sexo sexo;
 
-    private Long cartaoSUSId;
 
-    private String numeroDoCartaoSUS;
+    private Long cartaoSUSId;
 
     private Long responsavelId;
 
@@ -50,20 +49,18 @@ public class PacienteDTO implements Serializable {
 
     private Long religiaoId;
 
+    private Long naturalidadeId;
+
     private Long etniaId;
 
     private Long genitoresId;
 
-    private String nomeDaMae;
-
     private Long nacionalidadeId;
-
-    private Long naturalidadeId;
 
     private Long racaId;
 
     private Long estadoCivilId;
-
+    
     public Long getId() {
         return id;
     }
@@ -184,6 +181,14 @@ public class PacienteDTO implements Serializable {
         this.religiaoId = religiaoId;
     }
 
+    public Long getNaturalidadeId() {
+        return naturalidadeId;
+    }
+
+    public void setNaturalidadeId(Long municipioId) {
+        this.naturalidadeId = municipioId;
+    }
+
     public Long getEtniaId() {
         return etniaId;
     }
@@ -208,14 +213,6 @@ public class PacienteDTO implements Serializable {
         this.nacionalidadeId = nacionalidadeId;
     }
 
-    public Long getNaturalidadeId() {
-        return naturalidadeId;
-    }
-
-    public void setNaturalidadeId(Long naturalidadeId) {
-        this.naturalidadeId = naturalidadeId;
-    }
-
     public Long getRacaId() {
         return racaId;
     }
@@ -230,22 +227,6 @@ public class PacienteDTO implements Serializable {
 
     public void setEstadoCivilId(Long estadoCivilId) {
         this.estadoCivilId = estadoCivilId;
-    }
-
-    public String getNumeroDoCartaoSUS() {
-        return numeroDoCartaoSUS;
-    }
-
-    public void setNumeroDoCartaoSUS(String numeroDoCartaoSUS) {
-        this.numeroDoCartaoSUS = numeroDoCartaoSUS;
-    }
-
-    public String getNomeDaMae() {
-        return nomeDaMae;
-    }
-
-    public void setNomeDaMae(String nomeDaMae) {
-        this.nomeDaMae = nomeDaMae;
     }
 
     @Override
@@ -272,28 +253,27 @@ public class PacienteDTO implements Serializable {
     @Override
     public String toString() {
         return "PacienteDTO{" +
-            "id=" + id +
-            ", nome='" + nome + '\'' +
-            ", nomeSocial='" + nomeSocial + '\'' +
-            ", dataDeNascimento=" + dataDeNascimento +
-            ", horaDeNascimento=" + horaDeNascimento +
-            ", email='" + email + '\'' +
-            ", observacao='" + observacao + '\'' +
-            ", grauDeInstrucao=" + grauDeInstrucao +
-            ", sexo=" + sexo +
-            ", cartaoSUSId=" + cartaoSUSId +
-            ", numeroDoCartaoSUS='" + numeroDoCartaoSUS + '\'' +
-            ", responsavelId=" + responsavelId +
-            ", documentoId=" + documentoId +
-            ", certidaoId=" + certidaoId +
-            ", ocupacaoId=" + ocupacaoId +
-            ", religiaoId=" + religiaoId +
-            ", etniaId=" + etniaId +
-            ", genitoresId=" + genitoresId +
-            ", nacionalidadeId=" + nacionalidadeId +
-            ", naturalidadeId=" + naturalidadeId +
-            ", racaId=" + racaId +
-            ", estadoCivilId=" + estadoCivilId +
-            '}';
+            "id=" + getId() +
+            ", nome='" + getNome() + "'" +
+            ", nomeSocial='" + getNomeSocial() + "'" +
+            ", dataDeNascimento='" + getDataDeNascimento() + "'" +
+            ", horaDeNascimento='" + getHoraDeNascimento() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", observacao='" + getObservacao() + "'" +
+            ", grauDeInstrucao='" + getGrauDeInstrucao() + "'" +
+            ", sexo='" + getSexo() + "'" +
+            ", cartaoSUSId=" + getCartaoSUSId() +
+            ", responsavelId=" + getResponsavelId() +
+            ", documentoId=" + getDocumentoId() +
+            ", certidaoId=" + getCertidaoId() +
+            ", ocupacaoId=" + getOcupacaoId() +
+            ", religiaoId=" + getReligiaoId() +
+            ", naturalidadeId=" + getNaturalidadeId() +
+            ", etniaId=" + getEtniaId() +
+            ", genitoresId=" + getGenitoresId() +
+            ", nacionalidadeId=" + getNacionalidadeId() +
+            ", racaId=" + getRacaId() +
+            ", estadoCivilId=" + getEstadoCivilId() +
+            "}";
     }
 }

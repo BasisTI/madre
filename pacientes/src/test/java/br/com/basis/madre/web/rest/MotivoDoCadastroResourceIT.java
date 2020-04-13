@@ -176,7 +176,7 @@ public class MotivoDoCadastroResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(motivoDoCadastro.getId().intValue())))
             .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR)));
     }
-
+    
     @Test
     @Transactional
     public void getMotivoDoCadastro() throws Exception {

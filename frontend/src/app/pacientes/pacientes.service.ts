@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PacienteSummary } from './interfaces/paciente.summary';
+import { PacienteSummary } from './models/paciente.summary';
 import { Pageable } from '../shared/pageable';
 
 @Injectable({

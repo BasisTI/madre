@@ -1,0 +1,7 @@
+/*
+    Work-around for readonly inputs.
+ */
+.ui-inputtext:disabled {
+    color: black;
+    opacity: unset;
+}
