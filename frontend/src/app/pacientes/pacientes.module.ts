@@ -19,6 +19,9 @@ import { ProntuarioPipe } from './pipes/prontuario.pipe';
 import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 import { PacientesService } from './pacientes.service';
 
+import { CRUD_SERVICE } from '@nuvem/primeng-components';
+import { RacaService } from './raca.service';
+
 @NgModule({
     declarations: [
         DadosPessoaisComponent,
@@ -34,7 +37,7 @@ import { PacientesService } from './pacientes.service';
         ProntuarioPipe,
         CartaoSusPipe,
     ],
-    providers: [PacientesService],
+    providers: [PacientesService, { provide: CRUD_SERVICE, useExisting: RacaService }],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],
 })
