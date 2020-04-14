@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
     <div [formGroup]="formularioDeCadastro">
         <p-accordion>
-            <p-accordionTab header="Dados Pessoais">
+            <p-accordionTab header="Dados Pessoais" [selected]="true">
                 <app-dados-pessoais
                     [dadosPessoais]="formularioDeCadastro.controls.dadosPessoais"
                 ></app-dados-pessoais>
