@@ -82,7 +82,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             justificativa: [''],
             motivoCadastro: [''],
             docReferencia: [''],
-            cartaoNacional: [''],
+            cartaoNacional: ['', [this.validarNumero]],
             dataDeEntrada: [''],
             dataDeNaturalizacao: [''],
             portaria: [''],
