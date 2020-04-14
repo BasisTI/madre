@@ -1,0 +1,52 @@
+{
+  "generator-jhipster-nuvem-java": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "internacao",
+    "packageName": "br.com.basis.madre",
+    "packageFolder": "br/com/basis/madre",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MzdiNzk1NTI5YTRiZDk5NjU3Mzk2ZmJlNDgxNDNlYzdlMmYwODk0MmY2YWQ2MmE5NzcxOWQ4ZTRjYjY2YTI3YWNlZmViNDI4MjlkMWJkMmUyYTRlMGI3MTQwNTViZTc3NDE5OWY3MTQ1OGQ3MzNiYTVhMWQ4YWU3YWNjNzFjNjA=",
+    "embeddableLaunchScript": false
+  },
+  "generator-jhipster": {
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "internacao",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.5.0"
+      }
+    ],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.5.0"
+      }
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
