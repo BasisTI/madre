@@ -44,12 +44,12 @@
 
         <div class="ui-g-2">
             <span class="ui-float-label">
-                <input
-                    type="text"
-                    pTooltip="Informe a Portaria"
+                <p-inputMask
                     pInputText
                     formControlName="cartaoNacional"
-                />
+                    mask="999 9999 9999 9999"
+                    pTooltip="Informe o CNS da mãe do paciente."
+                ></p-inputMask>
                 <label>Cartão Nacional Saúde Mãe</label>
             </span>
         </div>
