@@ -47,6 +47,11 @@ public class PacienteService {
         return pacienteRepository.findAllProjectedBy(pageable);
     }
 
+    public Page<Paciente> findAllElasticPaciente(Pageable pageable){
+        return pacienteSearchRepository.findAll(pageable);
+
+    }
+
     /**
      * Save a paciente.
      *

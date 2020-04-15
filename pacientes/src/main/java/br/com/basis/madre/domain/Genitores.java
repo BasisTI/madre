@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,13 +27,16 @@ public class Genitores implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @Column(name = "prontuario_da_mae")
     private String prontuarioDaMae;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "nome_da_mae", nullable = false)
     private String nomeDaMae;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "nome_do_pai", nullable = false)
     private String nomeDoPai;

@@ -7,6 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,21 +30,26 @@ public class Telefone implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "ddd", nullable = false)
     private String ddd;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "numero", nullable = false)
     private String numero;
 
+    @Field(type = FieldType.Keyword)
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoDoContato tipo;
 
+    @Field(type = FieldType.Text)
     @Column(name = "observacao")
     private String observacao;
 
+//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("telefones")
     private Paciente paciente;

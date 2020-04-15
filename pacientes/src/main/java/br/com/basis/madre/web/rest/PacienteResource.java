@@ -1,5 +1,6 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.projection.PacienteSummary;
@@ -60,6 +61,10 @@ public class PacienteResource {
     public ResponseEntity<Page<PacienteSummary>> findAllPacienteSummary(Pageable pageable) {
         return ResponseEntity.ok(pacienteService.findAllPacienteSummary(pageable));
     }
+//    @GetMapping("/pacientes/lista-de-pacientes")
+//    public ResponseEntity<Page<Paciente>> findAllElastic(Pageable pageable) {
+//        return ResponseEntity.ok(pacienteService.findAllElasticPaciente(pageable));
+//    }
 
     /**
      * {@code POST  /pacientes} : Create a new paciente.

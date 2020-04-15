@@ -7,6 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -27,17 +28,22 @@ public class Municipio implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Field(type = FieldType.Text)
     @Column(name = "nome_do_distrito")
     private String nomeDoDistrito;
 
+
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "ibge", nullable = false)
     private String ibge;
 
+    @Field(type = FieldType.Object)
     @ManyToOne
     @JsonIgnoreProperties("municipios")
     private UF uf;

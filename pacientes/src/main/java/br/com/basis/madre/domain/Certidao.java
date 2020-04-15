@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -28,28 +29,36 @@ public class Certidao implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @Column(name = "registro_de_nascimento")
     private String registroDeNascimento;
 
+    @Field(type = FieldType.Keyword)
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_da_certidao")
     private TipoDaCertidao tipoDaCertidao;
 
+    @Field(type = FieldType.Text)
     @Column(name = "nome_do_cartorio")
     private String nomeDoCartorio;
 
+    @Field(type = FieldType.Text)
     @Column(name = "livro")
     private String livro;
 
+    @Field(type = FieldType.Text)
     @Column(name = "folhas")
     private String folhas;
 
+    @Field(type = FieldType.Text)
     @Column(name = "termo")
     private String termo;
 
+    @Field(type = FieldType.Date)
     @Column(name = "data_de_emissao")
     private LocalDate dataDeEmissao;
 
+    @Field(type = FieldType.Text)
     @Column(name = "numero_da_declaracao_de_nascimento")
     private String numeroDaDeclaracaoDeNascimento;
 

@@ -8,6 +8,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -18,6 +20,7 @@ import br.com.basis.madre.domain.enumeration.DocumentoDeReferencia;
 /**
  * A CartaoSUS.
  */
+
 @Entity
 @Table(name = "cartao_sus")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -31,34 +34,43 @@ public class CartaoSUS implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "numero", nullable = false)
     private String numero;
 
+    @Field(type = FieldType.Keyword)
     @Enumerated(EnumType.STRING)
     @Column(name = "documento_de_referencia")
     private DocumentoDeReferencia documentoDeReferencia;
 
+    @Field(type = FieldType.Text)
     @Column(name = "cartao_nacional_saude_mae")
     private String cartaoNacionalSaudeMae;
 
+    @Field(type = FieldType.Date)
     @Column(name = "data_de_entrada_no_brasil")
     private LocalDate dataDeEntradaNoBrasil;
 
+    @Field(type = FieldType.Date)
     @Column(name = "data_de_naturalizacao")
     private LocalDate dataDeNaturalizacao;
 
+    @Field(type = FieldType.Text)
     @Column(name = "portaria")
     private String portaria;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("cartaoSUSES")
     private Justificativa justificativa;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("cartaoSUSES")
     private MotivoDoCadastro motivoDoCadastro;
 
+//    @Field(type = FieldType.Nested)
     @OneToOne(mappedBy = "cartaoSUS")
     @JsonIgnore
     private Paciente paciente;

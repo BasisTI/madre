@@ -1,11 +1,13 @@
 package br.com.basis.madre.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,13 +28,16 @@ public class UF implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "unidade_federativa", nullable = false)
     private String unidadeFederativa;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "sigla", nullable = false)
     private String sigla;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
