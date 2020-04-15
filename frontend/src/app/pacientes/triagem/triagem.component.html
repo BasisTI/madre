@@ -1,0 +1,56 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Triagem</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input type="text" pInputText class="ui-inputtext" name="filtro" />
+                        <label>Pesquisar Triagem</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                            bTooltip="Pesquisar paciente por nome."
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Nova Triagem"
+                            icon="ui-icon-add"
+                            routerLink="/pacientes/triagem"
+                            bTooltip="Cadastrar nova Triagem."
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable type="memory" [value]="pacientes">
+                    <p-column header="Nome do Paciente" field="nomeDoPaciente"></p-column>
+                    <p-column header="Nome Social" field="nomeSocial"></p-column>
+                    <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
+                    <p-column header="Data do Atendimento" field="dataDoAtendimento"> </p-column>
+                    <p-column header="Hora de Chegada" field="horaDeChegada"></p-column>
+                    <p-column header="Classificação" field="classificacao"></p-column>
+                </basis-datatable>
+
+                <div class="ui-g-3">
+                    <button
+                        pButton
+                        type="button"
+                        label="Exportar"
+                        icon="ui-icon-add"
+                        bTooltip="Exportar arquivos de Triagem"
+                    ></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
