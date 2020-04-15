@@ -2,7 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.PacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
-import br.com.basis.madre.service.projection.PacienteSummary;
+import br.com.basis.madre.service.projection.PacienteResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -51,14 +51,11 @@ public class PacienteResource {
     }
 
     /**
-     * {@code GET /pacientes/lista-de-pacientes} : Retorna lista de {@link br.com.basis.madre.service.projection.PacienteSummary}
-     *
-     * @param pageable informação de paginação
-     * @return A {@link ResponseEntity} com status {@code 200 (OK)} e a lista de pacientes no body.
+     * TODO: Write documentation
      */
-    @GetMapping("/pacientes/lista-de-pacientes")
-    public ResponseEntity<Page<PacienteSummary>> findAllPacienteSummary(Pageable pageable) {
-        return ResponseEntity.ok(pacienteService.findAllPacienteSummary(pageable));
+    @GetMapping("/pacientes/_resumo")
+    public ResponseEntity<Page<PacienteResumo>> findAllProjectedPacienteResumoBy(Pageable pageable) {
+        return ResponseEntity.ok(pacienteService.findAllProjectedPacienteResumoBy(pageable));
     }
 
     /**
