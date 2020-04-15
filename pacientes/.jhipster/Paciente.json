@@ -73,6 +73,12 @@
             "relationshipName": "endereco"
         },
         {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "triagem",
+            "otherEntityRelationshipName": "paciente",
+            "relationshipName": "triagem"
+        },
+        {
             "relationshipType": "many-to-one",
             "otherEntityName": "responsavel",
             "otherEntityRelationshipName": "paciente",

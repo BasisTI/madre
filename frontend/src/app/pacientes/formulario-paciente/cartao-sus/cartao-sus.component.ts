@@ -10,13 +10,12 @@ import { ptBR } from '../../../shared/calendar.pt-br.locale';
     templateUrl: './cartao-sus.component.html',
     styles: [
         `
-            .ui-widget.read-only:disabled {
-                opacity: 1;
-                background-color: #dddddd;
+            .ui-inputtext:disabled {
+                color: black;
+                opacity: unset;
             }
-
-            div {
-                margin: 3px;
+            .ui-float-label {
+                margin: 5px;
             }
         `,
     ],
