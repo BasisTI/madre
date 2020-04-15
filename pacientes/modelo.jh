@@ -9,13 +9,30 @@ entity Paciente {
     sexo Sexo required
 }
 
+entity Triagem {
+    nomeDoPaciente String required
+    pressaoArterial Long
+    frequenciaCardiaca Long
+    temperatura Long
+    peso Long
+    sinaisSintomas String
+    horaDoAtendimento Instant
+    dataDoAtendimento LocalDate
+    idade Integer
+    descricaoQueixa String required
+    vitimaDeAcidente Boolean
+    removidoDeAmbulancia Boolean
+
+}
+
 relationship OneToOne {
     Paciente to CartaoSUS
 }
 
 relationship OneToMany {
     Paciente{telefone} to Telefone,
-    Paciente{endereco} to Endereco
+    Paciente{endereco} to Endereco,
+    Paciente{triagem} to Triagem
 }
 
 relationship ManyToOne {
