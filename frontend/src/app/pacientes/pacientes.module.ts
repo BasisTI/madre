@@ -12,6 +12,7 @@ import { TelefoneComponent } from './formulario-paciente/telefone/telefone.compo
 import { EnderecoComponent } from './formulario-paciente/endereco/endereco.component';
 import { FormularioCadastroComponent } from './formulario-paciente/formulario-cadastro.component';
 import { ObservacaoComponent } from './formulario-paciente/observacao/observacao.component';
+import { TriagemComponent } from './triagem/triagem.component';
 
 import { routes } from './pacientes.routes';
 import { ListaDePacientesComponent } from './lista-de-pacientes/lista-de-pacientes.component';
@@ -33,6 +34,7 @@ import { PacientesService } from './pacientes.service';
         ListaDePacientesComponent,
         ProntuarioPipe,
         CartaoSusPipe,
+        TriagemComponent,
     ],
     providers: [PacientesService],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
