@@ -10,13 +10,17 @@
                 ></p-inputMask>
                 <label>Número</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Número' é obrigátorio."
+                *ngIf="cartaoSUS.get('numero').touched && cartaoSUS.get('numero').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeJustificativaDeAusencia"
                     formControlName="justificativa"
-                    pTooltip="Selecione a justificativa da ausência CNS."
                     filter="true"
                 >
                 </p-dropdown>
@@ -28,7 +32,6 @@
                 <p-dropdown
                     [options]="opcoesDeMotivoDeCadastro"
                     formControlName="motivoCadastro"
-                    pTooltip="Selecione o motivo do cadastro."
                     filter="true"
                 >
                 </p-dropdown>
@@ -39,7 +42,6 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeDocumentoDeReferencia"
-                    pTooltip="Selecione o Documento de Referência."
                     formControlName="docReferencia"
                 ></p-dropdown>
                 <label>Doc. Referência</label>
@@ -69,7 +71,6 @@
                     [maxDate]="maxDate"
                     monthNavigator="true"
                     yearNavigator="true"
-                    pTooltip="Informe a data de entrada no Brasil."
                     formControlName="dataDeEntrada"
                 ></p-calendar>
                 <label>Data de Entrada no Brasil</label>
@@ -83,7 +84,6 @@
                     [dateFormat]="formatoDeData"
                     monthNavigator="true"
                     yearNavigator="true"
-                    pTooltip="Informe a data de Naturalização no Brasil."
                     formControlName="dataDeNaturalizacao"
                 ></p-calendar>
                 <label>Data de Naturalização</label>

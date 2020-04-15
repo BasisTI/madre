@@ -18,11 +18,6 @@ export class EnderecoComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private municipioService: MunicipioService) {}
 
-    fakeData = [];
-    adicionar() {
-        this.fakeData.push(this.enderecos.value);
-    }
-
     ngOnInit(): void {
         this.preencherComboMunicipio();
     }

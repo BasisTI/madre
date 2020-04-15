@@ -10,6 +10,11 @@
                 />
                 <label>Nome Completo</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Nome Completo' é obrigátorio."
+                *ngIf="dadosPessoais.get('nome').touched && dadosPessoais.get('nome').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-6 ui-sm-12">
             <span class="ui-float-label">
@@ -26,46 +31,62 @@
     <div class="ui-g-12">
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeSexo"
-                    pTooltip="Selecione o sexo do paciente."
-                    formControlName="sexo"
-                ></p-dropdown>
+                <p-dropdown [options]="opcoesDeSexo" formControlName="sexo"></p-dropdown>
                 <label>Sexo</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Sexo' é obrigátorio."
+                *ngIf="dadosPessoais.get('sexo').touched && dadosPessoais.get('sexo').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeRaca"
-                    pTooltip="Selecione a raça do paciente."
                     formControlName="raca"
                     filter="true"
                 ></p-dropdown>
                 <label>Raça</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Raça' é obrigátorio."
+                *ngIf="dadosPessoais.get('raca').touched && dadosPessoais.get('raca').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeEtnia"
-                    pTooltip="Selecione a etnia do paciente."
                     formControlName="etnia"
                     filter="true"
                 ></p-dropdown>
                 <label>Etnia</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Etnia' é obrigátorio."
+                *ngIf="dadosPessoais.get('etnia').touched && dadosPessoais.get('etnia').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeEstadoCivil"
-                    pTooltip="Selecione o estado civil do paciente."
                     formControlName="estadoCivil"
                     filter="true"
                 ></p-dropdown>
                 <label>Estado Civil</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Estado Civil' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('estadoCivil').touched &&
+                    dadosPessoais.get('estadoCivil').invalid
+                "
+            ></p-message>
         </div>
     </div>
     <div class="ui-g-12">
@@ -90,6 +111,13 @@
                 />
                 <label>Nome da Mãe</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Nome da Mãe' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('nomeDaMae').touched && dadosPessoais.get('nomeDaMae').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-5 ui-sm-12">
             <span class="ui-float-label">
@@ -101,6 +129,13 @@
                 />
                 <label>Nome do Pai</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Nome do Pai' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('nomeDoPai').touched && dadosPessoais.get('nomeDoPai').invalid
+                "
+            ></p-message>
         </div>
     </div>
     <div class="ui-g-12 ui-sm-12">
@@ -113,21 +148,24 @@
                     [maxDate]="dataLimite"
                     monthNavigator="true"
                     yearNavigator="true"
-                    pTooltip="Informe a data de nascimento do paciente."
                     formControlName="dataDeNascimento"
                     (onSelect)="aoSelecionarDataDeNascimento()"
                     (onBlur)="aoSelecionarDataDeNascimento()"
                 ></p-calendar>
                 <label>Data de Nascimento</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Data de Nascimento' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('dataDeNascimento').touched &&
+                    dadosPessoais.get('dataDeNascimento').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <p-calendar
-                    timeOnly="true"
-                    pTooltip="Informe o horário do nascimento do paciente."
-                    formControlName="horaDoNascimento"
-                ></p-calendar>
+                <p-calendar timeOnly="true" formControlName="horaDoNascimento"></p-calendar>
                 <label>Hora do Nascimento</label>
             </span>
         </div>
@@ -149,12 +187,19 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeNacionalidade"
-                    pTooltip="Selecione a nacionalidade do paciente."
                     formControlName="nacionalidade"
                     filter="true"
                 ></p-dropdown>
                 <label>Nacionalidade</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Nacionalidade' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('nacionalidade').touched &&
+                    dadosPessoais.get('nacionalidade').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
@@ -162,12 +207,19 @@
                     [options]="opcoesDeNaturalidade"
                     formControlName="naturalidade"
                     [filter]="true"
-                    pTooltip="Selecione a naturalidade do paciente."
                     (onChange)="aoSelecionarNaturalidade()"
                 >
                 </p-dropdown>
                 <label>Naturalidade</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Naturalidade' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('naturalidade').touched &&
+                    dadosPessoais.get('naturalidade').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
@@ -190,21 +242,23 @@
                 <p-dropdown
                     [options]="opcoesDeGrauDeInstrucao"
                     formControlName="grauDeInstrucao"
-                    pTooltip="Selecione o grau de instrução do paciente."
                     filter="true"
                 >
                 </p-dropdown>
                 <label>Grau de Instrução</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Grau de Instrução' é obrigátorio."
+                *ngIf="
+                    dadosPessoais.get('grauDeInstrucao').touched &&
+                    dadosPessoais.get('grauDeInstrucao').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-4 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeOcupacao"
-                    formControlName="ocupacao"
-                    pTooltip="Selecione a ocupação do paciente."
-                    filter="true"
-                >
+                <p-dropdown [options]="opcoesDeOcupacao" formControlName="ocupacao" filter="true">
                 </p-dropdown>
                 <label>Ocupação</label>
             </span>
@@ -214,7 +268,6 @@
                 <p-dropdown
                     [options]="opcoesDeReligiao"
                     formControlName="religiao"
-                    pTooltip="Selecione a religião do paciente."
                     filter="true"
                 ></p-dropdown>
                 <label>Religião</label>
