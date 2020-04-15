@@ -1,0 +1,81 @@
+{
+    "name": "Triagem",
+    "fields": [
+        {
+            "fieldName": "nomeDoPaciente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pressaoArterial",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "frequenciaCardiaca",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "temperatura",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "peso",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "sinaisSintomas",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "horaDoAtendimento",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataDoAtendimento",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "idade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "descricaoQueixa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "vitimaDeAcidente",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "removidoDeAmbulancia",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paciente",
+            "otherEntityRelationshipName": "triagem",
+            "relationshipName": "paciente",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200415123300",
+    "entityTableName": "triagem",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}
