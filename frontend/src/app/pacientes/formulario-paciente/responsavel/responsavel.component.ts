@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { GrauDeParentescoService } from '../../services/grau-de-parentesco.service';
+import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 @Component({
     selector: 'app-responsavel',
     templateUrl: './responsavel.component.html',
@@ -12,33 +13,27 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
         `,
     ],
 })
-export class ResponsavelComponent {
+export class ResponsavelComponent implements OnInit {
     @Input() responsavel: FormGroup;
 
-    grausDeParentesco = [
-        { label: 'Selecione', value: null },
-        { label: 'Cônjuge', value: 'conjuge' },
-        { label: 'Neto', value: 'neto' },
-        { label: 'Neta', value: 'neta' },
-        { label: 'Tio', value: 'tio' },
-        { label: 'Tia', value: 'tia' },
-        { label: 'Sobrinho', value: 'sobrinho' },
-        { label: 'Sobrinha', value: 'sobrinha' },
-        { label: 'Pai', value: 'pai' },
-        { label: 'Mãe', value: 'mae' },
-        { label: 'Irmão', value: 'irmao' },
-        { label: 'Irmã', value: 'irma' },
-        { label: 'Primo', value: 'primo' },
-        { label: 'Prima', value: 'prima' },
-        { label: 'Cliente', value: 'cliente' },
-        { label: 'Filho', value: 'filho' },
-        { label: 'Filha', value: 'filha' },
-        { label: 'Amigo', value: 'amigo' },
-        { label: 'Amiga', value: 'amiga' },
-        { label: 'Responsável Legal', value: 'responsavelLegal' },
-        { label: 'Desconhecido', value: 'desconhecido' },
-        { label: 'Não Informado', value: 'naoInformado' },
-    ];
+    opcoesDeGrauDeParentesco = [OPCAO_SELECIONE];
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private grauDeParentescoService: GrauDeParentescoService,
+    ) {}
+
+    ngOnInit(): void {
+        this.grauDeParentescoService.getListaDeGrausDeParentesco().subscribe((dados) => {
+            this.opcoesDeGrauDeParentesco = [
+                ...this.opcoesDeGrauDeParentesco,
+                ...dados.map(({ valor }) => {
+                    return {
+                        label: valor,
+                        value: valor,
+                    };
+                }),
+            ];
+        });
+    }
 }

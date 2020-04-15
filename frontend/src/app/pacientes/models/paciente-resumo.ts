@@ -1,4 +1,4 @@
-export interface PacienteSummary {
+export interface PacienteResumo {
     nome: string;
     dataDeNascimento: string;
     genitores: {

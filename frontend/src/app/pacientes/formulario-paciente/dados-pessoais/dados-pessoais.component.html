@@ -40,6 +40,7 @@
                     [options]="opcoesDeRaca"
                     pTooltip="Selecione a raça do paciente."
                     formControlName="raca"
+                    filter="true"
                 ></p-dropdown>
                 <label>Raça</label>
             </span>
@@ -48,7 +49,7 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeEtnia"
-                    pTooltip="Selecione o etnia do paciente."
+                    pTooltip="Selecione a etnia do paciente."
                     formControlName="etnia"
                     filter="true"
                 ></p-dropdown>
@@ -61,6 +62,7 @@
                     [options]="opcoesDeEstadoCivil"
                     pTooltip="Selecione o estado civil do paciente."
                     formControlName="estadoCivil"
+                    filter="true"
                 ></p-dropdown>
                 <label>Estado Civil</label>
             </span>
@@ -158,11 +160,12 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeNaturalidade"
-                    pTooltip="Selecione a naturalidade do paciente."
                     formControlName="naturalidade"
-                    filter="true"
-                    (onChange)="aoSelecionarNaturalidade()"
-                ></p-dropdown>
+                    [filter]="true"
+                    pTooltip="Selecione a naturalidade do paciente."
+                    (onBlur)="aoSelecionarNaturalidade()"
+                >
+                </p-dropdown>
                 <label>Naturalidade</label>
             </span>
         </div>
@@ -187,9 +190,10 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeGrauDeInstrucao"
-                    pTooltip="Selecione o grau de instrução do paciente."
                     formControlName="grauDeInstrucao"
-                ></p-dropdown>
+                    pTooltip="Selecione o grau de instrução do paciente."
+                >
+                </p-dropdown>
                 <label>Grau de Instrução</label>
             </span>
         </div>
@@ -197,10 +201,11 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeOcupacao"
-                    pTooltip="Selecione a ocupação do paciente."
                     formControlName="ocupacao"
+                    pTooltip="Selecione a ocupação do paciente."
                     filter="true"
-                ></p-dropdown>
+                >
+                </p-dropdown>
                 <label>Ocupação</label>
             </span>
         </div>
@@ -208,8 +213,8 @@
             <span class="ui-float-label">
                 <p-dropdown
                     [options]="opcoesDeReligiao"
-                    pTooltip="Selecione a religião do paciente."
                     formControlName="religiao"
+                    pTooltip="Selecione a religião do paciente."
                     filter="true"
                 ></p-dropdown>
                 <label>Religião</label>

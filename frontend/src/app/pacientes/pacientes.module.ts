@@ -20,7 +20,19 @@ import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 import { PacientesService } from './pacientes.service';
 
 import { CRUD_SERVICE } from '@nuvem/primeng-components';
-import { RacaService } from './raca.service';
+import { RacaService } from './services/raca.service';
+import { EtniaService } from './services/etnia.service';
+import { NacionalidadeService } from './services/nacionalidade.service';
+import { EstadoCivilService } from './services/estado-civil.service';
+import { NaturalidadeService } from './services/naturalidade.service';
+import { OcupacaoService } from './services/ocupacao.service';
+import { ReligiaoService } from './services/religiao.service';
+import { GrauDeParentescoService } from './services/grau-de-parentesco.service';
+import { OrgaoEmissorService } from './services/orgao-emissor.service';
+import { JustificativaService } from './services/justificativa.service';
+import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
+import { UfService } from './services/uf.service';
+import { MunicipioService } from './services/municipio.service';
 
 @NgModule({
     declarations: [
@@ -37,7 +49,22 @@ import { RacaService } from './raca.service';
         ProntuarioPipe,
         CartaoSusPipe,
     ],
-    providers: [PacientesService, { provide: CRUD_SERVICE, useExisting: RacaService }],
+    providers: [
+        PacientesService,
+        { provide: CRUD_SERVICE, useExisting: RacaService },
+        { provide: CRUD_SERVICE, useExisting: EtniaService },
+        { provide: CRUD_SERVICE, useExisting: EstadoCivilService },
+        { provide: CRUD_SERVICE, useExisting: NacionalidadeService },
+        { provide: CRUD_SERVICE, useExisting: NaturalidadeService },
+        { provide: CRUD_SERVICE, useExisting: OcupacaoService },
+        { provide: CRUD_SERVICE, useExisting: ReligiaoService },
+        { provide: CRUD_SERVICE, useExisting: GrauDeParentescoService },
+        { provide: CRUD_SERVICE, useExisting: OrgaoEmissorService },
+        { provide: CRUD_SERVICE, useExisting: JustificativaService },
+        { provide: CRUD_SERVICE, useExisting: MotivoDoCadastro },
+        { provide: CRUD_SERVICE, useExisting: UfService },
+        { provide: CRUD_SERVICE, useExisting: MunicipioService },
+    ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],
 })

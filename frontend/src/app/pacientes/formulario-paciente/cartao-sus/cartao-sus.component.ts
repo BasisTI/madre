@@ -1,72 +1,60 @@
-import { ChartModule } from 'primeng/chart';
-import { Component, Input } from '@angular/core';
-
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
+import { JustificativaService } from '../../services/justificativa.service';
+import { MotivoDoCadastroService } from '../../services/motivo-do-cadastro.service';
+import { OPCOES_DE_DOCUMENTO_DE_REFERENCIA } from '../../models/dropdowns/opcoes-de-documento-de-referencia';
+import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 
 @Component({
     selector: 'app-cartao-sus',
     templateUrl: './cartao-sus.component.html',
-    styles: [
-        `
-            .ui-inputtext:disabled {
-                color: black;
-                opacity: unset;
-            }
-            .ui-float-label {
-                margin: 5px;
-            }
-        `,
-    ],
 })
-export class CartaoSusComponent {
+export class CartaoSusComponent implements OnInit {
     @Input() cartaoSUS: FormGroup;
-
-    listaAusenciaCns = [
-        { label: 'Selecione' },
-        { label: 'Indivíduo acidentado grave', value: 'cns1407867196'[''] },
-        { label: 'Indivíduo psiquiátrico encontrado em via pública', value: 'cns1049140526'[''] },
-        {
-            label: 'Indivíduo com problema neurológico grave ou comatoso',
-            value: 'cns2064078612'[''],
-        },
-        {
-            label: 'Indivíduo incapacitado por motivos sociais e/ou culturais',
-            value: 'cns518398246'[''],
-        },
-        { label: 'Indivíduo doador de órgãos falecido', value: 'cns378164643'[''] },
-    ];
-    listaDocReferencia = [
-        { label: 'Selecione' },
-        { label: 'APAC', value: 'a1' },
-        { label: 'AIH', value: 'a2' },
-    ];
-
-    listaMotivoCadastro = [
-        { label: 'Selecione' },
-        { label: 'Tratatamento Renal Substitutivo', value: 'tratRenal' },
-        { label: 'Recém Nato', value: 'recemNato' },
-        { label: 'Gestante', value: 'gestante' },
-        { label: 'Hanseníase', value: 'hanseniase' },
-        { label: 'Programa de Volta para Casa', value: 'voltaParaCasa' },
-        { label: 'Estabelecimento Prisional', value: 'estabPrisional' },
-        { label: 'Medicamento Excepcional', value: 'medicExcepc' },
-        { label: 'Radioterapia', value: ' radio' },
-        { label: 'Quimioterapia', value: 'quimio' },
-        { label: 'Acompanhamento Pós-transplante', value: 'posTransplante' },
-        { label: 'Contagem de Linfócitos T CD4/CD8', value: 'tCd4Cd8' },
-        { label: 'Quantificação Carga Viral HIV', value: 'quantHiv' },
-        { label: 'Demais proc. que exigem autorização prévia', value: 'autPrevia' },
-        { label: 'Cirurgia Eletivas de Transplante', value: 'cirurgiaTranplante' },
-        { label: 'Demais Cirurgias Eletivas', value: 'tuberculos' },
-        { label: 'Tuberculose', value: 'tuberculose' },
-        { label: 'Outros', value: 'outros' },
-    ];
-
+    opcoesDeJustificativaDeAusencia = [OPCAO_SELECIONE];
+    opcoesDeDocumentoDeReferencia = OPCOES_DE_DOCUMENTO_DE_REFERENCIA;
+    opcoesDeMotivoDeCadastro = [OPCAO_SELECIONE];
     localizacao = ptBR;
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private justificativaService: JustificativaService,
+        private motivoDoCadastroService: MotivoDoCadastroService,
+    ) {}
+
+    ngOnInit(): void {
+        this.preencherComboJustificativa();
+        this.preencherComboMotivoDoCadastro();
+    }
+
+    preencherComboJustificativa() {
+        this.justificativaService.getListaDeJustificativas().subscribe((dados) => {
+            this.opcoesDeJustificativaDeAusencia = [
+                ...this.opcoesDeJustificativaDeAusencia,
+                ...dados.map(({ valor }) => {
+                    return {
+                        label: valor,
+                        value: valor,
+                    };
+                }),
+            ];
+        });
+    }
+
+    preencherComboMotivoDoCadastro() {
+        this.motivoDoCadastroService.getListaDeMotivos().subscribe((dados) => {
+            this.opcoesDeMotivoDeCadastro = [
+                ...this.opcoesDeMotivoDeCadastro,
+                ...dados.map(({ valor }) => {
+                    return {
+                        label: valor,
+                        value: valor,
+                    };
+                }),
+            ];
+        });
+    }
 }

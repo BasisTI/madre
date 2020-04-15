@@ -4,7 +4,7 @@
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
                     <p-dropdown
-                        [options]="municipios"
+                        [options]="opcoesDeMunicipio"
                         formControlName="municipio"
                         filter="true"
                         pTooltip="Imforme um municipio."
@@ -27,7 +27,11 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-dropdown [options]="UF" formControlName="UF"></p-dropdown>
+                    <p-dropdown
+                        [options]="opcoesDeUF"
+                        formControlName="UF"
+                        filter="true"
+                    ></p-dropdown>
                     <label>UF</label>
                 </span>
             </div>
@@ -45,11 +49,11 @@
             <div class="ui-g-4">
                 <span class="ui-float-label">
                     <p-dropdown
-                        [options]="opcao"
+                        [options]="opcoesDeTipoDeEndereco"
                         formControlName="tipo"
                         pTooltip="Informe o tipo de endereço."
                     ></p-dropdown>
-                    <label>Tipo de endereço</label>
+                    <label>Tipo de Endereço</label>
                 </span>
             </div>
         </div>
@@ -62,7 +66,7 @@
                         formControlName="Numero"
                         pTooltip="Informe o Numero."
                     />
-                    <Label>Numero</Label>
+                    <Label>Número</Label>
                 </span>
             </div>
             <div class="ui-g-4">
@@ -92,23 +96,21 @@
                 <p-triStateCheckbox
                     name="corespondencia"
                     formControlName="corespondencia"
-                    label="corespondencia"
+                    label="Correspondência"
                 ></p-triStateCheckbox>
             </div>
             <div class="ui-g-3">
                 <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
             </div>
         </div>
-        <!-- [disabled]="endereco.invalid" -->
-        <p-button label="adicionar" type="submit"></p-button>
-
+        <p-button label="Adicionar" type="submit"></p-button>
         <basis-datatable type="memory" [value]="fakeData">
-            <p-column header="municipio" field="municipio"></p-column>
+            <p-column header="Município" field="municipio"></p-column>
             <p-column header="CEP" field="CEP"></p-column>
             <p-column header="UF" field="UF"></p-column>
             <p-column header="Bairro" field="Bairro"></p-column>
-            <p-column header="tipo" field="tipo"></p-column>
-            <p-column header="corespondencia" field="corespondencia"></p-column>
+            <p-column header="Tipo" field="tipo"></p-column>
+            <p-column header="Correspondência" field="corespondencia"></p-column>
         </basis-datatable>
     </div>
 </div>

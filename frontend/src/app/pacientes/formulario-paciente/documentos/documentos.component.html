@@ -14,10 +14,10 @@
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaDeOrgaos"
+                    [options]="opcoesDeOrgaoEmissor"
                     formControlName="orgaoEmissor"
                     [filter]="true"
-                    pTooltip="Selecione o órgão emissor da identidade do paciente."
+                    pTooltip="Selecione o orgão emissor da identidade do paciente."
                 >
                 </p-dropdown>
                 <label>Órgão Emissor</label>
@@ -26,7 +26,7 @@
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaDeUF"
+                    [options]="opcoesDeUF"
                     formControlName="uf"
                     [filter]="true"
                     pTooltip="Selecione a UF da identidade do paciente."

@@ -14,31 +14,35 @@
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaAusenciaCns"
-                    pTooltip="Selecione o motivo da ausência do cartão SUS do paciente."
+                    [options]="opcoesDeJustificativaDeAusencia"
                     formControlName="justificativa"
-                ></p-dropdown>
+                    pTooltip="Selecione a justificativa da ausência CNS."
+                    filter="true"
+                >
+                </p-dropdown>
                 <label>Justificativa da Ausência CNS</label>
             </span>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaMotivoCadastro"
-                    pTooltip="Selecione o motivo do cadastro."
+                    [options]="opcoesDeMotivoDeCadastro"
                     formControlName="motivoCadastro"
-                ></p-dropdown>
+                    pTooltip="Selecione o motivo do cadastro."
+                    filter="true"
+                >
+                </p-dropdown>
                 <label>Motivo Cadastro</label>
             </span>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaDocReferencia"
+                    [options]="opcoesDeDocumentoDeReferencia"
                     pTooltip="Selecione o Documento de Referência."
                     formControlName="docReferencia"
                 ></p-dropdown>
-                <label>Doc Referência</label>
+                <label>Doc. Referência</label>
             </span>
         </div>
 

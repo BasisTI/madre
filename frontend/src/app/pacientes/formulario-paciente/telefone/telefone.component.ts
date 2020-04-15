@@ -1,5 +1,6 @@
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input } from '@angular/core';
+import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-telefone';
 
 @Component({
     selector: 'app-telefone',
@@ -13,16 +14,8 @@ import { Component, Input } from '@angular/core';
     ],
 })
 export class TelefoneComponent {
-    constructor(private fb: FormBuilder) {}
     @Input() telefones: FormGroup;
-
-    opcao = [
-        { label: 'selecione', value: null },
-        { label: 'celular', value: 'celular' },
-        { label: 'residencial', value: 'residencial' },
-        { label: 'comercial', value: 'comercial' },
-        { label: 'emergencial', value: 'emergencial' },
-    ];
+    opcoesDeTipoDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
 
     telefone: FormGroup = this.fb.group({
         tipo: [''],
@@ -30,6 +23,8 @@ export class TelefoneComponent {
         observacao: [''],
         DDD: ['', Validators.required],
     });
+
+    constructor(private fb: FormBuilder) {}
 
     fakeData = [];
     adicionar() {

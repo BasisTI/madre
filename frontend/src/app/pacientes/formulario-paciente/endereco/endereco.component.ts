@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { OpcaoCombo } from '../../models/dropdowns/opcao-combo';
+import { UfService } from '../../services/uf.service';
+import { MunicipioService } from '../../services/municipio.service';
+import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
+import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-endereco';
 
 @Component({
     selector: 'app-endereco',
@@ -13,33 +17,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         `,
     ],
 })
-export class EnderecoComponent {
+export class EnderecoComponent implements OnInit {
     @Input() enderecos: FormGroup;
-    opcao = [
-        { label: 'selecione' },
-        { label: 'residencial', value: 'residencial' },
-        { label: 'comercial', value: 'comercial' },
-        { label: 'outros', value: 'outros' },
-    ];
-    UF = [
-        { label: 'selecione' },
-        { label: 'RJ', value: 'RJ' },
-        { label: 'SP', value: 'SP' },
-        { label: 'BA', value: 'BA' },
-        { label: 'DF', value: 'DF' },
-    ];
-    municipios = [
-        { label: 'selecione' },
-        { label: 'São Paulo', value: 'São Paulo' },
-        { label: 'Rio de Janeiro', value: 'Rio de Janeiro' },
-        { label: 'Goias', value: 'Goias' },
-        { label: 'Rio Grande do Sul', value: 'Rio Grande do Sul' },
-    ];
+    opcoesDeUF: OpcaoCombo[] = [OPCAO_SELECIONE];
+    opcoesDeMunicipio: OpcaoCombo[] = [OPCAO_SELECIONE];
+    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
+
+    constructor(
+        private fb: FormBuilder,
+        private ufService: UfService,
+        private municipioService: MunicipioService,
+    ) {}
 
     fakeData = [];
     adicionar() {
         this.fakeData.push(this.enderecos.value);
     }
 
-    constructor(private fb: FormBuilder) {}
+    ngOnInit(): void {
+        this.preencherComboUF();
+        this.preencherComboMunicipio();
+    }
+
+    preencherComboUF() {
+        this.ufService.getListaDeUF().subscribe((dados) => {
+            this.opcoesDeUF = [
+                ...this.opcoesDeUF,
+                ...dados.map(({ sigla }) => {
+                    return {
+                        label: sigla,
+                        value: sigla,
+                    };
+                }),
+            ];
+        });
+    }
+
+    preencherComboMunicipio() {
+        this.municipioService.getListaDeMunicipios().subscribe((dados) => {
+            this.opcoesDeMunicipio = [
+                ...this.opcoesDeMunicipio,
+                ...dados.map(({ nome }) => {
+                    return {
+                        label: nome,
+                        value: nome,
+                    };
+                }),
+            ];
+        });
+    }
 }

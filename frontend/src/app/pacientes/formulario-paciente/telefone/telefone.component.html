@@ -32,11 +32,11 @@
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
                     <p-dropdown
-                        [options]="opcao"
+                        [options]="opcoesDeTipoDeTelefone"
                         formControlName="tipo"
                         pTooltip="Informe o tipo de telefone."
                     ></p-dropdown>
-                    <label>Tipo de telefone</label>
+                    <label>Tipo de Telefone</label>
                 </span>
             </div>
             <div class="ui-g-5 ui-sm-12">
@@ -51,13 +51,12 @@
                 </span>
             </div>
         </div>
-        <p-button label="adicionar" type="submit" [disabled]="telefone.invalid"></p-button>
-
+        <p-button label="Adicionar" type="submit" [disabled]="telefone.invalid"></p-button>
         <basis-datatable type="memory" [value]="fakeData">
-            <p-column header="tipo" field="tipo"></p-column>
+            <p-column header="Tipo" field="tipo"></p-column>
             <p-column header="DDD" field="DDD"></p-column>
-            <p-column header="telefone" field="telefone"></p-column>
-            <p-column header="observação" field="observacao"></p-column>
+            <p-column header="Telefone" field="telefone"></p-column>
+            <p-column header="Observação" field="observacao"></p-column>
         </basis-datatable>
     </div>
 </div>
