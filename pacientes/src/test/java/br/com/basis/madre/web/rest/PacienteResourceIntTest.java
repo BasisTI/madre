@@ -1,15 +1,15 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.PacientesApp;
-
 import br.com.basis.madre.domain.Paciente;
+import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
+import br.com.basis.madre.domain.enumeration.Sexo;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.PacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.mapper.PacienteMapper;
-import br.com.basis.madre.web.rest.errors.ExceptionTranslator;
-
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,13 +28,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
-
 
 import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,9 +42,6 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
-import br.com.basis.madre.domain.enumeration.Sexo;
 /**
  * Test class for the PacienteResource REST controller.
  *
@@ -299,7 +295,7 @@ public class PacienteResourceIntTest {
             .andExpect(jsonPath("$.[*].grauDeInstrucao").value(hasItem(DEFAULT_GRAU_DE_INSTRUCAO.toString())))
             .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getPaciente() throws Exception {

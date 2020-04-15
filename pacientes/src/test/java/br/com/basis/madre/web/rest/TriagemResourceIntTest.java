@@ -1,15 +1,12 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.PacientesApp;
-
 import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.TriagemService;
 import br.com.basis.madre.service.dto.TriagemDTO;
 import br.com.basis.madre.service.mapper.TriagemMapper;
-import br.com.basis.madre.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,13 +25,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
-
 
 import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,7 +47,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PacientesApp.class)
-public class TriagemResourceIntTest {
+public class TriagemResourceIntTest<ExceptionTranslator> {
 
     private static final String DEFAULT_NOME_DO_PACIENTE = "AAAAAAAAAA";
     private static final String UPDATED_NOME_DO_PACIENTE = "BBBBBBBBBB";
@@ -124,6 +120,10 @@ public class TriagemResourceIntTest {
     private MockMvc restTriagemMockMvc;
 
     private Triagem triagem;
+
+    public TriagemResourceIntTest(TriagemRepository triagemRepository) {
+        this.triagemRepository = triagemRepository;
+    }
 
     @Before
     public void setup() {
@@ -283,7 +283,7 @@ public class TriagemResourceIntTest {
             .andExpect(jsonPath("$.[*].vitimaDeAcidente").value(hasItem(DEFAULT_VITIMA_DE_ACIDENTE.booleanValue())))
             .andExpect(jsonPath("$.[*].removidoDeAmbulancia").value(hasItem(DEFAULT_REMOVIDO_DE_AMBULANCIA.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getTriagem() throws Exception {
