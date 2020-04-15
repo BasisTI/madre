@@ -35,18 +35,20 @@
                         [options]="opcoesDeTipoDeTelefone"
                         formControlName="tipo"
                         pTooltip="Informe o tipo de telefone."
+                        filter="true"
                     ></p-dropdown>
                     <label>Tipo de Telefone</label>
                 </span>
             </div>
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <input
-                        pInputText
-                        type="text"
+                    <textarea
                         formControlName="observacao"
+                        [rows]="3"
+                        pInputTextarea
+                        autoResize="autoResize"
                         pTooltip="Informe o observação."
-                    />
+                    ></textarea>
                     <label>Observação</label>
                 </span>
             </div>

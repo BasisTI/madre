@@ -46,12 +46,13 @@
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <input
-                    type="text"
-                    pInputText
+                <textarea
                     formControlName="observacao"
-                    pTooltip="Digite a observação do paciente."
-                />
+                    [rows]="1"
+                    pInputTextarea
+                    autoResize="autoResize"
+                    pTooltip="Informe o observação."
+                ></textarea>
                 <label>Observação</label>
             </span>
         </div>

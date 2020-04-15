@@ -11,4 +11,8 @@ export const OPCOES_DE_SEXO: OpcaoCombo[] = [
         label: 'Feminino',
         value: 'FEMININO',
     },
+    {
+        label: 'Ignorado',
+        value: 'IGNORADO',
+    },
 ];

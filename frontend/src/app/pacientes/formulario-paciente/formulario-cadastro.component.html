@@ -9,7 +9,6 @@
             <p-accordionTab header="Contatos do Paciente">
                 <app-telefone [telefones]="formularioDeCadastro.controls.telefones"> </app-telefone>
             </p-accordionTab>
-
             <p-accordionTab header="Endereço">
                 <app-endereco [enderecos]="formularioDeCadastro.controls.enderecos"></app-endereco>
             </p-accordionTab>
@@ -40,3 +39,4 @@
         <button pButton type="submit" label="Cadastrar"></button>
     </div>
 </div>
+{{ formularioDeCadastro.value | json }}

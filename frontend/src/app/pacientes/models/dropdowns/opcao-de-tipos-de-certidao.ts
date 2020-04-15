@@ -5,18 +5,18 @@ export const OPCOES_DE_TIPO_DE_CERTIDAO: OpcaoCombo[] = [
     OPCAO_SELECIONE,
     {
         label: 'Nascimento',
-        value: 'nascimento',
+        value: 'NASCIMENTO',
     },
     {
         label: 'Casamento',
-        value: 'casamento',
+        value: 'CASAMENTO',
     },
     {
-        label: 'Separacao/Divorcio',
-        value: 'separacaoDivorcio',
+        label: 'Separação / Divórcio',
+        value: 'SEPARACAO_DIVORCIO',
     },
     {
         label: 'Indigena',
-        value: 'indigena',
+        value: 'INDIGENA',
     },
 ];
