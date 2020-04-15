@@ -8,6 +8,7 @@
                         formControlName="municipio"
                         filter="true"
                         pTooltip="Imforme um municipio."
+                        (onChange)="aoSelecionarMunicipio()"
                     ></p-dropdown>
                     <label>Municipio</label>
                 </span>
@@ -27,11 +28,16 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-dropdown
-                        [options]="opcoesDeUF"
-                        formControlName="UF"
-                        filter="true"
-                    ></p-dropdown>
+                    <input
+                        type="text"
+                        name="uf"
+                        value="0"
+                        pInputText
+                        pTooltip="Unidade Federativa do município."
+                        disabled="true"
+                        [(ngModel)]="uf"
+                        [ngModelOptions]="{ standalone: true }"
+                    />
                     <label>UF</label>
                 </span>
             </div>

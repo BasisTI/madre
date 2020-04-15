@@ -163,7 +163,7 @@
                     formControlName="naturalidade"
                     [filter]="true"
                     pTooltip="Selecione a naturalidade do paciente."
-                    (onBlur)="aoSelecionarNaturalidade()"
+                    (onChange)="aoSelecionarNaturalidade()"
                 >
                 </p-dropdown>
                 <label>Naturalidade</label>
@@ -173,7 +173,6 @@
             <span class="ui-float-label">
                 <input
                     type="text"
-                    name="uf"
                     value="0"
                     pInputText
                     pTooltip="Unidade Federativa da naturalidade do paciente."

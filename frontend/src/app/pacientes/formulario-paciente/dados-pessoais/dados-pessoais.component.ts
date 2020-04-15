@@ -27,7 +27,6 @@ export class DadosPessoaisComponent implements OnInit {
     @Input() dadosPessoais: FormGroup;
     idade = '';
     uf = '';
-
     opcoesDeRaca: OpcaoCombo[] = [OPCAO_SELECIONE];
     opcoesDeNacionalidade: OpcaoCombo[] = [OPCAO_SELECIONE];
     opcoesDeNaturalidade: OpcaoCombo[] = [OPCAO_SELECIONE];
