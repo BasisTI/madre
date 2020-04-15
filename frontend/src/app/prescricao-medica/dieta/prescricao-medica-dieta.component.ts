@@ -1,8 +1,10 @@
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { LogoutDirective } from '@nuvem/angular-base';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-prescricao-medica-dieta',
@@ -13,7 +15,8 @@ import { FormGroup } from '@angular/forms';
 export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     dieta: any;
-    dietas: Array<any>;
+
+    dietas: any[] = [];
 
     searchUrl = 'prescricao/api/prescricao-dieta';
 
@@ -28,8 +31,10 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     descricao = new Map(this.optItem.map((s): [string, string] => [s.value, s.label]));
 
-    constructor(private breadcrumbService: BreadcrumbService,
-        private prescricaoMedicaDietaService: PrescricaoMedicaDietaService) { }
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private prescricaoMedicaDietaService: PrescricaoMedicaDietaService
+    ) { }
 
 
     ngOnInit() {
@@ -37,15 +42,31 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             { label: 'Prescrição Médica', routerLink: 'prescricao-medica' },
             { label: 'Dieta', }
         ]);
-        this.prescricaoMedicaDietaService.listar().subscribe(response => this.dietas = response);
+
+        this.prescricaoMedicaDietaService.listar().subscribe(response => {
+            console.log(response);
+            response.map((item) => {
+                console.log(item);
+
+                if (item.itemDieta) {
+                    item.itemDieta.map((dieta) => {
+                        this.dietas.push(dieta);
+
+                    });
+                }
+
+            });
+        });
 
         this.prescreverDieta();
     }
+
 
     prescreverDieta() {
         this.dieta = {
             descricao: "",
             quantidade: "",
+            unidade: "",
             frequencia: "",
             tipoAprazamento: "",
             numeroVezes: "",

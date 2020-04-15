@@ -9,35 +9,77 @@
 
                 <form autocomplete="off" #frm="ngForm" (ngSubmit)="adicionar(frm)">
                     <div class="ui-g-12">
-
-                        <div class="ui-g-4">
+                        <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <p-dropdown id="descricao" [autoWidth]="false" placeholder="Selecione..."
-                                    [options]="optItem" [(ngModel)]="dieta.descricao" name="descricao" required
-
-                                    #descricaoItem></p-dropdown>
-                                <label>Item</label>
+                                <input type="text" pInputText disabled/>
+                                <label>Paciente</label>
                             </span>
                         </div>
 
-                        <div class="ui-g-2">
+                    </div>
+                    <div class="ui-g-12">
+
+                        <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="quantidade" name="quantidade" [(ngModel)]="dieta.quantidade" />
+                                <p-dropdown id="descricao" [autoWidth]="false" placeholder="Selecione..."
+                                    [options]="optItem" [(ngModel)]="dieta.descricao" name="descricao" required
+                                    #descricaoItem></p-dropdown>
+                                <label>Tipo Item</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12">
+                        <div class="ui-g-6">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="quantidade" name="quantidade"
+                                    [(ngModel)]="dieta.quantidade" />
                                 <label>Quantidade</label>
                             </span>
                         </div>
 
-                        <div class="ui-g-2">
+                        <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="frequencia" name="frequencia" [(ngModel)]="dieta.frequencia" />
+                                <input type="text" pInputText id="unidade" name="unidade" [(ngModel)]="dieta.unidade" />
+                                <label>Unidade</label>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="ui-g-12">
+                        <div class="ui-g-5">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="frequencia" name="frequencia"
+                                    [(ngModel)]="dieta.frequencia" />
                                 <label>Frequência</label>
                             </span>
                         </div>
 
-                        <div class="ui-g-4">
+                        <div class="ui-g-5">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="aprazamento" name="aprazamento" [(ngModel)]="dieta.tipoAprazamento" />
+                                <input type="text" pInputText id="aprazamento" name="aprazamento"
+                                    [(ngModel)]="dieta.tipoAprazamento" />
                                 <label>Aprazamento</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-2">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText id="numeroVezes" name="numeroVezes"
+                                    [(ngModel)]="dieta.numeroVezes" />
+                                <label>Número vezes</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12">
+
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao" name="observacao"
+                                    [(ngModel)]="dieta.observacao" ></textarea>
+                                <label>Observações</label>
                             </span>
                         </div>
                     </div>
@@ -45,51 +87,46 @@
                     <div class="ui-g-12">
 
                         <div class="ui-g-2">
-                            <span class="md-inputfield">
-                                <input type="text" pInputText id="numeroVezes" name="numeroVezes" [(ngModel)]="dieta.numeroVezes" />
-                                <label>Número vezes</label>
-                            </span>
+                            <label>Bomboa Infusão?</label>
                         </div>
-
-                        <div class="ui-g-8">
-                            <span class="md-inputfield">
-                                <input type="text" pInputText id="observacao" name="observacao" [(ngModel)]="dieta.observacao" />
-                                <label>Observações</label>
-                            </span>
-                        </div>
-
                         <div class="ui-g-2">
-                            <span>
-                                <label>Bomba infusão</label>
-                                <p-checkbox pCheckBox id="bombaInfusao" name="bombaInfusao" [(ngModel)]="dieta.bombaInfusao"></p-checkbox>
-                            </span>
+                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton
+                                [(ngModel)]="dieta.bombaInfusao"></p-radioButton>
+                            <label>Sim</label>
+                        </div>
+                        <div class="ui-g-2">
+                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton
+                                [(ngModel)]="dieta.bombaInfusao"></p-radioButton>
+                            <label>Não</label>
                         </div>
 
-                        <div class="ui-g-12 ui-md-6">
-                            <div class="ui-g-12 ui-md-6">
-                                <button pButton type="submit" label="Prescrever"
-                                    [disabled]="!descricaoItem.value">
-                                </button>
+                    </div>
 
-                            </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-6">
+                            <button pButton type="submit" label="Prescrever" [disabled]="!descricaoItem.value">
+                            </button>
+
                         </div>
                     </div>
+
                 </form>
             </div>
 
             <div class="ui-g-12 ui-md-3"></div>
             <div class="ui-g-12">
-                <basis-datatable type="server" [url]="baseUrl" [rows]="10" [value]="dietas" [disableView]="true"
+                <basis-datatable type="server" [url]="baseUrl" [value]="dietas" [disableView]="true"
                     [disableEdit]="true" [disableDelete]="true">
-                    <p-column header="Descrição" field="descricao"></p-column>
+                    <p-column header="Item" field="descricao"></p-column>
                     <p-column header="Quantidade" field="quantidade"></p-column>
+                    <p-column header="Unidade" field="unidade"></p-column>
                     <p-column header="Frequência" field="frequencia"></p-column>
                     <p-column header="Aprazamento" field="tipoAprazamento"></p-column>
-                    <p-column header="Número de vezes" field="numeroVezes"></p-column>
+                    <p-column header="Número vezes" field="numeroVezes"></p-column>
                     <p-column header="Observações" field="observacao"></p-column>
                     <p-column header="Bomba de Infusão" field="bombaInfusao">
                         <ng-template let-l="rowData" pTemplate="body">
-                            <span href="javascript:;">{{l.bombaInfusao ? 'Sim' : ''}}</span>
+                            <span href="javascript:;">{{l.bombaInfusao ? 'Sim' : 'Não'}}</span>
                         </ng-template>
                     </p-column>
 

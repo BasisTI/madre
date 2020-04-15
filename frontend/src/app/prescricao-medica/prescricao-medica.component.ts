@@ -9,6 +9,8 @@ import { PrescricaoMedicaService } from './prescricao-medica.service';
 })
 export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
 
+    pacienteSelecionado: any;
+
     pacientes: [];
 
     searchUrl = 'prescricao/api/pacientes/listarPacientes';
@@ -16,6 +18,10 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     constructor(public prescricaoMedicaService: PrescricaoMedicaService, private breadcrumbService: BreadcrumbService) { }
 
 
+    btnClick(row){
+        console.log(row);
+        console.log("clicado");
+    }
     ngOnInit(
     ) {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);

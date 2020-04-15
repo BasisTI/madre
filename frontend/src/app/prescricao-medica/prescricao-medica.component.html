@@ -16,7 +16,18 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
 
-                <basis-datatable type="server" [url]="searchUrl" [rows]="10" [value]="pacientes" [disableView]="true" [disableEdit]="true" [disableDelete]="true">
+                <basis-datatable
+                    #table
+                    type= "server"
+                    [url]="searchUrl"
+                    [rows]="10"
+                    [value]="pacientes"
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                    (buttonClick)="btnClick($event)"
+
+                >
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Dt. Nascimento" field="dataNascimento">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
@@ -32,7 +43,7 @@
                     </p-column>
 
 
-                    <basis-datatable-button icon="local-dining" name="prescrever-dieta" routerLink="/prescricao-medica/dieta" bTooltip="Prescrever Dieta"
+                    <basis-datatable-button icon="local-dining" name="prescrever-dieta" (click)="table.onClick('prescrever-dieta', $event)" bTooltip="Prescrever Dieta"
                         class="ui-button-info">
                     </basis-datatable-button>
                 </basis-datatable>
