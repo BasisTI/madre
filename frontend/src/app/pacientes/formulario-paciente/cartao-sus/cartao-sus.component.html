@@ -10,35 +10,41 @@
                 ></p-inputMask>
                 <label>Número</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Número' é obrigátorio."
+                *ngIf="cartaoSUS.get('numero').touched && cartaoSUS.get('numero').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaAusenciaCns"
-                    pTooltip="Selecione o motivo da ausência do cartão SUS do paciente."
+                    [options]="opcoesDeJustificativaDeAusencia"
                     formControlName="justificativa"
-                ></p-dropdown>
+                    filter="true"
+                >
+                </p-dropdown>
                 <label>Justificativa da Ausência CNS</label>
             </span>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaMotivoCadastro"
-                    pTooltip="Selecione o motivo do cadastro."
+                    [options]="opcoesDeMotivoDeCadastro"
                     formControlName="motivoCadastro"
-                ></p-dropdown>
+                    filter="true"
+                >
+                </p-dropdown>
                 <label>Motivo Cadastro</label>
             </span>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaDocReferencia"
-                    pTooltip="Selecione o Documento de Referência."
+                    [options]="opcoesDeDocumentoDeReferencia"
                     formControlName="docReferencia"
                 ></p-dropdown>
-                <label>Doc Referência</label>
+                <label>Doc. Referência</label>
             </span>
         </div>
 
@@ -65,7 +71,6 @@
                     [maxDate]="maxDate"
                     monthNavigator="true"
                     yearNavigator="true"
-                    pTooltip="Informe a data de entrada no Brasil."
                     formControlName="dataDeEntrada"
                 ></p-calendar>
                 <label>Data de Entrada no Brasil</label>
@@ -79,7 +84,6 @@
                     [dateFormat]="formatoDeData"
                     monthNavigator="true"
                     yearNavigator="true"
-                    pTooltip="Informe a data de Naturalização no Brasil."
                     formControlName="dataDeNaturalizacao"
                 ></p-calendar>
                 <label>Data de Naturalização</label>

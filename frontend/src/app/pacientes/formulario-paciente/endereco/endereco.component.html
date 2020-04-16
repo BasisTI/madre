@@ -4,30 +4,49 @@
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
                     <p-dropdown
-                        [options]="municipios"
+                        [options]="opcoesDeMunicipio"
                         formControlName="municipio"
                         filter="true"
-                        pTooltip="Imforme um municipio."
+                        (onChange)="aoSelecionarMunicipio()"
                     ></p-dropdown>
                     <label>Municipio</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Municipio' é obrigátorio."
+                    *ngIf="enderecos.get('municipio').touched && enderecos.get('municipio').invalid"
+                ></p-message>
             </div>
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
                     <p-inputMask
                         placeholder="__.___-___"
                         mask="99.999-999"
-                        formControlName="CEP"
+                        formControlName="cep"
                         pTooltip="Informe o CEP."
                     ></p-inputMask>
                     <label>CEP</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'CEP' é obrigátorio."
+                    *ngIf="enderecos.get('cep').touched && enderecos.get('cep').invalid"
+                ></p-message>
             </div>
         </div>
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-dropdown [options]="UF" formControlName="UF"></p-dropdown>
+                    <input
+                        type="text"
+                        name="uf"
+                        value="0"
+                        pInputText
+                        pTooltip="Unidade Federativa do município."
+                        disabled="true"
+                        [(ngModel)]="uf"
+                        [ngModelOptions]="{ standalone: true }"
+                    />
                     <label>UF</label>
                 </span>
             </div>
@@ -41,16 +60,27 @@
                     />
                     <Label>Logradouro</Label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Logradouro' é obrigátorio."
+                    *ngIf="
+                        enderecos.get('logradouro').touched && enderecos.get('logradouro').invalid
+                    "
+                ></p-message>
             </div>
             <div class="ui-g-4">
                 <span class="ui-float-label">
                     <p-dropdown
-                        [options]="opcao"
+                        [options]="opcoesDeTipoDeEndereco"
                         formControlName="tipo"
-                        pTooltip="Informe o tipo de endereço."
                     ></p-dropdown>
-                    <label>Tipo de endereço</label>
+                    <label>Tipo de Endereço</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Tipo de Endereço' é obrigátorio."
+                    *ngIf="enderecos.get('tipo').touched && enderecos.get('tipo').invalid"
+                ></p-message>
             </div>
         </div>
         <div class="ui-g-12 ui-fluid">
@@ -59,18 +89,23 @@
                     <input
                         pInputText
                         type="text"
-                        formControlName="Numero"
+                        formControlName="numero"
                         pTooltip="Informe o Numero."
                     />
-                    <Label>Numero</Label>
+                    <Label>Número</Label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Número' é obrigátorio."
+                    *ngIf="enderecos.get('numero').touched && enderecos.get('numero').invalid"
+                ></p-message>
             </div>
             <div class="ui-g-4">
                 <span class="ui-float-label">
                     <input
                         pInputText
                         type="text"
-                        formControlName="Complemento"
+                        formControlName="complemento"
                         pTooltip="Informe o Complemento."
                     />
                     <label>Complemento</label>
@@ -81,34 +116,45 @@
                     <input
                         pInputText
                         type="text"
-                        formControlName="Bairro"
+                        formControlName="bairro"
                         pTooltip="Informe o Bairro."
                     />
                     <label>Bairro</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Bairro' é obrigátorio."
+                    *ngIf="enderecos.get('bairro').touched && enderecos.get('bairro').invalid"
+                ></p-message>
             </div>
 
             <div class="ui-g-3">
                 <p-triStateCheckbox
                     name="corespondencia"
-                    formControlName="corespondencia"
-                    label="corespondencia"
+                    formControlName="correspondencia"
+                    label="Correspondência"
                 ></p-triStateCheckbox>
             </div>
+            <p-message
+                severity="error"
+                text="O campo 'Correspondência' é obrigátorio."
+                *ngIf="
+                    enderecos.get('correspondencia').touched &&
+                    enderecos.get('correspondencia').invalid
+                "
+            ></p-message>
             <div class="ui-g-3">
                 <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
             </div>
         </div>
-        <!-- [disabled]="endereco.invalid" -->
-        <p-button label="adicionar" type="submit"></p-button>
-
-        <basis-datatable type="memory" [value]="fakeData">
-            <p-column header="municipio" field="municipio"></p-column>
-            <p-column header="CEP" field="CEP"></p-column>
-            <p-column header="UF" field="UF"></p-column>
-            <p-column header="Bairro" field="Bairro"></p-column>
-            <p-column header="tipo" field="tipo"></p-column>
-            <p-column header="corespondencia" field="corespondencia"></p-column>
+        <p-button label="Adicionar" type="button" (onClick)="adicionarEnderecoALista()"></p-button>
+        <basis-datatable type="memory" [value]="listaDeEnderecos">
+            <p-column header="Município" field="municipio.nome"></p-column>
+            <p-column header="CEP" field="cep"></p-column>
+            <p-column header="UF" field="municipio.sigla"></p-column>
+            <p-column header="Bairro" field="bairro"></p-column>
+            <p-column header="Tipo" field="tipo"></p-column>
+            <p-column header="Correspondência" field="correspondencia"></p-column>
         </basis-datatable>
     </div>
 </div>

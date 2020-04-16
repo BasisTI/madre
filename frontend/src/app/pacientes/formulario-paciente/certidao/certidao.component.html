@@ -13,7 +13,10 @@
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
-                <p-dropdown [options]="listaCertidao" formControlName="tipoCertidao"></p-dropdown>
+                <p-dropdown
+                    [options]="opcoesDeTipoDeCertidao"
+                    formControlName="tipoCertidao"
+                ></p-dropdown>
                 <label>Tipo de Certidão</label>
             </span>
         </div>

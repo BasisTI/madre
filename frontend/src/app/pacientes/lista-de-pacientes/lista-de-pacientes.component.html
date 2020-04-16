@@ -41,6 +41,7 @@
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Nome da Mãe" field="genitores">
                         <ng-template let-data="rowData" pTemplate="body">
+                            <!-- Inserir pipe para data -->
                             {{ data['genitores']?.nomeDaMae }}
                         </ng-template>
                     </p-column>

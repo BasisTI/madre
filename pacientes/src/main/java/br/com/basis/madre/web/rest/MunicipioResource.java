@@ -2,6 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.MunicipioService;
 import br.com.basis.madre.service.dto.MunicipioDTO;
+import br.com.basis.madre.service.projection.MunicipioUF;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -47,6 +48,14 @@ public class MunicipioResource {
 
     public MunicipioResource(MunicipioService municipioService) {
         this.municipioService = municipioService;
+    }
+
+    /**
+     * TODO: Write documentation
+     */
+    @GetMapping("/municipios/_uf")
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy() {
+        return ResponseEntity.ok(municipioService.findAllProjectedMunicipioUFBy());
     }
 
     /**
