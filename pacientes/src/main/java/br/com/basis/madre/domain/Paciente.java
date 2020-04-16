@@ -2,6 +2,7 @@ package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
@@ -21,11 +22,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  * A Paciente.
@@ -61,7 +70,11 @@ public class Paciente implements Serializable {
     @Column(name = "hora_de_nascimento")
     private Instant horaDeNascimento;
 
+
     @Field(type = FieldType.Text)
+
+    @Email
+
     @Column(name = "email", unique = true)
     private String email;
 

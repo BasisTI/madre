@@ -1,45 +1,60 @@
-import { Component, Input } from '@angular/core';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { OpcaoCombo } from '../../models/dropdowns/opcao-combo';
+import { MunicipioService } from '../../services/municipio.service';
+import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
+import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-endereco';
 
 @Component({
     selector: 'app-endereco',
     templateUrl: './endereco.component.html',
-    styles: [
-        `
-            div {
-                margin: 3px;
-            }
-        `,
-    ],
+    styleUrls: ['./endereco.component.scss'],
 })
-export class EnderecoComponent {
+export class EnderecoComponent implements OnInit {
     @Input() enderecos: FormGroup;
-    opcao = [
-        { label: 'selecione' },
-        { label: 'residencial', value: 'residencial' },
-        { label: 'comercial', value: 'comercial' },
-        { label: 'outros', value: 'outros' },
-    ];
-    UF = [
-        { label: 'selecione' },
-        { label: 'RJ', value: 'RJ' },
-        { label: 'SP', value: 'SP' },
-        { label: 'BA', value: 'BA' },
-        { label: 'DF', value: 'DF' },
-    ];
-    municipios = [
-        { label: 'selecione' },
-        { label: 'São Paulo', value: 'São Paulo' },
-        { label: 'Rio de Janeiro', value: 'Rio de Janeiro' },
-        { label: 'Goias', value: 'Goias' },
-        { label: 'Rio Grande do Sul', value: 'Rio Grande do Sul' },
-    ];
+    listaDeEnderecos = [];
+    opcoesDeMunicipio: OpcaoCombo[] = [OPCAO_SELECIONE];
+    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
+    uf = '';
 
-    fakeData = [];
-    adicionar() {
-        this.fakeData.push(this.enderecos.value);
+    constructor(private fb: FormBuilder, private municipioService: MunicipioService) {}
+
+    ngOnInit(): void {
+        this.preencherComboMunicipio();
     }
 
-    constructor(private fb: FormBuilder) {}
+    adicionarEnderecoALista() {
+        this.listaDeEnderecos.push(this.enderecos.value);
+        console.log(this.listaDeEnderecos);
+    }
+
+    preencherComboMunicipio() {
+        this.municipioService.getListaDeMunicipiosUF().subscribe((dados) => {
+            this.opcoesDeMunicipio = [
+                ...this.opcoesDeMunicipio,
+                ...dados.map(({ nome, uf: { sigla } }) => {
+                    return {
+                        label: nome,
+                        value: {
+                            nome,
+                            sigla,
+                        },
+                    };
+                }),
+            ];
+        });
+    }
+
+    aoSelecionarMunicipio() {
+        const { municipio } = this.enderecos.value;
+
+        if (municipio) {
+            if (municipio.sigla) {
+                this.uf = municipio.sigla;
+                return;
+            }
+        }
+
+        this.uf = '';
+    }
 }

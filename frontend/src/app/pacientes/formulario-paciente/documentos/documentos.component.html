@@ -10,30 +10,44 @@
                 />
                 <label>Número da Identidade</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Número da Identidade' é obrigátorio."
+                *ngIf="
+                    documentos.get('numeroIdentidade').touched &&
+                    documentos.get('numeroIdentidade').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="listaDeOrgaos"
+                    [options]="opcoesDeOrgaoEmissor"
                     formControlName="orgaoEmissor"
                     [filter]="true"
-                    pTooltip="Selecione o órgão emissor da identidade do paciente."
                 >
                 </p-dropdown>
                 <label>Órgão Emissor</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Órgão Emissor' é obrigátorio."
+                *ngIf="
+                    documentos.get('orgaoEmissor').touched && documentos.get('orgaoEmissor').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="listaDeUF"
-                    formControlName="uf"
-                    [filter]="true"
-                    pTooltip="Selecione a UF da identidade do paciente."
-                >
+                <p-dropdown [options]="opcoesDeUF" formControlName="uf" [filter]="true">
                 </p-dropdown>
                 <label>UF</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'UF' é obrigátorio."
+                *ngIf="documentos.get('uf').touched && documentos.get('uf').invalid"
+            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
@@ -44,12 +58,18 @@
                     [maxDate]="maxDate"
                     monthNavigator="true"
                     yearNavigator="true"
-                    formControlName="data"
-                    required="true"
-                    pTooltip="Informe a data de emissão da identidade do paciente."
+                    formControlName="dataDeEmissao"
                 ></p-calendar>
-                <label>Data</label>
+                <label>Data de Emissão</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Data de Emissão' é obrigátorio."
+                *ngIf="
+                    documentos.get('dataDeEmissao').touched &&
+                    documentos.get('dataDeEmissao').invalid
+                "
+            ></p-message>
         </div>
     </div>
     <div class="ui-g-12">
@@ -95,7 +115,6 @@
                     monthNavigator="true"
                     yearNavigator="true"
                     formControlName="validadeCNH"
-                    pTooltip="Informe a validade da CNH do paciente."
                 ></p-calendar>
                 <label>Validade da CNH</label>
             </span>

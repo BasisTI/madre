@@ -13,6 +13,11 @@
                     ></p-inputMask>
                     <label>DDD</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'DDD' é obrigátorio."
+                    *ngIf="telefones.get('DDD').touched && telefones.get('DDD').invalid"
+                ></p-message>
             </div>
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
@@ -26,38 +31,48 @@
                     ></p-inputMask>
                     <label>Telefone</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Telefone' é obrigátorio."
+                    *ngIf="telefones.get('telefone').touched && telefones.get('telefone').invalid"
+                ></p-message>
             </div>
         </div>
         <div class="ui-g-12">
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
                     <p-dropdown
-                        [options]="opcao"
+                        [options]="opcoesDeTipoDeTelefone"
                         formControlName="tipo"
-                        pTooltip="Informe o tipo de telefone."
+                        filter="true"
                     ></p-dropdown>
-                    <label>Tipo de telefone</label>
+                    <label>Tipo de Telefone</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="O campo 'Tipo de Telefone' é obrigátorio."
+                    *ngIf="telefones.get('tipo').touched && telefones.get('tipo').invalid"
+                ></p-message>
             </div>
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <input
-                        pInputText
-                        type="text"
+                    <textarea
                         formControlName="observacao"
+                        [rows]="3"
+                        pInputTextarea
+                        autoResize="autoResize"
                         pTooltip="Informe o observação."
-                    />
+                    ></textarea>
                     <label>Observação</label>
                 </span>
             </div>
         </div>
-        <p-button label="adicionar" type="submit" [disabled]="telefone.invalid"></p-button>
-
-        <basis-datatable type="memory" [value]="fakeData">
-            <p-column header="tipo" field="tipo"></p-column>
+        <p-button label="Adicionar" type="button" (onClick)="adicionarTelefoneALista()"></p-button>
+        <basis-datatable type="memory" [value]="listaDeTelefones">
+            <p-column header="Tipo" field="tipo"></p-column>
             <p-column header="DDD" field="DDD"></p-column>
-            <p-column header="telefone" field="telefone"></p-column>
-            <p-column header="observação" field="observacao"></p-column>
+            <p-column header="Telefone" field="telefone"></p-column>
+            <p-column header="Observação" field="observacao"></p-column>
         </basis-datatable>
     </div>
 </div>

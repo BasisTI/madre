@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PacienteSummary } from './models/paciente.summary';
 import { Pageable } from '../shared/pageable';
+import { PacienteResumo } from './models/paciente-resumo';
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +12,12 @@ export class PacientesService {
 
     constructor(private httpService: HttpClient) {}
 
-    getListaDePacientes(): Observable<Pageable<PacienteSummary>> {
-        return this.httpService.get<Pageable<PacienteSummary>>(`${this.apiUrl}/lista-de-pacientes`);
+    getListaDePacientes(): Observable<Pageable<PacienteResumo>> {
+        return this.httpService.get<Pageable<PacienteResumo>>(`${this.apiUrl}/_resumo`);
+    }
+    getListaDePacientesElastic(): Observable<Pageable<PacienteResumo>> {
+        return this.httpService.get<Pageable<PacienteResumo>>(
+            `${this.apiUrl}/lista-de-pacientes-elastic`,
+        );
     }
 }

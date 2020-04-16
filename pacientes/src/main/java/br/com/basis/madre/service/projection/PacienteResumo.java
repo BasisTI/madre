@@ -5,17 +5,17 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.time.LocalDate;
 
 @JsonInclude(Include.NON_NULL)
-public interface PacienteSummary {
+public interface PacienteResumo {
     String getNome();
     LocalDate getDataDeNascimento();
-    GenitoresSummary getGenitores();
-    CartaoSUSSummary getCartaoSUS();
+    Genitores_ getGenitores();
+    CartaoSUS_ getCartaoSUS();
 
-    static interface GenitoresSummary {
+    static interface Genitores_ {
         String getNomeDaMae();
     }
 
-    static interface CartaoSUSSummary {
+    static interface CartaoSUS_ {
         String getNumero();
     }
 }

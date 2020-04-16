@@ -5,6 +5,7 @@ import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/fo
 @Component({
     selector: 'app-formulario-cadastro',
     templateUrl: './formulario-cadastro.component.html',
+    styleUrls: ['./formulario-cadastro.component.scss'],
 })
 export class FormularioCadastroComponent implements OnInit, OnDestroy {
     formularioDeCadastro = this.fb.group({
@@ -25,24 +26,24 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             grauDeInstrucao: ['', Validators.required],
             ocupacao: [''],
             religiao: [''],
-            email: [''],
+            email: ['', Validators.maxLength(254)],
         }),
         telefones: this.fb.group({
-            tipo: [''],
+            tipo: ['', Validators.required],
             telefone: ['', Validators.required],
             observacao: [''],
             DDD: ['', Validators.required],
         }),
         enderecos: this.fb.group({
             municipio: ['', Validators.required],
-            CEP: ['', Validators.required],
-            UF: ['', Validators.required],
+            cep: ['', Validators.required],
+            uf: [''],
             logradouro: ['', Validators.required],
-            Numero: ['', Validators.required],
-            Complemento: [''],
-            Bairro: ['', Validators.required],
+            numero: ['', Validators.required],
+            complemento: [''],
+            bairro: ['', Validators.required],
             tipo: ['', Validators.required],
-            corespondencia: ['', Validators.required],
+            correspondencia: ['', Validators.required],
         }),
         responsavel: this.fb.group(
             {
@@ -69,7 +70,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 numeroIdentidade: ['', [this.customRequired1]],
                 orgaoEmissor: ['', [this.customRequired1]],
                 uf: ['', [this.customRequired1]],
-                data: ['', [this.customRequired1]],
+                dataDeEmissao: ['', [this.customRequired1]],
                 cpf: [''],
                 pisPasep: [''],
                 cnh: [''],
@@ -99,7 +100,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'Cadastro de Paciente' },
         ]);
-        console.log(this.formularioDeCadastro);
     }
 
     ngOnDestroy(): void {

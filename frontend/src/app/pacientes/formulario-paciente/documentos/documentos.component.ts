@@ -1,6 +1,10 @@
 import { ptBR } from './../../../shared/calendar.pt-br.locale';
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { OrgaoEmissorService } from '../../services/orgao-emissor.service';
+import { UfService } from '../../services/uf.service';
+import { OpcaoCombo } from '../../models/dropdowns/opcao-combo';
+import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 
 @Component({
     selector: 'app-documentos',
@@ -13,38 +17,52 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
         `,
     ],
 })
-export class DocumentosComponent {
+export class DocumentosComponent implements OnInit {
     @Input() documentos: FormGroup;
-
-    listaDeOrgaos = [
-        { label: 'Selecione', value: null },
-        { label: 'SSP-Secretária de Segurança Pública', value: 'Secretária de Segurança Pública' },
-        { label: 'Policia Federal', value: 'Policia Federal' },
-        { label: 'Ministério do Exército', value: 'Ministério do Exército' },
-        { label: 'Ministério da Marinha', value: 'Ministério da Marinha' },
-        {
-            label: 'Conselho Regional de Contabilidade',
-            value: 'Conselho Regional de Contabilidade',
-        },
-        { label: 'Conselho Regional de Enfermagem', value: 'Conselho de Enfermagem' },
-    ];
-
-    listaDeUF = [
-        { label: 'Selecione', value: null },
-        { label: 'AC - ACRE', value: 'ACRE' },
-        { label: 'AL - ALAGOAS', value: 'ALAGOAS' },
-        { label: 'AM - AMAZONAS', value: 'AMAZONAS' },
-        { label: 'BA - BAHIA', value: 'BAHIA' },
-        { label: 'CE - CEARA', value: 'CEARA' },
-        { label: 'DF - DISTRITO FEDERAL', value: 'DISTRITO FEDERAL' },
-    ];
-
+    opcoesDeUF: OpcaoCombo[] = [OPCAO_SELECIONE];
+    opcoesDeOrgaoEmissor: OpcaoCombo[] = [OPCAO_SELECIONE];
     localizacao = ptBR;
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
-
     validade = ptBR;
     yearValidade = '2010:2030';
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private orgaoEmissorService: OrgaoEmissorService,
+        private ufService: UfService,
+    ) {}
+
+    ngOnInit(): void {
+        this.preencherComboUF();
+        this.preencherComboOrgaoEmissor();
+    }
+
+    preencherComboOrgaoEmissor() {
+        this.orgaoEmissorService.getListaDeOrgaosEmissores().subscribe((dados) => {
+            this.opcoesDeOrgaoEmissor = [
+                ...this.opcoesDeOrgaoEmissor,
+                ...dados.map(({ valor }) => {
+                    return {
+                        label: valor,
+                        value: valor,
+                    };
+                }),
+            ];
+        });
+    }
+
+    preencherComboUF() {
+        this.ufService.getListaDeUF().subscribe((dados) => {
+            this.opcoesDeUF = [
+                ...this.opcoesDeUF,
+                ...dados.map(({ sigla }) => {
+                    return {
+                        label: sigla,
+                        value: sigla,
+                    };
+                }),
+            ];
+        });
+    }
 }

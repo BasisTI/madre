@@ -8,7 +8,7 @@ import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.mapper.PacienteMapper;
-import br.com.basis.madre.service.projection.PacienteSummary;
+import br.com.basis.madre.service.projection.PacienteResumo;
 import java.util.Optional;
 
 import org.elasticsearch.index.query.QueryBuilder;
@@ -45,13 +45,10 @@ public class PacienteService {
     }
 
     /**
-     * Recupera lista do tipo {@link br.com.basis.madre.service.projection.PacienteSummary}
-     *
-     * @param pageable informação para paginação
-     * @return A página que contem uma lista de {@link br.com.basis.madre.service.projection.PacienteSummary}
+     * TODO: Write documentation
      */
-    public Page<PacienteSummary> findAllPacienteSummary(Pageable pageable) {
-        return pacienteRepository.findAllProjectedBy(pageable);
+    public Page<PacienteResumo> findAllProjectedPacienteResumoBy(Pageable pageable) {
+        return pacienteRepository.findAllProjectedPacienteResumoBy(pageable);
     }
     /*lista de pacientes com elasticsearch*/
     public Page<Paciente> findAllElasticPaciente(Pageable pageable){
