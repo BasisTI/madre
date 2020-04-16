@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
-import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl, FormArray } from '@angular/forms';
 
 @Component({
     selector: 'app-formulario-cadastro',
@@ -28,12 +28,12 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             religiao: [''],
             email: ['', Validators.maxLength(254)],
         }),
-        telefones: this.fb.group({
-            tipo: ['', Validators.required],
-            telefone: ['', Validators.required],
-            observacao: [''],
-            DDD: ['', Validators.required],
-        }),
+        telefones: this.fb.array([
+            // tipo: ['', Validators.required],
+            // telefone: ['', Validators.required],
+            // observacao: [''],
+            // DDD: ['', Validators.required],
+        ]),
         enderecos: this.fb.group({
             municipio: ['', Validators.required],
             cep: ['', Validators.required],

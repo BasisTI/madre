@@ -61,6 +61,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="classificacao_de_risco" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
             <column name="vitima_de_acidente" type="boolean">
                 <constraints nullable="true" />
             </column>
@@ -76,7 +80,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="triagem" columnName="hora_do_atendimento" columnDataType="datetime"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

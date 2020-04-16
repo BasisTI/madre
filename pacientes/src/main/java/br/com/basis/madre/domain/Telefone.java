@@ -37,13 +37,16 @@ public class Telefone implements Serializable {
     @Column(name = "numero", nullable = false)
     private String numero;
 
+    @Field(type = FieldType.Keyword)
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoDoContato tipo;
 
+    @Field(type = FieldType.Text)
     @Column(name = "observacao")
     private String observacao;
 
+//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("telefones")
     private Paciente paciente;

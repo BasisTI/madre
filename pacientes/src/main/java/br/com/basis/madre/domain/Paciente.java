@@ -29,7 +29,12 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  * A Paciente.
@@ -47,89 +52,120 @@ public class Paciente implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
 
+<<<<<<< HEAD
+    @Field(type = FieldType.Text)
+=======
+    @Column(name = "classificacao_de_risco", nullable = false)
+    private Paciente classificacaoDeRisco;
+
+>>>>>>> 63fb5e2708994567761a603df0d70762b95a118e
     @Column(name = "nome_social")
     private String nomeSocial;
 
+    @Field(type = FieldType.Date)
     @NotNull
     @Column(name = "data_de_nascimento", nullable = false)
     private LocalDate dataDeNascimento;
 
+    @Field(type = FieldType.Date)
     @Column(name = "hora_de_nascimento")
     private Instant horaDeNascimento;
 
+
+    @Field(type = FieldType.Text)
+
     @Email
+
     @Column(name = "email", unique = true)
     private String email;
 
+    @Field(type = FieldType.Text)
     @Column(name = "observacao")
     private String observacao;
 
+    @Field(type = FieldType.Keyword)
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "grau_de_instrucao", nullable = false)
     private GrauDeInstrucao grauDeInstrucao;
 
+    @Field(type = FieldType.Keyword)
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "sexo", nullable = false)
     private Sexo sexo;
 
+    @Field(type = FieldType.Nested)
     @OneToOne
     @JoinColumn(unique = true)
     private CartaoSUS cartaoSUS;
 
+    @Field(type = FieldType.Object)
     @OneToMany(mappedBy = "paciente")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Telefone> telefones = new HashSet<>();
 
+    @Field(type = FieldType.Nested)
     @OneToMany(mappedBy = "paciente")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Endereco> enderecos = new HashSet<>();
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Responsavel responsavel;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Documento documento;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Certidao certidao;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Ocupacao ocupacao;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Religiao religiao;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Municipio naturalidade;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Etnia etnia;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Genitores genitores;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Nacionalidade nacionalidade;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private Raca raca;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
     private EstadoCivil estadoCivil;
@@ -154,6 +190,15 @@ public class Paciente implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Paciente getClassificacaoDeRisco() {
+        return classificacaoDeRisco;
+
+    }
+
+    public void setClassificacaoDeRisco(Paciente classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
     }
 
     public String getNomeSocial() {

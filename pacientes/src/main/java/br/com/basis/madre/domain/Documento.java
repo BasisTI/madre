@@ -7,7 +7,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 
+
+import org.springframework.data.elasticsearch.annotations.Field;
+
 import org.hibernate.validator.constraints.br.CPF;
+
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,30 +33,41 @@ public class Documento implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @Column(name = "numero_da_identidade")
     private String numeroDaIdentidade;
 
+    @Field(type = FieldType.Date)
     @Column(name = "data")
     private LocalDate data;
 
 
+    @Field(type = FieldType.Text)
+
+
     @CPF
+
     @Column(name = "cpf")
     private String cpf;
 
+    @Field(type = FieldType.Text)
     @Column(name = "pis_pasep")
     private String pisPasep;
 
+    @Field(type = FieldType.Date)
     @Column(name = "validade_da_cnh")
     private LocalDate validadeDaCnh;
 
+    @Field(type = FieldType.Boolean)
     @Column(name = "documentos_apresentados")
     private Boolean documentosApresentados;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("documentos")
     private OrgaoEmissor orgaoEmissor;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("documentos")
     private UF uf;

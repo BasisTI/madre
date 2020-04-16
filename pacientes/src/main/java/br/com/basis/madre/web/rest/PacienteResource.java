@@ -1,5 +1,6 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
@@ -56,6 +57,12 @@ public class PacienteResource {
     @GetMapping("/pacientes/_resumo")
     public ResponseEntity<Page<PacienteResumo>> findAllProjectedPacienteResumoBy(Pageable pageable) {
         return ResponseEntity.ok(pacienteService.findAllProjectedPacienteResumoBy(pageable));
+    }
+
+    /*lista de paciente com elasticsearch*/
+    @GetMapping("/pacientes/lista-de-pacientes-elastic")
+    public ResponseEntity<Page<Paciente>> findAllElastic(Pageable pageable) {
+        return ResponseEntity.ok(pacienteService.findAllElasticPaciente(pageable));
     }
 
     /**

@@ -7,6 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +17,7 @@ import br.com.basis.madre.domain.enumeration.TipoDoEndereco;
 /**
  * A Endereco.
  */
+
 @Entity
 @Table(name = "endereco")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -29,38 +31,50 @@ public class Endereco implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+
+    @Field(type = FieldType.Text)
+
     @Size(min = 8, max = 8)
+
     @NotNull
     @Column(name = "cep", nullable = false)
     private String cep;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "numero", nullable = false)
     private String numero;
 
+    @Field(type = FieldType.Text)
     @Column(name = "complemento")
     private String complemento;
 
+    @Field(type = FieldType.Text)
     @NotNull
     @Column(name = "bairro", nullable = false)
     private String bairro;
 
+    @Field(type = FieldType.Boolean)
     @NotNull
     @Column(name = "correspondencia", nullable = false)
     private Boolean correspondencia;
 
+    @Field(type = FieldType.Keyword)
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_do_endereco")
     private TipoDoEndereco tipoDoEndereco;
 
+//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("enderecos")
     private Municipio municipio;
 
+//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("enderecos")
     private Paciente paciente;

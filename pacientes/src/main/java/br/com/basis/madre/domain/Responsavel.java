@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,13 +27,16 @@ public class Responsavel implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Field(type = FieldType.Text)
     @Column(name = "nome_do_responsavel")
     private String nomeDoResponsavel;
 
+//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("responsavels")
     private Telefone telefone;
 
+    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("responsavels")
     private GrauDeParentesco grauDeParentesco;
