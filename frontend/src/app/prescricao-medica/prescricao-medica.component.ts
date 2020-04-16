@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { BreadcrumbService } from './../breadcrumb/breadcrumb.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
@@ -21,7 +21,7 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
 
         public prescricaoMedicaService: PrescricaoMedicaService,
         private breadcrumbService: BreadcrumbService,
-        private router: Router
+        private router: Router,
 
         ) { }
 
@@ -32,7 +32,6 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
         if (!event.selection) {
             return;
         }
-
         switch  (event.button) {
             case 'prescrever-dieta':
             this.router.navigate(['/prescricao-medica/dieta', event.selection.id]);

@@ -14,6 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
+    paciente = {nome: ''};
+
     dieta: any;
 
     dietas: any[] = [];
@@ -33,7 +35,8 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     constructor(
         private breadcrumbService: BreadcrumbService,
-        private prescricaoMedicaDietaService: PrescricaoMedicaDietaService
+        private prescricaoMedicaDietaService: PrescricaoMedicaDietaService,
+        private route: ActivatedRoute
     ) { }
 
 
@@ -43,10 +46,15 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             { label: 'Dieta', }
         ]);
 
+        const codigoPaciente = this.route.snapshot.params['id'];
+
+        if (codigoPaciente){
+            this.carregarPaciente(codigoPaciente);
+        }
+
         this.prescricaoMedicaDietaService.listar().subscribe(response => {
-            console.log(response);
             response.map((item) => {
-                console.log(item);
+                // console.log(item);
 
                 if (item.itemDieta) {
                     item.itemDieta.map((dieta) => {
@@ -59,6 +67,13 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         });
 
         this.prescreverDieta();
+    }
+
+    carregarPaciente(id: number) {
+        this.prescricaoMedicaDietaService.buscarId(id)
+        .subscribe(paciente => {
+            this.paciente = paciente;
+        });
     }
 
 
