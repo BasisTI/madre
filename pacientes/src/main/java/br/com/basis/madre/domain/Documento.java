@@ -50,6 +50,10 @@ public class Documento implements Serializable {
     @Column(name = "pis_pasep")
     private String pisPasep;
 
+    @Field(type = FieldType.Text)
+    @Column(name = "cnh")
+    private String cnh;
+
     @Field(type = FieldType.Date)
     @Column(name = "validade_da_cnh")
     private LocalDate validadeDaCnh;
