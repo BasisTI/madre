@@ -1,5 +1,6 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import br.com.basis.madre.domain.Paciente;
@@ -9,10 +10,16 @@ import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.com.basis.madre.service.projection.PacienteSummary;
 import java.util.Optional;
+
+import org.elasticsearch.index.query.QueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +53,7 @@ public class PacienteService {
     public Page<PacienteSummary> findAllPacienteSummary(Pageable pageable) {
         return pacienteRepository.findAllProjectedBy(pageable);
     }
-
+    /*lista de pacientes com elasticsearch*/
     public Page<Paciente> findAllElasticPaciente(Pageable pageable){
         return pacienteSearchRepository.findAll(pageable);
 
@@ -117,4 +124,18 @@ public class PacienteService {
         return pacienteSearchRepository.search(queryStringQuery(query), pageable)
             .map(pacienteMapper::toDto);
     }
+
+//    public Page<PacienteDTO> searchelastic(String query, Pageable pageable) {
+//        log.debug("Request to search for a page of Pacientes for query {}", query);
+//        QueryBuilder query = new QueryBuilder(). {
+//        }
+//        return pacienteSearchRepository.
+//
+//
+//    }
+//    public void foobar() {
+//        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery()).build();
+//
+//        pacienteSearchRepository.search(searchQuery, PageRequest.of(0, 10));
+//}
 }

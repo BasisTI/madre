@@ -61,10 +61,12 @@ public class PacienteResource {
     public ResponseEntity<Page<PacienteSummary>> findAllPacienteSummary(Pageable pageable) {
         return ResponseEntity.ok(pacienteService.findAllPacienteSummary(pageable));
     }
-//    @GetMapping("/pacientes/lista-de-pacientes")
-//    public ResponseEntity<Page<Paciente>> findAllElastic(Pageable pageable) {
-//        return ResponseEntity.ok(pacienteService.findAllElasticPaciente(pageable));
-//    }
+
+    /*lista de paciente com elasticsearch*/
+    @GetMapping("/pacientes/lista-de-pacientes-elastic")
+    public ResponseEntity<Page<Paciente>> findAllElastic(Pageable pageable) {
+        return ResponseEntity.ok(pacienteService.findAllElasticPaciente(pageable));
+    }
 
     /**
      * {@code POST  /pacientes} : Create a new paciente.
