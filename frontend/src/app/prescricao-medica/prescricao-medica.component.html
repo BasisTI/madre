@@ -17,7 +17,7 @@
                 <div class="ui-g-12 ui-md-3"></div>
 
                 <basis-datatable
-                    #table
+                    #datatable
                     type= "server"
                     [url]="searchUrl"
                     [rows]="10"
@@ -43,9 +43,10 @@
                     </p-column>
 
 
-                    <basis-datatable-button icon="local-dining" name="prescrever-dieta" (click)="table.onClick('prescrever-dieta', $event)" bTooltip="Prescrever Dieta"
+                    <basis-datatable-button icon="local-dining" name="prescrever-dieta" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Dieta"
                         class="ui-button-info">
                     </basis-datatable-button>
+
                 </basis-datatable>
             </div>
         </div>

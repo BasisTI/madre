@@ -8,7 +8,7 @@ export const routes: Routes = [
         component: PrescricaoMedicaDietaComponent
     },
     {
-        path: 'dieta/:id',
+        path: 'prescricao-medica/dieta',
         component: PrescricaoMedicaDietaComponent
     },
 ];
