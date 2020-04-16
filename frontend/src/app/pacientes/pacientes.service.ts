@@ -15,4 +15,9 @@ export class PacientesService {
     getListaDePacientes(): Observable<Pageable<PacienteResumo>> {
         return this.httpService.get<Pageable<PacienteResumo>>(`${this.apiUrl}/_resumo`);
     }
+    getListaDePacientesElastic(): Observable<Pageable<PacienteSummary>> {
+        return this.httpService.get<Pageable<PacienteSummary>>(
+            `${this.apiUrl}/lista-de-pacientes-elastic`,
+        );
+    }
 }

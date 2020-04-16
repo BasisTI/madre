@@ -16,7 +16,9 @@ export class ListaDePacientesComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.breadcrumbService.setItems([{ label: 'Pacientes' }]);
 
-        this.service.getListaDePacientes().subscribe((dados) => (this.pacientes = dados.content));
+        this.service
+            .getListaDePacientesElastic()
+            .subscribe((dados) => (this.pacientes = dados.content));
     }
 
     ngOnDestroy(): void {

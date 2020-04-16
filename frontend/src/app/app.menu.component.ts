@@ -39,6 +39,28 @@ export class AppMenuComponent implements OnInit {
                     },
                 ],
             },
+            {
+                label: 'Emergência',
+                icon: 'dashboard',
+                routerLink: ['/paciente'],
+                items: [
+                    {
+                        label: 'Pesquisar Triagem',
+                        icon: 'search',
+                        routerLink: ['/pacientes/triagem'],
+                    },
+                    {
+                        label: 'Pré Cadastro',
+                        icon: 'add',
+                        routerLink: ['/pacientes/triagem'],
+                    },
+                    {
+                        label: 'Atendimento',
+                        icon: 'directions',
+                        routerLink: ['/pacientes/triagem'],
+                    },
+                ],
+            },
         ];
     }
 
