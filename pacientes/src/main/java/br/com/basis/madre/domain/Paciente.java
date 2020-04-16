@@ -45,6 +45,9 @@ public class Paciente implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Column(name = "classificacao_de_risco", nullable = false)
+    private Paciente classificacaoDeRisco;
+
     @Column(name = "nome_social")
     private String nomeSocial;
 
@@ -148,6 +151,15 @@ public class Paciente implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Paciente getClassificacaoDeRisco() {
+        return classificacaoDeRisco;
+
+    }
+
+    public void setClassificacaoDeRisco(Paciente classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
     }
 
     public String getNomeSocial() {
