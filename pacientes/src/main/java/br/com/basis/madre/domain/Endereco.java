@@ -29,6 +29,7 @@ public class Endereco implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Size(min = 8, max = 8)
     @NotNull
     @Column(name = "cep", nullable = false)
     private String cep;

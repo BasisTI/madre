@@ -10,17 +10,32 @@
                 />
                 <label>Nome do Responsável</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Nome do Responsável' é obrigátorio."
+                *ngIf="
+                    responsavel.get('nomeDoResponsavel').touched &&
+                    responsavel.get('nomeDoResponsavel').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
-                    [options]="grausDeParentesco"
+                    [options]="opcoesDeGrauDeParentesco"
                     formControlName="grauDeParentesco"
                     [filter]="true"
-                    pTooltip="Selecione o grau de parentesco do paciente."
                 ></p-dropdown>
                 <label>Grau de Parentesco</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Grau de Parentesco' é obrigátorio."
+                *ngIf="
+                    responsavel.get('grauDeParentesco').touched &&
+                    responsavel.get('grauDeParentesco').invalid
+                "
+            ></p-message>
         </div>
         <div class="ui-g-1 ui-sm-12">
             <span class="ui-float-label">
@@ -31,6 +46,11 @@
                     pTooltip="Digite o DDD do paciente."
                 ></p-inputMask>
                 <label>DDD</label>
+                <p-message
+                    severity="error"
+                    text="O campo 'DDD' é obrigátorio."
+                    *ngIf="responsavel.get('ddd').touched && responsavel.get('ddd').invalid"
+                ></p-message>
             </span>
         </div>
         <div class="ui-g-2 ui-sm-12">
@@ -43,15 +63,21 @@
                 ></p-inputMask>
                 <label>Telefone</label>
             </span>
+            <p-message
+                severity="error"
+                text="O campo 'Telefone' é obrigátorio."
+                *ngIf="responsavel.get('telefone').touched && responsavel.get('telefone').invalid"
+            ></p-message>
         </div>
-        <div class="ui-g-2 ui-sm-12">
+        <div class="ui-g-8 ui-sm-12">
             <span class="ui-float-label">
-                <input
-                    type="text"
-                    pInputText
+                <textarea
                     formControlName="observacao"
-                    pTooltip="Digite a observação do paciente."
-                />
+                    [rows]="3"
+                    pInputTextarea
+                    autoResize="autoResize"
+                    pTooltip="Informe o observação."
+                ></textarea>
                 <label>Observação</label>
             </span>
         </div>

@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PRIMENG_IMPORTS } from '../primeng-imports';
 
 import { JhiDateUtils } from './date-util.service';
-import { DatatableModule } from '@nuvem/primeng-components';
+import { DatatableModule, CrudModule, CrudResolveGuard } from '@nuvem/primeng-components';
 /* jhipster-needle-add-shared-service-import - JHipster will add shared services imports here */
 
 @NgModule({
@@ -15,6 +15,7 @@ import { DatatableModule } from '@nuvem/primeng-components';
         PRIMENG_IMPORTS,
         DatatableModule,
         TriStateCheckboxModule,
+        CrudModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -22,6 +23,7 @@ import { DatatableModule } from '@nuvem/primeng-components';
         PRIMENG_IMPORTS,
         DatatableModule,
         TriStateCheckboxModule,
+        CrudModule,
     ],
 })
 export class SharedModule {

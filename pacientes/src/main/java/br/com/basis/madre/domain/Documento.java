@@ -5,7 +5,9 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -33,6 +35,8 @@ public class Documento implements Serializable {
     @Column(name = "data")
     private LocalDate data;
 
+
+    @CPF
     @Column(name = "cpf")
     private String cpf;
 
@@ -96,6 +100,8 @@ public class Documento implements Serializable {
         this.cpf = cpf;
         return this;
     }
+
+
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
