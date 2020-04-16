@@ -35,7 +35,6 @@ public class Endereco implements Serializable {
     @Field(type = FieldType.Text)
 
     @Size(min = 8, max = 8)
-
     @NotNull
     @Column(name = "cep", nullable = false)
     private String cep;

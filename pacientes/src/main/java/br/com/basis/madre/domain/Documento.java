@@ -41,12 +41,8 @@ public class Documento implements Serializable {
     @Column(name = "data")
     private LocalDate data;
 
-
-    @Field(type = FieldType.Text)
-
-
     @CPF
-
+    @Field(type = FieldType.Text)
     @Column(name = "cpf")
     private String cpf;
 
