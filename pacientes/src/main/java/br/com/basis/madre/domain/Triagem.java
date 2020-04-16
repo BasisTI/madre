@@ -68,7 +68,7 @@ public class Triagem implements Serializable {
     private Boolean removidoDeAmbulancia;
 
     @ManyToOne
-    @JsonIgnoreProperties("triagems")
+    @JsonIgnoreProperties("triagem")
     private Paciente paciente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

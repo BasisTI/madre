@@ -57,7 +57,13 @@ public class Paciente implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+<<<<<<< HEAD
     @Field(type = FieldType.Text)
+=======
+    @Column(name = "classificacao_de_risco", nullable = false)
+    private Paciente classificacaoDeRisco;
+
+>>>>>>> 63fb5e2708994567761a603df0d70762b95a118e
     @Column(name = "nome_social")
     private String nomeSocial;
 
@@ -184,6 +190,15 @@ public class Paciente implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Paciente getClassificacaoDeRisco() {
+        return classificacaoDeRisco;
+
+    }
+
+    public void setClassificacaoDeRisco(Paciente classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
     }
 
     public String getNomeSocial() {
