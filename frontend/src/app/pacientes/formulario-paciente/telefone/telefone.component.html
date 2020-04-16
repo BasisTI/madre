@@ -1,4 +1,4 @@
-<div [formGroup]="telefones" (ngSubmit)="adicionar()">
+<div [formGroup]="telefone" (ngSubmit)="adicionar()">
     <div class="ui-g ui-fluid">
         <div class="ui-g-12">
             <div class="ui-g-5 ui-sm-12">
@@ -26,7 +26,7 @@
                         placeholder="_ ____-____"
                         mask="9 9999-9999"
                         type="text"
-                        formControlName="telefone"
+                        formControlName="numero"
                         pTooltip="Informe o telefone."
                     ></p-inputMask>
                     <label>Telefone</label>
@@ -67,12 +67,11 @@
                 </span>
             </div>
         </div>
-        {{ telefones.value | json }}
         <p-button label="Adicionar" type="button" (onClick)="adicionarTelefoneALista()"></p-button>
-        <basis-datatable type="memory" [value]="listaDeTelefones">
+        <basis-datatable type="memory" [value]="telefones.value">
             <p-column header="Tipo" field="tipo"></p-column>
-            <p-column header="DDD" field="DDD"></p-column>
-            <p-column header="Telefone" field="telefone"></p-column>
+            <p-column header="DDD" field="ddd"></p-column>
+            <p-column header="Telefone" field="numero"></p-column>
             <p-column header="Observação" field="observacao"></p-column>
         </basis-datatable>
     </div>

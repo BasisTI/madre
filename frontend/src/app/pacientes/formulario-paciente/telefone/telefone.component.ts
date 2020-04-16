@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Component, Input } from '@angular/core';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-telefone';
 
@@ -12,15 +12,15 @@ export class TelefoneComponent {
     opcoesDeTipoDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
 
     telefone = this.fb.group({
-        ddd: [''],
-        tipo: [''],
-        numero: [''],
+        ddd: ['', Validators.required],
+        tipo: ['', Validators.required],
+        numero: ['', Validators.required],
         observacao: [''],
     });
 
     constructor(private fb: FormBuilder) {}
 
     adicionarTelefoneALista() {
-        console.log(this.telefone.value);
+        this.telefones.push(this.telefone);
     }
 }
