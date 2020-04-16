@@ -67,8 +67,8 @@
                 </span>
             </div>
         </div>
-        <p-button label="Adicionar" type="submit" [disabled]="true"></p-button>
-        <basis-datatable type="memory" [value]="fakeData">
+        <p-button label="Adicionar" type="button" (onClick)="adicionarTelefoneALista()"></p-button>
+        <basis-datatable type="memory" [value]="listaDeTelefones">
             <p-column header="Tipo" field="tipo"></p-column>
             <p-column header="DDD" field="DDD"></p-column>
             <p-column header="Telefone" field="telefone"></p-column>

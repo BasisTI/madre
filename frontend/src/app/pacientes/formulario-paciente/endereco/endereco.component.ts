@@ -12,6 +12,7 @@ import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tip
 })
 export class EnderecoComponent implements OnInit {
     @Input() enderecos: FormGroup;
+    listaDeEnderecos = [];
     opcoesDeMunicipio: OpcaoCombo[] = [OPCAO_SELECIONE];
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
     uf = '';
@@ -20,6 +21,11 @@ export class EnderecoComponent implements OnInit {
 
     ngOnInit(): void {
         this.preencherComboMunicipio();
+    }
+
+    adicionarEnderecoALista() {
+        this.listaDeEnderecos.push(this.enderecos.value);
+        console.log(this.listaDeEnderecos);
     }
 
     preencherComboMunicipio() {

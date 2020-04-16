@@ -147,14 +147,14 @@
                 <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
             </div>
         </div>
-        <p-button label="Adicionar" type="submit"></p-button>
-        <basis-datatable type="memory" [value]="fakeData">
-            <p-column header="Município" field="municipio"></p-column>
-            <p-column header="CEP" field="CEP"></p-column>
-            <p-column header="UF" field="UF"></p-column>
-            <p-column header="Bairro" field="Bairro"></p-column>
+        <p-button label="Adicionar" type="button" (onClick)="adicionarEnderecoALista()"></p-button>
+        <basis-datatable type="memory" [value]="listaDeEnderecos">
+            <p-column header="Município" field="municipio.nome"></p-column>
+            <p-column header="CEP" field="cep"></p-column>
+            <p-column header="UF" field="municipio.sigla"></p-column>
+            <p-column header="Bairro" field="bairro"></p-column>
             <p-column header="Tipo" field="tipo"></p-column>
-            <p-column header="Correspondência" field="corespondencia"></p-column>
+            <p-column header="Correspondência" field="correspondencia"></p-column>
         </basis-datatable>
     </div>
 </div>

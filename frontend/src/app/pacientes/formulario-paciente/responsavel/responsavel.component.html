@@ -69,11 +69,11 @@
                 *ngIf="responsavel.get('telefone').touched && responsavel.get('telefone').invalid"
             ></p-message>
         </div>
-        <div class="ui-g-2 ui-sm-12">
+        <div class="ui-g-8 ui-sm-12">
             <span class="ui-float-label">
                 <textarea
                     formControlName="observacao"
-                    [rows]="1"
+                    [rows]="3"
                     pInputTextarea
                     autoResize="autoResize"
                     pTooltip="Informe o observação."
