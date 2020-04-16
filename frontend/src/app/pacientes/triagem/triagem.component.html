@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <h1>Triagem</h1>
+            <h1>Pesquisar Triagem</h1>
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
@@ -40,13 +40,15 @@
                     <p-column header="Hora de Chegada" field="horaDeChegada"></p-column>
                     <p-column header="Classificação" field="classificacao"></p-column>
                 </basis-datatable>
-
-                <div class="ui-g-3">
+                <div class="ui-g-9"></div>
+                <div class="ui-g-2">
                     <button
+                        name="export"
                         pButton
+                        textAlign="right"
                         type="button"
                         label="Exportar"
-                        icon="ui-icon-add"
+                        icon="pi pi-upload"
                         bTooltip="Exportar arquivos de Triagem"
                     ></button>
                 </div>
