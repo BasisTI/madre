@@ -1,5 +1,4 @@
 import { PacientesService } from './../pacientes.service';
-import { PacienteSummary } from './../models/paciente.summary';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 
@@ -20,10 +19,7 @@ import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
     ],
 })
 export class TriagemComponent implements OnInit, OnDestroy {
-    constructor(
-        private breadcrumbService: BreadcrumbService,
-        private pacienteService: PacientesService,
-    ) {}
+    constructor(private breadcrumbService: BreadcrumbService) {}
     ngOnInit(): void {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
