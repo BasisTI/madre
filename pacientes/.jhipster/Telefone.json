@@ -32,6 +32,13 @@
             "otherEntityRelationshipName": "telefone",
             "relationshipName": "paciente",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "responsavel",
+            "otherEntityName": "responsavel",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "telefone"
         }
     ],
     "changelogDate": "20200407124900",
@@ -46,5 +53,7 @@
     "clientRootFolder": "pacientes",
     "applications": "*",
     "microserviceName": "pacientes",
-    "skipClient": true
+    "skipClient": true,
+    "searchEngine": "elasticsearch",
+    "databaseType": "sql"
 }

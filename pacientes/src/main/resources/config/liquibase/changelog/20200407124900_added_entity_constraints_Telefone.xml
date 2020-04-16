@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="paciente"/>
 
+        <addForeignKeyConstraint baseColumnNames="responsavel_id"
+                                 baseTableName="telefone"
+                                 constraintName="fk_telefone_responsavel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="responsavel"/>
+
     </changeSet>
 </databaseChangeLog>

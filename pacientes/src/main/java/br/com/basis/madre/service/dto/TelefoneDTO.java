@@ -24,6 +24,8 @@ public class TelefoneDTO implements Serializable {
 
 
     private Long pacienteId;
+
+    private Long responsavelId;
     
     public Long getId() {
         return id;
@@ -73,6 +75,14 @@ public class TelefoneDTO implements Serializable {
         this.pacienteId = pacienteId;
     }
 
+    public Long getResponsavelId() {
+        return responsavelId;
+    }
+
+    public void setResponsavelId(Long responsavelId) {
+        this.responsavelId = responsavelId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -103,6 +113,7 @@ public class TelefoneDTO implements Serializable {
             ", tipo='" + getTipo() + "'" +
             ", observacao='" + getObservacao() + "'" +
             ", pacienteId=" + getPacienteId() +
+            ", responsavelId=" + getResponsavelId() +
             "}";
     }
 }

@@ -7,8 +7,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import org.hibernate.annotations.Parent;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
@@ -31,12 +29,10 @@ public class Telefone implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Size(min = 3, max = 3)
     @NotNull
     @Column(name = "ddd", nullable = false)
     private String ddd;
 
-    @Size(min = 9,max = 9)
     @NotNull
     @Column(name = "numero", nullable = false)
     private String numero;
@@ -51,6 +47,10 @@ public class Telefone implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("telefones")
     private Paciente paciente;
+
+    @ManyToOne
+    @JsonIgnoreProperties("telefones")
+    private Responsavel responsavel;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -124,6 +124,19 @@ public class Telefone implements Serializable {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    public Responsavel getResponsavel() {
+        return responsavel;
+    }
+
+    public Telefone responsavel(Responsavel responsavel) {
+        this.responsavel = responsavel;
+        return this;
+    }
+
+    public void setResponsavel(Responsavel responsavel) {
+        this.responsavel = responsavel;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
