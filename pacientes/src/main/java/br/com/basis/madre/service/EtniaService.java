@@ -1,21 +1,22 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.Etnia;
 import br.com.basis.madre.repository.EtniaRepository;
 import br.com.basis.madre.repository.search.EtniaSearchRepository;
 import br.com.basis.madre.service.dto.EtniaDTO;
 import br.com.basis.madre.service.mapper.EtniaMapper;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link Etnia}.
@@ -32,7 +33,8 @@ public class EtniaService {
 
     private final EtniaSearchRepository etniaSearchRepository;
 
-    public EtniaService(EtniaRepository etniaRepository, EtniaMapper etniaMapper, EtniaSearchRepository etniaSearchRepository) {
+    public EtniaService(EtniaRepository etniaRepository, EtniaMapper etniaMapper,
+        EtniaSearchRepository etniaSearchRepository) {
         this.etniaRepository = etniaRepository;
         this.etniaMapper = etniaMapper;
         this.etniaSearchRepository = etniaSearchRepository;
@@ -51,6 +53,18 @@ public class EtniaService {
         EtniaDTO result = etniaMapper.toDto(etnia);
         etniaSearchRepository.save(etnia);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<EtniaDTO> findAll(EtniaDTO etniaDTO, Pageable pageable) {
+        log.debug("Request to get all Etnias");
+        return etniaRepository.findAll(
+            Example.of(etniaMapper.toEntity(etniaDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
+                    StringMatcher.CONTAINING)
+            ),
+            pageable
+        ).map(etniaMapper::toDto);
     }
 
     /**
@@ -93,7 +107,7 @@ public class EtniaService {
     /**
      * Search for the etnia corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */

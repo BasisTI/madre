@@ -96,9 +96,9 @@ public class ReligiaoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of religiaos in body.
      */
     @GetMapping("/religiaos")
-    public ResponseEntity<List<ReligiaoDTO>> getAllReligiaos(Pageable pageable) {
+    public ResponseEntity<List<ReligiaoDTO>> getAllReligiaos(ReligiaoDTO religiaoDTO, Pageable pageable) {
         log.debug("REST request to get a page of Religiaos");
-        Page<ReligiaoDTO> page = religiaoService.findAll(pageable);
+        Page<ReligiaoDTO> page = religiaoService.findAll(religiaoDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

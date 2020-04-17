@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ReligiaoService extends CrudServiceNuvem<number, Religiao> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/religiaos', httpClient);
+        super('pacientes/api/religiaos?sort=valor', httpClient);
     }
 
     getListaDeReligioes(): Observable<Religiao[]> {

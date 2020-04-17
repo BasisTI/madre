@@ -4,10 +4,6 @@ import { OPCAO_SELECIONE } from './opcao-selecione';
 export const OPCOES_DE_GRAU_DE_INSTRUCAO: OpcaoCombo[] = [
     OPCAO_SELECIONE,
     {
-        label: 'Nenhum',
-        value: 'NENHUM',
-    },
-    {
         label: '1º Grau Completo',
         value: 'PRIMEIRO_GRAU_COMPLETO',
     },
@@ -34,5 +30,9 @@ export const OPCOES_DE_GRAU_DE_INSTRUCAO: OpcaoCombo[] = [
     {
         label: 'Ignorado',
         value: 'IGNORADO',
+    },
+    {
+        label: 'Nenhum',
+        value: 'NENHUM',
     },
 ];
