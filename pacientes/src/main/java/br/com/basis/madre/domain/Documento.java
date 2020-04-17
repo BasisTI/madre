@@ -1,5 +1,6 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.validation.annotation.PISAnnotation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -49,9 +50,9 @@ public class Documento implements Serializable {
     private String cpf;
 
     @Field(type = FieldType.Text)
+    @PISAnnotation
     @Column(name = "pis_pasep")
     private String pisPasep;
-
 
     @Field(type = FieldType.Text)
     @Size(min = 11, max = 11)
@@ -120,8 +121,6 @@ public class Documento implements Serializable {
         return this;
     }
 
-
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -138,6 +137,7 @@ public class Documento implements Serializable {
     public void setPisPasep(String pisPasep) {
         this.pisPasep = pisPasep;
     }
+
 
     public LocalDate getValidadeDaCnh() {
         return validadeDaCnh;
