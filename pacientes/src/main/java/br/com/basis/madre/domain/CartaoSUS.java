@@ -1,5 +1,6 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.validation.annotation.CartaoSUSAnnotation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
@@ -12,7 +13,6 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.LocalDate;
 
 import br.com.basis.madre.domain.enumeration.DocumentoDeReferencia;
@@ -36,6 +36,7 @@ public class CartaoSUS implements Serializable {
 
     @Field(type = FieldType.Text)
     @NotNull
+    @CartaoSUSAnnotation
     @Column(name = "numero", nullable = false)
     private String numero;
 

@@ -120,8 +120,6 @@ public class Documento implements Serializable {
         return this;
     }
 
-
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
