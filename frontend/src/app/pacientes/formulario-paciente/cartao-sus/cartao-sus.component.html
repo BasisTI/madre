@@ -10,32 +10,27 @@
                 ></p-inputMask>
                 <label>Número</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Número' é obrigátorio."
-                *ngIf="cartaoSUS.get('numero').touched && cartaoSUS.get('numero').invalid"
-            ></p-message>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeJustificativaDeAusencia"
+                <div
+                    nAutoComplete
+                    [service]="justificativaService"
+                    field="valor"
                     formControlName="justificativa"
-                    filter="true"
-                >
-                </p-dropdown>
-                <label>Justificativa da Ausência CNS</label>
+                    label="Justificativa da Ausência CNS"
+                ></div>
             </span>
         </div>
         <div class="ui-g-2">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeMotivoDeCadastro"
+                <div
+                    nAutoComplete
+                    [service]="motivoDoCadastroService"
+                    field="valor"
                     formControlName="motivoCadastro"
-                    filter="true"
-                >
-                </p-dropdown>
-                <label>Motivo Cadastro</label>
+                    label="Motivo Cadastro"
+                ></div>
             </span>
         </div>
         <div class="ui-g-2">
