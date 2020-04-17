@@ -54,8 +54,10 @@ public class MunicipioResource {
      * TODO: Write documentation
      */
     @GetMapping("/municipios/_uf")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy() {
-        return ResponseEntity.ok(municipioService.findAllProjectedMunicipioUFBy());
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy(Pageable pageable) {
+        Page<MunicipioUF> page = municipioService
+            .findAllProjectedMunicipioUFBy(pageable);
+        return ResponseEntity.ok(page.getContent());
     }
 
     /**

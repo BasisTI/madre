@@ -8,6 +8,9 @@ import br.com.basis.madre.service.mapper.RacaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -51,6 +54,18 @@ public class RacaService {
         RacaDTO result = racaMapper.toDto(raca);
         racaSearchRepository.save(raca);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<RacaDTO> findAll(RacaDTO racaDTO, Pageable pageable) {
+        log.debug("Request to get all Racas");
+        return racaRepository.findAll(
+            Example.of(
+                racaMapper.toEntity(racaDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING)
+            ),
+            pageable
+        ).map(racaMapper::toDto);
     }
 
     /**

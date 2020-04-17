@@ -96,9 +96,9 @@ public class RacaResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of racas in body.
      */
     @GetMapping("/racas")
-    public ResponseEntity<List<RacaDTO>> getAllRacas(Pageable pageable) {
+    public ResponseEntity<List<RacaDTO>> getAllRacas(RacaDTO racaDTO, Pageable pageable) {
         log.debug("REST request to get a page of Racas");
-        Page<RacaDTO> page = racaService.findAll(pageable);
+        Page<RacaDTO> page = racaService.findAll(racaDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

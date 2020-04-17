@@ -107,7 +107,7 @@ public class MunicipioService {
     /**
      * TODO: Write documentation
      */
-  public List<MunicipioUF> findAllProjectedMunicipioUFBy() {
-      return municipioRepository.findAllProjectedMunicipioUFBy();
+  public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable) {
+      return municipioRepository.findAllProjectedMunicipioUFBy(pageable);
   }
 }
