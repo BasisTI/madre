@@ -45,19 +45,17 @@ export class AppMenuComponent implements OnInit {
                 routerLink: ['/paciente'],
                 items: [
                     {
-                        label: 'Pesquisar Triagem',
-                        icon: 'search',
-                        routerLink: ['/pacientes/triagem'],
-                    },
-                    {
                         label: 'Pré Cadastro',
                         icon: 'add',
-                        routerLink: ['/pacientes/triagem'],
+                    },
+                    {
+                        label: 'Triagem',
+                        icon: 'add',
+                        routerLink: ['pacientes/triagem'],
                     },
                     {
                         label: 'Atendimento',
-                        icon: 'directions',
-                        routerLink: ['/pacientes/triagem'],
+                        icon: 'add',
                     },
                 ],
             },

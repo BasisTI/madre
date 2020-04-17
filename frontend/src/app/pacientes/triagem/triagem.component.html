@@ -3,9 +3,15 @@
         <div class="card card-w-title">
             <h1>Triagem</h1>
             <div class="ui-g">
-                <div class="ui-g-12 ui-md-12 ui-fluid">
+                <div class="ui-g-11 ui-md-11 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" name="filtro" />
+                        <input
+                            type="text"
+                            pInputText
+                            class="ui-inputtext"
+                            name="filtro"
+                            required="true"
+                        />
                         <label>Pesquisar Triagem</label>
                     </span>
                 </div>
@@ -26,7 +32,7 @@
                             type="button"
                             label="Nova Triagem"
                             icon="ui-icon-add"
-                            routerLink="/pacientes/triagem"
+                            routerLink="/triagem/formulario"
                             bTooltip="Cadastrar nova Triagem."
                         ></button>
                     </div>
@@ -49,7 +55,7 @@
                         type="button"
                         label="Exportar"
                         icon="pi pi-upload"
-                        bTooltip="Exportar arquivos de Triagem"
+                        bTooltip="Exportar arquivo"
                     ></button>
                 </div>
             </div>

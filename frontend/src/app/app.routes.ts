@@ -10,6 +10,10 @@ export const routes: Routes = [
         path: 'pacientes',
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
+    {
+        path: 'triagem',
+        loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+    },
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
