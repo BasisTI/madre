@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class MunicipioService extends CrudServiceNuvem<number, Municipio> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/municipios', httpClient);
+        super('pacientes/api/municipios?sort=nome', httpClient);
     }
 
     getListaDeMunicipios(): Observable<Municipio[]> {

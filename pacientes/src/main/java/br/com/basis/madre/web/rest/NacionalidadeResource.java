@@ -53,18 +53,23 @@ public class NacionalidadeResource {
      * {@code POST  /nacionalidades} : Create a new nacionalidade.
      *
      * @param nacionalidadeDTO the nacionalidadeDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new nacionalidadeDTO, or with status {@code 400 (Bad Request)} if the nacionalidade has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
+     * nacionalidadeDTO, or with status {@code 400 (Bad Request)} if the nacionalidade has already
+     * an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/nacionalidades")
-    public ResponseEntity<NacionalidadeDTO> createNacionalidade(@Valid @RequestBody NacionalidadeDTO nacionalidadeDTO) throws URISyntaxException {
+    public ResponseEntity<NacionalidadeDTO> createNacionalidade(
+        @Valid @RequestBody NacionalidadeDTO nacionalidadeDTO) throws URISyntaxException {
         log.debug("REST request to save Nacionalidade : {}", nacionalidadeDTO);
         if (nacionalidadeDTO.getId() != null) {
-            throw new BadRequestAlertException("A new nacionalidade cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new nacionalidade cannot already have an ID",
+                ENTITY_NAME, "idexists");
         }
         NacionalidadeDTO result = nacionalidadeService.save(nacionalidadeDTO);
         return ResponseEntity.created(new URI("/api/nacionalidades/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
             .body(result);
     }
 
@@ -72,20 +77,23 @@ public class NacionalidadeResource {
      * {@code PUT  /nacionalidades} : Updates an existing nacionalidade.
      *
      * @param nacionalidadeDTO the nacionalidadeDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated nacionalidadeDTO,
-     * or with status {@code 400 (Bad Request)} if the nacionalidadeDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the nacionalidadeDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
+     * nacionalidadeDTO, or with status {@code 400 (Bad Request)} if the nacionalidadeDTO is not
+     * valid, or with status {@code 500 (Internal Server Error)} if the nacionalidadeDTO couldn't be
+     * updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/nacionalidades")
-    public ResponseEntity<NacionalidadeDTO> updateNacionalidade(@Valid @RequestBody NacionalidadeDTO nacionalidadeDTO) throws URISyntaxException {
+    public ResponseEntity<NacionalidadeDTO> updateNacionalidade(
+        @Valid @RequestBody NacionalidadeDTO nacionalidadeDTO) throws URISyntaxException {
         log.debug("REST request to update Nacionalidade : {}", nacionalidadeDTO);
         if (nacionalidadeDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         NacionalidadeDTO result = nacionalidadeService.save(nacionalidadeDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, nacionalidadeDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+                nacionalidadeDTO.getId().toString()))
             .body(result);
     }
 
@@ -93,13 +101,16 @@ public class NacionalidadeResource {
      * {@code GET  /nacionalidades} : get all the nacionalidades.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of nacionalidades in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of
+     * nacionalidades in body.
      */
     @GetMapping("/nacionalidades")
-    public ResponseEntity<List<NacionalidadeDTO>> getAllNacionalidades(Pageable pageable) {
+    public ResponseEntity<List<NacionalidadeDTO>> getAllNacionalidades(
+        NacionalidadeDTO nacionalidadeDTO, Pageable pageable) {
         log.debug("REST request to get a page of Nacionalidades");
-        Page<NacionalidadeDTO> page = nacionalidadeService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        Page<NacionalidadeDTO> page = nacionalidadeService.findAll(nacionalidadeDTO, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -107,7 +118,8 @@ public class NacionalidadeResource {
      * {@code GET  /nacionalidades/:id} : get the "id" nacionalidade.
      *
      * @param id the id of the nacionalidadeDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the nacionalidadeDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
+     * nacionalidadeDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/nacionalidades/{id}")
     public ResponseEntity<NacionalidadeDTO> getNacionalidade(@PathVariable Long id) {
@@ -126,22 +138,25 @@ public class NacionalidadeResource {
     public ResponseEntity<Void> deleteNacionalidade(@PathVariable Long id) {
         log.debug("REST request to delete Nacionalidade : {}", id);
         nacionalidadeService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil
+            .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * {@code SEARCH  /_search/nacionalidades?query=:query} : search for the nacionalidade corresponding
-     * to the query.
+     * {@code SEARCH  /_search/nacionalidades?query=:query} : search for the nacionalidade
+     * corresponding to the query.
      *
-     * @param query the query of the nacionalidade search.
+     * @param query    the query of the nacionalidade search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
     @GetMapping("/_search/nacionalidades")
-    public ResponseEntity<List<NacionalidadeDTO>> searchNacionalidades(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<NacionalidadeDTO>> searchNacionalidades(@RequestParam String query,
+        Pageable pageable) {
         log.debug("REST request to search for a page of Nacionalidades for query {}", query);
         Page<NacionalidadeDTO> page = nacionalidadeService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

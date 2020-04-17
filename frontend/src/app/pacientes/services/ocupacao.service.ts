@@ -9,7 +9,7 @@ import { Ocupacao } from '../models/dropdowns/types/ocupacao';
 })
 export class OcupacaoService extends CrudServiceNuvem<number, Ocupacao> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/ocupacaos', httpClient);
+        super('pacientes/api/ocupacaos?sort=valor', httpClient);
     }
 
     getListaDeOcupacoes(): Observable<Ocupacao[]> {

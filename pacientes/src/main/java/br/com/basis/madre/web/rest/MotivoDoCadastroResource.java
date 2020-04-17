@@ -96,9 +96,9 @@ public class MotivoDoCadastroResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of motivoDoCadastros in body.
      */
     @GetMapping("/motivo-do-cadastros")
-    public ResponseEntity<List<MotivoDoCadastroDTO>> getAllMotivoDoCadastros(Pageable pageable) {
+    public ResponseEntity<List<MotivoDoCadastroDTO>> getAllMotivoDoCadastros(MotivoDoCadastroDTO motivoDoCadastroDTO, Pageable pageable) {
         log.debug("REST request to get a page of MotivoDoCadastros");
-        Page<MotivoDoCadastroDTO> page = motivoDoCadastroService.findAll(pageable);
+        Page<MotivoDoCadastroDTO> page = motivoDoCadastroService.findAll(motivoDoCadastroDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

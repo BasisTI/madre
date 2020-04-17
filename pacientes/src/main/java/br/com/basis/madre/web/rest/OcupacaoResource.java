@@ -53,18 +53,22 @@ public class OcupacaoResource {
      * {@code POST  /ocupacaos} : Create a new ocupacao.
      *
      * @param ocupacaoDTO the ocupacaoDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new ocupacaoDTO, or with status {@code 400 (Bad Request)} if the ocupacao has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
+     * ocupacaoDTO, or with status {@code 400 (Bad Request)} if the ocupacao has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/ocupacaos")
-    public ResponseEntity<OcupacaoDTO> createOcupacao(@Valid @RequestBody OcupacaoDTO ocupacaoDTO) throws URISyntaxException {
+    public ResponseEntity<OcupacaoDTO> createOcupacao(@Valid @RequestBody OcupacaoDTO ocupacaoDTO)
+        throws URISyntaxException {
         log.debug("REST request to save Ocupacao : {}", ocupacaoDTO);
         if (ocupacaoDTO.getId() != null) {
-            throw new BadRequestAlertException("A new ocupacao cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new ocupacao cannot already have an ID",
+                ENTITY_NAME, "idexists");
         }
         OcupacaoDTO result = ocupacaoService.save(ocupacaoDTO);
         return ResponseEntity.created(new URI("/api/ocupacaos/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
             .body(result);
     }
 
@@ -72,20 +76,22 @@ public class OcupacaoResource {
      * {@code PUT  /ocupacaos} : Updates an existing ocupacao.
      *
      * @param ocupacaoDTO the ocupacaoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated ocupacaoDTO,
-     * or with status {@code 400 (Bad Request)} if the ocupacaoDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the ocupacaoDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
+     * ocupacaoDTO, or with status {@code 400 (Bad Request)} if the ocupacaoDTO is not valid, or
+     * with status {@code 500 (Internal Server Error)} if the ocupacaoDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/ocupacaos")
-    public ResponseEntity<OcupacaoDTO> updateOcupacao(@Valid @RequestBody OcupacaoDTO ocupacaoDTO) throws URISyntaxException {
+    public ResponseEntity<OcupacaoDTO> updateOcupacao(@Valid @RequestBody OcupacaoDTO ocupacaoDTO)
+        throws URISyntaxException {
         log.debug("REST request to update Ocupacao : {}", ocupacaoDTO);
         if (ocupacaoDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         OcupacaoDTO result = ocupacaoService.save(ocupacaoDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, ocupacaoDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+                ocupacaoDTO.getId().toString()))
             .body(result);
     }
 
@@ -93,13 +99,16 @@ public class OcupacaoResource {
      * {@code GET  /ocupacaos} : get all the ocupacaos.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ocupacaos in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ocupacaos in
+     * body.
      */
     @GetMapping("/ocupacaos")
-    public ResponseEntity<List<OcupacaoDTO>> getAllOcupacaos(Pageable pageable) {
+    public ResponseEntity<List<OcupacaoDTO>> getAllOcupacaos(OcupacaoDTO ocupacaoDTO,
+        Pageable pageable) {
         log.debug("REST request to get a page of Ocupacaos");
-        Page<OcupacaoDTO> page = ocupacaoService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        Page<OcupacaoDTO> page = ocupacaoService.findAll(ocupacaoDTO, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -107,7 +116,8 @@ public class OcupacaoResource {
      * {@code GET  /ocupacaos/:id} : get the "id" ocupacao.
      *
      * @param id the id of the ocupacaoDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the ocupacaoDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
+     * ocupacaoDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/ocupacaos/{id}")
     public ResponseEntity<OcupacaoDTO> getOcupacao(@PathVariable Long id) {
@@ -126,22 +136,25 @@ public class OcupacaoResource {
     public ResponseEntity<Void> deleteOcupacao(@PathVariable Long id) {
         log.debug("REST request to delete Ocupacao : {}", id);
         ocupacaoService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil
+            .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * {@code SEARCH  /_search/ocupacaos?query=:query} : search for the ocupacao corresponding
-     * to the query.
+     * {@code SEARCH  /_search/ocupacaos?query=:query} : search for the ocupacao corresponding to
+     * the query.
      *
-     * @param query the query of the ocupacao search.
+     * @param query    the query of the ocupacao search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
     @GetMapping("/_search/ocupacaos")
-    public ResponseEntity<List<OcupacaoDTO>> searchOcupacaos(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<OcupacaoDTO>> searchOcupacaos(@RequestParam String query,
+        Pageable pageable) {
         log.debug("REST request to search for a page of Ocupacaos for query {}", query);
         Page<OcupacaoDTO> page = ocupacaoService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

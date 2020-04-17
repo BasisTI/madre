@@ -2,7 +2,8 @@ package br.com.basis.madre.repository;
 
 import br.com.basis.madre.domain.Municipio;
 import br.com.basis.madre.service.projection.MunicipioUF;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface MunicipioRepository extends JpaRepository<Municipio, Long> {
-  List<MunicipioUF> findAllProjectedMunicipioUFBy();
+  Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable);
 }

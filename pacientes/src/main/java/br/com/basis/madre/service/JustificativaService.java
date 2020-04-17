@@ -1,21 +1,22 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.Justificativa;
 import br.com.basis.madre.repository.JustificativaRepository;
 import br.com.basis.madre.repository.search.JustificativaSearchRepository;
 import br.com.basis.madre.service.dto.JustificativaDTO;
 import br.com.basis.madre.service.mapper.JustificativaMapper;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link Justificativa}.
@@ -32,7 +33,9 @@ public class JustificativaService {
 
     private final JustificativaSearchRepository justificativaSearchRepository;
 
-    public JustificativaService(JustificativaRepository justificativaRepository, JustificativaMapper justificativaMapper, JustificativaSearchRepository justificativaSearchRepository) {
+    public JustificativaService(JustificativaRepository justificativaRepository,
+        JustificativaMapper justificativaMapper,
+        JustificativaSearchRepository justificativaSearchRepository) {
         this.justificativaRepository = justificativaRepository;
         this.justificativaMapper = justificativaMapper;
         this.justificativaSearchRepository = justificativaSearchRepository;
@@ -60,9 +63,13 @@ public class JustificativaService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<JustificativaDTO> findAll(Pageable pageable) {
+    public Page<JustificativaDTO> findAll(JustificativaDTO justificativaDTO, Pageable pageable) {
         log.debug("Request to get all Justificativas");
-        return justificativaRepository.findAll(pageable)
+        return justificativaRepository.findAll(
+            Example.of(justificativaMapper.toEntity(justificativaDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(StringMatcher.CONTAINING))
+            , pageable)
             .map(justificativaMapper::toDto);
     }
 
@@ -93,7 +100,7 @@ public class JustificativaService {
     /**
      * Search for the justificativa corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */

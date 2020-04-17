@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pageable } from '../shared/pageable';
 import { PacienteResumo } from './models/paciente-resumo';
@@ -15,9 +15,14 @@ export class PacientesService {
     getListaDePacientes(): Observable<Pageable<PacienteResumo>> {
         return this.httpService.get<Pageable<PacienteResumo>>(`${this.apiUrl}/_resumo`);
     }
-    getListaDePacientesElastic(): Observable<Pageable<PacienteResumo>> {
+    getListaDePacientesElastic(nome: string): Observable<Pageable<PacienteResumo>> {
+        const params = new HttpParams().set('nome', nome);
+
         return this.httpService.get<Pageable<PacienteResumo>>(
             `${this.apiUrl}/lista-de-pacientes-elastic`,
+            {
+                params,
+            },
         );
     }
 }

@@ -96,9 +96,9 @@ public class JustificativaResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of justificativas in body.
      */
     @GetMapping("/justificativas")
-    public ResponseEntity<List<JustificativaDTO>> getAllJustificativas(Pageable pageable) {
+    public ResponseEntity<List<JustificativaDTO>> getAllJustificativas(JustificativaDTO justificativaDTO, Pageable pageable) {
         log.debug("REST request to get a page of Justificativas");
-        Page<JustificativaDTO> page = justificativaService.findAll(pageable);
+        Page<JustificativaDTO> page = justificativaService.findAll(justificativaDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
