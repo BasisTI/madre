@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -41,8 +42,9 @@ public class Documento implements Serializable {
     @Column(name = "data")
     private LocalDate data;
 
-    @CPF
+
     @Field(type = FieldType.Text)
+    @CPF
     @Column(name = "cpf")
     private String cpf;
 
@@ -50,7 +52,9 @@ public class Documento implements Serializable {
     @Column(name = "pis_pasep")
     private String pisPasep;
 
+
     @Field(type = FieldType.Text)
+    @Size(min = 11, max = 11)
     @Column(name = "cnh")
     private String cnh;
 
