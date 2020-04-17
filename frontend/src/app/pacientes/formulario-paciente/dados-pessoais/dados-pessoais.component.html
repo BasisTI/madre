@@ -7,15 +7,9 @@
                     pInputText
                     pTooltip="Digite o nome do paciente."
                     formControlName="nome"
-                    required="true"
                 />
                 <label>Nome Completo</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Nome Completo' é obrigátorio."
-                *ngIf="dadosPessoais.get('nome').touched && dadosPessoais.get('nome').invalid"
-            ></p-message>
         </div>
         <div class="ui-g-6 ui-sm-12">
             <span class="ui-float-label">
@@ -35,59 +29,39 @@
                 <p-dropdown [options]="opcoesDeSexo" formControlName="sexo"></p-dropdown>
                 <label>Sexo</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Sexo' é obrigátorio."
-                *ngIf="dadosPessoais.get('sexo').touched && dadosPessoais.get('sexo').invalid"
-            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeRaca"
+                <div
+                    nAutoComplete
+                    [service]="racaService"
+                    field="valor"
                     formControlName="raca"
-                    filter="true"
-                ></p-dropdown>
-                <label>Raça/Cor</label>
+                    label="Raça/Cor"
+                ></div>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Raça' é obrigátorio."
-                *ngIf="dadosPessoais.get('raca').touched && dadosPessoais.get('raca').invalid"
-            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeEtnia"
+                <div
+                    nAutoComplete
+                    [service]="etniaService"
+                    field="valor"
                     formControlName="etnia"
-                    filter="true"
-                ></p-dropdown>
-                <label>Etnia</label>
+                    label="Etnia"
+                ></div>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Etnia' é obrigátorio."
-                *ngIf="dadosPessoais.get('etnia').touched && dadosPessoais.get('etnia').invalid"
-            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeEstadoCivil"
+                <div
+                    nAutoComplete
+                    [service]="estadoCivilService"
+                    field="valor"
                     formControlName="estadoCivil"
-                    filter="true"
-                ></p-dropdown>
-                <label>Estado Civil</label>
+                    label="Estado Civil"
+                ></div>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Estado Civil' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('estadoCivil').touched &&
-                    dadosPessoais.get('estadoCivil').invalid
-                "
-            ></p-message>
         </div>
     </div>
     <div class="ui-g-12">
@@ -112,13 +86,6 @@
                 />
                 <label>Nome da Mãe</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Nome da Mãe' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('nomeDaMae').touched && dadosPessoais.get('nomeDaMae').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-5 ui-sm-12">
             <span class="ui-float-label">
@@ -130,13 +97,6 @@
                 />
                 <label>Nome do Pai</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Nome do Pai' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('nomeDoPai').touched && dadosPessoais.get('nomeDoPai').invalid
-                "
-            ></p-message>
         </div>
     </div>
     <div class="ui-g-12 ui-sm-12">
@@ -155,14 +115,6 @@
                 ></p-calendar>
                 <label>Data de Nascimento</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Data de Nascimento' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('dataDeNascimento').touched &&
-                    dadosPessoais.get('dataDeNascimento').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
@@ -186,53 +138,29 @@
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeNacionalidade"
+                <div
+                    nAutoComplete
+                    [service]="nacionalidadeService"
+                    field="valor"
                     formControlName="nacionalidade"
-                    filter="true"
-                ></p-dropdown>
-                <label>Nacionalidade</label>
+                    label="Nacionalidade"
+                ></div>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Nacionalidade' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('nacionalidade').touched &&
-                    dadosPessoais.get('nacionalidade').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeNaturalidade"
+                <div
+                    nAutoComplete
+                    [service]="naturalidadeService"
+                    field="uf.unidadeFederativa"
                     formControlName="naturalidade"
-                    [filter]="true"
-                    (onChange)="aoSelecionarNaturalidade()"
-                >
-                </p-dropdown>
-                <label>Naturalidade</label>
+                    label="Naturalidade"
+                ></div>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Naturalidade' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('naturalidade').touched &&
-                    dadosPessoais.get('naturalidade').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <input
-                    type="text"
-                    value="0"
-                    pInputText
-                    pTooltip="Unidade Federativa da naturalidade do paciente."
-                    disabled="true"
-                    [(ngModel)]="uf"
-                    [ngModelOptions]="{ standalone: true }"
-                />
+                <input pInputText [disabled]="true" />
                 <label>UF</label>
             </span>
         </div>
@@ -240,38 +168,31 @@
     <div class="ui-g-12">
         <div class="ui-g-4 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeGrauDeInstrucao"
-                    formControlName="grauDeInstrucao"
-                    filter="true"
-                >
+                <p-dropdown [options]="opcoesDeGrauDeInstrucao" formControlName="grauDeInstrucao">
                 </p-dropdown>
                 <label>Grau de Instrução</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Grau de Instrução' é obrigátorio."
-                *ngIf="
-                    dadosPessoais.get('grauDeInstrucao').touched &&
-                    dadosPessoais.get('grauDeInstrucao').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-4 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown [options]="opcoesDeOcupacao" formControlName="ocupacao" filter="true">
-                </p-dropdown>
-                <label>Ocupação</label>
+                <div
+                    nAutoComplete
+                    [service]="ocupacaoService"
+                    field="valor"
+                    formControlName="ocupacao"
+                    label="Ocupação"
+                ></div>
             </span>
         </div>
         <div class="ui-g-4 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeReligiao"
+                <div
+                    nAutoComplete
+                    [service]="religiaoService"
+                    field="valor"
                     formControlName="religiao"
-                    filter="true"
-                ></p-dropdown>
-                <label>Religião</label>
+                    label="Religião"
+                ></div>
             </span>
         </div>
     </div>
