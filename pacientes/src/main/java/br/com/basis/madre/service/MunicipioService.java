@@ -8,10 +8,12 @@ import br.com.basis.madre.repository.search.MunicipioSearchRepository;
 import br.com.basis.madre.service.dto.MunicipioDTO;
 import br.com.basis.madre.service.mapper.MunicipioMapper;
 import br.com.basis.madre.service.projection.MunicipioUF;
-import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,8 @@ public class MunicipioService {
 
     private final MunicipioSearchRepository municipioSearchRepository;
 
-    public MunicipioService(MunicipioRepository municipioRepository, MunicipioMapper municipioMapper, MunicipioSearchRepository municipioSearchRepository) {
+    public MunicipioService(MunicipioRepository municipioRepository,
+        MunicipioMapper municipioMapper, MunicipioSearchRepository municipioSearchRepository) {
         this.municipioRepository = municipioRepository;
         this.municipioMapper = municipioMapper;
         this.municipioSearchRepository = municipioSearchRepository;
@@ -93,7 +96,7 @@ public class MunicipioService {
     /**
      * Search for the municipio corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -107,7 +110,7 @@ public class MunicipioService {
     /**
      * TODO: Write documentation
      */
-  public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable) {
-      return municipioRepository.findAllProjectedMunicipioUFBy(pageable);
-  }
+    public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable) {
+        return municipioRepository.findAllProjectedMunicipioUFBy(pageable);
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.domain.EstadoCivil;
 import br.com.basis.madre.service.EstadoCivilService;
 import br.com.basis.madre.service.dto.EstadoCivilDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -96,9 +97,9 @@ public class EstadoCivilResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of estadoCivils in body.
      */
     @GetMapping("/estado-civils")
-    public ResponseEntity<List<EstadoCivilDTO>> getAllEstadoCivils(Pageable pageable) {
+    public ResponseEntity<List<EstadoCivilDTO>> getAllEstadoCivils(EstadoCivilDTO estadoCivilDTO, Pageable pageable) {
         log.debug("REST request to get a page of EstadoCivils");
-        Page<EstadoCivilDTO> page = estadoCivilService.findAll(pageable);
+        Page<EstadoCivilDTO> page = estadoCivilService.findAll(estadoCivilDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
