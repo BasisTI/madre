@@ -3,6 +3,7 @@ import { BreadcrumbService } from './../../../../breadcrumb/breadcrumb.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-classificacao-de-risco',
@@ -12,9 +13,10 @@ import { SelectItem } from 'primeng/api';
 export class ClassificacaoDeRiscoComponent implements OnInit {
     types: SelectItem[];
     selectedType: boolean;
+    handleClick() {}
 
+    // tslint:disable-next-line: member-ordering
     @Input() nivel: number;
-
     getCor() {
         if (this.nivel === 1) {
             return 'red';
