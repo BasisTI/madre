@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tipo_unidade")
@@ -14,8 +15,10 @@ public class TipoUnidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Size(max = 30, message = "Não pode conter mais que 30 caracteres")
 	private String descricao;
 	
+	@Size(max = 3, message = "Sigla não pode conter mais que 3 caracteres")
 	private String sigla;
 
 	public Long getId() {

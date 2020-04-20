@@ -14,6 +14,7 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedEntityGraph(name = "dieta.itemDieta",
@@ -29,6 +30,7 @@ public class Dieta {
 	@Column(name = "id_paciente")
 	private Long idPaciente;
 	
+	@Size(max = 100, message = "Observação nao pode conter mais que 100 caracteres")
 	private String observacao;
 	
 	@Column(name = "bomba_infusao")
