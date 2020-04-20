@@ -1,1 +1,20 @@
-<p>classificacao-de-risco works!</p>
+<div class="first">Classificação de Risco</div>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="ui-g-6 ui-sm-06">
+            <p-selectButton
+                [options]="types"
+                [(ngModel)]="selectedType"
+                styleClass="ui-vermelho"
+            ></p-selectButton>
+
+            <!--
+vermelho - nível 1: emergente, imediato;
+laranja - nível 2: muito urgente, 10 minutos;
+amarelo - nível 3: urgente, 60 minutos;
+verde - nível 4: pouco urgente, 120 minutos;
+azul - nível 5: nao urgente, 240 minutos
+-->
+        </div>
+    </div>
+</div>
