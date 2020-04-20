@@ -1,0 +1,49 @@
+madreclient:
+  name: client
+  image:
+    repository: basis-registry.basis.com.br/madre/madrecliente
+    tag: teste
+  ingress:
+    url: "madre.tst.basis.com.br"
+  ports:
+    port: 80
+  proxy:
+    locations:
+    - pacientes
+    - internacao
+
+
+gateway:
+  name: gateway
+  image: 
+    repository: basis-registry.basis.com.br/madre/madregateway
+    tag: teste
+
+
+pacientes:
+  name: pacientes
+  image:
+    repository: basis-registry.basis.com.br/madre/madrepacientes
+    tag: teste
+
+
+
+
+internacao:
+  name: internacao
+  image:
+    repository: basis-registry.basis.com.br/madre/madreinternacao
+    tag: teste
+
+
+postgresql:
+  install: true
+  fullnameOverride: pgsql-abaco
+  postgresqlUsername: abaco
+  postgresqlPassword: abaco
+  postgresqlDatabase: abaco
+  postgresqlPostgresPassword: asdfqwerzxcv
+  persistence:
+    storageClass: nfs-name
+    size: 10Gi
+

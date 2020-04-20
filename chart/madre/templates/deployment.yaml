@@ -1,0 +1,9 @@
+{{- template "common.hook" . -}}
+---
+{{- template "common.gateway" (dict "context" . "gateway" .Values.gateway) -}}
+---
+{{- template "common.microservice" (dict "context" . "microservice" (merge .Values.pacientes .Values.comum)) -}}
+---
+{{- template "common.microservice" (dict "context" . "microservice" (merge .Values.internacao .Values.comum)) -}}
+---
+{{- template "common.client" (dict "context" . "client" .Values.madrecliente "gateway" .Values.gateway) -}}
