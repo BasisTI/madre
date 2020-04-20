@@ -1,10 +1,10 @@
 package br.com.basis.madre.domain.validation;
 
-import br.com.basis.madre.domain.validation.annotation.PISAnnotation;
+import br.com.basis.madre.domain.validation.annotation.PIS;
 
 public class PISValidatorTestBase {
 
-    @PISAnnotation
+    @PIS
     private String pis;
 
     public String getPis() {

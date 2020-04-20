@@ -1,9 +1,9 @@
 package br.com.basis.madre.domain.validation;
 
-import br.com.basis.madre.domain.validation.annotation.CartaoSUSAnnotation;
+import br.com.basis.madre.domain.validation.annotation.CartaoSUS;
 
 public class SUSValidatorTestBase {
-    @CartaoSUSAnnotation
+    @CartaoSUS
     private String numeroSUS;
 
     public String getNumeroSUS() {

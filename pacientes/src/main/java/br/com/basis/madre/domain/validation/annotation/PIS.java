@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({FIELD})
 @Retention(RUNTIME)
 @Constraint(validatedBy = PISValidation.class)
-public @interface PISAnnotation {
+public @interface PIS {
 
     String message () default "PIS/PASEP inválido";
 

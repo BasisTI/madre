@@ -1,17 +1,17 @@
 package br.com.basis.madre.domain.validation;
 
 
-import br.com.basis.madre.domain.validation.annotation.PISAnnotation;
+import br.com.basis.madre.domain.validation.annotation.PIS;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PISValidation implements ConstraintValidator<PISAnnotation, String> {
+public class PISValidation implements ConstraintValidator<PIS, String> {
 
     private String value;
 
     @Override
-    public void initialize(PISAnnotation constraintAnnotation) {
+    public void initialize(PIS constraintAnnotation) {
         this.value = constraintAnnotation.value();
     }
 

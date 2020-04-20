@@ -1,12 +1,11 @@
 package br.com.basis.madre.domain;
 
-import br.com.basis.madre.domain.validation.annotation.PISAnnotation;
+import br.com.basis.madre.domain.validation.annotation.PIS;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 
@@ -16,7 +15,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.LocalDate;
 
 /**
@@ -50,7 +48,7 @@ public class Documento implements Serializable {
     private String cpf;
 
     @Field(type = FieldType.Text)
-    @PISAnnotation
+    @PIS
     @Column(name = "pis_pasep")
     private String pisPasep;
 

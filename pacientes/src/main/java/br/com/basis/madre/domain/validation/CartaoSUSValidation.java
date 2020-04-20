@@ -1,16 +1,16 @@
 package br.com.basis.madre.domain.validation;
 
-import br.com.basis.madre.domain.validation.annotation.CartaoSUSAnnotation;
+import br.com.basis.madre.domain.validation.annotation.CartaoSUS;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class CartaoSUSValidation implements ConstraintValidator<CartaoSUSAnnotation, String> {
+public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, String> {
 
     private String value;
 
     @Override
-    public void initialize(CartaoSUSAnnotation constraintAnnotation) {
+    public void initialize(CartaoSUS constraintAnnotation) {
         this.value = constraintAnnotation.value();
     }
 

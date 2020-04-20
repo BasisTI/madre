@@ -12,7 +12,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({FIELD})
 @Retention(RUNTIME)
 @Constraint(validatedBy = CartaoSUSValidation.class)
-public @interface CartaoSUSAnnotation {
+public @interface CartaoSUS {
 
     String message () default "Número do cartão SUS está inválido";
 

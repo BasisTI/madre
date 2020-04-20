@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain.validation;
 
-import br.com.basis.madre.domain.validation.annotation.CartaoSUSAnnotation;
 import org.junit.Before;
 import org.junit.Test;
 
