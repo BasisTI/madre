@@ -1,0 +1,39 @@
+{
+    "name": "Procedimento",
+    "fields": [
+        {
+            "fieldName": "codigo",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "procedimento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "solicitacaoDeInternacao",
+            "otherEntityRelationshipName": "procedimento"
+        }
+    ],
+    "changelogDate": "20200420164200",
+    "entityTableName": "procedimento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

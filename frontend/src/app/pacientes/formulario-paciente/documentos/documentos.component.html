@@ -10,44 +10,31 @@
                 />
                 <label>Número da Identidade</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Número da Identidade' é obrigátorio."
-                *ngIf="
-                    documentos.get('numeroIdentidade').touched &&
-                    documentos.get('numeroIdentidade').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-3 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeOrgaoEmissor"
+                <div
+                    nAutoComplete
+                    [service]="orgaoEmissorService"
+                    field="valor"
                     formControlName="orgaoEmissor"
-                    [filter]="true"
-                >
-                </p-dropdown>
-                <label>Órgão Emissor</label>
+                    label="Órgão Emissor"
+                ></div>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Órgão Emissor' é obrigátorio."
-                *ngIf="
-                    documentos.get('orgaoEmissor').touched && documentos.get('orgaoEmissor').invalid
-                "
-            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown [options]="opcoesDeUF" formControlName="uf" [filter]="true">
+                <div
+                    nAutoComplete
+                    [service]="ufService"
+                    field="sigla"
+                    formControlName="uf"
+                    label="UF"
+                ></div>
+                <!-- <p-dropdown [options]="opcoesDeUF" formControlName="uf" [filter]="true">
                 </p-dropdown>
-                <label>UF</label>
+                <label>UF</label> -->
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'UF' é obrigátorio."
-                *ngIf="documentos.get('uf').touched && documentos.get('uf').invalid"
-            ></p-message>
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
@@ -62,14 +49,6 @@
                 ></p-calendar>
                 <label>Data de Emissão</label>
             </span>
-            <p-message
-                severity="error"
-                text="O campo 'Data de Emissão' é obrigátorio."
-                *ngIf="
-                    documentos.get('dataDeEmissao').touched &&
-                    documentos.get('dataDeEmissao').invalid
-                "
-            ></p-message>
         </div>
     </div>
     <div class="ui-g-12">

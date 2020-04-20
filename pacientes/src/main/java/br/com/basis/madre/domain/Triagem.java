@@ -9,8 +9,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -29,33 +29,23 @@ public class Triagem implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "nome_do_paciente", nullable = false)
-    private String nomeDoPaciente;
+    @Column(name = "pressao_arterial", precision = 10, scale = 2)
+    private BigDecimal pressaoArterial;
 
-    @Column(name = "pressao_arterial")
-    private Long pressaoArterial;
+    @Column(name = "frequencia_cardiaca", precision = 10, scale = 2)
+    private BigDecimal frequenciaCardiaca;
 
-    @Column(name = "frequencia_cardiaca")
-    private Long frequenciaCardiaca;
+    @Column(name = "temperatura", precision = 10, scale = 2)
+    private BigDecimal temperatura;
 
-    @Column(name = "temperatura")
-    private Long temperatura;
-
-    @Column(name = "peso")
-    private Long peso;
+    @Column(name = "peso", precision = 10, scale = 2)
+    private BigDecimal peso;
 
     @Column(name = "sinais_sintomas")
     private String sinaisSintomas;
 
-    @Column(name = "hora_do_atendimento")
-    private Instant horaDoAtendimento;
-
-    @Column(name = "data_do_atendimento")
-    private LocalDate dataDoAtendimento;
-
-    @Column(name = "idade")
-    private Integer idade;
+    @Column(name = "data_hora_do_atendimento")
+    private ZonedDateTime dataHoraDoAtendimento;
 
     @NotNull
     @Column(name = "descricao_queixa", nullable = false)
@@ -68,7 +58,7 @@ public class Triagem implements Serializable {
     private Boolean removidoDeAmbulancia;
 
     @ManyToOne
-    @JsonIgnoreProperties("triagem")
+    @JsonIgnoreProperties("")
     private Paciente paciente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -80,68 +70,55 @@ public class Triagem implements Serializable {
         this.id = id;
     }
 
-    public String getNomeDoPaciente() {
-        return nomeDoPaciente;
-    }
-
-    public Triagem nomeDoPaciente(String nomeDoPaciente) {
-        this.nomeDoPaciente = nomeDoPaciente;
-        return this;
-    }
-
-    public void setNomeDoPaciente(String nomeDoPaciente) {
-        this.nomeDoPaciente = nomeDoPaciente;
-    }
-
-    public Long getPressaoArterial() {
+    public BigDecimal getPressaoArterial() {
         return pressaoArterial;
     }
 
-    public Triagem pressaoArterial(Long pressaoArterial) {
+    public Triagem pressaoArterial(BigDecimal pressaoArterial) {
         this.pressaoArterial = pressaoArterial;
         return this;
     }
 
-    public void setPressaoArterial(Long pressaoArterial) {
+    public void setPressaoArterial(BigDecimal pressaoArterial) {
         this.pressaoArterial = pressaoArterial;
     }
 
-    public Long getFrequenciaCardiaca() {
+    public BigDecimal getFrequenciaCardiaca() {
         return frequenciaCardiaca;
     }
 
-    public Triagem frequenciaCardiaca(Long frequenciaCardiaca) {
+    public Triagem frequenciaCardiaca(BigDecimal frequenciaCardiaca) {
         this.frequenciaCardiaca = frequenciaCardiaca;
         return this;
     }
 
-    public void setFrequenciaCardiaca(Long frequenciaCardiaca) {
+    public void setFrequenciaCardiaca(BigDecimal frequenciaCardiaca) {
         this.frequenciaCardiaca = frequenciaCardiaca;
     }
 
-    public Long getTemperatura() {
+    public BigDecimal getTemperatura() {
         return temperatura;
     }
 
-    public Triagem temperatura(Long temperatura) {
+    public Triagem temperatura(BigDecimal temperatura) {
         this.temperatura = temperatura;
         return this;
     }
 
-    public void setTemperatura(Long temperatura) {
+    public void setTemperatura(BigDecimal temperatura) {
         this.temperatura = temperatura;
     }
 
-    public Long getPeso() {
+    public BigDecimal getPeso() {
         return peso;
     }
 
-    public Triagem peso(Long peso) {
+    public Triagem peso(BigDecimal peso) {
         this.peso = peso;
         return this;
     }
 
-    public void setPeso(Long peso) {
+    public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
 
@@ -158,43 +135,17 @@ public class Triagem implements Serializable {
         this.sinaisSintomas = sinaisSintomas;
     }
 
-    public Instant getHoraDoAtendimento() {
-        return horaDoAtendimento;
+    public ZonedDateTime getDataHoraDoAtendimento() {
+        return dataHoraDoAtendimento;
     }
 
-    public Triagem horaDoAtendimento(Instant horaDoAtendimento) {
-        this.horaDoAtendimento = horaDoAtendimento;
+    public Triagem dataHoraDoAtendimento(ZonedDateTime dataHoraDoAtendimento) {
+        this.dataHoraDoAtendimento = dataHoraDoAtendimento;
         return this;
     }
 
-    public void setHoraDoAtendimento(Instant horaDoAtendimento) {
-        this.horaDoAtendimento = horaDoAtendimento;
-    }
-
-    public LocalDate getDataDoAtendimento() {
-        return dataDoAtendimento;
-    }
-
-    public Triagem dataDoAtendimento(LocalDate dataDoAtendimento) {
-        this.dataDoAtendimento = dataDoAtendimento;
-        return this;
-    }
-
-    public void setDataDoAtendimento(LocalDate dataDoAtendimento) {
-        this.dataDoAtendimento = dataDoAtendimento;
-    }
-
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public Triagem idade(Integer idade) {
-        this.idade = idade;
-        return this;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+    public void setDataHoraDoAtendimento(ZonedDateTime dataHoraDoAtendimento) {
+        this.dataHoraDoAtendimento = dataHoraDoAtendimento;
     }
 
     public String getDescricaoQueixa() {
@@ -274,15 +225,12 @@ public class Triagem implements Serializable {
     public String toString() {
         return "Triagem{" +
             "id=" + getId() +
-            ", nomeDoPaciente='" + getNomeDoPaciente() + "'" +
             ", pressaoArterial=" + getPressaoArterial() +
             ", frequenciaCardiaca=" + getFrequenciaCardiaca() +
             ", temperatura=" + getTemperatura() +
             ", peso=" + getPeso() +
             ", sinaisSintomas='" + getSinaisSintomas() + "'" +
-            ", horaDoAtendimento='" + getHoraDoAtendimento() + "'" +
-            ", dataDoAtendimento='" + getDataDoAtendimento() + "'" +
-            ", idade=" + getIdade() +
+            ", dataHoraDoAtendimento='" + getDataHoraDoAtendimento() + "'" +
             ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
             ", vitimaDeAcidente='" + isVitimaDeAcidente() + "'" +
             ", removidoDeAmbulancia='" + isRemovidoDeAmbulancia() + "'" +

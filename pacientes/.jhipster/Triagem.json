@@ -2,43 +2,28 @@
     "name": "Triagem",
     "fields": [
         {
-            "fieldName": "nomeDoPaciente",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "pressaoArterial",
-            "fieldType": "Long"
+            "fieldType": "BigDecimal"
         },
         {
             "fieldName": "frequenciaCardiaca",
-            "fieldType": "Long"
+            "fieldType": "BigDecimal"
         },
         {
             "fieldName": "temperatura",
-            "fieldType": "Long"
+            "fieldType": "BigDecimal"
         },
         {
             "fieldName": "peso",
-            "fieldType": "Long"
+            "fieldType": "BigDecimal"
         },
         {
             "fieldName": "sinaisSintomas",
             "fieldType": "String"
         },
         {
-            "fieldName": "horaDoAtendimento",
-            "fieldType": "Instant"
-        },
-        {
-            "fieldName": "dataDoAtendimento",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "idade",
-            "fieldType": "Integer"
+            "fieldName": "dataHoraDoAtendimento",
+            "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "descricaoQueixa",
@@ -67,9 +52,9 @@
     ],
     "changelogDate": "20200415123300",
     "entityTableName": "triagem",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

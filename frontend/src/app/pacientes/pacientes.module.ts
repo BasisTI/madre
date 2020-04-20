@@ -34,6 +34,8 @@ import { JustificativaService } from './services/justificativa.service';
 import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
 import { UfService } from './services/uf.service';
 import { MunicipioService } from './services/municipio.service';
+import { ClassificacaoDeRiscoComponent } from './triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
+import { FormularioTriagemComponent } from './triagem/formulario-triagem/formulario-triagem.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +52,8 @@ import { MunicipioService } from './services/municipio.service';
         ProntuarioPipe,
         CartaoSusPipe,
         TriagemComponent,
+        ClassificacaoDeRiscoComponent,
+        FormularioTriagemComponent,
     ],
     providers: [
         PacientesService,

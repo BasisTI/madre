@@ -89,16 +89,10 @@ public class EtniaResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /etnias} : get all the etnias.
-     *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of etnias in body.
-     */
     @GetMapping("/etnias")
-    public ResponseEntity<List<EtniaDTO>> getAllEtnias(Pageable pageable) {
+    public ResponseEntity<List<EtniaDTO>> getAllEtnias(EtniaDTO etniaDTO, Pageable pageable) {
         log.debug("REST request to get a page of Etnias");
-        Page<EtniaDTO> page = etniaService.findAll(pageable);
+        Page<EtniaDTO> page = etniaService.findAll(etniaDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -1,21 +1,22 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.Ocupacao;
 import br.com.basis.madre.repository.OcupacaoRepository;
 import br.com.basis.madre.repository.search.OcupacaoSearchRepository;
 import br.com.basis.madre.service.dto.OcupacaoDTO;
 import br.com.basis.madre.service.mapper.OcupacaoMapper;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link Ocupacao}.
@@ -32,7 +33,8 @@ public class OcupacaoService {
 
     private final OcupacaoSearchRepository ocupacaoSearchRepository;
 
-    public OcupacaoService(OcupacaoRepository ocupacaoRepository, OcupacaoMapper ocupacaoMapper, OcupacaoSearchRepository ocupacaoSearchRepository) {
+    public OcupacaoService(OcupacaoRepository ocupacaoRepository, OcupacaoMapper ocupacaoMapper,
+        OcupacaoSearchRepository ocupacaoSearchRepository) {
         this.ocupacaoRepository = ocupacaoRepository;
         this.ocupacaoMapper = ocupacaoMapper;
         this.ocupacaoSearchRepository = ocupacaoSearchRepository;
@@ -51,6 +53,17 @@ public class OcupacaoService {
         OcupacaoDTO result = ocupacaoMapper.toDto(ocupacao);
         ocupacaoSearchRepository.save(ocupacao);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<OcupacaoDTO> findAll(OcupacaoDTO ocupacaoDTO, Pageable pageable) {
+        log.debug("Request to get all Ocupacaos");
+        return ocupacaoRepository.findAll(
+            Example.of(ocupacaoMapper.toEntity(ocupacaoDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
+                    StringMatcher.CONTAINING))
+            , pageable)
+            .map(ocupacaoMapper::toDto);
     }
 
     /**
@@ -93,7 +106,7 @@ public class OcupacaoService {
     /**
      * Search for the ocupacao corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */

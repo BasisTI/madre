@@ -1,21 +1,22 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.MotivoDoCadastro;
 import br.com.basis.madre.repository.MotivoDoCadastroRepository;
 import br.com.basis.madre.repository.search.MotivoDoCadastroSearchRepository;
 import br.com.basis.madre.service.dto.MotivoDoCadastroDTO;
 import br.com.basis.madre.service.mapper.MotivoDoCadastroMapper;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link MotivoDoCadastro}.
@@ -32,7 +33,9 @@ public class MotivoDoCadastroService {
 
     private final MotivoDoCadastroSearchRepository motivoDoCadastroSearchRepository;
 
-    public MotivoDoCadastroService(MotivoDoCadastroRepository motivoDoCadastroRepository, MotivoDoCadastroMapper motivoDoCadastroMapper, MotivoDoCadastroSearchRepository motivoDoCadastroSearchRepository) {
+    public MotivoDoCadastroService(MotivoDoCadastroRepository motivoDoCadastroRepository,
+        MotivoDoCadastroMapper motivoDoCadastroMapper,
+        MotivoDoCadastroSearchRepository motivoDoCadastroSearchRepository) {
         this.motivoDoCadastroRepository = motivoDoCadastroRepository;
         this.motivoDoCadastroMapper = motivoDoCadastroMapper;
         this.motivoDoCadastroSearchRepository = motivoDoCadastroSearchRepository;
@@ -51,6 +54,18 @@ public class MotivoDoCadastroService {
         MotivoDoCadastroDTO result = motivoDoCadastroMapper.toDto(motivoDoCadastro);
         motivoDoCadastroSearchRepository.save(motivoDoCadastro);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MotivoDoCadastroDTO> findAll(MotivoDoCadastroDTO motivoDoCadastroDTO,
+        Pageable pageable) {
+        log.debug("Request to get all MotivoDoCadastros");
+        return motivoDoCadastroRepository.findAll(
+            Example.of(motivoDoCadastroMapper.toEntity(motivoDoCadastroDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(StringMatcher.CONTAINING))
+            , pageable)
+            .map(motivoDoCadastroMapper::toDto);
     }
 
     /**
@@ -93,7 +108,7 @@ public class MotivoDoCadastroService {
     /**
      * Search for the motivoDoCadastro corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */

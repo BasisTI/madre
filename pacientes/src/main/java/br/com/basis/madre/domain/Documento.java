@@ -1,11 +1,12 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.validation.annotation.PIS;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -14,7 +15,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.LocalDate;
 
 /**
@@ -41,16 +41,19 @@ public class Documento implements Serializable {
     @Column(name = "data")
     private LocalDate data;
 
-    @CPF
+
     @Field(type = FieldType.Text)
+    @CPF
     @Column(name = "cpf")
     private String cpf;
 
     @Field(type = FieldType.Text)
+    @PIS
     @Column(name = "pis_pasep")
     private String pisPasep;
 
     @Field(type = FieldType.Text)
+    @Size(min = 11, max = 11)
     @Column(name = "cnh")
     private String cnh;
 
@@ -116,8 +119,6 @@ public class Documento implements Serializable {
         return this;
     }
 
-
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -134,6 +135,7 @@ public class Documento implements Serializable {
     public void setPisPasep(String pisPasep) {
         this.pisPasep = pisPasep;
     }
+
 
     public LocalDate getValidadeDaCnh() {
         return validadeDaCnh;

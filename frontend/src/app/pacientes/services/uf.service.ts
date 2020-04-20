@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class UfService extends CrudServiceNuvem<number, UF> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/ufs', httpClient);
+        super('pacientes/api/ufs?sort=unidadeFederativa', httpClient);
     }
 
     getListaDeUF(): Observable<UF[]> {

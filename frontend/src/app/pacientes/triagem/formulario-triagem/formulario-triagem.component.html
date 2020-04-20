@@ -1,0 +1,128 @@
+<app-classificacao-de-risco></app-classificacao-de-risco>
+<div class="ui-g ui-fluid" [formGroup]="triagemComponent">
+    <div class="ui-g-12">
+        <div class="ui-g-12">
+            <div class="ui-g-12 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pTooltip="Informe a Portaria"
+                        pInputText
+                        formControlName="nomeDoPaciente"
+                    />
+                    <label>Nome do Paciente</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="ui-g-12">
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pTooltip="Informe a Pressão Arterial"
+                        pInputText
+                        formControlName="pressaoArterial"
+                    />
+                    <label>Pressão Arterial</label>
+                </span>
+            </div>
+
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pTooltip="Informe a Frequência Cardíaca"
+                        pInputText
+                        formControlName="frequenciaCardiaca"
+                    />
+                    <label>Frequência cardiaca</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Informe a temperatura paciente"
+                        formControlName="temperatura"
+                    />
+                    <label>Temperatura (C°)</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Informe o peso paciente"
+                        formControlName="peso"
+                    />
+                    <label>Peso (kg)</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="ui-g-12">
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Informe os sintomas paciente"
+                        formControlName="sinaisSintomas"
+                    />
+                    <label>Sinais/Sintomas</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="horaDoAtendimento" />
+                    <label>Hora do atendimento</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="dataDoAtendimento" />
+                    <label>Data do atendimento</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="idade" />
+                    <label>Idade</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-sm-12">
+            <span class="ui-float-label">
+                <input type="text" pInputText formControlName="horaDoAtendimento" />
+                <label>Descrição/Queixa</label>
+            </span>
+        </div>
+
+        <div class="ui-g-12">
+            <div class="ui-g-3">
+                <p-triStateCheckbox label="Vitima de acidente"></p-triStateCheckbox>
+            </div>
+            <div class="ui-g-3">
+                <p-triStateCheckbox label="Removido de ambulância"></p-triStateCheckbox>
+            </div>
+        </div>
+
+        <div class="ui-g-12">
+            <div class="ui-g-12 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="observacao"
+                        pTooltip="Informe as observações"
+                    />
+                    <label>Observação</label>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -54,26 +54,32 @@ public class MunicipioResource {
      * TODO: Write documentation
      */
     @GetMapping("/municipios/_uf")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy() {
-        return ResponseEntity.ok(municipioService.findAllProjectedMunicipioUFBy());
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy(Pageable pageable) {
+        Page<MunicipioUF> page = municipioService
+            .findAllProjectedMunicipioUFBy(pageable);
+        return ResponseEntity.ok(page.getContent());
     }
 
     /**
      * {@code POST  /municipios} : Create a new municipio.
      *
      * @param municipioDTO the municipioDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new municipioDTO, or with status {@code 400 (Bad Request)} if the municipio has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
+     * municipioDTO, or with status {@code 400 (Bad Request)} if the municipio has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/municipios")
-    public ResponseEntity<MunicipioDTO> createMunicipio(@Valid @RequestBody MunicipioDTO municipioDTO) throws URISyntaxException {
+    public ResponseEntity<MunicipioDTO> createMunicipio(
+        @Valid @RequestBody MunicipioDTO municipioDTO) throws URISyntaxException {
         log.debug("REST request to save Municipio : {}", municipioDTO);
         if (municipioDTO.getId() != null) {
-            throw new BadRequestAlertException("A new municipio cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new municipio cannot already have an ID",
+                ENTITY_NAME, "idexists");
         }
         MunicipioDTO result = municipioService.save(municipioDTO);
         return ResponseEntity.created(new URI("/api/municipios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
             .body(result);
     }
 
@@ -81,20 +87,22 @@ public class MunicipioResource {
      * {@code PUT  /municipios} : Updates an existing municipio.
      *
      * @param municipioDTO the municipioDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated municipioDTO,
-     * or with status {@code 400 (Bad Request)} if the municipioDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the municipioDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
+     * municipioDTO, or with status {@code 400 (Bad Request)} if the municipioDTO is not valid, or
+     * with status {@code 500 (Internal Server Error)} if the municipioDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/municipios")
-    public ResponseEntity<MunicipioDTO> updateMunicipio(@Valid @RequestBody MunicipioDTO municipioDTO) throws URISyntaxException {
+    public ResponseEntity<MunicipioDTO> updateMunicipio(
+        @Valid @RequestBody MunicipioDTO municipioDTO) throws URISyntaxException {
         log.debug("REST request to update Municipio : {}", municipioDTO);
         if (municipioDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         MunicipioDTO result = municipioService.save(municipioDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, municipioDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+                municipioDTO.getId().toString()))
             .body(result);
     }
 
@@ -102,13 +110,15 @@ public class MunicipioResource {
      * {@code GET  /municipios} : get all the municipios.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of municipios in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of municipios in
+     * body.
      */
     @GetMapping("/municipios")
     public ResponseEntity<List<MunicipioDTO>> getAllMunicipios(Pageable pageable) {
         log.debug("REST request to get a page of Municipios");
         Page<MunicipioDTO> page = municipioService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -116,7 +126,8 @@ public class MunicipioResource {
      * {@code GET  /municipios/:id} : get the "id" municipio.
      *
      * @param id the id of the municipioDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the municipioDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
+     * municipioDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/municipios/{id}")
     public ResponseEntity<MunicipioDTO> getMunicipio(@PathVariable Long id) {
@@ -135,22 +146,25 @@ public class MunicipioResource {
     public ResponseEntity<Void> deleteMunicipio(@PathVariable Long id) {
         log.debug("REST request to delete Municipio : {}", id);
         municipioService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil
+            .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * {@code SEARCH  /_search/municipios?query=:query} : search for the municipio corresponding
-     * to the query.
+     * {@code SEARCH  /_search/municipios?query=:query} : search for the municipio corresponding to
+     * the query.
      *
-     * @param query the query of the municipio search.
+     * @param query    the query of the municipio search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
     @GetMapping("/_search/municipios")
-    public ResponseEntity<List<MunicipioDTO>> searchMunicipios(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<MunicipioDTO>> searchMunicipios(@RequestParam String query,
+        Pageable pageable) {
         log.debug("REST request to search for a page of Municipios for query {}", query);
         Page<MunicipioDTO> page = municipioService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class GrauDeParentescoService extends CrudServiceNuvem<number, GrauDeParentesco> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/grau-de-parentescos', httpClient);
+        super('pacientes/api/grau-de-parentescos?sort=valor', httpClient);
     }
 
     getListaDeGrausDeParentesco(): Observable<GrauDeParentesco[]> {

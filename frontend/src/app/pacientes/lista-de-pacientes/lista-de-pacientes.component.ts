@@ -12,12 +12,20 @@ export class ListaDePacientesComponent implements OnInit, OnDestroy {
     pacientes: PacienteResumo[];
 
     constructor(private breadcrumbService: BreadcrumbService, private service: PacientesService) {}
+    nome = '';
+
+    pesquisar() {
+        this.service
+            .getListaDePacientesElastic(this.nome)
+            .subscribe((dados) => (this.pacientes = dados.content));
+        console.log(this.nome);
+    }
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([{ label: 'Pacientes' }]);
 
         this.service
-            .getListaDePacientesElastic()
+            .getListaDePacientesElastic(this.nome)
             .subscribe((dados) => (this.pacientes = dados.content));
     }
 

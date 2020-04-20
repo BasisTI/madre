@@ -1,21 +1,22 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.Religiao;
 import br.com.basis.madre.repository.ReligiaoRepository;
 import br.com.basis.madre.repository.search.ReligiaoSearchRepository;
 import br.com.basis.madre.service.dto.ReligiaoDTO;
 import br.com.basis.madre.service.mapper.ReligiaoMapper;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link Religiao}.
@@ -32,7 +33,8 @@ public class ReligiaoService {
 
     private final ReligiaoSearchRepository religiaoSearchRepository;
 
-    public ReligiaoService(ReligiaoRepository religiaoRepository, ReligiaoMapper religiaoMapper, ReligiaoSearchRepository religiaoSearchRepository) {
+    public ReligiaoService(ReligiaoRepository religiaoRepository, ReligiaoMapper religiaoMapper,
+        ReligiaoSearchRepository religiaoSearchRepository) {
         this.religiaoRepository = religiaoRepository;
         this.religiaoMapper = religiaoMapper;
         this.religiaoSearchRepository = religiaoSearchRepository;
@@ -51,6 +53,17 @@ public class ReligiaoService {
         ReligiaoDTO result = religiaoMapper.toDto(religiao);
         religiaoSearchRepository.save(religiao);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ReligiaoDTO> findAll(ReligiaoDTO religiaoDTO, Pageable pageable) {
+        log.debug("Request to get all Religiaos");
+        return religiaoRepository.findAll(
+            Example
+                .of(religiaoMapper.toEntity(religiaoDTO), ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(StringMatcher.CONTAINING))
+            , pageable)
+            .map(religiaoMapper::toDto);
     }
 
     /**
@@ -93,7 +106,7 @@ public class ReligiaoService {
     /**
      * Search for the religiao corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */

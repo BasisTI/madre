@@ -5,7 +5,13 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" name="filtro" />
+                        <input
+                            type="text"
+                            pInputText
+                            class="ui-inputtext"
+                            name="filtro"
+                            [(ngModel)]="nome"
+                        />
                         <label>Nome paciente</label>
                     </span>
                 </div>
@@ -18,6 +24,7 @@
                             label="Pesquisar"
                             icon="ui-icon-search"
                             bTooltip="Pesquisar paciente por nome."
+                            (click)="pesquisar()"
                         ></button>
                     </div>
                     <div class="ui-g-3">

@@ -1,4 +1,3 @@
-import { PacientesService } from './../pacientes.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 
