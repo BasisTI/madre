@@ -9,21 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@NamedEntityGraph(name = "dieta.itemDieta",
+attributeNodes = @NamedAttributeNode("itemDieta")
+)
 @Table(name = "dieta")
 public class Dieta {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-	@SequenceGenerator(name = "sequenceGenerator")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "id_paciente")
@@ -34,11 +34,10 @@ public class Dieta {
 	@Column(name = "bomba_infusao")
 	private Boolean bombaInfusao;
 	
-	@JsonIgnoreProperties("dieta")
 	@Valid
-	@NotEmpty
-	@OneToMany(mappedBy = "dieta", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ItemDieta> itemDieta = new ArrayList<>();
+//	@NotEmpty
+	@OneToMany(mappedBy = "dieta", cascade = CascadeType.ALL)
+	private List<ItemDieta> itemDieta = new ArrayList<ItemDieta>();
 
 	public Long getId() {
 		return id;
@@ -86,7 +85,8 @@ public class Dieta {
 	
 	
 
-	public Dieta(Long idPaciente, String observacao, Boolean bombaInfusao, @Valid List<ItemDieta> itemDieta) {
+	public Dieta(Long id, Long idPaciente, String observacao, Boolean bombaInfusao, @Valid List<ItemDieta> itemDieta) {
+		this.id = id;
 		this.idPaciente = idPaciente;
 		this.observacao = observacao;
 		this.bombaInfusao = bombaInfusao;
