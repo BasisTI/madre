@@ -13,14 +13,14 @@
     -->
     
     <changeSet id="20190330095400-1" author="mateusbraga">
-        <createTable tableName="tipo_aprazamento">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+        <createTable tableName="tipo_aprazamento" remarks="Tipo de aprazamento ">
+            <column name="id" type="bigserial">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="descricao" type="varchar(30)">
+            <column name="descricao" type="varchar(30)" remarks="Nome do tipo de aprazamento (Exemplo: 5/5 horas)">
                 <constraints nullable="false" />
             </column>
-            <column name="sigla" type="varchar(3)">
+            <column name="sigla" type="varchar(3)" remarks="Sigla do tipo de aprazamento (Exemplo: H)">
             	<constraints nullable="false" />
             </column>
         </createTable>

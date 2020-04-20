@@ -13,14 +13,14 @@
     -->
     
     <changeSet id="20190401140900-1" author="mateusbraga">
-        <createTable tableName="tipo_unidade">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+        <createTable tableName="tipo_unidade" remarks="Unidade de medidas">
+            <column name="id" type="bigserial" remarks="código da unidade">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="descricao" type="varchar(30)">
+            <column name="descricao" type="varchar(30)" remarks="Nome da unidade de medida">
                 <constraints nullable="false" />
             </column>
-            <column name="sigla" type="varchar(3)">
+            <column name="sigla" type="varchar(3)" remarks="Sigla da unidade de medida">
             	<constraints nullable="false" />
             </column>
         </createTable>

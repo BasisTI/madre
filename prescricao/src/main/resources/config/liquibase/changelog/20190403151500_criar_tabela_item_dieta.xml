@@ -13,19 +13,17 @@
     -->
     
     <changeSet id="20190401161700-1" author="mateusbraga">
-        <createTable tableName="item_dieta">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+        <createTable tableName="item_dieta" remarks="Itens da dieta">
+            <column name="id" type="bigserial">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="quantidade" type="decimal(10,2)" />
-            <column name="frequencia" type="int(10)" />
-            <column name="numero_vezes" type="int(10)" />	
-            <column name="id_tipo_item" type="bigint" />
-            <column name="id_tipo_unidade" type="bigint" />
-            <column name="id_tipo_aprazamento" type="bigint" />
-            <column name="id_dieta" type="bigint">
-            	<constraints nullable="true" />
-            </column>
+            <column name="quantidade" type="decimal(10,2)" remarks="Quantidade do item"/>
+            <column name="frequencia" type="int" remarks="Frequência"/>
+            <column name="numero_vezes" type="int" remarks="Número de vezes"/>	
+            <column name="id_tipo_item" type="bigint" remarks="Codigo do tipo de ítem"/>
+            <column name="id_tipo_unidade" type="bigint" remarks="Código do tipo da unidade"/>
+            <column name="id_tipo_aprazamento" type="bigint" remarks="Código do aprazamento"/>
+            <column name="dieta_id" type="bigint" remarks="Código da dieta" />
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="id_tipo_item"
@@ -49,7 +47,7 @@
                                  referencedTableName="tipo_aprazamento"
         />
         
-        <addForeignKeyConstraint baseColumnNames="id_dieta"
+        <addForeignKeyConstraint baseColumnNames="dieta_id"
                                  baseTableName="item_dieta"
                                  constraintName="fk_dieta_id"
                                  referencedColumnNames="id"

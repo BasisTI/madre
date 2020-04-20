@@ -13,11 +13,11 @@
     -->
     
     <changeSet id="2019040112440-1" author="mateusbraga">
-        <createTable tableName="tipo_item">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+        <createTable tableName="tipo_item" remarks="Tipo de ítem">
+            <column name="id" type="bigserial" remarks="Código do tipo de ítem">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="descricao" type="varchar(30)">
+            <column name="descricao" type="varchar(30)" remarks="Descriçã do tipo de ítem">
                 <constraints nullable="false" />
             </column>
         </createTable>
