@@ -13,6 +13,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
+
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -112,6 +114,7 @@ public class PacienteResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pacientes in body.
      */
     @GetMapping("/pacientes")
+    @Timed
     public ResponseEntity<List<PacienteDTO>> getAllPacientes(Pageable pageable) {
         log.debug("REST request to get a page of Pacientes");
         Page<PacienteDTO> page = pacienteService.findAll(pageable);
@@ -126,6 +129,7 @@ public class PacienteResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the pacienteDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/pacientes/{id}")
+    @Timed
     public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
         Optional<PacienteDTO> pacienteDTO = pacienteService.findOne(id);
@@ -139,6 +143,7 @@ public class PacienteResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/pacientes/{id}")
+    @Timed
     public ResponseEntity<Void> deletePaciente(@PathVariable Long id) {
         log.debug("REST request to delete Paciente : {}", id);
         pacienteService.delete(id);
@@ -154,6 +159,7 @@ public class PacienteResource {
      * @return the result of the search.
      */
     @GetMapping("/_search/pacientes")
+    @Timed
     public ResponseEntity<List<PacienteDTO>> searchPacientes(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Pacientes for query {}", query);
         Page<PacienteDTO> page = pacienteService.search(query, pageable);

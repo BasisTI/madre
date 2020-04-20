@@ -6,6 +6,9 @@ import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 
+import br.com.basis.madre.service.TriagemService;
+import br.com.basis.madre.service.dto.TriagemDTO;
+import br.com.basis.madre.service.mapper.TriagemMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +16,8 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -80,6 +85,13 @@ public class TriagemResourceIntTest {
     @Autowired
     private TriagemRepository triagemRepository;
 
+    @Autowired
+    private TriagemMapper triagemMapper;
+
+    @Autowired
+    private TriagemService triagemService;
+
+
     /**
      * This repository is mocked in the br.com.basis.madre.repository.search test package.
      *
@@ -121,7 +133,7 @@ public class TriagemResourceIntTest {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -150,9 +162,10 @@ public class TriagemResourceIntTest {
         int databaseSizeBeforeCreate = triagemRepository.findAll().size();
 
         // Create the Triagem
+        TriagemDTO triagemDTO = triagemMapper.toDto(triagem);
         restTriagemMockMvc.perform(post("/api/triagems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(triagem)))
+            .content(TestUtil.convertObjectToJsonBytes(triagemDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Triagem in the database
@@ -180,11 +193,12 @@ public class TriagemResourceIntTest {
 
         // Create the Triagem with an existing ID
         triagem.setId(1L);
+        TriagemDTO triagemDTO = triagemMapper.toDto(triagem);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTriagemMockMvc.perform(post("/api/triagems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(triagem)))
+            .content(TestUtil.convertObjectToJsonBytes(triagemDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Triagem in the database
@@ -203,10 +217,11 @@ public class TriagemResourceIntTest {
         triagem.setDescricaoQueixa(null);
 
         // Create the Triagem, which fails.
+        TriagemDTO triagemDTO = triagemMapper.toDto(triagem);
 
         restTriagemMockMvc.perform(post("/api/triagems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(triagem)))
+            .content(TestUtil.convertObjectToJsonBytes(triagemDTO)))
             .andExpect(status().isBadRequest());
 
         List<Triagem> triagemList = triagemRepository.findAll();
@@ -287,10 +302,11 @@ public class TriagemResourceIntTest {
             .descricaoQueixa(UPDATED_DESCRICAO_QUEIXA)
             .vitimaDeAcidente(UPDATED_VITIMA_DE_ACIDENTE)
             .removidoDeAmbulancia(UPDATED_REMOVIDO_DE_AMBULANCIA);
+        TriagemDTO triagemDTO = triagemMapper.toDto(updatedTriagem);
 
         restTriagemMockMvc.perform(put("/api/triagems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedTriagem)))
+            .content(TestUtil.convertObjectToJsonBytes(triagemDTO)))
             .andExpect(status().isOk());
 
         // Validate the Triagem in the database
@@ -317,11 +333,13 @@ public class TriagemResourceIntTest {
         int databaseSizeBeforeUpdate = triagemRepository.findAll().size();
 
         // Create the Triagem
+        TriagemDTO triagemDTO = triagemMapper.toDto(triagem);
+
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restTriagemMockMvc.perform(put("/api/triagems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(triagem)))
+            .content(TestUtil.convertObjectToJsonBytes(triagemDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Triagem in the database
@@ -358,8 +376,8 @@ public class TriagemResourceIntTest {
     public void searchTriagem() throws Exception {
         // Initialize the database
         triagemRepository.saveAndFlush(triagem);
-        when(mockTriagemSearchRepository.search(queryStringQuery("id:" + triagem.getId())))
-            .thenReturn(Collections.singletonList(triagem));
+        when(mockTriagemSearchRepository.search(queryStringQuery("id:" + triagem.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(triagem), PageRequest.of(0, 1), 1));
         // Search the triagem
         restTriagemMockMvc.perform(get("/api/_search/triagems?query=id:" + triagem.getId()))
             .andExpect(status().isOk())
@@ -389,5 +407,27 @@ public class TriagemResourceIntTest {
         assertThat(triagem1).isNotEqualTo(triagem2);
         triagem1.setId(null);
         assertThat(triagem1).isNotEqualTo(triagem2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(TriagemDTO.class);
+        TriagemDTO triagemDTO1 = new TriagemDTO();
+        triagemDTO1.setId(1L);
+        TriagemDTO triagemDTO2 = new TriagemDTO();
+        assertThat(triagemDTO1).isNotEqualTo(triagemDTO2);
+        triagemDTO2.setId(triagemDTO1.getId());
+        assertThat(triagemDTO1).isEqualTo(triagemDTO2);
+        triagemDTO2.setId(2L);
+        assertThat(triagemDTO1).isNotEqualTo(triagemDTO2);
+        triagemDTO1.setId(null);
+        assertThat(triagemDTO1).isNotEqualTo(triagemDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(triagemMapper.fromId(42L).getId()).isEqualTo(42);
     }
 }

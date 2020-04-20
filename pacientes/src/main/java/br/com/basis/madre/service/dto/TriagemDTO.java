@@ -1,9 +1,11 @@
 package br.com.basis.madre.service.dto;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -14,23 +16,19 @@ public class TriagemDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String nomeDoPaciente;
 
-    private Long pressaoArterial;
+    private BigDecimal pressaoArterial;
 
-    private Long frequenciaCardiaca;
+    private BigDecimal frequenciaCardiaca;
 
-    private Long temperatura;
+    private BigDecimal temperatura;
 
-    private Long peso;
+    private BigDecimal peso;
 
     private String sinaisSintomas;
 
-    private Instant horaDoAtendimento;
+    private ZonedDateTime dataHoraDoAtendimento;
 
-    private LocalDate dataDoAtendimento;
-
-    private Integer idade;
 
     @NotNull
     private String descricaoQueixa;
@@ -49,46 +47,36 @@ public class TriagemDTO implements Serializable {
         this.id = id;
     }
 
-    public String getNomeDoPaciente() {
-        return nomeDoPaciente;
+    public BigDecimal getPressaoArterial() {        return pressaoArterial;
     }
 
-    public void setNomeDoPaciente(String nomeDoPaciente) {
-        this.nomeDoPaciente = nomeDoPaciente;
-    }
-
-    public Long getPressaoArterial() {
-        return pressaoArterial;
-    }
-
-    public void setPressaoArterial(Long pressaoArterial) {
+    public void setPressaoArterial(BigDecimal pressaoArterial) {
         this.pressaoArterial = pressaoArterial;
     }
 
-    public Long getFrequenciaCardiaca() {
+    public BigDecimal getFrequenciaCardiaca() {
         return frequenciaCardiaca;
     }
 
-    public void setFrequenciaCardiaca(Long frequenciaCardiaca) {
+    public void setFrequenciaCardiaca(BigDecimal frequenciaCardiaca) {
         this.frequenciaCardiaca = frequenciaCardiaca;
     }
 
-    public Long getTemperatura() {
+    public BigDecimal getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(Long temperatura) {
+    public void setTemperatura(BigDecimal temperatura) {
         this.temperatura = temperatura;
     }
 
-    public Long getPeso() {
+    public BigDecimal getPeso() {
         return peso;
     }
 
-    public void setPeso(Long peso) {
+    public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
-
     public String getSinaisSintomas() {
         return sinaisSintomas;
     }
@@ -97,28 +85,11 @@ public class TriagemDTO implements Serializable {
         this.sinaisSintomas = sinaisSintomas;
     }
 
-    public Instant getHoraDoAtendimento() {
-        return horaDoAtendimento;
+    public ZonedDateTime getDataHoraDoAtendimento() {
+        return dataHoraDoAtendimento;
     }
-
-    public void setHoraDoAtendimento(Instant horaDoAtendimento) {
-        this.horaDoAtendimento = horaDoAtendimento;
-    }
-
-    public LocalDate getDataDoAtendimento() {
-        return dataDoAtendimento;
-    }
-
-    public void setDataDoAtendimento(LocalDate dataDoAtendimento) {
-        this.dataDoAtendimento = dataDoAtendimento;
-    }
-
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+    public void setDataHoraDoAtendimento(ZonedDateTime dataHoraDoAtendimento) {
+        this.dataHoraDoAtendimento = dataHoraDoAtendimento;
     }
 
     public String getDescricaoQueixa() {
@@ -178,15 +149,13 @@ public class TriagemDTO implements Serializable {
     public String toString() {
         return "TriagemDTO{" +
             "id=" + getId() +
-            ", nomeDoPaciente='" + getNomeDoPaciente() + "'" +
             ", pressaoArterial=" + getPressaoArterial() +
             ", frequenciaCardiaca=" + getFrequenciaCardiaca() +
             ", temperatura=" + getTemperatura() +
             ", peso=" + getPeso() +
             ", sinaisSintomas='" + getSinaisSintomas() + "'" +
-            ", horaDoAtendimento='" + getHoraDoAtendimento() + "'" +
-            ", dataDoAtendimento='" + getDataDoAtendimento() + "'" +
-            ", idade=" + getIdade() +
+            ", dataHoraDoAtendimento='" + getDataHoraDoAtendimento() + "'" +
+            ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
             ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
             ", vitimaDeAcidente='" + isVitimaDeAcidente() + "'" +
             ", removidoDeAmbulancia='" + isRemovidoDeAmbulancia() + "'" +
