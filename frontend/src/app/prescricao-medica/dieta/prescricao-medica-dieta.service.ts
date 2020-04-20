@@ -13,8 +13,8 @@ export class PrescricaoMedicaDietaService {
     constructor(private http: HttpClient,
         ) { }
 
-    listar(): Observable<any>{
-        return this.http.get(`${this.baseUrl}/prescricao-dieta`);
+    listarDieta(id: number): Observable<any>{
+        return this.http.get(`${this.baseUrl}/prescricao-dieta/paciente/${id}`);
 
     }
 

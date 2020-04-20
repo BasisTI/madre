@@ -1,9 +1,8 @@
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { LogoutDirective } from '@nuvem/angular-base';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,11 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
-    paciente = {nome: ''};
+    paciente = { nome: '' };
 
     dieta: any;
 
-    dietas: any[] = [];
+    dietas: any[];
 
     searchUrl = 'prescricao/api/prescricao-dieta';
 
@@ -48,47 +47,42 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
         const codigoPaciente = this.route.snapshot.params['id'];
 
-        if (codigoPaciente){
+        const codigoDietaPaciente = this.route.snapshot.params['id'];
+
+        if (codigoPaciente) {
             this.carregarPaciente(codigoPaciente);
         }
 
-        this.prescricaoMedicaDietaService.listar().subscribe(response => {
-            response.map((item) => {
-                // console.log(item);
-
-                if (item.itemDieta) {
-                    item.itemDieta.map((dieta) => {
-                        this.dietas.push(dieta);
-
-                    });
-                }
-
-            });
-        });
+        this.listarDieta(codigoDietaPaciente);
 
         this.prescreverDieta();
     }
 
+    listarDieta(id: number) {
+        this.prescricaoMedicaDietaService.listarDieta(id).subscribe(dietas => {
+            this.dietas = dietas;
+        });
+    }
+
     carregarPaciente(id: number) {
         this.prescricaoMedicaDietaService.buscarId(id)
-        .subscribe(paciente => {
-            this.paciente = paciente;
-        });
+            .subscribe(paciente => {
+                this.paciente = paciente;
+            });
     }
 
 
     prescreverDieta() {
         this.dieta = {
-            descricao: "",
-            quantidade: "",
-            unidade: "",
-            frequencia: "",
-            tipoAprazamento: "",
-            numeroVezes: "",
-            observacao: "",
-            bombaInfusao: ""
+            descricao: '',
+            quantidade: '',
+            unidade: '',
+            frequencia: '',
+            tipoAprazamento: '',
+            numeroVezes: '',
+            observacao: '',
+            bombaInfusao: ''
         };
-
 
     }
 
