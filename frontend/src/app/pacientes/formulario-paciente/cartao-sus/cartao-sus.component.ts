@@ -16,6 +16,7 @@ export class CartaoSusComponent {
     localizacao = ptBR;
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
 
     constructor(
         private fb: FormBuilder,
