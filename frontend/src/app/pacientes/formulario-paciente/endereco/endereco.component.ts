@@ -13,7 +13,7 @@ export class EnderecoComponent {
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
     listaDeEnderecos = [];
 
-    constructor(private fb: FormBuilder, private municipioService: MunicipioService) {}
+    constructor(private fb: FormBuilder, public municipioService: MunicipioService) {}
 
     adicionarEnderecoALista() {
         this.listaDeEnderecos.push(this.enderecos.value);

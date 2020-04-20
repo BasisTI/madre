@@ -20,7 +20,7 @@ export class CartaoSusComponent {
 
     constructor(
         private fb: FormBuilder,
-        private justificativaService: JustificativaService,
-        private motivoDoCadastroService: MotivoDoCadastroService,
+        public justificativaService: JustificativaService,
+        public motivoDoCadastroService: MotivoDoCadastroService,
     ) {}
 }

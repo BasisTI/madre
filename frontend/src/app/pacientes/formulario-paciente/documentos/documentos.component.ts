@@ -25,7 +25,7 @@ export class DocumentosComponent {
 
     constructor(
         private fb: FormBuilder,
-        private orgaoEmissorService: OrgaoEmissorService,
-        private ufService: UfService,
+        public orgaoEmissorService: OrgaoEmissorService,
+        public ufService: UfService,
     ) {}
 }

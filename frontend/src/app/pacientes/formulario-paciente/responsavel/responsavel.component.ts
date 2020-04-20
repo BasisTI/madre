@@ -18,10 +18,7 @@ export class ResponsavelComponent implements OnInit {
 
     opcoesDeGrauDeParentesco = [OPCAO_SELECIONE];
 
-    constructor(
-        private fb: FormBuilder,
-        private grauDeParentescoService: GrauDeParentescoService,
-    ) {}
+    constructor(private fb: FormBuilder, public grauDeParentescoService: GrauDeParentescoService) {}
 
     ngOnInit(): void {
         this.grauDeParentescoService.getListaDeGrausDeParentesco().subscribe((dados) => {
