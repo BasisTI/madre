@@ -33,13 +33,13 @@ export class DadosPessoaisComponent {
     uf = '';
 
     constructor(
-        private racaService: RacaService,
-        private etniaService: EtniaService,
-        private estadoCivilService: EstadoCivilService,
-        private nacionalidadeService: NacionalidadeService,
-        private naturalidadeService: NaturalidadeService,
-        private ocupacaoService: OcupacaoService,
-        private religiaoService: ReligiaoService,
+        public racaService: RacaService,
+        public etniaService: EtniaService,
+        public estadoCivilService: EstadoCivilService,
+        public nacionalidadeService: NacionalidadeService,
+        public naturalidadeService: NaturalidadeService,
+        public ocupacaoService: OcupacaoService,
+        public religiaoService: ReligiaoService,
     ) {}
 
     aoSelecionarDataDeNascimento() {

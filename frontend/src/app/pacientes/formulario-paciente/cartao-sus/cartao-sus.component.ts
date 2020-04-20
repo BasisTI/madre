@@ -16,10 +16,11 @@ export class CartaoSusComponent {
     localizacao = ptBR;
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
 
     constructor(
         private fb: FormBuilder,
-        private justificativaService: JustificativaService,
-        private motivoDoCadastroService: MotivoDoCadastroService,
+        public justificativaService: JustificativaService,
+        public motivoDoCadastroService: MotivoDoCadastroService,
     ) {}
 }
