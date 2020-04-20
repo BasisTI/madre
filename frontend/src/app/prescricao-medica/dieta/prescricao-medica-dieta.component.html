@@ -21,9 +21,10 @@
 
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <p-dropdown id="descricao" [autoWidth]="false" placeholder="Selecione..."
-                                    [options]="optItem" [(ngModel)]="dieta.descricao" name="descricao" required
-                                    #descricaoItem></p-dropdown>
+                                <p-dropdown [autoWidth]="false" placeholder="Selecione..."
+                                    [options]="tipoItem" ngModel name="descricao" required
+                                    #descricaoItem>
+                                </p-dropdown>
                                 <label>Tipo Item</label>
                             </span>
                         </div>
@@ -32,15 +33,14 @@
                     <div class="ui-g-12">
                         <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="quantidade" name="quantidade"
-                                    [(ngModel)]="dieta.quantidade" />
+                                <input type="text" pInputText id="quantidade" name="quantidade"/>
                                 <label>Quantidade</label>
                             </span>
                         </div>
 
                         <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="unidade" name="unidade" [(ngModel)]="dieta.unidade" />
+                                <input type="text" pInputText id="unidade" name="unidade" />
                                 <label>Unidade</label>
                             </span>
                         </div>
@@ -51,23 +51,24 @@
                         <div class="ui-g-5">
                             <span class="md-inputfield">
                                 <input type="text" pInputText id="frequencia" name="frequencia"
-                                    [(ngModel)]="dieta.frequencia" />
+                                     />
                                 <label>Frequência</label>
                             </span>
                         </div>
 
                         <div class="ui-g-5">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="aprazamento" name="aprazamento"
-                                    [(ngModel)]="dieta.tipoAprazamento" />
+                                <p-dropdown [autoWidth]="false" placeholder="Selecione..."
+                                    [options]="tipoAprazamento" ngModel name="aprazamento" required
+                                    #descricaoAprazamento>
+                                </p-dropdown>
                                 <label>Aprazamento</label>
                             </span>
                         </div>
 
                         <div class="ui-g-2">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="numeroVezes" name="numeroVezes"
-                                    [(ngModel)]="dieta.numeroVezes" />
+                                <input type="text" pInputText id="numeroVezes" name="numeroVezes" />
                                 <label>Número vezes</label>
                             </span>
                         </div>
@@ -77,8 +78,7 @@
 
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao" name="observacao"
-                                    [(ngModel)]="dieta.observacao" ></textarea>
+                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao" name="observacao"></textarea>
                                 <label>Observações</label>
                             </span>
                         </div>
@@ -90,13 +90,11 @@
                             <label>Bomboa Infusão?</label>
                         </div>
                         <div class="ui-g-2">
-                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton
-                                [(ngModel)]="dieta.bombaInfusao"></p-radioButton>
+                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton></p-radioButton>
                             <label>Sim</label>
                         </div>
                         <div class="ui-g-2">
-                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton
-                                [(ngModel)]="dieta.bombaInfusao"></p-radioButton>
+                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton></p-radioButton>
                             <label>Não</label>
                         </div>
 

@@ -18,6 +18,14 @@ export class PrescricaoMedicaDietaService {
 
     }
 
+    listarTiposItens(): Observable<any> {
+        return this.http.get(`${this.baseUrl}/tipo-item`);
+    }
+
+    listarTiposAprazamentos(): Observable<any> {
+        return this.http.get(`${this.baseUrl}/tipo-aprazamento`);
+    }
+
     buscarId(id: number): Observable<any>{
         return this.http.get(`${this.baseUrl}/pacientes/${id}`);
     }

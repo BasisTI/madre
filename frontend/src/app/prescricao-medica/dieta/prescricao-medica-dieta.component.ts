@@ -15,22 +15,15 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     paciente = { nome: '' };
 
-    dieta: any;
 
     dietas: any[];
 
     searchUrl = 'prescricao/api/prescricao-dieta';
 
-    optItem = [
-        { label: 'BRANDA', value: 'BRANDA' },
-        { label: 'DIABETES', value: 'DIABETES' },
-        { label: 'SEM LACTOSE', value: 'LACTOSE' },
-        { label: 'DOENÇA CELIACA', value: 'DOENÇA CELÍACA' },
-        { label: 'DIETA ZERO', value: 'DIETA ZERO' }
-    ];
+    tipoItem = [];
 
+    tipoAprazamento: [];
 
-    descricao = new Map(this.optItem.map((s): [string, string] => [s.value, s.label]));
 
     constructor(
         private breadcrumbService: BreadcrumbService,
@@ -55,7 +48,9 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
         this.listarDieta(codigoDietaPaciente);
 
-        this.prescreverDieta();
+        this.carregarTipoItem();
+        this.carregarTipoAprazamento();
+
     }
 
     listarDieta(id: number) {
@@ -72,26 +67,22 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     }
 
 
-    prescreverDieta() {
-        this.dieta = {
-            descricao: '',
-            quantidade: '',
-            unidade: '',
-            frequencia: '',
-            tipoAprazamento: '',
-            numeroVezes: '',
-            observacao: '',
-            bombaInfusao: ''
-        };
 
+    carregarTipoItem() {
+        return this.prescricaoMedicaDietaService.listarTiposItens()
+        .subscribe(tipoItem => {
+            this.tipoItem = tipoItem.map(item => {
+                return {label: item.descricao, value: item.id};
+            });
+        });
     }
 
-    adicionar(frm: FormGroup) {
-
-        this.prescricaoMedicaDietaService.adicionar(this.dieta).subscribe(response => {
-            frm.reset();
-
-            this.prescreverDieta();
+    carregarTipoAprazamento() {
+        return this.prescricaoMedicaDietaService.listarTiposAprazamentos()
+        .subscribe(tipoAprazamento => {
+            this.tipoAprazamento = tipoAprazamento.map(item => {
+                return {label: item.descricao, value: item.id};
+            });
         });
     }
 
