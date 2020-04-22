@@ -1,25 +1,92 @@
-<div class="first">Classificação de Risco</div>
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12 botoes">
-        <button pButton type="button" class="ui-red-button" pTooltip="Emergência"></button>
-        <button pButton type="button" class="ui-orange-button" pTooltip="Muito urgente"></button>
-        <button pButton type="button" class="ui-yellow-button" pTooltip="Urgente"></button>
-        <button pButton type="button" class="ui-green-button" pTooltip="Pouco urgente"></button>
-        <button pButton type="button" class="ui-blue-button" pTooltip="Não urgente"></button>
-    </div>
-    <div class="ui-g-12 radio">
-        <p-radioButton value="1" [(ngModel)]="selectedtypes"></p-radioButton>
-        <p-radioButton value="2" [(ngModel)]="selectedtypes"></p-radioButton>
-        <p-radioButton value="3" [(ngModel)]="selectedtypes"></p-radioButton>
-        <p-radioButton value="4" [(ngModel)]="selectedtypes"></p-radioButton>
-        <p-radioButton value="5" [(ngModel)]="selectedtypes"></p-radioButton>
+<h4>Classificação de Risco</h4>
+<div class risco="ui-g ui-fluid">
+    <div class="ui-dataview ui-g ui-sm-10">
+        <div class="ui-g-1">
+            <img
+                blueCard=""
+                pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/12/verde.jpg"
+            />
+            <div blueCard="">
+                <p-radioButton
+                    name="blue"
+                    value="5"
+                    [(ngModel)]="selectedValue"
+                    pTooltip="Não urgente"
+                ></p-radioButton>
+            </div>
+        </div>
+
+        <div class="ui-g-1">
+            <img
+                greenCard=""
+                pTooltip="Baixo risco de agravo a saúde, pode aguardar atendimento"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/08/cor-com-a-azul.jpg"
+            />
+            <div greenCard="">
+                <p-radioButton
+                    name="green"
+                    value="4"
+                    [(ngModel)]="selectedValue"
+                    pTooltip="Pouco urgente"
+                ></p-radioButton>
+            </div>
+        </div>
+
+        <div class="ui-g-1">
+            <img
+                yellowCard=""
+                pTooltip="Necessita de atendimento rápido, mas pode aguardar"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/08/com-com-a-amarelo.jpg"
+            />
+            <div yellowCard="">
+                <p-radioButton
+                    name="yellow"
+                    value="3"
+                    [(ngModel)]="selectedValue"
+                    pTooltip="Pouco urgente"
+                ></p-radioButton>
+            </div>
+        </div>
+
+        <div class="ui-g-1">
+            <img
+                orangeCard=""
+                pTooltip="Necessita de atendimento praticamente imediado"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/11/cor-com-t-tangerina.jpg"
+            />
+            <div orangeCard="">
+                <p-radioButton
+                    name="orange"
+                    value="2"
+                    [(ngModel)]="selectedValue"
+                    pTooltip="Muito urgente"
+                ></p-radioButton>
+            </div>
+        </div>
+
+        <div class="ui-g-1">
+            <img
+                redCard=""
+                pTooltip="Necessita de atendimento imediato"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/11/cor-com-t-tomate.jpg"
+            />
+            <div redCard="">
+                <p-radioButton
+                    name="red"
+                    value="1"
+                    [(ngModel)]="selectedValue"
+                    pTooltip="Emergência"
+                ></p-radioButton>
+            </div>
+        </div>
     </div>
 </div>
 
 <!--
-    vermelho - nível 1: emergente, imediato;
-laranja - nível 2: muito urgente, 10 minutos;
-amarelo - nível 3: urgente, 60 minutos;
-verde - nível 4: pouco urgente, 120 minutos;
-azul - nível 5: nao urgente, 240 minutos
+    vermelho - nível 1: emergente, imediato; "Necessita de atendimento imediato"
+laranja - nível 2: muito urgente, 10 minutos; "Necessita de atendimento praticamente imediado"
+amarelo - nível 3: urgente, 60 minutos; "Necessita de atendimento rápido, mas pode aguardar"
+verde - nível 4: pouco urgente, 120 minutos; "Baixo risco de agravo a saúde, pode aguardar atendimento"
+azul - nível 5: nao urgente, 240 minutos "Sem risco de agravo à saúde, pode aguardar atendimento"
 -->

@@ -8,7 +8,7 @@ import java.util.Objects;
  * A DTO for the {@link br.com.basis.madre.domain.Documento} entity.
  */
 public class DocumentoDTO implements Serializable {
-    
+
     private Long id;
 
     private String numeroDaIdentidade;
@@ -19,6 +19,8 @@ public class DocumentoDTO implements Serializable {
 
     private String pisPasep;
 
+    private String cnh;
+
     private LocalDate validadeDaCnh;
 
     private Boolean documentosApresentados;
@@ -27,7 +29,7 @@ public class DocumentoDTO implements Serializable {
     private Long orgaoEmissorId;
 
     private Long ufId;
-    
+
     public Long getId() {
         return id;
     }
@@ -66,6 +68,14 @@ public class DocumentoDTO implements Serializable {
 
     public void setPisPasep(String pisPasep) {
         this.pisPasep = pisPasep;
+    }
+
+    public String getCnh() {
+        return cnh;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
     }
 
     public LocalDate getValidadeDaCnh() {
@@ -129,6 +139,7 @@ public class DocumentoDTO implements Serializable {
             ", data='" + getData() + "'" +
             ", cpf='" + getCpf() + "'" +
             ", pisPasep='" + getPisPasep() + "'" +
+            ", cnh='" + getCnh() + "'" +
             ", validadeDaCnh='" + getValidadeDaCnh() + "'" +
             ", documentosApresentados='" + isDocumentosApresentados() + "'" +
             ", orgaoEmissorId=" + getOrgaoEmissorId() +

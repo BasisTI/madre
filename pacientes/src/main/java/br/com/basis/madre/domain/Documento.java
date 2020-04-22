@@ -150,6 +150,19 @@ public class Documento implements Serializable {
         this.validadeDaCnh = validadeDaCnh;
     }
 
+    public String getCnh() {
+        return cnh;
+    }
+
+    public Documento cnh(String cnh) {
+        this.cnh = cnh;
+        return this;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
+
     public Boolean isDocumentosApresentados() {
         return documentosApresentados;
     }
@@ -214,6 +227,7 @@ public class Documento implements Serializable {
             ", data='" + getData() + "'" +
             ", cpf='" + getCpf() + "'" +
             ", pisPasep='" + getPisPasep() + "'" +
+            ", cnh='" + getCnh() + "'" +
             ", validadeDaCnh='" + getValidadeDaCnh() + "'" +
             ", documentosApresentados='" + isDocumentosApresentados() + "'" +
             "}";

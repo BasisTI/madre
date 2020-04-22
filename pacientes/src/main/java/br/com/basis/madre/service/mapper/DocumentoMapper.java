@@ -14,10 +14,12 @@ public interface DocumentoMapper extends EntityMapper<DocumentoDTO, Documento> {
 
     @Mapping(source = "orgaoEmissor.id", target = "orgaoEmissorId")
     @Mapping(source = "uf.id", target = "ufId")
+    @Mapping(source = "cnh", target = "cnh")
     DocumentoDTO toDto(Documento documento);
 
     @Mapping(source = "orgaoEmissorId", target = "orgaoEmissor")
     @Mapping(source = "ufId", target = "uf")
+    @Mapping(source = "cnh", target = "cnh")
     Documento toEntity(DocumentoDTO documentoDTO);
 
     default Documento fromId(Long id) {
