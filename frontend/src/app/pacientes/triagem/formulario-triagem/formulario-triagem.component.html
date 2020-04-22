@@ -1,4 +1,5 @@
 <app-classificacao-de-risco></app-classificacao-de-risco>
+
 <div class="ui-g ui-fluid" [formGroup]="triagemComponent">
     <div class="ui-g-12">
         <div class="ui-g-12">
@@ -6,7 +7,7 @@
                 <span class="ui-float-label">
                     <input
                         type="text"
-                        pTooltip="Informe a Portaria"
+                        pTooltip="Informe nome do paciente"
                         pInputText
                         formControlName="nomeDoPaciente"
                     />
@@ -64,7 +65,7 @@
         </div>
 
         <div class="ui-g-12">
-            <div class="ui-g-5 ui-sm-12">
+            <div class="ui-g-6 ui-sm-12">
                 <span class="ui-float-label">
                     <input
                         type="text"
@@ -81,7 +82,7 @@
                     <label>Hora do atendimento</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
+            <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
                     <input type="text" pInputText formControlName="dataDoAtendimento" />
                     <label>Data do atendimento</label>
@@ -95,19 +96,31 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-sm-12">
-            <span class="ui-float-label">
-                <input type="text" pInputText formControlName="horaDoAtendimento" />
-                <label>Descrição/Queixa</label>
-            </span>
+        <div class="ui-g-12">
+            <div class="ui-g-12 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="descricaoQueixa" />
+                    <label>Descrição/Queixa</label>
+                </span>
+            </div>
         </div>
 
         <div class="ui-g-12">
-            <div class="ui-g-3">
-                <p-triStateCheckbox label="Vitima de acidente"></p-triStateCheckbox>
+            <div class="ui-g-3 ui-sm-12">
+                <legend>Vítima de acidente</legend>
+                <label>Sim</label>
+                <input formControlName="vitimaDeAcidente" type="radio" value="acd1" />
+
+                <label>Não</label>
+                <input formControlName="vitimaDeAcidente" type="radio" value="acd2" />
             </div>
-            <div class="ui-g-3">
-                <p-triStateCheckbox label="Removido de ambulância"></p-triStateCheckbox>
+            <div class="ui-g-3 ui-sm-12">
+                <legend>Removido de Ambulância</legend>
+                <label>Sim</label>
+                <input formControlName="removidoDeAmbulancia" type="radio" value="amb1" />
+
+                <label>Não</label>
+                <input formControlName="removidoDeAmbulancia" type="radio" value="amb2" />
             </div>
         </div>
 
@@ -122,6 +135,29 @@
                     />
                     <label>Observação</label>
                 </span>
+            </div>
+        </div>
+
+        <div class="ui-g-12">
+            <div class="ui-g-10 ui-sm-10">
+                <div class="ui-float-label">
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Cancelar"
+                            bTooltip="Cancelar registro de triagem."
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-3">
+                    <button
+                        pButton
+                        type="button"
+                        label="Salvar"
+                        bTooltip="Salvar registro de triagem."
+                    ></button>
+                </div>
             </div>
         </div>
     </div>

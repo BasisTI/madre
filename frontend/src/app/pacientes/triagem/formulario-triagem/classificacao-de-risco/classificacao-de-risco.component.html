@@ -1,1 +1,25 @@
-<p>classificacao-de-risco works!</p>
+<div class="first">Classificação de Risco</div>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 botoes">
+        <button pButton type="button" class="ui-red-button" pTooltip="Emergência"></button>
+        <button pButton type="button" class="ui-orange-button" pTooltip="Muito urgente"></button>
+        <button pButton type="button" class="ui-yellow-button" pTooltip="Urgente"></button>
+        <button pButton type="button" class="ui-green-button" pTooltip="Pouco urgente"></button>
+        <button pButton type="button" class="ui-blue-button" pTooltip="Não urgente"></button>
+    </div>
+    <div class="ui-g-12 radio">
+        <p-radioButton value="1" [(ngModel)]="selectedtypes"></p-radioButton>
+        <p-radioButton value="2" [(ngModel)]="selectedtypes"></p-radioButton>
+        <p-radioButton value="3" [(ngModel)]="selectedtypes"></p-radioButton>
+        <p-radioButton value="4" [(ngModel)]="selectedtypes"></p-radioButton>
+        <p-radioButton value="5" [(ngModel)]="selectedtypes"></p-radioButton>
+    </div>
+</div>
+
+<!--
+    vermelho - nível 1: emergente, imediato;
+laranja - nível 2: muito urgente, 10 minutos;
+amarelo - nível 3: urgente, 60 minutos;
+verde - nível 4: pouco urgente, 120 minutos;
+azul - nível 5: nao urgente, 240 minutos
+-->

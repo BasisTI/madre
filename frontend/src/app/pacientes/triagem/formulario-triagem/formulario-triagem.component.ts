@@ -23,6 +23,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         removidoDeAmbulancia: [''],
         observacao: [''],
     });
+
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
 
     ngOnInit() {
