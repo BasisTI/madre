@@ -54,13 +54,26 @@
             <div class="ui-g-12">
                 <div class="ui-g-4">
                     <span class="ui-float-label">
-                        <input type="text" pInputText formControlName="especialidade" />
+                        <p-autoComplete
+                            [suggestions]="especialidades"
+                            field="especialidade"
+                            (completeMethod)="buscarEspecialidades($event)"
+                            formControlName="especialidade"
+                            (onSelect)="habilitarCampoEquipe()"
+                            (onBlur)="desabilitarCampoEquipe()"
+                            [forceSelection]="true"
+                        ></p-autoComplete>
                         <label>Especialidade</label>
                     </span>
                 </div>
                 <div class="ui-g-4">
                     <span class="ui-float-label">
-                        <input type="text" pInputText formControlName="equipe" />
+                        <p-autoComplete
+                            [suggestions]="equipes"
+                            field="nome"
+                            (completeMethod)="buscarEquipes($event)"
+                            formControlName="equipe"
+                        ></p-autoComplete>
                         <label>Equipe</label>
                     </span>
                 </div>
@@ -68,10 +81,13 @@
             <!-- CRM* -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <input type="text" pInputText required="true" formControlName="crm" />
-                        <label>CRM</label>
-                    </span>
+                    <div
+                        nAutoComplete
+                        [service]="crmService"
+                        field="nome"
+                        formControlName="crm"
+                        label="CRM"
+                    ></div>
                 </div>
             </div>
             <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
@@ -91,7 +107,7 @@
                         pInputTextarea
                         [rows]="5"
                         autoResize="autoResize"
-                        formControlName="condicoesQueJustificamAInternacao"
+                        formControlName="condicoesQueJustificamInternacao"
                     ></textarea>
                 </div>
                 <div class="ui-g-4">
@@ -107,25 +123,34 @@
             <!-- Procedimento* -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <input type="text" pInputText formControlName="procedimento" />
-                        <label>Procedimento</label>
-                    </span>
+                    <div
+                        nAutoComplete
+                        [service]="procedimentoService"
+                        field="procedimento"
+                        formControlName="procedimento"
+                        label="Procedimento"
+                    ></div>
                 </div>
             </div>
             <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <input type="text" pInputText formControlName="cidPrincipal" />
-                        <label>CID Principal</label>
-                    </span>
+                    <div
+                        nAutoComplete
+                        [service]="cidService"
+                        field="descricao"
+                        formControlName="cidPrincipal"
+                        label="CID Principal"
+                    ></div>
                 </div>
                 <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <input type="text" pInputText formControlName="cidSecundario" />
-                        <label>CID Secundário</label>
-                    </span>
+                    <div
+                        nAutoComplete
+                        [service]="cidService"
+                        field="descricao"
+                        formControlName="cidSecundario"
+                        label="CID Secundário"
+                    ></div>
                 </div>
             </div>
             <div class="ui-g-12">
@@ -134,9 +159,11 @@
                         icon="pi pi-check"
                         label="Solicitar"
                         (onClick)="solicitarInternacao()"
+                        [disabled]="solicitacaoDeInternacao.invalid"
                     ></p-button>
                 </div>
             </div>
         </form>
     </p-fieldset>
 </div>
+{{ solicitacaoDeInternacao.value | json }}

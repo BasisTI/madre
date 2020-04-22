@@ -37,6 +37,12 @@ import { MunicipioService } from './services/municipio.service';
 import { ClassificacaoDeRiscoComponent } from './triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { FormularioTriagemComponent } from './triagem/formulario-triagem/formulario-triagem.component';
 import { SolicitacaoDeInternacaoComponent } from './solicitacao-de-internacao/solicitacao-de-internacao.component';
+import { SolicitacaoDeInternacaoService } from './solicitacao-de-internacao/solicitacao-de-internacao.service';
+import { EspecialidadeService } from './services/especialidade.service';
+import { CrmService } from './services/crm.service';
+import { ProcedimentoService } from './services/procedimento.service';
+import { CidService } from './services/cid.service';
+import { EquipeService } from './services/equipe.service';
 
 @NgModule({
     declarations: [
@@ -59,6 +65,7 @@ import { SolicitacaoDeInternacaoComponent } from './solicitacao-de-internacao/so
     ],
     providers: [
         PacientesService,
+        SolicitacaoDeInternacaoService,
         { provide: CRUD_SERVICE, useExisting: RacaService },
         { provide: CRUD_SERVICE, useExisting: EtniaService },
         { provide: CRUD_SERVICE, useExisting: EstadoCivilService },
@@ -72,6 +79,11 @@ import { SolicitacaoDeInternacaoComponent } from './solicitacao-de-internacao/so
         { provide: CRUD_SERVICE, useExisting: MotivoDoCadastro },
         { provide: CRUD_SERVICE, useExisting: UfService },
         { provide: CRUD_SERVICE, useExisting: MunicipioService },
+        { provide: CRUD_SERVICE, useExisting: EspecialidadeService },
+        { provide: CRUD_SERVICE, useExisting: CrmService },
+        { provide: CRUD_SERVICE, useExisting: ProcedimentoService },
+        { provide: CRUD_SERVICE, useExisting: CidService },
+        { provide: CRUD_SERVICE, useExisting: EquipeService },
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],
