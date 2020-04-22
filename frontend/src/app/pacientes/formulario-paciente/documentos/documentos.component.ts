@@ -1,8 +1,8 @@
 import { ptBR } from './../../../shared/calendar.pt-br.locale';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { OrgaoEmissorService } from '../../services/orgao-emissor.service';
-import { UfService } from '../../services/uf.service';
+import { OrgaoEmissorService } from './orgao-emissor.service';
+import { UfService } from './uf.service';
 
 @Component({
     selector: 'app-documentos',

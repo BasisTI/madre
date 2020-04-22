@@ -5,13 +5,13 @@ import { FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
-import { RacaService } from '../../services/raca.service';
-import { EtniaService } from '../../services/etnia.service';
-import { NacionalidadeService } from '../../services/nacionalidade.service';
-import { EstadoCivilService } from '../../services/estado-civil.service';
-import { NaturalidadeService } from '../../services/naturalidade.service';
-import { OcupacaoService } from '../../services/ocupacao.service';
-import { ReligiaoService } from '../../services/religiao.service';
+import { RacaService } from './raca.service';
+import { EtniaService } from './etnia.service';
+import { NacionalidadeService } from './nacionalidade.service';
+import { EstadoCivilService } from './estado-civil.service';
+import { NaturalidadeService } from './naturalidade.service';
+import { OcupacaoService } from './ocupacao.service';
+import { ReligiaoService } from './religiao.service';
 
 import { OPCOES_DE_SEXO } from '../../models/dropdowns/opcoes-de-sexo';
 import { OPCOES_DE_GRAU_DE_INSTRUCAO } from '../../models/dropdowns/opcoes-de-grau-de-instrucao';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
 import { HttpClient } from '@angular/common/http';
-import { GrauDeParentesco } from '../models/dropdowns/types/grau-de-parentesco';
+import { GrauDeParentesco } from '../../models/dropdowns/types/grau-de-parentesco';
 import { Observable } from 'rxjs';
 
 @Injectable({

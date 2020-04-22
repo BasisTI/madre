@@ -4,13 +4,13 @@ import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OPCOES_DE_PRIORIDADE } from '../models/dropdowns/opcoes-de-prioridade';
 import { ptBR } from '../../shared/calendar.pt-br.locale';
 import { ConfiguracaoParaCalendarioPrimeNG } from '../../shared/p-calendar.config';
-import { EspecialidadeService, Especialidade } from '../services/especialidade.service';
-import { CrmService } from '../services/crm.service';
-import { ProcedimentoService } from '../services/procedimento.service';
-import { CidService } from '../services/cid.service';
+import { EspecialidadeService, Especialidade } from './especialidade.service';
+import { CrmService } from './crm.service';
+import { ProcedimentoService } from './procedimento.service';
+import { CidService } from './cid.service';
 import { SolicitacaoDeInternacaoService } from './solicitacao-de-internacao.service';
-import { EquipeService, Equipe } from '../services/equipe.service';
-import { query } from '@angular/animations';
+import { EquipeService, Equipe } from './equipe.service';
+import { Event } from '@angular/router';
 
 @Component({
     selector: 'app-solicitacao-de-internacao',
@@ -83,7 +83,7 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         }
     }
 
-    buscarEspecialidades(evento: { originalEvent: InputEvent; query: string }): void {
+    buscarEspecialidades(evento: { originalEvent: Event; query: string }): void {
         this.especialidadeService
             .buscarEspecialidadePorNome(evento.query)
             .subscribe((especialidades) => {
@@ -91,7 +91,7 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
             });
     }
 
-    buscarEquipes(evento: { originalEvent: InputEvent; query: string }): void {
+    buscarEquipes(evento: { originalEvent: Event; query: string }): void {
         const {
             especialidade: { id },
         } = this.solicitacaoDeInternacao.value;

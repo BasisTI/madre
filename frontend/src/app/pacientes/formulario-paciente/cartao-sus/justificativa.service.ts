@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
 import { HttpClient } from '@angular/common/http';
-import { Justificativa } from '../models/dropdowns/types/justificativa';
+import { Justificativa } from '../../models/dropdowns/types/justificativa';
 import { Observable } from 'rxjs';
 
 @Injectable({

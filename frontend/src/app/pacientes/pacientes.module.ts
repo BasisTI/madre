@@ -21,28 +21,28 @@ import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 import { PacientesService } from './pacientes.service';
 
 import { CRUD_SERVICE } from '@nuvem/primeng-components';
-import { RacaService } from './services/raca.service';
-import { EtniaService } from './services/etnia.service';
-import { NacionalidadeService } from './services/nacionalidade.service';
-import { EstadoCivilService } from './services/estado-civil.service';
-import { NaturalidadeService } from './services/naturalidade.service';
-import { OcupacaoService } from './services/ocupacao.service';
-import { ReligiaoService } from './services/religiao.service';
-import { GrauDeParentescoService } from './services/grau-de-parentesco.service';
-import { OrgaoEmissorService } from './services/orgao-emissor.service';
-import { JustificativaService } from './services/justificativa.service';
+import { RacaService } from './formulario-paciente/dados-pessoais/raca.service';
+import { EtniaService } from './formulario-paciente/dados-pessoais/etnia.service';
+import { NacionalidadeService } from './formulario-paciente/dados-pessoais/nacionalidade.service';
+import { EstadoCivilService } from './formulario-paciente/dados-pessoais/estado-civil.service';
+import { NaturalidadeService } from './formulario-paciente/dados-pessoais/naturalidade.service';
+import { OcupacaoService } from './formulario-paciente/dados-pessoais/ocupacao.service';
+import { ReligiaoService } from './formulario-paciente/dados-pessoais/religiao.service';
+import { GrauDeParentescoService } from './formulario-paciente/responsavel/grau-de-parentesco.service';
+import { OrgaoEmissorService } from './formulario-paciente/documentos/orgao-emissor.service';
+import { JustificativaService } from './formulario-paciente/cartao-sus/justificativa.service';
 import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
-import { UfService } from './services/uf.service';
-import { MunicipioService } from './services/municipio.service';
+import { UfService } from './formulario-paciente/documentos/uf.service';
+import { MunicipioService } from './formulario-paciente/endereco/municipio.service';
 import { ClassificacaoDeRiscoComponent } from './triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { FormularioTriagemComponent } from './triagem/formulario-triagem/formulario-triagem.component';
 import { SolicitacaoDeInternacaoComponent } from './solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacaoDeInternacaoService } from './solicitacao-de-internacao/solicitacao-de-internacao.service';
-import { EspecialidadeService } from './services/especialidade.service';
-import { CrmService } from './services/crm.service';
-import { ProcedimentoService } from './services/procedimento.service';
-import { CidService } from './services/cid.service';
-import { EquipeService } from './services/equipe.service';
+import { EspecialidadeService } from './solicitacao-de-internacao/especialidade.service';
+import { CrmService } from './solicitacao-de-internacao/crm.service';
+import { ProcedimentoService } from './solicitacao-de-internacao/procedimento.service';
+import { CidService } from './solicitacao-de-internacao/cid.service';
+import { EquipeService } from './solicitacao-de-internacao/equipe.service';
 
 @NgModule({
     declarations: [

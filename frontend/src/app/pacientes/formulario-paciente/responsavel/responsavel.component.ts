@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { GrauDeParentescoService } from '../../services/grau-de-parentesco.service';
+import { GrauDeParentescoService } from './grau-de-parentesco.service';
 import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 @Component({
     selector: 'app-responsavel',

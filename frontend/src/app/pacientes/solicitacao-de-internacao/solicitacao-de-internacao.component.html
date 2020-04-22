@@ -62,6 +62,7 @@
                             (onSelect)="habilitarCampoEquipe()"
                             (onBlur)="desabilitarCampoEquipe()"
                             [forceSelection]="true"
+                            [dropdown]="true"
                         ></p-autoComplete>
                         <label>Especialidade</label>
                     </span>
@@ -73,6 +74,7 @@
                             field="nome"
                             (completeMethod)="buscarEquipes($event)"
                             formControlName="equipe"
+                            [dropdown]="true"
                         ></p-autoComplete>
                         <label>Equipe</label>
                     </span>
@@ -166,4 +168,3 @@
         </form>
     </p-fieldset>
 </div>
-{{ solicitacaoDeInternacao.value | json }}

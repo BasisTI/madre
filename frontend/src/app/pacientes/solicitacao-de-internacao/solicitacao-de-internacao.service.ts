@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ICID, CID } from '../services/cid.service';
-import { IEspecialidade, Especialidade } from '../services/especialidade.service';
-import { ICRM } from '../services/crm.service';
-import { IProcedimento, Procedimento } from '../services/procedimento.service';
+import { ICID, CID } from './cid.service';
+import { IEspecialidade, Especialidade } from './especialidade.service';
+import { ICRM } from './crm.service';
+import { IProcedimento, Procedimento } from './procedimento.service';
 
 export interface ISolicitacaoDeInternacao {
     prontuario?: string;
