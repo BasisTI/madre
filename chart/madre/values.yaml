@@ -1,0 +1,98 @@
+madrecliente:
+  name: cliente
+  image:
+    repository: basis-registry.basis.com.br/madre/madrecliente
+    tag: teste
+  ingress:
+    url: "madre.tst.basis.com.br"
+  ports:
+    port: 80
+  imagePullSecrets:
+  - name: basis-registry
+  proxy:
+    locations:
+    - pacientes
+    - internacao
+
+
+gateway:
+  name: gateway
+  image: 
+    repository: basis-registry.basis.com.br/madre/madregateway
+    tag: teste
+  ports:
+    port: 8080
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
+
+
+pacientes:
+  name: pacientes
+  image:
+    repository: basis-registry.basis.com.br/madre/madrepacientes
+    tag: teste
+  ports:
+    port: 8081
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
+    jhipster:
+      logging:  
+        logstash:
+          enabled: false
+
+
+
+internacao:
+  name: internacao
+  image:
+    repository: basis-registry.basis.com.br/madre/madreinternacao
+    tag: teste
+  ports:
+    port: 8081
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+    jhipster:
+      logging:  
+        logstash:
+          enabled: false
+
+comum:
+  imagePullSecrets:
+  - name: basis-registry
+
+postgresql:
+  install: true
+  fullnameOverride: pgsql-madre
+  postgresqlUsername: madre
+  postgresqlPassword: madre
+  postgresqlDatabase: madre
+  postgresqlPostgresPassword: basis123
+  persistence:
+    storageClass: nfs-kube-des
+    size: 10Gi
+
