@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OPCOES_DE_PRIORIDADE } from '../models/dropdowns/opcoes-de-prioridade';
 import { ptBR } from '../../shared/calendar.pt-br.locale';
+import { ConfiguracaoParaCalendarioPrimeNG } from '../../shared/p-calendar.config';
 
 @Component({
     selector: 'app-solicitacao-de-internacao',
@@ -10,11 +11,13 @@ import { ptBR } from '../../shared/calendar.pt-br.locale';
     styleUrls: ['./solicitacao-de-internacao.component.scss'],
 })
 export class SolicitacaoDeInternacaoComponent implements OnInit {
-    localizacao = ptBR;
-    dataMinima = new Date();
-    anosDisponiveis = `1900:2100`;
-    formatoDeData = 'dd/mm/yy';
     opcoesDePrioridade = OPCOES_DE_PRIORIDADE;
+    configuracaoParaCalendarios: ConfiguracaoParaCalendarioPrimeNG = {
+        localidade: ptBR,
+        dataMinima: new Date(),
+        anosDisponiveis: '1900:2100',
+        formatoDeData: 'dd/mm/yy',
+    };
     solicitacaoDeInternacao = this.fb.group({
         prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
         nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),

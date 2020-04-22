@@ -17,12 +17,12 @@
                 <div class="ui-g-4">
                     <span class="ui-float-label">
                         <p-calendar
-                            [locale]="localizacao"
-                            [yearRange]="anosDisponiveis"
-                            [minDate]="dataMinima"
+                            [locale]="configuracaoParaCalendarios.localidade"
+                            [yearRange]="configuracaoParaCalendarios.anosDisponiveis"
+                            [minDate]="configuracaoParaCalendarios.dataMinima"
                             monthNavigator="true"
                             yearNavigator="true"
-                            [dateFormat]="formatoDeData"
+                            [dateFormat]="configuracaoParaCalendarios.formatoDeData"
                             formControlName="dataProvavelDaInternacao"
                         ></p-calendar>
                         <label>Data Provável da Internação</label>
@@ -31,12 +31,12 @@
                 <div class="ui-g-4">
                     <span class="ui-float-label">
                         <p-calendar
-                            [locale]="localizacao"
-                            [yearRange]="anosDisponiveis"
-                            [minDate]="dataMinima"
+                            [locale]="configuracaoParaCalendarios.localidade"
+                            [yearRange]="configuracaoParaCalendarios.anosDisponiveis"
+                            [minDate]="configuracaoParaCalendarios.dataMinima"
                             monthNavigator="true"
                             yearNavigator="true"
-                            [dateFormat]="formatoDeData"
+                            [dateFormat]="configuracaoParaCalendarios.formatoDeData"
                             formControlName="dataProvavelDaCirurgia"
                         ></p-calendar>
                         <label>Data Provável da Cirurgia</label>
