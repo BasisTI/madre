@@ -36,6 +36,7 @@ import { UfService } from './services/uf.service';
 import { MunicipioService } from './services/municipio.service';
 import { ClassificacaoDeRiscoComponent } from './triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { FormularioTriagemComponent } from './triagem/formulario-triagem/formulario-triagem.component';
+import { SolicitacaoDeInternacaoComponent } from './solicitacao-de-internacao/solicitacao-de-internacao.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { FormularioTriagemComponent } from './triagem/formulario-triagem/formula
         TriagemComponent,
         ClassificacaoDeRiscoComponent,
         FormularioTriagemComponent,
+        SolicitacaoDeInternacaoComponent,
     ],
     providers: [
         PacientesService,

@@ -14,6 +14,10 @@ export const routes: Routes = [
         path: 'triagem',
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
+    {
+        path: 'solicitacao-de-internacao',
+        loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+    },
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);

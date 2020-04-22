@@ -37,6 +37,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'add',
                         routerLink: ['/pacientes/cadastro'],
                     },
+                    {
+                        label: 'Solicitação de Internação',
+                        icon: 'add',
+                        routerLink: ['/pacientes/solicitacao-de-internacao'],
+                    },
                 ],
             },
             {
