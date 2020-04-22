@@ -5,8 +5,4 @@ dependencies:
   - name: postgresql
     version: 8.6.1
     repository: https://kubernetes-charts.storage.googleapis.com
-    condition: postgresql.install
-  - name: elasticsearch
-    version: 1.32.4
-    repository: https://kubernetes-charts.storage.googleapis.com
-    condition: elasticsearch.install
+    condition: postgresql.instal

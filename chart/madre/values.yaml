@@ -1,5 +1,5 @@
-madreclient:
-  name: client
+madrecliente:
+  name: cliente
   image:
     repository: basis-registry.basis.com.br/madre/madrecliente
     tag: teste
@@ -7,6 +7,8 @@ madreclient:
     url: "madre.tst.basis.com.br"
   ports:
     port: 80
+  imagePullSecrets:
+  - name: basis-registry
   proxy:
     locations:
     - pacientes
@@ -14,36 +16,86 @@ madreclient:
 
 
 gateway:
-  name: gateway
+  name: madregateway
   image: 
     repository: basis-registry.basis.com.br/madre/madregateway
     tag: teste
+  ports:
+    port: 8080
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      profiles:
+        active: "prod,swagger"
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: abaco
+        password: abaco
+      data:
+        elasticsearch:
+          cluster-name: madre
+          cluster-nodes: es-client:9300
 
 
 pacientes:
-  name: pacientes
+  name: madrepacientes
   image:
     repository: basis-registry.basis.com.br/madre/madrepacientes
     tag: teste
-
+  ports:
+    port: 8080
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      profiles:
+        active: "prod,swagger"
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
+      data:
+        elasticsearch:
+          cluster-name: madre
+          cluster-nodes: es-client:9300
 
 
 
 internacao:
-  name: internacao
+  name: madreinternacao
   image:
     repository: basis-registry.basis.com.br/madre/madreinternacao
     tag: teste
+  ports:
+    port: 8080
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      profiles:
+        active: "prod,swagger"
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: abaco
+        password: abaco
+      data:
+        elasticsearch:
+          cluster-name: madre
+          cluster-nodes: es-client:9300
 
+comum:
+  imagePullSecrets:
+  - name: basis-registry
 
 postgresql:
   install: true
-  fullnameOverride: pgsql-abaco
-  postgresqlUsername: abaco
-  postgresqlPassword: abaco
-  postgresqlDatabase: abaco
-  postgresqlPostgresPassword: asdfqwerzxcv
+  fullnameOverride: pgsql-madre
+  postgresqlUsername: madre
+  postgresqlPassword: madre
+  postgresqlDatabase: madre
+  postgresqlPostgresPassword: basis123
   persistence:
-    storageClass: nfs-name
+    storageClass: nfs-kube-des
     size: 10Gi
 
