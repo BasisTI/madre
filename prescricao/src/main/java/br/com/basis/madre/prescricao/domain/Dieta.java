@@ -30,7 +30,7 @@ public class Dieta {
 	@Column(name = "id_paciente")
 	private Long idPaciente;
 	
-	@Size(max = 100, message = "Observação nao pode conter mais que 100 caracteres")
+	@Size(max = 255)
 	private String observacao;
 	
 	@Column(name = "bomba_infusao")

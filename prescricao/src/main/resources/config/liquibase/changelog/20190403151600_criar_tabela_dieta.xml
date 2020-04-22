@@ -18,7 +18,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="id_paciente" type="bigint" remarks="Código da dieta"/>
-            <column name="observacao" type="varchar(100)" remarks="Observação de prescrição de dieta" />
+            <column name="observacao" type="varchar(255)" remarks="Observação de prescrição de dieta" />
             <column name="bomba_infusao" type="bool" remarks="Bomba de infusão"/>
         </createTable>
         

@@ -15,10 +15,10 @@ public class TipoUnidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Size(max = 30, message = "Não pode conter mais que 30 caracteres")
+	@Size(max = 30)
 	private String descricao;
 	
-	@Size(max = 3, message = "Sigla não pode conter mais que 3 caracteres")
+	@Size(max = 3)
 	private String sigla;
 
 	public Long getId() {

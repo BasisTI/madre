@@ -19,7 +19,7 @@ public class TipoItem {
 
 	@NotEmpty
 	@NotNull
-	@Size(max = 30, message = "Não pode conter mais que 30 caracteres")
+	@Size(max = 30)
 	private String descricao;
 
 	public Long getId() {
