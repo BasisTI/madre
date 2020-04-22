@@ -25,7 +25,7 @@
                         pInputText
                         formControlName="pressaoArterial"
                     />
-                    <label>Pressão Arterial</label>
+                    <label>Pressão Arterial (MMHG)</label>
                 </span>
             </div>
 
@@ -37,7 +37,7 @@
                         pInputText
                         formControlName="frequenciaCardiaca"
                     />
-                    <label>Frequência cardiaca</label>
+                    <label>Frequência cardiaca (BPM)</label>
                 </span>
             </div>
             <div class="ui-g-3 ui-sm-12">
@@ -108,19 +108,38 @@
         <div class="ui-g-12">
             <div class="ui-g-3 ui-sm-12">
                 <legend>Vítima de acidente</legend>
-                <label>Sim</label>
-                <input formControlName="vitimaDeAcidente" type="radio" value="acd1" />
 
-                <label>Não</label>
-                <input formControlName="vitimaDeAcidente" type="radio" value="acd2" />
+                <label class="radioBtn">Sim</label>
+                <p-radioButton
+                    name="vitimaDeAcidente"
+                    type="radio"
+                    value="true"
+                    pRadioButton
+                ></p-radioButton>
+
+                <label class="radioBtn">Não</label>
+                <p-radioButton
+                    name="vitimaDeAcidente"
+                    type="radio"
+                    value="false"
+                    pRadioButton
+                ></p-radioButton>
             </div>
             <div class="ui-g-3 ui-sm-12">
                 <legend>Removido de Ambulância</legend>
-                <label>Sim</label>
-                <input formControlName="removidoDeAmbulancia" type="radio" value="amb1" />
+                <label class="radioBtn">Sim</label>
+                <p-radioButton
+                    name="removidoDeAmbulancia"
+                    type="radio"
+                    value="true"
+                ></p-radioButton>
 
-                <label>Não</label>
-                <input formControlName="removidoDeAmbulancia" type="radio" value="amb2" />
+                <label class="radioBtn">Não</label>
+                <p-radioButton
+                    name="removidoDeAmbulancia"
+                    type="radio"
+                    value="false"
+                ></p-radioButton>
             </div>
         </div>
 
@@ -139,8 +158,9 @@
         </div>
 
         <div class="ui-g-12">
-            <div class="ui-g-10 ui-sm-10">
+            <div class="ui-g-12 ui-sm-12">
                 <div class="ui-float-label">
+                    <div class="ui-g-3"></div>
                     <div class="ui-g-3">
                         <button
                             pButton
@@ -149,14 +169,15 @@
                             bTooltip="Cancelar registro de triagem."
                         ></button>
                     </div>
-                </div>
-                <div class="ui-g-3">
-                    <button
-                        pButton
-                        type="button"
-                        label="Salvar"
-                        bTooltip="Salvar registro de triagem."
-                    ></button>
+
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Salvar"
+                            bTooltip="Salvar registro de triagem."
+                        ></button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,9 @@
 import { BreadcrumbService } from './../../../breadcrumb/breadcrumb.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
+import { CalendarModule } from 'primeng/calendar';
+import { now } from 'moment';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -24,6 +27,14 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         observacao: [''],
     });
 
+    @Input() formularioTriagem: FormGroup;
+    localizacao = ptBR;
+    dataLimite = new Date();
+    anosDisponiveis = `1900:${this.dataLimite.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
+    idade = '';
+    uf = '';
+
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
 
     ngOnInit() {
@@ -32,6 +43,13 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             { label: 'Triagem', routerLink: 'triagem' },
             { label: 'Formulário' },
         ]);
+
+        this.dataHora();
+    }
+
+    dataHora() {
+        var data = new Date().toLocaleString();
+        console.log('Data e hora: ' + data);
     }
 
     ngOnDestroy(): void {
