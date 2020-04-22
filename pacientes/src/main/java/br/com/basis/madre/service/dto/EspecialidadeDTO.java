@@ -17,8 +17,6 @@ public class EspecialidadeDTO implements Serializable {
     @NotNull
     private String especialidade;
 
-    private Long equipeId;
-
     public Long getId() {
         return id;
     }
@@ -41,14 +39,6 @@ public class EspecialidadeDTO implements Serializable {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
-    }
-
-    public Long getEquipeId() {
-        return equipeId;
-    }
-
-    public void setEquipeId(Long equipeId) {
-        this.equipeId = equipeId;
     }
 
     @Override
@@ -78,7 +68,6 @@ public class EspecialidadeDTO implements Serializable {
             "id=" + getId() +
             ", sigla='" + getSigla() + "'" +
             ", especialidade='" + getEspecialidade() + "'" +
-            ", equipe=" + getEquipeId() +
             "}";
     }
 }

@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -11,8 +10,6 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 import br.com.basis.madre.domain.enumeration.Prioridade;
@@ -65,15 +62,18 @@ public class SolicitacaoDeInternacao implements Serializable {
     @JsonIgnoreProperties("")
     private CID cidSecundario;
 
-    @OneToMany(mappedBy = "solicitacaoDeInternacao")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Equipe> equipes = new HashSet<>();
-    @OneToMany(mappedBy = "solicitacaoDeInternacao")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CRM> crms = new HashSet<>();
-    @OneToMany(mappedBy = "solicitacaoDeInternacao")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Procedimento> procedimentos = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private Equipe equipe;
+
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private CRM crm;
+
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private Procedimento procedimento;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -187,79 +187,43 @@ public class SolicitacaoDeInternacao implements Serializable {
         this.cidSecundario = cID;
     }
 
-    public Set<Equipe> getEquipes() {
-        return equipes;
+    public Equipe getEquipe() {
+        return equipe;
     }
 
-    public SolicitacaoDeInternacao equipes(Set<Equipe> equipes) {
-        this.equipes = equipes;
+    public SolicitacaoDeInternacao equipe(Equipe equipe) {
+        this.equipe = equipe;
         return this;
     }
 
-    public SolicitacaoDeInternacao addEquipe(Equipe equipe) {
-        this.equipes.add(equipe);
-        equipe.setSolicitacaoDeInternacao(this);
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
+
+    public CRM getCrm() {
+        return crm;
+    }
+
+    public SolicitacaoDeInternacao crm(CRM cRM) {
+        this.crm = cRM;
         return this;
     }
 
-    public SolicitacaoDeInternacao removeEquipe(Equipe equipe) {
-        this.equipes.remove(equipe);
-        equipe.setSolicitacaoDeInternacao(null);
+    public void setCrm(CRM cRM) {
+        this.crm = cRM;
+    }
+
+    public Procedimento getProcedimento() {
+        return procedimento;
+    }
+
+    public SolicitacaoDeInternacao procedimento(Procedimento procedimento) {
+        this.procedimento = procedimento;
         return this;
     }
 
-    public void setEquipes(Set<Equipe> equipes) {
-        this.equipes = equipes;
-    }
-
-    public Set<CRM> getCrms() {
-        return crms;
-    }
-
-    public SolicitacaoDeInternacao crms(Set<CRM> cRMS) {
-        this.crms = cRMS;
-        return this;
-    }
-
-    public SolicitacaoDeInternacao addCrm(CRM cRM) {
-        this.crms.add(cRM);
-        cRM.setSolicitacaoDeInternacao(this);
-        return this;
-    }
-
-    public SolicitacaoDeInternacao removeCrm(CRM cRM) {
-        this.crms.remove(cRM);
-        cRM.setSolicitacaoDeInternacao(null);
-        return this;
-    }
-
-    public void setCrms(Set<CRM> cRMS) {
-        this.crms = cRMS;
-    }
-
-    public Set<Procedimento> getProcedimentos() {
-        return procedimentos;
-    }
-
-    public SolicitacaoDeInternacao procedimentos(Set<Procedimento> procedimentos) {
-        this.procedimentos = procedimentos;
-        return this;
-    }
-
-    public SolicitacaoDeInternacao addProcedimento(Procedimento procedimento) {
-        this.procedimentos.add(procedimento);
-        procedimento.setSolicitacaoDeInternacao(this);
-        return this;
-    }
-
-    public SolicitacaoDeInternacao removeProcedimento(Procedimento procedimento) {
-        this.procedimentos.remove(procedimento);
-        procedimento.setSolicitacaoDeInternacao(null);
-        return this;
-    }
-
-    public void setProcedimentos(Set<Procedimento> procedimentos) {
-        this.procedimentos = procedimentos;
+    public void setProcedimento(Procedimento procedimento) {
+        this.procedimento = procedimento;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

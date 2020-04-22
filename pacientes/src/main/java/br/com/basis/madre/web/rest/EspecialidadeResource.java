@@ -55,23 +55,19 @@ public class EspecialidadeResource {
      * POST  /especialidades : Create a new especialidade.
      *
      * @param especialidadeDTO the especialidadeDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new especialidadeDTO,
-     * or with status 400 (Bad Request) if the especialidade has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new especialidadeDTO, or with status 400 (Bad Request) if the especialidade has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/especialidades")
     @Timed
-    public ResponseEntity<EspecialidadeDTO> createEspecialidade(
-        @Valid @RequestBody EspecialidadeDTO especialidadeDTO) throws URISyntaxException {
+    public ResponseEntity<EspecialidadeDTO> createEspecialidade(@Valid @RequestBody EspecialidadeDTO especialidadeDTO) throws URISyntaxException {
         log.debug("REST request to save Especialidade : {}", especialidadeDTO);
         if (especialidadeDTO.getId() != null) {
-            throw new BadRequestAlertException("A new especialidade cannot already have an ID",
-                ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new especialidade cannot already have an ID", ENTITY_NAME, "idexists");
         }
         EspecialidadeDTO result = especialidadeService.save(especialidadeDTO);
         return ResponseEntity.created(new URI("/api/especialidades/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
@@ -80,23 +76,20 @@ public class EspecialidadeResource {
      *
      * @param especialidadeDTO the especialidadeDTO to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated especialidadeDTO,
-     * or with status 400 (Bad Request) if the especialidadeDTO is not valid, or with status 500
-     * (Internal Server Error) if the especialidadeDTO couldn't be updated
+     * or with status 400 (Bad Request) if the especialidadeDTO is not valid,
+     * or with status 500 (Internal Server Error) if the especialidadeDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/especialidades")
     @Timed
-    public ResponseEntity<EspecialidadeDTO> updateEspecialidade(
-        @Valid @RequestBody EspecialidadeDTO especialidadeDTO) throws URISyntaxException {
+    public ResponseEntity<EspecialidadeDTO> updateEspecialidade(@Valid @RequestBody EspecialidadeDTO especialidadeDTO) throws URISyntaxException {
         log.debug("REST request to update Especialidade : {}", especialidadeDTO);
         if (especialidadeDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         EspecialidadeDTO result = especialidadeService.save(especialidadeDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil
-                .createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
-                    especialidadeDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, especialidadeDTO.getId().toString()))
             .body(result);
     }
 
@@ -120,8 +113,7 @@ public class EspecialidadeResource {
      * GET  /especialidades/:id : get the "id" especialidade.
      *
      * @param id the id of the especialidadeDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the especialidadeDTO, or with
-     * status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the especialidadeDTO, or with status 404 (Not Found)
      */
     @GetMapping("/especialidades/{id}")
     @Timed
@@ -142,28 +134,24 @@ public class EspecialidadeResource {
     public ResponseEntity<Void> deleteEspecialidade(@PathVariable Long id) {
         log.debug("REST request to delete Especialidade : {}", id);
         especialidadeService.delete(id);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil
-                .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
-            .build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * SEARCH  /_search/especialidades?query=:query : search for the especialidade corresponding to
-     * the query.
+     * SEARCH  /_search/especialidades?query=:query : search for the especialidade corresponding
+     * to the query.
      *
-     * @param query    the query of the especialidade search
+     * @param query the query of the especialidade search
      * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/especialidades")
     @Timed
-    public ResponseEntity<List<EspecialidadeDTO>> searchEspecialidades(@RequestParam String query,
-        Pageable pageable) {
+    public ResponseEntity<List<EspecialidadeDTO>> searchEspecialidades(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Especialidades for query {}", query);
         Page<EspecialidadeDTO> page = especialidadeService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
+            ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

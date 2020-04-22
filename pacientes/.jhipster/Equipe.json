@@ -19,14 +19,10 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "solicitacaoDeInternacao",
-            "otherEntityRelationshipName": "equipe"
-        },
-        {
-            "relationshipType": "one-to-many",
             "otherEntityName": "especialidade",
             "otherEntityRelationshipName": "equipe",
-            "relationshipName": "especialidade"
+            "relationshipName": "especialidade",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20200420164000",

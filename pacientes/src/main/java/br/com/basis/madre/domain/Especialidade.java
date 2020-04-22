@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -35,10 +34,6 @@ public class Especialidade implements Serializable {
     @Column(name = "especialidade", nullable = false)
     private String especialidade;
 
-    @ManyToOne
-    @JsonIgnoreProperties("especialidades")
-    private Equipe equipe;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -72,19 +67,6 @@ public class Especialidade implements Serializable {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
-    }
-
-    public Equipe getEquipe() {
-        return equipe;
-    }
-
-    public Especialidade equipe(Equipe equipe) {
-        this.equipe = equipe;
-        return this;
-    }
-
-    public void setEquipe(Equipe equipe) {
-        this.equipe = equipe;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

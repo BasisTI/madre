@@ -17,8 +17,6 @@ public class CRMDTO implements Serializable {
     @NotNull
     private String nome;
 
-    private Long solicitacaoDeInternacaoId;
-
     public Long getId() {
         return id;
     }
@@ -41,14 +39,6 @@ public class CRMDTO implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Long getSolicitacaoDeInternacaoId() {
-        return solicitacaoDeInternacaoId;
-    }
-
-    public void setSolicitacaoDeInternacaoId(Long solicitacaoDeInternacaoId) {
-        this.solicitacaoDeInternacaoId = solicitacaoDeInternacaoId;
     }
 
     @Override
@@ -78,7 +68,6 @@ public class CRMDTO implements Serializable {
             "id=" + getId() +
             ", codigo=" + getCodigo() +
             ", nome='" + getNome() + "'" +
-            ", solicitacaoDeInternacao=" + getSolicitacaoDeInternacaoId() +
             "}";
     }
 }

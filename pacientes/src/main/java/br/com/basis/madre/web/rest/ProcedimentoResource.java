@@ -55,23 +55,19 @@ public class ProcedimentoResource {
      * POST  /procedimentos : Create a new procedimento.
      *
      * @param procedimentoDTO the procedimentoDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new procedimentoDTO,
-     * or with status 400 (Bad Request) if the procedimento has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new procedimentoDTO, or with status 400 (Bad Request) if the procedimento has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/procedimentos")
     @Timed
-    public ResponseEntity<ProcedimentoDTO> createProcedimento(
-        @Valid @RequestBody ProcedimentoDTO procedimentoDTO) throws URISyntaxException {
+    public ResponseEntity<ProcedimentoDTO> createProcedimento(@Valid @RequestBody ProcedimentoDTO procedimentoDTO) throws URISyntaxException {
         log.debug("REST request to save Procedimento : {}", procedimentoDTO);
         if (procedimentoDTO.getId() != null) {
-            throw new BadRequestAlertException("A new procedimento cannot already have an ID",
-                ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new procedimento cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ProcedimentoDTO result = procedimentoService.save(procedimentoDTO);
         return ResponseEntity.created(new URI("/api/procedimentos/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
@@ -79,23 +75,21 @@ public class ProcedimentoResource {
      * PUT  /procedimentos : Updates an existing procedimento.
      *
      * @param procedimentoDTO the procedimentoDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated procedimentoDTO, or
-     * with status 400 (Bad Request) if the procedimentoDTO is not valid, or with status 500
-     * (Internal Server Error) if the procedimentoDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated procedimentoDTO,
+     * or with status 400 (Bad Request) if the procedimentoDTO is not valid,
+     * or with status 500 (Internal Server Error) if the procedimentoDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/procedimentos")
     @Timed
-    public ResponseEntity<ProcedimentoDTO> updateProcedimento(
-        @Valid @RequestBody ProcedimentoDTO procedimentoDTO) throws URISyntaxException {
+    public ResponseEntity<ProcedimentoDTO> updateProcedimento(@Valid @RequestBody ProcedimentoDTO procedimentoDTO) throws URISyntaxException {
         log.debug("REST request to update Procedimento : {}", procedimentoDTO);
         if (procedimentoDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         ProcedimentoDTO result = procedimentoService.save(procedimentoDTO);
         return ResponseEntity.ok()
-            .headers(
-                HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, procedimentoDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, procedimentoDTO.getId().toString()))
             .body(result);
     }
 
@@ -119,8 +113,7 @@ public class ProcedimentoResource {
      * GET  /procedimentos/:id : get the "id" procedimento.
      *
      * @param id the id of the procedimentoDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the procedimentoDTO, or with
-     * status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the procedimentoDTO, or with status 404 (Not Found)
      */
     @GetMapping("/procedimentos/{id}")
     @Timed
@@ -141,26 +134,24 @@ public class ProcedimentoResource {
     public ResponseEntity<Void> deleteProcedimento(@PathVariable Long id) {
         log.debug("REST request to delete Procedimento : {}", id);
         procedimentoService.delete(id);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * SEARCH  /_search/procedimentos?query=:query : search for the procedimento corresponding to
-     * the query.
+     * SEARCH  /_search/procedimentos?query=:query : search for the procedimento corresponding
+     * to the query.
      *
-     * @param query    the query of the procedimento search
+     * @param query the query of the procedimento search
      * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/procedimentos")
     @Timed
-    public ResponseEntity<List<ProcedimentoDTO>> searchProcedimentos(@RequestParam String query,
-        Pageable pageable) {
+    public ResponseEntity<List<ProcedimentoDTO>> searchProcedimentos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Procedimentos for query {}", query);
         Page<ProcedimentoDTO> page = procedimentoService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
+            ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

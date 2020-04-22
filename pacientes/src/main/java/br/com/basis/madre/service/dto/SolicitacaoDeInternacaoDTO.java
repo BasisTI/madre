@@ -34,6 +34,12 @@ public class SolicitacaoDeInternacaoDTO implements Serializable {
 
     private Long cidSecundarioId;
 
+    private Long equipeId;
+
+    private Long crmId;
+
+    private Long procedimentoId;
+
     public Long getId() {
         return id;
     }
@@ -106,6 +112,30 @@ public class SolicitacaoDeInternacaoDTO implements Serializable {
         this.cidSecundarioId = cIDId;
     }
 
+    public Long getEquipeId() {
+        return equipeId;
+    }
+
+    public void setEquipeId(Long equipeId) {
+        this.equipeId = equipeId;
+    }
+
+    public Long getCrmId() {
+        return crmId;
+    }
+
+    public void setCrmId(Long cRMId) {
+        this.crmId = cRMId;
+    }
+
+    public Long getProcedimentoId() {
+        return procedimentoId;
+    }
+
+    public void setProcedimentoId(Long procedimentoId) {
+        this.procedimentoId = procedimentoId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -139,6 +169,9 @@ public class SolicitacaoDeInternacaoDTO implements Serializable {
             ", principaisResultadosProvasDiagnosticas='" + getPrincipaisResultadosProvasDiagnosticas() + "'" +
             ", cidPrincipal=" + getCidPrincipalId() +
             ", cidSecundario=" + getCidSecundarioId() +
+            ", equipe=" + getEquipeId() +
+            ", crm=" + getCrmId() +
+            ", procedimento=" + getProcedimentoId() +
             "}";
     }
 }

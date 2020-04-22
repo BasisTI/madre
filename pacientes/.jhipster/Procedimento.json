@@ -16,13 +16,7 @@
             ]
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "solicitacaoDeInternacao",
-            "otherEntityRelationshipName": "procedimento"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20200420164200",
     "entityTableName": "procedimento",
     "dto": "mapstruct",

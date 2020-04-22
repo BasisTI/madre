@@ -8,14 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Especialidade and its DTO EspecialidadeDTO.
  */
-@Mapper(componentModel = "spring", uses = {EquipeMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface EspecialidadeMapper extends EntityMapper<EspecialidadeDTO, Especialidade> {
 
-    @Mapping(source = "equipe.id", target = "equipeId")
-    EspecialidadeDTO toDto(Especialidade especialidade);
 
-    @Mapping(source = "equipeId", target = "equipe")
-    Especialidade toEntity(EspecialidadeDTO especialidadeDTO);
 
     default Especialidade fromId(Long id) {
         if (id == null) {

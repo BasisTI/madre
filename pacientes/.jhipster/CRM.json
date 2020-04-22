@@ -16,13 +16,7 @@
             ]
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "solicitacaoDeInternacao",
-            "otherEntityRelationshipName": "crm"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20200420164100",
     "entityTableName": "crm",
     "dto": "mapstruct",

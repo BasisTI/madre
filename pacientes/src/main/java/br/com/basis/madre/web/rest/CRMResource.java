@@ -55,23 +55,19 @@ public class CRMResource {
      * POST  /crms : Create a new cRM.
      *
      * @param cRMDTO the cRMDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new cRMDTO, or with
-     * status 400 (Bad Request) if the cRM has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new cRMDTO, or with status 400 (Bad Request) if the cRM has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/crms")
     @Timed
-    public ResponseEntity<CRMDTO> createCRM(@Valid @RequestBody CRMDTO cRMDTO)
-        throws URISyntaxException {
+    public ResponseEntity<CRMDTO> createCRM(@Valid @RequestBody CRMDTO cRMDTO) throws URISyntaxException {
         log.debug("REST request to save CRM : {}", cRMDTO);
         if (cRMDTO.getId() != null) {
-            throw new BadRequestAlertException("A new cRM cannot already have an ID", ENTITY_NAME,
-                "idexists");
+            throw new BadRequestAlertException("A new cRM cannot already have an ID", ENTITY_NAME, "idexists");
         }
         CRMDTO result = cRMService.save(cRMDTO);
         return ResponseEntity.created(new URI("/api/crms/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
@@ -79,23 +75,21 @@ public class CRMResource {
      * PUT  /crms : Updates an existing cRM.
      *
      * @param cRMDTO the cRMDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated cRMDTO, or with
-     * status 400 (Bad Request) if the cRMDTO is not valid, or with status 500 (Internal Server
-     * Error) if the cRMDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated cRMDTO,
+     * or with status 400 (Bad Request) if the cRMDTO is not valid,
+     * or with status 500 (Internal Server Error) if the cRMDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/crms")
     @Timed
-    public ResponseEntity<CRMDTO> updateCRM(@Valid @RequestBody CRMDTO cRMDTO)
-        throws URISyntaxException {
+    public ResponseEntity<CRMDTO> updateCRM(@Valid @RequestBody CRMDTO cRMDTO) throws URISyntaxException {
         log.debug("REST request to update CRM : {}", cRMDTO);
         if (cRMDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         CRMDTO result = cRMService.save(cRMDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
-                cRMDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, cRMDTO.getId().toString()))
             .body(result);
     }
 
@@ -119,8 +113,7 @@ public class CRMResource {
      * GET  /crms/:id : get the "id" cRM.
      *
      * @param id the id of the cRMDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the cRMDTO, or with status 404
-     * (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the cRMDTO, or with status 404 (Not Found)
      */
     @GetMapping("/crms/{id}")
     @Timed
@@ -141,16 +134,14 @@ public class CRMResource {
     public ResponseEntity<Void> deleteCRM(@PathVariable Long id) {
         log.debug("REST request to delete CRM : {}", id);
         cRMService.delete(id);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil
-                .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
-            .build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false,ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * SEARCH  /_search/crms?query=:query : search for the cRM corresponding to the query.
+     * SEARCH  /_search/crms?query=:query : search for the cRM corresponding
+     * to the query.
      *
-     * @param query    the query of the cRM search
+     * @param query the query of the cRM search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -159,8 +150,7 @@ public class CRMResource {
     public ResponseEntity<List<CRMDTO>> searchCRMS(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of CRMS for query {}", query);
         Page<CRMDTO> page = cRMService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
