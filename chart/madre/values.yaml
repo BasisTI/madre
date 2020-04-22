@@ -16,7 +16,7 @@ madrecliente:
 
 
 gateway:
-  name: madregateway
+  name: gateway
   image: 
     repository: basis-registry.basis.com.br/madre/madregateway
     tag: teste
@@ -25,64 +25,61 @@ gateway:
   imagePullSecrets:
   - name: basis-registry
   configmap:
-    spring:
-      profiles:
-        active: "prod,swagger"
-      datasource:
-        url: jdbc:postgresql://pgsql-madre/madre
-        username: abaco
-        password: abaco
-      data:
-        elasticsearch:
-          cluster-name: madre
-          cluster-nodes: es-client:9300
-
-
-pacientes:
-  name: madrepacientes
-  image:
-    repository: basis-registry.basis.com.br/madre/madrepacientes
-    tag: teste
-  ports:
-    port: 8080
-  imagePullSecrets:
-  - name: basis-registry
-  configmap:
-    spring:
-      profiles:
-        active: "prod,swagger"
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
         username: madre
         password: madre
-      data:
-        elasticsearch:
-          cluster-name: madre
-          cluster-nodes: es-client:9300
 
 
-
-internacao:
-  name: madreinternacao
+pacientes:
+  name: pacientes
   image:
-    repository: basis-registry.basis.com.br/madre/madreinternacao
+    repository: basis-registry.basis.com.br/madre/madrepacientes
     tag: teste
   ports:
-    port: 8080
+    port: 8081
   imagePullSecrets:
   - name: basis-registry
   configmap:
     spring:
-      profiles:
-        active: "prod,swagger"
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
-        username: abaco
-        password: abaco
+        username: madre
+        password: madre
+    jhipster:
+      logging:  
+        logstash:
+          enabled: false
+
+
+
+internacao:
+  name: internacao
+  image:
+    repository: basis-registry.basis.com.br/madre/madreinternacao
+    tag: teste
+  ports:
+    port: 8081
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
       data:
-        elasticsearch:
-          cluster-name: madre
-          cluster-nodes: es-client:9300
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+    jhipster:
+      logging:  
+        logstash:
+          enabled: false
 
 comum:
   imagePullSecrets:
