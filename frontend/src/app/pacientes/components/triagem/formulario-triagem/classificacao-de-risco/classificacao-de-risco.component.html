@@ -1,18 +1,23 @@
-<h4>Classificação de Risco</h4>
 <div class risco="ui-g ui-fluid">
+    <div class="ui-g-7"></div>
+    <h4>Classificação de Risco</h4>
     <div class="ui-dataview ui-g ui-sm-10">
+        <div class="ui-g-7">
+            <h3>
+                {{ selectedValue }}
+            </h3>
+        </div>
         <div class="ui-g-1">
             <img
                 blueCard=""
                 pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
-                src="https://escolaeducacao.com.br/wp-content/uploads/2019/12/verde.jpg"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/08/cor-com-a-azul.jpg"
             />
             <div blueCard="">
                 <p-radioButton
                     name="blue"
-                    value="5"
+                    value="Não urgente"
                     [(ngModel)]="selectedValue"
-                    pTooltip="Não urgente"
                 ></p-radioButton>
             </div>
         </div>
@@ -21,14 +26,13 @@
             <img
                 greenCard=""
                 pTooltip="Baixo risco de agravo a saúde, pode aguardar atendimento"
-                src="https://escolaeducacao.com.br/wp-content/uploads/2019/08/cor-com-a-azul.jpg"
+                src="https://escolaeducacao.com.br/wp-content/uploads/2019/12/verde.jpg"
             />
             <div greenCard="">
                 <p-radioButton
                     name="green"
-                    value="4"
+                    value="Pouco urgente"
                     [(ngModel)]="selectedValue"
-                    pTooltip="Pouco urgente"
                 ></p-radioButton>
             </div>
         </div>
@@ -42,9 +46,8 @@
             <div yellowCard="">
                 <p-radioButton
                     name="yellow"
-                    value="3"
+                    value="Urgente"
                     [(ngModel)]="selectedValue"
-                    pTooltip="Pouco urgente"
                 ></p-radioButton>
             </div>
         </div>
@@ -52,15 +55,14 @@
         <div class="ui-g-1">
             <img
                 orangeCard=""
-                pTooltip="Necessita de atendimento praticamente imediado"
+                pTooltip="Necessita de atendimento praticamente imediato"
                 src="https://escolaeducacao.com.br/wp-content/uploads/2019/11/cor-com-t-tangerina.jpg"
             />
             <div orangeCard="">
                 <p-radioButton
                     name="orange"
-                    value="2"
+                    value="Muito urgente"
                     [(ngModel)]="selectedValue"
-                    pTooltip="Muito urgente"
                 ></p-radioButton>
             </div>
         </div>
@@ -74,9 +76,8 @@
             <div redCard="">
                 <p-radioButton
                     name="red"
-                    value="1"
+                    value="Emergência"
                     [(ngModel)]="selectedValue"
-                    pTooltip="Emergência"
                 ></p-radioButton>
             </div>
         </div>

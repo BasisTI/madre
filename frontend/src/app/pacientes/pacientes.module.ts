@@ -1,3 +1,5 @@
+// tslint:disable-next-line: max-line-length
+import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -34,7 +36,6 @@ import { JustificativaService } from './components/formulario-paciente/cartao-su
 import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
 import { UfService } from './components/formulario-paciente/documentos/uf.service';
 import { MunicipioService } from './components/formulario-paciente/endereco/municipio.service';
-import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacaoDeInternacaoService } from './components/solicitacao-de-internacao/solicitacao-de-internacao.service';

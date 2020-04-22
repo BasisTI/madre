@@ -1,4 +1,3 @@
-import { style } from '@angular/animations';
 import { BreadcrumbService } from '../../../../../breadcrumb/breadcrumb.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -11,33 +10,17 @@ import { SelectItem } from 'primeng/api';
 })
 export class ClassificacaoDeRiscoComponent implements OnInit {
     types: SelectItem[];
-    selectedType: string;
+    selectedValue: String;
     handleClick() {}
-
-    // tslint:disable-next-line: member-ordering
-    @Input() nivel: number;
-    getCor() {
-        if (this.nivel === 1) {
-            return 'red';
-        } else if (this.nivel === 2) {
-            return 'orange';
-        } else if (this.nivel === 3) {
-            return 'yellow';
-        } else if (this.nivel === 4) {
-            return 'green';
-        } else if (this.nivel === 5) {
-            return 'blue';
-        }
-    }
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
     ngOnInit() {
         this.types = [
-            { label: 'red', value: '1' },
-            { label: 'orange', value: '2' },
-            { label: 'yellow', value: '3' },
-            { label: 'green', value: '4' },
-            { label: 'blue', value: '5' },
+            { label: 'red', value: 'Emergência' },
+            { label: 'orange', value: 'Muito Urgente' },
+            { label: 'yellow', value: 'Urgente' },
+            { label: 'green', value: 'Pouco Urgente' },
+            { label: 'blue', value: 'Não Urgente' },
         ];
     }
 }
