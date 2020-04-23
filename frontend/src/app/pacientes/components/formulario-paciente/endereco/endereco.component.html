@@ -98,7 +98,7 @@
             </div>
         </div>
         <p-button label="Adicionar" type="button" (onClick)="adicionarEnderecoALista()"></p-button>
-        <basis-datatable type="memory" [value]="listaDeEnderecos">
+        <basis-datatable type="memory" [value]="enderecos.value">
             <p-column header="Município" field="municipio.nome"></p-column>
             <p-column header="CEP" field="cep"></p-column>
             <p-column header="UF" field="municipio.ufId"></p-column>
