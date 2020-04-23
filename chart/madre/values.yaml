@@ -13,6 +13,13 @@ madrecliente:
     locations:
     - pacientes
     - internacao
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: "true"
+  tls:
+  - hosts:
+    - madre.tst.basis.com.br
+    secretName: madretst-cert
 
 
 gateway:
