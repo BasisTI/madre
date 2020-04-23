@@ -45,13 +45,13 @@ public class TriagemResource {
     }
 
     /**
-     * POST  /triagems : Create a new triagem.
+     * POST  /triagens : Create a new triagem.
      *
      * @param triagem the triagem to create
      * @return the ResponseEntity with status 201 (Created) and with body the new triagem, or with status 400 (Bad Request) if the triagem has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/triagems")
+    @PostMapping("/triagens")
     @Timed
     public ResponseEntity<Triagem> createTriagem(@Valid @RequestBody Triagem triagem) throws URISyntaxException {
         log.debug("REST request to save Triagem : {}", triagem);
@@ -60,13 +60,13 @@ public class TriagemResource {
         }
         Triagem result = triagemRepository.save(triagem);
         triagemSearchRepository.save(result);
-        return ResponseEntity.created(new URI("/api/triagems/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/triagens/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /triagems : Updates an existing triagem.
+     * PUT  /triagens : Updates an existing triagem.
      *
      * @param triagem the triagem to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated triagem,
@@ -74,7 +74,7 @@ public class TriagemResource {
      * or with status 500 (Internal Server Error) if the triagem couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/triagems")
+    @PutMapping("/triagens")
     @Timed
     public ResponseEntity<Triagem> updateTriagem(@Valid @RequestBody Triagem triagem) throws URISyntaxException {
         log.debug("REST request to update Triagem : {}", triagem);
@@ -89,24 +89,24 @@ public class TriagemResource {
     }
 
     /**
-     * GET  /triagems : get all the triagems.
+     * GET  /triagens : get all the triagens.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of triagems in body
+     * @return the ResponseEntity with status 200 (OK) and the list of triagens in body
      */
-    @GetMapping("/triagems")
+    @GetMapping("/triagens")
     @Timed
-    public List<Triagem> getAllTriagems() {
-        log.debug("REST request to get all Triagems");
+    public List<Triagem> getAllTriagens() {
+        log.debug("REST request to get all Triagens");
         return triagemRepository.findAll();
     }
 
     /**
-     * GET  /triagems/:id : get the "id" triagem.
+     * GET  /triagens/:id : get the "id" triagem.
      *
      * @param id the id of the triagem to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the triagem, or with status 404 (Not Found)
      */
-    @GetMapping("/triagems/{id}")
+    @GetMapping("/triagens/{id}")
     @Timed
     public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
         log.debug("REST request to get Triagem : {}", id);
@@ -115,12 +115,12 @@ public class TriagemResource {
     }
 
     /**
-     * DELETE  /triagems/:id : delete the "id" triagem.
+     * DELETE  /triagens/:id : delete the "id" triagem.
      *
      * @param id the id of the triagem to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/triagems/{id}")
+    @DeleteMapping("/triagens/{id}")
     @Timed
     public ResponseEntity<Void> deleteTriagem(@PathVariable Long id) {
         log.debug("REST request to delete Triagem : {}", id);
@@ -131,16 +131,16 @@ public class TriagemResource {
     }
 
     /**
-     * SEARCH  /_search/triagems?query=:query : search for the triagem corresponding
+     * SEARCH  /_search/triagens?query=:query : search for the triagem corresponding
      * to the query.
      *
      * @param query the query of the triagem search
      * @return the result of the search
      */
-    @GetMapping("/_search/triagems")
+    @GetMapping("/_search/triagens")
     @Timed
-    public List<Triagem> searchTriagems(@RequestParam String query) {
-        log.debug("REST request to search Triagems for query {}", query);
+    public List<Triagem> searchTriagens(@RequestParam String query) {
+        log.debug("REST request to search Triagens for query {}", query);
         return StreamSupport
             .stream(triagemSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());

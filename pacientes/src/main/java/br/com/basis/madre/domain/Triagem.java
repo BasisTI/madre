@@ -13,9 +13,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-/**
- * A Triagem.
- */
+
 @Entity
 @Table(name = "triagem")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -30,18 +28,27 @@ public class Triagem implements Serializable {
     private Long id;
 
     @Column(name = "pressao_arterial", precision = 10, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal pressaoArterial;
 
     @Column(name = "frequencia_cardiaca", precision = 10, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal frequenciaCardiaca;
 
     @Column(name = "temperatura", precision = 10, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal temperatura;
 
     @Column(name = "peso", precision = 10, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal peso;
 
     @Column(name = "sinais_sintomas")
+    @Size(min = 3, max = 255)
     private String sinaisSintomas;
 
     @Column(name = "data_hora_do_atendimento")
@@ -49,6 +56,7 @@ public class Triagem implements Serializable {
 
     @NotNull
     @Column(name = "descricao_queixa", nullable = false)
+    @Size(min = 3, max = 255)
     private String descricaoQueixa;
 
     @Column(name = "vitima_de_acidente")
@@ -58,6 +66,7 @@ public class Triagem implements Serializable {
     private Boolean removidoDeAmbulancia;
 
     @ManyToOne
+    @NotNull
     @JsonIgnoreProperties("")
     private Paciente paciente;
 
