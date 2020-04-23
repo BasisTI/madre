@@ -20,5 +20,23 @@
                                  referencedColumnNames="id"
                                  referencedTableName="cid"/>
 
+        <addForeignKeyConstraint baseColumnNames="equipe_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_equipe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipe"/>
+
+        <addForeignKeyConstraint baseColumnNames="crm_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_crm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="crm"/>
+
+        <addForeignKeyConstraint baseColumnNames="procedimento_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_procedimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="procedimento"/>
+
     </changeSet>
 </databaseChangeLog>

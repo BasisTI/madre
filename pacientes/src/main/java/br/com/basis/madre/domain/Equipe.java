@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -10,8 +9,6 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -39,12 +36,9 @@ public class Equipe implements Serializable {
     private String nome;
 
     @ManyToOne
-    @JsonIgnoreProperties("equipes")
-    private SolicitacaoDeInternacao solicitacaoDeInternacao;
+    @JsonIgnoreProperties("")
+    private Especialidade especialidade;
 
-    @OneToMany(mappedBy = "equipe")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Especialidade> especialidades = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -80,42 +74,17 @@ public class Equipe implements Serializable {
         this.nome = nome;
     }
 
-    public SolicitacaoDeInternacao getSolicitacaoDeInternacao() {
-        return solicitacaoDeInternacao;
+    public Especialidade getEspecialidade() {
+        return especialidade;
     }
 
-    public Equipe solicitacaoDeInternacao(SolicitacaoDeInternacao solicitacaoDeInternacao) {
-        this.solicitacaoDeInternacao = solicitacaoDeInternacao;
+    public Equipe especialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
         return this;
     }
 
-    public void setSolicitacaoDeInternacao(SolicitacaoDeInternacao solicitacaoDeInternacao) {
-        this.solicitacaoDeInternacao = solicitacaoDeInternacao;
-    }
-
-    public Set<Especialidade> getEspecialidades() {
-        return especialidades;
-    }
-
-    public Equipe especialidades(Set<Especialidade> especialidades) {
-        this.especialidades = especialidades;
-        return this;
-    }
-
-    public Equipe addEspecialidade(Especialidade especialidade) {
-        this.especialidades.add(especialidade);
-        especialidade.setEquipe(this);
-        return this;
-    }
-
-    public Equipe removeEspecialidade(Especialidade especialidade) {
-        this.especialidades.remove(especialidade);
-        especialidade.setEquipe(null);
-        return this;
-    }
-
-    public void setEspecialidades(Set<Especialidade> especialidades) {
-        this.especialidades = especialidades;
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

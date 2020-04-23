@@ -1,10 +1,10 @@
 relationship ManyToOne {
     SolicitacaoDeInternacao{cidPrincipal} to CID,
     SolicitacaoDeInternacao{cidSecundario} to CID,
-    Equipe to SolicitacaoDeInternacao{equipe},
-    CRM to SolicitacaoDeInternacao{crm},
-    Procedimento to SolicitacaoDeInternacao{procedimento},
-    Especialidade to Equipe{especialidade}
+    SolicitacaoDeInternacao{equipe} to Equipe,
+    SolicitacaoDeInternacao{crm} to CRM,
+    SolicitacaoDeInternacao{procedimento} to Procedimento,
+    Equipe{especialidade} to Especialidade
 }
 
 entity SolicitacaoDeInternacao {

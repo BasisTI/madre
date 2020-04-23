@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -35,10 +34,6 @@ public class CRM implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @ManyToOne
-    @JsonIgnoreProperties("crms")
-    private SolicitacaoDeInternacao solicitacaoDeInternacao;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -72,19 +67,6 @@ public class CRM implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public SolicitacaoDeInternacao getSolicitacaoDeInternacao() {
-        return solicitacaoDeInternacao;
-    }
-
-    public CRM solicitacaoDeInternacao(SolicitacaoDeInternacao solicitacaoDeInternacao) {
-        this.solicitacaoDeInternacao = solicitacaoDeInternacao;
-        return this;
-    }
-
-    public void setSolicitacaoDeInternacao(SolicitacaoDeInternacao solicitacaoDeInternacao) {
-        this.solicitacaoDeInternacao = solicitacaoDeInternacao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

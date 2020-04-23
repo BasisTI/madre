@@ -107,9 +107,9 @@ public class CIDResource {
      */
     @GetMapping("/cids")
     @Timed
-    public ResponseEntity<List<CIDDTO>> getAllCIDS(Pageable pageable) {
+    public ResponseEntity<List<CIDDTO>> getAllCIDS(CIDDTO cidDTO, Pageable pageable) {
         log.debug("REST request to get a page of CIDS");
-        Page<CIDDTO> page = cIDService.findAll(pageable);
+        Page<CIDDTO> page = cIDService.findAll(cidDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
             ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

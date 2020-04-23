@@ -8,14 +8,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Equipe and its DTO EquipeDTO.
  */
-@Mapper(componentModel = "spring", uses = {SolicitacaoDeInternacaoMapper.class})
+@Mapper(componentModel = "spring", uses = {EspecialidadeMapper.class})
 public interface EquipeMapper extends EntityMapper<EquipeDTO, Equipe> {
 
-    @Mapping(source = "solicitacaoDeInternacao.id", target = "solicitacaoDeInternacaoId")
+    @Mapping(source = "especialidade.id", target = "especialidadeId")
     EquipeDTO toDto(Equipe equipe);
 
-    @Mapping(source = "solicitacaoDeInternacaoId", target = "solicitacaoDeInternacao")
-    @Mapping(target = "especialidades", ignore = true)
+    @Mapping(source = "especialidadeId", target = "especialidade")
     Equipe toEntity(EquipeDTO equipeDTO);
 
     default Equipe fromId(Long id) {

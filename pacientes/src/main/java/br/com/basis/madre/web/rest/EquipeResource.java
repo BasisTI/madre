@@ -55,23 +55,19 @@ public class EquipeResource {
      * POST  /equipes : Create a new equipe.
      *
      * @param equipeDTO the equipeDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new equipeDTO, or with
-     * status 400 (Bad Request) if the equipe has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new equipeDTO, or with status 400 (Bad Request) if the equipe has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/equipes")
     @Timed
-    public ResponseEntity<EquipeDTO> createEquipe(@Valid @RequestBody EquipeDTO equipeDTO)
-        throws URISyntaxException {
+    public ResponseEntity<EquipeDTO> createEquipe(@Valid @RequestBody EquipeDTO equipeDTO) throws URISyntaxException {
         log.debug("REST request to save Equipe : {}", equipeDTO);
         if (equipeDTO.getId() != null) {
-            throw new BadRequestAlertException("A new equipe cannot already have an ID",
-                ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new equipe cannot already have an ID", ENTITY_NAME, "idexists");
         }
         EquipeDTO result = equipeService.save(equipeDTO);
         return ResponseEntity.created(new URI("/api/equipes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
@@ -79,23 +75,21 @@ public class EquipeResource {
      * PUT  /equipes : Updates an existing equipe.
      *
      * @param equipeDTO the equipeDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated equipeDTO, or with
-     * status 400 (Bad Request) if the equipeDTO is not valid, or with status 500 (Internal Server
-     * Error) if the equipeDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated equipeDTO,
+     * or with status 400 (Bad Request) if the equipeDTO is not valid,
+     * or with status 500 (Internal Server Error) if the equipeDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/equipes")
     @Timed
-    public ResponseEntity<EquipeDTO> updateEquipe(@Valid @RequestBody EquipeDTO equipeDTO)
-        throws URISyntaxException {
+    public ResponseEntity<EquipeDTO> updateEquipe(@Valid @RequestBody EquipeDTO equipeDTO) throws URISyntaxException {
         log.debug("REST request to update Equipe : {}", equipeDTO);
         if (equipeDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         EquipeDTO result = equipeService.save(equipeDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
-                equipeDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, equipeDTO.getId().toString()))
             .body(result);
     }
 
@@ -107,11 +101,10 @@ public class EquipeResource {
      */
     @GetMapping("/equipes")
     @Timed
-    public ResponseEntity<List<EquipeDTO>> getAllEquipes(Pageable pageable) {
+    public ResponseEntity<List<EquipeDTO>> getAllEquipes(EquipeDTO equipeDTO, Pageable pageable) {
         log.debug("REST request to get a page of Equipes");
-        Page<EquipeDTO> page = equipeService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
-            ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        Page<EquipeDTO> page = equipeService.findAll(equipeDTO, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -119,8 +112,7 @@ public class EquipeResource {
      * GET  /equipes/:id : get the "id" equipe.
      *
      * @param id the id of the equipeDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the equipeDTO, or with status
-     * 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the equipeDTO, or with status 404 (Not Found)
      */
     @GetMapping("/equipes/{id}")
     @Timed
@@ -141,25 +133,24 @@ public class EquipeResource {
     public ResponseEntity<Void> deleteEquipe(@PathVariable Long id) {
         log.debug("REST request to delete Equipe : {}", id);
         equipeService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil
-            .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * SEARCH  /_search/equipes?query=:query : search for the equipe corresponding to the query.
+     * SEARCH  /_search/equipes?query=:query : search for the equipe corresponding
+     * to the query.
      *
-     * @param query    the query of the equipe search
+     * @param query the query of the equipe search
      * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/equipes")
     @Timed
-    public ResponseEntity<List<EquipeDTO>> searchEquipes(@RequestParam String query,
-        Pageable pageable) {
+    public ResponseEntity<List<EquipeDTO>> searchEquipes(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Equipes for query {}", query);
         Page<EquipeDTO> page = equipeService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
+            ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

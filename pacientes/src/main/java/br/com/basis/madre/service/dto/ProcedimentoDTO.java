@@ -17,8 +17,6 @@ public class ProcedimentoDTO implements Serializable {
     @NotNull
     private String procedimento;
 
-    private Long solicitacaoDeInternacaoId;
-
     public Long getId() {
         return id;
     }
@@ -41,14 +39,6 @@ public class ProcedimentoDTO implements Serializable {
 
     public void setProcedimento(String procedimento) {
         this.procedimento = procedimento;
-    }
-
-    public Long getSolicitacaoDeInternacaoId() {
-        return solicitacaoDeInternacaoId;
-    }
-
-    public void setSolicitacaoDeInternacaoId(Long solicitacaoDeInternacaoId) {
-        this.solicitacaoDeInternacaoId = solicitacaoDeInternacaoId;
     }
 
     @Override
@@ -78,7 +68,6 @@ public class ProcedimentoDTO implements Serializable {
             "id=" + getId() +
             ", codigo=" + getCodigo() +
             ", procedimento='" + getProcedimento() + "'" +
-            ", solicitacaoDeInternacao=" + getSolicitacaoDeInternacaoId() +
             "}";
     }
 }

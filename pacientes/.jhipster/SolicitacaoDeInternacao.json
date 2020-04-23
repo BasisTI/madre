@@ -58,22 +58,25 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "equipe",
             "otherEntityRelationshipName": "solicitacaoDeInternacao",
-            "relationshipName": "equipe"
+            "relationshipName": "equipe",
+            "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "cRM",
             "otherEntityRelationshipName": "solicitacaoDeInternacao",
-            "relationshipName": "crm"
+            "relationshipName": "crm",
+            "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "procedimento",
             "otherEntityRelationshipName": "solicitacaoDeInternacao",
-            "relationshipName": "procedimento"
+            "relationshipName": "procedimento",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20200420163800",

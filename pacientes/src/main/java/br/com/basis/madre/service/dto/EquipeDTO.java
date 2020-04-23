@@ -17,7 +17,7 @@ public class EquipeDTO implements Serializable {
     @NotNull
     private String nome;
 
-    private Long solicitacaoDeInternacaoId;
+    private Long especialidadeId;
 
     public Long getId() {
         return id;
@@ -43,12 +43,12 @@ public class EquipeDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Long getSolicitacaoDeInternacaoId() {
-        return solicitacaoDeInternacaoId;
+    public Long getEspecialidadeId() {
+        return especialidadeId;
     }
 
-    public void setSolicitacaoDeInternacaoId(Long solicitacaoDeInternacaoId) {
-        this.solicitacaoDeInternacaoId = solicitacaoDeInternacaoId;
+    public void setEspecialidadeId(Long especialidadeId) {
+        this.especialidadeId = especialidadeId;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class EquipeDTO implements Serializable {
             "id=" + getId() +
             ", numeroDoConselho=" + getNumeroDoConselho() +
             ", nome='" + getNome() + "'" +
-            ", solicitacaoDeInternacao=" + getSolicitacaoDeInternacaoId() +
+            ", especialidade=" + getEspecialidadeId() +
             "}";
     }
 }

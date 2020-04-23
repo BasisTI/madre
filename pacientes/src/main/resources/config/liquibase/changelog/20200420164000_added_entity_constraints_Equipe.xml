@@ -7,12 +7,11 @@
         Added the constraints for entity Equipe.
     -->
     <changeSet id="20200420164000-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="solicitacao_de_internacao_id"
-                                 baseTableName="equipe"
-                                 constraintName="fk_equipe_solicitacao_de_internacao_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="solicitacao_de_internacao"/>
 
+        <addForeignKeyConstraint baseColumnNames="especialidade_id"
+            baseTableName="equipe"
+            constraintName="fk_equipe_especialidade_id"
+            referencedColumnNames="id"
+            referencedTableName="especialidade"/>
     </changeSet>
 </databaseChangeLog>

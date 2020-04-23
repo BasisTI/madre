@@ -1,21 +1,22 @@
 package br.com.basis.madre.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import br.com.basis.madre.domain.Procedimento;
 import br.com.basis.madre.repository.ProcedimentoRepository;
 import br.com.basis.madre.repository.search.ProcedimentoSearchRepository;
 import br.com.basis.madre.service.dto.ProcedimentoDTO;
 import br.com.basis.madre.service.mapper.ProcedimentoMapper;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Procedimento.
@@ -32,7 +33,9 @@ public class ProcedimentoService {
 
     private final ProcedimentoSearchRepository procedimentoSearchRepository;
 
-    public ProcedimentoService(ProcedimentoRepository procedimentoRepository, ProcedimentoMapper procedimentoMapper, ProcedimentoSearchRepository procedimentoSearchRepository) {
+    public ProcedimentoService(ProcedimentoRepository procedimentoRepository,
+        ProcedimentoMapper procedimentoMapper,
+        ProcedimentoSearchRepository procedimentoSearchRepository) {
         this.procedimentoRepository = procedimentoRepository;
         this.procedimentoMapper = procedimentoMapper;
         this.procedimentoSearchRepository = procedimentoSearchRepository;
@@ -52,6 +55,17 @@ public class ProcedimentoService {
         ProcedimentoDTO result = procedimentoMapper.toDto(procedimento);
         procedimentoSearchRepository.save(procedimento);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ProcedimentoDTO> findAll(ProcedimentoDTO procedimentoDTO, Pageable pageable) {
+        log.debug("Request to get all Procedimentos");
+        return procedimentoRepository.findAll(
+            Example.of(procedimentoMapper.toEntity(procedimentoDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(StringMatcher.CONTAINING))
+            , pageable)
+            .map(procedimentoMapper::toDto);
     }
 
     /**
@@ -95,7 +109,7 @@ public class ProcedimentoService {
     /**
      * Search for the procedimento corresponding to the query.
      *
-     * @param query the query of the search
+     * @param query    the query of the search
      * @param pageable the pagination information
      * @return the list of entities
      */

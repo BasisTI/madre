@@ -8,14 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Procedimento and its DTO ProcedimentoDTO.
  */
-@Mapper(componentModel = "spring", uses = {SolicitacaoDeInternacaoMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface ProcedimentoMapper extends EntityMapper<ProcedimentoDTO, Procedimento> {
 
-    @Mapping(source = "solicitacaoDeInternacao.id", target = "solicitacaoDeInternacaoId")
-    ProcedimentoDTO toDto(Procedimento procedimento);
 
-    @Mapping(source = "solicitacaoDeInternacaoId", target = "solicitacaoDeInternacao")
-    Procedimento toEntity(ProcedimentoDTO procedimentoDTO);
 
     default Procedimento fromId(Long id) {
         if (id == null) {

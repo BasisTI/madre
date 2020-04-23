@@ -16,13 +16,7 @@
             ]
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "equipe",
-            "otherEntityRelationshipName": "especialidade"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20200420163900",
     "entityTableName": "especialidade",
     "dto": "mapstruct",

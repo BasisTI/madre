@@ -29,7 +29,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="solicitacao_de_internacao_id" type="bigint">
+            <column name="especialidade_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
