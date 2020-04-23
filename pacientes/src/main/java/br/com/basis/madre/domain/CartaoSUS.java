@@ -70,7 +70,6 @@ public class CartaoSUS implements Serializable {
     @JsonIgnoreProperties("cartaoSUSES")
     private MotivoDoCadastro motivoDoCadastro;
 
-//    @Field(type = FieldType.Nested)
     @OneToOne(mappedBy = "cartaoSUS")
     @JsonIgnore
     private Paciente paciente;
@@ -85,7 +84,7 @@ public class CartaoSUS implements Serializable {
     }
 
     public String getNumero() {
-        return numero;
+        return this.numero;
     }
 
     public CartaoSUS numero(String numero) {

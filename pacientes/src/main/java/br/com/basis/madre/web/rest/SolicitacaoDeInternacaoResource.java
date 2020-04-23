@@ -58,7 +58,7 @@ public class SolicitacaoDeInternacaoResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new solicitacaoDeInternacaoDTO, or with status 400 (Bad Request) if the solicitacaoDeInternacao has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/solicitacao-de-internacaos")
+    @PostMapping("/solicitacoes-de-internacao")
     @Timed
     public ResponseEntity<SolicitacaoDeInternacaoDTO> createSolicitacaoDeInternacao(@Valid @RequestBody SolicitacaoDeInternacaoDTO solicitacaoDeInternacaoDTO) throws URISyntaxException {
         log.debug("REST request to save SolicitacaoDeInternacao : {}", solicitacaoDeInternacaoDTO);
@@ -80,7 +80,7 @@ public class SolicitacaoDeInternacaoResource {
      * or with status 500 (Internal Server Error) if the solicitacaoDeInternacaoDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/solicitacao-de-internacaos")
+    @PutMapping("/solicitacoes-de-internacao")
     @Timed
     public ResponseEntity<SolicitacaoDeInternacaoDTO> updateSolicitacaoDeInternacao(@Valid @RequestBody SolicitacaoDeInternacaoDTO solicitacaoDeInternacaoDTO) throws URISyntaxException {
         log.debug("REST request to update SolicitacaoDeInternacao : {}", solicitacaoDeInternacaoDTO);
@@ -99,7 +99,7 @@ public class SolicitacaoDeInternacaoResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of solicitacaoDeInternacaos in body
      */
-    @GetMapping("/solicitacao-de-internacaos")
+    @GetMapping("/solicitacoes-de-internacao")
     @Timed
     public ResponseEntity<List<SolicitacaoDeInternacaoDTO>> getAllSolicitacaoDeInternacaos(Pageable pageable) {
         log.debug("REST request to get a page of SolicitacaoDeInternacaos");
@@ -115,7 +115,7 @@ public class SolicitacaoDeInternacaoResource {
      * @param id the id of the solicitacaoDeInternacaoDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the solicitacaoDeInternacaoDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/solicitacao-de-internacaos/{id}")
+    @GetMapping("/solicitacoes-de-internacao/{id}")
     @Timed
     public ResponseEntity<SolicitacaoDeInternacaoDTO> getSolicitacaoDeInternacao(@PathVariable Long id) {
         log.debug("REST request to get SolicitacaoDeInternacao : {}", id);
@@ -129,7 +129,7 @@ public class SolicitacaoDeInternacaoResource {
      * @param id the id of the solicitacaoDeInternacaoDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/solicitacao-de-internacaos/{id}")
+    @DeleteMapping("/solicitacoes-de-internacao/{id}")
     @Timed
     public ResponseEntity<Void> deleteSolicitacaoDeInternacao(@PathVariable Long id) {
         log.debug("REST request to delete SolicitacaoDeInternacao : {}", id);
@@ -145,7 +145,7 @@ public class SolicitacaoDeInternacaoResource {
      * @param pageable the pagination information
      * @return the result of the search
      */
-    @GetMapping("/_search/solicitacao-de-internacaos")
+    @GetMapping("/_search/solicitacoes-de-internacao")
     @Timed
     public ResponseEntity<List<SolicitacaoDeInternacaoDTO>> searchSolicitacaoDeInternacaos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of SolicitacaoDeInternacaos for query {}", query);

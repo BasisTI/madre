@@ -161,6 +161,8 @@ public class Paciente implements Serializable {
     @JsonIgnoreProperties("pacientes")
     private EstadoCivil estadoCivil;
 
+//     String numero = cartaoSUS.getNumero();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -277,6 +279,7 @@ public class Paciente implements Serializable {
     public CartaoSUS getCartaoSUS() {
         return cartaoSUS;
     }
+
 
     public Paciente cartaoSUS(CartaoSUS cartaoSUS) {
         this.cartaoSUS = cartaoSUS;

@@ -1,0 +1,110 @@
+<div [formGroup]="endereco">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <div
+                        nAutoComplete
+                        [service]="municipioService"
+                        field="nome"
+                        formControlName="municipio"
+                        label="Município"
+                    ></div>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        placeholder="__.___-___"
+                        mask="99.999-999"
+                        formControlName="cep"
+                        pTooltip="Informe o CEP."
+                    ></p-inputMask>
+                    <label>CEP</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText [disabled]="true" />
+                    <label>UF</label>
+                </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="logradouro"
+                        pTooltip="Informe o logradouro."
+                    />
+                    <Label>Logradouro</Label>
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        [options]="opcoesDeTipoDeEndereco"
+                        formControlName="tipo"
+                    ></p-dropdown>
+                    <label>Tipo de Endereço</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-3">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="numero"
+                        pTooltip="Informe o Numero."
+                    />
+                    <Label>Número</Label>
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="complemento"
+                        pTooltip="Informe o Complemento."
+                    />
+                    <label>Complemento</label>
+                </span>
+            </div>
+            <div class="ui-g-3">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        formControlName="bairro"
+                        pTooltip="Informe o Bairro."
+                    />
+                    <label>Bairro</label>
+                </span>
+            </div>
+            <div class="ui-g-3">
+                <p-triStateCheckbox
+                    name="corespondencia"
+                    formControlName="correspondencia"
+                    label="Correspondência"
+                ></p-triStateCheckbox>
+            </div>
+            <div class="ui-g-3">
+                <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
+            </div>
+        </div>
+        <p-button label="Adicionar" type="button" (onClick)="adicionarEnderecoALista()"></p-button>
+        <basis-datatable type="memory" [value]="enderecos.value">
+            <p-column header="Município" field="municipio.nome"></p-column>
+            <p-column header="CEP" field="cep"></p-column>
+            <p-column header="UF" field="municipio.ufId"></p-column>
+            <p-column header="Bairro" field="bairro"></p-column>
+            <p-column header="Tipo" field="tipo"></p-column>
+            <p-column header="Correspondência" field="correspondencia"></p-column>
+        </basis-datatable>
+    </div>
+</div>

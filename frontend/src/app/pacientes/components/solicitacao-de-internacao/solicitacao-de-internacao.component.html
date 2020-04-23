@@ -1,0 +1,199 @@
+<div class="ui-g ui-fluid">
+    <p-fieldset legend="Solicitação de Internação">
+        <form [formGroup]="solicitacaoDeInternacao">
+            <!-- [Prontuário & Nome](Preenchido pelo sistema) read-only -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label>Prontuário</label>
+                    <input type="text" pInputText formControlName="prontuario" />
+                </div>
+                <div class="ui-g-4">
+                    <label>Nome do Paciente</label>
+                    <input type="text" pInputText formControlName="nomeDoPaciente" />
+                </div>
+            </div>
+            <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-calendar
+                            [locale]="configuracaoParaCalendarios.localidade"
+                            [yearRange]="configuracaoParaCalendarios.anosDisponiveis"
+                            [minDate]="configuracaoParaCalendarios.dataMinima"
+                            monthNavigator="true"
+                            yearNavigator="true"
+                            [dateFormat]="configuracaoParaCalendarios.formatoDeData"
+                            formControlName="dataProvavelDaInternacao"
+                            [required]="true"
+                        ></p-calendar>
+                        <label>Data Provável da Internação</label>
+                    </span>
+                </div>
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-calendar
+                            [locale]="configuracaoParaCalendarios.localidade"
+                            [yearRange]="configuracaoParaCalendarios.anosDisponiveis"
+                            [minDate]="configuracaoParaCalendarios.dataMinima"
+                            monthNavigator="true"
+                            yearNavigator="true"
+                            [dateFormat]="configuracaoParaCalendarios.formatoDeData"
+                            formControlName="dataProvavelDaCirurgia"
+                        ></p-calendar>
+                        <label>Data Provável da Cirurgia</label>
+                    </span>
+                </div>
+                <div class="ui-g-2">
+                    <label>Prioridade</label>
+                    <p-dropdown
+                        [options]="opcoesDePrioridade"
+                        formControlName="prioridade"
+                        [required]="true"
+                    ></p-dropdown>
+                </div>
+            </div>
+            <!-- Especialidade* & Equipe -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="especialidadeService.getEspecialidades()"
+                            field="especialidade"
+                            (completeMethod)="especialidadeService.buscarPorNome($event.query)"
+                            formControlName="especialidade"
+                            (onSelect)="habilitarCampoEquipe()"
+                            (onBlur)="desabilitarCampoEquipe()"
+                            [forceSelection]="true"
+                            [dropdown]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>Especialidade</label>
+                    </span>
+                </div>
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="equipeService.getEquipes()"
+                            field="nome"
+                            (completeMethod)="
+                                equipeService.buscarPorEspecialidadeENomeDaEquipe(
+                                    solicitacaoDeInternacao.value.especialidade,
+                                    $event.query
+                                )
+                            "
+                            formControlName="equipe"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>Equipe</label>
+                    </span>
+                </div>
+            </div>
+            <!-- CRM* -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="crmService.getCRMS()"
+                            field="nome"
+                            (completeMethod)="crmService.buscarPorNome($event.query)"
+                            formControlName="crm"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>CRM</label>
+                    </span>
+                </div>
+            </div>
+            <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label>Principais Sinais e Sintomas Clínicos</label>
+                    <textarea
+                        pInputTextarea
+                        [rows]="5"
+                        autoResize="autoResize"
+                        formControlName="principaisSinaisESintomasClinicos"
+                    ></textarea>
+                </div>
+                <div class="ui-g-4">
+                    <label>Condições que Justificam a Internação</label>
+                    <textarea
+                        pInputTextarea
+                        [rows]="5"
+                        autoResize="autoResize"
+                        formControlName="condicoesQueJustificamInternacao"
+                    ></textarea>
+                </div>
+                <div class="ui-g-4">
+                    <label>Principais Resultados Provas Diagnósticas</label>
+                    <textarea
+                        pInputTextarea
+                        [rows]="5"
+                        autoResize="autoResize"
+                        formControlName="principaisResultadosProvasDiagnosticas"
+                    ></textarea>
+                </div>
+            </div>
+            <!-- Procedimento* -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="procedimentoService.getProcedimentos()"
+                            field="procedimento"
+                            (completeMethod)="procedimentoService.buscarPorNome($event.query)"
+                            formControlName="procedimento"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>Procedimento</label>
+                    </span>
+                </div>
+            </div>
+            <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="cidPrincipalService.getCIDS()"
+                            field="descricao"
+                            (completeMethod)="cidPrincipalService.buscarPorDescricao($event.query)"
+                            formControlName="cidPrincipal"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>CID Principal</label>
+                    </span>
+                </div>
+                <div class="ui-g-4">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="cidSecundarioService.getCIDS()"
+                            field="descricao"
+                            (completeMethod)="cidSecundarioService.buscarPorDescricao($event.query)"
+                            formControlName="cidSecundario"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                        ></p-autoComplete>
+                        <label>CID Secundário</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <p-button
+                        icon="pi pi-check"
+                        label="Solicitar"
+                        (onClick)="solicitarInternacao()"
+                        [disabled]="solicitacaoDeInternacao.invalid"
+                    ></p-button>
+                </div>
+            </div>
+        </form>
+    </p-fieldset>
+</div>

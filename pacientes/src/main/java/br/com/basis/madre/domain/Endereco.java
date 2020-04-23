@@ -68,12 +68,10 @@ public class Endereco implements Serializable {
     @Column(name = "tipo_do_endereco")
     private TipoDoEndereco tipoDoEndereco;
 
-//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("enderecos")
     private Municipio municipio;
 
-//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("enderecos")
     private Paciente paciente;

@@ -101,9 +101,9 @@ public class CRMResource {
      */
     @GetMapping("/crms")
     @Timed
-    public ResponseEntity<List<CRMDTO>> getAllCRMS(Pageable pageable) {
+    public ResponseEntity<List<CRMDTO>> getAllCRMS(CRMDTO crmDTO,Pageable pageable) {
         log.debug("REST request to get a page of CRMS");
-        Page<CRMDTO> page = cRMService.findAll(pageable);
+        Page<CRMDTO> page = cRMService.findAll(crmDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
             ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
