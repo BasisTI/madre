@@ -26,8 +26,9 @@ public class SUSValidatorTest {
         SUSValidatorTestBase sus = new SUSValidatorTestBase();
         sus.setNumeroSUS("123412345678911");
         Set<ConstraintViolation<SUSValidatorTestBase>> restricoes = validator.validate(sus);
-        assertEquals("Número do cartão SUS está inválido", restricoes.iterator().next().getMessageTemplate());
         assertFalse(restricoes.isEmpty());
+        assertEquals("Número do cartão SUS está inválido", restricoes.iterator().next().getMessageTemplate());
+
     }
 
     @Test

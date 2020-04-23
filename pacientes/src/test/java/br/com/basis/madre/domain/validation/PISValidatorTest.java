@@ -29,8 +29,9 @@ public class PISValidatorTest {
         PISValidatorTestBase pis = new PISValidatorTestBase();
         pis.setPis("12345678911");
         Set<ConstraintViolation<PISValidatorTestBase>> restricoes = validator.validate(pis);
-        assertEquals("PIS/PASEP inválido", restricoes.iterator().next().getMessageTemplate());
         assertFalse(restricoes.isEmpty());
+        assertEquals("PIS/PASEP inválido", restricoes.iterator().next().getMessageTemplate());
+
 
     }
 

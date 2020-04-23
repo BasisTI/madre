@@ -7,11 +7,10 @@ import javax.validation.ConstraintValidatorContext;
 
 public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, String> {
 
-    private String value;
-
     @Override
     public void initialize(CartaoSUS constraintAnnotation) {
-        this.value = constraintAnnotation.value();
+
+        //Value não está sendo ultilizado  this.value = constraintAnnotation.value();
     }
 
     private int somaPonderada(String s) {
