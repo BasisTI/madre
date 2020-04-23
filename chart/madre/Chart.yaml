@@ -1,0 +1,12 @@
+name: madre
+version: 1.0.0
+appVersion: 1.0.0
+description: madre
+keywords:
+- Madre
+home: 
+sources:
+- https://github.com/BasisTI/madre/
+maintainers:
+- name: Basis
+  email: basis@basis.com.br
