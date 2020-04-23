@@ -1,5 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import {
+    FormBuilder,
+    Validators,
+    FormControl,
+    AbstractControl,
+    FormControlDirective,
+} from '@angular/forms';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OPCOES_DE_PRIORIDADE } from '../../models/dropdowns/opcoes-de-prioridade';
 import { ptBR } from '../../../shared/calendar.pt-br.locale';
@@ -18,8 +24,6 @@ import { Event } from '@angular/router';
     styleUrls: ['./solicitacao-de-internacao.component.scss'],
 })
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
-    equipes: Equipe[];
-    especialidades: Especialidade[];
     opcoesDePrioridade = OPCOES_DE_PRIORIDADE;
     configuracaoParaCalendarios: ConfiguracaoParaCalendarioPrimeNG = {
         localidade: ptBR,
@@ -51,7 +55,8 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         public especialidadeService: EspecialidadeService,
         public crmService: CrmService,
         public procedimentoService: ProcedimentoService,
-        public cidService: CidService,
+        public cidPrincipalService: CidService,
+        public cidSecundarioService: CidService,
         public equipeService: EquipeService,
     ) {}
 
@@ -64,6 +69,19 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
+    }
+
+    limparCampo(el: ElementRef) {
+        const formControlName = el.nativeElement.getAttribute('formControlName');
+        const formControl: AbstractControl = this.solicitacaoDeInternacao.get(formControlName);
+
+        if (!formControl.value) {
+            formControl.setValue(null);
+        }
+    }
+
+    desabilitarCampo(campo: FormControl) {
+        campo.disable();
     }
 
     habilitarCampoEquipe() {
@@ -81,26 +99,6 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
             equipe.setValue(null);
             equipe.disable();
         }
-    }
-
-    buscarEspecialidades(evento: { originalEvent: Event; query: string }): void {
-        this.especialidadeService
-            .buscarEspecialidadePorNome(evento.query)
-            .subscribe((especialidades) => {
-                this.especialidades = especialidades;
-            });
-    }
-
-    buscarEquipes(evento: { originalEvent: Event; query: string }): void {
-        const {
-            especialidade: { id },
-        } = this.solicitacaoDeInternacao.value;
-
-        this.equipeService
-            .buscarEquipePorEspecialidadeIdENome(id, evento.query)
-            .subscribe((equipes) => {
-                this.equipes = equipes;
-            });
     }
 
     solicitarInternacao(): void {
