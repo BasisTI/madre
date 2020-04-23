@@ -1,0 +1,21 @@
+entity Triagem {
+  
+    //nome e classificação de risco serão trazidos de outras entidades
+    pressaoArterial BigDecimal
+    frequenciaCardiaca BigDecimal
+    temperatura BigDecimal
+    peso BigDecimal
+    sinaisSintomas String
+    dataHoraDoAtendimento ZonedDateTime
+    descricaoQueixa String required
+    //idade caculado
+    vitimaDeAcidente Boolean
+    removidoDeAmbulancia Boolean
+} 
+
+entity Paciente
+
+relationship ManyToOne {
+
+ Triagem{paciente} to Paciente
+}

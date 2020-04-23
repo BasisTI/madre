@@ -1,0 +1,18 @@
+{
+    "name": "Paciente",
+    "fields": [],
+    "relationships": [],
+    "changelogDate": "20200407124200",
+    "entityTableName": "paciente",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity Paciente.
+    -->
+    <changeSet id="20200407124200-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cartaosus_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_cartaosus_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cartao_sus"/>
+
+        <addForeignKeyConstraint baseColumnNames="responsavel_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_responsavel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="responsavel"/>
+
+        <addForeignKeyConstraint baseColumnNames="documento_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_documento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="documento"/>
+
+        <addForeignKeyConstraint baseColumnNames="certidao_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_certidao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="certidao"/>
+
+        <addForeignKeyConstraint baseColumnNames="ocupacao_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_ocupacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ocupacao"/>
+
+        <addForeignKeyConstraint baseColumnNames="religiao_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_religiao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="religiao"/>
+
+        <addForeignKeyConstraint baseColumnNames="naturalidade_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_naturalidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="municipio"/>
+
+        <addForeignKeyConstraint baseColumnNames="etnia_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_etnia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etnia"/>
+
+        <addForeignKeyConstraint baseColumnNames="genitores_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_genitores_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="genitores"/>
+
+        <addForeignKeyConstraint baseColumnNames="nacionalidade_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_nacionalidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="nacionalidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="raca_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_raca_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="raca"/>
+
+        <addForeignKeyConstraint baseColumnNames="estado_civil_id"
+                                 baseTableName="paciente"
+                                 constraintName="fk_paciente_estado_civil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estado_civil"/>
+
+    </changeSet>
+</databaseChangeLog>

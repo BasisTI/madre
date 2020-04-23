@@ -1,0 +1,69 @@
+{
+    "name": "CartaoSUS",
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentoDeReferencia",
+            "fieldType": "DocumentoDeReferencia",
+            "fieldValues": "APAC,AIH"
+        },
+        {
+            "fieldName": "cartaoNacionalSaudeMae",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataDeEntradaNoBrasil",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dataDeNaturalizacao",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "portaria",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "justificativa",
+            "otherEntityRelationshipName": "cartaoSUS",
+            "relationshipName": "justificativa",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "motivoDoCadastro",
+            "otherEntityRelationshipName": "cartaoSUS",
+            "relationshipName": "motivoDoCadastro",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "paciente",
+            "otherEntityRelationshipName": "cartaoSUS",
+            "relationshipName": "paciente",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200407125700",
+    "entityTableName": "cartao_sus",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SolicitacaoDeInternacao.
+    -->
+    <changeSet id="20200420163800-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cid_principal_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_cid_principal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cid"/>
+
+        <addForeignKeyConstraint baseColumnNames="cid_secundario_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_cid_secundario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cid"/>
+
+        <addForeignKeyConstraint baseColumnNames="equipe_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_equipe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipe"/>
+
+        <addForeignKeyConstraint baseColumnNames="crm_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_crm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="crm"/>
+
+        <addForeignKeyConstraint baseColumnNames="procedimento_id"
+                                 baseTableName="solicitacao_de_internacao"
+                                 constraintName="fk_solicitacao_de_internacao_procedimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="procedimento"/>
+
+    </changeSet>
+</databaseChangeLog>

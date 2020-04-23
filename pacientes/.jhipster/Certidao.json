@@ -1,0 +1,52 @@
+{
+    "name": "Certidao",
+    "fields": [
+        {
+            "fieldName": "registroDeNascimento",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoDaCertidao",
+            "fieldType": "TipoDaCertidao",
+            "fieldValues": "NASCIMENTO,CASAMENTO,SEPARACAO_DIVORCIO,INDIGENA"
+        },
+        {
+            "fieldName": "nomeDoCartorio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "livro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "folhas",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "termo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataDeEmissao",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "numeroDaDeclaracaoDeNascimento",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200407125600",
+    "entityTableName": "certidao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

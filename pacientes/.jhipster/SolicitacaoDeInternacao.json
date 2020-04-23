@@ -1,0 +1,95 @@
+{
+    "name": "SolicitacaoDeInternacao",
+    "fields": [
+        {
+            "fieldName": "dataProvavelDaInternacao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataProvavelDaCirurgia",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "prioridade",
+            "fieldType": "Prioridade",
+            "fieldValues": "ELETIVA,URGENCIA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "principaisSinaisESintomasClinicos",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "condicoesQueJustificamInternacao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "principaisResultadosProvasDiagnosticas",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cID",
+            "otherEntityRelationshipName": "solicitacaoDeInternacao",
+            "relationshipName": "cidPrincipal",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cID",
+            "otherEntityRelationshipName": "solicitacaoDeInternacao",
+            "relationshipName": "cidSecundario",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "equipe",
+            "otherEntityRelationshipName": "solicitacaoDeInternacao",
+            "relationshipName": "equipe",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cRM",
+            "otherEntityRelationshipName": "solicitacaoDeInternacao",
+            "relationshipName": "crm",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "procedimento",
+            "otherEntityRelationshipName": "solicitacaoDeInternacao",
+            "relationshipName": "procedimento",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200420163800",
+    "entityTableName": "solicitacao_de_internacao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

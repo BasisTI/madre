@@ -1,0 +1,197 @@
+entity Paciente {
+    nome String required
+    nomeSocial String
+    dataDeNascimento LocalDate required
+    horaDeNascimento Instant
+    email String unique
+    observacao String
+    grauDeInstrucao GrauDeInstrucao required
+    sexo Sexo required
+}
+
+relationship OneToOne {
+    Paciente to CartaoSUS
+}
+
+relationship OneToMany {
+    Paciente{telefone} to Telefone,
+    Paciente{endereco} to Endereco
+}
+
+relationship ManyToOne {
+    Endereco{municipio} to Municipio
+    Municipio{uf} to UF,
+    Paciente{responsavel} to Responsavel,
+    Paciente{documento} to Documento ,
+    Paciente{certidao} to Certidao,
+    Paciente{ocupacao} to Ocupacao,
+    Paciente{religiao} to Religiao,
+    Paciente{naturalidade} to Municipio,
+    Paciente{etnia} to Etnia,
+    Paciente{genitores} to Genitores,
+    Paciente{nacionalidade} to Nacionalidade,
+    Paciente{raca} to Raca,
+    Paciente{estadoCivil} to EstadoCivil,
+    Responsavel{telefone} to Telefone,
+    Responsavel{grauDeParentesco} to GrauDeParentesco,
+    Documento{orgaoEmissor} to OrgaoEmissor,
+    Documento{uf} to UF,
+    CartaoSUS{justificativa} to Justificativa,
+    CartaoSUS{motivoDoCadastro} to MotivoDoCadastro
+}
+
+entity Nacionalidade {
+    valor String required
+}
+
+entity Etnia {
+    valor String required
+}
+
+entity Genitores {
+    prontuarioDaMae String
+    nomeDaMae String required
+    nomeDoPai String required
+}
+
+entity Ocupacao {
+    valor String required
+}
+
+entity Religiao {
+    valor String required
+}
+
+entity Telefone {
+    ddd String required
+    numero String required
+    tipo TipoDoContato
+    observacao String
+}
+
+entity UF {
+    unidadeFederativa String required
+    sigla String required
+}
+
+entity Municipio {
+    nome String required
+    nomeDoDistrito String
+    ibge String required
+}
+
+entity Endereco {
+    cep String required
+    logradouro String required
+    numero String required
+    complemento String
+    bairro String required
+    correspondencia Boolean required
+    tipoDoEndereco TipoDoEndereco
+}
+
+entity Responsavel {
+    nomeDoResponsavel String
+}
+
+entity OrgaoEmissor {
+    valor String required
+}
+
+entity Documento {
+    numeroDaIdentidade String
+    data LocalDate
+    cpf String
+    pisPasep String
+    validadeDaCnh LocalDate
+    documentosApresentados Boolean
+}
+
+entity Certidao {
+    registroDeNascimento String
+    tipoDaCertidao TipoDaCertidao
+    nomeDoCartorio String
+    livro String
+    folhas String
+    termo String
+    dataDeEmissao LocalDate
+    numeroDaDeclaracaoDeNascimento String
+}
+
+entity CartaoSUS {
+    numero String required
+    documentoDeReferencia DocumentoDeReferencia
+    cartaoNacionalSaudeMae String
+    dataDeEntradaNoBrasil LocalDate
+    dataDeNaturalizacao LocalDate
+    portaria String
+}
+
+entity Justificativa {
+    valor String required
+}
+
+entity MotivoDoCadastro {
+    valor String required
+}
+
+entity Raca {
+    valor String required
+}
+
+entity EstadoCivil {
+    valor String required
+}
+
+entity GrauDeParentesco {
+    valor String required
+}
+
+enum DocumentoDeReferencia {
+    APAC,
+    AIH
+}
+
+enum TipoDaCertidao {
+    NASCIMENTO,
+    CASAMENTO,
+    SEPARACAO_DIVORCIO,
+    INDIGENA
+}
+
+enum TipoDoEndereco {
+    COMERCIAL,
+    RESIDENCIAL,
+    CONTATO,
+    OUTROS
+}
+
+enum TipoDoContato {
+    CELULAR,
+    RESIDENCIAL,
+    RECADO,
+    COMERCIAL,
+    EMERGENCIAL
+}
+
+enum GrauDeInstrucao {
+    NENHUM,
+    IGNORADO,
+    PRIMEIRO_GRAU_INCOMPLETO,
+    PRIMEIRO_GRAU_COMPLETO,
+    SEGUNDO_GRAU_INCOMPLETO,
+    SEGUNDO_GRAU_COMPLETO,
+    SUPERIOR_INCOMPLETO,
+    SUPERIOR_COMPLETO
+}
+
+enum Sexo {
+    MASCULINO,
+    FEMININO,
+    IGNORADO
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

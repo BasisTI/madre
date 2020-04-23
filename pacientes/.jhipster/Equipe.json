@@ -1,0 +1,41 @@
+{
+    "name": "Equipe",
+    "fields": [
+        {
+            "fieldName": "numeroDoConselho",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "especialidade",
+            "otherEntityRelationshipName": "equipe",
+            "relationshipName": "especialidade",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200420164000",
+    "entityTableName": "equipe",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

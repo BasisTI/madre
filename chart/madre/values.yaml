@@ -1,7 +1,7 @@
 madrecliente:
   name: cliente
   image:
-    repository: basis-registry.basis.com.br/madre/madrecliente
+    repository: basis-registry.basis.com.br/madre/cliente
     tag: teste
   ingress:
     url: "madre.tst.basis.com.br"
@@ -13,6 +13,13 @@ madrecliente:
     locations:
     - pacientes
     - internacao
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: "true"
+  tls:
+  - hosts:
+    - madre.tst.basis.com.br
+    secretName: madretst-cert
 
 
 gateway:

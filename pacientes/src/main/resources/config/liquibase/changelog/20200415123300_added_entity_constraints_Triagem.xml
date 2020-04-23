@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Triagem.
+    -->
+    <changeSet id="20200415123300-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paciente_id"
+                                 baseTableName="triagem"
+                                 constraintName="fk_triagem_paciente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="paciente"/>
+
+    </changeSet>
+</databaseChangeLog>
