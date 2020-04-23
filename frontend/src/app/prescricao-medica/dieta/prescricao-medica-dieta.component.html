@@ -7,15 +7,16 @@
 
                 <h1>Prescrever dieta</h1>
 
-                {{profileForm.value | json}}
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input [(ngModel)]="paciente.nome" name="nome" type="text" name="nome" pInputText disabled />
+                        <label>Paciente</label>
+                    </span>
+                </div>
+                <!-- {{profileForm.value | json}} -->
                 <form autocomplete="off" #frm [formGroup]="profileForm" (ngSubmit)="incluirItem()">
                     <div class="ui-g-12">
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <input type="text" name="nome" pInputText disabled />
-                                <label>Paciente</label>
-                            </span>
-                        </div>
+
 
                     </div>
                     <div class="ui-g-12">
