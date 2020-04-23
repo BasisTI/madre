@@ -15,7 +15,7 @@ export class Especialidade implements IEspecialidade {
     providedIn: 'root',
 })
 export class EspecialidadeService implements OnInit {
-    private readonly baseApi = 'pacientes/api/especialidades';
+    private readonly baseApi = 'pacientes/api/especialidades?sort=especialidade';
     private especialidades: Especialidade[];
 
     constructor(private client: HttpClient) {}

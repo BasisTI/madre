@@ -23,7 +23,7 @@ export class Equipe implements IEquipe {
     providedIn: 'root',
 })
 export class EquipeService implements OnInit {
-    private readonly baseApi = 'pacientes/api/equipes';
+    private readonly baseApi = 'pacientes/api/equipes?sort=nome';
     private equipes: Equipe[];
 
     constructor(private client: HttpClient) {}

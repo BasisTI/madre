@@ -24,6 +24,7 @@
                             yearNavigator="true"
                             [dateFormat]="configuracaoParaCalendarios.formatoDeData"
                             formControlName="dataProvavelDaInternacao"
+                            [required]="true"
                         ></p-calendar>
                         <label>Data Provável da Internação</label>
                     </span>
@@ -47,6 +48,7 @@
                     <p-dropdown
                         [options]="opcoesDePrioridade"
                         formControlName="prioridade"
+                        [required]="true"
                     ></p-dropdown>
                 </div>
             </div>
@@ -63,6 +65,7 @@
                             (onBlur)="desabilitarCampoEquipe()"
                             [forceSelection]="true"
                             [dropdown]="true"
+                            [required]="true"
                         ></p-autoComplete>
                         <label>Especialidade</label>
                     </span>
@@ -80,6 +83,8 @@
                             "
                             formControlName="equipe"
                             [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
                         ></p-autoComplete>
                         <label>Equipe</label>
                     </span>
@@ -88,13 +93,18 @@
             <!-- CRM* -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <div
-                        nAutoComplete
-                        [service]="crmService"
-                        field="nome"
-                        formControlName="crm"
-                        label="CRM"
-                    ></div>
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="crmService.getCRMS()"
+                            field="nome"
+                            (completeMethod)="crmService.buscarPorNome($event.query)"
+                            formControlName="crm"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>CRM</label>
+                    </span>
                 </div>
             </div>
             <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
@@ -130,34 +140,48 @@
             <!-- Procedimento* -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <div
-                        nAutoComplete
-                        [service]="procedimentoService"
-                        field="procedimento"
-                        formControlName="procedimento"
-                        label="Procedimento"
-                    ></div>
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="procedimentoService.getProcedimentos()"
+                            field="procedimento"
+                            (completeMethod)="procedimentoService.buscarPorNome($event.query)"
+                            formControlName="procedimento"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>Procedimento</label>
+                    </span>
                 </div>
             </div>
             <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <div
-                        nAutoComplete
-                        [service]="cidService"
-                        field="descricao"
-                        formControlName="cidPrincipal"
-                        label="CID Principal"
-                    ></div>
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="cidPrincipalService.getCIDS()"
+                            field="descricao"
+                            (completeMethod)="cidPrincipalService.buscarPorDescricao($event.query)"
+                            formControlName="cidPrincipal"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                            [required]="true"
+                        ></p-autoComplete>
+                        <label>CID Principal</label>
+                    </span>
                 </div>
                 <div class="ui-g-4">
-                    <div
-                        nAutoComplete
-                        [service]="cidService"
-                        field="descricao"
-                        formControlName="cidSecundario"
-                        label="CID Secundário"
-                    ></div>
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            [suggestions]="cidSecundarioService.getCIDS()"
+                            field="descricao"
+                            (completeMethod)="cidSecundarioService.buscarPorDescricao($event.query)"
+                            formControlName="cidSecundario"
+                            [dropdown]="true"
+                            [forceSelection]="true"
+                        ></p-autoComplete>
+                        <label>CID Secundário</label>
+                    </span>
                 </div>
             </div>
             <div class="ui-g-12">
