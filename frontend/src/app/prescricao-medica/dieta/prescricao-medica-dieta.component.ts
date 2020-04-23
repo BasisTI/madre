@@ -21,7 +21,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     tiposItens = [];
 
-    tipoAprazamento: [];
+    tiposAprazamentos: [];
 
     itensDieta: any[] = [];
 
@@ -83,8 +83,8 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     carregarTipoItem() {
         return this.prescricaoMedicaDietaService.listarTiposItens()
-            .subscribe(tipoItem => {
-                this.tiposItens = tipoItem.map(item => {
+            .subscribe(tiposItens => {
+                this.tiposItens = tiposItens.map(item => {
                     return { label: item.descricao, value: item };
                 });
 
@@ -93,27 +93,17 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     carregarTipoAprazamento() {
         return this.prescricaoMedicaDietaService.listarTiposAprazamentos()
-            .subscribe(tipoAprazamento => {
-                this.tipoAprazamento = tipoAprazamento.map(item => {
-                    return { label: item.descricao, value: item.id };
+            .subscribe(tiposAprazamentos => {
+                this.tiposAprazamentos = tiposAprazamentos.map(tipo => {
+                    return { label: tipo.descricao, value: tipo };
                 });
             });
     }
 
     incluirItem() {
         if (this.profileForm.valid) {
-            // this.itensDieta.push(this.profileForm.value);
 
-            this.itensDieta.push({
-                tipoItemid: this.profileForm.value.tipoItem.id,
-                quantidade: this.profileForm.value.quantidade,
-                tipoUnidade: this.profileForm.value.tipoUnidade.descricao,
-                frequencia: this.profileForm.value.frequencia,
-                tipoAprazamento: this.profileForm.value.tipoAprazamento.descricao,
-                numeroVezes: this.profileForm.value
-            });
-
-            console.log(this.itensDieta);
+            this.itensDieta.push(this.profileForm.value);
             this.profileForm.reset();
         }
 

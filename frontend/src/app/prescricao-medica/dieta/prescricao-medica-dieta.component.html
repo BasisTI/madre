@@ -57,8 +57,8 @@
 
                         <div class="ui-g-5">
                             <span class="md-inputfield">
-                                <p-dropdown [autoWidth]="false" placeholder="Selecione..." [options]="tipoAprazamento"
-                                formControlName="tipoAprazamento" required #descricaoAprazamento>
+                                <p-dropdown [autoWidth]="false" placeholder="Selecione..." [options]="tiposAprazamentos"
+                                formControlName="tipoAprazamento" #descricaoAprazamento>
                                 </p-dropdown>
                                 <label>Aprazamento</label>
                             </span>
@@ -82,11 +82,19 @@
                         {{itensDieta | json}}
                         <basis-datatable type="memory" [value]="itensDieta" [disableView]="true" [disableEdit]="true"
                             [disableDelete]="true">
-                            <p-column header="Item" field="tipoItemid"></p-column>
+                            <p-column header="Item" field="tipoItem">
+                                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                    <span> {{ rowData[col.field].descricao }}</span>
+                                </ng-template>
+                            </p-column>
                             <p-column header="Quantidade" field="quantidade"></p-column>
                             <p-column header="Unidade" field="tipoUnidade"></p-column>
                             <p-column header="Frequência" field="frequencia"></p-column>
-                            <p-column header="Aprazamento" field="tipoAprazamento"></p-column>
+                            <p-column header="Aprazamento" field="tipoAprazamento">
+                                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                    <span> {{ rowData[col.field].descricao }}</span>
+                                </ng-template>
+                            </p-column>
                             <p-column header="Número vezes" field="numeroVezes"></p-column>
 
                         </basis-datatable>
