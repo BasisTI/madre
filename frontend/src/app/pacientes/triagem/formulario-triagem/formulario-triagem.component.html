@@ -76,18 +76,18 @@
                     <label>Sinais/Sintomas</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="horaDoAtendimento" />
-                    <label>Hora do atendimento</label>
+                    <input
+                        type="number"
+                        maxlength="18"
+                        pInputText
+                        formControlName="dataHoraDoAtendimento"
+                    />
+                    <label>Data e hora do atendimento</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="dataDoAtendimento" />
-                    <label>Data do atendimento</label>
-                </span>
-            </div>
+
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
                     <input type="text" pInputText formControlName="idade" />

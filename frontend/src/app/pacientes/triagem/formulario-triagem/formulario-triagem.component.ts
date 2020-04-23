@@ -2,8 +2,6 @@ import { BreadcrumbService } from './../../../breadcrumb/breadcrumb.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
-import { CalendarModule } from 'primeng/calendar';
-import { now } from 'moment';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -18,8 +16,10 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         temperatura: [''],
         peso: [''],
         sinaisSintomas: [''],
-        horaDoAtendimento: [''],
-        dataDoAtendimento: [''],
+        dataHoraDoAtendimento: [
+            `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
+${new Date().getHours()}:${new Date().getUTCMinutes()}`,
+        ],
         idade: [''],
         descricaoQueixa: ['', Validators.required],
         vitimaDeAcidente: [''],
@@ -30,10 +30,8 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     @Input() formularioTriagem: FormGroup;
     localizacao = ptBR;
     dataLimite = new Date();
-    anosDisponiveis = `1900:${this.dataLimite.getFullYear()}`;
+    anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
-    idade = '';
-    uf = '';
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
 
@@ -44,15 +42,15 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             { label: 'Formulário' },
         ]);
 
-        this.dataHora();
-    }
+        //     this.dataHora();
+        // }
 
-    dataHora() {
-        var data = new Date().toLocaleString();
-        console.log('Data e hora: ' + data);
+        // dataHora() {
+        //     const dataHora = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()},
+        //     ${new Date().getHours()}:${new Date().getUTCMinutes()}`;
     }
 
     ngOnDestroy(): void {
-        this.breadcrumbService.reset();
+        // this.breadcrumbService.reset();
     }
 }
