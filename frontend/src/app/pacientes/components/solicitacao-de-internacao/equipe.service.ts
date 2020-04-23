@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { HttpClient } from '@angular/common/http';
+import { Especialidade } from './especialidade.service';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface IEquipe {
@@ -22,14 +22,39 @@ export class Equipe implements IEquipe {
 @Injectable({
     providedIn: 'root',
 })
-export class EquipeService extends CrudServiceNuvem<number, Equipe> {
-    constructor(private httpClient: HttpClient) {
-        super('pacientes/api/equipes?sort=nome', httpClient);
+export class EquipeService implements OnInit {
+    private readonly baseApi = 'pacientes/api/equipes?sort=nome';
+    private equipes: Equipe[];
+
+    constructor(private client: HttpClient) {}
+
+    ngOnInit(): void {
+        const params = new HttpParams().set('sort', 'nome');
+
+        this.client
+            .get<Equipe[]>(this.baseApi, { params })
+            .subscribe((equipes) => {
+                this.setEquipes(equipes);
+            });
     }
 
-    buscarEquipePorEspecialidadeIdENome(id: number, nome: string): Observable<Equipe[]> {
-        return this.httpClient.get<Equipe[]>(
-            `pacientes/api/equipes?sort=nome&especialidadeId=${id}&nome=${nome}`,
-        );
+    getEquipes(): Equipe[] {
+        return this.equipes;
+    }
+
+    setEquipes(equipes: Equipe[]): void {
+        this.equipes = equipes;
+    }
+
+    buscarPorEspecialidadeENomeDaEquipe({ id }: Especialidade, nomeDaEquipe: string): void {
+        const params = new HttpParams()
+            .set('especialidadeId', String(id))
+            .set('nome', nomeDaEquipe);
+
+        this.client
+            .get<Equipe[]>(this.baseApi, { params })
+            .subscribe((equipes) => {
+                this.setEquipes(equipes);
+            });
     }
 }

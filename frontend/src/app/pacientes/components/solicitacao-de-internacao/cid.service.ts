@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 export interface ICID {
     id?: number;
@@ -14,8 +14,33 @@ export class CID implements ICID {
 @Injectable({
     providedIn: 'root',
 })
-export class CidService extends CrudServiceNuvem<number, CID> {
-    constructor(private httpClient: HttpClient) {
-        super('pacientes/api/cids?sort=descricao', httpClient);
+export class CidService implements OnInit {
+    private readonly baseApi = 'pacientes/api/cids?sort=descricao';
+    private cids: CID[];
+
+    constructor(private client: HttpClient) {}
+
+    ngOnInit(): void {
+        this.client.get<CID[]>(this.baseApi).subscribe((cids) => {
+            this.setCIDS(cids);
+        });
+    }
+
+    getCIDS(): CID[] {
+        return this.cids;
+    }
+
+    setCIDS(cids: CID[]): void {
+        this.cids = cids;
+    }
+
+    buscarPorDescricao(descricao: string) {
+        const params = new HttpParams().set('descricao', descricao);
+
+        this.client
+            .get<CID[]>(this.baseApi, { params })
+            .subscribe((cids) => {
+                this.setCIDS(cids);
+            });
     }
 }

@@ -28,23 +28,8 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             religiao: [''],
             email: ['', Validators.maxLength(254)],
         }),
-        telefones: this.fb.array([
-            // tipo: ['', Validators.required],
-            // telefone: ['', Validators.required],
-            // observacao: [''],
-            // DDD: ['', Validators.required],
-        ]),
-        enderecos: this.fb.group({
-            municipio: ['', Validators.required],
-            cep: ['', Validators.required],
-            uf: [''],
-            logradouro: ['', Validators.required],
-            numero: ['', Validators.required],
-            complemento: [''],
-            bairro: ['', Validators.required],
-            tipo: ['', Validators.required],
-            correspondencia: ['', Validators.required],
-        }),
+        telefones: this.fb.array([]),
+        enderecos: this.fb.array([]),
         responsavel: this.fb.group(
             {
                 nomeDoResponsavel: ['', [this.customRequired]],

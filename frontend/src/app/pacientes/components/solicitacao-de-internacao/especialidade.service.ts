@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
-import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 export interface IEspecialidade {
     id?: number;
@@ -16,14 +14,37 @@ export class Especialidade implements IEspecialidade {
 @Injectable({
     providedIn: 'root',
 })
-export class EspecialidadeService extends CrudServiceNuvem<number, Especialidade> {
-    constructor(private httpClient: HttpClient) {
-        super('pacientes/api/especialidades?sort=especialidade', httpClient);
+export class EspecialidadeService implements OnInit {
+    private readonly baseApi = 'pacientes/api/especialidades?sort=especialidade';
+    private especialidades: Especialidade[];
+
+    constructor(private client: HttpClient) {}
+
+    ngOnInit(): void {
+        const params: HttpParams = new HttpParams().set('sort', 'especialidade');
+
+        this.client
+            .get<Especialidade[]>(this.baseApi, { params })
+            .subscribe((especialidades) => {
+                this.setEspecialidades(especialidades);
+            });
     }
 
-    buscarEspecialidadePorNome(nome: string): Observable<Especialidade[]> {
-        return this.httpClient.get<Especialidade[]>(
-            'pacientes/api/especialidades?sort=especialidade&especialidade=' + nome,
-        );
+    setEspecialidades(especialidades: Especialidade[]): void {
+        this.especialidades = especialidades;
+    }
+
+    getEspecialidades(): Especialidade[] {
+        return this.especialidades;
+    }
+
+    buscarPorNome(nome: string): void {
+        const params: HttpParams = new HttpParams().set('especialidade', nome);
+
+        this.client
+            .get<Especialidade[]>(this.baseApi, { params })
+            .subscribe((especialidades) => {
+                this.setEspecialidades(especialidades);
+            });
     }
 }
