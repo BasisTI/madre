@@ -55,9 +55,9 @@
                 <div class="ui-g-4">
                     <span class="ui-float-label">
                         <p-autoComplete
-                            [suggestions]="especialidades"
+                            [suggestions]="especialidadeService.getEspecialidades()"
                             field="especialidade"
-                            (completeMethod)="buscarEspecialidades($event)"
+                            (completeMethod)="especialidadeService.buscarPorNome($event.query)"
                             formControlName="especialidade"
                             (onSelect)="habilitarCampoEquipe()"
                             (onBlur)="desabilitarCampoEquipe()"
@@ -70,9 +70,14 @@
                 <div class="ui-g-4">
                     <span class="ui-float-label">
                         <p-autoComplete
-                            [suggestions]="equipes"
+                            [suggestions]="equipeService.getEquipes()"
                             field="nome"
-                            (completeMethod)="buscarEquipes($event)"
+                            (completeMethod)="
+                                equipeService.buscarPorEspecialidadeENomeDaEquipe(
+                                    solicitacaoDeInternacao.value.especialidade,
+                                    $event.query
+                                )
+                            "
                             formControlName="equipe"
                             [dropdown]="true"
                         ></p-autoComplete>

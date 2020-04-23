@@ -83,26 +83,6 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         }
     }
 
-    buscarEspecialidades(evento: { originalEvent: Event; query: string }): void {
-        this.especialidadeService
-            .buscarEspecialidadePorNome(evento.query)
-            .subscribe((especialidades) => {
-                this.especialidades = especialidades;
-            });
-    }
-
-    buscarEquipes(evento: { originalEvent: Event; query: string }): void {
-        const {
-            especialidade: { id },
-        } = this.solicitacaoDeInternacao.value;
-
-        this.equipeService
-            .buscarEquipePorEspecialidadeIdENome(id, evento.query)
-            .subscribe((equipes) => {
-                this.equipes = equipes;
-            });
-    }
-
     solicitarInternacao(): void {
         this.solicitacaoDeInternacaoService.solicitarInternacao(this.solicitacaoDeInternacao.value);
     }
