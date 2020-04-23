@@ -2,7 +2,7 @@ import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service'
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,21 +15,34 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     paciente = { nome: '' };
 
-
     dietas: any[];
 
     searchUrl = 'prescricao/api/prescricao-dieta';
 
-    tipoItem = [];
+    tiposItens = [];
 
     tipoAprazamento: [];
+
+    itensDieta: any[] = [];
+
+
+    profileForm = this.fb.group({
+        tipoItem: ['', Validators.required],
+        quantidade: [''],
+        tipoUnidade: [''],
+        frequencia: [''],
+        tipoAprazamento: [''],
+        numeroVezes: ['']
+    });
 
 
     constructor(
         private breadcrumbService: BreadcrumbService,
         private prescricaoMedicaDietaService: PrescricaoMedicaDietaService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private fb: FormBuilder
     ) { }
+
 
 
     ngOnInit() {
@@ -70,20 +83,40 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     carregarTipoItem() {
         return this.prescricaoMedicaDietaService.listarTiposItens()
-        .subscribe(tipoItem => {
-            this.tipoItem = tipoItem.map(item => {
-                return {label: item.descricao, value: item.id};
+            .subscribe(tipoItem => {
+                this.tiposItens = tipoItem.map(item => {
+                    return { label: item.descricao, value: item };
+                });
+
             });
-        });
     }
 
     carregarTipoAprazamento() {
         return this.prescricaoMedicaDietaService.listarTiposAprazamentos()
-        .subscribe(tipoAprazamento => {
-            this.tipoAprazamento = tipoAprazamento.map(item => {
-                return {label: item.descricao, value: item.id};
+            .subscribe(tipoAprazamento => {
+                this.tipoAprazamento = tipoAprazamento.map(item => {
+                    return { label: item.descricao, value: item.id };
+                });
             });
-        });
+    }
+
+    incluirItem() {
+        if (this.profileForm.valid) {
+            // this.itensDieta.push(this.profileForm.value);
+
+            this.itensDieta.push({
+                tipoItemid: this.profileForm.value.tipoItem.id,
+                quantidade: this.profileForm.value.quantidade,
+                tipoUnidade: this.profileForm.value.tipoUnidade.descricao,
+                frequencia: this.profileForm.value.frequencia,
+                tipoAprazamento: this.profileForm.value.tipoAprazamento.descricao,
+                numeroVezes: this.profileForm.value
+            });
+
+            console.log(this.itensDieta);
+            this.profileForm.reset();
+        }
+
     }
 
     ngOnDestroy() {

@@ -8,6 +8,7 @@ import { SharedModule } from './../shared/shared.module';
 import { PrescricaoMedicaComponent } from './prescricao-medica.component';
 import { prescricaoMedica } from './prescricao-medica.router';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { PrescricaoMedicaService } from './prescricao-medica.service';
     imports: [
         SharedModule,
         RouterModule.forChild(prescricaoMedica),
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
     ],
     declarations: [
         PrescricaoMedicaComponent,

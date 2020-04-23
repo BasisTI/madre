@@ -8,6 +8,6 @@ export class PrescricaoMedicaService{
     constructor(private http: HttpClient){}
 
     listarPacientes(): Observable<any> {
-       return this.http.get(`${this.baseUrl}/pacientes/listarPacientes`);
+       return this.http.get(`${this.baseUrl}/pacientes`);
     }
 }

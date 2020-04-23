@@ -35,7 +35,7 @@ public class PacienteResource {
 	
 	private Faker faker = new Faker(new Locale("pt-BR"));
 	
-	@GetMapping("/listarPacientes")
+	@GetMapping()
 	public Page<Paciente> listar(@PageableDefault(size = 10)Pageable pageable){
 		Page<Paciente> pacientesPage = pacienteRepositorySearch.findAll(pageable);
 		

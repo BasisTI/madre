@@ -7,11 +7,12 @@
 
                 <h1>Prescrever dieta</h1>
 
-                <form autocomplete="off" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+                {{profileForm.value | json}}
+                <form autocomplete="off" #frm [formGroup]="profileForm" (ngSubmit)="incluirItem()">
                     <div class="ui-g-12">
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <input type="text" [(ngModel)]="paciente.nome" name="nome" pInputText disabled />
+                                <input type="text" name="nome" pInputText disabled />
                                 <label>Paciente</label>
                             </span>
                         </div>
@@ -21,9 +22,8 @@
 
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <p-dropdown [autoWidth]="false" placeholder="Selecione..."
-                                    [options]="tipoItem" ngModel name="descricao" required
-                                    #descricaoItem>
+                                <p-dropdown [autoWidth]="false" placeholder="Selecione..." [options]="tiposItens"
+                                    formControlName="tipoItem" required #descricaoItem>
                                 </p-dropdown>
                                 <label>Tipo Item</label>
                             </span>
@@ -33,14 +33,14 @@
                     <div class="ui-g-12">
                         <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="quantidade" name="quantidade"/>
+                                <input type="text" pInputText formControlName="quantidade" />
                                 <label>Quantidade</label>
                             </span>
                         </div>
 
                         <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="unidade" name="unidade" />
+                                <input type="text" pInputText formControlName="tipoUnidade" />
                                 <label>Unidade</label>
                             </span>
                         </div>
@@ -50,17 +50,15 @@
                     <div class="ui-g-12">
                         <div class="ui-g-5">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="frequencia" name="frequencia"
-                                     />
+                                <input type="text" pInputText formControlName="frequencia" />
                                 <label>Frequência</label>
                             </span>
                         </div>
 
                         <div class="ui-g-5">
                             <span class="md-inputfield">
-                                <p-dropdown [autoWidth]="false" placeholder="Selecione..."
-                                    [options]="tipoAprazamento" ngModel name="aprazamento" required
-                                    #descricaoAprazamento>
+                                <p-dropdown [autoWidth]="false" placeholder="Selecione..." [options]="tipoAprazamento"
+                                formControlName="tipoAprazamento" required #descricaoAprazamento>
                                 </p-dropdown>
                                 <label>Aprazamento</label>
                             </span>
@@ -68,17 +66,38 @@
 
                         <div class="ui-g-2">
                             <span class="md-inputfield">
-                                <input type="text" pInputText id="numeroVezes" name="numeroVezes" />
+                                <input type="text" pInputText formControlName="numeroVezes" />
                                 <label>Número vezes</label>
                             </span>
                         </div>
+                    </div>
+                    <div class="ui-g-6">
+                        <button label="Adicionar" pButton name="adicionar-item" type="submit"
+                            [disabled]="profileForm.invalid">
+                    </button>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-3"></div>
+                    <div class="ui-g-12">
+                        {{itensDieta | json}}
+                        <basis-datatable type="memory" [value]="itensDieta" [disableView]="true" [disableEdit]="true"
+                            [disableDelete]="true">
+                            <p-column header="Item" field="tipoItemid"></p-column>
+                            <p-column header="Quantidade" field="quantidade"></p-column>
+                            <p-column header="Unidade" field="tipoUnidade"></p-column>
+                            <p-column header="Frequência" field="frequencia"></p-column>
+                            <p-column header="Aprazamento" field="tipoAprazamento"></p-column>
+                            <p-column header="Número vezes" field="numeroVezes"></p-column>
+
+                        </basis-datatable>
                     </div>
 
                     <div class="ui-g-12">
 
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao" name="observacao"></textarea>
+                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao"
+                                    name="observacao"></textarea>
                                 <label>Observações</label>
                             </span>
                         </div>
@@ -87,14 +106,16 @@
                     <div class="ui-g-12">
 
                         <div class="ui-g-2">
-                            <label>Bomboa Infusão?</label>
+                            <label>Bomba Infusão?</label>
                         </div>
-                        <div class="ui-g-2">
-                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton></p-radioButton>
+                        <div class="ui-g-1">
+                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton>
+                            </p-radioButton>
                             <label>Sim</label>
                         </div>
-                        <div class="ui-g-2">
-                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton></p-radioButton>
+                        <div class="ui-g-1">
+                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton>
+                            </p-radioButton>
                             <label>Não</label>
                         </div>
 
@@ -102,30 +123,13 @@
 
                     <div class="ui-g-12">
                         <div class="ui-g-6">
-                            <button pButton type="submit" label="Prescrever" [disabled]="!descricaoItem.value">
+                            <button pButton type="submit" label="Prescrever">
                             </button>
 
                         </div>
                     </div>
 
                 </form>
-            </div>
-
-            <div class="ui-g-12 ui-md-3"></div>
-            <div class="ui-g-12">
-                <basis-datatable type="server" [url]="baseUrl" [value]="dietas" [disableView]="true"
-                    [disableEdit]="true" [disableDelete]="true">
-                    <p-column header="Item" field="descricao"></p-column>
-                    <p-column header="Quantidade" field="quantidade"></p-column>
-                    <p-column header="Unidade" field="unidade"></p-column>
-                    <p-column header="Frequência" field="frequencia"></p-column>
-                    <p-column header="Aprazamento" field="tipoAprazamento"></p-column>
-                    <p-column header="Número vezes" field="numeroVezes"></p-column>
-
-                    <!-- <basis-datatable-button icon="add-box" name="criar-dieta" bTooltip="Criar Dieta"
-                class="ui-button-info">
-            </basis-datatable-button> -->
-                </basis-datatable>
             </div>
 
         </div>

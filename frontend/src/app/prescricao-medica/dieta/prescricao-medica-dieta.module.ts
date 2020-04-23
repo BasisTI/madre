@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbService } from './../../breadcrumb/breadcrumb.service';
@@ -12,8 +13,7 @@ import {PrescricaoMedicaDietaRoutes} from './../dieta/prescricao-medica-dieta.ro
         PrescricaoMedicaDietaRoutes,
         SharedModule,
         BreadcrumbService,
-        HttpClientModule
-
+        HttpClientModule,
     ],
     declarations: [
         PrescricaoMedicaDietaComponent,

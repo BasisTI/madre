@@ -15,7 +15,7 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
 
     pacientes: [];
 
-    searchUrl = 'prescricao/api/pacientes/listarPacientes';
+    searchUrl = 'prescricao/api/pacientes';
 
     constructor(
 
