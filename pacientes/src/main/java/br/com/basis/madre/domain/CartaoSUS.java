@@ -85,7 +85,7 @@ public class CartaoSUS implements Serializable {
     }
 
     public String getNumero() {
-        return numero;
+        return this.numero;
     }
 
     public CartaoSUS numero(String numero) {
