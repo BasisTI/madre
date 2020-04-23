@@ -1,6 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Paciente;
+import br.com.basis.madre.repository.CartaoSUSRepository;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.dto.PacienteDTO;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 import org.apache.lucene.util.QueryBuilder;
 import org.bouncycastle.math.raw.Nat;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
@@ -19,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -128,41 +131,23 @@ public class PacienteService {
             .map(pacienteMapper::toDto);
     }
 
-    //    public Page<PacienteDTO> searchelastic(String query, Pageable pageable) {
-//        log.debug("Request to search for a page of Pacientes for query {}", query);
-//        QueryBuilder query = new QueryBuilder(). {
-//        }
-//        return pacienteSearchRepository.
-//
-//
-//    }
-
+    private ElasticsearchTemplate elasticsearchTemplate;
     public Page<Paciente> buscaPacientePorNome(String nome, Pageable pageable) {
+
+
         if (Strings.isNullOrEmpty(nome)) {
-            return pacienteSearchRepository.search(new NativeSearchQueryBuilder().withSourceFilter(new FetchSourceFilterBuilder().withIncludes(  "nome", "dataDeNascimento", "nomeDaMae").build())
-                .withPageable(pageable)
+            return pacienteSearchRepository.search(new NativeSearchQueryBuilder()
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
             .build());
         }
 
         return pacienteSearchRepository.search(
             new NativeSearchQueryBuilder()
                 .withQuery(QueryBuilders.fuzzyQuery("nome", nome))
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("nome").build())
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
 
                 .build()
         );
     }
-//    public Page<PacienteResumo> buscaPacientePorNome(String nome, Pageable pageable) {
-//        SearchQuery searchQuery;
-//        if (Strings.isNullOrEmpty(nome)) {
-//            searchQuery = new NativeSearchQueryBuilder().withSourceFilter(new FetchSourceFilterBuilder().withIncludes(  "nome", "dataDeNascimento","cartaoSUS.numero", "nomeDaMae", "ProntuarioDaMae").build()).build();
-//            return pacienteSearchRepository.searchelastic(searchQuery, pageable);
-//        }
-//        searchQuery = new NativeSearchQueryBuilder()
-//            .withQuery(QueryBuilders.fuzzyQuery("nome", nome))
-//            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(  "nome", "dataDeNascimento","cartaoSUS.numero", "nomeDaMae", "ProntuarioDaMae").build())
-//            .withTypes()
-//            .build();
-//        return pacienteSearchRepository.searchelastic(searchQuery, pageable);
-//    }
+
 }
