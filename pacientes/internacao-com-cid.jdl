@@ -1,0 +1,55 @@
+relationship ManyToOne {
+    Internacao{especialidade} to Especialidade,
+    Internacao{crm} to CRM,
+    Internacao{hospitalDeOrigem} to Hospital,
+    Internacao{origem} to OrigemDaInternacao,
+    Internacao{convenio} to ConvenioDeSaude,
+    Internacao{plano} to PlanoDeSaude,
+    Internacao{procedimento} to Procedimento
+}
+
+relationship OneToMany {
+    Internacao{cids} to CID
+}
+
+entity Internacao {
+    prioridade Prioridade required
+    justificativa String required
+    dataDaInternacao LocalDate required
+    diferencaDeClasse Boolean
+    solicitarProntuario Boolean
+}
+
+entity Procedencia {
+    descricao String required
+}
+
+entity ConvenioDeSaude {
+    nome String required
+}
+
+entity PlanoDeSaude {
+    nome String required
+}
+
+entity Hospital {
+    nome String required
+}
+
+entity ModalidadeAssistencial {
+    nome String required
+}
+
+entity LocalDeAtendimento {
+    nome String required
+}
+
+entity OrigemDaInternacao {
+    nome String required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
+
