@@ -1,0 +1,52 @@
+relationship ManyToOne {
+    SolicitacaoDeInternacao{cidPrincipal} to CID,
+    SolicitacaoDeInternacao{cidSecundario} to CID,
+    SolicitacaoDeInternacao{equipe} to Equipe,
+    SolicitacaoDeInternacao{crm} to CRM,
+    SolicitacaoDeInternacao{procedimento} to Procedimento,
+    Equipe{especialidade} to Especialidade
+}
+
+entity SolicitacaoDeInternacao {
+    dataProvavelDaInternacao LocalDate required
+    dataProvavelDaCirurgia LocalDate
+    prioridade Prioridade required
+    principaisSinaisESintomasClinicos String required
+    condicoesQueJustificamInternacao String required
+    principaisResultadosProvasDiagnosticas String required
+}
+
+entity Especialidade {
+    sigla String required
+    especialidade String required
+}
+
+entity Equipe {
+    numeroDoConselho Long required
+    nome String required
+}
+
+entity CRM {
+    codigo Long required
+    nome String required
+}
+
+entity Procedimento {
+    codigo Long required
+    procedimento String required
+}
+
+entity CID {
+    codigo String required
+    descricao String required
+}
+
+enum Prioridade {
+    ELETIVA,
+    URGENCIA
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

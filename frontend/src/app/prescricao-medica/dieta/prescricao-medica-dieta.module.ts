@@ -1,7 +1,4 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BreadcrumbService } from './../../breadcrumb/breadcrumb.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SharedModule } from './../../shared/shared.module';
 
@@ -12,13 +9,10 @@ import {PrescricaoMedicaDietaRoutes} from './../dieta/prescricao-medica-dieta.ro
     imports: [
         PrescricaoMedicaDietaRoutes,
         SharedModule,
-        BreadcrumbService,
         HttpClientModule,
     ],
     declarations: [
         PrescricaoMedicaDietaComponent,
-        PrescricaoMedicaDietaService
-
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

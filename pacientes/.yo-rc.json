@@ -1,12 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "br.com.basis.madre.pacientes"
+      "packageName": "br.com.basis.madre"
     },
-    "jhipsterVersion": "4.14.4",
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "microservice",
     "baseName": "pacientes",
-    "packageName": "br.com.basis.madre.pacientes",
-    "packageFolder": "br/com/basis/madre/pacientes",
+    "packageName": "br.com.basis.madre",
+    "packageFolder": "br/com/basis/madre",
     "serverPort": "8082",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
@@ -19,21 +20,14 @@
     "messageBroker": false,
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
-    "enableSocialSignIn": false,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "b301fa6973df6b4e67faf08264db9695fed05566",
-    "enableTranslation": false,
-    "applicationType": "microservice",
-    "testFrameworks": [
-      "gatling",
-      "cucumber"
-    ],
+    "jwtSecretKey": "OGNiMzdjZTA5YmEwNjhjOTg4Mjg1MTMzMWZlNDg2ODZlMjk0MzM2ODJmYTE4N2I5YzFkOGU2ZDE0OWE0ZGRlMDM0YmNiYjU1ZjRhOGU0N2UyMTU5NDllZmM2YWJlMDhjYWE3NGQyNDJiMDdmNGFmNzA1ODRiZGIyNTkyMmE3MGQ=",
+    "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "clientPackageManager": "yarn",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
     "skipClient": true,
     "skipUserManagement": true
-  },
-  "generator-jhipster-primeng-entity": {
-    "frontendRoot": "/home/pedro-ramalho/Documents/Repository/BASIS/madre_codigo_fonte/frontend"
   }
 }

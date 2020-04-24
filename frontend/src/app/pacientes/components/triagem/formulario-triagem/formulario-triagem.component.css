@@ -1,0 +1,12 @@
+.ui-inputtext:disabled {
+    color: black;
+    opacity: unset;
+}
+
+.ui-float-label {
+    margin: 5px;
+}
+
+.radioBtn {
+    margin-right: 5px;
+}

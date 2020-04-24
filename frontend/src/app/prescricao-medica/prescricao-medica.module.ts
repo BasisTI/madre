@@ -1,5 +1,5 @@
+import { PrescricaoMedicaDietaModule } from './dieta/prescricao-medica-dieta.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PrescricaoMedicaDietaComponent } from './dieta/prescricao-medica-dieta.component';
 import { RouterModule } from '@angular/router';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { SharedModule } from './../shared/shared.module';
 import { PrescricaoMedicaComponent } from './prescricao-medica.component';
 import { prescricaoMedica } from './prescricao-medica.router';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,11 +17,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         SharedModule,
         RouterModule.forChild(prescricaoMedica),
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PrescricaoMedicaDietaModule
     ],
     declarations: [
         PrescricaoMedicaComponent,
-        PrescricaoMedicaDietaComponent
     ],
     providers: [PrescricaoMedicaService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

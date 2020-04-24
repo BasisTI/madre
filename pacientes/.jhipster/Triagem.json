@@ -1,0 +1,66 @@
+{
+    "name": "Triagem",
+    "fields": [
+        {
+            "fieldName": "pressaoArterial",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "frequenciaCardiaca",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "temperatura",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "peso",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sinaisSintomas",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataHoraDoAtendimento",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "descricaoQueixa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "vitimaDeAcidente",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "removidoDeAmbulancia",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paciente",
+            "otherEntityRelationshipName": "triagem",
+            "relationshipName": "paciente",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200415123300",
+    "entityTableName": "triagem",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

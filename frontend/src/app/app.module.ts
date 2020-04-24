@@ -34,13 +34,16 @@ import {
     AbstractAuthorization,
     AbstractAuthentication,
     ClipboardModule,
-    ErrorModule
+    ErrorModule,
 } from '@nuvem/angular-base';
 
 import {
-    PageNotificationModule, BlockUiModule, DatatableModule,
-    ErrorStackModule
+    PageNotificationModule,
+    BlockUiModule,
+    DatatableModule,
+    ErrorStackModule,
 } from '@nuvem/primeng-components';
+
 import { environment } from '../environments/environment';
 import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
 
@@ -80,7 +83,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
     providers: [
         {
             provide: LocationStrategy,
-            useClass: HashLocationStrategy
+            useClass: HashLocationStrategy,
         },
 
         { provide: AUTH_CONFIG, useValue: environment.auth },
@@ -96,6 +99,6 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         BreadcrumbService,
         PrescricaoMedicaService
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

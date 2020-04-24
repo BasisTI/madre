@@ -1,0 +1,45 @@
+{
+    "name": "Municipio",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nomeDoDistrito",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ibge",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "uF",
+            "otherEntityRelationshipName": "municipio",
+            "relationshipName": "uf",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200407125100",
+    "entityTableName": "municipio",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "microserviceName": "pacientes",
+    "skipClient": true
+}

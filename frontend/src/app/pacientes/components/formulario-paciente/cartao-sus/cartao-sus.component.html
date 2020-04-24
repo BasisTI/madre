@@ -1,0 +1,107 @@
+<div class="ui-g ui-fluid" [formGroup]="cartaoSUS">
+    <div class="ui-g-12">
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-inputMask
+                    pInputText
+                    formControlName="numero"
+                    mask="999 9999 9999 9999"
+                    pTooltip="Informe o número do Cartão SUS (CNS)."
+                ></p-inputMask>
+                <label>Número</label>
+            </span>
+        </div>
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <div
+                    nAutoComplete
+                    [service]="justificativaService"
+                    field="valor"
+                    formControlName="justificativa"
+                    label="Justificativa da Ausência CNS"
+                ></div>
+            </span>
+        </div>
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <div
+                    nAutoComplete
+                    [service]="motivoDoCadastroService"
+                    field="valor"
+                    formControlName="motivoCadastro"
+                    label="Motivo Cadastro"
+                ></div>
+            </span>
+        </div>
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-dropdown
+                    [options]="opcoesDeDocumentoDeReferencia"
+                    formControlName="docReferencia"
+                ></p-dropdown>
+                <label>Doc. Referência</label>
+            </span>
+        </div>
+
+        <div class="ui-g-2">
+            <span class="ui-float-label">
+                <p-inputMask
+                    pInputText
+                    formControlName="cartaoNacional"
+                    mask="999 9999 9999 9999"
+                    pTooltip="Informe o CNS da mãe do paciente."
+                ></p-inputMask>
+                <label>Cartão Nacional Saúde Mãe</label>
+            </span>
+        </div>
+    </div>
+    <legend>Se Naturalizado Brasileiro</legend>
+    <div class="ui-g-12">
+        <div class="ui-g-2 ui-sm-12">
+            <span class="ui-float-label">
+                <p-calendar
+                    [locale]="localizacao"
+                    [yearRange]="yearRange"
+                    dateFormat="dd/mm/yy"
+                    [maxDate]="maxDate"
+                    monthNavigator="true"
+                    yearNavigator="true"
+                    formControlName="dataDeEntrada"
+                ></p-calendar>
+                <label>Data de Entrada no Brasil</label>
+            </span>
+        </div>
+        <div class="ui-g-2 ui-sm-12">
+            <span class="ui-float-label">
+                <p-calendar
+                    [locale]="localizacao"
+                    [yearRange]="yearRange"
+                    [dateFormat]="formatoDeData"
+                    monthNavigator="true"
+                    yearNavigator="true"
+                    formControlName="dataDeNaturalizacao"
+                ></p-calendar>
+                <label>Data de Naturalização</label>
+            </span>
+        </div>
+        <div class="ui-g-2 ui-sm-12">
+            <span class="ui-float-label">
+                <label>Portaria</label>
+                <input
+                    type="text"
+                    pTooltip="Informe a Portaria"
+                    pInputText
+                    formControlName="portaria"
+                />
+            </span>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="submit" label="Visualizar impressão"></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="submit" label="Imprimir"></button>
+            </div>
+        </div>
+    </div>
+</div>
