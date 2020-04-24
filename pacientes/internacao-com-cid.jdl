@@ -6,6 +6,13 @@ relationship ManyToOne {
     Internacao{convenio} to ConvenioDeSaude,
     Internacao{plano} to PlanoDeSaude,
     Internacao{procedimento} to Procedimento
+ 	Internacao{procedencia} to Procedencia,
+    Internacao{modalidadeAssistencial} to ModalidadeAssistencial,
+    Internacao{localDeAtendimento} to LocalDeAtendimento
+}
+
+relationship ManyToMany {
+	Internacao to CID
 }
 
 entity Internacao {
