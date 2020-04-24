@@ -12,6 +12,8 @@
     <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
     <property name="uuidType" value="uuid" dbms="h2, mssql"/>
 
+    <include file="config/liquibase/changelog/20200424173320_changelog.xml"
+        relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml"
         relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200407124200_added_entity_Paciente.xml"
