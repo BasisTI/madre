@@ -8,10 +8,6 @@ relationship ManyToOne {
     Internacao{procedimento} to Procedimento
 }
 
-relationship OneToMany {
-    Internacao{cids} to CID
-}
-
 entity Internacao {
     prioridade Prioridade required
     justificativa String required
