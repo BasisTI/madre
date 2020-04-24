@@ -34,6 +34,10 @@ public class CID implements Serializable {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
+    @OneToOne
+    @JoinColumn(name = "parent_id")
+    private CID parent;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
