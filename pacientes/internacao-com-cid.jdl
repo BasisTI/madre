@@ -11,10 +11,6 @@ relationship ManyToOne {
     Internacao{localDeAtendimento} to LocalDeAtendimento
 }
 
-relationship ManyToMany {
-	Internacao to CID
-}
-
 entity Internacao {
     prioridade Prioridade required
     justificativa String required
