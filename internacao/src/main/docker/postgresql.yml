@@ -1,0 +1,11 @@
+version: '2'
+services:
+  internacao-postgresql:
+    image: postgres:11.5
+    # volumes:
+    #     - ~/volumes/jhipster/internacao/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=internacao
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

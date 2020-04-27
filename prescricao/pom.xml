@@ -130,7 +130,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
+            
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>
@@ -380,7 +380,17 @@
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-core</artifactId>
         </dependency>
+        <dependency>
+             <groupId>com.github.javafaker</groupId>
+             <artifactId>javafaker</artifactId>
+             <version>1.0.2</version>
+         </dependency>	
         <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-devtools</artifactId>
+        	<scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>

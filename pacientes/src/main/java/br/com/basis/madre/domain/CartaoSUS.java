@@ -70,7 +70,6 @@ public class CartaoSUS implements Serializable {
     @JsonIgnoreProperties("cartaoSUSES")
     private MotivoDoCadastro motivoDoCadastro;
 
-//    @Field(type = FieldType.Nested)
     @OneToOne(mappedBy = "cartaoSUS")
     @JsonIgnore
     private Paciente paciente;

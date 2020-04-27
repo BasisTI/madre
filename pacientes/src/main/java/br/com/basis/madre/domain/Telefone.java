@@ -51,7 +51,6 @@ public class Telefone implements Serializable {
     @Column(name = "observacao")
     private String observacao;
 
-//    @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("telefones")
     private Paciente paciente;
