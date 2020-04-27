@@ -1,3 +1,4 @@
+import { FormulaCadastroService } from './formula-cadastro.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { FormBuilder, Validators, FormGroup, AbstractControl, FormArray } from '@angular/forms';
@@ -73,12 +74,14 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             dataDeNaturalizacao: [''],
             portaria: [''],
         }),
-        observacao: this.fb.group({
-            valor: [],
-        }),
+        observacao: [''],
     });
 
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private fb: FormBuilder,
+        private formularioCadastroService: FormulaCadastroService,
+    ) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -92,7 +95,11 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
     }
 
     cadastrar() {
-        console.log();
+        //if (this.formularioDeCadastro.valid) {
+        this.formularioCadastroService
+            .cadastrarPaciente(this.formularioDeCadastro.value)
+            .subscribe();
+        //}
     }
 
     customRequired(control: AbstractControl): { [key: string]: boolean } | null {
