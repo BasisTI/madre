@@ -1,24 +1,50 @@
 <div class="ui-g ui-fluid">
+
     <div class="ui-g-12">
+        <div class="ui-g-12">
+            <span class="md-inputfield">
+                <input [(ngModel)]="paciente.nome" name="nome" type="text" name="nome" pInputText disabled />
+                <label>Paciente</label>
+            </span>
+        </div>
+    </div>
 
-        <div class="ui-g ">
-
-            <div class="card card-w-title">
-
-                <h1>Prescrever dieta</h1>
-
-                <div class="ui-g-12">
-                    <span class="md-inputfield">
-                        <input [(ngModel)]="paciente.nome" name="nome" type="text" name="nome" pInputText disabled />
-                        <label>Paciente</label>
-                    </span>
-                </div>
-                <!-- {{profileForm.value | json}} -->
-                <form autocomplete="off" #frm [formGroup]="profileForm" (ngSubmit)="incluirItem()">
+    <!-- {{profileForm.value | json}} -->
+    <form autocomplete="off" #frm [formGroup]="profileForm" (ngSubmit)="incluirItem()">
+        <p-accordion>
+            <p-accordionTab header="Dieta">
+                <div class="ui-g">
                     <div class="ui-g-12">
-
-
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao"
+                                    name="observacao"></textarea>
+                                <label>Observações</label>
+                            </span>
+                        </div>
                     </div>
+
+                    <div class="ui-g-12">
+                        <div class="ui-g-2">
+                            <label>Bomba Infusão?</label>
+                        </div>
+                        <div class="ui-g-1">
+                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton>
+                            </p-radioButton>
+                            <label>Sim</label>
+                        </div>
+                        <div class="ui-g-1">
+                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton>
+                            </p-radioButton>
+                            <label>Não</label>
+
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+            <p-accordionTab header="Itens Dieta" [selected]="true">
+                <div class="ui-g">
                     <div class="ui-g-12">
 
                         <div class="ui-g-12">
@@ -59,7 +85,7 @@
                         <div class="ui-g-5">
                             <span class="md-inputfield">
                                 <p-dropdown [autoWidth]="false" placeholder="Selecione..." [options]="tiposAprazamentos"
-                                formControlName="tipoAprazamento" #descricaoAprazamento>
+                                    formControlName="tipoAprazamento" #descricaoAprazamento>
                                 </p-dropdown>
                                 <label>Aprazamento</label>
                             </span>
@@ -75,12 +101,12 @@
                     <div class="ui-g-6">
                         <button label="Adicionar" pButton name="adicionar-item" type="submit"
                             [disabled]="profileForm.invalid">
-                    </button>
+                        </button>
                     </div>
 
-                    <div class="ui-g-12 ui-md-3"></div>
+                    <div class="ui-g-12"></div>
+
                     <div class="ui-g-12">
-                        {{itensDieta | json}}
                         <basis-datatable type="memory" [value]="itensDieta" [disableView]="true" [disableEdit]="true"
                             [disableDelete]="true">
                             <p-column header="Item" field="tipoItem">
@@ -100,47 +126,16 @@
 
                         </basis-datatable>
                     </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
 
-                    <div class="ui-g-12">
+        <div class="ui-g-12">
+            <div class="ui-g-6">
+                <button pButton type="submit" label="Prescrever">
+                </button>
 
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize" id="observacao"
-                                    name="observacao"></textarea>
-                                <label>Observações</label>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="ui-g-12">
-
-                        <div class="ui-g-2">
-                            <label>Bomba Infusão?</label>
-                        </div>
-                        <div class="ui-g-1">
-                            <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton>
-                            </p-radioButton>
-                            <label>Sim</label>
-                        </div>
-                        <div class="ui-g-1">
-                            <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton>
-                            </p-radioButton>
-                            <label>Não</label>
-                        </div>
-
-                    </div>
-
-                    <div class="ui-g-12">
-                        <div class="ui-g-6">
-                            <button pButton type="submit" label="Prescrever">
-                            </button>
-
-                        </div>
-                    </div>
-
-                </form>
             </div>
-
         </div>
-    </div>
+    </form>
 </div>
