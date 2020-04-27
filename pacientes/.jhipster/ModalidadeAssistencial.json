@@ -1,0 +1,25 @@
+{
+    "name": "ModalidadeAssistencial",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200426133252",
+    "entityTableName": "modalidade_assistencial",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "pacientes"
+}
