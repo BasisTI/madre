@@ -1,10 +1,8 @@
-import { ClassificacaoDeRiscoService } from './classificacao-de-risco/classificacao-de-risco.service';
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
-import { logging } from 'protractor';
 
 @Component({
     selector: 'app-formulario-triagem',

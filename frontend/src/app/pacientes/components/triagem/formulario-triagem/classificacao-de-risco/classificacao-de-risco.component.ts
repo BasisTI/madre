@@ -1,7 +1,6 @@
-import { ClassificacaoDeRiscoService } from './classificacao-de-risco.service';
 import { BreadcrumbService } from '../../../../../breadcrumb/breadcrumb.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -12,7 +11,6 @@ import { SelectItem } from 'primeng/api';
 export class ClassificacaoDeRiscoComponent implements OnInit {
     types: SelectItem[];
     selectedValue: String;
-    ClassificacaoDeRiscoService: any;
     classificacaoDeRiscoService: any;
     handleClick() {}
 
@@ -25,10 +23,5 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
             { label: 'green', value: 'Pouco Urgente' },
             { label: 'blue', value: 'Não Urgente' },
         ];
-    }
-    cadastrar(form: FormBuilder) {
-        console.log(form);
-
-        this.classificacaoDeRiscoService.cadastrarRisco(this.types.values);
     }
 }

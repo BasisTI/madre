@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class TriagemService {
-    private readonly apiUrl = '/api/triagens';
+    private readonly apiUrl = 'pacientes/api';
 
     constructor(private httpService: HttpClient) {}
 
-    cadastrarTriagem(cadastroTriagem: Observable<any>) {
-        this.httpService.post(this.apiUrl, cadastroTriagem);
+    cadastrarTriagem(cadastroTriagem: any) {
         console.log(cadastroTriagem);
+        return this.httpService.post(`${this.apiUrl}/triagens`, cadastroTriagem);
     }
 }
