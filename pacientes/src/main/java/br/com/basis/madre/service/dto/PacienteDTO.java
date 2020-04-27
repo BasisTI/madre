@@ -2,6 +2,8 @@ package br.com.basis.madre.service.dto;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +14,7 @@ import br.com.basis.madre.domain.enumeration.Sexo;
  * A DTO for the {@link br.com.basis.madre.domain.Paciente} entity.
  */
 public class PacienteDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -25,7 +27,6 @@ public class PacienteDTO implements Serializable {
 
     private Instant horaDeNascimento;
 
-    
     private String email;
 
     private String observacao;
@@ -35,7 +36,6 @@ public class PacienteDTO implements Serializable {
 
     @NotNull
     private Sexo sexo;
-
 
     private Long cartaoSUSId;
 
@@ -60,7 +60,7 @@ public class PacienteDTO implements Serializable {
     private Long racaId;
 
     private Long estadoCivilId;
-    
+
     public Long getId() {
         return id;
     }

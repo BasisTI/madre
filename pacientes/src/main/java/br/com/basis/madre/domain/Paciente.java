@@ -293,21 +293,6 @@ public class Paciente implements Serializable {
         return telefones;
     }
 
-    public Paciente telefones(Set<Telefone> telefones) {
-        this.telefones = telefones;
-        return this;
-    }
-
-    public Paciente addTelefone(Telefone telefone) {
-        this.telefones.add(telefone);
-        return this;
-    }
-
-    public Paciente removeTelefone(Telefone telefone) {
-        this.telefones.remove(telefone);
-        return this;
-    }
-
     public void setTelefones(Set<Telefone> telefones) {
         this.telefones = telefones;
     }

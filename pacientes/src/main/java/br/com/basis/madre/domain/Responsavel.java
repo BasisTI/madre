@@ -45,7 +45,7 @@ public class Responsavel implements Serializable {
         joinColumns = {@JoinColumn(name = "responsavel_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
     )
-    private Telefone telefone;
+    private Telefone telefones;
 
     @Field(type = FieldType.Nested)
     @ManyToOne
@@ -74,17 +74,12 @@ public class Responsavel implements Serializable {
         this.nomeDoResponsavel = nomeDoResponsavel;
     }
 
-    public Telefone getTelefone() {
-        return telefone;
+    public Telefone getTelefones() {
+        return telefones;
     }
 
-    public Responsavel telefone(Telefone telefone) {
-        this.telefone = telefone;
-        return this;
-    }
-
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
+    public void setTelefones(Telefone telefones) {
+        this.telefones = telefones;
     }
 
     public GrauDeParentesco getGrauDeParentesco() {
