@@ -10,7 +10,7 @@ export class FormulaCadastroService {
     private readonly apiUrl = '/pacientes/api/pacientes';
 
     constructor(private httpService: HttpClient) {}
-    //oi
+
     cadastrarPaciente(cadastro: any) {
         console.log(cadastro);
 
