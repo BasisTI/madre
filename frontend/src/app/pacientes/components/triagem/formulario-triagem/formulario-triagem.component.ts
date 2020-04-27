@@ -1,7 +1,10 @@
+import { ClassificacaoDeRiscoService } from './classificacao-de-risco/classificacao-de-risco.service';
+import { TriagemService } from './../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
+import { logging } from 'protractor';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -9,7 +12,7 @@ import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
     styleUrls: ['./formulario-triagem.component.css'],
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
-    triagemComponent: FormGroup = this.fb.group({
+    formTriagem = this.fb.group({
         nomeDoPaciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
@@ -33,7 +36,11 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
     anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
 
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private fb: FormBuilder,
+        private triagemService: TriagemService,
+    ) {}
 
     ngOnInit() {
         this.breadcrumbService.setItems([
@@ -50,7 +57,13 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
         //     ${new Date().getHours()}:${new Date().getUTCMinutes()}`;
     }
 
+    cadastrar(form: FormBuilder) {
+        console.log(form);
+
+        this.triagemService.cadastrarTriagem(this.formTriagem.value);
+    }
+
     ngOnDestroy(): void {
-        // this.breadcrumbService.reset();
+        this.breadcrumbService.reset();
     }
 }

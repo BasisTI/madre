@@ -1,6 +1,6 @@
 <app-classificacao-de-risco></app-classificacao-de-risco>
 
-<div class="ui-g ui-fluid" [formGroup]="triagemComponent">
+<form class="ui-g ui-fluid" #form [formGroup]="formTriagem" (ngSubmit)="cadastrar(form)">
     <div class="ui-g-12">
         <div class="ui-g-12">
             <div class="ui-g-12 ui-sm-12">
@@ -79,7 +79,7 @@
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
                     <input
-                        type="number"
+                        type="text"
                         maxlength="18"
                         pInputText
                         formControlName="dataHoraDoAtendimento"
@@ -112,6 +112,7 @@
                 <label class="radioBtn">Sim</label>
                 <p-radioButton
                     name="vitimaDeAcidente"
+                    formControlName="vitimaDeAcidente"
                     type="radio"
                     value="true"
                     pRadioButton
@@ -120,6 +121,7 @@
                 <label class="radioBtn">Não</label>
                 <p-radioButton
                     name="vitimaDeAcidente"
+                    formControlName="vitimaDeAcidente"
                     type="radio"
                     value="false"
                     pRadioButton
@@ -130,6 +132,7 @@
                 <label class="radioBtn">Sim</label>
                 <p-radioButton
                     name="removidoDeAmbulancia"
+                    formControlName="removidoDeAmbulancia"
                     type="radio"
                     value="true"
                 ></p-radioButton>
@@ -137,6 +140,7 @@
                 <label class="radioBtn">Não</label>
                 <p-radioButton
                     name="removidoDeAmbulancia"
+                    formControlName="removidoDeAmbulancia"
                     type="radio"
                     value="false"
                 ></p-radioButton>
@@ -173,7 +177,7 @@
                     <div class="ui-g-3">
                         <button
                             pButton
-                            type="button"
+                            type="submit"
                             label="Salvar"
                             bTooltip="Salvar registro de triagem."
                         ></button>
@@ -182,4 +186,4 @@
             </div>
         </div>
     </div>
-</div>
+</form>

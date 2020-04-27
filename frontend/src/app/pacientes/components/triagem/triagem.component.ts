@@ -19,12 +19,14 @@ import { BreadcrumbService } from '../../../breadcrumb/breadcrumb.service';
 })
 export class TriagemComponent implements OnInit, OnDestroy {
     constructor(private breadcrumbService: BreadcrumbService) {}
+
     ngOnInit(): void {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'Triagem' },
         ]);
     }
+
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
     }
