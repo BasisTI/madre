@@ -16,9 +16,9 @@ import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
 import { BreadcrumbService } from './breadcrumb/breadcrumb.service';
 import { AppRightpanelComponent } from './app.rightpanel.component';
 import { AppInlineProfileComponent } from './app.profile.component';
-
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { SharedModule } from './shared/shared.module';
+import { PrescricaoMedicaModule } from './prescricao-medica/prescricao-medica.module';
 
 import {
     SecurityModule,
@@ -43,7 +43,9 @@ import {
     DatatableModule,
     ErrorStackModule,
 } from '@nuvem/primeng-components';
+
 import { environment } from '../environments/environment';
+import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
 
 @NgModule({
     imports: [
@@ -57,12 +59,15 @@ import { environment } from '../environments/environment';
         VersionTagModule.forRoot(),
         SharedModule.forRoot(),
         BlockUiModule.forRoot(),
-        DatatableModule.forRoot(),
         PageNotificationModule,
         ErrorStackModule.forRoot(),
         ClipboardModule.forRoot(),
         ErrorModule.forRoot(),
         SecurityModule.forRoot(),
+        PrescricaoMedicaModule,
+        DatatableModule.forRoot(),
+
+        PrescricaoMedicaModule
     ],
     declarations: [
         AppComponent,
@@ -92,6 +97,7 @@ import { environment } from '../environments/environment';
         { provide: AbstractAuthentication, useClass: AuthenticationService },
 
         BreadcrumbService,
+        PrescricaoMedicaService
     ],
     bootstrap: [AppComponent],
 })

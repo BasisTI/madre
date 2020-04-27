@@ -14,6 +14,14 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190401095400_criar_tabela_tipo_aprazamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/2019040112440_criar_tabela_tipo_item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190401140900_criar_tabela_tipo_unidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190403151600_criar_tabela_dieta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190403151500_criar_tabela_item_dieta.xml" relativeToChangelogFile="false"/>
+    
+  
+    
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
