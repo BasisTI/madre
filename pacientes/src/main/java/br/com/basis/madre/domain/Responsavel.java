@@ -2,6 +2,8 @@ package br.com.basis.madre.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +47,7 @@ public class Responsavel implements Serializable {
         joinColumns = {@JoinColumn(name = "responsavel_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
     )
-    private Telefone telefones;
+    private Set<Telefone> telefones = new HashSet<>();
 
     @Field(type = FieldType.Nested)
     @ManyToOne
@@ -74,11 +76,11 @@ public class Responsavel implements Serializable {
         this.nomeDoResponsavel = nomeDoResponsavel;
     }
 
-    public Telefone getTelefones() {
+    public Set<Telefone> getTelefones() {
         return telefones;
     }
 
-    public void setTelefones(Telefone telefones) {
+    public void setTelefones(Set<Telefone> telefones) {
         this.telefones = telefones;
     }
 
