@@ -1,5 +1,10 @@
 {
-    "/prescricao/api":{
+    "/pacientes/api": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+
+    "/prescricao/api": {
         "target": "http://localhost:8080",
         "secure": false
     },
