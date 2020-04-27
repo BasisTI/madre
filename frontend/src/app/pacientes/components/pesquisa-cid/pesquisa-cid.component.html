@@ -1,0 +1,12 @@
+<span class="ui-float-label">
+    <p-autoComplete
+        [suggestions]="service.getCIDS()"
+        [field]="field"
+        (completeMethod)="service.buscarPorDescricao($event.query)"
+        formControlName="formControl"
+        [dropdown]="true"
+        [forceSelection]="true"
+        [required]="required"
+    ></p-autoComplete>
+    <label>{{ label }}</label>
+</span>

@@ -46,6 +46,7 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         procedimento: ['', Validators.required],
         cidPrincipal: ['', Validators.required],
         cidSecundario: [''],
+        cidTeste: [''],
     });
 
     constructor(

@@ -1,3 +1,4 @@
+import { PesquisaCidComponent } from './components/pesquisa-cid/pesquisa-cid.component';
 // tslint:disable-next-line: max-line-length
 import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { NgModule } from '@angular/core';
@@ -63,6 +64,7 @@ import { EquipeService } from './components/solicitacao-de-internacao/equipe.ser
         ClassificacaoDeRiscoComponent,
         FormularioTriagemComponent,
         SolicitacaoDeInternacaoComponent,
+        PesquisaCidComponent,
     ],
     providers: [
         PacientesService,
