@@ -1,4 +1,4 @@
-<div class risco="ui-g ui-fluid">
+<form class risco="ui-g ui-fluid">
     <div class="ui-g-7"></div>
     <h4>Classificação de Risco</h4>
     <div class="ui-dataview ui-g ui-sm-10">
@@ -14,6 +14,7 @@
                 pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
                 style="background-color: blue; height: 50px; width: 50px;"
             ></div>
+            <div class="ui-g-12"></div>
             <div blueCard="">
                 <p-radioButton
                     name="blue"
@@ -30,6 +31,7 @@
                 pTooltip="Baixo risco de agravo a saúde, pode aguardar atendimento"
                 style="background-color: green; height: 50px; width: 50px;"
             ></div>
+            <div class="ui-g-12"></div>
             <div greenCard="">
                 <p-radioButton
                     name="green"
@@ -46,7 +48,7 @@
                 pTooltip="Necessita de atendimento rápido, mas pode aguardar"
                 style="background-color: yellow; height: 50px; width: 50px;"
             ></div>
-
+            <div class="ui-g-12"></div>
             <div yellowCard="">
                 <p-radioButton
                     name="yellow"
@@ -63,6 +65,7 @@
                 pTooltip="Necessita de atendimento praticamente imediato"
                 style="background-color: orange; height: 50px; width: 50px;"
             ></div>
+            <div class="ui-g-12"></div>
             <div orangeCard="">
                 <p-radioButton
                     name="orange"
@@ -79,6 +82,7 @@
                 pTooltip="Necessita de atendimento imediato"
                 style="background-color: red; height: 50px; width: 50px;"
             ></div>
+            <div class="ui-g-12"></div>
             <div redCard="">
                 <p-radioButton
                     name="red"
@@ -88,12 +92,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<!--
-    vermelho - nível 1: emergente, imediato; "Necessita de atendimento imediato"
-laranja - nível 2: muito urgente, 10 minutos; "Necessita de atendimento praticamente imediado"
-amarelo - nível 3: urgente, 60 minutos; "Necessita de atendimento rápido, mas pode aguardar"
-verde - nível 4: pouco urgente, 120 minutos; "Baixo risco de agravo a saúde, pode aguardar atendimento"
-azul - nível 5: nao urgente, 240 minutos "Sem risco de agravo à saúde, pode aguardar atendimento"
--->
+</form>
