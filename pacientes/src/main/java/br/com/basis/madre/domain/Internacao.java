@@ -1,5 +1,7 @@
 package br.com.basis.madre.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -96,6 +98,14 @@ public class Internacao implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("internacaos")
     private LocalDeAtendimento localDeAtendimento;
+
+    @ManyToMany
+    @JoinTable(
+        name = "internacao_cid",
+        joinColumns = { @JoinColumn(name = "internacao_id", referencedColumnName = "id") },
+        inverseJoinColumns = { @JoinColumn(name = "cid_id", referencedColumnName = "id") }
+    )
+    private Set<CID> cids = new HashSet<>();
 
     public Internacao prioridade(Prioridade prioridade) {
         this.prioridade = prioridade;
