@@ -1,15 +1,22 @@
 package br.com.basis.madre.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A Responsavel.
@@ -31,9 +38,13 @@ public class Responsavel implements Serializable {
     @Column(name = "nome_do_responsavel")
     private String nomeDoResponsavel;
 
-//    @Field(type = FieldType.Nested)
-    @ManyToOne
-    @JsonIgnoreProperties("responsavels")
+    //    @Field(type = FieldType.Nested)
+    @ManyToMany
+    @JoinTable(
+        name = "responsavel_telefone",
+        joinColumns = {@JoinColumn(name = "responsavel_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
+    )
     private Telefone telefone;
 
     @Field(type = FieldType.Nested)
