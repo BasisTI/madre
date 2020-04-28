@@ -19,13 +19,11 @@ export class CID implements ICID {
 @Injectable({
     providedIn: 'root',
 })
-export class CidService implements OnInit {
+export class CidService {
     private readonly baseApi = 'pacientes/api/cids';
     private cids: CID[];
 
-    constructor(private client: HttpClient) {}
-
-    ngOnInit(): void {
+    constructor(private client: HttpClient) {
         this.load();
     }
 
