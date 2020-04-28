@@ -1,17 +1,23 @@
-import { FormControl } from '@angular/forms';
-import { CidService } from './../solicitacao-de-internacao/cid.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CidService, CID } from './../solicitacao-de-internacao/cid.service';
 import { Component, Input } from '@angular/core';
+import { TreeNode } from 'primeng/api';
 
 @Component({
     selector: 'app-pesquisa-cid',
     templateUrl: './pesquisa-cid.component.html',
-    styles: [],
+    styles: [
+        `
+            .ui-float-label {
+                margin: 5px;
+            }
+        `,
+    ],
 })
 export class PesquisaCidComponent {
-    @Input() formControl: FormControl;
+    @Input() group: FormGroup;
     @Input() label = 'CID';
-    @Input() field = 'descricao';
     @Input() required = false;
 
-    constructor(public service: CidService) {}
+    constructor(private fb: FormBuilder, public service: CidService) {}
 }

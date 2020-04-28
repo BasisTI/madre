@@ -45,6 +45,7 @@ import { CrmService } from './components/solicitacao-de-internacao/crm.service';
 import { ProcedimentoService } from './components/solicitacao-de-internacao/procedimento.service';
 import { CidService } from './components/solicitacao-de-internacao/cid.service';
 import { EquipeService } from './components/solicitacao-de-internacao/equipe.service';
+import { ArvoreCidComponent } from './components/arvore-cid/arvore-cid.component';
 
 @NgModule({
     declarations: [
@@ -65,6 +66,7 @@ import { EquipeService } from './components/solicitacao-de-internacao/equipe.ser
         FormularioTriagemComponent,
         SolicitacaoDeInternacaoComponent,
         PesquisaCidComponent,
+        ArvoreCidComponent,
     ],
     providers: [
         PacientesService,

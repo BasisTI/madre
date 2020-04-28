@@ -44,9 +44,12 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         condicoesQueJustificamInternacao: ['', Validators.required],
         principaisResultadosProvasDiagnosticas: ['', Validators.required],
         procedimento: ['', Validators.required],
-        cidPrincipal: ['', Validators.required],
-        cidSecundario: [''],
-        cidTeste: [''],
+        cidPrincipal: this.fb.group({
+            valor: ['', Validators.required],
+        }),
+        cidSecundario: this.fb.group({
+            valor: [''],
+        }),
     });
 
     constructor(

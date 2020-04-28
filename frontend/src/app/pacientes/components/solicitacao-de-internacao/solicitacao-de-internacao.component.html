@@ -157,38 +157,17 @@
             <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <p-autoComplete
-                            [suggestions]="cidPrincipalService.getCIDS()"
-                            field="descricao"
-                            (completeMethod)="cidPrincipalService.buscarPorDescricao($event.query)"
-                            formControlName="cidPrincipal"
-                            [dropdown]="true"
-                            [forceSelection]="true"
-                            [required]="true"
-                        ></p-autoComplete>
-                        <label>CID Principal</label>
-                    </span>
-                </div>
-                <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <p-autoComplete
-                            [suggestions]="cidSecundarioService.getCIDS()"
-                            field="descricao"
-                            (completeMethod)="cidSecundarioService.buscarPorDescricao($event.query)"
-                            formControlName="cidSecundario"
-                            [dropdown]="true"
-                            [forceSelection]="true"
-                        ></p-autoComplete>
-                        <label>CID Secundário</label>
-                    </span>
+                    <app-pesquisa-cid
+                        [group]="solicitacaoDeInternacao.controls.cidPrincipal"
+                        [required]="true"
+                        label="CID Principal"
+                    ></app-pesquisa-cid>
                 </div>
                 <div class="ui-g-4">
                     <app-pesquisa-cid
-                        [formControl]="cidTeste"
+                        [group]="solicitacaoDeInternacao.controls.cidSecundario"
                         [required]="true"
-                        [field]="descricao"
-                        label="CID Teste"
+                        label="CID Secundário"
                     ></app-pesquisa-cid>
                 </div>
             </div>
@@ -203,5 +182,6 @@
                 </div>
             </div>
         </form>
+        {{ solicitacaoDeInternacao.value | json }}
     </p-fieldset>
 </div>
