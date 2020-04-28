@@ -4,6 +4,7 @@ import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.repository.CartaoSUSRepository;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
+import br.com.basis.madre.service.dto.FormularioCadastroDTO;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.com.basis.madre.service.projection.PacienteResumo;
@@ -71,6 +72,16 @@ public class PacienteService {
      * @param pacienteDTO the entity to save.
      * @return the persisted entity.
      */
+
+//    public PacienteDTO save(FormularioCadastroDTO formularioCadastroDTO) {
+//        log.debug("Request to save Paciente : {}", formularioCadastroDTO);
+//        Paciente paciente = pacienteMapper.toEntity(formularioCadastroDTO);
+//        paciente = pacienteRepository.save(paciente);
+//        PacienteDTO result = pacienteMapper.toDto(paciente);
+//        pacienteSearchRepository.save(paciente);
+//        return result;
+//    }
+
     public PacienteDTO save(PacienteDTO pacienteDTO) {
         log.debug("Request to save Paciente : {}", pacienteDTO);
         Paciente paciente = pacienteMapper.toEntity(pacienteDTO);

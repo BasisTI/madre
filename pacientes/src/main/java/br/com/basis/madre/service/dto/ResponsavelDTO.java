@@ -7,16 +7,15 @@ import java.util.Objects;
  * A DTO for the {@link br.com.basis.madre.domain.Responsavel} entity.
  */
 public class ResponsavelDTO implements Serializable {
-    
+
     private Long id;
 
     private String nomeDoResponsavel;
 
-
     private Long telefoneId;
 
     private Long grauDeParentescoId;
-    
+
     public Long getId() {
         return id;
     }

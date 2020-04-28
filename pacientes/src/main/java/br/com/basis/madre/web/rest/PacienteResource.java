@@ -2,6 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
+import br.com.basis.madre.service.dto.FormularioCadastroDTO;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -75,15 +76,16 @@ public class PacienteResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/pacientes")
-    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody PacienteDTO pacienteDTO) throws URISyntaxException {
-        log.debug("REST request to save Paciente : {}", pacienteDTO);
-        if (pacienteDTO.getId() != null) {
-            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        PacienteDTO result = pacienteService.save(pacienteDTO);
-        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody FormularioCadastroDTO formularioCadastroDTO) throws URISyntaxException {
+        log.debug("REST request to save Paciente : {}", formularioCadastroDTO);
+//        if (formularioCadastroDTO.getId() != null) {
+//            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
+//        }
+//        PacienteDTO result = pacienteService.save(pacienteDTO);
+//        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+//            .body(result);
+        return null;
     }
 
     /**
