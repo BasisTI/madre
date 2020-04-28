@@ -115,16 +115,6 @@ public class CIDResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/cids/test")
-    @Timed
-    public ResponseEntity<List<CIDDTO>> entityGraphTest(Pageable pageable) {
-        log.debug("REST request to get a page of CIDS");
-        Page<CIDDTO> page = cIDService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
-            ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
     /**
      * GET  /cids/:id : get the "id" cID.
      *
