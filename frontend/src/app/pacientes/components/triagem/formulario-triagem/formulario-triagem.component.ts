@@ -1,3 +1,7 @@
+import { CLASSIFICACAO_RISCO } from './../../../models/radioButton/classificacao-de-risco';
+import { values } from 'micro-dash';
+import { types } from 'util';
+import { ClassificacaoDeRiscoService } from './classificacao-de-risco/classificacao-de-risco.service';
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
@@ -11,7 +15,8 @@ import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
     formTriagem = this.fb.group({
-        nomeDoPaciente: ['', Validators.required],
+        classificaoDeRisco: CLASSIFICACAO_RISCO,
+        paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
         temperatura: [''],
@@ -27,12 +32,6 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
         removidoDeAmbulancia: [''],
         observacao: [''],
     });
-
-    @Input() formularioTriagem: FormGroup;
-    localizacao = ptBR;
-    dataLimite = new Date();
-    anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
-    formatoDeData = 'dd/mm/yy';
 
     constructor(
         private breadcrumbService: BreadcrumbService,

@@ -1,6 +1,7 @@
+import { CLASSIFICACAO_RISCO } from './../../../../models/radioButton/classificacao-de-risco';
 import { BreadcrumbService } from '../../../../../breadcrumb/breadcrumb.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -11,17 +12,10 @@ import { SelectItem } from 'primeng/api';
 export class ClassificacaoDeRiscoComponent implements OnInit {
     types: SelectItem[];
     selectedValue: String;
-    classificacaoDeRiscoService: any;
+
     handleClick() {}
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
-    ngOnInit() {
-        this.types = [
-            { label: 'red', value: 'Emergência' },
-            { label: 'orange', value: 'Muito Urgente' },
-            { label: 'yellow', value: 'Urgente' },
-            { label: 'green', value: 'Pouco Urgente' },
-            { label: 'blue', value: 'Não Urgente' },
-        ];
-    }
+
+    ngOnInit() {}
 }

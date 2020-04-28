@@ -1,6 +1,7 @@
-<app-classificacao-de-risco></app-classificacao-de-risco>
-
 <form class="ui-g ui-fluid" #form [formGroup]="formTriagem" (ngSubmit)="cadastrar(form)">
+    <div class="ui-g-12">
+        <app-classificacao-de-risco></app-classificacao-de-risco>
+    </div>
     <div class="ui-g-12">
         <div class="ui-g-12">
             <div class="ui-g-12 ui-sm-12">
@@ -9,7 +10,7 @@
                         type="text"
                         pTooltip="Informe nome do paciente"
                         pInputText
-                        formControlName="nomeDoPaciente"
+                        formControlName="paciente"
                     />
                     <label>Nome do Paciente</label>
                 </span>
