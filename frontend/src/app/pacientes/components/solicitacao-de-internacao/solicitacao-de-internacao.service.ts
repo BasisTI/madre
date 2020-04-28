@@ -1,3 +1,4 @@
+import { Equipe } from './equipe.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,7 +16,7 @@ export interface ISolicitacaoDeInternacao {
     dataProvavelDaCirurgia?: Date;
     prioridade?: string;
     especialidade?: IEspecialidade;
-    equipe?: string;
+    equipe?: Equipe;
     crm?: ICRM;
     principaisSinaisESintomasClinicos?: string;
     condicoesQueJustificamInternacao?: string;
@@ -33,7 +34,7 @@ export class SolicitacaoDeInternacao implements ISolicitacaoDeInternacao {
         public dataProvavelDaCirurgia?: Date,
         public prioridade?: string,
         public especialidade?: Especialidade,
-        public equipe?: string,
+        public equipe?: Equipe,
         public crm?: CID,
         public principaisSinaisESintomasClinicos?: string,
         public condicoesQueJustificamInternacao?: string,
@@ -52,6 +53,7 @@ export interface ISolicitacaoDeInternacaoDTO {
     cidPrincipalId: number;
     cidSecundarioId: number;
     crmId: number;
+    equipeId: number;
     procedimentoId: number;
 }
 
@@ -66,6 +68,7 @@ export class SolicitacaoDeInternacaoDTO implements ISolicitacaoDeInternacao {
         public cidSecundarioId: number,
         public crmId: number,
         public procedimentoId: number,
+        public equipeId: number,
         public dataProvavelDaCirurgia?: Date,
     ) {}
 }
@@ -89,6 +92,7 @@ export class SolicitacaoDeInternacaoService {
             solicitacao.cidSecundario.valor.id,
             solicitacao.crm.id,
             solicitacao.procedimento.id,
+            solicitacao.equipe.id,
             solicitacao.dataProvavelDaCirurgia,
         );
 
