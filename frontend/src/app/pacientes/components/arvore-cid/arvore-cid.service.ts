@@ -23,6 +23,7 @@ export class ArvoreCidService {
                 const data = parent;
                 const collapsedIcon = 'pi pi-folder';
                 const expandedIcon = 'pi pi-folder';
+                const leaf = false;
 
                 return {
                     label,
@@ -30,6 +31,7 @@ export class ArvoreCidService {
                     data,
                     expandedIcon,
                     collapsedIcon,
+                    leaf,
                 };
             });
     }

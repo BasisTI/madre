@@ -25,96 +25,112 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CIDService {
 
-  private final Logger log = LoggerFactory.getLogger(CIDService.class);
+    private final Logger log = LoggerFactory.getLogger(CIDService.class);
 
-  private final CIDRepository cIDRepository;
+    private final CIDRepository cidRepository;
 
-  private final CIDMapper cIDMapper;
+    private final CIDMapper cidMapper;
 
-  private final CIDSearchRepository cIDSearchRepository;
+    private final CIDSearchRepository cidSearchRepository;
 
-  public CIDService(CIDRepository cIDRepository, CIDMapper cIDMapper,
-      CIDSearchRepository cIDSearchRepository) {
-    this.cIDRepository = cIDRepository;
-    this.cIDMapper = cIDMapper;
-    this.cIDSearchRepository = cIDSearchRepository;
-  }
+    public CIDService(CIDRepository cIDRepository, CIDMapper cIDMapper,
+        CIDSearchRepository cIDSearchRepository) {
+        this.cidRepository = cIDRepository;
+        this.cidMapper = cIDMapper;
+        this.cidSearchRepository = cIDSearchRepository;
+    }
 
-  /**
-   * Save a cID.
-   *
-   * @param cIDDTO the entity to save
-   * @return the persisted entity
-   */
-  public CIDDTO save(CIDDTO cIDDTO) {
-    log.debug("Request to save CID : {}", cIDDTO);
+    /**
+     * Save a cID.
+     *
+     * @param cIDDTO the entity to save
+     * @return the persisted entity
+     */
+    public CIDDTO save(CIDDTO cIDDTO) {
+        log.debug("Request to save CID : {}", cIDDTO);
 
-    CID cID = cIDMapper.toEntity(cIDDTO);
-    cID = cIDRepository.save(cID);
-    CIDDTO result = cIDMapper.toDto(cID);
-    cIDSearchRepository.save(cID);
-    return result;
-  }
+        CID cID = cidMapper.toEntity(cIDDTO);
+        cID = cidRepository.save(cID);
+        CIDDTO result = cidMapper.toDto(cID);
+        cidSearchRepository.save(cID);
+        return result;
+    }
 
-  @Transactional(readOnly = true)
-  public Page<CIDDTO> findAll(CIDDTO cidDTO, Pageable pageable) {
-    log.debug("Request to get all CIDS");
-    return cIDRepository.findAll(
-        Example.of(cIDMapper.toEntity(cidDTO),
-            ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING))
-        , pageable)
-        .map(cIDMapper::toDto);
-  }
+    @Transactional(readOnly = true)
+    public Page<CIDDTO> findAll(CIDDTO cidDTO, Pageable pageable) {
+        log.debug("Request to get all CIDS");
+        return cidRepository.findAll(
+            Example.of(cidMapper.toEntity(cidDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(StringMatcher.CONTAINING))
+            , pageable)
+            .map(cidMapper::toDto);
+    }
 
-  /**
-   * Get all the cIDS.
-   *
-   * @param pageable the pagination information
-   * @return the list of entities
-   */
-  @Transactional(readOnly = true)
-  public Page<CIDDTO> findAll(Pageable pageable) {
-    log.debug("Request to get all CIDS");
-    return cIDRepository.findAll(pageable)
-        .map(cIDMapper::toDto);
-  }
+    @Transactional(readOnly = true)
+    public Page<CIDDTO> findAllParents(CIDDTO cidDTO, Pageable pageable) {
+        log.debug("Request to get all parent CIDS");
+        Page<CIDDTO> page = cidRepository.findByParentIsNull(pageable).map(cidMapper::toDto);
+        return page;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<CIDDTO> findAllChindrenFromParentId(Long parentId,
+        Pageable pageable) {
+        log.debug("Request to get all children from cid with id: {}", parentId);
+        Page<CIDDTO> page = cidRepository.findByParentId(parentId, pageable).map(cidMapper::toDto);
+        return page;
+    }
+
+    /**
+     * Get all the cIDS.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<CIDDTO> findAll(Pageable pageable) {
+        log.debug("Request to get all CIDS");
+        return cidRepository.findAll(pageable)
+            .map(cidMapper::toDto);
+    }
 
 
-  /**
-   * Get one cID by id.
-   *
-   * @param id the id of the entity
-   * @return the entity
-   */
-  @Transactional(readOnly = true)
-  public Optional<CIDDTO> findOne(Long id) {
-    log.debug("Request to get CID : {}", id);
-    return cIDRepository.findById(id)
-        .map(cIDMapper::toDto);
-  }
+    /**
+     * Get one cID by id.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    @Transactional(readOnly = true)
+    public Optional<CIDDTO> findOne(Long id) {
+        log.debug("Request to get CID : {}", id);
+        return cidRepository.findById(id)
+            .map(cidMapper::toDto);
+    }
 
-  /**
-   * Delete the cID by id.
-   *
-   * @param id the id of the entity
-   */
-  public void delete(Long id) {
-    log.debug("Request to delete CID : {}", id);
-    cIDRepository.deleteById(id);
-    cIDSearchRepository.deleteById(id);
-  }
+    /**
+     * Delete the cID by id.
+     *
+     * @param id the id of the entity
+     */
+    public void delete(Long id) {
+        log.debug("Request to delete CID : {}", id);
+        cidRepository.deleteById(id);
+        cidSearchRepository.deleteById(id);
+    }
 
-  /**
-   * Search for the cID corresponding to the query.
-   *
-   * @param query    the query of the search
-   * @param pageable the pagination information
-   * @return the list of entities
-   */
-  @Transactional(readOnly = true)
-  public Page<CIDDTO> search(String query, Pageable pageable) {
-    log.debug("Request to search for a page of CIDS for query {}", query);
-    return cIDSearchRepository.search(queryStringQuery(query), pageable)
-        .map(cIDMapper::toDto);
-  }
+    /**
+     * Search for the cID corresponding to the query.
+     *
+     * @param query    the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<CIDDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of CIDS for query {}", query);
+        return cidSearchRepository.search(queryStringQuery(query), pageable)
+            .map(cidMapper::toDto);
+    }
 }

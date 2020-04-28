@@ -1,7 +1,9 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.domain.CID;
 import br.com.basis.madre.service.CIDService;
 import br.com.basis.madre.service.dto.CIDDTO;
+import br.com.basis.madre.service.projection.CidParent;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -110,6 +112,24 @@ public class CIDResource {
     public ResponseEntity<List<CIDDTO>> getAllCIDS(CIDDTO cidDTO, Pageable pageable) {
         log.debug("REST request to get a page of CIDS");
         Page<CIDDTO> page = cIDService.findAll(cidDTO, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
+            ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/tree/parents")
+    public ResponseEntity<List<CIDDTO>> findAllParents(CIDDTO cidDTO, Pageable pageable) {
+        log.debug("REST request to get a page of parent CIDS");
+        Page<CIDDTO> page = cIDService.findAllParents(cidDTO, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
+            ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/tree/parents/{id}/children")
+    public ResponseEntity<List<CIDDTO>> findAllChindrenFromParentId(@PathVariable(name = "id", required = true) Long parentId, Pageable pageable) {
+        log.debug("REST request to get a page of parent CIDS");
+        Page<CIDDTO> page = cIDService.findAllChindrenFromParentId(parentId, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
             ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

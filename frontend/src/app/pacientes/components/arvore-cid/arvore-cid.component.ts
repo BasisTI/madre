@@ -15,6 +15,10 @@ export class ArvoreCidComponent {
 
     constructor(public service: ArvoreCidService) {}
 
+    carregar(evento) {
+        console.log(evento);
+    }
+
     selecionar(evento: { originalEvent: MouseEvent; node: TreeNode }): void {
         this.aoSelecionar.emit(evento);
     }

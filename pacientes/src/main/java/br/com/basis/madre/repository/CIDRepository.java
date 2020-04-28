@@ -1,6 +1,7 @@
 package br.com.basis.madre.repository;
 
 import br.com.basis.madre.domain.CID;
+import br.com.basis.madre.service.projection.CidParent;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,7 @@ public interface CIDRepository extends JpaRepository<CID, Long> {
     <S extends CID> Page<S> findAll(
         Example<S> example,
         Pageable pageable);
+
+    Page<CID> findByParentIsNull(Pageable pageable);
+    Page<CID> findByParentId(Long id, Pageable pageable);
 }

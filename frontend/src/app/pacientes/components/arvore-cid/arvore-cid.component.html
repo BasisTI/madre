@@ -10,5 +10,6 @@
         selectionMode="single"
         (onNodeSelect)="selecionar($event)"
         [(selection)]="selectedFile"
+        (onNodeExpand)="carregar($event)"
     ></p-tree>
 </p-dialog>
