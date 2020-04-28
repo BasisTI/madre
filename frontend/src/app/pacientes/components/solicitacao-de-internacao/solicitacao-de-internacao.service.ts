@@ -9,8 +9,8 @@ import { IProcedimento, Procedimento } from './procedimento.service';
 export interface ISolicitacaoDeInternacao {
     prontuario?: string;
     nomeDoPaciente?: string;
-    cidPrincipal?: ICID;
-    cidSecundario?: ICID;
+    cidPrincipal?: { valor: ICID };
+    cidSecundario?: { valor: ICID };
     dataProvavelDaInternacao?: Date;
     dataProvavelDaCirurgia?: Date;
     prioridade?: string;
@@ -27,8 +27,8 @@ export class SolicitacaoDeInternacao implements ISolicitacaoDeInternacao {
     constructor(
         public prontuario?: string,
         public nomeDoPaciente?: string,
-        public cidPrincipal?: CID,
-        public cidSecundario?: CID,
+        public cidPrincipal?: { valor: CID },
+        public cidSecundario?: { valor: CID },
         public dataProvavelDaInternacao?: Date,
         public dataProvavelDaCirurgia?: Date,
         public prioridade?: string,
@@ -85,8 +85,8 @@ export class SolicitacaoDeInternacaoService {
             solicitacao.principaisSinaisESintomasClinicos,
             solicitacao.condicoesQueJustificamInternacao,
             solicitacao.principaisResultadosProvasDiagnosticas,
-            solicitacao.cidPrincipal.id,
-            solicitacao.cidSecundario.id,
+            solicitacao.cidPrincipal.valor.id,
+            solicitacao.cidSecundario.valor.id,
             solicitacao.crm.id,
             solicitacao.procedimento.id,
             solicitacao.dataProvavelDaCirurgia,

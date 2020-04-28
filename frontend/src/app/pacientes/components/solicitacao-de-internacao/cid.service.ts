@@ -21,7 +21,7 @@ export class CID implements ICID {
     providedIn: 'root',
 })
 export class CidService implements OnInit {
-    private readonly baseApi = 'pacientes/api/cids';
+    private readonly baseApi = 'pacientes/api/cids/test';
     private cids: CID[];
 
     constructor(private client: HttpClient) {}

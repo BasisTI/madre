@@ -1,0 +1,9 @@
+<p-button icon="pi pi-search" (onClick)="abrirArvore($event)"></p-button>
+<p-dialog
+    header="Árvore de Classificação Internacional de Doenças"
+    [modal]="true"
+    [(visible)]="mostrarArvore"
+    (onShow)="aoAbrir()"
+>
+    <p-tree [value]="nodes" selectionMode="single"></p-tree>
+</p-dialog>
