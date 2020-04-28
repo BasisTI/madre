@@ -14,6 +14,10 @@ import java.util.Objects;
  * A CID.
  */
 @Entity
+@NamedEntityGraph(
+    name = "CID.parent",
+    attributeNodes = @NamedAttributeNode("parent")
+)
 @Table(name = "cid")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "cid")
@@ -34,7 +38,7 @@ public class CID implements Serializable {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private CID parent;
 
@@ -73,6 +77,15 @@ public class CID implements Serializable {
         this.descricao = descricao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+
+    public CID getParent() {
+        return parent;
+    }
+
+    public void setParent(CID parent) {
+        this.parent = parent;
+    }
 
     @Override
     public boolean equals(Object o) {

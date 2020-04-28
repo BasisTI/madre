@@ -10,9 +10,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface CIDMapper extends EntityMapper<CIDDTO, CID> {
-
-
-
     default CID fromId(Long id) {
         if (id == null) {
             return null;
