@@ -20,4 +20,8 @@ export class PesquisaCidComponent {
     @Input() required = false;
 
     constructor(private fb: FormBuilder, public service: CidService) {}
+
+    selecionarNaArvore(evento: { originalEvent: MouseEvent; node: TreeNode }): void {
+        this.group.controls.valor.setValue(evento.node.data);
+    }
 }

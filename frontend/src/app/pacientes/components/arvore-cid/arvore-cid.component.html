@@ -5,5 +5,10 @@
     [(visible)]="mostrarArvore"
     (onShow)="aoAbrir()"
 >
-    <p-tree [value]="nodes" selectionMode="single"></p-tree>
+    <p-tree
+        [value]="nodes"
+        selectionMode="single"
+        (onNodeSelect)="selecionar($event)"
+        [(selection)]="selectedFile"
+    ></p-tree>
 </p-dialog>

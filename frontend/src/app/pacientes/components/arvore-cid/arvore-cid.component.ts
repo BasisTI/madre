@@ -1,6 +1,6 @@
 import { ArvoreCidService } from './arvore-cid.service';
 import { TreeNode } from 'primeng/api';
-import { Component, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-arvore-cid',
@@ -11,8 +11,13 @@ export class ArvoreCidComponent {
     nodes: TreeNode[];
     mostrarArvore = false;
     @Output() aoSelecionar = new EventEmitter();
+    selecionado;
 
     constructor(public service: ArvoreCidService) {}
+
+    selecionar(evento: { originalEvent: MouseEvent; node: TreeNode }): void {
+        this.aoSelecionar.emit(evento);
+    }
 
     abrirArvore(evento: MouseEvent): void {
         this.mostrarArvore = true;

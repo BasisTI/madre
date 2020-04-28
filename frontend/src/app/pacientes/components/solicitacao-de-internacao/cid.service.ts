@@ -1,5 +1,4 @@
 import { Injectable, OnInit } from '@angular/core';
-import { CrudServiceNuvem } from '@nuvem/primeng-components';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 export interface ICID {
@@ -21,7 +20,7 @@ export class CID implements ICID {
     providedIn: 'root',
 })
 export class CidService implements OnInit {
-    private readonly baseApi = 'pacientes/api/cids/test';
+    private readonly baseApi = 'pacientes/api/cids';
     private cids: CID[];
 
     constructor(private client: HttpClient) {}
