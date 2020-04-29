@@ -1,8 +1,8 @@
 package br.com.basis.madre.service.dto;
 
+import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
+
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -16,6 +16,7 @@ public class TriagemDTO implements Serializable {
     private Long id;
 
     @NotNull
+    private ClassificacaoDeRisco classificacaoDeRisco;
 
     private BigDecimal pressaoArterial;
 
@@ -37,6 +38,7 @@ public class TriagemDTO implements Serializable {
 
     private Boolean removidoDeAmbulancia;
 
+    @NotNull
     private Long pacienteId;
 
     public Long getId() {
@@ -47,7 +49,15 @@ public class TriagemDTO implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getPressaoArterial() {        return pressaoArterial;
+    public ClassificacaoDeRisco getClassificacaoDeRisco() {
+        return classificacaoDeRisco;
+    }
+
+    public void setClassificacaoDeRisco(ClassificacaoDeRisco classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
+    }
+
+    public BigDecimal getPressaoArterial() { return pressaoArterial;
     }
 
     public void setPressaoArterial(BigDecimal pressaoArterial) {
@@ -149,6 +159,7 @@ public class TriagemDTO implements Serializable {
     public String toString() {
         return "TriagemDTO{" +
             "id=" + getId() +
+            ", classificacaoDeRisco='" + getClassificacaoDeRisco() + "'" +
             ", pressaoArterial=" + getPressaoArterial() +
             ", frequenciaCardiaca=" + getFrequenciaCardiaca() +
             ", temperatura=" + getTemperatura() +

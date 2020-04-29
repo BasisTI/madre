@@ -1,5 +1,7 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
+import br.com.basis.madre.domain.enumeration.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -8,6 +10,9 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -26,6 +31,11 @@ public class Triagem implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "classificacao_de_risco", nullable = false)
+    private ClassificacaoDeRisco classificacaoDeRisco;
 
     @Column(name = "pressao_arterial", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
@@ -64,6 +74,10 @@ public class Triagem implements Serializable {
 
     @Column(name = "removido_de_ambulancia")
     private Boolean removidoDeAmbulancia;
+
+    @Field(type = FieldType.Text)
+    @Column(name = "Observacao")
+    private String observacao;
 
     @ManyToOne
     @NotNull
@@ -179,6 +193,19 @@ public class Triagem implements Serializable {
         return this;
     }
 
+    public ClassificacaoDeRisco getClassificacaoDeRisco() {
+        return classificacaoDeRisco;
+    }
+
+    public void setClassificacaoDeRisco(ClassificacaoDeRisco classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
+    }
+
+    public Triagem ClassificacaoDeRisco (ClassificacaoDeRisco classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
+        return this;
+    }
+
     public void setVitimaDeAcidente(Boolean vitimaDeAcidente) {
         this.vitimaDeAcidente = vitimaDeAcidente;
     }
@@ -208,6 +235,19 @@ public class Triagem implements Serializable {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public Triagem observacao(String observacao) {
+        this.observacao = observacao;
+        return this;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -234,6 +274,7 @@ public class Triagem implements Serializable {
     public String toString() {
         return "Triagem{" +
             "id=" + getId() +
+            ", classificacaoDeRisco=" + getClassificacaoDeRisco() +
             ", pressaoArterial=" + getPressaoArterial() +
             ", frequenciaCardiaca=" + getFrequenciaCardiaca() +
             ", temperatura=" + getTemperatura() +
@@ -243,6 +284,7 @@ public class Triagem implements Serializable {
             ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
             ", vitimaDeAcidente='" + isVitimaDeAcidente() + "'" +
             ", removidoDeAmbulancia='" + isRemovidoDeAmbulancia() + "'" +
+            ", observacao='" + getObservacao() + "'" +
             "}";
     }
 }
