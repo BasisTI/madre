@@ -37,11 +37,6 @@ export class AppMenuComponent implements OnInit {
                         icon: 'add',
                         routerLink: ['/pacientes/cadastro'],
                     },
-                    {
-                        label: 'Solicitação de Internação',
-                        icon: 'add',
-                        routerLink: ['/pacientes/solicitacao-de-internacao'],
-                    },
                 ],
             },
             {
@@ -60,6 +55,17 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: 'Atendimento',
+                        icon: 'add',
+                    },
+                ],
+            },
+            {
+                label: 'Internação',
+                icon: 'dashboard',
+                routerLink: ['/internacao'],
+                items: [
+                    {
+                        label: 'Solicitar Internação',
                         icon: 'add',
                     },
                 ],
