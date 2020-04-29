@@ -32,20 +32,20 @@ public class FormularioCadastroDTO implements Serializable {
         this.dadosPessoais = dadosPessoais;
     }
 
-    public List<TelefoneDTO> getTelefone() {
+    public List<TelefoneDTO> getTelefones() {
         return telefones;
     }
 
-    public void setTelefone(List<TelefoneDTO> telefone) {
-        this.telefones = telefone;
+    public void setTelefones(List<TelefoneDTO> telefones) {
+        this.telefones = telefones;
     }
 
-    public List<EnderecoDTO> getEndereco() {
+    public List<EnderecoDTO> getEnderecos() {
         return enderecos;
     }
 
-    public void setEndereco(List<EnderecoDTO> endereco) {
-        this.enderecos = endereco;
+    public void setEnderecos(List<EnderecoDTO> enderecos) {
+        this.enderecos = enderecos;
     }
 
     public ResponsavelDTO getResponsavel() {
@@ -64,12 +64,12 @@ public class FormularioCadastroDTO implements Serializable {
         this.certidao = certidao;
     }
 
-    public CadastroDocumentosDTO getDocumento() {
+    public CadastroDocumentosDTO getDocumentos() {
         return documentos;
     }
 
-    public void setDocumento(CadastroDocumentosDTO documento) {
-        this.documentos = documento;
+    public void setDocumentos(CadastroDocumentosDTO documentos) {
+        this.documentos = documentos;
     }
 
     public CartaoSUSDTO getCartaoSUS() {
