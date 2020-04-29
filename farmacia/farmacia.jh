@@ -1,0 +1,15 @@
+entity DispensacaoMedicamentos {
+    idPrescricao Long
+    usuarioQueCriou Long
+    dataDeCriacao LocalDate
+    usuarioQueAlterou Long
+    dataDeAlteracao LocalDate
+}
+entity Medicamento {
+    codigo String
+    descricao String
+    situacao Boolean
+}
+relationship ManyToMany {
+    DispensacaoMedicamentos{medicamentos} to Medicamento
+}
