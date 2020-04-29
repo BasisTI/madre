@@ -1,0 +1,119 @@
+{
+    "name": "Internacao",
+    "fields": [
+        {
+            "fieldName": "prioridade",
+            "fieldType": "Prioridade",
+            "fieldValues": "ELETIVA,URGENCIA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "justificativa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataDaInternacao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "diferencaDeClasse",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "solicitarProntuario",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "especialidade",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "especialidade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cRM",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "crm",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "hospital",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "hospitalDeOrigem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "origemDaInternacao",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "origem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "convenioDeSaude",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "convenio",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "planoDeSaude",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "plano",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "procedimento",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "procedimento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "procedencia",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "procedencia",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "modalidadeAssistencial",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "modalidadeAssistencial",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "localDeAtendimento",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "localDeAtendimento",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200429130304",
+    "entityTableName": "internacao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}
