@@ -1,36 +1,48 @@
 package br.com.basis.madre.service.dto;
 
 import java.time.LocalDate;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.DocumentoDeReferencia;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.CartaoSUS} entity.
  */
 public class CartaoSUSDTO implements Serializable {
-    
+
     private Long id;
+
 
     @NotNull
     private String numero;
 
+    @JsonProperty("docReferencia")
+    @Enumerated(EnumType.STRING)
     private DocumentoDeReferencia documentoDeReferencia;
 
+    @JsonProperty("cartaoNacional")
     private String cartaoNacionalSaudeMae;
 
+    @JsonProperty("dataDeEntrada")
     private LocalDate dataDeEntradaNoBrasil;
 
     private LocalDate dataDeNaturalizacao;
 
     private String portaria;
 
+    private JustificativaDTO justificativa;
+
+    @JsonProperty("motivoCadastro")
+    private MotivoDoCadastroDTO motivoDoCadastro;
 
     private Long justificativaId;
 
     private Long motivoDoCadastroId;
-    
+
     public Long getId() {
         return id;
     }
@@ -103,6 +115,22 @@ public class CartaoSUSDTO implements Serializable {
         this.motivoDoCadastroId = motivoDoCadastroId;
     }
 
+    public JustificativaDTO getJustificativa() {
+        return justificativa;
+    }
+
+    public void setJustificativa(JustificativaDTO justificativa) {
+        this.justificativa = justificativa;
+    }
+
+    public MotivoDoCadastroDTO getMotivoDoCadastro() {
+        return motivoDoCadastro;
+    }
+
+    public void setMotivoDoCadastro(MotivoDoCadastroDTO motivoDoCadastro) {
+        this.motivoDoCadastro = motivoDoCadastro;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -127,15 +155,17 @@ public class CartaoSUSDTO implements Serializable {
     @Override
     public String toString() {
         return "CartaoSUSDTO{" +
-            "id=" + getId() +
-            ", numero='" + getNumero() + "'" +
-            ", documentoDeReferencia='" + getDocumentoDeReferencia() + "'" +
-            ", cartaoNacionalSaudeMae='" + getCartaoNacionalSaudeMae() + "'" +
-            ", dataDeEntradaNoBrasil='" + getDataDeEntradaNoBrasil() + "'" +
-            ", dataDeNaturalizacao='" + getDataDeNaturalizacao() + "'" +
-            ", portaria='" + getPortaria() + "'" +
-            ", justificativaId=" + getJustificativaId() +
-            ", motivoDoCadastroId=" + getMotivoDoCadastroId() +
-            "}";
+            "id=" + id +
+            ", numero='" + numero  +
+            ", documentoDeReferencia=" + documentoDeReferencia +
+            ", cartaoNacionalSaudeMae='" + cartaoNacionalSaudeMae  +
+            ", dataDeEntradaNoBrasil=" + dataDeEntradaNoBrasil +
+            ", dataDeNaturalizacao=" + dataDeNaturalizacao +
+            ", portaria='" + portaria  +
+            ", justificativa=" + justificativa +
+            ", motivoDoCadastro=" + motivoDoCadastro +
+            ", justificativaId=" + justificativaId +
+            ", motivoDoCadastroId=" + motivoDoCadastroId +
+            '}';
     }
 }

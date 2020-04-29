@@ -9,10 +9,10 @@ public class FormularioCadastroDTO implements Serializable {
 
     private DadosPessoaisDTO dadosPessoais;
     private List<TelefoneDTO> telefones;
-    private List<EnderecoDTO> endereco;
+    private List<EnderecoDTO> enderecos;
     private ResponsavelDTO responsavel;
     private CertidaoDTO certidao;
-    private DocumentoDTO documento;
+    private CadastroDocumentosDTO documentos;
     private CartaoSUSDTO cartaoSUS;
     private String observacao;
 
@@ -41,11 +41,11 @@ public class FormularioCadastroDTO implements Serializable {
     }
 
     public List<EnderecoDTO> getEndereco() {
-        return endereco;
+        return enderecos;
     }
 
     public void setEndereco(List<EnderecoDTO> endereco) {
-        this.endereco = endereco;
+        this.enderecos = endereco;
     }
 
     public ResponsavelDTO getResponsavel() {
@@ -64,12 +64,12 @@ public class FormularioCadastroDTO implements Serializable {
         this.certidao = certidao;
     }
 
-    public DocumentoDTO getDocumento() {
-        return documento;
+    public CadastroDocumentosDTO getDocumento() {
+        return documentos;
     }
 
-    public void setDocumento(DocumentoDTO documento) {
-        this.documento = documento;
+    public void setDocumento(CadastroDocumentosDTO documento) {
+        this.documentos = documento;
     }
 
     public CartaoSUSDTO getCartaoSUS() {
@@ -92,11 +92,11 @@ public class FormularioCadastroDTO implements Serializable {
     public String toString() {
         return "FormularioCadastroDTO{" +
             "dadosPessoais=" + dadosPessoais +
-            ", telefone=" + telefones +
-            ", endereco=" + endereco +
+            ", telefones=" + telefones +
+            ", enderecos=" + enderecos +
             ", responsavel=" + responsavel +
             ", certidao=" + certidao +
-            ", documento=" + documento +
+            ", documentos=" + documentos +
             ", cartaoSUS=" + cartaoSUS +
             ", observacao='" + observacao + '\'' +
             '}';

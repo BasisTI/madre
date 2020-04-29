@@ -12,9 +12,49 @@ public class ResponsavelDTO implements Serializable {
 
     private String nomeDoResponsavel;
 
+    private String grauDeParentesco;
+
+    private String telefone;
+
+    private String ddd;
+
+    private String observacao;
+
     private Long telefoneId;
 
     private Long grauDeParentescoId;
+
+    public String getGrauDeParentesco() {
+        return grauDeParentesco;
+    }
+
+    public void setGrauDeParentesco(String grauDeParentesco) {
+        this.grauDeParentesco = grauDeParentesco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getDdd() {
+        return ddd;
+    }
+
+    public void setDdd(String ddd) {
+        this.ddd = ddd;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 
     public Long getId() {
         return id;
@@ -72,10 +112,14 @@ public class ResponsavelDTO implements Serializable {
     @Override
     public String toString() {
         return "ResponsavelDTO{" +
-            "id=" + getId() +
-            ", nomeDoResponsavel='" + getNomeDoResponsavel() + "'" +
-            ", telefoneId=" + getTelefoneId() +
-            ", grauDeParentescoId=" + getGrauDeParentescoId() +
-            "}";
+            "id=" + id +
+            ", nomeDoResponsavel='" + nomeDoResponsavel + '\'' +
+            ", grauDeParentesco=" + grauDeParentesco +
+            ", telefone='" + telefone + '\'' +
+            ", ddd='" + ddd + '\'' +
+            ", observacao='" + observacao + '\'' +
+            ", telefoneId=" + telefoneId +
+            ", grauDeParentescoId=" + grauDeParentescoId +
+            '}';
     }
 }
