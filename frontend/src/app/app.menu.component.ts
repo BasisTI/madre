@@ -70,28 +70,33 @@ export class AppMenuComponent implements OnInit {
                 icon: 'assignment_ind',
                 items: [
                     {
-                      label: 'Médica',
-                      icon: 'remove',
-                      items: [
-                        {label: 'Prescrever', routerLink: ['/prescricao-medica']},
-                      ]
+                        label: 'Médica',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
                     },
                     {
                         label: 'Enfermagem',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'},
-                      ],
+                        items: [{ label: 'Prescrever' }],
                     },
                     {
                         label: 'Multiprofisisonal',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'}
-                        ]
+                        items: [{ label: 'Prescrever' }],
                     },
-                ]
-            }
+                ],
+            },
+            {
+                label: 'Farmacia',
+                icon: 'assignment_ind',
+                items: [
+                    {
+                        label: 'DispensacaoMedicamentos',
+                        icon: 'add',
+                        routerLink: ['/farmacia'],
+                    },
+                ],
+            },
         ];
     }
 

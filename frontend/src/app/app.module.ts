@@ -1,3 +1,4 @@
+import { FarmaciaModule } from './farmacia/farmacia/farmacia.module';
 import { PRIMENG_IMPORTS } from './primeng-imports';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -66,8 +67,8 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         SecurityModule.forRoot(),
         PrescricaoMedicaModule,
         DatatableModule.forRoot(),
-
-        PrescricaoMedicaModule
+        FarmaciaModule,
+        PrescricaoMedicaModule,
     ],
     declarations: [
         AppComponent,
@@ -97,7 +98,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         { provide: AbstractAuthentication, useClass: AuthenticationService },
 
         BreadcrumbService,
-        PrescricaoMedicaService
+        PrescricaoMedicaService,
     ],
     bootstrap: [AppComponent],
 })

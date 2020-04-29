@@ -5,8 +5,9 @@ import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { LoginSuccessComponent } from '@nuvem/angular-base';
 
 export const routes: Routes = [
-    { path: 'prescricao-medica',
-        loadChildren: 'src/app/prescricao-medica/prescricao-medica.module#PrescricaoMedicaModule'
+    {
+        path: 'prescricao-medica',
+        loadChildren: 'src/app/prescricao-medica/prescricao-medica.module#PrescricaoMedicaModule',
     },
     { path: 'diario-erros', component: DiarioErrosComponent },
     { path: 'login-success', component: LoginSuccessComponent },
@@ -21,6 +22,10 @@ export const routes: Routes = [
     {
         path: 'solicitacao-de-internacao',
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+    },
+    {
+        path: 'farmacia',
+        loadChildren: 'src/app/farmacia/farmacia/farmacia.module#FarmaciaModule',
     },
 ];
 
