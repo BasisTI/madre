@@ -47,6 +47,10 @@
                         class="ui-button-info">
                     </basis-datatable-button>
 
+                    <basis-datatable-button icon="add-circle-outline" name="prescrever-medicamento" routerLink="/prescricao-medica/medicamento" routerLinkActive="router-link-active"  [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
+                        class="ui-button-info">
+                    </basis-datatable-button>
+
                 </basis-datatable>
             </div>
         </div>

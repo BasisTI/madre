@@ -43,6 +43,7 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     ngOnInit(
     ) {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);
+
         this.listar();
     }
 
