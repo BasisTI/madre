@@ -100,9 +100,10 @@ public class ConvenioDeSaudeResource {
      * convenioDeSaudes in body.
      */
     @GetMapping("/convenios-de-saude")
-    public ResponseEntity<List<ConvenioDeSaudeDTO>> getAllConvenioDeSaudes(Pageable pageable) {
+    public ResponseEntity<List<ConvenioDeSaudeDTO>> getAllConvenioDeSaudes(
+        ConvenioDeSaudeDTO convenioDeSaudeDTO, Pageable pageable) {
         log.debug("REST request to get a page of ConvenioDeSaudes");
-        Page<ConvenioDeSaudeDTO> page = convenioDeSaudeService.findAll(pageable);
+        Page<ConvenioDeSaudeDTO> page = convenioDeSaudeService.findAll(convenioDeSaudeDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

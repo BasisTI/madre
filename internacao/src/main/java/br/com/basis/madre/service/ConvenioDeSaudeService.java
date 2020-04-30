@@ -11,6 +11,9 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,13 +50,19 @@ public class ConvenioDeSaudeService {
     /**
      * Get all the convenioDeSaudes.
      *
-     * @param pageable the pagination information.
+     * @param convenioDeSaudeDTO
+     * @param pageable           the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<ConvenioDeSaudeDTO> findAll(Pageable pageable) {
+    public Page<ConvenioDeSaudeDTO> findAll(
+        ConvenioDeSaudeDTO convenioDeSaudeDTO, Pageable pageable) {
         log.debug("Request to get all ConvenioDeSaudes");
-        return convenioDeSaudeRepository.findAll(pageable)
+        return convenioDeSaudeRepository.findAll(
+            Example.of(convenioDeSaudeMapper.toEntity(convenioDeSaudeDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
+                    StringMatcher.CONTAINING))
+            , pageable)
             .map(convenioDeSaudeMapper::toDto);
     }
 
