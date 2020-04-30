@@ -1,4 +1,17 @@
 {
+    "/pacientes/api": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+
+    "/prescricao/api": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/internacao/api": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
     "/api": {
         "target": "http://localhost:8080",
         "secure": false
@@ -8,14 +21,6 @@
         "secure": false
     },
     "/cas/logout": {
-        "target": "http://localhost:8080",
-        "secure": false
-    },
-    "/pacientes/api": {
-        "target": "http://localhost:8080",
-        "secure": false
-    },
-    "/internacao/api": {
         "target": "http://localhost:8080",
         "secure": false
     }

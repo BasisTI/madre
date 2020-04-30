@@ -28,8 +28,10 @@ eureka:
 
 spring:
     profiles:
-        active: dev
-        include: swagger
+        active: dev 
+        include: 
+         - swagger
+         - login-automatico
     devtools:
         restart:
             enabled: true
@@ -39,8 +41,8 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/cadastrosbasicos
-        username: cadastrosbasicos
+        url: jdbc:postgresql://localhost:5432/prescricao
+        username: prescricao
         password:
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
