@@ -7,9 +7,24 @@ entity DispensacaoMedicamentos {
 }
 entity Medicamento {
     codigo String
+    nome String
     descricao String
+    concentracao String
+    unidade String
+    apresentacao String 
     situacao Boolean
 }
+entity Tipo {
+	descricao String
+}
+entity Apresentacao {
+	descricao String
+}
+
 relationship ManyToMany {
     DispensacaoMedicamentos{medicamentos} to Medicamento
+}
+relationship OneToMany {
+	Medicamento{tipo} to Tipo
+    Medicamento{tipo} to Apresentacao
 }
