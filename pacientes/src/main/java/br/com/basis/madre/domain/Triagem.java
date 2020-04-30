@@ -80,7 +80,7 @@ public class Triagem implements Serializable {
     private String observacao;
 
     @ManyToOne
-    @NotNull
+    //@NotNull
     @JsonIgnoreProperties("")
     private Paciente paciente;
 

@@ -15,20 +15,23 @@ public class TriagemDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
+    //@NotNull
     private ClassificacaoDeRisco classificacaoDeRisco;
 
-    private BigDecimal pressaoArterial;
+    private String paciente;
 
-    private BigDecimal frequenciaCardiaca;
-
-    private BigDecimal temperatura;
-
-    private BigDecimal peso;
+    //BigDecimal
+    private String pressaoArterial;
+    //BigDecimal
+    private String frequenciaCardiaca;
+    //BigDecimal
+    private String temperatura;
+    //BigDecimal
+    private String peso;
 
     private String sinaisSintomas;
-
-    private ZonedDateTime dataHoraDoAtendimento;
+    //ZonedDateTime
+    private String dataHoraDoAtendimento;
 
 
     @NotNull
@@ -38,7 +41,7 @@ public class TriagemDTO implements Serializable {
 
     private Boolean removidoDeAmbulancia;
 
-    @NotNull
+    //@NotNull
     private Long pacienteId;
 
     public Long getId() {
@@ -57,36 +60,46 @@ public class TriagemDTO implements Serializable {
         this.classificacaoDeRisco = classificacaoDeRisco;
     }
 
-    public BigDecimal getPressaoArterial() { return pressaoArterial;
+    public String getPaciente() {
+        return paciente;
     }
 
-    public void setPressaoArterial(BigDecimal pressaoArterial) {
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
+    }
+
+    public String getPressaoArterial() {
+        return pressaoArterial;
+    }
+
+    public void setPressaoArterial(String pressaoArterial) {
         this.pressaoArterial = pressaoArterial;
     }
 
-    public BigDecimal getFrequenciaCardiaca() {
+    public String getFrequenciaCardiaca() {
         return frequenciaCardiaca;
     }
 
-    public void setFrequenciaCardiaca(BigDecimal frequenciaCardiaca) {
+    public void setFrequenciaCardiaca(String frequenciaCardiaca) {
         this.frequenciaCardiaca = frequenciaCardiaca;
     }
 
-    public BigDecimal getTemperatura() {
+    public String getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(BigDecimal temperatura) {
+    public void setTemperatura(String temperatura) {
         this.temperatura = temperatura;
     }
 
-    public BigDecimal getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(BigDecimal peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
+
     public String getSinaisSintomas() {
         return sinaisSintomas;
     }
@@ -95,10 +108,11 @@ public class TriagemDTO implements Serializable {
         this.sinaisSintomas = sinaisSintomas;
     }
 
-    public ZonedDateTime getDataHoraDoAtendimento() {
+    public String getDataHoraDoAtendimento() {
         return dataHoraDoAtendimento;
     }
-    public void setDataHoraDoAtendimento(ZonedDateTime dataHoraDoAtendimento) {
+
+    public void setDataHoraDoAtendimento(String dataHoraDoAtendimento) {
         this.dataHoraDoAtendimento = dataHoraDoAtendimento;
     }
 
@@ -110,7 +124,7 @@ public class TriagemDTO implements Serializable {
         this.descricaoQueixa = descricaoQueixa;
     }
 
-    public Boolean isVitimaDeAcidente() {
+    public Boolean getVitimaDeAcidente() {
         return vitimaDeAcidente;
     }
 
@@ -118,7 +132,7 @@ public class TriagemDTO implements Serializable {
         this.vitimaDeAcidente = vitimaDeAcidente;
     }
 
-    public Boolean isRemovidoDeAmbulancia() {
+    public Boolean getRemovidoDeAmbulancia() {
         return removidoDeAmbulancia;
     }
 
@@ -158,19 +172,19 @@ public class TriagemDTO implements Serializable {
     @Override
     public String toString() {
         return "TriagemDTO{" +
-            "id=" + getId() +
-            ", classificacaoDeRisco='" + getClassificacaoDeRisco() + "'" +
-            ", pressaoArterial=" + getPressaoArterial() +
-            ", frequenciaCardiaca=" + getFrequenciaCardiaca() +
-            ", temperatura=" + getTemperatura() +
-            ", peso=" + getPeso() +
-            ", sinaisSintomas='" + getSinaisSintomas() + "'" +
-            ", dataHoraDoAtendimento='" + getDataHoraDoAtendimento() + "'" +
-            ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
-            ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
-            ", vitimaDeAcidente='" + isVitimaDeAcidente() + "'" +
-            ", removidoDeAmbulancia='" + isRemovidoDeAmbulancia() + "'" +
-            ", paciente=" + getPacienteId() +
-            "}";
+            "id=" + id +
+            ", classificacaoDeRisco=" + classificacaoDeRisco +
+            ", paciente=" + paciente +
+            ", pressaoArterial='" + pressaoArterial + '\'' +
+            ", frequenciaCardiaca='" + frequenciaCardiaca + '\'' +
+            ", temperatura='" + temperatura + '\'' +
+            ", peso='" + peso + '\'' +
+            ", sinaisSintomas='" + sinaisSintomas + '\'' +
+            ", dataHoraDoAtendimento='" + dataHoraDoAtendimento + '\'' +
+            ", descricaoQueixa='" + descricaoQueixa + '\'' +
+            ", vitimaDeAcidente=" + vitimaDeAcidente +
+            ", removidoDeAmbulancia=" + removidoDeAmbulancia +
+            ", pacienteId=" + pacienteId +
+            '}';
     }
 }
