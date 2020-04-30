@@ -12,6 +12,14 @@ import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-in
 import { routes } from './internacao.routes';
 import { CidPipe } from './pipes/cid.pipe';
 import { InternacaoDePacienteComponent } from './components/internacao-de-paciente/internacao-de-paciente.component';
+import { PlanoDeSaudeComponent } from './components/plano-de-saude/plano-de-saude.component';
+import { ConvenioDeSaudeComponent } from './components/convenio-de-saude/convenio-de-saude.component';
+import { CaraterDaInternacaoComponent } from './components/carater-da-internacao/carater-da-internacao.component';
+import { OrigemDaInternacaoComponent } from './components/origem-da-internacao/origem-da-internacao.component';
+import { HospitalComponent } from './components/hospital/hospital.component';
+import { ProcedenciaComponent } from './components/procedencia/procedencia.component';
+import { LocalDeAtendimentoComponent } from './components/local-de-atendimento/local-de-atendimento.component';
+import { ModalidadeAssistencialComponent } from './components/modalidade-assistencial/modalidade-assistencial.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +32,14 @@ import { InternacaoDePacienteComponent } from './components/internacao-de-pacien
         CrmComponent,
         CidComponent,
         InternacaoDePacienteComponent,
+        PlanoDeSaudeComponent,
+        ConvenioDeSaudeComponent,
+        CaraterDaInternacaoComponent,
+        OrigemDaInternacaoComponent,
+        HospitalComponent,
+        ProcedenciaComponent,
+        LocalDeAtendimentoComponent,
+        ModalidadeAssistencialComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

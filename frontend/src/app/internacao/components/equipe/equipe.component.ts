@@ -30,8 +30,8 @@ export class EquipeComponent implements OnInit, EntityAutoComplete {
     }
 
     aoDesfocar(): void {
-        if (!this.parentFormGroup.get('equipe').value) {
-            this.parentFormGroup.get('equipe').setValue(null);
+        if (!this.parentFormGroup.get(this.name).value) {
+            this.parentFormGroup.get(this.name).setValue(null);
         }
     }
 }

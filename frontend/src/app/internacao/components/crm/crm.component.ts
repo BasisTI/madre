@@ -28,8 +28,8 @@ export class CrmComponent implements OnInit, EntityAutoComplete {
     }
 
     aoDesfocar(): void {
-        if (!this.parentFormGroup.get('crm').value) {
-            this.parentFormGroup.get('crm').setValue(null);
+        if (!this.parentFormGroup.get(this.name).value) {
+            this.parentFormGroup.get(this.name).setValue(null);
         }
     }
 }

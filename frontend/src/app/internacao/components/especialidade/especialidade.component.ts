@@ -33,9 +33,9 @@ export class EspecialidadeComponent implements OnInit, EntityAutoComplete {
             );
     }
 
-    aoDesfocar() {
-        if (!this.parentFormGroup.get('especialidade').value) {
-            this.parentFormGroup.get('especialidade').setValue(null);
+    aoDesfocar(): void {
+        if (!this.parentFormGroup.get(this.name).value) {
+            this.parentFormGroup.get(this.name).setValue(null);
         }
     }
 }

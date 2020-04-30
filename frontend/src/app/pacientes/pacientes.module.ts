@@ -1,4 +1,3 @@
-import { PesquisaCidComponent } from './components/pesquisa-cid/pesquisa-cid.component';
 // tslint:disable-next-line: max-line-length
 import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { NgModule } from '@angular/core';
@@ -38,14 +37,6 @@ import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
 import { UfService } from './components/formulario-paciente/documentos/uf.service';
 import { MunicipioService } from './components/formulario-paciente/endereco/municipio.service';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
-import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
-import { SolicitacaoDeInternacaoService } from './components/solicitacao-de-internacao/solicitacao-de-internacao.service';
-import { EspecialidadeService } from './components/solicitacao-de-internacao/especialidade.service';
-import { CrmService } from './components/solicitacao-de-internacao/crm.service';
-import { ProcedimentoService } from './components/solicitacao-de-internacao/procedimento.service';
-import { CidService } from './components/solicitacao-de-internacao/cid.service';
-import { EquipeService } from './components/solicitacao-de-internacao/equipe.service';
-import { ArvoreCidComponent } from './components/arvore-cid/arvore-cid.component';
 
 @NgModule({
     declarations: [
@@ -64,13 +55,9 @@ import { ArvoreCidComponent } from './components/arvore-cid/arvore-cid.component
         TriagemComponent,
         ClassificacaoDeRiscoComponent,
         FormularioTriagemComponent,
-        SolicitacaoDeInternacaoComponent,
-        PesquisaCidComponent,
-        ArvoreCidComponent,
     ],
     providers: [
         PacientesService,
-        SolicitacaoDeInternacaoService,
         { provide: CRUD_SERVICE, useExisting: RacaService },
         { provide: CRUD_SERVICE, useExisting: EtniaService },
         { provide: CRUD_SERVICE, useExisting: EstadoCivilService },
@@ -84,11 +71,6 @@ import { ArvoreCidComponent } from './components/arvore-cid/arvore-cid.component
         { provide: CRUD_SERVICE, useExisting: MotivoDoCadastro },
         { provide: CRUD_SERVICE, useExisting: UfService },
         { provide: CRUD_SERVICE, useExisting: MunicipioService },
-        { provide: CRUD_SERVICE, useExisting: EspecialidadeService },
-        { provide: CRUD_SERVICE, useExisting: CrmService },
-        { provide: CRUD_SERVICE, useExisting: ProcedimentoService },
-        { provide: CRUD_SERVICE, useExisting: CidService },
-        { provide: CRUD_SERVICE, useExisting: EquipeService },
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],

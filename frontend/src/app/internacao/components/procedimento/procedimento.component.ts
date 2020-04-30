@@ -34,8 +34,8 @@ export class ProcedimentoComponent implements OnInit, EntityAutoComplete {
     }
 
     aoDesfocar(): void {
-        if (!this.parentFormGroup.get('procedimento').value) {
-            this.parentFormGroup.get('procedimento').setValue(null);
+        if (!this.parentFormGroup.get(this.name).value) {
+            this.parentFormGroup.get(this.name).setValue(null);
         }
     }
 }

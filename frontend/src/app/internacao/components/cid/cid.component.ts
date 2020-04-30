@@ -32,8 +32,8 @@ export class CidComponent implements OnInit, EntityAutoComplete {
     }
 
     aoDesfocar(): void {
-        if (!this.parentFormGroup.get('cid').value) {
-            this.parentFormGroup.get('cid').setValue(null);
+        if (!this.parentFormGroup.get(this.name).value) {
+            this.parentFormGroup.get(this.name).setValue(null);
         }
     }
 }
