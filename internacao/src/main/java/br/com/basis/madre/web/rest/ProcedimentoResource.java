@@ -100,9 +100,10 @@ public class ProcedimentoResource {
      * in body.
      */
     @GetMapping("/procedimentos")
-    public ResponseEntity<List<ProcedimentoDTO>> getAllProcedimentos(Pageable pageable) {
+    public ResponseEntity<List<ProcedimentoDTO>> getAllProcedimentos(
+        ProcedimentoDTO procedimentoDTO, Pageable pageable) {
         log.debug("REST request to get a page of Procedimentos");
-        Page<ProcedimentoDTO> page = procedimentoService.findAll(pageable);
+        Page<ProcedimentoDTO> page = procedimentoService.findAll(procedimentoDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

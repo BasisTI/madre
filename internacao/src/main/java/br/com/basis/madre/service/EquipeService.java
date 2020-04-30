@@ -11,6 +11,9 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,13 +50,19 @@ public class EquipeService {
     /**
      * Get all the equipes.
      *
-     * @param pageable the pagination information.
+     * @param equipeDTO
+     * @param pageable  the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<EquipeDTO> findAll(Pageable pageable) {
+    public Page<EquipeDTO> findAll(EquipeDTO equipeDTO,
+        Pageable pageable) {
         log.debug("Request to get all Equipes");
-        return equipeRepository.findAll(pageable)
+        return equipeRepository.findAll(
+            Example.of(equipeMapper.toEntity(equipeDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(StringMatcher.CONTAINING))
+            , pageable)
             .map(equipeMapper::toDto);
     }
 

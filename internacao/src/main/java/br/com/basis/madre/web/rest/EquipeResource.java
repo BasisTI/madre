@@ -98,9 +98,9 @@ public class EquipeResource {
      * body.
      */
     @GetMapping("/equipes")
-    public ResponseEntity<List<EquipeDTO>> getAllEquipes(Pageable pageable) {
+    public ResponseEntity<List<EquipeDTO>> getAllEquipes(EquipeDTO equipeDTO, Pageable pageable) {
         log.debug("REST request to get a page of Equipes");
-        Page<EquipeDTO> page = equipeService.findAll(pageable);
+        Page<EquipeDTO> page = equipeService.findAll(equipeDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

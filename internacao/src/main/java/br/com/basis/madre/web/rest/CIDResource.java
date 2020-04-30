@@ -48,18 +48,22 @@ public class CIDResource {
      * {@code POST  /cids} : Create a new cID.
      *
      * @param cIDDTO the cIDDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new cIDDTO, or with status {@code 400 (Bad Request)} if the cID has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
+     * cIDDTO, or with status {@code 400 (Bad Request)} if the cID has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/cids")
-    public ResponseEntity<CidDTO> createCID(@Valid @RequestBody CidDTO cIDDTO) throws URISyntaxException {
+    public ResponseEntity<CidDTO> createCID(@Valid @RequestBody CidDTO cIDDTO)
+        throws URISyntaxException {
         log.debug("REST request to save CID : {}", cIDDTO);
         if (cIDDTO.getId() != null) {
-            throw new BadRequestAlertException("A new cID cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new cID cannot already have an ID", ENTITY_NAME,
+                "idexists");
         }
         CidDTO result = cidService.save(cIDDTO);
         return ResponseEntity.created(new URI("/api/cids/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
             .body(result);
     }
 
@@ -67,36 +71,69 @@ public class CIDResource {
      * {@code PUT  /cids} : Updates an existing cID.
      *
      * @param cIDDTO the cIDDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated cIDDTO,
-     * or with status {@code 400 (Bad Request)} if the cIDDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the cIDDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
+     * cIDDTO, or with status {@code 400 (Bad Request)} if the cIDDTO is not valid, or with status
+     * {@code 500 (Internal Server Error)} if the cIDDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/cids")
-    public ResponseEntity<CidDTO> updateCID(@Valid @RequestBody CidDTO cIDDTO) throws URISyntaxException {
+    public ResponseEntity<CidDTO> updateCID(@Valid @RequestBody CidDTO cIDDTO)
+        throws URISyntaxException {
         log.debug("REST request to update CID : {}", cIDDTO);
         if (cIDDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         CidDTO result = cidService.save(cIDDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, cIDDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+                cIDDTO.getId().toString()))
             .body(result);
     }
 
     /**
      * {@code GET  /cids} : get all the cIDS.
      *
-
      * @param pageable the pagination information.
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cIDS in body.
      */
     @GetMapping("/cids")
-    public ResponseEntity<List<CidDTO>> getAllCIDS(Pageable pageable) {
+    public ResponseEntity<List<CidDTO>> getAllCIDS(CidDTO cidDTO,Pageable pageable) {
         log.debug("REST request to get a page of CIDS");
-        Page<CidDTO> page = cidService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        Page<CidDTO> page = cidService.findAll(cidDTO, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/arvore/_pais")
+    public ResponseEntity<List<CidDTO>> getCidsPais(Pageable pageable) {
+        Page<CidDTO> page = cidService.getCidsPais(pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/arvore/pais")
+    public ResponseEntity<List<CidDTO>> getCidsPaisComDTO(CidDTO cidDTO, Pageable pageable) {
+        Page<CidDTO> page = cidService.getCidsPais(cidDTO, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/arvore/filhos")
+    public ResponseEntity<List<CidDTO>> getCidsFilhosComDTO(CidDTO cidDTO, Pageable pageable) {
+        Page<CidDTO> page = cidService.getCidsFilhos(cidDTO, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/arvore/_filhos")
+    public ResponseEntity<List<CidDTO>> getCidsFilhos(Pageable pageable) {
+        Page<CidDTO> page = cidService.getCidsFilhos(pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -104,7 +141,8 @@ public class CIDResource {
      * {@code GET  /cids/:id} : get the "id" cID.
      *
      * @param id the id of the cIDDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the cIDDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the cIDDTO, or
+     * with status {@code 404 (Not Found)}.
      */
     @GetMapping("/cids/{id}")
     public ResponseEntity<CidDTO> getCID(@PathVariable Long id) {
@@ -123,14 +161,14 @@ public class CIDResource {
     public ResponseEntity<Void> deleteCID(@PathVariable Long id) {
         log.debug("REST request to delete CID : {}", id);
         cidService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil
+            .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * {@code SEARCH  /_search/cids?query=:query} : search for the cID corresponding
-     * to the query.
+     * {@code SEARCH  /_search/cids?query=:query} : search for the cID corresponding to the query.
      *
-     * @param query the query of the cID search.
+     * @param query    the query of the cID search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
@@ -138,7 +176,8 @@ public class CIDResource {
     public ResponseEntity<List<CidDTO>> searchCIDS(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of CIDS for query {}", query);
         Page<CidDTO> page = cidService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

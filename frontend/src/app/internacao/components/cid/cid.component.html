@@ -1,0 +1,17 @@
+<form [formGroup]="parentFormGroup">
+    <span class="ui-float-label">
+        <p-autoComplete
+            field="descricao"
+            [formControlName]="name"
+            (completeMethod)="aoDigitar($event)"
+            (onBlur)="aoDesfocar()"
+            [required]="required"
+            [suggestions]="filhos"
+            [forceSelection]="true"
+            [dropdown]="true"
+        >
+        </p-autoComplete>
+        <label>CID</label>
+    </span>
+    <app-arvore></app-arvore>
+</form>

@@ -62,11 +62,16 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Internação',
                 icon: 'dashboard',
-                routerLink: ['/internacao'],
                 items: [
                     {
                         label: 'Solicitar Internação',
                         icon: 'add',
+                        routerLink: ['internacao/solicitacao-de-internacao'],
+                    },
+                    {
+                        label: 'Internar Paciente',
+                        icon: 'add',
+                        routerLink: ['internacao/internacao-de-paciente'],
                     },
                 ],
             },

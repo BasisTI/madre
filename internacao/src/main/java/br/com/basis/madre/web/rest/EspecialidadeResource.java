@@ -100,9 +100,10 @@ public class EspecialidadeResource {
      * especialidades in body.
      */
     @GetMapping("/especialidades")
-    public ResponseEntity<List<EspecialidadeDTO>> getAllEspecialidades(Pageable pageable) {
+    public ResponseEntity<List<EspecialidadeDTO>> getAllEspecialidades(
+        EspecialidadeDTO especialidadeDTO, Pageable pageable) {
         log.debug("REST request to get a page of Especialidades");
-        Page<EspecialidadeDTO> page = especialidadeService.findAll(pageable);
+        Page<EspecialidadeDTO> page = especialidadeService.findAll(especialidadeDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
