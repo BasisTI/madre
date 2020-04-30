@@ -41,33 +41,31 @@
             <!-- Plano de Saúde + Convênio de Saúde -->
             <div class="ui-g-12">
                 <div class="ui-g-3">
-                    <app-especialidade
+                    <app-plano-de-saude
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="planoDeSaude"
                         label="Plano de Saúde"
-                    ></app-especialidade>
+                    ></app-plano-de-saude>
                 </div>
                 <div class="ui-g-12">
                     <div class="ui-g-3">
-                        <app-especialidade
+                        <app-convenio-de-saude
                             [parentFormGroup]="formGroup"
                             [required]="true"
                             name="convenioDeSaude"
                             label="Convênio de Saúde"
-                        ></app-especialidade>
+                        ></app-convenio-de-saude>
                     </div>
                 </div>
             </div>
             <!-- Caráter da Internação -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-especialidade
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="caraterDaInternacao"
-                        label="Caráter da Internação"
-                    ></app-especialidade>
+                    <app-carater-da-internacao>
+                        [parentFormGroup]="formGroup" [required]="true" name="caraterDaInternacao"
+                        label="Caráter da Internação" ></app-carater-da-internacao
+                    >
                 </div>
             </div>
             <!-- Origem da Internação -->
@@ -95,12 +93,12 @@
             <!-- Procedências -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-especialidade
+                    <app-procedencia
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="procedencia"
                         label="Procedência"
-                    ></app-especialidade>
+                    ></app-procedencia>
                 </div>
             </div>
             <!-- Local de Atendimento -->
