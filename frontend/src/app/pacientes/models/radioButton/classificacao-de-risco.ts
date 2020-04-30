@@ -1,9 +1,9 @@
 import { OpcaoRadioButton } from './opcao-radio-button';
 
 export const CLASSIFICACAO_RISCO: OpcaoRadioButton[] = [
-    { label: 'red', value: 'Emergência' },
-    { label: 'orange', value: 'Muito Urgente' },
-    { label: 'yellow', value: 'Urgente' },
-    { label: 'green', value: 'Pouco Urgente' },
-    { label: 'blue', value: 'Não Urgente' },
+    { label: 'red', value: 'EMERGENCIA' },
+    { label: 'orange', value: 'MUITO_URGENTE' },
+    { label: 'yellow', value: 'URGENTE' },
+    { label: 'green', value: 'POUCO_URGENTE' },
+    { label: 'blue', value: 'NAO_URGENTE' },
 ];

@@ -1,3 +1,4 @@
+import { ICID } from './../../solicitacao-de-internacao/cid.service';
 import { CLASSIFICACAO_RISCO } from './../../../models/radioButton/classificacao-de-risco';
 import { values } from 'micro-dash';
 import { types } from 'util';
@@ -15,8 +16,10 @@ import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
     formTriagem = this.fb.group({
-        classificaoDeRisco: CLASSIFICACAO_RISCO,
-        paciente: ['', Validators.required],
+        classificacaoDeRisco: ['EMERGENCIA'],
+        // tslint:disable-next-line: comment-format
+        //CLASSIFICACAO_RISCO
+        // paciente: ['id', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
         temperatura: [''],
@@ -57,7 +60,7 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
     cadastrar(form: FormBuilder) {
         console.log(form);
 
-        this.triagemService.cadastrarTriagem(this.formTriagem.value);
+        this.triagemService.cadastrarTriagem(this.formTriagem.value).subscribe();
     }
 
     ngOnDestroy(): void {
