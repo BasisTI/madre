@@ -74,13 +74,15 @@ public class TriagemResource {
      * or with status 500 (Internal Server Error) if the triagem couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/triagens")
+    @PutMapping("/triagens/{id}")
     @Timed
-    public ResponseEntity<Triagem> updateTriagem(@Valid @RequestBody Triagem triagem) throws URISyntaxException {
+    public ResponseEntity<Triagem> updateTriagem(@Valid @PathVariable Long id,
+                                                 @RequestBody Triagem triagem) {
         log.debug("REST request to update Triagem : {}", triagem);
-        if (triagem.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        if (id == null) {
+            return ResponseEntity.notFound().build();
         }
+        triagem.setId(id);
         Triagem result = triagemRepository.save(triagem);
         triagemSearchRepository.save(result);
         return ResponseEntity.ok()
