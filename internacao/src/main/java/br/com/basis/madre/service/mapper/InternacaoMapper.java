@@ -1,14 +1,14 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.Internacao;
+import br.com.basis.madre.domain.*;
 import br.com.basis.madre.service.dto.InternacaoDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {EspecialidadeMapper.class, CRMMapper.class,
-    HospitalMapper.class, OrigemDaInternacaoMapper.class, ConvenioDeSaudeMapper.class,
-    PlanoDeSaudeMapper.class, ProcedimentoMapper.class, ProcedenciaMapper.class,
-    ModalidadeAssistencialMapper.class, LocalDeAtendimentoMapper.class})
+import org.mapstruct.*;
+
+/**
+ * Mapper for the entity {@link Internacao} and its DTO {@link InternacaoDTO}.
+ */
+@Mapper(componentModel = "spring", uses = {EspecialidadeMapper.class, CRMMapper.class, HospitalMapper.class, OrigemDaInternacaoMapper.class, ConvenioDeSaudeMapper.class, PlanoDeSaudeMapper.class, ProcedimentoMapper.class, ProcedenciaMapper.class, ModalidadeAssistencialMapper.class, LocalDeAtendimentoMapper.class, CaraterDaInternacaoMapper.class})
 public interface InternacaoMapper extends EntityMapper<InternacaoDTO, Internacao> {
 
     @Mapping(source = "especialidade.id", target = "especialidadeId")
@@ -21,6 +21,7 @@ public interface InternacaoMapper extends EntityMapper<InternacaoDTO, Internacao
     @Mapping(source = "procedencia.id", target = "procedenciaId")
     @Mapping(source = "modalidadeAssistencial.id", target = "modalidadeAssistencialId")
     @Mapping(source = "localDeAtendimento.id", target = "localDeAtendimentoId")
+    @Mapping(source = "caraterDaInternacao.id", target = "caraterDaInternacaoId")
     InternacaoDTO toDto(Internacao internacao);
 
     @Mapping(source = "especialidadeId", target = "especialidade")
@@ -33,6 +34,7 @@ public interface InternacaoMapper extends EntityMapper<InternacaoDTO, Internacao
     @Mapping(source = "procedenciaId", target = "procedencia")
     @Mapping(source = "modalidadeAssistencialId", target = "modalidadeAssistencial")
     @Mapping(source = "localDeAtendimentoId", target = "localDeAtendimento")
+    @Mapping(source = "caraterDaInternacaoId", target = "caraterDaInternacao")
     Internacao toEntity(InternacaoDTO internacaoDTO);
 
     default Internacao fromId(Long id) {
@@ -43,5 +45,4 @@ public interface InternacaoMapper extends EntityMapper<InternacaoDTO, Internacao
         internacao.setId(id);
         return internacao;
     }
-
 }

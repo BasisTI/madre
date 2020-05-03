@@ -1,34 +1,14 @@
 package br.com.basis.madre.web.rest;
 
-import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import br.com.basis.madre.InternacaoApp;
 import br.com.basis.madre.domain.Internacao;
-import br.com.basis.madre.domain.enumeration.Prioridade;
 import br.com.basis.madre.repository.InternacaoRepository;
 import br.com.basis.madre.repository.search.InternacaoSearchRepository;
 import br.com.basis.madre.service.InternacaoService;
 import br.com.basis.madre.service.dto.InternacaoDTO;
 import br.com.basis.madre.service.mapper.InternacaoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
-import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -43,6 +23,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
+
+import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
+
+import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import br.com.basis.madre.domain.enumeration.Prioridade;
 /**
  * Integration tests for the {@link InternacaoResource} REST controller.
  */
@@ -167,8 +163,8 @@ public class InternacaoResourceIT {
         assertThat(testInternacao.getPrioridade()).isEqualTo(DEFAULT_PRIORIDADE);
         assertThat(testInternacao.getJustificativa()).isEqualTo(DEFAULT_JUSTIFICATIVA);
         assertThat(testInternacao.getDataDaInternacao()).isEqualTo(DEFAULT_DATA_DA_INTERNACAO);
-        assertThat(testInternacao.getDiferencaDeClasse()).isEqualTo(DEFAULT_DIFERENCA_DE_CLASSE);
-        assertThat(testInternacao.getSolicitarProntuario()).isEqualTo(DEFAULT_SOLICITAR_PRONTUARIO);
+        assertThat(testInternacao.isDiferencaDeClasse()).isEqualTo(DEFAULT_DIFERENCA_DE_CLASSE);
+        assertThat(testInternacao.isSolicitarProntuario()).isEqualTo(DEFAULT_SOLICITAR_PRONTUARIO);
 
         // Validate the Internacao in Elasticsearch
         verify(mockInternacaoSearchRepository, times(1)).save(testInternacao);
@@ -272,7 +268,7 @@ public class InternacaoResourceIT {
             .andExpect(jsonPath("$.[*].diferencaDeClasse").value(hasItem(DEFAULT_DIFERENCA_DE_CLASSE.booleanValue())))
             .andExpect(jsonPath("$.[*].solicitarProntuario").value(hasItem(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue())));
     }
-
+    
     @Test
     @Transactional
     public void getInternacao() throws Exception {
@@ -331,8 +327,8 @@ public class InternacaoResourceIT {
         assertThat(testInternacao.getPrioridade()).isEqualTo(UPDATED_PRIORIDADE);
         assertThat(testInternacao.getJustificativa()).isEqualTo(UPDATED_JUSTIFICATIVA);
         assertThat(testInternacao.getDataDaInternacao()).isEqualTo(UPDATED_DATA_DA_INTERNACAO);
-        assertThat(testInternacao.getDiferencaDeClasse()).isEqualTo(UPDATED_DIFERENCA_DE_CLASSE);
-        assertThat(testInternacao.getSolicitarProntuario()).isEqualTo(UPDATED_SOLICITAR_PRONTUARIO);
+        assertThat(testInternacao.isDiferencaDeClasse()).isEqualTo(UPDATED_DIFERENCA_DE_CLASSE);
+        assertThat(testInternacao.isSolicitarProntuario()).isEqualTo(UPDATED_SOLICITAR_PRONTUARIO);
 
         // Validate the Internacao in Elasticsearch
         verify(mockInternacaoSearchRepository, times(1)).save(testInternacao);

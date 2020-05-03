@@ -8,7 +8,8 @@ relationship ManyToOne {
     Internacao{procedimento} to Procedimento
  	Internacao{procedencia} to Procedencia,
     Internacao{modalidadeAssistencial} to ModalidadeAssistencial,
-    Internacao{localDeAtendimento} to LocalDeAtendimento
+    Internacao{localDeAtendimento} to LocalDeAtendimento,
+    Internacao{caraterDaInternacao} to CaraterDaInternacao
 }
 
 entity Internacao {
@@ -17,6 +18,10 @@ entity Internacao {
     dataDaInternacao LocalDate required
     diferencaDeClasse Boolean
     solicitarProntuario Boolean
+}
+
+entity CaraterDaInternacao {
+    nome String required
 }
 
 entity Procedencia {

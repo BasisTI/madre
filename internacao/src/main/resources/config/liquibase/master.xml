@@ -34,6 +34,8 @@
     relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200429130317_added_entity_CID.xml"
     relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200503221913_added_entity_CaraterDaInternacao.xml" relativeToChangelogFile="false"/>
   <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
   <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
     relativeToChangelogFile="false"/>
@@ -42,6 +44,7 @@
     relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200429130314_added_entity_constraints_Equipe.xml"
     relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml" relativeToChangelogFile="false"/>
   <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
   <include file="config/liquibase/changelog/20200429143312_changelog.xml"
     relativeToChangelogFile="false"/>

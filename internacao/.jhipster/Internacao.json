@@ -102,6 +102,13 @@
             "otherEntityRelationshipName": "internacao",
             "relationshipName": "localDeAtendimento",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "caraterDaInternacao",
+            "otherEntityRelationshipName": "internacao",
+            "relationshipName": "caraterDaInternacao",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20200429130304",

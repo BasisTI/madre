@@ -68,5 +68,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="local_de_atendimento"/>
 
+        <addForeignKeyConstraint baseColumnNames="carater_da_internacao_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_carater_da_internacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="carater_da_internacao"/>
+
     </changeSet>
 </databaseChangeLog>

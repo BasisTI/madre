@@ -1,41 +1,24 @@
 package br.com.basis.madre.domain;
-
-import br.com.basis.madre.domain.enumeration.Prioridade;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import java.io.Serializable;
+import java.time.LocalDate;
 
+import br.com.basis.madre.domain.enumeration.Prioridade;
 
-@Data
-@NoArgsConstructor
+/**
+ * A Internacao.
+ */
 @Entity
 @Table(name = "internacao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "internacao")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "internacao")
 public class Internacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +26,7 @@ public class Internacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @Field(type = FieldType.Keyword)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @NotNull
@@ -105,17 +88,34 @@ public class Internacao implements Serializable {
     @JsonIgnoreProperties("internacaos")
     private LocalDeAtendimento localDeAtendimento;
 
-    @ManyToMany
-    @JoinTable(
-        name = "internacao_cid",
-        joinColumns = {@JoinColumn(name = "internacao_id", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "cid_id", referencedColumnName = "id")}
-    )
-    private Set<CID> cids = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("internacaos")
+    private CaraterDaInternacao caraterDaInternacao;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Prioridade getPrioridade() {
+        return prioridade;
+    }
 
     public Internacao prioridade(Prioridade prioridade) {
         this.prioridade = prioridade;
         return this;
+    }
+
+    public void setPrioridade(Prioridade prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public String getJustificativa() {
+        return justificativa;
     }
 
     public Internacao justificativa(String justificativa) {
@@ -123,9 +123,25 @@ public class Internacao implements Serializable {
         return this;
     }
 
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
+    }
+
+    public LocalDate getDataDaInternacao() {
+        return dataDaInternacao;
+    }
+
     public Internacao dataDaInternacao(LocalDate dataDaInternacao) {
         this.dataDaInternacao = dataDaInternacao;
         return this;
+    }
+
+    public void setDataDaInternacao(LocalDate dataDaInternacao) {
+        this.dataDaInternacao = dataDaInternacao;
+    }
+
+    public Boolean isDiferencaDeClasse() {
+        return diferencaDeClasse;
     }
 
     public Internacao diferencaDeClasse(Boolean diferencaDeClasse) {
@@ -133,9 +149,192 @@ public class Internacao implements Serializable {
         return this;
     }
 
+    public void setDiferencaDeClasse(Boolean diferencaDeClasse) {
+        this.diferencaDeClasse = diferencaDeClasse;
+    }
+
+    public Boolean isSolicitarProntuario() {
+        return solicitarProntuario;
+    }
+
     public Internacao solicitarProntuario(Boolean solicitarProntuario) {
         this.solicitarProntuario = solicitarProntuario;
         return this;
     }
 
+    public void setSolicitarProntuario(Boolean solicitarProntuario) {
+        this.solicitarProntuario = solicitarProntuario;
+    }
+
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+
+    public Internacao especialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+        return this;
+    }
+
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public CRM getCrm() {
+        return crm;
+    }
+
+    public Internacao crm(CRM cRM) {
+        this.crm = cRM;
+        return this;
+    }
+
+    public void setCrm(CRM cRM) {
+        this.crm = cRM;
+    }
+
+    public Hospital getHospitalDeOrigem() {
+        return hospitalDeOrigem;
+    }
+
+    public Internacao hospitalDeOrigem(Hospital hospital) {
+        this.hospitalDeOrigem = hospital;
+        return this;
+    }
+
+    public void setHospitalDeOrigem(Hospital hospital) {
+        this.hospitalDeOrigem = hospital;
+    }
+
+    public OrigemDaInternacao getOrigem() {
+        return origem;
+    }
+
+    public Internacao origem(OrigemDaInternacao origemDaInternacao) {
+        this.origem = origemDaInternacao;
+        return this;
+    }
+
+    public void setOrigem(OrigemDaInternacao origemDaInternacao) {
+        this.origem = origemDaInternacao;
+    }
+
+    public ConvenioDeSaude getConvenio() {
+        return convenio;
+    }
+
+    public Internacao convenio(ConvenioDeSaude convenioDeSaude) {
+        this.convenio = convenioDeSaude;
+        return this;
+    }
+
+    public void setConvenio(ConvenioDeSaude convenioDeSaude) {
+        this.convenio = convenioDeSaude;
+    }
+
+    public PlanoDeSaude getPlano() {
+        return plano;
+    }
+
+    public Internacao plano(PlanoDeSaude planoDeSaude) {
+        this.plano = planoDeSaude;
+        return this;
+    }
+
+    public void setPlano(PlanoDeSaude planoDeSaude) {
+        this.plano = planoDeSaude;
+    }
+
+    public Procedimento getProcedimento() {
+        return procedimento;
+    }
+
+    public Internacao procedimento(Procedimento procedimento) {
+        this.procedimento = procedimento;
+        return this;
+    }
+
+    public void setProcedimento(Procedimento procedimento) {
+        this.procedimento = procedimento;
+    }
+
+    public Procedencia getProcedencia() {
+        return procedencia;
+    }
+
+    public Internacao procedencia(Procedencia procedencia) {
+        this.procedencia = procedencia;
+        return this;
+    }
+
+    public void setProcedencia(Procedencia procedencia) {
+        this.procedencia = procedencia;
+    }
+
+    public ModalidadeAssistencial getModalidadeAssistencial() {
+        return modalidadeAssistencial;
+    }
+
+    public Internacao modalidadeAssistencial(ModalidadeAssistencial modalidadeAssistencial) {
+        this.modalidadeAssistencial = modalidadeAssistencial;
+        return this;
+    }
+
+    public void setModalidadeAssistencial(ModalidadeAssistencial modalidadeAssistencial) {
+        this.modalidadeAssistencial = modalidadeAssistencial;
+    }
+
+    public LocalDeAtendimento getLocalDeAtendimento() {
+        return localDeAtendimento;
+    }
+
+    public Internacao localDeAtendimento(LocalDeAtendimento localDeAtendimento) {
+        this.localDeAtendimento = localDeAtendimento;
+        return this;
+    }
+
+    public void setLocalDeAtendimento(LocalDeAtendimento localDeAtendimento) {
+        this.localDeAtendimento = localDeAtendimento;
+    }
+
+    public CaraterDaInternacao getCaraterDaInternacao() {
+        return caraterDaInternacao;
+    }
+
+    public Internacao caraterDaInternacao(CaraterDaInternacao caraterDaInternacao) {
+        this.caraterDaInternacao = caraterDaInternacao;
+        return this;
+    }
+
+    public void setCaraterDaInternacao(CaraterDaInternacao caraterDaInternacao) {
+        this.caraterDaInternacao = caraterDaInternacao;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Internacao)) {
+            return false;
+        }
+        return id != null && id.equals(((Internacao) o).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return "Internacao{" +
+            "id=" + getId() +
+            ", prioridade='" + getPrioridade() + "'" +
+            ", justificativa='" + getJustificativa() + "'" +
+            ", dataDaInternacao='" + getDataDaInternacao() + "'" +
+            ", diferencaDeClasse='" + isDiferencaDeClasse() + "'" +
+            ", solicitarProntuario='" + isSolicitarProntuario() + "'" +
+            "}";
+    }
 }
