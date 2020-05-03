@@ -12,9 +12,9 @@ public class ResponsavelDTO implements Serializable {
 
     private String nomeDoResponsavel;
 
-    private String grauDeParentesco;
+    private GrauDeParentescoDTO grauDeParentesco;
 
-    private String telefone;
+    private TelefoneDTO telefone;
 
     private String ddd;
 
@@ -24,19 +24,19 @@ public class ResponsavelDTO implements Serializable {
 
     private Long grauDeParentescoId;
 
-    public String getGrauDeParentesco() {
+    public GrauDeParentescoDTO getGrauDeParentesco() {
         return grauDeParentesco;
     }
 
-    public void setGrauDeParentesco(String grauDeParentesco) {
+    public void setGrauDeParentesco(GrauDeParentescoDTO grauDeParentesco) {
         this.grauDeParentesco = grauDeParentesco;
     }
 
-    public String getTelefone() {
+    public TelefoneDTO getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(TelefoneDTO telefone) {
         this.telefone = telefone;
     }
 
