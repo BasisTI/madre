@@ -75,17 +75,29 @@ public class PacienteResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pacienteDTO, or with status {@code 400 (Bad Request)} if the paciente has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+//    @PostMapping("/pacientes")
+//    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody FormularioCadastroDTO formularioCadastroDTO) throws URISyntaxException {
+//        log.debug("REST request to save Paciente : {}", formularioCadastroDTO);
+////        if (formularioCadastroDTO.getId() != null) {
+////            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
+////        }
+////        PacienteDTO result = pacienteService.save(pacienteDTO);
+////        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
+////            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+////            .body(result);
+//        return null;
+//    }
+
     @PostMapping("/pacientes")
-    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody FormularioCadastroDTO formularioCadastroDTO) throws URISyntaxException {
-        log.debug("REST request to save Paciente : {}", formularioCadastroDTO);
-//        if (formularioCadastroDTO.getId() != null) {
-//            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
-//        }
-//        PacienteDTO result = pacienteService.save(pacienteDTO);
-//        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
-//            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-//            .body(result);
-        return null;
+    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody PacienteDTO pacienteDTO) throws URISyntaxException {
+        log.debug("REST request to save Paciente : {}", pacienteDTO);
+        if (pacienteDTO.getId() != null) {
+            throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        PacienteDTO result = pacienteService.save(pacienteDTO);
+        return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .body(result);
     }
 
     /**
