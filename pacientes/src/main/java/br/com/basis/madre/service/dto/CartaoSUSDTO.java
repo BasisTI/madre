@@ -16,28 +16,18 @@ public class CartaoSUSDTO implements Serializable {
 
     private Long id;
 
-
     @NotNull
     private String numero;
 
-    @JsonProperty("docReferencia")
-    @Enumerated(EnumType.STRING)
     private DocumentoDeReferencia documentoDeReferencia;
 
-    @JsonProperty("cartaoNacional")
     private String cartaoNacionalSaudeMae;
 
-    @JsonProperty("dataDeEntrada")
     private LocalDate dataDeEntradaNoBrasil;
 
     private LocalDate dataDeNaturalizacao;
 
     private String portaria;
-
-    private JustificativaDTO justificativa;
-
-    @JsonProperty("motivoCadastro")
-    private MotivoDoCadastroDTO motivoDoCadastro;
 
     private Long justificativaId;
 
@@ -115,22 +105,6 @@ public class CartaoSUSDTO implements Serializable {
         this.motivoDoCadastroId = motivoDoCadastroId;
     }
 
-    public JustificativaDTO getJustificativa() {
-        return justificativa;
-    }
-
-    public void setJustificativa(JustificativaDTO justificativa) {
-        this.justificativa = justificativa;
-    }
-
-    public MotivoDoCadastroDTO getMotivoDoCadastro() {
-        return motivoDoCadastro;
-    }
-
-    public void setMotivoDoCadastro(MotivoDoCadastroDTO motivoDoCadastro) {
-        this.motivoDoCadastro = motivoDoCadastro;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -162,8 +136,6 @@ public class CartaoSUSDTO implements Serializable {
             ", dataDeEntradaNoBrasil=" + dataDeEntradaNoBrasil +
             ", dataDeNaturalizacao=" + dataDeNaturalizacao +
             ", portaria='" + portaria  +
-            ", justificativa=" + justificativa +
-            ", motivoDoCadastro=" + motivoDoCadastro +
             ", justificativaId=" + justificativaId +
             ", motivoDoCadastroId=" + motivoDoCadastroId +
             '}';

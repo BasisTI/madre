@@ -15,7 +15,6 @@ public class CertidaoDTO implements Serializable {
 
     private String registroDeNascimento;
 
-    @JsonProperty("tipoCertidao")
     private TipoDaCertidao tipoDaCertidao;
 
     private String nomeDoCartorio;
@@ -28,7 +27,6 @@ public class CertidaoDTO implements Serializable {
 
     private LocalDate dataDeEmissao;
 
-    @JsonProperty("numeroDaDN")
     private String numeroDaDeclaracaoDeNascimento;
 
 

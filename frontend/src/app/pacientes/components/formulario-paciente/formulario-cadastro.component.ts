@@ -1,3 +1,5 @@
+import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.component';
+import { Paciente } from './models/paciente';
 import { FormulaCadastroService } from './formula-cadastro.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
@@ -81,7 +83,20 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private formularioCadastroService: FormulaCadastroService,
-    ) {}
+    ) {
+        let dp = this.formularioDeCadastro.value;
+        let paciente: Paciente = new Paciente(
+            dp.dadosPessoais.nome,
+            dp.dadosPessoais.nomeSocial,
+            dp.dadosPessoais.dataDeNascimento,
+            dp.dadosPessoais.horaDoNascimento,
+            dp.dadosPessoais.email,
+            dp.dadosPessoais.grauDeInstrucao,
+            dp.dadosPessoais.sexo,
+            dp.dadosPessoais.teste,
+        );
+        console.log(paciente);
+    }
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
