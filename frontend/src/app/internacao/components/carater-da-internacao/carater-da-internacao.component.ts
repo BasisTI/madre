@@ -14,7 +14,7 @@ export class CaraterDaInternacaoComponent implements OnInit, EntityAutoComplete 
     @Input() public required = false;
     @Input() public label = 'Caráter da Internação';
     @Input() public name = 'caraterDaInternacao';
-    public caracteresDeIntenacao: Array<CaraterDaInternacao>;
+    public caracteresDaInternacao: Array<CaraterDaInternacao>;
 
     constructor(private caraterDaInternacaoService: CaraterDaInternacaoService) {}
 
@@ -22,8 +22,8 @@ export class CaraterDaInternacaoComponent implements OnInit, EntityAutoComplete 
         this.caraterDaInternacaoService
             .getCaracteresDaInternacao(true, 'nome')
             .subscribe(
-                (caracteresDeIntenacao: Array<CaraterDaInternacao>) =>
-                    (this.caracteresDeIntenacao = caracteresDeIntenacao),
+                (caracteresDaInternacao: Array<CaraterDaInternacao>) =>
+                    (this.caracteresDaInternacao = caracteresDaInternacao),
             );
     }
 
@@ -31,8 +31,8 @@ export class CaraterDaInternacaoComponent implements OnInit, EntityAutoComplete 
         this.caraterDaInternacaoService
             .getCaracteresDaInternacaoPorNome(evento.query, true, 'nome')
             .subscribe(
-                (caracteresDeIntenacao: Array<CaraterDaInternacao>) =>
-                    (this.caracteresDeIntenacao = caracteresDeIntenacao),
+                (caracteresDaInternacao: Array<CaraterDaInternacao>) =>
+                    (this.caracteresDaInternacao = caracteresDaInternacao),
             );
     }
 

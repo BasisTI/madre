@@ -103,9 +103,10 @@ public class CaraterDaInternacaoResource {
      */
     @GetMapping("/caracteres-da-internacao")
     public ResponseEntity<List<CaraterDaInternacaoDTO>> getAllCaraterDaInternacaos(
+        CaraterDaInternacaoDTO caraterDaInternacaoDTO,
         Pageable pageable) {
         log.debug("REST request to get a page of CaraterDaInternacaos");
-        Page<CaraterDaInternacaoDTO> page = caraterDaInternacaoService.findAll(pageable);
+        Page<CaraterDaInternacaoDTO> page = caraterDaInternacaoService.findAll(caraterDaInternacaoDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

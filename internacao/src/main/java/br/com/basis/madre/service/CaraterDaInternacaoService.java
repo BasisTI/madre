@@ -11,6 +11,9 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -48,13 +51,21 @@ public class CaraterDaInternacaoService {
     /**
      * Get all the caraterDaInternacaos.
      *
-     * @param pageable the pagination information.
+     * @param caraterDaInternacaoDTO
+     * @param pageable               the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<CaraterDaInternacaoDTO> findAll(Pageable pageable) {
+    public Page<CaraterDaInternacaoDTO> findAll(
+        CaraterDaInternacaoDTO caraterDaInternacaoDTO,
+        Pageable pageable) {
         log.debug("Request to get all CaraterDaInternacaos");
-        return caraterDaInternacaoRepository.findAll(pageable)
+        return caraterDaInternacaoRepository.findAll(
+            Example.of(caraterDaInternacaoMapper.toEntity(caraterDaInternacaoDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
+                    StringMatcher.CONTAINING
+                ))
+            , pageable)
             .map(caraterDaInternacaoMapper::toDto);
     }
 
