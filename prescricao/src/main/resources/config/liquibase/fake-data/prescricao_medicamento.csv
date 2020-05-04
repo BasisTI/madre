@@ -1,0 +1,11 @@
+id;id_paciente;id_medicamento;dose;frequencia;todas_vias;velocida_infusao;unidade_tempo;inicio_administracao;bomba_infusao;observacao
+1;37454;79654;95071;18343;true;77969;HORA;2020-05-04;false;FTP Savings Account
+2;70807;65088;2058;5641;true;72199;HORA;2020-05-04;false;Albania web-readiness
+3;29122;52477;61185;39986;false;4666;MINUTO;2020-05-04;false;bluetooth
+4;19967;38246;51423;98323;true;46676;MINUTO;2020-05-03;false;Small Frozen Sausages Planner
+5;80839;38541;30461;1596;false;23089;MINUTO;2020-05-03;false;Regional
+6;25877;18223;66252;75536;false;42515;HORA;2020-05-04;true;connect Markets Chief
+7;59789;72727;92187;32654;false;57044;MINUTO;2020-05-03;false;scale interactive generating
+8;35675;96525;28093;60703;true;27599;MINUTO;2020-05-04;false;Administrator
+9;77224;39488;19871;29348;false;1407;MINUTO;2020-05-04;false;world-class Frozen IB
+10;62329;44945;33089;9541;false;37081;MINUTO;2020-05-03;true;withdrawal COM
