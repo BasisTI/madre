@@ -1,8 +1,8 @@
-import { EquipeService } from './../../services/equipe.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Equipe } from '@internacao/models/equipe';
 import { EntityAutoComplete } from '@shared/entity-autocomplete.component';
+import { EquipeService } from './../../services/equipe.service';
 
 @Component({
     selector: 'app-equipe',

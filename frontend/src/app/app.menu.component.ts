@@ -61,7 +61,7 @@ export class AppMenuComponent implements OnInit {
             },
             {
                 label: 'Internação',
-                icon: 'dashboard',
+                icon: 'airline_seat_individual_suite',
                 items: [
                     {
                         label: 'Solicitar Internação',

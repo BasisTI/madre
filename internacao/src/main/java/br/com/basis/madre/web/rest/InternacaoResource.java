@@ -52,7 +52,7 @@ public class InternacaoResource {
      * internacaoDTO, or with status {@code 400 (Bad Request)} if the internacao has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/internacaos")
+    @PostMapping("/internacoes")
     public ResponseEntity<InternacaoDTO> createInternacao(
         @Valid @RequestBody InternacaoDTO internacaoDTO) throws URISyntaxException {
         log.debug("REST request to save Internacao : {}", internacaoDTO);
@@ -76,7 +76,7 @@ public class InternacaoResource {
      * with status {@code 500 (Internal Server Error)} if the internacaoDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/internacaos")
+    @PutMapping("/internacoes")
     public ResponseEntity<InternacaoDTO> updateInternacao(
         @Valid @RequestBody InternacaoDTO internacaoDTO) throws URISyntaxException {
         log.debug("REST request to update Internacao : {}", internacaoDTO);
@@ -97,7 +97,7 @@ public class InternacaoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of internacaos
      * in body.
      */
-    @GetMapping("/internacaos")
+    @GetMapping("/internacoes")
     public ResponseEntity<List<InternacaoDTO>> getAllInternacaos(Pageable pageable) {
         log.debug("REST request to get a page of Internacaos");
         Page<InternacaoDTO> page = internacaoService.findAll(pageable);
@@ -113,7 +113,7 @@ public class InternacaoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
      * internacaoDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/internacaos/{id}")
+    @GetMapping("/internacoes/{id}")
     public ResponseEntity<InternacaoDTO> getInternacao(@PathVariable Long id) {
         log.debug("REST request to get Internacao : {}", id);
         Optional<InternacaoDTO> internacaoDTO = internacaoService.findOne(id);
@@ -126,7 +126,7 @@ public class InternacaoResource {
      * @param id the id of the internacaoDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/internacaos/{id}")
+    @DeleteMapping("/internacoes/{id}")
     public ResponseEntity<Void> deleteInternacao(@PathVariable Long id) {
         log.debug("REST request to delete Internacao : {}", id);
         internacaoService.delete(id);
@@ -142,7 +142,7 @@ public class InternacaoResource {
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/internacaos")
+    @GetMapping("/_search/internacoes")
     public ResponseEntity<List<InternacaoDTO>> searchInternacaos(@RequestParam String query,
         Pageable pageable) {
         log.debug("REST request to search for a page of Internacaos for query {}", query);

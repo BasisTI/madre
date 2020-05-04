@@ -1,7 +1,9 @@
-import { ptBR } from '@shared/calendar.pt-br.locale';
+import { Internacao } from './../../models/internacao';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
+import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
+import { ptBR } from '@shared/calendar.pt-br.locale';
 
 @Component({
     selector: 'app-internacao-de-paciente',
@@ -16,11 +18,17 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
         formatoDeData: 'dd/mm/yy',
     };
 
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private fb: FormBuilder,
+        private internacaoDePacienteService: InternacaoDePacienteService,
+    ) {}
 
     public formGroup = this.fb.group({
         // prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
         // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
+        // prioridade: this.fb.control({ value: '', disabled: true }, Validators.required),
+        // procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
         especialidade: ['', Validators.required],
         planoDeSaude: ['', Validators.required],
         convenioDeSaude: ['', Validators.required],
@@ -54,6 +62,10 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     }
 
     internarPaciente() {
-        console.log(this.formGroup.value);
+        this.internacaoDePacienteService
+            .internarPaciente(this.formGroup.value)
+            .subscribe((resposta: Internacao) => {
+                console.log(resposta);
+            });
     }
 }

@@ -105,9 +105,10 @@ public class ModalidadeAssistencialResource {
      */
     @GetMapping("/modalidades-assistenciais")
     public ResponseEntity<List<ModalidadeAssistencialDTO>> getAllModalidadeAssistencials(
+        ModalidadeAssistencialDTO modalidadeAssistencialDTO,
         Pageable pageable) {
         log.debug("REST request to get a page of ModalidadeAssistencials");
-        Page<ModalidadeAssistencialDTO> page = modalidadeAssistencialService.findAll(pageable);
+        Page<ModalidadeAssistencialDTO> page = modalidadeAssistencialService.findAll(modalidadeAssistencialDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

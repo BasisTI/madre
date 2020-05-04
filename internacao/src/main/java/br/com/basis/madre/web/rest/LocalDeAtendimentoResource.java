@@ -101,9 +101,10 @@ public class LocalDeAtendimentoResource {
      */
     @GetMapping("/locais-de-atendimento")
     public ResponseEntity<List<LocalDeAtendimentoDTO>> getAllLocalDeAtendimentos(
+        LocalDeAtendimentoDTO localDeAtendimentoDTO,
         Pageable pageable) {
         log.debug("REST request to get a page of LocalDeAtendimentos");
-        Page<LocalDeAtendimentoDTO> page = localDeAtendimentoService.findAll(pageable);
+        Page<LocalDeAtendimentoDTO> page = localDeAtendimentoService.findAll(localDeAtendimentoDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

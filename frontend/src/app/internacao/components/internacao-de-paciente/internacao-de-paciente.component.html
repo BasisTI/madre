@@ -59,6 +59,17 @@
                     </div>
                 </div>
             </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5">
+                    <app-crm
+                        [parentFormGroup]="formGroup"
+                        [required]="true"
+                        name="crm"
+                        label="Conselho Profissional"
+                    >
+                    </app-crm>
+                </div>
+            </div>
             <!-- Caráter da Internação -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
@@ -74,23 +85,24 @@
             <!-- Origem da Internação -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-especialidade
+                    <app-origem-da-internacao
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="origemDaInternacao"
                         label="Origem da Internação"
-                    ></app-especialidade>
+                    ></app-origem-da-internacao>
                 </div>
             </div>
             <!-- Hospital de Origem -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-especialidade
+                    <app-hospital
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="hospitalDeOrigem"
                         label="Hospital de Origem"
-                    ></app-especialidade>
+                    >
+                    </app-hospital>
                 </div>
             </div>
             <!-- Procedências -->
@@ -107,23 +119,24 @@
             <!-- Local de Atendimento -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-especialidade
+                    <app-local-de-atendimento
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="localDeAtendimento"
                         label="Local de Atendimento"
-                    ></app-especialidade>
+                    ></app-local-de-atendimento>
                 </div>
             </div>
             <!-- Modalidade Assistencial -->
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-especialidade
+                    <app-modalidade-assistencial
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="modalidadeAssistencial"
                         label="Modalidade Assistencial"
-                    ></app-especialidade>
+                    >
+                    </app-modalidade-assistencial>
                 </div>
             </div>
             <!-- Data da Internação + Diferença de Classe + Solicitar Prontuário -->

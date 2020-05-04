@@ -98,9 +98,11 @@ public class HospitalResource {
      * body.
      */
     @GetMapping("/hospitais")
-    public ResponseEntity<List<HospitalDTO>> getAllHospitals(Pageable pageable) {
+    public ResponseEntity<List<HospitalDTO>> getAllHospitals(
+        HospitalDTO hospitalDTO,
+        Pageable pageable) {
         log.debug("REST request to get a page of Hospitals");
-        Page<HospitalDTO> page = hospitalService.findAll(pageable);
+        Page<HospitalDTO> page = hospitalService.findAll(hospitalDTO, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

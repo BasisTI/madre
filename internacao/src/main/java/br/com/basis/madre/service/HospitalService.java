@@ -11,6 +11,9 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,13 +50,19 @@ public class HospitalService {
     /**
      * Get all the hospitals.
      *
-     * @param pageable the pagination information.
+     * @param hospitalDTO
+     * @param pageable    the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<HospitalDTO> findAll(Pageable pageable) {
+    public Page<HospitalDTO> findAll(HospitalDTO hospitalDTO,
+        Pageable pageable) {
         log.debug("Request to get all Hospitals");
-        return hospitalRepository.findAll(pageable)
+        return hospitalRepository.findAll(
+            Example.of(hospitalMapper.toEntity(hospitalDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
+                    StringMatcher.CONTAINING))
+            , pageable)
             .map(hospitalMapper::toDto);
     }
 
