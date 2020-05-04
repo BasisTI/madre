@@ -51,14 +51,6 @@ public class Telefone implements Serializable {
     @Column(name = "observacao")
     private String observacao;
 
-    @ManyToOne
-    @JsonIgnoreProperties("telefones")
-    private Paciente paciente;
-
-    @ManyToOne
-    @JsonIgnoreProperties("telefones")
-    private Responsavel responsavel;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -120,31 +112,6 @@ public class Telefone implements Serializable {
         this.observacao = observacao;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public Telefone paciente(Paciente paciente) {
-        this.paciente = paciente;
-        return this;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Responsavel getResponsavel() {
-        return responsavel;
-    }
-
-    public Telefone responsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
-        return this;
-    }
-
-    public void setResponsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
