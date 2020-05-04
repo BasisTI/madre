@@ -2,8 +2,6 @@ package br.com.basis.madre.service.dto;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
