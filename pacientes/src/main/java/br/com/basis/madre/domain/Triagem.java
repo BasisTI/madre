@@ -58,7 +58,7 @@ public class Triagem implements Serializable {
     private BigDecimal peso;
 
     @Column(name = "sinais_sintomas")
-    @Size(min = 3, max = 255)
+    //@Size(min = 3, max = 255)
     private String sinaisSintomas;
 
     @Column(name = "data_hora_do_atendimento")

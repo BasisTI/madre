@@ -31,7 +31,7 @@ public class TriagemDTO implements Serializable {
 
     private String sinaisSintomas;
     //ZonedDateTime
-    private String dataHoraDoAtendimento;
+    private ZonedDateTime dataHoraDoAtendimento;
 
 
     @NotNull
@@ -108,11 +108,11 @@ public class TriagemDTO implements Serializable {
         this.sinaisSintomas = sinaisSintomas;
     }
 
-    public String getDataHoraDoAtendimento() {
+    public ZonedDateTime getDataHoraDoAtendimento() {
         return dataHoraDoAtendimento;
     }
 
-    public void setDataHoraDoAtendimento(String dataHoraDoAtendimento) {
+    public void setDataHoraDoAtendimento(ZonedDateTime dataHoraDoAtendimento) {
         this.dataHoraDoAtendimento = dataHoraDoAtendimento;
     }
 

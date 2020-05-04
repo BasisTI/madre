@@ -46,6 +46,16 @@
                     <p-column header="Hora de Chegada" field="horaDeChegada"></p-column>
                     <p-column header="Classificação" field="classificacao"></p-column>
                 </basis-datatable>
+                <div class="ui-g-1 ui-g-nopad">
+                    <basis-datatable-button
+                        *ngIf="!disableEdit"
+                        [disabled]="selectedRow == null"
+                        (click)="onClick(editEventName, $event)"
+                        class="ui-button-success"
+                        icon="edit"
+                    >
+                    </basis-datatable-button>
+                </div>
                 <div class="ui-g-9"></div>
                 <div class="ui-g-2">
                     <button

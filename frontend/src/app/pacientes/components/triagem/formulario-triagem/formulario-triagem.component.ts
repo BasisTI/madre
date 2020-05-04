@@ -1,13 +1,8 @@
-import { ICID } from './../../solicitacao-de-internacao/cid.service';
 import { CLASSIFICACAO_RISCO } from './../../../models/radioButton/classificacao-de-risco';
-import { values } from 'micro-dash';
-import { types } from 'util';
-import { ClassificacaoDeRiscoService } from './classificacao-de-risco/classificacao-de-risco.service';
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -16,18 +11,18 @@ import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
     formTriagem = this.fb.group({
-        classificacaoDeRisco: ['EMERGENCIA'],
+        classificacaoDeRisco: [CLASSIFICACAO_RISCO],
         // tslint:disable-next-line: comment-format
         //CLASSIFICACAO_RISCO
-        // paciente: ['id', Validators.required],
+        // paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
         temperatura: [''],
         peso: [''],
         sinaisSintomas: [''],
         dataHoraDoAtendimento: [
-            `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
-${new Date().getHours()}:${new Date().getUTCMinutes()}`,
+            //             `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
+            // ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
         ],
         idade: [''],
         descricaoQueixa: ['', Validators.required],
@@ -58,9 +53,14 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
     }
 
     cadastrar(form: FormBuilder) {
-        console.log(form);
+        console.log(this.formTriagem.value.classificacaoDeRisco);
 
         this.triagemService.cadastrarTriagem(this.formTriagem.value).subscribe();
+    }
+    alterar(form: FormBuilder) {
+        console.log(this.formTriagem.value.classificacaoDeRisco);
+
+        this.triagemService.alterarTriagem(this.formTriagem.value).subscribe();
     }
 
     ngOnDestroy(): void {

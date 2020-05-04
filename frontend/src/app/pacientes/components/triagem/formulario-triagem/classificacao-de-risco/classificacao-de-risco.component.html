@@ -10,14 +10,14 @@
         <div class="ui-g-1">
             <div
                 class="azul"
-                blueCard=""
+                blueCard="NAO_URGENTE"
                 pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
                 style="background-color: blue; height: 50px; width: 50px;"
             ></div>
             <div class="ui-g-12"></div>
             <div blueCard="">
                 <p-radioButton
-                    name="blue"
+                    name="classificacaoDeRisco"
                     value="Não urgente"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
@@ -34,7 +34,7 @@
             <div class="ui-g-12"></div>
             <div greenCard="">
                 <p-radioButton
-                    name="green"
+                    name="classificacaoDeRisco"
                     value="Pouco urgente"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
@@ -51,7 +51,7 @@
             <div class="ui-g-12"></div>
             <div yellowCard="">
                 <p-radioButton
-                    name="yellow"
+                    name="classificacaoDeRisco"
                     value="Urgente"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
@@ -68,7 +68,7 @@
             <div class="ui-g-12"></div>
             <div orangeCard="">
                 <p-radioButton
-                    name="orange"
+                    name="classificacaoDeRisco"
                     value="Muito urgente"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
@@ -85,7 +85,7 @@
             <div class="ui-g-12"></div>
             <div redCard="">
                 <p-radioButton
-                    name="red"
+                    name="classificacaoDeRisco"
                     value="Emergência"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>

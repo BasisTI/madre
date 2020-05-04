@@ -50,17 +50,9 @@ export class AppMenuComponent implements OnInit {
                 routerLink: ['/paciente'],
                 items: [
                     {
-                        label: 'Pré Cadastro',
-                        icon: 'add',
-                    },
-                    {
                         label: 'Triagem',
                         icon: 'add',
                         routerLink: ['pacientes/triagem'],
-                    },
-                    {
-                        label: 'Atendimento',
-                        icon: 'add',
                     },
                 ],
             },
@@ -70,28 +62,22 @@ export class AppMenuComponent implements OnInit {
                 icon: 'assignment_ind',
                 items: [
                     {
-                      label: 'Médica',
-                      icon: 'remove',
-                      items: [
-                        {label: 'Prescrever', routerLink: ['/prescricao-medica']},
-                      ]
+                        label: 'Médica',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
                     },
                     {
                         label: 'Enfermagem',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'},
-                      ],
+                        items: [{ label: 'Prescrever' }],
                     },
                     {
                         label: 'Multiprofisisonal',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'}
-                        ]
+                        items: [{ label: 'Prescrever' }],
                     },
-                ]
-            }
+                ],
+            },
         ];
     }
 

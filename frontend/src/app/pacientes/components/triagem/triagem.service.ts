@@ -13,4 +13,8 @@ export class TriagemService {
         console.log(cadastroTriagem);
         return this.httpService.post(`${this.apiUrl}/triagens`, cadastroTriagem);
     }
+    alterarTriagem(cadastroTriagem: any) {
+        // console.log(cadastroTriagem);
+        return this.httpService.put(`${this.apiUrl}/triagens`, cadastroTriagem);
+    }
 }
