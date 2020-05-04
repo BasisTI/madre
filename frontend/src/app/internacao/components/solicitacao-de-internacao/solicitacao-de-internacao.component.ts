@@ -1,3 +1,4 @@
+import { Especialidade } from '@internacao/models/especialidade';
 import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -25,8 +26,8 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         dataProvavelDaInternacao: ['', Validators.required],
         dataProvavelDaCirurgia: [''],
         prioridade: ['', Validators.required],
-        especialidade: ['', Validators.required],
-        equipe: this.fb.control({ value: '', disabled: false }, Validators.required),
+        especialidade: [null, Validators.required],
+        equipe: this.fb.control({ value: null, disabled: true }, Validators.required),
         crm: ['', Validators.required],
         principaisSinaisESintomasClinicos: ['', Validators.required],
         condicoesQueJustificamInternacao: ['', Validators.required],
@@ -64,5 +65,14 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
             .subscribe((resposta) => {
                 console.log(resposta);
             });
+    }
+
+    aoSelecionarEspecialidade(especialidade: Especialidade): void {
+        if (especialidade) {
+            this.formGroup.get('equipe').enable();
+            return;
+        }
+
+        this.formGroup.get('equipe').disable();
     }
 }

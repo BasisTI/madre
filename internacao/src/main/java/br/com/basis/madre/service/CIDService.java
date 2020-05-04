@@ -63,10 +63,8 @@ public class CIDService {
                 .toEntity(cidDTO), ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
                 StringMatcher.CONTAINING))
             , pageable)
-            .map(cid -> {
-                System.out.println(cid);
-                return cidMapper.toDto(cid);
-            });
+            .map(cidMapper::toDto
+            );
     }
 
     /**
@@ -105,22 +103,6 @@ public class CIDService {
         log.debug("Request to search for a page of CIDS for query {}", query);
         return cidSearchRepository.search(queryStringQuery(query), pageable)
             .map(cidMapper::toDto);
-    }
-
-    public Page<CidDTO> getCidsPais(Pageable pageable) {
-        return cidRepository.findByPaiIdNull(pageable).map(cidMapper::toDto);
-    }
-
-    public Page<CidDTO> getCidsPais(CidDTO cidDTO, Pageable pageable) {
-        return cidRepository.findByPaiIdNull(pageable).map(cidMapper::toDto);
-    }
-
-    public Page<CidDTO> getCidsFilhos(CidDTO cidDTO, Pageable pageable) {
-        return cidRepository.findByPaiIdNotNull(pageable).map(cidMapper::toDto);
-    }
-
-    public Page<CidDTO> getCidsFilhos(Pageable pageable) {
-        return cidRepository.findByPaiIdNotNull(pageable).map(cidMapper::toDto);
     }
 
 }

@@ -20,6 +20,7 @@ import { HospitalComponent } from './components/hospital/hospital.component';
 import { ProcedenciaComponent } from './components/procedencia/procedencia.component';
 import { LocalDeAtendimentoComponent } from './components/local-de-atendimento/local-de-atendimento.component';
 import { ModalidadeAssistencialComponent } from './components/modalidade-assistencial/modalidade-assistencial.component';
+import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { ModalidadeAssistencialComponent } from './components/modalidade-assiste
         ProcedenciaComponent,
         LocalDeAtendimentoComponent,
         ModalidadeAssistencialComponent,
+        SolicitacoesDeInternacaoComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

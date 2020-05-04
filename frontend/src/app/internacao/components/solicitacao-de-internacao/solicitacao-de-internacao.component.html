@@ -60,6 +60,7 @@
                         [required]="true"
                         name="especialidade"
                         label="Especialidade"
+                        (select)="aoSelecionarEspecialidade($event)"
                     ></app-especialidade>
                 </div>
                 <div class="ui-g-4">
@@ -68,6 +69,7 @@
                         [required]="true"
                         name="equipe"
                         label="Equipe"
+                        [especialidade]="formGroup.controls.especialidade"
                     ></app-equipe>
                 </div>
             </div>
@@ -148,6 +150,7 @@
                         icon="pi pi-check"
                         label="Solicitar"
                         (onClick)="solicitarInternacao()"
+                        [disabled]="formGroup.invalid"
                     ></p-button>
                 </div>
             </div>

@@ -21,6 +21,23 @@ export class EquipeService implements EntityService {
         return this.client.get<T>(this.resource);
     }
 
+    getEquipesPorEspecialidadeEPorNome(
+        especialidadeId: number,
+        nome: string,
+        sort?: boolean,
+        sortBy?: string,
+    ): Observable<Array<Equipe>> {
+        const params = new HttpParams()
+            .set('nome', nome)
+            .set('especialidadeId', String(especialidadeId));
+
+        if (sort) {
+            return this.getResource<Array<Equipe>>(params.set('sort', sortBy ? sortBy : 'nome'));
+        }
+
+        return this.getResource<Array<Equipe>>();
+    }
+
     getEquipes(sort?: boolean, sortBy?: string): Observable<Array<Equipe>> {
         if (sort) {
             return this.getResource<Array<Equipe>>(

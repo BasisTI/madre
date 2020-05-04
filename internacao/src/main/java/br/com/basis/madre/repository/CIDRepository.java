@@ -22,10 +22,4 @@ public interface CIDRepository extends JpaRepository<CID, Long> {
     <S extends CID> Page<S> findAll(Example<S> example,
         Pageable pageable);
 
-    @EntityGraph("CID.pai")
-    Page<CID> findByPaiIdNull(Pageable pageable);
-
-    @EntityGraph("CID.pai")
-    Page<CID> findByPaiIdNotNull(Pageable pageable);
-
 }

@@ -1,3 +1,4 @@
+import { SolicitacaoDeInternacao } from './../models/solicitacao-de-internacao';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { api } from '@internacao/api';
@@ -11,7 +12,22 @@ export class SolicitacaoDeInternacaoService {
 
     constructor(private client: HttpClient) {}
 
-    solicitarInternacao(solicitacao): Observable<any> {
-        return this.client.post(this.resource, solicitacao);
+    solicitarInternacao(solicitacao: SolicitacaoDeInternacao): Observable<any> {
+        const solicitacaoDTO = {
+            dataProvavelDaInternacao: solicitacao.dataProvavelDaInternacao,
+            dataProvavelDaCirurgia: solicitacao.dataProvavelDaInternacao,
+            prioridade: solicitacao.prioridade,
+            principaisSinaisESintomasClinicos: solicitacao.principaisSinaisESintomasClinicos,
+            condicoesQueJustificamInternacao: solicitacao.condicoesQueJustificamInternacao,
+            principaisResultadosProvasDiagnosticas:
+                solicitacao.principaisResultadosProvasDiagnosticas,
+            cidPrincipalId: solicitacao.cidPrincipal.id,
+            cidSecundarioId: solicitacao.cidSecundario.id,
+            equipeId: solicitacao.equipe.id,
+            crmId: solicitacao.crm.id,
+            procedimentoId: solicitacao.procedimento.id,
+        };
+
+        return this.client.post(this.resource, solicitacaoDTO);
     }
 }

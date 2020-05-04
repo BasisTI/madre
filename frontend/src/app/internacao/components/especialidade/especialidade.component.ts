@@ -1,8 +1,8 @@
-import { EntityAutoComplete } from './../../../shared/entity-autocomplete.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Component, Input, OnInit } from '@angular/core';
-import { EspecialidadeService } from '@internacao/services/especialidade.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Especialidade } from '@internacao/models/especialidade';
+import { EspecialidadeService } from '@internacao/services/especialidade.service';
+import { EntityAutoComplete } from './../../../shared/entity-autocomplete.component';
 
 @Component({
     selector: 'app-especialidade',
@@ -13,6 +13,7 @@ export class EspecialidadeComponent implements OnInit, EntityAutoComplete {
     @Input() public required = false;
     @Input() public label = 'Especialidade';
     @Input() public name = 'especialidade';
+    @Output() public select = new EventEmitter();
     public especialidades = new Array<Especialidade>();
 
     constructor(private especialidadeService: EspecialidadeService) {}
@@ -37,5 +38,11 @@ export class EspecialidadeComponent implements OnInit, EntityAutoComplete {
         if (!this.parentFormGroup.get(this.name).value) {
             this.parentFormGroup.get(this.name).setValue(null);
         }
+
+        this.aoSelecionar();
+    }
+
+    aoSelecionar(): void {
+        this.select.emit(this.parentFormGroup.get(this.name).value);
     }
 }

@@ -9,6 +9,7 @@
             [suggestions]="especialidades"
             [forceSelection]="true"
             [dropdown]="true"
+            (onSelect)="aoSelecionar()"
         >
         </p-autoComplete>
         <label>{{ label }}</label>

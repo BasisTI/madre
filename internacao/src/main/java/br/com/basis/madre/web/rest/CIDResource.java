@@ -105,38 +105,6 @@ public class CIDResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/cids/arvore/_pais")
-    public ResponseEntity<List<CidDTO>> getCidsPais(Pageable pageable) {
-        Page<CidDTO> page = cidService.getCidsPais(pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/cids/arvore/pais")
-    public ResponseEntity<List<CidDTO>> getCidsPaisComDTO(CidDTO cidDTO, Pageable pageable) {
-        Page<CidDTO> page = cidService.getCidsPais(cidDTO, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/cids/arvore/filhos")
-    public ResponseEntity<List<CidDTO>> getCidsFilhosComDTO(CidDTO cidDTO, Pageable pageable) {
-        Page<CidDTO> page = cidService.getCidsFilhos(cidDTO, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/cids/arvore/_filhos")
-    public ResponseEntity<List<CidDTO>> getCidsFilhos(Pageable pageable) {
-        Page<CidDTO> page = cidService.getCidsFilhos(pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
     /**
      * {@code GET  /cids/:id} : get the "id" cID.
      *

@@ -4,4 +4,8 @@ export interface IProcedimento {
     procedimento?: string;
 }
 
-export class Procedimento implements IProcedimento {}
+export class Procedimento implements IProcedimento {
+    public id?: number;
+    public codigo?: string;
+    public procedimento?: string;
+}

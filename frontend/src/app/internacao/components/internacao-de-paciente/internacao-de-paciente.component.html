@@ -200,6 +200,7 @@
                 icon="pi pi-check"
                 label="Internar Paciente"
                 (onClick)="internarPaciente()"
+                [disabled]="formGroup.invalid"
             ></p-button>
         </form>
     </p-fieldset>
