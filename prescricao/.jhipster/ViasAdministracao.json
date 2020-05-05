@@ -1,0 +1,36 @@
+{
+    "name": "ViasAdministracao",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "sigla",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "viasAdministracao",
+            "relationshipName": "itemPrescricaoMedicamento"
+        }
+    ],
+    "changelogDate": "20200505210946",
+    "entityTableName": "vias_administracao",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "microserviceName": "prescricao"
+}

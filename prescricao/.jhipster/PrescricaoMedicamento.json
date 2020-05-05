@@ -1,0 +1,36 @@
+{
+    "name": "PrescricaoMedicamento",
+    "fields": [
+        {
+            "fieldName": "idPaciente",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "observacao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "prescricaoMedicamento",
+            "relationshipName": "itemPrescricaoMedicamento"
+        }
+    ],
+    "changelogDate": "20200505210944",
+    "entityTableName": "prescricao_medicamento",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "microserviceName": "prescricao"
+}
