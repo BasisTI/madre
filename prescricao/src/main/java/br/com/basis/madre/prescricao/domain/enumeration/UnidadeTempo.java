@@ -4,5 +4,5 @@ package br.com.basis.madre.prescricao.domain.enumeration;
  * The UnidadeTempo enumeration.
  */
 public enum UnidadeTempo {
-    HORA, MINUTO
+    HORAS, MINUTOS
 }

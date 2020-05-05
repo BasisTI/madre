@@ -20,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +31,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
 /**
  * Integration tests for the {@link PrescricaoMedicamentoResource} REST controller.
  */
@@ -42,30 +39,6 @@ public class PrescricaoMedicamentoResourceIT {
 
     private static final Long DEFAULT_ID_PACIENTE = 1L;
     private static final Long UPDATED_ID_PACIENTE = 2L;
-
-    private static final Long DEFAULT_ID_MEDICAMENTO = 1L;
-    private static final Long UPDATED_ID_MEDICAMENTO = 2L;
-
-    private static final Integer DEFAULT_DOSE = 0;
-    private static final Integer UPDATED_DOSE = 1;
-
-    private static final Integer DEFAULT_FREQUENCIA = 0;
-    private static final Integer UPDATED_FREQUENCIA = 1;
-
-    private static final Boolean DEFAULT_TODAS_VIAS = false;
-    private static final Boolean UPDATED_TODAS_VIAS = true;
-
-    private static final Integer DEFAULT_VELOCIDA_INFUSAO = 0;
-    private static final Integer UPDATED_VELOCIDA_INFUSAO = 1;
-
-    private static final UnidadeTempo DEFAULT_UNIDADE_TEMPO = UnidadeTempo.HORA;
-    private static final UnidadeTempo UPDATED_UNIDADE_TEMPO = UnidadeTempo.MINUTO;
-
-    private static final LocalDate DEFAULT_INICIO_ADMINISTRACAO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_INICIO_ADMINISTRACAO = LocalDate.now(ZoneId.systemDefault());
-
-    private static final Boolean DEFAULT_BOMBA_INFUSAO = false;
-    private static final Boolean UPDATED_BOMBA_INFUSAO = true;
 
     private static final String DEFAULT_OBSERVACAO = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACAO = "BBBBBBBBBB";
@@ -121,14 +94,6 @@ public class PrescricaoMedicamentoResourceIT {
     public static PrescricaoMedicamento createEntity(EntityManager em) {
         PrescricaoMedicamento prescricaoMedicamento = new PrescricaoMedicamento()
             .idPaciente(DEFAULT_ID_PACIENTE)
-            .idMedicamento(DEFAULT_ID_MEDICAMENTO)
-            .dose(DEFAULT_DOSE)
-            .frequencia(DEFAULT_FREQUENCIA)
-            .todasVias(DEFAULT_TODAS_VIAS)
-            .velocidaInfusao(DEFAULT_VELOCIDA_INFUSAO)
-            .unidadeTempo(DEFAULT_UNIDADE_TEMPO)
-            .inicioAdministracao(DEFAULT_INICIO_ADMINISTRACAO)
-            .bombaInfusao(DEFAULT_BOMBA_INFUSAO)
             .observacao(DEFAULT_OBSERVACAO);
         return prescricaoMedicamento;
     }
@@ -141,14 +106,6 @@ public class PrescricaoMedicamentoResourceIT {
     public static PrescricaoMedicamento createUpdatedEntity(EntityManager em) {
         PrescricaoMedicamento prescricaoMedicamento = new PrescricaoMedicamento()
             .idPaciente(UPDATED_ID_PACIENTE)
-            .idMedicamento(UPDATED_ID_MEDICAMENTO)
-            .dose(UPDATED_DOSE)
-            .frequencia(UPDATED_FREQUENCIA)
-            .todasVias(UPDATED_TODAS_VIAS)
-            .velocidaInfusao(UPDATED_VELOCIDA_INFUSAO)
-            .unidadeTempo(UPDATED_UNIDADE_TEMPO)
-            .inicioAdministracao(UPDATED_INICIO_ADMINISTRACAO)
-            .bombaInfusao(UPDATED_BOMBA_INFUSAO)
             .observacao(UPDATED_OBSERVACAO);
         return prescricaoMedicamento;
     }
@@ -174,14 +131,6 @@ public class PrescricaoMedicamentoResourceIT {
         assertThat(prescricaoMedicamentoList).hasSize(databaseSizeBeforeCreate + 1);
         PrescricaoMedicamento testPrescricaoMedicamento = prescricaoMedicamentoList.get(prescricaoMedicamentoList.size() - 1);
         assertThat(testPrescricaoMedicamento.getIdPaciente()).isEqualTo(DEFAULT_ID_PACIENTE);
-        assertThat(testPrescricaoMedicamento.getIdMedicamento()).isEqualTo(DEFAULT_ID_MEDICAMENTO);
-        assertThat(testPrescricaoMedicamento.getDose()).isEqualTo(DEFAULT_DOSE);
-        assertThat(testPrescricaoMedicamento.getFrequencia()).isEqualTo(DEFAULT_FREQUENCIA);
-        assertThat(testPrescricaoMedicamento.isTodasVias()).isEqualTo(DEFAULT_TODAS_VIAS);
-        assertThat(testPrescricaoMedicamento.getVelocidaInfusao()).isEqualTo(DEFAULT_VELOCIDA_INFUSAO);
-        assertThat(testPrescricaoMedicamento.getUnidadeTempo()).isEqualTo(DEFAULT_UNIDADE_TEMPO);
-        assertThat(testPrescricaoMedicamento.getInicioAdministracao()).isEqualTo(DEFAULT_INICIO_ADMINISTRACAO);
-        assertThat(testPrescricaoMedicamento.isBombaInfusao()).isEqualTo(DEFAULT_BOMBA_INFUSAO);
         assertThat(testPrescricaoMedicamento.getObservacao()).isEqualTo(DEFAULT_OBSERVACAO);
 
         // Validate the PrescricaoMedicamento in Elasticsearch
@@ -213,42 +162,6 @@ public class PrescricaoMedicamentoResourceIT {
 
     @Test
     @Transactional
-    public void checkIdMedicamentoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = prescricaoMedicamentoRepository.findAll().size();
-        // set the field null
-        prescricaoMedicamento.setIdMedicamento(null);
-
-        // Create the PrescricaoMedicamento, which fails.
-
-        restPrescricaoMedicamentoMockMvc.perform(post("/api/prescricao-medicamentos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamento)))
-            .andExpect(status().isBadRequest());
-
-        List<PrescricaoMedicamento> prescricaoMedicamentoList = prescricaoMedicamentoRepository.findAll();
-        assertThat(prescricaoMedicamentoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkDoseIsRequired() throws Exception {
-        int databaseSizeBeforeTest = prescricaoMedicamentoRepository.findAll().size();
-        // set the field null
-        prescricaoMedicamento.setDose(null);
-
-        // Create the PrescricaoMedicamento, which fails.
-
-        restPrescricaoMedicamentoMockMvc.perform(post("/api/prescricao-medicamentos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamento)))
-            .andExpect(status().isBadRequest());
-
-        List<PrescricaoMedicamento> prescricaoMedicamentoList = prescricaoMedicamentoRepository.findAll();
-        assertThat(prescricaoMedicamentoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllPrescricaoMedicamentos() throws Exception {
         // Initialize the database
         prescricaoMedicamentoRepository.saveAndFlush(prescricaoMedicamento);
@@ -259,17 +172,9 @@ public class PrescricaoMedicamentoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(prescricaoMedicamento.getId().intValue())))
             .andExpect(jsonPath("$.[*].idPaciente").value(hasItem(DEFAULT_ID_PACIENTE.intValue())))
-            .andExpect(jsonPath("$.[*].idMedicamento").value(hasItem(DEFAULT_ID_MEDICAMENTO.intValue())))
-            .andExpect(jsonPath("$.[*].dose").value(hasItem(DEFAULT_DOSE)))
-            .andExpect(jsonPath("$.[*].frequencia").value(hasItem(DEFAULT_FREQUENCIA)))
-            .andExpect(jsonPath("$.[*].todasVias").value(hasItem(DEFAULT_TODAS_VIAS.booleanValue())))
-            .andExpect(jsonPath("$.[*].velocidaInfusao").value(hasItem(DEFAULT_VELOCIDA_INFUSAO)))
-            .andExpect(jsonPath("$.[*].unidadeTempo").value(hasItem(DEFAULT_UNIDADE_TEMPO.toString())))
-            .andExpect(jsonPath("$.[*].inicioAdministracao").value(hasItem(DEFAULT_INICIO_ADMINISTRACAO.toString())))
-            .andExpect(jsonPath("$.[*].bombaInfusao").value(hasItem(DEFAULT_BOMBA_INFUSAO.booleanValue())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
-    
+
     @Test
     @Transactional
     public void getPrescricaoMedicamento() throws Exception {
@@ -282,14 +187,6 @@ public class PrescricaoMedicamentoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(prescricaoMedicamento.getId().intValue()))
             .andExpect(jsonPath("$.idPaciente").value(DEFAULT_ID_PACIENTE.intValue()))
-            .andExpect(jsonPath("$.idMedicamento").value(DEFAULT_ID_MEDICAMENTO.intValue()))
-            .andExpect(jsonPath("$.dose").value(DEFAULT_DOSE))
-            .andExpect(jsonPath("$.frequencia").value(DEFAULT_FREQUENCIA))
-            .andExpect(jsonPath("$.todasVias").value(DEFAULT_TODAS_VIAS.booleanValue()))
-            .andExpect(jsonPath("$.velocidaInfusao").value(DEFAULT_VELOCIDA_INFUSAO))
-            .andExpect(jsonPath("$.unidadeTempo").value(DEFAULT_UNIDADE_TEMPO.toString()))
-            .andExpect(jsonPath("$.inicioAdministracao").value(DEFAULT_INICIO_ADMINISTRACAO.toString()))
-            .andExpect(jsonPath("$.bombaInfusao").value(DEFAULT_BOMBA_INFUSAO.booleanValue()))
             .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO));
     }
 
@@ -315,14 +212,6 @@ public class PrescricaoMedicamentoResourceIT {
         em.detach(updatedPrescricaoMedicamento);
         updatedPrescricaoMedicamento
             .idPaciente(UPDATED_ID_PACIENTE)
-            .idMedicamento(UPDATED_ID_MEDICAMENTO)
-            .dose(UPDATED_DOSE)
-            .frequencia(UPDATED_FREQUENCIA)
-            .todasVias(UPDATED_TODAS_VIAS)
-            .velocidaInfusao(UPDATED_VELOCIDA_INFUSAO)
-            .unidadeTempo(UPDATED_UNIDADE_TEMPO)
-            .inicioAdministracao(UPDATED_INICIO_ADMINISTRACAO)
-            .bombaInfusao(UPDATED_BOMBA_INFUSAO)
             .observacao(UPDATED_OBSERVACAO);
 
         restPrescricaoMedicamentoMockMvc.perform(put("/api/prescricao-medicamentos")
@@ -335,14 +224,6 @@ public class PrescricaoMedicamentoResourceIT {
         assertThat(prescricaoMedicamentoList).hasSize(databaseSizeBeforeUpdate);
         PrescricaoMedicamento testPrescricaoMedicamento = prescricaoMedicamentoList.get(prescricaoMedicamentoList.size() - 1);
         assertThat(testPrescricaoMedicamento.getIdPaciente()).isEqualTo(UPDATED_ID_PACIENTE);
-        assertThat(testPrescricaoMedicamento.getIdMedicamento()).isEqualTo(UPDATED_ID_MEDICAMENTO);
-        assertThat(testPrescricaoMedicamento.getDose()).isEqualTo(UPDATED_DOSE);
-        assertThat(testPrescricaoMedicamento.getFrequencia()).isEqualTo(UPDATED_FREQUENCIA);
-        assertThat(testPrescricaoMedicamento.isTodasVias()).isEqualTo(UPDATED_TODAS_VIAS);
-        assertThat(testPrescricaoMedicamento.getVelocidaInfusao()).isEqualTo(UPDATED_VELOCIDA_INFUSAO);
-        assertThat(testPrescricaoMedicamento.getUnidadeTempo()).isEqualTo(UPDATED_UNIDADE_TEMPO);
-        assertThat(testPrescricaoMedicamento.getInicioAdministracao()).isEqualTo(UPDATED_INICIO_ADMINISTRACAO);
-        assertThat(testPrescricaoMedicamento.isBombaInfusao()).isEqualTo(UPDATED_BOMBA_INFUSAO);
         assertThat(testPrescricaoMedicamento.getObservacao()).isEqualTo(UPDATED_OBSERVACAO);
 
         // Validate the PrescricaoMedicamento in Elasticsearch
@@ -404,14 +285,6 @@ public class PrescricaoMedicamentoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(prescricaoMedicamento.getId().intValue())))
             .andExpect(jsonPath("$.[*].idPaciente").value(hasItem(DEFAULT_ID_PACIENTE.intValue())))
-            .andExpect(jsonPath("$.[*].idMedicamento").value(hasItem(DEFAULT_ID_MEDICAMENTO.intValue())))
-            .andExpect(jsonPath("$.[*].dose").value(hasItem(DEFAULT_DOSE)))
-            .andExpect(jsonPath("$.[*].frequencia").value(hasItem(DEFAULT_FREQUENCIA)))
-            .andExpect(jsonPath("$.[*].todasVias").value(hasItem(DEFAULT_TODAS_VIAS.booleanValue())))
-            .andExpect(jsonPath("$.[*].velocidaInfusao").value(hasItem(DEFAULT_VELOCIDA_INFUSAO)))
-            .andExpect(jsonPath("$.[*].unidadeTempo").value(hasItem(DEFAULT_UNIDADE_TEMPO.toString())))
-            .andExpect(jsonPath("$.[*].inicioAdministracao").value(hasItem(DEFAULT_INICIO_ADMINISTRACAO.toString())))
-            .andExpect(jsonPath("$.[*].bombaInfusao").value(hasItem(DEFAULT_BOMBA_INFUSAO.booleanValue())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
 

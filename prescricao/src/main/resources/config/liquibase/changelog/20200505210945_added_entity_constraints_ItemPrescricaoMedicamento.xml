@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ItemPrescricaoMedicamento.
+    -->
+    <changeSet id="20200505210945-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="vias_administracao_id"
+                                 baseTableName="item_prescricao_medicamento"
+                                 constraintName="fk_item_prescricao_medicamento_vias_administracao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vias_administracao"/>
+
+        <addForeignKeyConstraint baseColumnNames="diluente_id"
+                                 baseTableName="item_prescricao_medicamento"
+                                 constraintName="fk_item_prescricao_medicamento_diluente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="diluente"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidade_infusao_id"
+                                 baseTableName="item_prescricao_medicamento"
+                                 constraintName="fk_item_prescricao_medicamento_unidade_infusao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade_infusao"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidade_dose_id"
+                                 baseTableName="item_prescricao_medicamento"
+                                 constraintName="fk_item_prescricao_medicamento_unidade_dose_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade_dose"/>
+
+        <addForeignKeyConstraint baseColumnNames="prescricao_medicamento_id"
+                                 baseTableName="item_prescricao_medicamento"
+                                 constraintName="fk_item_prescricao_medicamento_prescricao_medicamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao_medicamento"/>
+
+    </changeSet>
+</databaseChangeLog>

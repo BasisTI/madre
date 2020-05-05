@@ -16,13 +16,13 @@
     ],
     "relationships": [
         {
-            "relationshipName": "prescricaoMedicamento",
-            "otherEntityName": "prescricaoMedicamento",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "viasAdministracao",
+            "relationshipName": "itemPrescricaoMedicamento"
         }
     ],
-    "changelogDate": "20200504152404",
+    "changelogDate": "20200505210946",
     "entityTableName": "vias_administracao",
     "dto": "no",
     "pagination": "no",

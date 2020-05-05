@@ -22,13 +22,13 @@
     ],
     "relationships": [
         {
-            "relationshipName": "prescricaoMedicamento",
-            "otherEntityName": "prescricaoMedicamento",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "unidadeInfusao",
+            "relationshipName": "itemPrescricaoMedicamento"
         }
     ],
-    "changelogDate": "20200504152408",
+    "changelogDate": "20200505210949",
     "entityTableName": "unidade_infusao",
     "dto": "no",
     "pagination": "no",

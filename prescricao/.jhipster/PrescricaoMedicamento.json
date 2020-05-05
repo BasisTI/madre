@@ -6,55 +6,6 @@
             "fieldType": "Long"
         },
         {
-            "fieldName": "idMedicamento",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "dose",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required",
-                "min"
-            ],
-            "fieldValidateRulesMin": 0
-        },
-        {
-            "fieldName": "frequencia",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "min"
-            ],
-            "fieldValidateRulesMin": 0
-        },
-        {
-            "fieldName": "todasVias",
-            "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "velocidaInfusao",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "min"
-            ],
-            "fieldValidateRulesMin": 0
-        },
-        {
-            "fieldName": "unidadeTempo",
-            "fieldType": "UnidadeTempo",
-            "fieldValues": "HORA,MINUTO"
-        },
-        {
-            "fieldName": "inicioAdministracao",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "bombaInfusao",
-            "fieldType": "Boolean"
-        },
-        {
             "fieldName": "observacao",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -66,36 +17,12 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "viasAdministracao",
+            "otherEntityName": "itemPrescricaoMedicamento",
             "otherEntityRelationshipName": "prescricaoMedicamento",
-            "relationshipName": "viasAdministracao"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "tipoMedicamento",
-            "otherEntityRelationshipName": "prescricaoMedicamento",
-            "relationshipName": "tipoMedicamento"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "diluente",
-            "otherEntityRelationshipName": "prescricaoMedicamento",
-            "relationshipName": "diluente"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "unidadeInfusao",
-            "otherEntityRelationshipName": "prescricaoMedicamento",
-            "relationshipName": "unidadeInfusao"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "unidadeDose",
-            "otherEntityRelationshipName": "prescricaoMedicamento",
-            "relationshipName": "unidadeDose"
+            "relationshipName": "itemPrescricaoMedicamento"
         }
     ],
-    "changelogDate": "20200504152403",
+    "changelogDate": "20200505210944",
     "entityTableName": "prescricao_medicamento",
     "dto": "no",
     "pagination": "no",

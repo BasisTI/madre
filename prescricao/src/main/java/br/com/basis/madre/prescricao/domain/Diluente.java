@@ -1,5 +1,4 @@
 package br.com.basis.madre.prescricao.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +7,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Diluente.
@@ -31,9 +32,9 @@ public class Diluente implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
-    @ManyToOne
-    @JsonIgnoreProperties("diluentes")
-    private PrescricaoMedicamento prescricaoMedicamento;
+    @OneToMany(mappedBy = "diluente")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -57,17 +58,29 @@ public class Diluente implements Serializable {
         this.descricao = descricao;
     }
 
-    public PrescricaoMedicamento getPrescricaoMedicamento() {
-        return prescricaoMedicamento;
+    public Set<ItemPrescricaoMedicamento> getItemPrescricaoMedicamentos() {
+        return itemPrescricaoMedicamentos;
     }
 
-    public Diluente prescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
-        this.prescricaoMedicamento = prescricaoMedicamento;
+    public Diluente itemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
+        this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
         return this;
     }
 
-    public void setPrescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
-        this.prescricaoMedicamento = prescricaoMedicamento;
+    public Diluente addItemPrescricaoMedicamento(ItemPrescricaoMedicamento itemPrescricaoMedicamento) {
+        this.itemPrescricaoMedicamentos.add(itemPrescricaoMedicamento);
+        itemPrescricaoMedicamento.setDiluente(this);
+        return this;
+    }
+
+    public Diluente removeItemPrescricaoMedicamento(ItemPrescricaoMedicamento itemPrescricaoMedicamento) {
+        this.itemPrescricaoMedicamentos.remove(itemPrescricaoMedicamento);
+        itemPrescricaoMedicamento.setDiluente(null);
+        return this;
+    }
+
+    public void setItemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
+        this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

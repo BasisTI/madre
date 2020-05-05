@@ -13,13 +13,13 @@
     ],
     "relationships": [
         {
-            "relationshipName": "prescricaoMedicamento",
-            "otherEntityName": "prescricaoMedicamento",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "diluente",
+            "relationshipName": "itemPrescricaoMedicamento"
         }
     ],
-    "changelogDate": "20200504152406",
+    "changelogDate": "20200505210947",
     "entityTableName": "diluente",
     "dto": "no",
     "pagination": "no",
