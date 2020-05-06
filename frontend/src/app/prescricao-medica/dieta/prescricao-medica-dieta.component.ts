@@ -1,3 +1,4 @@
+import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
 
@@ -39,6 +40,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     constructor(
         private breadcrumbService: BreadcrumbService,
         private prescricaoMedicaDietaService: PrescricaoMedicaDietaService,
+        private prescricaoMedicaService: PrescricaoMedicaService,
         private route: ActivatedRoute,
         private fb: FormBuilder
     ) { }
@@ -73,12 +75,12 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     }
 
     carregarPaciente(id: number) {
-        this.prescricaoMedicaDietaService.buscarId(id)
+        this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
                 this.paciente = paciente;
+
             });
     }
-
 
 
     carregarTipoItem() {

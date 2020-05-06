@@ -11,7 +11,7 @@
                 </div>
                 <div class="ui-g-12 ui-md-6">
                     <div class="ui-g-12 ui-md-6">
-                        <button pButton type="button" label="Pesquisar" icon="ui-icon-search"></button>
+                        <button pButton label="Pesquisar" icon="ui-icon-search"></button>
                     </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
@@ -43,15 +43,16 @@
                     </p-column>
 
 
-                    <basis-datatable-button icon="local-dining" name="prescrever-dieta" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Dieta"
+                    <basis-datatable-button icon="restaurant" name="prescrever-dieta" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Dieta"
                         class="ui-button-info">
                     </basis-datatable-button>
 
-                    <basis-datatable-button icon="add-circle-outline" name="prescrever-medicamento" routerLink="/prescricao-medica/medicamento" routerLinkActive="router-link-active"  [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
+                    <basis-datatable-button icon="assignment" name="prescrever-medicamento" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
                         class="ui-button-info">
                     </basis-datatable-button>
 
                 </basis-datatable>
+
             </div>
         </div>
     </div>

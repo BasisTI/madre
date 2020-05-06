@@ -7,6 +7,10 @@ export class PrescricaoMedicaService{
     baseUrl = '/prescricao/api';
     constructor(private http: HttpClient){}
 
+    buscarIdPaciente(id: number): Observable<any>{
+        return this.http.get(`${this.baseUrl}/pacientes/${id}`);
+    }
+
     listarPacientes(): Observable<any> {
        return this.http.get(`${this.baseUrl}/pacientes`);
     }
