@@ -5,9 +5,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Farmacia } from './farmacia.router';
+import { DispensacaoComponent } from './dispensacao/dispensacao.component';
 
 @NgModule({
-    declarations: [FarmaciaComponent],
+    declarations: [FarmaciaComponent, DispensacaoComponent],
     imports: [CommonModule, SharedModule, RouterModule.forChild(Farmacia)],
 })
 export class FarmaciaModule {}

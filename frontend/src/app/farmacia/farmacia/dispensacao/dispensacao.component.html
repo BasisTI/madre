@@ -1,0 +1,51 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="ui-g-12">
+            <h1>Prescrição Médica</h1>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText type="text" pTooltip="Informe o Prontuario." />
+                    <label>Prontuário</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText type="text" pTooltip="Informe a Data da Prescrição." />
+                    <label>Data da Prescrição</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText type="text" pTooltip="Informe a unidade Funcional." />
+                    <label>Unidade Funcional</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText type="text" pTooltip="Informe a Farmacia." />
+                    <label>Farmácia</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Pesquisar" icon="ui-icon-search"></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Limpar"></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Exportar"></button>
+            </div>
+        </div>
+        <basis-datatable type="memory" [value]="Prescricao">
+            <p-column header="Prontuário" field="prontuario"></p-column>
+            <p-column header="Paciente" field="paciente"></p-column>
+            <p-column header="Localização" field="localizacao"></p-column>
+            <p-column header="Início Prescrição" field="dataInicio"></p-column>
+            <p-column header="Fim Prescrição" field="dataFim"></p-column>
+        </basis-datatable>
+    </div>
+</div>
