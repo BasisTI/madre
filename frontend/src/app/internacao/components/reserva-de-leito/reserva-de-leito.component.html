@@ -3,10 +3,13 @@
         <!-- Leito -->
         <div class="ui-g-12">
             <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="leito" />
-                    <label>Leito</label>
-                </span>
+                <app-leito
+                    [parentFormGroup]="formGroup"
+                    [required]="true"
+                    name="leito"
+                    label="Leito"
+                >
+                </app-leito>
             </div>
         </div>
         <!-- Situação -->
