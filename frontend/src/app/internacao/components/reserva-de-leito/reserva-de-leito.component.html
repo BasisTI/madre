@@ -1,1 +1,107 @@
-<p>reserva-de-leito works!</p>
+<div class="ui-g ui-fluid">
+    <form [formGroup]="formGroup">
+        <!-- Leito -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="leito" />
+                    <label>Leito</label>
+                </span>
+            </div>
+        </div>
+        <!-- Situação -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="situacao" />
+                    <label>Situação</label>
+                </span>
+            </div>
+        </div>
+        <!-- Vínculo | Matrícula -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText disabled />
+                    <label>Vínculo / Matrícula</label>
+                </span>
+            </div>
+        </div>
+        <!-- Tipo da Reserva -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="tipoDaReserva" />
+                    <label>Tipo da Reserva</label>
+                </span>
+            </div>
+        </div>
+        <!-- Origem -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="origem" />
+                    <label>Origem</label>
+                </span>
+            </div>
+        </div>
+        <!-- Prontuário | Nome/Nome Social -->
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-md-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText disabled />
+                    <label>Prontuário</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-md-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText disabled />
+                    <label>Nome/Nome Social</label>
+                </span>
+            </div>
+        </div>
+        <!-- Data do Lançamento -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar
+                        [locale]="pCalendarConfig.localidade"
+                        [yearRange]="pCalendarConfig.anosDisponiveis"
+                        showTime="true"
+                        hourFormat="24"
+                        showButtonBar="true"
+                        [yearNavigator]="true"
+                        [monthNavigator]="true"
+                        formControlName="dataDoLancamento"
+                    ></p-calendar>
+                    <label>Data do Lançamento</label>
+                </span>
+            </div>
+        </div>
+        <!-- Justificativa -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <textarea
+                        pInputTextarea
+                        [rows]="3"
+                        [cols]="30"
+                        autoResize="false"
+                        formControlName="justificativa"
+                    ></textarea>
+                    <label>Justificativa</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <p-button
+                    label="Reservar Leito"
+                    icon="pi pi-check"
+                    [disabled]="formGroup.invalid"
+                    (click)="reservarLeito($event)"
+                ></p-button>
+            </div>
+        </div>
+    </form>
+</div>
