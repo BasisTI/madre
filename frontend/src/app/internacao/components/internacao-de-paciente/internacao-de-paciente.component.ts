@@ -1,9 +1,11 @@
-import { Internacao } from './../../models/internacao';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
 import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
+import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 import { ptBR } from '@shared/calendar.pt-br.locale';
+import { Internacao } from '@internacao/models/internacao';
 
 @Component({
     selector: 'app-internacao-de-paciente',
@@ -11,6 +13,8 @@ import { ptBR } from '@shared/calendar.pt-br.locale';
     styleUrls: ['./internacao-de-paciente.component.scss'],
 })
 export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
+    public solicitacao;
+
     public pCalendarConfig = {
         localidade: ptBR,
         dataMinima: new Date(),
@@ -21,7 +25,9 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     constructor(
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
+        private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
         private internacaoDePacienteService: InternacaoDePacienteService,
+        private route: ActivatedRoute,
     ) {}
 
     public formGroup = this.fb.group({
@@ -55,6 +61,11 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
                 routerLink: 'internacao-de-paciente',
             },
         ]);
+
+        const id = this.route.snapshot.params['id'];
+        this.solicitacaoDeInternacaoService.getSolicitacaoPorId(id).subscribe((solicitacao) => {
+            this.solicitacao = solicitacao;
+        });
     }
 
     ngOnDestroy(): void {

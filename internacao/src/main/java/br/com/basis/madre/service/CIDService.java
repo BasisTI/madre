@@ -67,6 +67,18 @@ public class CIDService {
             );
     }
 
+    @Transactional(readOnly = true)
+    public Page<CidDTO> getPais(String descricao, Pageable pageable) {
+        return cidRepository.findByPaiNullAndDescricaoIgnoreCaseContaining(descricao, pageable)
+            .map(cidMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<CidDTO> getFilhosPeloIdDoPai(Long id, Pageable pageable) {
+        return cidRepository.findByPaiId(id, pageable)
+            .map(cidMapper::toDto);
+    }
+
     /**
      * Get one cID by id.
      *

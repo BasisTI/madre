@@ -22,4 +22,10 @@ public interface CIDRepository extends JpaRepository<CID, Long> {
     <S extends CID> Page<S> findAll(Example<S> example,
         Pageable pageable);
 
+    Page<CID> findByPaiNullAndDescricaoIgnoreCaseContaining(String descricao, Pageable pageable);
+
+    Page<CID> findByPaiNull(Pageable pageable);
+
+    Page<CID> findByPaiId(Long id, Pageable pageable);
+
 }

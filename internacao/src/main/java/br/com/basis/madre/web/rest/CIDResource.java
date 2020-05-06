@@ -105,6 +105,24 @@ public class CIDResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/cids/pais")
+    public ResponseEntity<List<CidDTO>> getPais(@RequestParam(name = "descricao", required = false, defaultValue = "") String descricao,Pageable pageable) {
+        log.debug("REST request to get a page of CIDS");
+        Page<CidDTO> page = cidService.getPais(descricao, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cids/pais/{id}/filhos")
+    public ResponseEntity<List<CidDTO>> getFilhosPeloIdDoPai(@PathVariable(name = "id", required = true) Long id, Pageable pageable) {
+        log.debug("REST request to get a page of CIDS");
+        Page<CidDTO> page = cidService.getFilhosPeloIdDoPai(id, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code GET  /cids/:id} : get the "id" cID.
      *

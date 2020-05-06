@@ -6,9 +6,10 @@
     (onShow)="aoAbrir()"
 >
     <p-tree
-        [(selection)]="selectedFile"
+        [(selection)]="cidSelecionado"
         (onNodeSelect)="aoSelecionarCid()"
-        [value]="null"
+        [value]="pais"
         selectionMode="single"
+        (onNodeExpand)="carregarFilhos($event)"
     ></p-tree>
 </p-dialog>
