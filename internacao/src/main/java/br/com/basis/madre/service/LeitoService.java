@@ -6,7 +6,9 @@ import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.repository.LeitoRepository;
 import br.com.basis.madre.repository.search.LeitoSearchRepository;
 import br.com.basis.madre.service.dto.LeitoDTO;
+import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.com.basis.madre.service.mapper.LeitoMapper;
+import br.com.basis.madre.service.mapper.SituacaoDeLeitoMapper;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -28,7 +30,11 @@ public class LeitoService {
 
     private final LeitoRepository leitoRepository;
 
+    private final SituacaoDeLeitoService situacaoDeLeitoService;
+
     private final LeitoMapper leitoMapper;
+
+    private final SituacaoDeLeitoMapper situacaoDeLeitoMapper;
 
     private final LeitoSearchRepository leitoSearchRepository;
 
@@ -70,7 +76,10 @@ public class LeitoService {
     public Page<LeitoDTO> getLeitosDesocupadosPor(String nome,
         Pageable pageable) {
         log.debug("Request to get all Leitos");
-        return leitoRepository.findByNomeIgnoreCaseContaining(nome, pageable)
+        SituacaoDeLeitoDTO situacao = situacaoDeLeitoService.findByNomeIgnoreCase("Desocupado");
+        return leitoRepository
+            .findBySituacaoAndNomeIgnoreCaseContaining(situacaoDeLeitoMapper.toEntity(situacao),
+                nome, pageable)
             .map(leitoMapper::toDto);
     }
 

@@ -8,6 +8,7 @@ import br.com.basis.madre.repository.search.SituacaoDeLeitoSearchRepository;
 import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.com.basis.madre.service.mapper.SituacaoDeLeitoMapper;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +70,14 @@ public class SituacaoDeLeitoService {
         log.debug("Request to get SituacaoDeLeito : {}", id);
         return situacaoDeLeitoRepository.findById(id)
             .map(situacaoDeLeitoMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public SituacaoDeLeitoDTO findByNomeIgnoreCase(String nome) {
+        return
+            situacaoDeLeitoMapper
+                .toDto(situacaoDeLeitoRepository.findByNomeIgnoreCase(nome).orElseThrow(
+                    EntityNotFoundException::new));
     }
 
     /**
