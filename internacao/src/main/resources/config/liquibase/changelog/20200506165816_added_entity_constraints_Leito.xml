@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Leito.
+    -->
+    <changeSet id="20200506165816-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="situacao_id"
+                                 baseTableName="leito"
+                                 constraintName="fk_leito_situacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="situacao_de_leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidade_funcional_id"
+                                 baseTableName="leito"
+                                 constraintName="fk_leito_unidade_funcional_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade_funcional"/>
+
+    </changeSet>
+</databaseChangeLog>
