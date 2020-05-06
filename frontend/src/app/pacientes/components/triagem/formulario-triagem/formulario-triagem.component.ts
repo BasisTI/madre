@@ -11,7 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
     formTriagem = this.fb.group({
-        classificacaoDeRisco: [CLASSIFICACAO_RISCO],
+        classificacaoDeRisco: ['EMERGENCIA'],
         // tslint:disable-next-line: comment-format
         //CLASSIFICACAO_RISCO
         // paciente: ['', Validators.required],

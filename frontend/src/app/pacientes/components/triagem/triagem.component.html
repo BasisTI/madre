@@ -38,24 +38,40 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable type="memory" [value]="null">
+                <basis-datatable
+                    type="memory"
+                    [value]="null"
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                >
                     <p-column header="Nome do Paciente" field="paciente"></p-column>
                     <p-column header="Nome Social" field="nomeSocial"></p-column>
                     <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
                     <p-column header="Data do Atendimento" field="dataDoAtendimento"> </p-column>
                     <p-column header="Hora de Chegada" field="horaDeChegada"></p-column>
                     <p-column header="Classificação" field="classificacao"></p-column>
-                </basis-datatable>
-                <div class="ui-g-1 ui-g-nopad">
                     <basis-datatable-button
                         *ngIf="!disableEdit"
-                        [disabled]="selectedRow == null"
                         (click)="onClick(editEventName, $event)"
                         class="ui-button-success"
                         icon="edit"
                     >
                     </basis-datatable-button>
-                </div>
+                    <basis-datatable-button
+                        icon="remove-red-eye"
+                        ng-reflect-icon="ui-icon-remove-red-eye"
+                        ng-reflect-b-tooltip="Escolha um registro para visualizar"
+                        class="ng-star-inserted"
+                    >
+                    </basis-datatable-button>
+                    <basis-datatable-button
+                        *ngIf="!disableDelete"
+                        (click)="onClick(deleteEventName, $event)"
+                        class="ui-button-danger"
+                        icon="delete"
+                    ></basis-datatable-button>
+                </basis-datatable>
                 <div class="ui-g-9"></div>
                 <div class="ui-g-2">
                     <button
