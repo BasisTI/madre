@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "br.com.basis.madre"
     },
-    "jhipsterVersion": "5.7.2",
+    "jhipsterVersion": "6.4.1",
     "applicationType": "microservice",
     "baseName": "pacientes",
     "packageName": "br.com.basis.madre",

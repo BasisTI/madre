@@ -37,11 +37,6 @@ export class AppMenuComponent implements OnInit {
                         icon: 'add',
                         routerLink: ['/pacientes/cadastro'],
                     },
-                    {
-                        label: 'Solicitação de Internação',
-                        icon: 'add',
-                        routerLink: ['/pacientes/solicitacao-de-internacao'],
-                    },
                 ],
             },
             {
@@ -64,34 +59,44 @@ export class AppMenuComponent implements OnInit {
                     },
                 ],
             },
+            {
+                label: 'Internação',
+                icon: 'airline_seat_individual_suite',
+                items: [
+                    {
+                        label: 'Solicitar Internação',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacao-de-internacao'],
+                    },
+                    {
+                        label: 'Internar Paciente',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacoes-de-internacao'],
+                    },
+                ],
+            },
 
             {
                 label: 'Prescrição',
                 icon: 'assignment_ind',
                 items: [
                     {
-                      label: 'Médica',
-                      icon: 'remove',
-                      items: [
-                        {label: 'Prescrever', routerLink: ['/prescricao-medica']},
-                      ]
+                        label: 'Médica',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
                     },
                     {
                         label: 'Enfermagem',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'},
-                      ],
+                        items: [{ label: 'Prescrever' }],
                     },
                     {
                         label: 'Multiprofisisonal',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'}
-                        ]
+                        items: [{ label: 'Prescrever' }],
                     },
-                ]
-            }
+                ],
+            },
         ];
     }
 
