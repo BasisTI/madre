@@ -22,6 +22,7 @@ import { LocalDeAtendimentoComponent } from './components/local-de-atendimento/l
 import { ModalidadeAssistencialComponent } from './components/modalidade-assistencial/modalidade-assistencial.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
 import { PrioridadePipe } from './pipes/prioridade.pipe';
+import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-de-leito.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { PrioridadePipe } from './pipes/prioridade.pipe';
         ModalidadeAssistencialComponent,
         SolicitacoesDeInternacaoComponent,
         PrioridadePipe,
+        ReservaDeLeitoComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
