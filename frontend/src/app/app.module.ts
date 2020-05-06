@@ -67,7 +67,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         PrescricaoMedicaModule,
         DatatableModule.forRoot(),
 
-        PrescricaoMedicaModule
+        PrescricaoMedicaModule,
     ],
     declarations: [
         AppComponent,
@@ -97,7 +97,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         { provide: AbstractAuthentication, useClass: AuthenticationService },
 
         BreadcrumbService,
-        PrescricaoMedicaService
+        PrescricaoMedicaService,
     ],
     bootstrap: [AppComponent],
 })

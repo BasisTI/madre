@@ -1,0 +1,16 @@
+<form [formGroup]="parentFormGroup">
+    <span class="ui-float-label">
+        <p-autoComplete
+            field="nome"
+            [formControlName]="name"
+            (completeMethod)="aoDigitar($event)"
+            (onBlur)="aoDesfocar()"
+            [required]="required"
+            [suggestions]="caracteresDaInternacao"
+            [forceSelection]="true"
+            [dropdown]="true"
+        >
+        </p-autoComplete>
+        <label>{{ label }}</label>
+    </span>
+</form>
