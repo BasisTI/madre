@@ -1,3 +1,4 @@
+import { Certidao } from './models/certidao';
 import { UF } from './../../models/dropdowns/types/uf';
 import { OrgaoEmissor } from './../../models/dropdowns/types/orgao-emissor';
 import { CartaoSUS } from './models/cartaoSUS';
@@ -22,10 +23,10 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
     dadosPessoais = this.fb.group({
         nome: ['', Validators.required],
         nomeSocial: [''],
-        sexo: ['', Validators.required],
-        raca: ['', Validators.required],
-        etnia: ['', Validators.required],
-        estadoCivil: ['', Validators.required],
+        sexo: [null, Validators.required],
+        raca: [null, Validators.required],
+        etnia: [null, Validators.required],
+        estadoCivil: [null, Validators.required],
         prontuarioDaMae: [''],
         nomeDaMae: ['', Validators.required],
         nomeDoPai: ['', Validators.required],
@@ -34,8 +35,8 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         nacionalidade: ['', Validators.required],
         naturalidade: ['', Validators.required],
         grauDeInstrucao: ['', Validators.required],
-        ocupacao: [''],
-        religiao: [''],
+        ocupacao: [null],
+        religiao: [null],
         email: ['', Validators.maxLength(254)],
     });
 
@@ -46,7 +47,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
     responsavel = this.fb.group(
         {
             nomeDoResponsavel: ['', [this.customRequired]],
-            grauDeParentesco: ['', [this.customRequired]],
+            grauDeParentesco: [null, [this.customRequired]],
             ddd: ['', [this.customRequired]],
             telefone: ['', [this.customRequired]],
             observacao: ['', [this.customRequired]],
@@ -109,47 +110,128 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         this.breadcrumbService.reset();
     }
 
+    valid(): boolean {
+        return (
+            this.dadosPessoais.valid &&
+            this.telefones.valid &&
+            this.enderecos.valid &&
+            this.responsavel.valid &&
+            this.documentos.valid &&
+            this.cartaoSUS.valid &&
+            this.certidao.valid
+        );
+    }
+
     cadastrar() {
         let dp = this.dadosPessoais.value;
-
         let telefonesCadastro = this.telefones.value;
-        let telefones: Telefone[] = [];
+        let telefonesCad: Telefone[] = [];
         telefonesCadastro.forEach((element) => {
-            telefones.push(new Telefone());
+            telefonesCad.push(new Telefone());
         });
-
         let enderecoCadastro = this.enderecos.value;
-        let enderecos: Endereco[] = [];
+        let enderecosCad: Endereco[] = [];
         enderecoCadastro.forEach((element) => {
-            enderecos.push(new Endereco());
+            enderecosCad.push(new Endereco());
         });
-
         let sus = this.cartaoSUS.value;
         let resp = this.responsavel.value;
         let doc = this.documentos.value;
-        let certidao = this.certidao.value;
-        //console.log(this.dadosPessoais);
-        let paciente: Paciente = new Paciente(
-            null,
-            dp.nome,
-            dp.nomeSocial,
-            dp.dataDeNascimento,
-            dp.horaDoNascimento,
-            dp.email,
-            null,
-            dp.grauDeInstrucao,
-            dp.sexo,
-            telefones,
-            enderecos,
-            sus,
-            new Responsavel(
+        let cert = this.certidao.value;
+
+        let paciente: Paciente = {
+            nome: dp.nome,
+            nomeSocial: dp.nomeSocail,
+            dataDeNascimento: dp.dataDeNascimento,
+            email: dp.email,
+            horaDeNascimento: dp.horaDoNascimento,
+            ocupacaoId: dp.ocupacao ? dp.ocupacao.id : null,
+            religiaoId: dp.religiao ? dp.religiao.id : null,
+            etniaId: dp.etnia ? dp.religiao.id : null,
+            naturalidadeId: dp.naturalidade ? dp.naturalidade.id : null,
+            nacionalidadeId: dp.nacionalidade ? dp.nacionalidade.id : null,
+            racaId: dp.raca ? dp.raca.id : null,
+            estadoCivilId: dp.estadoCivil ? dp.estadoCivil.id : null,
+            sexo: dp.sexo,
+            grauDeInstrucao: dp.grauDeInstrucao,
+            documento: {
+                numeroDaIdentidade: doc.numeroIdentidade,
+                data: doc.dataDeEmissao,
+                cpf: doc.cpf,
+                pisPasep: doc.pisPasep,
+                cnh: doc.cnh,
+                validadeDaCnh: doc.validadeCNH,
+                orgaoEmissorId: doc.orgaoEmissor ? doc.orgaoEmissor.id : null,
+                ufId: doc.uf ? doc.uf.id : null,
+            },
+            responsavel: {
+                nomeDoResponsavel: resp.nomeDoResponsavel,
+                grauDeParentescoId: resp.grauDeParentesco ? resp.grauDeParentesco.id : null,
+                observacao: resp.observacao,
+                telefone: {
+                    ddd: resp.ddd,
+                    numero: resp.telefone,
+                },
+            },
+            certidao: {
+                registroDeNascimento: cert.registroDeNascimento,
+                tipoDaCertidao: cert.tipoCertidao,
+                nomeDoCartorio: cert.nomeDoCartorio,
+                livro: cert.livro,
+                folhas: cert.folhas,
+                termo: cert.termo,
+                dataDeEmissao: cert.dataDeEmissao,
+                numeroDaDeclaracaoDeNascimento: cert.numeroDaDN,
+            },
+            cartaoSUS: {
+                numero: sus.numero,
+                justificativaId: sus.justificativa ? sus.justificativa.id : null,
+                motivoDoCadastroId: sus.motivoCadastro ? sus.motivoCadastro.id : null,
+                documentoDeReferencia: sus.docReferencia,
+                cartaoNacionalSaudeMae: sus.cartaoNacional,
+                dataDeEntradaNoBrasil: sus.dataDeEntrada,
+                dataDeNaturalizacao: sus.dataDeNaturalizacao,
+                portaria: sus.portaria,
+            },
+            enderecos: enderecosCad,
+            telefones: telefonesCad,
+        };
+        // new Paciente(
+        //     null,
+        //     dp.nome,
+        //     dp.nomeSocial,
+        //     dp.dataDeNascimento,
+        //     dp.horaDoNascimento,
+        //     dp.email,
+        //     null,
+        //     dp.grauDeInstrucao,
+        //     dp.sexo,
+        //     telefonesc,
+        //     enderecos,
+        //     sus,
+        //     null,
+        //     null, //Certidao
+        //     dp.ocupacao.id,
+        //     dp.religiao.id,
+        //     dp.naturalidade.id,
+        //     dp.etnia.id,
+        //     null,
+        //     dp.nacionalidade.id,
+        //     dp.raca.id,
+        //     dp.estadoCivil.id,
+        // );
+        if (resp.nomeDoResponsavel) {
+            paciente.responsavel = new Responsavel(
                 null,
                 resp.nomeDoResponsavel,
-                resp.telefone,
-                resp.grauDeParentesco,
+                new Telefone(null, resp.ddd, resp.telefone),
+                resp.grauDeParentesco.id,
                 resp.observacao,
-            ),
-            new Documento(
+            );
+        }
+
+        if (doc.cpf) {
+            paciente.documento = new Documento(
                 null,
                 doc.numeroIdentidade,
                 doc.dataDeEmissao,
@@ -160,17 +242,23 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 null,
                 doc.orgaoEmissor,
                 doc.uf,
-            ),
-            certidao,
-            dp.ocupacao.id,
-            dp.religiao.id,
-            dp.naturalidade.id,
-            dp.etnia.id,
-            null,
-            dp.nacionalidade.id,
-            dp.raca.id,
-            dp.estadoCivil.id,
-        );
+            );
+        }
+
+        if (cert.registroDeNascimento) {
+            paciente.certidao = new Certidao(
+                null,
+                cert.registroDeNascimento,
+                cert.tipoCertidao,
+                cert.nomeDoCartorio,
+                cert.livro,
+                cert.folhas,
+                cert.termo,
+                cert.dataDeEmissao,
+                cert.numeroDaDN,
+            );
+        }
+
         console.log(paciente);
         //if (this.formularioDeCadastro.valid) {
         this.formularioCadastroService.cadastrarPaciente(paciente).subscribe();

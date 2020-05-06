@@ -14,8 +14,6 @@ public class ResponsavelDTO implements Serializable {
 
     private TelefoneDTO telefone;
 
-    private String ddd;
-
     private String observacao;
 
     private Long grauDeParentescoId;
@@ -28,14 +26,6 @@ public class ResponsavelDTO implements Serializable {
 
     public void setTelefone(TelefoneDTO telefone) {
         this.telefone = telefone;
-    }
-
-    public String getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(String ddd) {
-        this.ddd = ddd;
     }
 
     public String getObservacao() {
@@ -97,7 +87,6 @@ public class ResponsavelDTO implements Serializable {
             "id=" + id +
             ", nomeDoResponsavel='" + nomeDoResponsavel + '\'' +
             ", telefone='" + telefone + '\'' +
-            ", ddd='" + ddd + '\'' +
             ", observacao='" + observacao + '\'' +
             ", grauDeParentescoId=" + grauDeParentescoId +
             '}';

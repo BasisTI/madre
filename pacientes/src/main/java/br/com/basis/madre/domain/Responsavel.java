@@ -32,7 +32,7 @@ public class Responsavel implements Serializable {
     private String nomeDoResponsavel;
 
 //    @Field(type = FieldType.Nested)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("responsavels")
     private Telefone telefone;
 
