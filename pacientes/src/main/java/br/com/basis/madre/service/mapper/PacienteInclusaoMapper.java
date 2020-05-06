@@ -25,7 +25,7 @@ public interface PacienteInclusaoMapper extends EntityMapper<PacienteInclusaoDTO
     PacienteInclusaoDTO toDto(Paciente paciente);
 
 
-    @Mapping(source = "certidaoId", target = "certidao")
+    //@Mapping(source = "certidaoId", target = "certidao")
     @Mapping(source = "ocupacaoId", target = "ocupacao")
     @Mapping(source = "religiaoId", target = "religiao")
     @Mapping(source = "naturalidadeId", target = "naturalidade")

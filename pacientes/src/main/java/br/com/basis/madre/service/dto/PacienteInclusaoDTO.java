@@ -29,7 +29,7 @@ public class PacienteInclusaoDTO implements Serializable {
     private LocalDate dataDeNascimento;
 
     private Instant horaDeNascimento;
-    
+
     private String email;
 
     private String observacao;

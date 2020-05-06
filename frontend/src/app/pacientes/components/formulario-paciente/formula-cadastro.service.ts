@@ -1,3 +1,4 @@
+import { Paciente } from './models/paciente';
 import { Observable } from 'rxjs';
 import { FormularioCadastroComponent } from './formulario-cadastro.component';
 import { HttpClient } from '@angular/common/http';
@@ -11,9 +12,9 @@ export class FormulaCadastroService {
 
     constructor(private httpService: HttpClient) {}
 
-    cadastrarPaciente(cadastro: any) {
-        console.log(cadastro);
+    cadastrarPaciente(paciente: Paciente) {
+        console.log(paciente);
 
-        return this.httpService.post(this.apiUrl, cadastro);
+        return this.httpService.post(this.apiUrl, paciente);
     }
 }
