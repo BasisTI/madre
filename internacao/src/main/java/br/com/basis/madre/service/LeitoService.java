@@ -11,6 +11,9 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,16 +50,29 @@ public class LeitoService {
     /**
      * Get all the leitos.
      *
+     * @param leitoDTO
      * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<LeitoDTO> findAll(Pageable pageable) {
+    public Page<LeitoDTO> findAll(LeitoDTO leitoDTO,
+        Pageable pageable) {
         log.debug("Request to get all Leitos");
-        return leitoRepository.findAll(pageable)
+        return leitoRepository.findAll(
+            Example.of(leitoMapper.toEntity(leitoDTO),
+                ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
+                    StringMatcher.CONTAINING))
+            , pageable)
             .map(leitoMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public Page<LeitoDTO> getLeitosDesocupadosPor(String nome,
+        Pageable pageable) {
+        log.debug("Request to get all Leitos");
+        return leitoRepository.findByNomeIgnoreCaseContaining(nome, pageable)
+            .map(leitoMapper::toDto);
+    }
 
     /**
      * Get one leito by id.

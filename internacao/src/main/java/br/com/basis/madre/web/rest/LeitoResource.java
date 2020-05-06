@@ -98,9 +98,18 @@ public class LeitoResource {
      * body.
      */
     @GetMapping("/leitos")
-    public ResponseEntity<List<LeitoDTO>> getAllLeitos(Pageable pageable) {
+    public ResponseEntity<List<LeitoDTO>> getAllLeitos(LeitoDTO leitoDTO, Pageable pageable) {
         log.debug("REST request to get a page of Leitos");
-        Page<LeitoDTO> page = leitoService.findAll(pageable);
+        Page<LeitoDTO> page = leitoService.findAll(leitoDTO, pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/leitos/desocupados")
+    public ResponseEntity<List<LeitoDTO>> getLeitosDesocupadosPorNome(@RequestParam(name = "nome", required = false, defaultValue = "") String nome, Pageable pageable) {
+        log.debug("REST request to get a page of Leitos");
+        Page<LeitoDTO> page = leitoService.getLeitosDesocupadosPor(nome, pageable);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
