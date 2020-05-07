@@ -1,0 +1,11 @@
+id;nome;ala;andar;situacao_id;unidade_funcional_id
+1;Leito 0001A;31;1;1;1
+2;Leito 0001B;27;1;1;2
+3;Leito 0001C;21;1;1;3
+4;Leito 0001D;10;1;1;4
+5;Leito 0001E;12;3;1;5
+6;Leito 0001F;5;4;1;6
+7;Leito 0001G;67;5;1;7
+8;Leito 0001H;2;6;1;8
+9;Leito 0001I;1;7;1;9
+10;Leito 0001J;31;2;1;10

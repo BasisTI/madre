@@ -36,6 +36,12 @@
     relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml" relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200503221913_added_entity_CaraterDaInternacao.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165814_added_entity_SituacaoDeLeito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165815_added_entity_UnidadeFuncional.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165816_added_entity_Leito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165817_added_entity_ReservaDeLeito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165818_added_entity_OrigemDaReservaDeLeito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165819_added_entity_TipoDaReservaDeLeito.xml" relativeToChangelogFile="false"/>
   <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
   <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
     relativeToChangelogFile="false"/>
@@ -45,6 +51,8 @@
   <include file="config/liquibase/changelog/20200429130314_added_entity_constraints_Equipe.xml"
     relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165816_added_entity_constraints_Leito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200506165817_added_entity_constraints_ReservaDeLeito.xml" relativeToChangelogFile="false"/>
   <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
   <include file="config/liquibase/changelog/20200429143312_changelog.xml"
     relativeToChangelogFile="false"/>

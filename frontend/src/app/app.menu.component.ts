@@ -73,6 +73,17 @@ export class AppMenuComponent implements OnInit {
                         icon: 'add',
                         routerLink: ['internacao/solicitacoes-de-internacao'],
                     },
+                    {
+                        label: 'Leitos',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Reservar Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/reserva-de-leito'],
+                            },
+                        ],
+                    },
                 ],
             },
 

@@ -100,6 +100,41 @@ enum Prioridade {
     URGENCIA
 }
 
+relationship ManyToOne {
+    Leito{situacao required} to SituacaoDeLeito,
+    Leito{unidadeFuncional required} to UnidadeFuncional,
+    ReservaDeLeito{leito required} to Leito,
+    ReservaDeLeito{origem} to OrigemDaReservaDeLeito,
+    ReservaDeLeito{tipo} to TipoDaReservaDeLeito
+}
+
+entity SituacaoDeLeito {
+    nome String required
+}
+
+entity UnidadeFuncional {
+    nome String required
+}
+
+entity Leito {
+    nome String required
+    ala Integer required
+    andar Integer required
+}
+
+entity ReservaDeLeito {
+    dataDoLancamento LocalDate required
+    justificativa String
+}
+
+entity OrigemDaReservaDeLeito {
+    nome String required
+}
+
+entity TipoDaReservaDeLeito {
+    nome String required
+}
+
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
