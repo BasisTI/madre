@@ -33,13 +33,11 @@ public class Telefone implements Serializable {
 
     @NotNull
     @Column(name = "ddd", nullable = false)
-    @Size(min = 3, max = 3)
     private String ddd;
 
 
     @NotNull
     @Column(name = "numero", nullable = false)
-    @Size(min = 9, max = 9)
     private String numero;
 
     @Field(type = FieldType.Keyword)

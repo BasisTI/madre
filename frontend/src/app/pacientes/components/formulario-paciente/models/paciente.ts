@@ -1,3 +1,4 @@
+import { Genitores } from './genitores';
 import { CartaoSUS } from './cartaoSUS';
 import { Responsavel } from './responsavel';
 import { Telefone } from './telefone';
@@ -18,6 +19,7 @@ export class Paciente {
         public sexo?: string,
         public telefones?: Telefone[],
         public enderecos?: Endereco[],
+        public genitores?: Genitores,
         public cartaoSUS?: CartaoSUS,
         public responsavel?: Responsavel,
         public documento?: Documento,

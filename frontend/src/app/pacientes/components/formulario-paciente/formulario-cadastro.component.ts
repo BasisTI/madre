@@ -28,16 +28,16 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         etnia: [null, Validators.required],
         estadoCivil: [null, Validators.required],
         prontuarioDaMae: [''],
-        nomeDaMae: ['', Validators.required],
-        nomeDoPai: ['', Validators.required],
-        dataDeNascimento: ['', Validators.required],
-        horaDoNascimento: [''],
-        nacionalidade: ['', Validators.required],
-        naturalidade: ['', Validators.required],
-        grauDeInstrucao: ['', Validators.required],
+        nomeDaMae: [null, Validators.required],
+        nomeDoPai: [null, Validators.required],
+        dataDeNascimento: [null, Validators.required],
+        horaDoNascimento: [null],
+        nacionalidade: [null, Validators.required],
+        naturalidade: [null, Validators.required],
+        grauDeInstrucao: [null, Validators.required],
         ocupacao: [null],
         religiao: [null],
-        email: ['', Validators.maxLength(254)],
+        email: [null, Validators.maxLength(254)],
     });
 
     telefones = this.fb.array([]);
@@ -46,49 +46,49 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
 
     responsavel = this.fb.group(
         {
-            nomeDoResponsavel: ['', [this.customRequired]],
+            nomeDoResponsavel: [null, [this.customRequired]],
             grauDeParentesco: [null, [this.customRequired]],
-            ddd: ['', [this.customRequired]],
-            telefone: ['', [this.customRequired]],
-            observacao: ['', [this.customRequired]],
+            ddd: [null, [this.customRequired]],
+            telefone: [null, [this.customRequired]],
+            observacao: [null, [this.customRequired]],
         },
         { updateOn: 'blur', validators: this.validateGroup },
     );
 
     certidao = this.fb.group({
-        registroDeNascimento: [''],
-        tipoCertidao: [''],
-        nomeDoCartorio: [''],
-        livro: [''],
-        folhas: [''],
-        termo: [''],
-        dataDeEmissao: [''],
-        numeroDaDN: [''],
+        registroDeNascimento: [null],
+        tipoCertidao: [null],
+        nomeDoCartorio: [null],
+        livro: [null],
+        folhas: [null],
+        termo: [null],
+        dataDeEmissao: [null],
+        numeroDaDN: [null],
     });
 
     documentos = this.fb.group(
         {
-            numeroIdentidade: ['', [this.customRequired1]],
-            orgaoEmissor: ['', [this.customRequired1]],
-            uf: ['', [this.customRequired1]],
-            dataDeEmissao: ['', [this.customRequired1]],
-            cpf: [''],
-            pisPasep: [''],
-            cnh: [''],
-            validadeCNH: ['', this.customRequiredCNH1],
+            numeroIdentidade: [null, [this.customRequired1]],
+            orgaoEmissor: [null, [this.customRequired1]],
+            uf: [null, [this.customRequired1]],
+            dataDeEmissao: [null, [this.customRequired1]],
+            cpf: [null],
+            pisPasep: [null],
+            cnh: [null],
+            validadeCNH: [null, this.customRequiredCNH1],
         },
         { updateOn: 'blur', validators: [this.validateGroup1, this.validateGroupCNH1] },
     );
 
     cartaoSUS = this.fb.group({
         numero: ['', [Validators.required, this.validarNumero]],
-        justificativa: [''],
-        motivoCadastro: [''],
-        docReferencia: [''],
+        justificativa: [null],
+        motivoCadastro: [null],
+        docReferencia: [null],
         cartaoNacional: ['', [this.validarNumero]],
-        dataDeEntrada: [''],
-        dataDeNaturalizacao: [''],
-        portaria: [''],
+        dataDeEntrada: [null],
+        dataDeNaturalizacao: [null],
+        portaria: [null],
     });
 
     observacao: [''];
@@ -154,7 +154,33 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             estadoCivilId: dp.estadoCivil ? dp.estadoCivil.id : null,
             sexo: dp.sexo,
             grauDeInstrucao: dp.grauDeInstrucao,
-            documento: {
+
+            enderecos: enderecosCad,
+            telefones: telefonesCad,
+        };
+
+        if (dp.prontuarioDaMae) {
+            paciente.genitores = {
+                prontuarioDaMae: dp.prontuarioDaMae,
+                nomeDaMae: dp.nomeDaMae,
+                nomeDoPai: dp.nomeDoPai,
+            };
+        }
+
+        if (resp.nomeDoResponsavel) {
+            paciente.responsavel = {
+                nomeDoResponsavel: resp.nomeDoResponsavel,
+                grauDeParentescoId: resp.grauDeParentesco ? resp.grauDeParentesco.id : null,
+                observacao: resp.observacao,
+                telefone: {
+                    ddd: resp.ddd,
+                    numero: resp.telefone,
+                },
+            };
+        }
+
+        if (doc.cpf) {
+            paciente.documento = {
                 numeroDaIdentidade: doc.numeroIdentidade,
                 data: doc.dataDeEmissao,
                 cpf: doc.cpf,
@@ -163,17 +189,11 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 validadeDaCnh: doc.validadeCNH,
                 orgaoEmissorId: doc.orgaoEmissor ? doc.orgaoEmissor.id : null,
                 ufId: doc.uf ? doc.uf.id : null,
-            },
-            responsavel: {
-                nomeDoResponsavel: resp.nomeDoResponsavel,
-                grauDeParentescoId: resp.grauDeParentesco ? resp.grauDeParentesco.id : null,
-                observacao: resp.observacao,
-                telefone: {
-                    ddd: resp.ddd,
-                    numero: resp.telefone,
-                },
-            },
-            certidao: {
+            };
+        }
+
+        if (cert.registroDeNascimento) {
+            paciente.certidao = {
                 registroDeNascimento: cert.registroDeNascimento,
                 tipoDaCertidao: cert.tipoCertidao,
                 nomeDoCartorio: cert.nomeDoCartorio,
@@ -182,8 +202,11 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 termo: cert.termo,
                 dataDeEmissao: cert.dataDeEmissao,
                 numeroDaDeclaracaoDeNascimento: cert.numeroDaDN,
-            },
-            cartaoSUS: {
+            };
+        }
+
+        if (sus.numero) {
+            paciente.cartaoSUS = {
                 numero: sus.numero,
                 justificativaId: sus.justificativa ? sus.justificativa.id : null,
                 motivoDoCadastroId: sus.motivoCadastro ? sus.motivoCadastro.id : null,
@@ -192,71 +215,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 dataDeEntradaNoBrasil: sus.dataDeEntrada,
                 dataDeNaturalizacao: sus.dataDeNaturalizacao,
                 portaria: sus.portaria,
-            },
-            enderecos: enderecosCad,
-            telefones: telefonesCad,
-        };
-        // new Paciente(
-        //     null,
-        //     dp.nome,
-        //     dp.nomeSocial,
-        //     dp.dataDeNascimento,
-        //     dp.horaDoNascimento,
-        //     dp.email,
-        //     null,
-        //     dp.grauDeInstrucao,
-        //     dp.sexo,
-        //     telefonesc,
-        //     enderecos,
-        //     sus,
-        //     null,
-        //     null, //Certidao
-        //     dp.ocupacao.id,
-        //     dp.religiao.id,
-        //     dp.naturalidade.id,
-        //     dp.etnia.id,
-        //     null,
-        //     dp.nacionalidade.id,
-        //     dp.raca.id,
-        //     dp.estadoCivil.id,
-        // );
-        if (resp.nomeDoResponsavel) {
-            paciente.responsavel = new Responsavel(
-                null,
-                resp.nomeDoResponsavel,
-                new Telefone(null, resp.ddd, resp.telefone),
-                resp.grauDeParentesco.id,
-                resp.observacao,
-            );
-        }
-
-        if (doc.cpf) {
-            paciente.documento = new Documento(
-                null,
-                doc.numeroIdentidade,
-                doc.dataDeEmissao,
-                doc.cpf,
-                doc.pisPasep,
-                doc.cnh,
-                doc.validadeCNH,
-                null,
-                doc.orgaoEmissor,
-                doc.uf,
-            );
-        }
-
-        if (cert.registroDeNascimento) {
-            paciente.certidao = new Certidao(
-                null,
-                cert.registroDeNascimento,
-                cert.tipoCertidao,
-                cert.nomeDoCartorio,
-                cert.livro,
-                cert.folhas,
-                cert.termo,
-                cert.dataDeEmissao,
-                cert.numeroDaDN,
-            );
+            };
         }
 
         console.log(paciente);
