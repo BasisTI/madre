@@ -42,6 +42,8 @@
   <include file="config/liquibase/changelog/20200506165817_added_entity_ReservaDeLeito.xml" relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200506165818_added_entity_OrigemDaReservaDeLeito.xml" relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200506165819_added_entity_TipoDaReservaDeLeito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200507151223_added_entity_BloqueioDeLeito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200507151226_added_entity_MotivoDoBloqueioDeLeito.xml" relativeToChangelogFile="false"/>
   <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
   <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
     relativeToChangelogFile="false"/>
@@ -53,6 +55,7 @@
   <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml" relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200506165816_added_entity_constraints_Leito.xml" relativeToChangelogFile="false"/>
   <include file="config/liquibase/changelog/20200506165817_added_entity_constraints_ReservaDeLeito.xml" relativeToChangelogFile="false"/>
+  <include file="config/liquibase/changelog/20200507151223_added_entity_constraints_BloqueioDeLeito.xml" relativeToChangelogFile="false"/>
   <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
   <include file="config/liquibase/changelog/20200429143312_changelog.xml"
     relativeToChangelogFile="false"/>
