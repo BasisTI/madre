@@ -9,6 +9,8 @@ import br.com.basis.madre.service.dto.LeitoDTO;
 import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.com.basis.madre.service.mapper.LeitoMapper;
 import br.com.basis.madre.service.mapper.SituacaoDeLeitoMapper;
+import br.com.basis.madre.service.projection.LeitoProjection;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,14 +76,14 @@ public class LeitoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<LeitoDTO> getLeitosDesocupadosPor(String nome,
+    public List<LeitoProjection> getLeitosDesocupadosPor(String nome,
         Pageable pageable) {
         log.debug("Request to get all Leitos");
+        Sort sort = pageable.getSort();
         SituacaoDeLeitoDTO situacao = situacaoDeLeitoService.findByNomeIgnoreCase("Desocupado");
         return leitoRepository
             .findBySituacaoAndNomeIgnoreCaseContaining(situacaoDeLeitoMapper.toEntity(situacao),
-                nome, pageable)
-            .map(leitoMapper::toDto);
+                nome, sort);
     }
 
     /**

@@ -2,6 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.LeitoDTO;
+import br.com.basis.madre.service.projection.LeitoProjection;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -107,12 +108,10 @@ public class LeitoResource {
     }
 
     @GetMapping("/leitos/desocupados")
-    public ResponseEntity<List<LeitoDTO>> getLeitosDesocupadosPorNome(@RequestParam(name = "nome", required = false, defaultValue = "") String nome, Pageable pageable) {
+    public ResponseEntity<List<LeitoProjection>> getLeitosDesocupadosPorNome(@RequestParam(name = "nome", required = false, defaultValue = "") String nome, Pageable pageable) {
         log.debug("REST request to get a page of Leitos");
-        Page<LeitoDTO> page = leitoService.getLeitosDesocupadosPor(nome, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        List<LeitoProjection> leitos = leitoService.getLeitosDesocupadosPor(nome, pageable);
+        return ResponseEntity.ok().body(leitos);
     }
 
     /**
