@@ -1,3 +1,4 @@
+import { Leito } from './../../models/leito';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -21,7 +22,7 @@ export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
 
     public formGroup: FormGroup = this.fb.group({
         leito: ['', Validators.required],
-        situacao: ['', Validators.required],
+        situacao: [{ value: '', disabled: true }, Validators.required],
         tipoDaReserva: [''],
         origem: [''],
         dataDoLancamento: [new Date(), Validators.required],
@@ -46,7 +47,15 @@ export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
         this.breadcrumbService.reset();
     }
 
-    reservarLeito(evento) {
+    aoSelecionarLeito(leito: Leito) {
+        this.formGroup.controls.situacao.setValue(leito.situacao.nome);
+    }
+
+    aoDesfocarLeito() {
+        this.formGroup.controls.situacao.setValue(null);
+    }
+
+    reservarLeito(evento: MouseEvent) {
         console.log(evento);
     }
 }
