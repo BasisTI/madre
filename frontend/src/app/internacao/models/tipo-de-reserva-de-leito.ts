@@ -3,7 +3,7 @@ export interface ITipoDeReservaDeLeito {
     nome?: string;
 }
 
-export class OrigemDaReservaDeLeito implements ITipoDeReservaDeLeito {
+export class TipoDeReservaDeLeito implements ITipoDeReservaDeLeito {
     public id?: number;
     public nome?: string;
 }
