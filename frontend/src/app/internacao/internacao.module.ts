@@ -26,6 +26,8 @@ import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-d
 import { LeitoComponent } from './components/leito/leito.component';
 import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-leito/tipo-de-reserva-de-leito.component';
 import { OrigemDaReservaDeLeitoComponent } from './components/origem-da-reserva-de-leito/origem-da-reserva-de-leito.component';
+import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
+import { MotivoDoBloqueioDeLeitoComponent } from './components/motivo-do-bloqueio-de-leito/motivo-do-bloqueio-de-leito.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +54,8 @@ import { OrigemDaReservaDeLeitoComponent } from './components/origem-da-reserva-
         LeitoComponent,
         TipoDeReservaDeLeitoComponent,
         OrigemDaReservaDeLeitoComponent,
+        BloqueioDeLeitoComponent,
+        MotivoDoBloqueioDeLeitoComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

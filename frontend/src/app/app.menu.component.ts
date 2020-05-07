@@ -82,6 +82,11 @@ export class AppMenuComponent implements OnInit {
                                 icon: 'add',
                                 routerLink: ['internacao/reserva-de-leito'],
                             },
+                            {
+                                label: 'Bloquear Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/bloqueio-de-leito'],
+                            },
                         ],
                     },
                 ],

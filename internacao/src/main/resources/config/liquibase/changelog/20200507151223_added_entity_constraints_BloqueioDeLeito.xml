@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity BloqueioDeLeito.
+    -->
+    <changeSet id="20200507151223-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="leito_id"
+                                 baseTableName="bloqueio_de_leito"
+                                 constraintName="fk_bloqueio_de_leito_leito_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="motivo_id"
+                                 baseTableName="bloqueio_de_leito"
+                                 constraintName="fk_bloqueio_de_leito_motivo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motivo_do_bloqueio_de_leito"/>
+
+    </changeSet>
+</databaseChangeLog>
