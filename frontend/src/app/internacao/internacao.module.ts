@@ -25,6 +25,7 @@ import { PrioridadePipe } from './pipes/prioridade.pipe';
 import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-de-leito.component';
 import { LeitoComponent } from './components/leito/leito.component';
 import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-leito/tipo-de-reserva-de-leito.component';
+import { OrigemDaReservaDeLeitoComponent } from './components/origem-da-reserva-de-leito/origem-da-reserva-de-leito.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-l
         ReservaDeLeitoComponent,
         LeitoComponent,
         TipoDeReservaDeLeitoComponent,
+        OrigemDaReservaDeLeitoComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
