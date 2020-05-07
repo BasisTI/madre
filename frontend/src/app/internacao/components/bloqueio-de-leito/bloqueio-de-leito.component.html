@@ -1,1 +1,93 @@
-<p>bloqueio-de-leito works!</p>
+<div class="ui-g ui-fluid">
+    <form [formGroup]="formGroup">
+        <!-- Leito -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <app-leito
+                    [parentFormGroup]="formGroup"
+                    [required]="true"
+                    name="leito"
+                    label="Leito"
+                    (select)="aoSelecionarLeito($event)"
+                    (blur)="aoDesfocarLeito()"
+                >
+                </app-leito>
+            </div>
+        </div>
+        <!-- Situação -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="situacao" />
+                    <label>Situação</label>
+                </span>
+            </div>
+        </div>
+        <!-- Vínculo | Matrícula -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText disabled />
+                    <label>Vínculo / Matrícula</label>
+                </span>
+            </div>
+        </div>
+        <!-- Tipo da Reserva -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <app-tipo-de-reserva-de-leito
+                        [parentFormGroup]="formGroup"
+                        [required]="true"
+                        name="tipoDaReserva"
+                        label="Tipo da Reserva"
+                    >
+                    </app-tipo-de-reserva-de-leito>
+                </span>
+            </div>
+        </div>
+        <!-- Data do Lançamento -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar
+                        [locale]="pCalendarConfig.localidade"
+                        [yearRange]="pCalendarConfig.anosDisponiveis"
+                        showTime="true"
+                        hourFormat="24"
+                        showButtonBar="true"
+                        [yearNavigator]="true"
+                        [monthNavigator]="true"
+                        formControlName="dataDoLancamento"
+                    ></p-calendar>
+                    <label>Data do Lançamento</label>
+                </span>
+            </div>
+        </div>
+        <!-- Justificativa -->
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <textarea
+                        pInputTextarea
+                        [rows]="3"
+                        [cols]="30"
+                        autoResize="false"
+                        formControlName="justificativa"
+                    ></textarea>
+                    <label>Justificativa</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4 ui-md-4 ui-sm-12">
+                <p-button
+                    label="Reservar Leito"
+                    icon="pi pi-check"
+                    [disabled]="formGroup.invalid"
+                    (click)="reservarLeito($event)"
+                ></p-button>
+            </div>
+        </div>
+    </form>
+</div>
