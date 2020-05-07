@@ -6,8 +6,11 @@ import br.com.basis.madre.domain.BloqueioDeLeito;
 import br.com.basis.madre.repository.BloqueioDeLeitoRepository;
 import br.com.basis.madre.repository.search.BloqueioDeLeitoSearchRepository;
 import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
+import br.com.basis.madre.service.dto.LeitoDTO;
+import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.com.basis.madre.service.mapper.BloqueioDeLeitoMapper;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +32,8 @@ public class BloqueioDeLeitoService {
 
     private final BloqueioDeLeitoSearchRepository bloqueioDeLeitoSearchRepository;
 
+    private final LeitoService leitoService;
+
     /**
      * Save a bloqueioDeLeito.
      *
@@ -37,6 +42,20 @@ public class BloqueioDeLeitoService {
      */
     public BloqueioDeLeitoDTO save(BloqueioDeLeitoDTO bloqueioDeLeitoDTO) {
         log.debug("Request to save BloqueioDeLeito : {}", bloqueioDeLeitoDTO);
+        BloqueioDeLeito bloqueioDeLeito = bloqueioDeLeitoMapper.toEntity(bloqueioDeLeitoDTO);
+        bloqueioDeLeito = bloqueioDeLeitoRepository.save(bloqueioDeLeito);
+        BloqueioDeLeitoDTO result = bloqueioDeLeitoMapper.toDto(bloqueioDeLeito);
+        bloqueioDeLeitoSearchRepository.save(bloqueioDeLeito);
+        return result;
+    }
+
+    public BloqueioDeLeitoDTO save(BloqueioDeLeitoDTO bloqueioDeLeitoDTO,
+        SituacaoDeLeitoDTO situacaoDeLeitoDTO) {
+        LeitoDTO leitoDTO = leitoService.findOne(bloqueioDeLeitoDTO.getLeitoId())
+            .orElseThrow(EntityNotFoundException::new);
+        leitoDTO.setSituacaoId(situacaoDeLeitoDTO.getId());
+        leitoService.save(leitoDTO);
+
         BloqueioDeLeito bloqueioDeLeito = bloqueioDeLeitoMapper.toEntity(bloqueioDeLeitoDTO);
         bloqueioDeLeito = bloqueioDeLeitoRepository.save(bloqueioDeLeito);
         BloqueioDeLeitoDTO result = bloqueioDeLeitoMapper.toDto(bloqueioDeLeito);

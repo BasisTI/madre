@@ -1,7 +1,10 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.BloqueioDeLeitoService;
+import br.com.basis.madre.service.LeitoService;
+import br.com.basis.madre.service.SituacaoDeLeitoService;
 import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
+import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -9,6 +12,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +48,10 @@ public class BloqueioDeLeitoResource {
 
     private final BloqueioDeLeitoService bloqueioDeLeitoService;
 
+    private final LeitoService leitoService;
+
+    private final SituacaoDeLeitoService situacaoDeLeitoService;
+
     /**
      * {@code POST  /bloqueio-de-leitos} : Create a new bloqueioDeLeito.
      *
@@ -53,7 +61,7 @@ public class BloqueioDeLeitoResource {
      * already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/bloqueio-de-leitos")
+    @PostMapping("/bloqueios-de-leito")
     public ResponseEntity<BloqueioDeLeitoDTO> createBloqueioDeLeito(
         @Valid @RequestBody BloqueioDeLeitoDTO bloqueioDeLeitoDTO) throws URISyntaxException {
         log.debug("REST request to save BloqueioDeLeito : {}", bloqueioDeLeitoDTO);
@@ -61,7 +69,21 @@ public class BloqueioDeLeitoResource {
             throw new BadRequestAlertException("A new bloqueioDeLeito cannot already have an ID",
                 ENTITY_NAME, "idexists");
         }
-        BloqueioDeLeitoDTO result = bloqueioDeLeitoService.save(bloqueioDeLeitoDTO);
+
+        Long idSituacaoDoLeito = leitoService.findOne(bloqueioDeLeitoDTO.getLeitoId())
+            .orElseThrow(() -> new BadRequestAlertException(
+                "O leito informado não existe.",
+                LeitoResource.getEntityName(), "idnotexists")).getSituacaoId();
+        SituacaoDeLeitoDTO desocupado = situacaoDeLeitoService.findByNomeIgnoreCase("desocupado");
+
+        if (Objects.isNull(desocupado) && !idSituacaoDoLeito.equals(desocupado.getId())) {
+            throw new BadRequestAlertException("O leito precisa estar desocupado.",
+                LeitoResource.getEntityName(), "idinvalid");
+        }
+
+        SituacaoDeLeitoDTO bloqueado = situacaoDeLeitoService.findByNomeIgnoreCase("bloqueado");
+
+        BloqueioDeLeitoDTO result = bloqueioDeLeitoService.save(bloqueioDeLeitoDTO, bloqueado);
         return ResponseEntity.created(new URI("/api/bloqueio-de-leitos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
                 result.getId().toString()))
@@ -78,7 +100,7 @@ public class BloqueioDeLeitoResource {
      * be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/bloqueio-de-leitos")
+    @PutMapping("/bloqueios-de-leito")
     public ResponseEntity<BloqueioDeLeitoDTO> updateBloqueioDeLeito(
         @Valid @RequestBody BloqueioDeLeitoDTO bloqueioDeLeitoDTO) throws URISyntaxException {
         log.debug("REST request to update BloqueioDeLeito : {}", bloqueioDeLeitoDTO);
@@ -99,7 +121,7 @@ public class BloqueioDeLeitoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of
      * bloqueioDeLeitos in body.
      */
-    @GetMapping("/bloqueio-de-leitos")
+    @GetMapping("/bloqueios-de-leito")
     public ResponseEntity<List<BloqueioDeLeitoDTO>> getAllBloqueioDeLeitos(Pageable pageable) {
         log.debug("REST request to get a page of BloqueioDeLeitos");
         Page<BloqueioDeLeitoDTO> page = bloqueioDeLeitoService.findAll(pageable);
@@ -115,7 +137,7 @@ public class BloqueioDeLeitoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
      * bloqueioDeLeitoDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/bloqueio-de-leitos/{id}")
+    @GetMapping("/bloqueios-de-leito/{id}")
     public ResponseEntity<BloqueioDeLeitoDTO> getBloqueioDeLeito(@PathVariable Long id) {
         log.debug("REST request to get BloqueioDeLeito : {}", id);
         Optional<BloqueioDeLeitoDTO> bloqueioDeLeitoDTO = bloqueioDeLeitoService.findOne(id);
@@ -128,7 +150,7 @@ public class BloqueioDeLeitoResource {
      * @param id the id of the bloqueioDeLeitoDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/bloqueio-de-leitos/{id}")
+    @DeleteMapping("/bloqueios-de-leito/{id}")
     public ResponseEntity<Void> deleteBloqueioDeLeito(@PathVariable Long id) {
         log.debug("REST request to delete BloqueioDeLeito : {}", id);
         bloqueioDeLeitoService.delete(id);
@@ -144,7 +166,7 @@ public class BloqueioDeLeitoResource {
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/bloqueio-de-leitos")
+    @GetMapping("/_search/bloqueios-de-leito")
     public ResponseEntity<List<BloqueioDeLeitoDTO>> searchBloqueioDeLeitos(
         @RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of BloqueioDeLeitos for query {}", query);

@@ -1,5 +1,20 @@
 package br.com.basis.madre.web.rest;
 
+import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import br.com.basis.madre.InternacaoApp;
 import br.com.basis.madre.domain.BloqueioDeLeito;
 import br.com.basis.madre.domain.Leito;
@@ -7,10 +22,17 @@ import br.com.basis.madre.domain.MotivoDoBloqueioDeLeito;
 import br.com.basis.madre.repository.BloqueioDeLeitoRepository;
 import br.com.basis.madre.repository.search.BloqueioDeLeitoSearchRepository;
 import br.com.basis.madre.service.BloqueioDeLeitoService;
+import br.com.basis.madre.service.LeitoService;
+import br.com.basis.madre.service.SituacaoDeLeitoService;
 import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
 import br.com.basis.madre.service.mapper.BloqueioDeLeitoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
+import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -26,28 +48,16 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
-
-import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 /**
  * Integration tests for the {@link BloqueioDeLeitoResource} REST controller.
  */
+@RequiredArgsConstructor
 @SpringBootTest(classes = InternacaoApp.class)
 public class BloqueioDeLeitoResourceIT {
 
     private static final LocalDate DEFAULT_DATA_DO_LANCAMENTO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate
+        .now(ZoneId.systemDefault());
 
     private static final String DEFAULT_JUSTIFICATIVA = "AAAAAAAAAA";
     private static final String UPDATED_JUSTIFICATIVA = "BBBBBBBBBB";
@@ -60,6 +70,12 @@ public class BloqueioDeLeitoResourceIT {
 
     @Autowired
     private BloqueioDeLeitoService bloqueioDeLeitoService;
+
+    @Autowired
+    private SituacaoDeLeitoService situacaoDeLeitoService;
+
+    @Autowired
+    private LeitoService leitoService;
 
     /**
      * This repository is mocked in the br.com.basis.madre.repository.search test package.
@@ -91,7 +107,8 @@ public class BloqueioDeLeitoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BloqueioDeLeitoResource bloqueioDeLeitoResource = new BloqueioDeLeitoResource(bloqueioDeLeitoService);
+        final BloqueioDeLeitoResource bloqueioDeLeitoResource = new BloqueioDeLeitoResource(
+            bloqueioDeLeitoService, leitoService, situacaoDeLeitoService);
         this.restBloqueioDeLeitoMockMvc = MockMvcBuilders.standaloneSetup(bloqueioDeLeitoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -102,9 +119,9 @@ public class BloqueioDeLeitoResourceIT {
 
     /**
      * Create an entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * <p>
+     * This is a static method, as tests for other entities might also need it, if they test an
+     * entity which requires the current entity.
      */
     public static BloqueioDeLeito createEntity(EntityManager em) {
         BloqueioDeLeito bloqueioDeLeito = new BloqueioDeLeito()
@@ -132,11 +149,12 @@ public class BloqueioDeLeitoResourceIT {
         bloqueioDeLeito.setMotivo(motivoDoBloqueioDeLeito);
         return bloqueioDeLeito;
     }
+
     /**
      * Create an updated entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * <p>
+     * This is a static method, as tests for other entities might also need it, if they test an
+     * entity which requires the current entity.
      */
     public static BloqueioDeLeito createUpdatedEntity(EntityManager em) {
         BloqueioDeLeito bloqueioDeLeito = new BloqueioDeLeito()
@@ -185,7 +203,8 @@ public class BloqueioDeLeitoResourceIT {
         // Validate the BloqueioDeLeito in the database
         List<BloqueioDeLeito> bloqueioDeLeitoList = bloqueioDeLeitoRepository.findAll();
         assertThat(bloqueioDeLeitoList).hasSize(databaseSizeBeforeCreate + 1);
-        BloqueioDeLeito testBloqueioDeLeito = bloqueioDeLeitoList.get(bloqueioDeLeitoList.size() - 1);
+        BloqueioDeLeito testBloqueioDeLeito = bloqueioDeLeitoList
+            .get(bloqueioDeLeitoList.size() - 1);
         assertThat(testBloqueioDeLeito.getDataDoLancamento()).isEqualTo(DEFAULT_DATA_DO_LANCAMENTO);
         assertThat(testBloqueioDeLeito.getJustificativa()).isEqualTo(DEFAULT_JUSTIFICATIVA);
 
@@ -247,10 +266,11 @@ public class BloqueioDeLeitoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bloqueioDeLeito.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataDoLancamento").value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].dataDoLancamento")
+                .value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)));
     }
-    
+
     @Test
     @Transactional
     public void getBloqueioDeLeito() throws Exception {
@@ -258,7 +278,8 @@ public class BloqueioDeLeitoResourceIT {
         bloqueioDeLeitoRepository.saveAndFlush(bloqueioDeLeito);
 
         // Get the bloqueioDeLeito
-        restBloqueioDeLeitoMockMvc.perform(get("/api/bloqueio-de-leitos/{id}", bloqueioDeLeito.getId()))
+        restBloqueioDeLeitoMockMvc
+            .perform(get("/api/bloqueio-de-leitos/{id}", bloqueioDeLeito.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(bloqueioDeLeito.getId().intValue()))
@@ -283,7 +304,8 @@ public class BloqueioDeLeitoResourceIT {
         int databaseSizeBeforeUpdate = bloqueioDeLeitoRepository.findAll().size();
 
         // Update the bloqueioDeLeito
-        BloqueioDeLeito updatedBloqueioDeLeito = bloqueioDeLeitoRepository.findById(bloqueioDeLeito.getId()).get();
+        BloqueioDeLeito updatedBloqueioDeLeito = bloqueioDeLeitoRepository
+            .findById(bloqueioDeLeito.getId()).get();
         // Disconnect from session so that the updates on updatedBloqueioDeLeito are not directly saved in db
         em.detach(updatedBloqueioDeLeito);
         updatedBloqueioDeLeito
@@ -299,7 +321,8 @@ public class BloqueioDeLeitoResourceIT {
         // Validate the BloqueioDeLeito in the database
         List<BloqueioDeLeito> bloqueioDeLeitoList = bloqueioDeLeitoRepository.findAll();
         assertThat(bloqueioDeLeitoList).hasSize(databaseSizeBeforeUpdate);
-        BloqueioDeLeito testBloqueioDeLeito = bloqueioDeLeitoList.get(bloqueioDeLeitoList.size() - 1);
+        BloqueioDeLeito testBloqueioDeLeito = bloqueioDeLeitoList
+            .get(bloqueioDeLeitoList.size() - 1);
         assertThat(testBloqueioDeLeito.getDataDoLancamento()).isEqualTo(UPDATED_DATA_DO_LANCAMENTO);
         assertThat(testBloqueioDeLeito.getJustificativa()).isEqualTo(UPDATED_JUSTIFICATIVA);
 
@@ -338,8 +361,9 @@ public class BloqueioDeLeitoResourceIT {
         int databaseSizeBeforeDelete = bloqueioDeLeitoRepository.findAll().size();
 
         // Delete the bloqueioDeLeito
-        restBloqueioDeLeitoMockMvc.perform(delete("/api/bloqueio-de-leitos/{id}", bloqueioDeLeito.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+        restBloqueioDeLeitoMockMvc
+            .perform(delete("/api/bloqueio-de-leitos/{id}", bloqueioDeLeito.getId())
+                .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
@@ -355,14 +379,19 @@ public class BloqueioDeLeitoResourceIT {
     public void searchBloqueioDeLeito() throws Exception {
         // Initialize the database
         bloqueioDeLeitoRepository.saveAndFlush(bloqueioDeLeito);
-        when(mockBloqueioDeLeitoSearchRepository.search(queryStringQuery("id:" + bloqueioDeLeito.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(bloqueioDeLeito), PageRequest.of(0, 1), 1));
+        when(mockBloqueioDeLeitoSearchRepository
+            .search(queryStringQuery("id:" + bloqueioDeLeito.getId()), PageRequest.of(0, 20)))
+            .thenReturn(
+                new PageImpl<>(Collections.singletonList(bloqueioDeLeito), PageRequest.of(0, 1),
+                    1));
         // Search the bloqueioDeLeito
-        restBloqueioDeLeitoMockMvc.perform(get("/api/_search/bloqueio-de-leitos?query=id:" + bloqueioDeLeito.getId()))
+        restBloqueioDeLeitoMockMvc
+            .perform(get("/api/_search/bloqueio-de-leitos?query=id:" + bloqueioDeLeito.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bloqueioDeLeito.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataDoLancamento").value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].dataDoLancamento")
+                .value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)));
     }
 

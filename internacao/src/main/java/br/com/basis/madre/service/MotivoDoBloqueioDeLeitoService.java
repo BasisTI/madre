@@ -7,10 +7,15 @@ import br.com.basis.madre.repository.MotivoDoBloqueioDeLeitoRepository;
 import br.com.basis.madre.repository.search.MotivoDoBloqueioDeLeitoSearchRepository;
 import br.com.basis.madre.service.dto.MotivoDoBloqueioDeLeitoDTO;
 import br.com.basis.madre.service.mapper.MotivoDoBloqueioDeLeitoMapper;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -49,14 +54,20 @@ public class MotivoDoBloqueioDeLeitoService {
     /**
      * Get all the motivoDoBloqueioDeLeitos.
      *
-     * @param pageable the pagination information.
+     * @param motivoDoBloqueioDeLeitoDTO
+     * @param pageable                   the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<MotivoDoBloqueioDeLeitoDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all MotivoDoBloqueioDeLeitos");
-        return motivoDoBloqueioDeLeitoRepository.findAll(pageable)
-            .map(motivoDoBloqueioDeLeitoMapper::toDto);
+    public List<MotivoDoBloqueioDeLeitoDTO> findAll(
+        MotivoDoBloqueioDeLeitoDTO motivoDoBloqueioDeLeitoDTO,
+        Pageable pageable) {
+        return motivoDoBloqueioDeLeitoRepository.findAll(
+            Example.of(motivoDoBloqueioDeLeitoMapper.toEntity(motivoDoBloqueioDeLeitoDTO),
+                ExampleMatcher
+                    .matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING)),
+            pageable.getSort()).stream().map(motivoDoBloqueioDeLeitoMapper::toDto).collect(
+            Collectors.toList());
     }
 
 
