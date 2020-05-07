@@ -9,6 +9,8 @@
             [suggestions]="leitos"
             [forceSelection]="true"
             [dropdown]="true"
+            (onSelect)="aoSelecionar()"
+            (onBlur)="aoDesfocar()"
         >
         </p-autoComplete>
         <label>{{ label }}</label>
