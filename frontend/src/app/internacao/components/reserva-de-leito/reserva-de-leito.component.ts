@@ -1,3 +1,4 @@
+import { ReservaDeLeitoService } from './../../services/reserva-de-leito.service';
 import { Leito } from './../../models/leito';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
@@ -29,7 +30,11 @@ export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
         justificativa: [''],
     });
 
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private fb: FormBuilder,
+        private reservaDeLeitoService: ReservaDeLeitoService,
+    ) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -47,15 +52,18 @@ export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
         this.breadcrumbService.reset();
     }
 
-    aoSelecionarLeito(leito: Leito) {
+    aoSelecionarLeito(leito: Leito): void {
         this.formGroup.controls.situacao.setValue(leito.situacao.nome);
     }
 
-    aoDesfocarLeito() {
+    aoDesfocarLeito(): void {
         this.formGroup.controls.situacao.setValue(null);
     }
 
-    reservarLeito() {
-        console.log(this.formGroup.value);
+    reservarLeito(): void {
+        this.reservaDeLeitoService
+            .reservarLeito(this.formGroup.value)
+            .subscribe((resposta) => console.log(resposta));
+        this.formGroup.reset();
     }
 }
