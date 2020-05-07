@@ -36,8 +36,13 @@
         <div class="ui-g-12">
             <div class="ui-g-4 ui-md-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="tipoDaReserva" />
-                    <label>Tipo da Reserva</label>
+                    <app-tipo-de-reserva-de-leito
+                        [parentFormGroup]="formGroup"
+                        [required]="true"
+                        name="tipoDaReserva"
+                        label="Tipo da Reserva"
+                    >
+                    </app-tipo-de-reserva-de-leito>
                 </span>
             </div>
         </div>
