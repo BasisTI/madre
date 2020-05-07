@@ -7,10 +7,15 @@ import br.com.basis.madre.repository.OrigemDaReservaDeLeitoRepository;
 import br.com.basis.madre.repository.search.OrigemDaReservaDeLeitoSearchRepository;
 import br.com.basis.madre.service.dto.OrigemDaReservaDeLeitoDTO;
 import br.com.basis.madre.service.mapper.OrigemDaReservaDeLeitoMapper;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -49,14 +54,19 @@ public class OrigemDaReservaDeLeitoService {
     /**
      * Get all the origemDaReservaDeLeitos.
      *
-     * @param pageable the pagination information.
+     * @param origemDaReservaDeLeitoDTO
+     * @param pageable                  the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<OrigemDaReservaDeLeitoDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all OrigemDaReservaDeLeitos");
-        return origemDaReservaDeLeitoRepository.findAll(pageable)
-            .map(origemDaReservaDeLeitoMapper::toDto);
+    public List<OrigemDaReservaDeLeitoDTO> findAll(
+        OrigemDaReservaDeLeitoDTO origemDaReservaDeLeitoDTO,
+        Pageable pageable) {
+        return origemDaReservaDeLeitoRepository.findAll(
+            Example
+                .of(origemDaReservaDeLeitoMapper.toEntity(origemDaReservaDeLeitoDTO), ExampleMatcher
+                    .matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING))
+            , pageable.getSort()).stream().map(origemDaReservaDeLeitoMapper::toDto).collect(Collectors.toList());
     }
 
 

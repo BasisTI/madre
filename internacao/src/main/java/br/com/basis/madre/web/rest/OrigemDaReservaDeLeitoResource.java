@@ -105,12 +105,9 @@ public class OrigemDaReservaDeLeitoResource {
      */
     @GetMapping("/origens-da-reserva-de-leito")
     public ResponseEntity<List<OrigemDaReservaDeLeitoDTO>> getAllOrigemDaReservaDeLeitos(
+        OrigemDaReservaDeLeitoDTO origemDaReservaDeLeitoDTO,
         Pageable pageable) {
-        log.debug("REST request to get a page of OrigemDaReservaDeLeitos");
-        Page<OrigemDaReservaDeLeitoDTO> page = origemDaReservaDeLeitoService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        return ResponseEntity.ok().body(origemDaReservaDeLeitoService.findAll(origemDaReservaDeLeitoDTO, pageable));
     }
 
     /**
