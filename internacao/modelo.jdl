@@ -106,6 +106,8 @@ relationship ManyToOne {
     ReservaDeLeito{leito required} to Leito,
     ReservaDeLeito{origem} to OrigemDaReservaDeLeito,
     ReservaDeLeito{tipo} to TipoDaReservaDeLeito
+    BloqueioDeLeito{leito required} to Leito,
+    BloqueioDeLeito{motivo required} to MotivoDoBloqueioDeLeito,
 }
 
 entity SituacaoDeLeito {
@@ -127,11 +129,20 @@ entity ReservaDeLeito {
     justificativa String
 }
 
+entity BloqueioDeLeito {
+    dataDoLancamento LocalDate required
+    justificativa String
+}
+
 entity OrigemDaReservaDeLeito {
     nome String required
 }
 
 entity TipoDaReservaDeLeito {
+    nome String required
+}
+
+entity MotivoDoBloqueioDeLeito {
     nome String required
 }
 
