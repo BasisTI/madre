@@ -41,7 +41,7 @@ public class MedicamentoResource {
 	@GetMapping("/fillData")
 	 public String fillDatabase() {
 	    	for (int i = 0; i <= 50; i++) {
-				Medicamento medicamento = new Medicamento(faker.medical().hospitalName());
+				Medicamento medicamento = new Medicamento(faker.medical().medicineName());
 				medicamento.setId(faker.number().randomNumber());
 				
 				medicamentoReposirotySearch.save(medicamento);

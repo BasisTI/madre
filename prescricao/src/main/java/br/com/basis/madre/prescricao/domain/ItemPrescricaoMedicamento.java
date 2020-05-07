@@ -33,6 +33,9 @@ public class ItemPrescricaoMedicamento implements Serializable {
     @NotNull
     @Column(name = "id_medicamento", nullable = false)
     private Long idMedicamento;
+    
+    @NotNull
+    private Long idListaMedicamentos;
 
     @NotNull
     @DecimalMin(value = "0")
@@ -90,6 +93,10 @@ public class ItemPrescricaoMedicamento implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoMedicamentos")
     private PrescricaoMedicamento prescricaoMedicamento;
+    
+    @ManyToOne
+    @JsonIgnoreProperties("itemPrescricaoMedicamentos")
+    private TipoAprazamento tipoAprazamento;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

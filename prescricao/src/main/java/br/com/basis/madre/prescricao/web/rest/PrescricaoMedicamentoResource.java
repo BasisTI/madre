@@ -47,13 +47,6 @@ public class PrescricaoMedicamentoResource {
         this.prescricaoMedicamentoSearchRepository = prescricaoMedicamentoSearchRepository;
     }
 
-    /**
-     * {@code POST  /prescricao-medicamentos} : Create a new prescricaoMedicamento.
-     *
-     * @param prescricaoMedicamento the prescricaoMedicamento to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new prescricaoMedicamento, or with status {@code 400 (Bad Request)} if the prescricaoMedicamento has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/prescricao-medicamentos")
     public ResponseEntity<PrescricaoMedicamento> createPrescricaoMedicamento(@Valid @RequestBody PrescricaoMedicamento prescricaoMedicamento) throws URISyntaxException {
         log.debug("REST request to save PrescricaoMedicamento : {}", prescricaoMedicamento);
