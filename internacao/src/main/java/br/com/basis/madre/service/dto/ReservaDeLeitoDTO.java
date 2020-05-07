@@ -15,7 +15,7 @@ public class ReservaDeLeitoDTO implements Serializable {
 
     private String justificativa;
 
-
+    @NotNull
     private Long leitoId;
 
     private Long origemId;

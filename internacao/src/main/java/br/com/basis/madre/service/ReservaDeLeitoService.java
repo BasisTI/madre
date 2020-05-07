@@ -2,12 +2,18 @@ package br.com.basis.madre.service;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
+import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.domain.ReservaDeLeito;
 import br.com.basis.madre.repository.ReservaDeLeitoRepository;
 import br.com.basis.madre.repository.search.ReservaDeLeitoSearchRepository;
+import br.com.basis.madre.service.dto.LeitoDTO;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
+import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
+import br.com.basis.madre.service.mapper.LeitoMapper;
 import br.com.basis.madre.service.mapper.ReservaDeLeitoMapper;
+import br.com.basis.madre.service.mapper.SituacaoDeLeitoMapper;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +33,13 @@ public class ReservaDeLeitoService {
 
     private final ReservaDeLeitoMapper reservaDeLeitoMapper;
 
+    private final SituacaoDeLeitoMapper situacaoDeLeitoMapper;
+
+    private final LeitoMapper leitoMapper;
+
     private final ReservaDeLeitoSearchRepository reservaDeLeitoSearchRepository;
+
+    private final LeitoService leitoService;
 
     /**
      * Save a reservaDeLeito.
@@ -36,7 +48,21 @@ public class ReservaDeLeitoService {
      * @return the persisted entity.
      */
     public ReservaDeLeitoDTO save(ReservaDeLeitoDTO reservaDeLeitoDTO) {
-        log.debug("Request to save ReservaDeLeito : {}", reservaDeLeitoDTO);
+        ReservaDeLeito reservaDeLeito = reservaDeLeitoMapper.toEntity(reservaDeLeitoDTO);
+        reservaDeLeito = reservaDeLeitoRepository.save(reservaDeLeito);
+        ReservaDeLeitoDTO result = reservaDeLeitoMapper.toDto(reservaDeLeito);
+        reservaDeLeitoSearchRepository.save(reservaDeLeito);
+        return result;
+    }
+
+    public ReservaDeLeitoDTO save(ReservaDeLeitoDTO reservaDeLeitoDTO,
+        SituacaoDeLeitoDTO situacaoDeLeitoDTO) {
+
+        LeitoDTO leitoDTO = leitoService.findOne(reservaDeLeitoDTO.getLeitoId())
+            .orElseThrow(EntityNotFoundException::new);
+        leitoDTO.setSituacaoId(situacaoDeLeitoDTO.getId());
+        leitoService.save(leitoDTO);
+
         ReservaDeLeito reservaDeLeito = reservaDeLeitoMapper.toEntity(reservaDeLeitoDTO);
         reservaDeLeito = reservaDeLeitoRepository.save(reservaDeLeito);
         ReservaDeLeitoDTO result = reservaDeLeitoMapper.toDto(reservaDeLeito);

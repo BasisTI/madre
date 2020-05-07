@@ -1,7 +1,10 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.ReservaDeLeitoService;
+import br.com.basis.madre.service.SituacaoDeLeitoService;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
+import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -9,6 +12,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +48,10 @@ public class ReservaDeLeitoResource {
 
     private final ReservaDeLeitoService reservaDeLeitoService;
 
+    private final LeitoService leitoService;
+
+    private final SituacaoDeLeitoService situacaoDeLeitoService;
+
     /**
      * {@code POST  /reserva-de-leitos} : Create a new reservaDeLeito.
      *
@@ -56,12 +64,25 @@ public class ReservaDeLeitoResource {
     @PostMapping("/reservas-de-leitos")
     public ResponseEntity<ReservaDeLeitoDTO> createReservaDeLeito(
         @Valid @RequestBody ReservaDeLeitoDTO reservaDeLeitoDTO) throws URISyntaxException {
-        log.debug("REST request to save ReservaDeLeito : {}", reservaDeLeitoDTO);
         if (reservaDeLeitoDTO.getId() != null) {
             throw new BadRequestAlertException("A new reservaDeLeito cannot already have an ID",
                 ENTITY_NAME, "idexists");
         }
-        ReservaDeLeitoDTO result = reservaDeLeitoService.save(reservaDeLeitoDTO);
+
+        Long idSituacaoDoLeito = leitoService.findOne(reservaDeLeitoDTO.getLeitoId())
+            .orElseThrow(() -> new BadRequestAlertException(
+                "O leito informado não existe.",
+                LeitoResource.getEntityName(), "idnotexists")).getSituacaoId();
+        SituacaoDeLeitoDTO desocupado = situacaoDeLeitoService.findByNomeIgnoreCase("desocupado");
+
+        if (Objects.isNull(desocupado) && !idSituacaoDoLeito.equals(desocupado.getId())) {
+            throw new BadRequestAlertException("O leito precisa estar desocupado.",
+                LeitoResource.getEntityName(), "idinvalid");
+        }
+
+        SituacaoDeLeitoDTO reservado = situacaoDeLeitoService.findByNomeIgnoreCase("reservado");
+
+        ReservaDeLeitoDTO result = reservaDeLeitoService.save(reservaDeLeitoDTO, reservado);
         return ResponseEntity.created(new URI("/api/reserva-de-leitos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
                 result.getId().toString()))

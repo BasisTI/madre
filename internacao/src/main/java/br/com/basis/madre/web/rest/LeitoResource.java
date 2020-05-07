@@ -45,6 +45,10 @@ public class LeitoResource {
 
     private final LeitoService leitoService;
 
+    public static String getEntityName() {
+        return ENTITY_NAME;
+    }
+
     /**
      * {@code POST  /leitos} : Create a new leito.
      *

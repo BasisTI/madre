@@ -1,15 +1,37 @@
 package br.com.basis.madre.web.rest;
 
+import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import br.com.basis.madre.InternacaoApp;
-import br.com.basis.madre.domain.ReservaDeLeito;
 import br.com.basis.madre.domain.Leito;
+import br.com.basis.madre.domain.ReservaDeLeito;
 import br.com.basis.madre.repository.ReservaDeLeitoRepository;
 import br.com.basis.madre.repository.search.ReservaDeLeitoSearchRepository;
+import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.ReservaDeLeitoService;
+import br.com.basis.madre.service.SituacaoDeLeitoService;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
 import br.com.basis.madre.service.mapper.ReservaDeLeitoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
+import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -25,28 +47,16 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
-
-import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 /**
  * Integration tests for the {@link ReservaDeLeitoResource} REST controller.
  */
+@RequiredArgsConstructor
 @SpringBootTest(classes = InternacaoApp.class)
 public class ReservaDeLeitoResourceIT {
 
     private static final LocalDate DEFAULT_DATA_DO_LANCAMENTO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate
+        .now(ZoneId.systemDefault());
 
     private static final String DEFAULT_JUSTIFICATIVA = "AAAAAAAAAA";
     private static final String UPDATED_JUSTIFICATIVA = "BBBBBBBBBB";
@@ -59,6 +69,12 @@ public class ReservaDeLeitoResourceIT {
 
     @Autowired
     private ReservaDeLeitoService reservaDeLeitoService;
+
+    @Autowired
+    private final LeitoService leitoService;
+
+    @Autowired
+    private final SituacaoDeLeitoService situacaoDeLeitoService;
 
     /**
      * This repository is mocked in the br.com.basis.madre.repository.search test package.
@@ -90,7 +106,8 @@ public class ReservaDeLeitoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ReservaDeLeitoResource reservaDeLeitoResource = new ReservaDeLeitoResource(reservaDeLeitoService);
+        final ReservaDeLeitoResource reservaDeLeitoResource = new ReservaDeLeitoResource(
+            reservaDeLeitoService, leitoService, situacaoDeLeitoService);
         this.restReservaDeLeitoMockMvc = MockMvcBuilders.standaloneSetup(reservaDeLeitoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -101,9 +118,9 @@ public class ReservaDeLeitoResourceIT {
 
     /**
      * Create an entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * <p>
+     * This is a static method, as tests for other entities might also need it, if they test an
+     * entity which requires the current entity.
      */
     public static ReservaDeLeito createEntity(EntityManager em) {
         ReservaDeLeito reservaDeLeito = new ReservaDeLeito()
@@ -121,11 +138,12 @@ public class ReservaDeLeitoResourceIT {
         reservaDeLeito.setLeito(leito);
         return reservaDeLeito;
     }
+
     /**
      * Create an updated entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * <p>
+     * This is a static method, as tests for other entities might also need it, if they test an
+     * entity which requires the current entity.
      */
     public static ReservaDeLeito createUpdatedEntity(EntityManager em) {
         ReservaDeLeito reservaDeLeito = new ReservaDeLeito()
@@ -226,10 +244,11 @@ public class ReservaDeLeitoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(reservaDeLeito.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataDoLancamento").value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].dataDoLancamento")
+                .value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)));
     }
-    
+
     @Test
     @Transactional
     public void getReservaDeLeito() throws Exception {
@@ -237,7 +256,8 @@ public class ReservaDeLeitoResourceIT {
         reservaDeLeitoRepository.saveAndFlush(reservaDeLeito);
 
         // Get the reservaDeLeito
-        restReservaDeLeitoMockMvc.perform(get("/api/reserva-de-leitos/{id}", reservaDeLeito.getId()))
+        restReservaDeLeitoMockMvc
+            .perform(get("/api/reserva-de-leitos/{id}", reservaDeLeito.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(reservaDeLeito.getId().intValue()))
@@ -262,7 +282,8 @@ public class ReservaDeLeitoResourceIT {
         int databaseSizeBeforeUpdate = reservaDeLeitoRepository.findAll().size();
 
         // Update the reservaDeLeito
-        ReservaDeLeito updatedReservaDeLeito = reservaDeLeitoRepository.findById(reservaDeLeito.getId()).get();
+        ReservaDeLeito updatedReservaDeLeito = reservaDeLeitoRepository
+            .findById(reservaDeLeito.getId()).get();
         // Disconnect from session so that the updates on updatedReservaDeLeito are not directly saved in db
         em.detach(updatedReservaDeLeito);
         updatedReservaDeLeito
@@ -317,8 +338,9 @@ public class ReservaDeLeitoResourceIT {
         int databaseSizeBeforeDelete = reservaDeLeitoRepository.findAll().size();
 
         // Delete the reservaDeLeito
-        restReservaDeLeitoMockMvc.perform(delete("/api/reserva-de-leitos/{id}", reservaDeLeito.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+        restReservaDeLeitoMockMvc
+            .perform(delete("/api/reserva-de-leitos/{id}", reservaDeLeito.getId())
+                .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
@@ -334,14 +356,18 @@ public class ReservaDeLeitoResourceIT {
     public void searchReservaDeLeito() throws Exception {
         // Initialize the database
         reservaDeLeitoRepository.saveAndFlush(reservaDeLeito);
-        when(mockReservaDeLeitoSearchRepository.search(queryStringQuery("id:" + reservaDeLeito.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(reservaDeLeito), PageRequest.of(0, 1), 1));
+        when(mockReservaDeLeitoSearchRepository
+            .search(queryStringQuery("id:" + reservaDeLeito.getId()), PageRequest.of(0, 20)))
+            .thenReturn(
+                new PageImpl<>(Collections.singletonList(reservaDeLeito), PageRequest.of(0, 1), 1));
         // Search the reservaDeLeito
-        restReservaDeLeitoMockMvc.perform(get("/api/_search/reserva-de-leitos?query=id:" + reservaDeLeito.getId()))
+        restReservaDeLeitoMockMvc
+            .perform(get("/api/_search/reserva-de-leitos?query=id:" + reservaDeLeito.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(reservaDeLeito.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataDoLancamento").value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].dataDoLancamento")
+                .value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)));
     }
 
