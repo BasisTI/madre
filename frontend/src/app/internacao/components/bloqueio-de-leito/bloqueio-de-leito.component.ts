@@ -60,6 +60,9 @@ export class BloqueioDeLeitoComponent implements OnInit, OnDestroy {
     }
 
     reservarLeito(): void {
-        console.log(this.formGroup.value);
+        this.bloqueioDeLeitoService.bloquearLeito(this.formGroup.value).subscribe((resposta) => {
+            console.log(resposta);
+        });
+        this.formGroup.reset();
     }
 }
