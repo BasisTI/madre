@@ -30,5 +30,6 @@
     <include file="config/liquibase/changelog/20200505210949_added_entity_UnidadeInfusao.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200505210945_added_entity_constraints_ItemPrescricaoMedicamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200507183742_changelog.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
