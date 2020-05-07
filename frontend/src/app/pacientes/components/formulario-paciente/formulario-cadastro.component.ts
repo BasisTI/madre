@@ -19,25 +19,25 @@ import { Documento } from './models/documento';
     styleUrls: ['./formulario-cadastro.component.scss'],
 })
 export class FormularioCadastroComponent implements OnInit, OnDestroy {
-    formularioDeCadastro = this.fb.group({});
     dadosPessoais = this.fb.group({
-        nome: ['', Validators.required],
-        nomeSocial: [''],
+        nome: [null, Validators.required],
+        nomeSocial: [null],
         sexo: [null, Validators.required],
         raca: [null, Validators.required],
         etnia: [null, Validators.required],
         estadoCivil: [null, Validators.required],
-        prontuarioDaMae: [''],
+        prontuarioDaMae: [null],
         nomeDaMae: [null, Validators.required],
         nomeDoPai: [null, Validators.required],
         dataDeNascimento: [null, Validators.required],
         horaDoNascimento: [null],
         nacionalidade: [null, Validators.required],
-        naturalidade: [null, Validators.required],
+        naturalidade: [null],
         grauDeInstrucao: [null, Validators.required],
         ocupacao: [null],
         religiao: [null],
         email: [null, Validators.maxLength(254)],
+        observacao: [null],
     });
 
     telefones = this.fb.array([]);
@@ -91,8 +91,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         portaria: [null],
     });
 
-    observacao: [''];
-
     constructor(
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
@@ -127,12 +125,34 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         let telefonesCadastro = this.telefones.value;
         let telefonesCad: Telefone[] = [];
         telefonesCadastro.forEach((element) => {
-            telefonesCad.push(new Telefone());
+            telefonesCad.push(
+                new Telefone(
+                    null,
+                    element.ddd,
+                    element.numero,
+                    element.tipo ? element.tipo : null,
+                    element.observacao ? element.observacao : null,
+                    element.pacienteId,
+                ),
+            );
         });
         let enderecoCadastro = this.enderecos.value;
         let enderecosCad: Endereco[] = [];
         enderecoCadastro.forEach((element) => {
-            enderecosCad.push(new Endereco());
+            enderecosCad.push(
+                new Endereco(
+                    null,
+                    element.cep,
+                    element.logradouro,
+                    element.numero,
+                    element.complemento ? element.complemento : null,
+                    element.bairro,
+                    element.correspondencia ? element.correspondencia : null,
+                    element.tipoDoEndereco ? element.tipoDoEndereco : null,
+                    element.municioId ? element.municioId : null,
+                    element.pacienteId ? element.pacienteId : null,
+                ),
+            );
         });
         let sus = this.cartaoSUS.value;
         let resp = this.responsavel.value;
@@ -154,7 +174,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             estadoCivilId: dp.estadoCivil ? dp.estadoCivil.id : null,
             sexo: dp.sexo,
             grauDeInstrucao: dp.grauDeInstrucao,
-
+            observacao: dp.observacao,
             enderecos: enderecosCad,
             telefones: telefonesCad,
         };

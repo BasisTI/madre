@@ -90,7 +90,7 @@ public class Paciente implements Serializable {
     private Set<Telefone> telefones = new HashSet<>();
 
     @Field(type = FieldType.Nested)
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Endereco> enderecos = new HashSet<>();
 
@@ -130,7 +130,7 @@ public class Paciente implements Serializable {
     private Etnia etnia;
 
     @Field(type = FieldType.Nested)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pacientes")
     private Genitores genitores;
 

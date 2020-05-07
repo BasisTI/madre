@@ -44,6 +44,8 @@ public class PacienteInclusaoDTO implements Serializable {
 
     private Set<EnderecoDTO> enderecos = new HashSet<>();
 
+    private GenitoresDTO genitores;
+
     private CartaoSUSDTO cartaoSUS;
 
     private ResponsavelDTO responsavel;
@@ -154,6 +156,14 @@ public class PacienteInclusaoDTO implements Serializable {
 
     public void setEnderecos(Set<EnderecoDTO> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public GenitoresDTO getGenitores() {
+        return genitores;
+    }
+
+    public void setGenitores(GenitoresDTO genitores) {
+        this.genitores = genitores;
     }
 
     public CartaoSUSDTO getCartaoSUS() {
@@ -287,6 +297,7 @@ public class PacienteInclusaoDTO implements Serializable {
             ", sexo=" + sexo +
             ", telefones=" + telefones +
             ", enderecos=" + enderecos +
+            ", genitores=" + genitores +
             ", cartaoSUS=" + cartaoSUS +
             ", responsavel=" + responsavel +
             ", documento=" + documento +

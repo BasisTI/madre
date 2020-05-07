@@ -18,19 +18,16 @@ public interface PacienteInclusaoMapper extends EntityMapper<PacienteInclusaoDTO
     @Mapping(source = "religiao.id", target = "religiaoId")
     @Mapping(source = "naturalidade.id", target = "naturalidadeId")
     @Mapping(source = "etnia.id", target = "etniaId")
-    @Mapping(source = "genitores.id", target = "genitoresId")
     @Mapping(source = "nacionalidade.id", target = "nacionalidadeId")
     @Mapping(source = "raca.id", target = "racaId")
     @Mapping(source = "estadoCivil.id", target = "estadoCivilId")
     PacienteInclusaoDTO toDto(Paciente paciente);
 
 
-    //@Mapping(source = "certidaoId", target = "certidao")
     @Mapping(source = "ocupacaoId", target = "ocupacao")
     @Mapping(source = "religiaoId", target = "religiao")
     @Mapping(source = "naturalidadeId", target = "naturalidade")
     @Mapping(source = "etniaId", target = "etnia")
-    @Mapping(source = "genitoresId", target = "genitores")
     @Mapping(source = "nacionalidadeId", target = "nacionalidade")
     @Mapping(source = "racaId", target = "raca")
     @Mapping(source = "estadoCivilId", target = "estadoCivil")
