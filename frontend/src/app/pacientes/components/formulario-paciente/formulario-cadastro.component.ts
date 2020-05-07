@@ -108,16 +108,87 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         this.breadcrumbService.reset();
     }
 
+    customRequired(control: AbstractControl): { [key: string]: boolean } | null {
+        if (
+            control.parent &&
+            (control.parent.get('nomeDoResponsavel').value ||
+                control.parent.get('observacao').value) &&
+            !control.value
+        ) {
+            return { required: true };
+        }
+
+        return null;
+    }
+
+    validateGroup(group: FormGroup): { [key: string]: boolean } | null {
+        if (group.get('nomeDoResponsavel').value || group.get('observacao').value) {
+            group.markAsDirty();
+            return { required: true };
+        }
+
+        return null;
+    }
+
+    customRequired1(control: AbstractControl): { [key: string]: boolean } | null {
+        if (control.parent && control.parent.get('numeroIdentidade').value && !control.value) {
+            return { required: true };
+        } else {
+            return null;
+        }
+    }
+
+    validateGroup1(group: FormGroup): { [key: string]: boolean } | null {
+        if (group.get('numeroIdentidade').value) {
+            group.markAsDirty();
+            return { required: true };
+        } else {
+            return null;
+        }
+    }
+
+    validateGroupCNH1(group: FormGroup): { [key: string]: boolean } | null {
+        if (group.get('cnh').value) {
+            group.markAsDirty();
+            return { required: true };
+        }
+
+        return null;
+    }
+
+    customRequiredCNH1(control: AbstractControl): { [key: string]: boolean } | null {
+        if (control.parent && control.parent.get('cnh').value && !control.value) {
+            return { required: true };
+        }
+
+        return null;
+    }
+
+    /**
+     * fé em deus
+     */
+    validarNumero(control: AbstractControl) {
+        let cns = control.value;
+        cns = cns.replace(/\D/g, '');
+
+        if (cns.length !== 15) {
+            return { customCns: true };
+        }
+
+        const soma =
+            cns
+                .split('')
+                .reduce(
+                    (somaParcial: number, atual: string, posicao: number) =>
+                        somaParcial + parseInt(atual, 10) * (15 - posicao),
+                    0,
+                ) % 11;
+
+        return soma % 11 === 0 ? null : { customCns: true };
+    }
+
     valid(): boolean {
-        return (
-            this.dadosPessoais.valid &&
-            this.telefones.valid &&
-            this.enderecos.valid &&
-            this.responsavel.valid &&
-            this.documentos.valid &&
-            this.cartaoSUS.valid &&
-            this.certidao.valid
-        );
+        return this.dadosPessoais.valid && this.cartaoSUS.valid;
     }
 
     cadastrar() {
@@ -242,84 +313,5 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         //if (this.formularioDeCadastro.valid) {
         this.formularioCadastroService.cadastrarPaciente(paciente).subscribe();
         //}
-    }
-
-    customRequired(control: AbstractControl): { [key: string]: boolean } | null {
-        if (
-            control.parent &&
-            (control.parent.get('nomeDoResponsavel').value ||
-                control.parent.get('observacao').value) &&
-            !control.value
-        ) {
-            return { required: true };
-        }
-
-        return null;
-    }
-
-    validateGroup(group: FormGroup): { [key: string]: boolean } | null {
-        if (group.get('nomeDoResponsavel').value || group.get('observacao').value) {
-            group.markAsDirty();
-            return { required: true };
-        }
-
-        return null;
-    }
-
-    customRequired1(control: AbstractControl): { [key: string]: boolean } | null {
-        if (control.parent && control.parent.get('numeroIdentidade').value && !control.value) {
-            return { required: true };
-        } else {
-            return null;
-        }
-    }
-
-    validateGroup1(group: FormGroup): { [key: string]: boolean } | null {
-        if (group.get('numeroIdentidade').value) {
-            group.markAsDirty();
-            return { required: true };
-        } else {
-            return null;
-        }
-    }
-
-    validateGroupCNH1(group: FormGroup): { [key: string]: boolean } | null {
-        if (group.get('cnh').value) {
-            group.markAsDirty();
-            return { required: true };
-        }
-
-        return null;
-    }
-
-    customRequiredCNH1(control: AbstractControl): { [key: string]: boolean } | null {
-        if (control.parent && control.parent.get('cnh').value && !control.value) {
-            return { required: true };
-        }
-
-        return null;
-    }
-
-    /**
-     * fé em deus
-     */
-    validarNumero(control: AbstractControl) {
-        let cns = control.value;
-        cns = cns.replace(/\D/g, '');
-
-        if (cns.length !== 15) {
-            return { customCns: true };
-        }
-
-        const soma =
-            cns
-                .split('')
-                .reduce(
-                    (somaParcial: number, atual: string, posicao: number) =>
-                        somaParcial + parseInt(atual, 10) * (15 - posicao),
-                    0,
-                ) % 11;
-
-        return soma % 11 === 0 ? null : { customCns: true };
     }
 }
