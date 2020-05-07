@@ -50,8 +50,14 @@
         <div class="ui-g-12">
             <div class="ui-g-4 ui-md-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="origem" />
-                    <label>Origem</label>
+                    <!-- <input type="text" pInputText formControlName="origem" /> -->
+                    <app-origem-da-reserva-de-leito
+                        [parentFormGroup]="formGroup"
+                        [required]="true"
+                        name="origem"
+                        label="Origem"
+                    >
+                    </app-origem-da-reserva-de-leito>
                 </span>
             </div>
         </div>

@@ -55,7 +55,7 @@ export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
         this.formGroup.controls.situacao.setValue(null);
     }
 
-    reservarLeito(evento: MouseEvent) {
-        console.log(evento);
+    reservarLeito() {
+        console.log(this.formGroup.value);
     }
 }
