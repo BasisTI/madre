@@ -19,7 +19,6 @@ import { EditorModule } from 'primeng/editor';
 import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
 import { GalleriaModule } from 'primeng/galleria';
-import { GrowlModule } from 'primeng/growl';
 import { InplaceModule } from 'primeng/inplace';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -44,7 +43,6 @@ import { PickListModule } from 'primeng/picklist';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
-import { ScheduleModule } from 'primeng/schedule';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SlideMenuModule } from 'primeng/slidemenu';
@@ -86,7 +84,6 @@ export const PRIMENG_IMPORTS: any = [
     FieldsetModule,
     FileUploadModule,
     GalleriaModule,
-    GrowlModule,
     InplaceModule,
     InputMaskModule,
     InputSwitchModule,
@@ -111,7 +108,6 @@ export const PRIMENG_IMPORTS: any = [
     ProgressBarModule,
     RadioButtonModule,
     RatingModule,
-    ScheduleModule,
     ScrollPanelModule,
     SelectButtonModule,
     SlideMenuModule,

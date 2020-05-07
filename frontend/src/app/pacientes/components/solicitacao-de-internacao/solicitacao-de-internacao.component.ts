@@ -6,9 +6,8 @@ import {
     AbstractControl,
     FormControlDirective,
 } from '@angular/forms';
-import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OPCOES_DE_PRIORIDADE } from '../../models/dropdowns/opcoes-de-prioridade';
-import { ptBR } from '../../../shared/calendar.pt-br.locale';
 import { ConfiguracaoParaCalendarioPrimeNG } from '../../../shared/p-calendar.config';
 import { EspecialidadeService, Especialidade } from './especialidade.service';
 import { CrmService } from './crm.service';
@@ -26,7 +25,7 @@ import { Event } from '@angular/router';
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     opcoesDePrioridade = OPCOES_DE_PRIORIDADE;
     configuracaoParaCalendarios: ConfiguracaoParaCalendarioPrimeNG = {
-        localidade: ptBR,
+        localidade: CALENDAR_LOCALE,
         dataMinima: new Date(),
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yy',
