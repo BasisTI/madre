@@ -13,7 +13,7 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     @Input() formTriagem: FormGroup;
     opcaoClassificacao = CLASSIFICACAO_COLORS;
     types: SelectItem[];
-    selectedValue: String;
+    selectedValue: string;
     searchUrl = 'pacientes/api/triagens/paciente/{id}';
     triagens: any[];
 

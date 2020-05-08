@@ -19,19 +19,16 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     searchUrl = 'pacientes/api/triagens/paciente/{id}';
     @Input() formsTriagem: FormGroup;
     opcaoClassificacao = CLASSIFICACAO_COLORS;
-    selectedValue: String;
+    selectedValue: string;
     formTriagem = this.fb.group({
-        classificacaoDeRisco: [this.selectedValue],
+        classificacaoDeRisco: [''],
         paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
         temperatura: [''],
         peso: [''],
         sinaisSintomas: [''],
-        dataHoraDoAtendimento: [
-            `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
-           ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
-        ],
+        dataHoraDoAtendimento: [new Date()],
         idade: [''],
         descricaoQueixa: ['', Validators.required],
         vitimaDeAcidente: [''],
@@ -63,8 +60,6 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         //     ${new Date().getHours()}:${new Date().getUTCMinutes()}`;
     }
     cadastrar(form: FormBuilder) {
-        // tslint:disable-next-line: comment-format
-        //let
         const tri = this.formTriagem.value;
         const triagem: Triagem = {
             classificacaoDeRisco: tri.classificacaoDeRisco,
@@ -79,8 +74,6 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             removidoDeAmbulancia: tri.removidoDeAmbulancia,
             observacao: tri.observacao,
         };
-
-        console.log(this.formTriagem.value.classificacaoDeRisco);
 
         this.triagemService.cadastrarTriagem(triagem).subscribe();
     }

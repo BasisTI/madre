@@ -1,6 +1,6 @@
 <form class="ui-g ui-fluid" #form [formGroup]="formTriagem" (ngSubmit)="cadastrar(form)">
     <div class="ui-g-12">
-        <app-classificacao-de-risco></app-classificacao-de-risco>
+        <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>
     </div>
     <div class="ui-g-12">
         <div class="ui-g-12">
