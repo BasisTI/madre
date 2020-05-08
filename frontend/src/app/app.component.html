@@ -3,33 +3,29 @@
     [ngClass]="{ 'layout-compact': layoutCompact }"
     (click)="onLayoutClick()"
 >
-    <div
-        #layoutContainer
+    <div #layoutContainer
         class="layout-container"
         [ngClass]="{
-            'menu-layout-static': !isOverlay(),
-            'menu-layout-overlay': isOverlay(),
-            'layout-menu-overlay-active': overlayMenuActive,
-            'menu-layout-horizontal': isHorizontal(),
-            'menu-layout-slim': isSlim(),
-            'layout-menu-static-inactive': staticMenuDesktopInactive,
-            'layout-menu-static-active': staticMenuMobileActive
-        }"
-    >
+            'menu-layout-static': !menuService.isOverlay(),
+            'menu-layout-overlay': menuService.isOverlay(),
+            'layout-menu-overlay-active': menuService.overlayMenuActive,
+            'menu-layout-horizontal': menuService.isHorizontal(),
+            'menu-layout-slim': menuService.isSlim(),
+            'layout-menu-static-inactive': menuService.staticMenuDesktopInactive,
+            'layout-menu-static-active': menuService.staticMenuMobileActive
+        }">
         <app-topbar></app-topbar>
 
-        <div
-            class="layout-menu"
+        <div class="layout-menu"
             [ngClass]="{ 'layout-menu-dark': darkMenu }"
-            (click)="onMenuClick($event)"
-        >
+            (click)="onMenuClick($event)">
             <p-scrollPanel #scrollPanel [style]="{ height: '100%' }">
-                <app-menu [reset]="resetMenu"></app-menu>
+                <app-menu></app-menu>
             </p-scrollPanel>
         </div>
 
         <div class="layout-main">
-            <app-breadcrumb></app-breadcrumb>
+            <breadcrumb></breadcrumb>
 
             <div class="layout-content">
                 <basis-page-notification></basis-page-notification>

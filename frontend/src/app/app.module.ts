@@ -1,4 +1,3 @@
-import { PRIMENG_IMPORTS } from './primeng-imports';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -8,12 +7,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppRoutes } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
 import { AppTopbarComponent } from './app.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
 
-import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
-import { BreadcrumbService } from './breadcrumb/breadcrumb.service';
 import { AppRightpanelComponent } from './app.rightpanel.component';
 import { AppInlineProfileComponent } from './app.profile.component';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
@@ -24,15 +20,6 @@ import {
     SecurityModule,
     AccessbilityModule,
     VersionTagModule,
-    AUTH_CONFIG,
-    LoginService,
-    JWTTokenService,
-    AuthorizationService,
-    AbstractLogin,
-    AbstractToken,
-    AuthenticationService,
-    AbstractAuthorization,
-    AbstractAuthentication,
     ClipboardModule,
     ErrorModule,
 } from '@nuvem/angular-base';
@@ -42,6 +29,8 @@ import {
     BlockUiModule,
     DatatableModule,
     ErrorStackModule,
+    MenuModule,
+    BreadcrumbModule
 } from '@nuvem/primeng-components';
 
 import { environment } from '../environments/environment';
@@ -54,28 +43,25 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         AppRoutes,
         HttpClientModule,
         BrowserAnimationsModule,
-        PRIMENG_IMPORTS,
-        AccessbilityModule.forRoot(),
-        VersionTagModule.forRoot(),
-        SharedModule.forRoot(),
-        BlockUiModule.forRoot(),
+        AccessbilityModule,
+        VersionTagModule,
+        SharedModule,
+        BlockUiModule,
         PageNotificationModule,
-        ErrorStackModule.forRoot(),
-        ClipboardModule.forRoot(),
-        ErrorModule.forRoot(),
-        SecurityModule.forRoot(),
+        ErrorStackModule,
+        ClipboardModule,
+        ErrorModule,
         PrescricaoMedicaModule,
-        DatatableModule.forRoot(),
-
+        DatatableModule,
         PrescricaoMedicaModule,
+        SecurityModule.forRoot(environment.auth),
+        BreadcrumbModule,
+        MenuModule
     ],
     declarations: [
         AppComponent,
-        AppMenuComponent,
-        AppSubMenuComponent,
         AppTopbarComponent,
         AppFooterComponent,
-        AppBreadcrumbComponent,
         AppRightpanelComponent,
         AppInlineProfileComponent,
         DiarioErrosComponent,
@@ -85,19 +71,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
             provide: LocationStrategy,
             useClass: HashLocationStrategy,
         },
-
-        { provide: AUTH_CONFIG, useValue: environment.auth },
-        { provide: LoginService, deps: [HttpClient, AUTH_CONFIG] },
-        { provide: AbstractLogin, useClass: LoginService },
-        { provide: JWTTokenService, deps: [AUTH_CONFIG] },
-        { provide: AuthorizationService, deps: [HttpClient, AUTH_CONFIG] },
-        { provide: AbstractToken, useClass: JWTTokenService },
-        { provide: AuthenticationService, deps: [AUTH_CONFIG] },
-        { provide: AbstractAuthorization, useClass: AuthorizationService },
-        { provide: AbstractAuthentication, useClass: AuthenticationService },
-
-        BreadcrumbService,
-        PrescricaoMedicaService,
+        PrescricaoMedicaService
     ],
     bootstrap: [AppComponent],
 })

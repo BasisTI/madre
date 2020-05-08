@@ -1,5 +1,5 @@
 import { ClassificacaoDeRiscoService } from './classificacao-de-risco.service';
-import { BreadcrumbService } from '../../../../../breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
