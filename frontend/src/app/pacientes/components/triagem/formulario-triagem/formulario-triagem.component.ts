@@ -4,8 +4,8 @@ import { values } from 'micro-dash';
 import { TriagemService } from '../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input, Optional } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-de-risco';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
 import { RADIO_VALUE_ACCESSOR, SelectItem } from 'primeng/primeng';
 
 @Component({
@@ -17,9 +17,11 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     triagens: any[];
 
     searchUrl = 'pacientes/api/triagens/paciente/{id}';
-
+    @Input() formsTriagem: FormGroup;
+    opcaoClassificacao = CLASSIFICACAO_COLORS;
+    selectedValue: String;
     formTriagem = this.fb.group({
-        classificacaoDeRisco: ['EMERGENCIA'],
+        classificacaoDeRisco: [this.selectedValue],
         paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],

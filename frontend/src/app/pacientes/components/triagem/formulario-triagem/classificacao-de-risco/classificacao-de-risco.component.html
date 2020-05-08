@@ -1,5 +1,6 @@
 <form class risco="ui-g ui-fluid">
     <div class="ui-g-7"></div>
+    {{ selectedValue }}
     <h4>Classificação de Risco</h4>
     <div class="ui-dataview ui-g ui-sm-10">
         <div class="ui-g-7">
@@ -18,7 +19,7 @@
             <div blueCard="">
                 <p-radioButton
                     name="classificacaoDeRisco"
-                    value="Não urgente"
+                    [value]="opcaoClassificacao[4].value"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
             </div>
@@ -35,7 +36,7 @@
             <div greenCard="">
                 <p-radioButton
                     name="classificacaoDeRisco"
-                    value="Pouco urgente"
+                    [value]="opcaoClassificacao[3].value"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
             </div>
@@ -52,7 +53,7 @@
             <div yellowCard="">
                 <p-radioButton
                     name="classificacaoDeRisco"
-                    value="Urgente"
+                    [value]="opcaoClassificacao[2].value"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
             </div>
@@ -69,7 +70,7 @@
             <div orangeCard="">
                 <p-radioButton
                     name="classificacaoDeRisco"
-                    value="Muito urgente"
+                    [value]="opcaoClassificacao[1].value"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
             </div>
@@ -86,7 +87,7 @@
             <div redCard="">
                 <p-radioButton
                     name="classificacaoDeRisco"
-                    value="Emergência"
+                    [value]="opcaoClassificacao[0].value"
                     [(ngModel)]="selectedValue"
                 ></p-radioButton>
             </div>

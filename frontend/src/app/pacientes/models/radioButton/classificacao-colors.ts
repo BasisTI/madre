@@ -1,6 +1,6 @@
 import { OpcaoRadioButton } from './opcao-radio-button';
 
-export const CLASSIFICACAO_RISCO: OpcaoRadioButton[] = [
+export const CLASSIFICACAO_COLORS: OpcaoRadioButton[] = [
     { label: 'red', value: 'EMERGENCIA' },
     { label: 'orange', value: 'MUITO_URGENTE' },
     { label: 'yellow', value: 'URGENTE' },
