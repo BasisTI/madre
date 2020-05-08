@@ -71,10 +71,6 @@ spring:
   data:
     jest:
       uri: http://localhost:9200
-    elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
