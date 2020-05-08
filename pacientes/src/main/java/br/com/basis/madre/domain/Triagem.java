@@ -1,7 +1,6 @@
 package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
-import br.com.basis.madre.domain.enumeration.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

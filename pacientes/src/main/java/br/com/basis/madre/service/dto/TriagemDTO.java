@@ -2,9 +2,9 @@ package br.com.basis.madre.service.dto;
 
 import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
 
-import java.math.BigDecimal;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -15,22 +15,19 @@ public class TriagemDTO implements Serializable {
 
     private Long id;
 
-    //@NotNull
+    @NotNull
     private ClassificacaoDeRisco classificacaoDeRisco;
 
-    private String paciente;
+    private BigDecimal pressaoArterial;
 
-    //BigDecimal
-    private String pressaoArterial;
-    //BigDecimal
-    private String frequenciaCardiaca;
-    //BigDecimal
-    private String temperatura;
-    //BigDecimal
-    private String peso;
+    private BigDecimal frequenciaCardiaca;
+
+    private BigDecimal temperatura;
+
+    private BigDecimal peso;
 
     private String sinaisSintomas;
-    //ZonedDateTime
+
     private ZonedDateTime dataHoraDoAtendimento;
 
 
@@ -60,43 +57,35 @@ public class TriagemDTO implements Serializable {
         this.classificacaoDeRisco = classificacaoDeRisco;
     }
 
-    public String getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
-    }
-
-    public String getPressaoArterial() {
+    public BigDecimal getPressaoArterial() {
         return pressaoArterial;
     }
 
-    public void setPressaoArterial(String pressaoArterial) {
+    public void setPressaoArterial(BigDecimal pressaoArterial) {
         this.pressaoArterial = pressaoArterial;
     }
 
-    public String getFrequenciaCardiaca() {
+    public BigDecimal getFrequenciaCardiaca() {
         return frequenciaCardiaca;
     }
 
-    public void setFrequenciaCardiaca(String frequenciaCardiaca) {
+    public void setFrequenciaCardiaca(BigDecimal frequenciaCardiaca) {
         this.frequenciaCardiaca = frequenciaCardiaca;
     }
 
-    public String getTemperatura() {
+    public BigDecimal getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(String temperatura) {
+    public void setTemperatura(BigDecimal temperatura) {
         this.temperatura = temperatura;
     }
 
-    public String getPeso() {
+    public BigDecimal getPeso() {
         return peso;
     }
 
-    public void setPeso(String peso) {
+    public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
 
@@ -124,7 +113,7 @@ public class TriagemDTO implements Serializable {
         this.descricaoQueixa = descricaoQueixa;
     }
 
-    public Boolean getVitimaDeAcidente() {
+    public Boolean isVitimaDeAcidente() {
         return vitimaDeAcidente;
     }
 
@@ -132,7 +121,7 @@ public class TriagemDTO implements Serializable {
         this.vitimaDeAcidente = vitimaDeAcidente;
     }
 
-    public Boolean getRemovidoDeAmbulancia() {
+    public Boolean isRemovidoDeAmbulancia() {
         return removidoDeAmbulancia;
     }
 
@@ -140,11 +129,11 @@ public class TriagemDTO implements Serializable {
         this.removidoDeAmbulancia = removidoDeAmbulancia;
     }
 
-    public Long getPacienteId() {
+    public long getPaciente() {
         return pacienteId;
     }
 
-    public void setPacienteId(Long pacienteId) {
+    public void setPaciente(long pacienteId) {
         this.pacienteId = pacienteId;
     }
 
@@ -174,7 +163,7 @@ public class TriagemDTO implements Serializable {
         return "TriagemDTO{" +
             "id=" + id +
             ", classificacaoDeRisco=" + classificacaoDeRisco +
-            ", paciente=" + paciente +
+            ", paciente=" + pacienteId +
             ", pressaoArterial='" + pressaoArterial + '\'' +
             ", frequenciaCardiaca='" + frequenciaCardiaca + '\'' +
             ", temperatura='" + temperatura + '\'' +
@@ -187,4 +176,5 @@ public class TriagemDTO implements Serializable {
             ", pacienteId=" + pacienteId +
             '}';
     }
+
 }

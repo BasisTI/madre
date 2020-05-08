@@ -147,5 +147,11 @@ public class TriagemResource {
             .stream(triagemSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
+    @GetMapping("/triagens/paciente/{id}")
+    public ResponseEntity<List<Triagem>> buscarTriagemPorIdDoPaciente(@PathVariable("id") Long id) {
+        List<Triagem> triagem = triagemRepository.findByPacienteId(id);
+
+        return ResponseEntity.ok(triagem);
+    }
 
 }
