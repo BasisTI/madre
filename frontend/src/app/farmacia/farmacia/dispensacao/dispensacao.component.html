@@ -12,26 +12,48 @@
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText type="text" pTooltip="Informe a Data da Prescrição." />
+                    <p-calendar
+                        [(ngModel)]="value"
+                        showButtonBar="true"
+                        pTooltip="Informe a Data da Prescrição."
+                    ></p-calendar>
                     <label>Data da Prescrição</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText type="text" pTooltip="Informe a unidade Funcional." />
+                    <p-autoComplete
+                        pTooltip="Informe a Unidade."
+                        [(ngModel)]="texts"
+                        [suggestions]="results"
+                        (completeMethod)="search($event)"
+                        [dropdown]="true"
+                    ></p-autoComplete>
                     <label>Unidade Funcional</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText type="text" pTooltip="Informe a Farmacia." />
+                    <p-autoComplete
+                        pTooltip="Informe a Farmacia."
+                        [(ngModel)]="texts"
+                        [suggestions]="results"
+                        (completeMethod)="search($event)"
+                        [dropdown]="true"
+                    ></p-autoComplete>
                     <label>Farmácia</label>
                 </span>
             </div>
         </div>
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
-                <button pButton type="button" label="Pesquisar" icon="ui-icon-search"></button>
+                <button
+                    pButton
+                    type="button"
+                    label="Pesquisar"
+                    icon="ui-icon-search"
+                    (click)="listar()"
+                ></button>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <button pButton type="button" label="Limpar"></button>

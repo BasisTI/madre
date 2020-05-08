@@ -16,6 +16,20 @@ export class DispensacaoComponent implements OnInit {
         },
     ];
 
+    texts: string[];
+
+    results: string[];
+
+    search(event) {
+        // this.mylookupservice.getResults(event.query).then((data) => {
+        //     this.results = data;
+        // });
+        console.log('oi');
+    }
+    listar() {
+        console.log(this.Prescricao.values);
+    }
+
     constructor() {}
 
     ngOnInit() {}
