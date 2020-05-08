@@ -1,3 +1,6 @@
+import { Triagem } from './../../models/triagem';
+import { Observable } from 'rxjs';
+import { ICID } from './../solicitacao-de-internacao/cid.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -9,16 +12,14 @@ export class TriagemService {
 
     constructor(private httpService: HttpClient) {}
 
-    cadastrarTriagem(cadastroTriagem: any) {
-        console.log(cadastroTriagem);
-        return this.httpService.post(`${this.apiUrl}/triagens`, cadastroTriagem);
+    cadastrarTriagem(triagem: Triagem) {
+        console.log(triagem);
+        return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
     }
-    alterarTriagem(cadastroTriagem: any) {
-        console.log(cadastroTriagem);
-        return this.httpService.put(`${this.apiUrl}/triagens`, cadastroTriagem);
+    alterarTriagem(alterandoTriagem: Observable<any>) {
+        return this.httpService.put(`${this.apiUrl}/triagens/:id`, alterandoTriagem);
     }
-    listarTriagem(cadastroTriagem: any) {
-        console.log(cadastroTriagem);
-        return this.httpService.get(`${this.apiUrl}/triagens`, cadastroTriagem);
+    listarTriagem(id: number): Observable<any> {
+        return this.httpService.get(`${this.apiUrl}/triagens/${id}`);
     }
 }

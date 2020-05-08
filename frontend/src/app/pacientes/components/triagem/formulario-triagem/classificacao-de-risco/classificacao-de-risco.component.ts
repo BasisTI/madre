@@ -10,8 +10,10 @@ import { SelectItem } from 'primeng/api';
     styleUrls: ['./classificacao-de-risco.component.scss'],
 })
 export class ClassificacaoDeRiscoComponent implements OnInit {
+    @Input() formTriagem: FormGroup;
+    opcaoClassificacao = CLASSIFICACAO_RISCO;
     types: SelectItem[];
-    selectedValue: String;
+    selectedLegend: String;
 
     handleClick() {}
 

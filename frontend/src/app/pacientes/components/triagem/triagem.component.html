@@ -1,7 +1,11 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <h1>Triagem</h1>
+            <span class="md-inputfield">
+                <input pInputText disabled />
+                <h1>Triagem</h1>
+            </span>
+
             <div class="ui-g">
                 <div class="ui-g-11 ui-md-11 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
@@ -39,8 +43,9 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable
-                    type="memory"
-                    [value]="null"
+                    type="server"
+                    [url]="searchUrl"
+                    [value]="triagens"
                     [disableView]="true"
                     [disableEdit]="true"
                     [disableDelete]="true"
@@ -53,8 +58,8 @@
                     <p-column header="Classificação" field="classificacao"></p-column>
                     <basis-datatable-button
                         *ngIf="!disableEdit"
-                        (click)="onClick(editEventName, $event)"
                         class="ui-button-success"
+                        [routerLink]="['/pacientes', '{id}']"
                         icon="edit"
                     >
                     </basis-datatable-button>
