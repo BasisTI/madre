@@ -1,3 +1,4 @@
+import { LiberacaoLeitoComponent } from './components/liberacao-leito/liberacao-leito.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-de-leito.component';
 import { InternacaoDePacienteComponent } from './components/internacao-de-paciente/internacao-de-paciente.component';
@@ -25,5 +26,9 @@ export const routes: Routes = [
     {
         path: 'bloqueio-de-leito',
         component: BloqueioDeLeitoComponent,
+    },
+    {
+        path: 'liberacao-de-leito',
+        component: LiberacaoLeitoComponent,
     },
 ];
