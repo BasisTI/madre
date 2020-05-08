@@ -1,7 +1,6 @@
 package br.com.basis.madre.service.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,5 +15,10 @@ public class SituacaoDeLeitoDTO implements Serializable {
 
     @NotNull
     private String nome;
+
+    public SituacaoDeLeitoDTO id(Long id) {
+        this.id = id;
+        return this;
+    }
 
 }

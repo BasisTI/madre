@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -85,7 +84,11 @@ public class LeitoService {
     public List<LeitoProjection> getLeitosDesocupadosPor(String nome,
         Pageable pageable) {
         Sort sort = pageable.getSort();
-        SituacaoDeLeitoDTO situacao = situacaoDeLeitoService.findByNomeIgnoreCase("Desocupado");
+        CodigoDeSituacaoDeLeito codigoDeSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
+
+        SituacaoDeLeitoDTO situacao = new SituacaoDeLeitoDTO();
+        situacao.setId(codigoDeSituacao.getValor());
+
         return leitoRepository
             .findBySituacaoAndNomeIgnoreCaseContaining(situacaoDeLeitoMapper.toEntity(situacao),
                 nome, sort);
@@ -95,8 +98,11 @@ public class LeitoService {
     public List<LeitoProjection> getLeitosNaoDesocupadosPor(String nome,
         Pageable pageable) {
         Sort sort = pageable.getSort();
-        SituacaoDeLeitoDTO bloqueado = situacaoDeLeitoService.findByNomeIgnoreCase("bloqueado");
-        SituacaoDeLeitoDTO reservado = situacaoDeLeitoService.findByNomeIgnoreCase("reservado");
+        CodigoDeSituacaoDeLeito codigoDeDesocupado = CodigoDeSituacaoDeLeito.BLOQUEADO;
+        CodigoDeSituacaoDeLeito codigoDeReservado = CodigoDeSituacaoDeLeito.RESERVADO;
+
+        SituacaoDeLeitoDTO bloqueado = new SituacaoDeLeitoDTO().id(codigoDeDesocupado.getValor());
+        SituacaoDeLeitoDTO reservado = new SituacaoDeLeitoDTO().id(codigoDeReservado.getValor());
 
         List<SituacaoDeLeito> situacoes = Arrays.asList(bloqueado, reservado).stream()
             .map(situacaoDeLeitoMapper::toEntity).collect(Collectors.toList());
@@ -145,7 +151,6 @@ public class LeitoService {
     }
 
     public LeitoDTO liberarLeito(Long leitoId) {
-//        SituacaoDeLeitoDTO desocupado = situacaoDeLeitoService.findByNomeIgnoreCase("desocupado");
         CodigoDeSituacaoDeLeito codigoDeSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
 
         SituacaoDeLeitoDTO situacao = new SituacaoDeLeitoDTO();
