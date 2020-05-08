@@ -51,8 +51,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	private Long unidadeDoseId;
 
-	private Long prescricaoMedicamentoId;
-
 	private Long tipoAprazamentoId;
 
 	public Long getId() {
@@ -191,13 +189,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.unidadeDoseId = unidadeDoseId;
 	}
 
-	public Long getPrescricaoMedicamentoId() {
-		return prescricaoMedicamentoId;
-	}
-
-	public void setPrescricaoMedicamentoId(Long prescricaoMedicamentoId) {
-		this.prescricaoMedicamentoId = prescricaoMedicamentoId;
-	}
 
 	public Long getTipoAprazamentoId() {
 		return tipoAprazamentoId;
