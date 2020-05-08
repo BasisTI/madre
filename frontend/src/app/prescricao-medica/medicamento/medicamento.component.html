@@ -1,1 +1,33 @@
-<p>medicamento works!</p>
+<div class="ui-g ui-fluid">
+
+    <div class="ui-g-12">
+        <div class="ui-g-12">
+            <span class="md-inputfield">
+                <input [(ngModel)]="paciente.nome" name="nome" type="text" pInputText disabled />
+                <label>Paciente</label>
+            </span>
+        </div>
+    </div>
+
+    <div class="ui-g-12">
+    <!-- {{profileForm.value | json}} -->
+    <form autocomplete="off" #frm (ngSubmit)="incluirItem()">
+        <p-accordion>
+            <p-accordionTab header="Medicamento">
+
+            </p-accordionTab>
+
+            <p-accordionTab header="Itens Medicamento" [selected]="true">
+
+            </p-accordionTab>
+        </p-accordion>
+
+        <div class="ui-g-12">
+            <div class="ui-g-6">
+                <button pButton type="submit" label="Prescrever"></button>
+
+            </div>
+        </div>
+    </form>
+</div>
+</div>
