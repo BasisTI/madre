@@ -21,6 +21,18 @@ export class LeitoService implements EntityService {
         return this.client.get<T>(this.resource);
     }
 
+    getLeitosNaoDesocupados(): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this.resource}/nao-desocupados`, {
+            params: new HttpParams().set('sort', 'nome'),
+        });
+    }
+
+    getLeitosNaoDesocupadosPorNome(nome: string): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this.resource}/nao-desocupados`, {
+            params: new HttpParams().set('sort', 'nome').set('nome', nome),
+        });
+    }
+
     getLeitosDesocupados(): Observable<Array<Leito>> {
         return this.client.get<Array<Leito>>(`${this.resource}/desocupados`, {
             params: new HttpParams().set('sort', 'nome'),
