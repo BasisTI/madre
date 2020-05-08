@@ -7,16 +7,13 @@ import java.util.Objects;
  * A DTO for the {@link br.com.basis.madre.domain.Responsavel} entity.
  */
 public class ResponsavelDTO implements Serializable {
-    
+
     private Long id;
 
     private String nomeDoResponsavel;
 
-
-    private Long telefoneId;
-
     private Long grauDeParentescoId;
-    
+
     public Long getId() {
         return id;
     }
@@ -31,14 +28,6 @@ public class ResponsavelDTO implements Serializable {
 
     public void setNomeDoResponsavel(String nomeDoResponsavel) {
         this.nomeDoResponsavel = nomeDoResponsavel;
-    }
-
-    public Long getTelefoneId() {
-        return telefoneId;
-    }
-
-    public void setTelefoneId(Long telefoneId) {
-        this.telefoneId = telefoneId;
     }
 
     public Long getGrauDeParentescoId() {
@@ -75,7 +64,6 @@ public class ResponsavelDTO implements Serializable {
         return "ResponsavelDTO{" +
             "id=" + getId() +
             ", nomeDoResponsavel='" + getNomeDoResponsavel() + "'" +
-            ", telefoneId=" + getTelefoneId() +
             ", grauDeParentescoId=" + getGrauDeParentescoId() +
             "}";
     }

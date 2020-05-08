@@ -20,8 +20,8 @@ export const routes: Routes = [
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
     {
-        path: 'solicitacao-de-internacao',
-        loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+        path: 'internacao',
+        loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
     },
     {
         path: 'farmacia',

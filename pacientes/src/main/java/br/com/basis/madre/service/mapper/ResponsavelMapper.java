@@ -12,11 +12,10 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {TelefoneMapper.class, GrauDeParentescoMapper.class})
 public interface ResponsavelMapper extends EntityMapper<ResponsavelDTO, Responsavel> {
 
-    @Mapping(source = "telefone.id", target = "telefoneId")
     @Mapping(source = "grauDeParentesco.id", target = "grauDeParentescoId")
     ResponsavelDTO toDto(Responsavel responsavel);
 
-    @Mapping(source = "telefoneId", target = "telefone")
+    @Mapping(target = "telefones", ignore = true)
     @Mapping(source = "grauDeParentescoId", target = "grauDeParentesco")
     Responsavel toEntity(ResponsavelDTO responsavelDTO);
 

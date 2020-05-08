@@ -1,18 +1,24 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.enumeration.TipoDoContato;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
-import java.util.Objects;
-
-import br.com.basis.madre.domain.enumeration.TipoDoContato;
 
 /**
  * A Telefone.
@@ -50,14 +56,6 @@ public class Telefone implements Serializable {
     @Field(type = FieldType.Text)
     @Column(name = "observacao")
     private String observacao;
-
-    @ManyToOne
-    @JsonIgnoreProperties("telefones")
-    private Paciente paciente;
-
-    @ManyToOne
-    @JsonIgnoreProperties("telefones")
-    private Responsavel responsavel;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -120,31 +118,6 @@ public class Telefone implements Serializable {
         this.observacao = observacao;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public Telefone paciente(Paciente paciente) {
-        this.paciente = paciente;
-        return this;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Responsavel getResponsavel() {
-        return responsavel;
-    }
-
-    public Telefone responsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
-        return this;
-    }
-
-    public void setResponsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

@@ -28,7 +28,6 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
 
     @Mapping(source = "cartaoSUSId", target = "cartaoSUS")
     @Mapping(target = "telefones", ignore = true)
-    @Mapping(target = "removeTelefone", ignore = true)
     @Mapping(target = "enderecos", ignore = true)
     @Mapping(target = "removeEndereco", ignore = true)
     @Mapping(source = "responsavelId", target = "responsavel")

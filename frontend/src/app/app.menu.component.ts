@@ -37,11 +37,6 @@ export class AppMenuComponent implements OnInit {
                         icon: 'add',
                         routerLink: ['/pacientes/cadastro'],
                     },
-                    {
-                        label: 'Solicitação de Internação',
-                        icon: 'add',
-                        routerLink: ['/pacientes/solicitacao-de-internacao'],
-                    },
                 ],
             },
             {
@@ -61,6 +56,38 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Atendimento',
                         icon: 'add',
+                    },
+                ],
+            },
+            {
+                label: 'Internação',
+                icon: 'airline_seat_individual_suite',
+                items: [
+                    {
+                        label: 'Solicitar Internação',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacao-de-internacao'],
+                    },
+                    {
+                        label: 'Internar Paciente',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacoes-de-internacao'],
+                    },
+                    {
+                        label: 'Leitos',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Reservar Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/reserva-de-leito'],
+                            },
+                            {
+                                label: 'Bloquear Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/bloqueio-de-leito'],
+                            },
+                        ],
                     },
                 ],
             },
