@@ -1,0 +1,22 @@
+{
+    "name": "TipoMedicamento",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200508124042",
+    "entityTableName": "tipo_medicamento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "farmacia",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "farmacia"
+}

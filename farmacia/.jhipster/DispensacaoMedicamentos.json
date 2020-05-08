@@ -1,0 +1,44 @@
+{
+    "name": "DispensacaoMedicamentos",
+    "fields": [
+        {
+            "fieldName": "idFarmacia",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dispensado",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "usuarioQueDispensou",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "dispensacao",
+            "otherEntityName": "dispensacao",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "medicamento",
+            "otherEntityRelationshipName": "dispensacaoMedicamentos",
+            "relationshipName": "medicamentos",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200508124039",
+    "entityTableName": "dispensacao_medicamentos",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "farmacia",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "farmacia"
+}

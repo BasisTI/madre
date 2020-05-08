@@ -69,6 +69,8 @@ spring:
       hibernate.cache.use_minimal_puts: true
       hibernate.cache.hazelcast.use_lite_member: true
   data:
+    jest:
+      uri: http://localhost:9200
     elasticsearch:
       properties:
         path:
