@@ -38,6 +38,8 @@ public class TriagemDTO implements Serializable {
 
     private Boolean removidoDeAmbulancia;
 
+    private String observacao;
+
     //@NotNull
     private Long pacienteId;
 
@@ -129,6 +131,12 @@ public class TriagemDTO implements Serializable {
         this.removidoDeAmbulancia = removidoDeAmbulancia;
     }
 
+    public String getObservacao() { return observacao;
+    }
+
+    public void setObservacao(String observacao) { this.observacao = observacao;
+    }
+
     public long getPaciente() {
         return pacienteId;
     }
@@ -173,6 +181,7 @@ public class TriagemDTO implements Serializable {
             ", descricaoQueixa='" + descricaoQueixa + '\'' +
             ", vitimaDeAcidente=" + vitimaDeAcidente +
             ", removidoDeAmbulancia=" + removidoDeAmbulancia +
+            ", observacao=" + observacao +
             ", pacienteId=" + pacienteId +
             '}';
     }

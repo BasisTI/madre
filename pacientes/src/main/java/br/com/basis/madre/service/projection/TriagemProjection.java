@@ -2,7 +2,6 @@ package br.com.basis.madre.service.projection;
 
 
 import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.ZonedDateTime;
@@ -11,7 +10,6 @@ import java.time.ZonedDateTime;
 public interface TriagemProjection {
 
     ZonedDateTime getDataHoraDoAtendimento();
-
     ClassificacaoDeRisco getClassificacaoDeRisco();
 
     PacienteProjection getPaciente();
@@ -19,7 +17,6 @@ public interface TriagemProjection {
     static interface PacienteProjection {
         String getNome();
         String getNomeSocial();
-
         static interface Genitores_ {
             String getNomeDaMae();
         }
