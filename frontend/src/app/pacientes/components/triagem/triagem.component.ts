@@ -23,7 +23,7 @@ export class TriagemComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'Triagem' },
+            { label: 'Emergencia', routerLink: 'emergencia' },
         ]);
     }
 

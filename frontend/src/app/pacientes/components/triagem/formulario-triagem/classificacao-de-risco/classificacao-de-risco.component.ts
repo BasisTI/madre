@@ -13,7 +13,7 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     @Input() formTriagem: FormGroup;
     opcaoClassificacao = CLASSIFICACAO_RISCO;
     types: SelectItem[];
-    selectedLegend: String;
+    selectedValue: String;
 
     handleClick() {}
 

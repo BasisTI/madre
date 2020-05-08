@@ -3,9 +3,10 @@ import { Triagem } from './../../../models/triagem';
 import { values } from 'micro-dash';
 import { TriagemService } from '../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
-import { OnInit, OnDestroy, Component, Input } from '@angular/core';
+import { OnInit, OnDestroy, Component, Input, Optional } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-de-risco';
+import { RADIO_VALUE_ACCESSOR, SelectItem } from 'primeng/primeng';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -18,18 +19,16 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     searchUrl = 'pacientes/api/triagens/paciente/{id}';
 
     formTriagem = this.fb.group({
-        classificacaoDeRisco: CLASSIFICACAO_RISCO,
-        // tslint:disable-next-line: comment-format
-        //CLASSIFICACAO_RISCO
-        // paciente: ['', Validators.required],
+        classificacaoDeRisco: ['EMERGENCIA'],
+        paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
         temperatura: [''],
         peso: [''],
         sinaisSintomas: [''],
         dataHoraDoAtendimento: [
-            //             `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
-            // ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
+            `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
+           ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
         ],
         idade: [''],
         descricaoQueixa: ['', Validators.required],
