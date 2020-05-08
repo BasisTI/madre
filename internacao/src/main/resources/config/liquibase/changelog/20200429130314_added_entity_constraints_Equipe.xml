@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Equipe.
+    -->
+    <changeSet id="20200429130314-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="especialidade_id"
+                                 baseTableName="equipe"
+                                 constraintName="fk_equipe_especialidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especialidade"/>
+
+    </changeSet>
+</databaseChangeLog>

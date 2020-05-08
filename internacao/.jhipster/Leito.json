@@ -1,0 +1,56 @@
+{
+    "name": "Leito",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ala",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "andar",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "situacaoDeLeito",
+            "otherEntityRelationshipName": "leito",
+            "relationshipValidateRules": "required",
+            "relationshipName": "situacao",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "unidadeFuncional",
+            "otherEntityRelationshipName": "leito",
+            "relationshipValidateRules": "required",
+            "relationshipName": "unidadeFuncional",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200506165816",
+    "entityTableName": "leito",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}
