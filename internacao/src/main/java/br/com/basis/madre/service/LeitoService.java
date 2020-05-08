@@ -4,6 +4,7 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.domain.SituacaoDeLeito;
+import br.com.basis.madre.domain.enumeration.CodigoDeSituacaoDeLeito;
 import br.com.basis.madre.repository.LeitoRepository;
 import br.com.basis.madre.repository.search.LeitoSearchRepository;
 import br.com.basis.madre.service.dto.LeitoDTO;
@@ -144,9 +145,14 @@ public class LeitoService {
     }
 
     public LeitoDTO liberarLeito(Long leitoId) {
-        SituacaoDeLeitoDTO desocupado = situacaoDeLeitoService.findByNomeIgnoreCase("desocupado");
+//        SituacaoDeLeitoDTO desocupado = situacaoDeLeitoService.findByNomeIgnoreCase("desocupado");
+        CodigoDeSituacaoDeLeito codigoDeSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
+
+        SituacaoDeLeitoDTO situacao = new SituacaoDeLeitoDTO();
+        situacao.setId(codigoDeSituacao.getValor());
+
         Leito leito = leitoRepository.findById(leitoId).orElseThrow(EntityNotFoundException::new)
-            .situacao(situacaoDeLeitoMapper.toEntity(desocupado));
+            .situacao(situacaoDeLeitoMapper.toEntity(situacao));
         leito = leitoRepository.save(leito);
         return leitoMapper.toDto(leito);
     }

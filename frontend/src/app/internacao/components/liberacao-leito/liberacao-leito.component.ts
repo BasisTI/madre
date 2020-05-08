@@ -1,8 +1,8 @@
 import { Leito } from '@internacao/models/leito';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ConfiguracaoParaCalendarioPrimeNG, ptBR } from '@shared/p-calendar.config';
-import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
+import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { ConfiguracaoParaCalendarioPrimeNG } from '@shared/p-calendar.config';
 import { LiberacaoDeLeitoService } from '@internacao/services/liberacao-de-leito.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class LiberacaoLeitoComponent implements OnInit, OnDestroy {
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yyyy',
         localidade: {
-            ...ptBR,
+            ...CALENDAR_LOCALE,
             today: 'Agora',
             clear: 'Limpar',
         },
@@ -29,26 +29,13 @@ export class LiberacaoLeitoComponent implements OnInit, OnDestroy {
     });
 
     constructor(
-        private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private liberacaoDeLeitoService: LiberacaoDeLeitoService,
     ) {}
 
-    ngOnInit(): void {
-        this.breadcrumbService.setItems([
-            {
-                label: 'Internação',
-            },
-            {
-                label: 'Liberar Leito',
-                routerLink: 'liberacao-de-leito',
-            },
-        ]);
-    }
+    ngOnInit(): void {}
 
-    ngOnDestroy(): void {
-        this.breadcrumbService.reset();
-    }
+    ngOnDestroy(): void {}
 
     aoSelecionarLeito(leito: Leito): void {
         this.formGroup.controls.situacao.setValue(leito.situacao.nome);

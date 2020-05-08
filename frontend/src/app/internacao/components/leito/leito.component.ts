@@ -13,7 +13,7 @@ export class LeitoComponent implements OnInit, EntityAutoComplete {
     @Input() public required = false;
     @Input() public label = 'Leito';
     @Input() public name = 'leito';
-    @Input() public mostrarLeitosDesocupados: true;
+    @Input() public mostrarLeitosDesocupados = true;
     @Output() public select = new EventEmitter();
     @Output() public blur = new EventEmitter();
     public leitos = new Array<Leito>();
