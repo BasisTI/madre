@@ -17,6 +17,9 @@ import { DatatableModule, CrudModule, CrudResolveGuard } from '@nuvem/primeng-co
         TriStateCheckboxModule,
         CrudModule,
     ],
+    providers: [
+        JhiDateUtils
+    ],
     exports: [
         ReactiveFormsModule,
         FormsModule,
@@ -26,14 +29,4 @@ import { DatatableModule, CrudModule, CrudResolveGuard } from '@nuvem/primeng-co
         CrudModule,
     ],
 })
-export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                JhiDateUtils,
-                /* jhipster-needle-add-shared-services - JHipster will add shared services here */
-            ],
-        };
-    }
-}
+export class SharedModule { }

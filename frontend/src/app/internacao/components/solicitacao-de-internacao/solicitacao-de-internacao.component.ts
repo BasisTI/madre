@@ -2,9 +2,8 @@ import { Especialidade } from '@internacao/models/especialidade';
 import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
-import { ptBR } from '@shared/p-calendar.config';
 
 @Component({
     selector: 'app-solicitacao-de-internacao',
@@ -14,7 +13,7 @@ import { ptBR } from '@shared/p-calendar.config';
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     public prioridadeDropdown = PrioridadeDropdown;
     public pCalendarConfig = {
-        localidade: ptBR,
+        localidade: CALENDAR_LOCALE,
         dataMinima: new Date(),
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yy',

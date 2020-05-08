@@ -1,5 +1,5 @@
 import { Router} from '@angular/router';
-import { BreadcrumbService } from './../breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
 import { DatatableClickEvent } from '@nuvem/primeng-components';
