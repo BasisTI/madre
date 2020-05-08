@@ -2,7 +2,6 @@ package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
@@ -10,18 +9,27 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
@@ -84,9 +92,14 @@ public class Paciente implements Serializable {
     @JoinColumn(unique = true)
     private CartaoSUS cartaoSUS;
 
-    @Field(type = FieldType.Object)
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "paciente_telefone",
+        joinColumns = {@JoinColumn(name = "paciente_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
+    )
+
     private Set<Telefone> telefones = new HashSet<>();
 
     @Field(type = FieldType.Nested)
@@ -280,23 +293,6 @@ public class Paciente implements Serializable {
 
     public Set<Telefone> getTelefones() {
         return telefones;
-    }
-
-    public Paciente telefones(Set<Telefone> telefones) {
-        this.telefones = telefones;
-        return this;
-    }
-
-    public Paciente addTelefone(Telefone telefone) {
-        this.telefones.add(telefone);
-        telefone.setPaciente(this);
-        return this;
-    }
-
-    public Paciente removeTelefone(Telefone telefone) {
-        this.telefones.remove(telefone);
-        telefone.setPaciente(null);
-        return this;
     }
 
     public void setTelefones(Set<Telefone> telefones) {

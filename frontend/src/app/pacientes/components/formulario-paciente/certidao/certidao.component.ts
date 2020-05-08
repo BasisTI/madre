@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ptBR } from '../../../../shared/calendar.pt-br.locale';
+import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OPCOES_DE_TIPO_DE_CERTIDAO } from '../../../models/dropdowns/opcao-de-tipos-de-certidao';
 
 @Component({
@@ -22,7 +22,7 @@ import { OPCOES_DE_TIPO_DE_CERTIDAO } from '../../../models/dropdowns/opcao-de-t
 export class CertidaoComponent {
     @Input() certidao: FormGroup;
     opcoesDeTipoDeCertidao = OPCOES_DE_TIPO_DE_CERTIDAO;
-    localizacao = ptBR;
+    localizacao = CALENDAR_LOCALE;
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
 

@@ -1,15 +1,15 @@
 package br.com.basis.madre.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A Responsavel.
@@ -31,10 +31,16 @@ public class Responsavel implements Serializable {
     @Column(name = "nome_do_responsavel")
     private String nomeDoResponsavel;
 
-//    @Field(type = FieldType.Nested)
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("responsavels")
-    private Telefone telefone;
+
+    //    @Field(type = FieldType.Nested)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "responsavel_telefone",
+        joinColumns = {@JoinColumn(name = "responsavel_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
+    )
+    private Set<Telefone> telefones = new HashSet<>();
+
 
     @Field(type = FieldType.Nested)
     @ManyToOne
@@ -63,17 +69,12 @@ public class Responsavel implements Serializable {
         this.nomeDoResponsavel = nomeDoResponsavel;
     }
 
-    public Telefone getTelefone() {
-        return telefone;
+    public Set<Telefone> getTelefones() {
+        return telefones;
     }
 
-    public Responsavel telefone(Telefone telefone) {
-        this.telefone = telefone;
-        return this;
-    }
-
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
+    public void setTelefones(Set<Telefone> telefones) {
+        this.telefones = telefones;
     }
 
     public GrauDeParentesco getGrauDeParentesco() {

@@ -5,7 +5,7 @@ export class Responsavel {
     constructor(
         public id?: number,
         public nomeDoResponsavel?: string,
-        public telefone?: Telefone,
+        public telefone?: Telefone[],
         public grauDeParentescoId?: number,
         public observacao?: string,
     ) {}

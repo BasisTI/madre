@@ -1,7 +1,9 @@
 package br.com.basis.madre.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Responsavel} entity.
@@ -12,19 +14,18 @@ public class ResponsavelDTO implements Serializable {
 
     private String nomeDoResponsavel;
 
-    private TelefoneDTO telefone;
+
+    private Set<TelefoneDTO> telefone;
 
     private String observacao;
 
     private Long grauDeParentescoId;
 
-
-
-    public TelefoneDTO getTelefone() {
+    public Set<TelefoneDTO> getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(TelefoneDTO telefone) {
+    public void setTelefone(Set<TelefoneDTO> telefone) {
         this.telefone = telefone;
     }
 
@@ -90,5 +91,6 @@ public class ResponsavelDTO implements Serializable {
             ", observacao='" + observacao + '\'' +
             ", grauDeParentescoId=" + grauDeParentescoId +
             '}';
+
     }
 }

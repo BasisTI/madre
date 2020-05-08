@@ -1,19 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-diario-erros',
     templateUrl: './diario-erros.component.html',
 })
-export class DiarioErrosComponent implements OnInit, OnDestroy {
-    constructor(private breadcrumbService: BreadcrumbService) {}
+export class DiarioErrosComponent {
 
-    ngOnInit() {
-        this.breadcrumbService.setItems([{ label: 'Diário de Erros' }]);
-    }
-
-    ngOnDestroy() {
-        this.breadcrumbService.reset();
-    }
+    constructor() { }
 }

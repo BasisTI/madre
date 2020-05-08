@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 
 import * as moment from 'moment';
 
-import { ptBR } from '../../../../shared/calendar.pt-br.locale';
+import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { RacaService } from './raca.service';
 import { EtniaService } from './etnia.service';
 import { NacionalidadeService } from './nacionalidade.service';
@@ -25,7 +25,7 @@ export class DadosPessoaisComponent {
     @Input() dadosPessoais: FormGroup;
     opcoesDeSexo = OPCOES_DE_SEXO;
     opcoesDeGrauDeInstrucao = OPCOES_DE_GRAU_DE_INSTRUCAO;
-    localizacao = ptBR;
+    localizacao = CALENDAR_LOCALE;
     dataLimite = new Date();
     anosDisponiveis = `1900:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';

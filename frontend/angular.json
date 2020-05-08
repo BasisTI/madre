@@ -25,7 +25,7 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/fullcalendar/dist/fullcalendar.min.css",
               "node_modules/quill/dist/quill.snow.css",
-              "node_modules/@nuvem/angular-base/accessibility/accessibility.scss",
+              "node_modules/@nuvem/angular-base/src/lib/accessibility/accessibility.scss",
               "src/styles.scss"
             ],
             "scripts": [

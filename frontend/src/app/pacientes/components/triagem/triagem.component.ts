@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BreadcrumbService } from '../../../breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 
 @Component({
     selector: 'app-triagem',

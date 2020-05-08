@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Internacao.
+    -->
+    <changeSet id="20200426133247-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="especialidade_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_especialidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especialidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="crm_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_crm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="crm"/>
+
+        <addForeignKeyConstraint baseColumnNames="hospital_de_origem_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_hospital_de_origem_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hospital"/>
+
+        <addForeignKeyConstraint baseColumnNames="origem_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_origem_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="origem_da_internacao"/>
+
+        <addForeignKeyConstraint baseColumnNames="convenio_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_convenio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="convenio_de_saude"/>
+
+        <addForeignKeyConstraint baseColumnNames="plano_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_plano_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plano_de_saude"/>
+
+        <addForeignKeyConstraint baseColumnNames="procedimento_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_procedimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="procedimento"/>
+
+        <addForeignKeyConstraint baseColumnNames="procedencia_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_procedencia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="procedencia"/>
+
+        <addForeignKeyConstraint baseColumnNames="modalidade_assistencial_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_modalidade_assistencial_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="modalidade_assistencial"/>
+
+        <addForeignKeyConstraint baseColumnNames="local_de_atendimento_id"
+                                 baseTableName="internacao"
+                                 constraintName="fk_internacao_local_de_atendimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="local_de_atendimento"/>
+
+    </changeSet>
+</databaseChangeLog>

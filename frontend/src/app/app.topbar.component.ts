@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
-import { AbstractAuthorization, User } from '@nuvem/angular-base';
+import { Authentication, User } from '@nuvem/angular-base';
 
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html',
 })
 export class AppTopbarComponent {
-    constructor(public app: AppComponent, private authorization: AbstractAuthorization<User>) {}
+    constructor(public app: AppComponent, private _authentication: Authentication<User>) {}
 
     get usuario() {
-        return this.authorization.getUser();
+        return this._authentication.getUser();
     }
 }
