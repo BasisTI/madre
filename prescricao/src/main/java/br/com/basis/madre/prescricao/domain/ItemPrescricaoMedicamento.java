@@ -314,9 +314,39 @@ public class ItemPrescricaoMedicamento implements Serializable {
     public void setPrescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
         this.prescricaoMedicamento = prescricaoMedicamento;
     }
+    
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    @Override
+    public Long getIdListaMedicamentos() {
+		return idListaMedicamentos;
+	}
+
+	public void setIdListaMedicamentos(Long idListaMedicamentos) {
+		this.idListaMedicamentos = idListaMedicamentos;
+	}
+
+	public TipoAprazamento getTipoAprazamento() {
+		return tipoAprazamento;
+	}
+
+	public void setTipoAprazamento(TipoAprazamento tipoAprazamento) {
+		this.tipoAprazamento = tipoAprazamento;
+	}
+
+	public Boolean getTodasVias() {
+		return todasVias;
+	}
+
+	public Boolean getBombaInfusao() {
+		return bombaInfusao;
+	}
+
+	public Boolean getCondicaoNecessaria() {
+		return condicaoNecessaria;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
