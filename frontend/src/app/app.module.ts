@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppRoutes } from './app.routes';
-
 import { AppComponent } from './app.component';
 import { AppTopbarComponent } from './app.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
@@ -30,7 +29,7 @@ import {
     DatatableModule,
     ErrorStackModule,
     MenuModule,
-    BreadcrumbModule
+    BreadcrumbModule,
 } from '@nuvem/primeng-components';
 
 import { environment } from '../environments/environment';
@@ -56,7 +55,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         PrescricaoMedicaModule,
         SecurityModule.forRoot(environment.auth),
         BreadcrumbModule,
-        MenuModule
+        MenuModule,
     ],
     declarations: [
         AppComponent,
@@ -71,7 +70,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
             provide: LocationStrategy,
             useClass: HashLocationStrategy,
         },
-        PrescricaoMedicaService
+        PrescricaoMedicaService,
     ],
     bootstrap: [AppComponent],
 })

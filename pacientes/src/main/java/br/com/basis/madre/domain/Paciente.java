@@ -8,6 +8,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -87,36 +88,37 @@ public class Paciente implements Serializable {
     private Sexo sexo;
 
     @Field(type = FieldType.Nested)
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
     private CartaoSUS cartaoSUS;
 
-    @Field(type = FieldType.Object)
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "paciente_telefone",
         joinColumns = {@JoinColumn(name = "paciente_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
     )
+
     private Set<Telefone> telefones = new HashSet<>();
 
     @Field(type = FieldType.Nested)
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Endereco> enderecos = new HashSet<>();
 
     @Field(type = FieldType.Nested)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pacientes")
     private Responsavel responsavel;
 
     @Field(type = FieldType.Nested)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pacientes")
     private Documento documento;
 
     @Field(type = FieldType.Nested)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pacientes")
     private Certidao certidao;
 
@@ -141,7 +143,7 @@ public class Paciente implements Serializable {
     private Etnia etnia;
 
     @Field(type = FieldType.Nested)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pacientes")
     private Genitores genitores;
 

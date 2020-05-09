@@ -35,7 +35,7 @@ public class CartaoSUS implements Serializable {
 
     @Field(type = FieldType.Text)
     @NotNull
-    @br.com.basis.madre.domain.validation.annotation.CartaoSUS
+    //@br.com.basis.madre.domain.validation.annotation.CartaoSUS
     @Column(name = "numero", nullable = false)
     private String numero;
 
