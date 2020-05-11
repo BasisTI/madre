@@ -1,3 +1,5 @@
+import { FormulaCadastroService } from './components/formulario-paciente/formula-cadastro.service';
+import { HttpClientModule } from '@angular/common/http';
 // tslint:disable-next-line: max-line-length
 import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { NgModule } from '@angular/core';
@@ -13,7 +15,6 @@ import { CartaoSusComponent } from './components/formulario-paciente/cartao-sus/
 import { TelefoneComponent } from './components/formulario-paciente/telefone/telefone.component';
 import { EnderecoComponent } from './components/formulario-paciente/endereco/endereco.component';
 import { FormularioCadastroComponent } from './components/formulario-paciente/formulario-cadastro.component';
-import { ObservacaoComponent } from './components/formulario-paciente/observacao/observacao.component';
 import { TriagemComponent } from './components/triagem/triagem.component';
 
 import { routes } from './pacientes.routes';
@@ -48,7 +49,6 @@ import { FormularioTriagemComponent } from './components/triagem/formulario-tria
         TelefoneComponent,
         EnderecoComponent,
         FormularioCadastroComponent,
-        ObservacaoComponent,
         ListaDePacientesComponent,
         ProntuarioPipe,
         CartaoSusPipe,
@@ -58,6 +58,8 @@ import { FormularioTriagemComponent } from './components/triagem/formulario-tria
     ],
     providers: [
         PacientesService,
+        FormulaCadastroService,
+
         { provide: CRUD_SERVICE, useExisting: RacaService },
         { provide: CRUD_SERVICE, useExisting: EtniaService },
         { provide: CRUD_SERVICE, useExisting: EstadoCivilService },

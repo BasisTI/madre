@@ -16,4 +16,6 @@ public interface LeitoRepository extends JpaRepository<Leito, Long> {
 
     List<LeitoProjection> findBySituacaoAndNomeIgnoreCaseContaining(SituacaoDeLeito situacaoDeLeito, String nome, Sort sort);
 
+    List<LeitoProjection> findBySituacaoInAndNomeIgnoreCaseContaining(List<SituacaoDeLeito> situacoes, String nome, Sort sort);
+
 }

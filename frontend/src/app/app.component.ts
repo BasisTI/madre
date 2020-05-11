@@ -60,7 +60,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     rippleMouseDownListener: any;
 
-    constructor(public renderer2: Renderer2, public zone: NgZone, public menuService: MenusService) {}
+    constructor(
+        public renderer2: Renderer2,
+        public zone: NgZone,
+        public menuService: MenusService,
+    ) {}
 
     ngOnInit() {
         this.zone.runOutsideAngular(() => {
@@ -112,28 +116,59 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 icon: 'assignment_ind',
                 items: [
                     {
-                      label: 'Médica',
-                      icon: 'remove',
-                      items: [
-                        {label: 'Prescrever', routerLink: ['/prescricao-medica']},
-                      ]
+                        label: 'Médica',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
                     },
                     {
                         label: 'Enfermagem',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'},
-                      ],
+                        items: [{ label: 'Prescrever' }],
                     },
                     {
                         label: 'Multiprofisisonal',
                         icon: 'remove',
-                        items: [
-                            {label: 'Prescrever'}
-                        ]
+                        items: [{ label: 'Prescrever' }],
                     },
-                ]
-            }
+                ],
+            },
+            {
+                label: 'Internação',
+                icon: 'airline_seat_individual_suite',
+                items: [
+                    {
+                        label: 'Solicitar Internação',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacao-de-internacao'],
+                    },
+                    {
+                        label: 'Internar Paciente',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacoes-de-internacao'],
+                    },
+                    {
+                        label: 'Leitos',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Reservar Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/reserva-de-leito'],
+                            },
+                            {
+                                label: 'Bloquear Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/bloqueio-de-leito'],
+                            },
+                            {
+                                label: 'Liberar Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/liberacao-de-leito'],
+                            },
+                        ],
+                    },
+                ],
+            },
         ];
     }
 
@@ -308,7 +343,8 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             this.menuService.overlayMenuActive = !this.menuService.overlayMenuActive;
         } else {
             if (this.isDesktop()) {
-                this.menuService.staticMenuDesktopInactive = !this.menuService.staticMenuDesktopInactive;
+                this.menuService.staticMenuDesktopInactive = !this.menuService
+                    .staticMenuDesktopInactive;
             } else {
                 this.menuService.staticMenuMobileActive = !this.menuService.staticMenuMobileActive;
             }

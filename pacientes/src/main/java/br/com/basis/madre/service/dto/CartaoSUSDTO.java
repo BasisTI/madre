@@ -1,16 +1,19 @@
 package br.com.basis.madre.service.dto;
 
 import java.time.LocalDate;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.DocumentoDeReferencia;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.CartaoSUS} entity.
  */
 public class CartaoSUSDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -26,11 +29,10 @@ public class CartaoSUSDTO implements Serializable {
 
     private String portaria;
 
-
     private Long justificativaId;
 
     private Long motivoDoCadastroId;
-    
+
     public Long getId() {
         return id;
     }
@@ -127,15 +129,15 @@ public class CartaoSUSDTO implements Serializable {
     @Override
     public String toString() {
         return "CartaoSUSDTO{" +
-            "id=" + getId() +
-            ", numero='" + getNumero() + "'" +
-            ", documentoDeReferencia='" + getDocumentoDeReferencia() + "'" +
-            ", cartaoNacionalSaudeMae='" + getCartaoNacionalSaudeMae() + "'" +
-            ", dataDeEntradaNoBrasil='" + getDataDeEntradaNoBrasil() + "'" +
-            ", dataDeNaturalizacao='" + getDataDeNaturalizacao() + "'" +
-            ", portaria='" + getPortaria() + "'" +
-            ", justificativaId=" + getJustificativaId() +
-            ", motivoDoCadastroId=" + getMotivoDoCadastroId() +
-            "}";
+            "id=" + id +
+            ", numero='" + numero  +
+            ", documentoDeReferencia=" + documentoDeReferencia +
+            ", cartaoNacionalSaudeMae='" + cartaoNacionalSaudeMae  +
+            ", dataDeEntradaNoBrasil=" + dataDeEntradaNoBrasil +
+            ", dataDeNaturalizacao=" + dataDeNaturalizacao +
+            ", portaria='" + portaria  +
+            ", justificativaId=" + justificativaId +
+            ", motivoDoCadastroId=" + motivoDoCadastroId +
+            '}';
     }
 }
