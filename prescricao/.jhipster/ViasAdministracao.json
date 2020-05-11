@@ -24,13 +24,14 @@
     ],
     "changelogDate": "20200505210946",
     "entityTableName": "vias_administracao",
-    "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "prescricao",
     "applications": "*",
-    "microserviceName": "prescricao"
+    "microserviceName": "prescricao",
+    "skipClient": true
 }

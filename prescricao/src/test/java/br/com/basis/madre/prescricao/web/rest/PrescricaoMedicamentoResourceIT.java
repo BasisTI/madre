@@ -4,6 +4,9 @@ import br.com.basis.madre.prescricao.PrescricaoApp;
 import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
 import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
+import br.com.basis.madre.prescricao.service.PrescricaoMedicamentoService;
+import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
+import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
 import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -46,6 +51,12 @@ public class PrescricaoMedicamentoResourceIT {
     @Autowired
     private PrescricaoMedicamentoRepository prescricaoMedicamentoRepository;
 
+    @Autowired
+    private PrescricaoMedicamentoMapper prescricaoMedicamentoMapper;
+
+    @Autowired
+    private PrescricaoMedicamentoService prescricaoMedicamentoService;
+
     /**
      * This repository is mocked in the br.com.basis.madre.prescricao.repository.search test package.
      *
@@ -76,7 +87,7 @@ public class PrescricaoMedicamentoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PrescricaoMedicamentoResource prescricaoMedicamentoResource = new PrescricaoMedicamentoResource(prescricaoMedicamentoRepository, mockPrescricaoMedicamentoSearchRepository);
+        final PrescricaoMedicamentoResource prescricaoMedicamentoResource = new PrescricaoMedicamentoResource(prescricaoMedicamentoService);
         this.restPrescricaoMedicamentoMockMvc = MockMvcBuilders.standaloneSetup(prescricaoMedicamentoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -121,9 +132,10 @@ public class PrescricaoMedicamentoResourceIT {
         int databaseSizeBeforeCreate = prescricaoMedicamentoRepository.findAll().size();
 
         // Create the PrescricaoMedicamento
+        PrescricaoMedicamentoDTO prescricaoMedicamentoDTO = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
         restPrescricaoMedicamentoMockMvc.perform(post("/api/prescricao-medicamentos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamento)))
+            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamentoDTO)))
             .andExpect(status().isCreated());
 
         // Validate the PrescricaoMedicamento in the database
@@ -144,11 +156,12 @@ public class PrescricaoMedicamentoResourceIT {
 
         // Create the PrescricaoMedicamento with an existing ID
         prescricaoMedicamento.setId(1L);
+        PrescricaoMedicamentoDTO prescricaoMedicamentoDTO = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPrescricaoMedicamentoMockMvc.perform(post("/api/prescricao-medicamentos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamento)))
+            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamentoDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the PrescricaoMedicamento in the database
@@ -174,7 +187,7 @@ public class PrescricaoMedicamentoResourceIT {
             .andExpect(jsonPath("$.[*].idPaciente").value(hasItem(DEFAULT_ID_PACIENTE.intValue())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
-
+    
     @Test
     @Transactional
     public void getPrescricaoMedicamento() throws Exception {
@@ -213,10 +226,11 @@ public class PrescricaoMedicamentoResourceIT {
         updatedPrescricaoMedicamento
             .idPaciente(UPDATED_ID_PACIENTE)
             .observacao(UPDATED_OBSERVACAO);
+        PrescricaoMedicamentoDTO prescricaoMedicamentoDTO = prescricaoMedicamentoMapper.toDto(updatedPrescricaoMedicamento);
 
         restPrescricaoMedicamentoMockMvc.perform(put("/api/prescricao-medicamentos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedPrescricaoMedicamento)))
+            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamentoDTO)))
             .andExpect(status().isOk());
 
         // Validate the PrescricaoMedicamento in the database
@@ -236,11 +250,12 @@ public class PrescricaoMedicamentoResourceIT {
         int databaseSizeBeforeUpdate = prescricaoMedicamentoRepository.findAll().size();
 
         // Create the PrescricaoMedicamento
+        PrescricaoMedicamentoDTO prescricaoMedicamentoDTO = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restPrescricaoMedicamentoMockMvc.perform(put("/api/prescricao-medicamentos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamento)))
+            .content(TestUtil.convertObjectToJsonBytes(prescricaoMedicamentoDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the PrescricaoMedicamento in the database
@@ -277,8 +292,8 @@ public class PrescricaoMedicamentoResourceIT {
     public void searchPrescricaoMedicamento() throws Exception {
         // Initialize the database
         prescricaoMedicamentoRepository.saveAndFlush(prescricaoMedicamento);
-        when(mockPrescricaoMedicamentoSearchRepository.search(queryStringQuery("id:" + prescricaoMedicamento.getId())))
-            .thenReturn(Collections.singletonList(prescricaoMedicamento));
+        when(mockPrescricaoMedicamentoSearchRepository.search(queryStringQuery("id:" + prescricaoMedicamento.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(prescricaoMedicamento), PageRequest.of(0, 1), 1));
         // Search the prescricaoMedicamento
         restPrescricaoMedicamentoMockMvc.perform(get("/api/_search/prescricao-medicamentos?query=id:" + prescricaoMedicamento.getId()))
             .andExpect(status().isOk())
@@ -301,5 +316,28 @@ public class PrescricaoMedicamentoResourceIT {
         assertThat(prescricaoMedicamento1).isNotEqualTo(prescricaoMedicamento2);
         prescricaoMedicamento1.setId(null);
         assertThat(prescricaoMedicamento1).isNotEqualTo(prescricaoMedicamento2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(PrescricaoMedicamentoDTO.class);
+        PrescricaoMedicamentoDTO prescricaoMedicamentoDTO1 = new PrescricaoMedicamentoDTO();
+        prescricaoMedicamentoDTO1.setId(1L);
+        PrescricaoMedicamentoDTO prescricaoMedicamentoDTO2 = new PrescricaoMedicamentoDTO();
+        assertThat(prescricaoMedicamentoDTO1).isNotEqualTo(prescricaoMedicamentoDTO2);
+        prescricaoMedicamentoDTO2.setId(prescricaoMedicamentoDTO1.getId());
+        assertThat(prescricaoMedicamentoDTO1).isEqualTo(prescricaoMedicamentoDTO2);
+        prescricaoMedicamentoDTO2.setId(2L);
+        assertThat(prescricaoMedicamentoDTO1).isNotEqualTo(prescricaoMedicamentoDTO2);
+        prescricaoMedicamentoDTO1.setId(null);
+        assertThat(prescricaoMedicamentoDTO1).isNotEqualTo(prescricaoMedicamentoDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(prescricaoMedicamentoMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(prescricaoMedicamentoMapper.fromId(null)).isNull();
     }
 }

@@ -1,35 +1,75 @@
 package br.com.basis.madre.prescricao.service.dto;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class UnidadeInfusaoDTO {
-	
-private Long id;
-	
-	private String descricao;
-	
-	private String sigla;
+/**
+ * A DTO for the {@link br.com.basis.madre.prescricao.domain.UnidadeInfusao} entity.
+ */
+public class UnidadeInfusaoDTO implements Serializable {
 
-	public Long getId() {
-		return id;
-	}
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @NotNull
+    @Size(max = 80)
+    private String descricao;
 
-	public String getDescricao() {
-		return descricao;
-	}
+    @NotNull
+    @Size(max = 10)
+    private String sigla;
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 
-	public String getSigla() {
-		return sigla;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        UnidadeInfusaoDTO unidadeInfusaoDTO = (UnidadeInfusaoDTO) o;
+        if (unidadeInfusaoDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), unidadeInfusaoDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "UnidadeInfusaoDTO{" +
+            "id=" + getId() +
+            ", descricao='" + getDescricao() + "'" +
+            ", sigla='" + getSigla() + "'" +
+            "}";
+    }
 }

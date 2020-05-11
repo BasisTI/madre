@@ -4,6 +4,9 @@ import br.com.basis.madre.prescricao.PrescricaoApp;
 import br.com.basis.madre.prescricao.domain.ViasAdministracao;
 import br.com.basis.madre.prescricao.repository.ViasAdministracaoRepository;
 import br.com.basis.madre.prescricao.repository.search.ViasAdministracaoSearchRepository;
+import br.com.basis.madre.prescricao.service.ViasAdministracaoService;
+import br.com.basis.madre.prescricao.service.dto.ViasAdministracaoDTO;
+import br.com.basis.madre.prescricao.service.mapper.ViasAdministracaoMapper;
 import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -46,6 +51,12 @@ public class ViasAdministracaoResourceIT {
     @Autowired
     private ViasAdministracaoRepository viasAdministracaoRepository;
 
+    @Autowired
+    private ViasAdministracaoMapper viasAdministracaoMapper;
+
+    @Autowired
+    private ViasAdministracaoService viasAdministracaoService;
+
     /**
      * This repository is mocked in the br.com.basis.madre.prescricao.repository.search test package.
      *
@@ -76,7 +87,7 @@ public class ViasAdministracaoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ViasAdministracaoResource viasAdministracaoResource = new ViasAdministracaoResource(viasAdministracaoRepository, mockViasAdministracaoSearchRepository);
+        final ViasAdministracaoResource viasAdministracaoResource = new ViasAdministracaoResource(viasAdministracaoService);
         this.restViasAdministracaoMockMvc = MockMvcBuilders.standaloneSetup(viasAdministracaoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -121,9 +132,10 @@ public class ViasAdministracaoResourceIT {
         int databaseSizeBeforeCreate = viasAdministracaoRepository.findAll().size();
 
         // Create the ViasAdministracao
+        ViasAdministracaoDTO viasAdministracaoDTO = viasAdministracaoMapper.toDto(viasAdministracao);
         restViasAdministracaoMockMvc.perform(post("/api/vias-administracaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(viasAdministracao)))
+            .content(TestUtil.convertObjectToJsonBytes(viasAdministracaoDTO)))
             .andExpect(status().isCreated());
 
         // Validate the ViasAdministracao in the database
@@ -144,11 +156,12 @@ public class ViasAdministracaoResourceIT {
 
         // Create the ViasAdministracao with an existing ID
         viasAdministracao.setId(1L);
+        ViasAdministracaoDTO viasAdministracaoDTO = viasAdministracaoMapper.toDto(viasAdministracao);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restViasAdministracaoMockMvc.perform(post("/api/vias-administracaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(viasAdministracao)))
+            .content(TestUtil.convertObjectToJsonBytes(viasAdministracaoDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the ViasAdministracao in the database
@@ -213,10 +226,11 @@ public class ViasAdministracaoResourceIT {
         updatedViasAdministracao
             .descricao(UPDATED_DESCRICAO)
             .sigla(UPDATED_SIGLA);
+        ViasAdministracaoDTO viasAdministracaoDTO = viasAdministracaoMapper.toDto(updatedViasAdministracao);
 
         restViasAdministracaoMockMvc.perform(put("/api/vias-administracaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedViasAdministracao)))
+            .content(TestUtil.convertObjectToJsonBytes(viasAdministracaoDTO)))
             .andExpect(status().isOk());
 
         // Validate the ViasAdministracao in the database
@@ -236,11 +250,12 @@ public class ViasAdministracaoResourceIT {
         int databaseSizeBeforeUpdate = viasAdministracaoRepository.findAll().size();
 
         // Create the ViasAdministracao
+        ViasAdministracaoDTO viasAdministracaoDTO = viasAdministracaoMapper.toDto(viasAdministracao);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restViasAdministracaoMockMvc.perform(put("/api/vias-administracaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(viasAdministracao)))
+            .content(TestUtil.convertObjectToJsonBytes(viasAdministracaoDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the ViasAdministracao in the database
@@ -277,8 +292,8 @@ public class ViasAdministracaoResourceIT {
     public void searchViasAdministracao() throws Exception {
         // Initialize the database
         viasAdministracaoRepository.saveAndFlush(viasAdministracao);
-        when(mockViasAdministracaoSearchRepository.search(queryStringQuery("id:" + viasAdministracao.getId())))
-            .thenReturn(Collections.singletonList(viasAdministracao));
+        when(mockViasAdministracaoSearchRepository.search(queryStringQuery("id:" + viasAdministracao.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(viasAdministracao), PageRequest.of(0, 1), 1));
         // Search the viasAdministracao
         restViasAdministracaoMockMvc.perform(get("/api/_search/vias-administracaos?query=id:" + viasAdministracao.getId()))
             .andExpect(status().isOk())
@@ -301,5 +316,28 @@ public class ViasAdministracaoResourceIT {
         assertThat(viasAdministracao1).isNotEqualTo(viasAdministracao2);
         viasAdministracao1.setId(null);
         assertThat(viasAdministracao1).isNotEqualTo(viasAdministracao2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(ViasAdministracaoDTO.class);
+        ViasAdministracaoDTO viasAdministracaoDTO1 = new ViasAdministracaoDTO();
+        viasAdministracaoDTO1.setId(1L);
+        ViasAdministracaoDTO viasAdministracaoDTO2 = new ViasAdministracaoDTO();
+        assertThat(viasAdministracaoDTO1).isNotEqualTo(viasAdministracaoDTO2);
+        viasAdministracaoDTO2.setId(viasAdministracaoDTO1.getId());
+        assertThat(viasAdministracaoDTO1).isEqualTo(viasAdministracaoDTO2);
+        viasAdministracaoDTO2.setId(2L);
+        assertThat(viasAdministracaoDTO1).isNotEqualTo(viasAdministracaoDTO2);
+        viasAdministracaoDTO1.setId(null);
+        assertThat(viasAdministracaoDTO1).isNotEqualTo(viasAdministracaoDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(viasAdministracaoMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(viasAdministracaoMapper.fromId(null)).isNull();
     }
 }

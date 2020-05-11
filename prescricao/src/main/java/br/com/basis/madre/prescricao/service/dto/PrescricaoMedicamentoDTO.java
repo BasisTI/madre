@@ -1,21 +1,39 @@
 package br.com.basis.madre.prescricao.service.dto;
 
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-public class PrescricaoMedicamentoDTO implements Serializable{
+/**
+ * A DTO for the
+ * {@link br.com.basis.madre.prescricao.domain.PrescricaoMedicamento} entity.
+ */
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@NamedEntityGraph(name = "prescricaoMedicamento.itemPrescricaoMedicamentos",
+attributeNodes = @NamedAttributeNode("itemPrescricaoMedicamentos")
+)
+public class PrescricaoMedicamentoDTO implements Serializable {
+
+	private Long id;
 
 	private Long idPaciente;
 
+	@Size(max = 255)
 	private String observacao;
-	
-	private Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentoDTOs;
 
+	private Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentos = new HashSet<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getIdPaciente() {
 		return idPaciente;
@@ -33,14 +51,38 @@ public class PrescricaoMedicamentoDTO implements Serializable{
 		this.observacao = observacao;
 	}
 
-	public Set<ItemPrescricaoMedicamentoDTO> getItemPrescricaoMedicamentoDTOs() {
-		return itemPrescricaoMedicamentoDTOs;
+	public Set<ItemPrescricaoMedicamentoDTO> getItemPrescricaoMedicamentos() {
+		return itemPrescricaoMedicamentos;
 	}
 
-	public void setItemPrescricaoMedicamentoDTOs(Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentoDTOs) {
-		this.itemPrescricaoMedicamentoDTOs = itemPrescricaoMedicamentoDTOs;
+	public void setItemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentos) {
+		this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
 	}
 
-	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 
+		PrescricaoMedicamentoDTO prescricaoMedicamentoDTO = (PrescricaoMedicamentoDTO) o;
+		if (prescricaoMedicamentoDTO.getId() == null || getId() == null) {
+			return false;
+		}
+		return Objects.equals(getId(), prescricaoMedicamentoDTO.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(getId());
+	}
+
+	@Override
+	public String toString() {
+		return "PrescricaoMedicamentoDTO{" + "id=" + getId() + ", idPaciente=" + getIdPaciente() + ", observacao='"
+				+ getObservacao() + "'" + "}";
+	}
 }

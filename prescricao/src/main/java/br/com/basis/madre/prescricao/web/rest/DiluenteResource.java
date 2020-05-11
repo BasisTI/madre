@@ -1,15 +1,20 @@
 package br.com.basis.madre.prescricao.web.rest;
 
-import br.com.basis.madre.prescricao.domain.Diluente;
-import br.com.basis.madre.prescricao.repository.DiluenteRepository;
-import br.com.basis.madre.prescricao.repository.search.DiluenteSearchRepository;
+import br.com.basis.madre.prescricao.service.DiluenteService;
 import br.com.basis.madre.prescricao.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.prescricao.service.dto.DiluenteDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +24,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -38,30 +42,26 @@ public class DiluenteResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final DiluenteRepository diluenteRepository;
+    private final DiluenteService diluenteService;
 
-    private final DiluenteSearchRepository diluenteSearchRepository;
-
-    public DiluenteResource(DiluenteRepository diluenteRepository, DiluenteSearchRepository diluenteSearchRepository) {
-        this.diluenteRepository = diluenteRepository;
-        this.diluenteSearchRepository = diluenteSearchRepository;
+    public DiluenteResource(DiluenteService diluenteService) {
+        this.diluenteService = diluenteService;
     }
 
     /**
      * {@code POST  /diluentes} : Create a new diluente.
      *
-     * @param diluente the diluente to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new diluente, or with status {@code 400 (Bad Request)} if the diluente has already an ID.
+     * @param diluenteDTO the diluenteDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new diluenteDTO, or with status {@code 400 (Bad Request)} if the diluente has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/diluentes")
-    public ResponseEntity<Diluente> createDiluente(@Valid @RequestBody Diluente diluente) throws URISyntaxException {
-        log.debug("REST request to save Diluente : {}", diluente);
-        if (diluente.getId() != null) {
+    public ResponseEntity<DiluenteDTO> createDiluente(@Valid @RequestBody DiluenteDTO diluenteDTO) throws URISyntaxException {
+        log.debug("REST request to save Diluente : {}", diluenteDTO);
+        if (diluenteDTO.getId() != null) {
             throw new BadRequestAlertException("A new diluente cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Diluente result = diluenteRepository.save(diluente);
-        diluenteSearchRepository.save(result);
+        DiluenteDTO result = diluenteService.save(diluenteDTO);
         return ResponseEntity.created(new URI("/api/diluentes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -70,22 +70,21 @@ public class DiluenteResource {
     /**
      * {@code PUT  /diluentes} : Updates an existing diluente.
      *
-     * @param diluente the diluente to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated diluente,
-     * or with status {@code 400 (Bad Request)} if the diluente is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the diluente couldn't be updated.
+     * @param diluenteDTO the diluenteDTO to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated diluenteDTO,
+     * or with status {@code 400 (Bad Request)} if the diluenteDTO is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the diluenteDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/diluentes")
-    public ResponseEntity<Diluente> updateDiluente(@Valid @RequestBody Diluente diluente) throws URISyntaxException {
-        log.debug("REST request to update Diluente : {}", diluente);
-        if (diluente.getId() == null) {
+    public ResponseEntity<DiluenteDTO> updateDiluente(@Valid @RequestBody DiluenteDTO diluenteDTO) throws URISyntaxException {
+        log.debug("REST request to update Diluente : {}", diluenteDTO);
+        if (diluenteDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Diluente result = diluenteRepository.save(diluente);
-        diluenteSearchRepository.save(result);
+        DiluenteDTO result = diluenteService.save(diluenteDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, diluente.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, diluenteDTO.getId().toString()))
             .body(result);
     }
 
@@ -93,38 +92,41 @@ public class DiluenteResource {
      * {@code GET  /diluentes} : get all the diluentes.
      *
 
+     * @param pageable the pagination information.
+
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of diluentes in body.
      */
     @GetMapping("/diluentes")
-    public List<Diluente> getAllDiluentes() {
-        log.debug("REST request to get all Diluentes");
-        return diluenteRepository.findAll();
+    public ResponseEntity<List<DiluenteDTO>> getAllDiluentes(Pageable pageable) {
+        log.debug("REST request to get a page of Diluentes");
+        Page<DiluenteDTO> page = diluenteService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
      * {@code GET  /diluentes/:id} : get the "id" diluente.
      *
-     * @param id the id of the diluente to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the diluente, or with status {@code 404 (Not Found)}.
+     * @param id the id of the diluenteDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the diluenteDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/diluentes/{id}")
-    public ResponseEntity<Diluente> getDiluente(@PathVariable Long id) {
+    public ResponseEntity<DiluenteDTO> getDiluente(@PathVariable Long id) {
         log.debug("REST request to get Diluente : {}", id);
-        Optional<Diluente> diluente = diluenteRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(diluente);
+        Optional<DiluenteDTO> diluenteDTO = diluenteService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(diluenteDTO);
     }
 
     /**
      * {@code DELETE  /diluentes/:id} : delete the "id" diluente.
      *
-     * @param id the id of the diluente to delete.
+     * @param id the id of the diluenteDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/diluentes/{id}")
     public ResponseEntity<Void> deleteDiluente(@PathVariable Long id) {
         log.debug("REST request to delete Diluente : {}", id);
-        diluenteRepository.deleteById(id);
-        diluenteSearchRepository.deleteById(id);
+        diluenteService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
@@ -133,13 +135,14 @@ public class DiluenteResource {
      * to the query.
      *
      * @param query the query of the diluente search.
+     * @param pageable the pagination information.
      * @return the result of the search.
      */
     @GetMapping("/_search/diluentes")
-    public List<Diluente> searchDiluentes(@RequestParam String query) {
-        log.debug("REST request to search Diluentes for query {}", query);
-        return StreamSupport
-            .stream(diluenteSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .collect(Collectors.toList());
+    public ResponseEntity<List<DiluenteDTO>> searchDiluentes(@RequestParam String query, Pageable pageable) {
+        log.debug("REST request to search for a page of Diluentes for query {}", query);
+        Page<DiluenteDTO> page = diluenteService.search(query, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

@@ -110,13 +110,14 @@
     ],
     "changelogDate": "20200505210945",
     "entityTableName": "item_prescricao_medicamento",
-    "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "prescricao",
     "applications": "*",
-    "microserviceName": "prescricao"
+    "microserviceName": "prescricao",
+    "skipClient": true
 }

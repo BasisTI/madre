@@ -4,6 +4,9 @@ import br.com.basis.madre.prescricao.PrescricaoApp;
 import br.com.basis.madre.prescricao.domain.UnidadeInfusao;
 import br.com.basis.madre.prescricao.repository.UnidadeInfusaoRepository;
 import br.com.basis.madre.prescricao.repository.search.UnidadeInfusaoSearchRepository;
+import br.com.basis.madre.prescricao.service.UnidadeInfusaoService;
+import br.com.basis.madre.prescricao.service.dto.UnidadeInfusaoDTO;
+import br.com.basis.madre.prescricao.service.mapper.UnidadeInfusaoMapper;
 import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -46,6 +51,12 @@ public class UnidadeInfusaoResourceIT {
     @Autowired
     private UnidadeInfusaoRepository unidadeInfusaoRepository;
 
+    @Autowired
+    private UnidadeInfusaoMapper unidadeInfusaoMapper;
+
+    @Autowired
+    private UnidadeInfusaoService unidadeInfusaoService;
+
     /**
      * This repository is mocked in the br.com.basis.madre.prescricao.repository.search test package.
      *
@@ -76,7 +87,7 @@ public class UnidadeInfusaoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final UnidadeInfusaoResource unidadeInfusaoResource = new UnidadeInfusaoResource(unidadeInfusaoRepository, mockUnidadeInfusaoSearchRepository);
+        final UnidadeInfusaoResource unidadeInfusaoResource = new UnidadeInfusaoResource(unidadeInfusaoService);
         this.restUnidadeInfusaoMockMvc = MockMvcBuilders.standaloneSetup(unidadeInfusaoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -121,9 +132,10 @@ public class UnidadeInfusaoResourceIT {
         int databaseSizeBeforeCreate = unidadeInfusaoRepository.findAll().size();
 
         // Create the UnidadeInfusao
+        UnidadeInfusaoDTO unidadeInfusaoDTO = unidadeInfusaoMapper.toDto(unidadeInfusao);
         restUnidadeInfusaoMockMvc.perform(post("/api/unidade-infusaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusao)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusaoDTO)))
             .andExpect(status().isCreated());
 
         // Validate the UnidadeInfusao in the database
@@ -144,11 +156,12 @@ public class UnidadeInfusaoResourceIT {
 
         // Create the UnidadeInfusao with an existing ID
         unidadeInfusao.setId(1L);
+        UnidadeInfusaoDTO unidadeInfusaoDTO = unidadeInfusaoMapper.toDto(unidadeInfusao);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restUnidadeInfusaoMockMvc.perform(post("/api/unidade-infusaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusao)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusaoDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the UnidadeInfusao in the database
@@ -168,10 +181,11 @@ public class UnidadeInfusaoResourceIT {
         unidadeInfusao.setDescricao(null);
 
         // Create the UnidadeInfusao, which fails.
+        UnidadeInfusaoDTO unidadeInfusaoDTO = unidadeInfusaoMapper.toDto(unidadeInfusao);
 
         restUnidadeInfusaoMockMvc.perform(post("/api/unidade-infusaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusao)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusaoDTO)))
             .andExpect(status().isBadRequest());
 
         List<UnidadeInfusao> unidadeInfusaoList = unidadeInfusaoRepository.findAll();
@@ -186,10 +200,11 @@ public class UnidadeInfusaoResourceIT {
         unidadeInfusao.setSigla(null);
 
         // Create the UnidadeInfusao, which fails.
+        UnidadeInfusaoDTO unidadeInfusaoDTO = unidadeInfusaoMapper.toDto(unidadeInfusao);
 
         restUnidadeInfusaoMockMvc.perform(post("/api/unidade-infusaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusao)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusaoDTO)))
             .andExpect(status().isBadRequest());
 
         List<UnidadeInfusao> unidadeInfusaoList = unidadeInfusaoRepository.findAll();
@@ -249,10 +264,11 @@ public class UnidadeInfusaoResourceIT {
         updatedUnidadeInfusao
             .descricao(UPDATED_DESCRICAO)
             .sigla(UPDATED_SIGLA);
+        UnidadeInfusaoDTO unidadeInfusaoDTO = unidadeInfusaoMapper.toDto(updatedUnidadeInfusao);
 
         restUnidadeInfusaoMockMvc.perform(put("/api/unidade-infusaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedUnidadeInfusao)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusaoDTO)))
             .andExpect(status().isOk());
 
         // Validate the UnidadeInfusao in the database
@@ -272,11 +288,12 @@ public class UnidadeInfusaoResourceIT {
         int databaseSizeBeforeUpdate = unidadeInfusaoRepository.findAll().size();
 
         // Create the UnidadeInfusao
+        UnidadeInfusaoDTO unidadeInfusaoDTO = unidadeInfusaoMapper.toDto(unidadeInfusao);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUnidadeInfusaoMockMvc.perform(put("/api/unidade-infusaos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusao)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeInfusaoDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the UnidadeInfusao in the database
@@ -313,8 +330,8 @@ public class UnidadeInfusaoResourceIT {
     public void searchUnidadeInfusao() throws Exception {
         // Initialize the database
         unidadeInfusaoRepository.saveAndFlush(unidadeInfusao);
-        when(mockUnidadeInfusaoSearchRepository.search(queryStringQuery("id:" + unidadeInfusao.getId())))
-            .thenReturn(Collections.singletonList(unidadeInfusao));
+        when(mockUnidadeInfusaoSearchRepository.search(queryStringQuery("id:" + unidadeInfusao.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(unidadeInfusao), PageRequest.of(0, 1), 1));
         // Search the unidadeInfusao
         restUnidadeInfusaoMockMvc.perform(get("/api/_search/unidade-infusaos?query=id:" + unidadeInfusao.getId()))
             .andExpect(status().isOk())
@@ -337,5 +354,28 @@ public class UnidadeInfusaoResourceIT {
         assertThat(unidadeInfusao1).isNotEqualTo(unidadeInfusao2);
         unidadeInfusao1.setId(null);
         assertThat(unidadeInfusao1).isNotEqualTo(unidadeInfusao2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(UnidadeInfusaoDTO.class);
+        UnidadeInfusaoDTO unidadeInfusaoDTO1 = new UnidadeInfusaoDTO();
+        unidadeInfusaoDTO1.setId(1L);
+        UnidadeInfusaoDTO unidadeInfusaoDTO2 = new UnidadeInfusaoDTO();
+        assertThat(unidadeInfusaoDTO1).isNotEqualTo(unidadeInfusaoDTO2);
+        unidadeInfusaoDTO2.setId(unidadeInfusaoDTO1.getId());
+        assertThat(unidadeInfusaoDTO1).isEqualTo(unidadeInfusaoDTO2);
+        unidadeInfusaoDTO2.setId(2L);
+        assertThat(unidadeInfusaoDTO1).isNotEqualTo(unidadeInfusaoDTO2);
+        unidadeInfusaoDTO1.setId(null);
+        assertThat(unidadeInfusaoDTO1).isNotEqualTo(unidadeInfusaoDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(unidadeInfusaoMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(unidadeInfusaoMapper.fromId(null)).isNull();
     }
 }

@@ -1,38 +1,42 @@
 package br.com.basis.madre.prescricao.service.dto;
 
+import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-
-import javax.validation.constraints.NotNull;
-
+import java.util.Objects;
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
 
+/**
+ * A DTO for the
+ * {@link br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento}
+ * entity.
+ */
 public class ItemPrescricaoMedicamentoDTO implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
 	@NotNull
 	private Long idMedicamento;
-
+	
 	@NotNull
 	private Long idListaMedicamentos;
 
+	@NotNull
+	@DecimalMin(value = "0")
 	private BigDecimal dose;
 
+	@Min(value = 0)
 	private Integer frequencia;
 
 	private Boolean todasVias;
 
 	private Boolean bombaInfusao;
 
+	@DecimalMin(value = "0")
 	private BigDecimal velocidadeInfusao;
 
+	@Min(value = 0)
 	private Integer tempoInfusao;
 
 	private UnidadeTempo unidadeTempo;
@@ -41,6 +45,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	private Boolean condicaoNecessaria;
 
+	@Size(max = 255)
 	private String observacaoCondicao;
 
 	private Long viasAdministracaoId;
@@ -50,6 +55,8 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 	private Long unidadeInfusaoId;
 
 	private Long unidadeDoseId;
+
+	private Long prescricaoMedicamentoId;
 
 	private Long tipoAprazamentoId;
 
@@ -65,15 +72,16 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		return idMedicamento;
 	}
 
-	public void setIdMedicamento(Long idMedicamento) {
-		this.idMedicamento = idMedicamento;
-	}
 
 	public Long getIdListaMedicamentos() {
 		return idListaMedicamentos;
 	}
 
 	public void setIdListaMedicamentos(Long idListaMedicamentos) {
+		this.idListaMedicamentos = idListaMedicamentos;
+	}
+
+	public void setListaMedicamentos(Long idListaMedicamentos) {
 		this.idListaMedicamentos = idListaMedicamentos;
 	}
 
@@ -93,7 +101,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.frequencia = frequencia;
 	}
 
-	public Boolean getTodasVias() {
+	public Boolean isTodasVias() {
 		return todasVias;
 	}
 
@@ -101,7 +109,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.todasVias = todasVias;
 	}
 
-	public Boolean getBombaInfusao() {
+	public Boolean isBombaInfusao() {
 		return bombaInfusao;
 	}
 
@@ -141,7 +149,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.inicioAdministracao = inicioAdministracao;
 	}
 
-	public Boolean getCondicaoNecessaria() {
+	public Boolean isCondicaoNecessaria() {
 		return condicaoNecessaria;
 	}
 
@@ -189,6 +197,13 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.unidadeDoseId = unidadeDoseId;
 	}
 
+	public Long getPrescricaoMedicamentoId() {
+		return prescricaoMedicamentoId;
+	}
+
+	public void setPrescricaoMedicamentoId(Long prescricaoMedicamentoId) {
+		this.prescricaoMedicamentoId = prescricaoMedicamentoId;
+	}
 
 	public Long getTipoAprazamentoId() {
 		return tipoAprazamentoId;
@@ -198,4 +213,38 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.tipoAprazamentoId = tipoAprazamentoId;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		ItemPrescricaoMedicamentoDTO itemPrescricaoMedicamentoDTO = (ItemPrescricaoMedicamentoDTO) o;
+		if (itemPrescricaoMedicamentoDTO.getId() == null || getId() == null) {
+			return false;
+		}
+		return Objects.equals(getId(), itemPrescricaoMedicamentoDTO.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(getId());
+	}
+
+	@Override
+	public String toString() {
+		return "ItemPrescricaoMedicamentoDTO{" + "id=" + getId() + ", idMedicamento=" + getIdMedicamento() + "idListaMedicamentos= " + getIdListaMedicamentos() + ", dose="
+				+ getDose() + ", frequencia=" + getFrequencia() + ", todasVias='" + isTodasVias() + "'"
+				+ ", bombaInfusao='" + isBombaInfusao() + "'" + ", velocidadeInfusao=" + getVelocidadeInfusao()
+				+ ", tempoInfusao=" + getTempoInfusao() + ", unidadeTempo='" + getUnidadeTempo() + "'"
+				+ ", inicioAdministracao='" + getInicioAdministracao() + "'" + ", condicaoNecessaria='"
+				+ isCondicaoNecessaria() + "'" + ", observacaoCondicao='" + getObservacaoCondicao() + "'"
+				+ ", viasAdministracao=" + getViasAdministracaoId() + ", diluente=" + getDiluenteId()
+				+ ", unidadeInfusao=" + getUnidadeInfusaoId() + ", unidadeDose=" + getUnidadeDoseId()
+				+ ", prescricaoMedicamento=" + getPrescricaoMedicamentoId() 
+				+ ", tipoAprazamento=" + getTipoAprazamentoId() + "}";
+	}
 }

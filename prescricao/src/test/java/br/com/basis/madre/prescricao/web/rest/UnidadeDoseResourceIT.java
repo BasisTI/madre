@@ -4,6 +4,9 @@ import br.com.basis.madre.prescricao.PrescricaoApp;
 import br.com.basis.madre.prescricao.domain.UnidadeDose;
 import br.com.basis.madre.prescricao.repository.UnidadeDoseRepository;
 import br.com.basis.madre.prescricao.repository.search.UnidadeDoseSearchRepository;
+import br.com.basis.madre.prescricao.service.UnidadeDoseService;
+import br.com.basis.madre.prescricao.service.dto.UnidadeDoseDTO;
+import br.com.basis.madre.prescricao.service.mapper.UnidadeDoseMapper;
 import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -46,6 +51,12 @@ public class UnidadeDoseResourceIT {
     @Autowired
     private UnidadeDoseRepository unidadeDoseRepository;
 
+    @Autowired
+    private UnidadeDoseMapper unidadeDoseMapper;
+
+    @Autowired
+    private UnidadeDoseService unidadeDoseService;
+
     /**
      * This repository is mocked in the br.com.basis.madre.prescricao.repository.search test package.
      *
@@ -76,7 +87,7 @@ public class UnidadeDoseResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final UnidadeDoseResource unidadeDoseResource = new UnidadeDoseResource(unidadeDoseRepository, mockUnidadeDoseSearchRepository);
+        final UnidadeDoseResource unidadeDoseResource = new UnidadeDoseResource(unidadeDoseService);
         this.restUnidadeDoseMockMvc = MockMvcBuilders.standaloneSetup(unidadeDoseResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -121,9 +132,10 @@ public class UnidadeDoseResourceIT {
         int databaseSizeBeforeCreate = unidadeDoseRepository.findAll().size();
 
         // Create the UnidadeDose
+        UnidadeDoseDTO unidadeDoseDTO = unidadeDoseMapper.toDto(unidadeDose);
         restUnidadeDoseMockMvc.perform(post("/api/unidade-doses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeDose)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeDoseDTO)))
             .andExpect(status().isCreated());
 
         // Validate the UnidadeDose in the database
@@ -144,11 +156,12 @@ public class UnidadeDoseResourceIT {
 
         // Create the UnidadeDose with an existing ID
         unidadeDose.setId(1L);
+        UnidadeDoseDTO unidadeDoseDTO = unidadeDoseMapper.toDto(unidadeDose);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restUnidadeDoseMockMvc.perform(post("/api/unidade-doses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeDose)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeDoseDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the UnidadeDose in the database
@@ -168,10 +181,11 @@ public class UnidadeDoseResourceIT {
         unidadeDose.setDescricao(null);
 
         // Create the UnidadeDose, which fails.
+        UnidadeDoseDTO unidadeDoseDTO = unidadeDoseMapper.toDto(unidadeDose);
 
         restUnidadeDoseMockMvc.perform(post("/api/unidade-doses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeDose)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeDoseDTO)))
             .andExpect(status().isBadRequest());
 
         List<UnidadeDose> unidadeDoseList = unidadeDoseRepository.findAll();
@@ -186,10 +200,11 @@ public class UnidadeDoseResourceIT {
         unidadeDose.setSigla(null);
 
         // Create the UnidadeDose, which fails.
+        UnidadeDoseDTO unidadeDoseDTO = unidadeDoseMapper.toDto(unidadeDose);
 
         restUnidadeDoseMockMvc.perform(post("/api/unidade-doses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeDose)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeDoseDTO)))
             .andExpect(status().isBadRequest());
 
         List<UnidadeDose> unidadeDoseList = unidadeDoseRepository.findAll();
@@ -249,10 +264,11 @@ public class UnidadeDoseResourceIT {
         updatedUnidadeDose
             .descricao(UPDATED_DESCRICAO)
             .sigla(UPDATED_SIGLA);
+        UnidadeDoseDTO unidadeDoseDTO = unidadeDoseMapper.toDto(updatedUnidadeDose);
 
         restUnidadeDoseMockMvc.perform(put("/api/unidade-doses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedUnidadeDose)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeDoseDTO)))
             .andExpect(status().isOk());
 
         // Validate the UnidadeDose in the database
@@ -272,11 +288,12 @@ public class UnidadeDoseResourceIT {
         int databaseSizeBeforeUpdate = unidadeDoseRepository.findAll().size();
 
         // Create the UnidadeDose
+        UnidadeDoseDTO unidadeDoseDTO = unidadeDoseMapper.toDto(unidadeDose);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUnidadeDoseMockMvc.perform(put("/api/unidade-doses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unidadeDose)))
+            .content(TestUtil.convertObjectToJsonBytes(unidadeDoseDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the UnidadeDose in the database
@@ -313,8 +330,8 @@ public class UnidadeDoseResourceIT {
     public void searchUnidadeDose() throws Exception {
         // Initialize the database
         unidadeDoseRepository.saveAndFlush(unidadeDose);
-        when(mockUnidadeDoseSearchRepository.search(queryStringQuery("id:" + unidadeDose.getId())))
-            .thenReturn(Collections.singletonList(unidadeDose));
+        when(mockUnidadeDoseSearchRepository.search(queryStringQuery("id:" + unidadeDose.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(unidadeDose), PageRequest.of(0, 1), 1));
         // Search the unidadeDose
         restUnidadeDoseMockMvc.perform(get("/api/_search/unidade-doses?query=id:" + unidadeDose.getId()))
             .andExpect(status().isOk())
@@ -337,5 +354,28 @@ public class UnidadeDoseResourceIT {
         assertThat(unidadeDose1).isNotEqualTo(unidadeDose2);
         unidadeDose1.setId(null);
         assertThat(unidadeDose1).isNotEqualTo(unidadeDose2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(UnidadeDoseDTO.class);
+        UnidadeDoseDTO unidadeDoseDTO1 = new UnidadeDoseDTO();
+        unidadeDoseDTO1.setId(1L);
+        UnidadeDoseDTO unidadeDoseDTO2 = new UnidadeDoseDTO();
+        assertThat(unidadeDoseDTO1).isNotEqualTo(unidadeDoseDTO2);
+        unidadeDoseDTO2.setId(unidadeDoseDTO1.getId());
+        assertThat(unidadeDoseDTO1).isEqualTo(unidadeDoseDTO2);
+        unidadeDoseDTO2.setId(2L);
+        assertThat(unidadeDoseDTO1).isNotEqualTo(unidadeDoseDTO2);
+        unidadeDoseDTO1.setId(null);
+        assertThat(unidadeDoseDTO1).isNotEqualTo(unidadeDoseDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(unidadeDoseMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(unidadeDoseMapper.fromId(null)).isNull();
     }
 }
