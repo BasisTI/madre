@@ -1,9 +1,9 @@
 import { ReservaDeLeitoService } from './../../services/reserva-de-leito.service';
 import { Leito } from './../../models/leito';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ConfiguracaoParaCalendarioPrimeNG, ptBR } from '@shared/p-calendar.config';
+import { ConfiguracaoParaCalendarioPrimeNG } from '@shared/p-calendar.config';
 
 @Component({
     selector: 'app-reserva-de-leito',
@@ -14,11 +14,7 @@ export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
     public pCalendarConfig: ConfiguracaoParaCalendarioPrimeNG = {
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yyyy',
-        localidade: {
-            ...ptBR,
-            today: 'Agora',
-            clear: 'Limpar',
-        },
+        localidade: CALENDAR_LOCALE
     };
 
     public formGroup: FormGroup = this.fb.group({

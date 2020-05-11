@@ -13,6 +13,7 @@ export class LeitoComponent implements OnInit, EntityAutoComplete {
     @Input() public required = false;
     @Input() public label = 'Leito';
     @Input() public name = 'leito';
+    @Input() public mostrarLeitosDesocupados = true;
     @Output() public select = new EventEmitter();
     @Output() public blur = new EventEmitter();
     public leitos = new Array<Leito>();
@@ -20,14 +21,28 @@ export class LeitoComponent implements OnInit, EntityAutoComplete {
     constructor(private leitoService: LeitoService) {}
 
     ngOnInit() {
+        if (this.mostrarLeitosDesocupados) {
+            this.leitoService
+                .getLeitosDesocupados()
+                .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
+            return;
+        }
+
         this.leitoService
-            .getLeitosDesocupados()
+            .getLeitosNaoDesocupados()
             .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
     }
 
     aoDigitar(evento: { originalEvent: any; query: string }): void {
+        if (this.mostrarLeitosDesocupados) {
+            this.leitoService
+                .getLeitosDesocupadosPorNome(evento.query)
+                .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
+            return;
+        }
+
         this.leitoService
-            .getLeitosDesocupadosPorNome(evento.query)
+            .getLeitosNaoDesocupadosPorNome(evento.query)
             .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
     }
 

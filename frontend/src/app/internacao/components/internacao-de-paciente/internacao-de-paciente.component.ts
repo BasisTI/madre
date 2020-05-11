@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbService } from '@breadcrumb/breadcrumb.service';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
 import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
-import { ptBR } from '@shared/calendar.pt-br.locale';
 import { Internacao } from '@internacao/models/internacao';
 
 @Component({
@@ -16,7 +15,7 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     public solicitacao;
 
     public pCalendarConfig = {
-        localidade: ptBR,
+        localidade: CALENDAR_LOCALE,
         dataMinima: new Date(),
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yy',

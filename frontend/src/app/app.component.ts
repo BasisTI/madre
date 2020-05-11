@@ -8,7 +8,8 @@ import {
     OnInit,
     NgZone,
 } from '@angular/core';
-import { ScrollPanel } from 'primeng/primeng';
+import { ScrollPanel } from 'primeng';
+import { MenusService } from '@nuvem/primeng-components';
 
 enum MenuOrientation {
     STATIC,
@@ -35,12 +36,6 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     topbarMenuActive: boolean;
 
-    overlayMenuActive: boolean;
-
-    staticMenuDesktopInactive: boolean;
-
-    staticMenuMobileActive: boolean;
-
     rightPanelActive: boolean;
 
     rightPanelClick: boolean;
@@ -55,8 +50,6 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     activeTopbarItem: any;
 
-    resetMenu: boolean;
-
     menuHoverActive: boolean;
 
     @ViewChild('layoutContainer', { static: true }) layourContainerViewChild: ElementRef;
@@ -67,12 +60,116 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     rippleMouseDownListener: any;
 
-    constructor(public renderer2: Renderer2, public zone: NgZone) {}
+    constructor(
+        public renderer2: Renderer2,
+        public zone: NgZone,
+        public menuService: MenusService,
+    ) {}
 
     ngOnInit() {
         this.zone.runOutsideAngular(() => {
             this.bindRipple();
         });
+
+        this.menuService.itens = [
+            { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
+            {
+                label: 'Pacientes',
+                icon: 'dashboard',
+                routerLink: ['/pacientes'],
+                items: [
+                    {
+                        label: 'Cadastro de Paciente',
+                        icon: 'add',
+                        routerLink: ['/pacientes/cadastro'],
+                    },
+                    {
+                        label: 'Solicitação de Internação',
+                        icon: 'add',
+                        routerLink: ['/pacientes/solicitacao-de-internacao'],
+                    },
+                ],
+            },
+            {
+                label: 'Emergência',
+                icon: 'dashboard',
+                routerLink: ['/paciente'],
+                items: [
+                    {
+                        label: 'Pré Cadastro',
+                        icon: 'add',
+                    },
+                    {
+                        label: 'Triagem',
+                        icon: 'add',
+                        routerLink: ['pacientes/triagem'],
+                    },
+                    {
+                        label: 'Atendimento',
+                        icon: 'add',
+                    },
+                ],
+            },
+
+            {
+                label: 'Prescrição',
+                icon: 'assignment_ind',
+                items: [
+                    {
+                        label: 'Médica',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
+                    },
+                    {
+                        label: 'Enfermagem',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever' }],
+                    },
+                    {
+                        label: 'Multiprofisisonal',
+                        icon: 'remove',
+                        items: [{ label: 'Prescrever' }],
+                    },
+                ],
+            },
+            {
+                label: 'Internação',
+                icon: 'airline_seat_individual_suite',
+                items: [
+                    {
+                        label: 'Solicitar Internação',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacao-de-internacao'],
+                    },
+                    {
+                        label: 'Internar Paciente',
+                        icon: 'add',
+                        routerLink: ['internacao/solicitacoes-de-internacao'],
+                    },
+                    {
+                        label: 'Leitos',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Reservar Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/reserva-de-leito'],
+                            },
+                            {
+                                label: 'Bloquear Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/bloqueio-de-leito'],
+                            },
+                            {
+                                label: 'Liberar Leito',
+                                icon: 'add',
+                                routerLink: ['internacao/liberacao-de-leito'],
+                            },
+                        ],
+                    },
+                ],
+            },
+        ];
     }
 
     bindRipple() {
@@ -217,15 +314,15 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         }
 
         if (!this.menuClick) {
-            if (this.isHorizontal() || this.isSlim()) {
-                this.resetMenu = true;
+            if (this.menuService.isHorizontal() || this.menuService.isSlim()) {
+                this.menuService.resetMenu = true;
             }
 
-            if (this.overlayMenuActive || this.staticMenuMobileActive) {
+            if (this.menuService.overlayMenuActive || this.menuService.staticMenuMobileActive) {
                 this.hideOverlayMenu();
             }
 
-            this.menuHoverActive = false;
+            this.menuService.menuHoverActive = false;
         }
 
         if (!this.rightPanelClick) {
@@ -243,12 +340,13 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         this.topbarMenuActive = false;
 
         if (this.layoutMode === MenuOrientation.OVERLAY) {
-            this.overlayMenuActive = !this.overlayMenuActive;
+            this.menuService.overlayMenuActive = !this.menuService.overlayMenuActive;
         } else {
             if (this.isDesktop()) {
-                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
+                this.menuService.staticMenuDesktopInactive = !this.menuService
+                    .staticMenuDesktopInactive;
             } else {
-                this.staticMenuMobileActive = !this.staticMenuMobileActive;
+                this.menuService.staticMenuMobileActive = !this.menuService.staticMenuMobileActive;
             }
         }
 
@@ -257,7 +355,6 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     onMenuClick($event) {
         this.menuClick = true;
-        this.resetMenu = false;
     }
 
     onTopbarMenuButtonClick(event) {
@@ -297,8 +394,8 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     hideOverlayMenu() {
         this.rotateMenuButton = false;
-        this.overlayMenuActive = false;
-        this.staticMenuMobileActive = false;
+        this.menuService.overlayMenuActive = false;
+        this.menuService.staticMenuMobileActive = false;
     }
 
     isTablet() {
@@ -312,34 +409,6 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     isMobile() {
         return window.innerWidth <= 640;
-    }
-
-    isOverlay() {
-        return this.layoutMode === MenuOrientation.OVERLAY;
-    }
-
-    isHorizontal() {
-        return this.layoutMode === MenuOrientation.HORIZONTAL;
-    }
-
-    isSlim() {
-        return this.layoutMode === MenuOrientation.SLIM;
-    }
-
-    changeToStaticMenu() {
-        this.layoutMode = MenuOrientation.STATIC;
-    }
-
-    changeToOverlayMenu() {
-        this.layoutMode = MenuOrientation.OVERLAY;
-    }
-
-    changeToHorizontalMenu() {
-        this.layoutMode = MenuOrientation.HORIZONTAL;
-    }
-
-    changeToSlimMenu() {
-        this.layoutMode = MenuOrientation.SLIM;
     }
 
     ngOnDestroy() {

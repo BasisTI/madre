@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 
-import { BreadcrumbService } from '../../../breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 import { PacientesService } from '../../pacientes.service';
 import { PacienteResumo } from '../../models/paciente-resumo';
 

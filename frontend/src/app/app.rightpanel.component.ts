@@ -1,6 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ScrollPanel } from 'primeng/primeng';
+import { ScrollPanel } from 'primeng';
 
 @Component({
     selector: 'app-rightpanel',
