@@ -82,7 +82,9 @@ public class PrescricaoMedicamentoDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PrescricaoMedicamentoDTO{" + "id=" + getId() + ", idPaciente=" + getIdPaciente() + ", observacao='"
-				+ getObservacao() + "'" + "}";
+		return "PrescricaoMedicamentoDTO [id=" + id + ", idPaciente=" + idPaciente + ", observacao=" + observacao
+				+ ", itemPrescricaoMedicamentos=" + itemPrescricaoMedicamentos + "]";
 	}
+
+	
 }

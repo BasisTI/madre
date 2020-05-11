@@ -35,7 +35,7 @@ public class PrescricaoMedicamento implements Serializable {
     @Column(name = "observacao", length = 255)
     private String observacao;
 
-    @OneToMany(mappedBy = "prescricaoMedicamento")
+    @OneToMany(mappedBy = "prescricaoMedicamento", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
 

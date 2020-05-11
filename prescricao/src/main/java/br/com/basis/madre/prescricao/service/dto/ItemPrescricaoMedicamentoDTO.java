@@ -236,15 +236,16 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ItemPrescricaoMedicamentoDTO{" + "id=" + getId() + ", idMedicamento=" + getIdMedicamento() + "idListaMedicamentos= " + getIdListaMedicamentos() + ", dose="
-				+ getDose() + ", frequencia=" + getFrequencia() + ", todasVias='" + isTodasVias() + "'"
-				+ ", bombaInfusao='" + isBombaInfusao() + "'" + ", velocidadeInfusao=" + getVelocidadeInfusao()
-				+ ", tempoInfusao=" + getTempoInfusao() + ", unidadeTempo='" + getUnidadeTempo() + "'"
-				+ ", inicioAdministracao='" + getInicioAdministracao() + "'" + ", condicaoNecessaria='"
-				+ isCondicaoNecessaria() + "'" + ", observacaoCondicao='" + getObservacaoCondicao() + "'"
-				+ ", viasAdministracao=" + getViasAdministracaoId() + ", diluente=" + getDiluenteId()
-				+ ", unidadeInfusao=" + getUnidadeInfusaoId() + ", unidadeDose=" + getUnidadeDoseId()
-				+ ", prescricaoMedicamento=" + getPrescricaoMedicamentoId() 
-				+ ", tipoAprazamento=" + getTipoAprazamentoId() + "}";
+		return "ItemPrescricaoMedicamentoDTO [id=" + id + ", idMedicamento=" + idMedicamento + ", idListaMedicamentos="
+				+ idListaMedicamentos + ", dose=" + dose + ", frequencia=" + frequencia + ", todasVias=" + todasVias
+				+ ", bombaInfusao=" + bombaInfusao + ", velocidadeInfusao=" + velocidadeInfusao + ", tempoInfusao="
+				+ tempoInfusao + ", unidadeTempo=" + unidadeTempo + ", inicioAdministracao=" + inicioAdministracao
+				+ ", condicaoNecessaria=" + condicaoNecessaria + ", observacaoCondicao=" + observacaoCondicao
+				+ ", viasAdministracaoId=" + viasAdministracaoId + ", diluenteId=" + diluenteId + ", unidadeInfusaoId="
+				+ unidadeInfusaoId + ", unidadeDoseId=" + unidadeDoseId + ", prescricaoMedicamentoId="
+				+ prescricaoMedicamentoId + ", tipoAprazamentoId=" + tipoAprazamentoId + "]";
 	}
+
+	
+
 }
