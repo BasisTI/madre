@@ -6,14 +6,23 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class LiberacaoDeLeitoDTO implements Serializable {
-    private Long id;
+public class EventoLeitoDTO implements Serializable {
 
-    @NotNull
-    private Long leitoId;
+    private Long id;
 
     @NotNull
     private LocalDate dataDoLancamento;
 
     private String justificativa;
+
+    private Long tipoDoEventoId;
+
+    private Long leitoId;
+
+    private Long origemId;
+
+    private Long tipoId;
+
+    private Long motivoId;
+
 }

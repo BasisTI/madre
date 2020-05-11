@@ -21,10 +21,10 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
 @Entity
-@Table(name = "bloqueio_de_leito")
+@Table(name = "evento_leito")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "bloqueiodeleito")
-public class BloqueioDeLeito implements Serializable {
+@Document(indexName = "eventoleito")
+public class EventoLeito implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,30 +43,57 @@ public class BloqueioDeLeito implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("bloqueioDeLeitos")
-    private Leito leito;
+    @JsonIgnoreProperties("eventoLeitos")
+    private TipoDoEventoLeito tipoDoEvento;
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("bloqueioDeLeitos")
+    @JsonIgnoreProperties("eventoLeitos")
+    private Leito leito;
+
+    @ManyToOne
+    @JsonIgnoreProperties("eventoLeitos")
+    private OrigemDaReservaDeLeito origem;
+
+    @ManyToOne
+    @JsonIgnoreProperties("eventoLeitos")
+    private TipoDaReservaDeLeito tipo;
+
+    @ManyToOne(optional = false)
+    @JsonIgnoreProperties("eventoLeitos")
     private MotivoDoBloqueioDeLeito motivo;
 
-    public BloqueioDeLeito dataDoLancamento(LocalDate dataDoLancamento) {
+    public EventoLeito dataDoLancamento(LocalDate dataDoLancamento) {
         this.dataDoLancamento = dataDoLancamento;
         return this;
     }
 
-    public BloqueioDeLeito justificativa(String justificativa) {
+    public EventoLeito justificativa(String justificativa) {
         this.justificativa = justificativa;
         return this;
     }
 
-    public BloqueioDeLeito leito(Leito leito) {
+    public EventoLeito tipoDoEvento(TipoDoEventoLeito tipoDoEventoLeito) {
+        this.tipoDoEvento = tipoDoEventoLeito;
+        return this;
+    }
+
+    public EventoLeito leito(Leito leito) {
         this.leito = leito;
         return this;
     }
 
-    public BloqueioDeLeito motivo(MotivoDoBloqueioDeLeito motivoDoBloqueioDeLeito) {
+    public EventoLeito origem(OrigemDaReservaDeLeito origemDaReservaDeLeito) {
+        this.origem = origemDaReservaDeLeito;
+        return this;
+    }
+
+    public EventoLeito tipo(TipoDaReservaDeLeito tipoDaReservaDeLeito) {
+        this.tipo = tipoDaReservaDeLeito;
+        return this;
+    }
+
+    public EventoLeito motivo(MotivoDoBloqueioDeLeito motivoDoBloqueioDeLeito) {
         this.motivo = motivoDoBloqueioDeLeito;
         return this;
     }
