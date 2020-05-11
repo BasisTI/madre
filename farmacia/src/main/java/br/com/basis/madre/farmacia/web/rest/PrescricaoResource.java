@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import java.util.List;
 import java.util.Locale;
 
 @RestController
-@RequestMapping("/api/medicamentos")
+@RequestMapping("/api")
 public class PrescricaoResource {
 
         @Autowired
@@ -25,24 +26,36 @@ public class PrescricaoResource {
 
         private Faker faker = new Faker(new Locale("pt-BR"));
 
+    @GetMapping("/prescricao")
+    public List<Prescricao> listar(Pageable pageable){
+        Page<Prescricao> prescricaoPage = prescricaoRepositorySearch.findAll(pageable);
 
-    @GetMapping()
-    public Page<Prescricao> listar(@PageableDefault(size = 10) Pageable pageable){
-        Page<Prescricao> medicamentosPage = prescricaoRepositorySearch.findAll(pageable);
+        List<Prescricao> prescricao = prescricaoPage.getContent();
 
-        List<Prescricao> medicamento = medicamentosPage.getContent();
+        Page<Prescricao> prescricaoModelPage = new PageImpl<>(prescricao, pageable,
+            prescricaoPage.getTotalElements());
 
-        Page<Prescricao> medicamentoModelPage = new PageImpl<>(medicamento, pageable,
-            medicamentosPage.getTotalElements());
-
-        return medicamentoModelPage;
+        return prescricaoModelPage.getContent();
     }
+    @GetMapping("/prescricao")
+    public List<Prescricao> listarFarmacia(Pageable pageable){
+        Page<Prescricao> prescricaoPage = prescricaoRepositorySearch.findAll(pageable);
+
+        List<Prescricao> prescricao = prescricaoPage.getContent();
+
+        Page<Prescricao> prescricaoModelPage = new PageImpl<>(prescricao, pageable,
+            prescricaoPage.getTotalElements());
+
+        return prescricaoModelPage.getContent();
+    }
+
 
         @GetMapping("/fillData")
         public String fillDatabase() {
 
             for (int i = 0; i <= 50; i++) {
-                Prescricao prescricao = new Prescricao(faker.medical().medicineName(), faker.medical().hospitalName(), faker.medical().diseaseName(), faker.medical().hospitalName());
+                Prescricao prescricao = new Prescricao(faker.medical().medicineName(), 02/02/2020,
+                    02/02/2020, faker.medical().hospitalName());
                 prescricao.setId(faker.number().randomNumber());
 
                 prescricaoRepositorySearch.save(prescricao);

@@ -1,3 +1,5 @@
+import { Prescricao } from './prescricao';
+import { FarmaciaService } from './../farmacia.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,15 +8,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./dispensacao.component.css'],
 })
 export class DispensacaoComponent implements OnInit {
-    Prescricao = [
-        {
-            prontuario: '000000',
-            paciente: 'Mateus de Cerqueira',
-            localizacao: 'L:0297A',
-            dataInicio: '20/02/2020',
-            dataFim: '15/03/2020',
-        },
-    ];
+    Prescricao: Prescricao[];
 
     texts: string[];
 
@@ -27,10 +21,13 @@ export class DispensacaoComponent implements OnInit {
         console.log('oi');
     }
     listar() {
-        console.log(this.Prescricao.values);
+        this.service.getPrescricao().subscribe((res) => (this.Prescricao = res));
+        console.log(this.Prescricao);
     }
 
-    constructor() {}
+    constructor(private service: FarmaciaService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.service.getPrescricao().subscribe((res) => (this.Prescricao = res));
+    }
 }

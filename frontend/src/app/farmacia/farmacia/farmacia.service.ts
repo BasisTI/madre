@@ -1,3 +1,4 @@
+import { Prescricao } from './dispensacao/prescricao';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,9 +7,9 @@ import { Injectable } from '@angular/core';
 })
 export class FarmaciaService {
     constructor(private httpServe: HttpClient) {}
-    private readonly apiUrl = 'farmacia/api/';
+    private readonly apiUrl = '/farmacia/api';
 
     getPrescricao() {
-        this.httpServe.get(`${this.apiUrl}/`);
+        return this.httpServe.get<Prescricao[]>(`${this.apiUrl}/prescricao`);
     }
 }

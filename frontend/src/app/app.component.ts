@@ -169,6 +169,17 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     },
                 ],
             },
+            {
+                label: 'Farmacia',
+                icon: 'airline_seat_individual_suite',
+                items: [
+                    {
+                        label: 'Dispensação medica',
+                        icon: 'add',
+                        routerLink: ['/farmacia'],
+                    },
+                ],
+            },
         ];
     }
 

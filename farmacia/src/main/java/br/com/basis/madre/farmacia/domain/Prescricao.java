@@ -5,9 +5,12 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
 @Document(indexName = "prescricao")
-public class Prescricao {
+public class Prescricao implements Serializable {
 
     @Id
     private Long id;
@@ -23,14 +26,56 @@ public class Prescricao {
 
     @Field(type = FieldType.Text)
     private String unidade;
-    
 
+    @Field(type = FieldType.Date)
+    private int dataInicio;
 
-    public Prescricao(String descricao, String nome, String farmacia, String unidade) {
-        this.descricao = descricao;
+    @Field(type = FieldType.Date)
+    private int dataFim;
+
+    @Field(type = FieldType.Text)
+    private String local;
+
+    public Prescricao(String nome, int dataInicio, int dataFim, String local) {
         this.nome = nome;
-        this.farmacia = farmacia;
-        this.unidade = unidade;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.local = local;
+    }
+
+    public Prescricao() {
+    }
+
+//    public Prescricao(String descricao, String nome, String farmacia, String unidade) {
+//        this.descricao = descricao;
+//        this.nome = nome;
+//        this.farmacia = farmacia;
+//        this.unidade = unidade;
+//    }
+
+
+    public int getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(int dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public int getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(int dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
     }
 
     public Long getId() {
@@ -71,5 +116,18 @@ public class Prescricao {
 
     public void setUnidade(String unidade) {
         this.unidade = unidade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prescricao that = (Prescricao) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
