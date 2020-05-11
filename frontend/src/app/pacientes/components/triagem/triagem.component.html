@@ -53,9 +53,11 @@
                     <p-column header="Nome do Paciente" field="paciente"></p-column>
                     <p-column header="Nome Social" field="nomeSocial"></p-column>
                     <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
-                    <p-column header="Data do Atendimento" field="dataDoAtendimento"> </p-column>
-                    <p-column header="Hora de Chegada" field="horaDeChegada"></p-column>
-                    <p-column header="Classificação" field="classificacao"></p-column>
+                    <p-column
+                        header="Data/Hora da Chegada"
+                        field="dataHoraDoAtendimento"
+                    ></p-column>
+                    <p-column header="Classificação" field="classificacaoDeRisco"></p-column>
                     <basis-datatable-button
                         *ngIf="!disableEdit"
                         class="ui-button-success"

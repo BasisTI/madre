@@ -1,12 +1,10 @@
 import { Observable } from 'rxjs';
 import { Triagem } from './../../../models/triagem';
-import { values } from 'micro-dash';
 import { TriagemService } from '../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input, Optional } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
-import { RADIO_VALUE_ACCESSOR, SelectItem } from 'primeng/primeng';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -14,9 +12,6 @@ import { RADIO_VALUE_ACCESSOR, SelectItem } from 'primeng/primeng';
     styleUrls: ['./formulario-triagem.component.css'],
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
-    triagens: any[];
-
-    searchUrl = 'pacientes/api/triagens/paciente/{id}';
     @Input() formsTriagem: FormGroup;
     opcaoClassificacao = CLASSIFICACAO_COLORS;
     selectedValue: string;
@@ -76,10 +71,5 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         };
 
         this.triagemService.cadastrarTriagem(triagem).subscribe();
-    }
-    listarTriagens(id: number) {
-        this.triagemService.listarTriagem(id).subscribe((triagens) => {
-            this.triagens = triagens;
-        });
     }
 }

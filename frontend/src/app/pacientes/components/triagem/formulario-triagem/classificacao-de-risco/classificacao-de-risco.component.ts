@@ -16,10 +16,20 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     selectedValue: string;
     searchUrl = 'pacientes/api/triagens/paciente/{id}';
     triagens: any[];
+    selectedRisk: any;
+    risk: { name: string; type: string }[];
 
     handleClick() {}
 
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
+    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
+        this.risk = [
+            { name: 'Não urgente', type: 'blue' },
+            { name: 'Pouco urgente', type: 'grenn' },
+            { name: 'Urgente', type: 'yellow' },
+            { name: 'Muito urgente', type: 'orange' },
+            { name: 'Emergência', type: 'red' },
+        ];
+    }
 
     ngOnInit() {}
 }

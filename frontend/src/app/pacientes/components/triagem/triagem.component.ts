@@ -1,3 +1,4 @@
+import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '../../../breadcrumb/breadcrumb.service';
 
@@ -18,16 +19,32 @@ import { BreadcrumbService } from '../../../breadcrumb/breadcrumb.service';
     ],
 })
 export class TriagemComponent implements OnInit, OnDestroy {
-    constructor(private breadcrumbService: BreadcrumbService) {}
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private triagemService: TriagemService,
+    ) {}
+
+    triagens: any[];
+
+    searchUrl = 'pacientes/api/triagens/paciente/listar';
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'Emergencia', routerLink: 'emergencia' },
         ]);
+
+        this.listarTriagens();
     }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
+    }
+
+    listarTriagens() {
+        this.triagemService.listarTriagem().subscribe((triagens) => {
+            this.triagens = triagens.content;
+            console.log(triagens);
+        });
     }
 }

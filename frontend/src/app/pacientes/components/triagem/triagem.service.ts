@@ -19,7 +19,7 @@ export class TriagemService {
     alterarTriagem(alterandoTriagem: Observable<any>) {
         return this.httpService.put(`${this.apiUrl}/triagens/:id`, alterandoTriagem);
     }
-    listarTriagem(id: number): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/${id}`);
+    listarTriagem(): Observable<any> {
+        return this.httpService.get(`${this.apiUrl}/triagens/pacientes/listar`);
     }
 }
