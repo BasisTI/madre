@@ -17,7 +17,11 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("/api")
+=======
+@RequestMapping("/api/prescricoes")
+>>>>>>> 772a2340ae33d6bbc7617cfe434a5f4a182d69c6
 public class PrescricaoResource {
 
         @Autowired
