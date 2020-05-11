@@ -4,6 +4,7 @@ import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.dto.TriagemDTO;
+import br.com.basis.madre.service.dto.UFDTO;
 import br.com.basis.madre.service.mapper.TriagemMapper;
 import br.com.basis.madre.service.projection.MunicipioUF;
 import br.com.basis.madre.service.projection.TriagemProjection;
@@ -47,6 +48,7 @@ public class TriagemService {
      * @param triagemDTO the entity to save
      * @return the persisted entity
      */
+
     public TriagemDTO save(TriagemDTO triagemDTO) {
         log.debug("Request to save Triagem : {}", triagemDTO);
 
@@ -112,7 +114,8 @@ public class TriagemService {
     /**
      * TODO: Write documentation
      */
-    public Page<TriagemProjection> findAllProjectedTriagemBy(Pageable pageable) {
-        return triagemRepository.findAllProjectedTriagemBy(pageable);
+
+    public Page<TriagemProjection> findAllProjectedTriagemProjectionBy(Pageable pageable) {
+        return triagemRepository.findAllProjectedTriagemProjectionBy(pageable);
     }
 }
