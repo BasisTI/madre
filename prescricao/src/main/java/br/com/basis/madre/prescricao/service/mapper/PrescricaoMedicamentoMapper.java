@@ -1,9 +1,9 @@
 package br.com.basis.madre.prescricao.service.mapper;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
+import org.mapstruct.Mapper;
 
-import org.mapstruct.*;
+import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
+import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
 
 /**
  * Mapper for the entity {@link PrescricaoMedicamento} and its DTO {@link PrescricaoMedicamentoDTO}.
@@ -12,7 +12,6 @@ import org.mapstruct.*;
 public interface PrescricaoMedicamentoMapper extends EntityMapper<PrescricaoMedicamentoDTO, PrescricaoMedicamento> {
 
 
-	PrescricaoMedicamentoDTO toDto(PrescricaoMedicamento prescricaoMedicamento);
 	
     PrescricaoMedicamento toEntity(PrescricaoMedicamentoDTO prescricaoMedicamentoDTO);
 
@@ -24,4 +23,5 @@ public interface PrescricaoMedicamentoMapper extends EntityMapper<PrescricaoMedi
         prescricaoMedicamento.setId(id);
         return prescricaoMedicamento;
     }
+    
 }
