@@ -1,5 +1,6 @@
 package br.com.basis.madre.prescricao.service;
 
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
 import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
 import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
@@ -47,6 +48,10 @@ public class PrescricaoMedicamentoService {
     public PrescricaoMedicamentoDTO save(PrescricaoMedicamentoDTO prescricaoMedicamentoDTO) {
         log.debug("Request to save PrescricaoMedicamento : {}", prescricaoMedicamentoDTO);
         PrescricaoMedicamento prescricaoMedicamento = prescricaoMedicamentoMapper.toEntity(prescricaoMedicamentoDTO);
+        for (ItemPrescricaoMedicamento item : prescricaoMedicamento.getItemPrescricaoMedicamentos()) {
+        	item.setPrescricaoMedicamento(prescricaoMedicamento);
+			
+		}
         prescricaoMedicamento = prescricaoMedicamentoRepository.save(prescricaoMedicamento);
         PrescricaoMedicamentoDTO result = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
         prescricaoMedicamentoSearchRepository.save(prescricaoMedicamento);
