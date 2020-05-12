@@ -55,6 +55,9 @@
         relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200511124846_added_entity_TipoDoEventoLeito.xml"
         relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200507151226_added_entity_MotivoDoBloqueioDeLeito.xml"
+        relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200511124847_added_entity_EventoLeito.xml"
         relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
