@@ -38,12 +38,13 @@
     -->
     <changeSet id="20200429130317-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/cid.csv"
+                  file="config/liquibase/data/cid.csv"
                   separator=";"
                   tableName="cid">
             <column name="id" type="numeric"/>
             <column name="codigo" type="string"/>
             <column name="descricao" type="string"/>
+            <column name="cid_pai_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
