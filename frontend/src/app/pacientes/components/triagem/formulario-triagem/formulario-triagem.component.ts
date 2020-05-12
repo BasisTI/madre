@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs';
 import { Triagem } from './../../../models/triagem';
 import { TriagemService } from '../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
-import { OnInit, OnDestroy, Component, Input, Optional } from '@angular/core';
+import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
+import { update } from 'micro-dash';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -37,7 +37,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         private triagemService: TriagemService,
     ) {}
     ngOnDestroy(): void {
-        // throw new Error('Method not implemented.');
+        throw new Error('Method not implemented.');
     }
 
     ngOnInit() {

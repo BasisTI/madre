@@ -1,6 +1,5 @@
 import { Triagem } from './../../models/triagem';
 import { Observable } from 'rxjs';
-import { ICID } from './../solicitacao-de-internacao/cid.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -16,9 +15,13 @@ export class TriagemService {
         console.log(triagem);
         return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
     }
-    alterarTriagem(alterandoTriagem: Observable<any>) {
-        return this.httpService.put(`${this.apiUrl}/triagens/:id`, alterandoTriagem);
+    alterarTriagem(id: number): Observable<any> {
+        return this.httpService.put(
+            `${this.apiUrl}/triagens/${id}`,
+            JSON.stringify(this.alterarTriagem),
+        );
     }
+
     listarTriagem(): Observable<any> {
         return this.httpService.get(`${this.apiUrl}/triagens/pacientes/listar`);
     }

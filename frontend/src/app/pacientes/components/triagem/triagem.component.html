@@ -50,9 +50,21 @@
                     [disableEdit]="true"
                     [disableDelete]="true"
                 >
-                    <p-column header="Nome do Paciente" field="paciente"></p-column>
-                    <p-column header="Nome Social" field="nomeSocial"></p-column>
-                    <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
+                    <p-column field="paciente" header="Nome do Paciente">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field].nome }}</span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Nome Social" field="paciente"
+                        ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field].nomeSocial }}</span>
+                        </ng-template></p-column
+                    >
+                    <p-column header="Nome da Mãe" field="paciente"
+                        ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field].genitores.nomeDaMae }}</span>
+                        </ng-template></p-column
+                    >
                     <p-column
                         header="Data/Hora da Chegada"
                         field="dataHoraDoAtendimento"
@@ -61,8 +73,8 @@
                     <basis-datatable-button
                         *ngIf="!disableEdit"
                         class="ui-button-success"
-                        [routerLink]="['/pacientes', '{id}']"
                         icon="edit"
+                        [routerLink]="['/pacientes', '{id}']"
                     >
                     </basis-datatable-button>
                     <basis-datatable-button
