@@ -1,16 +1,15 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.TipoDoEventoLeito;
 import br.com.basis.madre.service.dto.TipoDoEventoLeitoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link TipoDoEventoLeito} and its DTO {@link TipoDoEventoLeitoDTO}.
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface TipoDoEventoLeitoMapper extends EntityMapper<TipoDoEventoLeitoDTO, TipoDoEventoLeito> {
-
+public interface TipoDoEventoLeitoMapper extends
+    EntityMapper<TipoDoEventoLeitoDTO, TipoDoEventoLeito> {
 
 
     default TipoDoEventoLeito fromId(Long id) {

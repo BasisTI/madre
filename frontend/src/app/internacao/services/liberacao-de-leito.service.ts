@@ -9,7 +9,7 @@ import { Leito } from '@internacao/models/leito';
     providedIn: 'root',
 })
 export class LiberacaoDeLeitoService implements EntityService {
-    private readonly resource = `${api}/eventos-de-leito/liberacoes`;
+    private readonly resource = `${api}/leitos/liberacoes`;
 
     constructor(private client: HttpClient) {}
 

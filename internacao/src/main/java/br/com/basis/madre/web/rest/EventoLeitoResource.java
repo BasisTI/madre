@@ -52,7 +52,7 @@ public class EventoLeitoResource {
 
     private final LeitoService leitoService;
 
-    @PostMapping("/eventos-de-leito/liberacoes")
+    @PostMapping("/leitos/liberacoes")
     public ResponseEntity<EventoLeitoDTO> liberarLeito(
         @Valid @RequestBody LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) throws URISyntaxException {
         if (liberacaoDeLeitoDTO.getId() != null) {
@@ -77,7 +77,7 @@ public class EventoLeitoResource {
             .body(eventoLeitoDTO);
     }
 
-    @PostMapping("/eventos-de-leito/reservas")
+    @PostMapping("/leitos/reservas")
     public ResponseEntity<EventoLeitoDTO> reservarLeito(
         @Valid @RequestBody ReservaDeLeitoDTO reservaDeLeitoDTO) throws URISyntaxException {
         if (reservaDeLeitoDTO.getId() != null) {
@@ -102,7 +102,7 @@ public class EventoLeitoResource {
             .body(eventoLeitoDTO);
     }
 
-    @PostMapping("/eventos-de-leito/bloqueios")
+    @PostMapping("/leitos/bloqueios")
     public ResponseEntity<EventoLeitoDTO> bloquearLeito(
         @Valid @RequestBody BloqueioDeLeitoDTO bloqueioDeLeitoDTO) throws URISyntaxException {
         if (bloqueioDeLeitoDTO.getId() != null) {
