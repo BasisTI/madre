@@ -79,10 +79,10 @@
                     >
                     </basis-datatable-button>
                     <basis-datatable-button
-                        icon="remove-red-eye"
                         ng-reflect-icon="ui-icon-remove-red-eye"
                         ng-reflect-b-tooltip="Escolha um registro para visualizar"
                         class="ng-star-inserted"
+                        icon="remove-red-eye"
                     >
                     </basis-datatable-button>
                     <basis-datatable-button
@@ -95,6 +95,7 @@
                 <div class="ui-g-9"></div>
                 <div class="ui-g-2">
                     <button
+                        *ngIf="!disableUpload"
                         name="export"
                         pButton
                         textAlign="right"

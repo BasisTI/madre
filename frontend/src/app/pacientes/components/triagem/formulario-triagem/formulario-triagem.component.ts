@@ -1,4 +1,4 @@
-import { Triagem } from './../../../models/triagem';
+import { TriagemModel } from '../../../models/triagem-model';
 import { TriagemService } from '../triagem.service';
 import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
@@ -53,7 +53,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     }
     cadastrar(form: FormBuilder) {
         const tri = this.formTriagem.value;
-        const triagem: Triagem = {
+        const triagem: TriagemModel = {
             classificacaoDeRisco: tri.classificacaoDeRisco,
             pressaoArterial: tri.pressaoArterial,
             frequenciaCardiaca: tri.frequenciaCardiaca,

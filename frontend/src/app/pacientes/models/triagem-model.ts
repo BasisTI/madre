@@ -1,7 +1,9 @@
-export class Triagem {
+export class TriagemModel {
     constructor(
         public id?: number,
+
         public classificacaoDeRisco?: string,
+
         public pressaoArterial?: number,
 
         public frequenciaCardiaca?: number,
@@ -19,6 +21,7 @@ export class Triagem {
         public vitimaDeAcidente?: boolean,
 
         public removidoDeAmbulancia?: boolean,
+
         public observacao?: string,
     ) {}
 }

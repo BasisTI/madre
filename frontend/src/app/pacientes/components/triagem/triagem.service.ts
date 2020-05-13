@@ -1,4 +1,4 @@
-import { Triagem } from './../../models/triagem';
+import { TriagemModel } from '../../models/triagem-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ export class TriagemService {
 
     constructor(private httpService: HttpClient) {}
 
-    cadastrarTriagem(triagem: Triagem) {
+    cadastrarTriagem(triagem: TriagemModel) {
         console.log(triagem);
         return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
     }
