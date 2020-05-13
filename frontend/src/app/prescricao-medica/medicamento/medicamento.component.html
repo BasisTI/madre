@@ -1,33 +1,292 @@
 <div class="ui-g ui-fluid">
 
     <div class="ui-g-12">
-        <div class="ui-g-12">
-            <span class="md-inputfield">
-                <input [(ngModel)]="paciente.nome" name="nome" type="text" pInputText disabled />
-                <label>Paciente</label>
-            </span>
-        </div>
-    </div>
+        <form (ngSubmit)="precrever()">
+            <p-accordion>
+                <p-accordionTab header="Medicamento" [selected]="true">
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">
+                                    <input [(ngModel)]="paciente.nome" name="nome" type="text" pInputText disabled />
+                                    <label>Paciente</label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">
+                                    <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
+                                        id="observacao" name="observacao"></textarea>
+                                    <label>Observações</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
 
-    <div class="ui-g-12">
-    <!-- {{profileForm.value | json}} -->
-    <form autocomplete="off" #frm (ngSubmit)="incluirItem()">
-        <p-accordion>
-            <p-accordionTab header="Medicamento">
+                <p-accordionTab header="Itens Medicamento">
+                    <form [formGroup]="itemPrescricaoMedicamento" (ngSubmit)="incluirItem()">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="medicamentos" formControlName="idMedicamento" required #idMedicamento>
+                                        </p-dropdown>
+                                        <label>Medicamentos</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="listaMedicamentos" formControlName="idListaMedicamentos" required
+                                            #idListaMedicamento>
+                                        </p-dropdown>
+                                        <label>Lista Medicamentos</label>
+                                    </span>
+                                </div>
+                            </div>
 
-            </p-accordionTab>
+                            <div class="ui-g-12">
+                                <div class="ui-g-3">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="dose" />
+                                        <label>Dose</label>
+                                    </span>
+                                </div>
 
-            <p-accordionTab header="Itens Medicamento" [selected]="true">
+                                <div class="ui-g-2">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="listaUnidadeDose" formControlName="unidadeDose" required #unidadeDose>
+                                        </p-dropdown>
+                                        <label>Unidade</label>
+                                    </span>
+                                </div>
 
-            </p-accordionTab>
-        </p-accordion>
+                                <div class="ui-g-3">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="listaViasAdministracao" formControlName="viasAdministracao" required
+                                            #viaAdministracao>
+                                        </p-dropdown>
+                                        <label>Via</label>
+                                    </span>
+                                </div>
 
-        <div class="ui-g-12">
-            <div class="ui-g-6">
-                <button pButton type="submit" label="Prescrever"></button>
+                                <div class="ui-g-2">
+                                    <label>Todas Vias?</label>
+                                </div>
+                                <div class="ui-g-1">
+                                    <p-radioButton id="sim" type="radio" value="true" name="todasVias" pRadioButton>
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+                                <div class="ui-g-1">
+                                    <p-radioButton id="nao" type="radio" value="false" name="todasVias" pRadioButton>
+                                    </p-radioButton>
+                                    <label>Não</label>
+                                </div>
 
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-2">
+                                    <span class="md-inputfield">
+
+                                        <input type="text" pInputText formControlName="frequencia" />
+                                        <label>Frequência</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-5">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamento" #descricaoAprazamento>
+                                        </p-dropdown>
+                                        <label>Tipo de Aprazamento</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-5">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..." [options]="diluentes"
+                                        formControlName="diluente" #diluente>
+                                        </p-dropdown>
+                                        <label>Diluente</label>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-3">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="volume" />
+                                        <label>Volume</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-3">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="tempoInfusao" />
+                                        <label>Correr em</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="listaUnidadeTempo" formControlName="unidadeTempo" #unidadeTempo>
+                                        </p-dropdown>
+                                        <label>Unidade Tempo</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-3">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="velocidadeInfusao" />
+                                        <label>Velocidade de Infusão</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-5">
+                                    <span class="md-inputfield">
+                                        <p-dropdown  placeholder="Selecione..."
+                                            [options]="listaUnidadeTempo" formControlName="unidadeTempo" #unidadeTempo>
+                                        </p-dropdown>
+                                        <label>Unidade Tempo</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-2">
+                                    <label>Bomba Infusão?</label>
+                                </div>
+                                <div class="ui-g-1">
+                                    <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton>
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+                                <div class="ui-g-1">
+                                    <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton>
+                                    </p-radioButton>
+                                    <label>Não</label>
+
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-4">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="velocidadeInfusao" />
+                                        <label>Início Adm.</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-3">
+                                    <label>Necessária Observação?</label>
+                                </div>
+                                <div class="ui-g-1">
+                                    <p-radioButton id="sim" type="radio" value="true" name="condicaoNecessaria"
+                                        pRadioButton formControlName="condicaoNecessaria">
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+                                <div class="ui-g-1">
+                                    <p-radioButton id="nao" type="radio" value="false" name="condicaoNecessaria"
+                                        pRadioButton formControlName="condicaoNecessaria">
+                                    </p-radioButton>
+                                    <label>Não</label>
+
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-12">
+                                    <span class="md-inputfield">
+                                        <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
+                                            id="observacao" name="observacao"></textarea>
+                                        <label>Observações</label>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-6">
+                                <button label="Adicionar" pButton name="adicionar-item" type="submit"
+                                [disabled]="itemPrescricaoMedicamento.invalid">
+                                </button>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <basis-datatable type="memory" [value]="itensPrescricaoMedicamento" [disableView]="true"
+                                    [disableEdit]="true" [disableDelete]="true" [verticalButtons]="false">
+                                    <p-column header="Medicamentos" field="idMedicamento">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].name }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Lista Medicamentos" field="idListaMedicamentos">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].nome }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Dose" field="dose"></p-column>
+
+                                    <p-column header="Unidade" field="unidadeDose">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].descricao }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Via" field="viasAdministracao">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].descricao }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Frequencia" field="frequencia"></p-column>
+
+                                    <p-column header="Aprazamento" field="tipoAprazamento">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].descricao }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Diluente" field="diluente">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].descricao }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Volume (ml)" field="volume"></p-column>
+
+                                    <p-column header="Correr em" field="tempoInfusao"></p-column>
+
+                                    <p-column header="Tempo" field="unidadeTempo">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field].value }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                </basis-datatable>
+                            </div>
+
+                        </div>
+                    </form>
+                </p-accordionTab>
+            </p-accordion>
+
+            <div class="ui-g-12">
+                <div class="ui-g-6">
+                    <button pButton type="submit" label="Prescrever"></button>
+
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+        <!-- {{profileForm.value | json}} -->
+
+    </div>
 </div>
