@@ -16,7 +16,6 @@ public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescr
     @Mapping(source = "diluente.id", target = "diluenteId")
     @Mapping(source = "unidadeInfusao.id", target = "unidadeInfusaoId")
     @Mapping(source = "unidadeDose.id", target = "unidadeDoseId")
-    @Mapping(source = "prescricaoMedicamento.id", target = "prescricaoMedicamentoId")
     @Mapping(source = "tipoAprazamento.id", target = "tipoAprazamentoId")
     ItemPrescricaoMedicamentoDTO toDto(ItemPrescricaoMedicamento itemPrescricaoMedicamento);
 
@@ -24,7 +23,6 @@ public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescr
     @Mapping(source = "diluenteId", target = "diluente")
     @Mapping(source = "unidadeInfusaoId", target = "unidadeInfusao")
     @Mapping(source = "unidadeDoseId", target = "unidadeDose")
-    @Mapping(source = "prescricaoMedicamentoId", target = "prescricaoMedicamento")
     @Mapping(source = "tipoAprazamentoId", target = "tipoAprazamento.id")
     ItemPrescricaoMedicamento toEntity(ItemPrescricaoMedicamentoDTO itemPrescricaoMedicamentoDTO);
 

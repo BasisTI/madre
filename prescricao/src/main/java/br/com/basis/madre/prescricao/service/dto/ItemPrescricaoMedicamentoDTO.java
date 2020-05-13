@@ -18,7 +18,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	@NotNull
 	private Long idMedicamento;
-	
+
 	@NotNull
 	private Long idListaMedicamentos;
 
@@ -56,8 +56,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	private Long unidadeDoseId;
 
-	private Long prescricaoMedicamentoId;
-
 	private Long tipoAprazamentoId;
 
 	public Long getId() {
@@ -71,7 +69,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 	public Long getIdMedicamento() {
 		return idMedicamento;
 	}
-
 
 	public Long getIdListaMedicamentos() {
 		return idListaMedicamentos;
@@ -197,14 +194,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.unidadeDoseId = unidadeDoseId;
 	}
 
-	public Long getPrescricaoMedicamentoId() {
-		return prescricaoMedicamentoId;
-	}
-
-	public void setPrescricaoMedicamentoId(Long prescricaoMedicamentoId) {
-		this.prescricaoMedicamentoId = prescricaoMedicamentoId;
-	}
-
 	public Long getTipoAprazamentoId() {
 		return tipoAprazamentoId;
 	}
@@ -242,10 +231,8 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 				+ tempoInfusao + ", unidadeTempo=" + unidadeTempo + ", inicioAdministracao=" + inicioAdministracao
 				+ ", condicaoNecessaria=" + condicaoNecessaria + ", observacaoCondicao=" + observacaoCondicao
 				+ ", viasAdministracaoId=" + viasAdministracaoId + ", diluenteId=" + diluenteId + ", unidadeInfusaoId="
-				+ unidadeInfusaoId + ", unidadeDoseId=" + unidadeDoseId + ", prescricaoMedicamentoId="
-				+ prescricaoMedicamentoId + ", tipoAprazamentoId=" + tipoAprazamentoId + "]";
+				+ unidadeInfusaoId + ", unidadeDoseId=" + unidadeDoseId + ", tipoAprazamentoId=" + tipoAprazamentoId
+				+ "]";
 	}
-
-	
 
 }
