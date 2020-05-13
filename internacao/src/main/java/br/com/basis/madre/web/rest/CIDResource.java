@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -90,37 +91,23 @@ public class CIDResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /cids} : get all the cIDS.
-     *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cIDS in body.
-     */
     @GetMapping("/cids")
-    public ResponseEntity<List<CidDTO>> getAllCIDS(CidDTO cidDTO,Pageable pageable) {
-        log.debug("REST request to get a page of CIDS");
-        Page<CidDTO> page = cidService.findAll(cidDTO, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    public ResponseEntity<List<CidDTO>> getAllCIDS(Sort sort) {
+        List<CidDTO> list = cidService.findAll(sort);
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/cids/pais")
-    public ResponseEntity<List<CidDTO>> getPais(@RequestParam(name = "descricao", required = false, defaultValue = "") String descricao,Pageable pageable) {
-        log.debug("REST request to get a page of CIDS");
-        Page<CidDTO> page = cidService.getPais(descricao, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    public ResponseEntity<List<CidDTO>> getPais(Sort sort) {
+        List<CidDTO> list = cidService.getPais(sort);
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/cids/pais/{id}/filhos")
-    public ResponseEntity<List<CidDTO>> getFilhosPeloIdDoPai(@PathVariable(name = "id", required = true) Long id, Pageable pageable) {
-        log.debug("REST request to get a page of CIDS");
-        Page<CidDTO> page = cidService.getFilhosPeloIdDoPai(id, pageable);
-        HttpHeaders headers = PaginationUtil
-            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    public ResponseEntity<List<CidDTO>> getFilhosPeloIdDoPai(
+        @PathVariable(name = "id", required = true) Long id, Sort sort) {
+        List<CidDTO> list = cidService.getFilhosPeloIdDoPai(id, sort);
+        return ResponseEntity.ok().body(list);
     }
 
     /**

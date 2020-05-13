@@ -1,15 +1,14 @@
-<p-button icon="pi pi-search" (onClick)="aoAbrir()"></p-button>
+<p-button icon="pi pi-search" (onClick)="onClick()"></p-button>
 <p-dialog
     header="Árvore de Classificação Internacional de Doenças"
     [modal]="true"
-    [(visible)]="mostrarArvore"
-    (onShow)="aoAbrir()"
+    [(visible)]="visible"
 >
     <p-tree
-        [(selection)]="cidSelecionado"
-        (onNodeSelect)="aoSelecionarCid()"
-        [value]="pais"
+        [(selection)]="selection"
+        (onNodeSelect)="onNodeSelect($event)"
+        [value]="parents"
         selectionMode="single"
-        (onNodeExpand)="carregarFilhos($event)"
+        (onNodeExpand)="onNodeExpand($event)"
     ></p-tree>
 </p-dialog>
