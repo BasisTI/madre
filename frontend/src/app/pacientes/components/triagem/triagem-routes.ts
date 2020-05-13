@@ -13,6 +13,12 @@ const routes: Routes = [
         path: 'formulario',
         component: FormularioTriagemComponent,
     },
+
+    {
+        path: 'formulario/:id',
+        component: FormularioTriagemComponent,
+    },
+
     {
         path: 'classificacao',
         component: ClassificacaoDeRiscoComponent,

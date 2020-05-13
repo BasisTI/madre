@@ -13,5 +13,6 @@ export const routes: Routes = [
 
     { path: 'triagem', component: TriagemComponent },
     { path: 'formulario', component: FormularioTriagemComponent },
+    { path: 'edit/:id', component: FormularioTriagemComponent },
     { path: 'solicitacao-de-internacao', component: SolicitacaoDeInternacaoComponent },
 ];

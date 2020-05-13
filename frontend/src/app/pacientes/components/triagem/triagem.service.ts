@@ -2,6 +2,8 @@ import { Triagem } from './../../models/triagem';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -15,14 +17,16 @@ export class TriagemService {
         console.log(triagem);
         return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
     }
+
+    buscarTriagemId(id: number): Observable<any> {
+        return this.httpService.get(`${this.apiUrl}/triagens/${id}`);
+    }
+
     alterarTriagem(id: number): Observable<any> {
-        return this.httpService.put(
-            `${this.apiUrl}/triagens/${id}`,
-            JSON.stringify(this.alterarTriagem),
-        );
+        return this.httpService.put(`${this.apiUrl}/triagens/${id}`, Response);
     }
 
     listarTriagem(): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/pacientes/listar`);
+        return this.httpService.get(`${this.apiUrl}/triagens/pacientes`);
     }
 }

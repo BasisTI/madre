@@ -36,14 +36,11 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private triagemService: TriagemService,
     ) {}
-    ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
-    }
 
     ngOnInit() {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'Triagem', routerLink: 'triagem' },
+            { label: 'Triagem', routerLink: 'pacientes/triagem' },
             { label: 'Formulário' },
         ]);
 
@@ -71,5 +68,9 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         };
 
         this.triagemService.cadastrarTriagem(triagem).subscribe();
+    }
+
+    ngOnDestroy() {
+        this.breadcrumbService.reset();
     }
 }

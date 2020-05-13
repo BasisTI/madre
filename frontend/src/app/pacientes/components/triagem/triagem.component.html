@@ -49,6 +49,7 @@
                     [disableView]="true"
                     [disableEdit]="true"
                     [disableDelete]="true"
+                    (buttonClick)="btnClick($event)"
                 >
                     <p-column field="paciente" header="Nome do Paciente">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
@@ -73,8 +74,8 @@
                     <basis-datatable-button
                         *ngIf="!disableEdit"
                         class="ui-button-success"
+                        name="edit"
                         icon="edit"
-                        [routerLink]="['/pacientes', '{id}']"
                     >
                     </basis-datatable-button>
                     <basis-datatable-button

@@ -1,21 +1,19 @@
 package br.com.basis.madre.web.rest;
-
 import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
-
 import br.com.basis.madre.service.TriagemService;
-
 import br.com.basis.madre.service.projection.TriagemProjection;
+
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -118,12 +116,18 @@ public class TriagemResource {
      * @param id the id of the triagem to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the triagem, or with status 404 (Not Found)
      */
-    @GetMapping("/triagens/{id}")
+//  @GetMapping("/triagens/triagens/{id}")
+//    public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
+//        log.debug("REST request to get Triagem : {}", id);
+//        Optional<Triagem> triagem = triagemRepository.findById(id);
+//        return ResponseUtil.wrapOrNotFound(triagem);
+//    }
+    @GetMapping("/triagens/paciente/{id}")
     @Timed
-    public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
-        log.debug("REST request to get Triagem : {}", id);
-        Optional<Triagem> triagem = triagemRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(triagem);
+    public ResponseEntity<List<Triagem>> buscarTriagemPorIdDoPaciente(@PathVariable("id") Long id) {
+        List<Triagem> triagem = triagemRepository.findByPacienteId(id);
+
+        return ResponseEntity.ok(triagem);
     }
 
     /**
@@ -157,14 +161,8 @@ public class TriagemResource {
             .stream(triagemSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-    @GetMapping("/triagens/paciente/{id}")
-    public ResponseEntity<List<Triagem>> buscarTriagemPorIdDoPaciente(@PathVariable("id") Long id) {
-        List<Triagem> triagem = triagemRepository.findByPacienteId(id);
 
-        return ResponseEntity.ok(triagem);
-    }
-
-    @GetMapping("/triagens/pacientes/listar")
+    @GetMapping("/triagens/pacientes")
     public ResponseEntity<Page<TriagemProjection>> findAllProjectedTriagemProjectionBy(Pageable pageable) {
         return ResponseEntity.ok(triagemService.findAllProjectedTriagemProjectionBy(pageable));
     }
