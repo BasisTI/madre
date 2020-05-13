@@ -1,3 +1,4 @@
+import { TipoAprazamento } from './../medicamento/models/tipoAprazamento';
 import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
@@ -22,7 +23,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     tiposItens = [];
 
-    tiposAprazamentos: [];
+    tiposAprazamentos: TipoAprazamento[];
 
     itensDieta: any[] = [];
 
@@ -77,6 +78,8 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     carregarPaciente(id: number) {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
+                console.log(paciente);
+
                 this.paciente = paciente;
 
             });
