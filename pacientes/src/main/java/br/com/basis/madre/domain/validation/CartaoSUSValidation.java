@@ -13,6 +13,14 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
         //Value não está sendo ultilizado  this.value = constraintAnnotation.value();
     }
 
+    @Override
+    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
+        if (s.matches("[1-2]\\d{10}00[0-1]\\d") || s.matches("[7-9]\\d{14}")) {
+            return somaPonderada(s) % 11 == 0;
+        }
+        return false;
+
+    }
     private int somaPonderada(String s) {
         char[] cs = s.toCharArray();
         int soma = 0;
@@ -22,13 +30,8 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
         return soma;
     }
 
-    @Override
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        if (s.matches("[1-2]\\d{10}00[0-1]\\d") || s.matches("[7-9]\\d{14}")) {
-            return somaPonderada(s) % 11 == 0;
-        }
-        return false;
-    }
+
+
 
 
 }

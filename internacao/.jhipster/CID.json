@@ -1,0 +1,32 @@
+{
+    "name": "CID",
+    "fields": [
+        {
+            "fieldName": "codigo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200429130317",
+    "entityTableName": "cid",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}

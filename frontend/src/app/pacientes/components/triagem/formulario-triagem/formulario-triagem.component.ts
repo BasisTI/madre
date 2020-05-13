@@ -1,9 +1,9 @@
 import { ClassificacaoDeRiscoService } from './classificacao-de-risco/classificacao-de-risco.service';
 import { TriagemService } from './../triagem.service';
-import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ptBR } from 'src/app/shared/calendar.pt-br.locale';
+import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { logging } from 'protractor';
 
 @Component({
@@ -31,7 +31,7 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
     });
 
     @Input() formularioTriagem: FormGroup;
-    localizacao = ptBR;
+    localizacao = CALENDAR_LOCALE;
     dataLimite = new Date();
     anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';

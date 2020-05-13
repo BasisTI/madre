@@ -16,7 +16,7 @@
     "databaseType": "sql",
     "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "messageBroker": false,
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",

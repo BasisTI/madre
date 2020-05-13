@@ -1,22 +1,42 @@
 package br.com.basis.madre.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Responsavel} entity.
  */
 public class ResponsavelDTO implements Serializable {
-    
+
     private Long id;
 
     private String nomeDoResponsavel;
 
 
-    private Long telefoneId;
+    private Set<TelefoneDTO> telefone;
+
+    private String observacao;
 
     private Long grauDeParentescoId;
-    
+
+    public Set<TelefoneDTO> getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Set<TelefoneDTO> telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
     public Long getId() {
         return id;
     }
@@ -31,14 +51,6 @@ public class ResponsavelDTO implements Serializable {
 
     public void setNomeDoResponsavel(String nomeDoResponsavel) {
         this.nomeDoResponsavel = nomeDoResponsavel;
-    }
-
-    public Long getTelefoneId() {
-        return telefoneId;
-    }
-
-    public void setTelefoneId(Long telefoneId) {
-        this.telefoneId = telefoneId;
     }
 
     public Long getGrauDeParentescoId() {
@@ -73,10 +85,12 @@ public class ResponsavelDTO implements Serializable {
     @Override
     public String toString() {
         return "ResponsavelDTO{" +
-            "id=" + getId() +
-            ", nomeDoResponsavel='" + getNomeDoResponsavel() + "'" +
-            ", telefoneId=" + getTelefoneId() +
-            ", grauDeParentescoId=" + getGrauDeParentescoId() +
-            "}";
+            "id=" + id +
+            ", nomeDoResponsavel='" + nomeDoResponsavel + '\'' +
+            ", telefone='" + telefone + '\'' +
+            ", observacao='" + observacao + '\'' +
+            ", grauDeParentescoId=" + grauDeParentescoId +
+            '}';
+
     }
 }

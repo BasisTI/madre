@@ -9,7 +9,7 @@ import br.com.basis.madre.domain.enumeration.TipoDoContato;
  * A DTO for the {@link br.com.basis.madre.domain.Telefone} entity.
  */
 public class TelefoneDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -22,11 +22,6 @@ public class TelefoneDTO implements Serializable {
 
     private String observacao;
 
-
-    private Long pacienteId;
-
-    private Long responsavelId;
-    
     public Long getId() {
         return id;
     }
@@ -67,22 +62,6 @@ public class TelefoneDTO implements Serializable {
         this.observacao = observacao;
     }
 
-    public Long getPacienteId() {
-        return pacienteId;
-    }
-
-    public void setPacienteId(Long pacienteId) {
-        this.pacienteId = pacienteId;
-    }
-
-    public Long getResponsavelId() {
-        return responsavelId;
-    }
-
-    public void setResponsavelId(Long responsavelId) {
-        this.responsavelId = responsavelId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -107,13 +86,11 @@ public class TelefoneDTO implements Serializable {
     @Override
     public String toString() {
         return "TelefoneDTO{" +
-            "id=" + getId() +
-            ", ddd='" + getDdd() + "'" +
-            ", numero='" + getNumero() + "'" +
-            ", tipo='" + getTipo() + "'" +
-            ", observacao='" + getObservacao() + "'" +
-            ", pacienteId=" + getPacienteId() +
-            ", responsavelId=" + getResponsavelId() +
-            "}";
+            "id=" + id +
+            ", ddd='" + ddd + '\'' +
+            ", numero='" + numero + '\'' +
+            ", tipo=" + tipo +
+            ", observacao='" + observacao + '\'' +
+            '}';
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="basis (generated)" id="1587994075857-3">
+        <createTable tableName="paciente_telefone">
+            <column name="paciente_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="telefone_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1587994075857-4">
+        <createTable tableName="responsavel_telefone">
+            <column name="responsavel_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="telefone_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1587994075857-5">
+        <addForeignKeyConstraint baseColumnNames="responsavel_id" baseTableName="responsavel_telefone" constraintName="FK2a50kkyyaa8p5y10ptrigtiv0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="responsavel" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1587994075857-6">
+        <addForeignKeyConstraint baseColumnNames="paciente_id" baseTableName="paciente_telefone" constraintName="FK79unrjv430ef0ykinxk8gvruv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paciente" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1587994075857-7">
+        <addForeignKeyConstraint baseColumnNames="telefone_id" baseTableName="paciente_telefone" constraintName="FK7i0fwyioi295fq2l1pbsxxtrs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="telefone" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1587994075857-8">
+        <addForeignKeyConstraint baseColumnNames="telefone_id" baseTableName="responsavel_telefone" constraintName="FK879imipvbu9sdi4vp20a8bjdg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="telefone" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

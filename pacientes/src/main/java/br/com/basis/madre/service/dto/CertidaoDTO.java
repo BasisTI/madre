@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Certidao} entity.
  */
 public class CertidaoDTO implements Serializable {
-    
+
     private Long id;
 
     private String registroDeNascimento;
@@ -28,7 +29,7 @@ public class CertidaoDTO implements Serializable {
 
     private String numeroDaDeclaracaoDeNascimento;
 
-    
+
     public Long getId() {
         return id;
     }
