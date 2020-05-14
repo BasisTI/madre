@@ -34,6 +34,7 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
         // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
         // prioridade: this.fb.control({ value: '', disabled: true }, Validators.required),
         // procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
+        leito: ['', Validators.required],
         especialidade: ['', Validators.required],
         planoDeSaude: ['', Validators.required],
         convenioDeSaude: ['', Validators.required],
