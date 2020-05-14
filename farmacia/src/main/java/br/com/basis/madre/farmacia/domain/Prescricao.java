@@ -5,7 +5,10 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -18,6 +21,7 @@ public class Prescricao implements Serializable {
     @Field(type = FieldType.Text)
     private String descricao;
 
+    @NotNull
     @Field(type = FieldType.Text)
     private String nome;
 
@@ -28,15 +32,15 @@ public class Prescricao implements Serializable {
     private String unidade;
 
     @Field(type = FieldType.Date)
-    private int dataInicio;
+    private LocalDate dataInicio;
 
     @Field(type = FieldType.Date)
-    private int dataFim;
+    private LocalDateTime dataFim;
 
     @Field(type = FieldType.Text)
     private String local;
 
-    public Prescricao(String nome, int dataInicio, int dataFim, String local) {
+    public Prescricao(String nome, LocalDate dataInicio, LocalDateTime dataFim, String local) {
         this.nome = nome;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -54,19 +58,19 @@ public class Prescricao implements Serializable {
 //    }
 
 
-    public int getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(int dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public int getDataFim() {
+    public LocalDateTime getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(int dataFim) {
+    public void setDataFim(LocalDateTime dataFim) {
         this.dataFim = dataFim;
     }
 

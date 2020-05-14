@@ -6,10 +6,22 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText type="text" pTooltip="Informe o Prontuario." />
+                    <input
+                        pInputText
+                        type="text"
+                        pTooltip="Informe o Prontuario."
+                        [(ngModel)]="local"
+                    />
                     <label>Prontuário</label>
                 </span>
             </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText type="text" pTooltip="Informe o Nome." [(ngModel)]="nome" />
+                    <label>Nome</label>
+                </span>
+            </div>
+            {{ nome }}
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
                     <p-calendar
@@ -20,6 +32,7 @@
                     <label>Data da Prescrição</label>
                 </span>
             </div>
+            {{ value }}
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
                     <p-autoComplete
@@ -63,7 +76,7 @@
             </div>
         </div>
         <basis-datatable type="memory" [value]="Prescricao">
-            <p-column header="Prontuário" field="prontuario"></p-column>
+            <p-column header="Prontuário" field="id"></p-column>
             <p-column header="Paciente" field="nome"></p-column>
             <p-column header="Localização" field="local"></p-column>
             <p-column header="Início Prescrição" field="dataInicio"></p-column>
