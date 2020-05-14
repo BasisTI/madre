@@ -1,7 +1,7 @@
 package br.com.basis.madre.domain.enumeration;
 
 public enum CodigoDoTipoEventoLeito {
-    LIBERACAO(1L), RESERVA(2L), BLOQUEIO(3L);
+    LIBERACAO(1L), RESERVA(2L), BLOQUEIO(3L), OCUPACAO(4L);
 
     private Long valor;
 
