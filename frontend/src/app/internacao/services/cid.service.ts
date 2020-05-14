@@ -1,47 +1,27 @@
-import { CID } from './../models/cid';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { api } from '@internacao/api';
-import { EntityService } from '@shared/entity.service';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { CID } from '@internacao/models/cid';
 
 @Injectable({
     providedIn: 'root',
 })
-export class CidService implements EntityService {
-    private readonly resource = `${api}/cids`;
+export class CidService {
+    private readonly _resource$ = `${api}/cids`;
 
     constructor(private client: HttpClient) {}
 
-    getResource<T>(params?: HttpParams): Observable<T> {
-        if (params) {
-            return this.client.get<T>(this.resource, { params });
-        }
-
-        return this.client.get<T>(this.resource);
+    public getCids(): Observable<Array<CID>> {
+        return this.client.get<Array<CID>>(this._resource$, {
+            params: new HttpParams().set('sort', 'codigo'),
+        });
     }
 
-    getCIDS(sort?: boolean, sortBy?: string): Observable<Array<CID>> {
-        if (sort) {
-            return this.getResource<Array<CID>>(
-                new HttpParams().set('sort', sortBy ? sortBy : 'descricao'),
-            );
-        }
-
-        return this.getResource<Array<CID>>();
-    }
-
-    getCIDSPorDescricao(
-        descricao: string,
-        sort?: boolean,
-        sortBy?: string,
-    ): Observable<Array<CID>> {
-        const params = new HttpParams().set('descricao', descricao);
-
-        if (sort) {
-            return this.getResource<Array<CID>>(params.set('sort', sortBy ? sortBy : 'descricao'));
-        }
-
-        return this.getResource<Array<CID>>();
+    public getSelectItemArrayFrom(cids: Array<CID>) {
+        return cids.map((cid: CID) => ({
+            label: `${cid.codigo} - ${cid.descricao}`,
+            value: cid,
+        }));
     }
 }

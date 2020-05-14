@@ -1,44 +1,48 @@
-import { CID } from '@internacao/models/cid';
-import { HttpParams, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { api } from '@internacao/api';
-import { EntityService } from '@shared/entity.service';
 import { Observable } from 'rxjs';
-import { TreeNode } from 'primeng/api';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { api } from '@internacao/api';
+import { CID } from '@internacao/models/cid';
+import { TreeNode } from 'primeng';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ArvoreCidService implements EntityService {
-    private readonly resource = `${api}/cids`;
+export class ArvoreCidService {
+    private readonly _resource$ = `${api}/cids`;
 
     constructor(private client: HttpClient) {}
 
-    getResource<T>(params?: HttpParams): Observable<T> {
-        if (params) {
-            return this.client.get<T>(this.resource, { params });
-        }
-
-        return this.client.get<T>(this.resource);
+    public getParents(): Observable<Array<CID>> {
+        return this.client.get<Array<CID>>(`${this._resource$}/pais`, {
+            params: new HttpParams().set('sort', 'codigo'),
+        });
     }
 
-    getPais(): Observable<Array<CID>> {
-        return this.client.get<Array<CID>>(`${this.resource}/pais`);
-    }
-
-    getFilhosPeloIdDoPai(id: number): Observable<Array<CID>> {
-        return this.client.get<Array<CID>>(`${this.resource}/pais/${id}/filhos`);
-    }
-
-    getTreeNodeFrom(pais: Array<CID>): Array<TreeNode> {
-        return pais.map((pai) => ({
-            label: pai.descricao,
-            data: pai,
+    public getParentTreeNodesFrom(parents: Array<CID>): Array<TreeNode> {
+        return parents.map((parent: CID) => ({
+            label: `${parent.codigo} - ${parent.descricao}`,
+            data: parent,
             expandedIcon: 'pi pi-folder-open',
             collapsedIcon: 'pi pi-folder',
             leaf: false,
-            selectable: false,
-            children: [],
         }));
+    }
+
+    public getChildrenFromParentId(id: number): Observable<Array<CID>> {
+        return this.client.get<Array<CID>>(`${this._resource$}/pais/${id}/filhos`, {
+            params: new HttpParams().set('sort', 'codigo'),
+        });
+    }
+
+    public getChildTreeNodesFrom(children: Array<CID>): Array<TreeNode> {
+        return children.map((child: CID) => {
+            return {
+                label: `${child.codigo} - ${child.descricao}`,
+                data: child,
+                expandedIcon: 'pi pi-folder-open',
+                collapsedIcon: 'pi pi-folder',
+            };
+        });
     }
 }

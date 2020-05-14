@@ -7,15 +7,15 @@ import br.com.basis.madre.repository.CIDRepository;
 import br.com.basis.madre.repository.search.CIDSearchRepository;
 import br.com.basis.madre.service.dto.CidDTO;
 import br.com.basis.madre.service.mapper.CIDMapper;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,35 +48,24 @@ public class CIDService {
         return result;
     }
 
-    /**
-     * Get all the cIDS.
-     *
-     * @param cidDTO
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Transactional(readOnly = true)
-    public Page<CidDTO> findAll(CidDTO cidDTO, Pageable pageable) {
+    public List<CidDTO> findAll(Sort sort) {
         log.debug("Request to get all CIDS");
-        return cidRepository.findAll(
-            Example.of(cidMapper
-                .toEntity(cidDTO), ExampleMatcher.matching().withIgnoreCase().withStringMatcher(
-                StringMatcher.CONTAINING))
-            , pageable)
-            .map(cidMapper::toDto
-            );
+        return cidRepository.findAll(sort)
+            .stream().map(cidMapper::toDto
+            ).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public Page<CidDTO> getPais(String descricao, Pageable pageable) {
-        return cidRepository.findByPaiNullAndDescricaoIgnoreCaseContaining(descricao, pageable)
-            .map(cidMapper::toDto);
+    public List<CidDTO> getPais(Sort sort) {
+        return cidRepository.findByPaiNull(sort).stream()
+            .map(cidMapper::toDto).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public Page<CidDTO> getFilhosPeloIdDoPai(Long id, Pageable pageable) {
-        return cidRepository.findByPaiId(id, pageable)
-            .map(cidMapper::toDto);
+    public List<CidDTO> getFilhosPeloIdDoPai(Long id, Sort sort) {
+        return cidRepository.findByPaiId(id, sort).stream()
+            .map(cidMapper::toDto).collect(Collectors.toList());
     }
 
     /**

@@ -1,17 +1,26 @@
+<div class="ui-g ui-fluid"></div>
 <form [formGroup]="parentFormGroup">
-    <span class="ui-float-label">
-        <p-autoComplete
-            field="descricao"
-            [formControlName]="name"
-            (completeMethod)="aoDigitar($event)"
-            (onBlur)="aoDesfocar()"
-            [required]="required"
-            [suggestions]="filhos"
-            [forceSelection]="true"
-            [dropdown]="true"
-        >
-        </p-autoComplete>
-        <label>CID</label>
-    </span>
-    <app-arvore></app-arvore>
+    <div class="ui-g-12">
+        <div class="ui-g-4">
+            <label>{{ label }} </label>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <app-arvore (onSelect)="onSelect($event)"></app-arvore>
+        </div>
+        <div class="ui-g-8">
+            <p-dropdown
+                [options]="cids"
+                [filter]="true"
+                emptyFilterMessage="Nenhum registro encontrado."
+                [virtualScroll]="true"
+                placeholder="Selecione"
+                itemSize="50"
+                [showClear]="showClear"
+                [formControlName]="name"
+                [required]="required"
+            ></p-dropdown>
+        </div>
+    </div>
 </form>
