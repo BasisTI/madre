@@ -8,7 +8,7 @@ export const routes: Routes = [
     { path: 'prescricao-medica',
         loadChildren: 'src/app/prescricao-medica/prescricao-medica.module#PrescricaoMedicaModule'
     },
-    { path: 'diario-erros', component: DiarioErrosComponent },
+    { path: 'diario-erros', component: DiarioErrosComponent, data: { breadcrumb: 'Diário de Erros' } },
     { path: 'login-success', component: LoginSuccessComponent },
     {
         path: 'pacientes',
@@ -19,8 +19,8 @@ export const routes: Routes = [
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
     {
-        path: 'solicitacao-de-internacao',
-        loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+        path: 'internacao',
+        loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
     },
 ];
 

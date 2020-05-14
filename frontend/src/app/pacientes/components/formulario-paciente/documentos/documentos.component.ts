@@ -1,4 +1,4 @@
-import { ptBR } from '../../../../shared/calendar.pt-br.locale';
+import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OrgaoEmissorService } from './orgao-emissor.service';
@@ -17,10 +17,9 @@ import { UfService } from './uf.service';
 })
 export class DocumentosComponent {
     @Input() documentos: FormGroup;
-    localizacao = ptBR;
+    localizacao = CALENDAR_LOCALE;
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
-    validade = ptBR;
     yearValidade = '2010:2030';
 
     constructor(

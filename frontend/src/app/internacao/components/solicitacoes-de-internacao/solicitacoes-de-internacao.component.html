@@ -1,0 +1,57 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Solicitações de Internação</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input type="text" pInputText class="ui-inputtext" />
+                        <label>Nome do Paciente</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Nova"
+                            icon="ui-icon-add"
+                            [disabled]="true"
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable
+                    type="server"
+                    [url]="api"
+                    (buttonClick)="onButtonClick($event)"
+                    #datatable
+                >
+                    <p-column header="Prontuário" field="prontuario"></p-column>
+                    <p-column header="Nome do Paciente" field="nomeDoPaciente"></p-column>
+                    <p-column header="Prioridade" field="prioridade">
+                        <ng-template let-col let-data="rowData" pTemplate="body">
+                            {{ data['prioridade'] | prioridade }}
+                        </ng-template>
+                    </p-column>
+                    <basis-datatable-button
+                        icon="add"
+                        name="create"
+                        [disabled]="datatable.selectedRow ? false : true"
+                        class="ui-button-info"
+                    >
+                    </basis-datatable-button>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>

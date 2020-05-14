@@ -2,7 +2,9 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
+import br.com.basis.madre.service.dto.FormularioCadastroDTO;
 import br.com.basis.madre.service.dto.PacienteDTO;
+import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -70,17 +72,18 @@ public class PacienteResource {
     /**
      * {@code POST  /pacientes} : Create a new paciente.
      *
-     * @param pacienteDTO the pacienteDTO to create.
+     * @param paciente the pacienteDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pacienteDTO, or with status {@code 400 (Bad Request)} if the paciente has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+
     @PostMapping("/pacientes")
-    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody PacienteDTO pacienteDTO) throws URISyntaxException {
-        log.debug("REST request to save Paciente : {}", pacienteDTO);
-        if (pacienteDTO.getId() != null) {
+    public ResponseEntity<PacienteInclusaoDTO> createPaciente(@Valid @RequestBody PacienteInclusaoDTO paciente) throws URISyntaxException {
+        log.debug("REST request to save Paciente : {}", paciente);
+        if (paciente.getId() != null) {
             throw new BadRequestAlertException("A new paciente cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        PacienteDTO result = pacienteService.save(pacienteDTO);
+        PacienteInclusaoDTO result = pacienteService.save(paciente);
         return ResponseEntity.created(new URI("/api/pacientes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -96,12 +99,12 @@ public class PacienteResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/pacientes")
-    public ResponseEntity<PacienteDTO> updatePaciente(@Valid @RequestBody PacienteDTO pacienteDTO) throws URISyntaxException {
+    public ResponseEntity<PacienteInclusaoDTO> updatePaciente(@Valid @RequestBody PacienteInclusaoDTO pacienteDTO) throws URISyntaxException {
         log.debug("REST request to update Paciente : {}", pacienteDTO);
         if (pacienteDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        PacienteDTO result = pacienteService.save(pacienteDTO);
+        PacienteInclusaoDTO result = pacienteService.save(pacienteDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, pacienteDTO.getId().toString()))
             .body(result);
@@ -130,9 +133,9 @@ public class PacienteResource {
      */
     @GetMapping("/pacientes/{id}")
     @Timed
-    public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id) {
+    public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
-        Optional<PacienteDTO> pacienteDTO = pacienteService.findOne(id);
+        Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOne(id);
         return ResponseUtil.wrapOrNotFound(pacienteDTO);
     }
 

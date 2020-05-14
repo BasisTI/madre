@@ -1,5 +1,5 @@
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
-import { BreadcrumbService } from '../../breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';

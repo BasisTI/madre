@@ -1,3 +1,5 @@
+import { FormulaCadastroService } from './components/formulario-paciente/formula-cadastro.service';
+import { HttpClientModule } from '@angular/common/http';
 // tslint:disable-next-line: max-line-length
 import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
 import { NgModule } from '@angular/core';
@@ -13,7 +15,6 @@ import { CartaoSusComponent } from './components/formulario-paciente/cartao-sus/
 import { TelefoneComponent } from './components/formulario-paciente/telefone/telefone.component';
 import { EnderecoComponent } from './components/formulario-paciente/endereco/endereco.component';
 import { FormularioCadastroComponent } from './components/formulario-paciente/formulario-cadastro.component';
-import { ObservacaoComponent } from './components/formulario-paciente/observacao/observacao.component';
 import { TriagemComponent } from './components/triagem/triagem.component';
 
 import { routes } from './pacientes.routes';
@@ -37,13 +38,6 @@ import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
 import { UfService } from './components/formulario-paciente/documentos/uf.service';
 import { MunicipioService } from './components/formulario-paciente/endereco/municipio.service';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
-import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
-import { SolicitacaoDeInternacaoService } from './components/solicitacao-de-internacao/solicitacao-de-internacao.service';
-import { EspecialidadeService } from './components/solicitacao-de-internacao/especialidade.service';
-import { CrmService } from './components/solicitacao-de-internacao/crm.service';
-import { ProcedimentoService } from './components/solicitacao-de-internacao/procedimento.service';
-import { CidService } from './components/solicitacao-de-internacao/cid.service';
-import { EquipeService } from './components/solicitacao-de-internacao/equipe.service';
 
 @NgModule({
     declarations: [
@@ -55,18 +49,17 @@ import { EquipeService } from './components/solicitacao-de-internacao/equipe.ser
         TelefoneComponent,
         EnderecoComponent,
         FormularioCadastroComponent,
-        ObservacaoComponent,
         ListaDePacientesComponent,
         ProntuarioPipe,
         CartaoSusPipe,
         TriagemComponent,
         ClassificacaoDeRiscoComponent,
         FormularioTriagemComponent,
-        SolicitacaoDeInternacaoComponent,
     ],
     providers: [
         PacientesService,
-        SolicitacaoDeInternacaoService,
+        FormulaCadastroService,
+
         { provide: CRUD_SERVICE, useExisting: RacaService },
         { provide: CRUD_SERVICE, useExisting: EtniaService },
         { provide: CRUD_SERVICE, useExisting: EstadoCivilService },
@@ -80,11 +73,6 @@ import { EquipeService } from './components/solicitacao-de-internacao/equipe.ser
         { provide: CRUD_SERVICE, useExisting: MotivoDoCadastro },
         { provide: CRUD_SERVICE, useExisting: UfService },
         { provide: CRUD_SERVICE, useExisting: MunicipioService },
-        { provide: CRUD_SERVICE, useExisting: EspecialidadeService },
-        { provide: CRUD_SERVICE, useExisting: CrmService },
-        { provide: CRUD_SERVICE, useExisting: ProcedimentoService },
-        { provide: CRUD_SERVICE, useExisting: CidService },
-        { provide: CRUD_SERVICE, useExisting: EquipeService },
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],

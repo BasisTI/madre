@@ -1,0 +1,11 @@
+id;prioridade;justificativa;data_da_internacao;diferenca_de_classe;solicitar_prontuario
+1;URGENCIA;Home Loan Account Table Computer;2020-05-03;false;true
+2;URGENCIA;Tasty Metal Bacon;2020-05-02;false;false
+3;URGENCIA;methodology Albania;2020-05-03;false;false
+4;URGENCIA;Coordinator;2020-05-03;false;false
+5;ELETIVA;Refined Rubber Chicken Table;2020-05-03;false;true
+6;URGENCIA;Public-key;2020-05-03;false;true
+7;ELETIVA;Games Regional Digitized;2020-05-03;true;false
+8;URGENCIA;Industrial;2020-05-03;true;false
+9;ELETIVA;Awesome;2020-05-03;true;false
+10;ELETIVA;Louisiana Specialist Home Loan Account;2020-05-03;false;false

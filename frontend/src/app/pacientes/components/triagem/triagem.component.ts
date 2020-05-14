@@ -2,7 +2,7 @@ import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BreadcrumbService } from '../../../breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 
 @Component({
     selector: 'app-triagem',

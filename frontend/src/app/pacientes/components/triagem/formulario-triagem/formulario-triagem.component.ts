@@ -1,11 +1,10 @@
-import { PacienteResumo } from './../../../models/paciente-resumo';
 import { ActivatedRoute } from '@angular/router';
 import { TriagemModel } from '../../../models/triagem-model';
-import { TriagemService } from '../triagem.service';
-import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
-import { OnInit, OnDestroy, Component, Input } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
+import { TriagemService } from './../triagem.service';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { OnInit, OnDestroy, Component, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -32,8 +31,12 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         removidoDeAmbulancia: [''],
         observacao: [''],
     });
-    toasty: any;
-    errorHandler: any;
+
+    @Input() formularioTriagem: FormGroup;
+    localizacao = CALENDAR_LOCALE;
+    dataLimite = new Date();
+    anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
 
     constructor(
         private breadcrumbService: BreadcrumbService,

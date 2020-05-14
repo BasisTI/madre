@@ -1,5 +1,6 @@
 import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
-import { BreadcrumbService } from '../../../../../breadcrumb/breadcrumb.service';
+
+import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
