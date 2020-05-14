@@ -1,10 +1,10 @@
 package br.com.basis.madre.service.dto;
 
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDate;
+import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
+
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -16,6 +16,7 @@ public class TriagemDTO implements Serializable {
     private Long id;
 
     @NotNull
+    private ClassificacaoDeRisco classificacaoDeRisco;
 
     private BigDecimal pressaoArterial;
 
@@ -37,6 +38,9 @@ public class TriagemDTO implements Serializable {
 
     private Boolean removidoDeAmbulancia;
 
+    private String observacao;
+
+    //@NotNull
     private Long pacienteId;
 
     public Long getId() {
@@ -47,7 +51,16 @@ public class TriagemDTO implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getPressaoArterial() {        return pressaoArterial;
+    public ClassificacaoDeRisco getClassificacaoDeRisco() {
+        return classificacaoDeRisco;
+    }
+
+    public void setClassificacaoDeRisco(ClassificacaoDeRisco classificacaoDeRisco) {
+        this.classificacaoDeRisco = classificacaoDeRisco;
+    }
+
+    public BigDecimal getPressaoArterial() {
+        return pressaoArterial;
     }
 
     public void setPressaoArterial(BigDecimal pressaoArterial) {
@@ -77,6 +90,7 @@ public class TriagemDTO implements Serializable {
     public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
+
     public String getSinaisSintomas() {
         return sinaisSintomas;
     }
@@ -88,6 +102,7 @@ public class TriagemDTO implements Serializable {
     public ZonedDateTime getDataHoraDoAtendimento() {
         return dataHoraDoAtendimento;
     }
+
     public void setDataHoraDoAtendimento(ZonedDateTime dataHoraDoAtendimento) {
         this.dataHoraDoAtendimento = dataHoraDoAtendimento;
     }
@@ -116,11 +131,17 @@ public class TriagemDTO implements Serializable {
         this.removidoDeAmbulancia = removidoDeAmbulancia;
     }
 
-    public Long getPacienteId() {
+    public String getObservacao() { return observacao;
+    }
+
+    public void setObservacao(String observacao) { this.observacao = observacao;
+    }
+
+    public long getPaciente() {
         return pacienteId;
     }
 
-    public void setPacienteId(Long pacienteId) {
+    public void setPaciente(long pacienteId) {
         this.pacienteId = pacienteId;
     }
 
@@ -148,18 +169,21 @@ public class TriagemDTO implements Serializable {
     @Override
     public String toString() {
         return "TriagemDTO{" +
-            "id=" + getId() +
-            ", pressaoArterial=" + getPressaoArterial() +
-            ", frequenciaCardiaca=" + getFrequenciaCardiaca() +
-            ", temperatura=" + getTemperatura() +
-            ", peso=" + getPeso() +
-            ", sinaisSintomas='" + getSinaisSintomas() + "'" +
-            ", dataHoraDoAtendimento='" + getDataHoraDoAtendimento() + "'" +
-            ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
-            ", descricaoQueixa='" + getDescricaoQueixa() + "'" +
-            ", vitimaDeAcidente='" + isVitimaDeAcidente() + "'" +
-            ", removidoDeAmbulancia='" + isRemovidoDeAmbulancia() + "'" +
-            ", paciente=" + getPacienteId() +
-            "}";
+            "id=" + id +
+            ", classificacaoDeRisco=" + classificacaoDeRisco +
+            ", paciente=" + pacienteId +
+            ", pressaoArterial='" + pressaoArterial + '\'' +
+            ", frequenciaCardiaca='" + frequenciaCardiaca + '\'' +
+            ", temperatura='" + temperatura + '\'' +
+            ", peso='" + peso + '\'' +
+            ", sinaisSintomas='" + sinaisSintomas + '\'' +
+            ", dataHoraDoAtendimento='" + dataHoraDoAtendimento + '\'' +
+            ", descricaoQueixa='" + descricaoQueixa + '\'' +
+            ", vitimaDeAcidente=" + vitimaDeAcidente +
+            ", removidoDeAmbulancia=" + removidoDeAmbulancia +
+            ", observacao=" + observacao +
+            ", pacienteId=" + pacienteId +
+            '}';
     }
+
 }

@@ -1,7 +1,11 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <h1>Triagem</h1>
+            <span class="md-inputfield">
+                <input pInputText disabled />
+                <h1>Triagem</h1>
+            </span>
+
             <div class="ui-g">
                 <div class="ui-g-11 ui-md-11 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
@@ -38,17 +42,60 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable type="memory" [value]="null">
-                    <p-column header="Nome do Paciente" field="nomeDoPaciente"></p-column>
-                    <p-column header="Nome Social" field="nomeSocial"></p-column>
-                    <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
-                    <p-column header="Data do Atendimento" field="dataDoAtendimento"> </p-column>
-                    <p-column header="Hora de Chegada" field="horaDeChegada"></p-column>
-                    <p-column header="Classificação" field="classificacao"></p-column>
+                <basis-datatable
+                    type="server"
+                    [url]="searchUrl"
+                    [value]="triagens"
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                    (buttonClick)="btnClick($event)"
+                >
+                    <p-column field="paciente" header="Nome do Paciente">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field].nome }}</span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Nome Social" field="paciente"
+                        ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field].nomeSocial }}</span>
+                        </ng-template></p-column
+                    >
+                    <p-column header="Nome da Mãe" field="paciente"
+                        ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field].genitores.nomeDaMae }}</span>
+                        </ng-template></p-column
+                    >
+                    <p-column
+                        header="Data/Hora da Chegada"
+                        field="dataHoraDoAtendimento"
+                    ></p-column>
+                    <p-column header="Classificação" field="classificacaoDeRisco"></p-column>
+                    <basis-datatable-button
+                        *ngIf="!disableEdit"
+                        class="ui-button-success"
+                        name="edit"
+                        icon="edit"
+                    >
+                    </basis-datatable-button>
+                    <basis-datatable-button
+                        ng-reflect-icon="ui-icon-remove-red-eye"
+                        ng-reflect-b-tooltip="Escolha um registro para visualizar"
+                        class="ng-star-inserted"
+                        icon="remove-red-eye"
+                    >
+                    </basis-datatable-button>
+                    <basis-datatable-button
+                        *ngIf="!disableDelete"
+                        (click)="onClick(deleteEventName, $event)"
+                        class="ui-button-danger"
+                        icon="delete"
+                    ></basis-datatable-button>
                 </basis-datatable>
                 <div class="ui-g-9"></div>
                 <div class="ui-g-2">
                     <button
+                        *ngIf="!disableUpload"
                         name="export"
                         pButton
                         textAlign="right"

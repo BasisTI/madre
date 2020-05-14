@@ -1,8 +1,9 @@
 package br.com.basis.madre.web.rest;
-
 import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
+import br.com.basis.madre.service.TriagemService;
+import br.com.basis.madre.service.projection.TriagemProjection;
 
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -10,6 +11,9 @@ import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,9 +43,13 @@ public class TriagemResource {
     private final TriagemSearchRepository triagemSearchRepository;
     private String applicationName;
 
-    public TriagemResource(TriagemRepository triagemRepository, TriagemSearchRepository triagemSearchRepository) {
+    private final TriagemService triagemService;
+
+
+    public TriagemResource(TriagemRepository triagemRepository, TriagemSearchRepository triagemSearchRepository, TriagemService triagemService) {
         this.triagemRepository = triagemRepository;
         this.triagemSearchRepository = triagemSearchRepository;
+        this.triagemService = triagemService;
     }
 
     /**
@@ -74,13 +82,15 @@ public class TriagemResource {
      * or with status 500 (Internal Server Error) if the triagem couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/triagens")
+    @PutMapping("/triagens/{id}")
     @Timed
-    public ResponseEntity<Triagem> updateTriagem(@Valid @RequestBody Triagem triagem) throws URISyntaxException {
+    public ResponseEntity<Triagem> updateTriagem(@Valid @PathVariable Long id,
+                                                 @RequestBody Triagem triagem) {
         log.debug("REST request to update Triagem : {}", triagem);
-        if (triagem.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        if (id == null) {
+            return ResponseEntity.notFound().build();
         }
+        triagem.setId(id);
         Triagem result = triagemRepository.save(triagem);
         triagemSearchRepository.save(result);
         return ResponseEntity.ok()
@@ -106,12 +116,18 @@ public class TriagemResource {
      * @param id the id of the triagem to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the triagem, or with status 404 (Not Found)
      */
-    @GetMapping("/triagens/{id}")
-    @Timed
+  @GetMapping("/triagens/{id}")
     public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
         log.debug("REST request to get Triagem : {}", id);
         Optional<Triagem> triagem = triagemRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(triagem);
+    }
+    @GetMapping("/triagens/lista/{id}")
+    @Timed
+    public ResponseEntity<List<Triagem>> buscarTriagemPorIdDoPaciente(@PathVariable("id") Long id) {
+        List<Triagem> triagem = triagemRepository.findByPacienteId(id);
+
+        return ResponseEntity.ok(triagem);
     }
 
     /**
@@ -145,5 +161,11 @@ public class TriagemResource {
             .stream(triagemSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
+
+    @GetMapping("/triagens/pacientes")
+    public ResponseEntity<Page<TriagemProjection>> findAllProjectedTriagemProjectionBy(Pageable pageable) {
+        return ResponseEntity.ok(triagemService.findAllProjectedTriagemProjectionBy(pageable));
+    }
+
 
 }

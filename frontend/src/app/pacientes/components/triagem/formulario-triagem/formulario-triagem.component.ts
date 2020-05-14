@@ -1,10 +1,10 @@
-import { ClassificacaoDeRiscoService } from './classificacao-de-risco/classificacao-de-risco.service';
+import { ActivatedRoute } from '@angular/router';
+import { TriagemModel } from '../../../models/triagem-model';
+import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
 import { TriagemService } from './../triagem.service';
-import { BreadcrumbService } from '@nuvem/primeng-components';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
-import { logging } from 'protractor';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -12,17 +12,19 @@ import { logging } from 'protractor';
     styleUrls: ['./formulario-triagem.component.css'],
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
+    @Input() formsTriagem: FormGroup;
+    opcaoClassificacao = CLASSIFICACAO_COLORS;
+    selectedValue: string;
+    triagem: TriagemModel;
     formTriagem = this.fb.group({
-        nomeDoPaciente: ['', Validators.required],
+        classificacaoDeRisco: [''],
+        paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
         temperatura: [''],
         peso: [''],
         sinaisSintomas: [''],
-        dataHoraDoAtendimento: [
-            `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()} -
-${new Date().getHours()}:${new Date().getUTCMinutes()}`,
-        ],
+        dataHoraDoAtendimento: [new Date()],
         idade: [''],
         descricaoQueixa: ['', Validators.required],
         vitimaDeAcidente: [''],
@@ -40,30 +42,83 @@ ${new Date().getHours()}:${new Date().getUTCMinutes()}`,
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private triagemService: TriagemService,
+        private route: ActivatedRoute,
     ) {}
 
     ngOnInit() {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'Triagem', routerLink: 'triagem' },
+            { label: 'Triagem', routerLink: 'pacientes/triagem' },
             { label: 'Formulário' },
         ]);
 
-        //     this.dataHora();
-        // }
+        const triagemId = this.route.snapshot.params['id'];
 
-        // dataHora() {
-        //     const dataHora = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()},
-        //     ${new Date().getHours()}:${new Date().getUTCMinutes()}`;
+        if (triagemId) {
+            this.carregarTriagem(triagemId);
+        }
     }
+    get editando() {
+        return Boolean(this.triagem.id);
+    }
+
+    //     this.dataHora();
+    // }
+
+    // dataHora() {
+    //     const dataHora = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()},
+    //     ${new Date().getHours()}:${new Date().getUTCMinutes()}`;
 
     cadastrar(form: FormBuilder) {
-        console.log(form);
+        const tri = this.formTriagem.value;
+        const triagem: TriagemModel = {
+            classificacaoDeRisco: tri.classificacaoDeRisco,
+            pressaoArterial: tri.pressaoArterial,
+            frequenciaCardiaca: tri.frequenciaCardiaca,
+            temperatura: tri.temperatura,
+            peso: tri.peso,
+            sinaisSintomas: tri.sinaisSintomas,
+            dataHoraDoAtendimento: tri.dataHoraDoAtendimento,
+            descricaoQueixa: tri.descricaoQueixa,
+            vitimaDeAcidente: tri.vitimaDeAcidente,
+            removidoDeAmbulancia: tri.removidoDeAmbulancia,
+            observacao: tri.observacao,
+        };
 
-        this.triagemService.cadastrarTriagem(this.formTriagem.value);
+        this.triagemService.cadastrarTriagem(triagem).subscribe();
     }
 
-    ngOnDestroy(): void {
+    carregarTriagem(id: number) {
+        this.triagemService.buscarTriagemId(id).subscribe((triagem) => {
+            console.log(triagem);
+
+            this.formTriagem.patchValue(triagem);
+            this.formTriagem.patchValue({ paciente: triagem.paciente.nome });
+        });
+    }
+    // salvar(form: FormControl) {
+    //     if (this.editando) {
+    //       this.atualizarTriagem(form);
+    //     } else {
+    //       this.adicionarTriagem(form);
+    //     }
+    // }
+    // adicionarTriagem(form: FormControl) {
+    //     this.triagemService.adicionar(this.triagem)
+    //       .then(() => {
+    //         this.toasty.success('Lançamento adicionado com sucesso!');
+
+    //         });
+    //     }
+
+    //         atualizarLancamento(form: FormControl) {
+    //             this.triagemService.atualizar(this.triagem)
+    //             .then(triagem => {
+    //                 this.triagem = TriagemNova;
+    //             });
+    //         }
+
+    ngOnDestroy() {
         this.breadcrumbService.reset();
     }
 }
