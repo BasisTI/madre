@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CID } from '@internacao/models/cid';
 import { ArvoreCidService } from '@internacao/services/arvore-cid.service';
 import { TreeNode, Tree } from 'primeng';
@@ -7,7 +7,7 @@ import { TreeNode, Tree } from 'primeng';
     selector: 'app-arvore',
     templateUrl: './arvore.component.html',
 })
-export class ArvoreComponent {
+export class ArvoreComponent implements OnInit {
     visible = false;
     selection: CID;
     parents: Array<TreeNode>;
@@ -15,12 +15,14 @@ export class ArvoreComponent {
 
     constructor(private arvoreCidService: ArvoreCidService) {}
 
-    onClick() {
-        this.visible = true;
-
+    ngOnInit(): void {
         this.arvoreCidService.getParents().subscribe((parents: Array<CID>) => {
             this.parents = this.arvoreCidService.getParentTreeNodesFrom(parents);
         });
+    }
+
+    onClick() {
+        this.visible = true;
     }
 
     onNodeSelect(event: { originalEvent: MouseEvent; node: TreeNode }) {
