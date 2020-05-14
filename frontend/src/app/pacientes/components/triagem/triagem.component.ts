@@ -25,10 +25,7 @@ export class TriagemComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private triagemService: TriagemService,
         private router: Router,
-        private route: ActivatedRoute,
     ) {}
-
-    triagens: any[];
 
     triagem: any;
 
@@ -39,14 +36,6 @@ export class TriagemComponent implements OnInit, OnDestroy {
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'Emergencia', routerLink: 'emergencia' },
         ]);
-
-        const idTriagem = this.route.snapshot.params['id'];
-
-        if (idTriagem) {
-            this.listarTriagemId(idTriagem);
-        }
-
-        this.listarTriagens();
     }
 
     listarTriagemId(id: number) {
@@ -57,12 +46,8 @@ export class TriagemComponent implements OnInit, OnDestroy {
 
     listarTriagens() {
         this.triagemService.listarTriagem().subscribe((triagens) => {
-            this.triagens = triagens.content;
+            this.triagem = triagens.content;
             console.log(triagens);
-
-            // this.triagemService
-            //     .recuperar()
-            //     .subscribe((atualizaTriagem) => (this.triagemService = atualizaTriagem));
         });
     }
 

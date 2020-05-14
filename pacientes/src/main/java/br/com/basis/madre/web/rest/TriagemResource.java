@@ -116,13 +116,13 @@ public class TriagemResource {
      * @param id the id of the triagem to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the triagem, or with status 404 (Not Found)
      */
-//  @GetMapping("/triagens/triagens/{id}")
-//    public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
-//        log.debug("REST request to get Triagem : {}", id);
-//        Optional<Triagem> triagem = triagemRepository.findById(id);
-//        return ResponseUtil.wrapOrNotFound(triagem);
-//    }
-    @GetMapping("/triagens/paciente/{id}")
+  @GetMapping("/triagens/{id}")
+    public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
+        log.debug("REST request to get Triagem : {}", id);
+        Optional<Triagem> triagem = triagemRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(triagem);
+    }
+    @GetMapping("/triagens/lista/{id}")
     @Timed
     public ResponseEntity<List<Triagem>> buscarTriagemPorIdDoPaciente(@PathVariable("id") Long id) {
         List<Triagem> triagem = triagemRepository.findByPacienteId(id);

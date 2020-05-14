@@ -1,9 +1,9 @@
-import { TriagemModel } from '../../models/triagem-model';
+import { TriagemModel } from './../../models/triagem-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
-import { map } from 'rxjs/operators';
+
+type NewType = any;
 
 @Injectable({
     providedIn: 'root',
@@ -27,6 +27,6 @@ export class TriagemService {
     }
 
     listarTriagem(): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/pacientes`);
+        return this.httpService.get(`${this.apiUrl}/triagens/lista`);
     }
 }
