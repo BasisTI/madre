@@ -145,7 +145,16 @@ spring:
   output:
     ansi:
       console-available: true
-
+  cloud:
+    stream:
+      bindings:
+        listenFirst-in-0:
+          destination: recebe
+          group: group1
+        sendFirst-out-0:
+          destination: envia
+    function:
+      definition: listenFirst;sendFirst
 server:
   servlet:
     session:
