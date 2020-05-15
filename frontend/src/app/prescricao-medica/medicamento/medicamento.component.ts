@@ -1,3 +1,4 @@
+import { TIPO_UNIDADE_TEMPO } from './models/unidadeTempo';
 
 import { ItemPrescricaoMedicamento } from './models/itemPrescricaoMedicamento';
 import { MedicamentoService } from './medicamento.service';
@@ -14,8 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MedicamentoComponent implements OnInit, OnDestroy {
 
-    paciente = { nome: '' };
-
+    paciente: {};
     medicamentos = [];
 
     listaMedicamentos = [];
@@ -26,27 +26,38 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
 
     listaTipoAprazamento = [];
 
+    listaDiluente = [];
+
+    listaUnidadeTempo = TIPO_UNIDADE_TEMPO;
+
+    listaUnidadeInfusao = [];
+
     itensPrescricaoMedicamento: ItemPrescricaoMedicamento[] = [];
 
+    prescricaoMedicamento = this.fb.group({
+        idPaciente: [null],
+        observacao: [null]
+    });
+
     itemPrescricaoMedicamento = this.fb.group({
-        idMedicamento: ['', Validators.required],
-        idListaMedicamentos: [''],
-        dose: ['', Validators.required],
-        unidadeDose: [''],
-        frequencia: [''],
-        todasVias: [''],
-        volume: [''],
-        bombaInfusao: [''],
-        unidadeInfusao: [''],
-        velocidadeInfusao: [''],
-        tipoAprazamento:[''],
-        tempoInfusao: [''],
-        unidadeTempo: [''],
-        inicioAdministracao: [''],
-        condicaoNecessaria: [''],
-        viasAdministracao: [''],
-        diluente: [''],
-        observacao: ['']
+        idMedicamento: [null, Validators.required],
+        idListaMedicamentos: [null],
+        dose: [null, Validators.required],
+        unidadeDoseId: [null, Validators.required],
+        viasAdministracaoId: [null, Validators.required],
+        frequencia: [null],
+        todasVias: [null],
+        volume: [null],
+        bombaInfusao: [null],
+        unidadeInfusaoId: [null],
+        velocidadeInfusao: [null],
+        tipoAprazamentoId: [null, Validators.required],
+        tempoInfusao: [null],
+        unidadeTempo: [null],
+        inicioAdministracao: [null],
+        condicaoNecessaria: [null],
+        diluenteId: [null],
+        observacaoCondicao: [null]
     });
 
     constructor(
@@ -75,13 +86,19 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         this.carregarListaUnidadeDose();
         this.carregarViaAdministracao();
         this.carregarTipoAprazamento();
+        this.carregarDiluente();
+        this.carregarUnidadeInfusao();
 
     }
 
     carregarPaciente(id: number) {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
-                this.paciente = paciente;
+
+                this.paciente = paciente.nome;
+                this.prescricaoMedicamento.patchValue({ idPaciente: paciente.id });
+                console.log(paciente);
+
             });
     }
 
@@ -135,24 +152,61 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
             });
     }
 
+    carregarDiluente() {
+        return this.medicamentoService.listarDiluentes()
+            .subscribe(diluentes => {
 
+                this.listaDiluente = diluentes.map(diluente => {
+                    return { label: diluente.descricao, value: diluente };
+                });
+            });
+    }
+
+    carregarUnidadeInfusao() {
+        return this.medicamentoService.listarUnidadeInfusao()
+            .subscribe(unidades => {
+
+                this.listaUnidadeInfusao = unidades.map(unidade => {
+                    return { label: unidade.descricao, value: unidade };
+                });
+            });
+    }
 
     incluirItem() {
         if (this.itemPrescricaoMedicamento.valid) {
 
             this.itensPrescricaoMedicamento.push(this.itemPrescricaoMedicamento.value);
-            console.log(this.itemPrescricaoMedicamento.value);
-
             this.itemPrescricaoMedicamento.reset();
         }
 
     }
 
-    salvar(prescricaoMedicamento: FormBuilder) {
+    prescrever() {
+
+
+        const prescricao = this.prescricaoMedicamento.value;
+
+        const prescricaoMedicamento = Object.assign({}, prescricao, {
+            itemPrescricaoMedicamentos: this.itensPrescricaoMedicamento
+        });
+
+
+        prescricaoMedicamento.itemPrescricaoMedicamentos = prescricaoMedicamento.itemPrescricaoMedicamentos.map(item => {
+            for (let propriedade in item) {
+                if (item[propriedade]?.id) {
+                    item[propriedade] = item[propriedade].id;
+                }
+            }
+
+            return item;
+        });
+
         console.log(prescricaoMedicamento);
 
 
+        this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe();
     }
+
 
     ngOnDestroy() {
         this.breadcrumbService.reset();

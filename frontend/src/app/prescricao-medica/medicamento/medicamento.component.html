@@ -1,28 +1,31 @@
 <div class="ui-g ui-fluid">
 
     <div class="ui-g-12">
-        <form (ngSubmit)="precrever()">
+        <form (ngSubmit)="prescrever()">
             <p-accordion>
                 <p-accordionTab header="Medicamento" [selected]="true">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
+                    <form [formGroup]="prescricaoMedicamento">
+                        <div class="ui-g">
                             <div class="ui-g-12">
-                                <span class="md-inputfield">
-                                    <input [(ngModel)]="paciente.nome" name="nome" type="text" pInputText disabled />
-                                    <label>Paciente</label>
-                                </span>
+                                <div class="ui-g-12">
+                                    <span class="md-inputfield">
+                                        <input [(ngModel)]="paciente" formControlName="idPaciente" type="text" pInputText
+                                            disabled />
+                                        <label>Paciente</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-12">
+                                    <span class="md-inputfield">
+                                        <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
+                                            id="observacao" formControlName="observacao"></textarea>
+                                        <label>Observações</label>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="ui-g-12">
-                            <div class="ui-g-12">
-                                <span class="md-inputfield">
-                                    <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
-                                        id="observacao" name="observacao"></textarea>
-                                    <label>Observações</label>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </p-accordionTab>
 
                 <p-accordionTab header="Itens Medicamento">
@@ -31,17 +34,16 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-6">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="medicamentos" formControlName="idMedicamento" required #idMedicamento>
+                                        <p-dropdown placeholder="Selecione..." [options]="medicamentos"
+                                            formControlName="idMedicamento" required #idMedicamento>
                                         </p-dropdown>
                                         <label>Medicamentos</label>
                                     </span>
                                 </div>
                                 <div class="ui-g-6">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="listaMedicamentos" formControlName="idListaMedicamentos" required
-                                            #idListaMedicamento>
+                                        <p-dropdown placeholder="Selecione..." [options]="listaMedicamentos"
+                                            formControlName="idListaMedicamentos" required #idListaMedicamento>
                                         </p-dropdown>
                                         <label>Lista Medicamentos</label>
                                     </span>
@@ -58,8 +60,8 @@
 
                                 <div class="ui-g-2">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="listaUnidadeDose" formControlName="unidadeDose" required #unidadeDose>
+                                        <p-dropdown placeholder="Selecione..." [options]="listaUnidadeDose"
+                                            formControlName="unidadeDoseId" required #unidadeDose>
                                         </p-dropdown>
                                         <label>Unidade</label>
                                     </span>
@@ -67,9 +69,8 @@
 
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="listaViasAdministracao" formControlName="viasAdministracao" required
-                                            #viaAdministracao>
+                                        <p-dropdown placeholder="Selecione..." [options]="listaViasAdministracao"
+                                            formControlName="viasAdministracaoId" required #viaAdministracao>
                                         </p-dropdown>
                                         <label>Via</label>
                                     </span>
@@ -79,12 +80,14 @@
                                     <label>Todas Vias?</label>
                                 </div>
                                 <div class="ui-g-1">
-                                    <p-radioButton id="sim" type="radio" value="true" name="todasVias" pRadioButton>
+                                    <p-radioButton id="sim" type="radio" value="true" name="todasVias"
+                                        formControlName="todasVias" pRadioButton>
                                     </p-radioButton>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui-g-1">
-                                    <p-radioButton id="nao" type="radio" value="false" name="todasVias" pRadioButton>
+                                    <p-radioButton id="nao" type="radio" value="false" name="todasVias"
+                                        formControlName="todasVias" pRadioButton>
                                     </p-radioButton>
                                     <label>Não</label>
                                 </div>
@@ -102,8 +105,8 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamento" #descricaoAprazamento>
+                                        <p-dropdown placeholder="Selecione..." [options]="listaTipoAprazamento"
+                                            formControlName="tipoAprazamentoId">
                                         </p-dropdown>
                                         <label>Tipo de Aprazamento</label>
                                     </span>
@@ -111,8 +114,8 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..." [options]="diluentes"
-                                        formControlName="diluente" #diluente>
+                                        <p-dropdown placeholder="Selecione..." [options]="listaDiluente"
+                                            formControlName="diluenteId" #diluente>
                                         </p-dropdown>
                                         <label>Diluente</label>
                                     </span>
@@ -123,7 +126,7 @@
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
                                         <input type="text" pInputText formControlName="volume" />
-                                        <label>Volume</label>
+                                        <label>Volume (ml)</label>
                                     </span>
                                 </div>
 
@@ -136,8 +139,8 @@
 
                                 <div class="ui-g-6">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="listaUnidadeTempo" formControlName="unidadeTempo" #unidadeTempo>
+                                        <p-dropdown [options]="listaUnidadeTempo" formControlName="unidadeTempo"
+                                            #unidadeTempo>
                                         </p-dropdown>
                                         <label>Unidade Tempo</label>
                                     </span>
@@ -153,10 +156,10 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown  placeholder="Selecione..."
-                                            [options]="listaUnidadeTempo" formControlName="unidadeTempo" #unidadeTempo>
+                                        <p-dropdown placeholder="Selecione..." [options]="listaUnidadeInfusao"
+                                            formControlName="unidadeInfusaoId" #unidadeTempo>
                                         </p-dropdown>
-                                        <label>Unidade Tempo</label>
+                                        <label>Unidade Infusão</label>
                                     </span>
                                 </div>
 
@@ -164,12 +167,14 @@
                                     <label>Bomba Infusão?</label>
                                 </div>
                                 <div class="ui-g-1">
-                                    <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao" pRadioButton>
+                                    <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao"
+                                        formControlName="bombaInfusao" pRadioButton>
                                     </p-radioButton>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui-g-1">
-                                    <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao" pRadioButton>
+                                    <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao"
+                                        formControlName="bombaInfusao" pRadioButton>
                                     </p-radioButton>
                                     <label>Não</label>
 
@@ -177,14 +182,15 @@
                             </div>
 
                             <div class="ui-g-12">
-                                <div class="ui-g-4">
+                                <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="text" pInputText formControlName="velocidadeInfusao" />
+                                        <p-calendar type="text" timeOnly="true" pInputText
+                                            formControlName="inicioAdministracao"></p-calendar>
                                         <label>Início Adm.</label>
                                     </span>
                                 </div>
 
-                                <div class="ui-g-3">
+                                <div class="ui-g-2">
                                     <label>Necessária Observação?</label>
                                 </div>
                                 <div class="ui-g-1">
@@ -206,7 +212,7 @@
                                 <div class="ui-g-12">
                                     <span class="md-inputfield">
                                         <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
-                                            id="observacao" name="observacao"></textarea>
+                                            id="observacaoCondicao" formControlName="observacaoCondicao"></textarea>
                                         <label>Observações</label>
                                     </span>
                                 </div>
@@ -214,7 +220,7 @@
 
                             <div class="ui-g-6">
                                 <button label="Adicionar" pButton name="adicionar-item" type="submit"
-                                [disabled]="itemPrescricaoMedicamento.invalid">
+                                    [disabled]="itemPrescricaoMedicamento.invalid">
                                 </button>
                             </div>
 
@@ -235,13 +241,13 @@
 
                                     <p-column header="Dose" field="dose"></p-column>
 
-                                    <p-column header="Unidade" field="unidadeDose">
+                                    <p-column header="Unidade" field="unidadeDoseId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span> {{ rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Via" field="viasAdministracao">
+                                    <p-column header="Via" field="viasAdministracaoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span> {{ rowData[col.field].descricao }}</span>
                                         </ng-template>
@@ -249,15 +255,15 @@
 
                                     <p-column header="Frequencia" field="frequencia"></p-column>
 
-                                    <p-column header="Aprazamento" field="tipoAprazamento">
+                                    <p-column header="Aprazamento" field="tipoAprazamentoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span> {{ rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Diluente" field="diluente">
+                                    <p-column header="Diluente" field="diluenteId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
@@ -265,9 +271,25 @@
 
                                     <p-column header="Correr em" field="tempoInfusao"></p-column>
 
-                                    <p-column header="Tempo" field="unidadeTempo">
+                                    <p-column header="Unid. Tempo" field="unidadeTempoId"></p-column>
+
+                                    <p-column header="Velocidade" field="velocidadeInfusao"></p-column>
+
+                                    <p-column header="Unid. Infusão" field="unidadeInfusaoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].value }}</span>
+                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Bomba de Infusão" field="bombaInfusao">
+                                        <ng-template let-l="rowData" pTemplate="body">
+                                            <span href="javascript:;">{{l.bombaInfusao ? 'Sim' : 'Não'}}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Início Adm." field="inicioAdministracao">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span> {{ rowData[col.field] | date: 'hh:mm' }}</span>
                                         </ng-template>
                                     </p-column>
 
