@@ -110,12 +110,12 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     //         });
     //     }
 
-    //         atualizarTriagem(form: FormControl) {
-    //             this.triagemService.alterarTriagem(this.triagem)
-    //             .then(() => {
-    //                 this.triagem = TriagemNova;
-    //             });
-    //         }
+            atualizarTriagem(form: FormControl) {
+                this.triagemService.alterarTriagem(this.triagem)
+                .then(() => {
+                    this.triagem = const Triagem;
+                });
+            }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
