@@ -1,0 +1,33 @@
+{
+    "name": "TipoItemDieta",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoDieta",
+            "otherEntityRelationshipName": "tipoItemDieta",
+            "relationshipName": "itemPrescricaoDieta"
+        }
+    ],
+    "changelogDate": "20200515195408",
+    "entityTableName": "tipo_item_dieta",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

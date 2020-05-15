@@ -4,19 +4,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the {@link br.com.basis.madre.prescricao.domain.TipoAprazamento} entity.
+ * A DTO for the {@link br.com.basis.madre.prescricao.domain.TipoItemDieta} entity.
  */
-public class TipoAprazamentoDTO implements Serializable {
+public class TipoItemDietaDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     @Size(max = 80)
     private String descricao;
-
-    @NotNull
-    @Size(max = 3)
-    private String sigla;
 
 
     public Long getId() {
@@ -35,14 +30,6 @@ public class TipoAprazamentoDTO implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -52,11 +39,11 @@ public class TipoAprazamentoDTO implements Serializable {
             return false;
         }
 
-        TipoAprazamentoDTO tipoAprazamentoDTO = (TipoAprazamentoDTO) o;
-        if (tipoAprazamentoDTO.getId() == null || getId() == null) {
+        TipoItemDietaDTO tipoItemDietaDTO = (TipoItemDietaDTO) o;
+        if (tipoItemDietaDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), tipoAprazamentoDTO.getId());
+        return Objects.equals(getId(), tipoItemDietaDTO.getId());
     }
 
     @Override
@@ -66,10 +53,9 @@ public class TipoAprazamentoDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "TipoAprazamentoDTO{" +
+        return "TipoItemDietaDTO{" +
             "id=" + getId() +
             ", descricao='" + getDescricao() + "'" +
-            ", sigla='" + getSigla() + "'" +
             "}";
     }
 }

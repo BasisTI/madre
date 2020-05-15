@@ -1,0 +1,37 @@
+{
+    "name": "PrescricaoDieta",
+    "fields": [
+        {
+            "fieldName": "idPaciente",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "observacao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoDieta",
+            "otherEntityRelationshipName": "prescricaoDieta",
+            "relationshipName": "itemPrescricaoDieta"
+        }
+    ],
+    "changelogDate": "20200515195406",
+    "entityTableName": "prescricao_dieta",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

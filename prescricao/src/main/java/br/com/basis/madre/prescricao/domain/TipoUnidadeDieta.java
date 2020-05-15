@@ -11,13 +11,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A TipoAprazamento.
+ * A TipoUnidadeDieta.
  */
 @Entity
-@Table(name = "tipo_aprazamento")
+@Table(name = "tipo_unidade_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "tipoaprazamento")
-public class TipoAprazamento implements Serializable {
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "tipounidadedieta")
+public class TipoUnidadeDieta implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,7 +37,7 @@ public class TipoAprazamento implements Serializable {
     @Column(name = "sigla", length = 3, nullable = false)
     private String sigla;
 
-    @OneToMany(mappedBy = "tipoAprazamento")
+    @OneToMany(mappedBy = "tipoUnidadeDieta")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
@@ -54,7 +54,7 @@ public class TipoAprazamento implements Serializable {
         return descricao;
     }
 
-    public TipoAprazamento descricao(String descricao) {
+    public TipoUnidadeDieta descricao(String descricao) {
         this.descricao = descricao;
         return this;
     }
@@ -67,7 +67,7 @@ public class TipoAprazamento implements Serializable {
         return sigla;
     }
 
-    public TipoAprazamento sigla(String sigla) {
+    public TipoUnidadeDieta sigla(String sigla) {
         this.sigla = sigla;
         return this;
     }
@@ -80,20 +80,20 @@ public class TipoAprazamento implements Serializable {
         return itemPrescricaoDietas;
     }
 
-    public TipoAprazamento itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
+    public TipoUnidadeDieta itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
         this.itemPrescricaoDietas = itemPrescricaoDietas;
         return this;
     }
 
-    public TipoAprazamento addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
+    public TipoUnidadeDieta addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
         this.itemPrescricaoDietas.add(itemPrescricaoDieta);
-        itemPrescricaoDieta.setTipoAprazamento(this);
+        itemPrescricaoDieta.setTipoUnidadeDieta(this);
         return this;
     }
 
-    public TipoAprazamento removeItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
+    public TipoUnidadeDieta removeItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
         this.itemPrescricaoDietas.remove(itemPrescricaoDieta);
-        itemPrescricaoDieta.setTipoAprazamento(null);
+        itemPrescricaoDieta.setTipoUnidadeDieta(null);
         return this;
     }
 
@@ -107,10 +107,10 @@ public class TipoAprazamento implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof TipoAprazamento)) {
+        if (!(o instanceof TipoUnidadeDieta)) {
             return false;
         }
-        return id != null && id.equals(((TipoAprazamento) o).id);
+        return id != null && id.equals(((TipoUnidadeDieta) o).id);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class TipoAprazamento implements Serializable {
 
     @Override
     public String toString() {
-        return "TipoAprazamento{" +
+        return "TipoUnidadeDieta{" +
             "id=" + getId() +
             ", descricao='" + getDescricao() + "'" +
             ", sigla='" + getSigla() + "'" +
