@@ -7,10 +7,15 @@ import lombok.Data;
 
 @Data
 public class LiberacaoDeLeitoDTO implements Serializable {
+
     private Long id;
 
     @NotNull
     private Long leitoId;
+
+    private LocalDate dataInicio;
+
+    private LocalDate dataFim;
 
     @NotNull
     private LocalDate dataDoLancamento;

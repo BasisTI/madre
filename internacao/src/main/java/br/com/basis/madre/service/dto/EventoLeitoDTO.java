@@ -15,6 +15,10 @@ public class EventoLeitoDTO implements Serializable {
 
     private String justificativa;
 
+    private LocalDate dataInicio;
+
+    private LocalDate dataFim;
+
     private Long tipoDoEventoId;
 
     private Long leitoId;
