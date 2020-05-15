@@ -15,14 +15,14 @@ export class ItemPrescricaoMedicamento {
         public velocidadeInfusao?: number,
         public tempoInfusao?: number,
         public unidadeTempo?: string,
-        public inicioAdministracao?: string,
+        public inicioAdministracao?: Date,
         public condicaoNecessaria?: boolean,
         public observacaoCondicao?: string,
-        public viasAdministracaoId?: ViasAdministracao,
-        public diluenteId?: Diluente,
-        public unidadeInfusaoId?: UnidadeInfusao,
-        public unidadeDoseId?: UnidadeDose,
-        public tipoAprazamentoId?: TipoAprazamento
+        public viasAdministracaoId?: number,
+        public diluenteId?: number,
+        public unidadeInfusaoId?: number,
+        public unidadeDoseId?: number,
+        public tipoAprazamentoId?: number
 
     ) {}
 }
