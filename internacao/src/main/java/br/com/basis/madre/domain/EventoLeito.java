@@ -59,7 +59,7 @@ public class EventoLeito implements Serializable {
     @JsonIgnoreProperties("eventoLeitos")
     private TipoDaReservaDeLeito tipo;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JsonIgnoreProperties("eventoLeitos")
     private MotivoDoBloqueioDeLeito motivo;
 

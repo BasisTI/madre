@@ -100,11 +100,13 @@ public class LeitoService {
         Sort sort = pageable.getSort();
         CodigoDeSituacaoDeLeito codigoDeDesocupado = CodigoDeSituacaoDeLeito.BLOQUEADO;
         CodigoDeSituacaoDeLeito codigoDeReservado = CodigoDeSituacaoDeLeito.RESERVADO;
+        CodigoDeSituacaoDeLeito codigoDeOcupado = CodigoDeSituacaoDeLeito.OCUPADO;
 
         SituacaoDeLeitoDTO bloqueado = new SituacaoDeLeitoDTO().id(codigoDeDesocupado.getValor());
         SituacaoDeLeitoDTO reservado = new SituacaoDeLeitoDTO().id(codigoDeReservado.getValor());
+        SituacaoDeLeitoDTO ocupado = new SituacaoDeLeitoDTO().id(codigoDeOcupado.getValor());
 
-        List<SituacaoDeLeito> situacoes = Arrays.asList(bloqueado, reservado).stream()
+        List<SituacaoDeLeito> situacoes = Arrays.asList(bloqueado, reservado, ocupado).stream()
             .map(situacaoDeLeitoMapper::toEntity).collect(Collectors.toList());
 
         return leitoRepository
@@ -160,5 +162,11 @@ public class LeitoService {
             .situacao(situacaoDeLeitoMapper.toEntity(situacao));
         leito = leitoRepository.save(leito);
         return leitoMapper.toDto(leito);
+    }
+
+    public LeitoDTO ocuparLeito(Long leitoId) {
+        LeitoDTO leitoDTO = findOne(leitoId).orElseThrow(EntityNotFoundException::new);
+        leitoDTO.setSituacaoId(CodigoDeSituacaoDeLeito.OCUPADO.getValor());
+        return save(leitoDTO);
     }
 }
