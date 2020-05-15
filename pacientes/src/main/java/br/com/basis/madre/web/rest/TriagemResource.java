@@ -122,13 +122,6 @@ public class TriagemResource {
         Optional<Triagem> triagem = triagemRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(triagem);
     }
-    @GetMapping("/triagens/lista/{id}")
-    @Timed
-    public ResponseEntity<List<Triagem>> buscarTriagemPorIdDoPaciente(@PathVariable("id") Long id) {
-        List<Triagem> triagem = triagemRepository.findByPacienteId(id);
-
-        return ResponseEntity.ok(triagem);
-    }
 
     /**
      * DELETE  /triagens/:id : delete the "id" triagem.
