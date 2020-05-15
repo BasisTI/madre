@@ -1,16 +1,18 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Internacao;
 import br.com.basis.madre.service.dto.InternacaoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity {@link Internacao} and its DTO {@link InternacaoDTO}.
- */
-@Mapper(componentModel = "spring", uses = {EspecialidadeMapper.class, CRMMapper.class, HospitalMapper.class, OrigemDaInternacaoMapper.class, ConvenioDeSaudeMapper.class, PlanoDeSaudeMapper.class, ProcedimentoMapper.class, ProcedenciaMapper.class, ModalidadeAssistencialMapper.class, LocalDeAtendimentoMapper.class, CaraterDaInternacaoMapper.class})
+@Mapper(componentModel = "spring", uses = {EspecialidadeMapper.class, CRMMapper.class,
+    HospitalMapper.class, OrigemDaInternacaoMapper.class, ConvenioDeSaudeMapper.class,
+    PlanoDeSaudeMapper.class, ProcedimentoMapper.class, ProcedenciaMapper.class,
+    ModalidadeAssistencialMapper.class, LocalDeAtendimentoMapper.class,
+    CaraterDaInternacaoMapper.class, LeitoMapper.class})
 public interface InternacaoMapper extends EntityMapper<InternacaoDTO, Internacao> {
 
+    @Mapping(source = "leito.id", target = "leitoId")
     @Mapping(source = "especialidade.id", target = "especialidadeId")
     @Mapping(source = "crm.id", target = "crmId")
     @Mapping(source = "hospitalDeOrigem.id", target = "hospitalDeOrigemId")
@@ -24,6 +26,7 @@ public interface InternacaoMapper extends EntityMapper<InternacaoDTO, Internacao
     @Mapping(source = "caraterDaInternacao.id", target = "caraterDaInternacaoId")
     InternacaoDTO toDto(Internacao internacao);
 
+    @Mapping(source = "leitoId", target = "leito")
     @Mapping(source = "especialidadeId", target = "especialidade")
     @Mapping(source = "crmId", target = "crm")
     @Mapping(source = "hospitalDeOrigemId", target = "hospitalDeOrigem")

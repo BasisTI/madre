@@ -8,6 +8,7 @@ import { Procedencia, IProcedencia } from './procedencia';
 import { LocalDeAtendimento, ILocalDeAtendimento } from './local-de-atendimento';
 import { ModalidadeAssistencial, IModalidadeAssistencial } from './modalidade-assistencial';
 import { CRM, ICRM } from './crm';
+import { ILeito, Leito } from './leito';
 
 export interface IInternacao {
     id?: number;
@@ -25,6 +26,7 @@ export interface IInternacao {
     diferencaDeClasse: boolean;
     solicitarProntuario: boolean;
     justificativa: string;
+    leito: ILeito;
 }
 
 export class Internacao implements IInternacao {
@@ -43,4 +45,5 @@ export class Internacao implements IInternacao {
     public diferencaDeClasse: boolean;
     public solicitarProntuario: boolean;
     public justificativa: string;
+    public leito: Leito;
 }

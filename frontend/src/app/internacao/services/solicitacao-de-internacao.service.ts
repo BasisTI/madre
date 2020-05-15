@@ -22,8 +22,8 @@ export class SolicitacaoDeInternacaoService implements EntityService {
         return this.client.get<T>(this.resource);
     }
 
-    getSolicitacaoPorId(id: number): Observable<any> {
-        return this.client.get(`${this.resource}/${id}`);
+    getSolicitacaoPorId(id: number): Observable<SolicitacaoDeInternacaoDTO> {
+        return this.client.get<SolicitacaoDeInternacaoDTO>(`${this.resource}/${id}`);
     }
 
     solicitarInternacao(
