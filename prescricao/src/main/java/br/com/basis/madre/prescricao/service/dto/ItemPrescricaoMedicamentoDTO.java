@@ -66,8 +66,13 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 		this.id = id;
 	}
 
+
 	public Long getIdMedicamento() {
 		return idMedicamento;
+	}
+
+	public void setIdMedicamento(Long idMedicamento) {
+		this.idMedicamento = idMedicamento;
 	}
 
 	public Long getIdListaMedicamentos() {
