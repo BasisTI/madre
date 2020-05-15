@@ -1,11 +1,19 @@
-id;numero_do_conselho;nome
-1;32866;Danish Krone parse
-2;79157;back-end Unbranded Cambridgeshire
-3;5755;Austria mindshare EXE
-4;35091;Frozen Metal program
-5;61821;Refined Practical Algerian Dinar
-6;7276;programming panel
-7;8134;Intelligent Planner
-8;37427;transition open-source Interactions
-9;98600;navigate repurpose
-10;8350;navigate Oklahoma
+id;numero_do_conselho;nome;especialidade_id
+1;32866;Equipe C3;11
+2;79157;Equipe PO;12
+3;5755;Equipe I5;13
+4;35091;Equipe L2;14
+5;61821;Equipe W3;15
+6;7276;Equipe K10;1
+7;8134;Equipe Y92;2
+8;37427;Equipe R4;3
+9;98600;Equipe R2;4
+10;83508;Equipe D2;5
+11;12355;Equipe P25;6
+12;75366;Equipe P51;7
+13;97234;Equipe X21;8
+14;12123;Equipe X27;9
+15;34349;Equipe HG;10
+16;53267;Equipe PI;11
+17;98472;Equipe EL;12
+18;12304;Equipe EU;14
