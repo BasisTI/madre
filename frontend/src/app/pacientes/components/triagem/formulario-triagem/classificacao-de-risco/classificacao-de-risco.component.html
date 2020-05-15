@@ -4,12 +4,12 @@
     <div class="ui-dataview ui-g ui-sm-10">
         <div class="ui-g-7">
             <h3>
-                <span>{{ risk.name }}</span>
+                <span>{{ formTriagem.value.classificacaoDeRisco | classificaoDeRisco }}</span>
             </h3>
         </div>
         <div class="ui-g-1" value="classificacaoDeRisco">
             <div
-                class="azul"
+                class="naoUrgente"
                 pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
             ></div>
             <div class="ui-g-12"></div>
@@ -24,7 +24,7 @@
 
         <div class="ui-g-1">
             <div
-                class="verde"
+                class="poucoUrgente"
                 pTooltip="Baixo risco de agravo a saúde, pode aguardar atendimento"
             ></div>
             <div class="ui-g-12"></div>
@@ -39,7 +39,7 @@
 
         <div class="ui-g-1">
             <div
-                class="amarelo"
+                class="urgente"
                 pTooltip="Necessita de atendimento rápido, mas pode aguardar"
             ></div>
             <div class="ui-g-12"></div>
@@ -53,7 +53,10 @@
         </div>
 
         <div class="ui-g-1">
-            <div class="laranja" pTooltip="Necessita de atendimento praticamente imediato"></div>
+            <div
+                class="muitoUrgente"
+                pTooltip="Necessita de atendimento praticamente imediato"
+            ></div>
             <div class="ui-g-12"></div>
             <div>
                 <p-radioButton
@@ -65,7 +68,7 @@
         </div>
 
         <div class="ui-g-1">
-            <div class="vermelho" pTooltip="Necessita de atendimento imediato"></div>
+            <div class="emergencia" pTooltip="Necessita de atendimento imediato"></div>
             <div class="ui-g-12"></div>
             <div>
                 <p-radioButton

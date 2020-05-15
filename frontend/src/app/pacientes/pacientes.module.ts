@@ -38,6 +38,7 @@ import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
 import { UfService } from './components/formulario-paciente/documentos/uf.service';
 import { MunicipioService } from './components/formulario-paciente/endereco/municipio.service';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
+import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { FormularioTriagemComponent } from './components/triagem/formulario-tria
         TriagemComponent,
         ClassificacaoDeRiscoComponent,
         FormularioTriagemComponent,
+        ClassificaoDeRiscoPipe,
     ],
     providers: [
         PacientesService,

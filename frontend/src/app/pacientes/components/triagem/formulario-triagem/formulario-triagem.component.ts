@@ -1,10 +1,10 @@
 import { ActivatedRoute } from '@angular/router';
 import { TriagemModel } from '../../../models/triagem-model';
-import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
     @Input() formsTriagem: FormGroup;
-    opcaoClassificacao = CLASSIFICACAO_COLORS;
+    opcaoClassificacao = CLASSIFICACAO_RISCO;
     selectedValue: string;
     triagem: TriagemModel;
     formTriagem = this.fb.group({
