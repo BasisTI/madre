@@ -4,7 +4,7 @@ import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/class
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -61,7 +61,6 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     get editando() {
         return Boolean(this.triagem.id);
     }
-
     //     this.dataHora();
     // }
 
@@ -106,14 +105,14 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     // adicionarTriagem(form: FormControl) {
     //     this.triagemService.adicionar(this.triagem)
     //       .then(() => {
-    //         this.toasty.success('Lançamento adicionado com sucesso!');
+    //         this.triagem.success('Lançamento adicionado com sucesso!');
 
     //         });
     //     }
 
-    //         atualizarLancamento(form: FormControl) {
-    //             this.triagemService.atualizar(this.triagem)
-    //             .then(triagem => {
+    //         atualizarTriagem(form: FormControl) {
+    //             this.triagemService.alterarTriagem(this.triagem)
+    //             .then(() => {
     //                 this.triagem = TriagemNova;
     //             });
     //         }
