@@ -1,26 +1,45 @@
 package br.com.basis.madre.prescricao.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
+import lombok.Data;
 
 /**
  * A ItemPrescricaoMedicamento.
  */
+
+@Data
 @Entity
 @Table(name = "item_prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "itemprescricaomedicamento")
+@Document(indexName = "itemprescricaomedicamento")
 public class ItemPrescricaoMedicamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,17 +47,20 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
 	@SequenceGenerator(name = "sequenceGenerator")
-	@org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+	@Field(type = FieldType.Keyword)
 	private Long id;
 
 	@NotNull
+	@NotEmpty
 	@Column(name = "id_medicamento", nullable = false)
 	private Long idMedicamento;
 
 	@NotNull
+	@NotEmpty
 	private Long idListaMedicamentos;
 
 	@NotNull
+	@NotEmpty
 	@DecimalMin(value = "0")
 	@Column(name = "dose", precision = 21, scale = 2, nullable = false)
 	private BigDecimal dose;
@@ -99,63 +121,22 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;
 
-	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
-	// remove
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getIdMedicamento() {
-		return idMedicamento;
+	public ItemPrescricaoMedicamento frequencia(Integer frequencia) {
+		this.frequencia = frequencia;
+		return this;
 	}
 
 	public ItemPrescricaoMedicamento idMedicamento(Long idMedicamento) {
 		this.idMedicamento = idMedicamento;
 		return this;
 	}
-
-	public void setIdMedicamento(Long idMedicamento) {
-		this.idMedicamento = idMedicamento;
-	}
-
-	public Long getIdListaMedicamentos() {
-		return idListaMedicamentos;
-	}
-
-	public void setIdListaMedicamentos(Long idListaMedicamentos) {
-		this.idListaMedicamentos = idListaMedicamentos;
-	}
-
-	public BigDecimal getDose() {
-		return dose;
-	}
-
+	
 	public ItemPrescricaoMedicamento dose(BigDecimal dose) {
 		this.dose = dose;
 		return this;
 	}
 
-	public void setDose(BigDecimal dose) {
-		this.dose = dose;
-	}
-
-	public Integer getFrequencia() {
-		return frequencia;
-	}
-
-	public ItemPrescricaoMedicamento frequencia(Integer frequencia) {
-		this.frequencia = frequencia;
-		return this;
-	}
-
-	public void setFrequencia(Integer frequencia) {
-		this.frequencia = frequencia;
-	}
-
+	
 	public Boolean isTodasVias() {
 		return todasVias;
 	}
@@ -163,10 +144,6 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	public ItemPrescricaoMedicamento todasVias(Boolean todasVias) {
 		this.todasVias = todasVias;
 		return this;
-	}
-
-	public void setTodasVias(Boolean todasVias) {
-		this.todasVias = todasVias;
 	}
 
 	public Boolean isBombaInfusao() {
@@ -178,25 +155,9 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		return this;
 	}
 
-	public void setBombaInfusao(Boolean bombaInfusao) {
-		this.bombaInfusao = bombaInfusao;
-	}
-
-	public BigDecimal getVelocidadeInfusao() {
-		return velocidadeInfusao;
-	}
-
 	public ItemPrescricaoMedicamento velocidadeInfusao(BigDecimal velocidadeInfusao) {
 		this.velocidadeInfusao = velocidadeInfusao;
 		return this;
-	}
-
-	public void setVelocidadeInfusao(BigDecimal velocidadeInfusao) {
-		this.velocidadeInfusao = velocidadeInfusao;
-	}
-
-	public Integer getTempoInfusao() {
-		return tempoInfusao;
 	}
 
 	public ItemPrescricaoMedicamento tempoInfusao(Integer tempoInfusao) {
@@ -204,34 +165,14 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		return this;
 	}
 
-	public void setTempoInfusao(Integer tempoInfusao) {
-		this.tempoInfusao = tempoInfusao;
-	}
-
-	public UnidadeTempo getUnidadeTempo() {
-		return unidadeTempo;
-	}
-
 	public ItemPrescricaoMedicamento unidadeTempo(UnidadeTempo unidadeTempo) {
 		this.unidadeTempo = unidadeTempo;
 		return this;
 	}
 
-	public void setUnidadeTempo(UnidadeTempo unidadeTempo) {
-		this.unidadeTempo = unidadeTempo;
-	}
-
-	public LocalDate getInicioAdministracao() {
-		return inicioAdministracao;
-	}
-
 	public ItemPrescricaoMedicamento inicioAdministracao(LocalDate inicioAdministracao) {
 		this.inicioAdministracao = inicioAdministracao;
 		return this;
-	}
-
-	public void setInicioAdministracao(LocalDate inicioAdministracao) {
-		this.inicioAdministracao = inicioAdministracao;
 	}
 
 	public Boolean isCondicaoNecessaria() {
@@ -243,25 +184,9 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		return this;
 	}
 
-	public void setCondicaoNecessaria(Boolean condicaoNecessaria) {
-		this.condicaoNecessaria = condicaoNecessaria;
-	}
-
-	public String getObservacaoCondicao() {
-		return observacaoCondicao;
-	}
-
 	public ItemPrescricaoMedicamento observacaoCondicao(String observacaoCondicao) {
 		this.observacaoCondicao = observacaoCondicao;
 		return this;
-	}
-
-	public void setObservacaoCondicao(String observacaoCondicao) {
-		this.observacaoCondicao = observacaoCondicao;
-	}
-
-	public ViasAdministracao getViasAdministracao() {
-		return viasAdministracao;
 	}
 
 	public ItemPrescricaoMedicamento viasAdministracao(ViasAdministracao viasAdministracao) {
@@ -269,25 +194,9 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		return this;
 	}
 
-	public void setViasAdministracao(ViasAdministracao viasAdministracao) {
-		this.viasAdministracao = viasAdministracao;
-	}
-
-	public Diluente getDiluente() {
-		return diluente;
-	}
-
 	public ItemPrescricaoMedicamento diluente(Diluente diluente) {
 		this.diluente = diluente;
 		return this;
-	}
-
-	public void setDiluente(Diluente diluente) {
-		this.diluente = diluente;
-	}
-
-	public UnidadeInfusao getUnidadeInfusao() {
-		return unidadeInfusao;
 	}
 
 	public ItemPrescricaoMedicamento unidadeInfusao(UnidadeInfusao unidadeInfusao) {
@@ -295,25 +204,9 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		return this;
 	}
 
-	public void setUnidadeInfusao(UnidadeInfusao unidadeInfusao) {
-		this.unidadeInfusao = unidadeInfusao;
-	}
-
-	public UnidadeDose getUnidadeDose() {
-		return unidadeDose;
-	}
-
 	public ItemPrescricaoMedicamento unidadeDose(UnidadeDose unidadeDose) {
 		this.unidadeDose = unidadeDose;
 		return this;
-	}
-
-	public void setUnidadeDose(UnidadeDose unidadeDose) {
-		this.unidadeDose = unidadeDose;
-	}
-
-	public PrescricaoMedicamento getPrescricaoMedicamento() {
-		return prescricaoMedicamento;
 	}
 
 	public ItemPrescricaoMedicamento prescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
@@ -321,44 +214,5 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		return this;
 	}
 
-	public void setPrescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
-		this.prescricaoMedicamento = prescricaoMedicamento;
-	}
 
-	// jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-	// setters here, do not remove
-
-	public TipoAprazamento getTipoAprazamento() {
-		return tipoAprazamento;
-	}
-
-	public void setTipoAprazamento(TipoAprazamento tipoAprazamento) {
-		this.tipoAprazamento = tipoAprazamento;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof ItemPrescricaoMedicamento)) {
-			return false;
-		}
-		return id != null && id.equals(((ItemPrescricaoMedicamento) o).id);
-	}
-
-	@Override
-	public int hashCode() {
-		return 31;
-	}
-
-	@Override
-	public String toString() {
-		return "ItemPrescricaoMedicamento{" + "id=" + getId() + ", idMedicamento=" + getIdMedicamento() + "idListaMedicamentos= " + getIdListaMedicamentos() + ", dose="
-				+ getDose() + ", frequencia=" + getFrequencia() + ", todasVias='" + isTodasVias() + "'"
-				+ ", bombaInfusao='" + isBombaInfusao() + "'" + ", velocidadeInfusao=" + getVelocidadeInfusao()
-				+ ", tempoInfusao=" + getTempoInfusao() + ", unidadeTempo='" + getUnidadeTempo() + "'"
-				+ ", inicioAdministracao='" + getInicioAdministracao() + "'" + ", condicaoNecessaria='"
-				+ isCondicaoNecessaria() + "'" + ", observacaoCondicao='" + getObservacaoCondicao() + "'" + "}";
-	}
 }

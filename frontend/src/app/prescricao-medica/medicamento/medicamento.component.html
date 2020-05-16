@@ -157,7 +157,7 @@
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [options]="listaUnidadeInfusao"
-                                            formControlName="unidadeInfusaoId" #unidadeTempo>
+                                            formControlName="unidadeInfusaoId">
                                         </p-dropdown>
                                         <label>Unidade Infusão</label>
                                     </span>
@@ -271,7 +271,7 @@
 
                                     <p-column header="Correr em" field="tempoInfusao"></p-column>
 
-                                    <p-column header="Unid. Tempo" field="unidadeTempoId"></p-column>
+                                    <p-column header="Unid. Tempo" field="unidadeTempo"></p-column>
 
                                     <p-column header="Velocidade" field="velocidadeInfusao"></p-column>
 
@@ -308,7 +308,6 @@
                 </div>
             </div>
         </form>
-        <!-- {{profileForm.value | json}} -->
 
     </div>
 </div>
