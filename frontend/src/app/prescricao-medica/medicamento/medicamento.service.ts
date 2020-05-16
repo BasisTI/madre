@@ -36,7 +36,7 @@ export class MedicamentoService {
     }
 
     listarTiposAprazamentos(): Observable<Array<TipoAprazamento>> {
-        return this.http.get<Array<TipoAprazamento>>(`${this.baseUrl}/tipo-aprazamento`);
+        return this.http.get<Array<TipoAprazamento>>(`${this.baseUrl}/tipo-aprazamentos`);
     }
 
     listarDiluentes(): Observable<Array<Diluente>> {
