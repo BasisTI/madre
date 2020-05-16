@@ -16,7 +16,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,7 +28,6 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
