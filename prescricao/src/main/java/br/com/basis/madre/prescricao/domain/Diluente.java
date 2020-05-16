@@ -5,7 +5,12 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,10 +18,11 @@ import java.util.Set;
 /**
  * A Diluente.
  */
+@Data
 @Entity
 @Table(name = "diluente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "diluente")
+@Document(indexName = "diluente")
 public class Diluente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,9 +30,10 @@ public class Diluente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     private Long id;
 
+    @NotEmpty
     @NotNull
     @Size(max = 100)
     @Column(name = "descricao", length = 100, nullable = false)
@@ -36,31 +43,12 @@ public class Diluente implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
 
     public Diluente descricao(String descricao) {
         this.descricao = descricao;
         return this;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Set<ItemPrescricaoMedicamento> getItemPrescricaoMedicamentos() {
-        return itemPrescricaoMedicamentos;
-    }
 
     public Diluente itemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
         this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
@@ -79,32 +67,4 @@ public class Diluente implements Serializable {
         return this;
     }
 
-    public void setItemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
-        this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Diluente)) {
-            return false;
-        }
-        return id != null && id.equals(((Diluente) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Diluente{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            "}";
-    }
 }
