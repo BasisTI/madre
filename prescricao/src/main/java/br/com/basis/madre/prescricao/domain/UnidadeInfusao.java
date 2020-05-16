@@ -22,11 +22,18 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * A UnidadeInfusao.
  */
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "unidade_infusao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)

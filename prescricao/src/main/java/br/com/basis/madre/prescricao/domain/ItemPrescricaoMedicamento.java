@@ -29,13 +29,18 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * A ItemPrescricaoMedicamento.
  */
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "item_prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -51,16 +56,13 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	private Long id;
 
 	@NotNull
-	@NotEmpty
 	@Column(name = "id_medicamento", nullable = false)
 	private Long idMedicamento;
 
 	@NotNull
-	@NotEmpty
 	private Long idListaMedicamentos;
 
 	@NotNull
-	@NotEmpty
 	@DecimalMin(value = "0")
 	@Column(name = "dose", precision = 21, scale = 2, nullable = false)
 	private BigDecimal dose;
@@ -213,6 +215,34 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		this.prescricaoMedicamento = prescricaoMedicamento;
 		return this;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemPrescricaoMedicamento other = (ItemPrescricaoMedicamento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
+	
 
 
 }

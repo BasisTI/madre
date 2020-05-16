@@ -10,6 +10,10 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,7 +22,10 @@ import java.util.Set;
 /**
  * A Diluente.
  */
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "diluente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
