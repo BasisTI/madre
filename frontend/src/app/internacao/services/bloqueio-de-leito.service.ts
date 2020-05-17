@@ -1,39 +1,28 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { api } from '@internacao/api';
-import { EntityService } from '@shared/entity.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
-export class BloqueioDeLeitoService implements EntityService {
-    private readonly resource = `${api}/leitos/bloqueios`;
+export class BloqueioDeLeitoService {
+    private readonly _resource$ = `${api}/bloqueios`;
 
     constructor(private client: HttpClient) {}
 
-    getResource<T>(params?: HttpParams): Observable<T> {
-        if (params) {
-            return this.client.get<T>(this.resource, { params });
-        }
-
-        return this.client.get<T>(this.resource);
-    }
-
-    bloquearLeito(bloqueio): Observable<any> {
-        console.log(bloqueio);
-
-        const bloqueioDTO = {
-            dataDoLancamento: bloqueio.dataDoLancamento,
-            justificativa: bloqueio.justificativa,
+    bloquearLeito(bloqueio: any): Observable<any> {
+        const dto = {
             leitoId: bloqueio.leito.id,
             motivoId: bloqueio.motivo.id,
+            dataDoLancamento: bloqueio.dataDoLancamento,
+            dataInicio: bloqueio.dataInicio,
+            dataFim: bloqueio.dataFim,
+            justificativa: bloqueio.justificativa,
         };
 
-        return this.client.post<any>(this.resource, bloqueioDTO);
-    }
+        console.log(dto);
 
-    getApi(): string {
-        return this.resource;
+        return this.client.post<any>(this._resource$, dto);
     }
 }

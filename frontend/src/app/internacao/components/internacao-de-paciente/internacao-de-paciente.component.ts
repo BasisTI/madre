@@ -12,7 +12,7 @@ import { SolicitacaoDeInternacaoDTO } from '@internacao/models/dtos/solicitacao-
     templateUrl: './internacao-de-paciente.component.html',
     styleUrls: ['./internacao-de-paciente.component.scss'],
 })
-export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
+export class InternacaoDePacienteComponent implements OnInit {
     public solicitacao: SolicitacaoDeInternacaoDTO;
 
     public pCalendarConfig = {
@@ -23,7 +23,6 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     };
 
     constructor(
-        private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
         private internacaoDePacienteService: InternacaoDePacienteService,
@@ -53,24 +52,10 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     });
 
     ngOnInit(): void {
-        this.breadcrumbService.setItems([
-            {
-                label: 'Internação',
-            },
-            {
-                label: 'Internar Paciente',
-                routerLink: 'internacao-de-paciente',
-            },
-        ]);
-
         const id = this.route.snapshot.params['id'];
         this.solicitacaoDeInternacaoService.getSolicitacaoPorId(id).subscribe((solicitacao) => {
             this.solicitacao = solicitacao;
         });
-    }
-
-    ngOnDestroy(): void {
-        this.breadcrumbService.reset();
     }
 
     internarPaciente() {

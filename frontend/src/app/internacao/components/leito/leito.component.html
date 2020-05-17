@@ -1,18 +1,10 @@
 <form [formGroup]="parentFormGroup">
-    <span class="ui-float-label">
-        <p-autoComplete
-            field="nome"
-            [formControlName]="name"
-            (completeMethod)="aoDigitar($event)"
-            (onBlur)="aoDesfocar()"
-            [required]="required"
-            [suggestions]="leitos"
-            [forceSelection]="true"
-            [dropdown]="true"
-            (onSelect)="aoSelecionar()"
-            (onBlur)="aoDesfocar()"
-        >
-        </p-autoComplete>
-        <label>{{ label }}</label>
-    </span>
+    <label>{{ label }}</label>
+    <p-dropdown
+        [options]="leitos"
+        optionLabel="nome"
+        [formControlName]="name"
+        [filter]="true"
+        (onChange)="aoSelecionar()"
+    ></p-dropdown>
 </form>

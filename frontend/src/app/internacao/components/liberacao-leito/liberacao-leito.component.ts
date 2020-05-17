@@ -46,9 +46,6 @@ export class LiberacaoLeitoComponent implements OnInit, OnDestroy {
     }
 
     liberarLeito(): void {
-        this.liberacaoDeLeitoService
-            .liberarLeito(this.formGroup.value)
-            .subscribe((resposta) => console.log(resposta));
         this.formGroup.reset();
     }
 }
