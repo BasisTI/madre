@@ -1,8 +1,8 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.LeitoDTO;
-import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
 import br.com.basis.madre.service.projection.LeitoProjection;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -112,22 +112,29 @@ public class LeitoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/leitos/desocupados")
-    public ResponseEntity<List<LeitoProjection>> getLeitosDesocupadosPorNome(
-        @RequestParam(name = "nome", required = false, defaultValue = "") String nome,
-        Pageable pageable) {
-        log.debug("REST request to get a page of Leitos");
-        List<LeitoProjection> leitos = leitoService.getLeitosDesocupadosPor(nome, pageable);
-        return ResponseEntity.ok().body(leitos);
+    @GetMapping("/leitos/reservados")
+    public ResponseEntity<List<Leito>> obterTodosOsLeitosReservados() {
+        return ResponseEntity.ok(leitoService.obterTodosOsLeitosReservados());
     }
 
-    @GetMapping("/leitos/nao-desocupados")
-    public ResponseEntity<List<LeitoProjection>> getLeitosNaoDesocupadosPorNome(
-        @RequestParam(name = "nome", required = false, defaultValue = "") String nome,
-        Pageable pageable) {
-        log.debug("REST request to get a page of Leitos");
-        List<LeitoProjection> leitos = leitoService.getLeitosNaoDesocupadosPor(nome, pageable);
-        return ResponseEntity.ok().body(leitos);
+    @GetMapping("/leitos/bloqueados")
+    public ResponseEntity<List<Leito>> obterTodosOsLeitosBloqueados() {
+        return ResponseEntity.ok(leitoService.obterTodosOsLeitosBloqueados());
+    }
+
+    @GetMapping("/leitos/ocupados")
+    public ResponseEntity<List<Leito>> obterTodosOsLeitosOcupados() {
+        return ResponseEntity.ok(leitoService.obterTodosOsLeitosOcupados());
+    }
+
+    @GetMapping("/leitos/nao-liberados")
+    public ResponseEntity<List<Leito>> obterTodosOsLeitosNaoLiberados() {
+        return ResponseEntity.ok(leitoService.obterTodosOsLeitosNaoLiberados());
+    }
+
+    @GetMapping("/leitos/liberados")
+    public ResponseEntity<List<Leito>> obterTodosOsLeitosLiberados() {
+        return ResponseEntity.ok(leitoService.obterTodosOsLeitosLiberados());
     }
 
     /**

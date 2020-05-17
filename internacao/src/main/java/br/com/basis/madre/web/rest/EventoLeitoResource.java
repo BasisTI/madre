@@ -1,18 +1,14 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.domain.enumeration.CodigoDeSituacaoDeLeito;
 import br.com.basis.madre.service.EventoLeitoService;
-import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
 import br.com.basis.madre.service.dto.EventoLeitoDTO;
-import br.com.basis.madre.service.dto.LeitoDTO;
 import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -50,81 +46,22 @@ public class EventoLeitoResource {
 
     private final EventoLeitoService eventoLeitoService;
 
-    private final LeitoService leitoService;
-
-    @PostMapping("/leitos/liberacoes")
-    public ResponseEntity<EventoLeitoDTO> liberarLeito(
-        @Valid @RequestBody LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) throws URISyntaxException {
-        if (liberacaoDeLeitoDTO.getId() != null) {
-            throw new BadRequestAlertException("A new eventoLeito cannot already have an ID",
-                ENTITY_NAME, "idexists");
-        }
-
-        LeitoDTO leitoDTO = leitoService.findOne(liberacaoDeLeitoDTO.getLeitoId()).orElseThrow(
-            () -> new BadRequestAlertException("O leito informado não existe.",
-                LeitoResource.getEntityName(), "idnotexists"));
-        CodigoDeSituacaoDeLeito idSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
-
-        if (leitoDTO.getSituacaoId().equals(idSituacao.getValor())) {
-            throw new BadRequestAlertException("Este leito já está liberado.",
-                LeitoResource.getEntityName(), "idinvalid");
-        }
-
-        EventoLeitoDTO eventoLeitoDTO = eventoLeitoService.liberarLeito(liberacaoDeLeitoDTO, leitoDTO);
-        return ResponseEntity.created(new URI("/api/evento-leitos/" + eventoLeitoDTO.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                eventoLeitoDTO.getId().toString()))
-            .body(eventoLeitoDTO);
+    @PostMapping("/reservas")
+    public ResponseEntity<ReservaDeLeitoDTO> reservarLeito(
+        @RequestBody @Valid ReservaDeLeitoDTO reservaDeLeitoDTO) {
+        return ResponseEntity.ok(eventoLeitoService.reservarLeito(reservaDeLeitoDTO));
     }
 
-    @PostMapping("/leitos/reservas")
-    public ResponseEntity<EventoLeitoDTO> reservarLeito(
-        @Valid @RequestBody ReservaDeLeitoDTO reservaDeLeitoDTO) throws URISyntaxException {
-        if (reservaDeLeitoDTO.getId() != null) {
-            throw new BadRequestAlertException("A new eventoLeito cannot already have an ID",
-                ENTITY_NAME, "idexists");
-        }
-
-        LeitoDTO leitoDTO = leitoService.findOne(reservaDeLeitoDTO.getLeitoId()).orElseThrow(
-            () -> new BadRequestAlertException("O leito informado não existe.",
-                LeitoResource.getEntityName(), "idnotexists"));
-        CodigoDeSituacaoDeLeito idSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
-
-        if (!(leitoDTO.getSituacaoId().equals(idSituacao.getValor()))) {
-            throw new BadRequestAlertException("O leito precisa estar desocupado.",
-                LeitoResource.getEntityName(), "idinvalid");
-        }
-
-        EventoLeitoDTO eventoLeitoDTO = eventoLeitoService.reservarLeito(reservaDeLeitoDTO, leitoDTO);
-        return ResponseEntity.created(new URI("/api/evento-leitos/" + eventoLeitoDTO.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                eventoLeitoDTO.getId().toString()))
-            .body(eventoLeitoDTO);
+    @PostMapping("/bloqueios")
+    public ResponseEntity<BloqueioDeLeitoDTO> bloquearLeito(
+        @RequestBody @Valid BloqueioDeLeitoDTO bloqueioDeLeitoDTO) {
+        return ResponseEntity.ok(eventoLeitoService.bloquearLeito(bloqueioDeLeitoDTO));
     }
 
-    @PostMapping("/leitos/bloqueios")
-    public ResponseEntity<EventoLeitoDTO> bloquearLeito(
-        @Valid @RequestBody BloqueioDeLeitoDTO bloqueioDeLeitoDTO) throws URISyntaxException {
-        if (bloqueioDeLeitoDTO.getId() != null) {
-            throw new BadRequestAlertException("A new eventoLeito cannot already have an ID",
-                ENTITY_NAME, "idexists");
-        }
-
-        LeitoDTO leitoDTO = leitoService.findOne(bloqueioDeLeitoDTO.getLeitoId()).orElseThrow(
-            () -> new BadRequestAlertException("O leito informado não existe.",
-                LeitoResource.getEntityName(), "idnotexists"));
-        CodigoDeSituacaoDeLeito idSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
-
-        if (!(leitoDTO.getSituacaoId().equals(idSituacao.getValor()))) {
-            throw new BadRequestAlertException("O leito precisa estar desocupado.",
-                LeitoResource.getEntityName(), "idinvalid");
-        }
-
-        EventoLeitoDTO eventoLeitoDTO = eventoLeitoService.bloquearLeito(bloqueioDeLeitoDTO, leitoDTO);
-        return ResponseEntity.created(new URI("/api/evento-leitos/" + eventoLeitoDTO.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
-                eventoLeitoDTO.getId().toString()))
-            .body(eventoLeitoDTO);
+    @PostMapping("/liberacoes")
+    public ResponseEntity<LiberacaoDeLeitoDTO> liberarLeito(
+        @RequestBody @Valid LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
+        return ResponseEntity.ok(eventoLeitoService.liberarLeito(liberacaoDeLeitoDTO));
     }
 
     /**

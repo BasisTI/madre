@@ -3,16 +3,16 @@ package br.com.basis.madre.service;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import br.com.basis.madre.domain.EventoLeito;
-import br.com.basis.madre.domain.enumeration.CodigoDeSituacaoDeLeito;
 import br.com.basis.madre.domain.enumeration.CodigoDoTipoEventoLeito;
 import br.com.basis.madre.repository.EventoLeitoRepository;
 import br.com.basis.madre.repository.search.EventoLeitoSearchRepository;
 import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
 import br.com.basis.madre.service.dto.EventoLeitoDTO;
-import br.com.basis.madre.service.dto.LeitoDTO;
+import br.com.basis.madre.service.dto.InternacaoDTO;
 import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
+import java.time.LocalDate;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -35,47 +35,46 @@ public class EventoLeitoService {
 
     private final EventoLeitoSearchRepository eventoLeitoSearchRepository;
 
-    private final LeitoService leitoService;
-
-    public EventoLeitoDTO liberarLeito(LiberacaoDeLeitoDTO liberacaoDeLeitoDTO, LeitoDTO leitoDTO) {
-        leitoDTO.setSituacaoId(CodigoDeSituacaoDeLeito.DESOCUPADO.getValor());
-        leitoService.save(leitoDTO);
-
-        EventoLeitoDTO eventoLeitoDTO = eventoLeitoMapper.toDto(liberacaoDeLeitoDTO);
-        eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.LIBERACAO.getValor());
-
-        EventoLeito eventoLeito = eventoLeitoMapper.toEntity(eventoLeitoDTO);
-        eventoLeito = eventoLeitoRepository.save(eventoLeito);
-        eventoLeitoSearchRepository.save(eventoLeito);
-        return eventoLeitoMapper.toDto(eventoLeito);
-    }
-
-    public EventoLeitoDTO reservarLeito(ReservaDeLeitoDTO reservaDeLeitoDTO,
-        LeitoDTO leitoDTO) {
-        leitoDTO.setSituacaoId(CodigoDeSituacaoDeLeito.RESERVADO.getValor());
-        leitoService.save(leitoDTO);
-
+    public ReservaDeLeitoDTO reservarLeito(ReservaDeLeitoDTO reservaDeLeitoDTO) {
         EventoLeitoDTO eventoLeitoDTO = eventoLeitoMapper.toDto(reservaDeLeitoDTO);
         eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.RESERVA.getValor());
 
-        EventoLeito eventoLeito = eventoLeitoMapper.toEntity(eventoLeitoDTO);
-        eventoLeito = eventoLeitoRepository.save(eventoLeito);
+        EventoLeito eventoLeito = eventoLeitoRepository
+            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
         eventoLeitoSearchRepository.save(eventoLeito);
-        return eventoLeitoMapper.toDto(eventoLeito);
+        reservaDeLeitoDTO.setId(eventoLeito.getId());
+
+        return reservaDeLeitoDTO;
     }
 
-    public EventoLeitoDTO bloquearLeito(BloqueioDeLeitoDTO bloqueioDeLeitoDTO,
-        LeitoDTO leitoDTO) {
-        leitoDTO.setSituacaoId(CodigoDeSituacaoDeLeito.BLOQUEADO.getValor());
-        leitoService.save(leitoDTO);
-
+    public BloqueioDeLeitoDTO bloquearLeito(BloqueioDeLeitoDTO bloqueioDeLeitoDTO) {
         EventoLeitoDTO eventoLeitoDTO = eventoLeitoMapper.toDto(bloqueioDeLeitoDTO);
         eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.BLOQUEIO.getValor());
 
-        EventoLeito eventoLeito = eventoLeitoMapper.toEntity(eventoLeitoDTO);
-        eventoLeito = eventoLeitoRepository.save(eventoLeito);
+        EventoLeito eventoLeito = eventoLeitoRepository
+            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
         eventoLeitoSearchRepository.save(eventoLeito);
-        return eventoLeitoMapper.toDto(eventoLeito);
+        bloqueioDeLeitoDTO.setId(eventoLeito.getId());
+
+        return bloqueioDeLeitoDTO;
+    }
+
+    public void ocuparLeito(InternacaoDTO internacaoDTO) {
+        EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
+
+        eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
+        eventoLeitoDTO.setDataDoLancamento(LocalDate.now());
+        eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
+        eventoLeitoDTO.setLeitoId(internacaoDTO.getLeitoId());
+        eventoLeitoDTO.setJustificativa(internacaoDTO.getJustificativa());
+
+        EventoLeito eventoLeito = eventoLeitoRepository
+            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
+        eventoLeitoSearchRepository.save(eventoLeito);
+    }
+
+    public LiberacaoDeLeitoDTO liberarLeito(LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
+        return null;
     }
 
     /**

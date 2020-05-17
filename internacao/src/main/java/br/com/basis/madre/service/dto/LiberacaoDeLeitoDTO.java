@@ -13,10 +13,6 @@ public class LiberacaoDeLeitoDTO implements Serializable {
     @NotNull
     private Long leitoId;
 
-    private LocalDate dataInicio;
-
-    private LocalDate dataFim;
-
     @NotNull
     private LocalDate dataDoLancamento;
 
