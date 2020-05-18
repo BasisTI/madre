@@ -16,7 +16,6 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import java.util.Objects;
 
 
 @Entity
@@ -142,5 +141,13 @@ public class Triagem implements Serializable {
     public Triagem observacao(String observacao) {
         this.observacao = observacao;
         return this;
+    }
+
+    public boolean isVitimaDeAcidente() {
+        return vitimaDeAcidente;
+    }
+
+    public boolean isRemovidoDeAmbulancia() {
+        return removidoDeAmbulancia;
     }
 }
