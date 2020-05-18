@@ -112,13 +112,6 @@ public class LeitoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @PostMapping("/leitos/liberacao-de-leito")
-    public ResponseEntity<LeitoDTO> liberarLeito(
-        @RequestBody @Valid LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
-        return ResponseEntity.ok()
-            .body(leitoService.liberarLeito(liberacaoDeLeitoDTO.getLeitoId()));
-    }
-
     @GetMapping("/leitos/desocupados")
     public ResponseEntity<List<LeitoProjection>> getLeitosDesocupadosPorNome(
         @RequestParam(name = "nome", required = false, defaultValue = "") String nome,

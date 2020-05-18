@@ -44,18 +44,9 @@ public class InternacaoResource {
 
     private final InternacaoService internacaoService;
 
-    /**
-     * {@code POST  /internacaos} : Create a new internacao.
-     *
-     * @param internacaoDTO the internacaoDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
-     * internacaoDTO, or with status {@code 400 (Bad Request)} if the internacao has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/internacoes")
     public ResponseEntity<InternacaoDTO> createInternacao(
         @Valid @RequestBody InternacaoDTO internacaoDTO) throws URISyntaxException {
-        log.debug("REST request to save Internacao : {}", internacaoDTO);
         if (internacaoDTO.getId() != null) {
             throw new BadRequestAlertException("A new internacao cannot already have an ID",
                 ENTITY_NAME, "idexists");

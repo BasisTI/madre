@@ -1,62 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-  <include file="config/liquibase/changelog/00000000000000_initial_schema.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130305_added_entity_Procedencia.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130306_added_entity_ConvenioDeSaude.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130307_added_entity_PlanoDeSaude.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130308_added_entity_Hospital.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130309_added_entity_ModalidadeAssistencial.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130310_added_entity_LocalDeAtendimento.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130311_added_entity_OrigemDaInternacao.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130312_added_entity_SolicitacaoDeInternacao.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130313_added_entity_Especialidade.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130314_added_entity_Equipe.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130315_added_entity_CRM.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130316_added_entity_Procedimento.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130317_added_entity_CID.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200503221913_added_entity_CaraterDaInternacao.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165814_added_entity_SituacaoDeLeito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165815_added_entity_UnidadeFuncional.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165816_added_entity_Leito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165817_added_entity_ReservaDeLeito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165818_added_entity_OrigemDaReservaDeLeito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165819_added_entity_TipoDaReservaDeLeito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200507151223_added_entity_BloqueioDeLeito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200507151226_added_entity_MotivoDoBloqueioDeLeito.xml" relativeToChangelogFile="false"/>
-  <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-  <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
-    relativeToChangelogFile="false"/>
-  <include
-    file="config/liquibase/changelog/20200429130312_added_entity_constraints_SolicitacaoDeInternacao.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130314_added_entity_constraints_Equipe.xml"
-    relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165816_added_entity_constraints_Leito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200506165817_added_entity_constraints_ReservaDeLeito.xml" relativeToChangelogFile="false"/>
-  <include file="config/liquibase/changelog/20200507151223_added_entity_constraints_BloqueioDeLeito.xml" relativeToChangelogFile="false"/>
-  <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-  <include file="config/liquibase/changelog/20200429143312_changelog.xml"
-    relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130305_added_entity_Procedencia.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130306_added_entity_ConvenioDeSaude.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130307_added_entity_PlanoDeSaude.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130308_added_entity_Hospital.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200429130309_added_entity_ModalidadeAssistencial.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130310_added_entity_LocalDeAtendimento.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130311_added_entity_OrigemDaInternacao.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200429130312_added_entity_SolicitacaoDeInternacao.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130313_added_entity_Especialidade.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130314_added_entity_Equipe.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130315_added_entity_CRM.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130316_added_entity_Procedimento.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130317_added_entity_CID.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200503221913_added_entity_CaraterDaInternacao.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506165814_added_entity_SituacaoDeLeito.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506165815_added_entity_UnidadeFuncional.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506165816_added_entity_Leito.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506165817_added_entity_ReservaDeLeito.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200506165818_added_entity_OrigemDaReservaDeLeito.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506165819_added_entity_TipoDaReservaDeLeito.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200511124846_added_entity_TipoDoEventoLeito.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200507151226_added_entity_MotivoDoBloqueioDeLeito.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200511124847_added_entity_EventoLeito.xml"
+        relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include
+        file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200429130312_added_entity_constraints_SolicitacaoDeInternacao.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200429130314_added_entity_constraints_Equipe.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506165816_added_entity_constraints_Leito.xml"
+        relativeToChangelogFile="false"/>
+    <include
+        file="config/liquibase/changelog/20200511124847_added_entity_constraints_EventoLeito.xml"
+        relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/20200429143312_changelog.xml"
+        relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200514163122_changelog.xml"
+        relativeToChangelogFile="false"/>
 </databaseChangeLog>
