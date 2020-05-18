@@ -15,6 +15,9 @@ public class BloqueioDeLeitoDTO implements Serializable {
 
     private String justificativa;
 
+    private LocalDate dataInicio;
+
+    private LocalDate dataFim;
 
     private Long leitoId;
 

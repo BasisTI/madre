@@ -3,20 +3,12 @@ package br.com.basis.madre.service;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import br.com.basis.madre.domain.Leito;
-import br.com.basis.madre.domain.SituacaoDeLeito;
-import br.com.basis.madre.domain.enumeration.CodigoDeSituacaoDeLeito;
 import br.com.basis.madre.repository.LeitoRepository;
 import br.com.basis.madre.repository.search.LeitoSearchRepository;
 import br.com.basis.madre.service.dto.LeitoDTO;
-import br.com.basis.madre.service.dto.SituacaoDeLeitoDTO;
 import br.com.basis.madre.service.mapper.LeitoMapper;
-import br.com.basis.madre.service.mapper.SituacaoDeLeitoMapper;
-import br.com.basis.madre.service.projection.LeitoProjection;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +17,6 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,11 +29,7 @@ public class LeitoService {
 
     private final LeitoRepository leitoRepository;
 
-    private final SituacaoDeLeitoService situacaoDeLeitoService;
-
     private final LeitoMapper leitoMapper;
-
-    private final SituacaoDeLeitoMapper situacaoDeLeitoMapper;
 
     private final LeitoSearchRepository leitoSearchRepository;
 
@@ -81,37 +68,28 @@ public class LeitoService {
     }
 
     @Transactional(readOnly = true)
-    public List<LeitoProjection> getLeitosDesocupadosPor(String nome,
-        Pageable pageable) {
-        Sort sort = pageable.getSort();
-        CodigoDeSituacaoDeLeito codigoDeSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
-
-        SituacaoDeLeitoDTO situacao = new SituacaoDeLeitoDTO();
-        situacao.setId(codigoDeSituacao.getValor());
-
-        return leitoRepository
-            .findBySituacaoAndNomeIgnoreCaseContaining(situacaoDeLeitoMapper.toEntity(situacao),
-                nome, sort);
+    public List<Leito> obterTodosOsLeitosReservados() {
+        return leitoRepository.obterTodosOsLeitosReservados();
     }
 
     @Transactional(readOnly = true)
-    public List<LeitoProjection> getLeitosNaoDesocupadosPor(String nome,
-        Pageable pageable) {
-        Sort sort = pageable.getSort();
-        CodigoDeSituacaoDeLeito codigoDeDesocupado = CodigoDeSituacaoDeLeito.BLOQUEADO;
-        CodigoDeSituacaoDeLeito codigoDeReservado = CodigoDeSituacaoDeLeito.RESERVADO;
-        CodigoDeSituacaoDeLeito codigoDeOcupado = CodigoDeSituacaoDeLeito.OCUPADO;
+    public List<Leito> obterTodosOsLeitosBloqueados() {
+        return leitoRepository.obterTodosOsLeitosBloqueados();
+    }
 
-        SituacaoDeLeitoDTO bloqueado = new SituacaoDeLeitoDTO().id(codigoDeDesocupado.getValor());
-        SituacaoDeLeitoDTO reservado = new SituacaoDeLeitoDTO().id(codigoDeReservado.getValor());
-        SituacaoDeLeitoDTO ocupado = new SituacaoDeLeitoDTO().id(codigoDeOcupado.getValor());
+    @Transactional(readOnly = true)
+    public List<Leito> obterTodosOsLeitosOcupados() {
+        return leitoRepository.obterTodosOsLeitosOcupados();
+    }
 
-        List<SituacaoDeLeito> situacoes = Arrays.asList(bloqueado, reservado, ocupado).stream()
-            .map(situacaoDeLeitoMapper::toEntity).collect(Collectors.toList());
+    @Transactional(readOnly = true)
+    public List<Leito> obterTodosOsLeitosNaoLiberados() {
+        return leitoRepository.obterTodosOsLeitosNaoLiberados();
+    }
 
-        return leitoRepository
-            .findBySituacaoInAndNomeIgnoreCaseContaining(situacoes,
-                nome, sort);
+    @Transactional(readOnly = true)
+    public List<Leito> obterTodosOsLeitosLiberados() {
+        return leitoRepository.obterTodosOsLeitosLiberados();
     }
 
     /**
@@ -150,23 +128,5 @@ public class LeitoService {
         log.debug("Request to search for a page of Leitos for query {}", query);
         return leitoSearchRepository.search(queryStringQuery(query), pageable)
             .map(leitoMapper::toDto);
-    }
-
-    public LeitoDTO liberarLeito(Long leitoId) {
-        CodigoDeSituacaoDeLeito codigoDeSituacao = CodigoDeSituacaoDeLeito.DESOCUPADO;
-
-        SituacaoDeLeitoDTO situacao = new SituacaoDeLeitoDTO();
-        situacao.setId(codigoDeSituacao.getValor());
-
-        Leito leito = leitoRepository.findById(leitoId).orElseThrow(EntityNotFoundException::new)
-            .situacao(situacaoDeLeitoMapper.toEntity(situacao));
-        leito = leitoRepository.save(leito);
-        return leitoMapper.toDto(leito);
-    }
-
-    public LeitoDTO ocuparLeito(Long leitoId) {
-        LeitoDTO leitoDTO = findOne(leitoId).orElseThrow(EntityNotFoundException::new);
-        leitoDTO.setSituacaoId(CodigoDeSituacaoDeLeito.OCUPADO.getValor());
-        return save(leitoDTO);
     }
 }
