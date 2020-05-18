@@ -62,13 +62,6 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         return Boolean(this.triagem.id);
     }
 
-    //     this.dataHora();
-    // }
-
-    // dataHora() {
-    //     const dataHora = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()},
-    //     ${new Date().getHours()}:${new Date().getUTCMinutes()}`;
-
     cadastrar(form: FormBuilder) {
         const tri = this.formTriagem.value;
         const triagem: TriagemModel = {
@@ -96,27 +89,6 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             this.formTriagem.patchValue({ paciente: triagem.paciente.nome });
         });
     }
-    // salvar(form: FormControl) {
-    //     if (this.editando) {
-    //       this.atualizarTriagem(form);
-    //     } else {
-    //       this.adicionarTriagem(form);
-    //     }
-    // }
-    // adicionarTriagem(form: FormControl) {
-    //     this.triagemService.adicionar(this.triagem)
-    //       .then(() => {
-    //         this.toasty.success('Lançamento adicionado com sucesso!');
-
-    //         });
-    //     }
-
-    //         atualizarLancamento(form: FormControl) {
-    //             this.triagemService.atualizar(this.triagem)
-    //             .then(triagem => {
-    //                 this.triagem = TriagemNova;
-    //             });
-    //         }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
