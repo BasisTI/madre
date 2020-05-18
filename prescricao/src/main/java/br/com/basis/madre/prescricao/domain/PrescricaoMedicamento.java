@@ -22,6 +22,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * A PrescricaoMedicamento.
@@ -49,6 +50,7 @@ public class PrescricaoMedicamento implements Serializable {
     @Column(name = "observacao", length = 255)
     private String observacao;
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "prescricaoMedicamento", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
