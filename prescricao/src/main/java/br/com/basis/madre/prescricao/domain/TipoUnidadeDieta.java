@@ -1,18 +1,30 @@
 package br.com.basis.madre.prescricao.domain;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
 /**
  * A TipoUnidadeDieta.
  */
+
+@Data
 @Entity
 @Table(name = "tipo_unidade_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -41,43 +53,16 @@ public class TipoUnidadeDieta implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
 
     public TipoUnidadeDieta descricao(String descricao) {
         this.descricao = descricao;
         return this;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
 
     public TipoUnidadeDieta sigla(String sigla) {
         this.sigla = sigla;
         return this;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public Set<ItemPrescricaoDieta> getItemPrescricaoDietas() {
-        return itemPrescricaoDietas;
     }
 
     public TipoUnidadeDieta itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
@@ -97,7 +82,4 @@ public class TipoUnidadeDieta implements Serializable {
         return this;
     }
 
-    public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
-        this.itemPrescricaoDietas = itemPrescricaoDietas;
-    }
 }

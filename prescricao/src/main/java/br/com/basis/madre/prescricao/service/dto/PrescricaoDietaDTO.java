@@ -1,7 +1,9 @@
 package br.com.basis.madre.prescricao.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.prescricao.domain.PrescricaoDieta} entity.
@@ -14,7 +16,8 @@ public class PrescricaoDietaDTO implements Serializable {
 
     @Size(max = 255)
     private String observacao;
-
+    
+    private Set<ItemPrescricaoDietaDTO> itemPrescricaoDietas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -39,8 +42,17 @@ public class PrescricaoDietaDTO implements Serializable {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+    
 
-    @Override
+    public Set<ItemPrescricaoDietaDTO> getItemPrescricaoDietas() {
+		return itemPrescricaoDietas;
+	}
+
+	public void setItemPrescricaoDietas(Set<ItemPrescricaoDietaDTO> itemPrescricaoDietas) {
+		this.itemPrescricaoDietas = itemPrescricaoDietas;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -61,12 +73,11 @@ public class PrescricaoDietaDTO implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "PrescricaoDietaDTO{" +
-            "id=" + getId() +
-            ", idPaciente=" + getIdPaciente() +
-            ", observacao='" + getObservacao() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "PrescricaoDietaDTO [id=" + id + ", idPaciente=" + idPaciente + ", observacao=" + observacao
+				+ ", itemPrescricaoDietas=" + itemPrescricaoDietas + "]";
+	}
+
+    
 }

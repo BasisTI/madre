@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +16,7 @@ import java.util.Set;
 /**
  * A PrescricaoDieta.
  */
+@Data
 @Entity
 @Table(name = "prescricao_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -34,47 +38,19 @@ public class PrescricaoDieta implements Serializable {
     @Column(name = "observacao", length = 255)
     private String observacao;
 
-    @OneToMany(mappedBy = "prescricaoDieta")
+    @OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
 
     public PrescricaoDieta idPaciente(Long idPaciente) {
         this.idPaciente = idPaciente;
         return this;
     }
 
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
     public PrescricaoDieta observacao(String observacao) {
         this.observacao = observacao;
         return this;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
-    public Set<ItemPrescricaoDieta> getItemPrescricaoDietas() {
-        return itemPrescricaoDietas;
     }
 
     public PrescricaoDieta itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
@@ -94,33 +70,5 @@ public class PrescricaoDieta implements Serializable {
         return this;
     }
 
-    public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
-        this.itemPrescricaoDietas = itemPrescricaoDietas;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof PrescricaoDieta)) {
-            return false;
-        }
-        return id != null && id.equals(((PrescricaoDieta) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "PrescricaoDieta{" +
-            "id=" + getId() +
-            ", idPaciente=" + getIdPaciente() +
-            ", observacao='" + getObservacao() + "'" +
-            "}";
-    }
+ 
 }

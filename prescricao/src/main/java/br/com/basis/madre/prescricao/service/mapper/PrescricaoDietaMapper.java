@@ -8,12 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link PrescricaoDieta} and its DTO {@link PrescricaoDietaDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {ItemPrescricaoDietaMapper.class})
 public interface PrescricaoDietaMapper extends EntityMapper<PrescricaoDietaDTO, PrescricaoDieta> {
 
 
-    @Mapping(target = "itemPrescricaoDietas", ignore = true)
-    @Mapping(target = "removeItemPrescricaoDieta", ignore = true)
     PrescricaoDieta toEntity(PrescricaoDietaDTO prescricaoDietaDTO);
 
     default PrescricaoDieta fromId(Long id) {

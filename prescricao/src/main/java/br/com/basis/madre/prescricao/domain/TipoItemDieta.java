@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +16,7 @@ import java.util.Set;
 /**
  * A TipoItemDieta.
  */
+@Data
 @Entity
 @Table(name = "tipo_item_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -35,18 +39,6 @@ public class TipoItemDieta implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
 
     public TipoItemDieta descricao(String descricao) {
         this.descricao = descricao;
@@ -80,30 +72,5 @@ public class TipoItemDieta implements Serializable {
 
     public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
         this.itemPrescricaoDietas = itemPrescricaoDietas;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof TipoItemDieta)) {
-            return false;
-        }
-        return id != null && id.equals(((TipoItemDieta) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "TipoItemDieta{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            "}";
     }
 }
