@@ -76,7 +76,7 @@ public class TriagemResource {
         }
         TriagemDTO result = triagemService.save(triagemDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME,
                 triagemDTO.getId().toString()))
             .body(result);
     }
@@ -102,7 +102,8 @@ public class TriagemResource {
 
         triagemRepository.deleteById(id);
         triagemSearchRepository.deleteById(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(
+            applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
     @GetMapping("/_search/triagens")
@@ -118,6 +119,4 @@ public class TriagemResource {
     public ResponseEntity<Page<TriagemProjection>> findAllProjectedTriagemProjectionBy(Pageable pageable) {
         return ResponseEntity.ok(triagemService.findAllProjectedTriagemProjectionBy(pageable));
     }
-
-
 }
