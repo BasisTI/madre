@@ -263,7 +263,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 nomeDoResponsavel: resp.nomeDoResponsavel,
                 grauDeParentescoId: resp.grauDeParentesco ? resp.grauDeParentesco.id : null,
                 observacao: resp.observacao,
-                telefone: [
+                telefones: [
                     {
                         ddd: resp.ddd,
                         numero: resp.telefone,
