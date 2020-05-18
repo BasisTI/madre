@@ -1,14 +1,11 @@
 package br.com.basis.madre.prescricao.domain;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -47,32 +44,11 @@ public class Diluente implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
-    @OneToMany(mappedBy = "diluente")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
-
 
     public Diluente descricao(String descricao) {
         this.descricao = descricao;
         return this;
     }
 
-
-    public Diluente itemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
-        this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
-        return this;
-    }
-
-    public Diluente addItemPrescricaoMedicamento(ItemPrescricaoMedicamento itemPrescricaoMedicamento) {
-        this.itemPrescricaoMedicamentos.add(itemPrescricaoMedicamento);
-        itemPrescricaoMedicamento.setDiluente(this);
-        return this;
-    }
-
-    public Diluente removeItemPrescricaoMedicamento(ItemPrescricaoMedicamento itemPrescricaoMedicamento) {
-        this.itemPrescricaoMedicamentos.remove(itemPrescricaoMedicamento);
-        itemPrescricaoMedicamento.setDiluente(null);
-        return this;
-    }
 
 }

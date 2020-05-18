@@ -53,9 +53,6 @@ public class ViasAdministracao implements Serializable {
     @Column(name = "sigla")
     private String sigla;
 
-    @OneToMany(mappedBy = "viasAdministracao")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
 
 
     public ViasAdministracao descricao(String descricao) {
@@ -69,22 +66,5 @@ public class ViasAdministracao implements Serializable {
         return this;
     }
 
-
-    public ViasAdministracao itemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
-        this.itemPrescricaoMedicamentos = itemPrescricaoMedicamentos;
-        return this;
-    }
-
-    public ViasAdministracao addItemPrescricaoMedicamento(ItemPrescricaoMedicamento itemPrescricaoMedicamento) {
-        this.itemPrescricaoMedicamentos.add(itemPrescricaoMedicamento);
-        itemPrescricaoMedicamento.setViasAdministracao(this);
-        return this;
-    }
-
-    public ViasAdministracao removeItemPrescricaoMedicamento(ItemPrescricaoMedicamento itemPrescricaoMedicamento) {
-        this.itemPrescricaoMedicamentos.remove(itemPrescricaoMedicamento);
-        itemPrescricaoMedicamento.setViasAdministracao(null);
-        return this;
-    }
 
 }
