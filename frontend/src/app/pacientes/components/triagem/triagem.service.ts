@@ -27,6 +27,6 @@ export class TriagemService {
     }
 
     listarTriagem(): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/lista`);
+        return this.httpService.get(`${this.apiUrl}/triagens/paciente`);
     }
 }

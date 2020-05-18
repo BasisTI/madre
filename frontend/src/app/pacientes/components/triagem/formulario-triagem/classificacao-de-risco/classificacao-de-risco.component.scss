@@ -15,30 +15,40 @@ H3 {
     margin-right: 30px;
 }
 
-.vermelho {
+.emergencia {
     background-color: red;
     height: 50px;
     width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
 }
 
-.laranja {
+.muitoUrgente {
     background-color: orange;
     height: 50px;
     width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
 }
-.amarelo {
+.urgente {
     background-color: yellow;
     height: 50px;
     width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
 }
-.verde {
+.poucoUrgente {
     background-color: green;
     height: 50px;
     width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
 }
 
-.azul {
+.naoUrgente {
     background-color: blue;
     height: 50px;
     width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
 }

@@ -48,7 +48,6 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "motivoDoBloqueioDeLeito",
             "otherEntityRelationshipName": "eventoLeito",
-            "relationshipValidateRules": "required",
             "relationshipName": "motivo",
             "otherEntityField": "id"
         }

@@ -16,7 +16,12 @@
                 <!-- Leito + Quarto + Unidade Funcional -->
                 <div class="ui-g-2">
                     <label>Leito</label>
-                    <input type="text" pInputText [disabled]="true" />
+                    <app-leito
+                        [parentFormGroup]="formGroup"
+                        [required]="true"
+                        name="leito"
+                        label="Leito"
+                    ></app-leito>
                 </div>
                 <div class="ui-g-4">
                     <label>Quarto</label>

@@ -1,5 +1,4 @@
-import { CLASSIFICACAO_COLORS } from 'src/app/pacientes/models/radioButton/classificacao-colors';
-
+import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -12,7 +11,7 @@ import { SelectItem } from 'primeng/api';
 })
 export class ClassificacaoDeRiscoComponent implements OnInit {
     @Input() formTriagem: FormGroup;
-    opcaoClassificacao = CLASSIFICACAO_COLORS;
+    opcaoClassificacao = CLASSIFICACAO_RISCO;
     types: SelectItem[];
     selectedValue: string;
     searchUrl = 'pacientes/api/triagens/paciente/{id}';

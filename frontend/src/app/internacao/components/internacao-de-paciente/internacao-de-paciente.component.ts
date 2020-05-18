@@ -5,6 +5,7 @@ import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
 import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 import { Internacao } from '@internacao/models/internacao';
+import { SolicitacaoDeInternacaoDTO } from '@internacao/models/dtos/solicitacao-de-internacao.dto';
 
 @Component({
     selector: 'app-internacao-de-paciente',
@@ -12,7 +13,7 @@ import { Internacao } from '@internacao/models/internacao';
     styleUrls: ['./internacao-de-paciente.component.scss'],
 })
 export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
-    public solicitacao;
+    public solicitacao: SolicitacaoDeInternacaoDTO;
 
     public pCalendarConfig = {
         localidade: CALENDAR_LOCALE,
@@ -34,6 +35,7 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
         // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
         // prioridade: this.fb.control({ value: '', disabled: true }, Validators.required),
         // procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
+        leito: ['', Validators.required],
         especialidade: ['', Validators.required],
         planoDeSaude: ['', Validators.required],
         convenioDeSaude: ['', Validators.required],
