@@ -1,6 +1,9 @@
 package br.com.basis.madre.service.dto;
 
+import br.com.basis.madre.domain.Telefone;
+
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -15,27 +18,11 @@ public class ResponsavelDTO implements Serializable {
     private String nomeDoResponsavel;
 
 
-    private Set<TelefoneDTO> telefone;
+    private Set<Telefone> telefones = new HashSet<>();
 
     private String observacao;
 
     private Long grauDeParentescoId;
-
-    public Set<TelefoneDTO> getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Set<TelefoneDTO> telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
 
     public Long getId() {
         return id;
@@ -51,6 +38,22 @@ public class ResponsavelDTO implements Serializable {
 
     public void setNomeDoResponsavel(String nomeDoResponsavel) {
         this.nomeDoResponsavel = nomeDoResponsavel;
+    }
+
+    public Set<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(Set<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public Long getGrauDeParentescoId() {
@@ -87,10 +90,9 @@ public class ResponsavelDTO implements Serializable {
         return "ResponsavelDTO{" +
             "id=" + id +
             ", nomeDoResponsavel='" + nomeDoResponsavel + '\'' +
-            ", telefone='" + telefone + '\'' +
+            ", telefones=" + telefones +
             ", observacao='" + observacao + '\'' +
             ", grauDeParentescoId=" + grauDeParentescoId +
             '}';
-
     }
 }

@@ -85,8 +85,7 @@ public class PacienteService {
         paciente = pacienteRepository.save(paciente);
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
         pacienteSearchRepository.save(paciente);
-        EventoPaciente eventoPaciente = new EventoPaciente();
-        eventoPaciente.setPaciente(paciente);
+        EventoPaciente eventoPaciente = new EventoPaciente(paciente);
         pacienteEmitterProcessor.onNext(eventoPaciente);
         return result;
     }

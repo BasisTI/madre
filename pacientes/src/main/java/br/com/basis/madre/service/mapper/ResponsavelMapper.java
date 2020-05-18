@@ -16,7 +16,7 @@ public interface ResponsavelMapper extends EntityMapper<ResponsavelDTO, Responsa
     ResponsavelDTO toDto(Responsavel responsavel);
 
 
-    @Mapping(source = "telefone", target = "telefones")
+    @Mapping(source = "telefones", target = "telefones")
     @Mapping(source = "grauDeParentescoId", target = "grauDeParentesco")
     Responsavel toEntity(ResponsavelDTO responsavelDTO);
 
