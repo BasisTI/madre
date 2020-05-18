@@ -27,6 +27,11 @@ export class LeitoComponent implements OnInit, EntityAutoComplete {
                     this.leitos = leitos;
                 });
                 break;
+            case 'ocupado':
+                this.leitoService.obterLeitosOcupados().subscribe((leitos) => {
+                    this.leitos = leitos;
+                });
+                break;
             default:
                 break;
         }

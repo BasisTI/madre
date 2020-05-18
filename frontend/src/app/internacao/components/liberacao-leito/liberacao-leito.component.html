@@ -6,10 +6,10 @@
                 <app-leito
                     [parentFormGroup]="formGroup"
                     [required]="true"
+                    situacao="ocupado"
                     name="leito"
                     label="Leito"
                     (select)="aoSelecionarLeito($event)"
-                    (blur)="aoDesfocarLeito()"
                 >
                 </app-leito>
             </div>
@@ -18,7 +18,7 @@
         <div class="ui-g-12">
             <div class="ui-g-4 ui-md-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="situacao" />
+                    <input type="text" pInputText />
                     <label>Situação</label>
                 </span>
             </div>
@@ -39,6 +39,7 @@
                     <p-calendar
                         [locale]="pCalendarConfig.localidade"
                         [yearRange]="pCalendarConfig.anosDisponiveis"
+                        dateFormat="dd/mm/yy"
                         showTime="true"
                         hourFormat="24"
                         showButtonBar="true"

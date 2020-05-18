@@ -61,7 +61,13 @@ public class EventoLeitoResource {
     @PostMapping("/liberacoes")
     public ResponseEntity<LiberacaoDeLeitoDTO> liberarLeito(
         @RequestBody @Valid LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
-        return ResponseEntity.ok(eventoLeitoService.liberarLeito(liberacaoDeLeitoDTO));
+        Long leitoId = liberacaoDeLeitoDTO.getLeitoId();
+
+        eventoLeitoService.desocuparLeito(leitoId);
+        liberacaoDeLeitoDTO = eventoLeitoService
+            .liberarLeito(liberacaoDeLeitoDTO);
+
+        return ResponseEntity.ok(liberacaoDeLeitoDTO);
     }
 
     /**

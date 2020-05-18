@@ -11,9 +11,12 @@ import br.com.basis.madre.service.dto.EventoLeitoDTO;
 import br.com.basis.madre.service.dto.InternacaoDTO;
 import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
+import br.com.basis.madre.service.dto.TipoDoEventoLeitoDTO;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
+import br.com.basis.madre.service.mapper.TipoDoEventoLeitoMapper;
 import java.time.LocalDate;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +35,8 @@ public class EventoLeitoService {
     private final EventoLeitoRepository eventoLeitoRepository;
 
     private final EventoLeitoMapper eventoLeitoMapper;
+
+    private final TipoDoEventoLeitoMapper tipoDoEventoLeitoMapper;
 
     private final EventoLeitoSearchRepository eventoLeitoSearchRepository;
 
@@ -74,7 +79,29 @@ public class EventoLeitoService {
     }
 
     public LiberacaoDeLeitoDTO liberarLeito(LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
-        return null;
+        EventoLeitoDTO eventoLeitoDTO = eventoLeitoMapper.toDto(liberacaoDeLeitoDTO);
+        eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.LIBERACAO.getValor());
+
+        EventoLeito eventoLeito = eventoLeitoRepository
+            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
+        eventoLeitoSearchRepository.save(eventoLeito);
+        liberacaoDeLeitoDTO.setId(eventoLeito.getId());
+
+        return liberacaoDeLeitoDTO;
+    }
+
+    public void desocuparLeito(Long leitoId) {
+        TipoDoEventoLeitoDTO tipoDoEventoLeitoDTO = new TipoDoEventoLeitoDTO();
+        tipoDoEventoLeitoDTO.setId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
+
+        EventoLeito eventoLeito = eventoLeitoRepository
+            .findOneByLeitoIdAndTipoDoEventoAndDataFimIsNull(leitoId,
+                tipoDoEventoLeitoMapper.toEntity(tipoDoEventoLeitoDTO)
+            ).orElseThrow(EntityNotFoundException::new);
+
+        eventoLeito.setDataFim(LocalDate.now());
+        eventoLeitoRepository.save(eventoLeito);
+        eventoLeitoSearchRepository.save(eventoLeito);
     }
 
     /**

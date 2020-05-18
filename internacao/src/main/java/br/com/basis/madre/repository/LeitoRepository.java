@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LeitoRepository extends JpaRepository<Leito, Long> {
 
-    @Query(value = "select *\n"
+    @Query(value = "select le.id, le.nome, le.ala, le.andar, le.unidade_funcional_id\n"
         + "from evento_leito as ev\n"
         + "inner join leito as le on ev.leito_id = le.id\n"
         + "inner join tipo_do_evento_leito as tipo on tipo.id = ev.tipo_do_evento_id\n"
@@ -18,30 +18,32 @@ public interface LeitoRepository extends JpaRepository<Leito, Long> {
     List<Leito> obterTodosOsLeitosReservados();
 
     @Query(value =
-        "select *\n"
+        "select le.id, le.nome, le.ala, le.andar, le.unidade_funcional_id\n"
             + "from evento_leito as ev\n"
             + "inner join leito as le on ev.leito_id = le.id\n"
             + "inner join tipo_do_evento_leito as tipo on tipo.id = ev.tipo_do_evento_id\n"
             + "where tipo.id = 3 and now() between data_do_inicio and data_do_fim;", nativeQuery = true)
     List<Leito> obterTodosOsLeitosBloqueados();
 
-    @Query(value = "select *\n"
+    @Query(value = "select le.id, le.nome, le.ala, le.andar, le.unidade_funcional_id\n"
         + "from evento_leito as ev\n"
         + "inner join leito as le on ev.leito_id = le.id\n"
         + "inner join tipo_do_evento_leito as tipo on tipo.id = ev.tipo_do_evento_id\n"
-        + "where tipo.id = 4;", nativeQuery = true)
+        + "where tipo.id = 4 and ev.data_do_fim is null;", nativeQuery = true)
     List<Leito> obterTodosOsLeitosOcupados();
 
-    @Query(value = "select *\n"
-        + "from evento_leito as ev\n"
-        + "inner join leito as le on ev.leito_id = le.id\n"
-        + "inner join tipo_do_evento_leito as tipo on tipo.id = ev.tipo_do_evento_id\n"
-        + "where not ev.tipo_do_evento_id = 1 and now() between data_do_inicio and data_do_fim or tipo.id = 4;", nativeQuery = true)
+    @Query(value =
+        "select distinct l.id, l.nome, l.ala, l.andar, l.unidade_funcional_id from (select le.id, le.nome, le.ala, le.andar, le.unidade_funcional_id\n"
+            + "from evento_leito as ev\n"
+            + "inner join leito as le on ev.leito_id = le.id\n"
+            + "inner join tipo_do_evento_leito as tipo on tipo.id = ev.tipo_do_evento_id\n"
+            + "where not ev.tipo_do_evento_id = 1 and now() between data_do_inicio and data_do_fim or tipo.id = 4) as l;", nativeQuery = true)
     List<Leito> obterTodosOsLeitosNaoLiberados();
 
-    @Query(value = "select *\n"
-        + "from leito as l\n"
-        + "left join evento_leito as e on l.id = e.leito_id\n"
-        + "where e.id is null", nativeQuery = true)
+    @Query(value =
+        "select distinct l.id, l.nome, l.ala, l.andar, l.unidade_funcional_id from (select l.id, l.nome, l.ala, l.andar, l.unidade_funcional_id\n"
+            + "from evento_leito as e\n"
+            + "right join leito as l on l.id = e.leito_id\n"
+            + "where e.id is null or e.tipo_do_evento_id = 1 and e.data_do_fim > now()) as l;", nativeQuery = true)
     List<Leito> obterTodosOsLeitosLiberados();
 }
