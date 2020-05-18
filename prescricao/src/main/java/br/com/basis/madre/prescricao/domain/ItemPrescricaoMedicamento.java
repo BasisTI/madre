@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -28,17 +29,14 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * A ItemPrescricaoMedicamento.
  */
 
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
 @Table(name = "item_prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -117,6 +115,7 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private TipoAprazamento tipoAprazamento;
 
+	@EqualsAndHashCode.Exclude
 	@ManyToOne
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;
@@ -130,13 +129,12 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		this.idMedicamento = idMedicamento;
 		return this;
 	}
-	
+
 	public ItemPrescricaoMedicamento dose(BigDecimal dose) {
 		this.dose = dose;
 		return this;
 	}
 
-	
 	public Boolean isTodasVias() {
 		return todasVias;
 	}
@@ -213,34 +211,5 @@ public class ItemPrescricaoMedicamento implements Serializable {
 		this.prescricaoMedicamento = prescricaoMedicamento;
 		return this;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemPrescricaoMedicamento other = (ItemPrescricaoMedicamento) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	
-	
-
 
 }

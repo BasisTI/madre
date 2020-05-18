@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +17,7 @@ import java.util.Set;
  * A TipoAprazamento.
  */
 @Entity
+@Data
 @Table(name = "tipo_aprazamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "tipoaprazamento")
@@ -100,30 +104,5 @@ public class TipoAprazamento implements Serializable {
     public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
         this.itemPrescricaoDietas = itemPrescricaoDietas;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof TipoAprazamento)) {
-            return false;
-        }
-        return id != null && id.equals(((TipoAprazamento) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "TipoAprazamento{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            ", sigla='" + getSigla() + "'" +
-            "}";
-    }
 }

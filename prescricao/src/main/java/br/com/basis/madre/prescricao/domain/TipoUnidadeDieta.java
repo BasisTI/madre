@@ -100,30 +100,4 @@ public class TipoUnidadeDieta implements Serializable {
     public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
         this.itemPrescricaoDietas = itemPrescricaoDietas;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof TipoUnidadeDieta)) {
-            return false;
-        }
-        return id != null && id.equals(((TipoUnidadeDieta) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "TipoUnidadeDieta{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            ", sigla='" + getSigla() + "'" +
-            "}";
-    }
 }
