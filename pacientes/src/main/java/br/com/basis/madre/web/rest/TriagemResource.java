@@ -3,6 +3,7 @@ import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.TriagemService;
+import br.com.basis.madre.service.dto.TriagemDTO;
 import br.com.basis.madre.service.projection.TriagemProjection;
 
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -27,9 +28,6 @@ import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-/**
- * REST controller for managing Triagem.
- */
 @RestController
 @RequestMapping("/api")
 public class TriagemResource {
@@ -52,57 +50,37 @@ public class TriagemResource {
         this.triagemService = triagemService;
     }
 
-    /**
-     * POST  /triagens : Create a new triagem.
-     *
-     * @param triagem the triagem to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new triagem, or with status 400 (Bad Request) if the triagem has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PostMapping("/triagens")
     @Timed
-    public ResponseEntity<Triagem> createTriagem(@Valid @RequestBody Triagem triagem) throws URISyntaxException {
-        log.debug("REST request to save Triagem : {}", triagem);
-        if (triagem.getId() != null) {
-            throw new BadRequestAlertException("A new triagem cannot already have an ID", ENTITY_NAME, "idexists");
+    public ResponseEntity<TriagemDTO> createTriagem(@Valid @RequestBody TriagemDTO triagemDTO)
+        throws URISyntaxException {
+        log.debug("REST request to save Triagem : {}", triagemDTO);
+        if (triagemDTO.getId() != null) {
+            throw new BadRequestAlertException("A new triagem cannot already have an ID", ENTITY_NAME,
+                "idexists");
         }
-        Triagem result = triagemRepository.save(triagem);
-        triagemSearchRepository.save(result);
+        TriagemDTO result = triagemService.save(triagemDTO);
         return ResponseEntity.created(new URI("/api/triagens/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
+        .body(result);
     }
 
-    /**
-     * PUT  /triagens : Updates an existing triagem.
-     *
-     * @param triagem the triagem to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated triagem,
-     * or with status 400 (Bad Request) if the triagem is not valid,
-     * or with status 500 (Internal Server Error) if the triagem couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
     @PutMapping("/triagens/{id}")
     @Timed
-    public ResponseEntity<Triagem> updateTriagem(@Valid @PathVariable Long id,
-                                                 @RequestBody Triagem triagem) {
-        log.debug("REST request to update Triagem : {}", triagem);
-        if (id == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<TriagemDTO> updateTriagem(@Valid @RequestBody TriagemDTO triagemDTO)
+        throws URISyntaxException {
+        log.debug("REST request to update Triagem : {}", triagemDTO);
+        if (triagemDTO.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        triagem.setId(id);
-        Triagem result = triagemRepository.save(triagem);
-        triagemSearchRepository.save(result);
+        TriagemDTO result = triagemService.save(triagemDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, triagem.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
+                triagemDTO.getId().toString()))
             .body(result);
     }
 
-    /**
-     * GET  /triagens : get all the triagens.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of triagens in body
-     */
     @GetMapping("/triagens")
     @Timed
     public List<Triagem> getAllTriagens() {
@@ -110,12 +88,6 @@ public class TriagemResource {
         return triagemRepository.findAll();
     }
 
-    /**
-     * GET  /triagens/:id : get the "id" triagem.
-     *
-     * @param id the id of the triagem to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the triagem, or with status 404 (Not Found)
-     */
   @GetMapping("/triagens/{id}")
     public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
         log.debug("REST request to get Triagem : {}", id);
@@ -123,12 +95,6 @@ public class TriagemResource {
         return ResponseUtil.wrapOrNotFound(triagem);
     }
 
-    /**
-     * DELETE  /triagens/:id : delete the "id" triagem.
-     *
-     * @param id the id of the triagem to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
     @DeleteMapping("/triagens/{id}")
     @Timed
     public ResponseEntity<Void> deleteTriagem(@PathVariable Long id) {
@@ -139,13 +105,6 @@ public class TriagemResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * SEARCH  /_search/triagens?query=:query : search for the triagem corresponding
-     * to the query.
-     *
-     * @param query the query of the triagem search
-     * @return the result of the search
-     */
     @GetMapping("/_search/triagens")
     @Timed
     public List<Triagem> searchTriagens(@RequestParam String query) {
@@ -155,7 +114,7 @@ public class TriagemResource {
             .collect(Collectors.toList());
     }
 
-    @GetMapping("/triagens/pacientes")
+    @GetMapping("/triagens/listagem")
     public ResponseEntity<Page<TriagemProjection>> findAllProjectedTriagemProjectionBy(Pageable pageable) {
         return ResponseEntity.ok(triagemService.findAllProjectedTriagemProjectionBy(pageable));
     }
