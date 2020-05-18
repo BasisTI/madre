@@ -148,13 +148,10 @@ spring:
   cloud:
     stream:
       bindings:
-        listenFirst-in-0:
-          destination: recebe
-          group: group1
-        sendFirst-out-0:
-          destination: envia
+        pacienteSupplier-out-0:
+          destination: madre-paciente
     function:
-      definition: listenFirst;sendFirst
+      definition: pacienteSupplier
 server:
   servlet:
     session:
