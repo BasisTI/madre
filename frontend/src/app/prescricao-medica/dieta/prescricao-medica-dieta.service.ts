@@ -1,6 +1,9 @@
+import { PrescricaoDieta } from './models/prescricaoDieta';
+import { TipoAprazamento } from './../medicamento/models/tipoAprazamento';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TipoItemDieta } from './models/tipoItemDieta';
 
 @Injectable({
     providedIn: 'root'
@@ -13,20 +16,20 @@ export class PrescricaoMedicaDietaService {
         ) { }
 
     listarDieta(id: number): Observable<any>{
-        return this.http.get(`${this.baseUrl}/prescricao-dieta/paciente/${id}`);
+        return this.http.get(`${this.baseUrl}/prescricao-dietas/paciente/${id}`);
 
     }
 
-    listarTiposItens(): Observable<any> {
-        return this.http.get(`${this.baseUrl}/tipo-item`);
+    listarTiposItens(): Observable<Array<TipoItemDieta>> {
+        return this.http.get<Array<TipoItemDieta>>(`${this.baseUrl}/tipo-item-dietas`);
     }
 
-    listarTiposAprazamentos(): Observable<any> {
-        return this.http.get(`${this.baseUrl}/tipo-aprazamento`);
+    listarTiposAprazamentos(): Observable<Array<TipoAprazamento>> {
+        return this.http.get<Array<TipoAprazamento>>(`${this.baseUrl}/tipo-aprazamentos`);
     }
 
-    adicionar(dieta: any): Observable<any> {
-        return this.http.post<any>(`${this.baseUrl}/prescricao-dieta`, dieta);
+    adicionar(dieta: PrescricaoDieta) {
+        return this.http.post<any>(`${this.baseUrl}/prescricao-dietas`, dieta);
     }
 
 }
