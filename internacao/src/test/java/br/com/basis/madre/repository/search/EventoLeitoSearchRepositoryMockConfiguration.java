@@ -4,13 +4,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Configure a Mock version of {@link ReservaDeLeitoSearchRepository} to test the
+ * Configure a Mock version of {@link EventoLeitoSearchRepository} to test the
  * application without starting Elasticsearch.
  */
 @Configuration
-public class ReservaDeLeitoSearchRepositoryMockConfiguration {
+public class EventoLeitoSearchRepositoryMockConfiguration {
 
     @MockBean
-    private ReservaDeLeitoSearchRepository mockReservaDeLeitoSearchRepository;
+    private EventoLeitoSearchRepository mockEventoLeitoSearchRepository;
 
 }

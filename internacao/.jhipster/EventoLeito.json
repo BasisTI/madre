@@ -1,5 +1,5 @@
 {
-    "name": "BloqueioDeLeito",
+    "name": "EventoLeito",
     "fields": [
         {
             "fieldName": "dataDoLancamento",
@@ -16,23 +16,44 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "tipoDoEventoLeito",
+            "otherEntityRelationshipName": "eventoLeito",
+            "relationshipValidateRules": "required",
+            "relationshipName": "tipoDoEvento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "otherEntityName": "leito",
-            "otherEntityRelationshipName": "bloqueioDeLeito",
+            "otherEntityRelationshipName": "eventoLeito",
             "relationshipValidateRules": "required",
             "relationshipName": "leito",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "origemDaReservaDeLeito",
+            "otherEntityRelationshipName": "eventoLeito",
+            "relationshipName": "origem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoDaReservaDeLeito",
+            "otherEntityRelationshipName": "eventoLeito",
+            "relationshipName": "tipo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "otherEntityName": "motivoDoBloqueioDeLeito",
-            "otherEntityRelationshipName": "bloqueioDeLeito",
-            "relationshipValidateRules": "required",
+            "otherEntityRelationshipName": "eventoLeito",
             "relationshipName": "motivo",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20200507151223",
-    "entityTableName": "bloqueio_de_leito",
+    "changelogDate": "20200511124847",
+    "entityTableName": "evento_leito",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceClass",

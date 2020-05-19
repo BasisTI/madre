@@ -14,13 +14,13 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="numero_do_conselho" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="nome" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="especialidade_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -41,12 +41,13 @@
     -->
     <changeSet id="20200429130314-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/equipe.csv"
-                  separator=";"
-                  tableName="equipe">
+            file="config/liquibase/fake-data/equipe.csv"
+            separator=";"
+            tableName="equipe">
             <column name="id" type="numeric"/>
             <column name="numero_do_conselho" type="numeric"/>
             <column name="nome" type="string"/>
+            <column name="especialidade_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

@@ -127,7 +127,7 @@
             </div>
             <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
             <div class="ui-g-12">
-                <div class="ui-g-4">
+                <div class="ui-g-12">
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -135,10 +135,10 @@
                         label="CID Principal"
                     ></app-cid>
                 </div>
-                <div class="ui-g-4">
+                <div class="ui-g-12">
                     <app-cid
                         [parentFormGroup]="formGroup"
-                        [required]="true"
+                        [showClear]="true"
                         name="cidSecundario"
                         label="CID Secundário"
                     ></app-cid>

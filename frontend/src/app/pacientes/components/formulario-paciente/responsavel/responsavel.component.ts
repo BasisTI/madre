@@ -24,10 +24,10 @@ export class ResponsavelComponent implements OnInit {
         this.grauDeParentescoService.getListaDeGrausDeParentesco().subscribe((dados) => {
             this.opcoesDeGrauDeParentesco = [
                 ...this.opcoesDeGrauDeParentesco,
-                ...dados.map(({ valor }) => {
+                ...dados.map((opcao) => {
                     return {
-                        label: valor,
-                        value: valor,
+                        label: opcao.valor,
+                        value: opcao,
                     };
                 }),
             ];

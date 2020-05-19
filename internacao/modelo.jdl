@@ -103,11 +103,20 @@ enum Prioridade {
 relationship ManyToOne {
     Leito{situacao required} to SituacaoDeLeito,
     Leito{unidadeFuncional required} to UnidadeFuncional,
-    ReservaDeLeito{leito required} to Leito,
-    ReservaDeLeito{origem} to OrigemDaReservaDeLeito,
-    ReservaDeLeito{tipo} to TipoDaReservaDeLeito
-    BloqueioDeLeito{leito required} to Leito,
-    BloqueioDeLeito{motivo required} to MotivoDoBloqueioDeLeito,
+    EventoLeito{tipoDoEvento required} to TipoDoEventoLeito,
+    EventoLeito{leito required} to Leito,
+    EventoLeito{origem} to OrigemDaReservaDeLeito,
+    EventoLeito{tipo} to TipoDaReservaDeLeito
+    EventoLeito{motivo required} to MotivoDoBloqueioDeLeito,
+}
+
+entity TipoDoEventoLeito {
+    nome String required
+}
+
+entity EventoLeito {
+    dataDoLancamento LocalDate required
+    justificativa String
 }
 
 entity SituacaoDeLeito {
@@ -122,16 +131,6 @@ entity Leito {
     nome String required
     ala Integer required
     andar Integer required
-}
-
-entity ReservaDeLeito {
-    dataDoLancamento LocalDate required
-    justificativa String
-}
-
-entity BloqueioDeLeito {
-    dataDoLancamento LocalDate required
-    justificativa String
 }
 
 entity OrigemDaReservaDeLeito {

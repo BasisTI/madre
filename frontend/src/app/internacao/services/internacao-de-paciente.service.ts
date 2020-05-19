@@ -30,6 +30,7 @@ export class InternacaoDePacienteService {
             modalidadeAssistencialId: internacao.modalidadeAssistencial.id,
             localDeAtendimentoId: internacao.localDeAtendimento.id,
             caraterDaInternacaoId: internacao.caraterDaInternacao.id,
+            leitoId: internacao.leito.id,
         };
 
         return this.client.post<Internacao>(this.resource, internacaoDTO);

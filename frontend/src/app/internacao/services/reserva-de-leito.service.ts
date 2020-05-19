@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ReservaDeLeitoService implements EntityService {
-    private readonly resource = `${api}/reservas-de-leitos`;
+    private readonly resource = `${api}/leitos/reservas`;
 
     constructor(private client: HttpClient) {}
 

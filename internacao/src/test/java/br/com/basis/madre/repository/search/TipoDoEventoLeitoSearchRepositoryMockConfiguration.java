@@ -4,13 +4,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Configure a Mock version of {@link BloqueioDeLeitoSearchRepository} to test the
+ * Configure a Mock version of {@link TipoDoEventoLeitoSearchRepository} to test the
  * application without starting Elasticsearch.
  */
 @Configuration
-public class BloqueioDeLeitoSearchRepositoryMockConfiguration {
+public class TipoDoEventoLeitoSearchRepositoryMockConfiguration {
 
     @MockBean
-    private BloqueioDeLeitoSearchRepository mockBloqueioDeLeitoSearchRepository;
+    private TipoDoEventoLeitoSearchRepository mockTipoDoEventoLeitoSearchRepository;
 
 }

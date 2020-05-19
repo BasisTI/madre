@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity EventoLeito.
+    -->
+    <changeSet id="20200511124847-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tipo_do_evento_id"
+                                 baseTableName="evento_leito"
+                                 constraintName="fk_evento_leito_tipo_do_evento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_do_evento_leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="leito_id"
+                                 baseTableName="evento_leito"
+                                 constraintName="fk_evento_leito_leito_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="origem_id"
+                                 baseTableName="evento_leito"
+                                 constraintName="fk_evento_leito_origem_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="origem_da_reserva_de_leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_id"
+                                 baseTableName="evento_leito"
+                                 constraintName="fk_evento_leito_tipo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_da_reserva_de_leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="motivo_id"
+                                 baseTableName="evento_leito"
+                                 constraintName="fk_evento_leito_motivo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motivo_do_bloqueio_de_leito"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -145,7 +145,13 @@ spring:
   output:
     ansi:
       console-available: true
-
+  cloud:
+    stream:
+      bindings:
+        pacienteSupplier-out-0:
+          destination: madre-paciente
+    function:
+      definition: pacienteSupplier
 server:
   servlet:
     session:
