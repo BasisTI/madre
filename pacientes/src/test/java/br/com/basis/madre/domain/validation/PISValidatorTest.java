@@ -40,7 +40,7 @@ public class PISValidatorTest {
         PISValidatorTestBase pis = new PISValidatorTestBase();
         pis.setPis("21392062715");
         Set<ConstraintViolation<PISValidatorTestBase>> restricoes = validator.validate(pis);
-        assertTrue( true);
+        assertTrue( restricoes.isEmpty());
     }
 
 }
