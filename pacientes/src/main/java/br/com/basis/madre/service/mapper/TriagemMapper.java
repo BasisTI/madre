@@ -14,7 +14,7 @@ public interface TriagemMapper extends EntityMapper<TriagemDTO, Triagem> {
     @Mapping(source = "paciente.id", target = "pacienteId")
     TriagemDTO toDto(Triagem triagem);
 
-    @Mapping(source = "pacienteId", target = "paciente.id")
+    @Mapping(source = "pacienteId", target = "paciente")
     Triagem toEntity(TriagemDTO triagemDTO);
 
     default Triagem fromId(Long id) {
