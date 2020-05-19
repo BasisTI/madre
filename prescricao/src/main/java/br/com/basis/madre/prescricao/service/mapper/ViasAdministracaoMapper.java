@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface ViasAdministracaoMapper extends EntityMapper<ViasAdministracaoDTO, ViasAdministracao> {
 
 
-    @Mapping(target = "itemPrescricaoMedicamentos", ignore = true)
-    @Mapping(target = "removeItemPrescricaoMedicamento", ignore = true)
     ViasAdministracao toEntity(ViasAdministracaoDTO viasAdministracaoDTO);
 
     default ViasAdministracao fromId(Long id) {

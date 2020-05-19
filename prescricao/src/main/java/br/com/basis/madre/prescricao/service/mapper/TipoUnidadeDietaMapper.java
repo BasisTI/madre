@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface TipoUnidadeDietaMapper extends EntityMapper<TipoUnidadeDietaDTO, TipoUnidadeDieta> {
 
 
-    @Mapping(target = "itemPrescricaoDietas", ignore = true)
-    @Mapping(target = "removeItemPrescricaoDieta", ignore = true)
     TipoUnidadeDieta toEntity(TipoUnidadeDietaDTO tipoUnidadeDietaDTO);
 
     default TipoUnidadeDieta fromId(Long id) {
