@@ -4,12 +4,16 @@ import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.dto.TriagemDTO;
+import br.com.basis.madre.service.dto.UFDTO;
 import br.com.basis.madre.service.mapper.TriagemMapper;
+import br.com.basis.madre.service.projection.MunicipioUF;
+import br.com.basis.madre.service.projection.TriagemProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +48,7 @@ public class TriagemService {
      * @param triagemDTO the entity to save
      * @return the persisted entity
      */
+
     public TriagemDTO save(TriagemDTO triagemDTO) {
         log.debug("Request to save Triagem : {}", triagemDTO);
 
@@ -104,5 +109,13 @@ public class TriagemService {
         log.debug("Request to search for a page of Triagems for query {}", query);
         return triagemSearchRepository.search(queryStringQuery(query), pageable)
             .map(triagemMapper::toDto);
+    }
+
+    /**
+     * TODO: Write documentation
+     */
+
+    public Page<TriagemProjection> findAllTriagem(Pageable pageable) {
+        return triagemRepository.findAllTriagem(pageable);
     }
 }
