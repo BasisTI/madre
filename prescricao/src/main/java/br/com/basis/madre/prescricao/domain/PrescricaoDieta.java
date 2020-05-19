@@ -1,17 +1,27 @@
 package br.com.basis.madre.prescricao.domain;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
-
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * A PrescricaoDieta.
@@ -20,7 +30,7 @@ import java.util.Set;
 @Entity
 @Table(name = "prescricao_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "prescricaodieta")
+@Document(indexName = "prescricaodieta")
 public class PrescricaoDieta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,7 +38,7 @@ public class PrescricaoDieta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "id_paciente")
@@ -38,6 +48,7 @@ public class PrescricaoDieta implements Serializable {
     @Column(name = "observacao", length = 255)
     private String observacao;
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
@@ -57,18 +68,19 @@ public class PrescricaoDieta implements Serializable {
         this.itemPrescricaoDietas = itemPrescricaoDietas;
         return this;
     }
+    
+	public PrescricaoDieta addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
+		this.itemPrescricaoDietas.add(itemPrescricaoDieta);
+		itemPrescricaoDieta.setPrescricaoDieta(this);
+		return this;
+	}
 
-    public PrescricaoDieta addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
-        this.itemPrescricaoDietas.add(itemPrescricaoDieta);
-        itemPrescricaoDieta.setPrescricaoDieta(this);
-        return this;
-    }
+	public PrescricaoDieta removeItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
+		this.itemPrescricaoDietas.remove(itemPrescricaoDieta);
+		itemPrescricaoDieta.setPrescricaoDieta(null);
+		return this;
+	}
 
-    public PrescricaoDieta removeItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
-        this.itemPrescricaoDietas.remove(itemPrescricaoDieta);
-        itemPrescricaoDieta.setPrescricaoDieta(null);
-        return this;
-    }
 
  
 }
