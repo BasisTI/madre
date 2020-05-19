@@ -2,6 +2,9 @@ package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.repository.search.PrescricaoSerchRepository;
+import br.com.basis.madre.farmacia.service.dto.PrescricaoDTO;
+import br.com.basis.madre.farmacia.service.mapper.Prescricaomapper;
+import br.com.basis.madre.farmacia.service.projection.PrescricaoLocal;
 import com.github.javafaker.Faker;
 import com.sun.org.apache.xpath.internal.operations.And;
 import joptsimple.internal.Strings;
@@ -24,10 +27,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 @RestController
 @RequestMapping("/api")
@@ -39,44 +46,59 @@ public class PrescricaoResource {
 
     private Faker faker = new Faker(new Locale("pt-BR"));
 
+    private Prescricaomapper prescricaomapper;
 
     @GetMapping("/prescricao")
-    public Page<Prescricao> listarFarmacia(@RequestParam("nome") String nome, String dataInicio, String local,  Pageable pageable) {
+    public Page<Prescricao> listarFarmacia(@RequestParam("nome") String nome, String dataInicio, String local, Pageable pageable) {
 
-        if (Strings.isNullOrEmpty(nome) && Strings.isNullOrEmpty(local) ) {
+        if (Strings.isNullOrEmpty(nome) && Strings.isNullOrEmpty(local) && Strings.isNullOrEmpty(dataInicio)) {
             Page<Prescricao> search = prescricaoRepositorySearch.search(new NativeSearchQueryBuilder()
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local").build())
                 .withPageable(PageRequest.of(0, 50))
                 .build());
             return search;
         }
+        if (dataInicio != null) {
+            NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+
+                .withQuery(matchQuery("dataInicio", dataInicio))
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local"
+                ).build())
+                .withPageable(PageRequest.of(0, 20))
+                .build();
+            Page<Prescricao> query = prescricaoRepositorySearch.search(
+                nativeSearchQuery);
+            return query;
+        }
 
 
-//        FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("nome",  nome);
-        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
 
-            .withQuery(QueryBuilders.multiMatchQuery(nome).field("nome").operator(Operator.OR).fuzziness(Fuzziness.ONE).prefixLength(5))
-            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local"
-            ).build())
-            .withPageable(PageRequest.of(0, 20))
-            .build();
-        Page<Prescricao> query = prescricaoRepositorySearch.search(
-            nativeSearchQuery);
+            NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
 
-        return query;
+                .withQuery(QueryBuilders.multiMatchQuery(local + nome, "local", "nome")
+                    .field("nome").field("local").operator(Operator.OR).fuzziness(Fuzziness.ONE).prefixLength(5))
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local"
+                ).build())
+                .withPageable(PageRequest.of(0, 20))
+                .build();
+            Page<Prescricao> query = prescricaoRepositorySearch.search(
+                nativeSearchQuery);
+
+            return query;
+//
     }
 
-//    @GetMapping("/prescricao")
-//    public List<Prescricao> listarUnidades(UnidadeDTO unidadeDTO, Pageable pageable){
-//        Page<Prescricao> prescricaoPage = prescricaoRepositorySearch.findAll(pageable);
-//
-//        List<Prescricao> prescricao = prescricaoPage.getContent();
-//
-//        Page<Prescricao> prescricaoModelPage = new PageImpl<>(prescricao, pageable,
-//            prescricaoPage.getTotalElements());
-//
-//        return prescricaoModelPage.getContent();
-//    }
+    @GetMapping("/prescricao-local")
+    public Page<PrescricaoLocal> listarUnidades(String local, Pageable pageable) {
+        if (Strings.isNullOrEmpty(local)) {
+            Page<PrescricaoLocal> prescricaoPage = prescricaoRepositorySearch.findAllPrescricaoLocalBy(pageable);
+            return prescricaoPage;
+        }
+
+        Page<PrescricaoLocal> prescricaoPage = prescricaoRepositorySearch.findAllByLocal(local, pageable);
+
+        return prescricaoPage;
+    }
 
 
     @GetMapping("/fillData")

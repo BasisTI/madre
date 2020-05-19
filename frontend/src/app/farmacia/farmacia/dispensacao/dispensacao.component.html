@@ -10,7 +10,7 @@
                         pInputText
                         type="text"
                         pTooltip="Informe o Prontuario."
-                        [(ngModel)]="local"
+                        [(ngModel)]="Prontuario"
                     />
                     <label>Prontuário</label>
                 </span>
@@ -21,31 +21,20 @@
                     <label>Nome</label>
                 </span>
             </div>
-            {{ nome }}
+
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-calendar
-                        [(ngModel)]="value"
-                        showButtonBar="true"
-                        pTooltip="Informe a Data da Prescrição."
-                    ></p-calendar>
+                    <p-calendar dateFormat="yy-mm-dd" [(ngModel)]="data"></p-calendar>
                     <label>Data da Prescrição</label>
                 </span>
             </div>
-            {{ value }}
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-autoComplete
-                        pTooltip="Informe a Unidade."
-                        [(ngModel)]="texts"
-                        [suggestions]="results"
-                        (completeMethod)="search($event)"
-                        [dropdown]="true"
-                    ></p-autoComplete>
-                    <label>Unidade Funcional</label>
+                    <input pInputText type="text" pTooltip="Informe o Local." [(ngModel)]="local" />
+                    <label>Local</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <!-- <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
                     <p-autoComplete
                         pTooltip="Informe a Farmacia."
@@ -56,7 +45,7 @@
                     ></p-autoComplete>
                     <label>Farmácia</label>
                 </span>
-            </div>
+            </div> -->
         </div>
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
@@ -75,9 +64,9 @@
                 <button pButton type="button" label="Exportar"></button>
             </div>
         </div>
-        <basis-datatable type="memory" [value]="Prescricao">
+        <basis-datatable type="memory" [value]="Prescricao" sortField="brand">
             <p-column header="Prontuário" field="id"></p-column>
-            <p-column header="Paciente" field="nome"></p-column>
+            <p-column header="Paciente" field="nome" [sortable]="true"></p-column>
             <p-column header="Localização" field="local"></p-column>
             <p-column header="Início Prescrição" field="dataInicio"></p-column>
             <p-column header="Fim Prescrição" field="dataFim"></p-column>

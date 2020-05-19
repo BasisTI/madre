@@ -6,7 +6,7 @@ export interface Prescricao {
     nome: string;
     farmacia: string;
     unidade: string;
-    dataInicio: Data;
-    dataFim: Data;
+    dataInicio: Date;
+    dataFim: Date;
     local: string;
 }

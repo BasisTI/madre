@@ -1,3 +1,3 @@
 export interface Unidade {
-    unidade: string;
+    local: string;
 }

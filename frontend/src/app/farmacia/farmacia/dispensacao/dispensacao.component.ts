@@ -1,8 +1,14 @@
+import { browser } from 'protractor';
+import { style } from '@angular/animations';
+import { Data } from '@angular/router';
+import { Pageable } from './../../../shared/pageable';
 import { Unidade } from './unidade';
 import { Farmacia } from './../farmacia.router';
 import { Prescricao } from './prescricao';
 import { FarmaciaService } from './../farmacia.service';
 import { Component, OnInit } from '@angular/core';
+import { format } from 'path';
+import { FullCalendar } from 'primeng';
 
 @Component({
     selector: 'app-dispensacao',
@@ -11,29 +17,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DispensacaoComponent implements OnInit {
     Prescricao: Prescricao[];
-    value;
+    data: Date;
     nome = '';
+    // input = `${this.data.getFullYear()}-${this.data.getMonth()}-${this.data.getDay()}`;
     dataInicio = '';
     dataFim = '';
     local = '';
 
     texts: string[];
 
-    results = new Array<Unidade>();
+    results: Unidade[];
 
     search(event: { originalEvent: KeyboardEvent; query: string }) {
         this.service.getResult(event.query).subscribe((data) => {
-            this.results = data;
+            this.results = data.content;
         });
+
+        console.log(this.results);
+    }
+    // `${this.data.getFullYear()}-${this.data.}-${this.data.getDay()}`
+
+    formatarData(data: Date): string {
+        const normalize = (x: number): string => (x < 10 ? `0${x}` : `${x}`);
+
+        const dateObjectToFormattedString = (dateObject: Date): string => {
+            const year = normalize(dateObject.getFullYear());
+            const day = normalize(dateObject.getDate());
+            const month = normalize(dateObject.getMonth() + 1);
+
+            return `${year}-${month}-${day}`;
+        };
+        return dateObjectToFormattedString(data);
     }
 
     listar() {
-        // tslint:disable-next-line: max-line-length
+        if (this.data != null) {
+            this.dataInicio = this.formatarData(this.data);
+        }
         this.service
             .getPrescricao(this.nome, this.dataInicio, this.local)
             .subscribe((res) => (this.Prescricao = res.content));
+        this.dataInicio = '';
+
         console.log(this.Prescricao);
-        console.log(this.nome);
+        console.log(this.dataInicio);
     }
 
     constructor(private service: FarmaciaService) {}

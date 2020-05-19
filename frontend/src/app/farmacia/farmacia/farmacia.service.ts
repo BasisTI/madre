@@ -12,15 +12,22 @@ export class FarmaciaService {
     constructor(private httpServe: HttpClient) {}
     private readonly apiUrl = '/farmacia/api';
 
-    getPrescricao(nome: string, value, local: string): Observable<Pageable<Prescricao>> {
+    getPrescricao(
+        nome: string,
+        dataInicio: string,
+        local: string,
+    ): Observable<Pageable<Prescricao>> {
         return this.httpServe.get<Pageable<Prescricao>>(`${this.apiUrl}/prescricao`, {
-            params: new HttpParams().set('nome', nome).set('dataInicio', value).set('local', local),
+            params: new HttpParams()
+                .set('nome', nome)
+                .set('dataInicio', dataInicio)
+                .set('local', local),
         });
     }
 
-    getResult(nome: string): Observable<Array<Unidade>> {
-        return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/prescricao`, {
-            params: new HttpParams().set('unidade', nome),
+    getResult(nome: string): Observable<Pageable<Unidade>> {
+        return this.httpServe.get<Pageable<Unidade>>(`${this.apiUrl}/prescricao-local`, {
+            params: new HttpParams().set('local', nome),
         });
     }
 }
