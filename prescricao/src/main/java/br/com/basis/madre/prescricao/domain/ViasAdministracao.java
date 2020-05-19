@@ -28,10 +28,7 @@ import lombok.ToString;
 /**
  * A ViasAdministracao.
  */
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 @Entity
 @Table(name = "vias_administracao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
