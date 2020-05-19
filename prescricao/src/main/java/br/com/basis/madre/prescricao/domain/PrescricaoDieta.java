@@ -43,6 +43,9 @@ public class PrescricaoDieta implements Serializable {
 
     @Column(name = "id_paciente")
     private Long idPaciente;
+    
+    @Column(name = "bomba_infusao")
+    private Boolean bombaInfusao;
 
     @Size(max = 255)
     @Column(name = "observacao", length = 255)

@@ -18,6 +18,8 @@ public class PrescricaoDietaDTO implements Serializable {
 	private Long id;
 
 	private Long idPaciente;
+	
+	private Boolean bombaInfusao;
 
 	@Size(max = 255)
 	private String observacao;
