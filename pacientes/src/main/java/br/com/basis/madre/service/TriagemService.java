@@ -115,9 +115,6 @@ public class TriagemService {
             .map(triagemMapper::toDto);
     }
 
-    /**
-     * TODO: Write documentation
-     */
 
     public Page<TriagemProjection> findAllTriagemBy(Pageable pageable) {
         return triagemRepository.findAllTriagemBy(pageable);
