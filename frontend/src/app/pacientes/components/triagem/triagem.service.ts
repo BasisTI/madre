@@ -23,7 +23,7 @@ export class TriagemService {
     }
 
     alterarTriagem(id: number): Observable<any> {
-        return this.httpService.put(`${this.apiUrl}/triagens/${id}`, Response);
+        return this.httpService.put(`${this.apiUrl}/triagens}`, Response);
     }
 
     listarTriagem(): Observable<any> {

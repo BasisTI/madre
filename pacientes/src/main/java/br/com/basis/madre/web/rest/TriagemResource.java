@@ -66,7 +66,7 @@ public class TriagemResource {
         .body(result);
     }
 
-    @PutMapping("/triagens/{id}")
+    @PutMapping("/triagens")
     @Timed
     public ResponseEntity<TriagemDTO> updateTriagem(@Valid @RequestBody TriagemDTO triagemDTO)
         throws URISyntaxException {
@@ -116,7 +116,7 @@ public class TriagemResource {
     }
 
     @GetMapping("/triagens/listagem")
-    public ResponseEntity<Page<TriagemProjection>> findAllProjectedTriagemProjectionBy(Pageable pageable) {
-        return ResponseEntity.ok(triagemService.findAllProjectedTriagemProjectionBy(pageable));
+    public ResponseEntity<Page<TriagemProjection>> findAllTriagem(Pageable pageable) {
+        return ResponseEntity.ok(triagemService.findAllTriagem(pageable));
     }
 }

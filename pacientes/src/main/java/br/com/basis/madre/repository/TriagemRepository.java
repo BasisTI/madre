@@ -16,6 +16,6 @@ import java.util.List;
 public interface TriagemRepository extends JpaRepository<Triagem, Long> {
     List<Triagem> findByPacienteId(Long id);
 
-    Page<TriagemProjection> findAllProjectedTriagemProjectionBy(Pageable pageable);
+    Page<TriagemProjection> findAllTriagem(Pageable pageable);
 }
 
