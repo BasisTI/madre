@@ -115,7 +115,7 @@ public class TriagemService {
      * TODO: Write documentation
      */
 
-    public Page<TriagemProjection> findAllProjectedTriagemProjectionBy(Pageable pageable) {
-        return triagemRepository.findAllProjectedTriagemProjectionBy(pageable);
+    public Page<TriagemProjection> findAllTriagem(Pageable pageable) {
+        return triagemRepository.findAllTriagem(pageable);
     }
 }
