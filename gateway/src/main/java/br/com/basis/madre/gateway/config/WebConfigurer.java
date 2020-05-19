@@ -6,7 +6,6 @@ import io.github.jhipster.config.JHipsterProperties;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.servlet.InstrumentedFilter;
 import com.codahale.metrics.servlets.MetricsServlet;
-import com.hazelcast.core.HazelcastInstance;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,15 +37,13 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 
     private final JHipsterProperties jHipsterProperties;
 
-    private final HazelcastInstance hazelcastInstance;
-
     private MetricRegistry metricRegistry;
 
-    public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties, HazelcastInstance hazelcastInstance) {
+    public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
 
         this.env = env;
         this.jHipsterProperties = jHipsterProperties;
-        this.hazelcastInstance = hazelcastInstance;
+
     }
 
     @Override
