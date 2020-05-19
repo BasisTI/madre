@@ -8,6 +8,7 @@ import br.com.basis.madre.farmacia.service.projection.PrescricaoLocal;
 import com.github.javafaker.Faker;
 import com.sun.org.apache.xpath.internal.operations.And;
 import joptsimple.internal.Strings;
+import org.aspectj.lang.annotation.RequiredTypes;
 import org.elasticsearch.cluster.AbstractNamedDiffable;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.FuzzyQueryBuilder;
@@ -15,6 +16,7 @@ import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.search.MatchQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -49,7 +53,9 @@ public class PrescricaoResource {
     private Prescricaomapper prescricaomapper;
 
     @GetMapping("/prescricao")
-    public Page<Prescricao> listarFarmacia(@RequestParam("nome") String nome, String dataInicio, String local, Pageable pageable) {
+    public Page<Prescricao> listarFarmacia( String nome, String dataInicio, String local, Pageable pageable) throws ParseException {
+
+//        Date data = new SimpleDateFormat("yy-mm-dd").parse(dataInicio);
 
         if (Strings.isNullOrEmpty(nome) && Strings.isNullOrEmpty(local) && Strings.isNullOrEmpty(dataInicio)) {
             Page<Prescricao> search = prescricaoRepositorySearch.search(new NativeSearchQueryBuilder()
@@ -58,7 +64,7 @@ public class PrescricaoResource {
                 .build());
             return search;
         }
-        if (dataInicio != null) {
+        if (!Strings.isNullOrEmpty(dataInicio)) {
             NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
 
                 .withQuery(matchQuery("dataInicio", dataInicio))
@@ -71,21 +77,19 @@ public class PrescricaoResource {
             return query;
         }
 
-
-
-            NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+            NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
 
                 .withQuery(QueryBuilders.multiMatchQuery(local + nome, "local", "nome")
-                    .field("nome").field("local").operator(Operator.OR).fuzziness(Fuzziness.ONE).prefixLength(5))
+                    .field("nome").field("local").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local"
                 ).build())
                 .withPageable(PageRequest.of(0, 20))
                 .build();
-            Page<Prescricao> query = prescricaoRepositorySearch.search(
-                nativeSearchQuery);
+            Page<Prescricao> queryFuzzy = prescricaoRepositorySearch.search(
+                nativeSearchQueryFuzzy);
 
-            return query;
-//
+            return queryFuzzy;
+
     }
 
     @GetMapping("/prescricao-local")
@@ -117,11 +121,3 @@ public class PrescricaoResource {
     }
 
 }
-//    NativeSearchQuery query =
-//            new NativeSearchQueryBuilder()
-//                .withQuery(
-//                    QueryBuilders.matchQuery("nome", nome)
-//                        .operator(Operator.AND)
-//                        .fuzziness(Fuzziness.ONE)
-//                        .prefixLength(3))
-//                .build();
