@@ -10,6 +10,7 @@ import br.com.basis.madre.service.projection.TriagemProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -116,8 +117,8 @@ public class TriagemService {
     }
 
 
-    public Page<TriagemProjection> findAllTriagem(Pageable pageable) {
-        return triagemRepository.findAllTriagem(pageable);
+    public Page<TriagemProjection> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
+        return triagemRepository.findAllResumoTriagemBy(Example.of(triagemMapper.toEntity(triagem)), pageable);
     }
 
 }
