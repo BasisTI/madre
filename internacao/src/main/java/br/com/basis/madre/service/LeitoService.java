@@ -68,28 +68,28 @@ public class LeitoService {
     }
 
     @Transactional(readOnly = true)
-    public List<Leito> obterTodosOsLeitosReservados() {
-        return leitoRepository.obterTodosOsLeitosReservados();
+    public Page<Leito> obterTodosOsLeitosReservados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosReservados(pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Leito> obterTodosOsLeitosBloqueados() {
-        return leitoRepository.obterTodosOsLeitosBloqueados();
+    public Page<Leito> obterTodosOsLeitosBloqueados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosBloqueados(pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Leito> obterTodosOsLeitosOcupados() {
-        return leitoRepository.obterTodosOsLeitosOcupados();
+    public Page<Leito> obterTodosOsLeitosOcupados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosOcupados(pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Leito> obterTodosOsLeitosNaoLiberados() {
-        return leitoRepository.obterTodosOsLeitosNaoLiberados();
+    public Page<Leito> obterTodosOsLeitosNaoLiberados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosNaoLiberados(pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Leito> obterTodosOsLeitosLiberados() {
-        return leitoRepository.obterTodosOsLeitosLiberados();
+    public Page<Leito> obterTodosOsLeitosLiberados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosLiberados(pageable);
     }
 
     /**
