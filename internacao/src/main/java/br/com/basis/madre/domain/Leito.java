@@ -48,11 +48,6 @@ public class Leito implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("leitos")
-    private SituacaoDeLeito situacao;
-
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties("leitos")
     private UnidadeFuncional unidadeFuncional;
 
     public Leito nome(String nome) {
@@ -67,11 +62,6 @@ public class Leito implements Serializable {
 
     public Leito andar(Integer andar) {
         this.andar = andar;
-        return this;
-    }
-
-    public Leito situacao(SituacaoDeLeito situacaoDeLeito) {
-        this.situacao = situacaoDeLeito;
         return this;
     }
 

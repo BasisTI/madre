@@ -13,7 +13,7 @@ export class LeitoComponent implements OnInit, EntityAutoComplete {
     @Input() public required = false;
     @Input() public label = 'Leito';
     @Input() public name = 'leito';
-    @Input() public mostrarLeitosDesocupados = true;
+    @Input() public situacao: string;
     @Output() public select = new EventEmitter();
     @Output() public blur = new EventEmitter();
     public leitos = new Array<Leito>();
@@ -21,30 +21,23 @@ export class LeitoComponent implements OnInit, EntityAutoComplete {
     constructor(private leitoService: LeitoService) {}
 
     ngOnInit() {
-        if (this.mostrarLeitosDesocupados) {
-            this.leitoService
-                .getLeitosDesocupados()
-                .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
-            return;
+        switch (this.situacao) {
+            case 'liberado':
+                this.leitoService.obterLeitosLiberados().subscribe((leitos) => {
+                    this.leitos = leitos;
+                });
+                break;
+            case 'ocupado':
+                this.leitoService.obterLeitosOcupados().subscribe((leitos) => {
+                    this.leitos = leitos;
+                });
+                break;
+            default:
+                break;
         }
-
-        this.leitoService
-            .getLeitosNaoDesocupados()
-            .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
     }
 
-    aoDigitar(evento: { originalEvent: any; query: string }): void {
-        if (this.mostrarLeitosDesocupados) {
-            this.leitoService
-                .getLeitosDesocupadosPorNome(evento.query)
-                .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
-            return;
-        }
-
-        this.leitoService
-            .getLeitosNaoDesocupadosPorNome(evento.query)
-            .subscribe((leitos: Array<Leito>) => (this.leitos = leitos));
-    }
+    aoDigitar(evento: { originalEvent: any; query: string }): void {}
 
     aoDesfocar(): void {
         if (!this.parentFormGroup.get(this.name).value) {
