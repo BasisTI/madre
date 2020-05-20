@@ -1,0 +1,44 @@
+entity Dispensacao {
+    idPrescricao Long
+    idUnidade Long
+    usuarioQueCriou Long
+    dataDeCriacao LocalDate
+    usuarioQueAlterou Long
+    dataDeAlteracao LocalDate
+}
+entity DispensacaoMedicamentos {
+    idFarmacia Long
+    dispensado Boolean
+    usuarioQueDispensou Long
+}
+entity Medicamento {
+    codigo String
+    nome String
+    descricao String
+    concentracao String
+    ativo Boolean
+}
+entity Unidade {
+	nome String
+}
+entity TipoMedicamento {
+	nome String
+}
+entity Apresentacao {
+	nome String
+}
+relationship OneToMany {
+Dispensacao{dispensacaoMedicamentos} to DispensacaoMedicamentos
+}
+relationship ManyToOne {
+
+    DispensacaoMedicamentos{medicamentos} to Medicamento
+	Medicamento{tipoMedicamento} to TipoMedicamento
+    Medicamento{apresentacao} to Apresentacao
+    Medicamento{unidade} to Unidade
+}
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
+
