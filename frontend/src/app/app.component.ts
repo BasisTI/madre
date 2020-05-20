@@ -171,7 +171,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             {
                 label: 'Farmacia',
-                icon: 'airline_seat_individual_suite',
+                icon: 'local_pharmacy',
                 items: [
                     {
                         label: 'Dispensação medica',
