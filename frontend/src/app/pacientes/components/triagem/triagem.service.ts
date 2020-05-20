@@ -1,3 +1,4 @@
+import { Pageable } from './../../../shared/pageable';
 import { TriagemModel } from './../../models/triagem-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

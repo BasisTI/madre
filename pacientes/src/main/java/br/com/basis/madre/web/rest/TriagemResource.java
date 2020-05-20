@@ -101,9 +101,9 @@ public class TriagemResource {
 
     @GetMapping("/triagens/listagem")
     @Timed
-    public ResponseEntity<Page<TriagemProjection>> findAllTriagemby(Pageable pageable) {
+    public ResponseEntity<Page<TriagemProjection>> findAllTriagem(Pageable pageable) {
         log.debug("REST request to get all Triagens");
-        return ResponseEntity.ok(triagemService.findAllTriagemBy(pageable));
+        return ResponseEntity.ok(triagemService.findAllTriagem(pageable));
     }
 
     @GetMapping("/_search/triagens")

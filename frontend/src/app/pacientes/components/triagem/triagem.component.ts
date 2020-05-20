@@ -27,7 +27,7 @@ export class TriagemComponent implements OnInit, OnDestroy {
         private router: Router,
     ) {}
 
-    triagem: any;
+    triagens: any;
 
     searchUrl = 'pacientes/api/triagens/pacientes';
 
@@ -36,17 +36,19 @@ export class TriagemComponent implements OnInit, OnDestroy {
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'Emergencia', routerLink: 'emergencia' },
         ]);
+
+        this.listarTriagens();
     }
 
     listarTriagemId(id: number) {
         this.triagemService.buscarTriagemId(id).subscribe((triagem) => {
-            this.triagem = triagem;
+            this.triagens = triagem;
         });
     }
 
     listarTriagens() {
         this.triagemService.listarTriagem().subscribe((triagens) => {
-            this.triagem = triagens.content;
+            this.triagens = triagens.content;
             console.log(triagens);
         });
     }
