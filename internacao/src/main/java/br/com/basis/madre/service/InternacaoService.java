@@ -3,16 +3,10 @@ package br.com.basis.madre.service;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import br.com.basis.madre.domain.Internacao;
-import br.com.basis.madre.domain.enumeration.CodigoDoTipoEventoLeito;
 import br.com.basis.madre.repository.InternacaoRepository;
 import br.com.basis.madre.repository.search.InternacaoSearchRepository;
-import br.com.basis.madre.service.dto.EventoLeitoDTO;
 import br.com.basis.madre.service.dto.InternacaoDTO;
-import br.com.basis.madre.service.dto.LeitoDTO;
-import br.com.basis.madre.service.mapper.EventoLeitoMapper;
 import br.com.basis.madre.service.mapper.InternacaoMapper;
-import br.com.basis.madre.service.mapper.LeitoMapper;
-import java.time.LocalDate;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -35,32 +29,11 @@ public class InternacaoService {
 
     private final InternacaoSearchRepository internacaoSearchRepository;
 
-    private final LeitoService leitoService;
-
     private final EventoLeitoService eventoLeitoService;
 
-    private final LeitoMapper leitoMapper;
-
-    private final EventoLeitoMapper eventoLeitoMapper;
-
     public InternacaoDTO save(InternacaoDTO internacaoDTO) {
-        /*
-            Mudar situação do leito.
-         */
-        Long leitoId = internacaoDTO.getLeitoId();
-        leitoService.ocuparLeito(leitoId);
-        /*
-            Registrar evento de leito.
-         */
-        EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
-        eventoLeitoDTO.setLeitoId(leitoId);
-        eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
-        eventoLeitoDTO.setDataDoLancamento(LocalDate.now());
-        eventoLeitoDTO.setJustificativa(internacaoDTO.getJustificativa());
-        eventoLeitoService.save(eventoLeitoDTO);
-        /*
-            Registrar internação
-         */
+        eventoLeitoService.ocuparLeito(internacaoDTO);
+
         Internacao internacao = internacaoMapper.toEntity(internacaoDTO);
         internacao = internacaoRepository.save(internacao);
         InternacaoDTO result = internacaoMapper.toDto(internacao);

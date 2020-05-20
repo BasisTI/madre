@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class LiberacaoDeLeitoDTO implements Serializable {
+
     private Long id;
 
     @NotNull

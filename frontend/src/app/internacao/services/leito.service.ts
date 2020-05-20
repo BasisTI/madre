@@ -1,47 +1,34 @@
-import { Leito } from './../models/leito';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { api } from './../api';
 import { Observable } from 'rxjs';
-import { HttpParams, HttpClient } from '@angular/common/http';
-import { EntityService } from '@shared/entity.service';
-import { Injectable } from '@angular/core';
+import { Leito } from '@internacao/models/leito';
 
 @Injectable({
     providedIn: 'root',
 })
-export class LeitoService implements EntityService {
-    private readonly resource = `${api}/leitos`;
+export class LeitoService {
+    private readonly _resource$ = `${api}/leitos`;
 
     constructor(private client: HttpClient) {}
 
-    getResource<T>(params?: HttpParams): Observable<T> {
-        if (params) {
-            return this.client.get<T>(this.resource, { params });
-        }
-
-        return this.client.get<T>(this.resource);
+    obterLeitosLiberados(): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this._resource$}/liberados`);
     }
 
-    getLeitosNaoDesocupados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this.resource}/nao-desocupados`, {
-            params: new HttpParams().set('sort', 'nome'),
-        });
+    obterLeitosOcupados(): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this._resource$}/ocupados`);
     }
 
-    getLeitosNaoDesocupadosPorNome(nome: string): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this.resource}/nao-desocupados`, {
-            params: new HttpParams().set('sort', 'nome').set('nome', nome),
-        });
+    obterLeitosReservados(): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this._resource$}/reservados`);
     }
 
-    getLeitosDesocupados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this.resource}/desocupados`, {
-            params: new HttpParams().set('sort', 'nome'),
-        });
+    obterLeitosBloqueados(): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this._resource$}/bloqueados`);
     }
 
-    getLeitosDesocupadosPorNome(nome: string): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this.resource}/desocupados`, {
-            params: new HttpParams().set('sort', 'nome').set('nome', nome),
-        });
+    obterLeitosNaoLiberados(): Observable<Array<Leito>> {
+        return this.client.get<Array<Leito>>(`${this._resource$}/nao-liberados`);
     }
 }

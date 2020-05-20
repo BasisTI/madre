@@ -15,13 +15,14 @@
             <div class="ui-g-12">
                 <!-- Leito + Quarto + Unidade Funcional -->
                 <div class="ui-g-2">
-                    <label>Leito</label>
                     <app-leito
                         [parentFormGroup]="formGroup"
                         [required]="true"
+                        situacao="liberado"
                         name="leito"
                         label="Leito"
-                    ></app-leito>
+                    >
+                    </app-leito>
                 </div>
                 <div class="ui-g-4">
                     <label>Quarto</label>

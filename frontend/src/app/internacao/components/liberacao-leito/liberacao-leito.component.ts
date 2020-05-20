@@ -10,7 +10,7 @@ import { LiberacaoDeLeitoService } from '@internacao/services/liberacao-de-leito
     templateUrl: './liberacao-leito.component.html',
     styleUrls: ['./liberacao-leito.component.scss'],
 })
-export class LiberacaoLeitoComponent implements OnInit, OnDestroy {
+export class LiberacaoLeitoComponent implements OnInit {
     public pCalendarConfig: ConfiguracaoParaCalendarioPrimeNG = {
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yyyy',
@@ -22,8 +22,7 @@ export class LiberacaoLeitoComponent implements OnInit, OnDestroy {
     };
 
     public formGroup: FormGroup = this.fb.group({
-        leito: ['', Validators.required],
-        situacao: [{ value: '', disabled: true }, Validators.required],
+        leito: [null, Validators.required],
         dataDoLancamento: [new Date(), Validators.required],
         justificativa: [''],
     });
@@ -35,20 +34,13 @@ export class LiberacaoLeitoComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {}
 
-    ngOnDestroy(): void {}
-
     aoSelecionarLeito(leito: Leito): void {
-        this.formGroup.controls.situacao.setValue(leito.situacao.nome);
-    }
-
-    aoDesfocarLeito(): void {
-        this.formGroup.controls.situacao.setValue(null);
+        this.formGroup.controls.leito.setValue(leito);
     }
 
     liberarLeito(): void {
-        this.liberacaoDeLeitoService
-            .liberarLeito(this.formGroup.value)
-            .subscribe((resposta) => console.log(resposta));
-        this.formGroup.reset();
+        this.liberacaoDeLeitoService.liberarLeito(this.formGroup.value).subscribe((resposta) => {
+            console.log(resposta);
+        });
     }
 }

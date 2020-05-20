@@ -13,7 +13,7 @@ export class InternacaoDePacienteService {
     constructor(private client: HttpClient) {}
 
     internarPaciente(internacao: Internacao): Observable<Internacao> {
-        const internacaoDTO = {
+        const dto = {
             procedimentoId: 1,
             prioridade: 'ELETIVA',
             justificativa: internacao.justificativa,
@@ -33,6 +33,6 @@ export class InternacaoDePacienteService {
             leitoId: internacao.leito.id,
         };
 
-        return this.client.post<Internacao>(this.resource, internacaoDTO);
+        return this.client.post<Internacao>(this.resource, dto);
     }
 }

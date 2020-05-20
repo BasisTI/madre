@@ -1,10 +1,25 @@
 package br.com.basis.madre.web.rest;
 
+import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import br.com.basis.madre.InternacaoApp;
 import br.com.basis.madre.domain.EventoLeito;
-import br.com.basis.madre.domain.TipoDoEventoLeito;
 import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.domain.MotivoDoBloqueioDeLeito;
+import br.com.basis.madre.domain.TipoDoEventoLeito;
 import br.com.basis.madre.repository.EventoLeitoRepository;
 import br.com.basis.madre.repository.search.EventoLeitoSearchRepository;
 import br.com.basis.madre.service.EventoLeitoService;
@@ -12,7 +27,11 @@ import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.EventoLeitoDTO;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
+import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,20 +48,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
-
-import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 /**
  * Integration tests for the {@link EventoLeitoResource} REST controller.
  */
@@ -51,7 +56,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class EventoLeitoResourceIT {
 
     private static final LocalDate DEFAULT_DATA_DO_LANCAMENTO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate
+        .now(ZoneId.systemDefault());
 
     private static final String DEFAULT_JUSTIFICATIVA = "AAAAAAAAAA";
     private static final String UPDATED_JUSTIFICATIVA = "BBBBBBBBBB";
@@ -98,7 +104,7 @@ public class EventoLeitoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EventoLeitoResource eventoLeitoResource = new EventoLeitoResource(eventoLeitoService, leitoService);
+        final EventoLeitoResource eventoLeitoResource = new EventoLeitoResource(eventoLeitoService);
         this.restEventoLeitoMockMvc = MockMvcBuilders.standaloneSetup(eventoLeitoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -109,9 +115,9 @@ public class EventoLeitoResourceIT {
 
     /**
      * Create an entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * <p>
+     * This is a static method, as tests for other entities might also need it, if they test an
+     * entity which requires the current entity.
      */
     public static EventoLeito createEntity(EntityManager em) {
         EventoLeito eventoLeito = new EventoLeito()
@@ -149,11 +155,12 @@ public class EventoLeitoResourceIT {
         eventoLeito.setMotivo(motivoDoBloqueioDeLeito);
         return eventoLeito;
     }
+
     /**
      * Create an updated entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * <p>
+     * This is a static method, as tests for other entities might also need it, if they test an
+     * entity which requires the current entity.
      */
     public static EventoLeito createUpdatedEntity(EntityManager em) {
         EventoLeito eventoLeito = new EventoLeito()
@@ -274,7 +281,8 @@ public class EventoLeitoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(eventoLeito.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataDoLancamento").value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].dataDoLancamento")
+                .value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)));
     }
 
@@ -382,14 +390,18 @@ public class EventoLeitoResourceIT {
     public void searchEventoLeito() throws Exception {
         // Initialize the database
         eventoLeitoRepository.saveAndFlush(eventoLeito);
-        when(mockEventoLeitoSearchRepository.search(queryStringQuery("id:" + eventoLeito.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(eventoLeito), PageRequest.of(0, 1), 1));
+        when(mockEventoLeitoSearchRepository
+            .search(queryStringQuery("id:" + eventoLeito.getId()), PageRequest.of(0, 20)))
+            .thenReturn(
+                new PageImpl<>(Collections.singletonList(eventoLeito), PageRequest.of(0, 1), 1));
         // Search the eventoLeito
-        restEventoLeitoMockMvc.perform(get("/api/_search/evento-leitos?query=id:" + eventoLeito.getId()))
+        restEventoLeitoMockMvc
+            .perform(get("/api/_search/evento-leitos?query=id:" + eventoLeito.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(eventoLeito.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataDoLancamento").value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].dataDoLancamento")
+                .value(hasItem(DEFAULT_DATA_DO_LANCAMENTO.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)));
     }
 
