@@ -1,14 +1,10 @@
 package br.com.basis.madre.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
 import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.repository.LeitoRepository;
 import br.com.basis.madre.repository.search.LeitoSearchRepository;
 import br.com.basis.madre.service.dto.LeitoDTO;
 import br.com.basis.madre.service.mapper.LeitoMapper;
-import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @RequiredArgsConstructor
 @Service
@@ -57,7 +57,7 @@ public class LeitoService {
      */
     @Transactional(readOnly = true)
     public Page<LeitoDTO> findAll(LeitoDTO leitoDTO,
-        Pageable pageable) {
+                                  Pageable pageable) {
         log.debug("Request to get all Leitos");
         return leitoRepository.findAll(
             Example.of(leitoMapper.toEntity(leitoDTO),
@@ -68,28 +68,28 @@ public class LeitoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Leito> obterTodosOsLeitosReservados(Pageable pageable) {
-        return leitoRepository.obterTodosOsLeitosReservados(pageable);
+    public Page<LeitoDTO> obterTodosOsLeitosReservados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosReservados(pageable).map(leitoMapper::toDto);
     }
 
     @Transactional(readOnly = true)
-    public Page<Leito> obterTodosOsLeitosBloqueados(Pageable pageable) {
-        return leitoRepository.obterTodosOsLeitosBloqueados(pageable);
+    public Page<LeitoDTO> obterTodosOsLeitosBloqueados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosBloqueados(pageable).map(leitoMapper::toDto);
     }
 
     @Transactional(readOnly = true)
-    public Page<Leito> obterTodosOsLeitosOcupados(Pageable pageable) {
-        return leitoRepository.obterTodosOsLeitosOcupados(pageable);
+    public Page<LeitoDTO> obterTodosOsLeitosOcupados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosOcupados(pageable).map(leitoMapper::toDto);
     }
 
     @Transactional(readOnly = true)
-    public Page<Leito> obterTodosOsLeitosNaoLiberados(Pageable pageable) {
-        return leitoRepository.obterTodosOsLeitosNaoLiberados(pageable);
+    public Page<LeitoDTO> obterTodosOsLeitosNaoLiberados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosNaoLiberados(pageable).map(leitoMapper::toDto);
     }
 
     @Transactional(readOnly = true)
-    public Page<Leito> obterTodosOsLeitosLiberados(Pageable pageable) {
-        return leitoRepository.obterTodosOsLeitosLiberados(pageable);
+    public Page<LeitoDTO> obterTodosOsLeitosLiberados(Pageable pageable) {
+        return leitoRepository.obterTodosOsLeitosLiberados(pageable).map(leitoMapper::toDto);
     }
 
     /**

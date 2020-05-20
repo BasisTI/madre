@@ -1,6 +1,5 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.LeitoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -104,38 +103,31 @@ public class LeitoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/leitos/reservados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosReservados(Pageable pageable) {
-        Page<Leito> page = leitoService.obterTodosOsLeitosReservados(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
+    @GetMapping("/leitos/situacao/{situacao}")
+    public ResponseEntity<List<LeitoDTO>> obterTodosOsLeitosPorSituacao(@PathVariable(name = "situacao", required = true) String situacao, Pageable pageable) {
+        Page<LeitoDTO> page = Page.empty();
 
-    @GetMapping("/leitos/bloqueados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosBloqueados(Pageable pageable) {
-        Page<Leito> page = leitoService.obterTodosOsLeitosBloqueados(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
+        switch (situacao) {
+            case "reservados":
+                page = leitoService.obterTodosOsLeitosReservados(pageable);
+                break;
+            case "bloqueados":
+                page = leitoService.obterTodosOsLeitosBloqueados(pageable);
+                break;
+            case "ocupados":
+                page = leitoService.obterTodosOsLeitosOcupados(pageable);
+                break;
+            case "naoliberados":
+                page = leitoService.obterTodosOsLeitosNaoLiberados(pageable);
+                break;
+            case "liberados":
+                page = leitoService.obterTodosOsLeitosLiberados(pageable);
+            default:
+                break;
+        }
 
-    @GetMapping("/leitos/ocupados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosOcupados(Pageable pageable) {
-        Page<Leito> page = leitoService.obterTodosOsLeitosOcupados(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/leitos/nao-liberados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosNaoLiberados(Pageable pageable) {
-        Page<Leito> page = leitoService.obterTodosOsLeitosNaoLiberados(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    @GetMapping("/leitos/liberados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosLiberados(Pageable pageable) {
-        Page<Leito> page = leitoService.obterTodosOsLeitosLiberados(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
