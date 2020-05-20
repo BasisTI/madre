@@ -1,93 +1,80 @@
-<form class risco="ui-g ui-fluid">
+<form [formGroup]="formTriagem" class risco="ui-g ui-fluid">
     <div class="ui-g-7"></div>
     <h4>Classificação de Risco</h4>
     <div class="ui-dataview ui-g ui-sm-10">
         <div class="ui-g-7">
             <h3>
-                {{ selectedValue }}
+                <span>{{ formTriagem.value.classificacaoDeRisco | classificaoDeRisco }}</span>
             </h3>
         </div>
-        <div class="ui-g-1">
+        <div class="ui-g-1" value="classificacaoDeRisco">
             <div
-                class="azul"
-                blueCard=""
+                class="naoUrgente"
                 pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
-                style="background-color: blue; height: 50px; width: 50px;"
             ></div>
             <div class="ui-g-12"></div>
-            <div blueCard="">
+            <div>
                 <p-radioButton
-                    name="blue"
-                    value="Não urgente"
-                    [(ngModel)]="selectedValue"
+                    name="classificacaoDeRisco"
+                    [value]="opcaoClassificacao[4].value"
+                    formControlName="classificacaoDeRisco"
                 ></p-radioButton>
             </div>
         </div>
 
         <div class="ui-g-1">
             <div
-                class="verde"
-                greenCard=""
+                class="poucoUrgente"
                 pTooltip="Baixo risco de agravo a saúde, pode aguardar atendimento"
-                style="background-color: green; height: 50px; width: 50px;"
             ></div>
             <div class="ui-g-12"></div>
-            <div greenCard="">
+            <div>
                 <p-radioButton
-                    name="green"
-                    value="Pouco urgente"
-                    [(ngModel)]="selectedValue"
+                    name="classificacaoDeRisco"
+                    [value]="opcaoClassificacao[3].value"
+                    formControlName="classificacaoDeRisco"
                 ></p-radioButton>
             </div>
         </div>
 
         <div class="ui-g-1">
             <div
-                class="amarelo"
-                yellowCard=""
+                class="urgente"
                 pTooltip="Necessita de atendimento rápido, mas pode aguardar"
-                style="background-color: yellow; height: 50px; width: 50px;"
             ></div>
             <div class="ui-g-12"></div>
-            <div yellowCard="">
+            <div>
                 <p-radioButton
-                    name="yellow"
-                    value="Urgente"
-                    [(ngModel)]="selectedValue"
+                    name="classificacaoDeRisco"
+                    [value]="opcaoClassificacao[2].value"
+                    formControlName="classificacaoDeRisco"
                 ></p-radioButton>
             </div>
         </div>
 
         <div class="ui-g-1">
             <div
-                class="laranja"
-                orangeCard=""
+                class="muitoUrgente"
                 pTooltip="Necessita de atendimento praticamente imediato"
-                style="background-color: orange; height: 50px; width: 50px;"
             ></div>
             <div class="ui-g-12"></div>
-            <div orangeCard="">
+            <div>
                 <p-radioButton
-                    name="orange"
-                    value="Muito urgente"
-                    [(ngModel)]="selectedValue"
+                    name="classificacaoDeRisco"
+                    [value]="opcaoClassificacao[1].value"
+                    formControlName="classificacaoDeRisco"
                 ></p-radioButton>
             </div>
         </div>
 
         <div class="ui-g-1">
-            <div
-                class="vermelho"
-                redCard=""
-                pTooltip="Necessita de atendimento imediato"
-                style="background-color: red; height: 50px; width: 50px;"
-            ></div>
+            <div class="emergencia" pTooltip="Necessita de atendimento imediato"></div>
             <div class="ui-g-12"></div>
-            <div redCard="">
+            <div>
                 <p-radioButton
-                    name="red"
-                    value="Emergência"
-                    [(ngModel)]="selectedValue"
+                    name="classificacaoDeRisco"
+                    [value]="opcaoClassificacao[0].value"
+                    formControlName="classificacaoDeRisco"
                 ></p-radioButton>
             </div>
         </div>
