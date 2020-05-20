@@ -50,27 +50,48 @@
                     [disableEdit]="true"
                     [disableDelete]="true"
                     (buttonClick)="btnClick($event)"
+                    #datatable
                 >
-                    <p-column field="paciente" header="Nome do Paciente">
+                    <p-column field="paciente" header="Nome do Paciente" [sortable]="true">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span>{{ rowData[col.field].nome }}</span>
+                            <span>{{
+                                rowData[col.field] === null || rowData[col.field] === undefined
+                                    ? undefined
+                                    : rowData[col.field].nome
+                            }}</span>
                         </ng-template>
                     </p-column>
                     <p-column header="Nome Social" field="paciente"
                         ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span>{{ rowData[col.field].nomeSocial }}</span>
+                            <span>
+                                {{
+                                    rowData[col.field] === null || rowData[col.field] === undefined
+                                        ? undefined
+                                        : rowData[col.field].nomeSocial
+                                }}
+                            </span>
                         </ng-template></p-column
                     >
                     <p-column header="Nome da Mãe" field="paciente"
                         ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span>{{ rowData[col.field].genitores.nomeDaMae }}</span>
+                            <span>
+                                {{
+                                    rowData[col.field] === null || rowData[col.field] === undefined
+                                        ? undefined
+                                        : rowData[col.field].genitores.nomeDaMae
+                                }}
+                            </span>
                         </ng-template></p-column
                     >
                     <p-column
                         header="Data/Hora da Chegada"
                         field="dataHoraDoAtendimento"
                     ></p-column>
-                    <p-column header="Classificação" field="classificacaoDeRisco"></p-column>
+                    <p-column
+                        header="Classificação"
+                        field="classificacaoDeRisco"
+                        [sortable]="true"
+                    ></p-column>
                     <basis-datatable-button
                         *ngIf="!disableEdit"
                         class="ui-button-success"

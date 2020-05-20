@@ -1,3 +1,4 @@
+import { Pageable } from './../../../shared/pageable';
 import { TriagemModel } from './../../models/triagem-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -19,11 +20,11 @@ export class TriagemService {
     }
 
     buscarTriagemId(id: number): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/${id}`);
+        return this.httpService.get(`${this.apiUrl}/triagens`);
     }
 
     alterarTriagem(id: number): Observable<any> {
-        return this.httpService.put(`${this.apiUrl}/triagens/${id}`, Response);
+        return this.httpService.put(`${this.apiUrl}/triagens`, Response);
     }
 
     listarTriagem(): Observable<any> {

@@ -81,20 +81,6 @@ public class TriagemResource {
             .body(result);
     }
 
-    @GetMapping("/triagens")
-    @Timed
-    public List<Triagem> getAllTriagens() {
-        log.debug("REST request to get all Triagens");
-        return triagemRepository.findAll();
-    }
-
-  @GetMapping("/triagens/{id}")
-    public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
-        log.debug("REST request to get Triagem : {}", id);
-        Optional<Triagem> triagem = triagemRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(triagem);
-    }
-
     @DeleteMapping("/triagens/{id}")
     @Timed
     public ResponseEntity<Void> deleteTriagem(@PathVariable Long id) {
@@ -106,6 +92,20 @@ public class TriagemResource {
             applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
+    @GetMapping("/triagens/{id}")
+    public ResponseEntity<Triagem> getTriagem(@PathVariable Long id) {
+        log.debug("REST request to get Triagem : {}", id);
+        Optional<Triagem> triagem = triagemRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(triagem);
+    }
+
+    @GetMapping("/triagens/listagem")
+    @Timed
+    public ResponseEntity<Page<TriagemProjection>> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
+        log.debug("REST request to get all Triagens");
+        return ResponseEntity.ok(triagemService.buscarResumoTriagem(triagem, pageable));
+    }
+
     @GetMapping("/_search/triagens")
     @Timed
     public List<Triagem> searchTriagens(@RequestParam String query) {
@@ -113,10 +113,5 @@ public class TriagemResource {
         return StreamSupport
             .stream(triagemSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
-    }
-
-    @GetMapping("/triagens/listagem")
-    public ResponseEntity<Page<TriagemProjection>> findAllTriagem(Pageable pageable) {
-        return ResponseEntity.ok(triagemService.findAllTriagem(pageable));
     }
 }

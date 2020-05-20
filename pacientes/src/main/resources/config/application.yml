@@ -148,10 +148,12 @@ spring:
   cloud:
     stream:
       bindings:
+        triagemSupplier-out-0:
+          destination: madre-triagem
         pacienteSupplier-out-0:
           destination: madre-paciente
     function:
-      definition: pacienteSupplier
+      definition: triagemSupplier, pacienteSupplier
 server:
   servlet:
     session:

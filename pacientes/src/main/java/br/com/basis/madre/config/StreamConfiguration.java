@@ -1,6 +1,7 @@
 package br.com.basis.madre.config;
 
 import br.com.basis.madre.domain.events.EventoPaciente;
+import br.com.basis.madre.domain.events.EventoTriagem;
 import br.com.basis.madre.service.PacienteService;
 import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import org.springframework.context.annotation.Bean;
@@ -21,5 +22,13 @@ public class StreamConfiguration {
     @Bean
     public Supplier<Flux<EventoPaciente>> pacienteSupplier() {
         return this::pacienteEmitterProcessor;
+    }
+    @Bean
+    public EmitterProcessor<EventoTriagem> triagemEmitterProcessor() {
+        return EmitterProcessor.create();
+    }
+    @Bean
+    public Supplier<Flux<EventoTriagem>> triagemSupplier() {
+        return this::triagemEmitterProcessor;
     }
 }

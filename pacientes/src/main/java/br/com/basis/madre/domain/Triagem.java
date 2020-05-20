@@ -79,9 +79,8 @@ public class Triagem implements Serializable {
     @Column(name = "Observacao")
     private String observacao;
 
-    @ManyToOne
-    //@NotNull
-    @JsonIgnoreProperties("")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     public Triagem pressaoArterial(BigDecimal pressaoArterial) {
