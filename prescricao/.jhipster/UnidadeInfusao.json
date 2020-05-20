@@ -1,0 +1,43 @@
+{
+    "name": "UnidadeInfusao",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        },
+        {
+            "fieldName": "sigla",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "unidadeInfusao",
+            "relationshipName": "itemPrescricaoMedicamento"
+        }
+    ],
+    "changelogDate": "20200505210949",
+    "entityTableName": "unidade_infusao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "microserviceName": "prescricao",
+    "skipClient": true
+}

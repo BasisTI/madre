@@ -1,0 +1,34 @@
+{
+    "name": "Diluente",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoMedicamento",
+            "otherEntityRelationshipName": "diluente",
+            "relationshipName": "itemPrescricaoMedicamento"
+        }
+    ],
+    "changelogDate": "20200505210947",
+    "entityTableName": "diluente",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "microserviceName": "prescricao",
+    "skipClient": true
+}

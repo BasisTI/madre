@@ -1,0 +1,33 @@
+{
+    "name": "TipoMedicamento",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 80
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "prescricaoMedicamento",
+            "otherEntityName": "prescricaoMedicamento",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200504152405",
+    "entityTableName": "tipo_medicamento",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "microserviceName": "prescricao"
+}

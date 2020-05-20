@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.javafaker.Faker;
 
-import br.com.basis.madre.prescricao.domain.Dieta;
 import br.com.basis.madre.prescricao.domain.Paciente;
 import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
 

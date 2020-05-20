@@ -1,0 +1,67 @@
+{
+    "name": "ItemPrescricaoDieta",
+    "fields": [
+        {
+            "fieldName": "quantidade",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "frequencia",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "numeroVezes",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoItemDieta",
+            "otherEntityRelationshipName": "itemPrescricaoDieta",
+            "relationshipName": "tipoItemDieta",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoAprazamento",
+            "otherEntityRelationshipName": "itemPrescricaoDieta",
+            "relationshipName": "tipoAprazamento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoUnidadeDieta",
+            "otherEntityRelationshipName": "itemPrescricaoDieta",
+            "relationshipName": "tipoUnidadeDieta",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricaoDieta",
+            "otherEntityRelationshipName": "itemPrescricaoDieta",
+            "relationshipName": "prescricaoDieta",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200515195407",
+    "entityTableName": "item_prescricao_dieta",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

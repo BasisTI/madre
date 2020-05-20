@@ -1,0 +1,54 @@
+entity PrescricaoMedicamento {
+	idPaciente Long
+    observacao String maxlength(255)
+}
+
+entity ItemPrescricaoMedicamento {
+	idMedicamento Long required
+	dose BigDecimal required min(0)
+    frequencia Integer min(0)
+    todasVias Boolean
+    bombaInfusao Boolean
+    velocidadeInfusao BigDecimal min(0)
+    tempoInfusao Integer min(0)
+    unidadeTempo UnidadeTempo
+    inicioAdministracao LocalDate
+    condicaoNecessaria Boolean
+    observacaoCondicao String maxlength(255)
+}
+
+enum UnidadeTempo {
+	HORAS,
+    MINUTOS
+}
+
+entity ViasAdministracao {
+	descricao String maxlength(80)
+    sigla String
+}
+
+entity Diluente {
+	descricao String required maxlength(100)
+}
+
+entity UnidadeDose {
+	descricao String required maxlength(80)
+    sigla String required maxlength(10)
+}
+
+entity UnidadeInfusao {
+	descricao String required maxlength(80)
+    sigla String required maxlength(10)
+}
+
+relationship ManyToOne {
+	ItemPrescricaoMedicamento to ViasAdministracao
+    ItemPrescricaoMedicamento to Diluente
+    ItemPrescricaoMedicamento to UnidadeInfusao
+    ItemPrescricaoMedicamento to UnidadeDose
+
+}
+
+relationship OneToMany {
+	PrescricaoMedicamento to ItemPrescricaoMedicamento
+}

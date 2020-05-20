@@ -1,0 +1,42 @@
+entity PrescricaoDieta {
+	idPaciente Long
+    observacao String maxlength(255)
+
+}
+
+entity ItemPrescricaoDieta {
+	quantidade BigDecimal min(0)
+    frequencia Integer min(0)
+    numeroVezes Integer
+}
+
+
+entity TipoItemDieta {
+	descricao String maxlength(80)
+}
+
+entity TipoAprazamento {
+	descricao String required maxlength(80)
+    sigla String required maxlength(3)
+}
+
+entity TipoUnidadeDieta {
+	descricao String required maxlength(80)
+    sigla String required maxlength(3)
+}
+
+relationship ManyToOne {
+	ItemPrescricaoDieta to TipoItemDieta
+    ItemPrescricaoDieta to TipoAprazamento
+    ItemPrescricaoDieta to TipoUnidadeDieta
+
+}
+
+relationship OneToMany {
+	PrescricaoDieta to ItemPrescricaoDieta
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

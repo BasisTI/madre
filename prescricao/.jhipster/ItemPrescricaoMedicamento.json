@@ -1,0 +1,123 @@
+{
+    "name": "ItemPrescricaoMedicamento",
+    "fields": [
+        {
+            "fieldName": "idMedicamento",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dose",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "frequencia",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "todasVias",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "bombaInfusao",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "velocidadeInfusao",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "tempoInfusao",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "unidadeTempo",
+            "fieldType": "UnidadeTempo",
+            "fieldValues": "HORAS,MINUTOS"
+        },
+        {
+            "fieldName": "inicioAdministracao",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "condicaoNecessaria",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "observacaoCondicao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "viasAdministracao",
+            "otherEntityRelationshipName": "itemPrescricaoMedicamento",
+            "relationshipName": "viasAdministracao",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "diluente",
+            "otherEntityRelationshipName": "itemPrescricaoMedicamento",
+            "relationshipName": "diluente",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "unidadeInfusao",
+            "otherEntityRelationshipName": "itemPrescricaoMedicamento",
+            "relationshipName": "unidadeInfusao",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "unidadeDose",
+            "otherEntityRelationshipName": "itemPrescricaoMedicamento",
+            "relationshipName": "unidadeDose",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricaoMedicamento",
+            "otherEntityRelationshipName": "itemPrescricaoMedicamento",
+            "relationshipName": "prescricaoMedicamento",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200505210945",
+    "entityTableName": "item_prescricao_medicamento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "microserviceName": "prescricao",
+    "skipClient": true
+}
