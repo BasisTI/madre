@@ -36,6 +36,6 @@ public class SUSValidatorTest {
         SUSValidatorTestBase sus = new SUSValidatorTestBase();
         sus.setNumeroSUS("777346334940007");
         Set<ConstraintViolation<SUSValidatorTestBase>> restricoes = validator.validate(sus);
-        assertTrue( true);
+        assertTrue( restricoes.isEmpty());
     }
 }

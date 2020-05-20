@@ -1,18 +1,11 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.domain.Leito;
 import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.LeitoDTO;
-import br.com.basis.madre.service.projection.LeitoProjection;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +14,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -112,29 +103,32 @@ public class LeitoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/leitos/reservados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosReservados() {
-        return ResponseEntity.ok(leitoService.obterTodosOsLeitosReservados());
-    }
+    @GetMapping("/leitos/situacao/{situacao}")
+    public ResponseEntity<List<LeitoDTO>> obterTodosOsLeitosPorSituacao(@PathVariable(name = "situacao", required = true) String situacao, Pageable pageable) {
+        Page<LeitoDTO> page = Page.empty();
 
-    @GetMapping("/leitos/bloqueados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosBloqueados() {
-        return ResponseEntity.ok(leitoService.obterTodosOsLeitosBloqueados());
-    }
+        switch (situacao) {
+            case "reservados":
+                page = leitoService.obterTodosOsLeitosReservados(pageable);
+                break;
+            case "bloqueados":
+                page = leitoService.obterTodosOsLeitosBloqueados(pageable);
+                break;
+            case "ocupados":
+                page = leitoService.obterTodosOsLeitosOcupados(pageable);
+                break;
+            case "naoliberados":
+                page = leitoService.obterTodosOsLeitosNaoLiberados(pageable);
+                break;
+            case "liberados":
+                page = leitoService.obterTodosOsLeitosLiberados(pageable);
+            default:
+                break;
+        }
 
-    @GetMapping("/leitos/ocupados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosOcupados() {
-        return ResponseEntity.ok(leitoService.obterTodosOsLeitosOcupados());
-    }
-
-    @GetMapping("/leitos/nao-liberados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosNaoLiberados() {
-        return ResponseEntity.ok(leitoService.obterTodosOsLeitosNaoLiberados());
-    }
-
-    @GetMapping("/leitos/liberados")
-    public ResponseEntity<List<Leito>> obterTodosOsLeitosLiberados() {
-        return ResponseEntity.ok(leitoService.obterTodosOsLeitosLiberados());
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -175,7 +169,7 @@ public class LeitoResource {
      */
     @GetMapping("/_search/leitos")
     public ResponseEntity<List<LeitoDTO>> searchLeitos(@RequestParam String query,
-        Pageable pageable) {
+                                                       Pageable pageable) {
         log.debug("REST request to search for a page of Leitos for query {}", query);
         Page<LeitoDTO> page = leitoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil

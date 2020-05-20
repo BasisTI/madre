@@ -1,3 +1,6 @@
+import { DatatableClickEvent } from '@nuvem/primeng-components';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 
@@ -18,13 +21,50 @@ import { BreadcrumbService } from '@nuvem/primeng-components';
     ],
 })
 export class TriagemComponent implements OnInit, OnDestroy {
-    constructor(private breadcrumbService: BreadcrumbService) {}
+    constructor(
+        private breadcrumbService: BreadcrumbService,
+        private triagemService: TriagemService,
+        private router: Router,
+    ) {}
+
+    triagem: any;
+
+    searchUrl = 'pacientes/api/triagens/pacientes';
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'Triagem' },
+            { label: 'Emergencia', routerLink: 'emergencia' },
         ]);
+    }
+
+    listarTriagemId(id: number) {
+        this.triagemService.buscarTriagemId(id).subscribe((triagem) => {
+            this.triagem = triagem;
+        });
+    }
+
+    listarTriagens() {
+        this.triagemService.listarTriagem().subscribe((triagens) => {
+            this.triagem = triagens.content;
+            console.log(triagens);
+        });
+    }
+
+    btnClick(event: DatatableClickEvent) {
+        console.log(event);
+
+        if (!event.selection) {
+            return;
+        }
+        switch (event.button) {
+            case 'edit':
+                console.log('clicado');
+
+                this.router.navigate(['/triagem/edit', event.selection.id]);
+                console.log(event.selection);
+                break;
+        }
     }
 
     ngOnDestroy(): void {

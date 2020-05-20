@@ -122,7 +122,7 @@ public class TriagemResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TriagemResource triagemResource = new TriagemResource(triagemRepository, mockTriagemSearchRepository);
+        final TriagemResource triagemResource = new TriagemResource(triagemRepository, mockTriagemSearchRepository, triagemService);
         this.restTriagemMockMvc = MockMvcBuilders.standaloneSetup(triagemResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
