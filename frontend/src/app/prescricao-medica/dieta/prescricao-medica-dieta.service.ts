@@ -1,3 +1,4 @@
+import { TipoUnidadeDieta } from './models/tipoUnidadeDieta';
 import { PrescricaoDieta } from './models/prescricaoDieta';
 import { TipoAprazamento } from './../medicamento/models/tipoAprazamento';
 import { Observable, of } from 'rxjs';
@@ -26,6 +27,10 @@ export class PrescricaoMedicaDietaService {
 
     listarTiposAprazamentos(): Observable<Array<TipoAprazamento>> {
         return this.http.get<Array<TipoAprazamento>>(`${this.baseUrl}/tipo-aprazamentos`);
+    }
+
+    listarTipoUnidade(): Observable<Array<TipoUnidadeDieta>> {
+        return this.http.get<Array<TipoUnidadeDieta>>(`${this.baseUrl}/tipo-unidade-dietas`);
     }
 
     adicionar(dieta: PrescricaoDieta) {

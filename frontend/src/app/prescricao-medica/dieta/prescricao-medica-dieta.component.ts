@@ -26,6 +26,8 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     tiposAprazamentos = [];
 
+    listaUnidadeDieta = [];
+
     itensDieta: ItemPrescricaoDieta[] = [];
 
 
@@ -73,6 +75,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
         this.carregarTipoItem();
         this.carregarTipoAprazamento();
+        this.carregarTipoUnidade();
 
     }
 
@@ -107,6 +110,15 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         return this.prescricaoMedicaDietaService.listarTiposAprazamentos()
             .subscribe(tiposAprazamentos => {
                 this.tiposAprazamentos = tiposAprazamentos.map(tipo => {
+                    return { label: tipo.descricao, value: tipo };
+                });
+            });
+    }
+
+    carregarTipoUnidade() {
+        return this.prescricaoMedicaDietaService.listarTipoUnidade()
+            .subscribe(tiposDeUnidade => {
+                this.listaUnidadeDieta = tiposDeUnidade.map(tipo => {
                     return { label: tipo.descricao, value: tipo };
                 });
             });
