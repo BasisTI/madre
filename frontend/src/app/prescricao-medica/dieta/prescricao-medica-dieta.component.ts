@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
-    paciente = { nome: '' };
+    paciente = {};
 
     dietas: any[];
 
@@ -88,9 +88,11 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     carregarPaciente(id: number) {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
-                console.log(paciente);
 
-                this.paciente = paciente;
+                this.paciente = paciente.nome;
+                this.prescricaoDieta.patchValue({ idPaciente: paciente.id });
+
+                console.log(paciente);
 
             });
     }
