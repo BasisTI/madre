@@ -5,6 +5,7 @@ import { InternacaoDePacienteComponent } from './components/internacao-de-pacien
 import { Routes } from '@angular/router';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
+import { CalendarioComponent } from '@internacao/components/leito/calendario.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path: 'liberacao-de-leito',
         component: LiberacaoLeitoComponent,
+    },
+    {
+        path: 'calendario-leito',
+        component: CalendarioComponent,
     },
 ];

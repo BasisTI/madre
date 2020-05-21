@@ -29,6 +29,7 @@ import { OrigemDaReservaDeLeitoComponent } from './components/origem-da-reserva-
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { MotivoDoBloqueioDeLeitoComponent } from './components/motivo-do-bloqueio-de-leito/motivo-do-bloqueio-de-leito.component';
 import { LiberacaoLeitoComponent } from './components/liberacao-leito/liberacao-leito.component';
+import { CalendarioComponent } from './components/leito/calendario.component';
 
 @NgModule({
     declarations: [
@@ -58,6 +59,7 @@ import { LiberacaoLeitoComponent } from './components/liberacao-leito/liberacao-
         BloqueioDeLeitoComponent,
         MotivoDoBloqueioDeLeitoComponent,
         LiberacaoLeitoComponent,
+        CalendarioComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
