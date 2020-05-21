@@ -1,3 +1,5 @@
+import { TipoAprazamento } from './../medicamento/models/tipoAprazamento';
+import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 
@@ -21,7 +23,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     tiposItens = [];
 
-    tiposAprazamentos: [];
+    tiposAprazamentos: TipoAprazamento[];
 
     itensDieta: any[] = [];
 
@@ -39,6 +41,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     constructor(
         private breadcrumbService: BreadcrumbService,
         private prescricaoMedicaDietaService: PrescricaoMedicaDietaService,
+        private prescricaoMedicaService: PrescricaoMedicaService,
         private route: ActivatedRoute,
         private fb: FormBuilder
     ) { }
@@ -73,12 +76,14 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     }
 
     carregarPaciente(id: number) {
-        this.prescricaoMedicaDietaService.buscarId(id)
+        this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
+                console.log(paciente);
+
                 this.paciente = paciente;
+
             });
     }
-
 
 
     carregarTipoItem() {

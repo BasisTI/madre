@@ -5,14 +5,11 @@ import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
 import br.com.basis.madre.service.dto.EventoLeitoDTO;
 import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
+import br.com.basis.madre.service.projection.EventoCalendario;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +28,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -68,6 +70,14 @@ public class EventoLeitoResource {
             .liberarLeito(liberacaoDeLeitoDTO);
 
         return ResponseEntity.ok(liberacaoDeLeitoDTO);
+    }
+
+    @GetMapping("/eventos-calendario")
+    public ResponseEntity<List<EventoCalendario>> obterEventosCalendario(Pageable pageable) {
+        Page<EventoCalendario> page = eventoLeitoService.obterEventosCalendario(pageable);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -148,7 +158,7 @@ public class EventoLeitoResource {
      */
     @GetMapping("/_search/eventos-de-leito")
     public ResponseEntity<List<EventoLeitoDTO>> searchEventoLeitos(@RequestParam String query,
-        Pageable pageable) {
+                                                                   Pageable pageable) {
         log.debug("REST request to search for a page of EventoLeitos for query {}", query);
         Page<EventoLeitoDTO> page = eventoLeitoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil

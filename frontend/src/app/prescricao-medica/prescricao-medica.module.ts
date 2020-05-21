@@ -1,3 +1,4 @@
+import { medicamentoRoute } from './medicamento/medicamento.routes';
 import { PrescricaoMedicaDietaModule } from './dieta/prescricao-medica-dieta.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -9,6 +10,7 @@ import { PrescricaoMedicaComponent } from './prescricao-medica.component';
 import { prescricaoMedica } from './prescricao-medica.router';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MedicamentoComponent } from './medicamento/medicamento.component';
 
 
 
@@ -16,12 +18,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     imports: [
         SharedModule,
         RouterModule.forChild(prescricaoMedica),
+        RouterModule.forChild(medicamentoRoute),
         HttpClientModule,
         ReactiveFormsModule,
-        PrescricaoMedicaDietaModule
+        PrescricaoMedicaDietaModule,
     ],
     declarations: [
         PrescricaoMedicaComponent,
+        MedicamentoComponent,
     ],
     providers: [PrescricaoMedicaService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

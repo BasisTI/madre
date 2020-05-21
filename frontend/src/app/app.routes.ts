@@ -31,6 +31,10 @@ export const routes: Routes = [
         path: 'internacao',
         loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
     },
+    {
+        path: 'farmacia',
+        loadChildren: 'src/app/farmacia/farmacia/farmacia.module#FarmaciaModule',
+    },
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);

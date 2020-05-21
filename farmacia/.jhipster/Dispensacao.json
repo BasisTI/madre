@@ -1,0 +1,49 @@
+{
+    "name": "Dispensacao",
+    "fields": [
+        {
+            "fieldName": "idPrescricao",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idUnidade",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "usuarioQueCriou",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dataDeCriacao",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "usuarioQueAlterou",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dataDeAlteracao",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "dispensacaoMedicamentos",
+            "otherEntityRelationshipName": "dispensacao",
+            "relationshipName": "dispensacaoMedicamentos"
+        }
+    ],
+    "changelogDate": "20200508124038",
+    "entityTableName": "dispensacao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "farmacia",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "farmacia"
+}

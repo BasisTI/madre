@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
+import { FullCalendarModule } from 'primeng/fullcalendar';
 import { GalleriaModule } from 'primeng/galleria';
 import { InplaceModule } from 'primeng/inplace';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -83,6 +84,7 @@ export const PRIMENG_IMPORTS: any = [
     EditorModule,
     FieldsetModule,
     FileUploadModule,
+    FullCalendarModule,
     GalleriaModule,
     InplaceModule,
     InputMaskModule,

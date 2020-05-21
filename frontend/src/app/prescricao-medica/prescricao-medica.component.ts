@@ -23,34 +23,40 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private router: Router,
 
-        ) { }
+    ) { }
 
 
-    btnClick(event: DatatableClickEvent){
-        console.log(event);
-
-        if (!event.selection) {
-            return;
-        }
-        switch  (event.button) {
-            case 'prescrever-dieta':
-            this.router.navigate(['/prescricao-medica/dieta', event.selection.id]);
-            console.log(event.selection);
-            console.log("clicado");
-        }
-
-    }
     ngOnInit(
     ) {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);
+
         this.listar();
     }
 
     listar() {
         this.prescricaoMedicaService.listarPacientes();
     }
+
+    btnClick(event: DatatableClickEvent) {
+        console.log(event);
+
+        if (!event.selection) {
+            return;
+        }
+        switch (event.button) {
+            case 'prescrever-dieta':
+                this.router.navigate(['/prescricao-medica/dieta', event.selection.id]);
+                break;
+            case 'prescrever-medicamento':
+                this.router.navigate(['/prescricao-medica/medicamento', event.selection.id]);
+                break;
+        }
+
+    }
+
     ngOnDestroy() {
         this.breadcrumbService.reset();
     }
+
 
 }

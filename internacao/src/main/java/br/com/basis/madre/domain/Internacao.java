@@ -1,8 +1,13 @@
 package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.Prioridade;
-import java.io.Serializable;
-import java.time.LocalDate;
+import lombok.Data;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,12 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 @Data
 @Entity
@@ -47,7 +48,7 @@ public class Internacao implements Serializable {
 
     @NotNull
     @Column(name = "data_da_internacao", nullable = false)
-    private LocalDate dataDaInternacao;
+    private ZonedDateTime dataDaInternacao;
 
     @Column(name = "diferenca_de_classe")
     private Boolean diferencaDeClasse;
@@ -103,7 +104,7 @@ public class Internacao implements Serializable {
     }
 
 
-    public Internacao dataDaInternacao(LocalDate dataDaInternacao) {
+    public Internacao dataDaInternacao(ZonedDateTime dataDaInternacao) {
         this.dataDaInternacao = dataDaInternacao;
         return this;
     }

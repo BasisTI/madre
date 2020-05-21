@@ -1,75 +1,108 @@
 package br.com.basis.madre.prescricao.domain;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * A TipoAprazamento.
+ */
 @Entity
+@Data
 @Table(name = "tipo_aprazamento")
-public class TipoAprazamento {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Size(max = 30)
-	private String descricao;
-	
-	@Size(max = 3)
-	private String sigla;
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "tipoaprazamento")
+public class TipoAprazamento implements Serializable {
 
-	public Long getId() {
-		return id;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    private Long id;
 
-	public String getDescricao() {
-		return descricao;
-	}
+    @NotNull
+    @Size(max = 80)
+    @Column(name = "descricao", length = 80, nullable = false)
+    private String descricao;
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    @NotNull
+    @Size(max = 3)
+    @Column(name = "sigla", length = 3, nullable = false)
+    private String sigla;
 
-	public String getSigla() {
-		return sigla;
-	}
+    @OneToMany(mappedBy = "tipoAprazamento")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public Long getId() {
+        return id;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TipoAprazamento other = (TipoAprazamento) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public TipoAprazamento descricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public TipoAprazamento sigla(String sigla) {
+        this.sigla = sigla;
+        return this;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public Set<ItemPrescricaoDieta> getItemPrescricaoDietas() {
+        return itemPrescricaoDietas;
+    }
+
+    public TipoAprazamento itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
+        this.itemPrescricaoDietas = itemPrescricaoDietas;
+        return this;
+    }
+
+    public TipoAprazamento addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
+        this.itemPrescricaoDietas.add(itemPrescricaoDieta);
+        itemPrescricaoDieta.setTipoAprazamento(this);
+        return this;
+    }
+
+    public TipoAprazamento removeItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
+        this.itemPrescricaoDietas.remove(itemPrescricaoDieta);
+        itemPrescricaoDieta.setTipoAprazamento(null);
+        return this;
+    }
+
+    public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
+        this.itemPrescricaoDietas = itemPrescricaoDietas;
+    }
 
 }

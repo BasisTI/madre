@@ -1,0 +1,22 @@
+{
+    "name": "Apresentacao",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200508124043",
+    "entityTableName": "apresentacao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "farmacia",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "farmacia"
+}

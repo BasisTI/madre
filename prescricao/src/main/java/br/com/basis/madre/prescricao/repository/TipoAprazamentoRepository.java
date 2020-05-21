@@ -1,11 +1,14 @@
 package br.com.basis.madre.prescricao.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import br.com.basis.madre.prescricao.domain.TipoAprazamento;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
-import br.com.basis.madre.prescricao.domain.TipoAprazamento;
 
+/**
+ * Spring Data  repository for the TipoAprazamento entity.
+ */
+@SuppressWarnings("unused")
 @Repository
-public interface TipoAprazamentoRepository extends JpaRepository<TipoAprazamento, Long>{
+public interface TipoAprazamentoRepository extends JpaRepository<TipoAprazamento, Long> {
 
 }

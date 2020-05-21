@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Medicamento.
+    -->
+    <changeSet id="20200508124040-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tipo_medicamento_id"
+                                 baseTableName="medicamento"
+                                 constraintName="fk_medicamento_tipo_medicamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_medicamento"/>
+
+        <addForeignKeyConstraint baseColumnNames="apresentacao_id"
+                                 baseTableName="medicamento"
+                                 constraintName="fk_medicamento_apresentacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="apresentacao"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidade_id"
+                                 baseTableName="medicamento"
+                                 constraintName="fk_medicamento_unidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -24,6 +24,8 @@
             "styles": [
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/fullcalendar/dist/fullcalendar.min.css",
+              "node_modules/@fullcalendar/core/main.min.css",
+              "node_modules/@fullcalendar/daygrid/main.min.css",
               "node_modules/quill/dist/quill.snow.css",
               "node_modules/@nuvem/angular-base/src/lib/accessibility/accessibility.scss",
               "src/styles.scss"
@@ -76,9 +78,9 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-              "polyfills": "src/polyfills.ts",
-              "tsConfig": "src/tsconfig.spec.json",
-              "karmaConfig": "src/karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
             "scripts": [
               "node_modules/moment/moment.js",
               "node_modules/chart.js/dist/Chart.js",
@@ -145,5 +147,8 @@
     "@schematics/angular:directive": {
       "prefix": "app"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

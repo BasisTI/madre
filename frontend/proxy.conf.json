@@ -23,5 +23,9 @@
     "/cas/logout": {
         "target": "http://localhost:8080",
         "secure": false
+    },
+    "/farmacia/api": {
+        "target": "http://localhost:8080",
+        "secure": false
     }
 }

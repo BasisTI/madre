@@ -1,7 +1,5 @@
 package br.com.basis.madre.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
 import br.com.basis.madre.domain.EventoLeito;
 import br.com.basis.madre.domain.enumeration.CodigoDoTipoEventoLeito;
 import br.com.basis.madre.repository.EventoLeitoRepository;
@@ -14,9 +12,7 @@ import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
 import br.com.basis.madre.service.dto.TipoDoEventoLeitoDTO;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
 import br.com.basis.madre.service.mapper.TipoDoEventoLeitoMapper;
-import java.time.LocalDate;
-import java.util.Optional;
-import javax.persistence.EntityNotFoundException;
+import br.com.basis.madre.service.projection.EventoCalendario;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +20,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
+import java.time.ZonedDateTime;
+import java.util.Optional;
+
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @RequiredArgsConstructor
 @Service
@@ -68,7 +70,7 @@ public class EventoLeitoService {
         EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
 
         eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
-        eventoLeitoDTO.setDataDoLancamento(LocalDate.now());
+        eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
         eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
         eventoLeitoDTO.setLeitoId(internacaoDTO.getLeitoId());
         eventoLeitoDTO.setJustificativa(internacaoDTO.getJustificativa());
@@ -99,9 +101,13 @@ public class EventoLeitoService {
                 tipoDoEventoLeitoMapper.toEntity(tipoDoEventoLeitoDTO)
             ).orElseThrow(EntityNotFoundException::new);
 
-        eventoLeito.setDataFim(LocalDate.now());
+        eventoLeito.setDataFim(ZonedDateTime.now());
         eventoLeitoRepository.save(eventoLeito);
         eventoLeitoSearchRepository.save(eventoLeito);
+    }
+
+    public Page<EventoCalendario> obterEventosCalendario(Pageable pageable) {
+        return eventoLeitoRepository.findEventoCalendarioBy(pageable);
     }
 
     /**

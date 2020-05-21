@@ -152,6 +152,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         icon: 'add',
                         items: [
                             {
+                                label: 'Calendário',
+                                icon: 'add',
+                                routerLink: ['internacao/calendario-leito'],
+                            },
+                            {
                                 label: 'Reservar Leito',
                                 icon: 'add',
                                 routerLink: ['internacao/reserva-de-leito'],
@@ -167,6 +172,17 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                 routerLink: ['internacao/liberacao-de-leito'],
                             },
                         ],
+                    },
+                ],
+            },
+            {
+                label: 'Farmacia',
+                icon: 'local_pharmacy',
+                items: [
+                    {
+                        label: 'Dispensação medica',
+                        icon: 'add',
+                        routerLink: ['/farmacia'],
                     },
                 ],
             },

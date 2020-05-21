@@ -25,10 +25,6 @@ export class PrescricaoMedicaDietaService {
         return this.http.get(`${this.baseUrl}/tipo-aprazamento`);
     }
 
-    buscarId(id: number): Observable<any>{
-        return this.http.get(`${this.baseUrl}/pacientes/${id}`);
-    }
-
     adicionar(dieta: any): Observable<any> {
         return this.http.post<any>(`${this.baseUrl}/prescricao-dieta`, dieta);
     }
