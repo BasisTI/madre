@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+  <changeSet author="basis (generated)" id="1589749483675-1">
+    <dropForeignKeyConstraint baseTableName="leito" constraintName="fk_leito_situacao_id"/>
+  </changeSet>
+  <changeSet author="basis (generated)" id="1589749483675-4">
+    <dropColumn columnName="situacao_id" tableName="leito"/>
+  </changeSet>
+</databaseChangeLog>

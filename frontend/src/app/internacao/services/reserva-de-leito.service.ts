@@ -1,40 +1,27 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { api } from '@internacao/api';
-import { EntityService } from '@shared/entity.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ReservaDeLeitoService implements EntityService {
-    private readonly resource = `${api}/leitos/reservas`;
+export class ReservaDeLeitoService {
+    private readonly _resource$ = `${api}/reservas`;
 
     constructor(private client: HttpClient) {}
 
-    getResource<T>(params?: HttpParams): Observable<T> {
-        if (params) {
-            return this.client.get<T>(this.resource, { params });
-        }
-
-        return this.client.get<T>(this.resource);
-    }
-
-    reservarLeito(reserva): Observable<any> {
-        console.log(reserva);
-
-        const reservaDTO = {
+    reservarLeito(reserva: any): Observable<any> {
+        const dto = {
             leitoId: reserva.leito.id,
+            tipoDaReservaId: reserva.tipoDaReserva.id,
             origemId: reserva.origem.id,
-            tipoId: reserva.tipoDaReserva.id,
-            justificativa: reserva.justificativa,
             dataDoLancamento: reserva.dataDoLancamento,
+            dataInicio: reserva.dataInicio,
+            dataFim: reserva.dataFim,
+            justificativa: reserva.justificativa,
         };
 
-        return this.client.post<any>(this.resource, reservaDTO);
-    }
-
-    getApi(): string {
-        return this.resource;
+        return this.client.post<any>(this._resource$, dto);
     }
 }

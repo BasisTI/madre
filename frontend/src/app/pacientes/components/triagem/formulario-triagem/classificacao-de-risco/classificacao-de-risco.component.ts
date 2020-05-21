@@ -1,7 +1,7 @@
-import { ClassificacaoDeRiscoService } from './classificacao-de-risco.service';
+import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -10,25 +10,26 @@ import { SelectItem } from 'primeng/api';
     styleUrls: ['./classificacao-de-risco.component.scss'],
 })
 export class ClassificacaoDeRiscoComponent implements OnInit {
+    @Input() formTriagem: FormGroup;
+    opcaoClassificacao = CLASSIFICACAO_RISCO;
     types: SelectItem[];
-    selectedValue: String;
-    ClassificacaoDeRiscoService: any;
-    classificacaoDeRiscoService: any;
+    selectedValue: string;
+    searchUrl = 'pacientes/api/triagens/paciente/{id}';
+    triagens: any[];
+    selectedRisk: any;
+    risk: { name: string; type: string }[];
+
     handleClick() {}
 
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
-    ngOnInit() {
-        this.types = [
-            { label: 'red', value: 'Emergência' },
-            { label: 'orange', value: 'Muito Urgente' },
-            { label: 'yellow', value: 'Urgente' },
-            { label: 'green', value: 'Pouco Urgente' },
-            { label: 'blue', value: 'Não Urgente' },
+    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
+        this.risk = [
+            { name: 'Não urgente', type: 'blue' },
+            { name: 'Pouco urgente', type: 'grenn' },
+            { name: 'Urgente', type: 'yellow' },
+            { name: 'Muito urgente', type: 'orange' },
+            { name: 'Emergência', type: 'red' },
         ];
     }
-    cadastrar(form: FormBuilder) {
-        console.log(form);
 
-        this.classificacaoDeRiscoService.cadastrarRisco(this.types.values);
-    }
+    ngOnInit() {}
 }

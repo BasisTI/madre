@@ -84,7 +84,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/swagger-resources/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/prescricao/**").permitAll()
-        .and()
+            .antMatchers("/pacientes/**").permitAll()
+            .and()
             .apply(securityConfigurerAdapter());
 
     }

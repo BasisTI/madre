@@ -8,13 +8,13 @@ import java.util.Objects;
  * A DTO for the {@link br.com.basis.madre.domain.Raca} entity.
  */
 public class RacaDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
     private String valor;
 
-    
+
     public Long getId() {
         return id;
     }

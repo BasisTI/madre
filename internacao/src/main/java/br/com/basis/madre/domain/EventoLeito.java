@@ -41,6 +41,12 @@ public class EventoLeito implements Serializable {
     @Column(name = "justificativa")
     private String justificativa;
 
+    @Column(name = "data_do_inicio")
+    private LocalDate dataInicio;
+
+    @Column(name = "data_do_fim")
+    private LocalDate dataFim;
+
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("eventoLeitos")

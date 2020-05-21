@@ -14,3 +14,41 @@ H3 {
     text-align: right;
     margin-right: 30px;
 }
+
+.emergencia {
+    background-color: red;
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.muitoUrgente {
+    background-color: orange;
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.urgente {
+    background-color: yellow;
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.poucoUrgente {
+    background-color: green;
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.naoUrgente {
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}

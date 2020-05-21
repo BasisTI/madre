@@ -1,3 +1,5 @@
+import { FarmaciaModule } from './farmacia/farmacia/farmacia.module';
+import { PRIMENG_IMPORTS } from './primeng-imports';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -52,6 +54,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         ErrorModule,
         PrescricaoMedicaModule,
         DatatableModule,
+        FarmaciaModule,
         PrescricaoMedicaModule,
         SecurityModule.forRoot(environment.auth),
         BreadcrumbModule,

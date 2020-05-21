@@ -9,11 +9,9 @@ import org.mapstruct.Mapping;
     UnidadeFuncionalMapper.class})
 public interface LeitoMapper extends EntityMapper<LeitoDTO, Leito> {
 
-    @Mapping(source = "situacao.id", target = "situacaoId")
     @Mapping(source = "unidadeFuncional.id", target = "unidadeFuncionalId")
     LeitoDTO toDto(Leito leito);
 
-    @Mapping(source = "situacaoId", target = "situacao")
     @Mapping(source = "unidadeFuncionalId", target = "unidadeFuncional")
     Leito toEntity(LeitoDTO leitoDTO);
 

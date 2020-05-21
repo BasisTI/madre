@@ -1,17 +1,21 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Triagem;
+import br.com.basis.madre.domain.events.EventoTriagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.dto.TriagemDTO;
 import br.com.basis.madre.service.mapper.TriagemMapper;
+import br.com.basis.madre.service.projection.TriagemProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.EmitterProcessor;
 
 import java.util.Optional;
 
@@ -32,10 +36,13 @@ public class TriagemService {
 
     private final TriagemSearchRepository triagemSearchRepository;
 
-    public TriagemService(TriagemRepository triagemRepository, TriagemMapper triagemMapper, TriagemSearchRepository triagemSearchRepository) {
+    private final EmitterProcessor<EventoTriagem> triagemEmitterProcessor;
+
+    public TriagemService(TriagemRepository triagemRepository, TriagemMapper triagemMapper, TriagemSearchRepository triagemSearchRepository, EmitterProcessor<EventoTriagem> triagemEmitterProcessor) {
         this.triagemRepository = triagemRepository;
         this.triagemMapper = triagemMapper;
         this.triagemSearchRepository = triagemSearchRepository;
+        this.triagemEmitterProcessor = triagemEmitterProcessor;
     }
 
     /**
@@ -44,6 +51,7 @@ public class TriagemService {
      * @param triagemDTO the entity to save
      * @return the persisted entity
      */
+
     public TriagemDTO save(TriagemDTO triagemDTO) {
         log.debug("Request to save Triagem : {}", triagemDTO);
 
@@ -51,6 +59,8 @@ public class TriagemService {
         triagem = triagemRepository.save(triagem);
         TriagemDTO result = triagemMapper.toDto(triagem);
         triagemSearchRepository.save(triagem);
+        EventoTriagem eventoTriagem = new EventoTriagem(triagem);
+        triagemEmitterProcessor.onNext(eventoTriagem);
         return result;
     }
 
@@ -105,4 +115,10 @@ public class TriagemService {
         return triagemSearchRepository.search(queryStringQuery(query), pageable)
             .map(triagemMapper::toDto);
     }
+
+
+    public Page<TriagemProjection> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
+        return triagemRepository.findAllResumoTriagemBy(Example.of(triagemMapper.toEntity(triagem)), pageable);
+    }
+
 }
