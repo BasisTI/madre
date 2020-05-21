@@ -79,7 +79,7 @@ public class Triagem implements Serializable {
     @Column(name = "Observacao")
     private String observacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 

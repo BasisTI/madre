@@ -118,7 +118,7 @@ public class TriagemService {
 
 
     public Page<TriagemProjection> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
-        return triagemRepository.findAllResumoTriagemBy(Example.of(triagemMapper.toEntity(triagem)), pageable);
+        return triagemRepository.findAllResumoTriagemBy(pageable);
     }
 
 }

@@ -20,7 +20,7 @@ export class TriagemService {
     }
 
     buscarTriagemId(id: number): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens`);
+        return this.httpService.get(`${this.apiUrl}/triagens/${id}`);
     }
 
     alterarTriagem(id: number): Observable<any> {

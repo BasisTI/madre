@@ -34,6 +34,7 @@ import {
 
 import { environment } from '../environments/environment';
 import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
+import { PreCadastroComponent } from './pacientes/components/pre-cadastro/pre-cadastro.component';
 
 @NgModule({
     imports: [
@@ -64,6 +65,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
         AppRightpanelComponent,
         AppInlineProfileComponent,
         DiarioErrosComponent,
+        PreCadastroComponent,
     ],
     providers: [
         {
