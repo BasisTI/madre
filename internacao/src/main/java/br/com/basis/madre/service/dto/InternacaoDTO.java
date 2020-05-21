@@ -1,10 +1,11 @@
 package br.com.basis.madre.service.dto;
 
 import br.com.basis.madre.domain.enumeration.Prioridade;
-import java.io.Serializable;
-import java.time.LocalDate;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 @Data
 public class InternacaoDTO implements Serializable {
@@ -18,7 +19,7 @@ public class InternacaoDTO implements Serializable {
     private String justificativa;
 
     @NotNull
-    private LocalDate dataDaInternacao;
+    private ZonedDateTime dataDaInternacao;
 
     private Boolean diferencaDeClasse;
 
