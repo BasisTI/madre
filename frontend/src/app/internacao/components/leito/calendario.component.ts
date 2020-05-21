@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import { Component, OnInit } from '@angular/core';
 
 import { EventoCalendario } from '@internacao/models/evento-calendario';
@@ -15,22 +17,10 @@ export class CalendarioComponent implements OnInit {
 
     constructor(private eventoLeitoService: EventoLeitoService) {}
 
-    formatarData(data: Date): string {
-        const normalize = (x: number): string => (x < 10 ? `0${x}` : `${x}`);
-        const dateObjectToFormattedString = (dateObject: Date): string => {
-            const year = normalize(dateObject.getFullYear());
-            const day = normalize(dateObject.getDate());
-            const month = normalize(dateObject.getMonth() + 1);
-            return `${year}-${month}-${day}`;
-        };
-
-        return dateObjectToFormattedString(data);
-    }
-
     ngOnInit(): void {
         this.options = {
             plugins: [dayGridPlugin],
-            defaultDate: this.formatarData(new Date()),
+            defaultDate: moment().format('YYYY-MM-DD'),
             header: {
                 left: 'prev,next',
                 center: 'title',
