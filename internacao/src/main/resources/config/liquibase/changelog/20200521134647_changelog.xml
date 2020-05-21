@@ -6,28 +6,24 @@
         <modifyDataType
             columnName="data_do_lancamento"
             newDataType="timestamp"
-            schemaName="public"
             tableName="evento_leito"/>
     </changeSet>
     <changeSet author="basis (generated)" id="1590068814261-2">
         <modifyDataType
             columnName="data_do_inicio"
             newDataType="timestamp"
-            schemaName="public"
             tableName="evento_leito"/>
     </changeSet>
     <changeSet author="basis (generated)" id="1590068814261-3">
         <modifyDataType
             columnName="data_do_fim"
             newDataType="timestamp"
-            schemaName="public"
             tableName="evento_leito"/>
     </changeSet>
     <changeSet author="basis (generated)" id="1590068814261-4">
         <modifyDataType
             columnName="data_da_internacao"
             newDataType="timestamp"
-            schemaName="public"
             tableName="internacao"/>
     </changeSet>
 </databaseChangeLog>
