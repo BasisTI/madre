@@ -1,15 +1,10 @@
 package br.com.basis.madre.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
 import br.com.basis.madre.domain.TipoDaReservaDeLeito;
 import br.com.basis.madre.repository.TipoDaReservaDeLeitoRepository;
 import br.com.basis.madre.repository.search.TipoDaReservaDeLeitoSearchRepository;
 import br.com.basis.madre.service.dto.TipoDaReservaDeLeitoDTO;
 import br.com.basis.madre.service.mapper.TipoDaReservaDeLeitoMapper;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +15,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @RequiredArgsConstructor
 @Service

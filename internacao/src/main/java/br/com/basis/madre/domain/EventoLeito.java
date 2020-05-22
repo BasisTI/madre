@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -50,24 +49,19 @@ public class EventoLeito implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("eventoLeitos")
     private TipoDoEventoLeito tipoDoEvento;
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("eventoLeitos")
     private Leito leito;
 
     @ManyToOne
-    @JsonIgnoreProperties("eventoLeitos")
     private OrigemDaReservaDeLeito origem;
 
     @ManyToOne
-    @JsonIgnoreProperties("eventoLeitos")
     private TipoDaReservaDeLeito tipo;
 
     @ManyToOne
-    @JsonIgnoreProperties("eventoLeitos")
     private MotivoDoBloqueioDeLeito motivo;
 
     public EventoLeito dataDoLancamento(ZonedDateTime dataDoLancamento) {
