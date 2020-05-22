@@ -23,6 +23,7 @@ export class DispensacaoComponent implements OnInit {
     dataInicio = '';
     dataFim = '';
     local = '';
+    Prontuario;
 
     texts: string[];
 
