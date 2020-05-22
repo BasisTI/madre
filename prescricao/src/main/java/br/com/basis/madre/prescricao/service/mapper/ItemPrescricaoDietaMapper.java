@@ -1,9 +1,10 @@
 package br.com.basis.madre.prescricao.service.mapper;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoDietaDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoDieta;
+import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoDietaDTO;
 
 /**
  * Mapper for the entity {@link ItemPrescricaoDieta} and its DTO {@link ItemPrescricaoDietaDTO}.
@@ -14,13 +15,13 @@ public interface ItemPrescricaoDietaMapper extends EntityMapper<ItemPrescricaoDi
     @Mapping(source = "tipoItemDieta.id", target = "tipoItemDietaId")
     @Mapping(source = "tipoAprazamento.id", target = "tipoAprazamentoId")
     @Mapping(source = "tipoUnidadeDieta.id", target = "tipoUnidadeDietaId")
-    @Mapping(source = "prescricaoDieta.id", target = "prescricaoDietaId")
+//    @Mapping(source = "prescricaoDieta.id", target = "prescricaoDietaId")
     ItemPrescricaoDietaDTO toDto(ItemPrescricaoDieta itemPrescricaoDieta);
 
     @Mapping(source = "tipoItemDietaId", target = "tipoItemDieta")
     @Mapping(source = "tipoAprazamentoId", target = "tipoAprazamento")
     @Mapping(source = "tipoUnidadeDietaId", target = "tipoUnidadeDieta")
-    @Mapping(source = "prescricaoDietaId", target = "prescricaoDieta")
+//    @Mapping(source = "prescricaoDietaId", target = "prescricaoDieta")
     ItemPrescricaoDieta toEntity(ItemPrescricaoDietaDTO itemPrescricaoDietaDTO);
 
     default ItemPrescricaoDieta fromId(Long id) {
