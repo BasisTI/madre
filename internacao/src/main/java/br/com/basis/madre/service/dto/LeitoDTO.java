@@ -1,8 +1,9 @@
 package br.com.basis.madre.service.dto;
 
-import java.io.Serializable;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 public class LeitoDTO implements Serializable {

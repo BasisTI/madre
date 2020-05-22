@@ -1,9 +1,14 @@
 package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.Prioridade;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
-import java.time.LocalDate;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,14 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -65,23 +64,18 @@ public class SolicitacaoDeInternacao implements Serializable {
     private String principaisResultadosProvasDiagnosticas;
 
     @ManyToOne
-    @JsonIgnoreProperties("solicitacaoDeInternacaos")
     private CID cidPrincipal;
 
     @ManyToOne
-    @JsonIgnoreProperties("solicitacaoDeInternacaos")
     private CID cidSecundario;
 
     @ManyToOne
-    @JsonIgnoreProperties("solicitacaoDeInternacaos")
     private Equipe equipe;
 
     @ManyToOne
-    @JsonIgnoreProperties("solicitacaoDeInternacaos")
     private CRM crm;
 
     @ManyToOne
-    @JsonIgnoreProperties("solicitacaoDeInternacaos")
     private Procedimento procedimento;
 
     public SolicitacaoDeInternacao dataProvavelDaInternacao(LocalDate dataProvavelDaInternacao) {

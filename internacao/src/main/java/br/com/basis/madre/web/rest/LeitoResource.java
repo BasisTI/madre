@@ -14,7 +14,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -104,26 +112,19 @@ public class LeitoResource {
     }
 
     @GetMapping("/leitos/situacao/{situacao}")
-    public ResponseEntity<List<LeitoDTO>> obterTodosOsLeitosPorSituacao(@PathVariable(name = "situacao", required = true) String situacao, Pageable pageable) {
+    public ResponseEntity<List<LeitoDTO>> obterTodosOsLeitosPorSituacao(String situacao, Pageable pageable) {
         Page<LeitoDTO> page = Page.empty();
 
-        switch (situacao) {
-            case "reservados":
-                page = leitoService.obterTodosOsLeitosReservados(pageable);
-                break;
-            case "bloqueados":
-                page = leitoService.obterTodosOsLeitosBloqueados(pageable);
-                break;
-            case "ocupados":
-                page = leitoService.obterTodosOsLeitosOcupados(pageable);
-                break;
-            case "naoliberados":
-                page = leitoService.obterTodosOsLeitosNaoLiberados(pageable);
-                break;
-            case "liberados":
-                page = leitoService.obterTodosOsLeitosLiberados(pageable);
-            default:
-                break;
+        if (situacao.equals("reservados")) {
+            page = leitoService.obterTodosOsLeitosLiberados(pageable);
+        } else if (situacao.equals("bloqueados")) {
+            page = leitoService.obterTodosOsLeitosBloqueados(pageable);
+        } else if (situacao.equals("ocupados")) {
+            page = leitoService.obterTodosOsLeitosOcupados(pageable);
+        } else if (situacao.equals("naoliberados")) {
+            page = leitoService.obterTodosOsLeitosNaoLiberados(pageable);
+        } else if (situacao.equals("liberados")) {
+            page = leitoService.obterTodosOsLeitosLiberados(pageable);
         }
 
         HttpHeaders headers = PaginationUtil
