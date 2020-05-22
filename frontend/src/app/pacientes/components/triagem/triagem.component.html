@@ -92,12 +92,7 @@
                         field="classificacaoDeRisco"
                         [sortable]="true"
                     ></p-column>
-                    <basis-datatable-button
-                        *ngIf="!disableEdit"
-                        class="ui-button-success"
-                        name="edit"
-                        icon="edit"
-                    >
+                    <basis-datatable-button class="ui-button-success" name="edit" icon="edit">
                     </basis-datatable-button>
                     <basis-datatable-button
                         ng-reflect-icon="ui-icon-remove-red-eye"
@@ -107,8 +102,6 @@
                     >
                     </basis-datatable-button>
                     <basis-datatable-button
-                        *ngIf="!disableDelete"
-                        (click)="onClick(deleteEventName, $event)"
                         class="ui-button-danger"
                         icon="delete"
                     ></basis-datatable-button>
@@ -116,7 +109,6 @@
                 <div class="ui-g-9"></div>
                 <div class="ui-g-2">
                     <button
-                        *ngIf="!disableUpload"
                         name="export"
                         pButton
                         textAlign="right"
