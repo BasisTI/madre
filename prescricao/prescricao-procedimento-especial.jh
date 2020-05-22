@@ -1,0 +1,44 @@
+entity PrescricaoProcedimentoEspecial {
+	idPaciente Long required /** Identificador do paciente */
+    observacao String maxlength(255) /** Observação ou comentário para a prescrição de procedimento especial */
+}
+
+entity ItemPrescricaoProcedimentoEspecial {
+	tipoProcedimento TipoProcedimentoEspecial /** Tipo do procedimento especial */
+    quantidadeOrteseProtese Integer min(0) /** Quanditade da Ortese ou prótese, valor deve ser um inteiro */
+	informacoes String maxlength(255) /** Informações complementares para o procedimento */
+    justificativa String maxlength(255) /** Justificativa para o procedimento especial */
+    duracaoSolicitada Integer min(0) /** Duração do procedimento solicitado */
+}
+
+entity EspeciaisDiversos {
+	descricao String required maxlength(100) /** descrição de procedimentos especiais diversos */
+}
+
+entity CirurgiasLeito {
+	descricao String required maxlength(100) /** descrição de procedimentos especiais de cirurgias no leito */
+}
+
+entity OrteseProtese{
+	decricao String required maxlength(100) /** descrição de procedimento especial ortese ou prótese */
+}
+
+relationship OneToMany {
+	PrescricaoProcedimentoEspecial to ItemPrescricaoProcedimentoEspecial
+}
+
+relationship ManyToOne{
+	ItemPrescricaoProcedimentoEspecial {especiaisDiversos} to EspeciaisDiversos
+    ItemPrescricaoProcedimentoEspecial {cirurgiasLeito} to CirurgiasLeito
+    ItemPrescricaoProcedimentoEspecial {orteseProtese} to OrteseProtese
+}
+enum TipoProcedimentoEspecial {
+	DIVERSOS,
+    CIRURGIAS_LEITO,
+    ORTESES_PROTESES
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ItemPrescricaoProcedimentoEspecial.
+    -->
+    <changeSet id="20200522180301-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="especiais_diversos_id"
+                                 baseTableName="item_prescricao_procedimento"
+                                 constraintName="fk_item_prescricao_procedimento_especiais_diversos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especiais_diversos"/>
+
+        <addForeignKeyConstraint baseColumnNames="cirurgias_leito_id"
+                                 baseTableName="item_prescricao_procedimento"
+                                 constraintName="fk_item_prescricao_procedimento_cirurgias_leito_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cirurgias_leito"/>
+
+        <addForeignKeyConstraint baseColumnNames="ortese_protese_id"
+                                 baseTableName="item_prescricao_procedimento"
+                                 constraintName="fk_item_prescricao_procedimento_ortese_protese_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ortese_protese"/>
+
+        <addForeignKeyConstraint baseColumnNames="prescricao_procedimento_especial_id"
+                                 baseTableName="item_prescricao_procedimento"
+                                 constraintName="item_prescricao_procedimento_prescricao_procedimento_especia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao_procedimento_especial"/>
+
+    </changeSet>
+</databaseChangeLog>
