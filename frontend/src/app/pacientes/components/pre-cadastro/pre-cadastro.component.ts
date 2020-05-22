@@ -9,17 +9,15 @@ import { FormGroup } from '@angular/forms';
     styleUrls: ['./pre-cadastro.component.css'],
 })
 export class PreCadastroComponent implements OnInit, OnDestroy {
-    preCadastro: FormGroup;
-    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
-        this.preCadastro = this.fb.group({
-            nomeDoPaciente: ['', Validators.required],
-            nomeSocial: [null],
-            nomeDaMae: [null, Validators.required],
-            dataDeNascimento: [null, Validators.required],
-            cartaoSus: [''],
-            status: [''],
-        });
-    }
+    constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {}
+    preCadastro = this.fb.group({
+        nomeDoPaciente: ['', Validators.required],
+        nomeSocial: ['', Validators.required],
+        nomeDaMae: ['', Validators.required],
+        dataDeNascimento: ['', Validators.required],
+        cartaoSus: [''],
+        status: [''],
+    });
     @Input() formularioTriagem: FormGroup;
     localizacao = CALENDAR_LOCALE;
     dataLimite = new Date();
