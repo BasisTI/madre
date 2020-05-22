@@ -1,15 +1,21 @@
 package br.com.basis.madre.farmacia.service;
 
 import br.com.basis.madre.farmacia.domain.Medicamento;
+import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.repository.MedicamentoRepository;
 import br.com.basis.madre.farmacia.repository.search.MedicamentoSearchRepository;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import br.com.basis.madre.farmacia.service.mapper.MedicamentoMapper;
+import joptsimple.internal.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -103,5 +109,27 @@ public class MedicamentoService {
         log.debug("Request to search for a page of Medicamentos for query {}", query);
         return medicamentoSearchRepository.search(queryStringQuery(query), pageable)
             .map(medicamentoMapper::toDto);
+    }
+
+    public Page<Medicamento> findAllElastic(String codigo,String Descricao, Pageable pageable) {
+//        if (Strings.isNullOrEmpty(codigo) && Strings.isNullOrEmpty(Descricao)) {
+            NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
+
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+                    ("codigo", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo").build())
+                .withPageable(PageRequest.of(0, 50))
+                .build();
+
+            Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
+            return search;
+//        }
+//        return null;
+    }
+    public MedicamentoDTO saveElastic(MedicamentoDTO medicamentoDTO) {
+        log.debug("Request to save Medicamento : {}", medicamentoDTO);
+        Medicamento medicamento = medicamentoMapper.toEntity(medicamentoDTO);
+        MedicamentoDTO result = medicamentoMapper.toDto(medicamento);
+        medicamentoSearchRepository.save(medicamento);
+        return result;
     }
 }

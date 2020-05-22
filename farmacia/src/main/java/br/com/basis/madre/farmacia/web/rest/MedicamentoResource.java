@@ -1,5 +1,6 @@
 package br.com.basis.madre.farmacia.web.rest;
 
+import br.com.basis.madre.farmacia.domain.Medicamento;
 import br.com.basis.madre.farmacia.service.MedicamentoService;
 import br.com.basis.madre.farmacia.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
@@ -144,4 +145,20 @@ public class MedicamentoResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+    @GetMapping("/medicamentos-elastic")
+    public Page<Medicamento> getAllMedicamentosElastic(String codigo,String Descricao,Pageable pageable) {
+        log.debug("REST request to get a page of Medicamentos");
+        Page<Medicamento> page = medicamentoService.findAllElastic( codigo, Descricao,pageable);
+
+        return page;
+    }
+    @PostMapping("/medicamentos-elastic")
+    public ResponseEntity<MedicamentoDTO> createMedicamentoElastic(@RequestBody MedicamentoDTO medicamentoDTO) throws URISyntaxException {
+
+        MedicamentoDTO result = medicamentoService.saveElastic(medicamentoDTO);
+        return ResponseEntity.created(new URI("/api/medicamentos-elastic/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
 }

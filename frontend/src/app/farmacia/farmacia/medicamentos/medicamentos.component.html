@@ -28,16 +28,15 @@
             </div>
 
             <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-autoComplete
-                        pTooltip="Informe a Farmacia."
-                        [(ngModel)]="texts"
-                        [suggestions]="results"
-                        (completeMethod)="search($event)"
-                        [dropdown]="true"
-                    ></p-autoComplete>
-                    <label>Situação</label>
-                </span>
+                <!-- <span class="ui-foat-label"> -->
+                <p-dropdown
+                    pTooltip="Informe a Situação."
+                    [options]="results"
+                    [(ngModel)]="situacao"
+                    optionLabel="Situação"
+                ></p-dropdown>
+                <!-- <label>Situação</label> -->
+                <!-- </span> -->
             </div>
         </div>
         <div class="ui-g-12">
@@ -61,11 +60,11 @@
             </div>
         </div>
         <basis-datatable type="memory" [value]="medicamento" sortField="brand">
-            <p-column header="Código" field="id"></p-column>
+            <p-column header="Código" field="codigo"></p-column>
             <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
             <p-column header="Concentração" field="concentracao"></p-column>
             <p-column header="Unidade" field="unidade"></p-column>
-            <p-column header="Tipo" field="tipo"></p-column>
+            <p-column header="Tipo" field="tipo.nome"></p-column>
             <p-column header="Situação" field="situacao"></p-column>
         </basis-datatable>
     </div>
