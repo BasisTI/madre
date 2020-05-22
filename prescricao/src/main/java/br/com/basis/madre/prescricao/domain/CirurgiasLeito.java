@@ -1,20 +1,32 @@
 package br.com.basis.madre.prescricao.domain;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
+
+import lombok.Data;
 
 /**
  * A CirurgiasLeito.
  */
+@Data
 @Entity
 @Table(name = "cirurgias_leito")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "cirurgiasleito")
+@Document(indexName = "cirurgiasleito")
 public class CirurgiasLeito implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,7 +34,7 @@ public class CirurgiasLeito implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     private Long id;
 
     /**
@@ -33,15 +45,6 @@ public class CirurgiasLeito implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -51,32 +54,4 @@ public class CirurgiasLeito implements Serializable {
         return this;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof CirurgiasLeito)) {
-            return false;
-        }
-        return id != null && id.equals(((CirurgiasLeito) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "CirurgiasLeito{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            "}";
-    }
 }

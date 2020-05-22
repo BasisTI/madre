@@ -1,22 +1,35 @@
 package br.com.basis.madre.prescricao.domain;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import lombok.Data;
+
 /**
  * A PrescricaoProcedimentoEspecial.
  */
+@Data
 @Entity
 @Table(name = "prescricao_procedimento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "prescricaoprocedimentoespecial")
+@Document(indexName = "prescricaoprocedimentoespecial")
 public class PrescricaoProcedimentoEspecial implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +37,7 @@ public class PrescricaoProcedimentoEspecial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     private Long id;
 
     /**
@@ -45,30 +58,9 @@ public class PrescricaoProcedimentoEspecial implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoProcedimentoEspecial> itemPrescricaoProcedimentoEspecials = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
-
     public PrescricaoProcedimentoEspecial idPaciente(Long idPaciente) {
         this.idPaciente = idPaciente;
         return this;
-    }
-
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    public String getObservacao() {
-        return observacao;
     }
 
     public PrescricaoProcedimentoEspecial observacao(String observacao) {
@@ -76,13 +68,6 @@ public class PrescricaoProcedimentoEspecial implements Serializable {
         return this;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
-    public Set<ItemPrescricaoProcedimentoEspecial> getItemPrescricaoProcedimentoEspecials() {
-        return itemPrescricaoProcedimentoEspecials;
-    }
 
     public PrescricaoProcedimentoEspecial itemPrescricaoProcedimentoEspecials(Set<ItemPrescricaoProcedimentoEspecial> itemPrescricaoProcedimentoEspecials) {
         this.itemPrescricaoProcedimentoEspecials = itemPrescricaoProcedimentoEspecials;
@@ -101,33 +86,4 @@ public class PrescricaoProcedimentoEspecial implements Serializable {
         return this;
     }
 
-    public void setItemPrescricaoProcedimentoEspecials(Set<ItemPrescricaoProcedimentoEspecial> itemPrescricaoProcedimentoEspecials) {
-        this.itemPrescricaoProcedimentoEspecials = itemPrescricaoProcedimentoEspecials;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof PrescricaoProcedimentoEspecial)) {
-            return false;
-        }
-        return id != null && id.equals(((PrescricaoProcedimentoEspecial) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "PrescricaoProcedimentoEspecial{" +
-            "id=" + getId() +
-            ", idPaciente=" + getIdPaciente() +
-            ", observacao='" + getObservacao() + "'" +
-            "}";
-    }
 }
