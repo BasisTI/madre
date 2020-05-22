@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface TipoAprazamentoMapper extends EntityMapper<TipoAprazamentoDTO, TipoAprazamento> {
 
 
-    @Mapping(target = "itemPrescricaoDietas", ignore = true)
-    @Mapping(target = "removeItemPrescricaoDieta", ignore = true)
     TipoAprazamento toEntity(TipoAprazamentoDTO tipoAprazamentoDTO);
 
     default TipoAprazamento fromId(Long id) {

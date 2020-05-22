@@ -1,13 +1,10 @@
 package br.com.basis.madre.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
 import br.com.basis.madre.domain.Procedimento;
 import br.com.basis.madre.repository.ProcedimentoRepository;
 import br.com.basis.madre.repository.search.ProcedimentoSearchRepository;
 import br.com.basis.madre.service.dto.ProcedimentoDTO;
 import br.com.basis.madre.service.mapper.ProcedimentoMapper;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @RequiredArgsConstructor
 @Service

@@ -1,9 +1,9 @@
 package br.com.basis.madre.service.dto;
 
-import java.io.Serializable;
-import java.util.Objects;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 public class MotivoDoBloqueioDeLeitoDTO implements Serializable {

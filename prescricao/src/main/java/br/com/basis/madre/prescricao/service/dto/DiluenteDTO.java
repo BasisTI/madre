@@ -1,11 +1,15 @@
 package br.com.basis.madre.prescricao.service.dto;
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import lombok.Data;
 
 /**
  * A DTO for the {@link br.com.basis.madre.prescricao.domain.Diluente} entity.
  */
+@Data
 public class DiluenteDTO implements Serializable {
 
     private Long id;
@@ -13,50 +17,5 @@ public class DiluenteDTO implements Serializable {
     @NotNull
     @Size(max = 100)
     private String descricao;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        DiluenteDTO diluenteDTO = (DiluenteDTO) o;
-        if (diluenteDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), diluenteDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "DiluenteDTO{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            "}";
-    }
+    
 }
