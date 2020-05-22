@@ -1,5 +1,6 @@
 package br.com.basis.madre.prescricao.service.dto;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -30,7 +31,7 @@ public class PrescricaoProcedimentoEspecialDTO implements Serializable {
     @ApiModelProperty(value = "Observação ou comentário para a prescrição de procedimento especial")
     private String observacao;
     
-    private Set<ItemPrescricaoProcedimentoEspecialDTO> itemPrescricaoProcedimentoEspecialDTO;
+    private Set<ItemPrescricaoProcedimentoEspecialDTO> itemPrescricaoProcedimentoEspecialDTO = new HashSet<>();
 
 
 }

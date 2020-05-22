@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * A PrescricaoProcedimentoEspecial.
@@ -54,7 +56,8 @@ public class PrescricaoProcedimentoEspecial implements Serializable {
     @Column(name = "observacao", length = 255)
     private String observacao;
 
-    @OneToMany(mappedBy = "prescricaoProcedimentoEspecial")
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "prescricaoProcedimentoEspecial", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemPrescricaoProcedimentoEspecial> itemPrescricaoProcedimentoEspecials = new HashSet<>();
 

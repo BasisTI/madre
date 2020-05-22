@@ -28,9 +28,9 @@
 
         <addForeignKeyConstraint baseColumnNames="prescricao_procedimento_especial_id"
                                  baseTableName="item_prescricao_procedimento"
-                                 constraintName="item_prescricao_procedimento_prescricao_procedimento_especia_id"
+                                 constraintName="item_prescricao_procedimento_prescricao_procedimento_especial_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="prescricao_procedimento_especial"/>
+                                 referencedTableName="prescricao_procedimento"/>
 
     </changeSet>
 </databaseChangeLog>
