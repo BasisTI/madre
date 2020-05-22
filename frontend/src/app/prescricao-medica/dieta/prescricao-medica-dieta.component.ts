@@ -155,9 +155,6 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             return item;
         });
 
-        console.log(prescricaoDieta);
-
-
         this.prescricaoMedicaDietaService.adicionar(prescricaoDieta).subscribe();
     }
 
