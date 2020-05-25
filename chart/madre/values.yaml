@@ -22,7 +22,6 @@ madrecliente:
     - madre.tst.basis.com.br
     secretName: madretst-cert
 
-
 gateway:
   name: gateway
   image: 
