@@ -26,7 +26,7 @@ import lombok.Data;
 @Entity
 @Table(name = "ortese_protese")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "orteseprotese")
+@Document(indexName = "madre-prescricao-orteseprotese")
 public class OrteseProtese implements Serializable {
 
     private static final long serialVersionUID = 1L;
