@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
@@ -27,30 +28,38 @@ public class Medicamento implements Serializable {
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
-
+    @Field(type = FieldType.Text)
     @Column(name = "codigo")
     private String codigo;
 
+    @Field(type = FieldType.Text)
     @Column(name = "nome")
     private String nome;
 
+    @Field(type = FieldType.Text)
     @Column(name = "descricao")
     private String descricao;
 
+    @Field(type = FieldType.Text)
     @Column(name = "concentracao")
     private String concentracao;
 
+    @Field(type = FieldType.Boolean)
     @Column(name = "ativo")
     private Boolean ativo;
 
+
     @ManyToOne
+    @Field(type = FieldType.Object)
     @JsonIgnoreProperties("medicamentos")
     private TipoMedicamento tipoMedicamento;
 
+    @Field(type = FieldType.Object)
     @ManyToOne
     @JsonIgnoreProperties("medicamentos")
     private Apresentacao apresentacao;
 
+    @Field(type = FieldType.Object)
     @ManyToOne
     @JsonIgnoreProperties("medicamentos")
     private Unidade unidade;

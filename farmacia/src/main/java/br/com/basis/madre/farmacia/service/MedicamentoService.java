@@ -7,6 +7,9 @@ import br.com.basis.madre.farmacia.repository.search.MedicamentoSearchRepository
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import br.com.basis.madre.farmacia.service.mapper.MedicamentoMapper;
 import joptsimple.internal.Strings;
+import org.elasticsearch.common.unit.Fuzziness;
+import org.elasticsearch.index.query.Operator;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +21,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -111,8 +115,8 @@ public class MedicamentoService {
             .map(medicamentoMapper::toDto);
     }
 
-    public Page<Medicamento> findAllElastic(String codigo,String Descricao, Pageable pageable) {
-//        if (Strings.isNullOrEmpty(codigo) && Strings.isNullOrEmpty(Descricao)) {
+    public Page<Medicamento> findAllElastic(@RequestParam(required = false) String codigo, String Descricao, Pageable pageable) {
+        if (Strings.isNullOrEmpty(codigo) && Strings.isNullOrEmpty(Descricao)) {
             NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
 
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
@@ -122,14 +126,26 @@ public class MedicamentoService {
 
             Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
             return search;
-//        }
-//        return null;
+        }
+        NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
+
+            .withQuery(QueryBuilders.multiMatchQuery(  Descricao,  "descricao")
+                .field("descricao").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
+            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+                ("codigo", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"
+            ).build())
+            .withPageable(PageRequest.of(0, 20))
+            .build();
+        Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
+            nativeSearchQueryFuzzy);
+
+        return queryFuzzy;
     }
-    public MedicamentoDTO saveElastic(MedicamentoDTO medicamentoDTO) {
-        log.debug("Request to save Medicamento : {}", medicamentoDTO);
-        Medicamento medicamento = medicamentoMapper.toEntity(medicamentoDTO);
-        MedicamentoDTO result = medicamentoMapper.toDto(medicamento);
+    public MedicamentoDTO saveElastic(Medicamento medicamento) {
+        log.debug("Request to save Medicamento : {}", medicamento);
+
         medicamentoSearchRepository.save(medicamento);
+        MedicamentoDTO result = medicamentoMapper.toDto(medicamento);
         return result;
     }
 }

@@ -13,23 +13,23 @@ export class MedicamentosComponent implements OnInit {
     Descricao: string;
     Codigo: string;
     situacao: string;
-    results = [
-        { label: 'Selecione Situação', value: null },
-        { label: 'Ativo', value: 'true' },
-        { label: 'Inativo', value: 'false' },
-    ];
+    results = [];
     medicamento: Medicamento[];
 
     listar() {
-        this.service
-            .getMedicamentos(this.Codigo, this.Descricao, this.situacao)
-            .subscribe((medicamentos) => {
-                this.medicamento = medicamentos.content;
-            });
-        console.log(this.medicamento);
+        this.service.getMedicamentos(this.Codigo, this.Descricao).subscribe((medicamentos) => {
+            this.medicamento = medicamentos.content;
+        });
+        console.log(this.Descricao);
     }
 
-    constructor(private service: FarmaciaService) {}
+    constructor(private service: FarmaciaService) {
+        this.results = [
+            { label: 'Selecione Situação' },
+            { label: 'Ativo', value: 'true' },
+            { label: 'Inativo', value: 'false' },
+        ];
+    }
 
     ngOnInit(): void {
         this.listar();

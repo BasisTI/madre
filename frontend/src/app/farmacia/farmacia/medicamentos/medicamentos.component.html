@@ -28,15 +28,11 @@
             </div>
 
             <div class="ui-g-2 ui-sm-12">
-                <!-- <span class="ui-foat-label"> -->
                 <p-dropdown
                     pTooltip="Informe a Situação."
                     [options]="results"
                     [(ngModel)]="situacao"
-                    optionLabel="Situação"
                 ></p-dropdown>
-                <!-- <label>Situação</label> -->
-                <!-- </span> -->
             </div>
         </div>
         <div class="ui-g-12">
@@ -63,9 +59,33 @@
             <p-column header="Código" field="codigo"></p-column>
             <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
             <p-column header="Concentração" field="concentracao"></p-column>
-            <p-column header="Unidade" field="unidade"></p-column>
-            <p-column header="Tipo" field="tipo.nome"></p-column>
-            <p-column header="Situação" field="situacao"></p-column>
+            <p-column header="Unidade" field="unidade">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        {{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span
+                    >
+                </ng-template>
+            </p-column>
+            <p-column header="Tipo" field="tipoMedicamento">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        {{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span
+                    >
+                </ng-template>
+            </p-column>
+            <p-column header="Situação" field="ativo">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }}</span>
+                </ng-template>
+            </p-column>
         </basis-datatable>
     </div>
 </div>
