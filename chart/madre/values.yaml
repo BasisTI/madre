@@ -125,14 +125,14 @@ comum:
   imagePullSecrets:
   - name: basis-registry
 
-#postgresql:
-#  install: true
-#  fullnameOverride: pgsql-madre
-#  postgresqlUsername: madre
-#  postgresqlPassword: madre
-#  postgresqlDatabase: madre
-#  postgresqlPostgresPassword: basis123
-#  persistence:
-#    storageClass: nfs-kube-des
-#    size: 10Gi
+postgresql:
+  install: true
+  fullnameOverride: pgsql-madre
+  postgresqlUsername: madre
+  postgresqlPassword: madre
+  postgresqlDatabase: madre
+  postgresqlPostgresPassword: basis123
+  persistence:
+    storageClass: nfs-kube-des
+    size: 10Gi
 

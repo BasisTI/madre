@@ -2,7 +2,7 @@ dependencies:
   - name: common
     version: 1.2.2
     repository: 'http://element.basis.com.br/repository/commons-helm/'
-#  - name: postgresql
-#    version: 8.6.1
-#    repository: https://kubernetes-charts.storage.googleapis.com
-#    condition: postgresql.instal
+  - name: postgresql
+    version: 8.6.1
+    repository: https://kubernetes-charts.storage.googleapis.com
+    condition: postgresql.instal
