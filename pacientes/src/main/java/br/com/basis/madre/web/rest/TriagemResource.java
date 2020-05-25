@@ -10,6 +10,8 @@ import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
+import lombok.Data;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +32,7 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @RestController
 @RequestMapping("/api")
+@Data
 public class TriagemResource {
 
     private final Logger log = LoggerFactory.getLogger(TriagemResource.class);
