@@ -1,8 +1,24 @@
-package br.com.basis.madre.domain.validation;
+package br.com.basis.madre.service;
 
-public class TestDV {
+import org.springframework.stereotype.Service;
 
-    public int modulo11(String num){
+import java.util.InputMismatchException;
+
+@Service
+public class ProntuarioService {
+
+    public static void main(String[]args){
+        ProntuarioService prontuarioService = new ProntuarioService();
+        String a = "1201611227",str;
+        System.out.println("Número informado: "+a);
+        int result = prontuarioService.calculoDV(a);
+        System.out.println("Dígito verificador: "+result);
+        str = a +""+"" +result;
+        System.out.println(str);
+    }
+
+
+    public int calculoDV(String num){
 
         //variáveis de instancia
         int soma = 0;
@@ -38,4 +54,5 @@ public class TestDV {
         //retorna o digito verificador
         return dv;
     }
+
 }
