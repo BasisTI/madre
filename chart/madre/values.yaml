@@ -38,7 +38,6 @@ gateway:
         username: madre
         password: madre
 
-
 pacientes:
   name: pacientes
   image:
@@ -83,6 +82,27 @@ prescricao:
         username: madre
         password: madre
 
+farmacia:
+  name: farmacia
+  image:
+    repository: basis-registry.basis.com.br/madre/madrefarmacia
+    tag: teste
+  ports:
+    port: 8081
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
 
 internacao:
   name: internacao
@@ -106,14 +126,14 @@ comum:
   imagePullSecrets:
   - name: basis-registry
 
-postgresql:
-  install: true
-  fullnameOverride: pgsql-madre
-  postgresqlUsername: madre
-  postgresqlPassword: madre
-  postgresqlDatabase: madre
-  postgresqlPostgresPassword: basis123
-  persistence:
-    storageClass: nfs-kube-des
-    size: 10Gi
+#postgresql:
+#  install: true
+#  fullnameOverride: pgsql-madre
+#  postgresqlUsername: madre
+#  postgresqlPassword: madre
+#  postgresqlDatabase: madre
+#  postgresqlPostgresPassword: basis123
+#  persistence:
+#    storageClass: nfs-kube-des
+#    size: 10Gi
 
