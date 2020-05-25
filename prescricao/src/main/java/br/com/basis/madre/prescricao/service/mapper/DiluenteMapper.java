@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface DiluenteMapper extends EntityMapper<DiluenteDTO, Diluente> {
 
 
-    @Mapping(target = "itemPrescricaoMedicamentos", ignore = true)
-    @Mapping(target = "removeItemPrescricaoMedicamento", ignore = true)
     Diluente toEntity(DiluenteDTO diluenteDTO);
 
     default Diluente fromId(Long id) {

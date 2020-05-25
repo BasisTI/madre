@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface UnidadeInfusaoMapper extends EntityMapper<UnidadeInfusaoDTO, UnidadeInfusao> {
 
 
-    @Mapping(target = "itemPrescricaoMedicamentos", ignore = true)
-    @Mapping(target = "removeItemPrescricaoMedicamento", ignore = true)
     UnidadeInfusao toEntity(UnidadeInfusaoDTO unidadeInfusaoDTO);
 
     default UnidadeInfusao fromId(Long id) {

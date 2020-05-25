@@ -201,8 +201,6 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
             return item;
         });
 
-        console.log(prescricaoMedicamento);
-
 
         this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe();
     }

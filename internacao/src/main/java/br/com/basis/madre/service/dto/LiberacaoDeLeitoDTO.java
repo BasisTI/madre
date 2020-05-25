@@ -1,9 +1,10 @@
 package br.com.basis.madre.service.dto;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 @Data
 public class LiberacaoDeLeitoDTO implements Serializable {
@@ -14,7 +15,7 @@ public class LiberacaoDeLeitoDTO implements Serializable {
     private Long leitoId;
 
     @NotNull
-    private LocalDate dataDoLancamento;
+    private ZonedDateTime dataDoLancamento;
 
     private String justificativa;
 }

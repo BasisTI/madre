@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 @Data
-@Document(indexName = "prescricao")
+@Document(indexName = "madre-farmacia-prescricao")
 public class Prescricao implements Serializable {
 
     @Id
