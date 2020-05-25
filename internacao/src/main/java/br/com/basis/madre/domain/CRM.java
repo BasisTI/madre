@@ -23,7 +23,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "crm")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "crm")
+@Document(indexName = "madre-internacao-crm")
 public class CRM implements Serializable {
 
     private static final long serialVersionUID = 1L;

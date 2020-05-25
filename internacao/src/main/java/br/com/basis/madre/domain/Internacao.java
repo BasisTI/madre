@@ -26,7 +26,7 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "internacao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "internacao")
+@Document(indexName = "madre-internacao-internacao")
 public class Internacao implements Serializable {
 
     private static final long serialVersionUID = 1L;

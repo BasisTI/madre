@@ -23,7 +23,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "leito")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "leito")
+@Document(indexName = "madre-internacao-leito")
 public class Leito implements Serializable {
 
     private static final long serialVersionUID = 1L;

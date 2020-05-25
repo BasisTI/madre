@@ -6,7 +6,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "lista-medicamento")
+@Document(indexName = "madre-prescricao-lista-medicamento")
 public class ListaMedicamento {
 	
 	@Id

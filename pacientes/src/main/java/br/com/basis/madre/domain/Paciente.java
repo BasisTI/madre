@@ -38,7 +38,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Entity
 @Table(name = "paciente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "paciente")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-pacientes-paciente")
 public class Paciente implements Serializable {
 
     private static final long serialVersionUID = 1L;

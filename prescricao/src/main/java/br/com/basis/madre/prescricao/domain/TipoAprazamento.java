@@ -26,7 +26,7 @@ import lombok.Data;
 @Entity
 @Table(name = "tipo_aprazamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "tipoaprazamento")
+@Document(indexName = "madre-prescricao-tipoaprazamento")
 public class TipoAprazamento implements Serializable {
 
     private static final long serialVersionUID = 1L;

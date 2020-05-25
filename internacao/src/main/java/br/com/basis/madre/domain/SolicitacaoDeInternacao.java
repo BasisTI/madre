@@ -28,7 +28,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "solicitacao_de_internacao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "solicitacaodeinternacao")
+@Document(indexName = "madre-internacao-solicitacaodeinternacao")
 public class SolicitacaoDeInternacao implements Serializable {
 
     private static final long serialVersionUID = 1L;

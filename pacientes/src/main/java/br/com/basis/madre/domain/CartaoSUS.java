@@ -23,7 +23,7 @@ import br.com.basis.madre.domain.enumeration.DocumentoDeReferencia;
 @Entity
 @Table(name = "cartao_sus")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "cartaosus")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-pacientes-cartaosus")
 public class CartaoSUS implements Serializable {
 
     private static final long serialVersionUID = 1L;
