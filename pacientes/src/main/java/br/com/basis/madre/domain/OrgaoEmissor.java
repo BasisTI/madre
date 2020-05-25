@@ -17,7 +17,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "orgao_emissor")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "orgaoemissor")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-pacientes-orgaoemissor")
 public class OrgaoEmissor implements Serializable {
 
     private static final long serialVersionUID = 1L;
