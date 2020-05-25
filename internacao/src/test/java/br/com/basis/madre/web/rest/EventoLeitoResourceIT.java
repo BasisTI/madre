@@ -1,20 +1,5 @@
 package br.com.basis.madre.web.rest;
 
-import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import br.com.basis.madre.InternacaoApp;
 import br.com.basis.madre.domain.EventoLeito;
 import br.com.basis.madre.domain.Leito;
@@ -27,11 +12,6 @@ import br.com.basis.madre.service.LeitoService;
 import br.com.basis.madre.service.dto.EventoLeitoDTO;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,6 +28,29 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
+import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
+import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 /**
  * Integration tests for the {@link EventoLeitoResource} REST controller.
  */
@@ -55,9 +58,8 @@ import org.springframework.validation.Validator;
 @SpringBootTest(classes = InternacaoApp.class)
 public class EventoLeitoResourceIT {
 
-    private static final LocalDate DEFAULT_DATA_DO_LANCAMENTO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA_DO_LANCAMENTO = LocalDate
-        .now(ZoneId.systemDefault());
+    private static final ZonedDateTime DEFAULT_DATA_DO_LANCAMENTO = ZonedDateTime.of(LocalDateTime.from(LocalDate.ofEpochDay(0L)), ZoneId.systemDefault());
+    private static final ZonedDateTime UPDATED_DATA_DO_LANCAMENTO = ZonedDateTime.of(LocalDateTime.from(LocalDate.ofEpochDay(1L)), ZoneId.systemDefault());
 
     private static final String DEFAULT_JUSTIFICATIVA = "AAAAAAAAAA";
     private static final String UPDATED_JUSTIFICATIVA = "BBBBBBBBBB";

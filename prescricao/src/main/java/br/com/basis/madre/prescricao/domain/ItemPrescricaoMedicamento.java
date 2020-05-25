@@ -39,7 +39,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "item_prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "itemprescricaomedicamento")
+@Document(indexName = "madre-prescricao-itemprescricaomedicamento")
 public class ItemPrescricaoMedicamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;

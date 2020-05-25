@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
@@ -32,7 +31,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "prescricaomedicamento")
+@Document(indexName = "madre-prescricao-prescricaomedicamento")
 
 public class PrescricaoMedicamento implements Serializable {
 

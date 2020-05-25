@@ -3,8 +3,9 @@ package br.com.basis.madre.config;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import java.io.IOException;
 import org.springframework.data.elasticsearch.core.EntityMapper;
+
+import java.io.IOException;
 
 public class CustomEntityMapper implements EntityMapper {
 

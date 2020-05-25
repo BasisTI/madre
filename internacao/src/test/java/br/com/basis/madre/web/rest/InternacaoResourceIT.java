@@ -2,13 +2,13 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.InternacaoApp;
 import br.com.basis.madre.domain.Internacao;
+import br.com.basis.madre.domain.enumeration.Prioridade;
 import br.com.basis.madre.repository.InternacaoRepository;
 import br.com.basis.madre.repository.search.InternacaoSearchRepository;
 import br.com.basis.madre.service.InternacaoService;
 import br.com.basis.madre.service.dto.InternacaoDTO;
 import br.com.basis.madre.service.mapper.InternacaoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -26,7 +26,10 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,11 +37,19 @@ import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionSer
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.basis.madre.domain.enumeration.Prioridade;
+;
+
 /**
  * Integration tests for the {@link InternacaoResource} REST controller.
  */
@@ -51,8 +62,8 @@ public class InternacaoResourceIT {
     private static final String DEFAULT_JUSTIFICATIVA = "AAAAAAAAAA";
     private static final String UPDATED_JUSTIFICATIVA = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_DATA_DA_INTERNACAO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA_DA_INTERNACAO = LocalDate.now(ZoneId.systemDefault());
+    private static final ZonedDateTime DEFAULT_DATA_DA_INTERNACAO = ZonedDateTime.of(LocalDateTime.of(LocalDate.ofEpochDay(0L), LocalTime.now()), ZoneId.systemDefault());
+    private static final ZonedDateTime UPDATED_DATA_DA_INTERNACAO = ZonedDateTime.now(ZoneId.systemDefault());
 
     private static final Boolean DEFAULT_DIFERENCA_DE_CLASSE = false;
     private static final Boolean UPDATED_DIFERENCA_DE_CLASSE = true;
@@ -110,7 +121,7 @@ public class InternacaoResourceIT {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -123,9 +134,10 @@ public class InternacaoResourceIT {
             .solicitarProntuario(DEFAULT_SOLICITAR_PRONTUARIO);
         return internacao;
     }
+
     /**
      * Create an updated entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -268,7 +280,7 @@ public class InternacaoResourceIT {
             .andExpect(jsonPath("$.[*].diferencaDeClasse").value(hasItem(DEFAULT_DIFERENCA_DE_CLASSE.booleanValue())))
             .andExpect(jsonPath("$.[*].solicitarProntuario").value(hasItem(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getInternacao() throws Exception {

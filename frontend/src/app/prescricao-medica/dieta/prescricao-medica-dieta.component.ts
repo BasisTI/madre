@@ -1,3 +1,4 @@
+import { ItemPrescricaoDieta } from './models/itemPrescricaoDieta';
 import { TipoAprazamento } from './../medicamento/models/tipoAprazamento';
 import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { PrescricaoMedicaDietaService } from './prescricao-medica-dieta.service';
@@ -15,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
-    paciente = { nome: '' };
+    paciente = {};
 
     dietas: any[];
 
@@ -23,18 +24,26 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     tiposItens = [];
 
-    tiposAprazamentos: TipoAprazamento[];
+    tiposAprazamentos = [];
 
-    itensDieta: any[] = [];
+    listaUnidadeDieta = [];
+
+    itensDieta: ItemPrescricaoDieta[] = [];
 
 
-    profileForm = this.fb.group({
-        tipoItem: ['', Validators.required],
-        quantidade: [''],
-        tipoUnidade: [''],
-        frequencia: [''],
-        tipoAprazamento: [''],
-        numeroVezes: ['']
+    prescricaoDieta = this.fb.group({
+        idPaciente: [null],
+        bombaInfusao: [null],
+        observacao: [null]
+    });
+
+    itemPrescricaoDieta = this.fb.group({
+        tipoItemDietaId: [null, Validators.required],
+        quantidade: [null],
+        frequencia: [null],
+        tipoUnidadeDietaId: [null],
+        tipoAprazamentoId: [null],
+        numeroVezes: [null]
     });
 
 
@@ -62,25 +71,28 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             this.carregarPaciente(codigoPaciente);
         }
 
-        this.listarDieta(codigoDietaPaciente);
+        // this.listarDieta(codigoDietaPaciente);
 
         this.carregarTipoItem();
         this.carregarTipoAprazamento();
+        this.carregarTipoUnidade();
 
     }
 
-    listarDieta(id: number) {
-        this.prescricaoMedicaDietaService.listarDieta(id).subscribe(dietas => {
-            this.dietas = dietas;
-        });
-    }
+    // listarDieta(id: number) {
+    //     this.prescricaoMedicaDietaService.listarDieta(id).subscribe(dietas => {
+    //         this.dietas = dietas;
+    //     });
+    // }
 
     carregarPaciente(id: number) {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
-                console.log(paciente);
 
-                this.paciente = paciente;
+                this.paciente = paciente.nome;
+                this.prescricaoDieta.patchValue({ idPaciente: paciente.id });
+
+                console.log(paciente);
 
             });
     }
@@ -105,13 +117,45 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             });
     }
 
-    incluirItem() {
-        if (this.profileForm.valid) {
+    carregarTipoUnidade() {
+        return this.prescricaoMedicaDietaService.listarTipoUnidade()
+            .subscribe(tiposDeUnidade => {
+                this.listaUnidadeDieta = tiposDeUnidade.map(tipo => {
+                    return { label: tipo.descricao, value: tipo };
+                });
+            });
+    }
 
-            this.itensDieta.push(this.profileForm.value);
-            this.profileForm.reset();
+    incluirItem() {
+        if (this.itemPrescricaoDieta.valid) {
+
+            this.itensDieta.push(this.itemPrescricaoDieta.value);
+            this.itemPrescricaoDieta.reset();
         }
 
+    }
+
+    prescrever() {
+
+
+        const prescricao = this.prescricaoDieta.value;
+
+        const prescricaoDieta = Object.assign({}, prescricao, {
+            itemPrescricaoDietaDTO: this.itensDieta
+        });
+
+
+        prescricaoDieta.itemPrescricaoDietaDTO = prescricaoDieta.itemPrescricaoDietaDTO.map(item => {
+            for (let propriedade in item) {
+                if (item[propriedade]?.id) {
+                    item[propriedade] = item[propriedade].id;
+                }
+            }
+
+            return item;
+        });
+
+        this.prescricaoMedicaDietaService.adicionar(prescricaoDieta).subscribe();
     }
 
     ngOnDestroy() {

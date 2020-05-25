@@ -19,7 +19,7 @@ import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
 @Entity
 @Table(name = "certidao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "certidao")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-pacientes-certidao")
 public class Certidao implements Serializable {
 
     private static final long serialVersionUID = 1L;

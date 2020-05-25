@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="basis (generated)" id="1590068814261-1">
+        <modifyDataType
+            columnName="data_do_lancamento"
+            newDataType="timestamp"
+            tableName="evento_leito"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1590068814261-2">
+        <modifyDataType
+            columnName="data_do_inicio"
+            newDataType="timestamp"
+            tableName="evento_leito"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1590068814261-3">
+        <modifyDataType
+            columnName="data_do_fim"
+            newDataType="timestamp"
+            tableName="evento_leito"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1590068814261-4">
+        <modifyDataType
+            columnName="data_da_internacao"
+            newDataType="timestamp"
+            tableName="internacao"/>
+    </changeSet>
+</databaseChangeLog>

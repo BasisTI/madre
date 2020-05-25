@@ -1,8 +1,12 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
-import java.time.LocalDate;
+import lombok.Data;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,18 +16,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 @Data
 @Entity
 @Table(name = "evento_leito")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "eventoleito")
+@Document(indexName = "madre-internacao-eventoleito")
 public class EventoLeito implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,40 +36,35 @@ public class EventoLeito implements Serializable {
 
     @NotNull
     @Column(name = "data_do_lancamento", nullable = false)
-    private LocalDate dataDoLancamento;
+    private ZonedDateTime dataDoLancamento;
 
     @Column(name = "justificativa")
     private String justificativa;
 
     @Column(name = "data_do_inicio")
-    private LocalDate dataInicio;
+    private ZonedDateTime dataInicio;
 
     @Column(name = "data_do_fim")
-    private LocalDate dataFim;
+    private ZonedDateTime dataFim;
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("eventoLeitos")
     private TipoDoEventoLeito tipoDoEvento;
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("eventoLeitos")
     private Leito leito;
 
     @ManyToOne
-    @JsonIgnoreProperties("eventoLeitos")
     private OrigemDaReservaDeLeito origem;
 
     @ManyToOne
-    @JsonIgnoreProperties("eventoLeitos")
     private TipoDaReservaDeLeito tipo;
 
     @ManyToOne
-    @JsonIgnoreProperties("eventoLeitos")
     private MotivoDoBloqueioDeLeito motivo;
 
-    public EventoLeito dataDoLancamento(LocalDate dataDoLancamento) {
+    public EventoLeito dataDoLancamento(ZonedDateTime dataDoLancamento) {
         this.dataDoLancamento = dataDoLancamento;
         return this;
     }

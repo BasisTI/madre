@@ -21,7 +21,7 @@ import br.com.basis.madre.domain.enumeration.TipoDoEndereco;
 @Entity
 @Table(name = "endereco")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "endereco")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-pacientes-endereco")
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;
