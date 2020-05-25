@@ -18,7 +18,7 @@ import java.util.Set;
  @Entity
 @Table(name = "pre_cadastro_paciente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "precadastropaciente")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-paciente-precadastropaciente")
 @Data
 public class PreCadastroPaciente implements Serializable {
 
