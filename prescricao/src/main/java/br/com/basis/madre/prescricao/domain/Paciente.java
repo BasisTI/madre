@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "paciente")
+@Document(indexName = "madre-prescricao-paciente")
 public class Paciente {
 	
 	@Id

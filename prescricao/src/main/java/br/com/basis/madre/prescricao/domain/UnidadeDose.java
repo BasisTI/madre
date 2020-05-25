@@ -27,7 +27,7 @@ import lombok.Data;
 @Entity
 @Table(name = "unidade_dose")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "unidadedose")
+@Document(indexName = "madre-prescricao-unidadedose")
 public class UnidadeDose implements Serializable {
 
     private static final long serialVersionUID = 1L;
