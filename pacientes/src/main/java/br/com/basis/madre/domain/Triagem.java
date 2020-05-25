@@ -21,7 +21,7 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "triagem")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "triagem")
+@Document(indexName = "madre-pacientes-triagem")
 @Data
 public class Triagem implements Serializable {
 

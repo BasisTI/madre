@@ -24,9 +24,7 @@
         <addForeignKeyConstraint baseColumnNames="responsavel_id" baseTableName="responsavel_telefone" constraintName="FK2a50kkyyaa8p5y10ptrigtiv0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="responsavel" validate="true"/>
     </changeSet>
     <changeSet author="basis (generated)" id="1587994075857-6">
-        <addForeignKeyConstraint baseColumnNames="paciente_id" baseTableName="
-
-" constraintName="FK79unrjv430ef0ykinxk8gvruv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paciente" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="paciente_id" baseTableName="paciente_telefone" constraintName="FK79unrjv430ef0ykinxk8gvruv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paciente" validate="true"/>
     </changeSet>
     <changeSet author="basis (generated)" id="1587994075857-7">
         <addForeignKeyConstraint baseColumnNames="telefone_id" baseTableName="paciente_telefone" constraintName="FK7i0fwyioi295fq2l1pbsxxtrs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="telefone" validate="true"/>

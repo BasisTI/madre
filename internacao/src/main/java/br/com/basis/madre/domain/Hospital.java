@@ -24,7 +24,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "hospital")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "hospital")
+@Document(indexName = "madre-internacao-hospital")
 public class Hospital implements Serializable {
 
     private static final long serialVersionUID = 1L;

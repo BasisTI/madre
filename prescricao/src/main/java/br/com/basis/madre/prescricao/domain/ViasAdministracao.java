@@ -32,7 +32,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "vias_administracao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "viasadministracao")
+@Document(indexName = "madre-prescricao-viasadministracao")
 public class ViasAdministracao implements Serializable {
 
     private static final long serialVersionUID = 1L;

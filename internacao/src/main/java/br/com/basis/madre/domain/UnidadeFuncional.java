@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "unidade_funcional")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "unidadefuncional")
+@Document(indexName = "madre-internacao-unidadefuncional")
 public class UnidadeFuncional implements Serializable {
 
     private static final long serialVersionUID = 1L;

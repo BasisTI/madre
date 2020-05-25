@@ -30,7 +30,7 @@ import lombok.Data;
 @Entity
 @Table(name = "item_prescricao_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "itemprescricaodieta")
+@Document(indexName = "madre-prescricao-itemprescricaodieta")
 public class ItemPrescricaoDieta implements Serializable {
 
     private static final long serialVersionUID = 1L;

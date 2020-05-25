@@ -23,7 +23,7 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "evento_leito")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "eventoleito")
+@Document(indexName = "madre-internacao-eventoleito")
 public class EventoLeito implements Serializable {
 
     private static final long serialVersionUID = 1L;

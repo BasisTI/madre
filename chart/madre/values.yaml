@@ -13,6 +13,7 @@ madrecliente:
     locations:
     - pacientes
     - internacao
+    - prescricao
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/tls-acme: "true"
@@ -59,11 +60,28 @@ pacientes:
         url: jdbc:postgresql://pgsql-madre/madre
         username: madre
         password: madre
-    jhipster:
-      logging:  
-        logstash:
-          enabled: false
 
+prescricao:
+  name: prescricao
+  image:
+    repository: basis-registry.basis.com.br/madre/madreprescricao
+    tag: teste
+  ports:
+    port: 8081
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
 
 
 internacao:
@@ -83,10 +101,6 @@ internacao:
       elasticsearch: 
         rest:
           uris: http://elasticsearch-client.elasticsearch:9200
-    jhipster:
-      logging:  
-        logstash:
-          enabled: false
 
 comum:
   imagePullSecrets:
