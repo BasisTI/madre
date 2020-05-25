@@ -16,6 +16,15 @@
             <column name="valor" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="pais" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="masculino" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="feminino" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -32,6 +41,9 @@
             tableName="nacionalidade">
             <column name="id" type="numeric"/>
             <column name="valor" type="string"/>
+            <column name="pais" type="string"/>
+            <column name="masculino" type="string"/>
+            <column name="feminino" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
