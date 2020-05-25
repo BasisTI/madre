@@ -32,7 +32,7 @@ import java.io.Serializable;
 )
 @Table(name = "cid")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "cid")
+@Document(indexName = "madre-internacao-cid")
 public class CID implements Serializable {
 
     private static final long serialVersionUID = 1L;

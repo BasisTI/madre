@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "origem_da_reserva_de_leito")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "origemdareservadeleito")
+@Document(indexName = "madre-internacao-origemdareservadeleito")
 public class OrigemDaReservaDeLeito implements Serializable {
 
     private static final long serialVersionUID = 1L;
