@@ -22,7 +22,6 @@ madrecliente:
     - madre.tst.basis.com.br
     secretName: madretst-cert
 
-
 gateway:
   name: gateway
   image: 
@@ -37,7 +36,6 @@ gateway:
         url: jdbc:postgresql://pgsql-madre/madre
         username: madre
         password: madre
-
 
 pacientes:
   name: pacientes
@@ -83,6 +81,27 @@ prescricao:
         username: madre
         password: madre
 
+farmacia:
+  name: farmacia
+  image:
+    repository: basis-registry.basis.com.br/madre/madrefarmacia
+    tag: teste
+  ports:
+    port: 8081
+  imagePullSecrets:
+  - name: basis-registry
+  configmap:
+    spring:
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
 
 internacao:
   name: internacao
