@@ -10,17 +10,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./medicamentos.component.css'],
 })
 export class MedicamentosComponent implements OnInit {
-    Descricao: string;
-    Codigo: string;
-    situacao: string;
+    descricao = '';
+    codigo = '';
+    situacao = '';
     results = [];
     medicamento: Medicamento[];
+    '';
 
     listar() {
-        this.service.getMedicamentos(this.Codigo, this.Descricao).subscribe((medicamentos) => {
-            this.medicamento = medicamentos.content;
-        });
-        console.log(this.Descricao);
+        this.service
+            .getMedicamentos(this.codigo, this.descricao, this.situacao)
+            .subscribe((medicamentos) => {
+                this.medicamento = medicamentos.content;
+            });
+        this.situacao = '';
+        console.log(this.medicamento);
     }
 
     constructor(private service: FarmaciaService) {

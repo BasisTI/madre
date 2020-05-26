@@ -1,7 +1,12 @@
 export interface Medicamento {
+    id: number;
     codigo: string;
+    nome: string;
     descricao: string;
-    concentracao: {
+    concentracao: string;
+    ativo: boolean;
+
+    apresentacao: {
         nome: string;
     };
     unidade: {
@@ -10,5 +15,4 @@ export interface Medicamento {
     tipo: {
         nome: string;
     };
-    situacao: boolean;
 }

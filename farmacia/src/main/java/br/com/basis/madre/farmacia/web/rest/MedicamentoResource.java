@@ -146,9 +146,10 @@ public class MedicamentoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
     @GetMapping("/medicamentos-elastic")
-    public Page<Medicamento> getAllMedicamentosElastic(String codigo,String Descricao,Pageable pageable) {
+    public Page<Medicamento> getAllMedicamentosElastic
+        (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo ) {
         log.debug("REST request to get a page of Medicamentos");
-        Page<Medicamento> page = medicamentoService.findAllElastic( codigo, Descricao,pageable);
+        Page<Medicamento> page = medicamentoService.findAllElastic( codigo, descricao, ativo);
 
         return page;
     }

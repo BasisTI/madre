@@ -32,10 +32,16 @@ export class FarmaciaService {
         });
     }
 
-    getMedicamentos(codigo: string, descricao: string): Observable<Pageable<Medicamento>> {
+    getMedicamentos(
+        codigo: string,
+        descricao: string,
+        situacao: string,
+    ): Observable<Pageable<Medicamento>> {
         return this.httpServe.get<Pageable<Medicamento>>(`${this.apiUrl}/medicamentos-elastic`, {
-            params: new HttpParams().set('codigo', codigo).set('descricao', descricao),
+            params: new HttpParams()
+                .set('codigo', codigo)
+                .set('descricao', descricao)
+                .set('ativo', situacao),
         });
-        console.log(descricao);
     }
 }

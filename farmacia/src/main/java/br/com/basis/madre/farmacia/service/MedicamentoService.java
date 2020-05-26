@@ -115,24 +115,38 @@ public class MedicamentoService {
             .map(medicamentoMapper::toDto);
     }
 
-    public Page<Medicamento> findAllElastic(@RequestParam(required = false) String codigo, String Descricao, Pageable pageable) {
-        if (Strings.isNullOrEmpty(codigo) && Strings.isNullOrEmpty(Descricao)) {
+    public Page<Medicamento> findAllElastic
+        (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo) {
+        if (Strings.isNullOrEmpty(codigo)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
             NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
 
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
-                    ("codigo", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo").build())
+                    ("id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo").build())
                 .withPageable(PageRequest.of(0, 50))
                 .build();
 
             Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
             return search;
         }
+        if (!Strings.isNullOrEmpty(ativo)) {
+            NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+
+                .withQuery(matchQuery("ativo", ativo))
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+                    ("id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"
+                ).build())
+                .withPageable(PageRequest.of(0, 20))
+                .build();
+            Page<Medicamento> query = medicamentoSearchRepository.search(
+                nativeSearchQuery);
+            return query;
+        }
         NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
 
-            .withQuery(QueryBuilders.multiMatchQuery(  Descricao,  "descricao")
-                .field("descricao").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
+            .withQuery(QueryBuilders.multiMatchQuery(  codigo + descricao ,  "descricao", "codigo")
+                .field("descricao").field("codigo").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
             .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
-                ("codigo", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"
+                ("id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"
             ).build())
             .withPageable(PageRequest.of(0, 20))
             .build();
