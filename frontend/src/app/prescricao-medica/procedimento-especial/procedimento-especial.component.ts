@@ -1,4 +1,4 @@
-import { TIPO_PROCEDIMENTO_ESPECIAL } from './models/tipoProcedimentoEspecial';
+import { TIPO_PROCEDIMENTO_ESPECIAL } from './models/tipo-procedimento-especial';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
