@@ -28,11 +28,16 @@
             <p-accordionTab header="Item Procedimento">
                 <form>
                     <div class="ui-g">
-                        <div class="ui-g-10">
-                            <p-selectButton [options]="tipoProcedimento" #tipo></p-selectButton>
+                        <div class="ui-g-12">
+                            <div class="ui-g-10">
+                                <p-selectButton [options]="tipoProcedimento" #tipo></p-selectButton>
+                            </div>
                         </div>
-
-                        <app-diversos></app-diversos>
+                        <div class="ui-g-12">
+                                    <app-diversos *ngIf="tipo.value === 'DIVERSOS'"></app-diversos>
+                                    <app-cirurgias-leito *ngIf="tipo.value === 'CIRURGIAS_LEITO'" ></app-cirurgias-leito>
+                                    <app-ortese-protese *ngIf="tipo.value === 'ORTESES_PROTESES'" ></app-ortese-protese>
+                        </div>
 
                         <div class="ui-g-12">
                             <div class="ui-g-6">
