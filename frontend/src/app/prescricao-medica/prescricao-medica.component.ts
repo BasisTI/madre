@@ -1,4 +1,4 @@
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
@@ -49,6 +49,10 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
                 break;
             case 'prescrever-medicamento':
                 this.router.navigate(['/prescricao-medica/medicamento', event.selection.id]);
+                break;
+
+            case 'prescrever-procedimento':
+                this.router.navigate(['/prescricao-medica/procedimento-especial']);
                 break;
         }
 
