@@ -1,3 +1,5 @@
+import { CirurgiasLeitoService } from './cirurgias-leito.service';
+import { CirurgiasLeito } from './../../models/cirurgias-leito';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CirurgiasLeitoComponent implements OnInit {
 
-    constructor() { }
+    listaCirurgiasLeito = CirurgiasLeito[''];
 
-    ngOnInit(): void {
+    constructor(private cirurgiasLeitoService: CirurgiasLeitoService) { }
+
+    ngOnInit() {
+        this.carregarListaEspeciaisDiversos();
+    }
+
+    carregarListaEspeciaisDiversos() {
+        return this.cirurgiasLeitoService.listarCirurgiasLeito()
+            .subscribe(listaCirurgiasLeito => {
+                this.listaCirurgiasLeito = listaCirurgiasLeito.map(item => {
+                    return { label: item.descricao, value: item };
+                });
+
+            });
     }
 
 }
