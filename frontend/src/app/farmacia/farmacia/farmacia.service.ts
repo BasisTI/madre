@@ -1,9 +1,11 @@
+import { TipoMedicamento } from './cadastro-medicamento/tipoMedicamento';
 import { Pageable } from './../../shared/pageable';
 import { Observable } from 'rxjs';
 import { Unidade } from './dispensacao/unidade';
 import { Prescricao } from './dispensacao/prescricao';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Apresentacao } from './cadastro-medicamento/apresentacao';
 
 @Injectable({
     providedIn: 'root',
@@ -25,9 +27,17 @@ export class FarmaciaService {
         });
     }
 
-    getResult(nome: string): Observable<Pageable<Unidade>> {
-        return this.httpServe.get<Pageable<Unidade>>(`${this.apiUrl}/prescricao-local`, {
-            params: new HttpParams().set('local', nome),
-        });
+    getResult(): Observable<Array<TipoMedicamento>> {
+        return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`);
+    }
+    getResultUnidade(): Observable<Array<Unidade>> {
+        return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/unidades`);
+    }
+    getResultApresentacao(): Observable<Array<Apresentacao>> {
+        return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`);
+    }
+
+    cadastrar(medicamento) {
+        return this.httpServe.post(`${this.apiUrl}/medicamentos`, medicamento);
     }
 }

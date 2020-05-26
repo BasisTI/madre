@@ -8,6 +8,8 @@ import br.com.basis.madre.farmacia.service.mapper.TipoMedicamentoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -102,6 +104,17 @@ public class TipoMedicamentoService {
     public Page<TipoMedicamentoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of TipoMedicamentos for query {}", query);
         return tipoMedicamentoSearchRepository.search(queryStringQuery(query), pageable)
+            .map(tipoMedicamentoMapper::toDto);
+    }
+    public Page<TipoMedicamentoDTO> findAll(
+        TipoMedicamentoDTO tipoMedicamentoDTO, Pageable pageable) {
+        log.debug("Request to get all Especialidades");
+        return tipoMedicamentoRepository.findAll(
+            Example.of(tipoMedicamentoMapper.toEntity(tipoMedicamentoDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable
+        )
             .map(tipoMedicamentoMapper::toDto);
     }
 }
