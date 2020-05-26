@@ -15,7 +15,7 @@ import java.util.Objects;
  * A Nacionalidade.
  */
 @Entity
-@Table(name = "nacionalidade")
+@Table(name = "pais")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-pacientes-nacionalidade")
 public class Nacionalidade implements Serializable {
@@ -29,7 +29,7 @@ public class Nacionalidade implements Serializable {
 
     @Field(type = FieldType.Text)
     @NotNull
-    @Column(name = "valor", nullable = false)
+    @Column(name = "nacionalidade", nullable = false)
     private String valor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
