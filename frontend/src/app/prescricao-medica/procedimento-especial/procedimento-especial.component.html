@@ -34,9 +34,9 @@
                             </div>
                         </div>
                         <div class="ui-g-12">
-                                    <app-diversos *ngIf="tipo.value === 'DIVERSOS'"></app-diversos>
-                                    <app-cirurgias-leito *ngIf="tipo.value === 'CIRURGIAS_LEITO'" ></app-cirurgias-leito>
-                                    <app-ortese-protese *ngIf="tipo.value === 'ORTESES_PROTESES'" ></app-ortese-protese>
+                            <app-diversos *ngIf="tipo.value === 'DIVERSOS'"></app-diversos>
+                            <app-cirurgias-leito *ngIf="tipo.value === 'CIRURGIAS_LEITO'"></app-cirurgias-leito>
+                            <app-ortese-protese *ngIf="tipo.value === 'ORTESES_PROTESES'"></app-ortese-protese>
                         </div>
 
                         <div class="ui-g-12">
@@ -51,24 +51,30 @@
                         <div class="ui-g-12">
                             <div class="ui-g-6">
                                 <span class="md-inputfield">
-                                    <input type="text" pInputText name="informacoes" />
+                                    <input type="text" pInputText name="justificativa" />
                                     <label>Justificativa</label>
                                 </span>
                             </div>
 
                             <div class="ui-g-4">
                                 <span class="md-inputfield">
-                                    <input type="number" pInputText name="justificativa" />
+                                    <input type="number" pInputText name="duracao" />
                                     <label>Duração</label>
                                 </span>
                             </div>
                         </div>
 
-
-
                     </div>
                 </form>
             </p-accordionTab>
         </p-accordion>
+
+        <div class="ui-g-12">
+            <div class="ui-g-6">
+                <button pButton type="submit" label="Prescrever">
+                </button>
+
+            </div>
+        </div>
     </div>
 </div>
