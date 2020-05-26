@@ -1,7 +1,10 @@
-    <div class="ui-g-12">
+<div class="ui-g-12">
+    <div class="ui-g-6">
         <span class="md-inputfield">
-            <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
-                id="observacao" name="observacao"></textarea>
-            <label>Observações</label>
+            <p-dropdown placeholder="Selecione..." [options]="listaEspeciaisDiversos" name="especiaisDiversos" required
+                #especiaisDiversos>
+            </p-dropdown>
+            <label>Especiais Diversos</label>
         </span>
     </div>
+</div>
