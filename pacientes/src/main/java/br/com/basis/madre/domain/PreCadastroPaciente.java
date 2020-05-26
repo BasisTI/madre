@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
@@ -54,6 +55,7 @@ public class PreCadastroPaciente implements Serializable {
     @Column(name = "cartao_sus", length = 15, nullable = false)
     private String cartaoSus;
 
+    @Type(type="true_false")
     @Column(name = "status")
     private Boolean status;
 

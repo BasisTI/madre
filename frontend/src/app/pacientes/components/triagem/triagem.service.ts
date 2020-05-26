@@ -1,4 +1,3 @@
-import { Pageable } from './../../../shared/pageable';
 import { TriagemModel } from './../../models/triagem-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +14,6 @@ export class TriagemService {
     constructor(private httpService: HttpClient) {}
 
     cadastrarTriagem(triagem: TriagemModel) {
-        console.log(triagem);
         return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
     }
 

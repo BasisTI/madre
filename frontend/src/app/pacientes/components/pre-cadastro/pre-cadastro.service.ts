@@ -1,20 +1,17 @@
-// import { Observable } from 'rxjs';
-// import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PreCadastroModel } from '../../models/pre-cadastro-model';
 
-// @Injectable({
-//     providedIn: 'root',
-// })
-// export class PreCadastroService {
-//     private readonly apiUrl = 'pacientes/api';
+@Injectable({
+    providedIn: 'root',
+})
+export class PreCadastroService {
+    private readonly apiUrl = 'pacientes/api';
 
-//     constructor    (private httpService: HttpClient) {}
+    constructor(private httpService: HttpClient) {}
 
-//     preCadastrar(preCadastrar: Observable<>) {
-//         console.log(triagem);
-//         return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
-//     }
-
-//     cadastrarRisco(cadastroRisco: Observable<any>) {
-//         this.httpService.post(this.apiUrl, cadastroRisco);
-//         console.log(cadastroRisco);
-//     }
+    preCadastrarPaciente(preCadastrando: PreCadastroModel) {
+        return this.httpService.post(`${this.apiUrl}/pre-cadastro-pacientes`, preCadastrando);
+    }
+}
