@@ -7,7 +7,12 @@ export const medicamentoRoute: Routes = [
     {
         path: 'prescricao-medica/medicamento',
         component: MedicamentoComponent
-    }
+    },
+
+    {
+        path: 'prescricao-medica/medicamento/:id',
+        component: MedicamentoComponent
+    },
 ];
 
 export const MedicamentoRoutes: ModuleWithProviders = RouterModule.forRoot(medicamentoRoute);

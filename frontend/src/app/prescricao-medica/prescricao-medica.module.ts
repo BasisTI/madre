@@ -11,6 +11,8 @@ import { prescricaoMedica } from './prescricao-medica.router';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MedicamentoComponent } from './medicamento/medicamento.component';
+import { ProcedimentoEspecialComponent } from './procedimento-especial/procedimento-especial.component';
+import { procedimentoEspecialRoute } from './procedimento-especial/procedimento-especial.routes';
 
 
 
@@ -19,6 +21,7 @@ import { MedicamentoComponent } from './medicamento/medicamento.component';
         SharedModule,
         RouterModule.forChild(prescricaoMedica),
         RouterModule.forChild(medicamentoRoute),
+        RouterModule.forChild(procedimentoEspecialRoute),
         HttpClientModule,
         ReactiveFormsModule,
         PrescricaoMedicaDietaModule,
@@ -26,6 +29,7 @@ import { MedicamentoComponent } from './medicamento/medicamento.component';
     declarations: [
         PrescricaoMedicaComponent,
         MedicamentoComponent,
+        ProcedimentoEspecialComponent,
     ],
     providers: [PrescricaoMedicaService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
