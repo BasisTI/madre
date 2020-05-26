@@ -1,12 +1,14 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.PreCadastroPacienteService;
+import br.com.basis.madre.service.dto.TriagemDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.service.dto.PreCadastroPacienteDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,14 +58,17 @@ public class PreCadastroPacienteResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/pre-cadastro-pacientes")
-    public ResponseEntity<PreCadastroPacienteDTO> createPreCadastroPaciente(@Valid @RequestBody PreCadastroPacienteDTO preCadastroPacienteDTO) throws URISyntaxException {
+    @Timed
+    public ResponseEntity<PreCadastroPacienteDTO> createPreCadastroPaciente(@Valid @RequestBody PreCadastroPacienteDTO preCadastroPacienteDTO)
+        throws URISyntaxException {
         log.debug("REST request to save PreCadastroPaciente : {}", preCadastroPacienteDTO);
         if (preCadastroPacienteDTO.getId() != null) {
             throw new BadRequestAlertException("A new preCadastroPaciente cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PreCadastroPacienteDTO result = preCadastroPacienteService.save(preCadastroPacienteDTO);
         return ResponseEntity.created(new URI("/api/pre-cadastro-pacientes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
+                result.getId().toString()))
             .body(result);
     }
 

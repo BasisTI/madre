@@ -12,18 +12,18 @@ import { Router } from '@angular/router';
     styleUrls: ['./pre-cadastro.component.css'],
 })
 export class PreCadastroComponent implements OnInit, OnDestroy {
-    private preCadastroService: PreCadastroService;
     constructor(
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private router: Router,
+        private preCadastroService: PreCadastroService,
     ) {}
 
     preCadastro = this.fb.group({
         nome: ['', Validators.required],
         nomeSocial: ['', Validators.required],
         nomeDaMae: ['', Validators.required],
-        dataDeNascimento: ['', Validators.required],
+        dataDeNascimento: [new Date(2018, 11, 24), Validators.required],
         cartaoSus: [''],
         status: [''],
     });
@@ -47,5 +47,6 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
             status: pre.status,
         };
         this.preCadastroService.preCadastrarPaciente(preCadastroPaciente).subscribe();
+        console.log(preCadastroPaciente);
     }
 }

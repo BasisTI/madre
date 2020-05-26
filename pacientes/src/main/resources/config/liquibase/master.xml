@@ -85,4 +85,6 @@
         relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200525180201_changelog.xml"
         relativeToChangelogFile="false"/>
-</databaseChangeLog>
+    <include file="config/liquibase/changelog/20200526143715_changelog.xml"
+             relativeToChangelogFile="false"/>
+    </databaseChangeLog>

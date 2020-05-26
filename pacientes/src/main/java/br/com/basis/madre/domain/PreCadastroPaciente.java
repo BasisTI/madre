@@ -51,11 +51,10 @@ public class PreCadastroPaciente implements Serializable {
     private LocalDate dataDeNascimento;
 
     @NotNull
-    @Size(max = 15)
-    @Column(name = "cartao_sus", length = 15, nullable = false)
+    @Size(max = 30)
+    @Column(name = "cartao_sus", length = 30, nullable = false)
     private String cartaoSus;
 
-    @Type(type="true_false")
     @Column(name = "status")
     private Boolean status;
 
