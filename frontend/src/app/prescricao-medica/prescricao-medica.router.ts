@@ -9,15 +9,6 @@ export const prescricaoMedica: Routes = [
         component: PrescricaoMedicaComponent
     },
 
-    {
-        path: 'prescricao-medica/dieta/:id',
-        component: PrescricaoMedicaDietaComponent
-    },
-
-    {
-        path: 'prescricao-medica/medicamento/:id',
-        component: MedicamentoComponent
-    },
-]
+];
 
 
