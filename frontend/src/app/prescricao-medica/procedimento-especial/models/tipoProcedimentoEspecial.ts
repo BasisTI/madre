@@ -12,7 +12,7 @@ export const TIPO_PROCEDIMENTO_ESPECIAL: OpcaoCombo[] = [
     },
 
     {
-        label: 'Órteses',
+        label: 'Órteses/Próteses',
         value: 'ORTESES_PROTESES'
     }
 ];
