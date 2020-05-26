@@ -7,7 +7,7 @@
         Added the constraints for entity Paciente.
     -->
     <changeSet id="20200407124200-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="cartaosus_id"
                                  baseTableName="paciente"
                                  constraintName="fk_paciente_cartaosus_id"
@@ -66,7 +66,7 @@
                                  baseTableName="paciente"
                                  constraintName="fk_paciente_nacionalidade_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="nacionalidade"/>
+                                 referencedTableName="pais"/>
 
         <addForeignKeyConstraint baseColumnNames="raca_id"
                                  baseTableName="paciente"

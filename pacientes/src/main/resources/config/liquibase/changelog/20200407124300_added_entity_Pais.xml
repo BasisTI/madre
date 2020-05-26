@@ -4,19 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-
     <!--
-        Added the entity Nacionalidade.
+        Added the entity Pais.
     -->
     <changeSet id="20200407124300-1" author="jhipster">
-        <createTable tableName="nacionalidade">
+        <createTable tableName="pais">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="valor" type="varchar(255)">
+            <column name="nome" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="pais" type="varchar(255)">
+            <column name="nacionalidade" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
             <column name="masculino" type="varchar(255)">
@@ -36,12 +35,12 @@
 
     <changeSet id="20200407124300-1-data" author="jhipster">
         <loadData
-            file="config/liquibase/data/nacionalidade.csv"
+            file="config/liquibase/data/pais.csv"
             separator=";"
-            tableName="nacionalidade">
+            tableName="pais">
             <column name="id" type="numeric"/>
-            <column name="valor" type="string"/>
-            <column name="pais" type="string"/>
+            <column name="nome" type="string"/>
+            <column name="nacionalidade" type="string"/>
             <column name="masculino" type="string"/>
             <column name="feminino" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
