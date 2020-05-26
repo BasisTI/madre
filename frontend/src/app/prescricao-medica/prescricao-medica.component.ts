@@ -40,9 +40,9 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     btnClick(event: DatatableClickEvent) {
         console.log(event);
 
-        // if (!event.selection) {
-        //     return;
-        // }
+        if (!event.selection) {
+            return;
+        }
         switch (event.button) {
             case 'prescrever-dieta':
                 this.router.navigate(['/prescricao-medica/dieta', event.selection.id]);
