@@ -5,6 +5,13 @@ madrecliente:
     tag: teste
   ingress:
     url: "madre.tst.basis.com.br"
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      kubernetes.io/tls-acme: "true"
+    tls:
+    - hosts:
+      - madre.tst.basis.com.br
+      secretName: madretst-cert
   ports:
     port: 80
   imagePullSecrets:
@@ -14,13 +21,7 @@ madrecliente:
     - pacientes
     - internacao
     - prescricao
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    kubernetes.io/tls-acme: "true"
-  tls:
-  - hosts:
-    - madre.tst.basis.com.br
-    secretName: madretst-cert
+    - farmacia
 
 gateway:
   name: gateway
@@ -120,6 +121,10 @@ internacao:
       elasticsearch: 
         rest:
           uris: http://elasticsearch-client.elasticsearch:9200
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
 
 comum:
   imagePullSecrets:
