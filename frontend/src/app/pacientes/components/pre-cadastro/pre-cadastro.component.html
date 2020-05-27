@@ -9,7 +9,7 @@
             <h1>Incluir Pré-Cadastro de Pacientes</h1>
 
             <div class="ui-g-8 ui-md-08 ui-fluid">
-                <span class>
+                <span class="ui-float-label">
                     <input
                         type="text"
                         pInputText
@@ -20,7 +20,7 @@
                 </span>
             </div>
             <div class="ui-g-4">
-                <span class>
+                <span class="ui-float-label">
                     <input
                         type="text"
                         pInputText
@@ -32,7 +32,7 @@
             </div>
             <div class="ui-g-12"></div>
             <div class="ui-g-8">
-                <span class>
+                <span class="ui-float-label">
                     <input
                         type="text"
                         pInputText
@@ -44,24 +44,28 @@
             </div>
 
             <div class="ui-g-4">
-                <span class>
-                    <input
-                        type="text"
-                        pInputText
+                <span class="ui-float-label">
+                    <p-calendar
                         formControlName="dataDeNascimento"
-                        pTooltip="Infome a data de nascimento do Paciente."
-                    />
+                        [locale]="localizacao"
+                        [yearRange]="yearRange"
+                        dateFormat="dd/mm/yy"
+                        [maxDate]="maxDate"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                    >
+                    </p-calendar>
                     <label>Data de Nascimento</label>
                 </span>
             </div>
 
             <div class="ui-g-12"></div>
             <div class="ui-g-4">
-                <span class>
+                <span class="ui-float-label">
                     <p-inputMask
                         formControlName="cartaoSus"
+                        pInputText
                         mask="999 9999 9999 9999"
-                        placeholder="___ ____ ____ ____"
                         pTooltip="Informe o CNS do paciente."
                     ></p-inputMask>
                     <label>Nº do Cartão SUS</label>

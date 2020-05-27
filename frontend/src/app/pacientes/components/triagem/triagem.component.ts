@@ -49,7 +49,7 @@ export class TriagemComponent implements OnInit, OnDestroy {
     listarTriagens() {
         this.triagemService.listarTriagem().subscribe((triagens) => {
             this.triagens = triagens.content;
-            console.log(triagens);
+            console.log(triagens.content);
         });
     }
 

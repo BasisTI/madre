@@ -80,12 +80,19 @@
             </div>
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input
-                        type="text"
-                        maxlength="30"
-                        pInputText
+                    <p-calendar
                         formControlName="dataHoraDoAtendimento"
-                    />
+                        [locale]="localizacao"
+                        [yearRange]="yearRange"
+                        dateFormat="dd/mm/yy"
+                        [maxDate]="maxDate"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                        showTime="true"
+                        hourFormat="24"
+                    >
+                    </p-calendar>
+
                     <label>Data e hora do atendimento</label>
                 </span>
             </div>

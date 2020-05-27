@@ -12,6 +12,11 @@ import { Router } from '@angular/router';
     styleUrls: ['./pre-cadastro.component.css'],
 })
 export class PreCadastroComponent implements OnInit, OnDestroy {
+    localizacao = CALENDAR_LOCALE;
+    maxDate = new Date();
+    yearRange = `1900:${this.maxDate.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
+
     constructor(
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
@@ -23,7 +28,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
         nome: ['', Validators.required],
         nomeSocial: ['', Validators.required],
         nomeDaMae: ['', Validators.required],
-        dataDeNascimento: [new Date(2018, 11, 24), Validators.required],
+        dataDeNascimento: ['', Validators.required],
         cartaoSus: [''],
         status: [''],
     });
