@@ -37,7 +37,20 @@ export class FarmaciaService {
         return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`);
     }
 
-    cadastrar(medicamento) {
-        return this.httpServe.post(`${this.apiUrl}/medicamentos`, medicamento);
+    cadastrar(medicamento: any): Observable<any> {
+        const dto = {
+            codigo: null,
+            nome: medicamento.medicamento,
+            descricao: medicamento.descricao,
+            concentracao: medicamento.concentracao,
+            ativo: medicamento.ativo,
+
+            apresentacaoId: medicamento.apresentacao.id,
+            unidadeId: medicamento.unidade.id,
+            tipoMedicamentoId: medicamento.tipo.id,
+        };
+        console.log(dto);
+
+        return this.httpServe.post<any>(`${this.apiUrl}/medicamentos`, dto);
     }
 }

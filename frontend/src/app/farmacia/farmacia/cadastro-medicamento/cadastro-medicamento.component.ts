@@ -1,3 +1,4 @@
+import { Medicamento } from './medicamento';
 import { Unidade } from './../dispensacao/unidade';
 import { FormBuilder } from '@angular/forms';
 import { TipoMedicamento } from './tipoMedicamento';
@@ -21,15 +22,13 @@ export class CadastroMedicamentoComponent implements OnInit {
         ativo: [''],
     });
 
-    text: string;
-
     results = new Array<TipoMedicamento>();
     unidade = new Array<Unidade>();
     apresentacao = new Array<Apresentacao>();
-    medicamento;
 
-    cadastrar(form) {
-        this.service.cadastrar(form);
+    cadastrar() {
+        console.log(this.form.value);
+        this.service.cadastrar(this.form.value).subscribe();
     }
 
     search() {
