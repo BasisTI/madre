@@ -117,17 +117,17 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 items: [
                     {
                         label: 'Médica',
-                        icon: 'remove',
-                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
+                        icon: 'add',
+                        items: [{ label: 'Prescrever', icon: 'add', routerLink: ['/prescricao-medica'] }],
                     },
                     {
                         label: 'Enfermagem',
-                        icon: 'remove',
+                        icon: 'add',
                         items: [{ label: 'Prescrever' }],
                     },
                     {
                         label: 'Multiprofisisonal',
-                        icon: 'remove',
+                        icon: 'add',
                         items: [{ label: 'Prescrever' }],
                     },
                 ],
