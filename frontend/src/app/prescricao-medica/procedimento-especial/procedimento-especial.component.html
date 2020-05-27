@@ -7,7 +7,7 @@
                         <div class="ui-g-12">
                             <div class="ui-g-12">
                                 <span class="md-inputfield">
-                                    <input name="idPaciente" type="text" pInputText disabled />
+                                    <input [(ngModel)]="paciente" name="idPaciente" type="text" pInputText disabled />
                                     <label>Paciente</label>
                                 </span>
                             </div>
@@ -26,23 +26,32 @@
             </p-accordionTab>
 
             <p-accordionTab header="Item Procedimento">
-                <form>
+                <form [formGroup]="itemPrescricaoProcedimento" (ngSubmit)="incluirItem()">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <div class="ui-g-10">
-                                <p-selectButton [options]="tipoProcedimento" #tipo></p-selectButton>
+                                <p-selectButton [options]="tipoProcedimento" formControlName="tipoProcedimento" #tipo>
+                                </p-selectButton>
                             </div>
                         </div>
+
                         <div class="ui-g-12">
-                            <app-diversos *ngIf="tipo.value === 'DIVERSOS'"></app-diversos>
-                            <app-cirurgias-leito *ngIf="tipo.value === 'CIRURGIAS_LEITO'"></app-cirurgias-leito>
-                            <app-ortese-protese *ngIf="tipo.value === 'ORTESES_PROTESES'"></app-ortese-protese>
+
+                            <app-diversos [especiaisDiversosForm]="especiaisDiversosForm"
+                                *ngIf="tipo.value === 'DIVERSOS'"></app-diversos>
+
+                            <app-cirurgias-leito [cirurgiasLeitoForm]="cirurgiasLeitoForm"
+                                *ngIf="tipo.value === 'CIRURGIAS_LEITO'"></app-cirurgias-leito>
+
+                            <app-ortese-protese [orteseProteseForm]="orteseProteseForm"
+                                *ngIf="tipo.value === 'ORTESES_PROTESES'"></app-ortese-protese>
+
                         </div>
 
                         <div class="ui-g-12">
                             <div class="ui-g-6">
                                 <span class="md-inputfield">
-                                    <input type="text" pInputText name="informacoes" />
+                                    <input type="text" pInputText formControlName="informacoes" />
                                     <label>Informações Complementares</label>
                                 </span>
                             </div>
@@ -51,19 +60,52 @@
                         <div class="ui-g-12">
                             <div class="ui-g-6">
                                 <span class="md-inputfield">
-                                    <input type="text" pInputText name="justificativa" />
+                                    <input type="text" pInputText formControlName="justificativa" />
                                     <label>Justificativa</label>
                                 </span>
                             </div>
 
                             <div class="ui-g-4">
                                 <span class="md-inputfield">
-                                    <input type="number" pInputText name="duracao" />
+                                    <input type="number" pInputText formControlName="duracaoSolicitada" />
                                     <label>Duração</label>
                                 </span>
                             </div>
                         </div>
 
+                        <div class="ui-g-6">
+                            <button label="Adicionar" pButton name="adicionar-item" type="submit"
+                                [disabled]="itemPrescricaoProcedimento.invalid">
+                            </button>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <basis-datatable type="memory" [value]="itensPrescricaoProcedimento" [disableView]="true"
+                                [disableEdit]="true" [disableDelete]="true" [verticalButtons]="false">
+                                <p-column header="Especial Diversos" field="especiaisDiversosId">
+                                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                    </ng-template>
+                                </p-column>
+
+                                <p-column header="Cirurgias" field="cirurgiasLeitoId">
+                                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                    </ng-template>
+                                </p-column>
+
+                                <p-column header="Órteses/Próteses" field="orteseProteseId">
+                                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].decricao }}</span>
+                                    </ng-template>
+                                </p-column>
+
+                                <p-column header="Informações" field="informacoes"></p-column>
+                                <p-column header="Justificativa" field="justificativa"></p-column>
+                                <p-column header="Duração" field="duracaoSolicitada"></p-column>
+                            </basis-datatable>
+
+                        </div>
                     </div>
                 </form>
             </p-accordionTab>
