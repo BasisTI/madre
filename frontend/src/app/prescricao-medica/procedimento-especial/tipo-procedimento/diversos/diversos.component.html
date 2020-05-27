@@ -1,10 +1,13 @@
-<div class="ui-g-12">
-    <div class="ui-g-6">
-        <span class="md-inputfield">
-            <p-dropdown placeholder="Selecione..." [options]="listaEspeciaisDiversos" name="especiaisDiversos" required
-                #especiaisDiversos>
-            </p-dropdown>
-            <label>Especiais Diversos</label>
-        </span>
+<form [formGroup]="especiaisDiversosForm">
+    <div class="ui-g-12" >
+        <div class="ui-g-6">
+            <span class="md-inputfield">
+                <p-dropdown placeholder="Selecione..." [options]="listaEspeciaisDiversos" formControlName="descricao" required
+                    #especiaisDiversos>
+                </p-dropdown>
+                <label>Especiais Diversos</label>
+            </span>
+        </div>
     </div>
-</div>
+</form>
+

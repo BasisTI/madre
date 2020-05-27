@@ -1,19 +1,22 @@
-<div class="ui-g-12">
-    <div class="ui-g-6">
-        <span class="md-inputfield">
-            <p-dropdown placeholder="Selecione..." [options]="listaOrtesesProteses" name="cirurgiasLeito" required
-                #especiaisDiversos>
-            </p-dropdown>
-            <label>Órteses/Próteses</label>
-        </span>
+<form [formGroup]="orteseProteseForm">
+    <div class="ui-g-12">
+        <div class="ui-g-6">
+            <span class="md-inputfield">
+                <p-dropdown placeholder="Selecione..." [options]="listaOrtesesProteses" formControlName="decricao"
+                    #orteseProtese>
+                </p-dropdown>
+                <label>Órteses/Próteses</label>
+            </span>
+        </div>
     </div>
-</div>
 
-<div class="ui-g-12">
-    <div class="ui-g-4">
-        <span class="md-inputfield">
-            <input type="number" pInputText name="quantidade" />
-            <label>Quantidade</label>
-        </span>
+    <div class="ui-g-12">
+        <div class="ui-g-6">
+            <span class="md-inputfield">
+                <input type="number" pInputText formControlName="quantidadeOrteseProtese" />
+                <label>Quantidade</label>
+            </span>
+        </div>
     </div>
-</div>
+</form>
+

@@ -1,12 +1,15 @@
+import { FormGroup } from '@angular/forms';
 import { OrtesesProteses } from './../../models/orteses-protese';
 import { OrtesesProteseService } from './ortese-protese.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'app-ortese-protese',
     templateUrl: './ortese-protese.component.html'
 })
 export class OrteseProteseComponent implements OnInit {
+
+    @Input() orteseProteseForm: FormGroup;
 
     listaOrtesesProteses = OrtesesProteses[''];
 
