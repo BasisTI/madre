@@ -7,12 +7,11 @@
         Added the constraints for entity Municipio.
     -->
     <changeSet id="20200407125100-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="uf_id"
                                  baseTableName="municipio"
                                  constraintName="fk_municipio_uf_id"
                                  referencedColumnNames="id"
                                  referencedTableName="uf"/>
-
     </changeSet>
 </databaseChangeLog>
