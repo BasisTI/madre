@@ -37,7 +37,7 @@ export class FarmaciaService {
         descricao: string,
         situacao: string,
     ): Observable<Pageable<Medicamento>> {
-        return this.httpServe.get<Pageable<Medicamento>>(`${this.apiUrl}/medicamentos-elastic`, {
+        return this.httpServe.get<Pageable<Medicamento>>(`${this.apiUrl}/pesquisa-medicamentos`, {
             params: new HttpParams()
                 .set('codigo', codigo)
                 .set('descricao', descricao)

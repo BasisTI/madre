@@ -28,7 +28,7 @@ public class Medicamento implements Serializable {
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     @Column(name = "codigo")
     private String codigo;
 

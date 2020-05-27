@@ -42,6 +42,8 @@ public class MedicamentoService {
 
     private final MedicamentoSearchRepository medicamentoSearchRepository;
 
+
+    private final String[] includes = new String[]{"id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"};
     public MedicamentoService(MedicamentoRepository medicamentoRepository, MedicamentoMapper medicamentoMapper, MedicamentoSearchRepository medicamentoSearchRepository) {
         this.medicamentoRepository = medicamentoRepository;
         this.medicamentoMapper = medicamentoMapper;
@@ -114,47 +116,59 @@ public class MedicamentoService {
         return medicamentoSearchRepository.search(queryStringQuery(query), pageable)
             .map(medicamentoMapper::toDto);
     }
+public   Page<Medicamento> findallMedicamento(Pageable pageable){
+    NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
 
-    public Page<Medicamento> findAllElastic
-        (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo) {
+        .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+            (includes).build())
+        .withPageable(pageable)
+        .build();
+
+    Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
+    return search;
+}
+public  Page<Medicamento> findByAtivo(String ativo, Pageable pageable){
+    NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+
+        .withQuery(matchQuery("ativo", ativo))
+        .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+            (includes
+            ).build())
+        .withPageable(pageable)
+        .build();
+    Page<Medicamento> query = medicamentoSearchRepository.search(
+        nativeSearchQuery);
+    return query;
+}
+public  Page<Medicamento> findByfuzzy(String codigo, String descricao, Pageable pageable){
+    NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
+
+        .withQuery(QueryBuilders.multiMatchQuery(  codigo + descricao ,  "codigo", "descricao")
+            .field("codigo").field("descricao").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(3))
+        .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+            (includes
+            ).build())
+        .withPageable(pageable)
+        .build();
+    Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
+        nativeSearchQueryFuzzy);
+
+    return queryFuzzy;
+}
+
+    public Page<Medicamento> findMedicamento
+        (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo, Pageable pageable) {
         if (Strings.isNullOrEmpty(codigo)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
-            NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
-
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
-                    ("id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo").build())
-                .withPageable(PageRequest.of(0, 50))
-                .build();
-
-            Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
-            return search;
+          return this.findallMedicamento(pageable);
         }
         if (!Strings.isNullOrEmpty(ativo)) {
-            NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
-
-                .withQuery(matchQuery("ativo", ativo))
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
-                    ("id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"
-                ).build())
-                .withPageable(PageRequest.of(0, 20))
-                .build();
-            Page<Medicamento> query = medicamentoSearchRepository.search(
-                nativeSearchQuery);
-            return query;
+         return this.findByAtivo(ativo, pageable);
         }
-        NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
-
-            .withQuery(QueryBuilders.multiMatchQuery(  codigo + descricao ,  "descricao", "codigo")
-                .field("descricao").field("codigo").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
-            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
-                ("id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"
-            ).build())
-            .withPageable(PageRequest.of(0, 20))
-            .build();
-        Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
-            nativeSearchQueryFuzzy);
-
-        return queryFuzzy;
+        return this.findByfuzzy(codigo, descricao, pageable);
     }
+
+
+
     public MedicamentoDTO saveElastic(Medicamento medicamento) {
         log.debug("Request to save Medicamento : {}", medicamento);
 

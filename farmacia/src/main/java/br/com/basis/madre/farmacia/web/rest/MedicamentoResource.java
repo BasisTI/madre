@@ -145,11 +145,11 @@ public class MedicamentoResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
-    @GetMapping("/medicamentos-elastic")
-    public Page<Medicamento> getAllMedicamentosElastic
-        (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo ) {
+    @GetMapping("/pesquisa-medicamentos")
+    public Page<Medicamento> getMedicamentos
+        (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
         log.debug("REST request to get a page of Medicamentos");
-        Page<Medicamento> page = medicamentoService.findAllElastic( codigo, descricao, ativo);
+        Page<Medicamento> page = medicamentoService.findMedicamento( codigo, descricao, ativo, pageable);
 
         return page;
     }
