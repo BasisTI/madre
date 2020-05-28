@@ -130,7 +130,7 @@ public class MedicamentoResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-   
+
     @GetMapping("/_search/medicamentos")
     public Page<Medicamento> getMedicamentos
         (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
