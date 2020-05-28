@@ -13,15 +13,15 @@ export class EnderecoComponent {
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
 
     endereco = this.fb.group({
-        municipioId: ['', Validators.required],
-        cep: ['', Validators.required],
-        uf: [''],
-        logradouro: ['', Validators.required],
-        numero: ['', Validators.required],
-        complemento: [''],
-        bairro: ['', Validators.required],
-        tipoDoEndereco: ['', Validators.required],
-        correspondencia: ['', Validators.required],
+        municipioId: [null, Validators.required],
+        cep: [null, Validators.required],
+        uf: [null],
+        logradouro: [null, Validators.required],
+        numero: [null, Validators.required],
+        complemento: [null],
+        bairro: [null, Validators.required],
+        tipoDoEndereco: [null, Validators.required],
+        correspondencia: [null],
     });
 
     constructor(private fb: FormBuilder, public municipioService: MunicipioService) {}
