@@ -130,26 +130,12 @@ public class MedicamentoResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * {@code SEARCH  /_search/medicamentos?query=:query} : search for the medicamento corresponding
-     * to the query.
-     *
-     * @param query the query of the medicamento search.
-     * @param pageable the pagination information.
-     * @return the result of the search.
-     */
+   
     @GetMapping("/_search/medicamentos")
-    public ResponseEntity<List<MedicamentoDTO>> searchMedicamentos(@RequestParam String query, Pageable pageable) {
-        log.debug("REST request to search for a page of Medicamentos for query {}", query);
-        Page<MedicamentoDTO> page = medicamentoService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-    @GetMapping("/pesquisa-medicamentos")
     public Page<Medicamento> getMedicamentos
         (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
         log.debug("REST request to get a page of Medicamentos");
-        Page<Medicamento> page = medicamentoService.findMedicamento( codigo, descricao, ativo, pageable);
+        Page<Medicamento> page = medicamentoService.buscaMedicamento( codigo, descricao, ativo, pageable);
 
         return page;
     }

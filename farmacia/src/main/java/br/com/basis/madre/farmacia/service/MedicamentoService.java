@@ -116,7 +116,7 @@ public class MedicamentoService {
         return medicamentoSearchRepository.search(queryStringQuery(query), pageable)
             .map(medicamentoMapper::toDto);
     }
-public   Page<Medicamento> findallMedicamento(Pageable pageable){
+public   Page<Medicamento> buscaTodosMedicamento(Pageable pageable){
     NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
 
         .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
@@ -127,7 +127,7 @@ public   Page<Medicamento> findallMedicamento(Pageable pageable){
     Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
     return search;
 }
-public  Page<Medicamento> findByAtivo(String ativo, Pageable pageable){
+public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
     NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
 
         .withQuery(matchQuery("ativo", ativo))
@@ -140,7 +140,7 @@ public  Page<Medicamento> findByAtivo(String ativo, Pageable pageable){
         nativeSearchQuery);
     return query;
 }
-public  Page<Medicamento> findByfuzzy(String codigo, String descricao, Pageable pageable){
+public  Page<Medicamento> buscaPorTexto(String codigo, String descricao, Pageable pageable){
     NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
 
         .withQuery(QueryBuilders.multiMatchQuery(  codigo + descricao ,  "codigo", "descricao")
@@ -156,15 +156,15 @@ public  Page<Medicamento> findByfuzzy(String codigo, String descricao, Pageable 
     return queryFuzzy;
 }
 
-    public Page<Medicamento> findMedicamento
+    public Page<Medicamento> buscaMedicamento
         (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo, Pageable pageable) {
         if (Strings.isNullOrEmpty(codigo)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
-          return this.findallMedicamento(pageable);
+          return this.buscaTodosMedicamento(pageable);
         }
         if (!Strings.isNullOrEmpty(ativo)) {
-         return this.findByAtivo(ativo, pageable);
+         return this.buscaPorAtivo(ativo, pageable);
         }
-        return this.findByfuzzy(codigo, descricao, pageable);
+        return this.buscaPorTexto(codigo, descricao, pageable);
     }
 
 
