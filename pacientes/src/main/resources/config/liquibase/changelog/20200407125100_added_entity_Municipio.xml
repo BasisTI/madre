@@ -33,7 +33,7 @@
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
-    <changeSet id="20200407125100-1-data" author="jhipster" context="faker">
+    <changeSet id="20200407125100-1-data" author="jhipster">
         <loadData
             file="config/liquibase/data/municipio.csv"
             separator=";"
