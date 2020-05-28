@@ -55,8 +55,8 @@ public class PreCadastroPaciente implements Serializable {
     @Column(name = "cartao_sus", length = 30, nullable = false)
     private String cartaoSus;
 
-    @Column(name = "status")
-    private Boolean status;
+    @Column(name = "ativo")
+    private Boolean ativo;
 
     @OneToMany(mappedBy = "preCadastroPaciente")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -92,12 +92,12 @@ public class PreCadastroPaciente implements Serializable {
     }
 
 
-    public Boolean isStatus() {
-        return status;
+    public Boolean isAtivo() {
+        return ativo;
     }
 
-    public PreCadastroPaciente status(Boolean status) {
-        this.status = status;
+    public PreCadastroPaciente ativo(Boolean ativo) {
+        this.ativo = ativo;
         return this;
     }
 

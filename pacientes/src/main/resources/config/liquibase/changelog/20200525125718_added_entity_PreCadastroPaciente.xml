@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity PreCadastroPaciente.
     -->
@@ -61,7 +61,7 @@
             <column name="nome_da_mae" type="string"/>
             <column name="data_de_nascimento" type="date"/>
             <column name="cartao_sus" type="string"/>
-            <column name="status" type="boolean"/>
+            <column name="ativo" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

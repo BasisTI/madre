@@ -75,7 +75,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
             {
                 label: 'Pacientes',
-                icon: 'dashboard',
+                icon: 'person_add',
                 routerLink: ['/pacientes'],
                 items: [
                     {
@@ -92,8 +92,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             {
                 label: 'Emergência',
-                icon: 'dashboard',
-                routerLink: ['/paciente'],
+                icon: 'local_hospital',
                 items: [
                     {
                         label: 'Pré Cadastro',

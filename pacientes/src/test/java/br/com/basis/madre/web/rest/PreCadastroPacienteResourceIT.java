@@ -123,7 +123,7 @@ public class PreCadastroPacienteResourceIT {
             .nomeDaMae(DEFAULT_NOME_DA_MAE)
             .dataDeNascimento(DEFAULT_DATA_DE_NASCIMENTO)
             .cartaoSus(DEFAULT_CARTAO_SUS)
-            .status(DEFAULT_STATUS);
+            .ativo(DEFAULT_STATUS);
         return preCadastroPaciente;
     }
     /**
@@ -139,7 +139,7 @@ public class PreCadastroPacienteResourceIT {
             .nomeDaMae(UPDATED_NOME_DA_MAE)
             .dataDeNascimento(UPDATED_DATA_DE_NASCIMENTO)
             .cartaoSus(UPDATED_CARTAO_SUS)
-            .status(UPDATED_STATUS);
+            .ativo(UPDATED_STATUS);
         return preCadastroPaciente;
     }
 
@@ -169,7 +169,7 @@ public class PreCadastroPacienteResourceIT {
         assertThat(testPreCadastroPaciente.getNomeDaMae()).isEqualTo(DEFAULT_NOME_DA_MAE);
         assertThat(testPreCadastroPaciente.getDataDeNascimento()).isEqualTo(DEFAULT_DATA_DE_NASCIMENTO);
         assertThat(testPreCadastroPaciente.getCartaoSus()).isEqualTo(DEFAULT_CARTAO_SUS);
-        assertThat(testPreCadastroPaciente.isStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testPreCadastroPaciente.isAtivo()).isEqualTo(DEFAULT_STATUS);
 
         // Validate the PreCadastroPaciente in Elasticsearch
         verify(mockPreCadastroPacienteSearchRepository, times(1)).save(testPreCadastroPaciente);
@@ -358,7 +358,7 @@ public class PreCadastroPacienteResourceIT {
             .nomeDaMae(UPDATED_NOME_DA_MAE)
             .dataDeNascimento(UPDATED_DATA_DE_NASCIMENTO)
             .cartaoSus(UPDATED_CARTAO_SUS)
-            .status(UPDATED_STATUS);
+            .ativo(UPDATED_STATUS);
         PreCadastroPacienteDTO preCadastroPacienteDTO = preCadastroPacienteMapper.toDto(updatedPreCadastroPaciente);
 
         restPreCadastroPacienteMockMvc.perform(put("/api/pre-cadastro-pacientes")
@@ -375,7 +375,7 @@ public class PreCadastroPacienteResourceIT {
         assertThat(testPreCadastroPaciente.getNomeDaMae()).isEqualTo(UPDATED_NOME_DA_MAE);
         assertThat(testPreCadastroPaciente.getDataDeNascimento()).isEqualTo(UPDATED_DATA_DE_NASCIMENTO);
         assertThat(testPreCadastroPaciente.getCartaoSus()).isEqualTo(UPDATED_CARTAO_SUS);
-        assertThat(testPreCadastroPaciente.isStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testPreCadastroPaciente.isAtivo()).isEqualTo(UPDATED_STATUS);
 
         // Validate the PreCadastroPaciente in Elasticsearch
         verify(mockPreCadastroPacienteSearchRepository, times(1)).save(testPreCadastroPaciente);

@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+        <changeSet id="20200528143111-1-data" author="jhipster" context="faker">
+            <loadData
+                file="config/liquibase/fake-data/triagem.csv"
+                separator=";"
+                tableName="triagem">
+                <column name="id" type="numeric"/>
+                <column name="pressao_arterial" type="numeric"/>
+                <column name="frequencia_cardiaca" type="numeric"/>
+                <column name="temperatura" type="numeric"/>
+                <column name="peso" type="numeric"/>
+                <column name="sinais_sintomas" type="string"/>
+                <column name="data_hora_do_atendimento" type="dateTime"/>
+                <column name="descricao_queixa" type="string"/>
+                <column name="vitima_de_acidente" type="boolean"/>
+                <column name="removido_de_ambulancia" type="boolean"/>
+                <column name="paciente_id" type="numeric"/>
+                <column name="classificacao_de_risco" type="string"/>
+                <column name="observacao" type="string"/>
+                <column name="pre_cadastro_paciente_id" type="numeric"/>
+                <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+            </loadData>
+
+    </changeSet>
+</databaseChangeLog>

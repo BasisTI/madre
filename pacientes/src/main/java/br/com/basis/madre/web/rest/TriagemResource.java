@@ -32,7 +32,6 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @RestController
 @RequestMapping("/api")
-@Data
 public class TriagemResource {
 
     private final Logger log = LoggerFactory.getLogger(TriagemResource.class);

@@ -30,5 +30,5 @@ public class PreCadastroPacienteDTO implements Serializable {
     @Size(max = 20)
     private String cartaoSus;
 
-    private Boolean status;
+    private Boolean ativo;
 }
