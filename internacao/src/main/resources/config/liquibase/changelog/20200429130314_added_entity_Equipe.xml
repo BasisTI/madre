@@ -30,7 +30,7 @@
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
-    <changeSet id="20200429130314-1-data" author="jhipster">
+    <changeSet id="20200429130314-1-data" author="jhipster" context="carga-exemplos">
         <loadData
             file="config/liquibase/fake-data/equipe.csv"
             separator=";"

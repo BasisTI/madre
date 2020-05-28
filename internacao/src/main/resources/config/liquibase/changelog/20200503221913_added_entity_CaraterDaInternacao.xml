@@ -24,7 +24,7 @@
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
-    <changeSet id="20200503221913-1-data" author="jhipster">
+    <changeSet id="20200503221913-1-data" author="jhipster" context="carga-exemplos">
         <loadData
             file="config/liquibase/data/carater_da_internacao.csv"
             separator=";"

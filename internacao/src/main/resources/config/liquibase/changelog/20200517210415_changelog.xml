@@ -8,7 +8,7 @@
   <changeSet author="basis (generated)" id="1589749483675-4">
     <dropColumn columnName="situacao_id" tableName="leito"/>
   </changeSet>
-    <changeSet id="1589749483675-1-data" author="jhipster" context="faker">
+    <changeSet id="1589749483675-1-data" author="jhipster" context="carga-exemplos">
         <loadData
             file="config/liquibase/fake-data/leito.csv"
             separator=";"
