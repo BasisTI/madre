@@ -45,9 +45,20 @@ export class FarmaciaService {
             concentracao: medicamento.concentracao,
             ativo: medicamento.ativo,
 
-            apresentacaoId: medicamento.apresentacao.id,
-            unidadeId: medicamento.unidade.id,
-            tipoMedicamentoId: medicamento.tipo.id,
+            apresentacaoId: {
+                id: medicamento.apresentacao.id,
+                nome: medicamento.apresentacao.nome,
+            },
+
+            unidadeId: {
+                id: medicamento.unidade.id,
+                nome: medicamento.unidade.nome,
+            },
+
+            tipoMedicamentoId: {
+                id: medicamento.tipo.id,
+                nome: medicamento.tipo.nome,
+            },
         };
         console.log(dto);
 
