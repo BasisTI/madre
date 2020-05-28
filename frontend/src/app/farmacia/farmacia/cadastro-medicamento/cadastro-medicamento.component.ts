@@ -1,4 +1,3 @@
-import { Medicamento } from './medicamento';
 import { Unidade } from './../dispensacao/unidade';
 import { FormBuilder } from '@angular/forms';
 import { TipoMedicamento } from './tipoMedicamento';
