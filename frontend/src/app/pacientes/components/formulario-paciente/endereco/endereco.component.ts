@@ -21,7 +21,7 @@ export class EnderecoComponent {
         complemento: [null],
         bairro: [null, Validators.required],
         tipoDoEndereco: [null, Validators.required],
-        correspondencia: [null],
+        correspondencia: [null, Validators.required],
     });
 
     constructor(private fb: FormBuilder, public municipioService: MunicipioService) {}
