@@ -220,7 +220,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                     element.bairro,
                     element.correspondencia ? element.correspondencia : null,
                     element.tipoDoEndereco ? element.tipoDoEndereco : null,
-                    element.municioId ? element.municioId : null,
+                    element.municipioId ? element.municipioId.id : null,
                     element.pacienteId ? element.pacienteId : null,
                 ),
             );
