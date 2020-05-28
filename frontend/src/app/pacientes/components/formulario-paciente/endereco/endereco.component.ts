@@ -13,14 +13,14 @@ export class EnderecoComponent {
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
 
     endereco = this.fb.group({
-        municipio: ['', Validators.required],
+        municipioId: ['', Validators.required],
         cep: ['', Validators.required],
         uf: [''],
         logradouro: ['', Validators.required],
         numero: ['', Validators.required],
         complemento: [''],
         bairro: ['', Validators.required],
-        tipo: ['', Validators.required],
+        tipoDoEndereco: ['', Validators.required],
         correspondencia: ['', Validators.required],
     });
 

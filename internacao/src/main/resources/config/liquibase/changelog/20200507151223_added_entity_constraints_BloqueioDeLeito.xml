@@ -7,7 +7,7 @@
         Added the constraints for entity BloqueioDeLeito.
     -->
     <changeSet id="20200507151223-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="leito_id"
                                  baseTableName="bloqueio_de_leito"
                                  constraintName="fk_bloqueio_de_leito_leito_id"
@@ -19,6 +19,5 @@
                                  constraintName="fk_bloqueio_de_leito_motivo_id"
                                  referencedColumnNames="id"
                                  referencedTableName="motivo_do_bloqueio_de_leito"/>
-
     </changeSet>
 </databaseChangeLog>
