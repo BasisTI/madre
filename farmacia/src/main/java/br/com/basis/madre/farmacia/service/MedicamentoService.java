@@ -156,7 +156,7 @@ public  Page<Medicamento> buscaPorTexto(String codigo, String descricao, Pageabl
     return queryFuzzy;
 }
 
-    public Page<Medicamento> buscaMedicamento
+    public Page<Medicamento> buscaMedicamentos
         (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo, Pageable pageable) {
         if (Strings.isNullOrEmpty(codigo)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
           return this.buscaTodosMedicamentos(pageable);
