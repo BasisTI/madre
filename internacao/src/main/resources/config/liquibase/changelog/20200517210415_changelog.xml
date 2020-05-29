@@ -8,4 +8,17 @@
   <changeSet author="basis (generated)" id="1589749483675-4">
     <dropColumn columnName="situacao_id" tableName="leito"/>
   </changeSet>
+    <changeSet id="1589749483675-1-data" author="jhipster" context="carga-exemplos">
+        <loadData
+            file="config/liquibase/fake-data/leito.csv"
+            separator=";"
+            tableName="leito">
+            <column name="id" type="numeric"/>
+            <column name="nome" type="string"/>
+            <column name="ala" type="numeric"/>
+            <column name="andar" type="numeric"/>
+            <column name="unidade_funcional_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
+    </changeSet>
 </databaseChangeLog>

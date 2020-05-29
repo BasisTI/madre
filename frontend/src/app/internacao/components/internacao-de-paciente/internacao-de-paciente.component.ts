@@ -1,11 +1,12 @@
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
 import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
-import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
-import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 import { Internacao } from '@internacao/models/internacao';
+import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
 import { SolicitacaoDeInternacaoDTO } from '@internacao/models/dtos/solicitacao-de-internacao.dto';
+import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 
 @Component({
     selector: 'app-internacao-de-paciente',
@@ -33,7 +34,7 @@ export class InternacaoDePacienteComponent implements OnInit {
         // prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
         // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
         // prioridade: this.fb.control({ value: '', disabled: true }, Validators.required),
-        // procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
+        procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
         leito: ['', Validators.required],
         especialidade: ['', Validators.required],
         planoDeSaude: ['', Validators.required],
@@ -60,7 +61,7 @@ export class InternacaoDePacienteComponent implements OnInit {
 
     internarPaciente() {
         this.internacaoDePacienteService
-            .internarPaciente(this.formGroup.value)
+            .internarPaciente(this.formGroup.value, this.solicitacao)
             .subscribe((resposta: Internacao) => {
                 console.log(resposta);
             });
