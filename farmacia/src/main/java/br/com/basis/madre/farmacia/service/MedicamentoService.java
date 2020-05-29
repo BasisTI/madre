@@ -116,7 +116,7 @@ public class MedicamentoService {
         return medicamentoSearchRepository.search(queryStringQuery(query), pageable)
             .map(medicamentoMapper::toDto);
     }
-public   Page<Medicamento> buscaTodosMedicamento(Pageable pageable){
+public   Page<Medicamento> buscaTodosMedicamentos(Pageable pageable){
     NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
 
         .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
@@ -159,7 +159,7 @@ public  Page<Medicamento> buscaPorTexto(String codigo, String descricao, Pageabl
     public Page<Medicamento> buscaMedicamento
         (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo, Pageable pageable) {
         if (Strings.isNullOrEmpty(codigo)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
-          return this.buscaTodosMedicamento(pageable);
+          return this.buscaTodosMedicamentos(pageable);
         }
         if (!Strings.isNullOrEmpty(ativo)) {
          return this.buscaPorAtivo(ativo, pageable);
