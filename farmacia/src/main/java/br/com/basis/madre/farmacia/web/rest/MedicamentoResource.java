@@ -147,13 +147,6 @@ public class MedicamentoResource {
 
         return page;
     }
-    @PostMapping("/medicamentos-elastic")
-    public ResponseEntity<MedicamentoDTO> createMedicamentoElastic(@RequestBody Medicamento medicamento) throws URISyntaxException {
-
-        MedicamentoDTO result = medicamentoService.saveElastic(medicamento);
-        return ResponseEntity.created(new URI("/api/medicamentos-elastic/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
+  
 
 }

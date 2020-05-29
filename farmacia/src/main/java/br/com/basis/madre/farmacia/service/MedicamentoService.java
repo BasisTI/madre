@@ -169,11 +169,5 @@ public  Page<Medicamento> buscaPorTexto(String codigo, String descricao, Pageabl
 
 
 
-    public MedicamentoDTO saveElastic(Medicamento medicamento) {
-        log.debug("Request to save Medicamento : {}", medicamento);
 
-        medicamentoSearchRepository.save(medicamento);
-        MedicamentoDTO result = medicamentoMapper.toDto(medicamento);
-        return result;
-    }
 }
