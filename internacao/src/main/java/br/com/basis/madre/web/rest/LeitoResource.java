@@ -112,7 +112,7 @@ public class LeitoResource {
     }
 
     @GetMapping("/leitos/situacao/{situacao}")
-    public ResponseEntity<List<LeitoDTO>> obterTodosOsLeitosPorSituacao(String situacao, Pageable pageable) {
+    public ResponseEntity<List<LeitoDTO>> obterTodosOsLeitosPorSituacao(@PathVariable(name = "situacao") String situacao, Pageable pageable) {
         Page<LeitoDTO> page = Page.empty();
 
         if (situacao.equals("reservados")) {
