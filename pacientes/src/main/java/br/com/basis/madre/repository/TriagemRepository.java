@@ -16,7 +16,6 @@ import java.util.List;
 
 public interface TriagemRepository extends JpaRepository<Triagem, Long> {
 
-
     Page<TriagemProjection> findAllResumoTriagemBy(Pageable pageable);
 }
 
