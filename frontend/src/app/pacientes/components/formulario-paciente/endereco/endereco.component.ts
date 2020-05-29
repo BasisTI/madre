@@ -27,6 +27,8 @@ export class EnderecoComponent {
     constructor(private fb: FormBuilder, public municipioService: MunicipioService) {}
 
     adicionarEnderecoALista() {
-        this.enderecos.push(this.endereco);
+        if (this.endereco.valid) {
+            this.enderecos.push(this.endereco);
+        }
     }
 }

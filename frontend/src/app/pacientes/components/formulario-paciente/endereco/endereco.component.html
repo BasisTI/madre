@@ -117,9 +117,18 @@
                 <label>Não</label>
             </div>
         </div>
-        <p-button label="Adicionar" type="button" (onClick)="adicionarEnderecoALista()"></p-button>
+        <p-button
+            label="Adicionar"
+            type="button"
+            [disabled]="endereco.invalid"
+            (onClick)="adicionarEnderecoALista()"
+        ></p-button>
         <basis-datatable type="memory" [value]="enderecos.value">
-            <p-column header="Município" field="municipioId.nome"></p-column>
+            <p-column header="Município" field="municipioId">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData[col.field].nome }}</span>
+                </ng-template>
+            </p-column>
             <p-column header="CEP" field="cep"></p-column>
             <p-column header="UF" field="municipio.ufId"></p-column>
             <p-column header="Bairro" field="bairro"></p-column>
