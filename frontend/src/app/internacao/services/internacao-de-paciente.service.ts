@@ -1,8 +1,9 @@
-import { Observable } from 'rxjs';
-import { Internacao } from '@internacao/models/internacao';
 import { HttpClient } from '@angular/common/http';
-import { api } from '@internacao/api';
 import { Injectable } from '@angular/core';
+import { Internacao } from '@internacao/models/internacao';
+import { Observable } from 'rxjs';
+import { SolicitacaoDeInternacaoDTO } from '@internacao/models/dtos/solicitacao-de-internacao.dto';
+import { api } from '@internacao/api';
 
 @Injectable({
     providedIn: 'root',
@@ -12,10 +13,13 @@ export class InternacaoDePacienteService {
 
     constructor(private client: HttpClient) {}
 
-    internarPaciente(internacao: Internacao): Observable<Internacao> {
+    internarPaciente(
+        internacao: Internacao,
+        solicitacao: SolicitacaoDeInternacaoDTO,
+    ): Observable<Internacao> {
         const dto = {
-            procedimentoId: 1,
-            prioridade: 'ELETIVA',
+            procedimentoId: solicitacao.procedimentoId,
+            prioridade: solicitacao.prioridade,
             justificativa: internacao.justificativa,
             dataDaInternacao: internacao.dataDaInternacao,
             diferencaDeClasse: internacao.diferencaDeClasse,
