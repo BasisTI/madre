@@ -86,24 +86,53 @@
                     <label>Bairro</label>
                 </span>
             </div>
-            <div class="ui-g-3">
-                <p-triStateCheckbox
-                    name="corespondencia"
-                    formControlName="correspondencia"
-                    label="Correspondência"
-                ></p-triStateCheckbox>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-1">
+                <label>Correspondência?</label>
             </div>
-            <div class="ui-g-3">
-                <p-triStateCheckbox label="Não Localizei o Endereço"></p-triStateCheckbox>
+            <div class="ui-g-1">
+                <p-radioButton
+                    id="sim"
+                    type="radio"
+                    value="true"
+                    name="correspondencia"
+                    formControlName="correspondencia"
+                    pRadioButton
+                >
+                </p-radioButton>
+                <label>Sim</label>
+            </div>
+
+            <div class="ui-g-1">
+                <p-radioButton
+                    id="nao"
+                    type="radio"
+                    value="false"
+                    name="correspondencia"
+                    formControlName="correspondencia"
+                    pRadioButton
+                >
+                </p-radioButton>
+                <label>Não</label>
             </div>
         </div>
-        <p-button label="Adicionar" type="button" (onClick)="adicionarEnderecoALista()"></p-button>
+        <p-button
+            label="Adicionar"
+            type="button"
+            [disabled]="endereco.invalid"
+            (onClick)="adicionarEnderecoALista()"
+        ></p-button>
         <basis-datatable type="memory" [value]="enderecos.value">
-            <p-column header="Município" field="municipio.nome"></p-column>
+            <p-column header="Município" field="municipioId">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData[col.field].nome }}</span>
+                </ng-template>
+            </p-column>
             <p-column header="CEP" field="cep"></p-column>
             <p-column header="UF" field="municipio.ufId"></p-column>
             <p-column header="Bairro" field="bairro"></p-column>
-            <p-column header="Tipo" field="tipo"></p-column>
+            <p-column header="Tipo" field="tipoDoEndereco"></p-column>
             <p-column header="Correspondência" field="correspondencia"></p-column>
         </basis-datatable>
     </div>

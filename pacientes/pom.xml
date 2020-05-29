@@ -87,7 +87,7 @@
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
         <jhipster-jwt.version>3.2.0</jhipster-jwt.version>
         <cloud-security-comum.version>2.0.3</cloud-security-comum.version>
-        <microsservico.version>6.4.7</microsservico.version>
+        <microsservico.version>6.4.9</microsservico.version>
         <lombok.version>1.18.10</lombok.version>
 
         <archunit-junit5.version>0.13.1</archunit-junit5.version>
