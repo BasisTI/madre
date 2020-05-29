@@ -33,14 +33,13 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
         status: [''],
     });
 
-    ngOnInit(): void {}
-
-    ngOnDestroy(): void {
+    ngOnInit() {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
             { label: 'PreCadastroPaciente', routerLink: 'pacientes/pre-cadastro-paciente' },
         ]);
     }
+
     preCadastrar(form: FormBuilder) {
         const pre = this.preCadastro.value;
         const preCadastroPaciente: PreCadastroModel = {
@@ -53,5 +52,8 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
         };
         this.preCadastroService.preCadastrarPaciente(preCadastroPaciente).subscribe();
         console.log(preCadastroPaciente);
+    }
+    ngOnDestroy() {
+        this.breadcrumbService.reset();
     }
 }
