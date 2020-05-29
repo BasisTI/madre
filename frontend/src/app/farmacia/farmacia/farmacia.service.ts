@@ -1,4 +1,5 @@
 import { TipoMedicamento } from './cadastro-medicamento/tipoMedicamento';
+import { Medicamento } from './medicamentos/Medicamento';
 import { Pageable } from './../../shared/pageable';
 import { Observable } from 'rxjs';
 import { Unidade } from './dispensacao/unidade';
@@ -63,5 +64,18 @@ export class FarmaciaService {
         console.log(dto);
 
         return this.httpServe.post<any>(`${this.apiUrl}/medicamentos`, dto);
+    }
+
+    getMedicamentos(
+        codigo: string,
+        descricao: string,
+        situacao: string,
+    ): Observable<Pageable<Medicamento>> {
+        return this.httpServe.get<Pageable<Medicamento>>(`${this.apiUrl}/_search/medicamentos`, {
+            params: new HttpParams()
+                .set('codigo', codigo)
+                .set('descricao', descricao)
+                .set('ativo', situacao),
+        });
     }
 }

@@ -1,7 +1,8 @@
 import { DispensacaoComponent } from './dispensacao/dispensacao.component';
-import { FarmaciaComponent } from './farmacia.component';
+
 import { Routes } from '@angular/router';
 import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-medicamento.component';
+import { MedicamentosComponent } from './medicamentos/medicamentos.component';
 
 export const Farmacia: Routes = [
     {
@@ -11,5 +12,9 @@ export const Farmacia: Routes = [
     {
         path: 'cadastrar-medicamento',
         component: CadastroMedicamentoComponent,
+    },
+    {
+        path: 'medicamentos',
+        component: MedicamentosComponent,
     },
 ];
