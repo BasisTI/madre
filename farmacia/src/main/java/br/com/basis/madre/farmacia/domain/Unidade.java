@@ -23,7 +23,7 @@ public class Unidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Long)
     private Long id;
 
     @Column(name = "nome")
