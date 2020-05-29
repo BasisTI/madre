@@ -1,0 +1,91 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="ui-g-12">
+            <h1>Prescrição Médica</h1>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        pTooltip="Informe o Código."
+                        [(ngModel)]="codigo"
+                    />
+                    <label>Código</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        pInputText
+                        type="text"
+                        pTooltip="Informe a Descrição."
+                        [(ngModel)]="descricao"
+                    />
+                    <label>Descrição</label>
+                </span>
+            </div>
+
+            <div class="ui-g-2 ui-sm-12">
+                <p-dropdown
+                    pTooltip="Informe a Situação."
+                    [options]="results"
+                    [(ngModel)]="situacao"
+                ></p-dropdown>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <button
+                    pButton
+                    type="button"
+                    label="Pesquisar"
+                    icon="ui-icon-search"
+                    (click)="listar()"
+                ></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Cadastrar"></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Limpar"></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Exportar"></button>
+            </div>
+        </div>
+        <basis-datatable type="memory" [value]="medicamento" sortField="brand">
+            <p-column header="Código" field="codigo"></p-column>
+            <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
+            <p-column header="Concentração" field="concentracao"></p-column>
+            <p-column header="Unidade" field="unidade">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        {{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span
+                    >
+                </ng-template>
+            </p-column>
+            <p-column header="Tipo" field="tipoMedicamento">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        {{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span
+                    >
+                </ng-template>
+            </p-column>
+            <p-column header="Situação" field="ativo">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }}</span>
+                </ng-template>
+            </p-column>
+        </basis-datatable>
+    </div>
+</div>
