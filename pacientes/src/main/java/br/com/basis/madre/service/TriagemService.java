@@ -110,15 +110,16 @@ public class TriagemService {
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<TriagemDTO> search(String query, Pageable pageable) {
+    public Page search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Triagems for query {}", query);
         return triagemSearchRepository.search(queryStringQuery(query), pageable)
             .map(triagemMapper::toDto);
     }
 
 
-    public Page<TriagemProjection> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
-        return triagemRepository.findAllResumoTriagemBy(Example.of(triagemMapper.toEntity(triagem)), pageable);
+    public Page<TriagemProjection> buscarResumoTriagem(Pageable pageable) {
+        return triagemRepository.findAllResumoTriagemBy(pageable);
     }
+
 
 }
