@@ -42,12 +42,12 @@ public class PrescricaoResource {
     @GetMapping("/prescricao")
     public Page<Prescricao> listarFarmacia(String nome, String dataInicio, String local, Pageable pageable) throws ParseException {
 
-//        Date data = new SimpleDateFormat("yy-mm-dd").parse(dataInicio);
+
 
         if (Strings.isNullOrEmpty(nome) && Strings.isNullOrEmpty(local) && Strings.isNullOrEmpty(dataInicio)) {
             Page<Prescricao> search = prescricaoRepositorySearch.search(new NativeSearchQueryBuilder()
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local").build())
-                .withPageable(PageRequest.of(0, 50))
+                .withPageable(pageable)
                 .build());
             return search;
         }
@@ -57,7 +57,7 @@ public class PrescricaoResource {
                 .withQuery(matchQuery("dataInicio", dataInicio))
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local"
                 ).build())
-                .withPageable(PageRequest.of(0, 20))
+                .withPageable(pageable)
                 .build();
             Page<Prescricao> query = prescricaoRepositorySearch.search(
                 nativeSearchQuery);
@@ -70,7 +70,7 @@ public class PrescricaoResource {
                 .field("nome").field("local").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
             .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataInicio", "local"
             ).build())
-            .withPageable(PageRequest.of(0, 20))
+            .withPageable(pageable)
             .build();
         Page<Prescricao> queryFuzzy = prescricaoRepositorySearch.search(
             nativeSearchQueryFuzzy);

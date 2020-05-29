@@ -130,14 +130,7 @@ public class MedicamentoResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * {@code SEARCH  /_search/medicamentos?query=:query} : search for the medicamento corresponding
-     * to the query.
-     *
-     * @param query the query of the medicamento search.
-     * @param pageable the pagination information.
-     * @return the result of the search.
-     */
+
 
     @GetMapping("/_search/medicamentos")
     public Page<Medicamento> getMedicamentos
