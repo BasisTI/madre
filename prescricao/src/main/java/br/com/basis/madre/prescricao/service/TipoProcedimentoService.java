@@ -77,11 +77,11 @@ public class TipoProcedimentoService {
 		return tipoProcedimentoRepository.listarTipoProcedimentoCirurgias(pageable).map(tipoProcedimentoMapper::toDto);
 	}
 
-//	@Transactional(readOnly = true)
-//	public Page<TipoProcedimentoDTO> listarTipoProcedimentoOsteseProtese(Pageable pageable) {
-//		return tipoProcedimentoRepository.listarTipoProcedimentoOsteseProtese(pageable)
-//				.map(tipoProcedimentoMapper::toDto);
-//	}
+	@Transactional(readOnly = true)
+	public Page<TipoProcedimentoDTO> listarTipoProcedimentoOsteseProtese(Pageable pageable) {
+		return tipoProcedimentoRepository.listarTipoProcedimentoOsteseProtese(pageable)
+				.map(tipoProcedimentoMapper::toDto);
+	}
 
 	/**
 	 * Get one tipoProcedimento by id.

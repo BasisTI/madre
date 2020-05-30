@@ -20,11 +20,11 @@ public interface TipoProcedimentoRepository extends JpaRepository<TipoProcedimen
 
 	@Query(value = "select tipo_procedimento.* from tipo_procedimento join item_prescricao_procedimento on item_prescricao_procedimento.tipo_procedimento_id=tipo_procedimento.id where tipo_procedimento_especial = 'CIRURGIAS_LEITO'", nativeQuery = true)
 	Page<TipoProcedimento> listarTipoProcedimentoCirurgias(Pageable pageable);
+	
+	@Query(value = "select tipo_procedimento.* from tipo_procedimento join item_prescricao_procedimento on item_prescricao_procedimento.tipo_procedimento_id=tipo_procedimento.id where tipo_procedimento_especial = 'ORTESES_PROTESES'", nativeQuery = true)
+	Page<TipoProcedimento> listarTipoProcedimentoOsteseProtese(Pageable pageable);
 
 //	@Query("select TipoProcedimento from TipoProcedimento join ItemPrescricaoProcedimento where ItemPrescricaoProcedimento.tipoProcedimentoEspecial = 'ORTESES_PROTESES'")
 //	Page<TipoProcedimento> listarTipoProcedimentoOsteseProtese(Pageable pageable);
 
-//	select tipo_procedimento.descricao tipo from item_prescricao_procedimento
-//	join tipo_procedimento
-//	on item_prescricao_procedimento.tipo_procedimento_id=tipo_procedimento.id where tipo_procedimento_especial = 'CIRURGIAS_LEITO';
 }
