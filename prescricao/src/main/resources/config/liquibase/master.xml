@@ -26,17 +26,15 @@
     <include file="config/liquibase/changelog/20200515195408_added_entity_TipoItemDieta.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200515195409_added_entity_TipoAprazamento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200515195410_added_entity_TipoUnidadeDieta.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200522180300_added_entity_PrescricaoProcedimentoEspecial.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200522180301_added_entity_ItemPrescricaoProcedimentoEspecial.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200522180302_added_entity_EspeciaisDiversos.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200522180303_added_entity_CirurgiasLeito.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200522180304_added_entity_OrteseProtese.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200529172046_added_entity_PrescricaoProcedimento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200529172047_added_entity_ItemPrescricaoProcedimento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200529172048_added_entity_TipoProcedimento.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200505210945_added_entity_constraints_ItemPrescricaoMedicamento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200515195407_added_entity_constraints_ItemPrescricaoDieta.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200516032043_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200519153725_changelog.xml" relativeToChangelogFile="false"/>
     
-    <include file="config/liquibase/changelog/20200522180301_added_entity_constraints_ItemPrescricaoProcedimentoEspecial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200529172047_added_entity_constraints_ItemPrescricaoProcedimento.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
