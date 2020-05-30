@@ -1,5 +1,5 @@
 {
-    "name": "ItemPrescricaoProcedimentoEspecial",
+    "name": "ItemPrescricaoProcedimento",
     "fields": [
         {
             "fieldName": "tipoProcedimentoEspecial",
@@ -47,35 +47,22 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "especiaisDiversos",
-            "otherEntityRelationshipName": "itemPrescricaoProcedimentoEspecial",
-            "relationshipName": "especiaisDiversos",
+            "otherEntityName": "tipoProcedimento",
+            "otherEntityRelationshipName": "itemPrescricaoProcedimento",
+            "javadoc": "Chave estrangeira de tipo procedimento",
+            "relationshipName": "tipoProcedimento",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "cirurgiasLeito",
-            "otherEntityRelationshipName": "itemPrescricaoProcedimentoEspecial",
-            "relationshipName": "cirurgiasLeito",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "orteseProtese",
-            "otherEntityRelationshipName": "itemPrescricaoProcedimentoEspecial",
-            "relationshipName": "orteseProtese",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "prescricaoProcedimentoEspecial",
-            "otherEntityRelationshipName": "itemPrescricaoProcedimentoEspecial",
-            "relationshipName": "prescricaoProcedimentoEspecial",
+            "otherEntityName": "prescricaoProcedimento",
+            "otherEntityRelationshipName": "itemPrescricaoProcedimento",
+            "relationshipName": "prescricaoProcedimento",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20200522180301",
-    "entityTableName": "item_prescricao_procedimento_especial",
+    "changelogDate": "20200529172047",
+    "entityTableName": "item_prescricao_procedimento",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceClass",

@@ -1,11 +1,11 @@
-id;tipo_procedimento;quantidade_ortese_protese;informacoes;justificativa;duracao_solicitada
-1;DIVERSOS;23089;Monitored Bahamian Dollar Investment Account;Games Regional Digitized;66252
-2;DIVERSOS;18485;Facilitator;Views e-enable Communications;72727
+id;tipo_procedimento_especial;quantidade_ortese_protese;informacoes;justificativa;duracao_solicitada
+1;ORTESES_PROTESES;23089;Monitored Bahamian Dollar Investment Account;Games Regional Digitized;66252
+2;ORTESES_PROTESES;18485;Facilitator;Views e-enable Communications;72727
 3;CIRURGIAS_LEITO;96117;navigating;interactive generating compelling;28093
-4;DIVERSOS;80219;Small;deliverables reinvent 24 hour;1407
+4;ORTESES_PROTESES;80219;Small;deliverables reinvent 24 hour;1407
 5;CIRURGIAS_LEITO;60595;Identity;Frozen IB;62329
-6;DIVERSOS;32518;pixel withdrawal;Mississippi embrace Developer;84891
-7;CIRURGIAS_LEITO;4043;system Small;Intelligent Outdoors;63641
-8;ORTESES_PROTESES;90756;Phased;Saint Lucia white;94285
+6;CIRURGIAS_LEITO;32518;pixel withdrawal;Mississippi embrace Developer;84891
+7;DIVERSOS;4043;system Small;Intelligent Outdoors;63641
+8;DIVERSOS;90756;Phased;Saint Lucia white;94285
 9;CIRURGIAS_LEITO;69478;JSON;virtual deposit;87146
-10;CIRURGIAS_LEITO;89255;Ghana back-end National;Direct;27213
+10;DIVERSOS;89255;Ghana back-end National;Direct;27213
