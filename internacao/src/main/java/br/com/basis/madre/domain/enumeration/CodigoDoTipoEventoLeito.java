@@ -12,4 +12,11 @@ public enum CodigoDoTipoEventoLeito {
     public Long getValor() {
         return this.valor;
     }
+
+    public static class Constants {
+        public static final String LIBERACAO_ID = "1";
+        public static final String RESERVA_ID = "2";
+        public static final String BLOQUEIO_ID = "3";
+        public static final String OCUPACAO_ID = "4";
+    }
 }

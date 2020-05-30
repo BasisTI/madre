@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { api } from './../api';
-import { Observable } from 'rxjs';
 import { Leito } from '@internacao/models/leito';
+import { Observable } from 'rxjs';
+import { api } from './../api';
 
 @Injectable({
     providedIn: 'root',
@@ -13,22 +13,22 @@ export class LeitoService {
     constructor(private client: HttpClient) {}
 
     obterLeitosLiberados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this._resource$}/liberados`);
+        return this.client.get<Array<Leito>>(`${this._resource$}/situacao/liberados`);
     }
 
     obterLeitosOcupados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this._resource$}/ocupados`);
+        return this.client.get<Array<Leito>>(`${this._resource$}/situacao/ocupados`);
     }
 
     obterLeitosReservados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this._resource$}/reservados`);
+        return this.client.get<Array<Leito>>(`${this._resource$}/situacao/reservados`);
     }
 
     obterLeitosBloqueados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this._resource$}/bloqueados`);
+        return this.client.get<Array<Leito>>(`${this._resource$}/situacao/bloqueados`);
     }
 
     obterLeitosNaoLiberados(): Observable<Array<Leito>> {
-        return this.client.get<Array<Leito>>(`${this._resource$}/nao-liberados`);
+        return this.client.get<Array<Leito>>(`${this._resource$}/situacao/nao-liberados`);
     }
 }
