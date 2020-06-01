@@ -149,14 +149,14 @@ spring:
     stream:
       kafka:
         bindings:
-          pacienteSupplier-in-0:
+          pacienteConsumer-in-0:
             consumer:
               startOffset: earliest
       bindings:
-        pacienteSupplier-in-0:
+        pacienteConsumer-in-0:
           destination: madre-paciente
     function:
-      definition: pacienteSupplier
+      definition: pacienteConsumer
 
 server:
   servlet:

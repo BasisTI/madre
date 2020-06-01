@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class PacienteSupplier implements Consumer<Message<Paciente>> {
+public class PacienteConsumer implements Consumer<Message<Paciente>> {
     private final PacienteSearchRepository pacienteSearchRepository;
 
     @Override
