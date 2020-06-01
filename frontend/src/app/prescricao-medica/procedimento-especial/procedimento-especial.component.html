@@ -1,15 +1,15 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <form (ngSubmit)="prescrever()">
-            <p-accordion >
+            <p-accordion>
                 <p-accordionTab header="Procedimento" [selected]="true">
                     <form [formGroup]="prescricaoProcedimento">
                         <div class="ui-g">
                             <div class="ui-g-12">
                                 <div class="ui-g-12">
                                     <span class="md-inputfield">
-                                        <input [(ngModel)]="paciente" formControlName="idPaciente" type="text" pInputText
-                                            disabled />
+                                        <input [(ngModel)]="paciente" formControlName="idPaciente" type="text"
+                                            pInputText disabled />
                                         <label>Paciente</label>
                                     </span>
                                 </div>
@@ -31,24 +31,22 @@
                     <form [formGroup]="itemPrescricaoProcedimento" (ngSubmit)="incluirItem()">
                         <div class="ui-g">
                             <div class="ui-g-12">
-                                <div class="ui-g-10">
-                                    <p-selectButton [options]="tipoProcedimento" formControlName="tipoProcedimentoEspecial"
-                                        #tipo>
+                                <div class="ui-g-8">
+                                    <p-selectButton [options]="tipoProcedimento"
+                                        formControlName="tipoProcedimentoEspecial" #tipo>
                                     </p-selectButton>
                                 </div>
                             </div>
 
-                            <div class="ui-g-12">
-
-                                <app-diversos [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"
-                                    *ngIf="tipo.value === 'DIVERSOS'"></app-diversos>
-
-                                <app-cirurgias-leito [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"
-                                    *ngIf="tipo.value === 'CIRURGIAS_LEITO'"></app-cirurgias-leito>
-
-                                <app-ortese-protese [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"
-                                    *ngIf="tipo.value === 'ORTESES_PROTESES'"></app-ortese-protese>
-
+                            <div class="ui-g-12" [ngSwitch]="tipo.value">
+                                <app-diversos *ngSwitchCase="'DIVERSOS'"
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-diversos>
+                                <app-cirurgias-leito *ngSwitchCase="'CIRURGIAS_LEITO'"
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-cirurgias-leito>
+                                <app-ortese-protese *ngSwitchCase="'ORTESES_PROTESES'"
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-ortese-protese>
+                                <app-diversos *ngSwitchDefault
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-diversos>
                             </div>
 
                             <div class="ui-g-12">
