@@ -182,6 +182,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['/farmacia'],
                     },
                     {
+                        label: 'Cadastro de Medicamento',
+                        icon: 'add',
+                        routerLink: ['/cadastrar-medicamento'],
+                    },
+                    {
                         label: 'Medicamentos',
                         icon: 'add',
                         routerLink: ['/medicamentos'],

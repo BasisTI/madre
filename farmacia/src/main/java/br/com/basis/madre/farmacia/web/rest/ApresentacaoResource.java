@@ -96,9 +96,9 @@ public class ApresentacaoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of apresentacaos in body.
      */
     @GetMapping("/apresentacaos")
-    public ResponseEntity<List<ApresentacaoDTO>> getAllApresentacaos(Pageable pageable) {
+    public ResponseEntity<List<ApresentacaoDTO>> getAllApresentacaos(ApresentacaoDTO apresentacaoDTO, Pageable pageable) {
         log.debug("REST request to get a page of Apresentacaos");
-        Page<ApresentacaoDTO> page = apresentacaoService.findAll(pageable);
+        Page<ApresentacaoDTO> page = apresentacaoService.findAll(apresentacaoDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
