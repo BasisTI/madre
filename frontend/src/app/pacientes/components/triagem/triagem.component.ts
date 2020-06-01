@@ -29,7 +29,7 @@ export class TriagemComponent implements OnInit, OnDestroy {
 
     triagens: any;
 
-    searchUrl = 'pacientes/api/triagens/pacientes';
+    searchUrl = 'pacientes/api/triagens/listagem';
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
