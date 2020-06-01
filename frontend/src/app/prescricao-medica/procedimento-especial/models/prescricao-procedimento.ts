@@ -5,6 +5,6 @@ export class PrescricaoProcedimento {
         public id?: number,
         public idPaciente?: number,
         public observacao?: string,
-        public itemPrescricaoProcedimentoEspecialDTO?: ItemPrescricaoProcedimento[]
+        public itemPrescricaoProcedimentoDTO?: ItemPrescricaoProcedimento[]
     ) {}
 }
