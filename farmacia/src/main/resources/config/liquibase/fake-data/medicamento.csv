@@ -1,11 +1,278 @@
-id;codigo;nome;descricao;concentracao;ativo
-1;copy convergence;Mayotte;Industrial;connect Markets Chief;true
-2;National Awesome sky blue;Tactics;scale interactive generating;Specialist Home Loan Account;false
-3;scalable;Small;deliverables reinvent 24 hour;overriding;true
-4;application quantify Unbranded Plastic Tuna;Internal;Investment Account archive Fantastic Plastic Chicken;payment;true
-5;tangible Mississippi;Frozen bus;hard drive Robust Networked;Poland;false
-6;Grocery;red;withdrawal knowledge base Buckinghamshire;Concrete Investment Account Saint Lucia;false
-7;Brand;neutral Salad;Auto Loan Account modular Refined;digital maroon;true
-8;Ghana back-end National;Direct;Profit-focused;Jewelery cutting-edge;false
-9;Hat;supply-chains magenta;encompassing;Directives;false
-10;Mauritania;facilitate Tasty Concrete Chips Exclusive;Buckinghamshire capability zero tolerance;mission-critical;true
+id;codigo;nome;descricao;concentracao; ativo
+1;Abatacepte;Abatacepte;Abatacepte 125 mg injetável ;125;true
+2;Abatacepte;Abatacepte;Abatacepte 250 mg injetável ;250;false
+3;Acetazolamida;Acetazolamida;Acetazolamida 250 mg  ;250;true
+4;Acitretina;Acitretina;Acitretina 10 mg  ;10;false
+5;Acitretina;Acitretina;Acitretina 25 mg  ;25;true
+6;Adalimumabe;Adalimumabe;Adalimumabe 40 mg injetável ;40;false
+7;Adefovir;Adefovir;Adefovir 10 mg  ;10;true
+8;Alfacalcidol;Alfacalcidol;Alfacalcidol 0,25 mcg  ;0,25;false
+9;Alfacalcidol;Alfacalcidol;Alfacalcidol 1,0 mcg  ;1,0;true
+10;Alfadornase;Alfadornase;Alfadornase 2,5 mg  ;2,5;true
+11;Alfaepoetina;Alfaepoetina;Alfaepoetina 1.000 UI injetável ;1.000;false
+12;Alfaepoetina;Alfaepoetina;Alfaepoetina 10.000 UI injetável ;10.000;true
+13;Alfaepoetina;Alfaepoetina;Alfaepoetina 2.000 UI injetável ;2.000;false
+14;Alfaepoetina;Alfaepoetina;Alfaepoetina 3.000 UI injetável ;3.000;true
+15;Alfaepoetina;Alfaepoetina;Alfaepoetina 4.000 UI injetável ;4.000;false
+16;Alfainterferona;Alfainterferona;Alfainterferona 2B 10.000.000 UI injetável;2B;true
+17;Alfainterferona;Alfainterferona;Alfainterferona 2B 3.000.000 UI injetável;2B 3.000.000;false
+18;Alfainterferona;Alfainterferona;Alfainterferona 2B 5.000.000 UI injetável;2B 5.000.000;true
+19;Alfapeginterferona;Alfapeginterferona;Alfapeginterferona 2A 180 mcg ;2A 180;false
+20;Alfapeginterferona;Alfapeginterferona;Alfapeginterferona 2B 100 mcg ;2B 100;true
+21;Alfapeginterferona;Alfapeginterferona;Alfapeginterferona 2B 120 mcg ;2B 120;false
+22;Alfapeginterferona;Alfapeginterferona;Alfapeginterferona 2B 80 mcg ;2B 80;true
+23;Alfataliglicerase;Alfataliglicerase;Alfataliglicerase 200 U injetável ;200;false
+24;Amantadina;Amantadina;Amantadina 100 mg  ;100;true
+25;Ambrisentana;Ambrisentana;Ambrisentana 10 mg  ;10;false
+26;Ambrisentana;Ambrisentana;Ambrisentana 5 mg  ;5;true
+27;Atorvastatina;Atorvastatina;Atorvastatina 10 mg  ;10;false
+28;Atorvastatina;Atorvastatina;Atorvastatina 20 mg  ;20;true
+29;Atorvastatina;Atorvastatina;Atorvastatina 40 mg  ;40;false
+30;Atorvastatina;Atorvastatina;Atorvastatina 80 mg  ;80;true
+31;Azatioprina;Azatioprina;Azatioprina 50 mg  ;50;false
+32;Betainterferona;Betainterferona;Betainterferona 1a 12.000.000 UI 44 mcg injetável ;1a 12.000.000;true
+33;Betainterferona;Betainterferona;Betainterferona 1a 6.000.000 UI 22 mcg injetável ;1a 6.000.000;false
+34;Betainterferona;Betainterferona;Betainterferona 1a 6.000.000 UI 30 mcg injetável ;1a 6.000.000;true
+35;Betainterferona;Betainterferona;Betainterferona 1b 9.600.000 UI 300 mcg injetável ;1b 9.600.000;false
+36;Bezafibrato;Bezafibrato;Bezafibrato 200 mg  ;200;true
+37;Bezafibrato;Bezafibrato;Bezafibrato 400 mg  ;400;false
+38;Bimatoprosta;Bimatoprosta;Bimatoprosta 0,3 mg/ml solução oftálmica;0,3/ml;true
+39;Boceprevir;Boceprevir;Boceprevir 200 mg  ;200;false
+40;Bosentana;Bosentana;Bosentana 125 mg  ;125;true
+41;Bosentana;Bosentana;Bosentana 62,5 mg  ;62,5;false
+42;Brimonidina;Brimonidina;Brimonidina 2,0 mg/ml solução oftálmica;2,0/ml;true
+43;Bromocriptina;Bromocriptina;Bromocriptina 2,5 mg  ;2,5;false
+44;Budesonida;Budesonida;Budesonida 200 mcg  ;200;true
+45;Budesonida;Budesonida;Budesonida 200 mcg pó ou aerossol  ;200;false
+46;Budesonida;Budesonida;Budesonida 200 mcg pó ou aerossol bucal ;200;true
+47;Budesonida;Budesonida;Budesonida 400 mcg  ;400;false
+48;Cabergolina;Cabergolina;Cabergolina 0,5 mg  ;0,5;true
+49;Calcipotriol;Calcipotriol;Calcipotriol 50 mcg/g pomada ;50;false
+50;Calcitonina;Calcitonina;Calcitonina 100 UI injetável ;100;true
+51;Calcitonina;Calcitonina;Calcitonina 200 UI spray nasal;200;false
+52;Calcitonina;Calcitonina;Calcitonina 50 UI  ;50;true
+53;Calcitriol;Calcitriol;Calcitriol 0,25 mcg  ;0,25;false
+54;Calcitriol;Calcitriol;Calcitriol 1,0 mcg injetável ;1,0;true
+55;Certolizumabe;Certolizumabe;Certolizumabe pegol 200 mg/ml injetável;Pegol 200/ml;false
+56;Ciclofosfamida;Ciclofosfamida;Ciclofosfamida 50 mg drágea ;50;true
+57;Ciclos;Ciclos;Ciclos ina 10 mg ;Ina 10;false
+58;Ciclos;Ciclos;Ciclos ina 100 mg ;Ina 100;true
+59;Ciclos;Ciclos;Ciclos ina 100 mg/ml solução oral  ;Ina 100/ml;false
+60;Ciclos;Ciclos;Ciclos ina 25 mg ;Ina 25;true
+61;Ciclos;Ciclos;Ciclos ina 50 mg ;Ina 50;false
+62;Cinacalcete;Cinacalcete;Cinacalcete 30 mg  ;30;true
+63;Cinacalcete;Cinacalcete;Cinacalcete 60 mg  ;60;false
+64;Ciprofibrato;Ciprofibrato;Ciprofibrato 100 mg  ;100;true
+65;Ciproterona;Ciproterona;Ciproterona 50 mg  ;50;false
+66;Clobazam;Clobazam;Clobazam 10 mg  ;10;true
+67;Clobazam;Clobazam;Clobazam 20 mg  ;20;false
+68;Clobetasol;Clobetasol;Clobetasol 0,5 mg/g creme ;0,5/g;true
+69;Clobetasol;Clobetasol;Clobetasol 0,5 mg/g solução capilar;0,5/g;false
+70;Clopidogrel;Clopidogrel;Clopidogrel 75 mg  ;75;true
+71;Cloroquina;Cloroquina;Cloroquina 150 mg  ;150;false
+72;Clozapina;Clozapina;Clozapina 100 mg  ;100;true
+73;Clozapina;Clozapina;Clozapina 25 mg  ;25;false
+74;Codeína;Codeína;Codeína 3 mg/ml solução oral;3/ml;true
+75;Codeína;Codeína;Codeína 30 mg  ;30;false
+76;Codeína;Codeína;Codeína 30 mg/ml  ;30/ml;true
+77;Codeína;Codeína;Codeína 60 mg  ;60;false
+78;Daclatasvir;Daclatasvir;Daclatasvir 30 mg  ;30;true
+79;Daclatasvir;Daclatasvir;Daclatasvir 60 mg  ;60;false
+80;Danazol;Danazol;Danazol 100 mg  ;100;true
+81;Danazol;Danazol;Danazol 200 mg  ;200;false
+82;Darunavir;Darunavir;Darunavir 150 mg  ;150;true
+83;Darunavir;Darunavir;Darunavir 150 mg  ;150;false
+84;Deferasirox;Deferasirox;Deferasirox 125 mg  ;125;true
+85;Deferasirox;Deferasirox;Deferasirox 250 mg  ;250;false
+86;Deferasirox;Deferasirox;Deferasirox 500 mg  ;500;true
+87;Deferiprona;Deferiprona;Deferiprona 500 mg  ;500;false
+88;Desferroxamina;Desferroxamina;Desferroxamina 500 mg injetável ;500;true
+89;Desmopressina;Desmopressina;Desmopressina 0,1 mg/ml aplicação nasal;0,1/ml;false
+90;Donepezila;Donepezila;Donepezila 10 mg  ;10;true
+91;Donepezila;Donepezila;Donepezila 5 mg  ;5;false
+92;Dorzolamida;Dorzolamida;Dorzolamida 20 mg/ml solução oftálmica;20/ml;true
+93;Eculizumabe;Eculizumabe;Eculizumabe 10 mg/ml x30ml ;10/ml;false
+94;Entacapona;Entacapona;Entacapona 200 mg  ;200;true
+95;Entecavir;Entecavir;Entecavir 0,5 mg  ;0,5;false
+96;Entecavir;Entecavir;Entecavir 1 mg  ;1;true
+97;Etofibrato;Etofibrato;Etofibrato 500 mg  ;500;false
+98;Etossuximida;Etossuximida;Etossuximida 50 mg/ml xarope ;50/ml;true
+99;Etravirina;Etravirina;Etravirina 100 mg  ;100;false
+100;Everolimo;Everolimo;Everolimo 0,5 mg  ;0,5;true
+101;Everolimo;Everolimo;Everolimo 0,75 mg  ;0,75;false
+102;Everolimo;Everolimo;Everolimo 1 mg  ;1;true
+103;Fenofibrato;Fenofibrato;Fenofibrato 200 mg  ;200;false
+104;Fenofibrato;Fenofibrato;Fenofibrato 250 mg  ;250;true
+105;Fenoterol;Fenoterol;Fenoterol 100 mcg aerossol ;100;false
+106;Filgrastim;Filgrastim;Filgrastim 300 mcg injetável ;300;true
+107;Fingolimode;Fingolimode;Fingolimode 0,5 mg  ;0,5;false
+108;Fludrocortisona;Fludrocortisona;Fludrocortisona 0,1 mg  ;0,1;true
+109;Fluvastatina;Fluvastatina;Fluvastatina 20 mg  ;20;false
+110;Fluvastatina;Fluvastatina;Fluvastatina 40 mg  ;40;true
+111;Formoterol;Formoterol;Formoterol 12 mcg  ;12;false
+112;Formoterol;Formoterol;Formoterol 12 mcg + budesonida 400 mcg ;12 + budesonida 400;true
+113;Formoterol;Formoterol;Formoterol 12 mcg + budesonida 400 mcg pó;12 + budesonida 400;false
+114;Formoterol;Formoterol;Formoterol 12 mcg pó ;12;true
+115;Formoterol;Formoterol;Formoterol 6 mcg + budesonida 200 mcg pó;6 + budesonida 200;false
+116;Formoterol;Formoterol;Formoterol 6mcg + budesonida 200 mcg  ;6 + budesonida 200;true
+117abapentina;300;300;Gabapentina 300 mg  ;;false
+118abapentina;400;400;Gabapentina 400 mg  ;;true
+119alantamina;16;16;Galantamina 16 mg  ;;false
+120alantamina;24;24;Galantamina 24 mg  ;;true
+121alantamina;8;8;Galantamina 8 mg  ;;false
+122enfibrozila;600;600;Genfibrozila 600 mg  ;;true
+123enfibrozila;900;900;Genfibrozila 900 mg  ;;false
+124latiramer;20;20;Glatiramer 20 mg injetável ou;ou;true
+125olimumabe;50;50;Golimumabe 50 mg injetável ;;false
+126osserrelina;10,80;10,80;Gosserrelina 10,80 mg injetável ;;true
+127osserrelina;3,60;3,60;Gosserrelina 3,60 mg injetável ;;false
+128;Hidroxicloroquina;Hidroxicloroquina;Hidroxicloroquina 400 mg  ;400;true
+129;Hidróxido de alumínio;Hidróxido de alumínio;Hidróxido de alumínio 230 mg;230;false
+130;Hidróxido de alumínio;Hidróxido de alumínio;Hidróxido de alumínio 300 mg;300;true
+131;Hidróxido de alumínio;Hidróxido de alumínio;Hidróxido de alumínio 61,5 mg/ml;61,5/ml;false
+132;Hidróxido de alumínio;Hidróxido de alumínio;Hidróxido de alumínio 61,5 mg/ml;61,5/ml;true
+133;Hidróxido de alumínio;Hidróxido de alumínio;Hidróxido de alumínio 61,5 mg/ml;61,5/ml;false
+134;Hidroxiureia;Hidroxiureia;Hidroxiureia 500 mg  ;500;true
+135;Iloprosta;Iloprosta;Iloprosta 10mcg/ml solução para nebulização;10/ml;false
+136;Imiglucerase;Imiglucerase;Imiglucerase 200 U injetável ;200;true
+137;Imiglucerase;Imiglucerase;Imiglucerase 400 U injetável ;400;false
+138;Imunoglobulina;Imunoglobulina;Imunoglobulina anti-hepatite B 100 UI injetável  ;Anti-hepatite B 100;true
+139;Imunoglobulina;Imunoglobulina;Imunoglobulina anti-hepatite B 500 UI injetável  ;Anti-hepatite B 500;false
+140;Imunoglobulina;Imunoglobulina;Imunoglobulina anti-hepatite B 600 UI injetável  ;Anti-hepatite B 600;true
+141;Imunoglobulina;Imunoglobulina;Imunoglobulina humana 0,5 g injetável;Humana 0,5;false
+142;Imunoglobulina;Imunoglobulina;Imunoglobulina humana 1,0 g injetável;Humana 1,0;true
+143;Imunoglobulina;Imunoglobulina;Imunoglobulina humana 2,5 g injetável;Humana 2,5;false
+144;Imunoglobulina;Imunoglobulina;Imunoglobulina humana 3,0 g injetável;Humana 3,0;true
+145;Imunoglobulina;Imunoglobulina;Imunoglobulina humana 5 g injetável;Humana 5;false
+146;Imunoglobulina;Imunoglobulina;Imunoglobulina humana 6 g injetável;Humana 6;true
+147;Infliximabe;Infliximabe;Infliximabe 10 mg/ml injetável ;10/ml;false
+148;Isotretinoína;Isotretinoína;Isotretinoína 10 mg  ;10;true
+149;Isotretinoína;Isotretinoína;Isotretinoína 20 mg  ;20;false
+150;Lamivudina;Lamivudina;Lamivudina 10 mg/ml solução oral;10/ml;true
+151;Lamivudina;Lamivudina;Lamivudina 150 mg  ;150;false
+152;Lamotrigina;Lamotrigina;Lamotrigina 100 mg  ;100;true
+153;Lamotrigina;Lamotrigina;Lamotrigina 25 mg  ;25;false
+154;Lamotrigina;Lamotrigina;Lamotrigina 50 mg  ;50;true
+155;Lanreotida;Lanreotida;Lanreotida 120 mg injetável ;120;false
+156;Lanreotida;Lanreotida;Lanreotida 60 mg injetável ;60;true
+157;Lanreotida;Lanreotida;Lanreotida 90 mg injetável ;90;false
+158;Latanoprosta;Latanoprosta;Latanoprosta 0,05 mg/ml solução oftálmica;0,05/ml;true
+159;Leflunomida;Leflunomida;Leflunomida 20 mg  ;20;false
+160;Leuprorrelina;Leuprorrelina;Leuprorrelina 11,25 mg injetável ;11,25;true
+161;Leuprorrelina;Leuprorrelina;Leuprorrelina 3,75 mg injetável ;3,75;false
+162;Lovastatina;Lovastatina;Lovastatina 10 mg  ;10;true
+163;Lovastatina;Lovastatina;Lovastatina 20 mg  ;20;false
+164;Lovastatina;Lovastatina;Lovastatina 40 mg  ;40;true
+165;Maraviroque;Maraviroque;Maraviroque 150 mg  ;150;false
+166;Maraviroque;Maraviroque;Maraviroque 300 mg  ;300;true
+167;Mesalazina;Mesalazina;Mesalazina 1 g + diluente 100 ml - enema  ;1 + diluente 100;false
+168;Mesalazina;Mesalazina;Mesalazina 1000 mg  ;1000;true
+169;Mesalazina;Mesalazina;Mesalazina 250 mg  ;250;false
+170;Mesalazina;Mesalazina;Mesalazina 3 g + diluente 100 ml - enema  ;3 + diluente 100;true
+171;Mesalazina;Mesalazina;Mesalazina 400 mg  ;400;false
+172;Mesalazina;Mesalazina;Mesalazina 500 mg  ;500;true
+173;Mesalazina;Mesalazina;Mesalazina 500 mg  ;500;false
+174;Mesalazina;Mesalazina;Mesalazina 800 mg  ;800;true
+175;Metadona;Metadona;Metadona 10 mg  ;10;false
+176;Metadona;Metadona;Metadona 10 mg/ml injetável ;10/ml;true
+177;Metadona;Metadona;Metadona 5 mg  ;5;false
+178;Metotrexato;Metotrexato;Metotrexato 2,5 mg  ;2,5;true
+179;Metotrexato;Metotrexato;Metotrexato 25 mg /ml injetável;25/ml;false
+180;Metotrexato;Metotrexato;Metotrexato 25 mg/ml injetável ;25/ml;true
+181;Micofenolato  de mofetila;Micofenolato  de mofetila;Micofenolato de mofetila 500 mg;500;false
+182;Micofenolato de sódio;Micofenolato de sódio;Micofenolato de sódio 180 mg; 180;true
+183;Micofenolato de sódio;Micofenolato de sódio;Micofenolato de sódio 360 mg;360;false
+184;Miglustate;Miglustate;Miglustate 100 mg  ;100;true
+185;Molgramostim;Molgramostim;Molgramostim 300 mcg injetável ;300;false
+186;Morfina;Morfina;Morfina 10 mg  ;10;true
+187;Morfina;Morfina;Morfina 10 mg/ml injetável ;10/ml;false
+188;Morfina;Morfina;Morfina 10 mg/ml solução oral;10/ml;true
+189;Morfina;Morfina;Morfina 30 mg  ;30;false
+190;Morfina de liberação controlada;Morfina de liberação controlada;Morfina de liberação controlada 100 mg  ;100;true
+191;Morfina de liberação controlada;Morfina de liberação controlada;Morfina de liberação controlada 30 mg  ;30;false
+192;Morfina de liberação controlada;Morfina de liberação controlada;Morfina de liberação controlada 60 mg  ;60;true
+193;Natalizumabe;Natalizumabe;Natalizumabe 20mg/ml injetável  ;20mg/ml;false
+194;Nitrazepam;Nitrazepam;Nitrazepam 5 mg  ;5;true
+195;Nusinersena/ml;Nusinersena/ml;Nusinersena mg/ml injetável  ;;false
+196;Octreotida;Octreotida;Octreotida 0,1 mg/ml injetável ;0,1/ml;true
+197;Octreotida;Octreotida;Octreotida lar 10 mg/ml injetável;Lar 10/ml;false
+198;Octreotida;Octreotida;Octreotida lar 20 mg/ml injetável;Lar 20/ml;true
+199;Octreotida;Octreotida;Octreotida lar 30 mg/ml injetável;Lar 30/ml;false
+200;Olanzapina;Olanzapina;Olanzapina 10 mg  ;10;true
+201;Olanzapina;Olanzapina;Olanzapina 5 mg  ;5;false
+202;Ombitasvir;Ombitasvir;Ombitasvir 12,5 MG + veruprevir 75 MG + ritonavir 50 MG + dasabuvir 250 MG ;12,5 + veruprevir 75 + ritonavir 50;true
+203;Pancreatina;Pancreatina;Pancreatina 10.000 UI  ;10.000;true
+204;Pancreatina;Pancreatina;Pancreatina 25.000 UI  ;25.000;false
+205;Pancrelipase;Pancrelipase;Pancrelipase 12.000 UI  ;12.000;true
+206;Pancrelipase;Pancrelipase;Pancrelipase 18.000 UI  ;18.000;false
+207;Pancrelipase;Pancrelipase;Pancrelipase 20.000 UI  ;20.000;true
+208;Pancrelipase;Pancrelipase;Pancrelipase 4.500 UI  ;4.500;false
+209;Paricalcitol;Paricalcitol;Paricalcitol 5 mcg/ml solução injetável;5 /ml;true
+210;Pegasparaginase;Pegasparaginase;Pegasparaginase 750 u/ml injetável ;750;false
+211;Penicilamina;Penicilamina;Penicilamina 250 mg  ;250;true
+212;Pilocarpina;Pilocarpina;Pilocarpina 20 mg/ml solução oftálmica;20/ml;false
+213;Piridostigmina;Piridostigmina;Piridostigmina 60 mg  ;60;true
+214;Pramipexol;Pramipexol;Pramipexol 0,125 mg  ;0,125;false
+215;Pramipexol;Pramipexol;Pramipexol 0,25 mg  ;0,25;true
+216;Pramipexol;Pramipexol;Pramipexol 1 mg  ;1;false
+217;Pravastatina;Pravastatina;Pravastatina 10 mg  ;10;true
+218;Pravastatina;Pravastatina;Pravastatina 20 mg  ;20;false
+219;Pravastatina;Pravastatina;Pravastatina 40 mg  ;40;true
+220;Primidona;Primidona;Primidona 100 mg  ;100;false
+221;Primidona;Primidona;Primidona 250 mg  ;250;true
+222;Quetiapina;Quetiapina;Quetiapina 100 mg  ;100;false
+223;Quetiapina;Quetiapina;Quetiapina 200 mg  ;200;true
+224;Quetiapina;Quetiapina;Quetiapina 25 mg  ;25;false
+225;Quetiapina;Quetiapina;Quetiapina 300 mg  ;300;true
+226;Raloxifeno;Raloxifeno;Raloxifeno 60 mg  ;60;false
+227;Raltegravir;Raltegravir;Raltegravir 400 mg  ;400;true
+228;Ribavirina;Ribavirina;Ribavirina 250 mg  ;250;false
+229;Riluzol;Riluzol;Riluzol 50 mg  ;50;true
+230;Risedronato;Risedronato;Risedronato 35 mg  ;35;false
+231;Risedronato;Risedronato;Risedronato 5 mg  ;5;true
+232;Risperidona;Risperidona;Risperidona 1 mg  ;1;false
+233;Risperidona;Risperidona;Risperidona 1,0 mg/ml solução oral;1,0/ml;true
+234;Risperidona;Risperidona;Risperidona 2 mg  ;2;false
+235;Risperidona;Risperidona;Risperidona 3 mg  ;3;true
+236;Rituximabe;Rituximabe;Rituximabe 500 mg injetável ;500;false
+237;Rivastigmina;Rivastigmina;Rivastigmina 1,5 mg  ;1,5;true
+238;Rivastigmina;Rivastigmina;Rivastigmina 18 mg  ;18;false
+239;Rivastigmina;Rivastigmina;Rivastigmina 2,0 mg/ml solução oral;2,0/ml;true
+240;Rivastigmina;Rivastigmina;Rivastigmina 3 mg  ;3;false
+241;Rivastigmina;Rivastigmina;Rivastigmina 4,5 mg  ;4,5;true
+242;Rivastigmina;Rivastigmina;Rivastigmina 6 mg  ;6;false
+243;Rivastigmina;Rivastigmina;Rivastigmina 9 mg  ;9;true
+244;Sacarato de hidróxido férrico;Sacarato de hidróxido férrico;Sacarato de hidróxido férrico 100 mg injetável ;100;false
+245;Salmeterol;Salmeterol;Salmeterol 50 mcg pó ou aerossol bucal ;50;true
+246;Selegilina;Selegilina;Selegilina 10 mg  ;10;false
+247;Selegilina;Selegilina;Selegilina 5 mg  ;5;true
+248;Sevelamer;Sevelamer;Sevelamer 800 mg  ;800;false
+249;Sildenafila;Sildenafila;Sildenafila 20 mg  ;20;true
+250;Sildenafila;Sildenafila;Sildenafila 25 mg  ;25;false
+251;Sildenafila;Sildenafila;Sildenafila 50 mg  ;50;true
+252;Simeprevir;Simeprevir;Simeprevir 150 mg  ;150;false
+253;Sofosbuvir;Sofosbuvir;Sofosbuvir 400 mg  ;400;true
+254;Somatropina;Somatropina;Somatropina 12 UI injetável ;12;false
+255;Somatropina;Somatropina;Somatropina 4 UI injetável ;4;true
+256;Sulfassalazina;Sulfassalazina;Sulfassalazina 500 mg  ;500;false
+257;Tacrolimo;Tacrolimo;Tacrolimo 1 mg  ;1;true
+258;Tacrolimo;Tacrolimo;Tacrolimo 5 mg  ;5;false
+259;Telaprevir;Telaprevir;Telaprevir 375 mg  ;375;true
+260;Tenofovir;Tenofovir;Tenofovir 300 mg  ;300;false
+261;Timolol;Timolol;Timolol 5,0 mg/ml solução oftálmica;5,0/ml;true
+262;Tipranavir;Tipranavir;Tipranavir 100 mg/ml  ;100/ml;false
+263;Tipranavir;Tipranavir;Tipranavir 250 mg  ;250;true
+264;Tocilizumabe;Tocilizumabe;Tocilizumabe 20 mg/ml injetável ;20/ml;false
+265;Tolcapona;Tolcapona;Tolcapona 100 mg  ;100;true
+266;Topiramato;Topiramato;Topiramato 100 mg  ;100;false
+267;Topiramato;Topiramato;Topiramato 25 mg  ;25;true
+268;Topiramato;Topiramato;Topiramato 50 mg  ;50;false
+269;Toxina botulínica tipo A;Toxina botulínica tipo A;Toxina botulínica tipo A 100 UI injetável ;100;true
+270;Toxina botulínica tipo A;Toxina botulínica tipo A;Toxina botulínica tipo A 500 UI injetável ;500;false
+271;Travoprosta;Travoprosta;Travoprosta 0,04 mg/ml solução oftálmica;0,04/ml;true
+272;Triexifenidila;Triexifenidila;Triexifenidila 5 mg  ;5;false
+273;Triptorrelina;Triptorrelina;Triptorrelina 11,25 mg  ;11,25;true
+274;Triptorrelina;Triptorrelina;Triptorrelina 3,75 mg injetável ;3,75;false
+275;Vigabatrina;Vigabatrina;Vigabatrina 500 mg  ;500;true
+276;Ziprasidona;Ziprasidona;Ziprasidona 40 mg  ;40;false
+277;Ziprasidona;Ziprasidona;Ziprasidona 80 mg  ;80;true
