@@ -114,7 +114,7 @@ public class TriagemService {
     }
 
 
-    public Page<TriagemProjection> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
+    public Page<TriagemProjection> buscarResumoTriagem(Pageable pageable) {
         return triagemRepository.findAllResumoTriagemBy(pageable);
     }
 
