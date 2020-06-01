@@ -1,6 +1,5 @@
 import { PrescricaoProcedimento } from './models/prescricao-procedimento';
 
-import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -16,7 +15,7 @@ export class ProcedimentoEspecialService {
     baseUrl = '/prescricao/api';
 
     prescreverProcedimento(prescricao: PrescricaoProcedimento) {
-        return this.http.post(`${this.baseUrl}/prescricao-procedimento-especials`, prescricao);
+        return this.http.post(`${this.baseUrl}/prescricao-procedimentos`, prescricao);
     }
 }
 

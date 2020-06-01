@@ -1,3 +1,4 @@
+import { ProcedimentoEspecialService } from './procedimento-especial.service';
 import { ItemPrescricaoProcedimento } from './models/item-prescricao-procedimento';
 import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -19,36 +20,26 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
 
     itensPrescricaoProcedimento: ItemPrescricaoProcedimento[] = [];
 
-    especiaisDiversosForm = this.fb.group({
-        descricao: [null, Validators.required],
-    });
-
-    cirurgiasLeitoForm = this.fb.group({
-        descricao: [null],
-    });
-
-    orteseProteseForm = this.fb.group({
-        decricao: [null],
-        quantidadeOrteseProtese: [null],
-    });
-
     prescricaoProcedimento = this.fb.group({
         idPaciente: [null],
         observacao: [null]
     });
 
     itemPrescricaoProcedimento = this.fb.group({
-        tipoProcedimento: [null],
+        quantidadeOrteseProtese: [null],
+        tipoProcedimentoEspecial: [null],
         informacoes: [null],
         justificativa: [null],
         duracaoSolicitada: [null],
+        tipoProcedimentoId: [null],
     });
 
     constructor(
         private breadcrumbService: BreadcrumbService,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        private prescricaoMedicaService: PrescricaoMedicaService
+        private prescricaoMedicaService: PrescricaoMedicaService,
+        private procedimentoEspecialService: ProcedimentoEspecialService
     ) { }
 
     ngOnInit() {
@@ -76,49 +67,40 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
     }
 
     incluirItem() {
-        const teste = this.itemPrescricaoProcedimento.value;
-        const objeto = Object.assign({}, teste, {
-            especiaisDiversosId: this.especiaisDiversosForm.value.descricao,
-            cirurgiasLeitoId: this.cirurgiasLeitoForm.value.descricao,
-            orteseProteseId: this.orteseProteseForm.value.decricao
-        });
-
         if (this.itemPrescricaoProcedimento.valid) {
 
-            this.itensPrescricaoProcedimento.push(objeto);
-            console.log(objeto);
-
-            this.especiaisDiversosForm.reset();
-            this.cirurgiasLeitoForm.reset();
-            this.orteseProteseForm.reset();
+            this.itensPrescricaoProcedimento.push(this.itemPrescricaoProcedimento.value);
             this.itemPrescricaoProcedimento.reset();
         }
 
     }
 
-    // prescrever() {
+
+    prescrever() {
 
 
-    //     const prescricao = this.prescricaoProcedimento.value;
+        const prescricao = this.prescricaoProcedimento.value;
 
-    //     const prescricaoMedicamento = Object.assign({}, prescricao, {
-    //         itemPrescricaoMedicamentos: this.itensPrescricaoMedicamento
-    //     });
-
-
-    //     prescricaoMedicamento.itemPrescricaoMedicamentos = prescricaoMedicamento.itemPrescricaoMedicamentos.map(item => {
-    //         for (let propriedade in item) {
-    //             if (item[propriedade]?.id) {
-    //                 item[propriedade] = item[propriedade].id;
-    //             }
-    //         }
-
-    //         return item;
-    //     });
+        const prescricaoProcedimentoObject = Object.assign({}, prescricao, {
+            itemPrescricaoProcedimentoDTO: this.itensPrescricaoProcedimento
+        });
 
 
-    //     this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe();
-    // }
+        prescricaoProcedimentoObject.itemPrescricaoProcedimentoDTO = prescricaoProcedimentoObject.itemPrescricaoProcedimentoDTO.map(item => {
+            for (let propriedade in item) {
+                if (item[propriedade]?.id) {
+                    item[propriedade] = item[propriedade].id;
+                }
+            }
+
+            return item;
+        });
+
+
+        this.procedimentoEspecialService.prescreverProcedimento(prescricaoProcedimentoObject).subscribe();
+        console.log(prescricaoProcedimentoObject);
+        
+    }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
