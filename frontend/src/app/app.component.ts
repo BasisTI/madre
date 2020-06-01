@@ -76,17 +76,16 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             {
                 label: 'Pacientes',
                 icon: 'person_add',
-                routerLink: ['/pacientes'],
                 items: [
+                    {
+                        label: 'Pesquisa de Paciente',
+                        icon: 'add',
+                        routerLink: ['/pacientes'],
+                    },
                     {
                         label: 'Cadastro de Paciente',
                         icon: 'add',
                         routerLink: ['/pacientes/cadastro'],
-                    },
-                    {
-                        label: 'Solicitação de Internação',
-                        icon: 'add',
-                        routerLink: ['/pacientes/solicitacao-de-internacao'],
                     },
                 ],
             },
@@ -182,6 +181,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Dispensação medica',
                         icon: 'add',
                         routerLink: ['/farmacia'],
+                    },
+                    {
+                        label: 'Cadastro de Medicamento',
+                        icon: 'add',
+                        routerLink: ['/cadastrar-medicamento'],
                     },
                     {
                         label: 'Medicamentos',

@@ -21,6 +21,8 @@ export class TelefoneComponent {
     constructor(private fb: FormBuilder) {}
 
     adicionarTelefoneALista() {
-        this.telefones.push(this.telefone);
+        if (this.telefone.valid) {
+            this.telefones.push(this.telefone);
+        }
     }
 }

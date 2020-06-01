@@ -20,11 +20,11 @@ public class MedicamentoDTO implements Serializable {
     private Boolean ativo;
 
 
-    private Long tipoMedicamentoId;
+    private TipoMedicamentoDTO tipoMedicamentoId;
 
-    private Long apresentacaoId;
+    private ApresentacaoDTO apresentacaoId;
 
-    private Long unidadeId;
+    private UnidadeDTO unidadeId;
 
     public Long getId() {
         return id;
@@ -74,27 +74,27 @@ public class MedicamentoDTO implements Serializable {
         this.ativo = ativo;
     }
 
-    public Long getTipoMedicamentoId() {
+    public TipoMedicamentoDTO getTipoMedicamentoId() {
         return tipoMedicamentoId;
     }
 
-    public void setTipoMedicamentoId(Long tipoMedicamentoId) {
+    public void setTipoMedicamentoId(TipoMedicamentoDTO tipoMedicamentoId) {
         this.tipoMedicamentoId = tipoMedicamentoId;
     }
 
-    public Long getApresentacaoId() {
+    public ApresentacaoDTO getApresentacaoId() {
         return apresentacaoId;
     }
 
-    public void setApresentacaoId(Long apresentacaoId) {
+    public void setApresentacaoId(ApresentacaoDTO apresentacaoId) {
         this.apresentacaoId = apresentacaoId;
     }
 
-    public Long getUnidadeId() {
+    public UnidadeDTO getUnidadeId() {
         return unidadeId;
     }
 
-    public void setUnidadeId(Long unidadeId) {
+    public void setUnidadeId(UnidadeDTO unidadeId) {
         this.unidadeId = unidadeId;
     }
 
