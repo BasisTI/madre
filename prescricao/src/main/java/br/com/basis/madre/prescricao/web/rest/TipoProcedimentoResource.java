@@ -115,18 +115,23 @@ public class TipoProcedimentoResource {
 	}
 
 	@GetMapping("/tipo-procedimentos/teste/{tipo}")
-	public ResponseEntity<List<TipoProcedimentoDTO>> listarTipoProcedimento(
-			@PathVariable(name = "tipo") String tipo, Pageable pageable) {
+	public ResponseEntity<List<TipoProcedimentoDTO>> listarTipoProcedimento(@PathVariable(name = "tipo") String tipo,
+			Pageable pageable) {
 		Page<TipoProcedimentoDTO> page = Page.empty();
 
-		if (tipo.equals("diversos")) {
+		switch (tipo) {
+		case "diversos":
 			page = tipoProcedimentoService.listarTipoProcedimentoDiversos(pageable);
-			
-		} else if (tipo.equals("cirurgias-leito")) {
+			break;
+		case "cirurgias-leito":
 			page = tipoProcedimentoService.listarTipoProcedimentoCirurgias(pageable);
-			
-		} else if (tipo.equals("orteses-proteses")) {
+			break;
+		case "orteses-proteses":
 			page = tipoProcedimentoService.listarTipoProcedimentoOsteseProtese(pageable);
+			break;
+
+		default:
+			break;
 		}
 
 		HttpHeaders headers = PaginationUtil
