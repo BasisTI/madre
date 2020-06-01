@@ -24,6 +24,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * A PrescricaoProcedimento.
@@ -58,6 +59,7 @@ public class PrescricaoProcedimento implements Serializable {
 	private String observacao;
 
 	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(mappedBy = "prescricaoProcedimento", cascade = CascadeType.ALL)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private Set<ItemPrescricaoProcedimento> itemPrescricaoProcedimentos = new HashSet<>();

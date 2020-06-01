@@ -1,19 +1,31 @@
 package br.com.basis.madre.prescricao.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.basis.madre.prescricao.domain.enumeration.TipoProcedimentoEspecial;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * A ItemPrescricaoProcedimento.
@@ -72,6 +84,7 @@ public class ItemPrescricaoProcedimento implements Serializable {
 	 * Chave estrangeira de tipo procedimento
 	 */
 	@ManyToOne
+	@ToString.Exclude
 	@JsonIgnoreProperties("itemPrescricaoProcedimentos")
 	private TipoProcedimento tipoProcedimento;
 
