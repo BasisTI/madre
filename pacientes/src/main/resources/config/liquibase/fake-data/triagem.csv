@@ -1,5 +1,0 @@
-id;pressao_arterial;frequencia_cardiaca;temperatura;peso;sinais_sintomas;data_hora_do_atendimento;descricao_queixa;vitima_de_acidente;removido_de_ambulancia;paciente_id;classificacao_de_risco;observacao
-1;56.9;120.80;36.5;90.60;;Tue May 06 2020 17:03:26 GMT-0300 (Brasilia Standard Time);Doente;true;false;1;EMERGENCIA;
-2;89.6;130.90;37.6;30.60;;Tue May 23 2020 19:05:26 GMT-0300 (Brasilia Standard Time);Fadiga;false;true;2;NAO_URGENTE;
-
-
