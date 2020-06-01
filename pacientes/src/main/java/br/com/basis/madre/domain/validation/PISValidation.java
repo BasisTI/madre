@@ -24,19 +24,19 @@ public class PISValidation implements ConstraintValidator<PIS, String> {
 
         while (parteNumerica.length() < 11) parteNumerica = "0" + parteNumerica;
 
-        if (Long.valueOf(parteNumerica) == 0) return false;
+        if (Long.valueOf(parteNumerica).longValue() == 0) return false;
 
         for (int i = 1; i <= 10; i++) {
             total += Integer.valueOf(parteNumerica.substring(i - 1, i)).intValue() * peso[i - 1];
         }
 
-        int resto = Integer.valueOf(total % 11);
+        int resto = Integer.valueOf(total % 11).intValue();
 
         if (resto != 0) {
             resto = 11 - resto;
         }
 
-        if (resto != Integer.valueOf(parteNumerica.substring(10, 11))) {
+        if (resto != Integer.valueOf(parteNumerica.substring(10, 11)).intValue()) {
             return false;
         } else {
             return true;
