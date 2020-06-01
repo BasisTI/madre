@@ -11,13 +11,13 @@ import reactor.core.publisher.EmitterProcessor;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class PacienteCreatedEventListener {
+public class PacienteEventListener {
 
     private final EmitterProcessor<EventoPaciente> pacienteEmitterProcessor;
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void processarEvento(EventoPaciente eventoPaciente) {
-        log.info("Paciente criado, enviando mensagem para o broker: {}", eventoPaciente.getPaciente());
+    public void processarEventoDeCriacaoDePaciente(EventoPaciente eventoPaciente) {
+        log.debug("Paciente criado, enviando mensagem para o broker: {}", eventoPaciente.getPaciente());
         pacienteEmitterProcessor.onNext(eventoPaciente);
     }
 }
