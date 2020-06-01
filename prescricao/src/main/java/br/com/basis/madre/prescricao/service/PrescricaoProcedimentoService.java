@@ -1,7 +1,6 @@
 package br.com.basis.madre.prescricao.service;
 
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoProcedimento;
-import br.com.basis.madre.prescricao.domain.ItemPrescricaoProcedimentoEspecial;
 import br.com.basis.madre.prescricao.domain.PrescricaoProcedimento;
 import br.com.basis.madre.prescricao.repository.PrescricaoProcedimentoRepository;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoProcedimentoSearchRepository;
