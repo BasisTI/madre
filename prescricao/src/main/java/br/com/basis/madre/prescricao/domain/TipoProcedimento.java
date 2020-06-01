@@ -1,6 +1,5 @@
 package br.com.basis.madre.prescricao.domain;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,6 +23,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * A TipoProcedimento.
@@ -51,10 +51,11 @@ public class TipoProcedimento implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
     
+    @EqualsAndHashCode.Exclude
     @JsonIgnore
     @OneToMany(mappedBy = "tipoProcedimento", cascade = CascadeType.ALL)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-	private Set<ItemPrescricaoProcedimento> itemPrescricaoProcedimento = new HashSet<>();
+	private Set<ItemPrescricaoProcedimento> itemPrescricaoProcedimento;
 
 
     public TipoProcedimento descricao(String descricao) {
