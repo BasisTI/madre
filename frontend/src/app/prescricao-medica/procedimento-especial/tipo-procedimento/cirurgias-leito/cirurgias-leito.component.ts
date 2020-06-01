@@ -1,17 +1,17 @@
+import { TipoProcedimento } from './../../models/tipo-procedimento';
 import { FormGroup } from '@angular/forms';
 import { CirurgiasLeitoService } from './cirurgias-leito.service';
-import { CirurgiasLeito } from './../../models/cirurgias-leito';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
     selector: 'app-cirurgias-leito',
     templateUrl: './cirurgias-leito.component.html'
 })
-export class CirurgiasLeitoComponent implements OnInit {
+export class CirurgiasLeitoComponent implements OnInit, AfterViewInit {
 
-    @Input() cirurgiasLeitoForm: FormGroup;
+    @Input() itemPrescricaoProcedimento: FormGroup;
 
-    listaCirurgiasLeito = CirurgiasLeito[''];
+    listaCirurgiasLeito = TipoProcedimento[''];
 
     constructor(private cirurgiasLeitoService: CirurgiasLeitoService) { }
 
@@ -19,14 +19,19 @@ export class CirurgiasLeitoComponent implements OnInit {
         this.carregarListaEspeciaisDiversos();
     }
 
+
     carregarListaEspeciaisDiversos() {
         return this.cirurgiasLeitoService.listarCirurgiasLeito()
             .subscribe(listaCirurgiasLeito => {
+                
                 this.listaCirurgiasLeito = listaCirurgiasLeito.map(item => {
                     return { label: item.descricao, value: item };
                 });
 
             });
+    }
+    ngAfterViewInit(){
+
     }
 
 }

@@ -1,8 +1,8 @@
-<form [formGroup]="especiaisDiversosForm">
+<form [formGroup]="itemPrescricaoProcedimento">
     <div class="ui-g-12" >
         <div class="ui-g-6">
             <span class="md-inputfield">
-                <p-dropdown placeholder="Selecione..." [options]="listaEspeciaisDiversos" formControlName="descricao" required
+                <p-dropdown placeholder="Selecione..." [options]="listaEspeciaisDiversos" formControlName="tipoProcedimentoId" required
                     #especiaisDiversos>
                 </p-dropdown>
                 <label>Especiais Diversos</label>

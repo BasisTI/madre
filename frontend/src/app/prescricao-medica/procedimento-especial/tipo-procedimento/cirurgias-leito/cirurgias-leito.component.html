@@ -1,8 +1,8 @@
-<form [formGroup]="cirurgiasLeitoForm">
+<form [formGroup]="itemPrescricaoProcedimento">
     <div class="ui-g-12" >
         <div class="ui-g-6">
             <span class="md-inputfield">
-                <p-dropdown placeholder="Selecione..." [options]="listaCirurgiasLeito" formControlName="descricao" required
+                <p-dropdown placeholder="Selecione..." [options]="listaCirurgiasLeito" formControlName="tipoProcedimentoId" required
                     #especiaisDiversos>
                 </p-dropdown>
                 <label>Cirugias Leito</label>

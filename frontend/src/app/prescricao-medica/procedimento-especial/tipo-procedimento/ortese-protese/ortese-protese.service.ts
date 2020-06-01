@@ -1,4 +1,4 @@
-import { OrtesesProteses } from './../../models/orteses-protese';
+import { TipoProcedimento } from '../../models/tipo-procedimento';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -12,8 +12,8 @@ export class OrtesesProteseService {
     private baseUrl = 'prescricao/api';
     constructor(private http: HttpClient) { }
 
-    listarOrtesesproteses(): Observable<Array<OrtesesProteses>> {
-        return this.http.get<Array<OrtesesProteses>>(`${this.baseUrl}/ortese-protese`);
+    listarOrtesesproteses(): Observable<Array<TipoProcedimento>> {
+        return this.http.get<Array<TipoProcedimento>>(`${this.baseUrl}/tipo-procedimentos/teste/orteses-proteses`);
 
     }
 }

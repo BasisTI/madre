@@ -1,5 +1,5 @@
+import { TipoProcedimento } from './../../models/tipo-procedimento';
 import { FormGroup } from '@angular/forms';
-import { EspeciaisDiversos } from './../../models/especiais-diversos';
 import { DiversosService } from './diversos.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,9 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DiversosComponent implements OnInit {
 
-    @Input() especiaisDiversosForm: FormGroup;
+    @Input() itemPrescricaoProcedimento: FormGroup;
 
-    listaEspeciaisDiversos = EspeciaisDiversos[''];
+    listaEspeciaisDiversos = TipoProcedimento[''];
 
     constructor(private diversosService: DiversosService) { }
 
@@ -24,6 +24,8 @@ export class DiversosComponent implements OnInit {
     carregarListaEspeciaisDiversos() {
         return this.diversosService.listarEspeciaisDiversos()
             .subscribe(listaEspeciaisDiversos => {
+                console.log(listaEspeciaisDiversos);
+
                 this.listaEspeciaisDiversos = listaEspeciaisDiversos.map(item => {
                     return { label: item.descricao, value: item };
                 });

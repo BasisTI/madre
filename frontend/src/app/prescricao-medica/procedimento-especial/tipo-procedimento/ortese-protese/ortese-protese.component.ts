@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { OrtesesProteses } from './../../models/orteses-protese';
+import { TipoProcedimento } from '../../models/tipo-procedimento';
 import { OrtesesProteseService } from './ortese-protese.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,9 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OrteseProteseComponent implements OnInit {
 
-    @Input() orteseProteseForm: FormGroup;
+    @Input() itemPrescricaoProcedimento: FormGroup;
 
-    listaOrtesesProteses = OrtesesProteses[''];
+    listaOrtesesProteses = TipoProcedimento[''];
 
     constructor(private orteseProteseService: OrtesesProteseService) { }
 
@@ -23,10 +23,9 @@ export class OrteseProteseComponent implements OnInit {
     carregarListaEspeciaisDiversos() {
         return this.orteseProteseService.listarOrtesesproteses()
             .subscribe(listaOrtesesProteses => {
-                console.log(listaOrtesesProteses);
 
                 this.listaOrtesesProteses = listaOrtesesProteses.map(item => {
-                    return { label: item.decricao, value: item };
+                    return { label: item.descricao, value: item };
                 });
 
             });
