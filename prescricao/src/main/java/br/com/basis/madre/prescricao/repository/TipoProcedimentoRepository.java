@@ -15,16 +15,13 @@ import br.com.basis.madre.prescricao.domain.TipoProcedimento;
 @Repository
 public interface TipoProcedimentoRepository extends JpaRepository<TipoProcedimento, Long> {
 
-	@Query(value = "select tipo_procedimento.* from tipo_procedimento join item_prescricao_procedimento on item_prescricao_procedimento.tipo_procedimento_id=tipo_procedimento.id where tipo_procedimento_especial = 'DIVERSOS'", nativeQuery = true)
+	@Query("select distinct tp from TipoProcedimento tp join tp.itemPrescricaoProcedimento ip where ip.tipoProcedimentoEspecial = 'DIVERSOS'")
 	Page<TipoProcedimento> listarTipoProcedimentoDiversos(Pageable pageable);
 
-	@Query(value = "select tipo_procedimento.* from tipo_procedimento join item_prescricao_procedimento on item_prescricao_procedimento.tipo_procedimento_id=tipo_procedimento.id where tipo_procedimento_especial = 'CIRURGIAS_LEITO'", nativeQuery = true)
+	@Query("select distinct tp from TipoProcedimento tp join tp.itemPrescricaoProcedimento ip where ip.tipoProcedimentoEspecial = 'CIRURGIAS_LEITO'")
 	Page<TipoProcedimento> listarTipoProcedimentoCirurgias(Pageable pageable);
 	
-	@Query(value = "select tipo_procedimento.* from tipo_procedimento join item_prescricao_procedimento on item_prescricao_procedimento.tipo_procedimento_id=tipo_procedimento.id where tipo_procedimento_especial = 'ORTESES_PROTESES'", nativeQuery = true)
+	@Query("select distinct tp from TipoProcedimento tp join tp.itemPrescricaoProcedimento ip where ip.tipoProcedimentoEspecial = 'ORTESES_PROTESES'")
 	Page<TipoProcedimento> listarTipoProcedimentoOsteseProtese(Pageable pageable);
-
-//	@Query("select TipoProcedimento from TipoProcedimento join ItemPrescricaoProcedimento where ItemPrescricaoProcedimento.tipoProcedimentoEspecial = 'ORTESES_PROTESES'")
-//	Page<TipoProcedimento> listarTipoProcedimentoOsteseProtese(Pageable pageable);
 
 }
