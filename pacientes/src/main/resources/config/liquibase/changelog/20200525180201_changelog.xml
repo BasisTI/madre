@@ -16,12 +16,12 @@
         </addColumn>
     </changeSet>
     <changeSet author="jocimar (generated)" id="1590429728264-8">
-        <addForeignKeyConstraint baseColumnNames="pre_cadastro_paciente_id" baseTableName="triagem" constraintName="FK8jxmflfsrol6ldbh70twq269x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pre_cadastro_paciente" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pre_cadastro_paciente_id" baseTableName="triagem" constraintName="fk_triagem_pre_cadastro_id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pre_cadastro_paciente" validate="true"/>
     </changeSet>
     <changeSet author="jocimar (generated)" id="1590429728264-9">
-        <addForeignKeyConstraint baseColumnNames="paciente_id" baseTableName="pre_cadastro_paciente" constraintName="FKlul7tiab92u6q7ms247htl21i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paciente" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="paciente_id" baseTableName="pre_cadastro_paciente" constraintName="fk_pre_cadastro_pacientes_id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paciente" validate="true"/>
     </changeSet>
     <changeSet author="jocimar (generated)" id="1590429728264-10">
-        <addForeignKeyConstraint baseColumnNames="pre_cadastro_paciente_id" baseTableName="paciente" constraintName="FKnfjhur1vhkg7q7hyqg38x26pq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pre_cadastro_paciente" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pre_cadastro_paciente_id" baseTableName="paciente" constraintName="fk_paciente_pre_cadastro_id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pre_cadastro_paciente" validate="true"/>
     </changeSet>
 </databaseChangeLog>
