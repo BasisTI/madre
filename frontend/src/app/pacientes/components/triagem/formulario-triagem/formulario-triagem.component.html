@@ -81,14 +81,16 @@
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
                     <p-calendar
+                        formControlName="dataHoraDoAtendimento"
                         [locale]="localizacao"
                         dateFormat="dd/mm/yy"
                         monthNavigator="true"
                         yearNavigator="true"
-                        formControlName="dataHoraDoAtendimento"
                         showTime="true"
                         hourFormat="24"
-                    ></p-calendar>
+                    >
+                    </p-calendar>
+
                     <label>Data e hora do atendimento</label>
                 </span>
             </div>
@@ -175,7 +177,7 @@
                             pButton
                             type="button"
                             label="Cancelar"
-                            bTooltip="Cancelar registro de triagem."
+                            pTooltip="Cancelar registro de triagem."
                         ></button>
                     </div>
 
@@ -184,7 +186,7 @@
                             pButton
                             type="submit"
                             label="Salvar"
-                            bTooltip="Salvar registro de triagem."
+                            pTooltip="Salvar registro de triagem."
                         ></button>
                     </div>
                 </div>

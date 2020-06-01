@@ -96,6 +96,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Pré Cadastro',
                         icon: 'add',
+                        routerLink: ['pacientes/pre-cadastro'],
                     },
                     {
                         label: 'Triagem',
