@@ -24,18 +24,13 @@ public class PISNullTest {
         this.validator = factory.getValidator();
     }
 
-    @PIS
-    public String pis;
-
     @Test
-    public void pisNull(){
-        pis = null;
-        assertNull(pis);
-
-        if (pis == null){
-            System.out.println(pis);
-        }
-
+    public void verifica(){
+        PISValidatorTestBase pis = new PISValidatorTestBase();
+        pis.setPis(null);
+        Set<ConstraintViolation<PISValidatorTestBase>> restricoes = validator.validate(pis);
+        assertTrue(restricoes.isEmpty());
     }
+
 
 }
