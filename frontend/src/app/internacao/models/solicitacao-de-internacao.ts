@@ -1,13 +1,11 @@
+import { CID, ICID } from '@internacao/models/cid';
 import { CRM, ICRM } from '@internacao/models/crm';
-import { Procedimento } from '@internacao/models/procedimento';
-import { Equipe } from '@internacao/models/equipe';
-import { CID } from '@internacao/models/cid';
-import { IProcedimento } from '@internacao/models/procedimento';
-import { IEquipe } from '@internacao/models/equipe';
-import { ICID } from '@internacao/models/cid';
+import { Equipe, IEquipe } from '@internacao/models/equipe';
+import { IProcedimento, Procedimento } from '@internacao/models/procedimento';
 
 export interface ISolicitacaoDeInternacao {
     id?: number;
+    pacienteId?: number;
     dataProvavelDaInternacao: Date;
     dataProvavelDaCirurgia: Date;
     prioridade: string;
@@ -23,6 +21,7 @@ export interface ISolicitacaoDeInternacao {
 
 export class SolicitacaoDeInternacao implements ISolicitacaoDeInternacao {
     public id?: number;
+    public pacienteId?: number;
     public dataProvavelDaInternacao: Date;
     public dataProvavelDaCirurgia: Date;
     public prioridade: string;
