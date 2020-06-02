@@ -1,9 +1,11 @@
-import { Especialidade } from '@internacao/models/especialidade';
-import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+
+import { Especialidade } from '@internacao/models/especialidade';
 import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
+import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 
 @Component({
     selector: 'app-solicitacao-de-internacao',
@@ -40,6 +42,7 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
+        private route: ActivatedRoute,
     ) {}
 
     ngOnInit(): void {
@@ -52,6 +55,9 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
                 routerLink: 'solicitacao-de-internacao',
             },
         ]);
+
+        const id = Number(this.route.snapshot.params['id']);
+        this.formGroup.controls['prontuario'].setValue(id);
     }
 
     ngOnDestroy(): void {
