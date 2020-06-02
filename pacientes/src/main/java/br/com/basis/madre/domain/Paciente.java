@@ -162,6 +162,10 @@ public class Paciente implements Serializable {
     @JsonIgnoreProperties("pacientes")
     private EstadoCivil estadoCivil;
 
+    @OneToOne
+    @JoinColumn(name = "pre_cadastro_paciente_id", referencedColumnName = "id")
+    private PreCadastroPaciente preCadastroPaciente;
+
 //     String numero = cartaoSUS.getNumero();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

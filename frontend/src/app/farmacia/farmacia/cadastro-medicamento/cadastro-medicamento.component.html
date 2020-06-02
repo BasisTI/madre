@@ -1,0 +1,120 @@
+<div class="ui-g ui-fluid">
+    <form [formGroup]="form" (ngSubmit)="cadastrar()">
+        <div class="ui-g-12">
+            <div class="ui-g-12">
+                <h1>Cadastrar Medicamento</h1>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-12">
+                    <span class="ui-float-label">
+                        <input
+                            pInputText
+                            type="text"
+                            pTooltip="Informe o Prontuario."
+                            formControlName="medicamento"
+                        />
+                        <label>Medicamento</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-12">
+                    <span class="ui-float-label">
+                        <input
+                            pInputText
+                            type="text"
+                            pTooltip="Informe o Prontuario."
+                            formControlName="descricao"
+                        />
+                        <label>Descrição Etiqueta</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-12">
+                    <span class="ui-float-label">
+                        <input
+                            pInputText
+                            type="text"
+                            pTooltip="Informe o Prontuario."
+                            formControlName="concentracao"
+                        />
+                        <label>Concentração</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-12">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            field="nome"
+                            [suggestions]="unidade"
+                            (completeMethod)="searchUnidade($event)"
+                            [dropdown]="true"
+                            formControlName="unidade"
+                        ></p-autoComplete>
+
+                        <label>Unidade</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-12">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            field="nome"
+                            [suggestions]="apresentacao"
+                            (completeMethod)="searchApresentacao($event)"
+                            [dropdown]="true"
+                            formControlName="apresentacao"
+                        ></p-autoComplete>
+
+                        <label>Apresentação</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-12">
+                    <span class="ui-float-label">
+                        <p-autoComplete
+                            field="nome"
+                            [suggestions]="results"
+                            (completeMethod)="search($event)"
+                            [dropdown]="true"
+                            formControlName="tipo"
+                        ></p-autoComplete>
+
+                        <label>Tipo</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <h3>Situação</h3>
+                <p-radioButton
+                    type="radio"
+                    name="groupname"
+                    value="true"
+                    formControlName="ativo"
+                    label="Ativo "
+                    pRadioButton
+                ></p-radioButton>
+                <p-radioButton
+                    type="radio"
+                    name="groupname"
+                    value="false"
+                    formControlName="ativo"
+                    label="Inativo"
+                    pRadioButton
+                ></p-radioButton>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-5 ui-sm-5">
+                    <button pButton type="submit" label="Cadastrar"></button>
+                </div>
+                <div class="ui-g-5 ui-sm-5">
+                    <button pButton type="button" label="Cancelar"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,12 +1,21 @@
 {
     "name": "Paciente",
     "fields": [],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "preCadastroPaciente",
+            "otherEntityRelationshipName": "paciente",
+            "relationshipName": "preCadastroPaciente",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
     "changelogDate": "20200407124200",
     "entityTableName": "paciente",
-    "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

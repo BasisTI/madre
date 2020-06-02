@@ -79,9 +79,13 @@ public class Triagem implements Serializable {
     @Column(name = "Observacao")
     private String observacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+
+    @ManyToOne
+    @JoinColumn(name = "preCadastroPaciente_id")
+    private PreCadastroPaciente preCadastroPaciente;
 
     public Triagem pressaoArterial(BigDecimal pressaoArterial) {
         this.pressaoArterial = pressaoArterial;
@@ -148,5 +152,10 @@ public class Triagem implements Serializable {
 
     public boolean isRemovidoDeAmbulancia() {
         return removidoDeAmbulancia;
+    }
+
+    public Triagem preCadastroPaciente(PreCadastroPaciente preCadastroPaciente) {
+        this.preCadastroPaciente = preCadastroPaciente;
+        return this;
     }
 }

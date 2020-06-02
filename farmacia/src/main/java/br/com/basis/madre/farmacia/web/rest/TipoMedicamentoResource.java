@@ -96,9 +96,9 @@ public class TipoMedicamentoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tipoMedicamentos in body.
      */
     @GetMapping("/tipo-medicamentos")
-    public ResponseEntity<List<TipoMedicamentoDTO>> getAllTipoMedicamentos(Pageable pageable) {
+    public ResponseEntity<List<TipoMedicamentoDTO>> getAllTipoMedicamentos(TipoMedicamentoDTO tipoMedicamentoDTO,Pageable pageable) {
         log.debug("REST request to get a page of TipoMedicamentos");
-        Page<TipoMedicamentoDTO> page = tipoMedicamentoService.findAll(pageable);
+        Page<TipoMedicamentoDTO> page = tipoMedicamentoService.findAll(tipoMedicamentoDTO,pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

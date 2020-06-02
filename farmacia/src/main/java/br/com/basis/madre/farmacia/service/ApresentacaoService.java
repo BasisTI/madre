@@ -4,10 +4,13 @@ import br.com.basis.madre.farmacia.domain.Apresentacao;
 import br.com.basis.madre.farmacia.repository.ApresentacaoRepository;
 import br.com.basis.madre.farmacia.repository.search.ApresentacaoSearchRepository;
 import br.com.basis.madre.farmacia.service.dto.ApresentacaoDTO;
+import br.com.basis.madre.farmacia.service.dto.UnidadeDTO;
 import br.com.basis.madre.farmacia.service.mapper.ApresentacaoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -102,6 +105,17 @@ public class ApresentacaoService {
     public Page<ApresentacaoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Apresentacaos for query {}", query);
         return apresentacaoSearchRepository.search(queryStringQuery(query), pageable)
+            .map(apresentacaoMapper::toDto);
+    }
+    public Page<ApresentacaoDTO> findAll(
+        ApresentacaoDTO apresentacaoDTO, Pageable pageable) {
+        log.debug("Request to get all Especialidades");
+        return apresentacaoRepository.findAll(
+            Example.of(apresentacaoMapper.toEntity(apresentacaoDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable
+        )
             .map(apresentacaoMapper::toDto);
     }
 }

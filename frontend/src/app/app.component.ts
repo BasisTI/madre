@@ -75,29 +75,28 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
             {
                 label: 'Pacientes',
-                icon: 'dashboard',
-                routerLink: ['/pacientes'],
+                icon: 'person_add',
                 items: [
+                    {
+                        label: 'Pesquisa de Paciente',
+                        icon: 'add',
+                        routerLink: ['/pacientes'],
+                    },
                     {
                         label: 'Cadastro de Paciente',
                         icon: 'add',
                         routerLink: ['/pacientes/cadastro'],
                     },
-                    {
-                        label: 'Solicitação de Internação',
-                        icon: 'add',
-                        routerLink: ['/pacientes/solicitacao-de-internacao'],
-                    },
                 ],
             },
             {
                 label: 'Emergência',
-                icon: 'dashboard',
-                routerLink: ['/paciente'],
+                icon: 'local_hospital',
                 items: [
                     {
                         label: 'Pré Cadastro',
                         icon: 'add',
+                        routerLink: ['pacientes/pre-cadastro'],
                     },
                     {
                         label: 'Triagem',
@@ -182,6 +181,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Dispensação medica',
                         icon: 'add',
                         routerLink: ['/farmacia'],
+                    },
+                    {
+                        label: 'Cadastro de Medicamento',
+                        icon: 'add',
+                        routerLink: ['/cadastrar-medicamento'],
                     },
                     {
                         label: 'Medicamentos',

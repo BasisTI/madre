@@ -3,7 +3,7 @@ import { TriagemModel } from '../../../models/triagem-model';
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 
 @Component({
@@ -79,6 +79,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         };
 
         this.triagemService.cadastrarTriagem(triagem).subscribe();
+        console.log(triagem);
     }
 
     carregarTriagem(id: number) {

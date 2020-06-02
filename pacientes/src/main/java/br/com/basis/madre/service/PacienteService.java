@@ -9,28 +9,22 @@ import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.mapper.PacienteInclusaoMapper;
 import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.com.basis.madre.service.projection.PacienteResumo;
-
-import java.util.Optional;
-import java.util.function.Supplier;
-
-import lombok.RequiredArgsConstructor;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import reactor.core.publisher.EmitterProcessor;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import java.util.Optional;
+
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link Paciente}.
@@ -49,14 +43,14 @@ public class PacienteService {
 
     private final PacienteInclusaoMapper pacienteInclusaoMapper;
 
-    private final EmitterProcessor<EventoPaciente> pacienteEmitterProcessor;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, EmitterProcessor<EventoPaciente> pacienteEmitterProcessor) {
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
         this.pacienteInclusaoMapper = pacienteInclusaoMapper;
-        this.pacienteEmitterProcessor = pacienteEmitterProcessor;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     /**
@@ -85,8 +79,7 @@ public class PacienteService {
         paciente = pacienteRepository.save(paciente);
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
         pacienteSearchRepository.save(paciente);
-        EventoPaciente eventoPaciente = new EventoPaciente(paciente);
-        pacienteEmitterProcessor.onNext(eventoPaciente);
+        applicationEventPublisher.publishEvent(new EventoPaciente(paciente));
         return result;
     }
 
