@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { DatatableClickEvent } from '@nuvem/primeng-components';
+import { BreadcrumbService, DatatableClickEvent } from '@nuvem/primeng-components';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { api } from '@internacao/api';
 
@@ -7,10 +8,21 @@ import { api } from '@internacao/api';
     selector: 'app-pacientes-lista',
     templateUrl: './pacientes-lista.component.html',
 })
-export class PacientesListaComponent {
+export class PacientesListaComponent implements OnInit, OnDestroy {
     public readonly uri = `${api}/pacientes`;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private breadcrumbService: BreadcrumbService) {}
+
+    ngOnInit(): void {
+        this.breadcrumbService.setItems([
+            { label: 'Internação' },
+            { label: 'Solicitação de Internação' },
+        ]);
+    }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
+    }
 
     onButtonClick(evento: DatatableClickEvent): void {
         if (!evento.selection) {

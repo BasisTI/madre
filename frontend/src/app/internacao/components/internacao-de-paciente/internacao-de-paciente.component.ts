@@ -13,7 +13,7 @@ import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao
     templateUrl: './internacao-de-paciente.component.html',
     styleUrls: ['./internacao-de-paciente.component.scss'],
 })
-export class InternacaoDePacienteComponent implements OnInit {
+export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     public solicitacao: SolicitacaoDeInternacaoDTO;
 
     public pCalendarConfig = {
@@ -28,6 +28,7 @@ export class InternacaoDePacienteComponent implements OnInit {
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
         private internacaoDePacienteService: InternacaoDePacienteService,
         private route: ActivatedRoute,
+        private breadcrumbService: BreadcrumbService,
     ) {}
 
     public formGroup = this.fb.group({
@@ -51,10 +52,16 @@ export class InternacaoDePacienteComponent implements OnInit {
     });
 
     ngOnInit(): void {
+        this.breadcrumbService.setItems([{ label: 'Internação' }, { label: 'Internar Paciente' }]);
+
         const id = this.route.snapshot.params['id'];
         this.solicitacaoDeInternacaoService.getSolicitacaoPorId(id).subscribe((solicitacao) => {
             this.solicitacao = solicitacao;
         });
+    }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
     }
 
     internarPaciente() {

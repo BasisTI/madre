@@ -6,6 +6,8 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @Data
 @Document(indexName = "madre-internacao-paciente")
@@ -14,6 +16,12 @@ public class Paciente implements Serializable {
 
     private Long id;
 
+    private String prontuario;
+
     @Field(type = FieldType.Text)
     private String nome;
+
+    @Field(type = FieldType.Date)
+    private LocalDate dataDeNascimento;
+
 }

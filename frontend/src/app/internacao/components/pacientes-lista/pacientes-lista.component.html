@@ -43,6 +43,11 @@
                 >
                     <p-column header="Identificador" field="id"></p-column>
                     <p-column header="Nome" field="nome" [sortable]="true"></p-column>
+                    <p-column header="Data de Nascimento" field="dataDeNascimento">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data['dataDeNascimento'] | date: 'dd/MM/yyyy' }}
+                        </ng-template>
+                    </p-column>
                     <basis-datatable-button
                         icon="add"
                         name="create"
