@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { Router } from '@angular/router';
 import { api } from '@internacao/api';
 

@@ -31,9 +31,7 @@ export class InternacaoDePacienteComponent implements OnInit {
     ) {}
 
     public formGroup = this.fb.group({
-        // prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
-        // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
-        // prioridade: this.fb.control({ value: '', disabled: true }, Validators.required),
+        prontuario: this.fb.control({ value: '', disabled: true }),
         procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
         leito: ['', Validators.required],
         especialidade: ['', Validators.required],
@@ -60,8 +58,13 @@ export class InternacaoDePacienteComponent implements OnInit {
     }
 
     internarPaciente() {
+        const internacao: Internacao = {
+            ...this.formGroup.value,
+            pacienteId: this.solicitacao.id,
+        };
+
         this.internacaoDePacienteService
-            .internarPaciente(this.formGroup.value, this.solicitacao)
+            .internarPaciente(internacao, this.solicitacao)
             .subscribe((resposta: Internacao) => {
                 console.log(resposta);
             });

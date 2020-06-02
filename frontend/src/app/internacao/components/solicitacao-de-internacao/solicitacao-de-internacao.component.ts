@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { Especialidade } from '@internacao/models/especialidade';
 import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
+import { SolicitacaoDeInternacao } from '@internacao/models/solicitacao-de-internacao';
 import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao
     styleUrls: ['./solicitacao-de-internacao.component.scss'],
 })
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
+    public pacienteId: number;
     public prioridadeDropdown = PrioridadeDropdown;
     public pCalendarConfig = {
         localidade: CALENDAR_LOCALE,
@@ -56,8 +58,7 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
             },
         ]);
 
-        const id = Number(this.route.snapshot.params['id']);
-        this.formGroup.controls['prontuario'].setValue(id);
+        this.pacienteId = Number(this.route.snapshot.params['id']);
     }
 
     ngOnDestroy(): void {
@@ -65,8 +66,13 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     }
 
     solicitarInternacao(): void {
+        const solicitacao: SolicitacaoDeInternacao = {
+            ...this.formGroup.value,
+            pacienteId: this.pacienteId,
+        };
+
         this.solicitacaoDeInternacaoService
-            .solicitarInternacao(this.formGroup.value)
+            .solicitarInternacao(solicitacao)
             .subscribe((resposta) => {
                 console.log(resposta);
             });
