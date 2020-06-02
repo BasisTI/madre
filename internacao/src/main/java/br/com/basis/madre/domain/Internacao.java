@@ -38,6 +38,10 @@ public class Internacao implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "id_paciente", nullable = false)
+    private Long pacienteId;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "prioridade", nullable = false)
     private Prioridade prioridade;

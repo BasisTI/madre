@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+
+import { EntityService } from '@shared/entity.service';
 import { Injectable } from '@angular/core';
-import { api } from '@internacao/api';
+import { Observable } from 'rxjs';
 import { SolicitacaoDeInternacao } from '@internacao/models/solicitacao-de-internacao';
 import { SolicitacaoDeInternacaoDTO } from '@internacao/models/dtos/solicitacao-de-internacao.dto';
-import { EntityService } from '@shared/entity.service';
-import { Observable } from 'rxjs';
+import { api } from '@internacao/api';
 
 @Injectable({
     providedIn: 'root',
@@ -30,6 +31,7 @@ export class SolicitacaoDeInternacaoService implements EntityService {
         solicitacao: SolicitacaoDeInternacao,
     ): Observable<SolicitacaoDeInternacaoDTO> {
         const solicitacaoDTO = {
+            pacienteId: solicitacao.pacienteId,
             dataProvavelDaInternacao: solicitacao.dataProvavelDaInternacao,
             dataProvavelDaCirurgia: solicitacao.dataProvavelDaInternacao,
             prioridade: solicitacao.prioridade,

@@ -13,7 +13,7 @@ import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao
     templateUrl: './internacao-de-paciente.component.html',
     styleUrls: ['./internacao-de-paciente.component.scss'],
 })
-export class InternacaoDePacienteComponent implements OnInit {
+export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     public solicitacao: SolicitacaoDeInternacaoDTO;
 
     public pCalendarConfig = {
@@ -28,12 +28,11 @@ export class InternacaoDePacienteComponent implements OnInit {
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
         private internacaoDePacienteService: InternacaoDePacienteService,
         private route: ActivatedRoute,
+        private breadcrumbService: BreadcrumbService,
     ) {}
 
     public formGroup = this.fb.group({
-        // prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
-        // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
-        // prioridade: this.fb.control({ value: '', disabled: true }, Validators.required),
+        prontuario: this.fb.control({ value: '', disabled: true }),
         procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
         leito: ['', Validators.required],
         especialidade: ['', Validators.required],
@@ -53,15 +52,26 @@ export class InternacaoDePacienteComponent implements OnInit {
     });
 
     ngOnInit(): void {
+        this.breadcrumbService.setItems([{ label: 'Internação' }, { label: 'Internar Paciente' }]);
+
         const id = this.route.snapshot.params['id'];
         this.solicitacaoDeInternacaoService.getSolicitacaoPorId(id).subscribe((solicitacao) => {
             this.solicitacao = solicitacao;
         });
     }
 
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
+    }
+
     internarPaciente() {
+        const internacao: Internacao = {
+            ...this.formGroup.value,
+            pacienteId: this.solicitacao.id,
+        };
+
         this.internacaoDePacienteService
-            .internarPaciente(this.formGroup.value, this.solicitacao)
+            .internarPaciente(internacao, this.solicitacao)
             .subscribe((resposta: Internacao) => {
                 console.log(resposta);
             });

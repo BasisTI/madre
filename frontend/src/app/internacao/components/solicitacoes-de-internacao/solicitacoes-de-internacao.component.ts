@@ -1,24 +1,37 @@
+import { BreadcrumbService, DatatableClickEvent } from '@nuvem/primeng-components';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
-import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-solicitacoes-de-internacao',
     templateUrl: './solicitacoes-de-internacao.component.html',
     styleUrls: ['./solicitacoes-de-internacao.component.scss'],
 })
-export class SolicitacoesDeInternacaoComponent implements OnInit {
+export class SolicitacoesDeInternacaoComponent implements OnInit, OnDestroy {
     public api: string;
 
     constructor(
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
         private router: Router,
+        private breadcrumbService: BreadcrumbService,
     ) {}
 
     ngOnInit(): void {
+        this.breadcrumbService.setItems([
+            {
+                label: 'Internação',
+            },
+            {
+                label: 'Internar Paciente',
+            },
+        ]);
+
         this.api = this.solicitacaoDeInternacaoService.getApi();
     }
+
+    ngOnDestroy(): void {}
 
     onButtonClick(evento: DatatableClickEvent): void {
         if (!evento.selection) {

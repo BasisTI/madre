@@ -40,6 +40,10 @@ public class SolicitacaoDeInternacao implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "id_paciente", nullable = false)
+    private Long pacienteId;
+
+    @NotNull
     @Column(name = "data_provavel_da_internacao", nullable = false)
     private LocalDate dataProvavelDaInternacao;
 
