@@ -145,6 +145,17 @@ spring:
   output:
     ansi:
       console-available: true
+      
+  cloud:
+    stream:
+      kafka:
+        consumer:
+          startOffset: earliest
+      bindings:
+        pacienteConsumer-in-0:
+          destination: madre-paciente
+    function:
+      definition: pacienteConsumer
 
 server:
   servlet:
