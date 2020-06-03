@@ -28,7 +28,7 @@ export class FarmaciaService {
         });
     }
 
-    getResult(): Observable<Array<TipoMedicamento>> {
+    getResultTipoMedicamento(): Observable<Array<TipoMedicamento>> {
         return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`);
     }
     getResultUnidade(): Observable<Array<Unidade>> {

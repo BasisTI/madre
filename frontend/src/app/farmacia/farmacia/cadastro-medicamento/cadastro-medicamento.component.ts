@@ -30,8 +30,8 @@ export class CadastroMedicamentoComponent implements OnInit {
         this.service.cadastrar(this.form.value).subscribe();
     }
 
-    search() {
-        this.service.getResult().subscribe((data: Array<TipoMedicamento>) => {
+    searchTipoMedicamento() {
+        this.service.getResultTipoMedicamento().subscribe((data: Array<TipoMedicamento>) => {
             this.results = data;
         });
     }
