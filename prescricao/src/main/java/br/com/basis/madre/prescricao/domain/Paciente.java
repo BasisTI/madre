@@ -1,9 +1,7 @@
 package br.com.basis.madre.prescricao.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import javax.persistence.Id;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -13,8 +11,13 @@ import lombok.Data;
 
 @Data
 @Document(indexName = "madre-prescricao-paciente")
-public class Paciente {
+public class Paciente implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 
     private String prontuario;
