@@ -1,19 +1,11 @@
 package br.com.basis.madre.domain.evento;
 
 import br.com.basis.madre.domain.Triagem;
+import lombok.Data;
 
-public class EventoTriagem {
+import java.io.Serializable;
+
+@Data
+public class EventoTriagem implements Serializable {
     private Triagem triagem;
-
-    public EventoTriagem(Triagem triagem) {
-        this.triagem = triagem;
-    }
-
-    public Triagem getTriagem() {
-        return triagem;
-    }
-
-    public void setTriagem(Triagem triagem) {
-        this.triagem = triagem;
-    }
 }
