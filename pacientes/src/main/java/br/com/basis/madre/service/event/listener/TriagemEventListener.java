@@ -1,6 +1,6 @@
 package br.com.basis.madre.service.event.listener;
 
-import br.com.basis.madre.domain.events.EventoTriagem;
+import br.com.basis.madre.domain.evento.EventoTriagem;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

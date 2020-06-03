@@ -1,7 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Paciente;
-import br.com.basis.madre.domain.events.EventoPaciente;
+import br.com.basis.madre.domain.evento.EventoPaciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.dto.PacienteDTO;

@@ -1,4 +1,4 @@
-package br.com.basis.madre.domain.events;
+package br.com.basis.madre.domain.evento;
 
 import br.com.basis.madre.domain.Triagem;
 
