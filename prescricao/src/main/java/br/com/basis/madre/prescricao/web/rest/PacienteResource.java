@@ -1,10 +1,7 @@
 package br.com.basis.madre.prescricao.web.rest;
 
-import java.time.ZoneId;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.github.javafaker.Faker;
-
 import br.com.basis.madre.prescricao.domain.Paciente;
 import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
 import br.com.basis.madre.prescricao.service.PacienteService;
@@ -41,9 +36,7 @@ public class PacienteResource {
 	private PacienteRepositorySearch pacienteRepositorySearch;
 	
 	private PacienteService pacienteService;
-			
-	private Faker faker = new Faker(new Locale("pt-BR"));
-	
+				
 	@GetMapping()
 	public Page<Paciente> listar(@PageableDefault(size = 10)Pageable pageable){
 		Page<Paciente> pacientesPage = pacienteRepositorySearch.findAll(pageable);
