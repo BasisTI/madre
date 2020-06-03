@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.basis.madre.prescricao.domain.evento.EventoPaciente;
+import br.com.basis.madre.prescricao.domain.evento.EventoPrescricaoMedicamento;
 import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.Flux;
 
@@ -13,12 +14,12 @@ import reactor.core.publisher.Flux;
 public class StreamConfiguration {
 	
 	@Bean  
-	public EmitterProcessor<EventoPaciente> pacienteEmitterProcessor() {
+	public EmitterProcessor<EventoPrescricaoMedicamento> prescricaoMedicamentoEmitterProcessor() {
 	return EmitterProcessor.create();
 	}
 	@Bean
-	public Supplier<Flux<EventoPaciente>> pacienteSupplier() {
-	return this::pacienteEmitterProcessor;
+	public Supplier<Flux<EventoPrescricaoMedicamento>> prescricaoMedicamentoSupplier() {
+	return this::prescricaoMedicamentoEmitterProcessor;
 	}
 
 }
