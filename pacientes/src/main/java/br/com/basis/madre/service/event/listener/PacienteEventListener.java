@@ -17,7 +17,7 @@ public class PacienteEventListener {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void processarEventoPaciente(EventoPaciente eventoPaciente) {
-        log.debug("Paciente criado, enviando mensagem para o broker: {}", eventoPaciente.getPaciente());
+        log.debug("Enviando mensagem para o broker: {}", eventoPaciente.getPaciente());
         pacienteEmitterProcessor.onNext(eventoPaciente);
     }
 }

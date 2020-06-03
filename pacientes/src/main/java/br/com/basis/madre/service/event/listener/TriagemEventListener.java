@@ -17,7 +17,7 @@ public class TriagemEventListener {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void processarEventoTriagem(EventoTriagem eventoTriagem) {
-        log.debug("Triagem criada, enviando mensagem para o broker: {}", eventoTriagem.getTriagem());
+        log.debug("Enviando mensagem para o broker: {}", eventoTriagem.getTriagem());
         triagemEmitterProcessor.onNext(eventoTriagem);
     }
 }

@@ -1,6 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Triagem;
+import br.com.basis.madre.domain.enumeration.TipoDeMutacao;
 import br.com.basis.madre.domain.evento.EventoTriagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
@@ -56,7 +57,13 @@ public class TriagemService {
         triagem = triagemRepository.save(triagem);
         TriagemDTO result = triagemMapper.toDto(triagem);
         triagemSearchRepository.save(triagem);
-        applicationEventPublisher.publishEvent(new EventoTriagem(triagem));
+        applicationEventPublisher.publishEvent(
+            EventoTriagem
+                .builder()
+                .triagem(triagem)
+                .tipoDoEvento(TipoDeMutacao.CRIACAO)
+                .build()
+        );
         return result;
     }
 
