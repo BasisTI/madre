@@ -38,4 +38,12 @@ public class SUSValidatorTest {
         Set<ConstraintViolation<SUSValidatorTestBase>> restricoes = validator.validate(sus);
         assertTrue( restricoes.isEmpty());
     }
+
+    @Test
+    public void susNull(){
+        SUSValidatorTestBase sus = new SUSValidatorTestBase();
+        sus.setNumeroSUS(null);
+        Set<ConstraintViolation<SUSValidatorTestBase>> restricoes = validator.validate(sus);
+        assertTrue(restricoes.isEmpty());
+    }
 }
