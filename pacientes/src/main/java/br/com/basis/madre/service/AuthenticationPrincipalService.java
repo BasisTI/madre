@@ -10,6 +10,8 @@ import java.util.Objects;
 @Service
 public class AuthenticationPrincipalService {
 
+    private static final String NAO_INFORMADO = "Não Informado";
+
     public String getLoginAtivo() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
@@ -22,7 +24,7 @@ public class AuthenticationPrincipalService {
             }
         }
 
-        return null;
+        return NAO_INFORMADO;
     }
 
 }
