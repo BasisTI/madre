@@ -1,7 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Triagem;
-import br.com.basis.madre.domain.events.EventoTriagem;
+import br.com.basis.madre.domain.evento.EventoTriagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.dto.TriagemDTO;

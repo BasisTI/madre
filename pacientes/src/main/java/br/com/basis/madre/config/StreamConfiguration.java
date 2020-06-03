@@ -1,12 +1,9 @@
 package br.com.basis.madre.config;
 
-import br.com.basis.madre.domain.events.EventoPaciente;
-import br.com.basis.madre.domain.events.EventoTriagem;
-import br.com.basis.madre.service.PacienteService;
-import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
+import br.com.basis.madre.domain.evento.EventoPaciente;
+import br.com.basis.madre.domain.evento.EventoTriagem;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.Message;
 import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.Flux;
 

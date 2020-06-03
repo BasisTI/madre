@@ -1,7 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Paciente;
-import br.com.basis.madre.domain.events.EventoPaciente;
+import br.com.basis.madre.domain.evento.EventoPaciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.dto.PacienteDTO;
@@ -11,21 +11,16 @@ import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.com.basis.madre.service.projection.PacienteResumo;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
-import lombok.RequiredArgsConstructor;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.EmitterProcessor;
