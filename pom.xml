@@ -8,9 +8,6 @@
     <artifactId>madre-parent</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
-    <properties>
-        <maven.version>3.3.9</maven.version>
-    </properties>
     <modules>
         <module>consulta</module>
         <module>farmacia</module>
