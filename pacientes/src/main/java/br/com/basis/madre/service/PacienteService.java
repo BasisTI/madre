@@ -1,6 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Paciente;
+import br.com.basis.madre.domain.enumeration.TipoDeMutacao;
 import br.com.basis.madre.domain.evento.EventoPaciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
@@ -9,9 +10,6 @@ import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.mapper.PacienteInclusaoMapper;
 import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.com.basis.madre.service.projection.PacienteResumo;
-
-import java.util.Optional;
-
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
@@ -25,7 +23,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.EmitterProcessor;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import java.util.Optional;
+
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link Paciente}.
@@ -80,8 +80,13 @@ public class PacienteService {
         paciente = pacienteRepository.save(paciente);
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
         pacienteSearchRepository.save(paciente);
-        EventoPaciente eventoPaciente = new EventoPaciente(paciente);
-        pacienteEmitterProcessor.onNext(eventoPaciente);
+        pacienteEmitterProcessor.onNext(
+            EventoPaciente
+                .builder()
+                .paciente(paciente)
+                .tipoDoEvento(TipoDeMutacao.CRIACAO)
+                .build()
+        );
         return result;
     }
 

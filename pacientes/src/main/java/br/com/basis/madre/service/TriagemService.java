@@ -1,6 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Triagem;
+import br.com.basis.madre.domain.enumeration.TipoDeMutacao;
 import br.com.basis.madre.domain.evento.EventoTriagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
@@ -9,7 +10,6 @@ import br.com.basis.madre.service.mapper.TriagemMapper;
 import br.com.basis.madre.service.projection.TriagemProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +19,7 @@ import reactor.core.publisher.EmitterProcessor;
 
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Triagem.
@@ -59,8 +59,14 @@ public class TriagemService {
         triagem = triagemRepository.save(triagem);
         TriagemDTO result = triagemMapper.toDto(triagem);
         triagemSearchRepository.save(triagem);
-        EventoTriagem eventoTriagem = new EventoTriagem(triagem);
-        triagemEmitterProcessor.onNext(eventoTriagem);
+        triagemEmitterProcessor
+            .onNext(
+                EventoTriagem
+                    .builder()
+                    .triagem(triagem)
+                    .tipoDoEvento(TipoDeMutacao.CRIACAO)
+                    .build()
+            );
         return result;
     }
 
@@ -105,7 +111,7 @@ public class TriagemService {
     /**
      * Search for the triagem corresponding to the query.
      *
-     * @param query the query of the search
+     * @param query    the query of the search
      * @param pageable the pagination information
      * @return the list of entities
      */
