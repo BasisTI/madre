@@ -14,4 +14,5 @@ public class EventoPaciente implements Serializable {
     private final Paciente paciente;
     private final ZonedDateTime dataDeLancamento;
     private final TipoEvento tipoDoEvento;
+    private final String login;
 }

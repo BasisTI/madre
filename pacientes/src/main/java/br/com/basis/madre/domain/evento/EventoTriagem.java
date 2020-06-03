@@ -14,4 +14,5 @@ public class EventoTriagem implements Serializable {
     private final Triagem triagem;
     private final ZonedDateTime dataDeLancamento;
     private final TipoEvento tipoDoEvento;
+    private final String login;
 }
