@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,11 +40,14 @@ public class TriagemService {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public TriagemService(TriagemRepository triagemRepository, TriagemMapper triagemMapper, TriagemSearchRepository triagemSearchRepository, ApplicationEventPublisher applicationEventPublisher) {
+    private final AuthenticationPrincipalService authenticationPrincipalService;
+
+    public TriagemService(TriagemRepository triagemRepository, TriagemMapper triagemMapper, TriagemSearchRepository triagemSearchRepository, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService) {
         this.triagemRepository = triagemRepository;
         this.triagemMapper = triagemMapper;
         this.triagemSearchRepository = triagemSearchRepository;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.authenticationPrincipalService = authenticationPrincipalService;
     }
 
     /**
@@ -62,6 +66,7 @@ public class TriagemService {
         applicationEventPublisher.publishEvent(
             EventoTriagem
                 .builder()
+                .login(authenticationPrincipalService.getLoginAtivo())
                 .triagem(triagem)
                 .dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
                 .tipoDoEvento(TipoEvento.CRIACAO)

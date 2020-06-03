@@ -48,12 +48,15 @@ public class PacienteService {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher) {
+    private final AuthenticationPrincipalService authenticationPrincipalService;
+
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
         this.pacienteInclusaoMapper = pacienteInclusaoMapper;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.authenticationPrincipalService = authenticationPrincipalService;
     }
 
     /**
@@ -85,6 +88,7 @@ public class PacienteService {
         applicationEventPublisher.publishEvent(
             EventoPaciente
                 .builder()
+                .login(authenticationPrincipalService.getLoginAtivo())
                 .paciente(paciente)
                 .dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
                 .tipoDoEvento(TipoEvento.CRIACAO)
