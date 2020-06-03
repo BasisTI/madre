@@ -1,9 +1,12 @@
-import { Especialidade } from '@internacao/models/especialidade';
-import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+
+import { Especialidade } from '@internacao/models/especialidade';
 import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
+import { SolicitacaoDeInternacao } from '@internacao/models/solicitacao-de-internacao';
+import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
 
 @Component({
     selector: 'app-solicitacao-de-internacao',
@@ -11,6 +14,7 @@ import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dro
     styleUrls: ['./solicitacao-de-internacao.component.scss'],
 })
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
+    public pacienteId: number;
     public prioridadeDropdown = PrioridadeDropdown;
     public pCalendarConfig = {
         localidade: CALENDAR_LOCALE,
@@ -40,6 +44,7 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
+        private route: ActivatedRoute,
     ) {}
 
     ngOnInit(): void {
@@ -52,6 +57,8 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
                 routerLink: 'solicitacao-de-internacao',
             },
         ]);
+
+        this.pacienteId = Number(this.route.snapshot.params['id']);
     }
 
     ngOnDestroy(): void {
@@ -59,8 +66,13 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     }
 
     solicitarInternacao(): void {
+        const solicitacao: SolicitacaoDeInternacao = {
+            ...this.formGroup.value,
+            pacienteId: this.pacienteId,
+        };
+
         this.solicitacaoDeInternacaoService
-            .solicitarInternacao(this.formGroup.value)
+            .solicitarInternacao(solicitacao)
             .subscribe((resposta) => {
                 console.log(resposta);
             });

@@ -1,7 +1,8 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Paciente;
-import br.com.basis.madre.domain.events.EventoPaciente;
+import br.com.basis.madre.domain.enumeration.TipoEvento;
+import br.com.basis.madre.domain.evento.EventoPaciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.dto.PacienteDTO;
@@ -22,6 +23,8 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -45,12 +48,15 @@ public class PacienteService {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher) {
+    private final AuthenticationPrincipalService authenticationPrincipalService;
+
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
         this.pacienteInclusaoMapper = pacienteInclusaoMapper;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.authenticationPrincipalService = authenticationPrincipalService;
     }
 
     /**
@@ -79,7 +85,15 @@ public class PacienteService {
         paciente = pacienteRepository.save(paciente);
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
         pacienteSearchRepository.save(paciente);
-        applicationEventPublisher.publishEvent(new EventoPaciente(paciente));
+        applicationEventPublisher.publishEvent(
+            EventoPaciente
+                .builder()
+                .login(authenticationPrincipalService.getLoginAtivo())
+                .paciente(paciente)
+                .dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
+                .tipoDoEvento(TipoEvento.CRIACAO)
+                .build()
+        );
         return result;
     }
 

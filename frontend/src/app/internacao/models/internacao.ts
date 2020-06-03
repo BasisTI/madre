@@ -1,17 +1,18 @@
-import { CaraterDaInternacao, ICaraterDaInternacao } from './carater-da-internacao';
-import { Especialidade, IEspecialidade } from './especialidade';
-import { ConvenioDeSaude, IConvenioDeSaude } from './convenio-de-saude';
-import { PlanoDeSaude, IPlanoDeSaude } from './plano-de-saude';
-import { OrigemDaInternacao, IOrigemDaInternacao } from './origem-da-internacao';
-import { Hospital, IHospital } from './hospital';
-import { Procedencia, IProcedencia } from './procedencia';
-import { LocalDeAtendimento, ILocalDeAtendimento } from './local-de-atendimento';
-import { ModalidadeAssistencial, IModalidadeAssistencial } from './modalidade-assistencial';
 import { CRM, ICRM } from './crm';
+import { CaraterDaInternacao, ICaraterDaInternacao } from './carater-da-internacao';
+import { ConvenioDeSaude, IConvenioDeSaude } from './convenio-de-saude';
+import { Especialidade, IEspecialidade } from './especialidade';
+import { Hospital, IHospital } from './hospital';
 import { ILeito, Leito } from './leito';
+import { ILocalDeAtendimento, LocalDeAtendimento } from './local-de-atendimento';
+import { IModalidadeAssistencial, ModalidadeAssistencial } from './modalidade-assistencial';
+import { IOrigemDaInternacao, OrigemDaInternacao } from './origem-da-internacao';
+import { IPlanoDeSaude, PlanoDeSaude } from './plano-de-saude';
+import { IProcedencia, Procedencia } from './procedencia';
 
 export interface IInternacao {
     id?: number;
+    pacienteId?: number;
     especialidade: IEspecialidade;
     planoDeSaude: IPlanoDeSaude;
     convenioDeSaude: IConvenioDeSaude;
@@ -31,6 +32,7 @@ export interface IInternacao {
 
 export class Internacao implements IInternacao {
     public id?: number;
+    public pacienteId?: number;
     public especialidade: Especialidade;
     public planoDeSaude: PlanoDeSaude;
     public convenioDeSaude: ConvenioDeSaude;

@@ -1,0 +1,30 @@
+entity PreCadastroPaciente {
+
+    nome String required maxlength(40)
+    nomeSocial String required maxlength(20)
+    nomeDaMae String required maxlength(40)
+    dataDeNascimento LocalDate required
+    cartaoSus String required maxlength(15)
+    status Boolean
+}
+
+entity Paciente {
+}
+
+entity Triagem {
+}
+
+relationship OneToOne {
+
+Paciente {preCadastroPaciente} to PreCadastroPaciente
+}
+
+relationship OneToMany {
+
+PreCadastroPaciente {triagem} to Triagem
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

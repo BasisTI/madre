@@ -96,6 +96,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Pré Cadastro',
                         icon: 'add',
+                        routerLink: ['pacientes/pre-cadastro'],
                     },
                     {
                         label: 'Triagem',
@@ -137,7 +138,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Solicitar Internação',
                         icon: 'add',
-                        routerLink: ['internacao/solicitacao-de-internacao'],
+                        routerLink: ['internacao/lista-de-pacientes'],
                     },
                     {
                         label: 'Internar Paciente',

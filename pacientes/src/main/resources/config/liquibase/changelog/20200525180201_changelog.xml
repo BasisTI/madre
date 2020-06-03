@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="jocimar (generated)" id="1590429728264-5">
+        <addColumn tableName="pre_cadastro_paciente">
+            <column name="paciente_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="jocimar (generated)" id="1590429728264-6">
+        <addColumn tableName="paciente">
+            <column name="pre_cadastro_paciente_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="jocimar (generated)" id="1590429728264-7">
+        <addColumn tableName="triagem">
+            <column name="pre_cadastro_paciente_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="jocimar (generated)" id="1590429728264-8">
+        <addForeignKeyConstraint baseColumnNames="pre_cadastro_paciente_id" baseTableName="triagem" constraintName="fk_triagem_pre_cadastro_id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pre_cadastro_paciente" validate="true"/>
+    </changeSet>
+    <changeSet author="jocimar (generated)" id="1590429728264-9">
+        <addForeignKeyConstraint baseColumnNames="paciente_id" baseTableName="pre_cadastro_paciente" constraintName="fk_pre_cadastro_pacientes_id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paciente" validate="true"/>
+    </changeSet>
+    <changeSet author="jocimar (generated)" id="1590429728264-10">
+        <addForeignKeyConstraint baseColumnNames="pre_cadastro_paciente_id" baseTableName="paciente" constraintName="fk_paciente_pre_cadastro_id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pre_cadastro_paciente" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
