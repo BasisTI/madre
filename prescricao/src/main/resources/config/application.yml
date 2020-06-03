@@ -154,6 +154,7 @@ spring:
       bindings:
         pacienteConsumer-in-0:
           destination: madre-paciente
+          group: madre-prescricao
     function:
       definition: pacienteConsumer
 
