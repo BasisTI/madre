@@ -1,6 +1,6 @@
 package br.com.basis.madre.service.event.listener;
 
-import br.com.basis.madre.domain.events.EventoPaciente;
+import br.com.basis.madre.domain.evento.EventoPaciente;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class PacienteEventListener {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void processarEventoPaciente(EventoPaciente eventoPaciente) {
-        log.debug("Paciente criado, enviando mensagem para o broker: {}", eventoPaciente.getPaciente());
+        log.debug("Enviando mensagem para o broker: {}", eventoPaciente.getPaciente());
         pacienteEmitterProcessor.onNext(eventoPaciente);
     }
 }

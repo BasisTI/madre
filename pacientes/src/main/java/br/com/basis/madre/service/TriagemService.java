@@ -1,7 +1,8 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Triagem;
-import br.com.basis.madre.domain.events.EventoTriagem;
+import br.com.basis.madre.domain.enumeration.TipoEvento;
+import br.com.basis.madre.domain.evento.EventoTriagem;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.dto.TriagemDTO;
@@ -10,12 +11,13 @@ import br.com.basis.madre.service.projection.TriagemProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -57,7 +59,14 @@ public class TriagemService {
         triagem = triagemRepository.save(triagem);
         TriagemDTO result = triagemMapper.toDto(triagem);
         triagemSearchRepository.save(triagem);
-        applicationEventPublisher.publishEvent(new EventoTriagem(triagem));
+        applicationEventPublisher.publishEvent(
+            EventoTriagem
+                .builder()
+                .triagem(triagem)
+                .dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
+                .tipoDoEvento(TipoEvento.CRIACAO)
+                .build()
+        );
         return result;
     }
 
