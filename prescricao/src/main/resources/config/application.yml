@@ -155,8 +155,10 @@ spring:
         pacienteConsumer-in-0:
           destination: madre-paciente
           group: madre-prescricao
+        prescricaoMedicamentoSupplier-out-0:
+          destination: madre-prescricao-medica
     function:
-      definition: pacienteConsumer
+      definition: pacienteConsumer;prescricaoMedicamentoSupplier
 
 server:
   servlet:
