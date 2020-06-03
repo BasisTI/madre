@@ -81,11 +81,7 @@ public class PacienteService {
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
         pacienteSearchRepository.save(paciente);
         applicationEventPublisher.publishEvent(
-            EventoPaciente
-                .builder()
-                .paciente(paciente)
-                .tipoDoEvento(TipoDeMutacao.CRIACAO)
-                .build()
+            new EventoPaciente().paciente(paciente).tipoDoEvento(TipoDeMutacao.CRIACAO)
         );
         return result;
     }

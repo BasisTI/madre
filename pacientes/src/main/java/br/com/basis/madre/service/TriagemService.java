@@ -58,11 +58,7 @@ public class TriagemService {
         TriagemDTO result = triagemMapper.toDto(triagem);
         triagemSearchRepository.save(triagem);
         applicationEventPublisher.publishEvent(
-            EventoTriagem
-                .builder()
-                .triagem(triagem)
-                .tipoDoEvento(TipoDeMutacao.CRIACAO)
-                .build()
+            new EventoTriagem().triagem(triagem).tipoDoEvento(TipoDeMutacao.CRIACAO)
         );
         return result;
     }
