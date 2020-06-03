@@ -1,5 +1,5 @@
 package br.com.basis.madre.domain.enumeration;
 
-public enum TipoDeMutacao {
+public enum TipoEvento {
     CRIACAO, ALTERACAO, EXCLUSAO;
 }
