@@ -1,28 +1,17 @@
 package br.com.basis.madre.domain.evento;
 
 import br.com.basis.madre.domain.Paciente;
-import br.com.basis.madre.domain.enumeration.TipoDeMutacao;
+import br.com.basis.madre.domain.enumeration.TipoEvento;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @Data
+@Builder
 public class EventoPaciente implements Serializable {
-    private Paciente paciente;
-    private ZonedDateTime dataDeLancamento = ZonedDateTime.now(ZoneId.systemDefault());
-    private TipoDeMutacao tipoDoEvento;
-
-    public EventoPaciente paciente(Paciente paciente) {
-        this.paciente = paciente;
-
-        return this;
-    }
-
-    public EventoPaciente tipoDoEvento(TipoDeMutacao tipoDeMutacao) {
-        tipoDoEvento = tipoDeMutacao;
-
-        return this;
-    }
+    private final Paciente paciente;
+    private final ZonedDateTime dataDeLancamento;
+    private final TipoEvento tipoDoEvento;
 }

@@ -1,28 +1,17 @@
 package br.com.basis.madre.domain.evento;
 
 import br.com.basis.madre.domain.Triagem;
-import br.com.basis.madre.domain.enumeration.TipoDeMutacao;
+import br.com.basis.madre.domain.enumeration.TipoEvento;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @Data
+@Builder
 public class EventoTriagem implements Serializable {
-    private Triagem triagem;
-    private ZonedDateTime dataDeLancamento = ZonedDateTime.now(ZoneId.systemDefault());
-    private TipoDeMutacao tipoDoEvento;
-
-    public EventoTriagem triagem(Triagem triagem) {
-        this.triagem = triagem;
-
-        return this;
-    }
-
-    public EventoTriagem tipoDoEvento(TipoDeMutacao tipoDeMutacao) {
-        tipoDoEvento = tipoDeMutacao;
-
-        return this;
-    }
+    private final Triagem triagem;
+    private final ZonedDateTime dataDeLancamento;
+    private final TipoEvento tipoDoEvento;
 }

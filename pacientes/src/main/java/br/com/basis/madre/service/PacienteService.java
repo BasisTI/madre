@@ -1,7 +1,7 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.Paciente;
-import br.com.basis.madre.domain.enumeration.TipoDeMutacao;
+import br.com.basis.madre.domain.enumeration.TipoEvento;
 import br.com.basis.madre.domain.evento.EventoPaciente;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
@@ -23,6 +23,8 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -81,7 +83,12 @@ public class PacienteService {
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
         pacienteSearchRepository.save(paciente);
         applicationEventPublisher.publishEvent(
-            new EventoPaciente().paciente(paciente).tipoDoEvento(TipoDeMutacao.CRIACAO)
+            EventoPaciente
+                .builder()
+                .paciente(paciente)
+                .dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
+                .tipoDoEvento(TipoEvento.CRIACAO)
+                .build()
         );
         return result;
     }
