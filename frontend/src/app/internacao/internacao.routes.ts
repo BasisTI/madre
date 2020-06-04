@@ -1,15 +1,20 @@
-import { LiberacaoLeitoComponent } from './components/liberacao-leito/liberacao-leito.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
-import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-de-leito.component';
+import { CalendarioComponent } from '@internacao/components/leito/calendario.component';
 import { InternacaoDePacienteComponent } from './components/internacao-de-paciente/internacao-de-paciente.component';
+import { LiberacaoLeitoComponent } from './components/liberacao-leito/liberacao-leito.component';
+import { PacientesListaComponent } from './components/pacientes-lista/pacientes-lista.component';
+import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-de-leito.component';
 import { Routes } from '@angular/router';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
-import { CalendarioComponent } from '@internacao/components/leito/calendario.component';
 
 export const routes: Routes = [
     {
-        path: 'solicitacao-de-internacao',
+        path: 'lista-de-pacientes',
+        component: PacientesListaComponent,
+    },
+    {
+        path: 'solicitacao-de-internacao/:id',
         component: SolicitacaoDeInternacaoComponent,
     },
     {

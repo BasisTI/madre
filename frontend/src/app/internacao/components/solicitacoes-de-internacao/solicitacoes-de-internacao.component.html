@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <h1>Solicitações de Internação</h1>
+            <h1>Internar Paciente</h1>
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="ui-g-12">
                     <div class="ui-g-2"></div>
-                    <div class="ui-g-3">
+                    <div class="ui-g-4">
                         <button
                             pButton
                             type="button"
@@ -19,20 +19,14 @@
                             icon="ui-icon-search"
                         ></button>
                     </div>
-                    <div class="ui-g-3">
-                        <button
-                            pButton
-                            type="button"
-                            label="Nova"
-                            icon="ui-icon-add"
-                            [disabled]="true"
-                        ></button>
-                    </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable
                     type="server"
                     [url]="api"
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
                     (buttonClick)="onButtonClick($event)"
                     #datatable
                 >

@@ -1,0 +1,16 @@
+id;pressao_arterial;frequencia_cardiaca;temperatura;peso;sinais_sintomas;data_hora_do_atendimento;descricao_queixa;vitima_de_acidente;removido_de_ambulancia;paciente_id;classificacao_de_risco;observacao;pre_cadastro_paciente_id
+1;56.9;120.80;36.5;90.60;Febre;2019-05-08T07:19:35:00;Bronquiectasia;true;false;1;EMERGENCIA;Flavivirus sp.;1
+2;89.6;130.90;37.6;30.60;Fadiga;T2019-05-08T07:19:35:00;Bouba aviária;false;false;2;NAO_URGENTE;Flavivirus sp.;
+3;96.5;100.70;36.9;40.70;Tosse;2019-05-08T07:19:35:00;Bronquite;false;true;3;NAO_URGENTE;Vírus da Zika;3
+4;54.0;110.30;31.3;78.30;Anorexia;2019-05-08T07:19:35:00;Chicungunha ou chikungunya;true;false;4;POUCO_URGENTE;Influenzavirus A. B e C;4
+5;41.5;130.60;30.1;130.60;Dispneia;Tue May 19 2020 17:26 GMT00 (Brasilia Standard Time);COVID-19;true;false;5;URGENTE;Influenzavírus A subtipo H2N2;
+6;54.6;150.50;26.9;65.90;Escarro;2019-05-08T07:19:35:00;Coriomeningite linfocitária;false;true;6;POUCO_URGENTE;Influenza A subtipo H5N1;6
+7;23.5;120.80;25.8;78.80;Mialgias;2019-05-08T07:19:35:00;Dengue;true;true;7;NAO_URGENTE;Influenzavírus A subtipos H1N1. H1N2. H2N3. H3N1 e H3N2;
+8;54.3;140.60;43.6;80.60;Dor de garganta;2019-05-08T07:19:35:00;Diarreia;true;true;8;POUCO_URGENTE;Hepatovirus A B C D E e GCytomegalovirussp.;
+9;66.6;130.80;34.3;61.80;Diarreia;2019-05-08T07:19:35:00;Doença de Gumboro ou doença infecciosa da bursa;false;true;9;MUITO_URGENTE;Simplexvirus sp.;9
+10;65.4;150.80;32.5;6580;Náuseas;2019-05-08T07:19:35:00;Doença de inclusão citomegálica;false;true;10;MUITO_URGENTE;Varicellovirus sp.;10
+11;54.3;100.100;40.6;70.10;Cefaleia;2019-05-08T07:19:35:00;Doença de Marek ou neurolinfomatose;false;true;5;EMERGENCIA;Rhadinovirus sp.;
+12;32.2;90.80;36.6;63.20;Tontura;2019-05-08T07:19:35:00;Doença de Newcastle;false;false;4;URGENTE;HTLV-1;
+13;38.8;120.70;37.5;52.70;Rinorreia;2019-05-08T07:19:35:00;Ébola;true;false;3;EMERGENCIA;virus da família Retroviridae;13
+14;36.9;130.90;39.6;49.60;Febre;2019-05-08T07:19:35:00;Encefalomielite;false;true;2;MUITO_URGENTE;Molluscipoxvirus sp.;
+15;54.6;120.70;40.1;59.70;Fadiga;2019-05-08T07:19:35:00;Eritema infeccioso;false;true;1;URGENTE;Vírus Epstein-Barr;15

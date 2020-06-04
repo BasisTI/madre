@@ -1,3 +1,4 @@
+import { PreCadastroComponent } from './components/pre-cadastro/pre-cadastro.component';
 import { SolicitacaoDeInternacaoComponent } from './../internacao/components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { Component } from '@angular/core';
@@ -10,6 +11,7 @@ import { TriagemComponent } from './components/triagem/triagem.component';
 export const routes: Routes = [
     { path: '', component: ListaDePacientesComponent },
     { path: 'cadastro', component: FormularioCadastroComponent },
+    { path: 'pre-cadastro', component: PreCadastroComponent },
     { path: 'triagem', component: TriagemComponent },
     { path: 'formulario', component: FormularioTriagemComponent },
     { path: 'edit/:id', component: FormularioTriagemComponent },

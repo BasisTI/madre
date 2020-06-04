@@ -1,123 +1,112 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
-        <div class="card card-w-title">
-            <span class="md-inputfield">
-                <input pInputText disabled />
-                <h1>Triagem</h1>
-            </span>
+        <span class>
+            <input pInputText disabled />
+            <h1>Triagem</h1>
+        </span>
 
-            <div class="ui-g">
-                <div class="ui-g-11 ui-md-11 ui-fluid">
-                    <span class="md-inputfield" style="margin-top: 5px;">
-                        <input
-                            type="text"
-                            pInputText
-                            class="ui-inputtext"
-                            name="filtro"
-                            required="true"
-                        />
-                        <label>Pesquisar Triagem</label>
-                    </span>
-                </div>
-                <div class="ui-g-12">
-                    <div class="ui-g-2"></div>
-                    <div class="ui-g-3">
-                        <button
-                            pButton
-                            type="button"
-                            label="Pesquisar"
-                            icon="ui-icon-search"
-                            bTooltip="Pesquisar paciente por nome."
-                        ></button>
-                    </div>
-                    <div class="ui-g-3">
-                        <button
-                            pButton
-                            type="button"
-                            label="Nova Triagem"
-                            icon="ui-icon-add"
-                            routerLink="/triagem/formulario"
-                            bTooltip="Cadastrar nova Triagem."
-                        ></button>
-                    </div>
-                </div>
-                <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable
-                    type="server"
-                    [url]="searchUrl"
-                    [value]="triagens"
-                    [disableView]="true"
-                    [disableEdit]="true"
-                    [disableDelete]="true"
-                    (buttonClick)="btnClick($event)"
-                    #datatable
-                >
-                    <p-column field="paciente" header="Nome do Paciente" [sortable]="true">
-                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span>{{
-                                rowData[col.field] === null || rowData[col.field] === undefined
-                                    ? undefined
-                                    : rowData[col.field].nome
-                            }}</span>
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Nome Social" field="paciente"
-                        ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span>
-                                {{
-                                    rowData[col.field] === null || rowData[col.field] === undefined
-                                        ? undefined
-                                        : rowData[col.field].nomeSocial
-                                }}
-                            </span>
-                        </ng-template></p-column
-                    >
-                    <p-column header="Nome da Mãe" field="paciente"
-                        ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span>
-                                {{
-                                    rowData[col.field] === null || rowData[col.field] === undefined
-                                        ? undefined
-                                        : rowData[col.field].genitores.nomeDaMae
-                                }}
-                            </span>
-                        </ng-template></p-column
-                    >
-                    <p-column
-                        header="Data/Hora da Chegada"
-                        field="dataHoraDoAtendimento"
-                    ></p-column>
-                    <p-column
-                        header="Classificação"
-                        field="classificacaoDeRisco"
-                        [sortable]="true"
-                    ></p-column>
-                    <basis-datatable-button class="ui-button-success" name="edit" icon="edit">
-                    </basis-datatable-button>
-                    <basis-datatable-button
-                        ng-reflect-icon="ui-icon-remove-red-eye"
-                        ng-reflect-b-tooltip="Escolha um registro para visualizar"
-                        class="ng-star-inserted"
-                        icon="remove-red-eye"
-                    >
-                    </basis-datatable-button>
-                    <basis-datatable-button
-                        class="ui-button-danger"
-                        icon="delete"
-                    ></basis-datatable-button>
-                </basis-datatable>
-                <div class="ui-g-9"></div>
-                <div class="ui-g-2">
+        <div class="ui-g">
+            <div class="ui-g-11 ui-fluid ui-float-label">
+                <span class style="margin-top: 5px;">
+                    <input type="text" pInputText name="filtro" required="true" />
+                    <label>Pesquisar Triagem</label>
+                </span>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-2"></div>
+                <div class="ui-g-3">
                     <button
-                        name="export"
                         pButton
-                        textAlign="right"
                         type="button"
-                        label="Exportar"
-                        icon="pi pi-upload"
-                        bTooltip="Exportar arquivo"
+                        label="Pesquisar"
+                        icon="ui-icon-search"
+                        bTooltip="Pesquisar paciente por nome."
                     ></button>
                 </div>
+                <div class="ui-g-3">
+                    <button
+                        pButton
+                        type="button"
+                        label="Nova Triagem"
+                        icon="ui-icon-add"
+                        routerLink="/triagem/formulario"
+                        bTooltip="Cadastrar nova Triagem."
+                    ></button>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3"></div>
+            <basis-datatable
+                type="server"
+                [url]="searchUrl"
+                [value]="triagens"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+                (buttonClick)="btnClick($event)"
+                #datatable
+            >
+                <p-column field="paciente" header="Nome do Paciente" [sortable]="true">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>{{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span>
+                    </ng-template>
+                </p-column>
+                <p-column header="Nome Social" field="paciente"
+                    ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            {{
+                                rowData[col.field] === null || rowData[col.field] === undefined
+                                    ? undefined
+                                    : rowData[col.field].nomeSocial
+                            }}
+                        </span>
+                    </ng-template></p-column
+                >
+                <p-column header="Nome da Mãe" field="paciente"
+                    ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            {{
+                                rowData[col.field] === null || rowData[col.field] === undefined
+                                    ? undefined
+                                    : rowData[col.field].genitores.nomeDaMae
+                            }}
+                        </span>
+                    </ng-template></p-column
+                >
+                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento"></p-column>
+                <p-column
+                    header="Classificação"
+                    field="classificacaoDeRisco"
+                    [sortable]="true"
+                ></p-column>
+                <basis-datatable-button class="ui-button-success" name="edit" icon="edit">
+                </basis-datatable-button>
+                <basis-datatable-button
+                    ng-reflect-icon="ui-icon-remove-red-eye"
+                    ng-reflect-b-tooltip="Escolha um registro para visualizar"
+                    class="ng-star-inserted"
+                    icon="remove-red-eye"
+                >
+                </basis-datatable-button>
+                <basis-datatable-button
+                    class="ui-button-danger"
+                    icon="delete"
+                ></basis-datatable-button>
+            </basis-datatable>
+            <div class="ui-g-9"></div>
+            <div class="ui-g-2">
+                <button
+                    name="export"
+                    pButton
+                    textAlign="right"
+                    type="button"
+                    label="Exportar"
+                    icon="pi pi-upload"
+                    bTooltip="Exportar arquivo"
+                ></button>
             </div>
         </div>
     </div>

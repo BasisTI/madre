@@ -1,0 +1,116 @@
+<form
+    class="ui-g ui-fluid ui-float-label"
+    #form
+    [formGroup]="preCadastro"
+    (ngSubmit)="preCadastrar(form)"
+>
+    <div class="ui-g-12 ui-md-12">
+        <div class="preCad ui-sm-12">
+            <h1>Incluir Pré-Cadastro de Pacientes</h1>
+
+            <div class="ui-g-8 ui-md-08 ui-fluid">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="nome"
+                        pTooltip="Infome o nome do Paciente."
+                    />
+                    <label>Nome paciente</label>
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="nomeSocial"
+                        pTooltip="Infome o nome social do Paciente."
+                    />
+                    <label>Nome Social</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-8">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="nomeDaMae"
+                        pTooltip="Infome o nome de mãe do Paciente."
+                    />
+                    <label>Nome da Mãe</label>
+                </span>
+            </div>
+
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <p-calendar
+                        formControlName="dataDeNascimento"
+                        [locale]="localizacao"
+                        [yearRange]="yearRange"
+                        dateFormat="dd/mm/yy"
+                        [maxDate]="maxDate"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                    >
+                    </p-calendar>
+                    <label>Data de Nascimento</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12"></div>
+            <div class="ui-g-4">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        formControlName="cartaoSus"
+                        pInputText
+                        mask="999 9999 9999 9999"
+                        pTooltip="Informe o CNS do paciente."
+                    ></p-inputMask>
+                    <label>Nº do Cartão SUS</label>
+                </span>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12">
+                    <b>Ativo</b>
+                </div>
+                <div class="ui-g-12">
+                    <p-radioButton
+                        value="true"
+                        name="status"
+                        label="Sim"
+                        formControlName="status"
+                    ></p-radioButton>
+                    <p-radioButton
+                        value="false"
+                        name="status"
+                        label="Não"
+                        formControlName="status"
+                    ></p-radioButton>
+                </div>
+            </div>
+
+            <div class="ui-g-12">
+                <div class="ui-g-3"></div>
+                <div class="ui-g-3">
+                    <button
+                        pButton
+                        type="button"
+                        label="Cancelar"
+                        pTooltip="Cancelar registro de Pré-Cadastro."
+                    ></button>
+                </div>
+
+                <div class="ui-g-3">
+                    <button
+                        pButton
+                        type="submit"
+                        label="Salvar"
+                        pTooltip="Salvar registro de Pré-Cadastro."
+                    ></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

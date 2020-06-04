@@ -29,12 +29,12 @@ export class TriagemComponent implements OnInit, OnDestroy {
 
     triagens: any;
 
-    searchUrl = 'pacientes/api/triagens/pacientes';
+    searchUrl = 'pacientes/api/triagens/listagem';
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'Emergencia', routerLink: 'emergencia' },
+            { label: 'Triagem', routerLink: 'triagem' },
         ]);
 
         this.listarTriagens();
@@ -49,7 +49,7 @@ export class TriagemComponent implements OnInit, OnDestroy {
     listarTriagens() {
         this.triagemService.listarTriagem().subscribe((triagens) => {
             this.triagens = triagens.content;
-            console.log(triagens);
+            console.log(triagens.content);
         });
     }
 

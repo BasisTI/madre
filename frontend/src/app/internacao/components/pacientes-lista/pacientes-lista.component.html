@@ -1,0 +1,62 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Solicitar Internação</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input type="text" pInputText class="ui-inputtext" />
+                        <label>Nome paciente</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                            bTooltip="Pesquisar paciente por nome."
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Cadastrar"
+                            icon="ui-icon-add"
+                            routerLink="/pacientes/cadastro"
+                            bTooltip="Cadastrar novo paciente."
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable
+                    type="server"
+                    [url]="uri"
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                    (buttonClick)="onButtonClick($event)"
+                    #datatable
+                >
+                    <p-column header="Identificador" field="id"></p-column>
+                    <p-column header="Nome" field="nome" [sortable]="true"></p-column>
+                    <p-column header="Data de Nascimento" field="dataDeNascimento">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data['dataDeNascimento'] | date: 'dd/MM/yyyy' }}
+                        </ng-template>
+                    </p-column>
+                    <basis-datatable-button
+                        icon="add"
+                        name="create"
+                        [disabled]="datatable.selectedRow ? false : true"
+                        class="ui-button-info"
+                    >
+                    </basis-datatable-button>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>
