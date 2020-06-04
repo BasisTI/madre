@@ -40,7 +40,7 @@ public class ViasAdministracao implements Serializable {
     @Column(name = "descricao", length = 80)
     private String descricao;
 
-    @Column(name = "sigla")
+    @Column(name = "sigla", length = 10)
     private String sigla;
 
 

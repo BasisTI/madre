@@ -3,34 +3,31 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
     <!--
         Added the constraints for entity ItemPrescricaoDieta.
     -->
     <changeSet id="20200515195407-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="tipo_item_dieta_id"
                                  baseTableName="item_prescricao_dieta"
                                  constraintName="fk_item_prescricao_dieta_tipo_item_dieta_id"
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_item_dieta"/>
-
         <addForeignKeyConstraint baseColumnNames="tipo_aprazamento_id"
                                  baseTableName="item_prescricao_dieta"
                                  constraintName="fk_item_prescricao_dieta_tipo_aprazamento_id"
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_aprazamento"/>
-
         <addForeignKeyConstraint baseColumnNames="tipo_unidade_dieta_id"
                                  baseTableName="item_prescricao_dieta"
                                  constraintName="fk_item_prescricao_dieta_tipo_unidade_dieta_id"
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_unidade_dieta"/>
-
         <addForeignKeyConstraint baseColumnNames="prescricao_dieta_id"
                                  baseTableName="item_prescricao_dieta"
                                  constraintName="fk_item_prescricao_dieta_prescricao_dieta_id"
                                  referencedColumnNames="id"
                                  referencedTableName="prescricao_dieta"/>
-
     </changeSet>
 </databaseChangeLog>
