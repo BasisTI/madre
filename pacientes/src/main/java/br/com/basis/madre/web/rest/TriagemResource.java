@@ -10,6 +10,8 @@ import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
+import lombok.Data;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,9 +103,9 @@ public class TriagemResource {
 
     @GetMapping("/triagens/listagem")
     @Timed
-    public ResponseEntity<Page<TriagemProjection>> buscarResumoTriagem(TriagemDTO triagem, Pageable pageable) {
+    public ResponseEntity<Page<TriagemProjection>> buscarResumoTriagem(Pageable pageable) {
         log.debug("REST request to get all Triagens");
-        return ResponseEntity.ok(triagemService.buscarResumoTriagem(triagem, pageable));
+        return ResponseEntity.ok(triagemService.buscarResumoTriagem(pageable));
     }
 
     @GetMapping("/_search/triagens")

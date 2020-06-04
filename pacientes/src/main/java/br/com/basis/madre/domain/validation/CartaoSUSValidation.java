@@ -15,10 +15,15 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        if (s.matches("[1-2]\\d{10}00[0-1]\\d") || s.matches("[7-9]\\d{14}")) {
-            return somaPonderada(s) % 11 == 0;
+        if (s==null){
+            return true;
+        } else{
+            if (s.matches("[1-2]\\d{10}00[0-1]\\d") || s.matches("[7-9]\\d{14}")) {
+                return somaPonderada(s) % 11 == 0;
+            }
+            return false;
         }
-        return false;
+
 
     }
     private int somaPonderada(String s) {

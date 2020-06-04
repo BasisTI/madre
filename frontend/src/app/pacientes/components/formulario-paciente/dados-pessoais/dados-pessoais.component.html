@@ -1,19 +1,14 @@
 <div class="ui-g ui-fluid" [formGroup]="dadosPessoais">
     <div class="ui-g-12">
         <div class="ui-g-6 ui-sm-12">
-            <span class="md-inputfield" #notification form-notification name="nome">
+            <span class="ui-float-label">
                 <input
                     type="text"
                     pInputText
-                    [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
                     pTooltip="Digite o nome do paciente."
                     formControlName="nome"
                 />
                 <label>Nome Completo</label>
-                <nValidationMessage
-                    [control]="nome"
-                    **ngIf="!notification.message"
-                ></nValidationMessage>
             </span>
         </div>
         <div class="ui-g-6 ui-sm-12">

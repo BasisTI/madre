@@ -29,13 +29,13 @@ export class DispensacaoComponent implements OnInit {
 
     results: Unidade[];
 
-    search(event: { originalEvent: KeyboardEvent; query: string }) {
-        this.service.getResult(event.query).subscribe((data) => {
-            this.results = data.content;
-        });
+    // search(event: { originalEvent: KeyboardEvent; query: string }) {
+    //     this.service.getResult(event.query).subscribe((data) => {
+    //         this.results = data.content;
+    //     });
 
-        console.log(this.results);
-    }
+    //     console.log(this.results);
+    // }
     // `${this.data.getFullYear()}-${this.data.}-${this.data.getDay()}`
 
     formatarData(data: Date): string {

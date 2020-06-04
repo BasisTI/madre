@@ -3,11 +3,14 @@ package br.com.basis.madre.farmacia.service;
 import br.com.basis.madre.farmacia.domain.Unidade;
 import br.com.basis.madre.farmacia.repository.UnidadeRepository;
 import br.com.basis.madre.farmacia.repository.search.UnidadeSearchRepository;
+import br.com.basis.madre.farmacia.service.dto.TipoMedicamentoDTO;
 import br.com.basis.madre.farmacia.service.dto.UnidadeDTO;
 import br.com.basis.madre.farmacia.service.mapper.UnidadeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -102,6 +105,17 @@ public class UnidadeService {
     public Page<UnidadeDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Unidades for query {}", query);
         return unidadeSearchRepository.search(queryStringQuery(query), pageable)
+            .map(unidadeMapper::toDto);
+    }
+    public Page<UnidadeDTO> findAll(
+        UnidadeDTO unidadeDTO, Pageable pageable) {
+        log.debug("Request to get all Especialidades");
+        return unidadeRepository.findAll(
+            Example.of(unidadeMapper.toEntity(unidadeDTO),
+                ExampleMatcher.matching().withIgnoreCase()
+                    .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable
+        )
             .map(unidadeMapper::toDto);
     }
 }

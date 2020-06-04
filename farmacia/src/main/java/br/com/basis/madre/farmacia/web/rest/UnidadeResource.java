@@ -96,9 +96,9 @@ public class UnidadeResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of unidades in body.
      */
     @GetMapping("/unidades")
-    public ResponseEntity<List<UnidadeDTO>> getAllUnidades(Pageable pageable) {
+    public ResponseEntity<List<UnidadeDTO>> getAllUnidades(UnidadeDTO unidadeDTO, Pageable pageable) {
         log.debug("REST request to get a page of Unidades");
-        Page<UnidadeDTO> page = unidadeService.findAll(pageable);
+        Page<UnidadeDTO> page = unidadeService.findAll(unidadeDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

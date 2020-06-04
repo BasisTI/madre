@@ -39,4 +39,6 @@ public class TriagemDTO implements Serializable {
     private String observacao;
 
     private Long pacienteId;
+
+
 }

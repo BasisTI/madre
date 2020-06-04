@@ -1,5 +1,6 @@
 export interface ISolicitacaoDeInternacaoDTO {
     id?: number;
+    pacienteId?: number;
     dataProvavelDaInternacao: Date;
     dataProvavelDaCirurgia: Date;
     prioridade: string;
@@ -15,6 +16,7 @@ export interface ISolicitacaoDeInternacaoDTO {
 
 export class SolicitacaoDeInternacaoDTO implements ISolicitacaoDeInternacaoDTO {
     public id?: number;
+    public pacienteId?: number;
     public dataProvavelDaInternacao: Date;
     public dataProvavelDaCirurgia: Date;
     public prioridade: string;

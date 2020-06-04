@@ -18,6 +18,7 @@ export class InternacaoDePacienteService {
         solicitacao: SolicitacaoDeInternacaoDTO,
     ): Observable<Internacao> {
         const dto = {
+            pacienteId: internacao.pacienteId,
             procedimentoId: solicitacao.procedimentoId,
             prioridade: solicitacao.prioridade,
             justificativa: internacao.justificativa,

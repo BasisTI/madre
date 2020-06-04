@@ -134,9 +134,9 @@ public class MedicamentoResource {
 
     @GetMapping("/_search/medicamentos")
     public Page<Medicamento> getMedicamentos
-        (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
+        (@RequestParam(required = false) String nome,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
         log.debug("REST request to get a page of Medicamentos");
-        Page<Medicamento> page = medicamentoService.buscaMedicamentos( codigo, descricao, ativo, pageable);
+        Page<Medicamento> page = medicamentoService.buscaMedicamentos( nome, descricao, ativo, pageable);
 
         return page;
     }
