@@ -1,4 +1,4 @@
-id;nome;nome_social;nome_da_mae;data_de_nascimento;cartao_sus;ativo
+id;nome;nome_social;nome_da_mae;data_de_nascimento;cartao_sus;status
 1;Thiago Goes Mendonca;Thiago;Ana Beatriz Barbosa Leal;2020-05-25;969923818950004;true
 2;Marco Aurelio Marconatto;Marco;Na Ester Matias De Carvalho ;2020-05-25;24312465240006;false
 3;Vitoria Coelho Da Silva;Vitoria;Lauanny Tavares Da Silva Oliveir;1954-05-24;756794323360006;true
