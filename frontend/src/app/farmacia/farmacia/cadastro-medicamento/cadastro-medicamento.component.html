@@ -49,7 +49,7 @@
                         <p-autoComplete
                             field="nome"
                             [suggestions]="unidade"
-                            (completeMethod)="searchUnidade($event)"
+                            (completeMethod)="searchUnidade()"
                             [dropdown]="true"
                             formControlName="unidade"
                         ></p-autoComplete>
@@ -64,7 +64,7 @@
                         <p-autoComplete
                             field="nome"
                             [suggestions]="apresentacao"
-                            (completeMethod)="searchApresentacao($event)"
+                            (completeMethod)="searchApresentacao()"
                             [dropdown]="true"
                             formControlName="apresentacao"
                         ></p-autoComplete>
@@ -79,7 +79,7 @@
                         <p-autoComplete
                             field="nome"
                             [suggestions]="results"
-                            (completeMethod)="search($event)"
+                            (completeMethod)="searchTipoMedicamento()"
                             [dropdown]="true"
                             formControlName="tipo"
                         ></p-autoComplete>

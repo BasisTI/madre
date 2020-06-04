@@ -1,8 +1,0 @@
-<root>
-    <item name='br.com.basis.dynamicexports.constants.DynamicExportsConstants DynamicExportsConstants()'>
-        <annotation name='org.jetbrains.annotations.Contract'>
-            <val name="value" val="&quot;-&gt;fail&quot;"/>
-            <val name="pure" val="true"/>
-        </annotation>
-    </item>
-</root>

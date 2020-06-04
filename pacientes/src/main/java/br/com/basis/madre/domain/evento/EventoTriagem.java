@@ -1,6 +1,6 @@
 package br.com.basis.madre.domain.evento;
 
-import br.com.basis.madre.domain.Paciente;
+import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.domain.enumeration.TipoEvento;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +10,8 @@ import java.time.ZonedDateTime;
 
 @Data
 @Builder
-public class EventoPaciente implements Serializable {
-    private final Paciente paciente;
+public class EventoTriagem implements Serializable {
+    private final Triagem triagem;
     private final ZonedDateTime dataDeLancamento;
     private final TipoEvento tipoDoEvento;
     private final String login;
