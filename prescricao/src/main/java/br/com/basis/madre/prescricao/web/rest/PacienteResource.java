@@ -35,6 +35,7 @@ public class PacienteResource {
 	@Autowired
 	private PacienteRepositorySearch pacienteRepositorySearch;
 	
+	@Autowired
 	private PacienteService pacienteService;
 				
 	@GetMapping()
