@@ -71,6 +71,9 @@ spring:
   data:
     jest:
       uri: http://localhost:9200
+      # Aumentar o timeout quando executar o sistema pela primeira vez para evitar problema
+      # na criação dos indexs no elasticsearch
+      read-timeout: 10000
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
