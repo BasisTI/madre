@@ -48,7 +48,7 @@ public class TipoUnidadeDieta implements Serializable {
 
     @NotNull
     @Size(max = 3)
-    @Column(name = "sigla", length = 3, nullable = false)
+    @Column(name = "sigla", length = 10, nullable = false)
     private String sigla;
 
     @OneToMany(mappedBy = "tipoUnidadeDieta")
