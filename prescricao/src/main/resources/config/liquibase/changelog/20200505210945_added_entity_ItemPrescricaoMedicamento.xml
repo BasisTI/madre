@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    
     <!--
         Added the entity ItemPrescricaoMedicamento.
     -->
@@ -16,52 +13,52 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="id_medicamento" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="dose" type="decimal(21,2)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="frequencia" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="todas_vias" type="boolean">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="bomba_infusao" type="boolean">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="velocidade_infusao" type="decimal(21,2)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="tempo_infusao" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="unidade_tempo" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="inicio_administracao" type="date">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="condicao_necessaria" type="boolean">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="observacao_condicao" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="vias_administracao_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="diluente_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="unidade_infusao_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="unidade_dose_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="prescricao_medicamento_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -82,9 +79,9 @@
     -->
     <changeSet id="20200505210945-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/item_prescricao_medicamento.csv"
-                  separator=";"
-                  tableName="item_prescricao_medicamento">
+            file="config/liquibase/fake-data/item_prescricao_medicamento.csv"
+            separator=";"
+            tableName="item_prescricao_medicamento">
             <column name="id" type="numeric"/>
             <column name="id_medicamento" type="numeric"/>
             <column name="dose" type="numeric"/>
