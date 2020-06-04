@@ -10,6 +10,9 @@ import lombok.Data;
 @Data
 public class EventoPrescricaoMedicamento implements Serializable{
 	
+	public EventoPrescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento2) {
+		// TODO Auto-generated constructor stub
+	}
 	private static final long serialVersionUID = 1L;
 	private PrescricaoMedicamento prescricaoMedicamento;
 	private ZonedDateTime dataDeLancamento;
