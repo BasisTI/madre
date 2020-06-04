@@ -107,8 +107,8 @@ public class PreCadastroPaciente implements Serializable {
         return this;
     }
 
-    public PreCadastroPaciente triagem(Set<Triagem> triagem) {
-        this.triagem = triagem;
-        return this;
-    }
+     public PreCadastroPaciente triagem(Set<Triagem> triagem) {
+         this.triagem = new HashSet<>(triagem);
+         return this;
+     }
 }
