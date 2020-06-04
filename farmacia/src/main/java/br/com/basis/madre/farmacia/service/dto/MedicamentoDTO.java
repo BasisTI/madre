@@ -1,4 +1,5 @@
 package br.com.basis.madre.farmacia.service.dto;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,21 +10,28 @@ public class MedicamentoDTO implements Serializable {
 
     private Long id;
 
+
     private String codigo;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private String descricao;
 
+    @NotNull
     private String concentracao;
 
+    @NotNull
     private Boolean ativo;
 
-
+    @NotNull
     private TipoMedicamentoDTO tipoMedicamentoId;
 
+    @NotNull
     private ApresentacaoDTO apresentacaoId;
 
+    @NotNull
     private UnidadeDTO unidadeId;
 
     public Long getId() {

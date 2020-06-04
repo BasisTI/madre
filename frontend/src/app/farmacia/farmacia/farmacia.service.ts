@@ -28,14 +28,20 @@ export class FarmaciaService {
         });
     }
 
-    getResultTipoMedicamento(): Observable<Array<TipoMedicamento>> {
-        return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`);
+    getResultTipoMedicamento(event): Observable<Array<TipoMedicamento>> {
+        return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`, {
+            params: new HttpParams().set('nome', event),
+        });
     }
-    getResultUnidade(): Observable<Array<Unidade>> {
-        return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/unidades`);
+    getResultUnidade(event): Observable<Array<Unidade>> {
+        return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/unidades`, {
+            params: new HttpParams().set('nome', event),
+        });
     }
-    getResultApresentacao(): Observable<Array<Apresentacao>> {
-        return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`);
+    getResultApresentacao(event): Observable<Array<Apresentacao>> {
+        return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`, {
+            params: new HttpParams().set('nome', event),
+        });
     }
 
     cadastrar(medicamento: any): Observable<any> {

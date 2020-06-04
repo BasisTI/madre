@@ -1,5 +1,5 @@
 import { Unidade } from './../dispensacao/unidade';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { TipoMedicamento } from './tipoMedicamento';
 import { FarmaciaService } from './../farmacia.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,13 +12,13 @@ import { Apresentacao } from './apresentacao';
 })
 export class CadastroMedicamentoComponent implements OnInit {
     form = this.fb.group({
-        medicamento: [''],
-        descricao: [''],
-        concentracao: [''],
-        unidade: [''],
-        apresentacao: [''],
-        tipo: [''],
-        ativo: [''],
+        medicamento: ['', Validators.required],
+        descricao: ['', Validators.required],
+        concentracao: ['', Validators.required],
+        unidade: ['', Validators.required],
+        apresentacao: ['', Validators.required],
+        tipo: ['', Validators.required],
+        ativo: ['', Validators.required],
     });
 
     results = new Array<TipoMedicamento>();
@@ -30,18 +30,20 @@ export class CadastroMedicamentoComponent implements OnInit {
         this.service.cadastrar(this.form.value).subscribe();
     }
 
-    searchTipoMedicamento() {
-        this.service.getResultTipoMedicamento().subscribe((data: Array<TipoMedicamento>) => {
-            this.results = data;
-        });
+    searchTipoMedicamento(event) {
+        this.service
+            .getResultTipoMedicamento(event.query)
+            .subscribe((data: Array<TipoMedicamento>) => {
+                this.results = data;
+            });
     }
-    searchUnidade() {
-        this.service.getResultUnidade().subscribe((data: Array<Unidade>) => {
+    searchUnidade(event) {
+        this.service.getResultUnidade(event.query).subscribe((data: Array<Unidade>) => {
             this.unidade = data;
         });
     }
-    searchApresentacao() {
-        this.service.getResultApresentacao().subscribe((data: Array<Apresentacao>) => {
+    searchApresentacao(event) {
+        this.service.getResultApresentacao(event.query).subscribe((data: Array<Apresentacao>) => {
             this.apresentacao = data;
         });
     }
@@ -49,5 +51,9 @@ export class CadastroMedicamentoComponent implements OnInit {
 
     constructor(private service: FarmaciaService, private fb: FormBuilder) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.searchApresentacao(event);
+        this.searchUnidade(event);
+        this.searchTipoMedicamento(event);
+    }
 }
