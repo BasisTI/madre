@@ -10,6 +10,7 @@ public class PISValidation implements ConstraintValidator<PIS, String> {
 
     @Override
     public void initialize(PIS constraintAnnotation) {
+        // Valor não está sendo utilizado
     }
 
     @Override
