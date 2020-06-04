@@ -34,6 +34,8 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @Transactional
 public class MedicamentoService {
 
+    public static final String DESCRICAO = "descricao";
+    public static final String NOME = "nome";
     private final Logger log = LoggerFactory.getLogger(MedicamentoService.class);
 
     private final MedicamentoRepository medicamentoRepository;
@@ -43,7 +45,7 @@ public class MedicamentoService {
     private final MedicamentoSearchRepository medicamentoSearchRepository;
 
 
-    private final String[] includes = new String[]{"id", "codigo","nome", "descricao", "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"};
+    private final String[] includes = new String[]{"id", NOME, DESCRICAO, "concentracao", "unidade", "apresentacao", "tipoMedicamento", "ativo"};
     public MedicamentoService(MedicamentoRepository medicamentoRepository, MedicamentoMapper medicamentoMapper, MedicamentoSearchRepository medicamentoSearchRepository) {
         this.medicamentoRepository = medicamentoRepository;
         this.medicamentoMapper = medicamentoMapper;
@@ -140,11 +142,11 @@ public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
         nativeSearchQuery);
     return query;
 }
-public  Page<Medicamento> buscaPorTexto(String codigo, String descricao, Pageable pageable){
+public  Page<Medicamento> buscaPorTexto(String nome, String descricao, Pageable pageable){
     NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
 
-        .withQuery(QueryBuilders.multiMatchQuery(  codigo + descricao ,  "codigo", "descricao")
-            .field("codigo").field("descricao").operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(3))
+        .withQuery(QueryBuilders.multiMatchQuery( nome +  descricao , NOME, DESCRICAO)
+            .field(NOME).field(DESCRICAO).operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(3))
         .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
             (includes
             ).build())
@@ -157,14 +159,14 @@ public  Page<Medicamento> buscaPorTexto(String codigo, String descricao, Pageabl
 }
 
     public Page<Medicamento> buscaMedicamentos
-        (@RequestParam(required = false) String codigo,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo, Pageable pageable) {
-        if (Strings.isNullOrEmpty(codigo)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
+        (@RequestParam(required = false) String nome,@RequestParam(required = false) String descricao ,@RequestParam(required = false) String ativo, Pageable pageable) {
+        if (Strings.isNullOrEmpty(nome)  && Strings.isNullOrEmpty(descricao) && Strings.isNullOrEmpty(ativo)) {
           return this.buscaTodosMedicamentos(pageable);
         }
         if (!Strings.isNullOrEmpty(ativo)) {
          return this.buscaPorAtivo(ativo, pageable);
         }
-        return this.buscaPorTexto(codigo, descricao, pageable);
+        return this.buscaPorTexto(nome, descricao, pageable);
     }
 
 
