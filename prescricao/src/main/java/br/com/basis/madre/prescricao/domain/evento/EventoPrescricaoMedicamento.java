@@ -1,24 +1,15 @@
 package br.com.basis.madre.prescricao.domain.evento;
 
+import java.io.Serializable;
+
 import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
+import lombok.Data;
 
-
-public class EventoPrescricaoMedicamento{
+@Data
+public class EventoPrescricaoMedicamento implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private PrescricaoMedicamento prescricaoMedicamento;
-	
-	public EventoPrescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
-		this.prescricaoMedicamento = prescricaoMedicamento;
-	}
-
-	public PrescricaoMedicamento getPrescricaoMedicamento() {
-		return prescricaoMedicamento;
-	}
-
-	public void setPrescricaoMedicamento(PrescricaoMedicamento prescricaoMedicamento) {
-		this.prescricaoMedicamento = prescricaoMedicamento;
-	}
-	
 	
 
 }
