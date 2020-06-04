@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    
     <!--
         Added the entity ItemPrescricaoDieta.
     -->
@@ -16,25 +13,25 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="quantidade" type="decimal(21,2)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="frequencia" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="numero_vezes" type="integer">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="tipo_item_dieta_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="tipo_aprazamento_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="tipo_unidade_dieta_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="prescricao_dieta_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -55,9 +52,9 @@
     -->
     <changeSet id="20200515195407-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/item_prescricao_dieta.csv"
-                  separator=";"
-                  tableName="item_prescricao_dieta">
+            file="config/liquibase/fake-data/item_prescricao_dieta.csv"
+            separator=";"
+            tableName="item_prescricao_dieta">
             <column name="id" type="numeric"/>
             <column name="quantidade" type="numeric"/>
             <column name="frequencia" type="numeric"/>
