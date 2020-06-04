@@ -5,7 +5,6 @@
                        newColumnName="ativo"
                        oldColumnName="status"
                        remarks="A String"
-                       schemaName="public"
                        tableName="pre_cadastro_paciente"/>
     </changeSet>
 </databaseChangeLog>
