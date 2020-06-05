@@ -6,9 +6,14 @@ import java.time.ZonedDateTime;
 import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
 import br.com.basis.madre.prescricao.domain.enumeration.TipoEvento;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class EventoPrescricaoMedicamento implements Serializable {
 
