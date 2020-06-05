@@ -25,7 +25,7 @@ public class MedicamentoDTO implements Serializable {
     @NotNull
     private Boolean ativo;
 
-    @NotNull
+
     private TipoMedicamentoDTO tipoMedicamentoId;
 
     @NotNull

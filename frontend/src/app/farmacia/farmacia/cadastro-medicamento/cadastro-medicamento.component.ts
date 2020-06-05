@@ -17,7 +17,6 @@ export class CadastroMedicamentoComponent implements OnInit {
         concentracao: ['', Validators.required],
         unidade: ['', Validators.required],
         apresentacao: ['', Validators.required],
-        tipo: ['', Validators.required],
         ativo: ['', Validators.required],
     });
 

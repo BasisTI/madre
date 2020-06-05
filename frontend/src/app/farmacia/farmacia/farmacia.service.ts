@@ -62,10 +62,7 @@ export class FarmaciaService {
                 nome: medicamento.unidade.nome,
             },
 
-            tipoMedicamentoId: {
-                id: medicamento.tipo.id,
-                nome: medicamento.tipo.nome,
-            },
+            tipoMedicamentoId: null,
         };
         console.log(dto);
 
@@ -73,13 +70,13 @@ export class FarmaciaService {
     }
 
     getMedicamentos(
-        codigo: string,
+        nome: string,
         descricao: string,
         situacao: string,
     ): Observable<Pageable<Medicamento>> {
         return this.httpServe.get<Pageable<Medicamento>>(`${this.apiUrl}/_search/medicamentos`, {
             params: new HttpParams()
-                .set('codigo', codigo)
+                .set('nome', nome)
                 .set('descricao', descricao)
                 .set('ativo', situacao),
         });
