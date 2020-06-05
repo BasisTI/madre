@@ -27,12 +27,7 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-autoComplete
-                        [service]="ufService"
-                        (completeMethod)="getListaDeUF($event.query)"
-                        field="sigla"
-                        formControlName="uf"
-                    ></p-autoComplete>
+                    <input pInputText [disabled]="true" />
                     <label>UF</label>
                 </span>
             </div>
