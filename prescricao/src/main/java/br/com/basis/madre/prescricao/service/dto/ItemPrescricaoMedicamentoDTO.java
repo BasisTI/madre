@@ -25,7 +25,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 	@NotNull
 	private Long idMedicamento;
 
-	@NotNull
 	private Long idListaMedicamentos;
 
 	@NotNull
