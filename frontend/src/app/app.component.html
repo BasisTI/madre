@@ -3,7 +3,8 @@
     [ngClass]="{ 'layout-compact': layoutCompact }"
     (click)="onLayoutClick()"
 >
-    <div #layoutContainer
+    <div
+        #layoutContainer
         class="layout-container"
         [ngClass]="{
             'menu-layout-static': !menuService.isOverlay(),
@@ -13,12 +14,15 @@
             'menu-layout-slim': menuService.isSlim(),
             'layout-menu-static-inactive': menuService.staticMenuDesktopInactive,
             'layout-menu-static-active': menuService.staticMenuMobileActive
-        }">
+        }"
+    >
         <app-topbar></app-topbar>
 
-        <div class="layout-menu"
+        <div
+            class="layout-menu"
             [ngClass]="{ 'layout-menu-dark': darkMenu }"
-            (click)="onMenuClick($event)">
+            (click)="onMenuClick($event)"
+        >
             <p-scrollPanel #scrollPanel [style]="{ height: '100%' }">
                 <app-menu></app-menu>
             </p-scrollPanel>

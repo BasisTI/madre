@@ -145,7 +145,19 @@ spring:
   output:
     ansi:
       console-available: true
-
+  cloud:
+    stream:
+      kafka:
+        bindings:
+          prescricaoMedicamentoConsumer-in-0:
+            consumer:
+              startOffset: earliest
+              group: madre-farma-medicamento
+      bindings:
+        prescricaoMedicamentoConsumer-in-0:
+          destination: madre-prescricao-medicamento
+    function:
+      definition: prescricaoMedicamentoConsumer
 server:
   servlet:
     session:
