@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 @Transactional
@@ -17,5 +19,10 @@ public class PacienteService {
     @Transactional(readOnly = true)
     public Page<Paciente> obterTodosPacientes(Pageable pageable) {
         return pacienteSearchRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Paciente> obterPacientePorId(Long id) {
+        return pacienteSearchRepository.findById(id);
     }
 }
