@@ -3,11 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>br.com.basis.madre</groupId>
-        <artifactId>madre-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>br.com.basis.madre</groupId>
+		<artifactId>madre-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<groupId>br.com.basis.madre.prescricao</groupId>
 	<artifactId>prescricao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -55,7 +55,7 @@
 		<!-- The liquibase version should match the one managed by https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
 		<liquibase.version>3.6.3</liquibase.version>
 		<liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
-		<!-- The hibernate version to be used to override default version of liquibase
+		<!-- The hibernate version to be used to override default version of liquibase 
 			maven plugin -->
 		<hibernate-core.version>5.3.8.Final</hibernate-core.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
@@ -108,6 +108,11 @@
 		<dependency>
 			<groupId>io.github.jhipster</groupId>
 			<artifactId>jhipster-framework</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
 		</dependency>
 
 		<dependency>
@@ -257,7 +262,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- log4j2-mock needed to create embedded elasticsearch instance with
+		<!-- log4j2-mock needed to create embedded elasticsearch instance with 
 			SLF4J -->
 		<dependency>
 			<groupId>de.dentrassi.elasticsearch</groupId>
@@ -313,7 +318,7 @@
 			<version>${archunit-junit5.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- Adding the engine dependency to the surefire-plugin unfortunately
+		<!-- Adding the engine dependency to the surefire-plugin unfortunately 
 			does not work in the current version. -->
 		<!-- https://www.archunit.org/userguide/html/000_Index.html#_junit_5 -->
 		<dependency>
@@ -346,19 +351,19 @@
 			<artifactId>spring-cloud-stream</artifactId>
 		</dependency>
 		<dependency>
-		<groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.kafka</groupId>
-                    <artifactId>kafka-clients</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>${kafka.version}</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.kafka</groupId>
+					<artifactId>kafka-clients</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>${kafka.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -519,7 +524,7 @@
 				<configuration>
 					<mainClass>${start-class}</mainClass>
 					<fork>true</fork>
-					<!-- Enable the line below to have remote debugging of your application
+					<!-- Enable the line below to have remote debugging of your application 
 						on port 5005 <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments> -->
 				</configuration>
 			</plugin>
@@ -591,7 +596,7 @@
 								<destFile>${jacoco.utReportFile}</destFile>
 							</configuration>
 						</execution>
-						<!-- Ensures that the code coverage report for unit tests is created
+						<!-- Ensures that the code coverage report for unit tests is created 
 							after unit tests have been run -->
 						<execution>
 							<id>post-unit-test</id>
@@ -614,7 +619,7 @@
 								<destFile>${jacoco.itReportFile}</destFile>
 							</configuration>
 						</execution>
-						<!-- Ensures that the code coverage report for integration tests is
+						<!-- Ensures that the code coverage report for integration tests is 
 							created after integration tests have been run -->
 						<execution>
 							<id>post-integration-tests</id>
@@ -835,7 +840,7 @@
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${maven-failsafe-plugin.version}</version>
 					<configuration>
-						<!-- Due to spring-boot repackage, without adding this property test
+						<!-- Due to spring-boot repackage, without adding this property test 
 							classes are not found See https://github.com/spring-projects/spring-boot/issues/6254 -->
 						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 						<!-- Force alphabetical order to have a reproducible build -->
@@ -999,8 +1004,8 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<!-- Profile for applying IDE-specific configuration. At the moment it
-				configures MapStruct and Hibernate JPA Metamodel Generator, which you need
+			<!-- Profile for applying IDE-specific configuration. At the moment it 
+				configures MapStruct and Hibernate JPA Metamodel Generator, which you need 
 				when working with DTOs and entity filtering. -->
 			<id>IDE</id>
 			<dependencies>
@@ -1032,8 +1037,8 @@
 			<build>
 				<pluginManagement>
 					<plugins>
-						<!-- This plugin's configuration is used to store Eclipse m2e settings
-							only. It has no influence on the Maven build itself. Remove when the m2e
+						<!-- This plugin's configuration is used to store Eclipse m2e settings 
+							only. It has no influence on the Maven build itself. Remove when the m2e 
 							plugin can correctly bind to Maven lifecycle -->
 						<plugin>
 							<groupId>org.eclipse.m2e</groupId>
