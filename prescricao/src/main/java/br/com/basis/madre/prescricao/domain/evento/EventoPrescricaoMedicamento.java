@@ -7,17 +7,15 @@ import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
 import br.com.basis.madre.prescricao.domain.enumeration.TipoEvento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class EventoPrescricaoMedicamento implements Serializable{
-	
+public class EventoPrescricaoMedicamento implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private PrescricaoMedicamento prescricaoMedicamento;
 	private ZonedDateTime dataDeLancamento;
 	private TipoEvento tipoDoEvento;
 	private String login;
-	
 
 }

@@ -11,7 +11,6 @@ import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @RequiredArgsConstructor
 @Component
@@ -23,7 +22,7 @@ public class PacienteConsumer implements Consumer<Message<EventoPaciente>> {
 		Paciente paciente = pacienteMessage.getPayload().getPaciente();
 		log.debug("Mensagem recebida = {}", paciente);
 		pacienteRepositorySearch.save(paciente);
-		
+
 	}
 
 }
