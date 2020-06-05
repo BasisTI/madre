@@ -1,0 +1,34 @@
+id;descricao;sigla
+1;Pré-dialisador;AD
+2;Intra-articular;AR
+3;Intra-vesical;BX
+4;Caudal;CA
+5;Pós-dialisador;DD
+6;Intra-arterial;IA
+7;Intra-dérmica;ID
+8;Intra-muscular;IM
+9;Inalatória;IN
+10;Inalatória oral;IO
+11;Intra-peritonial;IP
+12;Intra-tecal;IT
+13;Intra-venosa;IV
+14;Oftálmica;OC
+15;Otolóigica;OT
+16;Peribulbar;PB
+17;Epidural;PD
+18;Perineural;PN
+19;Subcutânea;SC
+20;Sublingual;SL
+21;Bucal;TB
+22;Dermatológica;TC
+23;Transdérmica;TD
+24;Traqueostomia;TR
+25;Uretral;UR
+26;Dialisador;VD
+27;Gastrostomia;VG
+28;Jejunostomia;VJ
+29;Nasal;VN
+30;Oral;VO
+31;Retal;VR
+32;Por Sonda;VS
+33;Intra-vaginal;VV
