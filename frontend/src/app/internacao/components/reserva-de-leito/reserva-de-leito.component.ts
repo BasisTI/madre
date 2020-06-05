@@ -1,16 +1,17 @@
-import { ReservaDeLeitoService } from './../../services/reserva-de-leito.service';
-import { Leito } from './../../models/leito';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ConfiguracaoParaCalendarioPrimeNG } from '@shared/p-calendar.config';
+import { Leito } from './../../models/leito';
+import { ReservaDeLeitoService } from './../../services/reserva-de-leito.service';
 
 @Component({
     selector: 'app-reserva-de-leito',
     templateUrl: './reserva-de-leito.component.html',
     styleUrls: ['./reserva-de-leito.component.scss'],
 })
-export class ReservaDeLeitoComponent implements OnInit {
+export class ReservaDeLeitoComponent implements OnInit, OnDestroy {
     public pCalendarConfig: ConfiguracaoParaCalendarioPrimeNG = {
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yyyy',
@@ -27,9 +28,29 @@ export class ReservaDeLeitoComponent implements OnInit {
         justificativa: [''],
     });
 
-    constructor(private fb: FormBuilder, private reservaDeLeitoService: ReservaDeLeitoService) {}
+    constructor(
+        private fb: FormBuilder,
+        private reservaDeLeitoService: ReservaDeLeitoService,
+        private breadcrumbService: BreadcrumbService,
+    ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.breadcrumbService.setItems([
+            {
+                label: 'Internação',
+            },
+            {
+                label: 'Leitos',
+            },
+            {
+                label: 'Reservar Leito',
+            },
+        ]);
+    }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
+    }
 
     aoSelecionarLeito(leito: Leito): void {
         this.formGroup.controls.leito.setValue(leito);
