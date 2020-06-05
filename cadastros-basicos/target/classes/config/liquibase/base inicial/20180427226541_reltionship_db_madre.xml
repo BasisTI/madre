@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+<changeSet id="20180427226541-1" author="jhipster">
+    <addForeignKeyConstraint baseColumnNames="id_anexo"
+            baseTableName="UnidadeHospitalar"
+            constraintName="fk_anexo_unidadehospitalar"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="id"
+            referencedTableName="Anexo"/>
+</changeSet>
+
+<changeSet id="20180427226541-2" author="jhipster">
+    <addForeignKeyConstraint baseColumnNames="id_unidade_hospitalar"
+            baseTableName="Usuario"
+            constraintName="fk_unidadehospitalar_usuario"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="id"
+            referencedTableName="UnidadeHospitalar"/>
+</changeSet>
+
+<changeSet id="20180427226541-3" author="jhipster">
+    <addForeignKeyConstraint baseColumnNames="id_perfil"
+            baseTableName="Usuario"
+            constraintName="fk_perfil_usuario"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="id"
+            referencedTableName="Perfil"/>
+</changeSet>
+
+<changeSet id="20180427226541-4" author="jhipster">
+    <addForeignKeyConstraint baseColumnNames="id_funcionalidade"
+            baseTableName="Perfil"
+            constraintName="fk_funcionalidade_perfil"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="id"
+            referencedTableName="Funcionalidade"/>
+</changeSet>
+
+<changeSet id="20180427226541-5" author="jhipster">
+    <addForeignKeyConstraint baseColumnNames="id_acao"
+            baseTableName="Acao"
+            constraintName="fk_acao_funcionalidade"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="id"
+            referencedTableName="Acao"/>
+</changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>
