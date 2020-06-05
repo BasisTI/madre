@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity Medicamento.
     -->
@@ -56,9 +56,9 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20200508124040-1-data" author="jhipster" context="faker">
+    <changeSet id="20200508124040-1-data" author="jhipster" >
         <loadData
-                  file="config/liquibase/fake-data/medicamento.csv"
+                  file="config/liquibase/data/medicamento.csv"
                   separator=";"
                   tableName="medicamento">
             <column name="id" type="numeric"/>
@@ -67,6 +67,9 @@
             <column name="descricao" type="string"/>
             <column name="concentracao" type="string"/>
             <column name="ativo" type="boolean"/>
+            <column name="apresentacao_id" type="numeric"/>
+            <column name="unidade_id" type="numeric"/>
+            <column name="tipo_medicamento_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
