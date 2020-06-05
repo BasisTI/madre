@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity Apresentacao.
     -->
@@ -35,9 +35,9 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20200508124043-1-data" author="jhipster" context="faker">
+    <changeSet id="20200508124043-1-data" author="jhipster">
         <loadData
-                  file="config/liquibase/fake-data/apresentacao.csv"
+                  file="config/liquibase/data/apresentacao.csv"
                   separator=";"
                   tableName="apresentacao">
             <column name="id" type="numeric"/>
