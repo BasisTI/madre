@@ -15,14 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Component
 public class PacienteConsumer implements Consumer<Message<EventoPaciente>> {
-	private final PacienteRepositorySearch pacienteRepositorySearch;
+    private final PacienteRepositorySearch pacienteRepositorySearch;
 
-	@Override
-	public void accept(Message<EventoPaciente> pacienteMessage) {
-		Paciente paciente = pacienteMessage.getPayload().getPaciente();
-		log.debug("Mensagem recebida = {}", paciente);
-		pacienteRepositorySearch.save(paciente);
+    @Override
+    public void accept(Message<EventoPaciente> pacienteMessage) {
+        Paciente paciente = pacienteMessage.getPayload().getPaciente();
+        log.debug("Mensagem recebida = {}", paciente);
+        pacienteRepositorySearch.save(paciente);
 
-	}
+    }
 
 }

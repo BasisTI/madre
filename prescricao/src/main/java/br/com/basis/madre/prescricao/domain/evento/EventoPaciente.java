@@ -10,10 +10,10 @@ import lombok.Data;
 @Data
 public class EventoPaciente implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private Paciente paciente;
-	private ZonedDateTime dataDeLancamento;
-	private TipoEvento tipoDoEvento;
-	private String login;
+    private static final long serialVersionUID = 1L;
+    private Paciente paciente;
+    private ZonedDateTime dataDeLancamento;
+    private TipoEvento tipoDoEvento;
+    private String login;
 
 }

@@ -12,14 +12,14 @@ import reactor.core.publisher.Flux;
 @Configuration
 public class StreamConfiguration {
 
-	@Bean
-	public EmitterProcessor<EventoPrescricaoMedicamento> prescricaoMedicamentoEmitterProcessor() {
-		return EmitterProcessor.create();
-	}
+    @Bean
+    public EmitterProcessor<EventoPrescricaoMedicamento> prescricaoMedicamentoEmitterProcessor() {
+        return EmitterProcessor.create();
+    }
 
-	@Bean
-	public Supplier<Flux<EventoPrescricaoMedicamento>> prescricaoMedicamentoSupplier() {
-		return this::prescricaoMedicamentoEmitterProcessor;
-	}
+    @Bean
+    public Supplier<Flux<EventoPrescricaoMedicamento>> prescricaoMedicamentoSupplier() {
+        return this::prescricaoMedicamentoEmitterProcessor;
+    }
 
 }

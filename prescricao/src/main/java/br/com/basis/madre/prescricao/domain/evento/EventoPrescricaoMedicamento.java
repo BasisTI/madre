@@ -12,10 +12,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class EventoPrescricaoMedicamento implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private PrescricaoMedicamento prescricaoMedicamento;
-	private ZonedDateTime dataDeLancamento;
-	private TipoEvento tipoDoEvento;
-	private String login;
+    private static final long serialVersionUID = 1L;
+    private PrescricaoMedicamento prescricaoMedicamento;
+    private ZonedDateTime dataDeLancamento;
+    private TipoEvento tipoDoEvento;
+    private String login;
 
 }
