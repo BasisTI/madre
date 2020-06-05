@@ -49,7 +49,7 @@
                         <p-autoComplete
                             field="nome"
                             [suggestions]="unidade"
-                            (completeMethod)="searchUnidade()"
+                            (completeMethod)="searchUnidade($event)"
                             [dropdown]="true"
                             formControlName="unidade"
                         ></p-autoComplete>
@@ -64,7 +64,7 @@
                         <p-autoComplete
                             field="nome"
                             [suggestions]="apresentacao"
-                            (completeMethod)="searchApresentacao()"
+                            (completeMethod)="searchApresentacao($event)"
                             [dropdown]="true"
                             formControlName="apresentacao"
                         ></p-autoComplete>
@@ -73,13 +73,13 @@
                     </span>
                 </div>
             </div>
-            <div class="ui-g-12">
+            <!-- <div class="ui-g-12">
                 <div class="ui-g-5 ui-sm-12">
                     <span class="ui-float-label">
                         <p-autoComplete
                             field="nome"
                             [suggestions]="results"
-                            (completeMethod)="searchTipoMedicamento()"
+                            (completeMethod)="searchTipoMedicamento($event)"
                             [dropdown]="true"
                             formControlName="tipo"
                         ></p-autoComplete>
@@ -87,7 +87,7 @@
                         <label>Tipo</label>
                     </span>
                 </div>
-            </div>
+            </div> -->
             <div class="ui-g-12">
                 <h3>Situação</h3>
                 <p-radioButton
@@ -109,7 +109,12 @@
             </div>
             <div class="ui-g-12">
                 <div class="ui-g-5 ui-sm-5">
-                    <button pButton type="submit" label="Cadastrar"></button>
+                    <button
+                        pButton
+                        type="submit"
+                        label="Cadastrar"
+                        [disabled]="form.invalid"
+                    ></button>
                 </div>
                 <div class="ui-g-5 ui-sm-5">
                     <button pButton type="button" label="Cancelar"></button>
