@@ -103,10 +103,6 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         icon: 'add',
                         routerLink: ['pacientes/triagem'],
                     },
-                    {
-                        label: 'Atendimento',
-                        icon: 'add',
-                    },
                 ],
             },
 
