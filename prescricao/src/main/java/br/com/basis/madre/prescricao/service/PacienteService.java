@@ -13,12 +13,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional
 public class PacienteService {
-	private final PacienteRepositorySearch pacienteSearchRepository;
+    private final PacienteRepositorySearch pacienteSearchRepository;
 
-	@Transactional(readOnly = true)
-	public Page<Paciente> obterTodosPacientes(Pageable pageable) {
+    @Transactional(readOnly = true)
+    public Page<Paciente> obterTodosPacientes(Pageable pageable) {
 
-		return pacienteSearchRepository.findAll(pageable);
-	}
+        return pacienteSearchRepository.findAll(pageable);
+    }
 
 }
