@@ -1,5 +1,6 @@
 package br.com.basis.madre.service;
 
+import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.domain.SolicitacaoDeInternacao;
 import br.com.basis.madre.repository.SolicitacaoDeInternacaoRepository;
 import br.com.basis.madre.repository.search.SolicitacaoDeInternacaoSearchRepository;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -29,6 +31,8 @@ public class SolicitacaoDeInternacaoService {
     private final SolicitacaoDeInternacaoMapper solicitacaoDeInternacaoMapper;
 
     private final SolicitacaoDeInternacaoSearchRepository solicitacaoDeInternacaoSearchRepository;
+
+    private final PacienteService pacienteService;
 
     /**
      * Save a solicitacaoDeInternacao.
@@ -57,7 +61,12 @@ public class SolicitacaoDeInternacaoService {
     public Page<SolicitacaoDeInternacaoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all SolicitacaoDeInternacaos");
         return solicitacaoDeInternacaoRepository.findAll(pageable)
-            .map(solicitacaoDeInternacaoMapper::toDto);
+            .map(solicitacao -> {
+                SolicitacaoDeInternacaoDTO dto = solicitacaoDeInternacaoMapper.toDto(solicitacao);
+                Paciente paciente = pacienteService.obterPacientePorId(dto.getPacienteId()).orElseThrow(EntityNotFoundException::new);
+                dto.setNomeDoPaciente(paciente.getNome());
+                return dto;
+            });
     }
 
 

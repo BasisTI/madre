@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -56,7 +57,7 @@ public class MedicamentoResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/medicamentos")
-    public ResponseEntity<MedicamentoDTO> createMedicamento(@RequestBody MedicamentoDTO medicamentoDTO) throws URISyntaxException {
+    public ResponseEntity<MedicamentoDTO> createMedicamento(@Valid @RequestBody MedicamentoDTO medicamentoDTO) throws URISyntaxException {
         log.debug("REST request to save Medicamento : {}", medicamentoDTO);
         if (medicamentoDTO.getId() != null) {
             throw new BadRequestAlertException("A new medicamento cannot already have an ID", ENTITY_NAME, "idexists");

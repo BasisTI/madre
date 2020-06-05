@@ -126,8 +126,8 @@ public   Page<Medicamento> buscaTodosMedicamentos(Pageable pageable){
         .withPageable(pageable)
         .build();
 
-    Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
-    return search;
+
+    return  medicamentoSearchRepository.search(nativeSearchQueryBuilder);
 }
 public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
     NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
@@ -143,18 +143,14 @@ public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
     return query;
 }
 public  Page<Medicamento> buscaPorTexto(String nome, String descricao, Pageable pageable){
-        if(!Strings.isNullOrEmpty(descricao)) {
-            NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.fuzzyQuery(DESCRICAO, descricao).prefixLength(1))
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(includes).build()).withPageable(pageable).build();
-            Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
-                nativeSearchQueryFuzzy);
-
-            return queryFuzzy;
-        }
     NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
-        .withQuery(QueryBuilders.fuzzyQuery(NOME, nome).prefixLength(1))
-        .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(includes).build()).withPageable(pageable).build();
+        .withQuery(QueryBuilders.multiMatchQuery(  nome + descricao, NOME, DESCRICAO)
+        .field(NOME).field(DESCRICAO).operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
+        .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(includes
+        ).build())
+        .withPageable(pageable)
+        .build();
+//
     Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
         nativeSearchQueryFuzzy);
 

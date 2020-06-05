@@ -19,6 +19,8 @@ public class SolicitacaoDeInternacaoDTO implements Serializable {
     @NotNull
     private Long pacienteId;
 
+    private String nomeDoPaciente;
+
     @NotNull
     private LocalDate dataProvavelDaInternacao;
 

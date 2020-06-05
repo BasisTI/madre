@@ -28,14 +28,20 @@ export class FarmaciaService {
         });
     }
 
-    getResultTipoMedicamento(): Observable<Array<TipoMedicamento>> {
-        return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`);
+    getResultTipoMedicamento(event): Observable<Array<TipoMedicamento>> {
+        return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`, {
+            params: new HttpParams().set('nome', event),
+        });
     }
-    getResultUnidade(): Observable<Array<Unidade>> {
-        return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/unidades`);
+    getResultUnidade(event): Observable<Array<Unidade>> {
+        return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/unidades`, {
+            params: new HttpParams().set('nome', event),
+        });
     }
-    getResultApresentacao(): Observable<Array<Apresentacao>> {
-        return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`);
+    getResultApresentacao(event): Observable<Array<Apresentacao>> {
+        return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`, {
+            params: new HttpParams().set('nome', event),
+        });
     }
 
     cadastrar(medicamento: any): Observable<any> {
@@ -56,10 +62,7 @@ export class FarmaciaService {
                 nome: medicamento.unidade.nome,
             },
 
-            tipoMedicamentoId: {
-                id: medicamento.tipo.id,
-                nome: medicamento.tipo.nome,
-            },
+            tipoMedicamentoId: null,
         };
         console.log(dto);
 
@@ -67,13 +70,13 @@ export class FarmaciaService {
     }
 
     getMedicamentos(
-        codigo: string,
+        nome: string,
         descricao: string,
         situacao: string,
     ): Observable<Pageable<Medicamento>> {
         return this.httpServe.get<Pageable<Medicamento>>(`${this.apiUrl}/_search/medicamentos`, {
             params: new HttpParams()
-                .set('codigo', codigo)
+                .set('nome', nome)
                 .set('descricao', descricao)
                 .set('ativo', situacao),
         });
