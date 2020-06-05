@@ -13,9 +13,10 @@ import org.springframework.stereotype.Repository;
 public interface LeitoRepository extends JpaRepository<Leito, Long> {
 
     static interface Queries {
-        String obterTodosOsLeitosReservados = "select distinct leito from EventoLeito evento join evento.leito leito where evento.tipoDoEvento.id = " + CodigoDoTipoEventoLeito.Constants.RESERVA_ID + " and current_timestamp between evento.dataInicio and evento.dataFim";
-        String obterTodosOsLeitosBloqueados = "select distinct leito from EventoLeito evento join evento.leito leito where evento.tipoDoEvento.id = " + CodigoDoTipoEventoLeito.Constants.BLOQUEIO_ID + " and current_timestamp between evento.dataInicio and evento.dataFim";
-        String obterTodosOsLeitosOcupados = "select distinct leito from EventoLeito evento join evento.leito leito where evento.tipoDoEvento.id = " + CodigoDoTipoEventoLeito.Constants.OCUPACAO_ID + " and evento.dataFim is null";
+        String baseQuery = "select distinct leito from EventoLeito evento join evento.leito leito where evento.tipoDoEvento.id = ";
+        String obterTodosOsLeitosReservados = baseQuery + CodigoDoTipoEventoLeito.Constants.RESERVA_ID + " and current_timestamp between evento.dataInicio and evento.dataFim";
+        String obterTodosOsLeitosBloqueados = baseQuery + CodigoDoTipoEventoLeito.Constants.BLOQUEIO_ID + " and current_timestamp between evento.dataInicio and evento.dataFim";
+        String obterTodosOsLeitosOcupados = baseQuery + CodigoDoTipoEventoLeito.Constants.OCUPACAO_ID + " and evento.dataFim is null";
         String obterTodosOsLeitosNaoLiberados = "select distinct leito from EventoLeito evento join evento.leito leito where current_timestamp < evento.dataFim and not evento.tipoDoEvento.id = " + CodigoDoTipoEventoLeito.Constants.LIBERACAO_ID;
         String obterTodosOsLeitosLiberados = "select distinct leito from EventoLeito evento right join evento.leito leito where (current_timestamp not between evento.dataInicio and evento.dataFim) or (evento is null)";
     }
