@@ -54,7 +54,6 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@Column(name = "id_medicamento", nullable = false)
 	private Long idMedicamento;
 
-	@NotNull
 	private Long idListaMedicamentos;
 
 	@NotNull
