@@ -1,3 +1,4 @@
+import { Medicamento } from './../../farmacia/farmacia/medicamentos/Medicamento';
 import { TIPO_UNIDADE_TEMPO } from './models/unidadeTempo';
 
 import { ItemPrescricaoMedicamento } from './models/itemPrescricaoMedicamento';
@@ -41,7 +42,6 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
 
     itemPrescricaoMedicamento = this.fb.group({
         idMedicamento: [null, Validators.required],
-        idListaMedicamentos: [null],
         dose: [null, Validators.required],
         unidadeDoseId: [null, Validators.required],
         viasAdministracaoId: [null, Validators.required],
@@ -102,12 +102,12 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
             });
     }
 
-    carregarMedicamentos() {
-        return this.medicamentoService.listarMedicamentos()
+    carregarMedicamentos(evento?) {
+    
+
+        return this.medicamentoService.listarMedicamentos((evento?.query)?evento.query:'')
             .subscribe(medicamentos => {
-                this.medicamentos = medicamentos.content.map(medicamento => {
-                    return { label: medicamento.name, value: medicamento };
-                });
+                this.medicamentos = medicamentos.content;
 
             });
     }
@@ -115,8 +115,12 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
     carregarListaMedicamentos() {
         return this.medicamentoService.listarListaMedicamentos()
             .subscribe(listaMedicamentos => {
+                console.log(listaMedicamentos.content);
+                
                 this.listaMedicamentos = listaMedicamentos.content.map(listaMedicamento => {
+                    
                     return { label: listaMedicamento.nome, value: listaMedicamento };
+                    
                 });
 
             });
@@ -203,6 +207,8 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
 
 
         this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe();
+        console.log(prescricaoMedicamento);
+        
     }
 
 

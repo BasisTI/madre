@@ -1,3 +1,4 @@
+import { Medicamento } from './../../farmacia/farmacia/medicamentos/Medicamento';
 import { PrescricaoMedicamento } from './models/prescricaoMedicamento';
 import { UnidadeInfusao } from './models/unidadeInfusao';
 import { Diluente } from './models/diluente';
@@ -14,13 +15,14 @@ import { Injectable } from '@angular/core';
 
 export class MedicamentoService {
 
+    urlFarmacia = '/farmacia/api'
     baseUrl = '/prescricao/api';
 
     constructor(private http: HttpClient
     ) { }
 
-    listarMedicamentos(): Observable<any> {
-        return this.http.get(`${this.baseUrl}/medicamentos`);
+    listarMedicamentos(nome: string): Observable<any> {
+        return this.http.get(`${this.urlFarmacia}/_search/medicamentos?nome=${nome}`);
     }
 
     listarListaMedicamentos(): Observable<any> {

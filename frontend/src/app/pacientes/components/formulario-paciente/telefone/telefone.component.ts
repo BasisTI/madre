@@ -12,10 +12,10 @@ export class TelefoneComponent {
     opcoesDeTipoDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
 
     telefone = this.fb.group({
-        ddd: ['', Validators.required],
-        tipo: ['', Validators.required],
-        numero: ['', Validators.required],
-        observacao: [''],
+        ddd: [null, Validators.required],
+        tipo: [null, Validators.required],
+        numero: [null, Validators.required],
+        observacao: [null],
     });
 
     constructor(private fb: FormBuilder) {}
@@ -23,6 +23,13 @@ export class TelefoneComponent {
     adicionarTelefoneALista() {
         if (this.telefone.valid) {
             this.telefones.push(this.telefone);
+            this.telefone = this.fb.group({
+                ddd: [null, Validators.required],
+                tipo: [null, Validators.required],
+                numero: [null, Validators.required],
+                observacao: [null],
+            });
         }
+        this.telefone.reset();
     }
 }
