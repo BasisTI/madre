@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Leito } from '@internacao/models/leito';
+
 import { BloqueioDeLeitoService } from '@internacao/services/bloqueio-de-leito.service';
-import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { ConfiguracaoParaCalendarioPrimeNG } from '@shared/p-calendar.config';
+import { Leito } from '@internacao/models/leito';
 
 @Component({
     selector: 'app-bloqueio-de-leito',
     templateUrl: './bloqueio-de-leito.component.html',
     styleUrls: ['./bloqueio-de-leito.component.scss'],
 })
-export class BloqueioDeLeitoComponent implements OnInit {
+export class BloqueioDeLeitoComponent implements OnInit, OnDestroy {
     public pCalendarConfig: ConfiguracaoParaCalendarioPrimeNG = {
         anosDisponiveis: '1900:2100',
         formatoDeData: 'dd/mm/yyyy',
@@ -26,9 +27,29 @@ export class BloqueioDeLeitoComponent implements OnInit {
         justificativa: [''],
     });
 
-    constructor(private fb: FormBuilder, private bloqueioDeLeitoService: BloqueioDeLeitoService) {}
+    constructor(
+        private fb: FormBuilder,
+        private bloqueioDeLeitoService: BloqueioDeLeitoService,
+        private breadcrumbService: BreadcrumbService,
+    ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.breadcrumbService.setItems([
+            {
+                label: 'Internação',
+            },
+            {
+                label: 'Leitos',
+            },
+            {
+                label: 'Bloquear Leito',
+            },
+        ]);
+    }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
+    }
 
     aoSelecionarLeito(leito: Leito): void {
         this.formGroup.controls.leito.setValue(leito);

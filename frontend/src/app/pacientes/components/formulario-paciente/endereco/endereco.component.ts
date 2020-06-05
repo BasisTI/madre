@@ -13,7 +13,7 @@ export class EnderecoComponent {
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
 
     endereco = this.fb.group({
-        municipioId: [null, Validators.required],
+        municipioId: [null],
         cep: [null, Validators.required],
         uf: [null],
         logradouro: [null, Validators.required],
@@ -29,6 +29,18 @@ export class EnderecoComponent {
     adicionarEnderecoALista() {
         if (this.endereco.valid) {
             this.enderecos.push(this.endereco);
+            this.endereco = this.fb.group({
+                municipioId: [null, Validators.required],
+                cep: [null, Validators.required],
+                uf: [null],
+                logradouro: [null, Validators.required],
+                numero: [null, Validators.required],
+                complemento: [null],
+                bairro: [null, Validators.required],
+                tipoDoEndereco: [null, Validators.required],
+                correspondencia: [null, Validators.required],
+            });
+            this.endereco.reset();
         }
     }
 }
