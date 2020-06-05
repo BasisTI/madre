@@ -126,8 +126,8 @@ public   Page<Medicamento> buscaTodosMedicamentos(Pageable pageable){
         .withPageable(pageable)
         .build();
 
-    Page<Medicamento> search = medicamentoSearchRepository.search(nativeSearchQueryBuilder);
-    return search;
+
+    return  medicamentoSearchRepository.search(nativeSearchQueryBuilder);
 }
 public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
     NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
