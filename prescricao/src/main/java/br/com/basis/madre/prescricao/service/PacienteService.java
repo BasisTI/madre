@@ -1,6 +1,5 @@
 package br.com.basis.madre.prescricao.service;
 
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,12 +13,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional
 public class PacienteService {
-    private final PacienteRepositorySearch pacienteSearchRepository;
-    
-    @Transactional(readOnly = true)
-    public Page<Paciente> obterTodosPacientes(Pageable pageable) {
-    	
-        return pacienteSearchRepository.findAll(pageable);
-    }
-    
+	private final PacienteRepositorySearch pacienteSearchRepository;
+
+	@Transactional(readOnly = true)
+	public Page<Paciente> obterTodosPacientes(Pageable pageable) {
+
+		return pacienteSearchRepository.findAll(pageable);
+	}
+
 }

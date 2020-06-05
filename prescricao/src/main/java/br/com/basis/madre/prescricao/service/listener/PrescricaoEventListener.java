@@ -11,11 +11,12 @@ import reactor.core.publisher.EmitterProcessor;
 @RequiredArgsConstructor
 @Component
 public class PrescricaoEventListener {
-	
+
 	private EmitterProcessor<EventoPrescricaoMedicamento> prescricaoEmitterProcessor;
-	
+
 	public void processarEventoPrescricao(EventoPrescricaoMedicamento eventoPrescricaoMedicamento) {
-		log.debug("Paciente criado, enviando mensagem para o broker: {}", eventoPrescricaoMedicamento.getPrescricaoMedicamento());
+		log.debug("Paciente criado, enviando mensagem para o broker: {}",
+				eventoPrescricaoMedicamento.getPrescricaoMedicamento());
 		prescricaoEmitterProcessor.onNext(eventoPrescricaoMedicamento);
 	}
 
