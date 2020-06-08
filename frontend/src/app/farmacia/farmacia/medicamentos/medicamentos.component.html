@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
         <div class="ui-g-12">
-            <h1>Prescrição Médica</h1>
+            <h1>Medicamentos</h1>
         </div>
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
@@ -12,7 +12,7 @@
                         pTooltip="Informe o Código."
                         [(ngModel)]="codigo"
                     />
-                    <label>Código</label>
+                    <label>Medicamento</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <basis-datatable type="memory" [value]="medicamento" sortField="brand">
-            <p-column header="Código" field="codigo"></p-column>
+            <!-- <p-column header="Código" field="codigo"></p-column> -->
             <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
             <p-column header="Concentração" field="concentracao"></p-column>
             <p-column header="Unidade" field="unidade">
@@ -70,7 +70,7 @@
                     >
                 </ng-template>
             </p-column>
-            <p-column header="Tipo" field="tipoMedicamento">
+            <p-column header="Apresentação" field="apresentacao">
                 <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                     <span>
                         {{

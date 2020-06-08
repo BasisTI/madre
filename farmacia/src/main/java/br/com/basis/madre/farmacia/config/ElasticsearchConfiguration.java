@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 import com.github.vanroy.springdata.jest.mapper.DefaultJestResultsMapper;
 import io.searchbox.client.JestClient;
+import org.hibernate.MappingException;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,8 @@ import org.springframework.data.elasticsearch.core.convert.ElasticsearchConverte
 import org.springframework.data.elasticsearch.core.mapping.SimpleElasticsearchMappingContext;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableConfigurationProperties(ElasticsearchProperties.class)
@@ -67,6 +70,27 @@ public class ElasticsearchConfiguration {
         public <T> T mapToObject(String source, Class<T> clazz) throws IOException {
             return objectMapper.readValue(source, clazz);
         }
+
+        @Override
+        public <T> T readObject(Map<String, Object> source, Class<T> targetType) {
+
+            try {
+                return mapToObject(mapToString(source), targetType);
+            } catch (IOException e) {
+                throw new MappingException(e.getMessage(), e);
+            }
+        }
+
+        @Override
+        public Map<String, Object> mapObject(Object source) {
+
+            try {
+                return objectMapper.readValue(mapToString(source), HashMap.class);
+            } catch (IOException e) {
+                throw new MappingException(e.getMessage(), e);
+            }
+        }
     }
+
 
 }

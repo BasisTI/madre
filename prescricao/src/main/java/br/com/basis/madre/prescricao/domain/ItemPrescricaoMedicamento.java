@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * A ItemPrescricaoMedicamento.
@@ -54,7 +55,6 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@Column(name = "id_medicamento", nullable = false)
 	private Long idMedicamento;
 
-	@NotNull
 	private Long idListaMedicamentos;
 
 	@NotNull
@@ -115,6 +115,7 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	private TipoAprazamento tipoAprazamento;
 
 	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;

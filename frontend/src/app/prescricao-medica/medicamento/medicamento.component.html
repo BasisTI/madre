@@ -226,27 +226,22 @@
                                     [disableEdit]="true" [disableDelete]="true" [verticalButtons]="false">
                                     <p-column header="Medicamentos" field="idMedicamento">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].nome }}</span>
+                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].nome }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Lista Medicamentos" field="idListaMedicamentos">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].nome }}</span>
-                                        </ng-template>
-                                    </p-column>
 
                                     <p-column header="Dose" field="dose"></p-column>
 
                                     <p-column header="Unidade" field="unidadeDoseId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined :rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Via" field="viasAdministracaoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
@@ -254,7 +249,7 @@
 
                                     <p-column header="Aprazamento" field="tipoAprazamentoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
