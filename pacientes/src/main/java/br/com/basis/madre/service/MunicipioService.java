@@ -114,7 +114,7 @@ public class MunicipioService {
     public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Long idUf, String nome, Pageable pageable) {
         UF uf = new UF();
         uf.setId(idUf);
-        return municipioRepository.findByNomeContainsAndUf(nome,uf,pageable);
+        return municipioRepository.findByNomeContainsIgnoreCaseAndUf(nome,uf,pageable);
     }
 
     public Page<MunicipioUF> findAllProjectedMunicipioUFByNacionalidade(Pageable pageable) {

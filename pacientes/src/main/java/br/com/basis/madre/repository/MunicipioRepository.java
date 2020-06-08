@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 public interface MunicipioRepository extends JpaRepository<Municipio, Long> {
   Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable);
 
-  Page<MunicipioUF> findByNomeContainsAndUf(String nome,UF uf,Pageable pageable);
+  Page<MunicipioUF> findByNomeContainsIgnoreCaseAndUf(String nome,UF uf,Pageable pageable);
 }
