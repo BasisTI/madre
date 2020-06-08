@@ -25,6 +25,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
@@ -117,6 +118,7 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne
+	@JsonIgnore
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;
 
