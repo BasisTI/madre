@@ -20,8 +20,6 @@ public class Paciente implements Serializable {
 
 	private Long id;
 
-    private String prontuario;
-
     @Field(type = FieldType.Text)
     private String nome;
 
