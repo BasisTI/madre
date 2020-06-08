@@ -1,9 +1,13 @@
+import { MunicipioUF } from './../../../models/dropdowns/types/municipio-uf';
+import { map, switchMap } from 'node_modules/rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { UF } from 'src/app/pacientes/models/dropdowns/types/uf';
 import { UfService } from './../documentos/uf.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MunicipioService } from './municipio.service';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../../models/dropdowns/opcoes-de-tipo-de-endereco';
+import { empty } from 'rxjs';
 
 @Component({
     selector: 'app-endereco',
@@ -15,6 +19,7 @@ export class EnderecoComponent implements OnInit {
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
 
     ufs: UF[] = [];
+    municipios: MunicipioUF[] = [];
 
     endereco = this.fb.group({
         municipioId: [null],
@@ -39,7 +44,21 @@ export class EnderecoComponent implements OnInit {
     }
 
     aoSelecionarUF() {
-        console.log('aqui');
+        this.endereco.controls.municipioId.setValue(null);
+        this.municipioService
+            .getListaDeMunicipiosUF(this.endereco.value.uf.id, '')
+            .subscribe((res) => (this.municipios = res));
+        console.log('teste');
+    }
+
+    searchUnidade(event) {
+        this.municipioService
+            .getListaDeMunicipiosUF(this.endereco.value.uf.id, event.query)
+            .subscribe((res) => {
+                this.municipios = res;
+            });
+
+        console.log(event);
     }
 
     adicionarEnderecoALista() {

@@ -3,14 +3,15 @@
         <div class="ui-g-12">
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <div
-                        [disabled]="formGroup.invalid"
-                        nAutoComplete
-                        [service]="municipioService"
+                    <p-autoComplete
+                        (completeMethod)="searchUnidade($event)"
+                        [disabled]="!endereco.value.uf"
                         field="nome"
+                        [suggestions]="municipios"
+                        [dropdown]="true"
                         formControlName="municipioId"
-                        label="Município"
-                    ></div>
+                    ></p-autoComplete>
+                    <label>Municípios</label>
                 </span>
             </div>
             <div class="ui-g-5 ui-sm-12">
@@ -32,9 +33,9 @@
                         (onChange)="aoSelecionarUF()"
                         [options]="ufs"
                         optionLabel="sigla"
-                        [formControlName]="uf"
+                        formControlName="uf"
                         [filter]="true"
-                        placeholder="Selecione uma UF"
+                        placeholder="UF"
                     ></p-dropdown>
                 </span>
             </div>
