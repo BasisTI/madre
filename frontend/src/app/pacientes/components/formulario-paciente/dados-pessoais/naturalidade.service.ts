@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class NaturalidadeService extends CrudServiceNuvem<number, Naturalidade> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/municipios/_uf?sort=nome', httpClient);
+        super('pacientes/api/municipios/_uf_nacionalidade?sort=nome', httpClient);
     }
 
     getListaDeNaturalidades(): Observable<Naturalidade[]> {
-        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/_uf');
+        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/_uf_nacionalidade');
     }
 }

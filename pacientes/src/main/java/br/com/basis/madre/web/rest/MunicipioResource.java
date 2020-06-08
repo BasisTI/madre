@@ -60,6 +60,13 @@ public class MunicipioResource {
         return ResponseEntity.ok(page.getContent());
     }
 
+    @GetMapping("/municipios/_uf_nacionalidade")
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNacionalidade(Pageable pageable) {
+        Page<MunicipioUF> page = municipioService
+            .findAllProjectedMunicipioUFByNacionalidade(pageable);
+        return ResponseEntity.ok(page.getContent());
+    }
+
     /**
      * {@code POST  /municipios} : Create a new municipio.
      *

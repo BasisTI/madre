@@ -116,4 +116,9 @@ public class MunicipioService {
         uf.setId(idUf);
         return municipioRepository.findByNomeContainsAndUf(nome,uf,pageable);
     }
+
+    public Page<MunicipioUF> findAllProjectedMunicipioUFByNacionalidade(Pageable pageable) {
+        return municipioRepository.findAllProjectedMunicipioUFBy(pageable);
+    }
+
 }

@@ -48,7 +48,6 @@ export class EnderecoComponent implements OnInit {
         this.municipioService
             .getListaDeMunicipiosUF(this.endereco.value.uf.id, '')
             .subscribe((res) => (this.municipios = res));
-        console.log('teste');
     }
 
     searchUnidade(event) {
@@ -57,8 +56,6 @@ export class EnderecoComponent implements OnInit {
             .subscribe((res) => {
                 this.municipios = res;
             });
-
-        console.log(event);
     }
 
     adicionarEnderecoALista() {
