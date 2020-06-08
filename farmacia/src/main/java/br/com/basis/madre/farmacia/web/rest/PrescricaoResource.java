@@ -2,7 +2,6 @@ package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.repository.search.PrescricaoSerchRepository;
-import br.com.basis.madre.farmacia.service.mapper.Prescricaomapper;
 import br.com.basis.madre.farmacia.service.projection.PrescricaoLocal;
 import com.github.javafaker.Faker;
 import joptsimple.internal.Strings;
@@ -11,7 +10,6 @@ import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -37,7 +35,7 @@ public class PrescricaoResource {
 
     private Faker faker = new Faker(new Locale("pt-BR"));
 
-    private Prescricaomapper prescricaomapper;
+
 
     @GetMapping("/prescricao")
     public Page<Prescricao> listarFarmacia(String nome, String dataInicio, String local, Pageable pageable) throws ParseException {
@@ -94,15 +92,15 @@ public class PrescricaoResource {
 
     @GetMapping("/fillData")
     public String fillDatabase() {
-
-        for (int i = 0; i <= 50; i++) {
-            Prescricao prescricao = new Prescricao(faker.medical().medicineName(), faker.date().birthday(2, 20).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                faker.date().past(7, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), faker.medical().hospitalName());
-            prescricao.setId(faker.number().randomNumber());
-
-            prescricaoRepositorySearch.save(prescricao);
-        }
-
+//
+//        for (int i = 0; i <= 50; i++) {
+//            Prescricao prescricao = new Prescricao(faker.medical().medicineName(), faker.date().birthday(2, 20).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                faker.date().past(7, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), faker.medical().hospitalName());
+//            prescricao.setId(faker.number().randomNumber());
+//
+//            prescricaoRepositorySearch.save(prescricao);
+//        }
+        prescricaoRepositorySearch.deleteAll();
         return "OK";
 
     }

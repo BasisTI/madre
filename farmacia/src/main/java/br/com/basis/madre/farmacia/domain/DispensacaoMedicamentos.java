@@ -1,6 +1,5 @@
 package br.com.basis.madre.farmacia.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import liquibase.change.DatabaseChange;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
