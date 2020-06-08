@@ -3,6 +3,7 @@ package br.com.basis.madre.service;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import br.com.basis.madre.domain.Municipio;
+import br.com.basis.madre.domain.UF;
 import br.com.basis.madre.repository.MunicipioRepository;
 import br.com.basis.madre.repository.search.MunicipioSearchRepository;
 import br.com.basis.madre.service.dto.MunicipioDTO;
@@ -110,7 +111,9 @@ public class MunicipioService {
     /**
      * TODO: Write documentation
      */
-    public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable) {
-        return municipioRepository.findAllProjectedMunicipioUFBy(pageable);
+    public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Long idUf, String nome, Pageable pageable) {
+        UF uf = new UF();
+        uf.setId(idUf);
+        return municipioRepository.findByNomeContainsAndUf(nome,uf,pageable);
     }
 }
