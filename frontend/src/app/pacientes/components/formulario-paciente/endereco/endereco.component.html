@@ -4,6 +4,7 @@
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
                     <div
+                        [disabled]="formGroup.invalid"
                         nAutoComplete
                         [service]="municipioService"
                         field="nome"
@@ -27,8 +28,14 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText [disabled]="true" />
-                    <label>UF</label>
+                    <p-dropdown
+                        (onChange)="aoSelecionarUF()"
+                        [options]="ufs"
+                        optionLabel="sigla"
+                        [formControlName]="uf"
+                        [filter]="true"
+                        placeholder="Selecione uma UF"
+                    ></p-dropdown>
                 </span>
             </div>
             <div class="ui-g-4 ui-sm-12">
