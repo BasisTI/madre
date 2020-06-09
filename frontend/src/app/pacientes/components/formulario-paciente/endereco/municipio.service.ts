@@ -22,7 +22,7 @@ export class MunicipioService extends CrudServiceNuvem<number, Municipio> {
         params = params.append('idUf', idUf.toString());
         params = params.append('nome', nome);
         params = params.set('size', '50');
-        return this.httpClient.get<MunicipioUF[]>('pacientes/api/municipios/_uf', {
+        return this.httpClient.get<MunicipioUF[]>('pacientes/api/municipios/filtragem', {
             params: params,
         });
     }
