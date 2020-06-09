@@ -23,5 +23,7 @@ export class TriagemModel {
         public removidoDeAmbulancia?: boolean,
 
         public observacao?: string,
+
+        public pacienteId?: number,
     ) {}
 }
