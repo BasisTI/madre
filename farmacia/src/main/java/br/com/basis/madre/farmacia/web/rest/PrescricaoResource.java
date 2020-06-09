@@ -92,14 +92,7 @@ public class PrescricaoResource {
 
     @GetMapping("/fillData")
     public String fillDatabase() {
-//
-//        for (int i = 0; i <= 50; i++) {
-//            Prescricao prescricao = new Prescricao(faker.medical().medicineName(), faker.date().birthday(2, 20).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-//                faker.date().past(7, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), faker.medical().hospitalName());
-//            prescricao.setId(faker.number().randomNumber());
-//
-//            prescricaoRepositorySearch.save(prescricao);
-//        }
+
         prescricaoRepositorySearch.deleteAll();
         return "OK";
 
