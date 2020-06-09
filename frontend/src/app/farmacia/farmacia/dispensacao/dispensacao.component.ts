@@ -29,15 +29,6 @@ export class DispensacaoComponent implements OnInit {
 
     results: Unidade[];
 
-    // search(event: { originalEvent: KeyboardEvent; query: string }) {
-    //     this.service.getResult(event.query).subscribe((data) => {
-    //         this.results = data.content;
-    //     });
-
-    //     console.log(this.results);
-    // }
-    // `${this.data.getFullYear()}-${this.data.}-${this.data.getDay()}`
-
     formatarData(data: Date): string {
         const normalize = (x: number): string => (x < 10 ? `0${x}` : `${x}`);
 

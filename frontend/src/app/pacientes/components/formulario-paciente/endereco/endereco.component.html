@@ -3,13 +3,14 @@
         <div class="ui-g-12">
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <div
-                        nAutoComplete
-                        [service]="municipioService"
-                        field="nome"
-                        formControlName="municipioId"
-                        label="Município"
-                    ></div>
+                    <p-dropdown
+                        (onChange)="aoSelecionarUF()"
+                        [options]="ufs"
+                        optionLabel="sigla"
+                        formControlName="uf"
+                        [filter]="true"
+                        placeholder="UF"
+                    ></p-dropdown>
                 </span>
             </div>
             <div class="ui-g-5 ui-sm-12">
@@ -27,8 +28,15 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText [disabled]="true" />
-                    <label>UF</label>
+                    <p-autoComplete
+                        (completeMethod)="searchUnidade($event)"
+                        [disabled]="!endereco.value.uf"
+                        field="nome"
+                        [suggestions]="municipios"
+                        [dropdown]="true"
+                        formControlName="municipioId"
+                    ></p-autoComplete>
+                    <label>Municípios</label>
                 </span>
             </div>
             <div class="ui-g-4 ui-sm-12">
@@ -130,7 +138,11 @@
                 </ng-template>
             </p-column>
             <p-column header="CEP" field="cep"></p-column>
-            <p-column header="UF" field="municipio.ufId"></p-column>
+            <p-column header="UF" field="uf">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData[col.field].unidadeFederativa }}</span>
+                </ng-template>
+            </p-column>
             <p-column header="Bairro" field="bairro"></p-column>
             <p-column header="Tipo" field="tipoDoEndereco"></p-column>
             <p-column header="Correspondência" field="correspondencia"></p-column>
