@@ -32,6 +32,17 @@
                             pButton
                             type="button"
                             label="Limpar"
+                            icon="ui-icon-search"
+                            [disabled]="!filtroNomeDoPaciente"
+                            (click)="limpar(datatable)"
+                            bTooltip="Limpar campo de pesquisa."
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
                             icon="ui-icon-minus"
                             [disabled]="!filtroNomeDoPaciente"
                             (click)="limpar(datatable)"
