@@ -24,7 +24,7 @@ public class PacienteService {
 
     @Transactional(readOnly = true)
     public Page<Paciente> obterTodosPacientes(Pageable pageable, String query) {
-        if (Strings.isNotBlank(query)) {
+        if (Strings.isNotBlank(query) || Strings.isNotEmpty(query)) {
             NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
                 .withQuery(QueryBuilders.matchQuery("nome", query).operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(3))
                 .withPageable(pageable)
