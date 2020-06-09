@@ -3,7 +3,7 @@
     <div class="ui-g-12">
         <form (ngSubmit)="prescrever()">
             <p-accordion>
-                <p-accordionTab header="Medicamento" [selected]="true">
+                <p-accordionTab header="Dados Gerais" [selected]="true">
                     <form [formGroup]="prescricaoMedicamento">
                         <div class="ui-g">
                             <div class="ui-g-12">
@@ -28,7 +28,7 @@
                     </form>
                 </p-accordionTab>
 
-                <p-accordionTab header="Itens Medicamento">
+                <p-accordionTab [selected]="true" header="Itens Prescrição Medicamento">
                     <form [formGroup]="itemPrescricaoMedicamento" (ngSubmit)="incluirItem()">
                         <div class="ui-g">
                             <div class="ui-g-12">
