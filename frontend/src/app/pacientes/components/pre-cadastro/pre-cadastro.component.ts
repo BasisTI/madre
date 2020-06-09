@@ -1,8 +1,7 @@
-import { routes } from './../../../app.routes';
+import { PreCadastroModel } from '../../models/pre-cadastro-model';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
-import { PreCadastroModel } from '../../models/pre-cadastro-model';
 import { PreCadastroService } from './pre-cadastro.service';
 import { Router } from '@angular/router';
 
@@ -36,7 +35,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.breadcrumbService.setItems([
             { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'PreCadastroPaciente', routerLink: 'pacientes/pre-cadastro-paciente' },
+            { label: 'Pré-Cadastro de Paciente', routerLink: 'pacientes/pre-cadastro-paciente' },
         ]);
     }
 
@@ -48,7 +47,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
             nomeDaMae: pre.nomeDaMae,
             dataDeNascimento: pre.dataDeNascimento,
             cartaoSus: pre.cartaoSus,
-            status: pre.status,
+            ativo: pre.ativo,
         };
         this.preCadastroService.preCadastrarPaciente(preCadastroPaciente).subscribe();
         console.log(preCadastroPaciente);

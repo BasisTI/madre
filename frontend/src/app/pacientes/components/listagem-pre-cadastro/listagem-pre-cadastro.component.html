@@ -1,0 +1,52 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Listagem de Pré-Cadastro</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input
+                            type="text"
+                            pInputText
+                            class="ui-inputtext"
+                            name="filtro"
+                            [(ngModel)]="nome"
+                        />
+                        <label>Nome paciente</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-4"></div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                            bTooltip="Pesquisar paciente por nome."
+                            (click)="pesquisar()"
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable
+                    #datatable
+                    type="server"
+                    [url]="searchUrl"
+                    [rows]="10"
+                    [value]="preCadastros"
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                >
+                    <p-column header="Nome" field="nome"></p-column>
+                    <p-column header="Nome Social" field="nomeSocial"></p-column>
+                    <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
+                    <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
+                    <p-column header="Cartão SUS" field="cartaoSus"></p-column>
+                    <p-column header="Ativo" field="ativo"></p-column>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>

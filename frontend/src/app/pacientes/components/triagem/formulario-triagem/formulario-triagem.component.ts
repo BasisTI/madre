@@ -78,7 +78,9 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             observacao: tri.observacao,
         };
 
-        this.triagemService.cadastrarTriagem(triagem).subscribe();
+        this.triagemService.cadastrarTriagem(triagem).subscribe((e) => {
+            this.formTriagem.reset();
+        });
         console.log(triagem);
     }
 

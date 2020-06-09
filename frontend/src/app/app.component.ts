@@ -94,9 +94,20 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 icon: 'local_hospital',
                 items: [
                     {
-                        label: 'Pré Cadastro',
-                        icon: 'add',
-                        routerLink: ['pacientes/pre-cadastro'],
+                        label: 'Pré-Cadastro',
+                        icon: 'view_headline',
+                        items: [
+                            {
+                                label: 'Listar Pré-Cadastro',
+                                icon: 'add',
+                                routerLink: ['pacientes/lista-pre-cadastro'],
+                            },
+                            {
+                                label: 'Incluir Pré-Cadastro',
+                                icon: 'add',
+                                routerLink: ['pacientes/pre-cadastro'],
+                            },
+                        ],
                     },
                     {
                         label: 'Triagem',

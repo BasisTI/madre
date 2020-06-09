@@ -12,6 +12,6 @@ export class PreCadastroModel {
 
         public cartaoSus?: Number,
 
-        public status?: boolean,
+        public ativo?: boolean,
     ) {}
 }
