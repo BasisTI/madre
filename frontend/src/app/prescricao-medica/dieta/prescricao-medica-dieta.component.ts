@@ -156,6 +156,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         });
 
         this.prescricaoMedicaDietaService.adicionar(prescricaoDieta).subscribe();
+        this.itensDieta = [];
     }
 
     ngOnDestroy() {
