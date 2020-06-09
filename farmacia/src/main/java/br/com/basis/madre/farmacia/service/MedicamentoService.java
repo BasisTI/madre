@@ -1,7 +1,6 @@
 package br.com.basis.madre.farmacia.service;
 
 import br.com.basis.madre.farmacia.domain.Medicamento;
-import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.repository.MedicamentoRepository;
 import br.com.basis.madre.farmacia.repository.search.MedicamentoSearchRepository;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
@@ -14,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -127,7 +126,7 @@ public   Page<Medicamento> buscaTodosMedicamentos(Pageable pageable){
         .build();
 
 
-    return  medicamentoSearchRepository.search(nativeSearchQueryBuilder);
+    return medicamentoSearchRepository.search(nativeSearchQueryBuilder);
 }
 public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
     NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
@@ -150,7 +149,7 @@ public  Page<Medicamento> buscaPorTexto(String nome, String descricao, Pageable 
         ).build())
         .withPageable(pageable)
         .build();
-//
+
     Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
         nativeSearchQueryFuzzy);
 
