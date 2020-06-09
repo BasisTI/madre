@@ -7,7 +7,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { api } from '@internacao/api';
-import { query } from '@angular/animations';
 
 @Component({
     selector: 'app-pacientes-lista',
@@ -32,11 +31,7 @@ export class PacientesListaComponent implements OnInit, OnDestroy {
 
     limpar(datatable: DatatableComponent): void {
         this.filtroNomeDoPaciente = null;
-        datatable.refresh(query);
-    }
-
-    pesquisar(): void {
-        console.log('filtro: ', this.filtroNomeDoPaciente);
+        datatable.reset();
     }
 
     onButtonClick(evento: DatatableClickEvent): void {
