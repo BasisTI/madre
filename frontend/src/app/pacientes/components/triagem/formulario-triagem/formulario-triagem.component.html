@@ -6,13 +6,13 @@
         <div class="ui-g-12">
             <div class="ui-g-12 ui-sm-12">
                 <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pTooltip="Informe nome do paciente"
-                        pInputText
+                    <p-autoComplete
+                        field="nome"
+                        [suggestions]="listaPacientesTriagem"
+                        (completeMethod)="buscaPacientes($event)"
+                        [dropdown]="true"
                         formControlName="paciente"
-                    />
-
+                    ></p-autoComplete>
                     <label>Nome do Paciente</label>
                 </span>
             </div>
@@ -109,6 +109,23 @@
                     <input type="text" pInputText formControlName="descricaoQueixa" />
                     <label>Descrição/Queixa</label>
                 </span>
+
+                <p-message
+                    severity="error"
+                    text="Campo requerido"
+                    *ngIf="
+                        formTriagem.controls['descricaoQueixa'].errors?.required &&
+                        formTriagem.controls['descricaoQueixa'].touched
+                    "
+                ></p-message>
+                <p-message
+                    severity="error"
+                    text="Campo tem que possuir no mínimos 3"
+                    *ngIf="
+                        formTriagem.controls['descricaoQueixa'].errors?.minlength &&
+                        formTriagem.controls['descricaoQueixa'].touched
+                    "
+                ></p-message>
             </div>
         </div>
 
@@ -186,6 +203,7 @@
                             pButton
                             type="submit"
                             label="Salvar"
+                            [disabled]="!formTriagem.valid"
                             pTooltip="Salvar registro de triagem."
                         ></button>
                     </div>

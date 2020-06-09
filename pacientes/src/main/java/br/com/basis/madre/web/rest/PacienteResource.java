@@ -59,8 +59,8 @@ public class PacienteResource {
      * TODO: Write documentation
      */
     @GetMapping("/pacientes/_resumo")
-    public ResponseEntity<Page<PacienteResumo>> findAllProjectedPacienteResumoBy(Pageable pageable) {
-        return ResponseEntity.ok(pacienteService.findAllProjectedPacienteResumoBy(pageable));
+    public ResponseEntity<Page<PacienteResumo>> findAllProjectedPacienteResumoBy(@RequestParam(required = false,defaultValue = "") String nome,Pageable pageable) {
+        return ResponseEntity.ok(pacienteService.findAllProjectedPacienteResumoBy(nome,pageable));
     }
 
     /*lista de paciente com elasticsearch*/

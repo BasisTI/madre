@@ -62,8 +62,8 @@ public class PacienteService {
     /**
      * TODO: Write documentation
      */
-    public Page<PacienteResumo> findAllProjectedPacienteResumoBy(Pageable pageable) {
-        return pacienteRepository.findAllProjectedPacienteResumoBy(pageable);
+    public Page<PacienteResumo> findAllProjectedPacienteResumoBy(String nome,Pageable pageable) {
+        return pacienteRepository.findAllProjectedPacienteResumoByNomeContainingIgnoreCase(nome, pageable);
     }
 
     /*lista de pacientes com elasticsearch*/
