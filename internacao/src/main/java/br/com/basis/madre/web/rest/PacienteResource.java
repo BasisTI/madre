@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,10 +24,10 @@ import java.util.List;
 public class PacienteResource {
     private final PacienteService pacienteService;
 
-    @GetMapping("/pacientes")
-    public ResponseEntity<List<Paciente>> obterTodosPacientes(Pageable pageable) {
+    @GetMapping("/_search/pacientes")
+    public ResponseEntity<List<Paciente>> obterTodosPacientes(Pageable pageable, @RequestParam(name = "query", required = false) String query) {
         log.debug("Request REST para obter uma página de pacientes.");
-        Page<Paciente> page = pacienteService.obterTodosPacientes(pageable);
+        Page<Paciente> page = pacienteService.obterTodosPacientes(pageable, query);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
