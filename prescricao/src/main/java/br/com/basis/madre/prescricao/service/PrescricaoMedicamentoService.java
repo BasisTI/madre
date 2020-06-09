@@ -1,10 +1,13 @@
 package br.com.basis.madre.prescricao.service;
 
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
+import br.com.basis.madre.prescricao.domain.Paciente;
 import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
 import br.com.basis.madre.prescricao.domain.enumeration.TipoEvento;
+import br.com.basis.madre.prescricao.domain.evento.EventoPaciente;
 import br.com.basis.madre.prescricao.domain.evento.EventoPrescricaoMedicamento;
 import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
+import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
 import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
@@ -19,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -39,19 +44,23 @@ public class PrescricaoMedicamentoService {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    private final PacienteRepositorySearch pacienteRepositorySearch;
+
     private final AuthenticationPrincipalService authenticationPrincipalService;
 
     public PrescricaoMedicamentoService(PrescricaoMedicamentoRepository prescricaoMedicamentoRepository,
             PrescricaoMedicamentoMapper prescricaoMedicamentoMapper,
             PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository,
             ApplicationEventPublisher applicationEventPublisher,
-            AuthenticationPrincipalService authenticationPrincipalService) {
+            AuthenticationPrincipalService authenticationPrincipalService,
+            PacienteRepositorySearch pacienteRepositorySearch) {
 
         this.prescricaoMedicamentoRepository = prescricaoMedicamentoRepository;
         this.prescricaoMedicamentoMapper = prescricaoMedicamentoMapper;
         this.prescricaoMedicamentoSearchRepository = prescricaoMedicamentoSearchRepository;
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
+        this.pacienteRepositorySearch = pacienteRepositorySearch;
     }
 
     /**
@@ -63,6 +72,9 @@ public class PrescricaoMedicamentoService {
     public PrescricaoMedicamentoDTO save(PrescricaoMedicamentoDTO prescricaoMedicamentoDTO) {
         log.debug("Request to save PrescricaoMedicamento : {}", prescricaoMedicamentoDTO);
         PrescricaoMedicamento prescricaoMedicamento = prescricaoMedicamentoMapper.toEntity(prescricaoMedicamentoDTO);
+        Paciente pacienteId = pacienteRepositorySearch.findById(prescricaoMedicamento.getIdPaciente())
+                .orElseThrow(EntityNotFoundException::new);
+      
         for (ItemPrescricaoMedicamento item : prescricaoMedicamento.getItemPrescricaoMedicamentos()) {
             item.setPrescricaoMedicamento(prescricaoMedicamento);
 
@@ -74,7 +86,8 @@ public class PrescricaoMedicamentoService {
 
         applicationEventPublisher.publishEvent(EventoPrescricaoMedicamento.builder()
                 .login(authenticationPrincipalService.getLoginAtivo()).prescricaoMedicamento(prescricaoMedicamento)
-                .dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault())).tipoDoEvento(TipoEvento.CRIACAO).build());
+                .paciente(pacienteId).dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
+                .tipoDoEvento(TipoEvento.CRIACAO).build());
         return result;
     }
 
