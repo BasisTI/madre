@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
-    Page<PacienteResumo> findAllProjectedPacienteResumoBy(Pageable pageable);
+    Page<PacienteResumo> findAllProjectedPacienteResumoByNomeContainingIgnoreCase(String nome,Pageable pageable);
 }

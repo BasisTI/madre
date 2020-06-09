@@ -2,17 +2,6 @@
     <p-fieldset legend="Internar Paciente">
         <form [formGroup]="formGroup">
             <div class="ui-g-12">
-                <!-- [Prontuário & Nome](Preenchido pelo sistema) read-only -->
-                <div class="ui-g-2">
-                    <label>Prontuário</label>
-                    <input type="text" pInputText formControlName="prontuario" [disabled]="true" />
-                </div>
-                <div class="ui-g-3">
-                    <label>Nome do Paciente</label>
-                    <input type="text" pInputText [disabled]="true" />
-                </div>
-            </div>
-            <div class="ui-g-12">
                 <!-- Leito + Quarto + Unidade Funcional -->
                 <div class="ui-g-2">
                     <app-leito
@@ -23,14 +12,6 @@
                         label="Leito"
                     >
                     </app-leito>
-                </div>
-                <div class="ui-g-4">
-                    <label>Quarto</label>
-                    <input type="text" pInputText [disabled]="true" />
-                </div>
-                <div class="ui-g-2">
-                    <label>Unidade Funcional</label>
-                    <input type="text" pInputText [disabled]="true" />
                 </div>
             </div>
             <!-- Especialidade -->

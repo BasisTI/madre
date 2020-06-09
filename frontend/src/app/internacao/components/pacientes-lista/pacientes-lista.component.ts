@@ -1,4 +1,8 @@
-import { BreadcrumbService, DatatableClickEvent } from '@nuvem/primeng-components';
+import {
+    BreadcrumbService,
+    DatatableClickEvent,
+    DatatableComponent,
+} from '@nuvem/primeng-components';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -9,7 +13,8 @@ import { api } from '@internacao/api';
     templateUrl: './pacientes-lista.component.html',
 })
 export class PacientesListaComponent implements OnInit, OnDestroy {
-    public readonly uri = `${api}/pacientes`;
+    public readonly uri = `${api}/_search/pacientes`;
+    public filtroNomeDoPaciente: string;
 
     constructor(private router: Router, private breadcrumbService: BreadcrumbService) {}
 
@@ -22,6 +27,11 @@ export class PacientesListaComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
+    }
+
+    limpar(datatable: DatatableComponent): void {
+        this.filtroNomeDoPaciente = null;
+        datatable.reset();
     }
 
     onButtonClick(evento: DatatableClickEvent): void {

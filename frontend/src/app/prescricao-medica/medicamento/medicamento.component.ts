@@ -95,17 +95,13 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
 
-                this.paciente = paciente.nome;
-                this.prescricaoMedicamento.patchValue({ idPaciente: paciente.id });
-                console.log(paciente);
+                this.prescricaoMedicamento.patchValue({ idPaciente : paciente.id });
 
             });
     }
 
     carregarMedicamentos(evento?) {
-    
-
-        return this.medicamentoService.listarMedicamentos((evento?.query)?evento.query:'')
+        return this.medicamentoService.listarMedicamentos((evento?.query) ? evento.query : '')
             .subscribe(medicamentos => {
                 this.medicamentos = medicamentos.content;
 
@@ -115,12 +111,10 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
     carregarListaMedicamentos() {
         return this.medicamentoService.listarListaMedicamentos()
             .subscribe(listaMedicamentos => {
-                console.log(listaMedicamentos.content);
-                
                 this.listaMedicamentos = listaMedicamentos.content.map(listaMedicamento => {
-                    
+
                     return { label: listaMedicamento.nome, value: listaMedicamento };
-                    
+
                 });
 
             });
@@ -206,10 +200,14 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         });
 
 
+        if (this.itensPrescricaoMedicamento.length == 0) {
+            this.prescricaoMedicamento.invalid
+        }
+
         this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe();
-        this.itensPrescricaoMedicamento = [];
-        console.log(prescricaoMedicamento);
-        
+            this.itensPrescricaoMedicamento = [];
+
+
     }
 
 
