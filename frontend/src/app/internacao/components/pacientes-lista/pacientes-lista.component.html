@@ -5,19 +5,37 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" />
+                        <input
+                            type="text"
+                            pInputText
+                            class="ui-inputtext"
+                            [(ngModel)]="filtroNomeDoPaciente"
+                        />
                         <label>Nome paciente</label>
                     </span>
                 </div>
                 <div class="ui-g-12">
-                    <div class="ui-g-2"></div>
+                    <div class="ui-g-1"></div>
                     <div class="ui-g-3">
                         <button
                             pButton
                             type="button"
                             label="Pesquisar"
                             icon="ui-icon-search"
+                            [disabled]="!filtroNomeDoPaciente"
+                            (click)="datatable.refresh(filtroNomeDoPaciente)"
                             bTooltip="Pesquisar paciente por nome."
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            icon="ui-icon-minus"
+                            [disabled]="!filtroNomeDoPaciente"
+                            (click)="limpar(datatable)"
+                            bTooltip="Limpar campo de pesquisa."
                         ></button>
                     </div>
                     <div class="ui-g-3">
