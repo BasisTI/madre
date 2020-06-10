@@ -1,4 +1,4 @@
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
@@ -15,6 +15,8 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
 
     pacientes: [];
 
+    nome: string;
+
     searchUrl = 'prescricao/api/pacientes';
 
     constructor(
@@ -26,15 +28,22 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     ) { }
 
 
-    ngOnInit(
-    ) {
+    ngOnInit(): void {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);
 
-        this.listar();
+        this.pesquisar;
+        this.listar;
     }
 
     listar() {
         this.prescricaoMedicaService.listarPacientes();
+    }
+
+    pesquisar() {
+        this.prescricaoMedicaService
+            .pesquisaPaciente(this.nome)
+            .subscribe((dados) => (this.pacientes = dados.content));
+        console.log(this.nome);
     }
 
     btnClick(event: DatatableClickEvent) {
