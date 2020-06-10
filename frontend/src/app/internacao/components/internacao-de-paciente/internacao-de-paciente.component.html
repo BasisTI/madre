@@ -2,6 +2,9 @@
     <p-fieldset legend="Internar Paciente">
         <form [formGroup]="formGroup">
             <div class="ui-g-12">
+                <app-card-paciente [identificador]="solicitacao.pacienteId"></app-card-paciente>
+            </div>
+            <div class="ui-g-12">
                 <!-- Leito + Quarto + Unidade Funcional -->
                 <div class="ui-g-2">
                     <app-leito
@@ -52,7 +55,7 @@
                         [parentFormGroup]="formGroup"
                         [required]="true"
                         name="crm"
-                        label="Conselho Profissional"
+                        label="CRM"
                     >
                     </app-crm>
                 </div>
