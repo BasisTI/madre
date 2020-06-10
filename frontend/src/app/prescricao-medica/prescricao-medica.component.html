@@ -5,7 +5,7 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield">
-                        <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="nome" #query />
+                        <input type="text" pInputText class="ui-inputtext" name="nome" [(ngModel)]="nome" #parametro />
                         <label>Nome paciente</label>
                     </span>
                 </div>
@@ -17,8 +17,8 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
 
-                <basis-datatable #datatable type="server" [url]="searchUrl" [rows]="10" [value]="pacientes"
-                    [disableView]="true" [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)">
+                <basis-datatable #datatable type="server" [url]="searchUrl" [rows]="10" [disableView]="true"
+                    [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)">
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Dt. Nascimento" field="dataDeNascimento">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
