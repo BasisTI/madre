@@ -96,17 +96,17 @@
                 <div class="ui-g-3">
                     <button
                         pButton
-                        type="button"
+                        type="reset"
                         label="Cancelar"
                         pTooltip="Cancelar registro de Pré-Cadastro."
                     ></button>
                 </div>
-
                 <div class="ui-g-3">
                     <button
                         pButton
                         type="submit"
                         label="Salvar"
+                        [disabled]="preCadastro.invalid"
                         pTooltip="Salvar registro de Pré-Cadastro."
                     ></button>
                 </div>

@@ -1,5 +1,5 @@
 import { PreCadastroModel } from '../../models/pre-cadastro-model';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { PreCadastroService } from './pre-cadastro.service';
@@ -28,7 +28,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
         nomeSocial: ['', Validators.required],
         nomeDaMae: ['', Validators.required],
         dataDeNascimento: ['', Validators.required],
-        cartaoSus: [''],
+        cartaoSus: ['', [this.validaSus]],
         status: [''],
     });
 
@@ -52,6 +52,27 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
         this.preCadastroService.preCadastrarPaciente(preCadastroPaciente).subscribe();
         console.log(preCadastroPaciente);
     }
+
+    validaSus(control: AbstractControl) {
+        let cns = control.value;
+        cns = cns.replace(/\D/g, '');
+
+        if (cns.length !== 15) {
+            return { customCns: true };
+        }
+
+        const soma =
+            cns
+                .split('')
+                .reduce(
+                    (somaParcial: number, atual: string, posicao: number) =>
+                        somaParcial + parseInt(atual, 10) * (15 - posicao),
+                    0,
+                ) % 11;
+
+        return soma % 11 === 0 ? null : { customCns: true };
+    }
+
     ngOnDestroy() {
         this.breadcrumbService.reset();
     }
