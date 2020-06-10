@@ -8,19 +8,19 @@ export const OPCOES_DE_TIPO_DE_TELEFONE: OpcaoCombo[] = [
         value: 'CELULAR',
     },
     {
-        label: 'Residencial',
-        value: 'RESIDENCIAL',
-    },
-    {
-        label: 'Recado',
-        value: 'RECADO',
-    },
-    {
         label: 'Comercial',
         value: 'COMERCIAL',
     },
     {
         label: 'Emergencial',
         value: 'EMERGENCIAL',
+    },
+    {
+        label: 'Recado',
+        value: 'RECADO',
+    },
+    {
+        label: 'Residencial',
+        value: 'RESIDENCIAL',
     },
 ];
