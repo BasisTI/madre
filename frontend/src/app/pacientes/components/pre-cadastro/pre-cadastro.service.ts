@@ -25,14 +25,11 @@ export class PreCadastroService extends CrudServiceNuvem<number, PreCadastroMode
         );
     }
 
-    buscarPreCadastroPaciente(nome: string): Observable<Pageable<PreCadastroModel>> {
+    buscarPreCadastroPaciente(nome: string): Observable<PreCadastroModel[]> {
         const params = new HttpParams().set('nome', nome);
 
-        return this.httpService.get<Pageable<PreCadastroModel>>(
-            `${this.apiUrl}/lista-de-pacientes-elastic`,
-            {
-                params,
-            },
-        );
+        return this.httpService.get<PreCadastroModel[]>(`${this.apiUrl}/pre-cadastro-pacientes`, {
+            params,
+        });
     }
 }

@@ -33,7 +33,7 @@
                     #datatable
                     type="server"
                     [url]="searchUrl"
-                    [rows]="10"
+                    [rows]="5"
                     [value]="preCadastros"
                     [disableView]="true"
                     [disableEdit]="true"
@@ -44,7 +44,11 @@
                     <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
                     <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
                     <p-column header="Cartão SUS" field="cartaoSus"></p-column>
-                    <p-column header="Ativo" field="ativo"></p-column>
+                    <p-column header="Ativo" field="ativo">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span> {{ rowData[col.field] === true ? 'Sim' : 'Não' }}</span>
+                        </ng-template>
+                    </p-column>
                 </basis-datatable>
             </div>
         </div>
