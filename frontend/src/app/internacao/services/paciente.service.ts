@@ -8,12 +8,12 @@ import { api } from '@internacao/api';
     providedIn: 'root',
 })
 export class PacienteService {
-    private readonly _resource$ = `${api}/pacientes`;
+    private readonly resource = `${api}/pacientes`;
 
     constructor(private client: HttpClient) {
     }
 
     public obterPacientePorId(identificador: number): Observable<Paciente> {
-        return this.client.get<Paciente>(`${this._resource$}/` + identificador);
+        return this.client.get<Paciente>(`${this.resource}/${identificador}`);
     }
 }
