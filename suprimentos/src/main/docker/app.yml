@@ -1,19 +1,25 @@
 version: '2'
 services:
-  suprimentos-app:
-    image: suprimentos
+  madresuprimentos-app:
+    image: madresuprimentos
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
       - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://suprimentos-postgresql:5432/suprimentos
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://madresuprimentos-postgresql:5432/madresuprimentos
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
-  suprimentos-postgresql:
+      - SPRING_DATA_JEST_URI=http://madresuprimentos-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://madresuprimentos-elasticsearch:9200
+  madresuprimentos-postgresql:
     extends:
       file: postgresql.yml
-      service: suprimentos-postgresql
+      service: madresuprimentos-postgresql
+  madresuprimentos-elasticsearch:
+    extends:
+      file: elasticsearch.yml
+      service: madresuprimentos-elasticsearch
   jhipster-registry:
     extends:
       file: jhipster-registry.yml

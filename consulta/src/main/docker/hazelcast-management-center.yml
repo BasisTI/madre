@@ -1,6 +1,6 @@
 version: '2'
 services:
-  consulta-hazelcast-management-center:
-    image: hazelcast/management-center:3.12.5
+  madreconsulta-hazelcast-management-center:
+    image: hazelcast/management-center:3.12.9
     ports:
       - 8180:8080

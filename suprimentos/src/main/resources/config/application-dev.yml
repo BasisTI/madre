@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: DEBUG
     io.github.jhipster: DEBUG
-    br.com.basis.madre.suprimentos: DEBUG
+    br.com.basis.suprimentos: DEBUG
 
 eureka:
   instance:
@@ -26,16 +26,25 @@ eureka:
     service-url:
       defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
 
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
 spring:
+  redis:
+    host: localhost
   profiles:
     active: dev
     include:
       - swagger
+      - login-automatico
       # Uncomment to activate TLS for the dev profile
       #- tls
   devtools:
     restart:
       enabled: true
+      additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
@@ -43,26 +52,22 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/suprimentos
-    username: suprimentos
+    url: jdbc:postgresql://localhost:5432/madresuprimentos
+    username: madresuprimentos
     password:
     hikari:
       poolName: Hikari
       auto-commit: false
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
-    database: POSTGRESQL
+    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
     show-sql: true
-    properties:
-      hibernate.id.new_generator_mappings: true
-      hibernate.connection.provider_disables_autocommit: true
-      hibernate.cache.use_second_level_cache: true
-      hibernate.cache.use_query_cache: false
-      hibernate.generate_statistics: false
-      hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-      hibernate.cache.hazelcast.instance_name: suprimentos
-      hibernate.cache.use_minimal_puts: true
-      hibernate.cache.hazelcast.use_lite_member: true
+  data:
+    jest:
+      uri: http://localhost:9200
+  # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-connecting-to-elasticsearch-jest
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -102,7 +107,7 @@ jhipster:
       management-center: # Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
         enabled: false
         update-interval: 3
-        url: http://localhost:8180/mancenter
+        url: http://localhost:8180/hazelcast-mancenter
   # CORS is disabled by default on microservices, as you should access them through a gateway.
   # If you want to enable it, please uncomment the configuration below.
   # cors:
@@ -116,7 +121,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: NDllZDFmMzA2ZDBmODk2MGVmMzc4NzQxMWI3MmI5YzYxMzBmMDEzOTUxNGI3OWM5YTFlMTI1ZmI1YTFmNzNjOTQ3NWNhYWQ2ZWViZjc4OGQ1NGJiZjFlNThiNDViZWQ1NGZmYzM0OTQxYmJlNTIwNjIxZjc3MWYwNDQ2MTI0NDc=
+        base64-secret: M2U3ZDA1MDQxYzg1YzEzNDQ1OWNkNDA4ZjY3MTZlNmU5Nzc3ZjJlYzljMDRhODI4ODViMDljNWU2Nzk5YTgxZmUyOTUwZWY4OGQxMzgzMDZkZThiMGQ0YTg5OWQwZTY5ZjJiM2RiY2FkNTk0ZjE1M2M3YWZjODlkN2Y4MzAyOTQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
