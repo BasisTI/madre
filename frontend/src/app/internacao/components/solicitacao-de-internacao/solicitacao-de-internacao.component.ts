@@ -24,8 +24,8 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     };
 
     public formGroup = this.fb.group({
-        prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
-        nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
+        // prontuario: this.fb.control({ value: '', disabled: true }, Validators.required),
+        // nomeDoPaciente: this.fb.control({ value: '', disabled: true }, Validators.required),
         dataProvavelDaInternacao: ['', Validators.required],
         dataProvavelDaCirurgia: [''],
         prioridade: ['', Validators.required],

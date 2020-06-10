@@ -96,9 +96,9 @@ public class GrauDeParentescoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of grauDeParentescos in body.
      */
     @GetMapping("/grau-de-parentescos")
-    public ResponseEntity<List<GrauDeParentescoDTO>> getAllGrauDeParentescos(Pageable pageable) {
+    public ResponseEntity<List<GrauDeParentescoDTO>> getAllGrauDeParentescos(GrauDeParentescoDTO grauDeParentescoDTO, Pageable pageable) {
         log.debug("REST request to get a page of GrauDeParentescos");
-        Page<GrauDeParentescoDTO> page = grauDeParentescoService.findAll(pageable);
+        Page<GrauDeParentescoDTO> page = grauDeParentescoService.findAll(grauDeParentescoDTO,pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

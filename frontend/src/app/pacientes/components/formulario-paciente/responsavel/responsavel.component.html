@@ -21,12 +21,13 @@
         </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="ui-float-label">
-                <p-dropdown
-                    [options]="opcoesDeGrauDeParentesco"
+                <div
+                    nAutoComplete
+                    [service]="grauDeParentescoService"
+                    field="valor"
                     formControlName="grauDeParentesco"
-                    [filter]="true"
-                ></p-dropdown>
-                <label>Grau de Parentesco</label>
+                    label="Grau de Parentesco"
+                ></div>
             </span>
             <p-message
                 severity="error"

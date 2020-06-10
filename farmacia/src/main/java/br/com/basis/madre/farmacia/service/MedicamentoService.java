@@ -142,9 +142,21 @@ public  Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable){
     return query;
 }
 public  Page<Medicamento> buscaPorTexto(String nome, String descricao, Pageable pageable){
+    if(!Strings.isNullOrEmpty(descricao)) {
+        NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
+            .withQuery(QueryBuilders.fuzzyQuery(DESCRICAO, descricao).fuzziness(Fuzziness.AUTO))
+            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(includes
+            ).build())
+            .withPageable(pageable)
+            .build();
+
+        Page<Medicamento> queryFuzzy = medicamentoSearchRepository.search(
+            nativeSearchQueryFuzzy);
+
+        return queryFuzzy;
+}
     NativeSearchQuery nativeSearchQueryFuzzy = new NativeSearchQueryBuilder()
-        .withQuery(QueryBuilders.multiMatchQuery(  nome + descricao, NOME, DESCRICAO)
-        .field(NOME).field(DESCRICAO).operator(Operator.AND).fuzziness(Fuzziness.ONE).prefixLength(5))
+        .withQuery(QueryBuilders.fuzzyQuery(NOME, nome).fuzziness(Fuzziness.AUTO))
         .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(includes
         ).build())
         .withPageable(pageable)
@@ -154,9 +166,6 @@ public  Page<Medicamento> buscaPorTexto(String nome, String descricao, Pageable 
         nativeSearchQueryFuzzy);
 
     return queryFuzzy;
-
-
-
 }
 
     public Page<Medicamento> buscaMedicamentos

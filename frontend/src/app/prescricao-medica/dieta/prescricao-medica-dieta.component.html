@@ -3,7 +3,7 @@
     <!-- {{profileForm.value | json}} -->
     <form autocomplete="off" (ngSubmit)="prescrever()">
         <p-accordion>
-            <p-accordionTab header="Dieta">
+            <p-accordionTab [selected]="true" header="Dados Gerais">
                 <form [formGroup]="prescricaoDieta">
                     <div class="ui-g">
                         <div class="ui-g-12">
