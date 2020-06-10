@@ -1,6 +1,9 @@
 <div class="ui-g ui-fluid">
     <p-fieldset legend="Solicitação de Internação">
         <form [formGroup]="formGroup">
+            <div class="ui-g-12">
+                <app-card-paciente [identificador]="pacienteId"></app-card-paciente>
+            </div>
             <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
             <div class="ui-g-12">
                 <div class="ui-g-4">
