@@ -1,13 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "br.com.basis.madre.consulta"
+      "packageName": "br.com.basis.consulta"
     },
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
-    "baseName": "consulta",
-    "packageName": "br.com.basis.madre.consulta",
-    "packageFolder": "br/com/basis/madre/consulta",
+    "baseName": "madreconsulta",
+    "packageName": "br.com.basis.consulta",
+    "packageFolder": "br/com/basis/consulta",
     "serverPort": "8081",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
@@ -16,21 +16,33 @@
     "databaseType": "sql",
     "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "messageBroker": false,
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "ZWY1MzVmYjFlMjM5ZDhhOTI0Yzg5N2Y5ZjdlNDUyYzQ0NTE2OTllNjExOWRhMDcyYzI4MDU5NWNkODA3MDBmYTRjYTdiZDdkMTc2YTliOWE2ODU1YTM4MTkwYzM1MDA3NGVhMDNhN2FmN2I2MDk0MjM4ZDg5YTQ4M2ZhNGY0ODg=",
+    "jwtSecretKey": "MmU0Mjc1OGM3NDhkNTNlMGE3NDg5MTA1NjYyZDY4Nzc2YmQ1MDViZGMyYWE3MWE2NjM4NTA0MjhkMjExZTdiY2VlMTkyYmFhNWU5MDgxZmMxZjc1MWZkYmJjMjNmYTU0MjExOWZhNzYzOTEzNDA2NWIxZTIzMzAwYmE3NWU4MWY=",
     "embeddableLaunchScript": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1591809890638,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
-    "otherModules": [],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "enableTranslation": false,
     "clientPackageManager": "npm",
-    "blueprints": [],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "skipClient": true,
     "skipUserManagement": true
   }

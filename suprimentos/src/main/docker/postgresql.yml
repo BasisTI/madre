@@ -1,11 +1,12 @@
 version: '2'
 services:
-  suprimentos-postgresql:
-    image: postgres:11.5
+  madresuprimentos-postgresql:
+    image: postgres:12.3
     # volumes:
-    #     - ~/volumes/jhipster/suprimentos/postgresql/:/var/lib/postgresql/data/
+    #     - ~/volumes/jhipster/madresuprimentos/postgresql/:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=suprimentos
+      - POSTGRES_USER=madresuprimentos
       - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - 5432:5432
