@@ -103,7 +103,7 @@ public class PreCadastroPacienteResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of preCadastroPacientes in body.
      */
     @GetMapping("/pre-cadastro-pacientes")
-    public ResponseEntity<List<PreCadastroPacienteDTO>> getAllPreCadastroPacientes(@RequestParam(required = false,defaultValue = "") String nome, Pageable pageable) {
+    public ResponseEntity<List<PreCadastroPacienteDTO>> getAllPreCadastroPacientes(@RequestParam(required = false,defaultValue = "", name="query") String nome, Pageable pageable) {
         log.debug("REST request to get a page of PreCadastroPacientes");
         Page<PreCadastroPacienteDTO> page = preCadastroPacienteService.findByName(nome,pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);

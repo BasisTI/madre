@@ -11,6 +11,7 @@
                             class="ui-inputtext"
                             name="filtro"
                             [(ngModel)]="nome"
+                            #query
                         />
                         <label>Nome paciente</label>
                     </span>
@@ -24,7 +25,7 @@
                             label="Pesquisar"
                             icon="ui-icon-search"
                             bTooltip="Pesquisar paciente por nome."
-                            (click)="pesquisar()"
+                            (click)="datatable.refresh(query.value)"
                         ></button>
                     </div>
                 </div>
