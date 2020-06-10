@@ -13,7 +13,7 @@ import { api } from '@internacao/api';
     templateUrl: './pacientes-lista.component.html',
 })
 export class PacientesListaComponent implements OnInit, OnDestroy {
-    public readonly uri = `${api}/_search/pacientes`;
+    public readonly uri = `${api}/pacientes`;
     public filtroNomeDoPaciente: string;
 
     constructor(private router: Router, private breadcrumbService: BreadcrumbService) {}
