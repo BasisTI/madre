@@ -10,11 +10,11 @@ import { Paciente } from '@internacao/models/paciente';
                 <div class="ui-g">
                     <div class="ui-g-4">
                         <label>Identificador</label>
-                        <input pInputText value="{{ this.getIdentificador() }}"/>
+                        <input pInputText [value]="this.getIdentificador()"/>
                     </div>
                     <div class="ui-g-8">
                         <label>Nome do Paciente</label>
-                        <input pInputText value="{{ this.getNomeDoPaciente() }}"/>
+                        <input pInputText [value]="this.getNomeDoPaciente()"/>
                     </div>
                 </div>
             </p-fieldset>
@@ -38,11 +38,7 @@ export class CardPacienteComponent implements OnInit {
     }
 
     public getNomeDoPaciente(): string | null {
-        if (!this.paciente?.nome) {
-            return null;
-        }
-
-        return this.paciente.nome;
+        return this.paciente?.nome;
     }
 
     public getIdentificador(): number {
