@@ -2,17 +2,18 @@
 <form [formGroup]="parentFormGroup">
     <div class="ui-g-12">
         <div class="ui-g-4">
-            <label>{{ label }} </label>
+            <label>{{ label }}</label>
         </div>
     </div>
     <div class="ui-g-12">
-        <div class="ui-g-1">
-            <app-arvore (onSelect)="onSelect($event)"></app-arvore>
+        <div class="ui-g-1" *ngIf="showTree">
+            <app-arvore (onSelect)="aoSelecionarCidNaArvore($event)"></app-arvore>
         </div>
         <div class="ui-g-8">
             <p-dropdown
                 [options]="cids"
                 [filter]="true"
+                (onChange)="aoSelecionarCid($event)"
                 emptyFilterMessage="Nenhum registro encontrado."
                 [virtualScroll]="true"
                 placeholder="Selecione"

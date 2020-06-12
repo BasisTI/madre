@@ -123,6 +123,8 @@
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [required]="true"
+                        (select)="aoSelecionarCidPrincipal($event)"
+                        [showTree]="true"
                         name="cidPrincipal"
                         label="CID Principal"
                     ></app-cid>
@@ -133,6 +135,7 @@
                         [showClear]="true"
                         name="cidSecundario"
                         label="CID Secundário"
+                        #secundario
                     ></app-cid>
                 </div>
             </div>
