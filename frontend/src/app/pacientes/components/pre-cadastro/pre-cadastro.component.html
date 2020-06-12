@@ -16,6 +16,14 @@
                         formControlName="nome"
                         pTooltip="Infome o nome do Paciente."
                     />
+                    <p-message
+                        severity="error"
+                        text="Nome do paciente Obrigatório"
+                        *ngIf="
+                            preCadastro.controls['nome'].errors?.required &&
+                            preCadastro.controls['nome'].touched
+                        "
+                    ></p-message>
                     <label>Nome paciente</label>
                 </span>
             </div>
@@ -27,6 +35,14 @@
                         formControlName="nomeSocial"
                         pTooltip="Infome o nome social do Paciente."
                     />
+                    <p-message
+                        severity="error"
+                        text="Nome social Obrigatório"
+                        *ngIf="
+                            preCadastro.controls['nomeSocial'].errors?.required &&
+                            preCadastro.controls['nomeSocial'].touched
+                        "
+                    ></p-message>
                     <label>Nome Social</label>
                 </span>
             </div>
@@ -39,6 +55,14 @@
                         formControlName="nomeDaMae"
                         pTooltip="Infome o nome de mãe do Paciente."
                     />
+                    <p-message
+                        severity="error"
+                        text="Nome da mãe Obrigatório"
+                        *ngIf="
+                            preCadastro.controls['nomeDaMae'].errors?.required &&
+                            preCadastro.controls['nomeDaMae'].touched
+                        "
+                    ></p-message>
                     <label>Nome da Mãe</label>
                 </span>
             </div>
@@ -68,6 +92,14 @@
                         mask="999 9999 9999 9999"
                         pTooltip="Informe o CNS do paciente."
                     ></p-inputMask>
+                    <p-message
+                        severity="error"
+                        text="Cartão inválido"
+                        *ngIf="
+                            preCadastro.controls['cartaoSus'].errors?.customCns &&
+                            preCadastro.controls['cartaoSus'].touched
+                        "
+                    ></p-message>
                     <label>Nº do Cartão SUS</label>
                 </span>
             </div>

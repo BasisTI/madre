@@ -76,12 +76,13 @@
                         </span>
                     </ng-template></p-column
                 >
-                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento"></p-column>
-                <p-column
-                    header="Classificação"
-                    field="classificacaoDeRisco"
-                    [sortable]="true"
-                ></p-column>
+                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span> {{ rowData[col.field] | date: 'dd/MM/yyyy - HH:mm' }}</span>
+                    </ng-template>
+                </p-column>
+                <p-column header="Classificação" field="classificacaoDeRisco" [sortable]="true">
+                </p-column>
                 <basis-datatable-button class="ui-button-success" name="edit" icon="edit">
                 </basis-datatable-button>
                 <basis-datatable-button
