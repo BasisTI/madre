@@ -37,6 +37,7 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
 
     prescricaoMedicamento = this.fb.group({
         idPaciente: [null],
+        nome: [null],
         observacao: [null]
     });
 
@@ -95,7 +96,8 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
 
-                this.prescricaoMedicamento.patchValue({ idPaciente : paciente.id });
+                this.paciente = paciente;
+                this.prescricaoMedicamento.patchValue({ idPaciente : paciente.id , nome: paciente.nome});
 
             });
     }
@@ -183,6 +185,8 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
 
 
         const prescricao = this.prescricaoMedicamento.value;
+        console.log(prescricao);
+        
 
         const prescricaoMedicamento = Object.assign({}, prescricao, {
             itemPrescricaoMedicamentos: this.itensPrescricaoMedicamento

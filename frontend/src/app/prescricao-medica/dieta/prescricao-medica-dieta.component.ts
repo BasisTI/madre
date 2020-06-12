@@ -33,6 +33,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     prescricaoDieta = this.fb.group({
         idPaciente: [null],
+        nome:[null],
         bombaInfusao: [null],
         observacao: [null]
     });
@@ -89,8 +90,8 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
 
-                this.paciente = paciente.nome;
-                this.prescricaoDieta.patchValue({ idPaciente: paciente.id });
+                this.paciente = paciente;
+                this.prescricaoDieta.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
 
                 console.log(paciente);
 
