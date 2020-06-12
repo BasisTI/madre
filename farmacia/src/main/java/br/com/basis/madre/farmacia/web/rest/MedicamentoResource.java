@@ -14,19 +14,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.farmacia.domain.Medicamento}.
@@ -56,7 +53,7 @@ public class MedicamentoResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/medicamentos")
-    public ResponseEntity<MedicamentoDTO> createMedicamento(@RequestBody MedicamentoDTO medicamentoDTO) throws URISyntaxException {
+    public ResponseEntity<MedicamentoDTO> createMedicamento(@Valid @RequestBody MedicamentoDTO medicamentoDTO) throws URISyntaxException {
         log.debug("REST request to save Medicamento : {}", medicamentoDTO);
         if (medicamentoDTO.getId() != null) {
             throw new BadRequestAlertException("A new medicamento cannot already have an ID", ENTITY_NAME, "idexists");
@@ -134,9 +131,9 @@ public class MedicamentoResource {
 
     @GetMapping("/_search/medicamentos")
     public Page<Medicamento> getMedicamentos
-        (@RequestParam(required = false) String codigo,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
+        (@RequestParam(required = false) String nome,@RequestParam(required = false)   String descricao,@RequestParam(required = false) String ativo, Pageable pageable) {
         log.debug("REST request to get a page of Medicamentos");
-        Page<Medicamento> page = medicamentoService.buscaMedicamentos( codigo, descricao, ativo, pageable);
+        Page<Medicamento> page = medicamentoService.buscaMedicamentos( nome, descricao, ativo, pageable);
 
         return page;
     }

@@ -3,14 +3,14 @@
     <div class="ui-g-12">
         <form (ngSubmit)="prescrever()">
             <p-accordion>
-                <p-accordionTab header="Medicamento" [selected]="true">
+                <p-accordionTab header="Dados Gerais" [selected]="true">
                     <form [formGroup]="prescricaoMedicamento">
                         <div class="ui-g">
                             <div class="ui-g-12">
                                 <div class="ui-g-12">
                                     <span class="md-inputfield">
-                                        <input [(ngModel)]="paciente" formControlName="idPaciente" type="text" pInputText
-                                            disabled />
+                                        <input formControlName="idPaciente" type="text"
+                                            pInputText disabled />
                                         <label>Paciente</label>
                                     </span>
                                 </div>
@@ -28,33 +28,31 @@
                     </form>
                 </p-accordionTab>
 
-                <p-accordionTab header="Itens Medicamento">
+                <p-accordionTab [selected]="true" header="Itens Prescrição Medicamento">
                     <form [formGroup]="itemPrescricaoMedicamento" (ngSubmit)="incluirItem()">
                         <div class="ui-g">
                             <div class="ui-g-12">
-                                <div class="ui-g-6">
+                                <div class="ui-g-8">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="medicamentos"
-                                            formControlName="idMedicamento" required #idMedicamento>
-                                        </p-dropdown>
+                                        <p-autoComplete field="nome" [suggestions]="medicamentos"
+                                            (completeMethod)="carregarMedicamentos($event)"
+                                            formControlName="idMedicamento" [dropdown]="true" dataKey="id">
+                                        </p-autoComplete>
                                         <label>Medicamentos</label>
-                                    </span>
-                                </div>
-                                <div class="ui-g-6">
-                                    <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaMedicamentos"
-                                            formControlName="idListaMedicamentos" required #idListaMedicamento>
-                                        </p-dropdown>
-                                        <label>Lista Medicamentos</label>
+                                        <app-message [control]="itemPrescricaoMedicamento.get('idMedicamento')" error="required"
+                                        text="Campo é obrigatório"></app-message>
                                     </span>
                                 </div>
                             </div>
+                            <div class="ui-g-12"></div>
 
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="text" pInputText formControlName="dose" />
+                                        <input type="number" pInputText formControlName="dose" />
                                         <label>Dose</label>
+                                        <app-message [control]="itemPrescricaoMedicamento.get('dose')" error="required"
+                                        text="Campo é obrigatório"></app-message>
                                     </span>
                                 </div>
 
@@ -125,14 +123,14 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="text" pInputText formControlName="volume" />
+                                        <input pInputText type="text" formControlName="volume" />
                                         <label>Volume (ml)</label>
                                     </span>
                                 </div>
 
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="text" pInputText formControlName="tempoInfusao" />
+                                        <input type="number" pInputText formControlName="tempoInfusao" />
                                         <label>Correr em</label>
                                     </span>
                                 </div>
@@ -229,27 +227,25 @@
                                     [disableEdit]="true" [disableDelete]="true" [verticalButtons]="false">
                                     <p-column header="Medicamentos" field="idMedicamento">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].name }}</span>
+                                            <span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].nome }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Lista Medicamentos" field="idListaMedicamentos">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].nome }}</span>
-                                        </ng-template>
-                                    </p-column>
 
                                     <p-column header="Dose" field="dose"></p-column>
 
                                     <p-column header="Unidade" field="unidadeDoseId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined :rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Via" field="viasAdministracaoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
@@ -257,33 +253,15 @@
 
                                     <p-column header="Aprazamento" field="tipoAprazamentoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field].descricao }}</span>
+                                            <span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Diluente" field="diluenteId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
-                                        </ng-template>
-                                    </p-column>
-
-                                    <p-column header="Volume (ml)" field="volume"></p-column>
-
-                                    <p-column header="Correr em" field="tempoInfusao"></p-column>
-
-                                    <p-column header="Unid. Tempo" field="unidadeTempo"></p-column>
-
-                                    <p-column header="Velocidade" field="velocidadeInfusao"></p-column>
-
-                                    <p-column header="Unid. Infusão" field="unidadeInfusaoId">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                            <span> {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
-                                        </ng-template>
-                                    </p-column>
-
-                                    <p-column header="Bomba de Infusão" field="bombaInfusao">
-                                        <ng-template let-l="rowData" pTemplate="body">
-                                            <span href="javascript:;">{{l.bombaInfusao ? 'Sim' : 'Não'}}</span>
+                                            <span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 

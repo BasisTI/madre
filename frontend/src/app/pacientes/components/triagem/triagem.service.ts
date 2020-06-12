@@ -1,7 +1,10 @@
+import { Pageable } from './../../../shared/pageable';
+import { ListaPacientesTriagem } from './lista-pacientes-triagem';
 import { TriagemModel } from './../../models/triagem-model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ListaDePacientesComponent } from '../lista-de-pacientes/lista-de-pacientes.component';
 
 @Injectable({
     providedIn: 'root',
@@ -25,5 +28,14 @@ export class TriagemService {
 
     listarTriagem(): Observable<any> {
         return this.httpService.get(`${this.apiUrl}/triagens/listagem`);
+    }
+
+    getResultPacientes(event): Observable<Pageable<ListaPacientesTriagem>> {
+        return this.httpService.get<Pageable<ListaPacientesTriagem>>(
+            `${this.apiUrl}/pacientes/_resumo`,
+            {
+                params: new HttpParams().set('nome', event).set('sort', 'nome'),
+            },
+        );
     }
 }

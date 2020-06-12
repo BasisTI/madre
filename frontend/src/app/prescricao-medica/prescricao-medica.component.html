@@ -29,14 +29,7 @@
 
                 >
                     <p-column header="Nome" field="nome"></p-column>
-                    <p-column header="Dt. Nascimento" field="dataNascimento">
-                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span> {{ rowData[col.field] | date: 'dd/MM/yyyy' }}</span>
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Prontuário" field="prontuario"></p-column>
-                    <p-column header="Responsável" field="responsavel"></p-column>
-                    <p-column header="Dt. Atendimento" field="dataAtendimento">
+                    <p-column header="Dt. Nascimento" field="dataDeNascimento">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                             <span> {{ rowData[col.field] | date: 'dd/MM/yyyy' }}</span>
                         </ng-template>

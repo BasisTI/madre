@@ -1,9 +1,8 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.PreCadastroPaciente;
 import br.com.basis.madre.service.dto.PreCadastroPacienteDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 
 @Mapper(componentModel = "spring", uses = {})

@@ -1,14 +1,11 @@
 package br.com.basis.madre.prescricao.domain;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -20,10 +17,6 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * A ViasAdministracao.
@@ -47,7 +40,7 @@ public class ViasAdministracao implements Serializable {
     @Column(name = "descricao", length = 80)
     private String descricao;
 
-    @Column(name = "sigla")
+    @Column(name = "sigla", length = 10)
     private String sigla;
 
 

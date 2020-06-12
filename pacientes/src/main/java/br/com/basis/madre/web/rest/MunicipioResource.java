@@ -53,10 +53,17 @@ public class MunicipioResource {
     /**
      * TODO: Write documentation
      */
-    @GetMapping("/municipios/_uf")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy(Pageable pageable) {
+    @GetMapping("/municipios/filtragem")
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy(@RequestParam(required = false)Long idUf,String nome, Pageable pageable) {
         Page<MunicipioUF> page = municipioService
-            .findAllProjectedMunicipioUFBy(pageable);
+            .findAllProjectedMunicipioUFBy(idUf, nome ,pageable);
+        return ResponseEntity.ok(page.getContent());
+    }
+
+    @GetMapping("/municipios/naturalidade")
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNacionalidade(Pageable pageable) {
+        Page<MunicipioUF> page = municipioService
+            .findAllProjectedMunicipioUFByNacionalidade(pageable);
         return ResponseEntity.ok(page.getContent());
     }
 

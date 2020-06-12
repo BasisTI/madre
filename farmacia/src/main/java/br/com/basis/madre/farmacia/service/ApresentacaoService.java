@@ -4,7 +4,6 @@ import br.com.basis.madre.farmacia.domain.Apresentacao;
 import br.com.basis.madre.farmacia.repository.ApresentacaoRepository;
 import br.com.basis.madre.farmacia.repository.search.ApresentacaoSearchRepository;
 import br.com.basis.madre.farmacia.service.dto.ApresentacaoDTO;
-import br.com.basis.madre.farmacia.service.dto.UnidadeDTO;
 import br.com.basis.madre.farmacia.service.mapper.ApresentacaoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

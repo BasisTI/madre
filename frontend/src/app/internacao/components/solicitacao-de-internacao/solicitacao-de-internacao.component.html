@@ -1,16 +1,8 @@
 <div class="ui-g ui-fluid">
     <p-fieldset legend="Solicitação de Internação">
         <form [formGroup]="formGroup">
-            <!-- [Prontuário & Nome](Preenchido pelo sistema) read-only -->
             <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <label>Prontuário</label>
-                    <input type="text" pInputText formControlName="prontuario" />
-                </div>
-                <div class="ui-g-4">
-                    <label>Nome do Paciente</label>
-                    <input type="text" pInputText formControlName="nomeDoPaciente" />
-                </div>
+                <app-card-paciente [identificador]="pacienteId"></app-card-paciente>
             </div>
             <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
             <div class="ui-g-12">
@@ -131,6 +123,8 @@
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [required]="true"
+                        (select)="aoSelecionarCidPrincipal($event)"
+                        [showTree]="true"
                         name="cidPrincipal"
                         label="CID Principal"
                     ></app-cid>
@@ -141,6 +135,7 @@
                         [showClear]="true"
                         name="cidSecundario"
                         label="CID Secundário"
+                        #secundario
                     ></app-cid>
                 </div>
             </div>

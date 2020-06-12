@@ -1,0 +1,34 @@
+id;descricao;sigla
+1;Dias;D
+2;Horas;H
+3;Minutos;M
+4;Semanas;S
+5;Vezes ao dia;X
+6;A critério médico;ACM
+7;Agora;AGO
+8;Antes bloco cirúrgico;ABC
+9;Antes das refeições/22 h;ARE
+10;Antes do café;AC
+11;Antes do café almoço e janta;ACJ
+12;Após as mamadas;AM
+13;Após as refeições;APR
+14;Atenção;A
+15;Café almoço janta;CAJ
+16;Contínuo;C
+17;Depois do banho;DB
+18;Jejum;JEJ
+19;Junto ao leite;JTL
+20;Manhã;MN
+21;Manhã e noite;MNT
+22;Manhã e tarde;MT
+23;Manhã ou tarde;M/T
+24;Manhã tarde noite;MTN
+25;Manter;MA
+26;Noite;N
+27;Noite manhã tarde;NMT
+28;Pausa da dieta;DIE
+29;Quando necessário;QN
+30;Tarde;T
+31;Tarde e manhã;TM
+32;Tarde e noite;TN
+33;Tarde noite manhã;TNM

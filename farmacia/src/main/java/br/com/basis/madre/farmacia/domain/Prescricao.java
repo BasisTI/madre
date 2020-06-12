@@ -10,8 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Objects;
+
 @Data
 @Document(indexName = "madre-farmacia-prescricao")
 public class Prescricao implements Serializable {
@@ -22,7 +21,7 @@ public class Prescricao implements Serializable {
     @Field(type = FieldType.Text)
     private String descricao;
 
-    @NotNull
+
     @Field(type = FieldType.Text)
     private String nome;
 
@@ -51,12 +50,6 @@ public class Prescricao implements Serializable {
     public Prescricao() {
     }
 
-//    public Prescricao(String descricao, String nome, String farmacia, String unidade) {
-//        this.descricao = descricao;
-//        this.nome = nome;
-//        this.farmacia = farmacia;
-//        this.unidade = unidade;
-//    }
 
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { UF } from '../../../models/dropdowns/types/uf';
 import { Observable } from 'rxjs';
 
@@ -13,6 +13,9 @@ export class UfService extends CrudServiceNuvem<number, UF> {
     }
 
     getListaDeUF(): Observable<UF[]> {
-        return this.httpClient.get<UF[]>('pacientes/api/ufs');
+        let params = new HttpParams();
+        params = params.set('size', '30');
+
+        return this.httpClient.get<UF[]>('pacientes/api/ufs', { params });
     }
 }

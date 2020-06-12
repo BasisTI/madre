@@ -25,11 +25,13 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * A ItemPrescricaoMedicamento.
@@ -54,7 +56,6 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@Column(name = "id_medicamento", nullable = false)
 	private Long idMedicamento;
 
-	@NotNull
 	private Long idListaMedicamentos;
 
 	@NotNull
@@ -115,7 +116,9 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	private TipoAprazamento tipoAprazamento;
 
 	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
+	@JsonIgnore
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;
 

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    
     <!--
         Added the entity PrescricaoDieta.
     -->
@@ -16,10 +13,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="id_paciente" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="observacao" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -40,9 +37,9 @@
     -->
     <changeSet id="20200515195406-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/prescricao_dieta.csv"
-                  separator=";"
-                  tableName="prescricao_dieta">
+            file="config/liquibase/fake-data/prescricao_dieta.csv"
+            separator=";"
+            tableName="prescricao_dieta">
             <column name="id" type="numeric"/>
             <column name="id_paciente" type="numeric"/>
             <column name="observacao" type="string"/>

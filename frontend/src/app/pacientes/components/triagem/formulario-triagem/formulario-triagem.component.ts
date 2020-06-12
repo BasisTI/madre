@@ -1,3 +1,5 @@
+import { ListaPacientesTriagem } from './../lista-pacientes-triagem';
+import { Paciente } from './../../../../internacao/models/paciente';
 import { ActivatedRoute } from '@angular/router';
 import { TriagemModel } from '../../../models/triagem-model';
 import { TriagemService } from './../triagem.service';
@@ -12,12 +14,15 @@ import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classi
     styleUrls: ['./formulario-triagem.component.css'],
 })
 export class FormularioTriagemComponent implements OnInit, OnDestroy {
+    val: Paciente;
+    results: Paciente[];
+
     @Input() formsTriagem: FormGroup;
     opcaoClassificacao = CLASSIFICACAO_RISCO;
     selectedValue: string;
     triagem: TriagemModel;
     formTriagem = this.fb.group({
-        classificacaoDeRisco: [''],
+        classificacaoDeRisco: ['', Validators.required],
         paciente: ['', Validators.required],
         pressaoArterial: [''],
         frequenciaCardiaca: [''],
@@ -26,7 +31,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         sinaisSintomas: [''],
         dataHoraDoAtendimento: [new Date()],
         idade: [''],
-        descricaoQueixa: ['', Validators.required],
+        descricaoQueixa: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         vitimaDeAcidente: [''],
         removidoDeAmbulancia: [''],
         observacao: [''],
@@ -37,6 +42,13 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     dataLimite = new Date();
     anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
+    listaPacientesTriagem = new Array<ListaPacientesTriagem>();
+
+    buscaPacientes(event) {
+        this.triagemService.getResultPacientes(event.query).subscribe((data) => {
+            this.listaPacientesTriagem = data.content;
+        });
+    }
 
     constructor(
         private breadcrumbService: BreadcrumbService,
@@ -76,6 +88,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             vitimaDeAcidente: tri.vitimaDeAcidente,
             removidoDeAmbulancia: tri.removidoDeAmbulancia,
             observacao: tri.observacao,
+            pacienteId: tri.paciente.id,
         };
 
         this.triagemService.cadastrarTriagem(triagem).subscribe();

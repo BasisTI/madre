@@ -32,7 +32,6 @@ export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
     ) {}
 
     public formGroup = this.fb.group({
-        prontuario: this.fb.control({ value: '', disabled: true }),
         procedimento: this.fb.control({ value: '', disabled: true }, Validators.required),
         leito: ['', Validators.required],
         especialidade: ['', Validators.required],

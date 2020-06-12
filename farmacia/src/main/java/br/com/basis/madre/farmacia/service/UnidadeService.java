@@ -3,7 +3,6 @@ package br.com.basis.madre.farmacia.service;
 import br.com.basis.madre.farmacia.domain.Unidade;
 import br.com.basis.madre.farmacia.repository.UnidadeRepository;
 import br.com.basis.madre.farmacia.repository.search.UnidadeSearchRepository;
-import br.com.basis.madre.farmacia.service.dto.TipoMedicamentoDTO;
 import br.com.basis.madre.farmacia.service.dto.UnidadeDTO;
 import br.com.basis.madre.farmacia.service.mapper.UnidadeMapper;
 import org.slf4j.Logger;
