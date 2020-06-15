@@ -1,7 +1,7 @@
 version: '2'
 services:
-  suprimentos-prometheus:
-    image: prom/prometheus:v2.12.0
+  madresuprimentos-prometheus:
+    image: prom/prometheus:v2.18.1
     volumes:
       - ./prometheus/:/etc/prometheus/
     command:
@@ -11,8 +11,8 @@ services:
     # On MacOS, remove next line and replace localhost by host.docker.internal in prometheus/prometheus.yml and
     # grafana/provisioning/datasources/datasource.yml
     network_mode: 'host' # to test locally running service
-  suprimentos-grafana:
-    image: grafana/grafana:6.4.1
+  madresuprimentos-grafana:
+    image: grafana/grafana:7.0.1
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     environment:

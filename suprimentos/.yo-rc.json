@@ -1,13 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "br.com.basis.madre.suprimentos"
+      "packageName": "br.com.basis.suprimentos"
     },
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
-    "baseName": "suprimentos",
-    "packageName": "br.com.basis.madre.suprimentos",
-    "packageFolder": "br/com/basis/madre/suprimentos",
+    "baseName": "madresuprimentos",
+    "packageName": "br.com.basis.suprimentos",
+    "packageFolder": "br/com/basis/suprimentos",
     "serverPort": "8081",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
@@ -16,21 +16,33 @@
     "databaseType": "sql",
     "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "messageBroker": false,
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "NDllZDFmMzA2ZDBmODk2MGVmMzc4NzQxMWI3MmI5YzYxMzBmMDEzOTUxNGI3OWM5YTFlMTI1ZmI1YTFmNzNjOTQ3NWNhYWQ2ZWViZjc4OGQ1NGJiZjFlNThiNDViZWQ1NGZmYzM0OTQxYmJlNTIwNjIxZjc3MWYwNDQ2MTI0NDc=",
+    "jwtSecretKey": "M2U3ZDA1MDQxYzg1YzEzNDQ1OWNkNDA4ZjY3MTZlNmU5Nzc3ZjJlYzljMDRhODI4ODViMDljNWU2Nzk5YTgxZmUyOTUwZWY4OGQxMzgzMDZkZThiMGQ0YTg5OWQwZTY5ZjJiM2RiY2FkNTk0ZjE1M2M3YWZjODlkN2Y4MzAyOTQ=",
     "embeddableLaunchScript": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1591809817871,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
-    "otherModules": [],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "enableTranslation": false,
     "clientPackageManager": "npm",
-    "blueprints": [],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "skipClient": true,
     "skipUserManagement": true
   }
