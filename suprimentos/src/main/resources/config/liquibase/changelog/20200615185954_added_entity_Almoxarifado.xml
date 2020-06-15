@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="20200615185954-1" author="jhipster">
+        <createTable tableName="almoxarifado">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codigo" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dias_estoque" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="central" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="calcula_media_ponderada" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bloqueia_entrada_transferencia" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="centro_de_atividade_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="caracteristica_armazenamento_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200615185954-1-relations" author="jhipster">
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

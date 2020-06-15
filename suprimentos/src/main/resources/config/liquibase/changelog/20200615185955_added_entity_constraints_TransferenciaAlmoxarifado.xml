@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="20200615185955-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="origem_id"
+                                 baseTableName="transferencia_almoxarifado"
+                                 constraintName="fk_transferencia_almoxarifado_origem_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="almoxarifado"/>
+        <addForeignKeyConstraint baseColumnNames="destino_id"
+                                 baseTableName="transferencia_almoxarifado"
+                                 constraintName="fk_transferencia_almoxarifado_destino_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="almoxarifado"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="20200615185958-1" author="jhipster">
+        <createTable tableName="tempo_por_classe">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="tipo" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantidade_classe_a" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantidade_classe_b" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantidade_classe_c" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="almoxarifado_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200615185958-1-relations" author="jhipster">
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

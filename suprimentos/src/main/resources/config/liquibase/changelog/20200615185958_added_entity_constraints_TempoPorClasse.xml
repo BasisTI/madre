@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="20200615185958-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="almoxarifado_id"
+                                 baseTableName="tempo_por_classe"
+                                 constraintName="fk_tempo_por_classe_almoxarifado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="almoxarifado"/>
+    </changeSet>
+</databaseChangeLog>
