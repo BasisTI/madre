@@ -24,5 +24,7 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200615185959_added_entity_constraints_Composicao.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200615204425_remove_bi_rel_Almoxarifado_TempoPorClasse.xml"
+             relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
