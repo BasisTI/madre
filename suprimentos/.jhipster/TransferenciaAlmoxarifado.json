@@ -1,0 +1,40 @@
+{
+    "name": "TransferenciaAlmoxarifado",
+    "fields": [
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "almoxarifado",
+            "otherEntityRelationshipName": "transferenciaAlmoxarifado",
+            "relationshipName": "origem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "almoxarifado",
+            "otherEntityRelationshipName": "transferenciaAlmoxarifado",
+            "relationshipName": "destino",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200615185955",
+    "entityTableName": "transferencia_almoxarifado",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

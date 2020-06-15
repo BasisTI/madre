@@ -1,0 +1,54 @@
+{
+    "name": "TempoPorClasse",
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TempoPorClasseTipo",
+            "fieldValues": "SALDO,PARCELA,TEMPO_REPOSICAO,TEMPO_REPOSICAO_CONTRATO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantidadeClasseA",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantidadeClasseB",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantidadeClasseC",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "almoxarifado",
+            "otherEntityName": "almoxarifado",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200615185958",
+    "entityTableName": "tempo_por_classe",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

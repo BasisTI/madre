@@ -1,0 +1,88 @@
+{
+    "name": "Almoxarifado",
+    "fields": [
+        {
+            "fieldName": "codigo",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "diasEstoque",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "central",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "calculaMediaPonderada",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bloqueiaEntradaTransferencia",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tempoPorClasse",
+            "otherEntityRelationshipName": "almoxarifado",
+            "relationshipName": "temposPorClasse"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "centroDeAtividade",
+            "otherEntityRelationshipName": "almoxarifado",
+            "relationshipName": "centroDeAtividade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "caracteristicaArmazenamento",
+            "otherEntityRelationshipName": "almoxarifado",
+            "relationshipName": "caracteristicaArmazenamento",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200615185954",
+    "entityTableName": "almoxarifado",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

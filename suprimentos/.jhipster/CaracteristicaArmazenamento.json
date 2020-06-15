@@ -1,0 +1,39 @@
+{
+    "name": "CaracteristicaArmazenamento",
+    "fields": [
+        {
+            "fieldName": "misturaMateriaisDireitos",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "misturaGrupoMateriais",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "composicao",
+            "otherEntityRelationshipName": "caracteristicaArmazenamento",
+            "relationshipName": "composicoes"
+        }
+    ],
+    "changelogDate": "20200615185957",
+    "entityTableName": "caracteristica_armazenamento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}
