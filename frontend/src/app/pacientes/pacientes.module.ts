@@ -39,6 +39,7 @@ import { UfService } from './components/formulario-paciente/documentos/uf.servic
 import { MunicipioService } from './components/formulario-paciente/endereco/municipio.service';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
+import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro/listagem-pre-cadastro.component';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
         ClassificacaoDeRiscoComponent,
         FormularioTriagemComponent,
         ClassificaoDeRiscoPipe,
+        ListagemPreCadastroComponent,
     ],
     providers: [
         PacientesService,

@@ -1,5 +1,5 @@
 import { DatatableClickEvent } from '@nuvem/primeng-components';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
@@ -19,6 +19,7 @@ import { BreadcrumbService } from '@nuvem/primeng-components';
             }
         `,
     ],
+    styleUrls: ['triagem.scss'],
 })
 export class TriagemComponent implements OnInit, OnDestroy {
     constructor(
@@ -51,6 +52,33 @@ export class TriagemComponent implements OnInit, OnDestroy {
             this.triagens = triagens.content;
             console.log(triagens.content);
         });
+    }
+    getMensagem(tipo: String): string {
+        let descricao = 'Não informado';
+        switch (tipo) {
+            case 'EMERGENCIA': {
+                descricao = 'Emergência';
+                break;
+            }
+            case 'MUITO_URGENTE': {
+                descricao = 'Muito urgente';
+                break;
+            }
+            case 'URGENTE': {
+                descricao = 'Urgente';
+                break;
+            }
+
+            case 'POUCO_URGENTE': {
+                descricao = 'Pouco urgente';
+                break;
+            }
+            case 'NAO': {
+                descricao = 'Não urgente';
+                break;
+            }
+        }
+        return descricao;
     }
 
     btnClick(event: DatatableClickEvent) {

@@ -4,7 +4,6 @@ import { TriagemModel } from './../../models/triagem-model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ListaDePacientesComponent } from '../lista-de-pacientes/lista-de-pacientes.component';
 
 @Injectable({
     providedIn: 'root',
