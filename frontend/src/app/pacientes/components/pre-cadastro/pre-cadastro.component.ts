@@ -29,7 +29,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
         nomeDaMae: ['', Validators.required],
         dataDeNascimento: ['', Validators.required],
         cartaoSus: ['', [this.validaSus]],
-        status: [''],
+        status: ['true'],
     });
 
     ngOnInit() {

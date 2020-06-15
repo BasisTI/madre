@@ -43,13 +43,17 @@
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Nome Social" field="nomeSocial"></p-column>
                     <p-column header="Nome da Mãe" field="nomeDaMae"></p-column>
-                    <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
+                    <p-column header="Data de Nascimento" field="dataDeNascimento">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span> {{ rowData[col.field] | date: 'dd/MM/yyyy' }}</span>
+                        </ng-template>
+                    </p-column>
                     <p-column header="Cartão SUS" field="cartaoSus"></p-column>
-                    <p-column header="Ativo" field="ativo">
+                    <!-- <p-column header="Ativo" field="ativo">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                             <span> {{ rowData[col.field] === true ? 'Sim' : 'Não' }}</span>
                         </ng-template>
-                    </p-column>
+                    </p-column> -->
                 </basis-datatable>
             </div>
         </div>
