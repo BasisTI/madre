@@ -2,7 +2,6 @@ import { PreCadastroService } from './../pre-cadastro/pre-cadastro.service';
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { PreCadastroModel } from '../../models/pre-cadastro-model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-listagem-pre-cadastro',

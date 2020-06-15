@@ -1,6 +1,6 @@
 import { PreCadastroModel } from '../../models/pre-cadastro-model';
 import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { PreCadastroService } from './pre-cadastro.service';
 import { Router } from '@angular/router';
