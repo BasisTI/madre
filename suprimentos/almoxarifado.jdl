@@ -1,0 +1,58 @@
+relationship ManyToOne {
+    Almoxarifado{centroDeAtividade} to CentroDeAtividade required,
+    Almoxarifado{caracteristicaArmazenamento} to CaracteristicaArmazenamento,
+    TransferenciaAlmoxarifado{origem} to Almoxarifado,
+    TransferenciaAlmoxarifado{destino} to Almoxarifado,
+}
+
+relationship OneToMany {
+    Almoxarifado{temposPorClasse} to TempoPorClasse,
+    CaracteristicaArmazenamento{composicoes} to Composicao,
+    Recebimento{itensNotaRecebimento} to entity ItemNotaRecebimento
+}
+
+entity Almoxarifado {
+    descricao String required
+    diasEstoque Integer
+    central Boolean
+    ativo Boolean required
+    calculaMediaPonderada Boolean required
+    bloqueiaEntradaTransferencia Boolean
+}
+
+entity TransferenciaAlmoxarifado {
+    ativo Boolean required
+}
+
+entity CentroDeAtividade {
+    descricao String required
+}
+
+entity CaracteristicaArmazenamento {
+    misturaMateriaisDireitos Boolean required
+    misturaGrupoMateriais Boolean required
+}
+
+entity TempoPorClasse {
+    tipo TempoPorClasseTipo required
+    quantidadeClasseA Integer
+    quantidadeClasseB Integer
+    quantidadeClasseC Integer
+}
+
+entity Composicao {
+    nome String required
+    //servidor String required
+}
+
+enum TempoPorClasseTipo {
+    SALDO,
+    PARCELA,
+    TEMPO_REPOSICAO,
+    TEMPO_REPOSICAO_CONTRATO
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
