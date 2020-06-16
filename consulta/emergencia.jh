@@ -1,18 +1,16 @@
 entity Emergencia {
-    
+
     dataHoraDaConsulta LocalDate required
     diaDaSemana String maxlength(20)
-    convenio Convenio maxlength(100) required
-    formaDeAgendamento FormaDeAgendamento maxlength (100) required
     grade Long max (20)
+    //convenio está no MicroServiço internacao
     profissional String maxlength(80)
-    condicaoDeAtendimento CondicaoDeAtendimento maxlength(40)
     //formaDeAgendamento = autorizacao
     sala String maxlength(20)
-    turno Turno maxlength(40)
-    pagador Pagador maxlength(40)
+    turno Turno
+    pagador Pagador
     gradesDisponiveis Boolean
-    prioridade 	Prioridade maxlength(40)
+    prioridade 	Prioridade
     central Long max (100)
     observacoes String maxlength (240)
     //paciente
@@ -31,30 +29,24 @@ entity FormaDeAgendamento {
 	autorizacao String required
 }
 relationship OneToOne{
-
-Emergencia to CondicaoDeAtendimento
-Emergencia to FormaDeAgendamento
+    Emergencia to CondicaoDeAtendimento
+    Emergencia to FormaDeAgendamento
 }
 
 enum Pagador {
-	SUS
+	SUS,
     OUTROS_CONVENIOS
 }
 
-enum Convenio {
-  SUS_PLANO_AMBULATORIO
-  CONVENIOS_PARTICULARES
-}
-
 enum Turno {
-  MATUTINO
-  VESPERTINO
+  MATUTINO,
+  VESPERTINO,
   NOTURNO
 }
-  
+
   enum Prioridade {
-  ALTA
-  MEDIA
+  ALTA,
+  MEDIA,
   BAIXA
 }
 
