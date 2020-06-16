@@ -1,55 +1,37 @@
-p-radioButton {
-    margin-left: 15px;
-    margin-right: 15px;
-}
-h4 {
-    text-align: center;
-}
-img {
-    height: 50px;
-    width: 50px;
-}
-H3 {
-    color: red;
-    text-align: right;
-    margin-right: 30px;
-}
-
 .emergencia {
     background-color: red;
-    height: 50px;
-    width: 50px;
+    height: 20px;
+    width: 60px;
     border: 1px solid grey;
     border-radius: 10px;
-    align-self: center;
 }
 
 .muitoUrgente {
     background-color: orange;
-    height: 50px;
-    width: 50px;
+    height: 20px;
+    width: 60px;
     border: 1px solid grey;
     border-radius: 10px;
 }
 .urgente {
     background-color: yellow;
-    height: 50px;
-    width: 50px;
+    height: 20px;
+    width: 60px;
     border: 1px solid grey;
     border-radius: 10px;
 }
 .poucoUrgente {
     background-color: green;
-    height: 50px;
-    width: 50px;
+    height: 20px;
+    width: 60px;
     border: 1px solid grey;
     border-radius: 10px;
 }
 
 .naoUrgente {
     background-color: blue;
-    height: 50px;
-    width: 50px;
+    height: 20px;
+    width: 60px;
     border: 1px solid grey;
     border-radius: 10px;
 }

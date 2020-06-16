@@ -7,6 +7,7 @@ import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -28,7 +29,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         frequenciaCardiaca: [''],
         temperatura: [''],
         peso: [''],
-        sinaisSintomas: [''],
+        sinaisSintomas: ['', Validators.minLength(3)],
         dataHoraDoAtendimento: [new Date()],
         idade: [''],
         descricaoQueixa: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -43,6 +44,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     anosDisponiveis = `2000:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
     listaPacientesTriagem = new Array<ListaPacientesTriagem>();
+    idade = '';
 
     buscaPacientes(event) {
         this.triagemService.getResultPacientes(event.query).subscribe((data) => {
@@ -56,6 +58,22 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         private triagemService: TriagemService,
         private route: ActivatedRoute,
     ) {}
+    private idadePaciente(dtNascimento: Date) {
+        if (dtNascimento) {
+            const idade = moment().diff(moment(dtNascimento), 'years');
+
+            if (idade === 0) {
+                this.idade = 'Menos de 1 ano';
+                return;
+            }
+
+            this.idade = String(idade);
+
+            return;
+        }
+
+        this.idade = '';
+    }
 
     ngOnInit() {
         this.breadcrumbService.setItems([
@@ -91,7 +109,9 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             pacienteId: tri.paciente.id,
         };
 
-        this.triagemService.cadastrarTriagem(triagem).subscribe();
+        this.triagemService.cadastrarTriagem(triagem).subscribe((e) => {
+            this.formTriagem.reset();
+        });
         console.log(triagem);
     }
 
@@ -102,6 +122,11 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             this.formTriagem.patchValue(triagem);
             this.formTriagem.patchValue({ paciente: triagem.paciente.nome });
         });
+    }
+
+    pacienteSelecionado(evt: any) {
+        this.idadePaciente(evt.dataDeNascimento);
+        console.log(evt);
     }
 
     ngOnDestroy() {

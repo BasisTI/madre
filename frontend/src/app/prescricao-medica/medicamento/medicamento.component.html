@@ -9,7 +9,7 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-12">
                                     <span class="md-inputfield">
-                                        <input formControlName="idPaciente" type="text"
+                                        <input formControlName="nome" type="text"
                                             pInputText disabled />
                                         <label>Paciente</label>
                                     </span>
@@ -49,10 +49,11 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="number" pInputText formControlName="dose" />
+                                        <input pInputText formControlName="dose" />
                                         <label>Dose</label>
                                         <app-message [control]="itemPrescricaoMedicamento.get('dose')" error="required"
                                         text="Campo é obrigatório"></app-message>
+                                    
                                     </span>
                                 </div>
 
@@ -123,8 +124,9 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input pInputText type="text" formControlName="volume" />
+                                        <input pInputText formControlName="volume" placeholder="Informe o valume do diluente" />
                                         <label>Volume (ml)</label>
+                                       
                                     </span>
                                 </div>
 
