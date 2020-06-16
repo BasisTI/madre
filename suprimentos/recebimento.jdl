@@ -1,0 +1,85 @@
+relationship ManyToOne {
+    Recebimento{notaFiscalEntrada} to DocumentoFiscalEntrada,
+    Recebimento{autorizacaoFornecimento} to AutorizacaoFornecimento,
+    AutorizacaoFornecimento{fornecedor} to Fornecedor,
+    DocumentoFiscalEntrada{fornecedor} to Fornecedor required,
+    Material{unidadeMedida} to UnidadeMedida required,
+    ItemNotaRecebimento{marcaComercial} to MarcaComercial required,
+    ItemNotaRecebimento{material} to Material required,
+    ItemNotaRecebimento{unidadeMedida} to UnidadeMedida required
+}
+
+relationship OneToMany {
+    Recebimento{itensNotaRecebimento} to entity ItemNotaRecebimento
+}
+
+enum TipoDocumento {
+	NOTA_FISCAL,
+    TERMO_DE_TRANSFERENCIA,
+    DOACAO
+}
+
+enum TipoDocumentoFiscal {
+	NFS,
+    DFE,
+    DFS
+}
+
+enum TipoItemAf {
+	MATERIAL,
+    SERVICO
+}
+
+entity  Recebimento {
+}
+
+entity DocumentoFiscalEntrada {
+    numeroDocumento Long required
+    serie String required
+    notaEmpenho String
+    // CPF/CPNJ String required
+    dataGeracao LocalDate required
+    dataEmissao LocalDate required
+    dataEntrada LocalDate required
+    dataVencimento LocalDate required
+    valorTotal BigDecimal required
+    tipoDocumento TipoDocumento
+    tipoDocumentoFiscal TipoDocumentoFiscal required
+    observacao String
+}
+
+entity AutorizacaoFornecimento {
+    numero Long required
+    complemento String required
+    tipoItem TipoItemAf required
+}
+
+entity ItemNotaRecebimento {
+    quantidadeReceber Long required
+    quantidadeConvertida String required
+    valorTotal BigDecimal required
+}
+
+entity Fornecedor {
+    cnpj String required
+    razaoSocial String required
+    nomeFantasia String
+}
+
+entity UnidadeMedida {
+    sigla String required
+    descricao String required
+}
+
+entity Material {
+    descricao String required
+}
+
+entity MarcaComercial {
+    descricao String required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
