@@ -2,11 +2,11 @@ relationship ManyToOne {
     Recebimento{notaFiscalEntrada} to DocumentoFiscalEntrada,
     Recebimento{autorizacaoFornecimento} to AutorizacaoFornecimento,
     AutorizacaoFornecimento{fornecedor} to Fornecedor,
-    DocumentoFiscalEntrada{fornecedor} to Fornecedor required,
-    Material{unidadeMedida} to UnidadeMedida required,
-    ItemNotaRecebimento{marcaComercial} to MarcaComercial required,
-    ItemNotaRecebimento{material} to Material required,
-    ItemNotaRecebimento{unidadeMedida} to UnidadeMedida required
+    DocumentoFiscalEntrada{fornecedor required} to Fornecedor,
+    Material{unidadeMedida required} to UnidadeMedida,
+    ItemNotaRecebimento{marcaComercial required} to MarcaComercial,
+    ItemNotaRecebimento{material required} to Material,
+    ItemNotaRecebimento{unidadeMedida required} to UnidadeMedida
 }
 
 relationship OneToMany {
@@ -35,9 +35,11 @@ entity  Recebimento {
 
 entity DocumentoFiscalEntrada {
     numeroDocumento Long required
-    serie String required
-    notaEmpenho String
-    // CPF/CPNJ String required
+    serie String maxlength(10) required
+    notaEmpenho String  maxlength(120)
+    // Dois campos? um para CPF e outro para CNPJ? ou um campo só?
+    cnpj String minlength(14) maxlength(14) unique required
+    cpf String minlength(11) maxlength(11) unique required
     dataGeracao LocalDate required
     dataEmissao LocalDate required
     dataEntrada LocalDate required
@@ -45,38 +47,38 @@ entity DocumentoFiscalEntrada {
     valorTotal BigDecimal required
     tipoDocumento TipoDocumento
     tipoDocumentoFiscal TipoDocumentoFiscal required
-    observacao String
+    observacao String maxlength(500)
 }
 
 entity AutorizacaoFornecimento {
     numero Long required
-    complemento String required
+    complemento String maxlength(120) required
     tipoItem TipoItemAf required
 }
 
 entity ItemNotaRecebimento {
-    quantidadeReceber Long required
-    quantidadeConvertida String required
-    valorTotal BigDecimal required
+    quantidadeReceber Long min(0) max(255) required
+    quantidadeConvertida String maxlength(255) required
+    valorTotal BigDecimal min(0) required
 }
 
 entity Fornecedor {
-    cnpj String required
-    razaoSocial String required
-    nomeFantasia String
+    cnpj String minlength(14) maxlength(14) unique required
+    razaoSocial String maxlength(255) required
+    nomeFantasia String maxlength(120)
 }
 
 entity UnidadeMedida {
-    sigla String required
-    descricao String required
+    sigla String minlength(1) maxlength(10) unique required
+    descricao String maxlength(120) required
 }
 
 entity Material {
-    descricao String required
+    descricao String maxlength(120) required
 }
 
 entity MarcaComercial {
-    descricao String required
+    descricao String maxlength(120) required
 }
 
 dto * with mapstruct
