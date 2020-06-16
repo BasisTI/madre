@@ -37,9 +37,7 @@ entity DocumentoFiscalEntrada {
     numeroDocumento Long required
     serie String maxlength(10) required
     notaEmpenho String  maxlength(120)
-    // Dois campos? um para CPF e outro para CNPJ? ou um campo só?
-    cnpj String minlength(14) maxlength(14) unique required
-    cpf String minlength(11) maxlength(11) unique required
+    cpfCnpj String minlength(11) maxlength(14) unique required
     dataGeracao LocalDate required
     dataEmissao LocalDate required
     dataEntrada LocalDate required
