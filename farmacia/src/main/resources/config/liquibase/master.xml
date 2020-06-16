@@ -20,8 +20,11 @@
     <include file="config/liquibase/changelog/20200508124041_added_entity_Unidade.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200508124042_added_entity_TipoMedicamento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200508124043_added_entity_Apresentacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616173335_added_entity_Estorno.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616173336_added_entity_Motivo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200508124039_added_entity_constraints_DispensacaoMedicamentos.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200508124040_added_entity_constraints_Medicamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616173335_added_entity_constraints_Estorno.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

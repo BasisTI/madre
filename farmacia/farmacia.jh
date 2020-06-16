@@ -1,3 +1,12 @@
+entity Estorno {
+	estornado Boolean
+    usuarioQueEstornou Long
+    dataDeEstorno LocalDate
+}
+entity Motivo{
+	codigo String
+    descricao String
+}
 entity Dispensacao {
     idPrescricao Long
     idUnidade Long
@@ -36,6 +45,8 @@ relationship ManyToOne {
 	Medicamento{tipoMedicamento} to TipoMedicamento
     Medicamento{apresentacao} to Apresentacao
     Medicamento{unidade} to Unidade
+    Estorno{DispensacaoMedicamentos} to DispensacaoMedicamentos
+    Estorno{motivo} to Motivo
 }
 dto * with mapstruct
 paginate * with pagination
