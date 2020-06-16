@@ -1,5 +1,7 @@
 package br.com.basis.madre.prescricao.domain;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,58 +22,55 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * A PrescricaoDieta.
  */
+
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "prescricao_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "madre-prescricao-prescricaodieta")
-public class PrescricaoDieta implements Serializable {
+public class PrescricaoDieta extends PrescricaoMedica implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    @Field(type = FieldType.Keyword)
-    private Long id;
+	@Column(name = "id_paciente")
+	private Long idPaciente;
 
-    @Column(name = "id_paciente")
-    private Long idPaciente;
-    
-    @Column(name = "bomba_infusao")
-    private Boolean bombaInfusao;
+	@Column(name = "bomba_infusao")
+	private Boolean bombaInfusao;
 
-    @Size(max = 255)
-    @Column(name = "observacao", length = 255)
-    private String observacao;
+	@Size(max = 255)
+	@Column(name = "observacao", length = 255)
+	private String observacao;
 
-    @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL)
+	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
+	public PrescricaoDieta idPaciente(Long idPaciente) {
+		this.idPaciente = idPaciente;
+		return this;
+	}
 
-    public PrescricaoDieta idPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-        return this;
-    }
+	public PrescricaoDieta observacao(String observacao) {
+		this.observacao = observacao;
+		return this;
+	}
 
-    public PrescricaoDieta observacao(String observacao) {
-        this.observacao = observacao;
-        return this;
-    }
+	public PrescricaoDieta itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
+		this.itemPrescricaoDietas = itemPrescricaoDietas;
+		return this;
+	}
 
-    public PrescricaoDieta itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
-        this.itemPrescricaoDietas = itemPrescricaoDietas;
-        return this;
-    }
-    
 	public PrescricaoDieta addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
 		this.itemPrescricaoDietas.add(itemPrescricaoDieta);
 		itemPrescricaoDieta.setPrescricaoDieta(this);
@@ -84,6 +83,4 @@ public class PrescricaoDieta implements Serializable {
 		return this;
 	}
 
-
- 
 }
