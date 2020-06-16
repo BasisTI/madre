@@ -10,7 +10,7 @@ relationship ManyToOne {
 }
 
 relationship OneToMany {
-    Recebimento{itensNotaRecebimento} to entity ItemNotaRecebimento
+    Recebimento{itensNotaRecebimento} to ItemNotaRecebimento
 }
 
 enum TipoDocumento {
