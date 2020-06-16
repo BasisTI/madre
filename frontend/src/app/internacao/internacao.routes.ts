@@ -7,6 +7,7 @@ import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-d
 import { Routes } from '@angular/router';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
+import { CadastroUnidadesComponent } from './cadastro-unidades/components/cadastro-unidades/cadastro-unidades.component';
 
 export const routes: Routes = [
     {
@@ -40,5 +41,9 @@ export const routes: Routes = [
     {
         path: 'calendario-leito',
         component: CalendarioComponent,
+    },
+    {
+        path: 'cadastro-unidades',
+        component: CadastroUnidadesComponent,
     },
 ];

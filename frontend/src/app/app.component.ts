@@ -136,6 +136,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['internacao/solicitacoes-de-internacao'],
                     },
                     {
+                        label: 'Cadastrar Unidade',
+                        icon: 'add',
+                        routerLink: ['internacao/cadastro-unidades'],
+                    },
+                    {
                         label: 'Leitos',
                         icon: 'add',
                         items: [
