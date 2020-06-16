@@ -11,7 +11,7 @@ relationship ManyToOne {
     ItemNotaRecebimento{marcaComercial required} to MarcaComercial,
     ItemNotaRecebimento{material required} to Material,
     ItemNotaRecebimento{unidadeMedida required} to UnidadeMedida,
-    Material{grupo required} to MaterialGrupo,
+    Material{grupo required} to GrupoMaterial,
     Material{localEstoque required} to Almoxarifado,
     Material{codigoCatmat} to CodigoCatmat,
     Material{sazonalidade} to Sazonalidade,
