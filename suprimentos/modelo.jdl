@@ -16,13 +16,20 @@ relationship ManyToOne {
     Material{codigoCatmat} to CodigoCatmat,
     Material{sazonalidade} to Sazonalidade,
     Material{tipoResiduo} to TipoResiduo,
-    Material{OrigemParecerTecnico} to OrigemParecerTecnico
+    Material{OrigemParecerTecnico} to OrigemParecerTecnico,
+    EstoqueAlmoxarifado{almoxarifado required} to Almoxarifado,
+    EstoqueAlmoxarifado{material required} to Material,
+    EstoqueAlmoxarifado{fornecedor required} to Fornecedor,
+    EstoqueAlmoxarifado{solicitacaoCompras} to SolicitacaoCompras,
+    Lote{marcaComercial} to MarcaComercial
 }
 
 relationship OneToMany {
     Almoxarifado{temposPorClasse} to TempoPorClasse,
     CaracteristicaArmazenamento{composicoes} to Composicao,
-    Recebimento{itensNotaRecebimento} to ItemNotaRecebimento
+    Recebimento{itensNotaRecebimento} to ItemNotaRecebimento,
+    Almoxarifado{estoques} to EstoqueAlmoxarifado{almoxarifado required},
+    EstoqueAlmoxarifado{lotes} to Lote{estoque required}
 }
 
 entity Almoxarifado {
@@ -123,6 +130,30 @@ entity Fornecedor {
 entity UnidadeMedida {
     sigla String minlength(1) maxlength(10) unique required
     descricao String maxlength(120) required
+}
+
+// No AGHU um campo (combo) com apenas números
+entity SolicitacaoCompras {
+    numero Long required
+}
+
+entity EstoqueAlmoxarifado {
+    ativo Boolean required
+    endereco String minlength(1) maxlength(8)
+    quantidadeLimiteArmazenamento Long
+    quantidadeEstoqueMinimo Long min(1) required
+    quantidadeEstoqueMaximo Long min(1) required
+    quantidadePontoPedido Long min(1) required
+    tempoReposicao Integer min(1) required
+}
+
+entity Lote {
+    descricao String minlength(1) maxlength(120) required
+    serie String minlength(1) maxlength(15)
+    quantidadeDisponivel Long min(0)
+    quantidadeBloqueada Long min(0)
+    quantidadeProblema Long min(0)
+    dataValidade LocalDate required
 }
 
 entity Material {
