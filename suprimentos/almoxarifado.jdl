@@ -1,19 +1,18 @@
 relationship ManyToOne {
-    Almoxarifado{centroDeAtividade} to CentroDeAtividade required,
+    Almoxarifado{centroDeAtividade required} to CentroDeAtividade,
     Almoxarifado{caracteristicaArmazenamento} to CaracteristicaArmazenamento,
-    TransferenciaAlmoxarifado{origem} to Almoxarifado,
-    TransferenciaAlmoxarifado{destino} to Almoxarifado,
+    TransferenciaAlmoxarifado{origem required} to Almoxarifado,
+    TransferenciaAlmoxarifado{destino required} to Almoxarifado
 }
 
 relationship OneToMany {
     Almoxarifado{temposPorClasse} to TempoPorClasse,
-    CaracteristicaArmazenamento{composicoes} to Composicao,
-    Recebimento{itensNotaRecebimento} to entity ItemNotaRecebimento
+    CaracteristicaArmazenamento{composicoes} to Composicao
 }
 
 entity Almoxarifado {
-    descricao String required
-    diasEstoque Integer
+    descricao String maxlength(120) required
+    diasEstoque Integer min(0) max(255)
     central Boolean
     ativo Boolean required
     calculaMediaPonderada Boolean required
@@ -25,7 +24,7 @@ entity TransferenciaAlmoxarifado {
 }
 
 entity CentroDeAtividade {
-    descricao String required
+    descricao String maxlength(120) required
 }
 
 entity CaracteristicaArmazenamento {
@@ -34,18 +33,19 @@ entity CaracteristicaArmazenamento {
 }
 
 entity TempoPorClasse {
-    tipo TempoPorClasseTipo required
-    quantidadeClasseA Integer
-    quantidadeClasseB Integer
-    quantidadeClasseC Integer
+    tipo TipoTempoPorClasse required
+    quantidadeClasseA Integer min(0) max(255) required
+    quantidadeClasseB Integer min(0) max(255) required
+    quantidadeClasseC Integer min(0) max(255) required
 }
 
 entity Composicao {
-    nome String required
-    //servidor String required
+    nome String maxlength(120) required
+    // Servidor?
+    servidor String required
 }
 
-enum TempoPorClasseTipo {
+enum TipoTempoPorClasse {
     SALDO,
     PARCELA,
     TEMPO_REPOSICAO,
