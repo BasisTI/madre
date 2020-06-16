@@ -1,0 +1,61 @@
+entity Unidade {
+    descricao String required,
+    sigla String required,
+    situacao Boolean required,
+    controleDeEstoque Boolean,
+    idAlmoxarifado Long,
+    andar Integer required,
+    capacidade Integer,
+    horarioInicio Instant,
+    horarioFim Instant,
+    localExame String,
+    rotinaDeFuncionamento String,
+    anexoDocumento Boolean,
+    setor Long,
+    idAlmorifado Long,
+    idCentroDeAtividade Long required,
+    idChefia Long,
+    idPrescricaoMedica Long,
+    idPrescricaoEnfermagem Long,
+	idCirurgia Long
+
+}
+
+entity Ala {
+	nome String
+}
+
+entity Clinica {
+	nome String,
+
+}
+
+entity TipoUnidade {
+    nome String
+}
+
+
+entity Caracteristica {
+	nome String,
+}
+
+relationship OneToOne {
+	Unidade{unidadePai} to Unidade
+}
+
+relationship OneToMany {
+	Unidade{caracteristica} to Caracteristica
+}
+
+relationship ManyToOne {
+	Ala {unidade} to Unidade,
+    Clinica {unidade} to Unidade,
+    Unidade {tipoUnidade required} to TipoUnidade,
+}
+
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
+

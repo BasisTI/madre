@@ -60,6 +60,11 @@
         relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200511124847_added_entity_EventoLeito.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160417_added_entity_Unidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160418_added_entity_Ala.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160419_added_entity_Clinica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160420_added_entity_TipoUnidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160421_added_entity_Caracteristica.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include
         file="config/liquibase/changelog/20200429130304_added_entity_constraints_Internacao.xml"
@@ -77,6 +82,10 @@
     <include
         file="config/liquibase/changelog/20200511124847_added_entity_constraints_EventoLeito.xml"
         relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160417_added_entity_constraints_Unidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160418_added_entity_constraints_Ala.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160419_added_entity_constraints_Clinica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616160421_added_entity_constraints_Caracteristica.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="config/liquibase/changelog/20200429143312_changelog.xml"
              relativeToChangelogFile="false"/>

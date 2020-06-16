@@ -1,0 +1,132 @@
+{
+    "name": "Unidade",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sigla",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "controleDeEstoque",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "idAlmoxarifado",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "andar",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "capacidade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "horarioInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "horarioFim",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "localExame",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rotinaDeFuncionamento",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "anexoDocumento",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "setor",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idAlmorifado",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idCentroDeAtividade",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "idChefia",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idPrescricaoMedica",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idPrescricaoEnfermagem",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idCirurgia",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "unidade",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "unidadePai",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "caracteristica",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "caracteristica"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoUnidade",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipValidateRules": "required",
+            "relationshipName": "tipoUnidade",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200616160417",
+    "entityTableName": "unidade",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}
