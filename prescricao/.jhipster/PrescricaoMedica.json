@@ -1,0 +1,34 @@
+{
+    "name": "PrescricaoMedica",
+    "fields": [
+        {
+            "fieldName": "idLeito",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idUnidadeFuncional",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idAtendimento",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dataPrescricao",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200616152029",
+    "entityTableName": "prescricao_medica",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}
