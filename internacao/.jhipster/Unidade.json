@@ -80,10 +80,6 @@
         {
             "fieldName": "idChefia",
             "fieldType": "Long"
-        },
-        {
-            "fieldName": "idCirurgia",
-            "fieldType": "Long"
         }
     ],
     "relationships": [

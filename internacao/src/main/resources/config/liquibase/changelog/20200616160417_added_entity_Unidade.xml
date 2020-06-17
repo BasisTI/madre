@@ -63,9 +63,6 @@
             <column name="id_chefia" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="id_cirurgia" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="unidade_pai_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_unidade_unidade_pai_id" />
             </column>
@@ -122,7 +119,6 @@
             <column name="id_almorifado" type="numeric"/>
             <column name="id_centro_de_atividade" type="numeric"/>
             <column name="id_chefia" type="numeric"/>
-            <column name="id_cirurgia" type="numeric"/>
             <column name="tipo_unidade_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>

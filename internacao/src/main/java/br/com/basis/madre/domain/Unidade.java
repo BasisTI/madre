@@ -85,9 +85,6 @@ public class Unidade implements Serializable {
     @Column(name = "id_chefia")
     private Long idChefia;
 
-    @Column(name = "id_cirurgia")
-    private Long idCirurgia;
-
     @OneToOne
     @JoinColumn(unique = true)
     private Unidade unidadePai;
@@ -330,19 +327,6 @@ public class Unidade implements Serializable {
         this.idChefia = idChefia;
     }
 
-    public Long getIdCirurgia() {
-        return idCirurgia;
-    }
-
-    public Unidade idCirurgia(Long idCirurgia) {
-        this.idCirurgia = idCirurgia;
-        return this;
-    }
-
-    public void setIdCirurgia(Long idCirurgia) {
-        this.idCirurgia = idCirurgia;
-    }
-
     public Unidade getUnidadePai() {
         return unidadePai;
     }
@@ -470,7 +454,6 @@ public class Unidade implements Serializable {
             ", idAlmorifado=" + getIdAlmorifado() +
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
-            ", idCirurgia=" + getIdCirurgia() +
             "}";
     }
 }

@@ -94,9 +94,6 @@ public class UnidadeResourceIT {
     private static final Long DEFAULT_ID_CHEFIA = 1L;
     private static final Long UPDATED_ID_CHEFIA = 2L;
 
-    private static final Long DEFAULT_ID_CIRURGIA = 1L;
-    private static final Long UPDATED_ID_CIRURGIA = 2L;
-
     @Autowired
     private UnidadeRepository unidadeRepository;
 
@@ -168,8 +165,7 @@ public class UnidadeResourceIT {
             .setor(DEFAULT_SETOR)
             .idAlmorifado(DEFAULT_ID_ALMORIFADO)
             .idCentroDeAtividade(DEFAULT_ID_CENTRO_DE_ATIVIDADE)
-            .idChefia(DEFAULT_ID_CHEFIA)
-            .idCirurgia(DEFAULT_ID_CIRURGIA);
+            .idChefia(DEFAULT_ID_CHEFIA);
         // Add required entity
         TipoUnidade tipoUnidade;
         if (TestUtil.findAll(em, TipoUnidade.class).isEmpty()) {
@@ -205,8 +201,7 @@ public class UnidadeResourceIT {
             .setor(UPDATED_SETOR)
             .idAlmorifado(UPDATED_ID_ALMORIFADO)
             .idCentroDeAtividade(UPDATED_ID_CENTRO_DE_ATIVIDADE)
-            .idChefia(UPDATED_ID_CHEFIA)
-            .idCirurgia(UPDATED_ID_CIRURGIA);
+            .idChefia(UPDATED_ID_CHEFIA);
         // Add required entity
         TipoUnidade tipoUnidade;
         if (TestUtil.findAll(em, TipoUnidade.class).isEmpty()) {
@@ -257,7 +252,6 @@ public class UnidadeResourceIT {
         assertThat(testUnidade.getIdAlmorifado()).isEqualTo(DEFAULT_ID_ALMORIFADO);
         assertThat(testUnidade.getIdCentroDeAtividade()).isEqualTo(DEFAULT_ID_CENTRO_DE_ATIVIDADE);
         assertThat(testUnidade.getIdChefia()).isEqualTo(DEFAULT_ID_CHEFIA);
-        assertThat(testUnidade.getIdCirurgia()).isEqualTo(DEFAULT_ID_CIRURGIA);
 
         // Validate the Unidade in Elasticsearch
         verify(mockUnidadeSearchRepository, times(1)).save(testUnidade);
@@ -408,8 +402,7 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].setor").value(hasItem(DEFAULT_SETOR.intValue())))
             .andExpect(jsonPath("$.[*].idAlmorifado").value(hasItem(DEFAULT_ID_ALMORIFADO.intValue())))
             .andExpect(jsonPath("$.[*].idCentroDeAtividade").value(hasItem(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue())))
-            .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())))
-            .andExpect(jsonPath("$.[*].idCirurgia").value(hasItem(DEFAULT_ID_CIRURGIA.intValue())));
+            .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())));
     }
     
     @Test
@@ -438,8 +431,7 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.setor").value(DEFAULT_SETOR.intValue()))
             .andExpect(jsonPath("$.idAlmorifado").value(DEFAULT_ID_ALMORIFADO.intValue()))
             .andExpect(jsonPath("$.idCentroDeAtividade").value(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue()))
-            .andExpect(jsonPath("$.idChefia").value(DEFAULT_ID_CHEFIA.intValue()))
-            .andExpect(jsonPath("$.idCirurgia").value(DEFAULT_ID_CIRURGIA.intValue()));
+            .andExpect(jsonPath("$.idChefia").value(DEFAULT_ID_CHEFIA.intValue()));
     }
 
     @Test
@@ -478,8 +470,7 @@ public class UnidadeResourceIT {
             .setor(UPDATED_SETOR)
             .idAlmorifado(UPDATED_ID_ALMORIFADO)
             .idCentroDeAtividade(UPDATED_ID_CENTRO_DE_ATIVIDADE)
-            .idChefia(UPDATED_ID_CHEFIA)
-            .idCirurgia(UPDATED_ID_CIRURGIA);
+            .idChefia(UPDATED_ID_CHEFIA);
         UnidadeDTO unidadeDTO = unidadeMapper.toDto(updatedUnidade);
 
         restUnidadeMockMvc.perform(put("/api/unidades")
@@ -507,7 +498,6 @@ public class UnidadeResourceIT {
         assertThat(testUnidade.getIdAlmorifado()).isEqualTo(UPDATED_ID_ALMORIFADO);
         assertThat(testUnidade.getIdCentroDeAtividade()).isEqualTo(UPDATED_ID_CENTRO_DE_ATIVIDADE);
         assertThat(testUnidade.getIdChefia()).isEqualTo(UPDATED_ID_CHEFIA);
-        assertThat(testUnidade.getIdCirurgia()).isEqualTo(UPDATED_ID_CIRURGIA);
 
         // Validate the Unidade in Elasticsearch
         verify(mockUnidadeSearchRepository, times(1)).save(testUnidade);
@@ -583,8 +573,7 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].setor").value(hasItem(DEFAULT_SETOR.intValue())))
             .andExpect(jsonPath("$.[*].idAlmorifado").value(hasItem(DEFAULT_ID_ALMORIFADO.intValue())))
             .andExpect(jsonPath("$.[*].idCentroDeAtividade").value(hasItem(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue())))
-            .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())))
-            .andExpect(jsonPath("$.[*].idCirurgia").value(hasItem(DEFAULT_ID_CIRURGIA.intValue())));
+            .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())));
     }
 
     @Test

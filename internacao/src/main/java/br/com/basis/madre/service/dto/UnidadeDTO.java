@@ -49,8 +49,6 @@ public class UnidadeDTO implements Serializable {
 
     private Long idChefia;
 
-    private Long idCirurgia;
-
 
     private Long unidadePaiId;
 
@@ -198,14 +196,6 @@ public class UnidadeDTO implements Serializable {
         this.idChefia = idChefia;
     }
 
-    public Long getIdCirurgia() {
-        return idCirurgia;
-    }
-
-    public void setIdCirurgia(Long idCirurgia) {
-        this.idCirurgia = idCirurgia;
-    }
-
     public Long getUnidadePaiId() {
         return unidadePaiId;
     }
@@ -287,7 +277,6 @@ public class UnidadeDTO implements Serializable {
             ", idAlmorifado=" + getIdAlmorifado() +
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
-            ", idCirurgia=" + getIdCirurgia() +
             ", unidadePai=" + getUnidadePaiId() +
             ", tipoUnidade=" + getTipoUnidadeId() +
             ", prescricaoEnfermagem=" + getPrescricaoEnfermagemId() +
