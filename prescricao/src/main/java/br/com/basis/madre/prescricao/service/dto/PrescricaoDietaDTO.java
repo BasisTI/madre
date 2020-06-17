@@ -12,8 +12,11 @@ import lombok.Data;
  * A DTO for the {@link br.com.basis.madre.prescricao.domain.PrescricaoDieta}
  * entity.
  */
+
 @Data
-public class PrescricaoDietaDTO implements Serializable {
+public class PrescricaoDietaDTO extends PrescricaoMedicaDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
@@ -24,7 +27,7 @@ public class PrescricaoDietaDTO implements Serializable {
 	@Size(max = 255)
 	private String observacao;
 
-	private Set<ItemPrescricaoDietaDTO> itemPrescricaoDietaDTO;
+	private Set<ItemPrescricaoDietaDTO> itemPrescricaoDietaDTO= new HashSet<>();
 
 
 }

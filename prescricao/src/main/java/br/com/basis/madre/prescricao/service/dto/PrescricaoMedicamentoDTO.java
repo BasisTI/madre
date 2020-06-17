@@ -14,7 +14,9 @@ import lombok.Data;
  */
 
 @Data
-public class PrescricaoMedicamentoDTO implements Serializable {
+public class PrescricaoMedicamentoDTO extends PrescricaoMedicaDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
@@ -25,5 +27,4 @@ public class PrescricaoMedicamentoDTO implements Serializable {
 
 	private Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentos = new HashSet<>();
 
-	
 }
