@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Estorno.
+    -->
+    <changeSet id="20200616173335-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="dispensacao_medicamentos_id"
+                                 baseTableName="estorno"
+                                 constraintName="fk_estorno_dispensacao_medicamentos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dispensacao_medicamentos"/>
+
+        <addForeignKeyConstraint baseColumnNames="motivo_id"
+                                 baseTableName="estorno"
+                                 constraintName="fk_estorno_motivo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motivo"/>
+
+    </changeSet>
+</databaseChangeLog>
