@@ -1,0 +1,35 @@
+{
+    "name": "Prescricao",
+    "fields": [
+        {
+            "fieldName": "horarioValidade",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tempoAdiantamento",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "unidadeTempo",
+            "fieldType": "UnidadeTempo",
+            "fieldValues": "DIA,HORAS"
+        },
+        {
+            "fieldName": "numeroVias",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200617160803",
+    "entityTableName": "prescricao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}

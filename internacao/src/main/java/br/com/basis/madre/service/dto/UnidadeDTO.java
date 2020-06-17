@@ -3,6 +3,7 @@ import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import br.com.basis.madre.domain.enumeration.Situacao;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Unidade} entity.
@@ -18,7 +19,7 @@ public class UnidadeDTO implements Serializable {
     private String sigla;
 
     @NotNull
-    private Boolean situacao;
+    private Situacao situacao;
 
     private Boolean controleDeEstoque;
 
@@ -48,16 +49,18 @@ public class UnidadeDTO implements Serializable {
 
     private Long idChefia;
 
-    private Long idPrescricaoMedica;
-
-    private Long idPrescricaoEnfermagem;
-
     private Long idCirurgia;
 
 
     private Long unidadePaiId;
 
     private Long tipoUnidadeId;
+
+    private Long prescricaoEnfermagemId;
+
+    private Long prescricaoMedicaId;
+
+    private Long cirurgiaId;
 
     public Long getId() {
         return id;
@@ -83,11 +86,11 @@ public class UnidadeDTO implements Serializable {
         this.sigla = sigla;
     }
 
-    public Boolean isSituacao() {
+    public Situacao getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(Boolean situacao) {
+    public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
     }
 
@@ -195,22 +198,6 @@ public class UnidadeDTO implements Serializable {
         this.idChefia = idChefia;
     }
 
-    public Long getIdPrescricaoMedica() {
-        return idPrescricaoMedica;
-    }
-
-    public void setIdPrescricaoMedica(Long idPrescricaoMedica) {
-        this.idPrescricaoMedica = idPrescricaoMedica;
-    }
-
-    public Long getIdPrescricaoEnfermagem() {
-        return idPrescricaoEnfermagem;
-    }
-
-    public void setIdPrescricaoEnfermagem(Long idPrescricaoEnfermagem) {
-        this.idPrescricaoEnfermagem = idPrescricaoEnfermagem;
-    }
-
     public Long getIdCirurgia() {
         return idCirurgia;
     }
@@ -233,6 +220,30 @@ public class UnidadeDTO implements Serializable {
 
     public void setTipoUnidadeId(Long tipoUnidadeId) {
         this.tipoUnidadeId = tipoUnidadeId;
+    }
+
+    public Long getPrescricaoEnfermagemId() {
+        return prescricaoEnfermagemId;
+    }
+
+    public void setPrescricaoEnfermagemId(Long prescricaoId) {
+        this.prescricaoEnfermagemId = prescricaoId;
+    }
+
+    public Long getPrescricaoMedicaId() {
+        return prescricaoMedicaId;
+    }
+
+    public void setPrescricaoMedicaId(Long prescricaoId) {
+        this.prescricaoMedicaId = prescricaoId;
+    }
+
+    public Long getCirurgiaId() {
+        return cirurgiaId;
+    }
+
+    public void setCirurgiaId(Long cirurgiaId) {
+        this.cirurgiaId = cirurgiaId;
     }
 
     @Override
@@ -262,7 +273,7 @@ public class UnidadeDTO implements Serializable {
             "id=" + getId() +
             ", descricao='" + getDescricao() + "'" +
             ", sigla='" + getSigla() + "'" +
-            ", situacao='" + isSituacao() + "'" +
+            ", situacao='" + getSituacao() + "'" +
             ", controleDeEstoque='" + isControleDeEstoque() + "'" +
             ", idAlmoxarifado=" + getIdAlmoxarifado() +
             ", andar=" + getAndar() +
@@ -276,11 +287,12 @@ public class UnidadeDTO implements Serializable {
             ", idAlmorifado=" + getIdAlmorifado() +
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
-            ", idPrescricaoMedica=" + getIdPrescricaoMedica() +
-            ", idPrescricaoEnfermagem=" + getIdPrescricaoEnfermagem() +
             ", idCirurgia=" + getIdCirurgia() +
             ", unidadePai=" + getUnidadePaiId() +
             ", tipoUnidade=" + getTipoUnidadeId() +
+            ", prescricaoEnfermagem=" + getPrescricaoEnfermagemId() +
+            ", prescricaoMedica=" + getPrescricaoMedicaId() +
+            ", cirurgia=" + getCirurgiaId() +
             "}";
     }
 }

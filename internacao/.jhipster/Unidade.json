@@ -17,7 +17,8 @@
         },
         {
             "fieldName": "situacao",
-            "fieldType": "Boolean",
+            "fieldType": "Situacao",
+            "fieldValues": "ATIVO,INATIVO",
             "fieldValidateRules": [
                 "required"
             ]
@@ -81,14 +82,6 @@
             "fieldType": "Long"
         },
         {
-            "fieldName": "idPrescricaoMedica",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "idPrescricaoEnfermagem",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "idCirurgia",
             "fieldType": "Long"
         }
@@ -114,6 +107,27 @@
             "otherEntityRelationshipName": "unidade",
             "relationshipValidateRules": "required",
             "relationshipName": "tipoUnidade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricao",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "prescricaoEnfermagem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricao",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "prescricaoMedica",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cirurgia",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "cirurgia",
             "otherEntityField": "id"
         }
     ],

@@ -12,6 +12,8 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.com.basis.madre.domain.enumeration.Situacao;
+
 /**
  * A Unidade.
  */
@@ -38,8 +40,9 @@ public class Unidade implements Serializable {
     private String sigla;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
-    private Boolean situacao;
+    private Situacao situacao;
 
     @Column(name = "controle_de_estoque")
     private Boolean controleDeEstoque;
@@ -82,12 +85,6 @@ public class Unidade implements Serializable {
     @Column(name = "id_chefia")
     private Long idChefia;
 
-    @Column(name = "id_prescricao_medica")
-    private Long idPrescricaoMedica;
-
-    @Column(name = "id_prescricao_enfermagem")
-    private Long idPrescricaoEnfermagem;
-
     @Column(name = "id_cirurgia")
     private Long idCirurgia;
 
@@ -103,6 +100,18 @@ public class Unidade implements Serializable {
     @NotNull
     @JsonIgnoreProperties("unidades")
     private TipoUnidade tipoUnidade;
+
+    @ManyToOne
+    @JsonIgnoreProperties("unidades")
+    private Prescricao prescricaoEnfermagem;
+
+    @ManyToOne
+    @JsonIgnoreProperties("unidades")
+    private Prescricao prescricaoMedica;
+
+    @ManyToOne
+    @JsonIgnoreProperties("unidades")
+    private Cirurgia cirurgia;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -139,16 +148,16 @@ public class Unidade implements Serializable {
         this.sigla = sigla;
     }
 
-    public Boolean isSituacao() {
+    public Situacao getSituacao() {
         return situacao;
     }
 
-    public Unidade situacao(Boolean situacao) {
+    public Unidade situacao(Situacao situacao) {
         this.situacao = situacao;
         return this;
     }
 
-    public void setSituacao(Boolean situacao) {
+    public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
     }
 
@@ -321,32 +330,6 @@ public class Unidade implements Serializable {
         this.idChefia = idChefia;
     }
 
-    public Long getIdPrescricaoMedica() {
-        return idPrescricaoMedica;
-    }
-
-    public Unidade idPrescricaoMedica(Long idPrescricaoMedica) {
-        this.idPrescricaoMedica = idPrescricaoMedica;
-        return this;
-    }
-
-    public void setIdPrescricaoMedica(Long idPrescricaoMedica) {
-        this.idPrescricaoMedica = idPrescricaoMedica;
-    }
-
-    public Long getIdPrescricaoEnfermagem() {
-        return idPrescricaoEnfermagem;
-    }
-
-    public Unidade idPrescricaoEnfermagem(Long idPrescricaoEnfermagem) {
-        this.idPrescricaoEnfermagem = idPrescricaoEnfermagem;
-        return this;
-    }
-
-    public void setIdPrescricaoEnfermagem(Long idPrescricaoEnfermagem) {
-        this.idPrescricaoEnfermagem = idPrescricaoEnfermagem;
-    }
-
     public Long getIdCirurgia() {
         return idCirurgia;
     }
@@ -410,6 +393,45 @@ public class Unidade implements Serializable {
     public void setTipoUnidade(TipoUnidade tipoUnidade) {
         this.tipoUnidade = tipoUnidade;
     }
+
+    public Prescricao getPrescricaoEnfermagem() {
+        return prescricaoEnfermagem;
+    }
+
+    public Unidade prescricaoEnfermagem(Prescricao prescricao) {
+        this.prescricaoEnfermagem = prescricao;
+        return this;
+    }
+
+    public void setPrescricaoEnfermagem(Prescricao prescricao) {
+        this.prescricaoEnfermagem = prescricao;
+    }
+
+    public Prescricao getPrescricaoMedica() {
+        return prescricaoMedica;
+    }
+
+    public Unidade prescricaoMedica(Prescricao prescricao) {
+        this.prescricaoMedica = prescricao;
+        return this;
+    }
+
+    public void setPrescricaoMedica(Prescricao prescricao) {
+        this.prescricaoMedica = prescricao;
+    }
+
+    public Cirurgia getCirurgia() {
+        return cirurgia;
+    }
+
+    public Unidade cirurgia(Cirurgia cirurgia) {
+        this.cirurgia = cirurgia;
+        return this;
+    }
+
+    public void setCirurgia(Cirurgia cirurgia) {
+        this.cirurgia = cirurgia;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -434,7 +456,7 @@ public class Unidade implements Serializable {
             "id=" + getId() +
             ", descricao='" + getDescricao() + "'" +
             ", sigla='" + getSigla() + "'" +
-            ", situacao='" + isSituacao() + "'" +
+            ", situacao='" + getSituacao() + "'" +
             ", controleDeEstoque='" + isControleDeEstoque() + "'" +
             ", idAlmoxarifado=" + getIdAlmoxarifado() +
             ", andar=" + getAndar() +
@@ -448,8 +470,6 @@ public class Unidade implements Serializable {
             ", idAlmorifado=" + getIdAlmorifado() +
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
-            ", idPrescricaoMedica=" + getIdPrescricaoMedica() +
-            ", idPrescricaoEnfermagem=" + getIdPrescricaoEnfermagem() +
             ", idCirurgia=" + getIdCirurgia() +
             "}";
     }

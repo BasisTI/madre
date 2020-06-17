@@ -1,7 +1,7 @@
 entity Unidade {
     descricao String required,
     sigla String required,
-    situacao Boolean required,
+    situacao Situacao required,
     controleDeEstoque Boolean,
     idAlmoxarifado Long,
     andar Integer required,
@@ -15,10 +15,34 @@ entity Unidade {
     idAlmorifado Long,
     idCentroDeAtividade Long required,
     idChefia Long,
-    idPrescricaoMedica Long,
-    idPrescricaoEnfermagem Long,
 	idCirurgia Long
 
+}
+
+entity Cirurgia {
+	tempoMax Instant,
+    tempoMin Instant,
+    limiteDias Integer,
+    limteDiasConvenios Integer,
+    intervalocirurgia Integer,
+    intervaloProcedimento Integer,
+}
+
+enum Situacao {
+	ATIVO,
+    INATIVO
+}
+
+enum UnidadeTempo {
+	DIA,
+    HORAS
+}
+
+entity Prescricao {
+	horarioValidade Instant,
+    tempoAdiantamento Integer,
+    unidadeTempo UnidadeTempo,
+    numeroVias Integer,
 }
 
 entity Ala {
@@ -40,7 +64,8 @@ entity Caracteristica {
 }
 
 relationship OneToOne {
-	Unidade{unidadePai} to Unidade
+	Unidade{unidadePai} to Unidade,
+
 }
 
 relationship OneToMany {
@@ -51,6 +76,9 @@ relationship ManyToOne {
 	Ala {unidade} to Unidade,
     Clinica {unidade} to Unidade,
     Unidade {tipoUnidade required} to TipoUnidade,
+    Unidade {prescricaoEnfermagem} to Prescricao,
+    Unidade {prescricaoMedica} to Prescricao
+    Unidade {cirurgia} to Cirurgia
 }
 
 
@@ -58,4 +86,3 @@ dto * with mapstruct
 paginate * with pagination
 service * with serviceClass
 skipClient *
-

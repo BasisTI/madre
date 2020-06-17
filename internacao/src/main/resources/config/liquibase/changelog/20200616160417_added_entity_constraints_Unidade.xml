@@ -20,5 +20,23 @@
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_unidade"/>
 
+        <addForeignKeyConstraint baseColumnNames="prescricao_enfermagem_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_prescricao_enfermagem_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao"/>
+
+        <addForeignKeyConstraint baseColumnNames="prescricao_medica_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_prescricao_medica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao"/>
+
+        <addForeignKeyConstraint baseColumnNames="cirurgia_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_cirurgia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cirurgia"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -8,17 +8,23 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Unidade} and its DTO {@link UnidadeDTO}.
  */
-@Mapper(componentModel = "spring", uses = {TipoUnidadeMapper.class})
+@Mapper(componentModel = "spring", uses = {TipoUnidadeMapper.class, PrescricaoMapper.class, CirurgiaMapper.class})
 public interface UnidadeMapper extends EntityMapper<UnidadeDTO, Unidade> {
 
     @Mapping(source = "unidadePai.id", target = "unidadePaiId")
     @Mapping(source = "tipoUnidade.id", target = "tipoUnidadeId")
+    @Mapping(source = "prescricaoEnfermagem.id", target = "prescricaoEnfermagemId")
+    @Mapping(source = "prescricaoMedica.id", target = "prescricaoMedicaId")
+    @Mapping(source = "cirurgia.id", target = "cirurgiaId")
     UnidadeDTO toDto(Unidade unidade);
 
     @Mapping(source = "unidadePaiId", target = "unidadePai")
     @Mapping(target = "caracteristicas", ignore = true)
     @Mapping(target = "removeCaracteristica", ignore = true)
     @Mapping(source = "tipoUnidadeId", target = "tipoUnidade")
+    @Mapping(source = "prescricaoEnfermagemId", target = "prescricaoEnfermagem")
+    @Mapping(source = "prescricaoMedicaId", target = "prescricaoMedica")
+    @Mapping(source = "cirurgiaId", target = "cirurgia")
     Unidade toEntity(UnidadeDTO unidadeDTO);
 
     default Unidade fromId(Long id) {

@@ -39,6 +39,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import br.com.basis.madre.domain.enumeration.Situacao;
 /**
  * Integration tests for the {@link UnidadeResource} REST controller.
  */
@@ -51,8 +52,8 @@ public class UnidadeResourceIT {
     private static final String DEFAULT_SIGLA = "AAAAAAAAAA";
     private static final String UPDATED_SIGLA = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_SITUACAO = false;
-    private static final Boolean UPDATED_SITUACAO = true;
+    private static final Situacao DEFAULT_SITUACAO = Situacao.ATIVO;
+    private static final Situacao UPDATED_SITUACAO = Situacao.INATIVO;
 
     private static final Boolean DEFAULT_CONTROLE_DE_ESTOQUE = false;
     private static final Boolean UPDATED_CONTROLE_DE_ESTOQUE = true;
@@ -92,12 +93,6 @@ public class UnidadeResourceIT {
 
     private static final Long DEFAULT_ID_CHEFIA = 1L;
     private static final Long UPDATED_ID_CHEFIA = 2L;
-
-    private static final Long DEFAULT_ID_PRESCRICAO_MEDICA = 1L;
-    private static final Long UPDATED_ID_PRESCRICAO_MEDICA = 2L;
-
-    private static final Long DEFAULT_ID_PRESCRICAO_ENFERMAGEM = 1L;
-    private static final Long UPDATED_ID_PRESCRICAO_ENFERMAGEM = 2L;
 
     private static final Long DEFAULT_ID_CIRURGIA = 1L;
     private static final Long UPDATED_ID_CIRURGIA = 2L;
@@ -174,8 +169,6 @@ public class UnidadeResourceIT {
             .idAlmorifado(DEFAULT_ID_ALMORIFADO)
             .idCentroDeAtividade(DEFAULT_ID_CENTRO_DE_ATIVIDADE)
             .idChefia(DEFAULT_ID_CHEFIA)
-            .idPrescricaoMedica(DEFAULT_ID_PRESCRICAO_MEDICA)
-            .idPrescricaoEnfermagem(DEFAULT_ID_PRESCRICAO_ENFERMAGEM)
             .idCirurgia(DEFAULT_ID_CIRURGIA);
         // Add required entity
         TipoUnidade tipoUnidade;
@@ -213,8 +206,6 @@ public class UnidadeResourceIT {
             .idAlmorifado(UPDATED_ID_ALMORIFADO)
             .idCentroDeAtividade(UPDATED_ID_CENTRO_DE_ATIVIDADE)
             .idChefia(UPDATED_ID_CHEFIA)
-            .idPrescricaoMedica(UPDATED_ID_PRESCRICAO_MEDICA)
-            .idPrescricaoEnfermagem(UPDATED_ID_PRESCRICAO_ENFERMAGEM)
             .idCirurgia(UPDATED_ID_CIRURGIA);
         // Add required entity
         TipoUnidade tipoUnidade;
@@ -252,7 +243,7 @@ public class UnidadeResourceIT {
         Unidade testUnidade = unidadeList.get(unidadeList.size() - 1);
         assertThat(testUnidade.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
         assertThat(testUnidade.getSigla()).isEqualTo(DEFAULT_SIGLA);
-        assertThat(testUnidade.isSituacao()).isEqualTo(DEFAULT_SITUACAO);
+        assertThat(testUnidade.getSituacao()).isEqualTo(DEFAULT_SITUACAO);
         assertThat(testUnidade.isControleDeEstoque()).isEqualTo(DEFAULT_CONTROLE_DE_ESTOQUE);
         assertThat(testUnidade.getIdAlmoxarifado()).isEqualTo(DEFAULT_ID_ALMOXARIFADO);
         assertThat(testUnidade.getAndar()).isEqualTo(DEFAULT_ANDAR);
@@ -266,8 +257,6 @@ public class UnidadeResourceIT {
         assertThat(testUnidade.getIdAlmorifado()).isEqualTo(DEFAULT_ID_ALMORIFADO);
         assertThat(testUnidade.getIdCentroDeAtividade()).isEqualTo(DEFAULT_ID_CENTRO_DE_ATIVIDADE);
         assertThat(testUnidade.getIdChefia()).isEqualTo(DEFAULT_ID_CHEFIA);
-        assertThat(testUnidade.getIdPrescricaoMedica()).isEqualTo(DEFAULT_ID_PRESCRICAO_MEDICA);
-        assertThat(testUnidade.getIdPrescricaoEnfermagem()).isEqualTo(DEFAULT_ID_PRESCRICAO_ENFERMAGEM);
         assertThat(testUnidade.getIdCirurgia()).isEqualTo(DEFAULT_ID_CIRURGIA);
 
         // Validate the Unidade in Elasticsearch
@@ -406,7 +395,7 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(unidade.getId().intValue())))
             .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
             .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
-            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())))
             .andExpect(jsonPath("$.[*].controleDeEstoque").value(hasItem(DEFAULT_CONTROLE_DE_ESTOQUE.booleanValue())))
             .andExpect(jsonPath("$.[*].idAlmoxarifado").value(hasItem(DEFAULT_ID_ALMOXARIFADO.intValue())))
             .andExpect(jsonPath("$.[*].andar").value(hasItem(DEFAULT_ANDAR)))
@@ -420,8 +409,6 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].idAlmorifado").value(hasItem(DEFAULT_ID_ALMORIFADO.intValue())))
             .andExpect(jsonPath("$.[*].idCentroDeAtividade").value(hasItem(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue())))
             .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())))
-            .andExpect(jsonPath("$.[*].idPrescricaoMedica").value(hasItem(DEFAULT_ID_PRESCRICAO_MEDICA.intValue())))
-            .andExpect(jsonPath("$.[*].idPrescricaoEnfermagem").value(hasItem(DEFAULT_ID_PRESCRICAO_ENFERMAGEM.intValue())))
             .andExpect(jsonPath("$.[*].idCirurgia").value(hasItem(DEFAULT_ID_CIRURGIA.intValue())));
     }
     
@@ -438,7 +425,7 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.id").value(unidade.getId().intValue()))
             .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
             .andExpect(jsonPath("$.sigla").value(DEFAULT_SIGLA))
-            .andExpect(jsonPath("$.situacao").value(DEFAULT_SITUACAO.booleanValue()))
+            .andExpect(jsonPath("$.situacao").value(DEFAULT_SITUACAO.toString()))
             .andExpect(jsonPath("$.controleDeEstoque").value(DEFAULT_CONTROLE_DE_ESTOQUE.booleanValue()))
             .andExpect(jsonPath("$.idAlmoxarifado").value(DEFAULT_ID_ALMOXARIFADO.intValue()))
             .andExpect(jsonPath("$.andar").value(DEFAULT_ANDAR))
@@ -452,8 +439,6 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.idAlmorifado").value(DEFAULT_ID_ALMORIFADO.intValue()))
             .andExpect(jsonPath("$.idCentroDeAtividade").value(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue()))
             .andExpect(jsonPath("$.idChefia").value(DEFAULT_ID_CHEFIA.intValue()))
-            .andExpect(jsonPath("$.idPrescricaoMedica").value(DEFAULT_ID_PRESCRICAO_MEDICA.intValue()))
-            .andExpect(jsonPath("$.idPrescricaoEnfermagem").value(DEFAULT_ID_PRESCRICAO_ENFERMAGEM.intValue()))
             .andExpect(jsonPath("$.idCirurgia").value(DEFAULT_ID_CIRURGIA.intValue()));
     }
 
@@ -494,8 +479,6 @@ public class UnidadeResourceIT {
             .idAlmorifado(UPDATED_ID_ALMORIFADO)
             .idCentroDeAtividade(UPDATED_ID_CENTRO_DE_ATIVIDADE)
             .idChefia(UPDATED_ID_CHEFIA)
-            .idPrescricaoMedica(UPDATED_ID_PRESCRICAO_MEDICA)
-            .idPrescricaoEnfermagem(UPDATED_ID_PRESCRICAO_ENFERMAGEM)
             .idCirurgia(UPDATED_ID_CIRURGIA);
         UnidadeDTO unidadeDTO = unidadeMapper.toDto(updatedUnidade);
 
@@ -510,7 +493,7 @@ public class UnidadeResourceIT {
         Unidade testUnidade = unidadeList.get(unidadeList.size() - 1);
         assertThat(testUnidade.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
         assertThat(testUnidade.getSigla()).isEqualTo(UPDATED_SIGLA);
-        assertThat(testUnidade.isSituacao()).isEqualTo(UPDATED_SITUACAO);
+        assertThat(testUnidade.getSituacao()).isEqualTo(UPDATED_SITUACAO);
         assertThat(testUnidade.isControleDeEstoque()).isEqualTo(UPDATED_CONTROLE_DE_ESTOQUE);
         assertThat(testUnidade.getIdAlmoxarifado()).isEqualTo(UPDATED_ID_ALMOXARIFADO);
         assertThat(testUnidade.getAndar()).isEqualTo(UPDATED_ANDAR);
@@ -524,8 +507,6 @@ public class UnidadeResourceIT {
         assertThat(testUnidade.getIdAlmorifado()).isEqualTo(UPDATED_ID_ALMORIFADO);
         assertThat(testUnidade.getIdCentroDeAtividade()).isEqualTo(UPDATED_ID_CENTRO_DE_ATIVIDADE);
         assertThat(testUnidade.getIdChefia()).isEqualTo(UPDATED_ID_CHEFIA);
-        assertThat(testUnidade.getIdPrescricaoMedica()).isEqualTo(UPDATED_ID_PRESCRICAO_MEDICA);
-        assertThat(testUnidade.getIdPrescricaoEnfermagem()).isEqualTo(UPDATED_ID_PRESCRICAO_ENFERMAGEM);
         assertThat(testUnidade.getIdCirurgia()).isEqualTo(UPDATED_ID_CIRURGIA);
 
         // Validate the Unidade in Elasticsearch
@@ -589,7 +570,7 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(unidade.getId().intValue())))
             .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
             .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
-            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())))
             .andExpect(jsonPath("$.[*].controleDeEstoque").value(hasItem(DEFAULT_CONTROLE_DE_ESTOQUE.booleanValue())))
             .andExpect(jsonPath("$.[*].idAlmoxarifado").value(hasItem(DEFAULT_ID_ALMOXARIFADO.intValue())))
             .andExpect(jsonPath("$.[*].andar").value(hasItem(DEFAULT_ANDAR)))
@@ -603,8 +584,6 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].idAlmorifado").value(hasItem(DEFAULT_ID_ALMORIFADO.intValue())))
             .andExpect(jsonPath("$.[*].idCentroDeAtividade").value(hasItem(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue())))
             .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())))
-            .andExpect(jsonPath("$.[*].idPrescricaoMedica").value(hasItem(DEFAULT_ID_PRESCRICAO_MEDICA.intValue())))
-            .andExpect(jsonPath("$.[*].idPrescricaoEnfermagem").value(hasItem(DEFAULT_ID_PRESCRICAO_ENFERMAGEM.intValue())))
             .andExpect(jsonPath("$.[*].idCirurgia").value(hasItem(DEFAULT_ID_CIRURGIA.intValue())));
     }
 
