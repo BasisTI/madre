@@ -1,0 +1,200 @@
+relationship ManyToOne {
+    Almoxarifado{centroDeAtividade required} to CentroDeAtividade,
+    Almoxarifado{caracteristicaArmazenamento} to CaracteristicaArmazenamento,
+    TransferenciaAlmoxarifado{origem required} to Almoxarifado,
+    TransferenciaAlmoxarifado{destino required} to Almoxarifado,
+    Recebimento{notaFiscalEntrada} to DocumentoFiscalEntrada,
+    Recebimento{autorizacaoFornecimento} to AutorizacaoFornecimento,
+    AutorizacaoFornecimento{fornecedor} to Fornecedor,
+    DocumentoFiscalEntrada{fornecedor required} to Fornecedor,
+    Material{unidadeMedida required} to UnidadeMedida,
+    ItemNotaRecebimento{marcaComercial required} to MarcaComercial,
+    ItemNotaRecebimento{material required} to Material,
+    ItemNotaRecebimento{unidadeMedida required} to UnidadeMedida,
+    Material{grupo required} to GrupoMaterial,
+    Material{localEstoque required} to Almoxarifado,
+    Material{codigoCatmat} to CodigoCatmat,
+    Material{sazonalidade} to Sazonalidade,
+    Material{tipoResiduo} to TipoResiduo,
+    Material{OrigemParecerTecnico} to OrigemParecerTecnico,
+    EstoqueAlmoxarifado{almoxarifado required} to Almoxarifado,
+    EstoqueAlmoxarifado{material required} to Material,
+    EstoqueAlmoxarifado{fornecedor required} to Fornecedor,
+    EstoqueAlmoxarifado{solicitacaoCompras} to SolicitacaoCompras,
+    Lote{marcaComercial} to MarcaComercial
+}
+
+relationship OneToMany {
+    Almoxarifado{temposPorClasse} to TempoPorClasse,
+    CaracteristicaArmazenamento{composicoes} to Composicao,
+    Recebimento{itensNotaRecebimento} to ItemNotaRecebimento,
+    Almoxarifado{estoques} to EstoqueAlmoxarifado{almoxarifado required},
+    EstoqueAlmoxarifado{lotes} to Lote{estoque required}
+}
+
+entity Almoxarifado {
+    descricao String maxlength(120) required
+    diasEstoque Integer min(0) max(255)
+    central Boolean
+    ativo Boolean required
+    calculaMediaPonderada Boolean required
+    bloqueiaEntradaTransferencia Boolean
+}
+
+entity TransferenciaAlmoxarifado {
+    ativo Boolean required
+}
+
+entity CentroDeAtividade {
+    descricao String maxlength(120) required
+}
+
+entity CaracteristicaArmazenamento {
+    misturaMateriaisDireitos Boolean required
+    misturaGrupoMateriais Boolean required
+}
+
+entity TempoPorClasse {
+    tipo TipoTempoPorClasse required
+    quantidadeClasseA Integer min(0) max(255) required
+    quantidadeClasseB Integer min(0) max(255) required
+    quantidadeClasseC Integer min(0) max(255) required
+}
+
+entity Composicao {
+    nome String maxlength(120) required
+    // Servidor?
+    servidor String required
+}
+
+enum TipoTempoPorClasse {
+    SALDO,
+    PARCELA,
+    TEMPO_REPOSICAO,
+    TEMPO_REPOSICAO_CONTRATO
+}
+
+enum TipoDocumento {
+	NOTA_FISCAL,
+    TERMO_DE_TRANSFERENCIA,
+    DOACAO
+}
+
+enum TipoDocumentoFiscal {
+	NFS,
+    DFE,
+    DFS
+}
+
+enum TipoItemAf {
+	MATERIAL,
+    SERVICO
+}
+
+entity  Recebimento {
+}
+
+entity DocumentoFiscalEntrada {
+    numeroDocumento Long required
+    serie String maxlength(10) required
+    notaEmpenho String  maxlength(120)
+    cpfCnpj String minlength(11) maxlength(14) unique required
+    dataGeracao LocalDate required
+    dataEmissao LocalDate required
+    dataEntrada LocalDate required
+    dataVencimento LocalDate required
+    valorTotal BigDecimal required
+    tipoDocumento TipoDocumento
+    tipoDocumentoFiscal TipoDocumentoFiscal required
+    observacao String maxlength(500)
+}
+
+entity AutorizacaoFornecimento {
+    numero Long required
+    complemento String maxlength(120) required
+    tipoItem TipoItemAf required
+}
+
+entity ItemNotaRecebimento {
+    quantidadeReceber Long min(0) max(255) required
+    quantidadeConvertida String maxlength(255) required
+    valorTotal BigDecimal min(0) required
+}
+
+entity Fornecedor {
+    cnpj String minlength(14) maxlength(14) unique required
+    razaoSocial String maxlength(255) required
+    nomeFantasia String maxlength(120) required
+}
+
+entity UnidadeMedida {
+    sigla String minlength(1) maxlength(10) unique required
+    descricao String maxlength(120) required
+}
+
+// No AGHU um campo (combo) com apenas números
+entity SolicitacaoCompras {
+    numero Long required
+}
+
+entity EstoqueAlmoxarifado {
+    ativo Boolean required
+    endereco String minlength(1) maxlength(8)
+    quantidadeLimiteArmazenamento Long
+    quantidadeEstoqueMinimo Long min(1) required
+    quantidadeEstoqueMaximo Long min(1) required
+    quantidadePontoPedido Long min(1) required
+    tempoReposicao Integer min(1) required
+}
+
+entity Lote {
+    descricao String minlength(1) maxlength(120) required
+    serie String minlength(1) maxlength(15)
+    quantidadeDisponivel Long min(0)
+    quantidadeBloqueada Long min(0)
+    quantidadeProblema Long min(0)
+    dataValidade LocalDate required
+}
+
+entity Material {
+    nome String maxlength(120) required
+    // No AGHU esse é o valor máximo de caracteres do campo, deixa assim?
+    descricao String maxlength(2000)
+    ativo Boolean required
+    regimento String maxlength(120)
+    observacao String maxlength(500)
+    // Entidades do Módulo de Internação
+    unidadeId Long min(0)
+    procedimentoId Long min(0)
+}
+
+// Catálogação de Material do Ministério do Planejamento - CATMAT
+entity CodigoCatmat {
+    codigo Long required
+    descricao String required
+}
+
+entity OrigemParecerTecnico {
+    descricao String maxlength(120) required
+}
+
+entity Sazonalidade {
+    descricao String maxlength(15) required
+}
+
+entity TipoResiduo {
+    descricao String maxlength(25) required
+}
+
+entity GrupoMaterial {
+    descricao String maxlength(120) required
+}
+
+entity MarcaComercial {
+    descricao String maxlength(120) required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
