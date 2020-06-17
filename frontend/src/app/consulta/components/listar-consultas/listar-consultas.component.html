@@ -1,0 +1,121 @@
+<div class="ui-g ui-fluid">
+    <form [formGroup]="listaConsultas">
+        <div class="ui-g-12">
+            <h1>Pesquisar Consultas</h1>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        mask="9999999/9"
+                        pTooltip="Digite o número do prontuário do paciente."
+                        formControlName="prontuario"
+                    ></p-inputMask>
+
+                    <label>Prontuário</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="codigo" />
+                    <label>Código</label>
+                </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="nome" />
+                    <label>Nome</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Digite o número da consulta."
+                        formControlName="consulta"
+                    />
+                    <label>Consulta</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Digite Código Central."
+                        formControlName="codigoCentral"
+                    />
+                    <label>Código Central</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12"></div>
+
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="consultaAnterior" />
+                    <label>Consulta Anterior</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        type="text"
+                        pInputText
+                        pTooltip="Selecione a condição de atendimento."
+                        formControlName="condicaoAtendimento"
+                    ></p-dropdown>
+                    <label>Condição de Atendimento</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        type="text"
+                        pInputText
+                        pTooltip="Selecione a especialidade."
+                        formControlName="especialidade"
+                    ></p-dropdown>
+                    <label>Especialidade</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pTooltip="Digite a grade."
+                        pInputText
+                        formControlName="grade"
+                    />
+                    <label>Grade</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar
+                        [locale]="localizacao"
+                        [yearRange]="anosDisponiveis"
+                        [dateFormat]="formatoDeData"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                        formControlName="dataInicial"
+                    ></p-calendar>
+                    <label>Data inicial</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar
+                        [locale]="localizacao"
+                        [yearRange]="anosDisponiveis"
+                        [dateFormat]="formatoDeData"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                        formControlName="dataFinal"
+                    ></p-calendar>
+                    <label>Data final</label>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>

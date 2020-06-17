@@ -90,7 +90,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 ],
             },
             {
-                label: 'Emergência',
+                label: 'Triagem',
                 icon: 'local_hospital',
                 items: [
                     {
@@ -114,9 +114,21 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         icon: 'add',
                         routerLink: ['pacientes/triagem'],
                     },
+                ],
+            },
+            {
+                label: 'Marcar Consultas',
+                icon: 'watch_later',
+                items: [
                     {
-                        label: 'Atendimento',
+                        label: 'Listar Consultas',
                         icon: 'add',
+                        routerLink: ['consulta/listar-consultas'],
+                    },
+                    {
+                        label: 'Emergência',
+                        icon: 'add',
+                        routerLink: ['consulta/emergencia'],
                     },
                 ],
             },
