@@ -1,22 +1,26 @@
+relationship OneToOne{
+
+    Emergencia to CondicaoDeAtendimento
+    Emergencia to FormaDeAgendamento
+}
+
 entity Emergencia {
 
     dataHoraDaConsulta LocalDate required
     diaDaSemana String maxlength(20)
-    //convenio vai ser consumido de Intenacao
     grade Long max (20)
     profissional String maxlength(80)
-    //formaDeAgendamento = autorizacao
     sala String maxlength(20)
     turno Turno
     pagador Pagador
     gradesDisponiveis Boolean
-    prioridade 	Prioridade
     central Long max (100)
     observacoes String maxlength (240)
-    //paciente
-    //prontuario
-    //especialidade
-    //equipe
+    //formaDeAgendamento = autorizacao
+    //especialidade vai ser consumido de Internacao
+    //equipe vai ser consumido de Internacao
+    //prioridade vai ser consumido de Internacao
+    //convenio vai ser consumido de Internacao
 }
 
 entity CondicaoDeAtendimento {
@@ -28,14 +32,14 @@ entity FormaDeAgendamento {
 	numeroAutorizacao Long required
 	autorizacao String required
 }
-relationship OneToOne{
 
-    Emergencia to CondicaoDeAtendimento
-    Emergencia to FormaDeAgendamento
+entity Entidade {
+   pacienteId Long
 }
 
+
 enum Pagador {
-	SUS,
+  SUS,
   OUTROS_CONVENIOS
 }
 
@@ -43,12 +47,6 @@ enum Turno {
   MATUTINO,
   VESPERTINO,
   NOTURNO
-}
-
-  enum Prioridade {
-  ALTA,
-  MEDIA,
-  BAIXA
 }
 
 dto * with mapstruct
