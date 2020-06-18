@@ -1,3 +1,4 @@
+import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { CalendarioComponent } from '@internacao/components/leito/calendario.component';
 import { InternacaoDePacienteComponent } from './components/internacao-de-paciente/internacao-de-paciente.component';
@@ -7,7 +8,6 @@ import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-d
 import { Routes } from '@angular/router';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
-import { CadastroUnidadesComponent } from './cadastro-unidades/components/cadastro-unidades/cadastro-unidades.component';
 
 export const routes: Routes = [
     {

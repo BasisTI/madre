@@ -1,3 +1,5 @@
+import { PrescricaoMedicaUnidadeComponent } from './formulario-unidades/components/prescricao-medica-unidade/prescricao-medica-unidade.component';
+import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { ArvoreComponent } from './components/cid/arvore-cid/arvore.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { CalendarioComponent } from './components/leito/calendario.component';
@@ -32,7 +34,6 @@ import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-
 import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-leito/tipo-de-reserva-de-leito.component';
 import { routes } from './internacao.routes';
 import { CardPacienteComponent } from './components/card-paciente/card-paciente.component';
-import { CadastroUnidadesComponent } from './cadastro-unidades/components/cadastro-unidades/cadastro-unidades.component';
 
 @NgModule({
     declarations: [
@@ -66,6 +67,7 @@ import { CadastroUnidadesComponent } from './cadastro-unidades/components/cadast
         PacientesListaComponent,
         CardPacienteComponent,
         CadastroUnidadesComponent,
+        PrescricaoMedicaUnidadeComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
