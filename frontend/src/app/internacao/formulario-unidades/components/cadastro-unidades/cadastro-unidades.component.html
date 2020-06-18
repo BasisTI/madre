@@ -180,6 +180,45 @@
                 <p-accordionTab header="Cirurgia">
                     <app-cirurgia [cirurgia]="cirurgia"></app-cirurgia>
                 </p-accordionTab>
+                <p-accordionTab header="Horário Atendimento">
+                    <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                <span class="ui-float-label">
+                                    <p-inputMask
+                                        formControlName="horarioInicio"
+                                        mask="99:99"
+                                        pTooltip="Digite o início do horário do atendimento."
+                                    ></p-inputMask>
+                                    <label>Início</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-4">
+                                <span class="ui-float-label">
+                                    <p-inputMask
+                                        formControlName="horarioFim"
+                                        mask="99:99"
+                                        pTooltip="Digite o fim do horário do atendimento."
+                                    ></p-inputMask>
+                                    <label>Fim</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Chefia">
+                    <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
+                        <div class="ui-g-6">
+                            <span class="ui-float-label">
+                                <p-dropdown
+                                    formControlName="idChefia"
+                                    pTooltip="Selecione a Matrícula da unidade funcional."
+                                ></p-dropdown>
+                                <label>Matrícula</label>
+                            </span>
+                        </div>
+                    </div>
+                </p-accordionTab>
             </p-accordion>
         </form>
     </div>

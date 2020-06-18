@@ -27,6 +27,7 @@ export class CadastroUnidadesComponent implements OnInit {
         idCentroDeAtividade: [null, Validators.required],
         tipoUnidadeId: [null],
         unidadePaiId: [null],
+        idChefia: [null],
     });
 
     precricaoMedica = this.fb.group({
