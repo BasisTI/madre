@@ -11,7 +11,7 @@
                 </div>
                 <div class="ui-g-12 ui-md-6">
                     <div class="ui-g-12 ui-md-6">
-                        <button pButton label="Pesquisar" icon="ui-icon-search" bTooltip="Pesquisar Paciente por Nome"
+                        <button pButton label="Pesquisar" icon="ui-icon-search" pTooltip="Pesquisar Paciente por Nome"
                             (click)="pesquisar()"></button>
                     </div>
                 </div>
@@ -37,7 +37,20 @@
                         class="ui-button-info">
                     </basis-datatable-button>
 
+                    <basis-datatable-button icon="assignment" name="listar-prescricoes"
+                        [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
+                        class="ui-button-info">
+                    </basis-datatable-button>
+
                 </basis-datatable>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-g-12 ui-md-6">
+                        <button [disabled]="(datatable.selectedRow) ? false : true" pButton type="submit" name="listar-prescricoes"
+                            label="Prescrições" icon="ui-icon-add-to-queue"
+                            pTooltip="Listar Prescrições do paciente"></button>
+                    </div>
+                </div>
 
             </div>
         </div>
