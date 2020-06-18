@@ -43,6 +43,15 @@ export class CadastroUnidadesComponent implements OnInit {
         numeroVias: [null],
     });
 
+    cirurgia = this.fb.group({
+        tempoMax: [null],
+        tempoMin: [null],
+        limiteDias: [null],
+        limteDiasConvenios: [null],
+        intervalocirurgia: [null],
+        intervaloProcedimento: [null],
+    });
+
     constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {}

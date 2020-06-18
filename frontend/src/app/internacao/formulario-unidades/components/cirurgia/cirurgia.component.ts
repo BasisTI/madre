@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-cirurgia',
-  templateUrl: './cirurgia.component.html',
-  styleUrls: ['./cirurgia.component.css']
+    selector: 'app-cirurgia',
+    templateUrl: './cirurgia.component.html',
+    styleUrls: ['./cirurgia.component.css'],
 })
 export class CirurgiaComponent implements OnInit {
+    @Input() cirurgia: FormGroup;
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

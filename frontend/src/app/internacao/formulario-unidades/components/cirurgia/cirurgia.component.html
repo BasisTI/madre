@@ -1,1 +1,70 @@
-<p>cirurgia works!</p>
+<form [formGroup]="cirurgia">
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        formControlName="tempoMin"
+                        mask="99:99"
+                        pTooltip="Digite o tempo minimo para agendamento de cirurgias HH:MM."
+                    ></p-inputMask>
+                    <label>Tempo Mínimo</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        formControlName="tempoMax"
+                        mask="99:99"
+                        pTooltip="Digite o tempo máximo para agendamento de cirurgias HH:MM."
+                    ></p-inputMask>
+                    <label>Tempo Máximo</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="limiteDias"
+                        pTooltip="Digite a quantidade de dias limite para agendamento de cirurgias."
+                    />
+                    <label>Limite de Dias</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="limteDiasConvenios"
+                        pTooltip="Digite a quantidade de dias limite para agendamento de cirurgias com o convênio."
+                    />
+                    <label>Limite de Dias com Convênios</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="intervalocirurgia"
+                        pTooltip="Digite a quantidade de minutos para intervalos das cirurgias."
+                    />
+                    <label>Intervalo Cirurgico</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        formControlName="intervaloProcedimento"
+                        pTooltip="Digite a quantidade de minutos para intervalos dos procedimentos."
+                    />
+                    <label>Intervalo de Procedimento</label>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
