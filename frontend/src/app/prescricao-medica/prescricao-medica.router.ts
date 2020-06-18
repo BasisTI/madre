@@ -1,3 +1,4 @@
+import { ListaPrescricaoComponent } from './lista-prescricao/lista-prescricao.component';
 import { MedicamentoComponent } from './medicamento/medicamento.component';
 import { PrescricaoMedicaComponent } from './prescricao-medica.component';
 import { PrescricaoMedicaDietaComponent } from './dieta/prescricao-medica-dieta.component';
@@ -17,6 +18,11 @@ export const prescricaoMedica: Routes = [
     {
         path: 'prescricao-medica/medicamento/:id',
         component: MedicamentoComponent
+    },
+
+    {
+        path: 'prescricao-medica/lista/:id',
+        component: ListaPrescricaoComponent
     },
 ]
 
