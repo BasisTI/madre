@@ -1,7 +1,6 @@
-import { AutorizacaoDeFornecimentoComponent } from './autorizacao-de-fornecimento/autorizacao-de-fornecimento.component';
+import { AutorizacaoFornecimentoComponent } from './autorizacao-fornecimento/autorizacao-fornecimento.component';
 import { CommonModule } from '@angular/common';
 import { DocumentoFiscalEntradaComponent } from './documento-fiscal-entrada/documento-fiscal-entrada.component';
-import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { NgModule } from '@angular/core';
 import { RecebimentoComponent } from './recebimento/recebimento.component';
 import { RouterModule } from '@angular/router';
@@ -11,9 +10,8 @@ import { routes } from './suprimentos.routes';
 @NgModule({
     declarations: [
         DocumentoFiscalEntradaComponent,
-        AutorizacaoDeFornecimentoComponent,
+        AutorizacaoFornecimentoComponent,
         RecebimentoComponent,
-        FornecedorComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
