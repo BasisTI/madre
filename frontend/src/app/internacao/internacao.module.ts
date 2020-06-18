@@ -1,3 +1,4 @@
+import { PrescricaoEnfermagemComponent } from './formulario-unidades/components/prescricao-enfermagem/prescricao-enfermagem.component';
 import { PrescricaoMedicaUnidadeComponent } from './formulario-unidades/components/prescricao-medica-unidade/prescricao-medica-unidade.component';
 import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { ArvoreComponent } from './components/cid/arvore-cid/arvore.component';
@@ -68,6 +69,7 @@ import { CardPacienteComponent } from './components/card-paciente/card-paciente.
         CardPacienteComponent,
         CadastroUnidadesComponent,
         PrescricaoMedicaUnidadeComponent,
+        PrescricaoEnfermagemComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

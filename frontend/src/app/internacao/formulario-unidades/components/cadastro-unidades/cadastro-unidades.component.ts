@@ -7,8 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./cadastro-unidades.component.css'],
 })
 export class CadastroUnidadesComponent implements OnInit {
-    @Input() cadastroUnidades: FormGroup;
-
     cadastroUnidade = this.fb.group({
         descricao: [null, Validators.required],
         sigla: [null, Validators.required],
@@ -31,9 +29,18 @@ export class CadastroUnidadesComponent implements OnInit {
         unidadePaiId: [null],
     });
 
-    value: boolean;
+    precricaoEnfermagem = this.fb.group({
+        horarioValidade: [null],
+        tempoAdiantamento: [null],
+        unidadeTempo: [null],
+        numeroVias: [null],
+    });
 
     constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {}
+
+    cadastrar() {
+        console.log(this.cadastroUnidade);
+    }
 }

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-prescricao-medica-unidade',
-  templateUrl: './prescricao-medica-unidade.component.html',
-  styleUrls: ['./prescricao-medica-unidade.component.css']
+    selector: 'app-prescricao-medica-unidade',
+    templateUrl: './prescricao-medica-unidade.component.html',
+    styleUrls: ['./prescricao-medica-unidade.component.css'],
 })
 export class PrescricaoMedicaUnidadeComponent implements OnInit {
+    @Input() precricaoEnfermagem: FormGroup;
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

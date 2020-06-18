@@ -28,19 +28,6 @@
                                 </div>
                                 <div class="ui-g-4 ui-sm-12">
                                     <span class="ui-float-label">
-                                        <p-checkbox
-                                            pTooltip="Marque se a unidade funcional realiza controle de estoque."
-                                            [(ngModel)]="value"
-                                            label="Controle de Estoque"
-                                            [binary]="true"
-                                            formControlName="controleDeEstoque"
-                                        ></p-checkbox>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
                                         <p-dropdown
                                             formControlName="idAlmoxarifado"
                                             pTooltip="Selecione o almoxarifado referente a esta unidade funcional."
@@ -48,7 +35,10 @@
                                         <label>Almoxarifado</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-2 ui-sm-12">
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-3 ui-sm-12">
                                     <span class="ui-float-label">
                                         <input
                                             type="text"
@@ -59,7 +49,7 @@
                                         <label>Andar</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-2 ui-sm-12">
+                                <div class="ui-g-3 ui-sm-12">
                                     <span class="ui-float-label">
                                         <input
                                             type="text"
@@ -70,7 +60,7 @@
                                         <label>Capacidade</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-4 ui-sm-12">
+                                <div class="ui-g-6 ui-sm-12">
                                     <span class="ui-float-label">
                                         <p-dropdown
                                             formControlName="ala"
@@ -132,6 +122,36 @@
                                 </div>
                             </div>
                             <div class="ui-g-12">
+                                <div class="ui-g-3">
+                                    <label>Controle de Estoque?</label>
+                                </div>
+                                <div class="ui-g-3">
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="controleDeEstoque"
+                                        formControlName="controleDeEstoque"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+
+                                <div class="ui-g-3">
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="controleDeEstoque"
+                                        formControlName="controleDeEstoque"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Não</label>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
                                 <div class="ui-g-12 ui-sm-12">
                                     <span class="ui-float-label">
                                         <textarea
@@ -147,8 +167,12 @@
                         </div>
                     </form>
                 </p-accordionTab>
+                <p-accordionTab header="Prescrição Medica">
+                    <app-prescricao-medica-unidade
+                        [precricaoEnfermagem]="precricaoEnfermagem"
+                    ></app-prescricao-medica-unidade>
+                </p-accordionTab>
             </p-accordion>
-            <app-prescricao-medica-unidade></app-prescricao-medica-unidade>
         </form>
     </div>
 </div>
