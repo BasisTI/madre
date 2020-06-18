@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./prescricao-medica-unidade.component.css'],
 })
 export class PrescricaoMedicaUnidadeComponent implements OnInit {
-    @Input() precricaoEnfermagem: FormGroup;
+    @Input() precricaoMedica: FormGroup;
     constructor() {}
 
     ngOnInit(): void {}

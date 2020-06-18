@@ -29,6 +29,13 @@ export class CadastroUnidadesComponent implements OnInit {
         unidadePaiId: [null],
     });
 
+    precricaoMedica = this.fb.group({
+        horarioValidade: [null],
+        tempoAdiantamento: [null],
+        unidadeTempo: [null],
+        numeroVias: [null],
+    });
+
     precricaoEnfermagem = this.fb.group({
         horarioValidade: [null],
         tempoAdiantamento: [null],

@@ -169,8 +169,13 @@
                 </p-accordionTab>
                 <p-accordionTab header="Prescrição Medica">
                     <app-prescricao-medica-unidade
-                        [precricaoEnfermagem]="precricaoEnfermagem"
+                        [precricaoMedica]="precricaoMedica"
                     ></app-prescricao-medica-unidade>
+                </p-accordionTab>
+                <p-accordionTab header="Prescrição Enfermagem">
+                    <app-prescricao-enfermagem
+                        [precricaoEnfermagem]="precricaoEnfermagem"
+                    ></app-prescricao-enfermagem>
                 </p-accordionTab>
             </p-accordion>
         </form>
