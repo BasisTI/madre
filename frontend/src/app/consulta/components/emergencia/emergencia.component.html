@@ -1,1 +1,118 @@
-<p>emergencia works!</p>
+<div class="ui-g ui-fluid">
+    <form [formGroup]="emergencia">
+        <div class="ui-g-12">
+            <h1>Marcar Consultas - Emergência</h1>
+
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="numeroConsulta" />
+                    <label>Nº da Consulta</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="data" />
+                    <label>Data da Consulta</label>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="nome" />
+                    <label>Nome</label>
+                </span>
+            </div>
+
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="consultaAnterior" />
+                    <label>Consulta Anterior</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="prontuario" />
+                    <label>Prontuário</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="codigoPaciente" />
+                    <label>Código do Paciente</label>
+                </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="situacaoAtendimento" />
+                    <label>Situação</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="grade" />
+                    <label>Grade</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="especialidade" />
+                    <label>Especialidade</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="retornoPaciente" />
+                    <label>Retorno - Paciente</label>
+                </span>
+            </div>
+            <div class="ui-g-12">
+                <h3>Convênio</h3>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="pagador" />
+                    <label>Pagador</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="autorizacao" />
+                    <label>Autorização</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="condicaoAtendimento" />
+                    <label>Condição Atendimento</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="retornoPagador" />
+                    <label>Retorno - Pagador</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-sm-12">
+            <basis-datatable
+                type="memory"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+            >
+                <p-column field="movimentacao" header="Movimentação"></p-column>
+                <p-column field="operacao" header="Operação"></p-column>
+                <p-column field="responsavel" header="Responsável"></p-column>
+                <p-column field="situacaoAtendimento" header="Situação"></p-column>
+                <p-column field="grade" header="Grade"></p-column>
+                <p-column field="retornoPaciente" header="Retorno"></p-column>
+                <p-column field="codigoPaciente" header="Cód. Paciente"></p-column>
+                <p-column field="prontuario" header="Prontuário"></p-column>
+                <p-column field="nome" header="Paciente"></p-column>
+                <p-column field="motivo" header="Motivo"></p-column>
+            </basis-datatable>
+        </div>
+    </form>
+</div>
