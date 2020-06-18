@@ -85,9 +85,6 @@ public class UnidadeResourceIT {
     private static final Long DEFAULT_SETOR = 1L;
     private static final Long UPDATED_SETOR = 2L;
 
-    private static final Long DEFAULT_ID_ALMORIFADO = 1L;
-    private static final Long UPDATED_ID_ALMORIFADO = 2L;
-
     private static final Long DEFAULT_ID_CENTRO_DE_ATIVIDADE = 1L;
     private static final Long UPDATED_ID_CENTRO_DE_ATIVIDADE = 2L;
 
@@ -163,7 +160,6 @@ public class UnidadeResourceIT {
             .rotinaDeFuncionamento(DEFAULT_ROTINA_DE_FUNCIONAMENTO)
             .anexoDocumento(DEFAULT_ANEXO_DOCUMENTO)
             .setor(DEFAULT_SETOR)
-            .idAlmorifado(DEFAULT_ID_ALMORIFADO)
             .idCentroDeAtividade(DEFAULT_ID_CENTRO_DE_ATIVIDADE)
             .idChefia(DEFAULT_ID_CHEFIA);
         // Add required entity
@@ -199,7 +195,6 @@ public class UnidadeResourceIT {
             .rotinaDeFuncionamento(UPDATED_ROTINA_DE_FUNCIONAMENTO)
             .anexoDocumento(UPDATED_ANEXO_DOCUMENTO)
             .setor(UPDATED_SETOR)
-            .idAlmorifado(UPDATED_ID_ALMORIFADO)
             .idCentroDeAtividade(UPDATED_ID_CENTRO_DE_ATIVIDADE)
             .idChefia(UPDATED_ID_CHEFIA);
         // Add required entity
@@ -249,7 +244,6 @@ public class UnidadeResourceIT {
         assertThat(testUnidade.getRotinaDeFuncionamento()).isEqualTo(DEFAULT_ROTINA_DE_FUNCIONAMENTO);
         assertThat(testUnidade.isAnexoDocumento()).isEqualTo(DEFAULT_ANEXO_DOCUMENTO);
         assertThat(testUnidade.getSetor()).isEqualTo(DEFAULT_SETOR);
-        assertThat(testUnidade.getIdAlmorifado()).isEqualTo(DEFAULT_ID_ALMORIFADO);
         assertThat(testUnidade.getIdCentroDeAtividade()).isEqualTo(DEFAULT_ID_CENTRO_DE_ATIVIDADE);
         assertThat(testUnidade.getIdChefia()).isEqualTo(DEFAULT_ID_CHEFIA);
 
@@ -400,7 +394,6 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].rotinaDeFuncionamento").value(hasItem(DEFAULT_ROTINA_DE_FUNCIONAMENTO)))
             .andExpect(jsonPath("$.[*].anexoDocumento").value(hasItem(DEFAULT_ANEXO_DOCUMENTO.booleanValue())))
             .andExpect(jsonPath("$.[*].setor").value(hasItem(DEFAULT_SETOR.intValue())))
-            .andExpect(jsonPath("$.[*].idAlmorifado").value(hasItem(DEFAULT_ID_ALMORIFADO.intValue())))
             .andExpect(jsonPath("$.[*].idCentroDeAtividade").value(hasItem(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue())))
             .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())));
     }
@@ -429,7 +422,6 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.rotinaDeFuncionamento").value(DEFAULT_ROTINA_DE_FUNCIONAMENTO))
             .andExpect(jsonPath("$.anexoDocumento").value(DEFAULT_ANEXO_DOCUMENTO.booleanValue()))
             .andExpect(jsonPath("$.setor").value(DEFAULT_SETOR.intValue()))
-            .andExpect(jsonPath("$.idAlmorifado").value(DEFAULT_ID_ALMORIFADO.intValue()))
             .andExpect(jsonPath("$.idCentroDeAtividade").value(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue()))
             .andExpect(jsonPath("$.idChefia").value(DEFAULT_ID_CHEFIA.intValue()));
     }
@@ -468,7 +460,6 @@ public class UnidadeResourceIT {
             .rotinaDeFuncionamento(UPDATED_ROTINA_DE_FUNCIONAMENTO)
             .anexoDocumento(UPDATED_ANEXO_DOCUMENTO)
             .setor(UPDATED_SETOR)
-            .idAlmorifado(UPDATED_ID_ALMORIFADO)
             .idCentroDeAtividade(UPDATED_ID_CENTRO_DE_ATIVIDADE)
             .idChefia(UPDATED_ID_CHEFIA);
         UnidadeDTO unidadeDTO = unidadeMapper.toDto(updatedUnidade);
@@ -495,7 +486,6 @@ public class UnidadeResourceIT {
         assertThat(testUnidade.getRotinaDeFuncionamento()).isEqualTo(UPDATED_ROTINA_DE_FUNCIONAMENTO);
         assertThat(testUnidade.isAnexoDocumento()).isEqualTo(UPDATED_ANEXO_DOCUMENTO);
         assertThat(testUnidade.getSetor()).isEqualTo(UPDATED_SETOR);
-        assertThat(testUnidade.getIdAlmorifado()).isEqualTo(UPDATED_ID_ALMORIFADO);
         assertThat(testUnidade.getIdCentroDeAtividade()).isEqualTo(UPDATED_ID_CENTRO_DE_ATIVIDADE);
         assertThat(testUnidade.getIdChefia()).isEqualTo(UPDATED_ID_CHEFIA);
 
@@ -571,7 +561,6 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].rotinaDeFuncionamento").value(hasItem(DEFAULT_ROTINA_DE_FUNCIONAMENTO)))
             .andExpect(jsonPath("$.[*].anexoDocumento").value(hasItem(DEFAULT_ANEXO_DOCUMENTO.booleanValue())))
             .andExpect(jsonPath("$.[*].setor").value(hasItem(DEFAULT_SETOR.intValue())))
-            .andExpect(jsonPath("$.[*].idAlmorifado").value(hasItem(DEFAULT_ID_ALMORIFADO.intValue())))
             .andExpect(jsonPath("$.[*].idCentroDeAtividade").value(hasItem(DEFAULT_ID_CENTRO_DE_ATIVIDADE.intValue())))
             .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())));
     }

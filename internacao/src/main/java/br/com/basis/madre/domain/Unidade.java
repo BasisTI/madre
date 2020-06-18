@@ -75,9 +75,6 @@ public class Unidade implements Serializable {
     @Column(name = "setor")
     private Long setor;
 
-    @Column(name = "id_almorifado")
-    private Long idAlmorifado;
-
     @NotNull
     @Column(name = "id_centro_de_atividade", nullable = false)
     private Long idCentroDeAtividade;
@@ -109,6 +106,14 @@ public class Unidade implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("unidades")
     private Cirurgia cirurgia;
+
+    @OneToMany(mappedBy = "unidade")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Ala> alas = new HashSet<>();
+
+    @OneToMany(mappedBy = "unidade")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Clinica> clinicas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -288,19 +293,6 @@ public class Unidade implements Serializable {
         this.setor = setor;
     }
 
-    public Long getIdAlmorifado() {
-        return idAlmorifado;
-    }
-
-    public Unidade idAlmorifado(Long idAlmorifado) {
-        this.idAlmorifado = idAlmorifado;
-        return this;
-    }
-
-    public void setIdAlmorifado(Long idAlmorifado) {
-        this.idAlmorifado = idAlmorifado;
-    }
-
     public Long getIdCentroDeAtividade() {
         return idCentroDeAtividade;
     }
@@ -416,6 +408,56 @@ public class Unidade implements Serializable {
     public void setCirurgia(Cirurgia cirurgia) {
         this.cirurgia = cirurgia;
     }
+
+    public Set<Ala> getAlas() {
+        return alas;
+    }
+
+    public Unidade alas(Set<Ala> alas) {
+        this.alas = alas;
+        return this;
+    }
+
+    public Unidade addAla(Ala ala) {
+        this.alas.add(ala);
+        ala.setUnidade(this);
+        return this;
+    }
+
+    public Unidade removeAla(Ala ala) {
+        this.alas.remove(ala);
+        ala.setUnidade(null);
+        return this;
+    }
+
+    public void setAlas(Set<Ala> alas) {
+        this.alas = alas;
+    }
+
+    public Set<Clinica> getClinicas() {
+        return clinicas;
+    }
+
+    public Unidade clinicas(Set<Clinica> clinicas) {
+        this.clinicas = clinicas;
+        return this;
+    }
+
+    public Unidade addClinica(Clinica clinica) {
+        this.clinicas.add(clinica);
+        clinica.setUnidade(this);
+        return this;
+    }
+
+    public Unidade removeClinica(Clinica clinica) {
+        this.clinicas.remove(clinica);
+        clinica.setUnidade(null);
+        return this;
+    }
+
+    public void setClinicas(Set<Clinica> clinicas) {
+        this.clinicas = clinicas;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -451,7 +493,6 @@ public class Unidade implements Serializable {
             ", rotinaDeFuncionamento='" + getRotinaDeFuncionamento() + "'" +
             ", anexoDocumento='" + isAnexoDocumento() + "'" +
             ", setor=" + getSetor() +
-            ", idAlmorifado=" + getIdAlmorifado() +
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
             "}";

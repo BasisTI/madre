@@ -42,8 +42,6 @@ public class UnidadeDTO implements Serializable {
 
     private Long setor;
 
-    private Long idAlmorifado;
-
     @NotNull
     private Long idCentroDeAtividade;
 
@@ -172,14 +170,6 @@ public class UnidadeDTO implements Serializable {
         this.setor = setor;
     }
 
-    public Long getIdAlmorifado() {
-        return idAlmorifado;
-    }
-
-    public void setIdAlmorifado(Long idAlmorifado) {
-        this.idAlmorifado = idAlmorifado;
-    }
-
     public Long getIdCentroDeAtividade() {
         return idCentroDeAtividade;
     }
@@ -274,7 +264,6 @@ public class UnidadeDTO implements Serializable {
             ", rotinaDeFuncionamento='" + getRotinaDeFuncionamento() + "'" +
             ", anexoDocumento='" + isAnexoDocumento() + "'" +
             ", setor=" + getSetor() +
-            ", idAlmorifado=" + getIdAlmorifado() +
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
             ", unidadePai=" + getUnidadePaiId() +

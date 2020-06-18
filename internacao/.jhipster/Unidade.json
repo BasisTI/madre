@@ -67,10 +67,6 @@
             "fieldType": "Long"
         },
         {
-            "fieldName": "idAlmorifado",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "idCentroDeAtividade",
             "fieldType": "Long",
             "fieldValidateRules": [
@@ -125,6 +121,18 @@
             "otherEntityRelationshipName": "unidade",
             "relationshipName": "cirurgia",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "ala",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "ala"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "clinica",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "clinica"
         }
     ],
     "changelogDate": "20200616160417",

@@ -12,7 +12,6 @@ entity Unidade {
     rotinaDeFuncionamento String,
     anexoDocumento Boolean,
     setor Long,
-    idAlmorifado Long,
     idCentroDeAtividade Long required,
     idChefia Long,
 
@@ -68,12 +67,12 @@ relationship OneToOne {
 }
 
 relationship OneToMany {
-	Unidade{caracteristica} to Caracteristica
+	Unidade to Caracteristica
 }
 
 relationship ManyToOne {
-	Ala {unidade} to Unidade,
-    Clinica {unidade} to Unidade,
+	Ala to Unidade,
+    Clinica to Unidade,
     Unidade {tipoUnidade required} to TipoUnidade,
     Unidade {prescricaoEnfermagem} to Prescricao,
     Unidade {prescricaoMedica} to Prescricao

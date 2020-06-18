@@ -54,9 +54,6 @@
             <column name="setor" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="id_almorifado" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="id_centro_de_atividade" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -116,7 +113,6 @@
             <column name="rotina_de_funcionamento" type="string"/>
             <column name="anexo_documento" type="boolean"/>
             <column name="setor" type="numeric"/>
-            <column name="id_almorifado" type="numeric"/>
             <column name="id_centro_de_atividade" type="numeric"/>
             <column name="id_chefia" type="numeric"/>
             <column name="tipo_unidade_id" type="numeric"/>

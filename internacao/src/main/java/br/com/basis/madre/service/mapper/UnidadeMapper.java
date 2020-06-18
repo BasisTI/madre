@@ -25,6 +25,10 @@ public interface UnidadeMapper extends EntityMapper<UnidadeDTO, Unidade> {
     @Mapping(source = "prescricaoEnfermagemId", target = "prescricaoEnfermagem")
     @Mapping(source = "prescricaoMedicaId", target = "prescricaoMedica")
     @Mapping(source = "cirurgiaId", target = "cirurgia")
+    @Mapping(target = "alas", ignore = true)
+    @Mapping(target = "removeAla", ignore = true)
+    @Mapping(target = "clinicas", ignore = true)
+    @Mapping(target = "removeClinica", ignore = true)
     Unidade toEntity(UnidadeDTO unidadeDTO);
 
     default Unidade fromId(Long id) {

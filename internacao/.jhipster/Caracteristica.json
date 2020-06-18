@@ -8,9 +8,10 @@
     ],
     "relationships": [
         {
-            "relationshipName": "unidade",
-            "otherEntityName": "unidade",
             "relationshipType": "many-to-one",
+            "otherEntityName": "unidade",
+            "otherEntityRelationshipName": "caracteristica",
+            "relationshipName": "unidade",
             "otherEntityField": "id"
         }
     ],
