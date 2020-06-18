@@ -20,7 +20,16 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
         grade: [''],
         dataInicial: [''],
         dataFinal: [''],
+        historico: [''],
+        consultas: [''],
+        dataHora: [''],
+        unidadeFuncional: [''],
+        equipe: [''],
+        profissional: [''],
+        situacaoAtendimento: [''],
+        excedente: [''],
     });
+
     @Input() formularioTriagem: FormGroup;
     localizacao = CALENDAR_LOCALE;
     dataLimite = new Date();
