@@ -35,6 +35,7 @@ import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-
 import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-leito/tipo-de-reserva-de-leito.component';
 import { routes } from './internacao.routes';
 import { CardPacienteComponent } from './components/card-paciente/card-paciente.component';
+import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cirurgia.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { CardPacienteComponent } from './components/card-paciente/card-paciente.
         CadastroUnidadesComponent,
         PrescricaoMedicaUnidadeComponent,
         PrescricaoEnfermagemComponent,
+        CirurgiaComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
