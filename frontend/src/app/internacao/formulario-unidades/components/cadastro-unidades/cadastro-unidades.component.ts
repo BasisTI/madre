@@ -23,7 +23,6 @@ export class CadastroUnidadesComponent implements OnInit {
         rotinaDeFuncionamento: [null],
         anexoDocumento: [null],
         setor: [null],
-        idAlmorifado: [null],
         idCentroDeAtividade: [null, Validators.required],
         tipoUnidadeId: [null],
         unidadePaiId: [null],

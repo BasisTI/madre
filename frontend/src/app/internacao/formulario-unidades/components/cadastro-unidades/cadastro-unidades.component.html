@@ -122,10 +122,74 @@
                                 </div>
                             </div>
                             <div class="ui-g-12">
-                                <div class="ui-g-3">
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            formControlName="localExame"
+                                            pTooltip="Digite o local da documentação do exame."
+                                        />
+                                        <label>Local Doc Exame</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            formControlName="rotinaDeFuncionamento"
+                                            pTooltip="Digite o local da rotina de funcionamento."
+                                        />
+                                        <label>Rotina de Funcionamento</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-multiSelect
+                                            formControlName="caracteristicas"
+                                        ></p-multiSelect>
+                                        <label>Características</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-3 ui-sm-12">
+                                    <label>Anexo de Documentos de Exame?</label>
+                                </div>
+                                <div class="ui-g-3 ui-sm-12">
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="anexoDocumento"
+                                        formControlName="anexoDocumento"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+
+                                <div class="ui-g-3 ui-sm-12">
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="anexoDocumento"
+                                        formControlName="anexoDocumento"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Não</label>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-3 ui-sm-12">
                                     <label>Controle de Estoque?</label>
                                 </div>
-                                <div class="ui-g-3">
+                                <div class="ui-g-3 ui-sm-12">
                                     <p-radioButton
                                         id="sim"
                                         type="radio"
@@ -138,7 +202,7 @@
                                     <label>Sim</label>
                                 </div>
 
-                                <div class="ui-g-3">
+                                <div class="ui-g-3 ui-sm-12">
                                     <p-radioButton
                                         id="nao"
                                         type="radio"
@@ -183,7 +247,7 @@
                 <p-accordionTab header="Horário Atendimento">
                     <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
                         <div class="ui-g-12">
-                            <div class="ui-g-4">
+                            <div class="ui-g-4 ui-sm-12">
                                 <span class="ui-float-label">
                                     <p-inputMask
                                         formControlName="horarioInicio"
@@ -193,7 +257,7 @@
                                     <label>Início</label>
                                 </span>
                             </div>
-                            <div class="ui-g-4">
+                            <div class="ui-g-4 ui-sm-12">
                                 <span class="ui-float-label">
                                     <p-inputMask
                                         formControlName="horarioFim"
