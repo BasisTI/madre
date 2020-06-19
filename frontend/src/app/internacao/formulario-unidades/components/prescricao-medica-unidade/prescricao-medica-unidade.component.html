@@ -24,7 +24,8 @@
             </div>
             <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-dropdown formControlName="unidadeTempo"> </p-dropdown>
+                    <p-dropdown formControlName="unidadeTempo" [options]="opcoesDeTempoDeUnidade">
+                    </p-dropdown>
                     <label>Unidade Tempo</label>
                 </span>
             </div>

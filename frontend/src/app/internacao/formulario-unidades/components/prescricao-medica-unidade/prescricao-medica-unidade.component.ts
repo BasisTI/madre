@@ -1,3 +1,4 @@
+import { OPCOES_DE_UNIDADE_TEMPO } from './../../models/dropwdowns/types/opcoes-de-unidade-tempo';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PrescricaoMedicaUnidadeComponent implements OnInit {
     @Input() precricaoMedica: FormGroup;
+    opcoesDeTempoDeUnidade = OPCOES_DE_UNIDADE_TEMPO;
     constructor() {}
 
     ngOnInit(): void {}

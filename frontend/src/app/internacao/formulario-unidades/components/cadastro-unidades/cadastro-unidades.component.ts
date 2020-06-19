@@ -1,9 +1,11 @@
+import { OPCOES_DE_UNIDADE_TEMPO } from './../../models/dropwdowns/types/opcoes-de-unidade-tempo';
+import { OPCOES_DE_SITUACOES } from './../../models/dropwdowns/types/opcoes-de-situacoes';
 import { TipoUnidadeService } from './../../services/tipo-unidade.service';
 import { TipoUnidade } from './../../models/dropwdowns/TipoUnidade';
 import { ClinicaService } from './../../services/clinicas.services';
 import { Ala } from '../../models/dropwdowns/Ala';
 import { AlaService } from './../../services/ala.service';
-import { OPCOES_DE_SITUACOES } from './../../models/opcoes-de-situacoes';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { Clinica } from '@internacao/formulario-unidades/models/dropwdowns/Clinica';
@@ -18,6 +20,7 @@ export class CadastroUnidadesComponent implements OnInit {
     clinicas: Clinica[] = [];
     tipos: TipoUnidade[] = [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
+
     cadastroUnidade = this.fb.group({
         descricao: [null, Validators.required],
         sigla: [null, Validators.required],
