@@ -155,8 +155,12 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-6 ui-sm-12">
                                     <span class="ui-float-label">
-                                        <p-multiSelect></p-multiSelect>
-                                        <label>Características</label>
+                                        <p-multiSelect
+                                            [options]="caracteristicas"
+                                            optionLabel="nome"
+                                            placeholder="Características"
+                                            label="Características"
+                                        ></p-multiSelect>
                                     </span>
                                 </div>
                             </div>

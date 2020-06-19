@@ -1,3 +1,5 @@
+import { CaracteristicaService } from './../../services/caracteristica.service';
+import { Caracteristica } from './../../models/dropwdowns/caracteristicas';
 import { OPCOES_DE_UNIDADE_TEMPO } from './../../models/dropwdowns/types/opcoes-de-unidade-tempo';
 import { OPCOES_DE_SITUACOES } from './../../models/dropwdowns/types/opcoes-de-situacoes';
 import { TipoUnidadeService } from './../../services/tipo-unidade.service';
@@ -19,6 +21,7 @@ export class CadastroUnidadesComponent implements OnInit {
     alas: Ala[] = [];
     clinicas: Clinica[] = [];
     tipos: TipoUnidade[] = [];
+    caracteristicas: Caracteristica[] = [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
 
     cadastroUnidade = this.fb.group({
@@ -71,12 +74,16 @@ export class CadastroUnidadesComponent implements OnInit {
         public alaService: AlaService,
         public clinicaService: ClinicaService,
         public tipoUnidadeService: TipoUnidadeService,
+        public caracteristicaService: CaracteristicaService,
     ) {}
 
     ngOnInit() {
         this.alaService.getListaDeAlas().subscribe((res) => (this.alas = res));
         this.clinicaService.getListaDeClinicas().subscribe((res) => (this.clinicas = res));
         this.tipoUnidadeService.getListaDeTiposUnidades().subscribe((res) => (this.tipos = res));
+        this.caracteristicaService
+            .getListaDeCaracteristicas()
+            .subscribe((res) => (this.caracteristicas = res));
     }
 
     cadastrar() {
