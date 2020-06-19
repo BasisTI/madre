@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Recebimento.
+    -->
+    <changeSet id="20200618123153-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="nota_fiscal_entrada_id"
+                                 baseTableName="recebimento"
+                                 constraintName="fk_recebimento_nota_fiscal_entrada_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="documento_fiscal_entrada"/>
+
+        <addForeignKeyConstraint baseColumnNames="autorizacao_fornecimento_id"
+                                 baseTableName="recebimento"
+                                 constraintName="fk_recebimento_autorizacao_fornecimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="autorizacao_fornecimento"/>
+
+    </changeSet>
+</databaseChangeLog>
