@@ -95,7 +95,7 @@ public class PrescricaoMedicaResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PrescricaoMedicaResource prescricaoMedicaResource = new PrescricaoMedicaResource(prescricaoMedicaService);
+        final PrescricaoMedicaResource prescricaoMedicaResource = new PrescricaoMedicaResource(prescricaoMedicaService, prescricaoMedicaRepository);
         this.restPrescricaoMedicaMockMvc = MockMvcBuilders.standaloneSetup(prescricaoMedicaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
