@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { BreadcrumbService } from '@nuvem/primeng-components';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 
 @Component({
     selector: 'app-emergencia',
@@ -10,25 +10,22 @@ import { BreadcrumbService } from '@nuvem/primeng-components';
 export class EmergenciaComponent implements OnInit, OnDestroy {
     emergencia = this.fb.group({
         numeroConsulta: [''],
-        data: [''],
-        nome: [''],
-        consultaAnterior: [''],
-        prontuario: [''],
-        codigoPaciente: [''],
-        situacaoAtendimento: [''],
+        dataDaConsulta: [''],
         grade: [''],
+        prontuario: [''],
+        nome: [''],
         especialidade: [''],
-        retornoPaciente: [''],
-        pagador: [''],
-        autorizacao: [''],
-        condicaoAtendimento: [''],
-        retornoPagador: [''],
-        movimentacao: [''],
-        operacao: [''],
-        responsavel: [''],
-        motivo: [''],
+        profissional: [''],
+        convenio: [''],
+        codigoCentral: [''],
+        observacao: [''],
+        justificativa: [''],
     });
-
+    @Input() formularioTriagem: FormGroup;
+    localizacao = CALENDAR_LOCALE;
+    dataLimite = new Date();
+    anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
     constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService) {}
 
     ngOnInit(): void {

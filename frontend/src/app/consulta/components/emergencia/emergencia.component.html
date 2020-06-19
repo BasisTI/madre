@@ -9,25 +9,28 @@
                     <label>Nº da Consulta</label>
                 </span>
             </div>
+
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="data" />
+                    <p-calendar
+                        [locale]="localizacao"
+                        [yearRange]="anosDisponiveis"
+                        [dateFormat]="formatoDeData"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                        formControlName="dataDaConsulta"
+                        [icon]="calendar"
+                    ></p-calendar>
                     <label>Data da Consulta</label>
                 </span>
             </div>
-            <div class="ui-g-5 ui-sm-12">
+            <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="nome" />
-                    <label>Nome</label>
+                    <input type="text" pInputText formControlName="grade" />
+                    <label>Grade</label>
                 </span>
             </div>
 
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="consultaAnterior" />
-                    <label>Consulta Anterior</label>
-                </span>
-            </div>
             <div class="ui-g-12"></div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
@@ -35,84 +38,56 @@
                     <label>Prontuário</label>
                 </span>
             </div>
+
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="nome" />
+                    <label>Nome</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12"></div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown pInputText formControlName="especialidade"></p-dropdown>
+                    <label>Especialidade</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown type="text" pInputText formControlName="profissional"></p-dropdown>
+                    <label>Profissional</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12"></div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="codigoPaciente" />
-                    <label>Código do Paciente</label>
+                    <input type="text" pInputText formControlName="convenio" />
+                    <label>Convênio</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="codigoCentral" />
+                    <label>Cód. Central</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12"></div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="observacao" />
+                    <label>Observação</label>
                 </span>
             </div>
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="situacaoAtendimento" />
-                    <label>Situação</label>
+                    <input type="text" pInputText formControlName="justificativa" />
+                    <label>Justificativa</label>
                 </span>
             </div>
-            <div class="ui-g-12"></div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="grade" />
-                    <label>Grade</label>
-                </span>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="especialidade" />
-                    <label>Especialidade</label>
-                </span>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="retornoPaciente" />
-                    <label>Retorno - Paciente</label>
-                </span>
-            </div>
-            <div class="ui-g-12">
-                <h3>Convênio</h3>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="pagador" />
-                    <label>Pagador</label>
-                </span>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="autorizacao" />
-                    <label>Autorização</label>
-                </span>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="condicaoAtendimento" />
-                    <label>Condição Atendimento</label>
-                </span>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="retornoPagador" />
-                    <label>Retorno - Pagador</label>
-                </span>
-            </div>
-        </div>
-
-        <div class="ui-g-12 ui-sm-12">
-            <basis-datatable
-                type="memory"
-                [disableView]="true"
-                [disableEdit]="true"
-                [disableDelete]="true"
-            >
-                <p-column field="movimentacao" header="Movimentação"></p-column>
-                <p-column field="operacao" header="Operação"></p-column>
-                <p-column field="responsavel" header="Responsável"></p-column>
-                <p-column field="situacaoAtendimento" header="Situação"></p-column>
-                <p-column field="grade" header="Grade"></p-column>
-                <p-column field="retornoPaciente" header="Retorno"></p-column>
-                <p-column field="codigoPaciente" header="Cód. Paciente"></p-column>
-                <p-column field="prontuario" header="Prontuário"></p-column>
-                <p-column field="nome" header="Paciente"></p-column>
-                <p-column field="motivo" header="Motivo"></p-column>
-            </basis-datatable>
         </div>
     </form>
 </div>
