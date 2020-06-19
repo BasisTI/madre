@@ -2,14 +2,26 @@ package br.com.basis.madre.farmacia.service;
 
 
 
+import br.com.basis.madre.farmacia.domain.Dispensacao;
+import br.com.basis.madre.farmacia.domain.Medicamento;
 import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.domain.evento.EventoPrescricao;
+import br.com.basis.madre.farmacia.domain.evento.ItemPrescricaoMedicamentos;
+import br.com.basis.madre.farmacia.domain.evento.PrescricaoMedicamento;
+import br.com.basis.madre.farmacia.repository.DispensacaoRepository;
+import br.com.basis.madre.farmacia.repository.search.MedicamentoSearchRepository;
 import br.com.basis.madre.farmacia.repository.search.PrescricaoSerchRepository;
+import br.com.basis.madre.farmacia.service.dto.DispensacaoDTO;
+import br.com.basis.madre.farmacia.web.rest.DispensacaoResource;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 
@@ -19,7 +31,11 @@ import java.util.function.Consumer;
 public class PrescricaoMedicamentoConsumer implements Consumer<Message<EventoPrescricao>> {
 
     private final PrescricaoSerchRepository repository;
+    private  final MedicamentoSearchRepository medicamentoSearchRepository;
+    private final DispensacaoService dispensacaoService;
 
+
+    @SneakyThrows
     @Override
     public void accept(Message<EventoPrescricao> message) {
         EventoPrescricao evento = message.getPayload();
@@ -27,6 +43,24 @@ public class PrescricaoMedicamentoConsumer implements Consumer<Message<EventoPre
         Prescricao prescricao = new Prescricao();
         prescricao.setNome(evento.getPaciente().getNome());
         prescricao.setDataInicio(evento.getDataDeLancamento().toLocalDate());
+        prescricao.setId(evento.getPaciente().getId());
+
+        List<Long> idMedicamento = new ArrayList<>();
+        for (ItemPrescricaoMedicamentos itemPrescricaoMedicamento : evento.getPrescricaoMedicamento().getItemPrescricaoMedicamentos()) {
+            idMedicamento.add(itemPrescricaoMedicamento.getIdMedicamento());
+        }
+
+        List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+        Iterable<Medicamento> iterableMedi = medicamentoSearchRepository.findAllById(idMedicamento);
+        iterableMedi.forEach(medicamentos::add);
+        prescricao.setMedicamentos(medicamentos);
+
+        DispensacaoDTO dispensacao = new DispensacaoDTO();
+        dispensacao.setIdPrescricao(evento.getPaciente().getId());
+
+    DispensacaoDTO rusult = dispensacaoService.save(dispensacao);
+
+        prescricao.setIdDispensacao(rusult.getId());
         repository.save(prescricao);
 
     }

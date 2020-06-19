@@ -8,6 +8,6 @@ import java.time.ZonedDateTime;
 @Data
 public class EventoPrescricao implements Serializable {
     private Parciente paciente;
-
+    private PrescricaoMedicamento prescricaoMedicamento;
     private ZonedDateTime dataDeLancamento;
 }

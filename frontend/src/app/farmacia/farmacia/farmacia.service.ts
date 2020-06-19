@@ -81,4 +81,23 @@ export class FarmaciaService {
                 .set('ativo', situacao),
         });
     }
+
+    getPrescricaoPorId(id: number): Observable<Prescricao> {
+        console.log(id);
+        return this.httpServe.get<Prescricao>(`${this.apiUrl}/prescricao/${id}`);
+    }
+    getDispensacaooPorId(id: number): Observable<Prescricao> {
+        console.log(id);
+        return this.httpServe.get<Prescricao>(`${this.apiUrl}/dispensacaos/${id}`);
+    }
+
+    DispensarMedicamento(prescricao: Prescricao, id: number, dispensado: boolean) {
+        const dto = {
+            dispensacaoId: prescricao.idDispensacao,
+            medicamentosId: id,
+            dispensado: dispensado,
+        };
+        console.log(dto);
+        return this.httpServe.post(`${this.apiUrl}/dispensacao-medicamentos`, dto);
+    }
 }

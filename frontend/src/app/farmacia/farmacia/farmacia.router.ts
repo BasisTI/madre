@@ -1,3 +1,5 @@
+import { DispensacaoMedicamentoComponent } from './dispensacao/dispensacao-medicamento/dispensacao-medicamento.component';
+import { Component } from '@angular/core';
 import { DispensacaoComponent } from './dispensacao/dispensacao.component';
 
 import { Routes } from '@angular/router';
@@ -16,5 +18,9 @@ export const Farmacia: Routes = [
     {
         path: 'medicamentos',
         component: MedicamentosComponent,
+    },
+    {
+        path: 'dispensacao-medicamentos/:id',
+        component: DispensacaoMedicamentoComponent,
     },
 ];

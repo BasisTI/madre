@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Document(indexName = "madre-farmacia-prescricao")
@@ -39,6 +40,16 @@ public class Prescricao implements Serializable {
 
     @Field(type = FieldType.Text)
     private String local;
+
+    @Field(type = FieldType.Keyword)
+    private Long idItemPrescricaoMedicamento;
+
+    @Field(type = FieldType.Nested)
+    private List<Medicamento> medicamentos;
+
+    @Field(type = FieldType.Keyword)
+    private Long idDispensacao;
+
 
     public Prescricao(String nome, LocalDate dataInicio, LocalDateTime dataFim, String local) {
         this.nome = nome;

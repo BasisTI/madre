@@ -35,10 +35,25 @@
                 <button pButton type="button" label="Exportar"></button>
             </div>
         </div>
-        <basis-datatable type="memory" [value]="Prescricao" sortField="brand">
+        <basis-datatable
+            #datatable
+            type="memory"
+            [value]="Prescricao"
+            sortField="brand"
+            [disableView]="true"
+            [disableEdit]="true"
+            [disableDelete]="true"
+            (buttonClick)="dispensarMedicamento($event)"
+        >
             <p-column header="Paciente" field="nome" [sortable]="true"></p-column>
 
             <p-column header="Início Prescrição" field="dataInicio"></p-column>
+
+            <basis-datatable-button
+                bTooltip="Dispensar Medicamento"
+                [disabled]="datatable.selectedRow ? false : true"
+            >
+            </basis-datatable-button>
         </basis-datatable>
     </div>
 </div>

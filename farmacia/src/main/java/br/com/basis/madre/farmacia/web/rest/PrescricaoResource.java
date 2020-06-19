@@ -15,13 +15,13 @@ import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilde
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.time.ZoneId;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
@@ -96,6 +96,11 @@ public class PrescricaoResource {
         prescricaoRepositorySearch.deleteAll();
         return "OK";
 
+    }
+    @GetMapping("/prescricao/{id}")
+    public Optional<Prescricao> getPorId( @PathVariable Long id){
+
+        return  prescricaoRepositorySearch.findById(id);
     }
 
 }

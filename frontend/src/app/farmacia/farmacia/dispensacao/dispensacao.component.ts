@@ -1,6 +1,7 @@
+import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { browser } from 'protractor';
 import { style } from '@angular/animations';
-import { Data } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { Pageable } from './../../../shared/pageable';
 import { Unidade } from './unidade';
 import { Farmacia } from './../farmacia.router';
@@ -55,12 +56,16 @@ export class DispensacaoComponent implements OnInit {
         console.log(this.dataInicio);
     }
 
-    constructor(private service: FarmaciaService) {}
+    constructor(private service: FarmaciaService, private router: Router) {}
 
     ngOnInit() {
         // tslint:disable-next-line: max-line-length
         this.service
             .getPrescricao(this.nome, this.dataInicio, this.local)
             .subscribe((res) => (this.Prescricao = res.content));
+        console.log(this.Prescricao);
+    }
+    dispensarMedicamento(event: DatatableClickEvent) {
+        this.router.navigate(['/dispensacao-medicamentos', event.selection.id]);
     }
 }
