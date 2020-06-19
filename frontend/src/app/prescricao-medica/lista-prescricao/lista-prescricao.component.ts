@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { BreadcrumbService } from '@nuvem/primeng-components';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-lista-prescricao',
-  templateUrl: './lista-prescricao.component.html',
-  styleUrls: ['./lista-prescricao.component.css']
+    selector: 'app-lista-prescricao',
+    templateUrl: './lista-prescricao.component.html',
+    styleUrls: ['./lista-prescricao.component.css']
 })
-export class ListaPrescricaoComponent implements OnInit {
+export class ListaPrescricaoComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+    constructor(
+        private breadcrumbService: BreadcrumbService
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.breadcrumbService.setItems([
+            { label: 'Prescrição Médica', routerLink: 'prescricao-medica' },
+            { label: 'Prescrições' }
+        ]);
+    }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
+    }
 
 }
