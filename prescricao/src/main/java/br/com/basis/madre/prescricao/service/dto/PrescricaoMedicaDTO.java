@@ -18,6 +18,10 @@ public class PrescricaoMedicaDTO implements Serializable {
     private Long idUnidadeFuncional;
 
     private Long idAtendimento;
+    
+    private Long idPaciente;
+    
+    private String observacao;
 
     private LocalDate dataPrescricao;
 

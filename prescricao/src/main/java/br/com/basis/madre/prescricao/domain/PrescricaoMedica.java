@@ -13,12 +13,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,17 +48,27 @@ public class PrescricaoMedica implements Serializable {
 	@Field(type = FieldType.Keyword)
 	private Long id;
 
+	@NotNull
 	@Column(name = "id_leito")
 	private Long idLeito;
 
+	@NotNull
 	@Column(name = "id_unidade_funcional")
 	private Long idUnidadeFuncional;
 
+	@NotNull
 	@Column(name = "id_atendimento")
 	private Long idAtendimento;
 
 	@Column(name = "data_prescricao")
 	private LocalDate dataPrescricao;
+	
+	@Column(name = "id_paciente")
+	private Long idPaciente;
+
+	@Size(max = 255)
+	@Column(name = "observacao", length = 255)
+	private String observacao;
 
 	public PrescricaoMedica idLeito(Long idLeito) {
 		this.idLeito = idLeito;
@@ -74,6 +87,16 @@ public class PrescricaoMedica implements Serializable {
 
 	public PrescricaoMedica dataPrescricao(LocalDate dataPrescricao) {
 		this.dataPrescricao = dataPrescricao;
+		return this;
+	}
+	
+	public PrescricaoMedica idPaciente(Long idPaciente) {
+		this.idPaciente = idPaciente;
+		return this;
+	}
+
+	public PrescricaoMedica observacao(String observacao) {
+		this.observacao = observacao;
 		return this;
 	}
 
