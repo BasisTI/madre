@@ -1,5 +1,7 @@
 package br.com.basis.madre.prescricao.web.rest;
 
+import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
+import br.com.basis.madre.prescricao.repository.PrescricaoMedicaRepository;
 import br.com.basis.madre.prescricao.service.PrescricaoMedicaService;
 import br.com.basis.madre.prescricao.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicaDTO;
@@ -42,9 +44,12 @@ public class PrescricaoMedicaResource {
     private String applicationName;
 
     private final PrescricaoMedicaService prescricaoMedicaService;
+    
+    private final PrescricaoMedicaRepository prescricaoMedicaRepository;
 
-    public PrescricaoMedicaResource(PrescricaoMedicaService prescricaoMedicaService) {
+    public PrescricaoMedicaResource(PrescricaoMedicaService prescricaoMedicaService, PrescricaoMedicaRepository prescricaoMedicaRepository) {
         this.prescricaoMedicaService = prescricaoMedicaService;
+        this.prescricaoMedicaRepository = prescricaoMedicaRepository;
     }
 
     /**
@@ -143,5 +148,12 @@ public class PrescricaoMedicaResource {
         Page<PrescricaoMedicaDTO> page = prescricaoMedicaService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+    
+    @GetMapping("/prescricao-medicas/lista/{id}")
+    public ResponseEntity<List<PrescricaoMedica>> buscarPrescricoesPorPaciente(@PathVariable Long id){
+    	List<PrescricaoMedica> prescricoes = prescricaoMedicaRepository.findByIdPaciente(id);
+    	
+    	return ResponseEntity.ok(prescricoes);
     }
 }

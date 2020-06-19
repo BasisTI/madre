@@ -20,11 +20,6 @@ public class PrescricaoMedicamentoDTO extends PrescricaoMedicaDTO implements Ser
 
 	private Long id;
 
-	private Long idPaciente;
-
-	@Size(max = 255)
-	private String observacao;
-
 	private Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentos = new HashSet<>();
 
 }
