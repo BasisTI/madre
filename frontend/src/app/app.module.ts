@@ -35,6 +35,7 @@ import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.s
 import { SharedModule } from './shared/shared.module';
 import { SuprimentosModule } from './suprimentos/suprimentos.module';
 import { environment } from '../environments/environment';
+import { ConsultaModule } from './consulta/consulta.module';
 
 @NgModule({
     imports: [
@@ -59,6 +60,7 @@ import { environment } from '../environments/environment';
         SecurityModule.forRoot(environment.auth),
         BreadcrumbModule,
         MenuModule,
+        ConsultaModule,
     ],
     declarations: [
         AppComponent,

@@ -14,7 +14,7 @@ entity Emergencia {
     turno Turno
     tipoPagador TipoPagador
     gradesDisponiveis Boolean
-    clinicaCentralId Long maxlength(20)
+    clinicaCentralId Long
     observacoes String maxlength (240)
     //formaDeAgendamento = autorizacao
     //especialidade vai consumir de Internacao

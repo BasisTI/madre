@@ -29,6 +29,10 @@ export const routes: Routes = [
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
     {
+        path: 'consulta',
+        loadChildren: 'src/app/consulta/consulta.module#ConsultaModule',
+    },
+    {
         path: 'internacao',
         loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
     },
