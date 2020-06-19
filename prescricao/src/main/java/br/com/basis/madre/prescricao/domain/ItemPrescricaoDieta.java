@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -23,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -56,19 +59,24 @@ public class ItemPrescricaoDieta implements Serializable {
     @Column(name = "numero_vezes")
     private Integer numeroVezes;
 
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoItemDieta tipoItemDieta;
 
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoAprazamento tipoAprazamento;
 
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoUnidadeDieta tipoUnidadeDieta;
 
-    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToStringExclude
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private PrescricaoDieta prescricaoDieta;
 
