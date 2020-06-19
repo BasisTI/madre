@@ -1,7 +1,10 @@
 package br.com.basis.madre.prescricao.repository;
-import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
-import org.springframework.data.jpa.repository.*;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
 
 
 /**
@@ -11,4 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PrescricaoMedicaRepository extends JpaRepository<PrescricaoMedica, Long> {
 
+	List<PrescricaoMedica> findByIdPaciente(Long id);
 }
