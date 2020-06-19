@@ -6,21 +6,22 @@ relationship OneToOne{
 
 entity Emergencia {
 
-    dataHoraDaConsulta LocalDate required
-    diaDaSemana String maxlength(20)
+    dataHoraDaConsulta ZonedDateTime required
+    //dia da semana: calculo dataHoraDaConsulta
     grade Long max (20)
     profissional String maxlength(80)
-    sala String maxlength(20)
+    numeroSala String maxlength(20)
     turno Turno
-    pagador Pagador
+    tipoPagador TipoPagador
     gradesDisponiveis Boolean
-    central Long max (100)
+    clinicaCentralId Long
+    justificativa String maxlength (240)
     observacoes String maxlength (240)
     //formaDeAgendamento = autorizacao
-    //especialidade vai ser consumido de Internacao
-    //equipe vai ser consumido de Internacao
-    //prioridade vai ser consumido de Internacao
-    //convenio vai ser consumido de Internacao
+    //especialidade vai consumir de Internacao
+    //equipe vai consumir de Internacao
+    //prioridade vai consumir de Internacao
+    //convenio vai consumir de Paciente
 }
 
 entity CondicaoDeAtendimento {
@@ -38,7 +39,7 @@ entity Entidade {
 }
 
 
-enum Pagador {
+enum TipoPagador {
   SUS,
   OUTROS_CONVENIOS
 }

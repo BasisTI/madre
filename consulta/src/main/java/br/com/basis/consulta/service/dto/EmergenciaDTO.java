@@ -1,10 +1,10 @@
 package br.com.basis.consulta.service.dto;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import br.com.basis.consulta.domain.enumeration.Turno;
-import br.com.basis.consulta.domain.enumeration.Pagador;
+import br.com.basis.consulta.domain.enumeration.TipoPagador;
 
 /**
  * A DTO for the {@link br.com.basis.consulta.domain.Emergencia} entity.
@@ -14,10 +14,7 @@ public class EmergenciaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private LocalDate dataHoraDaConsulta;
-
-    @Size(max = 20)
-    private String diaDaSemana;
+    private ZonedDateTime dataHoraDaConsulta;
 
     @Max(value = 20L)
     private Long grade;
@@ -26,16 +23,18 @@ public class EmergenciaDTO implements Serializable {
     private String profissional;
 
     @Size(max = 20)
-    private String sala;
+    private String numeroSala;
 
     private Turno turno;
 
-    private Pagador pagador;
+    private TipoPagador tipoPagador;
 
     private Boolean gradesDisponiveis;
 
-    @Max(value = 100L)
-    private Long central;
+    private Long clinicaCentralId;
+
+    @Size(max = 240)
+    private String justificativa;
 
     @Size(max = 240)
     private String observacoes;
@@ -53,20 +52,12 @@ public class EmergenciaDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDataHoraDaConsulta() {
+    public ZonedDateTime getDataHoraDaConsulta() {
         return dataHoraDaConsulta;
     }
 
-    public void setDataHoraDaConsulta(LocalDate dataHoraDaConsulta) {
+    public void setDataHoraDaConsulta(ZonedDateTime dataHoraDaConsulta) {
         this.dataHoraDaConsulta = dataHoraDaConsulta;
-    }
-
-    public String getDiaDaSemana() {
-        return diaDaSemana;
-    }
-
-    public void setDiaDaSemana(String diaDaSemana) {
-        this.diaDaSemana = diaDaSemana;
     }
 
     public Long getGrade() {
@@ -85,12 +76,12 @@ public class EmergenciaDTO implements Serializable {
         this.profissional = profissional;
     }
 
-    public String getSala() {
-        return sala;
+    public String getNumeroSala() {
+        return numeroSala;
     }
 
-    public void setSala(String sala) {
-        this.sala = sala;
+    public void setNumeroSala(String numeroSala) {
+        this.numeroSala = numeroSala;
     }
 
     public Turno getTurno() {
@@ -101,12 +92,12 @@ public class EmergenciaDTO implements Serializable {
         this.turno = turno;
     }
 
-    public Pagador getPagador() {
-        return pagador;
+    public TipoPagador getTipoPagador() {
+        return tipoPagador;
     }
 
-    public void setPagador(Pagador pagador) {
-        this.pagador = pagador;
+    public void setTipoPagador(TipoPagador tipoPagador) {
+        this.tipoPagador = tipoPagador;
     }
 
     public Boolean isGradesDisponiveis() {
@@ -117,12 +108,20 @@ public class EmergenciaDTO implements Serializable {
         this.gradesDisponiveis = gradesDisponiveis;
     }
 
-    public Long getCentral() {
-        return central;
+    public Long getClinicaCentralId() {
+        return clinicaCentralId;
     }
 
-    public void setCentral(Long central) {
-        this.central = central;
+    public void setClinicaCentralId(Long clinicaCentralId) {
+        this.clinicaCentralId = clinicaCentralId;
+    }
+
+    public String getJustificativa() {
+        return justificativa;
+    }
+
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
     }
 
     public String getObservacoes() {
@@ -175,14 +174,14 @@ public class EmergenciaDTO implements Serializable {
         return "EmergenciaDTO{" +
             "id=" + getId() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
-            ", diaDaSemana='" + getDiaDaSemana() + "'" +
             ", grade=" + getGrade() +
             ", profissional='" + getProfissional() + "'" +
-            ", sala='" + getSala() + "'" +
+            ", numeroSala='" + getNumeroSala() + "'" +
             ", turno='" + getTurno() + "'" +
-            ", pagador='" + getPagador() + "'" +
+            ", tipoPagador='" + getTipoPagador() + "'" +
             ", gradesDisponiveis='" + isGradesDisponiveis() + "'" +
-            ", central=" + getCentral() +
+            ", clinicaCentralId=" + getClinicaCentralId() +
+            ", justificativa='" + getJustificativa() + "'" +
             ", observacoes='" + getObservacoes() + "'" +
             ", condicaoDeAtendimento=" + getCondicaoDeAtendimentoId() +
             ", formaDeAgendamento=" + getFormaDeAgendamentoId() +

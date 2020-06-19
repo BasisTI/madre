@@ -1,11 +1,11 @@
-id;data_hora_da_consulta;dia_da_semana;grade;profissional;sala;turno;pagador;grades_disponiveis;central;observacoes
-1;2020-06-19;Directives applicati;3;Computer Practical Fresh Pants;Metal deposit;VESPERTINO;SUS;true;30;Albania web-readiness
-2;2020-06-19;Investment Account S;6;24/7 Common bluetooth;syndicate;VESPERTINO;SUS;true;97;cross-platform access
-3;2020-06-19;Nakfa;9;Rubber Buckinghamshire Games;incentivize Tuna cop;MATUTINO;SUS;true;78;Markets Chief
-4;2020-06-19;National Awesome sky;0;software scale interactive;Louisiana Specialist;MATUTINO;OUTROS_CONVENIOS;false;20;Books
-5;2020-06-18;monitor;15;quantify Unbranded Plastic Tuna Frozen;generating Highway E;VESPERTINO;OUTROS_CONVENIOS;false;12;bus synthesize Idaho
-6;2020-06-18;Avon;10;partnerships Grocery Intelligent;Dynamic;VESPERTINO;SUS;false;23;Generic neutral Salad
-7;2020-06-18;virtual deposit;18;digital maroon;EXE projection Fresh;VESPERTINO;OUTROS_CONVENIOS;false;82;SQL Games
-8;2020-06-19;supply-chains magent;2;24/7;Gloves sky blue Okla;VESPERTINO;SUS;false;28;Computers Personal Loan Account Berkshire
-9;2020-06-19;encompassing;19;Public-key Granite;Way Dominican Republ;VESPERTINO;OUTROS_CONVENIOS;true;37;invoice withdrawal
-10;2020-06-19;Licensed hacking ins;3;Refined Rubber Gloves Algerian Dinar Clothing;open-source turn-key;VESPERTINO;SUS;true;34;Concrete Global SMS
+id;data_hora_da_consulta;grade;profissional;numero_sala;turno;tipo_pagador;grades_disponiveis;clinica_central_id;justificativa;observacoes
+1;2020-06-19T07:31:51;16;Fish multi-byte Savings Account;Computer Practical F;NOTURNO;OUTROS_CONVENIOS;true;93855;Electronics;Soap methodology Albania
+2;2020-06-19T06:09:11;0;Namibia;Steel zero administr;NOTURNO;OUTROS_CONVENIOS;true;46676;HDD;Table Small Frozen Sausages Planner
+3;2020-06-18T21:07:06;8;Music;Nakfa;VESPERTINO;OUTROS_CONVENIOS;true;75536;convergence;Mayotte
+4;2020-06-19T12:05:00;0;synthesizing Views e-enable;Credit Card Account ;VESPERTINO;OUTROS_CONVENIOS;true;58675;Specialist Home Loan Account;Plastic
+5;2020-06-18T21:16:02;3;Industrial;index orange;MATUTINO;OUTROS_CONVENIOS;true;79017;Checking Account Identity deposit;IB Investment Account archive
+6;2020-06-19T14:59:40;7;Lempira;pixel withdrawal;NOTURNO;SUS;false;4043;system Small;Intelligent Outdoors
+7;2020-06-19T01:14:46;9;Montana;Corporate Phased rel;MATUTINO;SUS;true;10549;Squares mint green e-business;Ghana back-end National
+8;2020-06-19T08:53:16;19;contextually-based;synergies copying;NOTURNO;SUS;false;24412;Gloves sky blue Oklahoma;robust Engineer
+9;2020-06-18T17:25:16;5;Moroccan Dirham;capability zero tole;NOTURNO;OUTROS_CONVENIOS;true;63435;Canadian Dollar;Berkshire Designer
+10;2020-06-19T10:42:38;12;Handmade 24/7 Re-contextualized;web-enabled invoice ;VESPERTINO;OUTROS_CONVENIOS;false;69581;HDD;Algerian Dinar

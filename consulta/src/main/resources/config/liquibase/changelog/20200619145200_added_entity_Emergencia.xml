@@ -15,11 +15,8 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="data_hora_da_consulta" type="date">
+            <column name="data_hora_da_consulta" type="datetime">
                 <constraints nullable="false" />
-            </column>
-            <column name="dia_da_semana" type="varchar(20)">
-                <constraints nullable="true" />
             </column>
             <column name="grade" type="bigint">
                 <constraints nullable="true" />
@@ -27,19 +24,22 @@
             <column name="profissional" type="varchar(80)">
                 <constraints nullable="true" />
             </column>
-            <column name="sala" type="varchar(20)">
+            <column name="numero_sala" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
             <column name="turno" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="pagador" type="varchar(255)">
+            <column name="tipo_pagador" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="grades_disponiveis" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="central" type="bigint">
+            <column name="clinica_central_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="justificativa" type="varchar(240)">
                 <constraints nullable="true" />
             </column>
             <column name="observacoes" type="varchar(240)">
@@ -53,6 +53,7 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="emergencia" columnName="data_hora_da_consulta" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20200619145200-1-relations" author="jhipster">
@@ -74,15 +75,15 @@
                   separator=";"
                   tableName="emergencia">
             <column name="id" type="numeric"/>
-            <column name="data_hora_da_consulta" type="date"/>
-            <column name="dia_da_semana" type="string"/>
+            <column name="data_hora_da_consulta" type="datetime"/>
             <column name="grade" type="numeric"/>
             <column name="profissional" type="string"/>
-            <column name="sala" type="string"/>
+            <column name="numero_sala" type="string"/>
             <column name="turno" type="string"/>
-            <column name="pagador" type="string"/>
+            <column name="tipo_pagador" type="string"/>
             <column name="grades_disponiveis" type="boolean"/>
-            <column name="central" type="numeric"/>
+            <column name="clinica_central_id" type="numeric"/>
+            <column name="justificativa" type="string"/>
             <column name="observacoes" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>

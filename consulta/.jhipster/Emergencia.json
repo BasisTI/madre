@@ -3,18 +3,10 @@
     "fields": [
         {
             "fieldName": "dataHoraDaConsulta",
-            "fieldType": "LocalDate",
+            "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "diaDaSemana",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "20"
         },
         {
             "fieldName": "grade",
@@ -33,7 +25,7 @@
             "fieldValidateRulesMaxlength": "80"
         },
         {
-            "fieldName": "sala",
+            "fieldName": "numeroSala",
             "fieldType": "String",
             "fieldValidateRules": [
                 "maxlength"
@@ -46,8 +38,8 @@
             "fieldValues": "MATUTINO,VESPERTINO,NOTURNO"
         },
         {
-            "fieldName": "pagador",
-            "fieldType": "Pagador",
+            "fieldName": "tipoPagador",
+            "fieldType": "TipoPagador",
             "fieldValues": "SUS,OUTROS_CONVENIOS"
         },
         {
@@ -55,12 +47,16 @@
             "fieldType": "Boolean"
         },
         {
-            "fieldName": "central",
-            "fieldType": "Long",
+            "fieldName": "clinicaCentralId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "justificativa",
+            "fieldType": "String",
             "fieldValidateRules": [
-                "max"
+                "maxlength"
             ],
-            "fieldValidateRulesMax": "100"
+            "fieldValidateRulesMaxlength": "240"
         },
         {
             "fieldName": "observacoes",

@@ -25,11 +25,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
 import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
+import static br.com.basis.consulta.web.rest.TestUtil.sameInstant;
 import static br.com.basis.consulta.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -39,18 +42,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import br.com.basis.consulta.domain.enumeration.Turno;
-import br.com.basis.consulta.domain.enumeration.Pagador;
+import br.com.basis.consulta.domain.enumeration.TipoPagador;
 /**
  * Integration tests for the {@link EmergenciaResource} REST controller.
  */
 @SpringBootTest(classes = MadreconsultaApp.class)
 public class EmergenciaResourceIT {
 
-    private static final LocalDate DEFAULT_DATA_HORA_DA_CONSULTA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA_HORA_DA_CONSULTA = LocalDate.now(ZoneId.systemDefault());
-
-    private static final String DEFAULT_DIA_DA_SEMANA = "AAAAAAAAAA";
-    private static final String UPDATED_DIA_DA_SEMANA = "BBBBBBBBBB";
+    private static final ZonedDateTime DEFAULT_DATA_HORA_DA_CONSULTA = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATA_HORA_DA_CONSULTA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     private static final Long DEFAULT_GRADE = 20L;
     private static final Long UPDATED_GRADE = 19L;
@@ -58,20 +58,23 @@ public class EmergenciaResourceIT {
     private static final String DEFAULT_PROFISSIONAL = "AAAAAAAAAA";
     private static final String UPDATED_PROFISSIONAL = "BBBBBBBBBB";
 
-    private static final String DEFAULT_SALA = "AAAAAAAAAA";
-    private static final String UPDATED_SALA = "BBBBBBBBBB";
+    private static final String DEFAULT_NUMERO_SALA = "AAAAAAAAAA";
+    private static final String UPDATED_NUMERO_SALA = "BBBBBBBBBB";
 
     private static final Turno DEFAULT_TURNO = Turno.MATUTINO;
     private static final Turno UPDATED_TURNO = Turno.VESPERTINO;
 
-    private static final Pagador DEFAULT_PAGADOR = Pagador.SUS;
-    private static final Pagador UPDATED_PAGADOR = Pagador.OUTROS_CONVENIOS;
+    private static final TipoPagador DEFAULT_TIPO_PAGADOR = TipoPagador.SUS;
+    private static final TipoPagador UPDATED_TIPO_PAGADOR = TipoPagador.OUTROS_CONVENIOS;
 
     private static final Boolean DEFAULT_GRADES_DISPONIVEIS = false;
     private static final Boolean UPDATED_GRADES_DISPONIVEIS = true;
 
-    private static final Long DEFAULT_CENTRAL = 100L;
-    private static final Long UPDATED_CENTRAL = 99L;
+    private static final Long DEFAULT_CLINICA_CENTRAL_ID = 1L;
+    private static final Long UPDATED_CLINICA_CENTRAL_ID = 2L;
+
+    private static final String DEFAULT_JUSTIFICATIVA = "AAAAAAAAAA";
+    private static final String UPDATED_JUSTIFICATIVA = "BBBBBBBBBB";
 
     private static final String DEFAULT_OBSERVACOES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACOES = "BBBBBBBBBB";
@@ -133,14 +136,14 @@ public class EmergenciaResourceIT {
     public static Emergencia createEntity(EntityManager em) {
         Emergencia emergencia = new Emergencia()
             .dataHoraDaConsulta(DEFAULT_DATA_HORA_DA_CONSULTA)
-            .diaDaSemana(DEFAULT_DIA_DA_SEMANA)
             .grade(DEFAULT_GRADE)
             .profissional(DEFAULT_PROFISSIONAL)
-            .sala(DEFAULT_SALA)
+            .numeroSala(DEFAULT_NUMERO_SALA)
             .turno(DEFAULT_TURNO)
-            .pagador(DEFAULT_PAGADOR)
+            .tipoPagador(DEFAULT_TIPO_PAGADOR)
             .gradesDisponiveis(DEFAULT_GRADES_DISPONIVEIS)
-            .central(DEFAULT_CENTRAL)
+            .clinicaCentralId(DEFAULT_CLINICA_CENTRAL_ID)
+            .justificativa(DEFAULT_JUSTIFICATIVA)
             .observacoes(DEFAULT_OBSERVACOES);
         return emergencia;
     }
@@ -153,14 +156,14 @@ public class EmergenciaResourceIT {
     public static Emergencia createUpdatedEntity(EntityManager em) {
         Emergencia emergencia = new Emergencia()
             .dataHoraDaConsulta(UPDATED_DATA_HORA_DA_CONSULTA)
-            .diaDaSemana(UPDATED_DIA_DA_SEMANA)
             .grade(UPDATED_GRADE)
             .profissional(UPDATED_PROFISSIONAL)
-            .sala(UPDATED_SALA)
+            .numeroSala(UPDATED_NUMERO_SALA)
             .turno(UPDATED_TURNO)
-            .pagador(UPDATED_PAGADOR)
+            .tipoPagador(UPDATED_TIPO_PAGADOR)
             .gradesDisponiveis(UPDATED_GRADES_DISPONIVEIS)
-            .central(UPDATED_CENTRAL)
+            .clinicaCentralId(UPDATED_CLINICA_CENTRAL_ID)
+            .justificativa(UPDATED_JUSTIFICATIVA)
             .observacoes(UPDATED_OBSERVACOES);
         return emergencia;
     }
@@ -187,14 +190,14 @@ public class EmergenciaResourceIT {
         assertThat(emergenciaList).hasSize(databaseSizeBeforeCreate + 1);
         Emergencia testEmergencia = emergenciaList.get(emergenciaList.size() - 1);
         assertThat(testEmergencia.getDataHoraDaConsulta()).isEqualTo(DEFAULT_DATA_HORA_DA_CONSULTA);
-        assertThat(testEmergencia.getDiaDaSemana()).isEqualTo(DEFAULT_DIA_DA_SEMANA);
         assertThat(testEmergencia.getGrade()).isEqualTo(DEFAULT_GRADE);
         assertThat(testEmergencia.getProfissional()).isEqualTo(DEFAULT_PROFISSIONAL);
-        assertThat(testEmergencia.getSala()).isEqualTo(DEFAULT_SALA);
+        assertThat(testEmergencia.getNumeroSala()).isEqualTo(DEFAULT_NUMERO_SALA);
         assertThat(testEmergencia.getTurno()).isEqualTo(DEFAULT_TURNO);
-        assertThat(testEmergencia.getPagador()).isEqualTo(DEFAULT_PAGADOR);
+        assertThat(testEmergencia.getTipoPagador()).isEqualTo(DEFAULT_TIPO_PAGADOR);
         assertThat(testEmergencia.isGradesDisponiveis()).isEqualTo(DEFAULT_GRADES_DISPONIVEIS);
-        assertThat(testEmergencia.getCentral()).isEqualTo(DEFAULT_CENTRAL);
+        assertThat(testEmergencia.getClinicaCentralId()).isEqualTo(DEFAULT_CLINICA_CENTRAL_ID);
+        assertThat(testEmergencia.getJustificativa()).isEqualTo(DEFAULT_JUSTIFICATIVA);
         assertThat(testEmergencia.getObservacoes()).isEqualTo(DEFAULT_OBSERVACOES);
 
         // Validate the Emergencia in Elasticsearch
@@ -255,15 +258,15 @@ public class EmergenciaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(emergencia.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(DEFAULT_DATA_HORA_DA_CONSULTA.toString())))
-            .andExpect(jsonPath("$.[*].diaDaSemana").value(hasItem(DEFAULT_DIA_DA_SEMANA)))
+            .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA))))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.intValue())))
             .andExpect(jsonPath("$.[*].profissional").value(hasItem(DEFAULT_PROFISSIONAL)))
-            .andExpect(jsonPath("$.[*].sala").value(hasItem(DEFAULT_SALA)))
+            .andExpect(jsonPath("$.[*].numeroSala").value(hasItem(DEFAULT_NUMERO_SALA)))
             .andExpect(jsonPath("$.[*].turno").value(hasItem(DEFAULT_TURNO.toString())))
-            .andExpect(jsonPath("$.[*].pagador").value(hasItem(DEFAULT_PAGADOR.toString())))
+            .andExpect(jsonPath("$.[*].tipoPagador").value(hasItem(DEFAULT_TIPO_PAGADOR.toString())))
             .andExpect(jsonPath("$.[*].gradesDisponiveis").value(hasItem(DEFAULT_GRADES_DISPONIVEIS.booleanValue())))
-            .andExpect(jsonPath("$.[*].central").value(hasItem(DEFAULT_CENTRAL.intValue())))
+            .andExpect(jsonPath("$.[*].clinicaCentralId").value(hasItem(DEFAULT_CLINICA_CENTRAL_ID.intValue())))
+            .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)))
             .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)));
     }
     
@@ -278,15 +281,15 @@ public class EmergenciaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(emergencia.getId().intValue()))
-            .andExpect(jsonPath("$.dataHoraDaConsulta").value(DEFAULT_DATA_HORA_DA_CONSULTA.toString()))
-            .andExpect(jsonPath("$.diaDaSemana").value(DEFAULT_DIA_DA_SEMANA))
+            .andExpect(jsonPath("$.dataHoraDaConsulta").value(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA)))
             .andExpect(jsonPath("$.grade").value(DEFAULT_GRADE.intValue()))
             .andExpect(jsonPath("$.profissional").value(DEFAULT_PROFISSIONAL))
-            .andExpect(jsonPath("$.sala").value(DEFAULT_SALA))
+            .andExpect(jsonPath("$.numeroSala").value(DEFAULT_NUMERO_SALA))
             .andExpect(jsonPath("$.turno").value(DEFAULT_TURNO.toString()))
-            .andExpect(jsonPath("$.pagador").value(DEFAULT_PAGADOR.toString()))
+            .andExpect(jsonPath("$.tipoPagador").value(DEFAULT_TIPO_PAGADOR.toString()))
             .andExpect(jsonPath("$.gradesDisponiveis").value(DEFAULT_GRADES_DISPONIVEIS.booleanValue()))
-            .andExpect(jsonPath("$.central").value(DEFAULT_CENTRAL.intValue()))
+            .andExpect(jsonPath("$.clinicaCentralId").value(DEFAULT_CLINICA_CENTRAL_ID.intValue()))
+            .andExpect(jsonPath("$.justificativa").value(DEFAULT_JUSTIFICATIVA))
             .andExpect(jsonPath("$.observacoes").value(DEFAULT_OBSERVACOES));
     }
 
@@ -312,14 +315,14 @@ public class EmergenciaResourceIT {
         em.detach(updatedEmergencia);
         updatedEmergencia
             .dataHoraDaConsulta(UPDATED_DATA_HORA_DA_CONSULTA)
-            .diaDaSemana(UPDATED_DIA_DA_SEMANA)
             .grade(UPDATED_GRADE)
             .profissional(UPDATED_PROFISSIONAL)
-            .sala(UPDATED_SALA)
+            .numeroSala(UPDATED_NUMERO_SALA)
             .turno(UPDATED_TURNO)
-            .pagador(UPDATED_PAGADOR)
+            .tipoPagador(UPDATED_TIPO_PAGADOR)
             .gradesDisponiveis(UPDATED_GRADES_DISPONIVEIS)
-            .central(UPDATED_CENTRAL)
+            .clinicaCentralId(UPDATED_CLINICA_CENTRAL_ID)
+            .justificativa(UPDATED_JUSTIFICATIVA)
             .observacoes(UPDATED_OBSERVACOES);
         EmergenciaDTO emergenciaDTO = emergenciaMapper.toDto(updatedEmergencia);
 
@@ -333,14 +336,14 @@ public class EmergenciaResourceIT {
         assertThat(emergenciaList).hasSize(databaseSizeBeforeUpdate);
         Emergencia testEmergencia = emergenciaList.get(emergenciaList.size() - 1);
         assertThat(testEmergencia.getDataHoraDaConsulta()).isEqualTo(UPDATED_DATA_HORA_DA_CONSULTA);
-        assertThat(testEmergencia.getDiaDaSemana()).isEqualTo(UPDATED_DIA_DA_SEMANA);
         assertThat(testEmergencia.getGrade()).isEqualTo(UPDATED_GRADE);
         assertThat(testEmergencia.getProfissional()).isEqualTo(UPDATED_PROFISSIONAL);
-        assertThat(testEmergencia.getSala()).isEqualTo(UPDATED_SALA);
+        assertThat(testEmergencia.getNumeroSala()).isEqualTo(UPDATED_NUMERO_SALA);
         assertThat(testEmergencia.getTurno()).isEqualTo(UPDATED_TURNO);
-        assertThat(testEmergencia.getPagador()).isEqualTo(UPDATED_PAGADOR);
+        assertThat(testEmergencia.getTipoPagador()).isEqualTo(UPDATED_TIPO_PAGADOR);
         assertThat(testEmergencia.isGradesDisponiveis()).isEqualTo(UPDATED_GRADES_DISPONIVEIS);
-        assertThat(testEmergencia.getCentral()).isEqualTo(UPDATED_CENTRAL);
+        assertThat(testEmergencia.getClinicaCentralId()).isEqualTo(UPDATED_CLINICA_CENTRAL_ID);
+        assertThat(testEmergencia.getJustificativa()).isEqualTo(UPDATED_JUSTIFICATIVA);
         assertThat(testEmergencia.getObservacoes()).isEqualTo(UPDATED_OBSERVACOES);
 
         // Validate the Emergencia in Elasticsearch
@@ -402,15 +405,15 @@ public class EmergenciaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(emergencia.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(DEFAULT_DATA_HORA_DA_CONSULTA.toString())))
-            .andExpect(jsonPath("$.[*].diaDaSemana").value(hasItem(DEFAULT_DIA_DA_SEMANA)))
+            .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA))))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.intValue())))
             .andExpect(jsonPath("$.[*].profissional").value(hasItem(DEFAULT_PROFISSIONAL)))
-            .andExpect(jsonPath("$.[*].sala").value(hasItem(DEFAULT_SALA)))
+            .andExpect(jsonPath("$.[*].numeroSala").value(hasItem(DEFAULT_NUMERO_SALA)))
             .andExpect(jsonPath("$.[*].turno").value(hasItem(DEFAULT_TURNO.toString())))
-            .andExpect(jsonPath("$.[*].pagador").value(hasItem(DEFAULT_PAGADOR.toString())))
+            .andExpect(jsonPath("$.[*].tipoPagador").value(hasItem(DEFAULT_TIPO_PAGADOR.toString())))
             .andExpect(jsonPath("$.[*].gradesDisponiveis").value(hasItem(DEFAULT_GRADES_DISPONIVEIS.booleanValue())))
-            .andExpect(jsonPath("$.[*].central").value(hasItem(DEFAULT_CENTRAL.intValue())))
+            .andExpect(jsonPath("$.[*].clinicaCentralId").value(hasItem(DEFAULT_CLINICA_CENTRAL_ID.intValue())))
+            .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)))
             .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)));
     }
 

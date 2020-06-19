@@ -7,11 +7,11 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 import br.com.basis.consulta.domain.enumeration.Turno;
 
-import br.com.basis.consulta.domain.enumeration.Pagador;
+import br.com.basis.consulta.domain.enumeration.TipoPagador;
 
 /**
  * A Emergencia.
@@ -32,11 +32,7 @@ public class Emergencia implements Serializable {
 
     @NotNull
     @Column(name = "data_hora_da_consulta", nullable = false)
-    private LocalDate dataHoraDaConsulta;
-
-    @Size(max = 20)
-    @Column(name = "dia_da_semana", length = 20)
-    private String diaDaSemana;
+    private ZonedDateTime dataHoraDaConsulta;
 
     @Max(value = 20L)
     @Column(name = "grade")
@@ -47,23 +43,26 @@ public class Emergencia implements Serializable {
     private String profissional;
 
     @Size(max = 20)
-    @Column(name = "sala", length = 20)
-    private String sala;
+    @Column(name = "numero_sala", length = 20)
+    private String numeroSala;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "turno")
     private Turno turno;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "pagador")
-    private Pagador pagador;
+    @Column(name = "tipo_pagador")
+    private TipoPagador tipoPagador;
 
     @Column(name = "grades_disponiveis")
     private Boolean gradesDisponiveis;
 
-    @Max(value = 100L)
-    @Column(name = "central")
-    private Long central;
+    @Column(name = "clinica_central_id")
+    private Long clinicaCentralId;
+
+    @Size(max = 240)
+    @Column(name = "justificativa", length = 240)
+    private String justificativa;
 
     @Size(max = 240)
     @Column(name = "observacoes", length = 240)
@@ -86,30 +85,17 @@ public class Emergencia implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDataHoraDaConsulta() {
+    public ZonedDateTime getDataHoraDaConsulta() {
         return dataHoraDaConsulta;
     }
 
-    public Emergencia dataHoraDaConsulta(LocalDate dataHoraDaConsulta) {
+    public Emergencia dataHoraDaConsulta(ZonedDateTime dataHoraDaConsulta) {
         this.dataHoraDaConsulta = dataHoraDaConsulta;
         return this;
     }
 
-    public void setDataHoraDaConsulta(LocalDate dataHoraDaConsulta) {
+    public void setDataHoraDaConsulta(ZonedDateTime dataHoraDaConsulta) {
         this.dataHoraDaConsulta = dataHoraDaConsulta;
-    }
-
-    public String getDiaDaSemana() {
-        return diaDaSemana;
-    }
-
-    public Emergencia diaDaSemana(String diaDaSemana) {
-        this.diaDaSemana = diaDaSemana;
-        return this;
-    }
-
-    public void setDiaDaSemana(String diaDaSemana) {
-        this.diaDaSemana = diaDaSemana;
     }
 
     public Long getGrade() {
@@ -138,17 +124,17 @@ public class Emergencia implements Serializable {
         this.profissional = profissional;
     }
 
-    public String getSala() {
-        return sala;
+    public String getNumeroSala() {
+        return numeroSala;
     }
 
-    public Emergencia sala(String sala) {
-        this.sala = sala;
+    public Emergencia numeroSala(String numeroSala) {
+        this.numeroSala = numeroSala;
         return this;
     }
 
-    public void setSala(String sala) {
-        this.sala = sala;
+    public void setNumeroSala(String numeroSala) {
+        this.numeroSala = numeroSala;
     }
 
     public Turno getTurno() {
@@ -164,17 +150,17 @@ public class Emergencia implements Serializable {
         this.turno = turno;
     }
 
-    public Pagador getPagador() {
-        return pagador;
+    public TipoPagador getTipoPagador() {
+        return tipoPagador;
     }
 
-    public Emergencia pagador(Pagador pagador) {
-        this.pagador = pagador;
+    public Emergencia tipoPagador(TipoPagador tipoPagador) {
+        this.tipoPagador = tipoPagador;
         return this;
     }
 
-    public void setPagador(Pagador pagador) {
-        this.pagador = pagador;
+    public void setTipoPagador(TipoPagador tipoPagador) {
+        this.tipoPagador = tipoPagador;
     }
 
     public Boolean isGradesDisponiveis() {
@@ -190,17 +176,30 @@ public class Emergencia implements Serializable {
         this.gradesDisponiveis = gradesDisponiveis;
     }
 
-    public Long getCentral() {
-        return central;
+    public Long getClinicaCentralId() {
+        return clinicaCentralId;
     }
 
-    public Emergencia central(Long central) {
-        this.central = central;
+    public Emergencia clinicaCentralId(Long clinicaCentralId) {
+        this.clinicaCentralId = clinicaCentralId;
         return this;
     }
 
-    public void setCentral(Long central) {
-        this.central = central;
+    public void setClinicaCentralId(Long clinicaCentralId) {
+        this.clinicaCentralId = clinicaCentralId;
+    }
+
+    public String getJustificativa() {
+        return justificativa;
+    }
+
+    public Emergencia justificativa(String justificativa) {
+        this.justificativa = justificativa;
+        return this;
+    }
+
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
     }
 
     public String getObservacoes() {
@@ -264,14 +263,14 @@ public class Emergencia implements Serializable {
         return "Emergencia{" +
             "id=" + getId() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
-            ", diaDaSemana='" + getDiaDaSemana() + "'" +
             ", grade=" + getGrade() +
             ", profissional='" + getProfissional() + "'" +
-            ", sala='" + getSala() + "'" +
+            ", numeroSala='" + getNumeroSala() + "'" +
             ", turno='" + getTurno() + "'" +
-            ", pagador='" + getPagador() + "'" +
+            ", tipoPagador='" + getTipoPagador() + "'" +
             ", gradesDisponiveis='" + isGradesDisponiveis() + "'" +
-            ", central=" + getCentral() +
+            ", clinicaCentralId=" + getClinicaCentralId() +
+            ", justificativa='" + getJustificativa() + "'" +
             ", observacoes='" + getObservacoes() + "'" +
             "}";
     }
