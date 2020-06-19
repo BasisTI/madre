@@ -100,6 +100,8 @@
                                     <span class="ui-float-label">
                                         <p-dropdown
                                             formControlName="tipoUnidadeId"
+                                            [options]="tipos"
+                                            optionLabel="nome"
                                             pTooltip="Selecione um tipo de unidade funcional."
                                         ></p-dropdown>
                                         <label>Tipo de unidade</label>

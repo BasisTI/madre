@@ -1,10 +1,12 @@
+import { TipoUnidadeService } from './../../services/tipo-unidade.service';
+import { TipoUnidade } from './../../models/dropwdowns/TipoUnidade';
 import { ClinicaService } from './../../services/clinicas.services';
-import { Ala } from './../../models/Ala';
+import { Ala } from '../../models/dropwdowns/Ala';
 import { AlaService } from './../../services/ala.service';
 import { OPCOES_DE_SITUACOES } from './../../models/opcoes-de-situacoes';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
-import { Clinica } from '@internacao/formulario-unidades/models/Clinica';
+import { Clinica } from '@internacao/formulario-unidades/models/dropwdowns/Clinica';
 
 @Component({
     selector: 'app-cadastro-unidades',
@@ -14,6 +16,7 @@ import { Clinica } from '@internacao/formulario-unidades/models/Clinica';
 export class CadastroUnidadesComponent implements OnInit {
     alas: Ala[] = [];
     clinicas: Clinica[] = [];
+    tipos: TipoUnidade[] = [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
     cadastroUnidade = this.fb.group({
         descricao: [null, Validators.required],
@@ -64,11 +67,13 @@ export class CadastroUnidadesComponent implements OnInit {
         private fb: FormBuilder,
         public alaService: AlaService,
         public clinicaService: ClinicaService,
+        public tipoUnidadeService: TipoUnidadeService,
     ) {}
 
     ngOnInit() {
         this.alaService.getListaDeAlas().subscribe((res) => (this.alas = res));
         this.clinicaService.getListaDeClinicas().subscribe((res) => (this.clinicas = res));
+        this.tipoUnidadeService.getListaDeTiposUnidades().subscribe((res) => (this.tipos = res));
     }
 
     cadastrar() {
