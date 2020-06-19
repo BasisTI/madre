@@ -49,26 +49,26 @@ public class MarcaComercialResource {
     }
 
     /**
-     * {@code POST  /marca-comercials} : Create a new marcaComercial.
+     * {@code POST  /marcas-comerciais} : Create a new marcaComercial.
      *
      * @param marcaComercialDTO the marcaComercialDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new marcaComercialDTO, or with status {@code 400 (Bad Request)} if the marcaComercial has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/marca-comercials")
+    @PostMapping("/marcas-comerciais")
     public ResponseEntity<MarcaComercialDTO> createMarcaComercial(@Valid @RequestBody MarcaComercialDTO marcaComercialDTO) throws URISyntaxException {
         log.debug("REST request to save MarcaComercial : {}", marcaComercialDTO);
         if (marcaComercialDTO.getId() != null) {
             throw new BadRequestAlertException("A new marcaComercial cannot already have an ID", ENTITY_NAME, "idexists");
         }
         MarcaComercialDTO result = marcaComercialService.save(marcaComercialDTO);
-        return ResponseEntity.created(new URI("/api/marca-comercials/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/marcas-comerciais/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * {@code PUT  /marca-comercials} : Updates an existing marcaComercial.
+     * {@code PUT  /marcas-comerciais} : Updates an existing marcaComercial.
      *
      * @param marcaComercialDTO the marcaComercialDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated marcaComercialDTO,
@@ -76,7 +76,7 @@ public class MarcaComercialResource {
      * or with status {@code 500 (Internal Server Error)} if the marcaComercialDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/marca-comercials")
+    @PutMapping("/marcas-comerciais")
     public ResponseEntity<MarcaComercialDTO> updateMarcaComercial(@Valid @RequestBody MarcaComercialDTO marcaComercialDTO) throws URISyntaxException {
         log.debug("REST request to update MarcaComercial : {}", marcaComercialDTO);
         if (marcaComercialDTO.getId() == null) {
@@ -89,14 +89,14 @@ public class MarcaComercialResource {
     }
 
     /**
-     * {@code GET  /marca-comercials} : get all the marcaComercials.
+     * {@code GET  /marcas-comerciais} : get all the marcaComercials.
      *
 
      * @param pageable the pagination information.
 
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of marcaComercials in body.
      */
-    @GetMapping("/marca-comercials")
+    @GetMapping("/marcas-comerciais")
     public ResponseEntity<List<MarcaComercialDTO>> getAllMarcaComercials(Pageable pageable) {
         log.debug("REST request to get a page of MarcaComercials");
         Page<MarcaComercialDTO> page = marcaComercialService.findAll(pageable);
@@ -105,12 +105,12 @@ public class MarcaComercialResource {
     }
 
     /**
-     * {@code GET  /marca-comercials/:id} : get the "id" marcaComercial.
+     * {@code GET  /marcas-comerciais/:id} : get the "id" marcaComercial.
      *
      * @param id the id of the marcaComercialDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the marcaComercialDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/marca-comercials/{id}")
+    @GetMapping("/marcas-comerciais/{id}")
     public ResponseEntity<MarcaComercialDTO> getMarcaComercial(@PathVariable Long id) {
         log.debug("REST request to get MarcaComercial : {}", id);
         Optional<MarcaComercialDTO> marcaComercialDTO = marcaComercialService.findOne(id);
@@ -118,12 +118,12 @@ public class MarcaComercialResource {
     }
 
     /**
-     * {@code DELETE  /marca-comercials/:id} : delete the "id" marcaComercial.
+     * {@code DELETE  /marcas-comerciais/:id} : delete the "id" marcaComercial.
      *
      * @param id the id of the marcaComercialDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/marca-comercials/{id}")
+    @DeleteMapping("/marcas-comerciais/{id}")
     public ResponseEntity<Void> deleteMarcaComercial(@PathVariable Long id) {
         log.debug("REST request to delete MarcaComercial : {}", id);
         marcaComercialService.delete(id);
@@ -131,14 +131,14 @@ public class MarcaComercialResource {
     }
 
     /**
-     * {@code SEARCH  /_search/marca-comercials?query=:query} : search for the marcaComercial corresponding
+     * {@code SEARCH  /_search/marcas-comerciais?query=:query} : search for the marcaComercial corresponding
      * to the query.
      *
      * @param query the query of the marcaComercial search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/marca-comercials")
+    @GetMapping("/_search/marcas-comerciais")
     public ResponseEntity<List<MarcaComercialDTO>> searchMarcaComercials(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of MarcaComercials for query {}", query);
         Page<MarcaComercialDTO> page = marcaComercialService.search(query, pageable);

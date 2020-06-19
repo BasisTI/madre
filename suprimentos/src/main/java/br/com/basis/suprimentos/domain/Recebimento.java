@@ -27,7 +27,7 @@ public class Recebimento implements Serializable {
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
-    @OneToMany(mappedBy = "recebimento")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recebimento")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemNotaRecebimento> itensNotaRecebimentos = new HashSet<>();
 

@@ -49,26 +49,26 @@ public class MaterialResource {
     }
 
     /**
-     * {@code POST  /materials} : Create a new material.
+     * {@code POST  /materiais} : Create a new material.
      *
      * @param materialDTO the materialDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new materialDTO, or with status {@code 400 (Bad Request)} if the material has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/materials")
+    @PostMapping("/materiais")
     public ResponseEntity<MaterialDTO> createMaterial(@Valid @RequestBody MaterialDTO materialDTO) throws URISyntaxException {
         log.debug("REST request to save Material : {}", materialDTO);
         if (materialDTO.getId() != null) {
             throw new BadRequestAlertException("A new material cannot already have an ID", ENTITY_NAME, "idexists");
         }
         MaterialDTO result = materialService.save(materialDTO);
-        return ResponseEntity.created(new URI("/api/materials/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/materiais/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * {@code PUT  /materials} : Updates an existing material.
+     * {@code PUT  /materiais} : Updates an existing material.
      *
      * @param materialDTO the materialDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated materialDTO,
@@ -76,7 +76,7 @@ public class MaterialResource {
      * or with status {@code 500 (Internal Server Error)} if the materialDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/materials")
+    @PutMapping("/materiais")
     public ResponseEntity<MaterialDTO> updateMaterial(@Valid @RequestBody MaterialDTO materialDTO) throws URISyntaxException {
         log.debug("REST request to update Material : {}", materialDTO);
         if (materialDTO.getId() == null) {
@@ -89,14 +89,14 @@ public class MaterialResource {
     }
 
     /**
-     * {@code GET  /materials} : get all the materials.
+     * {@code GET  /materiais} : get all the materiais.
      *
 
      * @param pageable the pagination information.
 
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of materials in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of materiais in body.
      */
-    @GetMapping("/materials")
+    @GetMapping("/materiais")
     public ResponseEntity<List<MaterialDTO>> getAllMaterials(Pageable pageable) {
         log.debug("REST request to get a page of Materials");
         Page<MaterialDTO> page = materialService.findAll(pageable);
@@ -105,12 +105,12 @@ public class MaterialResource {
     }
 
     /**
-     * {@code GET  /materials/:id} : get the "id" material.
+     * {@code GET  /materiais/:id} : get the "id" material.
      *
      * @param id the id of the materialDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the materialDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/materials/{id}")
+    @GetMapping("/materiais/{id}")
     public ResponseEntity<MaterialDTO> getMaterial(@PathVariable Long id) {
         log.debug("REST request to get Material : {}", id);
         Optional<MaterialDTO> materialDTO = materialService.findOne(id);
@@ -118,12 +118,12 @@ public class MaterialResource {
     }
 
     /**
-     * {@code DELETE  /materials/:id} : delete the "id" material.
+     * {@code DELETE  /materiais/:id} : delete the "id" material.
      *
      * @param id the id of the materialDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/materials/{id}")
+    @DeleteMapping("/materiais/{id}")
     public ResponseEntity<Void> deleteMaterial(@PathVariable Long id) {
         log.debug("REST request to delete Material : {}", id);
         materialService.delete(id);
@@ -131,14 +131,14 @@ public class MaterialResource {
     }
 
     /**
-     * {@code SEARCH  /_search/materials?query=:query} : search for the material corresponding
+     * {@code SEARCH  /_search/materiais?query=:query} : search for the material corresponding
      * to the query.
      *
      * @param query the query of the material search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/materials")
+    @GetMapping("/_search/materiais")
     public ResponseEntity<List<MaterialDTO>> searchMaterials(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Materials for query {}", query);
         Page<MaterialDTO> page = materialService.search(query, pageable);

@@ -49,26 +49,26 @@ public class AutorizacaoFornecimentoResource {
     }
 
     /**
-     * {@code POST  /autorizacao-fornecimentos} : Create a new autorizacaoFornecimento.
+     * {@code POST  /autorizacoes-fornecimento} : Create a new autorizacaoFornecimento.
      *
      * @param autorizacaoFornecimentoDTO the autorizacaoFornecimentoDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new autorizacaoFornecimentoDTO, or with status {@code 400 (Bad Request)} if the autorizacaoFornecimento has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/autorizacao-fornecimentos")
+    @PostMapping("/autorizacoes-fornecimento")
     public ResponseEntity<AutorizacaoFornecimentoDTO> createAutorizacaoFornecimento(@Valid @RequestBody AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO) throws URISyntaxException {
         log.debug("REST request to save AutorizacaoFornecimento : {}", autorizacaoFornecimentoDTO);
         if (autorizacaoFornecimentoDTO.getId() != null) {
             throw new BadRequestAlertException("A new autorizacaoFornecimento cannot already have an ID", ENTITY_NAME, "idexists");
         }
         AutorizacaoFornecimentoDTO result = autorizacaoFornecimentoService.save(autorizacaoFornecimentoDTO);
-        return ResponseEntity.created(new URI("/api/autorizacao-fornecimentos/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/autorizacoes-fornecimento/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * {@code PUT  /autorizacao-fornecimentos} : Updates an existing autorizacaoFornecimento.
+     * {@code PUT  /autorizacoes-fornecimento} : Updates an existing autorizacaoFornecimento.
      *
      * @param autorizacaoFornecimentoDTO the autorizacaoFornecimentoDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated autorizacaoFornecimentoDTO,
@@ -76,7 +76,7 @@ public class AutorizacaoFornecimentoResource {
      * or with status {@code 500 (Internal Server Error)} if the autorizacaoFornecimentoDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/autorizacao-fornecimentos")
+    @PutMapping("/autorizacoes-fornecimento")
     public ResponseEntity<AutorizacaoFornecimentoDTO> updateAutorizacaoFornecimento(@Valid @RequestBody AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO) throws URISyntaxException {
         log.debug("REST request to update AutorizacaoFornecimento : {}", autorizacaoFornecimentoDTO);
         if (autorizacaoFornecimentoDTO.getId() == null) {
@@ -89,28 +89,28 @@ public class AutorizacaoFornecimentoResource {
     }
 
     /**
-     * {@code GET  /autorizacao-fornecimentos} : get all the autorizacaoFornecimentos.
+     * {@code GET  /autorizacoes-fornecimento} : get all the autorizacaoFornecimentos.
      *
 
      * @param pageable the pagination information.
 
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of autorizacaoFornecimentos in body.
      */
-    @GetMapping("/autorizacao-fornecimentos")
-    public ResponseEntity<List<AutorizacaoFornecimentoDTO>> getAllAutorizacaoFornecimentos(Pageable pageable) {
+    @GetMapping("/autorizacoes-fornecimento")
+    public ResponseEntity<List<AutorizacaoFornecimentoDTO>> getAllAutorizacaoFornecimentos(Pageable pageable, AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO) {
         log.debug("REST request to get a page of AutorizacaoFornecimentos");
-        Page<AutorizacaoFornecimentoDTO> page = autorizacaoFornecimentoService.findAll(pageable);
+        Page<AutorizacaoFornecimentoDTO> page = autorizacaoFornecimentoService.findAll(pageable, autorizacaoFornecimentoDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
-     * {@code GET  /autorizacao-fornecimentos/:id} : get the "id" autorizacaoFornecimento.
+     * {@code GET  /autorizacoes-fornecimento/:id} : get the "id" autorizacaoFornecimento.
      *
      * @param id the id of the autorizacaoFornecimentoDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the autorizacaoFornecimentoDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/autorizacao-fornecimentos/{id}")
+    @GetMapping("/autorizacoes-fornecimento/{id}")
     public ResponseEntity<AutorizacaoFornecimentoDTO> getAutorizacaoFornecimento(@PathVariable Long id) {
         log.debug("REST request to get AutorizacaoFornecimento : {}", id);
         Optional<AutorizacaoFornecimentoDTO> autorizacaoFornecimentoDTO = autorizacaoFornecimentoService.findOne(id);
@@ -118,12 +118,12 @@ public class AutorizacaoFornecimentoResource {
     }
 
     /**
-     * {@code DELETE  /autorizacao-fornecimentos/:id} : delete the "id" autorizacaoFornecimento.
+     * {@code DELETE  /autorizacoes-fornecimento/:id} : delete the "id" autorizacaoFornecimento.
      *
      * @param id the id of the autorizacaoFornecimentoDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/autorizacao-fornecimentos/{id}")
+    @DeleteMapping("/autorizacoes-fornecimento/{id}")
     public ResponseEntity<Void> deleteAutorizacaoFornecimento(@PathVariable Long id) {
         log.debug("REST request to delete AutorizacaoFornecimento : {}", id);
         autorizacaoFornecimentoService.delete(id);
@@ -131,14 +131,14 @@ public class AutorizacaoFornecimentoResource {
     }
 
     /**
-     * {@code SEARCH  /_search/autorizacao-fornecimentos?query=:query} : search for the autorizacaoFornecimento corresponding
+     * {@code SEARCH  /_search/autorizacoes-fornecimento?query=:query} : search for the autorizacaoFornecimento corresponding
      * to the query.
      *
      * @param query the query of the autorizacaoFornecimento search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/autorizacao-fornecimentos")
+    @GetMapping("/_search/autorizacoes-fornecimento")
     public ResponseEntity<List<AutorizacaoFornecimentoDTO>> searchAutorizacaoFornecimentos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of AutorizacaoFornecimentos for query {}", query);
         Page<AutorizacaoFornecimentoDTO> page = autorizacaoFornecimentoService.search(query, pageable);

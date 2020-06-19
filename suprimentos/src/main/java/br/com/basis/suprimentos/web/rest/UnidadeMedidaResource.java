@@ -49,26 +49,26 @@ public class UnidadeMedidaResource {
     }
 
     /**
-     * {@code POST  /unidade-medidas} : Create a new unidadeMedida.
+     * {@code POST  /unidades-medida} : Create a new unidadeMedida.
      *
      * @param unidadeMedidaDTO the unidadeMedidaDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new unidadeMedidaDTO, or with status {@code 400 (Bad Request)} if the unidadeMedida has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/unidade-medidas")
+    @PostMapping("/unidades-medida")
     public ResponseEntity<UnidadeMedidaDTO> createUnidadeMedida(@Valid @RequestBody UnidadeMedidaDTO unidadeMedidaDTO) throws URISyntaxException {
         log.debug("REST request to save UnidadeMedida : {}", unidadeMedidaDTO);
         if (unidadeMedidaDTO.getId() != null) {
             throw new BadRequestAlertException("A new unidadeMedida cannot already have an ID", ENTITY_NAME, "idexists");
         }
         UnidadeMedidaDTO result = unidadeMedidaService.save(unidadeMedidaDTO);
-        return ResponseEntity.created(new URI("/api/unidade-medidas/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/unidades-medida/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * {@code PUT  /unidade-medidas} : Updates an existing unidadeMedida.
+     * {@code PUT  /unidades-medida} : Updates an existing unidadeMedida.
      *
      * @param unidadeMedidaDTO the unidadeMedidaDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated unidadeMedidaDTO,
@@ -76,7 +76,7 @@ public class UnidadeMedidaResource {
      * or with status {@code 500 (Internal Server Error)} if the unidadeMedidaDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/unidade-medidas")
+    @PutMapping("/unidades-medida")
     public ResponseEntity<UnidadeMedidaDTO> updateUnidadeMedida(@Valid @RequestBody UnidadeMedidaDTO unidadeMedidaDTO) throws URISyntaxException {
         log.debug("REST request to update UnidadeMedida : {}", unidadeMedidaDTO);
         if (unidadeMedidaDTO.getId() == null) {
@@ -89,14 +89,14 @@ public class UnidadeMedidaResource {
     }
 
     /**
-     * {@code GET  /unidade-medidas} : get all the unidadeMedidas.
+     * {@code GET  /unidades-medida} : get all the unidadeMedidas.
      *
 
      * @param pageable the pagination information.
 
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of unidadeMedidas in body.
      */
-    @GetMapping("/unidade-medidas")
+    @GetMapping("/unidades-medida")
     public ResponseEntity<List<UnidadeMedidaDTO>> getAllUnidadeMedidas(Pageable pageable) {
         log.debug("REST request to get a page of UnidadeMedidas");
         Page<UnidadeMedidaDTO> page = unidadeMedidaService.findAll(pageable);
@@ -105,12 +105,12 @@ public class UnidadeMedidaResource {
     }
 
     /**
-     * {@code GET  /unidade-medidas/:id} : get the "id" unidadeMedida.
+     * {@code GET  /unidades-medida/:id} : get the "id" unidadeMedida.
      *
      * @param id the id of the unidadeMedidaDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the unidadeMedidaDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/unidade-medidas/{id}")
+    @GetMapping("/unidades-medida/{id}")
     public ResponseEntity<UnidadeMedidaDTO> getUnidadeMedida(@PathVariable Long id) {
         log.debug("REST request to get UnidadeMedida : {}", id);
         Optional<UnidadeMedidaDTO> unidadeMedidaDTO = unidadeMedidaService.findOne(id);
@@ -118,12 +118,12 @@ public class UnidadeMedidaResource {
     }
 
     /**
-     * {@code DELETE  /unidade-medidas/:id} : delete the "id" unidadeMedida.
+     * {@code DELETE  /unidades-medida/:id} : delete the "id" unidadeMedida.
      *
      * @param id the id of the unidadeMedidaDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/unidade-medidas/{id}")
+    @DeleteMapping("/unidades-medida/{id}")
     public ResponseEntity<Void> deleteUnidadeMedida(@PathVariable Long id) {
         log.debug("REST request to delete UnidadeMedida : {}", id);
         unidadeMedidaService.delete(id);
@@ -131,14 +131,14 @@ public class UnidadeMedidaResource {
     }
 
     /**
-     * {@code SEARCH  /_search/unidade-medidas?query=:query} : search for the unidadeMedida corresponding
+     * {@code SEARCH  /_search/unidades-medida?query=:query} : search for the unidadeMedida corresponding
      * to the query.
      *
      * @param query the query of the unidadeMedida search.
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/unidade-medidas")
+    @GetMapping("/_search/unidades-medida")
     public ResponseEntity<List<UnidadeMedidaDTO>> searchUnidadeMedidas(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of UnidadeMedidas for query {}", query);
         Page<UnidadeMedidaDTO> page = unidadeMedidaService.search(query, pageable);
