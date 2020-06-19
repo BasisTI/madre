@@ -19,13 +19,8 @@ public class PrescricaoDietaDTO extends PrescricaoMedicaDTO implements Serializa
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-
-	private Long idPaciente;
 	
 	private Boolean bombaInfusao;
-
-	@Size(max = 255)
-	private String observacao;
 
 	private Set<ItemPrescricaoDietaDTO> itemPrescricaoDietaDTO= new HashSet<>();
 

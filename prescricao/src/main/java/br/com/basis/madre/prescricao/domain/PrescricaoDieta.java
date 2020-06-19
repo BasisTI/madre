@@ -16,7 +16,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import net.logstash.logback.encoder.org.apache.commons.lang3.builder.ToStringExclude;
 
@@ -39,7 +38,7 @@ public class PrescricaoDieta extends PrescricaoMedica implements Serializable {
 
 
 	@ToStringExclude
-	@OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
 
