@@ -13,17 +13,17 @@ class ArchTest {
     void servicesAndRepositoriesShouldNotDependOnWebLayer() {
 
         JavaClasses importedClasses = new ClassFileImporter()
-            .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-            .importPackages("br.com.basis.suprimentos");
+                .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+                .importPackages("br.com.basis.suprimentos");
 
         noClasses()
-            .that()
+                .that()
                 .resideInAnyPackage("br.com.basis.suprimentos.service..")
-            .or()
+                .or()
                 .resideInAnyPackage("br.com.basis.suprimentos.repository..")
-            .should().dependOnClassesThat()
+                .should().dependOnClassesThat()
                 .resideInAnyPackage("..br.com.basis.suprimentos.web..")
-        .because("Services and repositories should not depend on web layer")
-        .check(importedClasses);
+                .because("Services and repositories should not depend on web layer")
+                .check(importedClasses);
     }
 }

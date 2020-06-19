@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Lote.
+    -->
+    <changeSet id="20200618123201-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="marca_comercial_id"
+                                 baseTableName="lote"
+                                 constraintName="fk_lote_marca_comercial_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="marca_comercial"/>
+
+        <addForeignKeyConstraint baseColumnNames="estoque_id"
+                                 baseTableName="lote"
+                                 constraintName="fk_lote_estoque_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estoque_almoxarifado"/>
+
+    </changeSet>
+</databaseChangeLog>

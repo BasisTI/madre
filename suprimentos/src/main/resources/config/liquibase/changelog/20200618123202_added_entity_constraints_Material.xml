@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Material.
+    -->
+    <changeSet id="20200618123202-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="unidade_medida_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_unidade_medida_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade_medida"/>
+
+        <addForeignKeyConstraint baseColumnNames="grupo_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_grupo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupo_material"/>
+
+        <addForeignKeyConstraint baseColumnNames="local_estoque_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_local_estoque_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="almoxarifado"/>
+
+        <addForeignKeyConstraint baseColumnNames="codigo_catmat_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_codigo_catmat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="codigo_catmat"/>
+
+        <addForeignKeyConstraint baseColumnNames="sazonalidade_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_sazonalidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sazonalidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_residuo_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_tipo_residuo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_residuo"/>
+
+        <addForeignKeyConstraint baseColumnNames="origem_parecer_tecnico_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_origem_parecer_tecnico_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="origem_parecer_tecnico"/>
+
+    </changeSet>
+</databaseChangeLog>
