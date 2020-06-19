@@ -1,0 +1,27 @@
+{
+    "name": "Sazonalidade",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 15
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200618123205",
+    "entityTableName": "sazonalidade",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

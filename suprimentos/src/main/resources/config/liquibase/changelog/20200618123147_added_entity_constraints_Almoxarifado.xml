@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Almoxarifado.
+    -->
+    <changeSet id="20200618123147-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="centro_de_atividade_id"
+                                 baseTableName="almoxarifado"
+                                 constraintName="fk_almoxarifado_centro_de_atividade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="centro_de_atividade"/>
+
+        <addForeignKeyConstraint baseColumnNames="caracteristica_armazenamento_id"
+                                 baseTableName="almoxarifado"
+                                 constraintName="fk_almoxarifado_caracteristica_armazenamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="caracteristica_armazenamento"/>
+
+    </changeSet>
+</databaseChangeLog>

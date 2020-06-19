@@ -17,7 +17,7 @@ relationship ManyToOne {
     Material{sazonalidade} to Sazonalidade,
     Material{tipoResiduo} to TipoResiduo,
     Material{OrigemParecerTecnico} to OrigemParecerTecnico,
-    EstoqueAlmoxarifado{almoxarifado required} to Almoxarifado,
+    EstoqueAlmoxarifado{almoxarifado required} to Almoxarifado{estoques},
     EstoqueAlmoxarifado{material required} to Material,
     EstoqueAlmoxarifado{fornecedor required} to Fornecedor,
     EstoqueAlmoxarifado{solicitacaoCompras} to SolicitacaoCompras,
@@ -28,7 +28,7 @@ relationship OneToMany {
     Almoxarifado{temposPorClasse} to TempoPorClasse,
     CaracteristicaArmazenamento{composicoes} to Composicao,
     Recebimento{itensNotaRecebimento} to ItemNotaRecebimento,
-    Almoxarifado{estoques} to EstoqueAlmoxarifado{almoxarifado required},
+    //Almoxarifado{estoques} to EstoqueAlmoxarifado{almoxarifado required},
     EstoqueAlmoxarifado{lotes} to Lote{estoque required}
 }
 

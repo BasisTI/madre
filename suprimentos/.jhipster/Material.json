@@ -1,0 +1,127 @@
+{
+    "name": "Material",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 120
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2000
+        },
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "regimento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 120
+        },
+        {
+            "fieldName": "observacao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "unidadeId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "procedimentoId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "unidadeMedida",
+            "otherEntityRelationshipName": "material",
+            "relationshipValidateRules": "required",
+            "relationshipName": "unidadeMedida",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "grupoMaterial",
+            "otherEntityRelationshipName": "material",
+            "relationshipValidateRules": "required",
+            "relationshipName": "grupo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "almoxarifado",
+            "otherEntityRelationshipName": "material",
+            "relationshipValidateRules": "required",
+            "relationshipName": "localEstoque",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "codigoCatmat",
+            "otherEntityRelationshipName": "material",
+            "relationshipName": "codigoCatmat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sazonalidade",
+            "otherEntityRelationshipName": "material",
+            "relationshipName": "sazonalidade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoResiduo",
+            "otherEntityRelationshipName": "material",
+            "relationshipName": "tipoResiduo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "origemParecerTecnico",
+            "otherEntityRelationshipName": "material",
+            "relationshipName": "origemParecerTecnico",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123202",
+    "entityTableName": "material",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

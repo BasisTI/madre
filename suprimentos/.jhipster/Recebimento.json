@@ -1,0 +1,38 @@
+{
+    "name": "Recebimento",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemNotaRecebimento",
+            "otherEntityRelationshipName": "recebimento",
+            "relationshipName": "itensNotaRecebimento"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "documentoFiscalEntrada",
+            "otherEntityRelationshipName": "recebimento",
+            "relationshipName": "notaFiscalEntrada",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "autorizacaoFornecimento",
+            "otherEntityRelationshipName": "recebimento",
+            "relationshipName": "autorizacaoFornecimento",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123153",
+    "entityTableName": "recebimento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}
