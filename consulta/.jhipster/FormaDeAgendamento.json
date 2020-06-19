@@ -1,0 +1,41 @@
+{
+    "name": "FormaDeAgendamento",
+    "fields": [
+        {
+            "fieldName": "numeroAutorizacao",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "autorizacao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "emergencia",
+            "otherEntityRelationshipName": "formaDeAgendamento",
+            "relationshipName": "emergencia",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200619145400",
+    "entityTableName": "forma_de_agendamento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "madreconsulta",
+    "applications": "*",
+    "microserviceName": "madreconsulta",
+    "skipClient": true
+}

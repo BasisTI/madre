@@ -1,0 +1,105 @@
+{
+    "name": "Emergencia",
+    "fields": [
+        {
+            "fieldName": "dataHoraDaConsulta",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "diaDaSemana",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "grade",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": "20"
+        },
+        {
+            "fieldName": "profissional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "80"
+        },
+        {
+            "fieldName": "sala",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "turno",
+            "fieldType": "Turno",
+            "fieldValues": "MATUTINO,VESPERTINO,NOTURNO"
+        },
+        {
+            "fieldName": "pagador",
+            "fieldType": "Pagador",
+            "fieldValues": "SUS,OUTROS_CONVENIOS"
+        },
+        {
+            "fieldName": "gradesDisponiveis",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "central",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": "100"
+        },
+        {
+            "fieldName": "observacoes",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "240"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "condicaoDeAtendimento",
+            "otherEntityRelationshipName": "emergencia",
+            "relationshipName": "condicaoDeAtendimento",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "formaDeAgendamento",
+            "otherEntityRelationshipName": "emergencia",
+            "relationshipName": "formaDeAgendamento",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200619145200",
+    "entityTableName": "emergencia",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "madreconsulta",
+    "applications": "*",
+    "microserviceName": "madreconsulta",
+    "skipClient": true
+}
