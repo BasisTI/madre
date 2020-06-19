@@ -1,5 +1,10 @@
+import { ClinicaService } from './../../services/clinicas.services';
+import { Ala } from './../../models/Ala';
+import { AlaService } from './../../services/ala.service';
+import { OPCOES_DE_SITUACOES } from './../../models/opcoes-de-situacoes';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
+import { Clinica } from '@internacao/formulario-unidades/models/Clinica';
 
 @Component({
     selector: 'app-cadastro-unidades',
@@ -7,6 +12,9 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./cadastro-unidades.component.css'],
 })
 export class CadastroUnidadesComponent implements OnInit {
+    alas: Ala[] = [];
+    clinicas: Clinica[] = [];
+    opcoesDeSitucao = OPCOES_DE_SITUACOES;
     cadastroUnidade = this.fb.group({
         descricao: [null, Validators.required],
         sigla: [null, Validators.required],
@@ -52,9 +60,16 @@ export class CadastroUnidadesComponent implements OnInit {
         intervaloProcedimento: [null],
     });
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        public alaService: AlaService,
+        public clinicaService: ClinicaService,
+    ) {}
 
-    ngOnInit(): void {}
+    ngOnInit() {
+        this.alaService.getListaDeAlas().subscribe((res) => (this.alas = res));
+        this.clinicaService.getListaDeClinicas().subscribe((res) => (this.clinicas = res));
+    }
 
     cadastrar() {
         console.log(this.cadastroUnidade);

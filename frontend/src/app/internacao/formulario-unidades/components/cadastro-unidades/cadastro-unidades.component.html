@@ -22,6 +22,7 @@
                                         <p-dropdown
                                             formControlName="situacao"
                                             pTooltip="Informe a situação da unidade funcional."
+                                            [options]="opcoesDeSitucao"
                                         ></p-dropdown>
                                         <label>Situação</label>
                                     </span>
@@ -65,6 +66,8 @@
                                         <p-dropdown
                                             formControlName="ala"
                                             pTooltip="Selecione a ala da unidade funcional."
+                                            [options]="alas"
+                                            optionLabel="nome"
                                         ></p-dropdown>
                                         <label>Ala</label>
                                     </span>
@@ -75,6 +78,8 @@
                                     <span class="ui-float-label">
                                         <p-dropdown
                                             formControlName="clinica"
+                                            [options]="clinicas"
+                                            optionLabel="nome"
                                             pTooltip="Selecione a clinica refente a esta especialidade."
                                         ></p-dropdown>
                                         <label>Clínica</label>
@@ -148,9 +153,7 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-6 ui-sm-12">
                                     <span class="ui-float-label">
-                                        <p-multiSelect
-                                            formControlName="caracteristicas"
-                                        ></p-multiSelect>
+                                        <p-multiSelect></p-multiSelect>
                                         <label>Características</label>
                                     </span>
                                 </div>
