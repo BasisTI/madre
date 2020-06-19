@@ -9,7 +9,7 @@
                         <div class="ui-g-12">
                             <div class="ui-g-12">
                                 <span class="md-inputfield">
-                                    <input [(ngModel)]="paciente" formControlName="idPaciente" type="text" pInputText
+                                    <input formControlName="nome" type="text" pInputText
                                         disabled />
                                     <label>Paciente</label>
                                 </span>
@@ -85,7 +85,7 @@
                         <div class="ui-g-12">
                             <div class="ui-g-5">
                                 <span class="md-inputfield">
-                                    <input type="text" pInputText formControlName="frequencia" />
+                                    <input type="number" pInputText formControlName="frequencia" />
                                     <label>Frequência</label>
                                 </span>
                             </div>
@@ -102,7 +102,7 @@
 
                             <div class="ui-g-2">
                                 <span class="md-inputfield">
-                                    <input type="text" pInputText formControlName="numeroVezes" />
+                                    <input type="number" pInputText formControlName="numeroVezes" />
                                     <label>Número vezes</label>
                                 </span>
                             </div>

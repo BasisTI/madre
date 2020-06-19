@@ -66,6 +66,13 @@ public class PreCadastroPacienteService {
             .map(preCadastroPacienteMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public Page<PreCadastroPacienteDTO> findByName(String nome,Pageable pageable) {
+        log.debug("Request to get all PreCadastroPacientes");
+        return preCadastroPacienteRepository.findByNomeContainsIgnoreCase(nome, pageable)
+            .map(preCadastroPacienteMapper::toDto);
+    }
+
 
     /**
      * Get one preCadastroPaciente by id.

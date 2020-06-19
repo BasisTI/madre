@@ -1,42 +1,41 @@
-import { FarmaciaModule } from './farmacia/farmacia/farmacia.module';
-import { PRIMENG_IMPORTS } from './primeng-imports';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { AppRoutes } from './app.routes';
-import { AppComponent } from './app.component';
-import { AppTopbarComponent } from './app.topbar.component';
-import { AppFooterComponent } from './app.footer.component';
-
-import { AppRightpanelComponent } from './app.rightpanel.component';
-import { AppInlineProfileComponent } from './app.profile.component';
-import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
-import { SharedModule } from './shared/shared.module';
-import { PrescricaoMedicaModule } from './prescricao-medica/prescricao-medica.module';
-
 import {
-    SecurityModule,
     AccessbilityModule,
-    VersionTagModule,
     ClipboardModule,
     ErrorModule,
+    SecurityModule,
+    VersionTagModule,
 } from '@nuvem/angular-base';
-
 import {
-    PageNotificationModule,
     BlockUiModule,
+    BreadcrumbModule,
     DatatableModule,
     ErrorStackModule,
     MenuModule,
-    BreadcrumbModule,
+    PageNotificationModule,
 } from '@nuvem/primeng-components';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { environment } from '../environments/environment';
-import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
+import { AppComponent } from './app.component';
+import { AppFooterComponent } from './app.footer.component';
+import { AppInlineProfileComponent } from './app.profile.component';
+import { AppRightpanelComponent } from './app.rightpanel.component';
+import { AppRoutes } from './app.routes';
+import { AppTopbarComponent } from './app.topbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
+import { FarmaciaModule } from './farmacia/farmacia/farmacia.module';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { PRIMENG_IMPORTS } from './primeng-imports';
 import { PreCadastroComponent } from './pacientes/components/pre-cadastro/pre-cadastro.component';
+import { PrescricaoMedicaModule } from './prescricao-medica/prescricao-medica.module';
+import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
+import { SharedModule } from './shared/shared.module';
+import { SuprimentosModule } from './suprimentos/suprimentos.module';
+import { environment } from '../environments/environment';
+import { ConsultaModule } from './consulta/consulta.module';
 
 @NgModule({
     imports: [
@@ -57,9 +56,11 @@ import { PreCadastroComponent } from './pacientes/components/pre-cadastro/pre-ca
         DatatableModule,
         FarmaciaModule,
         PrescricaoMedicaModule,
+        SuprimentosModule,
         SecurityModule.forRoot(environment.auth),
         BreadcrumbModule,
         MenuModule,
+        ConsultaModule,
     ],
     declarations: [
         AppComponent,

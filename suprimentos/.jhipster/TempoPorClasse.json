@@ -1,0 +1,66 @@
+{
+    "name": "TempoPorClasse",
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoTempoPorClasse",
+            "fieldValues": "SALDO,PARCELA,TEMPO_REPOSICAO,TEMPO_REPOSICAO_CONTRATO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantidadeClasseA",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": 255
+        },
+        {
+            "fieldName": "quantidadeClasseB",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": 255
+        },
+        {
+            "fieldName": "quantidadeClasseC",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "almoxarifado",
+            "otherEntityName": "almoxarifado",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123151",
+    "entityTableName": "tempo_por_classe",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}
