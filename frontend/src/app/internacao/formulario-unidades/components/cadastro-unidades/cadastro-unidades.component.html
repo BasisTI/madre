@@ -31,6 +31,8 @@
                                     <span class="ui-float-label">
                                         <p-dropdown
                                             formControlName="idAlmoxarifado"
+                                            [options]="almoxarifados"
+                                            optionLabel="nome"
                                             pTooltip="Selecione o almoxarifado referente a esta unidade funcional."
                                         ></p-dropdown>
                                         <label>Almoxarifado</label>
@@ -293,6 +295,7 @@
                     </div>
                 </p-accordionTab>
             </p-accordion>
+            <button pButton type="submit" label="Cadastrar"></button>
         </form>
     </div>
 </div>

@@ -1,3 +1,5 @@
+import { AlmoxarifadoService } from './../../services/almoxarifado.service';
+import { Almoxarifado } from './../../models/dropwdowns/almoxarifado';
 import { CaracteristicaService } from './../../services/caracteristica.service';
 import { Caracteristica } from './../../models/dropwdowns/caracteristicas';
 import { OPCOES_DE_UNIDADE_TEMPO } from './../../models/dropwdowns/types/opcoes-de-unidade-tempo';
@@ -22,6 +24,7 @@ export class CadastroUnidadesComponent implements OnInit {
     clinicas: Clinica[] = [];
     tipos: TipoUnidade[] = [];
     caracteristicas: Caracteristica[] = [];
+    //listaAlmoxarifado: Almoxarifado[] = [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
 
     cadastroUnidade = this.fb.group({
@@ -75,6 +78,7 @@ export class CadastroUnidadesComponent implements OnInit {
         public clinicaService: ClinicaService,
         public tipoUnidadeService: TipoUnidadeService,
         public caracteristicaService: CaracteristicaService,
+        public almoxarifadoService: AlmoxarifadoService,
     ) {}
 
     ngOnInit() {
@@ -84,7 +88,16 @@ export class CadastroUnidadesComponent implements OnInit {
         this.caracteristicaService
             .getListaDeCaracteristicas()
             .subscribe((res) => (this.caracteristicas = res));
+        //this.carregarListaAlmoxarifado();
     }
+
+    // carregarListaAlmoxarifado() {
+    //     return this.almoxarifadoService.getListaDeAlmoxarifados().subscribe((listaAlmoxarifado) => {
+    //         this.listaAlmoxarifado = listaAlmoxarifado.map((almoxarifado) => {
+    //             return { label: almoxarifado.nome, value: almoxarifado };
+    //         });
+    //     });
+    // }
 
     cadastrar() {
         console.log(this.cadastroUnidade);
