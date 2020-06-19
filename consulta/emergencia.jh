@@ -1,0 +1,55 @@
+relationship OneToOne{
+
+    Emergencia to CondicaoDeAtendimento
+    Emergencia to FormaDeAgendamento
+}
+
+entity Emergencia {
+
+    dataHoraDaConsulta ZonedDateTime required
+    //dia da semana: calculo dataHoraDaConsulta
+    grade Long max (20)
+    profissional String maxlength(80)
+    numeroSala String maxlength(20)
+    turno Turno
+    tipoPagador TipoPagador
+    gradesDisponiveis Boolean
+    clinicaCentralId Long maxlength(20)
+    observacoes String maxlength (240)
+    //formaDeAgendamento = autorizacao
+    //especialidade vai consumir de Internacao
+    //equipe vai consumir de Internacao
+    //prioridade vai consumir de Internacao
+    //convenio vai consumir de Paciente
+}
+
+entity CondicaoDeAtendimento {
+	sigla String required
+	especialidade String required
+}
+
+entity FormaDeAgendamento {
+	numeroAutorizacao Long required
+	autorizacao String required
+}
+
+entity Entidade {
+   pacienteId Long
+}
+
+
+enum TipoPagador {
+  SUS,
+  OUTROS_CONVENIOS
+}
+
+enum Turno {
+  MATUTINO,
+  VESPERTINO,
+  NOTURNO
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
