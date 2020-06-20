@@ -1,4 +1,5 @@
-import { AlmoxarifadoService } from './../../services/almoxarifado.service';
+import { SuprimentosService } from '../../services/suprimentos.service';
+
 import { Almoxarifado } from './../../models/dropwdowns/almoxarifado';
 import { CaracteristicaService } from './../../services/caracteristica.service';
 import { Caracteristica } from './../../models/dropwdowns/caracteristicas';
@@ -24,7 +25,8 @@ export class CadastroUnidadesComponent implements OnInit {
     clinicas: Clinica[] = [];
     tipos: TipoUnidade[] = [];
     caracteristicas: Caracteristica[] = [];
-    //listaAlmoxarifado: Almoxarifado[] = [];
+    almoxarifados: [];
+    centros: [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
 
     cadastroUnidade = this.fb.group({
@@ -78,7 +80,7 @@ export class CadastroUnidadesComponent implements OnInit {
         public clinicaService: ClinicaService,
         public tipoUnidadeService: TipoUnidadeService,
         public caracteristicaService: CaracteristicaService,
-        public almoxarifadoService: AlmoxarifadoService,
+        public suprimentosService: SuprimentosService,
     ) {}
 
     ngOnInit() {
@@ -88,16 +90,24 @@ export class CadastroUnidadesComponent implements OnInit {
         this.caracteristicaService
             .getListaDeCaracteristicas()
             .subscribe((res) => (this.caracteristicas = res));
-        //this.carregarListaAlmoxarifado();
+        this.carregarListaDeAlmoxarifados();
     }
 
-    // carregarListaAlmoxarifado() {
-    //     return this.almoxarifadoService.getListaDeAlmoxarifados().subscribe((listaAlmoxarifado) => {
-    //         this.listaAlmoxarifado = listaAlmoxarifado.map((almoxarifado) => {
-    //             return { label: almoxarifado.nome, value: almoxarifado };
-    //         });
-    //     });
-    // }
+    carregarListaDeAlmoxarifados() {
+        return this.suprimentosService.listaDeAlmoxarifados().subscribe((almoxarifados) => {
+            this.almoxarifados = almoxarifados.content.map((almoxarifados) => {
+                return { label: almoxarifados.nome, value: almoxarifados };
+            });
+        });
+    }
+
+    carregarListaDeCentros() {
+        return this.suprimentosService.listaDeCentroDeAtividades().subscribe((centros) => {
+            this.centros = centros.content.map((centros) => {
+                return { label: centros.nome, value: centros };
+            });
+        });
+    }
 
     cadastrar() {
         console.log(this.cadastroUnidade);
