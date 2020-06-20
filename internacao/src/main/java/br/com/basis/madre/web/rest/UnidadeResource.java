@@ -1,6 +1,7 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.UnidadeService;
+import br.com.basis.madre.service.dto.FormularioUnidadeDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.service.dto.UnidadeDTO;
 
@@ -56,12 +57,12 @@ public class UnidadeResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/unidades")
-    public ResponseEntity<UnidadeDTO> createUnidade(@Valid @RequestBody UnidadeDTO unidadeDTO) throws URISyntaxException {
+    public ResponseEntity<FormularioUnidadeDTO> createUnidade(@Valid @RequestBody FormularioUnidadeDTO unidadeDTO) throws URISyntaxException {
         log.debug("REST request to save Unidade : {}", unidadeDTO);
         if (unidadeDTO.getId() != null) {
             throw new BadRequestAlertException("A new unidade cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        UnidadeDTO result = unidadeService.save(unidadeDTO);
+        FormularioUnidadeDTO result = unidadeService.save(unidadeDTO);
         return ResponseEntity.created(new URI("/api/unidades/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -77,12 +78,12 @@ public class UnidadeResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/unidades")
-    public ResponseEntity<UnidadeDTO> updateUnidade(@Valid @RequestBody UnidadeDTO unidadeDTO) throws URISyntaxException {
+    public ResponseEntity<FormularioUnidadeDTO> updateUnidade(@Valid @RequestBody FormularioUnidadeDTO unidadeDTO) throws URISyntaxException {
         log.debug("REST request to update Unidade : {}", unidadeDTO);
         if (unidadeDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        UnidadeDTO result = unidadeService.save(unidadeDTO);
+        FormularioUnidadeDTO result = unidadeService.save(unidadeDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, unidadeDTO.getId().toString()))
             .body(result);

@@ -1,3 +1,4 @@
+import { Unidade } from './../../models/unidade';
 import { SuprimentosService } from '../../services/suprimentos.service';
 
 import { Almoxarifado } from './../../models/dropwdowns/almoxarifado';
@@ -14,6 +15,7 @@ import { AlaService } from './../../services/ala.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { Clinica } from '@internacao/formulario-unidades/models/dropwdowns/Clinica';
+import { CadastroService } from '@internacao/formulario-unidades/services/cadastro.service';
 
 @Component({
     selector: 'app-cadastro-unidades',
@@ -81,6 +83,7 @@ export class CadastroUnidadesComponent implements OnInit {
         public tipoUnidadeService: TipoUnidadeService,
         public caracteristicaService: CaracteristicaService,
         public suprimentosService: SuprimentosService,
+        private cadastroService: CadastroService,
     ) {}
 
     ngOnInit() {
@@ -110,6 +113,63 @@ export class CadastroUnidadesComponent implements OnInit {
     }
 
     cadastrar() {
-        console.log(this.cadastroUnidade);
+        let unidadeFuncional = this.cadastroUnidade.value;
+        let pm = this.precricaoMedica.value;
+        let pe = this.precricaoEnfermagem.value;
+        let cirur = this.cirurgia.value;
+
+        let unidade: Unidade = {
+            descricao: unidadeFuncional.descricao,
+            sigla: unidadeFuncional.sigla,
+            situacao: unidadeFuncional.situacao,
+            controleDeEstoque: unidadeFuncional.controleDeEstoque,
+            idAlmoxarifado: unidadeFuncional.idAlmoxarifado
+                ? unidadeFuncional.idAlmoxarifado.id
+                : null,
+            ala: unidadeFuncional.ala ? unidadeFuncional.ala.id : null,
+            clinica: unidadeFuncional.clinica ? unidadeFuncional.clinica.id : null,
+            andar: unidadeFuncional.andar,
+            capacidade: unidadeFuncional.capacidade,
+            horarioInicio: unidadeFuncional.horarioInicio,
+            horarioFim: unidadeFuncional.horarioFim,
+            localExame: unidadeFuncional.localExame,
+            rotinaDeFuncionamento: unidadeFuncional.rotinaDeFuncionamento,
+            anexoDocumento: unidadeFuncional.anexoDocumento,
+            setor: unidadeFuncional.setor,
+            idCentroDeAtividade: unidadeFuncional.idCentroDeAtividade
+                ? unidadeFuncional.idCentroDeAtividade.id
+                : null,
+            idChefia: unidadeFuncional.idChefia ? unidadeFuncional.idChefia.id : null,
+            unidadePaiId: unidadeFuncional.unidadePaiId ? unidadeFuncional.unidadePaiId.id : null,
+            tipoUnidadeId: unidadeFuncional.tipoUnidadeId
+                ? unidadeFuncional.tipoUnidadeId.id
+                : null,
+        };
+
+        unidade.prescricaoMedica = {
+            horarioValidade: pm.horarioValidade,
+            tempoAdiantamento: pm.tempoAdiantamento,
+            unidadeTempo: pm.unidadeTempo,
+            numeroVias: pm.numeroVias,
+        };
+
+        unidade.prescricaoEnfermagem = {
+            horarioValidade: pe.horarioValidade,
+            tempoAdiantamento: pe.tempoAdiantamento,
+            unidadeTempo: pe.unidadeTempo,
+            numeroVias: pe.numeroVias,
+        };
+
+        unidade.cirurgia = {
+            tempoMax: cirur.tempoMax,
+            tempoMin: cirur.tempoMin,
+            limiteDias: cirur.limiteDias,
+            limteDiasConvenios: cirur.limteDiasConvenios,
+            intervalocirurgia: cirur.intervalocirurgia,
+            intervaloProcedimento: cirur.intervaloProcedimento,
+        };
+
+        console.log(unidade);
+        this.cadastroService.cadastrarUnidade(unidade).subscribe();
     }
 }

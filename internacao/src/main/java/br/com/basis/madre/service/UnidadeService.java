@@ -3,7 +3,9 @@ package br.com.basis.madre.service;
 import br.com.basis.madre.domain.Unidade;
 import br.com.basis.madre.repository.UnidadeRepository;
 import br.com.basis.madre.repository.search.UnidadeSearchRepository;
+import br.com.basis.madre.service.dto.FormularioUnidadeDTO;
 import br.com.basis.madre.service.dto.UnidadeDTO;
+import br.com.basis.madre.service.mapper.FormularioUnidadeMapper;
 import br.com.basis.madre.service.mapper.UnidadeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,10 +34,13 @@ public class UnidadeService {
 
     private final UnidadeSearchRepository unidadeSearchRepository;
 
-    public UnidadeService(UnidadeRepository unidadeRepository, UnidadeMapper unidadeMapper, UnidadeSearchRepository unidadeSearchRepository) {
+    private final FormularioUnidadeMapper formularioUnidadeMapper;
+
+    public UnidadeService(UnidadeRepository unidadeRepository, UnidadeMapper unidadeMapper, UnidadeSearchRepository unidadeSearchRepository, FormularioUnidadeMapper formularioUnidadeMapper) {
         this.unidadeRepository = unidadeRepository;
         this.unidadeMapper = unidadeMapper;
         this.unidadeSearchRepository = unidadeSearchRepository;
+        this.formularioUnidadeMapper = formularioUnidadeMapper;
     }
 
     /**
@@ -44,11 +49,11 @@ public class UnidadeService {
      * @param unidadeDTO the entity to save.
      * @return the persisted entity.
      */
-    public UnidadeDTO save(UnidadeDTO unidadeDTO) {
+    public FormularioUnidadeDTO save(FormularioUnidadeDTO unidadeDTO) {
         log.debug("Request to save Unidade : {}", unidadeDTO);
-        Unidade unidade = unidadeMapper.toEntity(unidadeDTO);
+        Unidade unidade = formularioUnidadeMapper.toEntity(unidadeDTO);
         unidade = unidadeRepository.save(unidade);
-        UnidadeDTO result = unidadeMapper.toDto(unidade);
+        FormularioUnidadeDTO result = formularioUnidadeMapper.toDto(unidade);
         unidadeSearchRepository.save(unidade);
         return result;
     }
