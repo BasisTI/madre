@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
@@ -95,15 +96,15 @@ public class Unidade implements Serializable {
     @JsonIgnoreProperties("unidades")
     private TipoUnidade tipoUnidade;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("unidades")
     private Prescricao prescricaoEnfermagem;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("unidades")
     private Prescricao prescricaoMedica;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("unidades")
     private Cirurgia cirurgia;
 
