@@ -112,6 +112,10 @@ export class CadastroUnidadesComponent implements OnInit {
         });
     }
 
+    valid(): boolean {
+        return this.cadastroUnidade.valid;
+    }
+
     cadastrar() {
         let unidadeFuncional = this.cadastroUnidade.value;
         let pm = this.precricaoMedica.value;
