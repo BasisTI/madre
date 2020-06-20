@@ -126,8 +126,10 @@
                                         <p-dropdown
                                             formControlName="unidadePaiId"
                                             pTooltip="Selecione a unidade pai."
+                                            [options]="unidadesPai"
+                                            optionLabel="descricao"
+                                            placeholder="Unidade Pai"
                                         ></p-dropdown>
-                                        <label>Unidade Pai</label>
                                     </span>
                                 </div>
                             </div>

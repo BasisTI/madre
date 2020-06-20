@@ -1,3 +1,5 @@
+import { UnidadePaiService } from './../../services/unidade-pai.service';
+import { UnidadePai } from './../../models/dropwdowns/UnidadePai';
 import { Unidade } from './../../models/unidade';
 import { SuprimentosService } from '../../services/suprimentos.service';
 
@@ -27,6 +29,7 @@ export class CadastroUnidadesComponent implements OnInit {
     clinicas: Clinica[] = [];
     tipos: TipoUnidade[] = [];
     caracteristicas: Caracteristica[] = [];
+    unidadesPai: UnidadePai[] = [];
     almoxarifados: [];
     centros: [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
@@ -83,6 +86,7 @@ export class CadastroUnidadesComponent implements OnInit {
         public tipoUnidadeService: TipoUnidadeService,
         public caracteristicaService: CaracteristicaService,
         public suprimentosService: SuprimentosService,
+        public unidadePaiService: UnidadePaiService,
         private cadastroService: CadastroService,
     ) {}
 
@@ -93,7 +97,9 @@ export class CadastroUnidadesComponent implements OnInit {
         this.caracteristicaService
             .getListaDeCaracteristicas()
             .subscribe((res) => (this.caracteristicas = res));
+        this.unidadePaiService.getListaDeUnidadePais().subscribe((res) => (this.unidadesPai = res));
         this.carregarListaDeAlmoxarifados();
+        this.carregarListaDeCentros();
     }
 
     carregarListaDeAlmoxarifados() {
