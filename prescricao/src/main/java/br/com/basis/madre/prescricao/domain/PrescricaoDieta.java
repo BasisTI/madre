@@ -15,9 +15,11 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.logstash.logback.encoder.org.apache.commons.lang3.builder.ToStringExclude;
+import lombok.ToString;
 
 /**
  * A PrescricaoDieta.
@@ -25,6 +27,7 @@ import net.logstash.logback.encoder.org.apache.commons.lang3.builder.ToStringExc
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "prescricao_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -36,8 +39,8 @@ public class PrescricaoDieta extends PrescricaoMedica implements Serializable {
 	@Column(name = "bomba_infusao")
 	private Boolean bombaInfusao;
 
-
-	@ToStringExclude
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(mappedBy = "prescricaoDieta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();

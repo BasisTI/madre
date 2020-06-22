@@ -14,18 +14,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -59,24 +58,20 @@ public class ItemPrescricaoDieta implements Serializable {
     @Column(name = "numero_vezes")
     private Integer numeroVezes;
 
-    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoItemDieta tipoItemDieta;
 
-    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoAprazamento tipoAprazamento;
 
-    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoUnidadeDieta tipoUnidadeDieta;
 
-    @EqualsAndHashCode.Exclude
-    @ToStringExclude
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private PrescricaoDieta prescricaoDieta;
 
