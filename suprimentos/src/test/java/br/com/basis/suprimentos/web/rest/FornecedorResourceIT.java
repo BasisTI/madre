@@ -100,10 +100,10 @@ public class FornecedorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Fornecedor createEntity(EntityManager em) {
-        Fornecedor fornecedor = new Fornecedor()
-                .cnpj(DEFAULT_CNPJ)
-                .razaoSocial(DEFAULT_RAZAO_SOCIAL)
-                .nomeFantasia(DEFAULT_NOME_FANTASIA);
+        Fornecedor fornecedor = new Fornecedor();
+        fornecedor.setCnpj(DEFAULT_CNPJ);
+        fornecedor.setRazaoSocial(DEFAULT_RAZAO_SOCIAL);
+        fornecedor.setNomeFantasia(DEFAULT_NOME_FANTASIA);
         return fornecedor;
     }
 
@@ -114,10 +114,10 @@ public class FornecedorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Fornecedor createUpdatedEntity(EntityManager em) {
-        Fornecedor fornecedor = new Fornecedor()
-                .cnpj(UPDATED_CNPJ)
-                .razaoSocial(UPDATED_RAZAO_SOCIAL)
-                .nomeFantasia(UPDATED_NOME_FANTASIA);
+        Fornecedor fornecedor = new Fornecedor();
+        fornecedor.setCnpj(UPDATED_CNPJ);
+        fornecedor.setRazaoSocial(UPDATED_RAZAO_SOCIAL);
+        fornecedor.setNomeFantasia(UPDATED_NOME_FANTASIA);
         return fornecedor;
     }
 
@@ -126,11 +126,11 @@ public class FornecedorResourceIT {
         MockitoAnnotations.initMocks(this);
         final FornecedorResource fornecedorResource = new FornecedorResource(fornecedorService);
         this.restFornecedorMockMvc = MockMvcBuilders.standaloneSetup(fornecedorResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -146,9 +146,9 @@ public class FornecedorResourceIT {
         // Create the Fornecedor
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(fornecedor);
         restFornecedorMockMvc.perform(post("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Fornecedor in the database
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
@@ -173,9 +173,9 @@ public class FornecedorResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restFornecedorMockMvc.perform(post("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Fornecedor in the database
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
@@ -197,9 +197,9 @@ public class FornecedorResourceIT {
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(fornecedor);
 
         restFornecedorMockMvc.perform(post("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
         assertThat(fornecedorList).hasSize(databaseSizeBeforeTest);
@@ -216,9 +216,9 @@ public class FornecedorResourceIT {
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(fornecedor);
 
         restFornecedorMockMvc.perform(post("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
         assertThat(fornecedorList).hasSize(databaseSizeBeforeTest);
@@ -235,9 +235,9 @@ public class FornecedorResourceIT {
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(fornecedor);
 
         restFornecedorMockMvc.perform(post("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
         assertThat(fornecedorList).hasSize(databaseSizeBeforeTest);
@@ -251,12 +251,12 @@ public class FornecedorResourceIT {
 
         // Get all the fornecedorList
         restFornecedorMockMvc.perform(get("/api/fornecedors?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(fornecedor.getId().intValue())))
-                .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
-                .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL)))
-                .andExpect(jsonPath("$.[*].nomeFantasia").value(hasItem(DEFAULT_NOME_FANTASIA)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(fornecedor.getId().intValue())))
+            .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
+            .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL)))
+            .andExpect(jsonPath("$.[*].nomeFantasia").value(hasItem(DEFAULT_NOME_FANTASIA)));
     }
 
     @Test
@@ -267,12 +267,12 @@ public class FornecedorResourceIT {
 
         // Get the fornecedor
         restFornecedorMockMvc.perform(get("/api/fornecedors/{id}", fornecedor.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(fornecedor.getId().intValue()))
-                .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ))
-                .andExpect(jsonPath("$.razaoSocial").value(DEFAULT_RAZAO_SOCIAL))
-                .andExpect(jsonPath("$.nomeFantasia").value(DEFAULT_NOME_FANTASIA));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(fornecedor.getId().intValue()))
+            .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ))
+            .andExpect(jsonPath("$.razaoSocial").value(DEFAULT_RAZAO_SOCIAL))
+            .andExpect(jsonPath("$.nomeFantasia").value(DEFAULT_NOME_FANTASIA));
     }
 
     @Test
@@ -280,7 +280,7 @@ public class FornecedorResourceIT {
     public void getNonExistingFornecedor() throws Exception {
         // Get the fornecedor
         restFornecedorMockMvc.perform(get("/api/fornecedors/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -295,16 +295,15 @@ public class FornecedorResourceIT {
         Fornecedor updatedFornecedor = fornecedorRepository.findById(fornecedor.getId()).get();
         // Disconnect from session so that the updates on updatedFornecedor are not directly saved in db
         em.detach(updatedFornecedor);
-        updatedFornecedor
-                .cnpj(UPDATED_CNPJ)
-                .razaoSocial(UPDATED_RAZAO_SOCIAL)
-                .nomeFantasia(UPDATED_NOME_FANTASIA);
+        updatedFornecedor.setCnpj(UPDATED_CNPJ);
+        updatedFornecedor.setRazaoSocial(UPDATED_RAZAO_SOCIAL);
+        updatedFornecedor.setNomeFantasia(UPDATED_NOME_FANTASIA);
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(updatedFornecedor);
 
         restFornecedorMockMvc.perform(put("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Fornecedor in the database
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
@@ -328,9 +327,9 @@ public class FornecedorResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restFornecedorMockMvc.perform(put("/api/fornecedors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(fornecedorDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Fornecedor in the database
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
@@ -350,8 +349,8 @@ public class FornecedorResourceIT {
 
         // Delete the fornecedor
         restFornecedorMockMvc.perform(delete("/api/fornecedors/{id}", fornecedor.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
@@ -367,15 +366,15 @@ public class FornecedorResourceIT {
         // Initialize the database
         fornecedorRepository.saveAndFlush(fornecedor);
         when(mockFornecedorSearchRepository.search(queryStringQuery("id:" + fornecedor.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(fornecedor), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(fornecedor), PageRequest.of(0, 1), 1));
         // Search the fornecedor
         restFornecedorMockMvc.perform(get("/api/_search/fornecedors?query=id:" + fornecedor.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(fornecedor.getId().intValue())))
-                .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
-                .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL)))
-                .andExpect(jsonPath("$.[*].nomeFantasia").value(hasItem(DEFAULT_NOME_FANTASIA)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(fornecedor.getId().intValue())))
+            .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
+            .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL)))
+            .andExpect(jsonPath("$.[*].nomeFantasia").value(hasItem(DEFAULT_NOME_FANTASIA)));
     }
 
     @Test

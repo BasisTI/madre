@@ -94,8 +94,8 @@ public class GrupoMaterialResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static GrupoMaterial createEntity(EntityManager em) {
-        GrupoMaterial grupoMaterial = new GrupoMaterial()
-                .descricao(DEFAULT_DESCRICAO);
+        GrupoMaterial grupoMaterial = new GrupoMaterial();
+        grupoMaterial.setDescricao(DEFAULT_DESCRICAO);
         return grupoMaterial;
     }
 
@@ -106,8 +106,8 @@ public class GrupoMaterialResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static GrupoMaterial createUpdatedEntity(EntityManager em) {
-        GrupoMaterial grupoMaterial = new GrupoMaterial()
-                .descricao(UPDATED_DESCRICAO);
+        GrupoMaterial grupoMaterial = new GrupoMaterial();
+        grupoMaterial.setDescricao(UPDATED_DESCRICAO);
         return grupoMaterial;
     }
 
@@ -116,11 +116,11 @@ public class GrupoMaterialResourceIT {
         MockitoAnnotations.initMocks(this);
         final GrupoMaterialResource grupoMaterialResource = new GrupoMaterialResource(grupoMaterialService);
         this.restGrupoMaterialMockMvc = MockMvcBuilders.standaloneSetup(grupoMaterialResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class GrupoMaterialResourceIT {
         // Create the GrupoMaterial
         GrupoMaterialDTO grupoMaterialDTO = grupoMaterialMapper.toDto(grupoMaterial);
         restGrupoMaterialMockMvc.perform(post("/api/grupo-materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the GrupoMaterial in the database
         List<GrupoMaterial> grupoMaterialList = grupoMaterialRepository.findAll();
@@ -161,9 +161,9 @@ public class GrupoMaterialResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restGrupoMaterialMockMvc.perform(post("/api/grupo-materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the GrupoMaterial in the database
         List<GrupoMaterial> grupoMaterialList = grupoMaterialRepository.findAll();
@@ -185,9 +185,9 @@ public class GrupoMaterialResourceIT {
         GrupoMaterialDTO grupoMaterialDTO = grupoMaterialMapper.toDto(grupoMaterial);
 
         restGrupoMaterialMockMvc.perform(post("/api/grupo-materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
+            .andExpect(status().isBadRequest());
 
         List<GrupoMaterial> grupoMaterialList = grupoMaterialRepository.findAll();
         assertThat(grupoMaterialList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class GrupoMaterialResourceIT {
 
         // Get all the grupoMaterialList
         restGrupoMaterialMockMvc.perform(get("/api/grupo-materials?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(grupoMaterial.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(grupoMaterial.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class GrupoMaterialResourceIT {
 
         // Get the grupoMaterial
         restGrupoMaterialMockMvc.perform(get("/api/grupo-materials/{id}", grupoMaterial.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(grupoMaterial.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(grupoMaterial.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class GrupoMaterialResourceIT {
     public void getNonExistingGrupoMaterial() throws Exception {
         // Get the grupoMaterial
         restGrupoMaterialMockMvc.perform(get("/api/grupo-materials/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -241,14 +241,13 @@ public class GrupoMaterialResourceIT {
         GrupoMaterial updatedGrupoMaterial = grupoMaterialRepository.findById(grupoMaterial.getId()).get();
         // Disconnect from session so that the updates on updatedGrupoMaterial are not directly saved in db
         em.detach(updatedGrupoMaterial);
-        updatedGrupoMaterial
-                .descricao(UPDATED_DESCRICAO);
+        updatedGrupoMaterial.setDescricao(UPDATED_DESCRICAO);
         GrupoMaterialDTO grupoMaterialDTO = grupoMaterialMapper.toDto(updatedGrupoMaterial);
 
         restGrupoMaterialMockMvc.perform(put("/api/grupo-materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
+            .andExpect(status().isOk());
 
         // Validate the GrupoMaterial in the database
         List<GrupoMaterial> grupoMaterialList = grupoMaterialRepository.findAll();
@@ -270,9 +269,9 @@ public class GrupoMaterialResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restGrupoMaterialMockMvc.perform(put("/api/grupo-materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(grupoMaterialDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the GrupoMaterial in the database
         List<GrupoMaterial> grupoMaterialList = grupoMaterialRepository.findAll();
@@ -292,8 +291,8 @@ public class GrupoMaterialResourceIT {
 
         // Delete the grupoMaterial
         restGrupoMaterialMockMvc.perform(delete("/api/grupo-materials/{id}", grupoMaterial.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<GrupoMaterial> grupoMaterialList = grupoMaterialRepository.findAll();
@@ -309,13 +308,13 @@ public class GrupoMaterialResourceIT {
         // Initialize the database
         grupoMaterialRepository.saveAndFlush(grupoMaterial);
         when(mockGrupoMaterialSearchRepository.search(queryStringQuery("id:" + grupoMaterial.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(grupoMaterial), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(grupoMaterial), PageRequest.of(0, 1), 1));
         // Search the grupoMaterial
         restGrupoMaterialMockMvc.perform(get("/api/_search/grupo-materials?query=id:" + grupoMaterial.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(grupoMaterial.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(grupoMaterial.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
