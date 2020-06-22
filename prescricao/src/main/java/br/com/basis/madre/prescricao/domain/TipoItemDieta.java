@@ -1,14 +1,11 @@
 package br.com.basis.madre.prescricao.domain;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -43,42 +40,10 @@ public class TipoItemDieta implements Serializable {
     @Column(name = "descricao", length = 80)
     private String descricao;
 
-    @OneToMany(mappedBy = "tipoItemDieta")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ItemPrescricaoDieta> itemPrescricaoDietas = new HashSet<>();
-
 
     public TipoItemDieta descricao(String descricao) {
         this.descricao = descricao;
         return this;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Set<ItemPrescricaoDieta> getItemPrescricaoDietas() {
-        return itemPrescricaoDietas;
-    }
-
-    public TipoItemDieta itemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
-        this.itemPrescricaoDietas = itemPrescricaoDietas;
-        return this;
-    }
-
-    public TipoItemDieta addItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
-        this.itemPrescricaoDietas.add(itemPrescricaoDieta);
-        itemPrescricaoDieta.setTipoItemDieta(this);
-        return this;
-    }
-
-    public TipoItemDieta removeItemPrescricaoDieta(ItemPrescricaoDieta itemPrescricaoDieta) {
-        this.itemPrescricaoDietas.remove(itemPrescricaoDieta);
-        itemPrescricaoDieta.setTipoItemDieta(null);
-        return this;
-    }
-
-    public void setItemPrescricaoDietas(Set<ItemPrescricaoDieta> itemPrescricaoDietas) {
-        this.itemPrescricaoDietas = itemPrescricaoDietas;
-    }
 }
