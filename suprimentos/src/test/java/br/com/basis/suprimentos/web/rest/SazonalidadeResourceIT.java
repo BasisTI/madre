@@ -94,8 +94,8 @@ public class SazonalidadeResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Sazonalidade createEntity(EntityManager em) {
-        Sazonalidade sazonalidade = new Sazonalidade()
-                .descricao(DEFAULT_DESCRICAO);
+        Sazonalidade sazonalidade = new Sazonalidade();
+        sazonalidade.setDescricao(DEFAULT_DESCRICAO);
         return sazonalidade;
     }
 
@@ -106,8 +106,8 @@ public class SazonalidadeResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Sazonalidade createUpdatedEntity(EntityManager em) {
-        Sazonalidade sazonalidade = new Sazonalidade()
-                .descricao(UPDATED_DESCRICAO);
+        Sazonalidade sazonalidade = new Sazonalidade();
+        sazonalidade.setDescricao(UPDATED_DESCRICAO);
         return sazonalidade;
     }
 
@@ -116,11 +116,11 @@ public class SazonalidadeResourceIT {
         MockitoAnnotations.initMocks(this);
         final SazonalidadeResource sazonalidadeResource = new SazonalidadeResource(sazonalidadeService);
         this.restSazonalidadeMockMvc = MockMvcBuilders.standaloneSetup(sazonalidadeResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class SazonalidadeResourceIT {
         // Create the Sazonalidade
         SazonalidadeDTO sazonalidadeDTO = sazonalidadeMapper.toDto(sazonalidade);
         restSazonalidadeMockMvc.perform(post("/api/sazonalidades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Sazonalidade in the database
         List<Sazonalidade> sazonalidadeList = sazonalidadeRepository.findAll();
@@ -161,9 +161,9 @@ public class SazonalidadeResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSazonalidadeMockMvc.perform(post("/api/sazonalidades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Sazonalidade in the database
         List<Sazonalidade> sazonalidadeList = sazonalidadeRepository.findAll();
@@ -185,9 +185,9 @@ public class SazonalidadeResourceIT {
         SazonalidadeDTO sazonalidadeDTO = sazonalidadeMapper.toDto(sazonalidade);
 
         restSazonalidadeMockMvc.perform(post("/api/sazonalidades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Sazonalidade> sazonalidadeList = sazonalidadeRepository.findAll();
         assertThat(sazonalidadeList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class SazonalidadeResourceIT {
 
         // Get all the sazonalidadeList
         restSazonalidadeMockMvc.perform(get("/api/sazonalidades?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(sazonalidade.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(sazonalidade.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class SazonalidadeResourceIT {
 
         // Get the sazonalidade
         restSazonalidadeMockMvc.perform(get("/api/sazonalidades/{id}", sazonalidade.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(sazonalidade.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(sazonalidade.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class SazonalidadeResourceIT {
     public void getNonExistingSazonalidade() throws Exception {
         // Get the sazonalidade
         restSazonalidadeMockMvc.perform(get("/api/sazonalidades/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -242,13 +242,13 @@ public class SazonalidadeResourceIT {
         // Disconnect from session so that the updates on updatedSazonalidade are not directly saved in db
         em.detach(updatedSazonalidade);
         updatedSazonalidade
-                .descricao(UPDATED_DESCRICAO);
+            .setDescricao(UPDATED_DESCRICAO);
         SazonalidadeDTO sazonalidadeDTO = sazonalidadeMapper.toDto(updatedSazonalidade);
 
         restSazonalidadeMockMvc.perform(put("/api/sazonalidades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Sazonalidade in the database
         List<Sazonalidade> sazonalidadeList = sazonalidadeRepository.findAll();
@@ -270,9 +270,9 @@ public class SazonalidadeResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restSazonalidadeMockMvc.perform(put("/api/sazonalidades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(sazonalidadeDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Sazonalidade in the database
         List<Sazonalidade> sazonalidadeList = sazonalidadeRepository.findAll();
@@ -292,8 +292,8 @@ public class SazonalidadeResourceIT {
 
         // Delete the sazonalidade
         restSazonalidadeMockMvc.perform(delete("/api/sazonalidades/{id}", sazonalidade.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Sazonalidade> sazonalidadeList = sazonalidadeRepository.findAll();
@@ -309,13 +309,13 @@ public class SazonalidadeResourceIT {
         // Initialize the database
         sazonalidadeRepository.saveAndFlush(sazonalidade);
         when(mockSazonalidadeSearchRepository.search(queryStringQuery("id:" + sazonalidade.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(sazonalidade), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(sazonalidade), PageRequest.of(0, 1), 1));
         // Search the sazonalidade
         restSazonalidadeMockMvc.perform(get("/api/_search/sazonalidades?query=id:" + sazonalidade.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(sazonalidade.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(sazonalidade.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

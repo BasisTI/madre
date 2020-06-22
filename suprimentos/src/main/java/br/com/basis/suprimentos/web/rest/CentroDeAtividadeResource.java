@@ -1,60 +1,45 @@
 package br.com.basis.suprimentos.web.rest;
 
 import br.com.basis.suprimentos.service.CentroDeAtividadeService;
-import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.suprimentos.service.dto.CentroDeAtividadeDTO;
-
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
-
-/**
- * REST controller for managing {@link br.com.basis.suprimentos.domain.CentroDeAtividade}.
- */
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class CentroDeAtividadeResource {
-
-    private final Logger log = LoggerFactory.getLogger(CentroDeAtividadeResource.class);
-
-    private static final String ENTITY_NAME = "madresuprimentosCentroDeAtividade";
-
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
+    private static final String ENTITY_NAME = "madresuprimentosCentroDeAtividade";
     private final CentroDeAtividadeService centroDeAtividadeService;
 
-    public CentroDeAtividadeResource(CentroDeAtividadeService centroDeAtividadeService) {
-        this.centroDeAtividadeService = centroDeAtividadeService;
-    }
-
-    /**
-     * {@code POST  /centro-de-atividades} : Create a new centroDeAtividade.
-     *
-     * @param centroDeAtividadeDTO the centroDeAtividadeDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new centroDeAtividadeDTO, or with status {@code 400 (Bad Request)} if the centroDeAtividade has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/centro-de-atividades")
     public ResponseEntity<CentroDeAtividadeDTO> createCentroDeAtividade(@Valid @RequestBody CentroDeAtividadeDTO centroDeAtividadeDTO) throws URISyntaxException {
         log.debug("REST request to save CentroDeAtividade : {}", centroDeAtividadeDTO);
@@ -67,15 +52,6 @@ public class CentroDeAtividadeResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /centro-de-atividades} : Updates an existing centroDeAtividade.
-     *
-     * @param centroDeAtividadeDTO the centroDeAtividadeDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated centroDeAtividadeDTO,
-     * or with status {@code 400 (Bad Request)} if the centroDeAtividadeDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the centroDeAtividadeDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/centro-de-atividades")
     public ResponseEntity<CentroDeAtividadeDTO> updateCentroDeAtividade(@Valid @RequestBody CentroDeAtividadeDTO centroDeAtividadeDTO) throws URISyntaxException {
         log.debug("REST request to update CentroDeAtividade : {}", centroDeAtividadeDTO);
@@ -88,14 +64,6 @@ public class CentroDeAtividadeResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /centro-de-atividades} : get all the centroDeAtividades.
-     *
-
-     * @param pageable the pagination information.
-
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of centroDeAtividades in body.
-     */
     @GetMapping("/centro-de-atividades")
     public ResponseEntity<List<CentroDeAtividadeDTO>> getAllCentroDeAtividades(Pageable pageable) {
         log.debug("REST request to get a page of CentroDeAtividades");
@@ -104,12 +72,6 @@ public class CentroDeAtividadeResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /centro-de-atividades/:id} : get the "id" centroDeAtividade.
-     *
-     * @param id the id of the centroDeAtividadeDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the centroDeAtividadeDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/centro-de-atividades/{id}")
     public ResponseEntity<CentroDeAtividadeDTO> getCentroDeAtividade(@PathVariable Long id) {
         log.debug("REST request to get CentroDeAtividade : {}", id);
@@ -117,12 +79,6 @@ public class CentroDeAtividadeResource {
         return ResponseUtil.wrapOrNotFound(centroDeAtividadeDTO);
     }
 
-    /**
-     * {@code DELETE  /centro-de-atividades/:id} : delete the "id" centroDeAtividade.
-     *
-     * @param id the id of the centroDeAtividadeDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/centro-de-atividades/{id}")
     public ResponseEntity<Void> deleteCentroDeAtividade(@PathVariable Long id) {
         log.debug("REST request to delete CentroDeAtividade : {}", id);
@@ -130,14 +86,6 @@ public class CentroDeAtividadeResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * {@code SEARCH  /_search/centro-de-atividades?query=:query} : search for the centroDeAtividade corresponding
-     * to the query.
-     *
-     * @param query the query of the centroDeAtividade search.
-     * @param pageable the pagination information.
-     * @return the result of the search.
-     */
     @GetMapping("/_search/centro-de-atividades")
     public ResponseEntity<List<CentroDeAtividadeDTO>> searchCentroDeAtividades(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of CentroDeAtividades for query {}", query);

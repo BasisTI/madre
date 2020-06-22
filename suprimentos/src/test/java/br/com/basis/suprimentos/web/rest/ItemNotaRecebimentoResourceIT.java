@@ -104,10 +104,10 @@ public class ItemNotaRecebimentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static ItemNotaRecebimento createEntity(EntityManager em) {
-        ItemNotaRecebimento itemNotaRecebimento = new ItemNotaRecebimento()
-                .quantidadeReceber(DEFAULT_QUANTIDADE_RECEBER)
-                .quantidadeConvertida(DEFAULT_QUANTIDADE_CONVERTIDA)
-                .valorTotal(DEFAULT_VALOR_TOTAL);
+        ItemNotaRecebimento itemNotaRecebimento = new ItemNotaRecebimento();
+        itemNotaRecebimento.setQuantidadeReceber(DEFAULT_QUANTIDADE_RECEBER);
+        itemNotaRecebimento.setQuantidadeConvertida(DEFAULT_QUANTIDADE_CONVERTIDA);
+        itemNotaRecebimento.setValorTotal(DEFAULT_VALOR_TOTAL);
         // Add required entity
         MarcaComercial marcaComercial;
         if (TestUtil.findAll(em, MarcaComercial.class).isEmpty()) {
@@ -148,10 +148,10 @@ public class ItemNotaRecebimentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static ItemNotaRecebimento createUpdatedEntity(EntityManager em) {
-        ItemNotaRecebimento itemNotaRecebimento = new ItemNotaRecebimento()
-                .quantidadeReceber(UPDATED_QUANTIDADE_RECEBER)
-                .quantidadeConvertida(UPDATED_QUANTIDADE_CONVERTIDA)
-                .valorTotal(UPDATED_VALOR_TOTAL);
+        ItemNotaRecebimento itemNotaRecebimento = new ItemNotaRecebimento();
+        itemNotaRecebimento.setQuantidadeReceber(UPDATED_QUANTIDADE_RECEBER);
+        itemNotaRecebimento.setQuantidadeConvertida(UPDATED_QUANTIDADE_CONVERTIDA);
+        itemNotaRecebimento.setValorTotal(UPDATED_VALOR_TOTAL);
         // Add required entity
         MarcaComercial marcaComercial;
         if (TestUtil.findAll(em, MarcaComercial.class).isEmpty()) {
@@ -190,11 +190,11 @@ public class ItemNotaRecebimentoResourceIT {
         MockitoAnnotations.initMocks(this);
         final ItemNotaRecebimentoResource itemNotaRecebimentoResource = new ItemNotaRecebimentoResource(itemNotaRecebimentoService);
         this.restItemNotaRecebimentoMockMvc = MockMvcBuilders.standaloneSetup(itemNotaRecebimentoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -210,9 +210,9 @@ public class ItemNotaRecebimentoResourceIT {
         // Create the ItemNotaRecebimento
         ItemNotaRecebimentoDTO itemNotaRecebimentoDTO = itemNotaRecebimentoMapper.toDto(itemNotaRecebimento);
         restItemNotaRecebimentoMockMvc.perform(post("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the ItemNotaRecebimento in the database
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
@@ -237,9 +237,9 @@ public class ItemNotaRecebimentoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restItemNotaRecebimentoMockMvc.perform(post("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the ItemNotaRecebimento in the database
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
@@ -261,9 +261,9 @@ public class ItemNotaRecebimentoResourceIT {
         ItemNotaRecebimentoDTO itemNotaRecebimentoDTO = itemNotaRecebimentoMapper.toDto(itemNotaRecebimento);
 
         restItemNotaRecebimentoMockMvc.perform(post("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
         assertThat(itemNotaRecebimentoList).hasSize(databaseSizeBeforeTest);
@@ -280,9 +280,9 @@ public class ItemNotaRecebimentoResourceIT {
         ItemNotaRecebimentoDTO itemNotaRecebimentoDTO = itemNotaRecebimentoMapper.toDto(itemNotaRecebimento);
 
         restItemNotaRecebimentoMockMvc.perform(post("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
         assertThat(itemNotaRecebimentoList).hasSize(databaseSizeBeforeTest);
@@ -299,9 +299,9 @@ public class ItemNotaRecebimentoResourceIT {
         ItemNotaRecebimentoDTO itemNotaRecebimentoDTO = itemNotaRecebimentoMapper.toDto(itemNotaRecebimento);
 
         restItemNotaRecebimentoMockMvc.perform(post("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
         assertThat(itemNotaRecebimentoList).hasSize(databaseSizeBeforeTest);
@@ -315,12 +315,12 @@ public class ItemNotaRecebimentoResourceIT {
 
         // Get all the itemNotaRecebimentoList
         restItemNotaRecebimentoMockMvc.perform(get("/api/item-nota-recebimentos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(itemNotaRecebimento.getId().intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeReceber").value(hasItem(DEFAULT_QUANTIDADE_RECEBER.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeConvertida").value(hasItem(DEFAULT_QUANTIDADE_CONVERTIDA)))
-                .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(itemNotaRecebimento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeReceber").value(hasItem(DEFAULT_QUANTIDADE_RECEBER.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeConvertida").value(hasItem(DEFAULT_QUANTIDADE_CONVERTIDA)))
+            .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())));
     }
 
     @Test
@@ -331,12 +331,12 @@ public class ItemNotaRecebimentoResourceIT {
 
         // Get the itemNotaRecebimento
         restItemNotaRecebimentoMockMvc.perform(get("/api/item-nota-recebimentos/{id}", itemNotaRecebimento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(itemNotaRecebimento.getId().intValue()))
-                .andExpect(jsonPath("$.quantidadeReceber").value(DEFAULT_QUANTIDADE_RECEBER.intValue()))
-                .andExpect(jsonPath("$.quantidadeConvertida").value(DEFAULT_QUANTIDADE_CONVERTIDA))
-                .andExpect(jsonPath("$.valorTotal").value(DEFAULT_VALOR_TOTAL.intValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(itemNotaRecebimento.getId().intValue()))
+            .andExpect(jsonPath("$.quantidadeReceber").value(DEFAULT_QUANTIDADE_RECEBER.intValue()))
+            .andExpect(jsonPath("$.quantidadeConvertida").value(DEFAULT_QUANTIDADE_CONVERTIDA))
+            .andExpect(jsonPath("$.valorTotal").value(DEFAULT_VALOR_TOTAL.intValue()));
     }
 
     @Test
@@ -344,7 +344,7 @@ public class ItemNotaRecebimentoResourceIT {
     public void getNonExistingItemNotaRecebimento() throws Exception {
         // Get the itemNotaRecebimento
         restItemNotaRecebimentoMockMvc.perform(get("/api/item-nota-recebimentos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -359,16 +359,15 @@ public class ItemNotaRecebimentoResourceIT {
         ItemNotaRecebimento updatedItemNotaRecebimento = itemNotaRecebimentoRepository.findById(itemNotaRecebimento.getId()).get();
         // Disconnect from session so that the updates on updatedItemNotaRecebimento are not directly saved in db
         em.detach(updatedItemNotaRecebimento);
-        updatedItemNotaRecebimento
-                .quantidadeReceber(UPDATED_QUANTIDADE_RECEBER)
-                .quantidadeConvertida(UPDATED_QUANTIDADE_CONVERTIDA)
-                .valorTotal(UPDATED_VALOR_TOTAL);
+        updatedItemNotaRecebimento.setQuantidadeReceber(UPDATED_QUANTIDADE_RECEBER);
+        updatedItemNotaRecebimento.setQuantidadeConvertida(UPDATED_QUANTIDADE_CONVERTIDA);
+        updatedItemNotaRecebimento.setValorTotal(UPDATED_VALOR_TOTAL);
         ItemNotaRecebimentoDTO itemNotaRecebimentoDTO = itemNotaRecebimentoMapper.toDto(updatedItemNotaRecebimento);
 
         restItemNotaRecebimentoMockMvc.perform(put("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the ItemNotaRecebimento in the database
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
@@ -392,9 +391,9 @@ public class ItemNotaRecebimentoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restItemNotaRecebimentoMockMvc.perform(put("/api/item-nota-recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(itemNotaRecebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the ItemNotaRecebimento in the database
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
@@ -414,8 +413,8 @@ public class ItemNotaRecebimentoResourceIT {
 
         // Delete the itemNotaRecebimento
         restItemNotaRecebimentoMockMvc.perform(delete("/api/item-nota-recebimentos/{id}", itemNotaRecebimento.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<ItemNotaRecebimento> itemNotaRecebimentoList = itemNotaRecebimentoRepository.findAll();
@@ -431,15 +430,15 @@ public class ItemNotaRecebimentoResourceIT {
         // Initialize the database
         itemNotaRecebimentoRepository.saveAndFlush(itemNotaRecebimento);
         when(mockItemNotaRecebimentoSearchRepository.search(queryStringQuery("id:" + itemNotaRecebimento.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(itemNotaRecebimento), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(itemNotaRecebimento), PageRequest.of(0, 1), 1));
         // Search the itemNotaRecebimento
         restItemNotaRecebimentoMockMvc.perform(get("/api/_search/item-nota-recebimentos?query=id:" + itemNotaRecebimento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(itemNotaRecebimento.getId().intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeReceber").value(hasItem(DEFAULT_QUANTIDADE_RECEBER.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeConvertida").value(hasItem(DEFAULT_QUANTIDADE_CONVERTIDA)))
-                .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(itemNotaRecebimento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeReceber").value(hasItem(DEFAULT_QUANTIDADE_RECEBER.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeConvertida").value(hasItem(DEFAULT_QUANTIDADE_CONVERTIDA)))
+            .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())));
     }
 
     @Test

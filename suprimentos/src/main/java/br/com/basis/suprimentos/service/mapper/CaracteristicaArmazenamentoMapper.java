@@ -1,17 +1,12 @@
 package br.com.basis.suprimentos.service.mapper;
 
-import br.com.basis.suprimentos.domain.*;
+import br.com.basis.suprimentos.domain.CaracteristicaArmazenamento;
 import br.com.basis.suprimentos.service.dto.CaracteristicaArmazenamentoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity {@link CaracteristicaArmazenamento} and its DTO {@link CaracteristicaArmazenamentoDTO}.
- */
 @Mapper(componentModel = "spring", uses = {})
 public interface CaracteristicaArmazenamentoMapper extends EntityMapper<CaracteristicaArmazenamentoDTO, CaracteristicaArmazenamento> {
-
-
     @Mapping(target = "composicoes", ignore = true)
     @Mapping(target = "removeComposicoes", ignore = true)
     CaracteristicaArmazenamento toEntity(CaracteristicaArmazenamentoDTO caracteristicaArmazenamentoDTO);

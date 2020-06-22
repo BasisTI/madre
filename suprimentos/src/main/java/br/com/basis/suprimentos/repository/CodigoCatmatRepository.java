@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.repository;
+
 import br.com.basis.suprimentos.domain.CodigoCatmat;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 

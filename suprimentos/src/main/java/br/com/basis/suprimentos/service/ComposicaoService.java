@@ -5,9 +5,8 @@ import br.com.basis.suprimentos.repository.ComposicaoRepository;
 import br.com.basis.suprimentos.repository.search.ComposicaoSearchRepository;
 import br.com.basis.suprimentos.service.dto.ComposicaoDTO;
 import br.com.basis.suprimentos.service.mapper.ComposicaoMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,35 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-/**
- * Service Implementation for managing {@link Composicao}.
- */
+@Slf4j
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class ComposicaoService {
-
-    private final Logger log = LoggerFactory.getLogger(ComposicaoService.class);
-
     private final ComposicaoRepository composicaoRepository;
-
     private final ComposicaoMapper composicaoMapper;
-
     private final ComposicaoSearchRepository composicaoSearchRepository;
 
-    public ComposicaoService(ComposicaoRepository composicaoRepository, ComposicaoMapper composicaoMapper, ComposicaoSearchRepository composicaoSearchRepository) {
-        this.composicaoRepository = composicaoRepository;
-        this.composicaoMapper = composicaoMapper;
-        this.composicaoSearchRepository = composicaoSearchRepository;
-    }
-
-    /**
-     * Save a composicao.
-     *
-     * @param composicaoDTO the entity to save.
-     * @return the persisted entity.
-     */
     public ComposicaoDTO save(ComposicaoDTO composicaoDTO) {
         log.debug("Request to save Composicao : {}", composicaoDTO);
         Composicao composicao = composicaoMapper.toEntity(composicaoDTO);
@@ -53,12 +34,6 @@ public class ComposicaoService {
         return result;
     }
 
-    /**
-     * Get all the composicaos.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Transactional(readOnly = true)
     public Page<ComposicaoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Composicaos");
@@ -66,13 +41,6 @@ public class ComposicaoService {
             .map(composicaoMapper::toDto);
     }
 
-
-    /**
-     * Get one composicao by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
     @Transactional(readOnly = true)
     public Optional<ComposicaoDTO> findOne(Long id) {
         log.debug("Request to get Composicao : {}", id);
@@ -80,24 +48,12 @@ public class ComposicaoService {
             .map(composicaoMapper::toDto);
     }
 
-    /**
-     * Delete the composicao by id.
-     *
-     * @param id the id of the entity.
-     */
     public void delete(Long id) {
         log.debug("Request to delete Composicao : {}", id);
         composicaoRepository.deleteById(id);
         composicaoSearchRepository.deleteById(id);
     }
 
-    /**
-     * Search for the composicao corresponding to the query.
-     *
-     * @param query the query of the search.
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Transactional(readOnly = true)
     public Page<ComposicaoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Composicaos for query {}", query);

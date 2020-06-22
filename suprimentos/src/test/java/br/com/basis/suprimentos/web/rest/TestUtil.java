@@ -145,7 +145,7 @@ public final class TestUtil {
                 return true;
             } catch (DateTimeParseException e) {
                 mismatchDescription.appendText("was ").appendValue(item)
-                        .appendText(", which could not be parsed as a ZonedDateTime");
+                    .appendText(", which could not be parsed as a ZonedDateTime");
                 return false;
             }
 
