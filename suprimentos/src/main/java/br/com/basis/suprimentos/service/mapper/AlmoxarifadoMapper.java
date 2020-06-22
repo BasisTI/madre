@@ -1,16 +1,12 @@
 package br.com.basis.suprimentos.service.mapper;
 
-import br.com.basis.suprimentos.domain.*;
+import br.com.basis.suprimentos.domain.Almoxarifado;
 import br.com.basis.suprimentos.service.dto.AlmoxarifadoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity {@link Almoxarifado} and its DTO {@link AlmoxarifadoDTO}.
- */
 @Mapper(componentModel = "spring", uses = {CentroDeAtividadeMapper.class, CaracteristicaArmazenamentoMapper.class})
 public interface AlmoxarifadoMapper extends EntityMapper<AlmoxarifadoDTO, Almoxarifado> {
-
     @Mapping(source = "centroDeAtividade.id", target = "centroDeAtividadeId")
     @Mapping(source = "caracteristicaArmazenamento.id", target = "caracteristicaArmazenamentoId")
     AlmoxarifadoDTO toDto(Almoxarifado almoxarifado);

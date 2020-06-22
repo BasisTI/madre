@@ -1,12 +1,21 @@
 package br.com.basis.suprimentos.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -99,26 +108,26 @@ public class Material implements Serializable {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Material nome(String nome) {
         this.nome = nome;
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public Material descricao(String descricao) {
         this.descricao = descricao;
         return this;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Boolean isAtivo() {
@@ -138,17 +147,21 @@ public class Material implements Serializable {
         return regimento;
     }
 
+    public void setRegimento(String regimento) {
+        this.regimento = regimento;
+    }
+
     public Material regimento(String regimento) {
         this.regimento = regimento;
         return this;
     }
 
-    public void setRegimento(String regimento) {
-        this.regimento = regimento;
-    }
-
     public String getObservacao() {
         return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public Material observacao(String observacao) {
@@ -156,12 +169,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
     public Long getUnidadeId() {
         return unidadeId;
+    }
+
+    public void setUnidadeId(Long unidadeId) {
+        this.unidadeId = unidadeId;
     }
 
     public Material unidadeId(Long unidadeId) {
@@ -169,12 +182,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setUnidadeId(Long unidadeId) {
-        this.unidadeId = unidadeId;
-    }
-
     public Long getProcedimentoId() {
         return procedimentoId;
+    }
+
+    public void setProcedimentoId(Long procedimentoId) {
+        this.procedimentoId = procedimentoId;
     }
 
     public Material procedimentoId(Long procedimentoId) {
@@ -182,12 +195,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setProcedimentoId(Long procedimentoId) {
-        this.procedimentoId = procedimentoId;
-    }
-
     public UnidadeMedida getUnidadeMedida() {
         return unidadeMedida;
+    }
+
+    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
     }
 
     public Material unidadeMedida(UnidadeMedida unidadeMedida) {
@@ -195,12 +208,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
-
     public GrupoMaterial getGrupo() {
         return grupo;
+    }
+
+    public void setGrupo(GrupoMaterial grupoMaterial) {
+        this.grupo = grupoMaterial;
     }
 
     public Material grupo(GrupoMaterial grupoMaterial) {
@@ -208,12 +221,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setGrupo(GrupoMaterial grupoMaterial) {
-        this.grupo = grupoMaterial;
-    }
-
     public Almoxarifado getLocalEstoque() {
         return localEstoque;
+    }
+
+    public void setLocalEstoque(Almoxarifado almoxarifado) {
+        this.localEstoque = almoxarifado;
     }
 
     public Material localEstoque(Almoxarifado almoxarifado) {
@@ -221,12 +234,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setLocalEstoque(Almoxarifado almoxarifado) {
-        this.localEstoque = almoxarifado;
-    }
-
     public CodigoCatmat getCodigoCatmat() {
         return codigoCatmat;
+    }
+
+    public void setCodigoCatmat(CodigoCatmat codigoCatmat) {
+        this.codigoCatmat = codigoCatmat;
     }
 
     public Material codigoCatmat(CodigoCatmat codigoCatmat) {
@@ -234,12 +247,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setCodigoCatmat(CodigoCatmat codigoCatmat) {
-        this.codigoCatmat = codigoCatmat;
-    }
-
     public Sazonalidade getSazonalidade() {
         return sazonalidade;
+    }
+
+    public void setSazonalidade(Sazonalidade sazonalidade) {
+        this.sazonalidade = sazonalidade;
     }
 
     public Material sazonalidade(Sazonalidade sazonalidade) {
@@ -247,12 +260,12 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setSazonalidade(Sazonalidade sazonalidade) {
-        this.sazonalidade = sazonalidade;
-    }
-
     public TipoResiduo getTipoResiduo() {
         return tipoResiduo;
+    }
+
+    public void setTipoResiduo(TipoResiduo tipoResiduo) {
+        this.tipoResiduo = tipoResiduo;
     }
 
     public Material tipoResiduo(TipoResiduo tipoResiduo) {
@@ -260,21 +273,17 @@ public class Material implements Serializable {
         return this;
     }
 
-    public void setTipoResiduo(TipoResiduo tipoResiduo) {
-        this.tipoResiduo = tipoResiduo;
-    }
-
     public OrigemParecerTecnico getOrigemParecerTecnico() {
         return origemParecerTecnico;
+    }
+
+    public void setOrigemParecerTecnico(OrigemParecerTecnico origemParecerTecnico) {
+        this.origemParecerTecnico = origemParecerTecnico;
     }
 
     public Material origemParecerTecnico(OrigemParecerTecnico origemParecerTecnico) {
         this.origemParecerTecnico = origemParecerTecnico;
         return this;
-    }
-
-    public void setOrigemParecerTecnico(OrigemParecerTecnico origemParecerTecnico) {
-        this.origemParecerTecnico = origemParecerTecnico;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

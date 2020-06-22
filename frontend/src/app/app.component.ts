@@ -209,7 +209,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             {
                 label: 'Suprimentos',
-                icon: 'add',
+                icon: 'local_shipping',
                 items: [
                     {
                         label: 'Almoxarifado',
