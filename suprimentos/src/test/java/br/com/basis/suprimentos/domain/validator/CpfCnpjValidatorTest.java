@@ -18,7 +18,6 @@ import static org.junit.Assert.assertTrue;
 class CpfCnpjValidatorTest {
 
     Validator validator;
-    final ExpectedException exception = ExpectedException.none();
 
     @BeforeEach
     void init() {
