@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -29,6 +30,7 @@ public class DocumentoFiscalEntradaService {
 
     public DocumentoFiscalEntradaDTO save(DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO) {
         log.debug("Request to save DocumentoFiscalEntrada : {}", documentoFiscalEntradaDTO);
+        documentoFiscalEntradaDTO.setDataGeracao(LocalDate.now());
         DocumentoFiscalEntrada documentoFiscalEntrada = documentoFiscalEntradaMapper.toEntity(documentoFiscalEntradaDTO);
         documentoFiscalEntrada = documentoFiscalEntradaRepository.save(documentoFiscalEntrada);
         DocumentoFiscalEntradaDTO result = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);

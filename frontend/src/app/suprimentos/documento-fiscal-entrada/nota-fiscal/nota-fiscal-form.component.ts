@@ -56,7 +56,6 @@ export class NotaFiscalFormComponent implements OnInit {
         const dto = {
             ...this.notaFiscalForm.value,
             tipoDocumento: 'NOTA_FISCAL',
-            dataGeracao: new Date(),
         };
 
         for (let prop in dto) {

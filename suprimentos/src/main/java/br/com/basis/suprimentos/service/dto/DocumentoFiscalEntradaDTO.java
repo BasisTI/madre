@@ -30,7 +30,6 @@ public class DocumentoFiscalEntradaDTO implements Serializable {
     @Size(min = 11, max = 14)
     private String cpfCnpj;
 
-    @NotNull
     private LocalDate dataGeracao;
 
     @NotNull
