@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.service.dto;
 
+import br.com.basis.suprimentos.domain.annotation.CpfCnpj;
 import br.com.basis.suprimentos.domain.enumeration.TipoDocumento;
 import br.com.basis.suprimentos.domain.enumeration.TipoDocumentoFiscal;
 import lombok.Data;
@@ -24,11 +25,11 @@ public class DocumentoFiscalEntradaDTO implements Serializable {
     @Size(max = 120)
     private String notaEmpenho;
 
+    @CpfCnpj
     @NotNull
     @Size(min = 11, max = 14)
     private String cpfCnpj;
 
-    @NotNull
     private LocalDate dataGeracao;
 
     @NotNull

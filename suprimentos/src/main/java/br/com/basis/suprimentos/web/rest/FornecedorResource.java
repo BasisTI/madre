@@ -67,9 +67,9 @@ public class FornecedorResource {
     }
 
     @GetMapping("/fornecedores")
-    public ResponseEntity<List<FornecedorDTO>> getAllFornecedors(Pageable pageable) {
+    public ResponseEntity<List<FornecedorDTO>> getAllFornecedors(Pageable pageable, FornecedorDTO fornecedorDTO) {
         log.debug("REST request to get a page of Fornecedors");
-        Page<FornecedorDTO> page = fornecedorService.findAll(pageable);
+        Page<FornecedorDTO> page = fornecedorService.findAll(pageable, fornecedorDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

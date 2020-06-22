@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {})
 public interface CaracteristicaArmazenamentoMapper extends EntityMapper<CaracteristicaArmazenamentoDTO, CaracteristicaArmazenamento> {
     @Mapping(target = "composicoes", ignore = true)
-    @Mapping(target = "removeComposicoes", ignore = true)
     CaracteristicaArmazenamento toEntity(CaracteristicaArmazenamentoDTO caracteristicaArmazenamentoDTO);
 
     default CaracteristicaArmazenamento fromId(Long id) {

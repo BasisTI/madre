@@ -12,9 +12,9 @@ import { UnidadeMedidaService } from '@suprimentos/unidade-medida/unidade-medida
 
 @Component({
     selector: 'app-recebimento',
-    templateUrl: './recebimento.component.html',
+    templateUrl: './recebimento-form.component.html',
 })
-export class RecebimentoComponent implements OnInit {
+export class RecebimentoFormComponent implements OnInit {
     public comAutorizacaoFornecimento = true;
     public unidadesMedida: UnidadeMedida[];
     public marcasComerciais: MarcaComercial[];

@@ -14,7 +14,6 @@ public interface EstoqueAlmoxarifadoMapper extends EntityMapper<EstoqueAlmoxarif
     EstoqueAlmoxarifadoDTO toDto(EstoqueAlmoxarifado estoqueAlmoxarifado);
 
     @Mapping(target = "lotes", ignore = true)
-    @Mapping(target = "removeLotes", ignore = true)
     @Mapping(source = "almoxarifadoId", target = "almoxarifado")
     @Mapping(source = "materialId", target = "material")
     @Mapping(source = "fornecedorId", target = "fornecedor")

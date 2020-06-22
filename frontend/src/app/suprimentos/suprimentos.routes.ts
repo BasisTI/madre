@@ -1,10 +1,16 @@
-import { RecebimentoComponent } from './recebimento/recebimento.component';
+import { NotaFiscalFormComponent } from './documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
+import { RecebimentoFormComponent } from './recebimento/recebimento-form.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: 'recebimento',
-        component: RecebimentoComponent,
+        path: 'recebimentos/novo',
+        component: RecebimentoFormComponent,
         data: { breadcrumb: 'Gerar Nota de Recebimento' },
+    },
+    {
+        path: 'documentos-fiscais/notas-fiscais/nova',
+        component: NotaFiscalFormComponent,
+        data: { breadcrumb: 'Gerar Nota Fiscal' },
     },
 ];
