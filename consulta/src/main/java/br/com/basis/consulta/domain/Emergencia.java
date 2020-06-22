@@ -30,6 +30,9 @@ public class Emergencia implements Serializable {
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
+    @Column(name = "numero_consulta")
+    private Long numeroConsulta;
+
     @NotNull
     @Column(name = "data_hora_da_consulta", nullable = false)
     private ZonedDateTime dataHoraDaConsulta;
@@ -68,6 +71,9 @@ public class Emergencia implements Serializable {
     @Column(name = "observacoes", length = 240)
     private String observacoes;
 
+    @Column(name = "paciente_id")
+    private Long pacienteId;
+
     @OneToOne
     @JoinColumn(unique = true)
     private CondicaoDeAtendimento condicaoDeAtendimento;
@@ -83,6 +89,19 @@ public class Emergencia implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getNumeroConsulta() {
+        return numeroConsulta;
+    }
+
+    public Emergencia numeroConsulta(Long numeroConsulta) {
+        this.numeroConsulta = numeroConsulta;
+        return this;
+    }
+
+    public void setNumeroConsulta(Long numeroConsulta) {
+        this.numeroConsulta = numeroConsulta;
     }
 
     public ZonedDateTime getDataHoraDaConsulta() {
@@ -215,6 +234,19 @@ public class Emergencia implements Serializable {
         this.observacoes = observacoes;
     }
 
+    public Long getPacienteId() {
+        return pacienteId;
+    }
+
+    public Emergencia pacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
+        return this;
+    }
+
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
+    }
+
     public CondicaoDeAtendimento getCondicaoDeAtendimento() {
         return condicaoDeAtendimento;
     }
@@ -262,6 +294,7 @@ public class Emergencia implements Serializable {
     public String toString() {
         return "Emergencia{" +
             "id=" + getId() +
+            ", numeroConsulta=" + getNumeroConsulta() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
             ", grade=" + getGrade() +
             ", profissional='" + getProfissional() + "'" +
@@ -272,6 +305,7 @@ public class Emergencia implements Serializable {
             ", clinicaCentralId=" + getClinicaCentralId() +
             ", justificativa='" + getJustificativa() + "'" +
             ", observacoes='" + getObservacoes() + "'" +
+            ", pacienteId=" + getPacienteId() +
             "}";
     }
 }

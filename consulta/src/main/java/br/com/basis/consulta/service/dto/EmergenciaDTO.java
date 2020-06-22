@@ -13,6 +13,8 @@ public class EmergenciaDTO implements Serializable {
 
     private Long id;
 
+    private Long numeroConsulta;
+
     @NotNull
     private ZonedDateTime dataHoraDaConsulta;
 
@@ -39,6 +41,8 @@ public class EmergenciaDTO implements Serializable {
     @Size(max = 240)
     private String observacoes;
 
+    private Long pacienteId;
+
 
     private Long condicaoDeAtendimentoId;
 
@@ -50,6 +54,14 @@ public class EmergenciaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getNumeroConsulta() {
+        return numeroConsulta;
+    }
+
+    public void setNumeroConsulta(Long numeroConsulta) {
+        this.numeroConsulta = numeroConsulta;
     }
 
     public ZonedDateTime getDataHoraDaConsulta() {
@@ -132,6 +144,14 @@ public class EmergenciaDTO implements Serializable {
         this.observacoes = observacoes;
     }
 
+    public Long getPacienteId() {
+        return pacienteId;
+    }
+
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
+    }
+
     public Long getCondicaoDeAtendimentoId() {
         return condicaoDeAtendimentoId;
     }
@@ -173,6 +193,7 @@ public class EmergenciaDTO implements Serializable {
     public String toString() {
         return "EmergenciaDTO{" +
             "id=" + getId() +
+            ", numeroConsulta=" + getNumeroConsulta() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
             ", grade=" + getGrade() +
             ", profissional='" + getProfissional() + "'" +
@@ -183,6 +204,7 @@ public class EmergenciaDTO implements Serializable {
             ", clinicaCentralId=" + getClinicaCentralId() +
             ", justificativa='" + getJustificativa() + "'" +
             ", observacoes='" + getObservacoes() + "'" +
+            ", pacienteId=" + getPacienteId() +
             ", condicaoDeAtendimento=" + getCondicaoDeAtendimentoId() +
             ", formaDeAgendamento=" + getFormaDeAgendamentoId() +
             "}";

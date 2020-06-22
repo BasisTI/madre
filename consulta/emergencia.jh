@@ -6,6 +6,7 @@ relationship OneToOne{
 
 entity Emergencia {
 
+    numeroConsulta Long
     dataHoraDaConsulta ZonedDateTime required
     //dia da semana: calculo dataHoraDaConsulta
     grade Long max (20)
@@ -17,6 +18,7 @@ entity Emergencia {
     clinicaCentralId Long
     justificativa String maxlength (240)
     observacoes String maxlength (240)
+    pacienteId Long
     //formaDeAgendamento = autorizacao
     //especialidade vai consumir de Internacao
     //equipe vai consumir de Internacao
@@ -33,11 +35,6 @@ entity FormaDeAgendamento {
 	numeroAutorizacao Long required
 	autorizacao String required
 }
-
-entity Entidade {
-   pacienteId Long
-}
-
 
 enum TipoPagador {
   SUS,

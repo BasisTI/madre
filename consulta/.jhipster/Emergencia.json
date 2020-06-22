@@ -2,6 +2,10 @@
     "name": "Emergencia",
     "fields": [
         {
+            "fieldName": "numeroConsulta",
+            "fieldType": "Long"
+        },
+        {
             "fieldName": "dataHoraDaConsulta",
             "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
@@ -65,6 +69,10 @@
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "240"
+        },
+        {
+            "fieldName": "pacienteId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [

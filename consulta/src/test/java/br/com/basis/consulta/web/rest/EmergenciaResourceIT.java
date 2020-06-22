@@ -49,6 +49,9 @@ import br.com.basis.consulta.domain.enumeration.TipoPagador;
 @SpringBootTest(classes = MadreconsultaApp.class)
 public class EmergenciaResourceIT {
 
+    private static final Long DEFAULT_NUMERO_CONSULTA = 1L;
+    private static final Long UPDATED_NUMERO_CONSULTA = 2L;
+
     private static final ZonedDateTime DEFAULT_DATA_HORA_DA_CONSULTA = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATA_HORA_DA_CONSULTA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -78,6 +81,9 @@ public class EmergenciaResourceIT {
 
     private static final String DEFAULT_OBSERVACOES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACOES = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_PACIENTE_ID = 1L;
+    private static final Long UPDATED_PACIENTE_ID = 2L;
 
     @Autowired
     private EmergenciaRepository emergenciaRepository;
@@ -135,6 +141,7 @@ public class EmergenciaResourceIT {
      */
     public static Emergencia createEntity(EntityManager em) {
         Emergencia emergencia = new Emergencia()
+            .numeroConsulta(DEFAULT_NUMERO_CONSULTA)
             .dataHoraDaConsulta(DEFAULT_DATA_HORA_DA_CONSULTA)
             .grade(DEFAULT_GRADE)
             .profissional(DEFAULT_PROFISSIONAL)
@@ -144,7 +151,8 @@ public class EmergenciaResourceIT {
             .gradesDisponiveis(DEFAULT_GRADES_DISPONIVEIS)
             .clinicaCentralId(DEFAULT_CLINICA_CENTRAL_ID)
             .justificativa(DEFAULT_JUSTIFICATIVA)
-            .observacoes(DEFAULT_OBSERVACOES);
+            .observacoes(DEFAULT_OBSERVACOES)
+            .pacienteId(DEFAULT_PACIENTE_ID);
         return emergencia;
     }
     /**
@@ -155,6 +163,7 @@ public class EmergenciaResourceIT {
      */
     public static Emergencia createUpdatedEntity(EntityManager em) {
         Emergencia emergencia = new Emergencia()
+            .numeroConsulta(UPDATED_NUMERO_CONSULTA)
             .dataHoraDaConsulta(UPDATED_DATA_HORA_DA_CONSULTA)
             .grade(UPDATED_GRADE)
             .profissional(UPDATED_PROFISSIONAL)
@@ -164,7 +173,8 @@ public class EmergenciaResourceIT {
             .gradesDisponiveis(UPDATED_GRADES_DISPONIVEIS)
             .clinicaCentralId(UPDATED_CLINICA_CENTRAL_ID)
             .justificativa(UPDATED_JUSTIFICATIVA)
-            .observacoes(UPDATED_OBSERVACOES);
+            .observacoes(UPDATED_OBSERVACOES)
+            .pacienteId(UPDATED_PACIENTE_ID);
         return emergencia;
     }
 
@@ -189,6 +199,7 @@ public class EmergenciaResourceIT {
         List<Emergencia> emergenciaList = emergenciaRepository.findAll();
         assertThat(emergenciaList).hasSize(databaseSizeBeforeCreate + 1);
         Emergencia testEmergencia = emergenciaList.get(emergenciaList.size() - 1);
+        assertThat(testEmergencia.getNumeroConsulta()).isEqualTo(DEFAULT_NUMERO_CONSULTA);
         assertThat(testEmergencia.getDataHoraDaConsulta()).isEqualTo(DEFAULT_DATA_HORA_DA_CONSULTA);
         assertThat(testEmergencia.getGrade()).isEqualTo(DEFAULT_GRADE);
         assertThat(testEmergencia.getProfissional()).isEqualTo(DEFAULT_PROFISSIONAL);
@@ -199,6 +210,7 @@ public class EmergenciaResourceIT {
         assertThat(testEmergencia.getClinicaCentralId()).isEqualTo(DEFAULT_CLINICA_CENTRAL_ID);
         assertThat(testEmergencia.getJustificativa()).isEqualTo(DEFAULT_JUSTIFICATIVA);
         assertThat(testEmergencia.getObservacoes()).isEqualTo(DEFAULT_OBSERVACOES);
+        assertThat(testEmergencia.getPacienteId()).isEqualTo(DEFAULT_PACIENTE_ID);
 
         // Validate the Emergencia in Elasticsearch
         verify(mockEmergenciaSearchRepository, times(1)).save(testEmergencia);
@@ -258,6 +270,7 @@ public class EmergenciaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(emergencia.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numeroConsulta").value(hasItem(DEFAULT_NUMERO_CONSULTA.intValue())))
             .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA))))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.intValue())))
             .andExpect(jsonPath("$.[*].profissional").value(hasItem(DEFAULT_PROFISSIONAL)))
@@ -267,7 +280,8 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.[*].gradesDisponiveis").value(hasItem(DEFAULT_GRADES_DISPONIVEIS.booleanValue())))
             .andExpect(jsonPath("$.[*].clinicaCentralId").value(hasItem(DEFAULT_CLINICA_CENTRAL_ID.intValue())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)))
-            .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)));
+            .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)))
+            .andExpect(jsonPath("$.[*].pacienteId").value(hasItem(DEFAULT_PACIENTE_ID.intValue())));
     }
     
     @Test
@@ -281,6 +295,7 @@ public class EmergenciaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(emergencia.getId().intValue()))
+            .andExpect(jsonPath("$.numeroConsulta").value(DEFAULT_NUMERO_CONSULTA.intValue()))
             .andExpect(jsonPath("$.dataHoraDaConsulta").value(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA)))
             .andExpect(jsonPath("$.grade").value(DEFAULT_GRADE.intValue()))
             .andExpect(jsonPath("$.profissional").value(DEFAULT_PROFISSIONAL))
@@ -290,7 +305,8 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.gradesDisponiveis").value(DEFAULT_GRADES_DISPONIVEIS.booleanValue()))
             .andExpect(jsonPath("$.clinicaCentralId").value(DEFAULT_CLINICA_CENTRAL_ID.intValue()))
             .andExpect(jsonPath("$.justificativa").value(DEFAULT_JUSTIFICATIVA))
-            .andExpect(jsonPath("$.observacoes").value(DEFAULT_OBSERVACOES));
+            .andExpect(jsonPath("$.observacoes").value(DEFAULT_OBSERVACOES))
+            .andExpect(jsonPath("$.pacienteId").value(DEFAULT_PACIENTE_ID.intValue()));
     }
 
     @Test
@@ -314,6 +330,7 @@ public class EmergenciaResourceIT {
         // Disconnect from session so that the updates on updatedEmergencia are not directly saved in db
         em.detach(updatedEmergencia);
         updatedEmergencia
+            .numeroConsulta(UPDATED_NUMERO_CONSULTA)
             .dataHoraDaConsulta(UPDATED_DATA_HORA_DA_CONSULTA)
             .grade(UPDATED_GRADE)
             .profissional(UPDATED_PROFISSIONAL)
@@ -323,7 +340,8 @@ public class EmergenciaResourceIT {
             .gradesDisponiveis(UPDATED_GRADES_DISPONIVEIS)
             .clinicaCentralId(UPDATED_CLINICA_CENTRAL_ID)
             .justificativa(UPDATED_JUSTIFICATIVA)
-            .observacoes(UPDATED_OBSERVACOES);
+            .observacoes(UPDATED_OBSERVACOES)
+            .pacienteId(UPDATED_PACIENTE_ID);
         EmergenciaDTO emergenciaDTO = emergenciaMapper.toDto(updatedEmergencia);
 
         restEmergenciaMockMvc.perform(put("/api/emergencias")
@@ -335,6 +353,7 @@ public class EmergenciaResourceIT {
         List<Emergencia> emergenciaList = emergenciaRepository.findAll();
         assertThat(emergenciaList).hasSize(databaseSizeBeforeUpdate);
         Emergencia testEmergencia = emergenciaList.get(emergenciaList.size() - 1);
+        assertThat(testEmergencia.getNumeroConsulta()).isEqualTo(UPDATED_NUMERO_CONSULTA);
         assertThat(testEmergencia.getDataHoraDaConsulta()).isEqualTo(UPDATED_DATA_HORA_DA_CONSULTA);
         assertThat(testEmergencia.getGrade()).isEqualTo(UPDATED_GRADE);
         assertThat(testEmergencia.getProfissional()).isEqualTo(UPDATED_PROFISSIONAL);
@@ -345,6 +364,7 @@ public class EmergenciaResourceIT {
         assertThat(testEmergencia.getClinicaCentralId()).isEqualTo(UPDATED_CLINICA_CENTRAL_ID);
         assertThat(testEmergencia.getJustificativa()).isEqualTo(UPDATED_JUSTIFICATIVA);
         assertThat(testEmergencia.getObservacoes()).isEqualTo(UPDATED_OBSERVACOES);
+        assertThat(testEmergencia.getPacienteId()).isEqualTo(UPDATED_PACIENTE_ID);
 
         // Validate the Emergencia in Elasticsearch
         verify(mockEmergenciaSearchRepository, times(1)).save(testEmergencia);
@@ -405,6 +425,7 @@ public class EmergenciaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(emergencia.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numeroConsulta").value(hasItem(DEFAULT_NUMERO_CONSULTA.intValue())))
             .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA))))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.intValue())))
             .andExpect(jsonPath("$.[*].profissional").value(hasItem(DEFAULT_PROFISSIONAL)))
@@ -414,7 +435,8 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.[*].gradesDisponiveis").value(hasItem(DEFAULT_GRADES_DISPONIVEIS.booleanValue())))
             .andExpect(jsonPath("$.[*].clinicaCentralId").value(hasItem(DEFAULT_CLINICA_CENTRAL_ID.intValue())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)))
-            .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)));
+            .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)))
+            .andExpect(jsonPath("$.[*].pacienteId").value(hasItem(DEFAULT_PACIENTE_ID.intValue())));
     }
 
     @Test
