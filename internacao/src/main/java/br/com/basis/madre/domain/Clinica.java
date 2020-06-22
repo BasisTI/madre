@@ -1,5 +1,4 @@
 package br.com.basis.madre.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,10 +27,6 @@ public class Clinica implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @ManyToOne
-    @JsonIgnoreProperties("clinicas")
-    private Unidade unidade;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -52,19 +47,6 @@ public class Clinica implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Unidade getUnidade() {
-        return unidade;
-    }
-
-    public Clinica unidade(Unidade unidade) {
-        this.unidade = unidade;
-        return this;
-    }
-
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

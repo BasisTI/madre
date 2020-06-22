@@ -30,10 +30,6 @@ public class FormularioUnidadeDTO implements Serializable {
 
     private Long idAlmoxarifado;
 
-    private Long ala;
-
-    private Long clinica;
-
     @NotNull
     private Integer andar;
 
@@ -59,6 +55,10 @@ public class FormularioUnidadeDTO implements Serializable {
 
     private Long unidadePaiId;
 
+    private Long alaId;
+
+    private Long clinicaId;
+
     private Long tipoUnidadeId;
 
     private PrescricaoDTO prescricaoEnfermagem;
@@ -66,6 +66,8 @@ public class FormularioUnidadeDTO implements Serializable {
     private PrescricaoDTO prescricaoMedica;
 
     private CirurgiaDTO cirurgia;
+
+    private Set<CaracteristicaDTO> caracteristicas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -113,22 +115,6 @@ public class FormularioUnidadeDTO implements Serializable {
 
     public void setIdAlmoxarifado(Long idAlmoxarifado) {
         this.idAlmoxarifado = idAlmoxarifado;
-    }
-
-    public Long getAla() {
-        return ala;
-    }
-
-    public void setAla(Long ala) {
-        this.ala = ala;
-    }
-
-    public Long getClinica() {
-        return clinica;
-    }
-
-    public void setClinica(Long clinica) {
-        this.clinica = clinica;
     }
 
     public Integer getAndar() {
@@ -219,6 +205,22 @@ public class FormularioUnidadeDTO implements Serializable {
         this.unidadePaiId = unidadePaiId;
     }
 
+    public Long getAlaId() {
+        return alaId;
+    }
+
+    public void setAlaId(Long alaId) {
+        this.alaId = alaId;
+    }
+
+    public Long getClinicaId() {
+        return clinicaId;
+    }
+
+    public void setClinicaId(Long clinicaId) {
+        this.clinicaId = clinicaId;
+    }
+
     public Long getTipoUnidadeId() {
         return tipoUnidadeId;
     }
@@ -251,6 +253,14 @@ public class FormularioUnidadeDTO implements Serializable {
         this.cirurgia = cirurgia;
     }
 
+    public Set<CaracteristicaDTO> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(Set<CaracteristicaDTO> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -260,7 +270,7 @@ public class FormularioUnidadeDTO implements Serializable {
             return false;
         }
 
-        FormularioUnidadeDTO unidadeDTO = (FormularioUnidadeDTO) o;
+        UnidadeDTO unidadeDTO = (UnidadeDTO) o;
         if (unidadeDTO.getId() == null || getId() == null) {
             return false;
         }
@@ -281,8 +291,6 @@ public class FormularioUnidadeDTO implements Serializable {
             ", situacao=" + situacao +
             ", controleDeEstoque=" + controleDeEstoque +
             ", idAlmoxarifado=" + idAlmoxarifado +
-            ", ala=" + ala +
-            ", clinica=" + clinica +
             ", andar=" + andar +
             ", capacidade=" + capacidade +
             ", horarioInicio=" + horarioInicio +
@@ -294,10 +302,13 @@ public class FormularioUnidadeDTO implements Serializable {
             ", idCentroDeAtividade=" + idCentroDeAtividade +
             ", idChefia=" + idChefia +
             ", unidadePaiId=" + unidadePaiId +
+            ", alaId=" + alaId +
+            ", clinicaId=" + clinicaId +
             ", tipoUnidadeId=" + tipoUnidadeId +
-            ", prescricaoEnfermagem=" + prescricaoEnfermagem +
-            ", prescricaoMedica=" + prescricaoMedica +
-            ", cirurgia=" + cirurgia +
+            ", prescricaoEnfermagemId=" + prescricaoEnfermagem +
+            ", prescricaoMedicaId=" + prescricaoMedica +
+            ", cirurgiaId=" + cirurgia +
+            ", caracteristicas=" + caracteristicas +
             '}';
     }
 }

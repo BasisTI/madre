@@ -71,6 +71,15 @@ public class UnidadeService {
             .map(unidadeMapper::toDto);
     }
 
+    /**
+     * Get all the unidades with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<UnidadeDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return unidadeRepository.findAllWithEagerRelationships(pageable).map(unidadeMapper::toDto);
+    }
+
 
     /**
      * Get one unidade by id.
@@ -81,7 +90,7 @@ public class UnidadeService {
     @Transactional(readOnly = true)
     public Optional<UnidadeDTO> findOne(Long id) {
         log.debug("Request to get Unidade : {}", id);
-        return unidadeRepository.findById(id)
+        return unidadeRepository.findOneWithEagerRelationships(id)
             .map(unidadeMapper::toDto);
     }
 

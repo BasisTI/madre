@@ -45,9 +45,9 @@ export class CadastroUnidadesComponent implements OnInit {
         controleDeEstoque: [null],
         idAlmoxarifado: [null],
         andar: [null, Validators.required],
-        ala: [null],
+        alaId: [null],
         capacidade: [null],
-        clinica: [null],
+        clinicaId: [null],
         horarioInicio: [null],
         horarioFim: [null],
         localExame: [null],
@@ -127,8 +127,8 @@ export class CadastroUnidadesComponent implements OnInit {
             idAlmoxarifado: unidadeFuncional.idAlmoxarifado
                 ? unidadeFuncional.idAlmoxarifado.id
                 : null,
-            ala: unidadeFuncional.ala ? unidadeFuncional.ala.id : null,
-            clinica: unidadeFuncional.clinica ? unidadeFuncional.clinica.id : null,
+            alaId: unidadeFuncional.alaId ? unidadeFuncional.alaId.id : null,
+            clinicaId: unidadeFuncional.clinicaId ? unidadeFuncional.clinicaId.id : null,
             andar: unidadeFuncional.andar,
             capacidade: unidadeFuncional.capacidade,
             horarioInicio: unidadeFuncional.horarioInicio,

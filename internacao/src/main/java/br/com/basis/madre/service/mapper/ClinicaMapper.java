@@ -8,14 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Clinica} and its DTO {@link ClinicaDTO}.
  */
-@Mapper(componentModel = "spring", uses = {UnidadeMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface ClinicaMapper extends EntityMapper<ClinicaDTO, Clinica> {
 
-    @Mapping(source = "unidade.id", target = "unidadeId")
-    ClinicaDTO toDto(Clinica clinica);
 
-    @Mapping(source = "unidadeId", target = "unidade")
-    Clinica toEntity(ClinicaDTO clinicaDTO);
 
     default Clinica fromId(Long id) {
         if (id == null) {

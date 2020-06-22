@@ -1,3 +1,4 @@
+import { Caracteristica } from './dropwdowns/caracteristicas';
 import { Cirurgia } from './Cirurgia';
 import { Prescricao } from './Prescricao';
 export class Unidade {
@@ -8,8 +9,8 @@ export class Unidade {
         public situacao?: string,
         public controleDeEstoque?: boolean,
         public idAlmoxarifado?: number,
-        public ala?: number,
-        public clinica?: number,
+        public alaId?: number,
+        public clinicaId?: number,
         public andar?: number,
         public capacidade?: number,
         public horarioInicio?: Date,
@@ -25,5 +26,6 @@ export class Unidade {
         public prescricaoEnfermagem?: Prescricao,
         public prescricaoMedica?: Prescricao,
         public cirurgia?: Cirurgia,
+        public caracteristicas?: Caracteristica[],
     ) {}
 }

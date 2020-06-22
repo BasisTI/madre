@@ -6,15 +6,7 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "unidade",
-            "otherEntityRelationshipName": "ala",
-            "relationshipName": "unidade",
-            "otherEntityField": "id"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20200616160418",
     "entityTableName": "ala",
     "dto": "mapstruct",

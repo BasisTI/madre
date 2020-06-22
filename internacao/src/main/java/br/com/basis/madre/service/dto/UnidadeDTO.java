@@ -2,6 +2,8 @@ package br.com.basis.madre.service.dto;
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.Situacao;
 
@@ -50,6 +52,10 @@ public class UnidadeDTO implements Serializable {
 
     private Long unidadePaiId;
 
+    private Long alaId;
+
+    private Long clinicaId;
+
     private Long tipoUnidadeId;
 
     private Long prescricaoEnfermagemId;
@@ -57,6 +63,8 @@ public class UnidadeDTO implements Serializable {
     private Long prescricaoMedicaId;
 
     private Long cirurgiaId;
+
+    private Set<CaracteristicaDTO> caracteristicas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -194,6 +202,22 @@ public class UnidadeDTO implements Serializable {
         this.unidadePaiId = unidadeId;
     }
 
+    public Long getAlaId() {
+        return alaId;
+    }
+
+    public void setAlaId(Long alaId) {
+        this.alaId = alaId;
+    }
+
+    public Long getClinicaId() {
+        return clinicaId;
+    }
+
+    public void setClinicaId(Long clinicaId) {
+        this.clinicaId = clinicaId;
+    }
+
     public Long getTipoUnidadeId() {
         return tipoUnidadeId;
     }
@@ -224,6 +248,14 @@ public class UnidadeDTO implements Serializable {
 
     public void setCirurgiaId(Long cirurgiaId) {
         this.cirurgiaId = cirurgiaId;
+    }
+
+    public Set<CaracteristicaDTO> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(Set<CaracteristicaDTO> caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
 
     @Override
@@ -267,6 +299,8 @@ public class UnidadeDTO implements Serializable {
             ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
             ", idChefia=" + getIdChefia() +
             ", unidadePai=" + getUnidadePaiId() +
+            ", ala=" + getAlaId() +
+            ", clinica=" + getClinicaId() +
             ", tipoUnidade=" + getTipoUnidadeId() +
             ", prescricaoEnfermagem=" + getPrescricaoEnfermagemId() +
             ", prescricaoMedica=" + getPrescricaoMedicaId() +

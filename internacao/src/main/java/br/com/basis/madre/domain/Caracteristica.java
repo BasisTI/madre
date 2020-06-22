@@ -1,5 +1,5 @@
 package br.com.basis.madre.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Caracteristica.
@@ -28,9 +30,10 @@ public class Caracteristica implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @ManyToOne
-    @JsonIgnoreProperties("caracteristicas")
-    private Unidade unidade;
+    @ManyToMany(mappedBy = "caracteristicas")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Unidade> unidades = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -54,17 +57,29 @@ public class Caracteristica implements Serializable {
         this.nome = nome;
     }
 
-    public Unidade getUnidade() {
-        return unidade;
+    public Set<Unidade> getUnidades() {
+        return unidades;
     }
 
-    public Caracteristica unidade(Unidade unidade) {
-        this.unidade = unidade;
+    public Caracteristica unidades(Set<Unidade> unidades) {
+        this.unidades = unidades;
         return this;
     }
 
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
+    public Caracteristica addUnidade(Unidade unidade) {
+        this.unidades.add(unidade);
+        unidade.getCaracteristicas().add(this);
+        return this;
+    }
+
+    public Caracteristica removeUnidade(Unidade unidade) {
+        this.unidades.remove(unidade);
+        unidade.getCaracteristicas().remove(this);
+        return this;
+    }
+
+    public void setUnidades(Set<Unidade> unidades) {
+        this.unidades = unidades;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

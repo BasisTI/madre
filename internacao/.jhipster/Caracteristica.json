@@ -8,11 +8,12 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "unidade",
             "otherEntityRelationshipName": "caracteristica",
             "relationshipName": "unidade",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20200616160421",

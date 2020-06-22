@@ -88,10 +88,18 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "caracteristica",
+            "relationshipType": "many-to-one",
+            "otherEntityName": "ala",
             "otherEntityRelationshipName": "unidade",
-            "relationshipName": "caracteristica"
+            "relationshipName": "ala",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "clinica",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "clinica",
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
@@ -123,16 +131,12 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "ala",
+            "relationshipType": "many-to-many",
+            "otherEntityName": "caracteristica",
             "otherEntityRelationshipName": "unidade",
-            "relationshipName": "ala"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "clinica",
-            "otherEntityRelationshipName": "unidade",
-            "relationshipName": "clinica"
+            "relationshipName": "caracteristica",
+            "otherEntityField": "id",
+            "ownerSide": true
         }
     ],
     "changelogDate": "20200616160417",

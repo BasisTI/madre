@@ -12,6 +12,7 @@ import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,7 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -94,8 +96,14 @@ public class UnidadeResourceIT {
     @Autowired
     private UnidadeRepository unidadeRepository;
 
+    @Mock
+    private UnidadeRepository unidadeRepositoryMock;
+
     @Autowired
     private UnidadeMapper unidadeMapper;
+
+    @Mock
+    private UnidadeService unidadeServiceMock;
 
     @Autowired
     private UnidadeService unidadeService;
@@ -398,6 +406,39 @@ public class UnidadeResourceIT {
             .andExpect(jsonPath("$.[*].idChefia").value(hasItem(DEFAULT_ID_CHEFIA.intValue())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllUnidadesWithEagerRelationshipsIsEnabled() throws Exception {
+        UnidadeResource unidadeResource = new UnidadeResource(unidadeServiceMock);
+        when(unidadeServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restUnidadeMockMvc = MockMvcBuilders.standaloneSetup(unidadeResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restUnidadeMockMvc.perform(get("/api/unidades?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(unidadeServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllUnidadesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        UnidadeResource unidadeResource = new UnidadeResource(unidadeServiceMock);
+            when(unidadeServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restUnidadeMockMvc = MockMvcBuilders.standaloneSetup(unidadeResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restUnidadeMockMvc.perform(get("/api/unidades?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(unidadeServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getUnidade() throws Exception {

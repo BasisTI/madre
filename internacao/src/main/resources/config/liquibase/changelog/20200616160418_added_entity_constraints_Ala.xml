@@ -6,13 +6,5 @@
     <!--
         Added the constraints for entity Ala.
     -->
-    <changeSet id="20200616160418-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="unidade_id"
-                                 baseTableName="ala"
-                                 constraintName="fk_ala_unidade_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="unidade"/>
 
-    </changeSet>
 </databaseChangeLog>

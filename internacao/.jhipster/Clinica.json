@@ -6,15 +6,7 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "unidade",
-            "otherEntityRelationshipName": "clinica",
-            "relationshipName": "unidade",
-            "otherEntityField": "id"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20200616160419",
     "entityTableName": "clinica",
     "dto": "mapstruct",

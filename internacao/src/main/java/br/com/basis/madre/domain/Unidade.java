@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import org.hibernate.annotations.Cascade;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
@@ -87,9 +86,13 @@ public class Unidade implements Serializable {
     @JoinColumn(unique = true)
     private Unidade unidadePai;
 
-    @OneToMany(mappedBy = "unidade")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Caracteristica> caracteristicas = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("unidades")
+    private Ala ala;
+
+    @ManyToOne
+    @JsonIgnoreProperties("unidades")
+    private Clinica clinica;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -108,13 +111,12 @@ public class Unidade implements Serializable {
     @JsonIgnoreProperties("unidades")
     private Cirurgia cirurgia;
 
-    @OneToMany(mappedBy = "unidade")
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Ala> alas = new HashSet<>();
-
-    @OneToMany(mappedBy = "unidade")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Clinica> clinicas = new HashSet<>();
+    @JoinTable(name = "unidade_caracteristica",
+               joinColumns = @JoinColumn(name = "unidade_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "caracteristica_id", referencedColumnName = "id"))
+    private Set<Caracteristica> caracteristicas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -333,29 +335,30 @@ public class Unidade implements Serializable {
         this.unidadePai = unidade;
     }
 
-    public Set<Caracteristica> getCaracteristicas() {
-        return caracteristicas;
+    public Ala getAla() {
+        return ala;
     }
 
-    public Unidade caracteristicas(Set<Caracteristica> caracteristicas) {
-        this.caracteristicas = caracteristicas;
+    public Unidade ala(Ala ala) {
+        this.ala = ala;
         return this;
     }
 
-    public Unidade addCaracteristica(Caracteristica caracteristica) {
-        this.caracteristicas.add(caracteristica);
-        caracteristica.setUnidade(this);
+    public void setAla(Ala ala) {
+        this.ala = ala;
+    }
+
+    public Clinica getClinica() {
+        return clinica;
+    }
+
+    public Unidade clinica(Clinica clinica) {
+        this.clinica = clinica;
         return this;
     }
 
-    public Unidade removeCaracteristica(Caracteristica caracteristica) {
-        this.caracteristicas.remove(caracteristica);
-        caracteristica.setUnidade(null);
-        return this;
-    }
-
-    public void setCaracteristicas(Set<Caracteristica> caracteristicas) {
-        this.caracteristicas = caracteristicas;
+    public void setClinica(Clinica clinica) {
+        this.clinica = clinica;
     }
 
     public TipoUnidade getTipoUnidade() {
@@ -410,54 +413,29 @@ public class Unidade implements Serializable {
         this.cirurgia = cirurgia;
     }
 
-    public Set<Ala> getAlas() {
-        return alas;
+    public Set<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
     }
 
-    public Unidade alas(Set<Ala> alas) {
-        this.alas = alas;
+    public Unidade caracteristicas(Set<Caracteristica> caracteristicas) {
+        this.caracteristicas = caracteristicas;
         return this;
     }
 
-    public Unidade addAla(Ala ala) {
-        this.alas.add(ala);
-        ala.setUnidade(this);
+    public Unidade addCaracteristica(Caracteristica caracteristica) {
+        this.caracteristicas.add(caracteristica);
+        caracteristica.getUnidades().add(this);
         return this;
     }
 
-    public Unidade removeAla(Ala ala) {
-        this.alas.remove(ala);
-        ala.setUnidade(null);
+    public Unidade removeCaracteristica(Caracteristica caracteristica) {
+        this.caracteristicas.remove(caracteristica);
+        caracteristica.getUnidades().remove(this);
         return this;
     }
 
-    public void setAlas(Set<Ala> alas) {
-        this.alas = alas;
-    }
-
-    public Set<Clinica> getClinicas() {
-        return clinicas;
-    }
-
-    public Unidade clinicas(Set<Clinica> clinicas) {
-        this.clinicas = clinicas;
-        return this;
-    }
-
-    public Unidade addClinica(Clinica clinica) {
-        this.clinicas.add(clinica);
-        clinica.setUnidade(this);
-        return this;
-    }
-
-    public Unidade removeClinica(Clinica clinica) {
-        this.clinicas.remove(clinica);
-        clinica.setUnidade(null);
-        return this;
-    }
-
-    public void setClinicas(Set<Clinica> clinicas) {
-        this.clinicas = clinicas;
+    public void setCaracteristicas(Set<Caracteristica> caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

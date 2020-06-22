@@ -66,13 +66,13 @@ relationship OneToOne {
 
 }
 
-relationship OneToMany {
+relationship ManyToMany {
 	Unidade to Caracteristica
 }
 
 relationship ManyToOne {
-	Ala to Unidade,
-    Clinica to Unidade,
+	Unidade {ala} to Ala,
+    Unidade {clinica} to Clinica,
     Unidade {tipoUnidade required} to TipoUnidade,
     Unidade {prescricaoEnfermagem} to Prescricao,
     Unidade {prescricaoMedica} to Prescricao

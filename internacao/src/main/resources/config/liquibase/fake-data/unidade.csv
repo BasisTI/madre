@@ -1,11 +1,11 @@
 id;descricao;sigla;situacao;controle_de_estoque;id_almoxarifado;andar;capacidade;horario_inicio;horario_fim;local_exame;rotina_de_funcionamento;anexo_documento;setor;id_centro_de_atividade;id_chefia;tipo_unidade_id
-1;mobile Fish;Home Loan Account Table Computer;ATIVO;false;60111;14286;70807;2020-06-18T02:11:34;2020-06-18T17:19:12;Producer;Implementation Electronics Officer;true;30424;61165;52475;1
-2;web-readiness;Namibia;ATIVO;false;23277;45606;9060;2020-06-17T22:58:12;2020-06-18T02:58:22;syndicate;Mississippi Refined Rubber Chicken Table;false;1326;94888;94220;2
-3;South Dakota envisioneer Music;Nakfa;ATIVO;true;3438;17336;90932;2020-06-18T08:25:43;2020-06-18T11:36:12;invoice;convergence;false;54671;56770;18485;3
-4;Facilitator;Views e-enable Communications;ATIVO;false;96117;32533;84453;2020-06-18T08:29:09;2020-06-17T23:52:43;South Georgia and the South Sandwich Islands;compelling mission-critical;true;27599;14092;29627;4
-5;Car Industrial deliverables;orange Books;ATIVO;true;7404;92630;35846;2020-06-18T02:11:18;2020-06-18T15:01:59;IB Investment Account archive;envisioneer;true;32518;66592;72960;5
-6;withdrawal COM;embrace Developer;ATIVO;false;4043;52273;71066;2020-06-18T07:33:11;2020-06-18T15:09:09;partnerships;Outdoors;true;47537;31435;56327;6
-7;European Unit of Account 9(E.U.A.-9) Concrete;relationships override;ATIVO;true;28975;69478;16122;2020-06-17T20:40:59;2020-06-17T19:30:05;virtual deposit;Squares mint green e-business;true;53934;32434;80744;7
-8;National;Direct;INATIVO;false;52;81801;35256;2020-06-17T21:09:24;2020-06-18T10:29:58;Hat;supply-chains magenta;false;26941;33761;24412;8
-9;Gloves sky blue Oklahoma;robust Engineer;INATIVO;false;28484;99774;3688;2020-06-18T11:24:41;2020-06-18T03:11:05;Berkshire Small Plastic Pants Investor;Canadian Dollar;true;48945;44778;98565;9
-10;Persistent Bulgarian Lev;24/7 Re-contextualized cross-platform;INATIVO;true;81643;9028;79834;2020-06-17T21:46:01;2020-06-18T14:11:48;Bedfordshire;Refined Rubber Gloves Algerian Dinar Clothing;true;80950;22649;34866;10
+1;mobile Fish;Home Loan Account Table Computer;INATIVO;false;60111;14286;70807;2020-06-22T05:36:21;2020-06-22T20:43:59;Producer;Implementation Electronics Officer;true;30424;61165;52475;1
+2;web-readiness;Namibia;ATIVO;false;23277;45606;9060;2020-06-22T02:22:59;2020-06-22T06:23:10;syndicate;Mississippi Refined Rubber Chicken Table;false;1326;94888;94220;2
+3;South Dakota envisioneer Music;Nakfa;INATIVO;true;3438;17336;90932;2020-06-22T11:50:30;2020-06-22T15:00:59;invoice;convergence;false;54671;56770;18485;3
+4;Facilitator;Views e-enable Communications;INATIVO;false;96117;32533;84453;2020-06-22T11:53:56;2020-06-22T03:17:30;South Georgia and the South Sandwich Islands;compelling mission-critical;true;27599;14092;29627;4
+5;Car Industrial deliverables;orange Books;ATIVO;true;7404;92630;35846;2020-06-22T05:36:05;2020-06-22T18:26:47;IB Investment Account archive;envisioneer;true;32518;66592;72960;5
+6;withdrawal COM;embrace Developer;INATIVO;false;4043;52273;71066;2020-06-22T10:57:58;2020-06-22T18:33:57;partnerships;Outdoors;true;47537;31435;56327;6
+7;European Unit of Account 9(E.U.A.-9) Concrete;relationships override;ATIVO;true;28975;69478;16122;2020-06-22T00:05:46;2020-06-21T22:54:53;virtual deposit;Squares mint green e-business;true;53934;32434;80744;7
+8;National;Direct;ATIVO;false;52;81801;35256;2020-06-22T00:34:11;2020-06-22T13:54:45;Hat;supply-chains magenta;false;26941;33761;24412;8
+9;Gloves sky blue Oklahoma;robust Engineer;INATIVO;false;28484;99774;3688;2020-06-22T14:49:28;2020-06-22T06:35:52;Berkshire Small Plastic Pants Investor;Canadian Dollar;true;48945;44778;98565;9
+10;Persistent Bulgarian Lev;24/7 Re-contextualized cross-platform;INATIVO;true;81643;9028;79834;2020-06-22T01:10:48;2020-06-22T17:36:36;Bedfordshire;Refined Rubber Gloves Algerian Dinar Clothing;true;80950;22649;34866;10

@@ -12,8 +12,6 @@ public class CaracteristicaDTO implements Serializable {
     private String nome;
 
 
-    private Long unidadeId;
-
     public Long getId() {
         return id;
     }
@@ -28,14 +26,6 @@ public class CaracteristicaDTO implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Long getUnidadeId() {
-        return unidadeId;
-    }
-
-    public void setUnidadeId(Long unidadeId) {
-        this.unidadeId = unidadeId;
     }
 
     @Override
@@ -64,7 +54,6 @@ public class CaracteristicaDTO implements Serializable {
         return "CaracteristicaDTO{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
-            ", unidade=" + getUnidadeId() +
             "}";
     }
 }

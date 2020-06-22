@@ -8,14 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Ala} and its DTO {@link AlaDTO}.
  */
-@Mapper(componentModel = "spring", uses = {UnidadeMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface AlaMapper extends EntityMapper<AlaDTO, Ala> {
 
-    @Mapping(source = "unidade.id", target = "unidadeId")
-    AlaDTO toDto(Ala ala);
 
-    @Mapping(source = "unidadeId", target = "unidade")
-    Ala toEntity(AlaDTO alaDTO);
 
     default Ala fromId(Long id) {
         if (id == null) {

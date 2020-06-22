@@ -6,13 +6,5 @@
     <!--
         Added the constraints for entity Clinica.
     -->
-    <changeSet id="20200616160419-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="unidade_id"
-                                 baseTableName="clinica"
-                                 constraintName="fk_clinica_unidade_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="unidade"/>
 
-    </changeSet>
 </databaseChangeLog>

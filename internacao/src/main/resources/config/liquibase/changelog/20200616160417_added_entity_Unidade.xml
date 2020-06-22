@@ -63,6 +63,12 @@
             <column name="unidade_pai_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_unidade_unidade_pai_id" />
             </column>
+            <column name="ala_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="clinica_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="tipo_unidade_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -83,6 +89,17 @@
 
     <changeSet id="20200616160417-1-relations" author="jhipster">
 
+        <createTable tableName="unidade_caracteristica">
+            <column name="caracteristica_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unidade_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="unidade_id, caracteristica_id" tableName="unidade_caracteristica"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
