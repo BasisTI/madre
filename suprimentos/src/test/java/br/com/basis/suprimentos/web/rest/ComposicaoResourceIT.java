@@ -97,9 +97,9 @@ public class ComposicaoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Composicao createEntity(EntityManager em) {
-        Composicao composicao = new Composicao()
-                .nome(DEFAULT_NOME)
-                .servidor(DEFAULT_SERVIDOR);
+        Composicao composicao = new Composicao();
+        composicao.setNome(DEFAULT_NOME);
+        composicao.setServidor(DEFAULT_SERVIDOR);
         return composicao;
     }
 
@@ -110,9 +110,9 @@ public class ComposicaoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Composicao createUpdatedEntity(EntityManager em) {
-        Composicao composicao = new Composicao()
-                .nome(UPDATED_NOME)
-                .servidor(UPDATED_SERVIDOR);
+        Composicao composicao = new Composicao();
+        composicao.setNome(UPDATED_NOME);
+        composicao.setServidor(UPDATED_SERVIDOR);
         return composicao;
     }
 
@@ -121,11 +121,11 @@ public class ComposicaoResourceIT {
         MockitoAnnotations.initMocks(this);
         final ComposicaoResource composicaoResource = new ComposicaoResource(composicaoService);
         this.restComposicaoMockMvc = MockMvcBuilders.standaloneSetup(composicaoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -141,9 +141,9 @@ public class ComposicaoResourceIT {
         // Create the Composicao
         ComposicaoDTO composicaoDTO = composicaoMapper.toDto(composicao);
         restComposicaoMockMvc.perform(post("/api/composicaos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Composicao in the database
         List<Composicao> composicaoList = composicaoRepository.findAll();
@@ -167,9 +167,9 @@ public class ComposicaoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restComposicaoMockMvc.perform(post("/api/composicaos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Composicao in the database
         List<Composicao> composicaoList = composicaoRepository.findAll();
@@ -191,9 +191,9 @@ public class ComposicaoResourceIT {
         ComposicaoDTO composicaoDTO = composicaoMapper.toDto(composicao);
 
         restComposicaoMockMvc.perform(post("/api/composicaos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Composicao> composicaoList = composicaoRepository.findAll();
         assertThat(composicaoList).hasSize(databaseSizeBeforeTest);
@@ -210,9 +210,9 @@ public class ComposicaoResourceIT {
         ComposicaoDTO composicaoDTO = composicaoMapper.toDto(composicao);
 
         restComposicaoMockMvc.perform(post("/api/composicaos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Composicao> composicaoList = composicaoRepository.findAll();
         assertThat(composicaoList).hasSize(databaseSizeBeforeTest);
@@ -226,11 +226,11 @@ public class ComposicaoResourceIT {
 
         // Get all the composicaoList
         restComposicaoMockMvc.perform(get("/api/composicaos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(composicao.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-                .andExpect(jsonPath("$.[*].servidor").value(hasItem(DEFAULT_SERVIDOR)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(composicao.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].servidor").value(hasItem(DEFAULT_SERVIDOR)));
     }
 
     @Test
@@ -241,11 +241,11 @@ public class ComposicaoResourceIT {
 
         // Get the composicao
         restComposicaoMockMvc.perform(get("/api/composicaos/{id}", composicao.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(composicao.getId().intValue()))
-                .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
-                .andExpect(jsonPath("$.servidor").value(DEFAULT_SERVIDOR));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(composicao.getId().intValue()))
+            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
+            .andExpect(jsonPath("$.servidor").value(DEFAULT_SERVIDOR));
     }
 
     @Test
@@ -253,7 +253,7 @@ public class ComposicaoResourceIT {
     public void getNonExistingComposicao() throws Exception {
         // Get the composicao
         restComposicaoMockMvc.perform(get("/api/composicaos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -269,14 +269,14 @@ public class ComposicaoResourceIT {
         // Disconnect from session so that the updates on updatedComposicao are not directly saved in db
         em.detach(updatedComposicao);
         updatedComposicao
-                .nome(UPDATED_NOME)
-                .servidor(UPDATED_SERVIDOR);
+            .setNome(UPDATED_NOME);
+        updatedComposicao.setServidor(UPDATED_SERVIDOR);
         ComposicaoDTO composicaoDTO = composicaoMapper.toDto(updatedComposicao);
 
         restComposicaoMockMvc.perform(put("/api/composicaos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Composicao in the database
         List<Composicao> composicaoList = composicaoRepository.findAll();
@@ -299,9 +299,9 @@ public class ComposicaoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restComposicaoMockMvc.perform(put("/api/composicaos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(composicaoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Composicao in the database
         List<Composicao> composicaoList = composicaoRepository.findAll();
@@ -321,8 +321,8 @@ public class ComposicaoResourceIT {
 
         // Delete the composicao
         restComposicaoMockMvc.perform(delete("/api/composicaos/{id}", composicao.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Composicao> composicaoList = composicaoRepository.findAll();
@@ -338,14 +338,14 @@ public class ComposicaoResourceIT {
         // Initialize the database
         composicaoRepository.saveAndFlush(composicao);
         when(mockComposicaoSearchRepository.search(queryStringQuery("id:" + composicao.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(composicao), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(composicao), PageRequest.of(0, 1), 1));
         // Search the composicao
         restComposicaoMockMvc.perform(get("/api/_search/composicaos?query=id:" + composicao.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(composicao.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-                .andExpect(jsonPath("$.[*].servidor").value(hasItem(DEFAULT_SERVIDOR)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(composicao.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].servidor").value(hasItem(DEFAULT_SERVIDOR)));
     }
 
     @Test

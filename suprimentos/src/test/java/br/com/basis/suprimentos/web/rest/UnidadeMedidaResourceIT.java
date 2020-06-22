@@ -97,9 +97,9 @@ public class UnidadeMedidaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static UnidadeMedida createEntity(EntityManager em) {
-        UnidadeMedida unidadeMedida = new UnidadeMedida()
-                .sigla(DEFAULT_SIGLA)
-                .descricao(DEFAULT_DESCRICAO);
+        UnidadeMedida unidadeMedida = new UnidadeMedida();
+        unidadeMedida.setSigla(DEFAULT_SIGLA);
+        unidadeMedida.setDescricao(DEFAULT_DESCRICAO);
         return unidadeMedida;
     }
 
@@ -110,9 +110,9 @@ public class UnidadeMedidaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static UnidadeMedida createUpdatedEntity(EntityManager em) {
-        UnidadeMedida unidadeMedida = new UnidadeMedida()
-                .sigla(UPDATED_SIGLA)
-                .descricao(UPDATED_DESCRICAO);
+        UnidadeMedida unidadeMedida = new UnidadeMedida();
+        unidadeMedida.setSigla(UPDATED_SIGLA);
+        unidadeMedida.setDescricao(UPDATED_DESCRICAO);
         return unidadeMedida;
     }
 
@@ -121,11 +121,11 @@ public class UnidadeMedidaResourceIT {
         MockitoAnnotations.initMocks(this);
         final UnidadeMedidaResource unidadeMedidaResource = new UnidadeMedidaResource(unidadeMedidaService);
         this.restUnidadeMedidaMockMvc = MockMvcBuilders.standaloneSetup(unidadeMedidaResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -141,9 +141,9 @@ public class UnidadeMedidaResourceIT {
         // Create the UnidadeMedida
         UnidadeMedidaDTO unidadeMedidaDTO = unidadeMedidaMapper.toDto(unidadeMedida);
         restUnidadeMedidaMockMvc.perform(post("/api/unidade-medidas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the UnidadeMedida in the database
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
@@ -167,9 +167,9 @@ public class UnidadeMedidaResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restUnidadeMedidaMockMvc.perform(post("/api/unidade-medidas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the UnidadeMedida in the database
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
@@ -191,9 +191,9 @@ public class UnidadeMedidaResourceIT {
         UnidadeMedidaDTO unidadeMedidaDTO = unidadeMedidaMapper.toDto(unidadeMedida);
 
         restUnidadeMedidaMockMvc.perform(post("/api/unidade-medidas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
         assertThat(unidadeMedidaList).hasSize(databaseSizeBeforeTest);
@@ -210,9 +210,9 @@ public class UnidadeMedidaResourceIT {
         UnidadeMedidaDTO unidadeMedidaDTO = unidadeMedidaMapper.toDto(unidadeMedida);
 
         restUnidadeMedidaMockMvc.perform(post("/api/unidade-medidas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
         assertThat(unidadeMedidaList).hasSize(databaseSizeBeforeTest);
@@ -226,11 +226,11 @@ public class UnidadeMedidaResourceIT {
 
         // Get all the unidadeMedidaList
         restUnidadeMedidaMockMvc.perform(get("/api/unidade-medidas?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(unidadeMedida.getId().intValue())))
-                .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(unidadeMedida.getId().intValue())))
+            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -241,11 +241,11 @@ public class UnidadeMedidaResourceIT {
 
         // Get the unidadeMedida
         restUnidadeMedidaMockMvc.perform(get("/api/unidade-medidas/{id}", unidadeMedida.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(unidadeMedida.getId().intValue()))
-                .andExpect(jsonPath("$.sigla").value(DEFAULT_SIGLA))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(unidadeMedida.getId().intValue()))
+            .andExpect(jsonPath("$.sigla").value(DEFAULT_SIGLA))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -253,7 +253,7 @@ public class UnidadeMedidaResourceIT {
     public void getNonExistingUnidadeMedida() throws Exception {
         // Get the unidadeMedida
         restUnidadeMedidaMockMvc.perform(get("/api/unidade-medidas/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -269,14 +269,14 @@ public class UnidadeMedidaResourceIT {
         // Disconnect from session so that the updates on updatedUnidadeMedida are not directly saved in db
         em.detach(updatedUnidadeMedida);
         updatedUnidadeMedida
-                .sigla(UPDATED_SIGLA)
-                .descricao(UPDATED_DESCRICAO);
+            .setSigla(UPDATED_SIGLA);
+        updatedUnidadeMedida.setDescricao(UPDATED_DESCRICAO);
         UnidadeMedidaDTO unidadeMedidaDTO = unidadeMedidaMapper.toDto(updatedUnidadeMedida);
 
         restUnidadeMedidaMockMvc.perform(put("/api/unidade-medidas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
+            .andExpect(status().isOk());
 
         // Validate the UnidadeMedida in the database
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
@@ -299,9 +299,9 @@ public class UnidadeMedidaResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUnidadeMedidaMockMvc.perform(put("/api/unidade-medidas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(unidadeMedidaDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the UnidadeMedida in the database
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
@@ -321,8 +321,8 @@ public class UnidadeMedidaResourceIT {
 
         // Delete the unidadeMedida
         restUnidadeMedidaMockMvc.perform(delete("/api/unidade-medidas/{id}", unidadeMedida.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<UnidadeMedida> unidadeMedidaList = unidadeMedidaRepository.findAll();
@@ -338,14 +338,14 @@ public class UnidadeMedidaResourceIT {
         // Initialize the database
         unidadeMedidaRepository.saveAndFlush(unidadeMedida);
         when(mockUnidadeMedidaSearchRepository.search(queryStringQuery("id:" + unidadeMedida.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(unidadeMedida), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(unidadeMedida), PageRequest.of(0, 1), 1));
         // Search the unidadeMedida
         restUnidadeMedidaMockMvc.perform(get("/api/_search/unidade-medidas?query=id:" + unidadeMedida.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(unidadeMedida.getId().intValue())))
-                .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(unidadeMedida.getId().intValue())))
+            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

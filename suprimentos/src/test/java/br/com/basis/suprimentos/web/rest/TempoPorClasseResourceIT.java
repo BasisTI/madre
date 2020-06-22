@@ -104,11 +104,11 @@ public class TempoPorClasseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TempoPorClasse createEntity(EntityManager em) {
-        TempoPorClasse tempoPorClasse = new TempoPorClasse()
-                .tipo(DEFAULT_TIPO)
-                .quantidadeClasseA(DEFAULT_QUANTIDADE_CLASSE_A)
-                .quantidadeClasseB(DEFAULT_QUANTIDADE_CLASSE_B)
-                .quantidadeClasseC(DEFAULT_QUANTIDADE_CLASSE_C);
+        TempoPorClasse tempoPorClasse = new TempoPorClasse();
+        tempoPorClasse.setTipo(DEFAULT_TIPO);
+        tempoPorClasse.setQuantidadeClasseA(DEFAULT_QUANTIDADE_CLASSE_A);
+        tempoPorClasse.setQuantidadeClasseB(DEFAULT_QUANTIDADE_CLASSE_B);
+        tempoPorClasse.setQuantidadeClasseC(DEFAULT_QUANTIDADE_CLASSE_C);
         return tempoPorClasse;
     }
 
@@ -120,10 +120,10 @@ public class TempoPorClasseResourceIT {
      */
     public static TempoPorClasse createUpdatedEntity(EntityManager em) {
         TempoPorClasse tempoPorClasse = new TempoPorClasse()
-                .tipo(UPDATED_TIPO)
-                .quantidadeClasseA(UPDATED_QUANTIDADE_CLASSE_A)
-                .quantidadeClasseB(UPDATED_QUANTIDADE_CLASSE_B)
-                .quantidadeClasseC(UPDATED_QUANTIDADE_CLASSE_C);
+        tempoPorClasse.setTipo(UPDATED_TIPO);
+        tempoPorClasse.setQuantidadeClasseA(UPDATED_QUANTIDADE_CLASSE_A);
+        tempoPorClasse.setQuantidadeClasseB(UPDATED_QUANTIDADE_CLASSE_B);
+        tempoPorClasse.setQuantidadeClasseC(UPDATED_QUANTIDADE_CLASSE_C);
         return tempoPorClasse;
     }
 
@@ -132,11 +132,11 @@ public class TempoPorClasseResourceIT {
         MockitoAnnotations.initMocks(this);
         final TempoPorClasseResource tempoPorClasseResource = new TempoPorClasseResource(tempoPorClasseService);
         this.restTempoPorClasseMockMvc = MockMvcBuilders.standaloneSetup(tempoPorClasseResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -152,9 +152,9 @@ public class TempoPorClasseResourceIT {
         // Create the TempoPorClasse
         TempoPorClasseDTO tempoPorClasseDTO = tempoPorClasseMapper.toDto(tempoPorClasse);
         restTempoPorClasseMockMvc.perform(post("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the TempoPorClasse in the database
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
@@ -180,9 +180,9 @@ public class TempoPorClasseResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTempoPorClasseMockMvc.perform(post("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the TempoPorClasse in the database
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
@@ -204,9 +204,9 @@ public class TempoPorClasseResourceIT {
         TempoPorClasseDTO tempoPorClasseDTO = tempoPorClasseMapper.toDto(tempoPorClasse);
 
         restTempoPorClasseMockMvc.perform(post("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isBadRequest());
 
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
         assertThat(tempoPorClasseList).hasSize(databaseSizeBeforeTest);
@@ -223,9 +223,9 @@ public class TempoPorClasseResourceIT {
         TempoPorClasseDTO tempoPorClasseDTO = tempoPorClasseMapper.toDto(tempoPorClasse);
 
         restTempoPorClasseMockMvc.perform(post("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isBadRequest());
 
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
         assertThat(tempoPorClasseList).hasSize(databaseSizeBeforeTest);
@@ -242,9 +242,9 @@ public class TempoPorClasseResourceIT {
         TempoPorClasseDTO tempoPorClasseDTO = tempoPorClasseMapper.toDto(tempoPorClasse);
 
         restTempoPorClasseMockMvc.perform(post("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isBadRequest());
 
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
         assertThat(tempoPorClasseList).hasSize(databaseSizeBeforeTest);
@@ -261,9 +261,9 @@ public class TempoPorClasseResourceIT {
         TempoPorClasseDTO tempoPorClasseDTO = tempoPorClasseMapper.toDto(tempoPorClasse);
 
         restTempoPorClasseMockMvc.perform(post("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isBadRequest());
 
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
         assertThat(tempoPorClasseList).hasSize(databaseSizeBeforeTest);
@@ -277,13 +277,13 @@ public class TempoPorClasseResourceIT {
 
         // Get all the tempoPorClasseList
         restTempoPorClasseMockMvc.perform(get("/api/tempo-por-classes?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(tempoPorClasse.getId().intValue())))
-                .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
-                .andExpect(jsonPath("$.[*].quantidadeClasseA").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_A)))
-                .andExpect(jsonPath("$.[*].quantidadeClasseB").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_B)))
-                .andExpect(jsonPath("$.[*].quantidadeClasseC").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_C)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(tempoPorClasse.getId().intValue())))
+            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
+            .andExpect(jsonPath("$.[*].quantidadeClasseA").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_A)))
+            .andExpect(jsonPath("$.[*].quantidadeClasseB").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_B)))
+            .andExpect(jsonPath("$.[*].quantidadeClasseC").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_C)));
     }
 
     @Test
@@ -294,13 +294,13 @@ public class TempoPorClasseResourceIT {
 
         // Get the tempoPorClasse
         restTempoPorClasseMockMvc.perform(get("/api/tempo-por-classes/{id}", tempoPorClasse.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(tempoPorClasse.getId().intValue()))
-                .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()))
-                .andExpect(jsonPath("$.quantidadeClasseA").value(DEFAULT_QUANTIDADE_CLASSE_A))
-                .andExpect(jsonPath("$.quantidadeClasseB").value(DEFAULT_QUANTIDADE_CLASSE_B))
-                .andExpect(jsonPath("$.quantidadeClasseC").value(DEFAULT_QUANTIDADE_CLASSE_C));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(tempoPorClasse.getId().intValue()))
+            .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()))
+            .andExpect(jsonPath("$.quantidadeClasseA").value(DEFAULT_QUANTIDADE_CLASSE_A))
+            .andExpect(jsonPath("$.quantidadeClasseB").value(DEFAULT_QUANTIDADE_CLASSE_B))
+            .andExpect(jsonPath("$.quantidadeClasseC").value(DEFAULT_QUANTIDADE_CLASSE_C));
     }
 
     @Test
@@ -308,7 +308,7 @@ public class TempoPorClasseResourceIT {
     public void getNonExistingTempoPorClasse() throws Exception {
         // Get the tempoPorClasse
         restTempoPorClasseMockMvc.perform(get("/api/tempo-por-classes/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -324,16 +324,16 @@ public class TempoPorClasseResourceIT {
         // Disconnect from session so that the updates on updatedTempoPorClasse are not directly saved in db
         em.detach(updatedTempoPorClasse);
         updatedTempoPorClasse
-                .tipo(UPDATED_TIPO)
-                .quantidadeClasseA(UPDATED_QUANTIDADE_CLASSE_A)
-                .quantidadeClasseB(UPDATED_QUANTIDADE_CLASSE_B)
-                .quantidadeClasseC(UPDATED_QUANTIDADE_CLASSE_C);
+            .setTipo(UPDATED_TIPO);
+        updatedTempoPorClasse.setQuantidadeClasseA(UPDATED_QUANTIDADE_CLASSE_A);
+        updatedTempoPorClasse.setQuantidadeClasseB(UPDATED_QUANTIDADE_CLASSE_B);
+        updatedTempoPorClasse.setQuantidadeClasseC(UPDATED_QUANTIDADE_CLASSE_C);
         TempoPorClasseDTO tempoPorClasseDTO = tempoPorClasseMapper.toDto(updatedTempoPorClasse);
 
         restTempoPorClasseMockMvc.perform(put("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isOk());
 
         // Validate the TempoPorClasse in the database
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
@@ -358,9 +358,9 @@ public class TempoPorClasseResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restTempoPorClasseMockMvc.perform(put("/api/tempo-por-classes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tempoPorClasseDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the TempoPorClasse in the database
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
@@ -380,8 +380,8 @@ public class TempoPorClasseResourceIT {
 
         // Delete the tempoPorClasse
         restTempoPorClasseMockMvc.perform(delete("/api/tempo-por-classes/{id}", tempoPorClasse.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<TempoPorClasse> tempoPorClasseList = tempoPorClasseRepository.findAll();
@@ -397,16 +397,16 @@ public class TempoPorClasseResourceIT {
         // Initialize the database
         tempoPorClasseRepository.saveAndFlush(tempoPorClasse);
         when(mockTempoPorClasseSearchRepository.search(queryStringQuery("id:" + tempoPorClasse.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(tempoPorClasse), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(tempoPorClasse), PageRequest.of(0, 1), 1));
         // Search the tempoPorClasse
         restTempoPorClasseMockMvc.perform(get("/api/_search/tempo-por-classes?query=id:" + tempoPorClasse.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(tempoPorClasse.getId().intValue())))
-                .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
-                .andExpect(jsonPath("$.[*].quantidadeClasseA").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_A)))
-                .andExpect(jsonPath("$.[*].quantidadeClasseB").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_B)))
-                .andExpect(jsonPath("$.[*].quantidadeClasseC").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_C)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(tempoPorClasse.getId().intValue())))
+            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
+            .andExpect(jsonPath("$.[*].quantidadeClasseA").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_A)))
+            .andExpect(jsonPath("$.[*].quantidadeClasseB").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_B)))
+            .andExpect(jsonPath("$.[*].quantidadeClasseC").value(hasItem(DEFAULT_QUANTIDADE_CLASSE_C)));
     }
 
     @Test

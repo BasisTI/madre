@@ -112,13 +112,13 @@ public class LoteResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Lote createEntity(EntityManager em) {
-        Lote lote = new Lote()
-                .descricao(DEFAULT_DESCRICAO)
-                .serie(DEFAULT_SERIE)
-                .quantidadeDisponivel(DEFAULT_QUANTIDADE_DISPONIVEL)
-                .quantidadeBloqueada(DEFAULT_QUANTIDADE_BLOQUEADA)
-                .quantidadeProblema(DEFAULT_QUANTIDADE_PROBLEMA)
-                .dataValidade(DEFAULT_DATA_VALIDADE);
+        Lote lote = new Lote();
+        lote.setDescricao(DEFAULT_DESCRICAO);
+        lote.setSerie(DEFAULT_SERIE);
+        lote.setQuantidadeDisponivel(DEFAULT_QUANTIDADE_DISPONIVEL);
+        lote.setQuantidadeBloqueada(DEFAULT_QUANTIDADE_BLOQUEADA);
+        lote.setQuantidadeProblema(DEFAULT_QUANTIDADE_PROBLEMA);
+        lote.setDataValidade(DEFAULT_DATA_VALIDADE);
         // Add required entity
         EstoqueAlmoxarifado estoqueAlmoxarifado;
         if (TestUtil.findAll(em, EstoqueAlmoxarifado.class).isEmpty()) {
@@ -139,13 +139,13 @@ public class LoteResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Lote createUpdatedEntity(EntityManager em) {
-        Lote lote = new Lote()
-                .descricao(UPDATED_DESCRICAO)
-                .serie(UPDATED_SERIE)
-                .quantidadeDisponivel(UPDATED_QUANTIDADE_DISPONIVEL)
-                .quantidadeBloqueada(UPDATED_QUANTIDADE_BLOQUEADA)
-                .quantidadeProblema(UPDATED_QUANTIDADE_PROBLEMA)
-                .dataValidade(UPDATED_DATA_VALIDADE);
+        Lote lote = new Lote();
+        lote.setDescricao(UPDATED_DESCRICAO);
+        lote.setSerie(UPDATED_SERIE);
+        lote.setQuantidadeDisponivel(UPDATED_QUANTIDADE_DISPONIVEL);
+        lote.setQuantidadeBloqueada(UPDATED_QUANTIDADE_BLOQUEADA);
+        lote.setQuantidadeProblema(UPDATED_QUANTIDADE_PROBLEMA);
+        lote.setDataValidade(UPDATED_DATA_VALIDADE);
         // Add required entity
         EstoqueAlmoxarifado estoqueAlmoxarifado;
         if (TestUtil.findAll(em, EstoqueAlmoxarifado.class).isEmpty()) {
@@ -164,11 +164,11 @@ public class LoteResourceIT {
         MockitoAnnotations.initMocks(this);
         final LoteResource loteResource = new LoteResource(loteService);
         this.restLoteMockMvc = MockMvcBuilders.standaloneSetup(loteResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -184,9 +184,9 @@ public class LoteResourceIT {
         // Create the Lote
         LoteDTO loteDTO = loteMapper.toDto(lote);
         restLoteMockMvc.perform(post("/api/lotes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Lote in the database
         List<Lote> loteList = loteRepository.findAll();
@@ -214,9 +214,9 @@ public class LoteResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restLoteMockMvc.perform(post("/api/lotes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Lote in the database
         List<Lote> loteList = loteRepository.findAll();
@@ -238,9 +238,9 @@ public class LoteResourceIT {
         LoteDTO loteDTO = loteMapper.toDto(lote);
 
         restLoteMockMvc.perform(post("/api/lotes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Lote> loteList = loteRepository.findAll();
         assertThat(loteList).hasSize(databaseSizeBeforeTest);
@@ -257,9 +257,9 @@ public class LoteResourceIT {
         LoteDTO loteDTO = loteMapper.toDto(lote);
 
         restLoteMockMvc.perform(post("/api/lotes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Lote> loteList = loteRepository.findAll();
         assertThat(loteList).hasSize(databaseSizeBeforeTest);
@@ -273,15 +273,15 @@ public class LoteResourceIT {
 
         // Get all the loteList
         restLoteMockMvc.perform(get("/api/lotes?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(lote.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-                .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
-                .andExpect(jsonPath("$.[*].quantidadeDisponivel").value(hasItem(DEFAULT_QUANTIDADE_DISPONIVEL.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeBloqueada").value(hasItem(DEFAULT_QUANTIDADE_BLOQUEADA.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeProblema").value(hasItem(DEFAULT_QUANTIDADE_PROBLEMA.intValue())))
-                .andExpect(jsonPath("$.[*].dataValidade").value(hasItem(DEFAULT_DATA_VALIDADE.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(lote.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
+            .andExpect(jsonPath("$.[*].quantidadeDisponivel").value(hasItem(DEFAULT_QUANTIDADE_DISPONIVEL.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeBloqueada").value(hasItem(DEFAULT_QUANTIDADE_BLOQUEADA.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeProblema").value(hasItem(DEFAULT_QUANTIDADE_PROBLEMA.intValue())))
+            .andExpect(jsonPath("$.[*].dataValidade").value(hasItem(DEFAULT_DATA_VALIDADE.toString())));
     }
 
     @Test
@@ -292,15 +292,15 @@ public class LoteResourceIT {
 
         // Get the lote
         restLoteMockMvc.perform(get("/api/lotes/{id}", lote.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(lote.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
-                .andExpect(jsonPath("$.serie").value(DEFAULT_SERIE))
-                .andExpect(jsonPath("$.quantidadeDisponivel").value(DEFAULT_QUANTIDADE_DISPONIVEL.intValue()))
-                .andExpect(jsonPath("$.quantidadeBloqueada").value(DEFAULT_QUANTIDADE_BLOQUEADA.intValue()))
-                .andExpect(jsonPath("$.quantidadeProblema").value(DEFAULT_QUANTIDADE_PROBLEMA.intValue()))
-                .andExpect(jsonPath("$.dataValidade").value(DEFAULT_DATA_VALIDADE.toString()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(lote.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
+            .andExpect(jsonPath("$.serie").value(DEFAULT_SERIE))
+            .andExpect(jsonPath("$.quantidadeDisponivel").value(DEFAULT_QUANTIDADE_DISPONIVEL.intValue()))
+            .andExpect(jsonPath("$.quantidadeBloqueada").value(DEFAULT_QUANTIDADE_BLOQUEADA.intValue()))
+            .andExpect(jsonPath("$.quantidadeProblema").value(DEFAULT_QUANTIDADE_PROBLEMA.intValue()))
+            .andExpect(jsonPath("$.dataValidade").value(DEFAULT_DATA_VALIDADE.toString()));
     }
 
     @Test
@@ -308,7 +308,7 @@ public class LoteResourceIT {
     public void getNonExistingLote() throws Exception {
         // Get the lote
         restLoteMockMvc.perform(get("/api/lotes/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -323,19 +323,19 @@ public class LoteResourceIT {
         Lote updatedLote = loteRepository.findById(lote.getId()).get();
         // Disconnect from session so that the updates on updatedLote are not directly saved in db
         em.detach(updatedLote);
-        updatedLote
-                .descricao(UPDATED_DESCRICAO)
-                .serie(UPDATED_SERIE)
-                .quantidadeDisponivel(UPDATED_QUANTIDADE_DISPONIVEL)
-                .quantidadeBloqueada(UPDATED_QUANTIDADE_BLOQUEADA)
-                .quantidadeProblema(UPDATED_QUANTIDADE_PROBLEMA)
-                .dataValidade(UPDATED_DATA_VALIDADE);
+
+        updatedLote.setDescricao(UPDATED_DESCRICAO);
+        updatedLote.setSerie(UPDATED_SERIE);
+        updatedLote.setQuantidadeDisponivel(UPDATED_QUANTIDADE_DISPONIVEL);
+        updatedLote.setQuantidadeBloqueada(UPDATED_QUANTIDADE_BLOQUEADA);
+        updatedLote.setQuantidadeProblema(UPDATED_QUANTIDADE_PROBLEMA);
+        updatedLote.setDataValidade(UPDATED_DATA_VALIDADE);
         LoteDTO loteDTO = loteMapper.toDto(updatedLote);
 
         restLoteMockMvc.perform(put("/api/lotes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Lote in the database
         List<Lote> loteList = loteRepository.findAll();
@@ -362,9 +362,9 @@ public class LoteResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restLoteMockMvc.perform(put("/api/lotes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(loteDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Lote in the database
         List<Lote> loteList = loteRepository.findAll();
@@ -384,8 +384,8 @@ public class LoteResourceIT {
 
         // Delete the lote
         restLoteMockMvc.perform(delete("/api/lotes/{id}", lote.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Lote> loteList = loteRepository.findAll();
@@ -401,18 +401,18 @@ public class LoteResourceIT {
         // Initialize the database
         loteRepository.saveAndFlush(lote);
         when(mockLoteSearchRepository.search(queryStringQuery("id:" + lote.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(lote), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(lote), PageRequest.of(0, 1), 1));
         // Search the lote
         restLoteMockMvc.perform(get("/api/_search/lotes?query=id:" + lote.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(lote.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-                .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
-                .andExpect(jsonPath("$.[*].quantidadeDisponivel").value(hasItem(DEFAULT_QUANTIDADE_DISPONIVEL.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeBloqueada").value(hasItem(DEFAULT_QUANTIDADE_BLOQUEADA.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeProblema").value(hasItem(DEFAULT_QUANTIDADE_PROBLEMA.intValue())))
-                .andExpect(jsonPath("$.[*].dataValidade").value(hasItem(DEFAULT_DATA_VALIDADE.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(lote.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
+            .andExpect(jsonPath("$.[*].quantidadeDisponivel").value(hasItem(DEFAULT_QUANTIDADE_DISPONIVEL.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeBloqueada").value(hasItem(DEFAULT_QUANTIDADE_BLOQUEADA.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeProblema").value(hasItem(DEFAULT_QUANTIDADE_PROBLEMA.intValue())))
+            .andExpect(jsonPath("$.[*].dataValidade").value(hasItem(DEFAULT_DATA_VALIDADE.toString())));
     }
 
     @Test
