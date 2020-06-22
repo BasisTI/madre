@@ -1,5 +1,3 @@
-import { Fornecedor } from '../fornecedor/fornecedor';
-
 export interface IDocumentoFiscalEntrada {
     id?: number;
     numeroDocumento?: number;
@@ -14,7 +12,7 @@ export interface IDocumentoFiscalEntrada {
     tipoDocumento?: string;
     tipoDocumentoFiscal?: string;
     observacao?: string;
-    fornecedor?: Fornecedor;
+    fornecedorId?: number;
 }
 
 export class DocumentoFiscalEntrada {
@@ -32,6 +30,6 @@ export class DocumentoFiscalEntrada {
         public tipoDocumento?: string,
         public tipoDocumentoFiscal?: string,
         public observacao?: string,
-        public fornecedor?: Fornecedor,
+        public fornecedorId?: number,
     ) {}
 }

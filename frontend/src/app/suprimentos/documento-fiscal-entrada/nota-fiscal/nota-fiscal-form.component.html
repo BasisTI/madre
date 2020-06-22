@@ -2,7 +2,6 @@
     <div class="card card-w-title">
         <div class="ui-g-12">
             <h1>Gerar Nota Fiscal</h1>
-            <p>{{ notaFiscalForm.value | json }}</p>
             <form [formGroup]="notaFiscalForm">
                 <div class="ui-g-12">
                     <div class="ui-g-1">
@@ -89,7 +88,14 @@
                     </div>
                     <div class="ui-g-3">
                         <span class="md-inputfield" style="margin-top: 5px;">
-                            <input pInputText type="text" formControlName="fornecedorId" />
+                            <p-autoComplete
+                                formControlName="fornecedorId"
+                                [suggestions]="fornecedores"
+                                field="nomeFantasia"
+                                (completeMethod)="getFornecedoresPorNomeFantasia($event.query)"
+                                [dropdown]="true"
+                                [forceSelection]="true"
+                            ></p-autoComplete>
                             <label>Fornecedor</label>
                         </span>
                     </div>

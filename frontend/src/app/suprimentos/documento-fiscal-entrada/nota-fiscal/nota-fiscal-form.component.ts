@@ -1,7 +1,11 @@
+import { CALENDAR_LOCALE, PageNotificationService } from '@nuvem/primeng-components';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { DocumentoFiscalEntradaService } from '../documento-fiscal-entrada.service';
+import { Fornecedor } from '@suprimentos/fornecedor/fornecedor';
+import { FornecedorService } from '@suprimentos/fornecedor/fornecedor.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-nota-fiscal-form',
@@ -12,6 +16,7 @@ export class NotaFiscalFormComponent implements OnInit {
     public isCpf = false;
     public cpfMask = '999.999.999-99';
     public cnpjMask = '99.999.999/9999-99';
+    public fornecedores: Fornecedor[] = [];
 
     public notaFiscalForm = this.fb.group({
         numeroDocumento: [null, Validators.required],
@@ -28,16 +33,56 @@ export class NotaFiscalFormComponent implements OnInit {
         fornecedorId: [null],
     });
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private documentoFiscalEntradaService: DocumentoFiscalEntradaService,
+        private fornecedorService: FornecedorService,
+        private pageNotificationService: PageNotificationService,
+    ) {}
 
     ngOnInit(): void {}
+
+    public getFornecedoresPorNomeFantasia(nomeFantasia: string): void {
+        this.fornecedorService
+            .getFornecedoresPorNomeFantasia(nomeFantasia)
+            .subscribe((fornecedores) => (this.fornecedores = fornecedores));
+    }
 
     public limparCampoCpfCnpj(): void {
         this.notaFiscalForm.get('cpfCnpj').reset();
     }
 
     public gravar(): void {
-        console.log(this.notaFiscalForm.value);
+        const dto = {
+            ...this.notaFiscalForm.value,
+            tipoDocumento: 'NOTA_FISCAL',
+            dataGeracao: new Date(),
+        };
+
+        for (let prop in dto) {
+            if (dto[prop]?.id) {
+                dto[prop] = dto[prop].id;
+            }
+        }
+
+        this.documentoFiscalEntradaService.criarNotaFiscal(dto).subscribe(
+            (resposta) => {
+                this.notaFiscalForm.reset();
+            },
+            (err) => {
+                if (err.message === 'error.validation' && err.status === 400) {
+                    const errors = err.fieldErrors as Array<any>;
+
+                    errors.forEach((fieldErr) => {
+                        if (fieldErr.objectName === 'documentoFiscalEntrada') {
+                            this.pageNotificationService.addErrorMessage('CPF/CNPJ Inválido');
+                            this.notaFiscalForm.get(fieldErr.field).reset();
+                            this.notaFiscalForm.get(fieldErr.field).markAsDirty();
+                        }
+                    });
+                }
+            },
+        );
     }
 
     public limpar(): void {

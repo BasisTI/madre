@@ -7,6 +7,8 @@ import br.com.basis.suprimentos.service.dto.FornecedorDTO;
 import br.com.basis.suprimentos.service.mapper.FornecedorMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,11 @@ public class FornecedorService {
     }
 
     @Transactional(readOnly = true)
-    public Page<FornecedorDTO> findAll(Pageable pageable) {
+    public Page<FornecedorDTO> findAll(Pageable pageable, FornecedorDTO fornecedorDTO) {
         log.debug("Request to get all Fornecedors");
-        return fornecedorRepository.findAll(pageable)
+        return fornecedorRepository.findAll(
+            Example.of(fornecedorMapper.toEntity(fornecedorDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable)
             .map(fornecedorMapper::toDto);
     }
 
