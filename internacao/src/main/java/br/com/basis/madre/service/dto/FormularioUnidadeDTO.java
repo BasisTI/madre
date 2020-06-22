@@ -305,9 +305,9 @@ public class FormularioUnidadeDTO implements Serializable {
             ", alaId=" + alaId +
             ", clinicaId=" + clinicaId +
             ", tipoUnidadeId=" + tipoUnidadeId +
-            ", prescricaoEnfermagemId=" + prescricaoEnfermagem +
-            ", prescricaoMedicaId=" + prescricaoMedica +
-            ", cirurgiaId=" + cirurgia +
+            ", prescricaoEnfermagem=" + prescricaoEnfermagem +
+            ", prescricaoMedica=" + prescricaoMedica +
+            ", cirurgia=" + cirurgia +
             ", caracteristicas=" + caracteristicas +
             '}';
     }
