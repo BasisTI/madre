@@ -1,0 +1,113 @@
+{
+    "name": "EstoqueAlmoxarifado",
+    "fields": [
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endereco",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 1,
+            "fieldValidateRulesMaxlength": 8
+        },
+        {
+            "fieldName": "quantidadeLimiteArmazenamento",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "quantidadeEstoqueMinimo",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "quantidadeEstoqueMaximo",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "quantidadePontoPedido",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "tempoReposicao",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 1
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "lote",
+            "otherEntityRelationshipName": "estoque",
+            "relationshipName": "lotes"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "almoxarifado",
+            "otherEntityRelationshipName": "estoques",
+            "relationshipValidateRules": "required",
+            "relationshipName": "almoxarifado",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "material",
+            "otherEntityRelationshipName": "estoqueAlmoxarifado",
+            "relationshipValidateRules": "required",
+            "relationshipName": "material",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "fornecedor",
+            "otherEntityRelationshipName": "estoqueAlmoxarifado",
+            "relationshipValidateRules": "required",
+            "relationshipName": "fornecedor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "solicitacaoCompras",
+            "otherEntityRelationshipName": "estoqueAlmoxarifado",
+            "relationshipName": "solicitacaoCompras",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123200",
+    "entityTableName": "estoque_almoxarifado",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

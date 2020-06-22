@@ -1,0 +1,11 @@
+id;descricao;dias_estoque;central;ativo;calcula_media_ponderada;bloqueia_entrada_transferencia;centro_de_atividade_id
+1;mobile Fish;199;true;true;false;false;1
+2;Small;117;true;false;true;false;2
+3;deposit Tasty Metal Bacon Implementation;0;false;true;false;true;3
+4;Home Loan Account;1;false;false;false;true;4
+5;enable Gorgeous Frozen Pants;59;false;false;true;true;5
+6;syndicate;251;true;false;false;true;6
+7;Yuan Renminbi Centers;3;true;true;true;true;7
+8;envisioneer Music Public-key;61;false;true;false;true;8
+9;backing up Salad;100;false;false;true;true;9
+10;convergence;53;true;true;false;false;10

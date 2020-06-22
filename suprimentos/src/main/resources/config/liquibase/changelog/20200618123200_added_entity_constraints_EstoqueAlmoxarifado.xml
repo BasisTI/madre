@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity EstoqueAlmoxarifado.
+    -->
+    <changeSet id="20200618123200-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="almoxarifado_id"
+                                 baseTableName="estoque_almoxarifado"
+                                 constraintName="fk_estoque_almoxarifado_almoxarifado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="almoxarifado"/>
+
+        <addForeignKeyConstraint baseColumnNames="material_id"
+                                 baseTableName="estoque_almoxarifado"
+                                 constraintName="fk_estoque_almoxarifado_material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"/>
+
+        <addForeignKeyConstraint baseColumnNames="fornecedor_id"
+                                 baseTableName="estoque_almoxarifado"
+                                 constraintName="fk_estoque_almoxarifado_fornecedor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fornecedor"/>
+
+        <addForeignKeyConstraint baseColumnNames="solicitacao_compras_id"
+                                 baseTableName="estoque_almoxarifado"
+                                 constraintName="fk_estoque_almoxarifado_solicitacao_compras_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="solicitacao_compras"/>
+
+    </changeSet>
+</databaseChangeLog>
