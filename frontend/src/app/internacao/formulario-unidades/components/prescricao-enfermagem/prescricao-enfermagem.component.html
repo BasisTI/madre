@@ -3,11 +3,7 @@
         <div class="ui-g-12">
             <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-inputMask
-                        formControlName="horarioValidade"
-                        mask="99:99"
-                        pTooltip="Digite o horário da prescrição médica.Ultilize o formato HH:MM."
-                    ></p-inputMask>
+                    <p-calendar timeOnly="true" formControlName="horarioValidade"></p-calendar>
                     <label>Horário Validade</label>
                 </span>
             </div>

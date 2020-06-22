@@ -1,4 +1,4 @@
-export class Almoxarifado {
+export class CentroDeAtividade {
     id: number;
     descricao: string;
 

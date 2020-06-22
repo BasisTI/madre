@@ -32,10 +32,10 @@
                                         <p-dropdown
                                             formControlName="idAlmoxarifado"
                                             [options]="almoxarifados"
-                                            optionLabel="nome"
+                                            optionLabel="descricao"
+                                            placeholder="Almoxarifado"
                                             pTooltip="Selecione o almoxarifado referente a esta unidade funcional."
                                         ></p-dropdown>
-                                        <label>Almoxarifado</label>
                                     </span>
                                 </div>
                             </div>
@@ -117,8 +117,9 @@
                                             formControlName="idCentroDeAtividade"
                                             pTooltip="Digite a sigla da unidade funcional."
                                             [options]="centros"
+                                            optionLabel="descricao"
+                                            placeholder="Centro de Atividade"
                                         ></p-dropdown>
-                                        <label>Centro de Atividade</label>
                                     </span>
                                 </div>
                                 <div class="ui-g-6 ui-sm-12">
@@ -263,21 +264,19 @@
                         <div class="ui-g-12">
                             <div class="ui-g-4 ui-sm-12">
                                 <span class="ui-float-label">
-                                    <p-inputMask
+                                    <p-calendar
+                                        timeOnly="true"
                                         formControlName="horarioInicio"
-                                        mask="99:99"
-                                        pTooltip="Digite o início do horário do atendimento."
-                                    ></p-inputMask>
+                                    ></p-calendar>
                                     <label>Início</label>
                                 </span>
                             </div>
                             <div class="ui-g-4 ui-sm-12">
                                 <span class="ui-float-label">
-                                    <p-inputMask
+                                    <p-calendar
+                                        timeOnly="true"
                                         formControlName="horarioFim"
-                                        mask="99:99"
-                                        pTooltip="Digite o fim do horário do atendimento."
-                                    ></p-inputMask>
+                                    ></p-calendar>
                                     <label>Fim</label>
                                 </span>
                             </div>

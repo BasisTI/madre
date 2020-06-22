@@ -1,7 +1,11 @@
+import { AlmoxarifadosService } from './../../services/almoxarifados.service';
+
+import { CentroService } from './../../services/centro-de-atividade.service';
+import { CentroDeAtividade } from './../../models/dropwdowns/centro-de-atividade';
+
 import { UnidadePaiService } from './../../services/unidade-pai.service';
 import { UnidadePai } from './../../models/dropwdowns/UnidadePai';
 import { Unidade } from './../../models/unidade';
-import { SuprimentosService } from '../../services/suprimentos.service';
 
 import { Almoxarifado } from './../../models/dropwdowns/almoxarifado';
 import { CaracteristicaService } from './../../services/caracteristica.service';
@@ -30,8 +34,8 @@ export class CadastroUnidadesComponent implements OnInit {
     tipos: TipoUnidade[] = [];
     caracteristicas: Caracteristica[] = [];
     unidadesPai: UnidadePai[] = [];
-    almoxarifados: [];
-    centros: [];
+    almoxarifados: Almoxarifado[] = [];
+    centros: CentroDeAtividade[] = [];
     opcoesDeSitucao = OPCOES_DE_SITUACOES;
 
     cadastroUnidade = this.fb.group({
@@ -85,7 +89,8 @@ export class CadastroUnidadesComponent implements OnInit {
         public clinicaService: ClinicaService,
         public tipoUnidadeService: TipoUnidadeService,
         public caracteristicaService: CaracteristicaService,
-        public suprimentosService: SuprimentosService,
+        public almoxarifadoService: AlmoxarifadosService,
+        public centroDeAtividadeService: CentroService,
         public unidadePaiService: UnidadePaiService,
         private cadastroService: CadastroService,
     ) {}
@@ -98,24 +103,10 @@ export class CadastroUnidadesComponent implements OnInit {
             .getListaDeCaracteristicas()
             .subscribe((res) => (this.caracteristicas = res));
         this.unidadePaiService.getListaDeUnidadePais().subscribe((res) => (this.unidadesPai = res));
-        this.carregarListaDeAlmoxarifados();
-        this.carregarListaDeCentros();
-    }
-
-    carregarListaDeAlmoxarifados() {
-        return this.suprimentosService.listaDeAlmoxarifados().subscribe((almoxarifados) => {
-            this.almoxarifados = almoxarifados.content.map((almoxarifados) => {
-                return { label: almoxarifados.nome, value: almoxarifados };
-            });
-        });
-    }
-
-    carregarListaDeCentros() {
-        return this.suprimentosService.listaDeCentroDeAtividades().subscribe((centros) => {
-            this.centros = centros.content.map((centros) => {
-                return { label: centros.nome, value: centros };
-            });
-        });
+        this.centroDeAtividadeService.getListaDeCentros().subscribe((res) => (this.centros = res));
+        this.almoxarifadoService
+            .getListaDeAlmoxarifados()
+            .subscribe((res) => (this.almoxarifados = res));
     }
 
     valid(): boolean {

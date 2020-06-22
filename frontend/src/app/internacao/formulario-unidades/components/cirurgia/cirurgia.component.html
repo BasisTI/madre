@@ -3,21 +3,13 @@
         <div class="ui-g-12">
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-inputMask
-                        formControlName="tempoMin"
-                        mask="99:99"
-                        pTooltip="Digite o tempo minimo para agendamento de cirurgias HH:MM."
-                    ></p-inputMask>
+                    <p-calendar timeOnly="true" formControlName="tempoMin"></p-calendar>
                     <label>Tempo Mínimo</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-inputMask
-                        formControlName="tempoMax"
-                        mask="99:99"
-                        pTooltip="Digite o tempo máximo para agendamento de cirurgias HH:MM."
-                    ></p-inputMask>
+                    <p-calendar timeOnly="true" formControlName="tempoMax"></p-calendar>
                     <label>Tempo Máximo</label>
                 </span>
             </div>
