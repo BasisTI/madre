@@ -1,4 +1,4 @@
-import { NotaFiscalFormComponent } from './nota-fiscal/nota-fiscal-form.component';
+import { NotaFiscalFormComponent } from './documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
 import { RecebimentoFormComponent } from './recebimento/recebimento-form.component';
 import { Routes } from '@angular/router';
 

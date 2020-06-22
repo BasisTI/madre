@@ -1,0 +1,185 @@
+<div class="ui-g ui-fluid">
+    <div class="card card-w-title">
+        <div class="ui-g-12">
+            <h1>Gerar Nota Fiscal</h1>
+            <p>{{ notaFiscalForm.value | json }}</p>
+            <form [formGroup]="notaFiscalForm">
+                <div class="ui-g-12">
+                    <div class="ui-g-1">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input
+                                pInputText
+                                type="text"
+                                maxlength="10"
+                                formControlName="numeroDocumento"
+                            />
+                            <label>Número</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-1">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input pInputText type="text" maxlength="3" formControlName="serie" />
+                            <label>Série</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-dropdown
+                                [options]="[
+                                    { label: 'Selecione', value: null },
+                                    { label: 'NFS', value: 'NFS' },
+                                    { label: 'DFE', value: 'DFE' },
+                                    { label: 'DFS', value: 'DFS' }
+                                ]"
+                                formControlName="tipoDocumentoFiscal"
+                            ></p-dropdown>
+                            <label>Tipo de Nota Fiscal</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2">
+                        <p>Deseja informar um CPF ou CNPJ?</p>
+                    </div>
+                    <div class="ui-g-4">
+                        <div class="ui-g-2" style="margin: 5px;">
+                            <p-radioButton
+                                label="CNPJ"
+                                (onClick)="limparCampoCpfCnpj()"
+                                name="cpfOuCnpj"
+                                [value]="false"
+                                [(ngModel)]="isCpf"
+                                [ngModelOptions]="{ standalone: true }"
+                            ></p-radioButton>
+                        </div>
+                        <div class="ui-g-2" style="margin: 5px;">
+                            <p-radioButton
+                                label="CPF"
+                                (onClick)="limparCampoCpfCnpj()"
+                                name="cpfOuCnpj"
+                                [value]="true"
+                                [(ngModel)]="isCpf"
+                                [ngModelOptions]="{ standalone: true }"
+                            ></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2">
+                        <div *ngIf="isCpf; else cnpj">
+                            <span class="md-inputfield" style="margin-top: 5px;">
+                                <p-inputMask
+                                    formControlName="cpfCnpj"
+                                    [mask]="cpfMask"
+                                    [unmask]="true"
+                                ></p-inputMask>
+                                <label>CPF</label>
+                            </span>
+                        </div>
+                        <ng-template #cnpj>
+                            <span class="md-inputfield" style="margin-top: 5px;">
+                                <p-inputMask
+                                    formControlName="cpfCnpj"
+                                    [mask]="cnpjMask"
+                                    [unmask]="true"
+                                ></p-inputMask>
+                                <label>CNPJ</label>
+                            </span>
+                        </ng-template>
+                    </div>
+                    <div class="ui-g-3">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input pInputText type="text" formControlName="fornecedorId" />
+                            <label>Fornecedor</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input
+                                pInputText
+                                type="text"
+                                maxlength="15"
+                                formControlName="notaEmpenho"
+                            />
+                            <label>Nota Empenho</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-calendar
+                                [locale]="calendarLocale"
+                                formControlName="dataEmissao"
+                            ></p-calendar>
+                            <label>Data de Emissão</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-calendar
+                                [locale]="calendarLocale"
+                                formControlName="dataEntrada"
+                            ></p-calendar>
+                            <label>Data de Entrada</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-calendar
+                                [locale]="calendarLocale"
+                                formControlName="dataVencimento"
+                            ></p-calendar>
+                            <label>Data de Vencimento</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input pInputText type="number" formControlName="valorTotal" />
+                            <label>R$ Valor Total</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input pInputText type="number" formControlName="valorComprometido" />
+                            <label>R$ Valor Comprometido</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-6">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <textarea
+                            [rows]="5"
+                            [cols]="30"
+                            pInputTextarea
+                            autoResize="autoResize"
+                            formControlName="observacao"
+                        ></textarea>
+                        <label>Observação</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            label="Gravar"
+                            icon="ui-icon-add"
+                            [disabled]="notaFiscalForm.invalid"
+                            (click)="gravar()"
+                        ></button>
+                    </div>
+                    <div class="ui-g-2">
+                        <button
+                            pButton
+                            label="Limpar"
+                            icon="ui-icon-minus"
+                            (click)="limpar()"
+                        ></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
