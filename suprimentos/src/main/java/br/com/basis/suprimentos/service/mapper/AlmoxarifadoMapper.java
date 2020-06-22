@@ -12,11 +12,9 @@ public interface AlmoxarifadoMapper extends EntityMapper<AlmoxarifadoDTO, Almoxa
     AlmoxarifadoDTO toDto(Almoxarifado almoxarifado);
 
     @Mapping(target = "temposPorClasses", ignore = true)
-    @Mapping(target = "removeTemposPorClasse", ignore = true)
     @Mapping(source = "centroDeAtividadeId", target = "centroDeAtividade")
     @Mapping(source = "caracteristicaArmazenamentoId", target = "caracteristicaArmazenamento")
     @Mapping(target = "estoques", ignore = true)
-    @Mapping(target = "removeEstoques", ignore = true)
     Almoxarifado toEntity(AlmoxarifadoDTO almoxarifadoDTO);
 
     default Almoxarifado fromId(Long id) {
