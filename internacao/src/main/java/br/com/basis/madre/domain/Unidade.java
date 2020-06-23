@@ -1,5 +1,6 @@
 package br.com.basis.madre.domain;
 
+
 import br.com.basis.madre.domain.enumeration.Situacao;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -24,10 +25,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+
 
 /**
  * A Unidade.
@@ -270,6 +273,5 @@ public class Unidade implements Serializable {
         caracteristica.getUnidades().remove(this);
         return this;
     }
-
 
 }

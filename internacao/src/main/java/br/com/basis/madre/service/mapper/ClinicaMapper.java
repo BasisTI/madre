@@ -1,5 +1,6 @@
 package br.com.basis.madre.service.mapper;
 
+
 import br.com.basis.madre.domain.Clinica;
 import br.com.basis.madre.service.dto.ClinicaDTO;
 import org.mapstruct.Mapper;

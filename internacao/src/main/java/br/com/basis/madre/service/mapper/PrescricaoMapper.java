@@ -1,5 +1,6 @@
 package br.com.basis.madre.service.mapper;
 
+
 import br.com.basis.madre.domain.Prescricao;
 import br.com.basis.madre.service.dto.PrescricaoDTO;
 import org.mapstruct.Mapper;

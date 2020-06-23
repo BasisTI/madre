@@ -13,11 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import java.io.Serializable;
 
 /**
  * A Clinica.
  */
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -37,11 +39,10 @@ public class Clinica implements Serializable {
     @Column(name = "nome")
     private String nome;
 
+
     public Clinica nome(String nome) {
         this.nome = nome;
         return this;
     }
-
-
 
 }

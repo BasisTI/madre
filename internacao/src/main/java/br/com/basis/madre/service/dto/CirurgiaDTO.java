@@ -7,9 +7,13 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.Instant;
 
+import java.util.Objects;
+
+
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Cirurgia} entity.
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

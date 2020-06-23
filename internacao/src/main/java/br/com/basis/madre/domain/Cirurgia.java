@@ -1,5 +1,6 @@
 package br.com.basis.madre.domain;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
@@ -13,12 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import java.io.Serializable;
 import java.time.Instant;
 
 /**
  * A Cirurgia.
  */
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -53,7 +56,6 @@ public class Cirurgia implements Serializable {
     @Column(name = "intervalo_procedimento")
     private Integer intervaloProcedimento;
 
-
     public Cirurgia tempoMax(Instant tempoMax) {
         this.tempoMax = tempoMax;
         return this;
@@ -79,12 +81,9 @@ public class Cirurgia implements Serializable {
         return this;
     }
 
-
     public Cirurgia intervaloProcedimento(Integer intervaloProcedimento) {
         this.intervaloProcedimento = intervaloProcedimento;
         return this;
     }
-
-
 
 }

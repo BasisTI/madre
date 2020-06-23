@@ -1,8 +1,10 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.TipoUnidadeService;
+
 import br.com.basis.madre.service.dto.TipoUnidadeDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
+
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +31,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
 
 /**
  * REST controller for managing {@link br.com.basis.madre.domain.TipoUnidade}.

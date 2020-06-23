@@ -1,5 +1,6 @@
 package br.com.basis.madre.service.dto;
 
+
 import br.com.basis.madre.domain.enumeration.Situacao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,9 +12,13 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import java.util.Objects;
+
+
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Unidade} entity.
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -72,5 +77,6 @@ public class UnidadeDTO implements Serializable {
     private Long cirurgiaId;
 
     private Set<CaracteristicaDTO> caracteristicas = new HashSet<>();
+
 
 }

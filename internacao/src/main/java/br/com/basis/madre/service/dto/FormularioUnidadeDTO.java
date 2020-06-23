@@ -1,19 +1,25 @@
 package br.com.basis.madre.service.dto;
 
 import br.com.basis.madre.domain.enumeration.Situacao;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
+
+import java.util.Objects;
+
 import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Unidade} entity.
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,5 +1,6 @@
 package br.com.basis.madre.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,7 +52,6 @@ public class Caracteristica implements Serializable {
         this.nome = nome;
         return this;
     }
-
 
     public Caracteristica unidades(Set<Unidade> unidades) {
         this.unidades = unidades;

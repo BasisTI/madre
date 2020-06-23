@@ -1,4 +1,5 @@
 package br.com.basis.madre.domain;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
@@ -12,11 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import java.io.Serializable;
 
 /**
  * A Ala.
  */
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -35,6 +38,7 @@ public class Ala implements Serializable {
 
     @Column(name = "nome")
     private String nome;
+
 
     public Ala nome(String nome) {
         this.nome = nome;

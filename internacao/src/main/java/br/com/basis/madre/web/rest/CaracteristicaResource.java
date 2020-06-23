@@ -1,8 +1,10 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.CaracteristicaService;
+
 import br.com.basis.madre.service.dto.CaracteristicaDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
+
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

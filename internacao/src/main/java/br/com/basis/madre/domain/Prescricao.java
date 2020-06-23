@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.Instant;
 
+
 /**
  * A Prescricao.
  */
@@ -51,7 +52,6 @@ public class Prescricao implements Serializable {
     @Column(name = "numero_vias")
     private Integer numeroVias;
 
-
     public Prescricao horarioValidade(Instant horarioValidade) {
         this.horarioValidade = horarioValidade;
         return this;
@@ -62,7 +62,6 @@ public class Prescricao implements Serializable {
         return this;
     }
 
-
     public Prescricao unidadeTempo(UnidadeTempo unidadeTempo) {
         this.unidadeTempo = unidadeTempo;
         return this;
@@ -72,7 +71,5 @@ public class Prescricao implements Serializable {
         this.numeroVias = numeroVias;
         return this;
     }
-
-
 
 }
