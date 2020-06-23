@@ -1,5 +1,5 @@
 <div class="ui-g ui-fluid">
-    <form [formGroup]="emergencia">
+    <form [formGroup]="formEmergencia" (ngSubmit)="cadastrarConsultas(form)">
         <div class="ui-g-12">
             <h1>Marcar Consultas - Emergência</h1>
 
@@ -18,7 +18,8 @@
                         [dateFormat]="formatoDeData"
                         monthNavigator="true"
                         yearNavigator="true"
-                        formControlName="dataDaConsulta"
+                        formControlName="dataHoraDaConsulta"
+                        showTime="true"
                         [icon]="calendar"
                     ></p-calendar>
                     <label>Data da Consulta</label>
@@ -70,7 +71,7 @@
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="codigoCentral" />
+                    <input type="text" pInputText formControlName="clinicaCentralId" />
                     <label>Cód. Central</label>
                 </span>
             </div>
@@ -78,15 +79,47 @@
             <div class="ui-g-12"></div>
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="observacao" />
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Escreva uma observação para consulta."
+                        formControlName="observacao"
+                    />
                     <label>Observação</label>
                 </span>
             </div>
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="justificativa" />
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Escreva um justificativa para consulta."
+                        formControlName="justificativa"
+                    />
                     <label>Justificativa</label>
                 </span>
+            </div>
+
+            <div class="ui-g-12 ui-sm-12">
+                <div class="ui-float-label">
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Cancelar"
+                            pTooltip="Cancelar marcação de consulta."
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                            pButton
+                            type="submit"
+                            label="Salvar"
+                            [disabled]="!formEmergencia.valid"
+                            pTooltip="Salvar marcação de consulta."
+                        ></button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

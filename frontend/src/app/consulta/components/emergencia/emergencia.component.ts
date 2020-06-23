@@ -1,6 +1,8 @@
+import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
 
 @Component({
     selector: 'app-emergencia',
@@ -8,25 +10,31 @@ import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
     styleUrls: ['./emergencia.component.css'],
 })
 export class EmergenciaComponent implements OnInit, OnDestroy {
-    emergencia = this.fb.group({
+    @Input() formularioTriagem: FormGroup;
+    consultasEmergencia: ConsultaEmergenciaModel;
+    formEmergencia = this.fb.group({
         numeroConsulta: [''],
-        dataDaConsulta: [''],
+        dataHoraDaConsulta: [''],
         grade: [''],
         prontuario: [''],
         nome: [''],
         especialidade: [''],
         profissional: [''],
         convenio: [''],
-        codigoCentral: [''],
+        clinicaCentralId: [''],
         observacao: [''],
         justificativa: [''],
     });
-    @Input() formularioTriagem: FormGroup;
+
     localizacao = CALENDAR_LOCALE;
     dataLimite = new Date();
     anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService) {}
+    constructor(
+        private fb: FormBuilder,
+        private consultaService: ConsultaService,
+        private breadcrumbService: BreadcrumbService,
+    ) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -39,6 +47,28 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
                 routerLink: 'emergencia',
             },
         ]);
+    }
+    cadastrarConsultas(form: FormBuilder) {
+        const cadConsulta = this.formEmergencia.value;
+        const consultasEmergencia: ConsultaEmergenciaModel = {
+            numeroConsulta: cadConsulta.numeroConsulta,
+            dataHoraDaConsulta: cadConsulta.dataHoraDaConsulta,
+            grade: cadConsulta.grade,
+            nome: cadConsulta.nome,
+            especialidade: cadConsulta.especialidade,
+            profissional: cadConsulta.profissional,
+            clinicaCentralId: cadConsulta.clinicaCentralId,
+            observacao: cadConsulta.observacao,
+            justificativa: cadConsulta.justificativa,
+            condicaoDeAtendimentoId: cadConsulta.condicaoDeAtendimentoId,
+            formaDeAgendamentoId: cadConsulta.formaDeAgendamentoId,
+            pacienteId: cadConsulta.pacienteId,
+        };
+
+        this.consultaService.cadastrarConsultas(consultasEmergencia).subscribe((e) => {
+            this.formEmergencia.reset();
+        });
+        console.log(consultasEmergencia);
     }
     ngOnDestroy(): void {
         this.breadcrumbService.reset();

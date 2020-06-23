@@ -55,7 +55,7 @@ public class EmergenciaResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new emergenciaDTO, or with status {@code 400 (Bad Request)} if the emergencia has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/emergencias")
+    @PostMapping("/consultas-emergencias")
     public ResponseEntity<EmergenciaDTO> createEmergencia(@Valid @RequestBody EmergenciaDTO emergenciaDTO) throws URISyntaxException {
         log.debug("REST request to save Emergencia : {}", emergenciaDTO);
         if (emergenciaDTO.getId() != null) {
@@ -76,7 +76,7 @@ public class EmergenciaResource {
      * or with status {@code 500 (Internal Server Error)} if the emergenciaDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/emergencias")
+    @PutMapping("/consultas-emergencias")
     public ResponseEntity<EmergenciaDTO> updateEmergencia(@Valid @RequestBody EmergenciaDTO emergenciaDTO) throws URISyntaxException {
         log.debug("REST request to update Emergencia : {}", emergenciaDTO);
         if (emergenciaDTO.getId() == null) {
@@ -96,7 +96,7 @@ public class EmergenciaResource {
 
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of emergencias in body.
      */
-    @GetMapping("/emergencias")
+    @GetMapping("/consultas-emergencias")
     public ResponseEntity<List<EmergenciaDTO>> getAllEmergencias(Pageable pageable) {
         log.debug("REST request to get a page of Emergencias");
         Page<EmergenciaDTO> page = emergenciaService.findAll(pageable);
@@ -123,7 +123,7 @@ public class EmergenciaResource {
      * @param id the id of the emergenciaDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/emergencias/{id}")
+    @DeleteMapping("/consultas-emergencias/{id}")
     public ResponseEntity<Void> deleteEmergencia(@PathVariable Long id) {
         log.debug("REST request to delete Emergencia : {}", id);
         emergenciaService.delete(id);
@@ -138,7 +138,7 @@ public class EmergenciaResource {
      * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/emergencias")
+    @GetMapping("/_search/consultas-emergencias")
     public ResponseEntity<List<EmergenciaDTO>> searchEmergencias(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Emergencias for query {}", query);
         Page<EmergenciaDTO> page = emergenciaService.search(query, pageable);
