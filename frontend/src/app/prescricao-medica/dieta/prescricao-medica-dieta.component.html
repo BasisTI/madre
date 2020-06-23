@@ -9,8 +9,7 @@
                         <div class="ui-g-12">
                             <div class="ui-g-12">
                                 <span class="md-inputfield">
-                                    <input formControlName="nome" type="text" pInputText
-                                        disabled />
+                                    <input formControlName="nome" type="text" pInputText disabled />
                                     <label>Paciente</label>
                                 </span>
                             </div>
@@ -55,8 +54,9 @@
 
                             <div class="ui-g-12">
                                 <span class="md-inputfield">
-                                    <p-dropdown [autoWidth]="false" placeholder="Selecione..." [options]="tiposItens"
-                                        formControlName="tipoItemDietaId" required #descricaoItem>
+                                    <p-dropdown [autoWidth]="false" [filter]="true" placeholder="Selecione..."
+                                        [options]="tiposItens" formControlName="tipoItemDietaId" required
+                                        #descricaoItem>
                                     </p-dropdown>
                                     <label>Tipo Item</label>
                                 </span>
@@ -73,7 +73,7 @@
 
                             <div class="ui-g-6">
                                 <span class="md-inputfield">
-                                    <p-dropdown [autoWidth]="false" placeholder="Selecione..."
+                                    <p-dropdown [autoWidth]="false" [filter]="true" placeholder="Selecione..."
                                         [options]="listaUnidadeDieta" formControlName="tipoUnidadeDietaId">
                                     </p-dropdown>
                                     <label>Unidade</label>

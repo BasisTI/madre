@@ -9,8 +9,7 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-12">
                                     <span class="md-inputfield">
-                                        <input formControlName="nome" type="text"
-                                            pInputText disabled />
+                                        <input formControlName="nome" type="text" pInputText disabled />
                                         <label>Paciente</label>
                                     </span>
                                 </div>
@@ -39,8 +38,8 @@
                                             formControlName="idMedicamento" [dropdown]="true" dataKey="id">
                                         </p-autoComplete>
                                         <label>Medicamentos</label>
-                                        <app-message [control]="itemPrescricaoMedicamento.get('idMedicamento')" error="required"
-                                        text="Campo é obrigatório"></app-message>
+                                        <app-message [control]="itemPrescricaoMedicamento.get('idMedicamento')"
+                                            error="required" text="Campo é obrigatório"></app-message>
                                     </span>
                                 </div>
                             </div>
@@ -52,15 +51,16 @@
                                         <input pInputText formControlName="dose" />
                                         <label>Dose</label>
                                         <app-message [control]="itemPrescricaoMedicamento.get('dose')" error="required"
-                                        text="Campo é obrigatório"></app-message>
-                                    
+                                            text="Campo é obrigatório"></app-message>
+
                                     </span>
                                 </div>
 
                                 <div class="ui-g-2">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaUnidadeDose"
-                                            formControlName="unidadeDoseId" required #unidadeDose>
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            [options]="listaUnidadeDose" formControlName="unidadeDoseId" required
+                                            #unidadeDose>
                                         </p-dropdown>
                                         <label>Unidade</label>
                                     </span>
@@ -68,8 +68,9 @@
 
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaViasAdministracao"
-                                            formControlName="viasAdministracaoId" required #viaAdministracao>
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            [options]="listaViasAdministracao" formControlName="viasAdministracaoId"
+                                            required #viaAdministracao>
                                         </p-dropdown>
                                         <label>Via</label>
                                     </span>
@@ -104,8 +105,8 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaTipoAprazamento"
-                                            formControlName="tipoAprazamentoId">
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamentoId">
                                         </p-dropdown>
                                         <label>Tipo de Aprazamento</label>
                                     </span>
@@ -113,7 +114,7 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaDiluente"
+                                        <p-dropdown placeholder="Selecione..." [filter]="true" [options]="listaDiluente"
                                             formControlName="diluenteId" #diluente>
                                         </p-dropdown>
                                         <label>Diluente</label>
@@ -124,9 +125,10 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input pInputText formControlName="volume" placeholder="Informe o valume do diluente" />
+                                        <input pInputText formControlName="volume"
+                                            placeholder="Informe o valume do diluente" />
                                         <label>Volume (ml)</label>
-                                       
+
                                     </span>
                                 </div>
 
@@ -156,8 +158,8 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaUnidadeInfusao"
-                                            formControlName="unidadeInfusaoId">
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            [options]="listaUnidadeInfusao" formControlName="unidadeInfusaoId">
                                         </p-dropdown>
                                         <label>Unidade Infusão</label>
                                     </span>
