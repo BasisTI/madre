@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 @Data
 public class AutorizacaoFornecimentoDTO implements Serializable {
-
     private Long id;
 
     @NotNull
@@ -21,7 +20,6 @@ public class AutorizacaoFornecimentoDTO implements Serializable {
 
     @NotNull
     private TipoItemAf tipoItem;
-
 
     private Long fornecedorId;
 

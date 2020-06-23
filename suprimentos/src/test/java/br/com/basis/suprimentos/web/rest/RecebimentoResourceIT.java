@@ -111,11 +111,11 @@ public class RecebimentoResourceIT {
         MockitoAnnotations.initMocks(this);
         final RecebimentoResource recebimentoResource = new RecebimentoResource(recebimentoService);
         this.restRecebimentoMockMvc = MockMvcBuilders.standaloneSetup(recebimentoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -131,9 +131,9 @@ public class RecebimentoResourceIT {
         // Create the Recebimento
         RecebimentoDTO recebimentoDTO = recebimentoMapper.toDto(recebimento);
         restRecebimentoMockMvc.perform(post("/api/recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Recebimento in the database
         List<Recebimento> recebimentoList = recebimentoRepository.findAll();
@@ -155,9 +155,9 @@ public class RecebimentoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restRecebimentoMockMvc.perform(post("/api/recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Recebimento in the database
         List<Recebimento> recebimentoList = recebimentoRepository.findAll();
@@ -176,9 +176,9 @@ public class RecebimentoResourceIT {
 
         // Get all the recebimentoList
         restRecebimentoMockMvc.perform(get("/api/recebimentos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(recebimento.getId().intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(recebimento.getId().intValue())));
     }
 
     @Test
@@ -189,9 +189,9 @@ public class RecebimentoResourceIT {
 
         // Get the recebimento
         restRecebimentoMockMvc.perform(get("/api/recebimentos/{id}", recebimento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(recebimento.getId().intValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(recebimento.getId().intValue()));
     }
 
     @Test
@@ -199,7 +199,7 @@ public class RecebimentoResourceIT {
     public void getNonExistingRecebimento() throws Exception {
         // Get the recebimento
         restRecebimentoMockMvc.perform(get("/api/recebimentos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -217,9 +217,9 @@ public class RecebimentoResourceIT {
         RecebimentoDTO recebimentoDTO = recebimentoMapper.toDto(updatedRecebimento);
 
         restRecebimentoMockMvc.perform(put("/api/recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Recebimento in the database
         List<Recebimento> recebimentoList = recebimentoRepository.findAll();
@@ -240,9 +240,9 @@ public class RecebimentoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRecebimentoMockMvc.perform(put("/api/recebimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(recebimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Recebimento in the database
         List<Recebimento> recebimentoList = recebimentoRepository.findAll();
@@ -262,8 +262,8 @@ public class RecebimentoResourceIT {
 
         // Delete the recebimento
         restRecebimentoMockMvc.perform(delete("/api/recebimentos/{id}", recebimento.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Recebimento> recebimentoList = recebimentoRepository.findAll();
@@ -279,12 +279,12 @@ public class RecebimentoResourceIT {
         // Initialize the database
         recebimentoRepository.saveAndFlush(recebimento);
         when(mockRecebimentoSearchRepository.search(queryStringQuery("id:" + recebimento.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(recebimento), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(recebimento), PageRequest.of(0, 1), 1));
         // Search the recebimento
         restRecebimentoMockMvc.perform(get("/api/_search/recebimentos?query=id:" + recebimento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(recebimento.getId().intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(recebimento.getId().intValue())));
     }
 
     @Test

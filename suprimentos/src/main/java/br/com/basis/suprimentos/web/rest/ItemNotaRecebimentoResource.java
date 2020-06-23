@@ -1,82 +1,60 @@
 package br.com.basis.suprimentos.web.rest;
 
 import br.com.basis.suprimentos.service.ItemNotaRecebimentoService;
-import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.suprimentos.service.dto.ItemNotaRecebimentoDTO;
-
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
-
-/**
- * REST controller for managing {@link br.com.basis.suprimentos.domain.ItemNotaRecebimento}.
- */
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class ItemNotaRecebimentoResource {
-
-    private final Logger log = LoggerFactory.getLogger(ItemNotaRecebimentoResource.class);
-
     private static final String ENTITY_NAME = "madresuprimentosItemNotaRecebimento";
-
+    private final ItemNotaRecebimentoService itemNotaRecebimentoService;
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final ItemNotaRecebimentoService itemNotaRecebimentoService;
-
-    public ItemNotaRecebimentoResource(ItemNotaRecebimentoService itemNotaRecebimentoService) {
-        this.itemNotaRecebimentoService = itemNotaRecebimentoService;
-    }
-
-    /**
-     * {@code POST  /item-nota-recebimentos} : Create a new itemNotaRecebimento.
-     *
-     * @param itemNotaRecebimentoDTO the itemNotaRecebimentoDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new itemNotaRecebimentoDTO, or with status {@code 400 (Bad Request)} if the itemNotaRecebimento has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PostMapping("/item-nota-recebimentos")
+    @PostMapping("/itens-nota-recebimento")
     public ResponseEntity<ItemNotaRecebimentoDTO> createItemNotaRecebimento(@Valid @RequestBody ItemNotaRecebimentoDTO itemNotaRecebimentoDTO) throws URISyntaxException {
         log.debug("REST request to save ItemNotaRecebimento : {}", itemNotaRecebimentoDTO);
         if (itemNotaRecebimentoDTO.getId() != null) {
             throw new BadRequestAlertException("A new itemNotaRecebimento cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ItemNotaRecebimentoDTO result = itemNotaRecebimentoService.save(itemNotaRecebimentoDTO);
-        return ResponseEntity.created(new URI("/api/item-nota-recebimentos/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/itens-nota-recebimento/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
-    /**
-     * {@code PUT  /item-nota-recebimentos} : Updates an existing itemNotaRecebimento.
-     *
-     * @param itemNotaRecebimentoDTO the itemNotaRecebimentoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated itemNotaRecebimentoDTO,
-     * or with status {@code 400 (Bad Request)} if the itemNotaRecebimentoDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the itemNotaRecebimentoDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PutMapping("/item-nota-recebimentos")
+    @PutMapping("/itens-nota-recebimento")
     public ResponseEntity<ItemNotaRecebimentoDTO> updateItemNotaRecebimento(@Valid @RequestBody ItemNotaRecebimentoDTO itemNotaRecebimentoDTO) throws URISyntaxException {
         log.debug("REST request to update ItemNotaRecebimento : {}", itemNotaRecebimentoDTO);
         if (itemNotaRecebimentoDTO.getId() == null) {
@@ -88,15 +66,7 @@ public class ItemNotaRecebimentoResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /item-nota-recebimentos} : get all the itemNotaRecebimentos.
-     *
-
-     * @param pageable the pagination information.
-
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of itemNotaRecebimentos in body.
-     */
-    @GetMapping("/item-nota-recebimentos")
+    @GetMapping("/itens-nota-recebimento")
     public ResponseEntity<List<ItemNotaRecebimentoDTO>> getAllItemNotaRecebimentos(Pageable pageable) {
         log.debug("REST request to get a page of ItemNotaRecebimentos");
         Page<ItemNotaRecebimentoDTO> page = itemNotaRecebimentoService.findAll(pageable);
@@ -104,41 +74,21 @@ public class ItemNotaRecebimentoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /item-nota-recebimentos/:id} : get the "id" itemNotaRecebimento.
-     *
-     * @param id the id of the itemNotaRecebimentoDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the itemNotaRecebimentoDTO, or with status {@code 404 (Not Found)}.
-     */
-    @GetMapping("/item-nota-recebimentos/{id}")
+    @GetMapping("/itens-nota-recebimento/{id}")
     public ResponseEntity<ItemNotaRecebimentoDTO> getItemNotaRecebimento(@PathVariable Long id) {
         log.debug("REST request to get ItemNotaRecebimento : {}", id);
         Optional<ItemNotaRecebimentoDTO> itemNotaRecebimentoDTO = itemNotaRecebimentoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(itemNotaRecebimentoDTO);
     }
 
-    /**
-     * {@code DELETE  /item-nota-recebimentos/:id} : delete the "id" itemNotaRecebimento.
-     *
-     * @param id the id of the itemNotaRecebimentoDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
-    @DeleteMapping("/item-nota-recebimentos/{id}")
+    @DeleteMapping("/itens-nota-recebimento/{id}")
     public ResponseEntity<Void> deleteItemNotaRecebimento(@PathVariable Long id) {
         log.debug("REST request to delete ItemNotaRecebimento : {}", id);
         itemNotaRecebimentoService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * {@code SEARCH  /_search/item-nota-recebimentos?query=:query} : search for the itemNotaRecebimento corresponding
-     * to the query.
-     *
-     * @param query the query of the itemNotaRecebimento search.
-     * @param pageable the pagination information.
-     * @return the result of the search.
-     */
-    @GetMapping("/_search/item-nota-recebimentos")
+    @GetMapping("/_search/itens-nota-recebimento")
     public ResponseEntity<List<ItemNotaRecebimentoDTO>> searchItemNotaRecebimentos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of ItemNotaRecebimentos for query {}", query);
         Page<ItemNotaRecebimentoDTO> page = itemNotaRecebimentoService.search(query, pageable);

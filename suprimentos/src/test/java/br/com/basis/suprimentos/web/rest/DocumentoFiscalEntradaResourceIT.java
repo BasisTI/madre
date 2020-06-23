@@ -133,19 +133,19 @@ public class DocumentoFiscalEntradaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static DocumentoFiscalEntrada createEntity(EntityManager em) {
-        DocumentoFiscalEntrada documentoFiscalEntrada = new DocumentoFiscalEntrada()
-                .numeroDocumento(DEFAULT_NUMERO_DOCUMENTO)
-                .serie(DEFAULT_SERIE)
-                .notaEmpenho(DEFAULT_NOTA_EMPENHO)
-                .cpfCnpj(DEFAULT_CPF_CNPJ)
-                .dataGeracao(DEFAULT_DATA_GERACAO)
-                .dataEmissao(DEFAULT_DATA_EMISSAO)
-                .dataEntrada(DEFAULT_DATA_ENTRADA)
-                .dataVencimento(DEFAULT_DATA_VENCIMENTO)
-                .valorTotal(DEFAULT_VALOR_TOTAL)
-                .tipoDocumento(DEFAULT_TIPO_DOCUMENTO)
-                .tipoDocumentoFiscal(DEFAULT_TIPO_DOCUMENTO_FISCAL)
-                .observacao(DEFAULT_OBSERVACAO);
+        DocumentoFiscalEntrada documentoFiscalEntrada = new DocumentoFiscalEntrada();
+        documentoFiscalEntrada.setNumeroDocumento(DEFAULT_NUMERO_DOCUMENTO);
+        documentoFiscalEntrada.setSerie(DEFAULT_SERIE);
+        documentoFiscalEntrada.setNotaEmpenho(DEFAULT_NOTA_EMPENHO);
+        documentoFiscalEntrada.setCpfCnpj(DEFAULT_CPF_CNPJ);
+        documentoFiscalEntrada.setDataGeracao(DEFAULT_DATA_GERACAO);
+        documentoFiscalEntrada.setDataEmissao(DEFAULT_DATA_EMISSAO);
+        documentoFiscalEntrada.setDataEntrada(DEFAULT_DATA_ENTRADA);
+        documentoFiscalEntrada.setDataVencimento(DEFAULT_DATA_VENCIMENTO);
+        documentoFiscalEntrada.setValorTotal(DEFAULT_VALOR_TOTAL);
+        documentoFiscalEntrada.setTipoDocumento(DEFAULT_TIPO_DOCUMENTO);
+        documentoFiscalEntrada.setTipoDocumentoFiscal(DEFAULT_TIPO_DOCUMENTO_FISCAL);
+        documentoFiscalEntrada.setObservacao(DEFAULT_OBSERVACAO);
         // Add required entity
         Fornecedor fornecedor;
         if (TestUtil.findAll(em, Fornecedor.class).isEmpty()) {
@@ -166,19 +166,19 @@ public class DocumentoFiscalEntradaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static DocumentoFiscalEntrada createUpdatedEntity(EntityManager em) {
-        DocumentoFiscalEntrada documentoFiscalEntrada = new DocumentoFiscalEntrada()
-                .numeroDocumento(UPDATED_NUMERO_DOCUMENTO)
-                .serie(UPDATED_SERIE)
-                .notaEmpenho(UPDATED_NOTA_EMPENHO)
-                .cpfCnpj(UPDATED_CPF_CNPJ)
-                .dataGeracao(UPDATED_DATA_GERACAO)
-                .dataEmissao(UPDATED_DATA_EMISSAO)
-                .dataEntrada(UPDATED_DATA_ENTRADA)
-                .dataVencimento(UPDATED_DATA_VENCIMENTO)
-                .valorTotal(UPDATED_VALOR_TOTAL)
-                .tipoDocumento(UPDATED_TIPO_DOCUMENTO)
-                .tipoDocumentoFiscal(UPDATED_TIPO_DOCUMENTO_FISCAL)
-                .observacao(UPDATED_OBSERVACAO);
+        DocumentoFiscalEntrada documentoFiscalEntrada = new DocumentoFiscalEntrada();
+        documentoFiscalEntrada.setNumeroDocumento(UPDATED_NUMERO_DOCUMENTO);
+        documentoFiscalEntrada.setSerie(UPDATED_SERIE);
+        documentoFiscalEntrada.setNotaEmpenho(UPDATED_NOTA_EMPENHO);
+        documentoFiscalEntrada.setCpfCnpj(UPDATED_CPF_CNPJ);
+        documentoFiscalEntrada.setDataGeracao(UPDATED_DATA_GERACAO);
+        documentoFiscalEntrada.setDataEmissao(UPDATED_DATA_EMISSAO);
+        documentoFiscalEntrada.setDataGeracao(UPDATED_DATA_ENTRADA);
+        documentoFiscalEntrada.setDataVencimento(UPDATED_DATA_VENCIMENTO);
+        documentoFiscalEntrada.setValorTotal(UPDATED_VALOR_TOTAL);
+        documentoFiscalEntrada.setTipoDocumento(UPDATED_TIPO_DOCUMENTO);
+        documentoFiscalEntrada.setTipoDocumentoFiscal(UPDATED_TIPO_DOCUMENTO_FISCAL);
+        documentoFiscalEntrada.setObservacao(UPDATED_OBSERVACAO);
         // Add required entity
         Fornecedor fornecedor;
         if (TestUtil.findAll(em, Fornecedor.class).isEmpty()) {
@@ -197,11 +197,11 @@ public class DocumentoFiscalEntradaResourceIT {
         MockitoAnnotations.initMocks(this);
         final DocumentoFiscalEntradaResource documentoFiscalEntradaResource = new DocumentoFiscalEntradaResource(documentoFiscalEntradaService);
         this.restDocumentoFiscalEntradaMockMvc = MockMvcBuilders.standaloneSetup(documentoFiscalEntradaResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -217,9 +217,9 @@ public class DocumentoFiscalEntradaResourceIT {
         // Create the DocumentoFiscalEntrada
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the DocumentoFiscalEntrada in the database
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
@@ -253,9 +253,9 @@ public class DocumentoFiscalEntradaResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the DocumentoFiscalEntrada in the database
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
@@ -277,9 +277,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -296,9 +296,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -315,9 +315,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -334,9 +334,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -353,9 +353,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -372,9 +372,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -391,9 +391,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -410,9 +410,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -429,9 +429,9 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(post("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
         assertThat(documentoFiscalEntradaList).hasSize(databaseSizeBeforeTest);
@@ -445,21 +445,21 @@ public class DocumentoFiscalEntradaResourceIT {
 
         // Get all the documentoFiscalEntradaList
         restDocumentoFiscalEntradaMockMvc.perform(get("/api/documento-fiscal-entradas?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(documentoFiscalEntrada.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numeroDocumento").value(hasItem(DEFAULT_NUMERO_DOCUMENTO.intValue())))
-                .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
-                .andExpect(jsonPath("$.[*].notaEmpenho").value(hasItem(DEFAULT_NOTA_EMPENHO)))
-                .andExpect(jsonPath("$.[*].cpfCnpj").value(hasItem(DEFAULT_CPF_CNPJ)))
-                .andExpect(jsonPath("$.[*].dataGeracao").value(hasItem(DEFAULT_DATA_GERACAO.toString())))
-                .andExpect(jsonPath("$.[*].dataEmissao").value(hasItem(DEFAULT_DATA_EMISSAO.toString())))
-                .andExpect(jsonPath("$.[*].dataEntrada").value(hasItem(DEFAULT_DATA_ENTRADA.toString())))
-                .andExpect(jsonPath("$.[*].dataVencimento").value(hasItem(DEFAULT_DATA_VENCIMENTO.toString())))
-                .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())))
-                .andExpect(jsonPath("$.[*].tipoDocumento").value(hasItem(DEFAULT_TIPO_DOCUMENTO.toString())))
-                .andExpect(jsonPath("$.[*].tipoDocumentoFiscal").value(hasItem(DEFAULT_TIPO_DOCUMENTO_FISCAL.toString())))
-                .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(documentoFiscalEntrada.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numeroDocumento").value(hasItem(DEFAULT_NUMERO_DOCUMENTO.intValue())))
+            .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
+            .andExpect(jsonPath("$.[*].notaEmpenho").value(hasItem(DEFAULT_NOTA_EMPENHO)))
+            .andExpect(jsonPath("$.[*].cpfCnpj").value(hasItem(DEFAULT_CPF_CNPJ)))
+            .andExpect(jsonPath("$.[*].dataGeracao").value(hasItem(DEFAULT_DATA_GERACAO.toString())))
+            .andExpect(jsonPath("$.[*].dataEmissao").value(hasItem(DEFAULT_DATA_EMISSAO.toString())))
+            .andExpect(jsonPath("$.[*].dataEntrada").value(hasItem(DEFAULT_DATA_ENTRADA.toString())))
+            .andExpect(jsonPath("$.[*].dataVencimento").value(hasItem(DEFAULT_DATA_VENCIMENTO.toString())))
+            .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())))
+            .andExpect(jsonPath("$.[*].tipoDocumento").value(hasItem(DEFAULT_TIPO_DOCUMENTO.toString())))
+            .andExpect(jsonPath("$.[*].tipoDocumentoFiscal").value(hasItem(DEFAULT_TIPO_DOCUMENTO_FISCAL.toString())))
+            .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
 
     @Test
@@ -470,21 +470,21 @@ public class DocumentoFiscalEntradaResourceIT {
 
         // Get the documentoFiscalEntrada
         restDocumentoFiscalEntradaMockMvc.perform(get("/api/documento-fiscal-entradas/{id}", documentoFiscalEntrada.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(documentoFiscalEntrada.getId().intValue()))
-                .andExpect(jsonPath("$.numeroDocumento").value(DEFAULT_NUMERO_DOCUMENTO.intValue()))
-                .andExpect(jsonPath("$.serie").value(DEFAULT_SERIE))
-                .andExpect(jsonPath("$.notaEmpenho").value(DEFAULT_NOTA_EMPENHO))
-                .andExpect(jsonPath("$.cpfCnpj").value(DEFAULT_CPF_CNPJ))
-                .andExpect(jsonPath("$.dataGeracao").value(DEFAULT_DATA_GERACAO.toString()))
-                .andExpect(jsonPath("$.dataEmissao").value(DEFAULT_DATA_EMISSAO.toString()))
-                .andExpect(jsonPath("$.dataEntrada").value(DEFAULT_DATA_ENTRADA.toString()))
-                .andExpect(jsonPath("$.dataVencimento").value(DEFAULT_DATA_VENCIMENTO.toString()))
-                .andExpect(jsonPath("$.valorTotal").value(DEFAULT_VALOR_TOTAL.intValue()))
-                .andExpect(jsonPath("$.tipoDocumento").value(DEFAULT_TIPO_DOCUMENTO.toString()))
-                .andExpect(jsonPath("$.tipoDocumentoFiscal").value(DEFAULT_TIPO_DOCUMENTO_FISCAL.toString()))
-                .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(documentoFiscalEntrada.getId().intValue()))
+            .andExpect(jsonPath("$.numeroDocumento").value(DEFAULT_NUMERO_DOCUMENTO.intValue()))
+            .andExpect(jsonPath("$.serie").value(DEFAULT_SERIE))
+            .andExpect(jsonPath("$.notaEmpenho").value(DEFAULT_NOTA_EMPENHO))
+            .andExpect(jsonPath("$.cpfCnpj").value(DEFAULT_CPF_CNPJ))
+            .andExpect(jsonPath("$.dataGeracao").value(DEFAULT_DATA_GERACAO.toString()))
+            .andExpect(jsonPath("$.dataEmissao").value(DEFAULT_DATA_EMISSAO.toString()))
+            .andExpect(jsonPath("$.dataEntrada").value(DEFAULT_DATA_ENTRADA.toString()))
+            .andExpect(jsonPath("$.dataVencimento").value(DEFAULT_DATA_VENCIMENTO.toString()))
+            .andExpect(jsonPath("$.valorTotal").value(DEFAULT_VALOR_TOTAL.intValue()))
+            .andExpect(jsonPath("$.tipoDocumento").value(DEFAULT_TIPO_DOCUMENTO.toString()))
+            .andExpect(jsonPath("$.tipoDocumentoFiscal").value(DEFAULT_TIPO_DOCUMENTO_FISCAL.toString()))
+            .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO));
     }
 
     @Test
@@ -492,7 +492,7 @@ public class DocumentoFiscalEntradaResourceIT {
     public void getNonExistingDocumentoFiscalEntrada() throws Exception {
         // Get the documentoFiscalEntrada
         restDocumentoFiscalEntradaMockMvc.perform(get("/api/documento-fiscal-entradas/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -507,25 +507,24 @@ public class DocumentoFiscalEntradaResourceIT {
         DocumentoFiscalEntrada updatedDocumentoFiscalEntrada = documentoFiscalEntradaRepository.findById(documentoFiscalEntrada.getId()).get();
         // Disconnect from session so that the updates on updatedDocumentoFiscalEntrada are not directly saved in db
         em.detach(updatedDocumentoFiscalEntrada);
-        updatedDocumentoFiscalEntrada
-                .numeroDocumento(UPDATED_NUMERO_DOCUMENTO)
-                .serie(UPDATED_SERIE)
-                .notaEmpenho(UPDATED_NOTA_EMPENHO)
-                .cpfCnpj(UPDATED_CPF_CNPJ)
-                .dataGeracao(UPDATED_DATA_GERACAO)
-                .dataEmissao(UPDATED_DATA_EMISSAO)
-                .dataEntrada(UPDATED_DATA_ENTRADA)
-                .dataVencimento(UPDATED_DATA_VENCIMENTO)
-                .valorTotal(UPDATED_VALOR_TOTAL)
-                .tipoDocumento(UPDATED_TIPO_DOCUMENTO)
-                .tipoDocumentoFiscal(UPDATED_TIPO_DOCUMENTO_FISCAL)
-                .observacao(UPDATED_OBSERVACAO);
+        updatedDocumentoFiscalEntrada.setNumeroDocumento(UPDATED_NUMERO_DOCUMENTO);
+        updatedDocumentoFiscalEntrada.setSerie(UPDATED_SERIE);
+        updatedDocumentoFiscalEntrada.setNotaEmpenho(UPDATED_NOTA_EMPENHO);
+        updatedDocumentoFiscalEntrada.setCpfCnpj(UPDATED_CPF_CNPJ);
+        updatedDocumentoFiscalEntrada.setDataGeracao(UPDATED_DATA_GERACAO);
+        updatedDocumentoFiscalEntrada.setDataEmissao(UPDATED_DATA_EMISSAO);
+        updatedDocumentoFiscalEntrada.setDataEntrada(UPDATED_DATA_ENTRADA);
+        updatedDocumentoFiscalEntrada.setDataVencimento(UPDATED_DATA_VENCIMENTO);
+        updatedDocumentoFiscalEntrada.setValorTotal(UPDATED_VALOR_TOTAL);
+        updatedDocumentoFiscalEntrada.setTipoDocumento(UPDATED_TIPO_DOCUMENTO);
+        updatedDocumentoFiscalEntrada.setTipoDocumentoFiscal(UPDATED_TIPO_DOCUMENTO_FISCAL);
+        updatedDocumentoFiscalEntrada.setObservacao(UPDATED_OBSERVACAO);
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(updatedDocumentoFiscalEntrada);
 
         restDocumentoFiscalEntradaMockMvc.perform(put("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isOk());
 
         // Validate the DocumentoFiscalEntrada in the database
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
@@ -558,9 +557,9 @@ public class DocumentoFiscalEntradaResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restDocumentoFiscalEntradaMockMvc.perform(put("/api/documento-fiscal-entradas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(documentoFiscalEntradaDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the DocumentoFiscalEntrada in the database
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
@@ -580,8 +579,8 @@ public class DocumentoFiscalEntradaResourceIT {
 
         // Delete the documentoFiscalEntrada
         restDocumentoFiscalEntradaMockMvc.perform(delete("/api/documento-fiscal-entradas/{id}", documentoFiscalEntrada.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<DocumentoFiscalEntrada> documentoFiscalEntradaList = documentoFiscalEntradaRepository.findAll();
@@ -597,24 +596,24 @@ public class DocumentoFiscalEntradaResourceIT {
         // Initialize the database
         documentoFiscalEntradaRepository.saveAndFlush(documentoFiscalEntrada);
         when(mockDocumentoFiscalEntradaSearchRepository.search(queryStringQuery("id:" + documentoFiscalEntrada.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(documentoFiscalEntrada), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(documentoFiscalEntrada), PageRequest.of(0, 1), 1));
         // Search the documentoFiscalEntrada
         restDocumentoFiscalEntradaMockMvc.perform(get("/api/_search/documento-fiscal-entradas?query=id:" + documentoFiscalEntrada.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(documentoFiscalEntrada.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numeroDocumento").value(hasItem(DEFAULT_NUMERO_DOCUMENTO.intValue())))
-                .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
-                .andExpect(jsonPath("$.[*].notaEmpenho").value(hasItem(DEFAULT_NOTA_EMPENHO)))
-                .andExpect(jsonPath("$.[*].cpfCnpj").value(hasItem(DEFAULT_CPF_CNPJ)))
-                .andExpect(jsonPath("$.[*].dataGeracao").value(hasItem(DEFAULT_DATA_GERACAO.toString())))
-                .andExpect(jsonPath("$.[*].dataEmissao").value(hasItem(DEFAULT_DATA_EMISSAO.toString())))
-                .andExpect(jsonPath("$.[*].dataEntrada").value(hasItem(DEFAULT_DATA_ENTRADA.toString())))
-                .andExpect(jsonPath("$.[*].dataVencimento").value(hasItem(DEFAULT_DATA_VENCIMENTO.toString())))
-                .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())))
-                .andExpect(jsonPath("$.[*].tipoDocumento").value(hasItem(DEFAULT_TIPO_DOCUMENTO.toString())))
-                .andExpect(jsonPath("$.[*].tipoDocumentoFiscal").value(hasItem(DEFAULT_TIPO_DOCUMENTO_FISCAL.toString())))
-                .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(documentoFiscalEntrada.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numeroDocumento").value(hasItem(DEFAULT_NUMERO_DOCUMENTO.intValue())))
+            .andExpect(jsonPath("$.[*].serie").value(hasItem(DEFAULT_SERIE)))
+            .andExpect(jsonPath("$.[*].notaEmpenho").value(hasItem(DEFAULT_NOTA_EMPENHO)))
+            .andExpect(jsonPath("$.[*].cpfCnpj").value(hasItem(DEFAULT_CPF_CNPJ)))
+            .andExpect(jsonPath("$.[*].dataGeracao").value(hasItem(DEFAULT_DATA_GERACAO.toString())))
+            .andExpect(jsonPath("$.[*].dataEmissao").value(hasItem(DEFAULT_DATA_EMISSAO.toString())))
+            .andExpect(jsonPath("$.[*].dataEntrada").value(hasItem(DEFAULT_DATA_ENTRADA.toString())))
+            .andExpect(jsonPath("$.[*].dataVencimento").value(hasItem(DEFAULT_DATA_VENCIMENTO.toString())))
+            .andExpect(jsonPath("$.[*].valorTotal").value(hasItem(DEFAULT_VALOR_TOTAL.intValue())))
+            .andExpect(jsonPath("$.[*].tipoDocumento").value(hasItem(DEFAULT_TIPO_DOCUMENTO.toString())))
+            .andExpect(jsonPath("$.[*].tipoDocumentoFiscal").value(hasItem(DEFAULT_TIPO_DOCUMENTO_FISCAL.toString())))
+            .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
 
     @Test

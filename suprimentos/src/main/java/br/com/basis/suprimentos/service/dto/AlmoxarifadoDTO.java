@@ -1,13 +1,15 @@
 package br.com.basis.suprimentos.service.dto;
-import javax.validation.constraints.*;
+
+import lombok.Data;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Objects;
 
-/**
- * A DTO for the {@link br.com.basis.suprimentos.domain.Almoxarifado} entity.
- */
+@Data
 public class AlmoxarifadoDTO implements Serializable {
-
     private Long id;
 
     @NotNull
@@ -28,116 +30,7 @@ public class AlmoxarifadoDTO implements Serializable {
 
     private Boolean bloqueiaEntradaTransferencia;
 
-
     private Long centroDeAtividadeId;
 
     private Long caracteristicaArmazenamentoId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Integer getDiasEstoque() {
-        return diasEstoque;
-    }
-
-    public void setDiasEstoque(Integer diasEstoque) {
-        this.diasEstoque = diasEstoque;
-    }
-
-    public Boolean isCentral() {
-        return central;
-    }
-
-    public void setCentral(Boolean central) {
-        this.central = central;
-    }
-
-    public Boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public Boolean isCalculaMediaPonderada() {
-        return calculaMediaPonderada;
-    }
-
-    public void setCalculaMediaPonderada(Boolean calculaMediaPonderada) {
-        this.calculaMediaPonderada = calculaMediaPonderada;
-    }
-
-    public Boolean isBloqueiaEntradaTransferencia() {
-        return bloqueiaEntradaTransferencia;
-    }
-
-    public void setBloqueiaEntradaTransferencia(Boolean bloqueiaEntradaTransferencia) {
-        this.bloqueiaEntradaTransferencia = bloqueiaEntradaTransferencia;
-    }
-
-    public Long getCentroDeAtividadeId() {
-        return centroDeAtividadeId;
-    }
-
-    public void setCentroDeAtividadeId(Long centroDeAtividadeId) {
-        this.centroDeAtividadeId = centroDeAtividadeId;
-    }
-
-    public Long getCaracteristicaArmazenamentoId() {
-        return caracteristicaArmazenamentoId;
-    }
-
-    public void setCaracteristicaArmazenamentoId(Long caracteristicaArmazenamentoId) {
-        this.caracteristicaArmazenamentoId = caracteristicaArmazenamentoId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AlmoxarifadoDTO almoxarifadoDTO = (AlmoxarifadoDTO) o;
-        if (almoxarifadoDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), almoxarifadoDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "AlmoxarifadoDTO{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            ", diasEstoque=" + getDiasEstoque() +
-            ", central='" + isCentral() + "'" +
-            ", ativo='" + isAtivo() + "'" +
-            ", calculaMediaPonderada='" + isCalculaMediaPonderada() + "'" +
-            ", bloqueiaEntradaTransferencia='" + isBloqueiaEntradaTransferencia() + "'" +
-            ", centroDeAtividade=" + getCentroDeAtividadeId() +
-            ", caracteristicaArmazenamento=" + getCaracteristicaArmazenamentoId() +
-            "}";
-    }
 }

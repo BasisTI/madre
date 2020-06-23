@@ -94,8 +94,8 @@ public class OrigemParecerTecnicoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static OrigemParecerTecnico createEntity(EntityManager em) {
-        OrigemParecerTecnico origemParecerTecnico = new OrigemParecerTecnico()
-                .descricao(DEFAULT_DESCRICAO);
+        OrigemParecerTecnico origemParecerTecnico = new OrigemParecerTecnico();
+        origemParecerTecnico.setDescricao(DEFAULT_DESCRICAO);
         return origemParecerTecnico;
     }
 
@@ -106,8 +106,8 @@ public class OrigemParecerTecnicoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static OrigemParecerTecnico createUpdatedEntity(EntityManager em) {
-        OrigemParecerTecnico origemParecerTecnico = new OrigemParecerTecnico()
-                .descricao(UPDATED_DESCRICAO);
+        OrigemParecerTecnico origemParecerTecnico = new OrigemParecerTecnico();
+        origemParecerTecnico.setDescricao(UPDATED_DESCRICAO);
         return origemParecerTecnico;
     }
 
@@ -116,11 +116,11 @@ public class OrigemParecerTecnicoResourceIT {
         MockitoAnnotations.initMocks(this);
         final OrigemParecerTecnicoResource origemParecerTecnicoResource = new OrigemParecerTecnicoResource(origemParecerTecnicoService);
         this.restOrigemParecerTecnicoMockMvc = MockMvcBuilders.standaloneSetup(origemParecerTecnicoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class OrigemParecerTecnicoResourceIT {
         // Create the OrigemParecerTecnico
         OrigemParecerTecnicoDTO origemParecerTecnicoDTO = origemParecerTecnicoMapper.toDto(origemParecerTecnico);
         restOrigemParecerTecnicoMockMvc.perform(post("/api/origem-parecer-tecnicos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the OrigemParecerTecnico in the database
         List<OrigemParecerTecnico> origemParecerTecnicoList = origemParecerTecnicoRepository.findAll();
@@ -161,9 +161,9 @@ public class OrigemParecerTecnicoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restOrigemParecerTecnicoMockMvc.perform(post("/api/origem-parecer-tecnicos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the OrigemParecerTecnico in the database
         List<OrigemParecerTecnico> origemParecerTecnicoList = origemParecerTecnicoRepository.findAll();
@@ -185,9 +185,9 @@ public class OrigemParecerTecnicoResourceIT {
         OrigemParecerTecnicoDTO origemParecerTecnicoDTO = origemParecerTecnicoMapper.toDto(origemParecerTecnico);
 
         restOrigemParecerTecnicoMockMvc.perform(post("/api/origem-parecer-tecnicos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<OrigemParecerTecnico> origemParecerTecnicoList = origemParecerTecnicoRepository.findAll();
         assertThat(origemParecerTecnicoList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class OrigemParecerTecnicoResourceIT {
 
         // Get all the origemParecerTecnicoList
         restOrigemParecerTecnicoMockMvc.perform(get("/api/origem-parecer-tecnicos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(origemParecerTecnico.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(origemParecerTecnico.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class OrigemParecerTecnicoResourceIT {
 
         // Get the origemParecerTecnico
         restOrigemParecerTecnicoMockMvc.perform(get("/api/origem-parecer-tecnicos/{id}", origemParecerTecnico.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(origemParecerTecnico.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(origemParecerTecnico.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class OrigemParecerTecnicoResourceIT {
     public void getNonExistingOrigemParecerTecnico() throws Exception {
         // Get the origemParecerTecnico
         restOrigemParecerTecnicoMockMvc.perform(get("/api/origem-parecer-tecnicos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -242,13 +242,13 @@ public class OrigemParecerTecnicoResourceIT {
         // Disconnect from session so that the updates on updatedOrigemParecerTecnico are not directly saved in db
         em.detach(updatedOrigemParecerTecnico);
         updatedOrigemParecerTecnico
-                .descricao(UPDATED_DESCRICAO);
+            .setDescricao(UPDATED_DESCRICAO);
         OrigemParecerTecnicoDTO origemParecerTecnicoDTO = origemParecerTecnicoMapper.toDto(updatedOrigemParecerTecnico);
 
         restOrigemParecerTecnicoMockMvc.perform(put("/api/origem-parecer-tecnicos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the OrigemParecerTecnico in the database
         List<OrigemParecerTecnico> origemParecerTecnicoList = origemParecerTecnicoRepository.findAll();
@@ -270,9 +270,9 @@ public class OrigemParecerTecnicoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restOrigemParecerTecnicoMockMvc.perform(put("/api/origem-parecer-tecnicos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(origemParecerTecnicoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the OrigemParecerTecnico in the database
         List<OrigemParecerTecnico> origemParecerTecnicoList = origemParecerTecnicoRepository.findAll();
@@ -292,8 +292,8 @@ public class OrigemParecerTecnicoResourceIT {
 
         // Delete the origemParecerTecnico
         restOrigemParecerTecnicoMockMvc.perform(delete("/api/origem-parecer-tecnicos/{id}", origemParecerTecnico.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<OrigemParecerTecnico> origemParecerTecnicoList = origemParecerTecnicoRepository.findAll();
@@ -309,13 +309,13 @@ public class OrigemParecerTecnicoResourceIT {
         // Initialize the database
         origemParecerTecnicoRepository.saveAndFlush(origemParecerTecnico);
         when(mockOrigemParecerTecnicoSearchRepository.search(queryStringQuery("id:" + origemParecerTecnico.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(origemParecerTecnico), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(origemParecerTecnico), PageRequest.of(0, 1), 1));
         // Search the origemParecerTecnico
         restOrigemParecerTecnicoMockMvc.perform(get("/api/_search/origem-parecer-tecnicos?query=id:" + origemParecerTecnico.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(origemParecerTecnico.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(origemParecerTecnico.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

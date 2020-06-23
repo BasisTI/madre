@@ -1,82 +1,58 @@
 package br.com.basis.suprimentos.web.rest;
 
 import br.com.basis.suprimentos.service.ComposicaoService;
-import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.suprimentos.service.dto.ComposicaoDTO;
-
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
-
-/**
- * REST controller for managing {@link br.com.basis.suprimentos.domain.Composicao}.
- */
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class ComposicaoResource {
-
-    private final Logger log = LoggerFactory.getLogger(ComposicaoResource.class);
-
-    private static final String ENTITY_NAME = "madresuprimentosComposicao";
-
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
+    private static final String ENTITY_NAME = "madresuprimentosComposicao";
     private final ComposicaoService composicaoService;
 
-    public ComposicaoResource(ComposicaoService composicaoService) {
-        this.composicaoService = composicaoService;
-    }
-
-    /**
-     * {@code POST  /composicaos} : Create a new composicao.
-     *
-     * @param composicaoDTO the composicaoDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new composicaoDTO, or with status {@code 400 (Bad Request)} if the composicao has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PostMapping("/composicaos")
+    @PostMapping("/composicoes")
     public ResponseEntity<ComposicaoDTO> createComposicao(@Valid @RequestBody ComposicaoDTO composicaoDTO) throws URISyntaxException {
         log.debug("REST request to save Composicao : {}", composicaoDTO);
         if (composicaoDTO.getId() != null) {
             throw new BadRequestAlertException("A new composicao cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ComposicaoDTO result = composicaoService.save(composicaoDTO);
-        return ResponseEntity.created(new URI("/api/composicaos/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/composicoes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
-    /**
-     * {@code PUT  /composicaos} : Updates an existing composicao.
-     *
-     * @param composicaoDTO the composicaoDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated composicaoDTO,
-     * or with status {@code 400 (Bad Request)} if the composicaoDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the composicaoDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PutMapping("/composicaos")
+    @PutMapping("/composicoes")
     public ResponseEntity<ComposicaoDTO> updateComposicao(@Valid @RequestBody ComposicaoDTO composicaoDTO) throws URISyntaxException {
         log.debug("REST request to update Composicao : {}", composicaoDTO);
         if (composicaoDTO.getId() == null) {
@@ -88,15 +64,7 @@ public class ComposicaoResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /composicaos} : get all the composicaos.
-     *
-
-     * @param pageable the pagination information.
-
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of composicaos in body.
-     */
-    @GetMapping("/composicaos")
+    @GetMapping("/composicoes")
     public ResponseEntity<List<ComposicaoDTO>> getAllComposicaos(Pageable pageable) {
         log.debug("REST request to get a page of Composicaos");
         Page<ComposicaoDTO> page = composicaoService.findAll(pageable);
@@ -104,41 +72,21 @@ public class ComposicaoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /composicaos/:id} : get the "id" composicao.
-     *
-     * @param id the id of the composicaoDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the composicaoDTO, or with status {@code 404 (Not Found)}.
-     */
-    @GetMapping("/composicaos/{id}")
+    @GetMapping("/composicoes/{id}")
     public ResponseEntity<ComposicaoDTO> getComposicao(@PathVariable Long id) {
         log.debug("REST request to get Composicao : {}", id);
         Optional<ComposicaoDTO> composicaoDTO = composicaoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(composicaoDTO);
     }
 
-    /**
-     * {@code DELETE  /composicaos/:id} : delete the "id" composicao.
-     *
-     * @param id the id of the composicaoDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
-    @DeleteMapping("/composicaos/{id}")
+    @DeleteMapping("/composicoes/{id}")
     public ResponseEntity<Void> deleteComposicao(@PathVariable Long id) {
         log.debug("REST request to delete Composicao : {}", id);
         composicaoService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * {@code SEARCH  /_search/composicaos?query=:query} : search for the composicao corresponding
-     * to the query.
-     *
-     * @param query the query of the composicao search.
-     * @param pageable the pagination information.
-     * @return the result of the search.
-     */
-    @GetMapping("/_search/composicaos")
+    @GetMapping("/_search/composicoes")
     public ResponseEntity<List<ComposicaoDTO>> searchComposicaos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Composicaos for query {}", query);
         Page<ComposicaoDTO> page = composicaoService.search(query, pageable);

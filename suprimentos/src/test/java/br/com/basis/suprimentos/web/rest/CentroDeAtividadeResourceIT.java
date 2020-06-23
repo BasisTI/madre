@@ -94,8 +94,8 @@ public class CentroDeAtividadeResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CentroDeAtividade createEntity(EntityManager em) {
-        CentroDeAtividade centroDeAtividade = new CentroDeAtividade()
-                .descricao(DEFAULT_DESCRICAO);
+        CentroDeAtividade centroDeAtividade = new CentroDeAtividade();
+        centroDeAtividade.setDescricao(DEFAULT_DESCRICAO);
         return centroDeAtividade;
     }
 
@@ -106,8 +106,8 @@ public class CentroDeAtividadeResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CentroDeAtividade createUpdatedEntity(EntityManager em) {
-        CentroDeAtividade centroDeAtividade = new CentroDeAtividade()
-                .descricao(UPDATED_DESCRICAO);
+        CentroDeAtividade centroDeAtividade = new CentroDeAtividade();
+        centroDeAtividade.setDescricao(UPDATED_DESCRICAO);
         return centroDeAtividade;
     }
 
@@ -116,11 +116,11 @@ public class CentroDeAtividadeResourceIT {
         MockitoAnnotations.initMocks(this);
         final CentroDeAtividadeResource centroDeAtividadeResource = new CentroDeAtividadeResource(centroDeAtividadeService);
         this.restCentroDeAtividadeMockMvc = MockMvcBuilders.standaloneSetup(centroDeAtividadeResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class CentroDeAtividadeResourceIT {
         // Create the CentroDeAtividade
         CentroDeAtividadeDTO centroDeAtividadeDTO = centroDeAtividadeMapper.toDto(centroDeAtividade);
         restCentroDeAtividadeMockMvc.perform(post("/api/centro-de-atividades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the CentroDeAtividade in the database
         List<CentroDeAtividade> centroDeAtividadeList = centroDeAtividadeRepository.findAll();
@@ -161,9 +161,9 @@ public class CentroDeAtividadeResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCentroDeAtividadeMockMvc.perform(post("/api/centro-de-atividades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the CentroDeAtividade in the database
         List<CentroDeAtividade> centroDeAtividadeList = centroDeAtividadeRepository.findAll();
@@ -185,9 +185,9 @@ public class CentroDeAtividadeResourceIT {
         CentroDeAtividadeDTO centroDeAtividadeDTO = centroDeAtividadeMapper.toDto(centroDeAtividade);
 
         restCentroDeAtividadeMockMvc.perform(post("/api/centro-de-atividades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
+            .andExpect(status().isBadRequest());
 
         List<CentroDeAtividade> centroDeAtividadeList = centroDeAtividadeRepository.findAll();
         assertThat(centroDeAtividadeList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class CentroDeAtividadeResourceIT {
 
         // Get all the centroDeAtividadeList
         restCentroDeAtividadeMockMvc.perform(get("/api/centro-de-atividades?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(centroDeAtividade.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(centroDeAtividade.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class CentroDeAtividadeResourceIT {
 
         // Get the centroDeAtividade
         restCentroDeAtividadeMockMvc.perform(get("/api/centro-de-atividades/{id}", centroDeAtividade.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(centroDeAtividade.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(centroDeAtividade.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class CentroDeAtividadeResourceIT {
     public void getNonExistingCentroDeAtividade() throws Exception {
         // Get the centroDeAtividade
         restCentroDeAtividadeMockMvc.perform(get("/api/centro-de-atividades/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -242,13 +242,13 @@ public class CentroDeAtividadeResourceIT {
         // Disconnect from session so that the updates on updatedCentroDeAtividade are not directly saved in db
         em.detach(updatedCentroDeAtividade);
         updatedCentroDeAtividade
-                .descricao(UPDATED_DESCRICAO);
+            .setDescricao(UPDATED_DESCRICAO);
         CentroDeAtividadeDTO centroDeAtividadeDTO = centroDeAtividadeMapper.toDto(updatedCentroDeAtividade);
 
         restCentroDeAtividadeMockMvc.perform(put("/api/centro-de-atividades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
+            .andExpect(status().isOk());
 
         // Validate the CentroDeAtividade in the database
         List<CentroDeAtividade> centroDeAtividadeList = centroDeAtividadeRepository.findAll();
@@ -270,9 +270,9 @@ public class CentroDeAtividadeResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCentroDeAtividadeMockMvc.perform(put("/api/centro-de-atividades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(centroDeAtividadeDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the CentroDeAtividade in the database
         List<CentroDeAtividade> centroDeAtividadeList = centroDeAtividadeRepository.findAll();
@@ -292,8 +292,8 @@ public class CentroDeAtividadeResourceIT {
 
         // Delete the centroDeAtividade
         restCentroDeAtividadeMockMvc.perform(delete("/api/centro-de-atividades/{id}", centroDeAtividade.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<CentroDeAtividade> centroDeAtividadeList = centroDeAtividadeRepository.findAll();
@@ -309,13 +309,13 @@ public class CentroDeAtividadeResourceIT {
         // Initialize the database
         centroDeAtividadeRepository.saveAndFlush(centroDeAtividade);
         when(mockCentroDeAtividadeSearchRepository.search(queryStringQuery("id:" + centroDeAtividade.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(centroDeAtividade), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(centroDeAtividade), PageRequest.of(0, 1), 1));
         // Search the centroDeAtividade
         restCentroDeAtividadeMockMvc.perform(get("/api/_search/centro-de-atividades?query=id:" + centroDeAtividade.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(centroDeAtividade.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(centroDeAtividade.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

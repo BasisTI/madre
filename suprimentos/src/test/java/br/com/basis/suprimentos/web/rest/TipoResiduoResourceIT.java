@@ -94,8 +94,8 @@ public class TipoResiduoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TipoResiduo createEntity(EntityManager em) {
-        TipoResiduo tipoResiduo = new TipoResiduo()
-                .descricao(DEFAULT_DESCRICAO);
+        TipoResiduo tipoResiduo = new TipoResiduo();
+        tipoResiduo.setDescricao(DEFAULT_DESCRICAO);
         return tipoResiduo;
     }
 
@@ -106,8 +106,8 @@ public class TipoResiduoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TipoResiduo createUpdatedEntity(EntityManager em) {
-        TipoResiduo tipoResiduo = new TipoResiduo()
-                .descricao(UPDATED_DESCRICAO);
+        TipoResiduo tipoResiduo = new TipoResiduo();
+        tipoResiduo.setDescricao(UPDATED_DESCRICAO);
         return tipoResiduo;
     }
 
@@ -116,11 +116,11 @@ public class TipoResiduoResourceIT {
         MockitoAnnotations.initMocks(this);
         final TipoResiduoResource tipoResiduoResource = new TipoResiduoResource(tipoResiduoService);
         this.restTipoResiduoMockMvc = MockMvcBuilders.standaloneSetup(tipoResiduoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class TipoResiduoResourceIT {
         // Create the TipoResiduo
         TipoResiduoDTO tipoResiduoDTO = tipoResiduoMapper.toDto(tipoResiduo);
         restTipoResiduoMockMvc.perform(post("/api/tipo-residuos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the TipoResiduo in the database
         List<TipoResiduo> tipoResiduoList = tipoResiduoRepository.findAll();
@@ -161,9 +161,9 @@ public class TipoResiduoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTipoResiduoMockMvc.perform(post("/api/tipo-residuos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the TipoResiduo in the database
         List<TipoResiduo> tipoResiduoList = tipoResiduoRepository.findAll();
@@ -185,9 +185,9 @@ public class TipoResiduoResourceIT {
         TipoResiduoDTO tipoResiduoDTO = tipoResiduoMapper.toDto(tipoResiduo);
 
         restTipoResiduoMockMvc.perform(post("/api/tipo-residuos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<TipoResiduo> tipoResiduoList = tipoResiduoRepository.findAll();
         assertThat(tipoResiduoList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class TipoResiduoResourceIT {
 
         // Get all the tipoResiduoList
         restTipoResiduoMockMvc.perform(get("/api/tipo-residuos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(tipoResiduo.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(tipoResiduo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class TipoResiduoResourceIT {
 
         // Get the tipoResiduo
         restTipoResiduoMockMvc.perform(get("/api/tipo-residuos/{id}", tipoResiduo.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(tipoResiduo.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(tipoResiduo.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class TipoResiduoResourceIT {
     public void getNonExistingTipoResiduo() throws Exception {
         // Get the tipoResiduo
         restTipoResiduoMockMvc.perform(get("/api/tipo-residuos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -242,13 +242,13 @@ public class TipoResiduoResourceIT {
         // Disconnect from session so that the updates on updatedTipoResiduo are not directly saved in db
         em.detach(updatedTipoResiduo);
         updatedTipoResiduo
-                .descricao(UPDATED_DESCRICAO);
+            .setDescricao(UPDATED_DESCRICAO);
         TipoResiduoDTO tipoResiduoDTO = tipoResiduoMapper.toDto(updatedTipoResiduo);
 
         restTipoResiduoMockMvc.perform(put("/api/tipo-residuos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the TipoResiduo in the database
         List<TipoResiduo> tipoResiduoList = tipoResiduoRepository.findAll();
@@ -270,9 +270,9 @@ public class TipoResiduoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restTipoResiduoMockMvc.perform(put("/api/tipo-residuos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(tipoResiduoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the TipoResiduo in the database
         List<TipoResiduo> tipoResiduoList = tipoResiduoRepository.findAll();
@@ -292,8 +292,8 @@ public class TipoResiduoResourceIT {
 
         // Delete the tipoResiduo
         restTipoResiduoMockMvc.perform(delete("/api/tipo-residuos/{id}", tipoResiduo.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<TipoResiduo> tipoResiduoList = tipoResiduoRepository.findAll();
@@ -309,13 +309,13 @@ public class TipoResiduoResourceIT {
         // Initialize the database
         tipoResiduoRepository.saveAndFlush(tipoResiduo);
         when(mockTipoResiduoSearchRepository.search(queryStringQuery("id:" + tipoResiduo.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(tipoResiduo), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(tipoResiduo), PageRequest.of(0, 1), 1));
         // Search the tipoResiduo
         restTipoResiduoMockMvc.perform(get("/api/_search/tipo-residuos?query=id:" + tipoResiduo.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(tipoResiduo.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(tipoResiduo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

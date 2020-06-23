@@ -1,16 +1,12 @@
 package br.com.basis.suprimentos.service.mapper;
 
-import br.com.basis.suprimentos.domain.*;
+import br.com.basis.suprimentos.domain.AutorizacaoFornecimento;
 import br.com.basis.suprimentos.service.dto.AutorizacaoFornecimentoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity {@link AutorizacaoFornecimento} and its DTO {@link AutorizacaoFornecimentoDTO}.
- */
 @Mapper(componentModel = "spring", uses = {FornecedorMapper.class})
 public interface AutorizacaoFornecimentoMapper extends EntityMapper<AutorizacaoFornecimentoDTO, AutorizacaoFornecimento> {
-
     @Mapping(source = "fornecedor.id", target = "fornecedorId")
     @Mapping(source = "fornecedor.nomeFantasia", target = "fornecedorNome")
     AutorizacaoFornecimentoDTO toDto(AutorizacaoFornecimento autorizacaoFornecimento);

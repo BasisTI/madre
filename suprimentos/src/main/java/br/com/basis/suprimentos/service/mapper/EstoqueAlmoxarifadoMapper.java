@@ -1,16 +1,12 @@
 package br.com.basis.suprimentos.service.mapper;
 
-import br.com.basis.suprimentos.domain.*;
+import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity {@link EstoqueAlmoxarifado} and its DTO {@link EstoqueAlmoxarifadoDTO}.
- */
 @Mapper(componentModel = "spring", uses = {AlmoxarifadoMapper.class, MaterialMapper.class, FornecedorMapper.class, SolicitacaoComprasMapper.class})
 public interface EstoqueAlmoxarifadoMapper extends EntityMapper<EstoqueAlmoxarifadoDTO, EstoqueAlmoxarifado> {
-
     @Mapping(source = "almoxarifado.id", target = "almoxarifadoId")
     @Mapping(source = "material.id", target = "materialId")
     @Mapping(source = "fornecedor.id", target = "fornecedorId")
@@ -18,7 +14,6 @@ public interface EstoqueAlmoxarifadoMapper extends EntityMapper<EstoqueAlmoxarif
     EstoqueAlmoxarifadoDTO toDto(EstoqueAlmoxarifado estoqueAlmoxarifado);
 
     @Mapping(target = "lotes", ignore = true)
-    @Mapping(target = "removeLotes", ignore = true)
     @Mapping(source = "almoxarifadoId", target = "almoxarifado")
     @Mapping(source = "materialId", target = "material")
     @Mapping(source = "fornecedorId", target = "fornecedor")

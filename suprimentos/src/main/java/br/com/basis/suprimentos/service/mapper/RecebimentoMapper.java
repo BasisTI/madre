@@ -5,12 +5,8 @@ import br.com.basis.suprimentos.service.dto.RecebimentoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-/**
- * Mapper for the entity {@link Recebimento} and its DTO {@link RecebimentoDTO}.
- */
 @Mapper(componentModel = "spring", uses = {DocumentoFiscalEntradaMapper.class, AutorizacaoFornecimentoMapper.class, ItemNotaRecebimentoMapper.class})
 public interface RecebimentoMapper extends EntityMapper<RecebimentoDTO, Recebimento> {
-
     @Mapping(source = "notaFiscalEntrada.id", target = "notaFiscalEntradaId")
     @Mapping(source = "autorizacaoFornecimento.id", target = "autorizacaoFornecimentoId")
     RecebimentoDTO toDto(Recebimento recebimento);

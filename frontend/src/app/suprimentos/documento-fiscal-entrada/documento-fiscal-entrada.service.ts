@@ -18,4 +18,8 @@ export class DocumentoFiscalEntradaService {
             params: new HttpParams().set('numeroDocumento', numeroDocumento),
         });
     }
+
+    public criarNotaFiscal(documento: DocumentoFiscalEntrada): Observable<DocumentoFiscalEntrada> {
+        return this.client.post<DocumentoFiscalEntrada>(this.resource, documento);
+    }
 }

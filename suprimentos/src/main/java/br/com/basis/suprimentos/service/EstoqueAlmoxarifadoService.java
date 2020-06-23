@@ -5,9 +5,8 @@ import br.com.basis.suprimentos.repository.EstoqueAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.EstoqueAlmoxarifadoSearchRepository;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.mapper.EstoqueAlmoxarifadoMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,35 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-/**
- * Service Implementation for managing {@link EstoqueAlmoxarifado}.
- */
+@Slf4j
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class EstoqueAlmoxarifadoService {
-
-    private final Logger log = LoggerFactory.getLogger(EstoqueAlmoxarifadoService.class);
-
     private final EstoqueAlmoxarifadoRepository estoqueAlmoxarifadoRepository;
-
     private final EstoqueAlmoxarifadoMapper estoqueAlmoxarifadoMapper;
-
     private final EstoqueAlmoxarifadoSearchRepository estoqueAlmoxarifadoSearchRepository;
 
-    public EstoqueAlmoxarifadoService(EstoqueAlmoxarifadoRepository estoqueAlmoxarifadoRepository, EstoqueAlmoxarifadoMapper estoqueAlmoxarifadoMapper, EstoqueAlmoxarifadoSearchRepository estoqueAlmoxarifadoSearchRepository) {
-        this.estoqueAlmoxarifadoRepository = estoqueAlmoxarifadoRepository;
-        this.estoqueAlmoxarifadoMapper = estoqueAlmoxarifadoMapper;
-        this.estoqueAlmoxarifadoSearchRepository = estoqueAlmoxarifadoSearchRepository;
-    }
-
-    /**
-     * Save a estoqueAlmoxarifado.
-     *
-     * @param estoqueAlmoxarifadoDTO the entity to save.
-     * @return the persisted entity.
-     */
     public EstoqueAlmoxarifadoDTO save(EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) {
         log.debug("Request to save EstoqueAlmoxarifado : {}", estoqueAlmoxarifadoDTO);
         EstoqueAlmoxarifado estoqueAlmoxarifado = estoqueAlmoxarifadoMapper.toEntity(estoqueAlmoxarifadoDTO);
@@ -53,12 +34,6 @@ public class EstoqueAlmoxarifadoService {
         return result;
     }
 
-    /**
-     * Get all the estoqueAlmoxarifados.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Transactional(readOnly = true)
     public Page<EstoqueAlmoxarifadoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all EstoqueAlmoxarifados");
@@ -66,13 +41,6 @@ public class EstoqueAlmoxarifadoService {
             .map(estoqueAlmoxarifadoMapper::toDto);
     }
 
-
-    /**
-     * Get one estoqueAlmoxarifado by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
     @Transactional(readOnly = true)
     public Optional<EstoqueAlmoxarifadoDTO> findOne(Long id) {
         log.debug("Request to get EstoqueAlmoxarifado : {}", id);
@@ -80,24 +48,12 @@ public class EstoqueAlmoxarifadoService {
             .map(estoqueAlmoxarifadoMapper::toDto);
     }
 
-    /**
-     * Delete the estoqueAlmoxarifado by id.
-     *
-     * @param id the id of the entity.
-     */
     public void delete(Long id) {
         log.debug("Request to delete EstoqueAlmoxarifado : {}", id);
         estoqueAlmoxarifadoRepository.deleteById(id);
         estoqueAlmoxarifadoSearchRepository.deleteById(id);
     }
 
-    /**
-     * Search for the estoqueAlmoxarifado corresponding to the query.
-     *
-     * @param query the query of the search.
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Transactional(readOnly = true)
     public Page<EstoqueAlmoxarifadoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of EstoqueAlmoxarifados for query {}", query);

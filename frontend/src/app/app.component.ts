@@ -214,7 +214,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             {
                 label: 'Suprimentos',
-                icon: 'add',
+                icon: 'local_shipping',
                 items: [
                     {
                         label: 'Almoxarifado',
@@ -223,7 +223,20 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                             {
                                 label: 'Recebimento',
                                 icon: 'add',
-                                routerLink: ['/suprimentos/recebimento'],
+                                routerLink: ['/suprimentos/recebimentos/novo'],
+                            },
+                            {
+                                label: 'Documentos Fiscais',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Nota Fiscal',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/documentos-fiscais/notas-fiscais/nova',
+                                        ],
+                                    },
+                                ],
                             },
                         ],
                     },

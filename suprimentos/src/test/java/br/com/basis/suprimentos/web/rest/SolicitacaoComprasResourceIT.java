@@ -94,8 +94,8 @@ public class SolicitacaoComprasResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static SolicitacaoCompras createEntity(EntityManager em) {
-        SolicitacaoCompras solicitacaoCompras = new SolicitacaoCompras()
-                .numero(DEFAULT_NUMERO);
+        SolicitacaoCompras solicitacaoCompras = new SolicitacaoCompras();
+        solicitacaoCompras.setNumero(DEFAULT_NUMERO);
         return solicitacaoCompras;
     }
 
@@ -106,8 +106,8 @@ public class SolicitacaoComprasResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static SolicitacaoCompras createUpdatedEntity(EntityManager em) {
-        SolicitacaoCompras solicitacaoCompras = new SolicitacaoCompras()
-                .numero(UPDATED_NUMERO);
+        SolicitacaoCompras solicitacaoCompras = new SolicitacaoCompras();
+        solicitacaoCompras.setNumero(UPDATED_NUMERO);
         return solicitacaoCompras;
     }
 
@@ -116,11 +116,11 @@ public class SolicitacaoComprasResourceIT {
         MockitoAnnotations.initMocks(this);
         final SolicitacaoComprasResource solicitacaoComprasResource = new SolicitacaoComprasResource(solicitacaoComprasService);
         this.restSolicitacaoComprasMockMvc = MockMvcBuilders.standaloneSetup(solicitacaoComprasResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class SolicitacaoComprasResourceIT {
         // Create the SolicitacaoCompras
         SolicitacaoComprasDTO solicitacaoComprasDTO = solicitacaoComprasMapper.toDto(solicitacaoCompras);
         restSolicitacaoComprasMockMvc.perform(post("/api/solicitacao-compras")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the SolicitacaoCompras in the database
         List<SolicitacaoCompras> solicitacaoComprasList = solicitacaoComprasRepository.findAll();
@@ -161,9 +161,9 @@ public class SolicitacaoComprasResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSolicitacaoComprasMockMvc.perform(post("/api/solicitacao-compras")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the SolicitacaoCompras in the database
         List<SolicitacaoCompras> solicitacaoComprasList = solicitacaoComprasRepository.findAll();
@@ -185,9 +185,9 @@ public class SolicitacaoComprasResourceIT {
         SolicitacaoComprasDTO solicitacaoComprasDTO = solicitacaoComprasMapper.toDto(solicitacaoCompras);
 
         restSolicitacaoComprasMockMvc.perform(post("/api/solicitacao-compras")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
+            .andExpect(status().isBadRequest());
 
         List<SolicitacaoCompras> solicitacaoComprasList = solicitacaoComprasRepository.findAll();
         assertThat(solicitacaoComprasList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class SolicitacaoComprasResourceIT {
 
         // Get all the solicitacaoComprasList
         restSolicitacaoComprasMockMvc.perform(get("/api/solicitacao-compras?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(solicitacaoCompras.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(solicitacaoCompras.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class SolicitacaoComprasResourceIT {
 
         // Get the solicitacaoCompras
         restSolicitacaoComprasMockMvc.perform(get("/api/solicitacao-compras/{id}", solicitacaoCompras.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(solicitacaoCompras.getId().intValue()))
-                .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO.intValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(solicitacaoCompras.getId().intValue()))
+            .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO.intValue()));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class SolicitacaoComprasResourceIT {
     public void getNonExistingSolicitacaoCompras() throws Exception {
         // Get the solicitacaoCompras
         restSolicitacaoComprasMockMvc.perform(get("/api/solicitacao-compras/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -242,13 +242,13 @@ public class SolicitacaoComprasResourceIT {
         // Disconnect from session so that the updates on updatedSolicitacaoCompras are not directly saved in db
         em.detach(updatedSolicitacaoCompras);
         updatedSolicitacaoCompras
-                .numero(UPDATED_NUMERO);
+            .setNumero(UPDATED_NUMERO);
         SolicitacaoComprasDTO solicitacaoComprasDTO = solicitacaoComprasMapper.toDto(updatedSolicitacaoCompras);
 
         restSolicitacaoComprasMockMvc.perform(put("/api/solicitacao-compras")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
+            .andExpect(status().isOk());
 
         // Validate the SolicitacaoCompras in the database
         List<SolicitacaoCompras> solicitacaoComprasList = solicitacaoComprasRepository.findAll();
@@ -270,9 +270,9 @@ public class SolicitacaoComprasResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restSolicitacaoComprasMockMvc.perform(put("/api/solicitacao-compras")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(solicitacaoComprasDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the SolicitacaoCompras in the database
         List<SolicitacaoCompras> solicitacaoComprasList = solicitacaoComprasRepository.findAll();
@@ -292,8 +292,8 @@ public class SolicitacaoComprasResourceIT {
 
         // Delete the solicitacaoCompras
         restSolicitacaoComprasMockMvc.perform(delete("/api/solicitacao-compras/{id}", solicitacaoCompras.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<SolicitacaoCompras> solicitacaoComprasList = solicitacaoComprasRepository.findAll();
@@ -309,13 +309,13 @@ public class SolicitacaoComprasResourceIT {
         // Initialize the database
         solicitacaoComprasRepository.saveAndFlush(solicitacaoCompras);
         when(mockSolicitacaoComprasSearchRepository.search(queryStringQuery("id:" + solicitacaoCompras.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(solicitacaoCompras), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(solicitacaoCompras), PageRequest.of(0, 1), 1));
         // Search the solicitacaoCompras
         restSolicitacaoComprasMockMvc.perform(get("/api/_search/solicitacao-compras?query=id:" + solicitacaoCompras.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(solicitacaoCompras.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(solicitacaoCompras.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())));
     }
 
     @Test
