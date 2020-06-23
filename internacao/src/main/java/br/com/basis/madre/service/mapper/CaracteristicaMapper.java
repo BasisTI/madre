@@ -1,9 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Caracteristica;
 import br.com.basis.madre.service.dto.CaracteristicaDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Caracteristica} and its DTO {@link CaracteristicaDTO}.

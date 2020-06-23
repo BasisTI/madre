@@ -1,9 +1,8 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Prescricao;
 import br.com.basis.madre.service.dto.PrescricaoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link Prescricao} and its DTO {@link PrescricaoDTO}.

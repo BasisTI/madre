@@ -1,11 +1,13 @@
 package br.com.basis.madre.service.dto;
-import java.time.Instant;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+
 import br.com.basis.madre.domain.enumeration.Situacao;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Unidade} entity.

@@ -3,7 +3,6 @@ package br.com.basis.madre.service.dto;
 import br.com.basis.madre.domain.enumeration.Prioridade;
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;

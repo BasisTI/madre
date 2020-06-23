@@ -1,6 +1,7 @@
 package br.com.basis.madre.service.dto;
-import java.time.Instant;
+
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
