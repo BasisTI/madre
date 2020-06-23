@@ -58,6 +58,7 @@ export class CadastroUnidadesComponent implements OnInit {
         tipoUnidadeId: [null],
         unidadePaiId: [null],
         idChefia: [null],
+        caracteristica: [[null]],
     });
 
     precricaoMedica = this.fb.group({
@@ -145,6 +146,7 @@ export class CadastroUnidadesComponent implements OnInit {
             tipoUnidadeId: unidadeFuncional.tipoUnidadeId
                 ? unidadeFuncional.tipoUnidadeId.id
                 : null,
+            caracteristicas: unidadeFuncional.caracteristica,
         };
 
         unidade.prescricaoMedica = {

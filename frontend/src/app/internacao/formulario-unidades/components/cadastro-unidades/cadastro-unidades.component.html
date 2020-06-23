@@ -160,12 +160,13 @@
                             </div>
                             <div class="ui-g-12">
                                 <div class="ui-g-6 ui-sm-12">
+                                    <label>Características</label>
                                     <span class="ui-float-label">
                                         <p-multiSelect
+                                            defaultLabel="Características"
                                             [options]="caracteristicas"
                                             optionLabel="nome"
-                                            placeholder="Características"
-                                            label="Características"
+                                            formControlName="caracteristica"
                                         ></p-multiSelect>
                                     </span>
                                 </div>
