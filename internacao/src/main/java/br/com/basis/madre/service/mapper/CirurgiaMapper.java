@@ -1,9 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
-import br.com.basis.madre.service.dto.CirurgiaDTO;
 
-import org.mapstruct.*;
+import br.com.basis.madre.domain.Cirurgia;
+import br.com.basis.madre.service.dto.CirurgiaDTO;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link Cirurgia} and its DTO {@link CirurgiaDTO}.

@@ -1,23 +1,43 @@
 package br.com.basis.madre.domain;
+
+
+import br.com.basis.madre.domain.enumeration.Situacao;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.com.basis.madre.domain.enumeration.Situacao;
 
 /**
  * A Unidade.
  */
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "unidade")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "unidade")
@@ -118,30 +138,9 @@ public class Unidade implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "caracteristica_id", referencedColumnName = "id"))
     private Set<Caracteristica> caracteristicas = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public Unidade descricao(String descricao) {
         this.descricao = descricao;
         return this;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getSigla() {
-        return sigla;
     }
 
     public Unidade sigla(String sigla) {
@@ -149,21 +148,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public Situacao getSituacao() {
-        return situacao;
-    }
-
     public Unidade situacao(Situacao situacao) {
         this.situacao = situacao;
         return this;
-    }
-
-    public void setSituacao(Situacao situacao) {
-        this.situacao = situacao;
     }
 
     public Boolean isControleDeEstoque() {
@@ -175,25 +162,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setControleDeEstoque(Boolean controleDeEstoque) {
-        this.controleDeEstoque = controleDeEstoque;
-    }
-
-    public Long getIdAlmoxarifado() {
-        return idAlmoxarifado;
-    }
-
     public Unidade idAlmoxarifado(Long idAlmoxarifado) {
         this.idAlmoxarifado = idAlmoxarifado;
         return this;
-    }
-
-    public void setIdAlmoxarifado(Long idAlmoxarifado) {
-        this.idAlmoxarifado = idAlmoxarifado;
-    }
-
-    public Integer getAndar() {
-        return andar;
     }
 
     public Unidade andar(Integer andar) {
@@ -201,25 +172,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setAndar(Integer andar) {
-        this.andar = andar;
-    }
-
-    public Integer getCapacidade() {
-        return capacidade;
-    }
-
     public Unidade capacidade(Integer capacidade) {
         this.capacidade = capacidade;
         return this;
-    }
-
-    public void setCapacidade(Integer capacidade) {
-        this.capacidade = capacidade;
-    }
-
-    public Instant getHorarioInicio() {
-        return horarioInicio;
     }
 
     public Unidade horarioInicio(Instant horarioInicio) {
@@ -227,25 +182,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setHorarioInicio(Instant horarioInicio) {
-        this.horarioInicio = horarioInicio;
-    }
-
-    public Instant getHorarioFim() {
-        return horarioFim;
-    }
-
     public Unidade horarioFim(Instant horarioFim) {
         this.horarioFim = horarioFim;
         return this;
-    }
-
-    public void setHorarioFim(Instant horarioFim) {
-        this.horarioFim = horarioFim;
-    }
-
-    public String getLocalExame() {
-        return localExame;
     }
 
     public Unidade localExame(String localExame) {
@@ -253,22 +192,11 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setLocalExame(String localExame) {
-        this.localExame = localExame;
-    }
-
-    public String getRotinaDeFuncionamento() {
-        return rotinaDeFuncionamento;
-    }
-
     public Unidade rotinaDeFuncionamento(String rotinaDeFuncionamento) {
         this.rotinaDeFuncionamento = rotinaDeFuncionamento;
         return this;
     }
 
-    public void setRotinaDeFuncionamento(String rotinaDeFuncionamento) {
-        this.rotinaDeFuncionamento = rotinaDeFuncionamento;
-    }
 
     public Boolean isAnexoDocumento() {
         return anexoDocumento;
@@ -279,25 +207,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setAnexoDocumento(Boolean anexoDocumento) {
-        this.anexoDocumento = anexoDocumento;
-    }
-
-    public Long getSetor() {
-        return setor;
-    }
-
     public Unidade setor(Long setor) {
         this.setor = setor;
         return this;
-    }
-
-    public void setSetor(Long setor) {
-        this.setor = setor;
-    }
-
-    public Long getIdCentroDeAtividade() {
-        return idCentroDeAtividade;
     }
 
     public Unidade idCentroDeAtividade(Long idCentroDeAtividade) {
@@ -305,25 +217,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setIdCentroDeAtividade(Long idCentroDeAtividade) {
-        this.idCentroDeAtividade = idCentroDeAtividade;
-    }
-
-    public Long getIdChefia() {
-        return idChefia;
-    }
-
     public Unidade idChefia(Long idChefia) {
         this.idChefia = idChefia;
         return this;
-    }
-
-    public void setIdChefia(Long idChefia) {
-        this.idChefia = idChefia;
-    }
-
-    public Unidade getUnidadePai() {
-        return unidadePai;
     }
 
     public Unidade unidadePai(Unidade unidade) {
@@ -331,25 +227,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setUnidadePai(Unidade unidade) {
-        this.unidadePai = unidade;
-    }
-
-    public Ala getAla() {
-        return ala;
-    }
-
     public Unidade ala(Ala ala) {
         this.ala = ala;
         return this;
-    }
-
-    public void setAla(Ala ala) {
-        this.ala = ala;
-    }
-
-    public Clinica getClinica() {
-        return clinica;
     }
 
     public Unidade clinica(Clinica clinica) {
@@ -357,25 +237,9 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setClinica(Clinica clinica) {
-        this.clinica = clinica;
-    }
-
-    public TipoUnidade getTipoUnidade() {
-        return tipoUnidade;
-    }
-
     public Unidade tipoUnidade(TipoUnidade tipoUnidade) {
         this.tipoUnidade = tipoUnidade;
         return this;
-    }
-
-    public void setTipoUnidade(TipoUnidade tipoUnidade) {
-        this.tipoUnidade = tipoUnidade;
-    }
-
-    public Prescricao getPrescricaoEnfermagem() {
-        return prescricaoEnfermagem;
     }
 
     public Unidade prescricaoEnfermagem(Prescricao prescricao) {
@@ -383,38 +247,14 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setPrescricaoEnfermagem(Prescricao prescricao) {
-        this.prescricaoEnfermagem = prescricao;
-    }
-
-    public Prescricao getPrescricaoMedica() {
-        return prescricaoMedica;
-    }
-
     public Unidade prescricaoMedica(Prescricao prescricao) {
         this.prescricaoMedica = prescricao;
         return this;
     }
 
-    public void setPrescricaoMedica(Prescricao prescricao) {
-        this.prescricaoMedica = prescricao;
-    }
-
-    public Cirurgia getCirurgia() {
-        return cirurgia;
-    }
-
     public Unidade cirurgia(Cirurgia cirurgia) {
         this.cirurgia = cirurgia;
         return this;
-    }
-
-    public void setCirurgia(Cirurgia cirurgia) {
-        this.cirurgia = cirurgia;
-    }
-
-    public Set<Caracteristica> getCaracteristicas() {
-        return caracteristicas;
     }
 
     public Unidade caracteristicas(Set<Caracteristica> caracteristicas) {
@@ -434,46 +274,4 @@ public class Unidade implements Serializable {
         return this;
     }
 
-    public void setCaracteristicas(Set<Caracteristica> caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Unidade)) {
-            return false;
-        }
-        return id != null && id.equals(((Unidade) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Unidade{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            ", sigla='" + getSigla() + "'" +
-            ", situacao='" + getSituacao() + "'" +
-            ", controleDeEstoque='" + isControleDeEstoque() + "'" +
-            ", idAlmoxarifado=" + getIdAlmoxarifado() +
-            ", andar=" + getAndar() +
-            ", capacidade=" + getCapacidade() +
-            ", horarioInicio='" + getHorarioInicio() + "'" +
-            ", horarioFim='" + getHorarioFim() + "'" +
-            ", localExame='" + getLocalExame() + "'" +
-            ", rotinaDeFuncionamento='" + getRotinaDeFuncionamento() + "'" +
-            ", anexoDocumento='" + isAnexoDocumento() + "'" +
-            ", setor=" + getSetor() +
-            ", idCentroDeAtividade=" + getIdCentroDeAtividade() +
-            ", idChefia=" + getIdChefia() +
-            "}";
-    }
 }

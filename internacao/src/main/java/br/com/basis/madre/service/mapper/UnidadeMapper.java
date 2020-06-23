@@ -1,9 +1,11 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
-import br.com.basis.madre.service.dto.UnidadeDTO;
 
-import org.mapstruct.*;
+import br.com.basis.madre.domain.Unidade;
+import br.com.basis.madre.service.dto.UnidadeDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
 
 /**
  * Mapper for the entity {@link Unidade} and its DTO {@link UnidadeDTO}.
