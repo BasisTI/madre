@@ -186,7 +186,7 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
 
         const prescricao = this.prescricaoMedicamento.value;
         console.log(prescricao);
-        
+
 
         const prescricaoMedicamento = Object.assign({}, prescricao, {
             itemPrescricaoMedicamentos: this.itensPrescricaoMedicamento

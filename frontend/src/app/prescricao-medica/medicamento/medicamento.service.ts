@@ -1,4 +1,3 @@
-import { Medicamento } from './../../farmacia/farmacia/medicamentos/Medicamento';
 import { PrescricaoMedicamento } from './models/prescricaoMedicamento';
 import { UnidadeInfusao } from './models/unidadeInfusao';
 import { Diluente } from './models/diluente';
