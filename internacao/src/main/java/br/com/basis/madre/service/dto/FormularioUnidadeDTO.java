@@ -1,6 +1,5 @@
 package br.com.basis.madre.service.dto;
 
-import br.com.basis.madre.domain.Ala;
 import br.com.basis.madre.domain.enumeration.Situacao;
 
 import javax.validation.constraints.NotNull;
@@ -101,7 +100,7 @@ public class FormularioUnidadeDTO implements Serializable {
         this.situacao = situacao;
     }
 
-    public Boolean getControleDeEstoque() {
+    public Boolean isControleDeEstoque() {
         return controleDeEstoque;
     }
 
@@ -165,7 +164,7 @@ public class FormularioUnidadeDTO implements Serializable {
         this.rotinaDeFuncionamento = rotinaDeFuncionamento;
     }
 
-    public Boolean getAnexoDocumento() {
+    public Boolean isAnexoDocumento() {
         return anexoDocumento;
     }
 
@@ -201,8 +200,8 @@ public class FormularioUnidadeDTO implements Serializable {
         return unidadePaiId;
     }
 
-    public void setUnidadePaiId(Long unidadePaiId) {
-        this.unidadePaiId = unidadePaiId;
+    public void setUnidadePaiId(Long unidadeId) {
+        this.unidadePaiId = unidadeId;
     }
 
     public Long getAlaId() {
@@ -270,7 +269,7 @@ public class FormularioUnidadeDTO implements Serializable {
             return false;
         }
 
-        UnidadeDTO unidadeDTO = (UnidadeDTO) o;
+        FormularioUnidadeDTO unidadeDTO = (FormularioUnidadeDTO) o;
         if (unidadeDTO.getId() == null || getId() == null) {
             return false;
         }
