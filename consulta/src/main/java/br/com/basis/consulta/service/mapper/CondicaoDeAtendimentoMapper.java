@@ -1,9 +1,9 @@
 package br.com.basis.consulta.service.mapper;
 
-import br.com.basis.consulta.domain.*;
+import br.com.basis.consulta.domain.CondicaoDeAtendimento;
 import br.com.basis.consulta.service.dto.CondicaoDeAtendimentoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link CondicaoDeAtendimento} and its DTO {@link CondicaoDeAtendimentoDTO}.

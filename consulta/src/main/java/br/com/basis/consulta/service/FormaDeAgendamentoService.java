@@ -7,7 +7,6 @@ import br.com.basis.consulta.service.dto.FormaDeAgendamentoDTO;
 import br.com.basis.consulta.service.mapper.FormaDeAgendamentoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link FormaDeAgendamento}.
@@ -76,7 +75,7 @@ public class FormaDeAgendamentoService {
     *  Get all the formaDeAgendamentos where Emergencia is {@code null}.
      *  @return the list of entities.
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<FormaDeAgendamentoDTO> findAllWhereEmergenciaIsNull() {
         log.debug("Request to get all formaDeAgendamentos where Emergencia is null");
         return StreamSupport

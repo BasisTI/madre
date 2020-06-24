@@ -1,8 +1,12 @@
+import { Paciente } from './../../../internacao/models/paciente';
+import { CRM } from './../../../internacao/models/crm';
+import { Especialidade } from './../../../internacao/models/especialidade';
 import { ConsultaService } from '../../consulta.service';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
+import { ConsultaPaciente } from '../../consulta-pacientes';
 
 @Component({
     selector: 'app-emergencia',
@@ -10,6 +14,16 @@ import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
     styleUrls: ['./emergencia.component.css'],
 })
 export class EmergenciaComponent implements OnInit, OnDestroy {
+    consultas: any;
+
+    @Input() private id: number;
+    private paciente: ConsultaPaciente;
+
+    @Input() public name = 'especialidade';
+    @Output() public select = new EventEmitter();
+    public especialidades = new Array<Especialidade>();
+    public crm = new Array<CRM>();
+    public pacientes = new Array<Paciente>();
     @Input() formularioTriagem: FormGroup;
     consultasEmergencia: ConsultaEmergenciaModel;
     formEmergencia = this.fb.group({
@@ -47,7 +61,10 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
                 routerLink: 'emergencia',
             },
         ]);
+        this.aoDigitar();
+        this.buscaProfissional();
     }
+
     cadastrarConsultas(form: FormBuilder) {
         const cadConsulta = this.formEmergencia.value;
         const consultasEmergencia: ConsultaEmergenciaModel = {
@@ -69,6 +86,33 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
             this.formEmergencia.reset();
         });
         console.log(consultasEmergencia);
+    }
+
+    aoDigitar(evento?) {
+        this.consultaService
+            .buscarEspecialidades()
+            .subscribe((especialidades: Array<Especialidade>) => {
+                this.especialidades = especialidades;
+            });
+        console.log(this.especialidades);
+    }
+
+    buscaProfissional(evento?) {
+        this.consultaService.buscarProfissionais().subscribe((crms: Array<CRM>) => {
+            this.crm = crms;
+        });
+        console.log(this.crm);
+    }
+
+    listarPacientes() {
+        this.consultaService.buscarPaciente().subscribe((pacientes: Array<Paciente>) => {
+            this.pacientes = pacientes;
+        });
+    }
+
+    public aoSelecionarPaciente(evento: any): void {
+        // ...
+        console.log();
     }
     ngOnDestroy(): void {
         this.breadcrumbService.reset();

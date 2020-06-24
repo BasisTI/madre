@@ -1,5 +1,5 @@
 <div class="ui-g ui-fluid">
-    <form [formGroup]="formEmergencia" (ngSubmit)="cadastrarConsultas(form)">
+    <form [formGroup]="formEmergencia" (ngSubmit)="(cadastrarConsultas)">
         <div class="ui-g-12">
             <h1>Marcar Consultas - Emergência</h1>
 
@@ -20,7 +20,6 @@
                         yearNavigator="true"
                         formControlName="dataHoraDaConsulta"
                         showTime="true"
-                        [icon]="calendar"
                     ></p-calendar>
                     <label>Data da Consulta</label>
                 </span>
@@ -34,7 +33,7 @@
 
             <div class="ui-g-12"></div>
             <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
+                <span class="md-inputfield">
                     <input type="text" pInputText formControlName="prontuario" />
                     <label>Prontuário</label>
                 </span>
@@ -42,22 +41,45 @@
 
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="nome" />
+                    <p-autoComplete
+                        field="nome"
+                        [suggestions]="pacientes"
+                        pInputText
+                        formControlName="nome"
+                        (completeMethod)="listarPacientes($event)"
+                        (onSelect)="aoSelecionarPaciente($event)"
+                        [dropdown]="true"
+                    ></p-autoComplete>
                     <label>Nome</label>
                 </span>
             </div>
 
             <div class="ui-g-12"></div>
             <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-dropdown pInputText formControlName="especialidade"></p-dropdown>
+                <span class="md-inputfield">
+                    <p-dropdown
+                        optionLabel="especialidade"
+                        [options]="especialidades"
+                        pInputText
+                        formControlName="especialidade"
+                        [filter]="true"
+                        placeholder="Selecione"
+                    >
+                    </p-dropdown>
                     <label>Especialidade</label>
                 </span>
             </div>
             <div class="ui-g-12"></div>
             <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-dropdown type="text" pInputText formControlName="profissional"></p-dropdown>
+                <span class="md-inputfield">
+                    <p-dropdown
+                        optionLabel="nome"
+                        [options]="crm"
+                        pInputText
+                        formControlName="profissional"
+                        [filter]="true"
+                        placeholder="Selecione"
+                    ></p-dropdown>
                     <label>Profissional</label>
                 </span>
             </div>
@@ -115,7 +137,6 @@
                             pButton
                             type="submit"
                             label="Salvar"
-                            [disabled]="!formEmergencia.valid"
                             pTooltip="Salvar marcação de consulta."
                         ></button>
                     </div>

@@ -1,10 +1,14 @@
 package br.com.basis.consulta.service.dto;
-import java.time.ZonedDateTime;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
-import br.com.basis.consulta.domain.enumeration.Turno;
+
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
+import br.com.basis.consulta.domain.enumeration.Turno;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * A DTO for the {@link br.com.basis.consulta.domain.Emergencia} entity.
