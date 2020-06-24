@@ -159,6 +159,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['internacao/solicitacoes-de-internacao'],
                     },
                     {
+                        label: 'Cadastrar Unidade',
+                        icon: 'add',
+                        routerLink: ['internacao/cadastro-unidades'],
+                    },
+                    {
                         label: 'Leitos',
                         icon: 'add',
                         items: [
@@ -204,6 +209,36 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Medicamentos',
                         icon: 'add',
                         routerLink: ['/medicamentos'],
+                    },
+                ],
+            },
+            {
+                label: 'Suprimentos',
+                icon: 'local_shipping',
+                items: [
+                    {
+                        label: 'Almoxarifado',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Recebimento',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/recebimentos/novo'],
+                            },
+                            {
+                                label: 'Documentos Fiscais',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Nota Fiscal',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/documentos-fiscais/notas-fiscais/nova',
+                                        ],
+                                    },
+                                ],
+                            },
+                        ],
                     },
                 ],
             },

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ItemNotaRecebimento.
+    -->
+    <changeSet id="20200618123156-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="recebimento_id"
+                                 baseTableName="item_nota_recebimento"
+                                 constraintName="fk_item_nota_recebimento_recebimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="recebimento"/>
+
+        <addForeignKeyConstraint baseColumnNames="marca_comercial_id"
+                                 baseTableName="item_nota_recebimento"
+                                 constraintName="fk_item_nota_recebimento_marca_comercial_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="marca_comercial"/>
+
+        <addForeignKeyConstraint baseColumnNames="material_id"
+                                 baseTableName="item_nota_recebimento"
+                                 constraintName="fk_item_nota_recebimento_material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidade_medida_id"
+                                 baseTableName="item_nota_recebimento"
+                                 constraintName="fk_item_nota_recebimento_unidade_medida_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade_medida"/>
+
+    </changeSet>
+</databaseChangeLog>

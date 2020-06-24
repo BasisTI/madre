@@ -1,0 +1,11 @@
+id;ativo;origem_id;destino_id
+1;true;1;1
+2;true;2;2
+3;true;3;3
+4;false;4;4
+5;true;5;5
+6;false;6;6
+7;true;7;7
+8;true;8;8
+9;true;9;9
+10;true;10;10
