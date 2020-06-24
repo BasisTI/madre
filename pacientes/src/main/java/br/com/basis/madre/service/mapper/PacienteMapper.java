@@ -24,6 +24,7 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "nacionalidade.id", target = "nacionalidadeId")
     @Mapping(source = "raca.id", target = "racaId")
     @Mapping(source = "estadoCivil.id", target = "estadoCivilId")
+    @Mapping(source = "prontuario", target = "prontuario")
     PacienteDTO toDto(Paciente paciente);
 
     @Mapping(source = "cartaoSUSId", target = "cartaoSUS")
@@ -41,6 +42,7 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "nacionalidadeId", target = "nacionalidade")
     @Mapping(source = "racaId", target = "raca")
     @Mapping(source = "estadoCivilId", target = "estadoCivil")
+    @Mapping(source = "prontuario", target = "prontuario")
     Paciente toEntity(PacienteDTO pacienteDTO);
 
     default Paciente fromId(Long id) {
