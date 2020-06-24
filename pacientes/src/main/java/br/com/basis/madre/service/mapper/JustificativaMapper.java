@@ -1,10 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Justificativa;
 import br.com.basis.madre.service.dto.JustificativaDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link Justificativa} and its DTO {@link JustificativaDTO}.

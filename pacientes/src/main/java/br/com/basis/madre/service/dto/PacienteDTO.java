@@ -1,12 +1,13 @@
 package br.com.basis.madre.service.dto;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Paciente} entity.

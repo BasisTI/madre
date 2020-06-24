@@ -1,10 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.MotivoDoCadastro;
 import br.com.basis.madre.service.dto.MotivoDoCadastroDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link MotivoDoCadastro} and its DTO {@link MotivoDoCadastroDTO}.

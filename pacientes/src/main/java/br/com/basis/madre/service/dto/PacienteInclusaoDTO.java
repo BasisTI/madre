@@ -1,7 +1,5 @@
 package br.com.basis.madre.service.dto;
 
-import br.com.basis.madre.domain.Endereco;
-import br.com.basis.madre.domain.Telefone;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
 

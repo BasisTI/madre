@@ -1,15 +1,14 @@
 package br.com.basis.madre.config;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.data.elasticsearch.core.EntityMapper;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.data.elasticsearch.core.EntityMapper;
 import org.springframework.data.mapping.MappingException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomEntityMapper implements EntityMapper {
 
