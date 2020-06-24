@@ -21,6 +21,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
 
     @Input() public name = 'especialidade';
     @Output() public select = new EventEmitter();
+
     public especialidades = new Array<Especialidade>();
     public crm = new Array<CRM>();
     public pacientes = new Array<Paciente>();
@@ -41,6 +42,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
     });
 
     localizacao = CALENDAR_LOCALE;
+    fds;
     dataLimite = new Date();
     anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
@@ -71,6 +73,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
             numeroConsulta: cadConsulta.numeroConsulta,
             dataHoraDaConsulta: cadConsulta.dataHoraDaConsulta,
             grade: cadConsulta.grade,
+            prontuario: cadConsulta.prontuario,
             nome: cadConsulta.nome,
             especialidade: cadConsulta.especialidade,
             profissional: cadConsulta.profissional,
@@ -110,9 +113,8 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         });
     }
 
-    public aoSelecionarPaciente(evento: any): void {
-        // ...
-        console.log();
+    aoSelecionarPaciente(selectPaciente: ConsultaPaciente): void {
+        this.formEmergencia.controls['prontuario'].setValue(selectPaciente.id);
     }
     ngOnDestroy(): void {
         this.breadcrumbService.reset();

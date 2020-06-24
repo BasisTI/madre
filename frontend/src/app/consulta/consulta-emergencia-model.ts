@@ -2,6 +2,7 @@ export interface ConsultaEmergenciaModel {
     numeroConsulta: string;
     dataHoraDaConsulta: Date;
     grade: string;
+    prontuario: string;
     nome: string;
     especialidade: string;
     profissional: string;
@@ -12,7 +13,5 @@ export interface ConsultaEmergenciaModel {
     formaDeAgendamentoId: string;
     pacienteId: {
         nome: string;
-        prontuario: string;
-        convenio: string;
     };
 }

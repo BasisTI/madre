@@ -34,7 +34,7 @@
             <div class="ui-g-12"></div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="md-inputfield">
-                    <input type="text" pInputText formControlName="prontuario" />
+                    <input pInputText disabled="true" formControlName="prontuario" />
                     <label>Prontuário</label>
                 </span>
             </div>
@@ -46,7 +46,7 @@
                         [suggestions]="pacientes"
                         pInputText
                         formControlName="nome"
-                        (completeMethod)="listarPacientes($event)"
+                        (completeMethod)="listarPacientes()"
                         (onSelect)="aoSelecionarPaciente($event)"
                         [dropdown]="true"
                     ></p-autoComplete>
