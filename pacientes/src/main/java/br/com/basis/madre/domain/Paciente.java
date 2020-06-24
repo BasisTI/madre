@@ -167,6 +167,12 @@ public class Paciente implements Serializable {
     @JoinColumn(name = "pre_cadastro_paciente_id", referencedColumnName = "id")
     private PreCadastroPaciente preCadastroPaciente;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_num_prontuario")
+    @SequenceGenerator(name = "seq_num_prontuario")
+    @Field(type = FieldType.Text)
+    @Column(name ="prontuario")
+    private Long prontuario;
+
 //     String numero = cartaoSUS.getNumero();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -176,6 +182,14 @@ public class Paciente implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Long prontuario) {
+        this.prontuario = prontuario;
     }
 
     public String getNome() {
@@ -493,6 +507,7 @@ public class Paciente implements Serializable {
     public String toString() {
         return "Paciente{" +
             "id=" + getId() +
+            "prontuario=" + getProntuario() +
             ", nome='" + getNome() + "'" +
             ", nomeSocial='" + getNomeSocial() + "'" +
             ", dataDeNascimento='" + getDataDeNascimento() + "'" +
