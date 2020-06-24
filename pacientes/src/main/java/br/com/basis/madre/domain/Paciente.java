@@ -507,7 +507,7 @@ public class Paciente implements Serializable {
     public String toString() {
         return "Paciente{" +
             "id=" + getId() +
-            "prontuario=" + getProntuario() +
+            "prontuario=" + getProntuario() + "'" +
             ", nome='" + getNome() + "'" +
             ", nomeSocial='" + getNomeSocial() + "'" +
             ", dataDeNascimento='" + getDataDeNascimento() + "'" +

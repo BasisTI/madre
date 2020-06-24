@@ -18,6 +18,8 @@ public class PacienteInclusaoDTO implements Serializable {
 
     private Long id;
 
+    private Long prontuario;
+
     @NotNull
     private String nome;
 
@@ -74,6 +76,14 @@ public class PacienteInclusaoDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Long prontuario) {
+        this.prontuario = prontuario;
     }
 
     public String getNome() {
@@ -285,6 +295,7 @@ public class PacienteInclusaoDTO implements Serializable {
     public String toString() {
         return "PacienteInclusaoDTO{" +
             "id=" + id +
+            ", prontuario=" + prontuario +
             ", nome='" + nome + '\'' +
             ", nomeSocial='" + nomeSocial + '\'' +
             ", dataDeNascimento=" + dataDeNascimento +
