@@ -1,0 +1,46 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Confirmar Recebimento</h1>
+            <p-fieldset legend="Pesquisar Recebimento Provisório">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <app-documento-fiscal-entrada
+                            [parentFormGroup]="formGroup"
+                        ></app-documento-fiscal-entrada>
+                    </div>
+                    <div class="ui-g-4">
+                        <button pButton label="Pesquisar" (click)="pesquisar(datatable)"></button>
+                    </div>
+                    <div class="ui-g-4">
+                        <button pButton label="Limpar Filtro" (click)="datatable.reset()"></button>
+                    </div>
+                </div>
+            </p-fieldset>
+            <p-fieldset legend="Recebimentos Provisórios">
+                <div class="ui-g-12">
+                    <basis-datatable
+                        type="server"
+                        [url]="serverUrl"
+                        disableEdit="true"
+                        disableDelete="true"
+                        disableView="true"
+                        #datatable
+                    >
+                        <p-column field="id" header="#"></p-column>
+                        <p-column field="notaFiscalEntrada" header="Nota Fiscal">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                {{ data['notaFiscalEntrada']?.numeroDocumento }}
+                            </ng-template>
+                        </p-column>
+                        <p-column field="autorizacaoFornecimento" header="Autorização Fornecimento">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                {{ data['autorizacaoFornecimento']?.numero }}
+                            </ng-template>
+                        </p-column>
+                    </basis-datatable>
+                </div>
+            </p-fieldset>
+        </div>
+    </div>
+</div>

@@ -50,7 +50,12 @@
                 </span>
             </div>
             <div class="ui-g-1">
-                <button pButton label="Nota Fiscal" icon="ui-icon-add"></button>
+                <button
+                    pButton
+                    label="Nota Fiscal"
+                    [routerLink]="['/documentos-fiscais/notas-fiscais/nova']"
+                    icon="ui-icon-add"
+                ></button>
             </div>
             <div class="ui-g-1">
                 <button pButton label="Limpar" icon="ui-icon-minus" (click)="limpar()"></button>

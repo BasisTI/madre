@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.web.rest;
 
+import br.com.basis.suprimentos.domain.projection.RecebimentoProvisorio;
 import br.com.basis.suprimentos.service.RecebimentoService;
 import br.com.basis.suprimentos.service.dto.RecebimentoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -38,6 +39,13 @@ public class RecebimentoResource {
     private final RecebimentoService recebimentoService;
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    @GetMapping("/recebimentos-provisorios")
+    public ResponseEntity<List<RecebimentoProvisorio>> getAllRecebimentosProvisorios(Pageable pageable, RecebimentoDTO recebimentoDTO) {
+        final Page<RecebimentoProvisorio> page = recebimentoService.findAllRecebimentosProvisorios(pageable, recebimentoDTO);
+        final HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
 
     @PostMapping("/recebimentos")
     public ResponseEntity<RecebimentoDTO> createRecebimento(@RequestBody RecebimentoDTO recebimentoDTO) throws URISyntaxException {

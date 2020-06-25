@@ -221,9 +221,20 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         icon: 'add',
                         items: [
                             {
-                                label: 'Recebimento',
+                                label: 'Recebimentos',
                                 icon: 'add',
-                                routerLink: ['/suprimentos/recebimentos/novo'],
+                                items: [
+                                    {
+                                        label: 'Gerar Recebimento',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/recebimentos/novo'],
+                                    },
+                                    {
+                                        label: 'Confirmação',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/recebimentos/confirmacao'],
+                                    },
+                                ],
                             },
                             {
                                 label: 'Documentos Fiscais',

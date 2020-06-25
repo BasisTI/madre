@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.Recebimento;
+import br.com.basis.suprimentos.domain.projection.RecebimentoProvisorio;
 import br.com.basis.suprimentos.repository.ItemNotaRecebimentoRepository;
 import br.com.basis.suprimentos.repository.RecebimentoRepository;
 import br.com.basis.suprimentos.repository.search.RecebimentoSearchRepository;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -26,6 +28,16 @@ public class RecebimentoService {
     private final ItemNotaRecebimentoRepository itemNotaRecebimentoRepository;
     private final RecebimentoMapper recebimentoMapper;
     private final RecebimentoSearchRepository recebimentoSearchRepository;
+
+    @Transactional(readOnly = true)
+    public Page<RecebimentoProvisorio> findAllRecebimentosProvisorios(Pageable pageable, RecebimentoDTO recebimentoDTO) {
+        log.debug("Request to get all RecebimentosProvisorios");
+        if (Objects.nonNull(recebimentoDTO.getNotaFiscalEntradaId())) {
+            return recebimentoRepository.findByNotaFiscalEntradaId(recebimentoDTO.getNotaFiscalEntradaId(), pageable, RecebimentoProvisorio.class);
+        }
+
+        return recebimentoRepository.findBy(pageable, RecebimentoProvisorio.class);
+    }
 
     public RecebimentoDTO save(RecebimentoDTO recebimentoDTO) {
         log.debug("Request to save Recebimento : {}", recebimentoDTO);

@@ -7,6 +7,7 @@ import { RecebimentoFormComponent } from './recebimento/recebimento-form.compone
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { routes } from './suprimentos.routes';
+import { ConfirmacaoRecebimentoComponent } from './recebimento/confirmacao-recebimento/confirmacao-recebimento.component';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { routes } from './suprimentos.routes';
         AutorizacaoFornecimentoComponent,
         RecebimentoFormComponent,
         NotaFiscalFormComponent,
+        ConfirmacaoRecebimentoComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
