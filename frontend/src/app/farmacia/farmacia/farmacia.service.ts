@@ -1,3 +1,4 @@
+import { DispensacaoMedicamento } from './dispensacao/dispensacao-medicamento/dispensacaoMedicamento';
 import { TipoMedicamento } from './cadastro-medicamento/tipoMedicamento';
 import { Medicamento } from './medicamentos/Medicamento';
 import { Pageable } from './../../shared/pageable';
@@ -64,7 +65,7 @@ export class FarmaciaService {
 
             tipoMedicamentoId: null,
         };
-        console.log(dto);
+        console.log('dto', dto);
 
         return this.httpServe.post<any>(`${this.apiUrl}/medicamentos`, dto);
     }
@@ -91,13 +92,16 @@ export class FarmaciaService {
         return this.httpServe.get<Prescricao>(`${this.apiUrl}/dispensacaos/${id}`);
     }
 
-    DispensarMedicamento(prescricao: Prescricao, id: number, dispensado: boolean) {
-        const dto = {
-            dispensacaoId: prescricao.idDispensacao,
-            medicamentosId: id,
-            dispensado: dispensado,
-        };
-        console.log(dto);
-        return this.httpServe.post(`${this.apiUrl}/dispensacao-medicamentos`, dto);
+    getMedicamentoPorId(id): Observable<Medicamento> {
+        return this.httpServe.get<Medicamento>(`${this.apiUrl}/medicamentos/${id}`);
+    }
+
+    // tslint:disable-next-line: no-shadowed-variable
+    DispensarMedicamento(DispensacaoMedicamento: any) {
+        console.log('serviço', DispensacaoMedicamento);
+        return this.httpServe.post(
+            `${this.apiUrl}/dispensacao-medicamentos`,
+            DispensacaoMedicamento,
+        );
     }
 }

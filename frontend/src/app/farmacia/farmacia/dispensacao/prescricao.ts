@@ -12,4 +12,5 @@ export interface Prescricao {
     local?: string;
     medicamentos?: Medicamento[];
     idDispensacao?: number;
+    medicamentosDispensados?: Medicamento[];
 }

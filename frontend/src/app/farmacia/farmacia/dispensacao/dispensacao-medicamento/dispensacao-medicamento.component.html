@@ -1,65 +1,69 @@
-<form [formGroup]="form">
-    <div class="ui-g">
-        <div class="ui-g-12">
+<div class="ui-g ui-fluid">
+    <form [formGroup]="form">
+        <div class="ui-g">
             <div class="ui-g-12">
-                <span class="md-inputfield">
-                    <input formControlName="nome" type="text" pInputText disabled />
-                    <label>Paciente</label>
-                </span>
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input formControlName="nome" type="text" pInputText disabled />
+                        <label>Paciente</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input formControlName="dataInicio" type="text" pInputText disabled />
+                        <label>Data da Prescricao</label>
+                    </span>
+                </div>
             </div>
         </div>
-        <div class="ui-g-12">
-            <div class="ui-g-12">
-                <span class="md-inputfield">
-                    <input formControlName="dataInicio" type="text" pInputText disabled />
-                    <label>Data da Prescricao</label>
-                </span>
-            </div>
-        </div>
-    </div>
-</form>
-<basis-datatable
-    #datatable
-    type="memory"
-    [value]="prescricao.medicamentos"
-    sortField="brand"
-    [disableView]="true"
-    [disableEdit]="true"
-    [disableDelete]="true"
-    (buttonClick)="dispensar($event)"
->
-    <p-column header="Medicamento" field="nome" [sortable]="true"></p-column>
-    <p-column header="Apresentação" field="apresentacao">
-        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-            <span>
-                {{
-                    rowData[col.field] === null || rowData[col.field] === undefined
-                        ? undefined
-                        : rowData[col.field].nome
-                }}</span
-            >
-        </ng-template>
-    </p-column>
-    <p-column header="Unidade" field="unidade">
-        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-            <span>
-                {{
-                    rowData[col.field] === null || rowData[col.field] === undefined
-                        ? undefined
-                        : rowData[col.field].nome
-                }}</span
-            >
-        </ng-template>
-    </p-column>
-    <p-column header="Dispensado" field="">
-        <ng-template pTemplate="body">
-            <p-checkbox [(ngModel)]="dispensado" [binary]="true"></p-checkbox>
-        </ng-template>
-    </p-column>
+    </form>
+    <form [formGroup]="dipensacaoMedicamento">
+        <basis-datatable
+            #datatable
+            type="memory"
+            [value]="prescricao.medicamentos"
+            sortField="brand"
+            [disableView]="true"
+            [disableEdit]="true"
+            [disableDelete]="true"
+            (buttonClick)="dispensar($event)"
+        >
+            <p-column header="Medicamento" field="nome" [sortable]="true"></p-column>
+            <p-column header="Apresentação" field="apresentacao">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        {{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span
+                    >
+                </ng-template>
+            </p-column>
+            <p-column header="Unidade" field="unidade">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        {{
+                            rowData[col.field] === null || rowData[col.field] === undefined
+                                ? undefined
+                                : rowData[col.field].nome
+                        }}</span
+                    >
+                </ng-template>
+            </p-column>
+            <p-column header="Dispensado" field="dispensado">
+                <ng-template pTemplate="body">
+                    <p-checkbox formControlName="dispensado" [binary]="true"></p-checkbox>
+                </ng-template>
+            </p-column>
 
-    <basis-datatable-button
-        bTooltip="Dispensar Medicamento"
-        [disabled]="datatable.selectedRow ? false : true"
-    >
-    </basis-datatable-button>
-</basis-datatable>
+            <basis-datatable-button
+                bTooltip="Dispensar Medicamento"
+                [disabled]="datatable.selectedRow ? false : true"
+            >
+            </basis-datatable-button>
+        </basis-datatable>
+    </form>
+</div>

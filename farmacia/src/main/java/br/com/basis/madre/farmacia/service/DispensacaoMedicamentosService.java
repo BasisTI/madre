@@ -89,6 +89,8 @@ public class DispensacaoMedicamentosService {
         log.debug("Request to delete DispensacaoMedicamentos : {}", id);
         dispensacaoMedicamentosRepository.deleteById(id);
         dispensacaoMedicamentosSearchRepository.deleteById(id);
+        dispensacaoMedicamentosRepository.deleteAll();
+        dispensacaoMedicamentosSearchRepository.deleteAll();
     }
 
     /**

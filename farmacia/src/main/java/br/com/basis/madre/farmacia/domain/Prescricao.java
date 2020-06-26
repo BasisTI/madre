@@ -47,6 +47,9 @@ public class Prescricao implements Serializable {
     @Field(type = FieldType.Nested)
     private List<Medicamento> medicamentos;
 
+    @Field(type = FieldType.Nested)
+    private List<Medicamento> medicamentosDispensados;
+
     @Field(type = FieldType.Keyword)
     private Long idDispensacao;
 
