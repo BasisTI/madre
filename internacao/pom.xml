@@ -97,6 +97,7 @@
         <sonar.junit.reportPaths>${junit.utReportFolder}, ${junit.itReportFolder}</sonar.junit.reportPaths>
         <!-- jhipster-needle-maven-property -->
         <kafka.version>2.4.1</kafka.version>
+        <version>1.0.2</version>
     </properties>
 
     <dependencyManagement>
@@ -157,6 +158,11 @@
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>

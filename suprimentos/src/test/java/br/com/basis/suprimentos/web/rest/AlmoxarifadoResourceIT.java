@@ -110,13 +110,13 @@ public class AlmoxarifadoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Almoxarifado createEntity(EntityManager em) {
-        Almoxarifado almoxarifado = new Almoxarifado()
-                .descricao(DEFAULT_DESCRICAO)
-                .diasEstoque(DEFAULT_DIAS_ESTOQUE)
-                .central(DEFAULT_CENTRAL)
-                .ativo(DEFAULT_ATIVO)
-                .calculaMediaPonderada(DEFAULT_CALCULA_MEDIA_PONDERADA)
-                .bloqueiaEntradaTransferencia(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA);
+        Almoxarifado almoxarifado = new Almoxarifado();
+        almoxarifado.setDescricao(DEFAULT_DESCRICAO);
+        almoxarifado.setDiasEstoque(DEFAULT_DIAS_ESTOQUE);
+        almoxarifado.setCentral(DEFAULT_CENTRAL);
+        almoxarifado.setAtivo(DEFAULT_ATIVO);
+        almoxarifado.setCalculaMediaPonderada(DEFAULT_CALCULA_MEDIA_PONDERADA);
+        almoxarifado.setBloqueiaEntradaTransferencia(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA);
         // Add required entity
         CentroDeAtividade centroDeAtividade;
         if (TestUtil.findAll(em, CentroDeAtividade.class).isEmpty()) {
@@ -137,13 +137,13 @@ public class AlmoxarifadoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Almoxarifado createUpdatedEntity(EntityManager em) {
-        Almoxarifado almoxarifado = new Almoxarifado()
-                .descricao(UPDATED_DESCRICAO)
-                .diasEstoque(UPDATED_DIAS_ESTOQUE)
-                .central(UPDATED_CENTRAL)
-                .ativo(UPDATED_ATIVO)
-                .calculaMediaPonderada(UPDATED_CALCULA_MEDIA_PONDERADA)
-                .bloqueiaEntradaTransferencia(UPDATED_BLOQUEIA_ENTRADA_TRANSFERENCIA);
+        Almoxarifado almoxarifado = new Almoxarifado();
+        almoxarifado.setDescricao(UPDATED_DESCRICAO);
+        almoxarifado.setDiasEstoque(UPDATED_DIAS_ESTOQUE);
+        almoxarifado.setCentral(UPDATED_CENTRAL);
+        almoxarifado.setAtivo(UPDATED_ATIVO);
+        almoxarifado.setCalculaMediaPonderada(UPDATED_CALCULA_MEDIA_PONDERADA);
+        almoxarifado.setBloqueiaEntradaTransferencia(UPDATED_BLOQUEIA_ENTRADA_TRANSFERENCIA);
         // Add required entity
         CentroDeAtividade centroDeAtividade;
         if (TestUtil.findAll(em, CentroDeAtividade.class).isEmpty()) {
@@ -162,11 +162,11 @@ public class AlmoxarifadoResourceIT {
         MockitoAnnotations.initMocks(this);
         final AlmoxarifadoResource almoxarifadoResource = new AlmoxarifadoResource(almoxarifadoService);
         this.restAlmoxarifadoMockMvc = MockMvcBuilders.standaloneSetup(almoxarifadoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -182,9 +182,9 @@ public class AlmoxarifadoResourceIT {
         // Create the Almoxarifado
         AlmoxarifadoDTO almoxarifadoDTO = almoxarifadoMapper.toDto(almoxarifado);
         restAlmoxarifadoMockMvc.perform(post("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Almoxarifado in the database
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
@@ -192,10 +192,10 @@ public class AlmoxarifadoResourceIT {
         Almoxarifado testAlmoxarifado = almoxarifadoList.get(almoxarifadoList.size() - 1);
         assertThat(testAlmoxarifado.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
         assertThat(testAlmoxarifado.getDiasEstoque()).isEqualTo(DEFAULT_DIAS_ESTOQUE);
-        assertThat(testAlmoxarifado.isCentral()).isEqualTo(DEFAULT_CENTRAL);
-        assertThat(testAlmoxarifado.isAtivo()).isEqualTo(DEFAULT_ATIVO);
-        assertThat(testAlmoxarifado.isCalculaMediaPonderada()).isEqualTo(DEFAULT_CALCULA_MEDIA_PONDERADA);
-        assertThat(testAlmoxarifado.isBloqueiaEntradaTransferencia()).isEqualTo(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA);
+        assertThat(testAlmoxarifado.getCentral()).isEqualTo(DEFAULT_CENTRAL);
+        assertThat(testAlmoxarifado.getAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testAlmoxarifado.getCalculaMediaPonderada()).isEqualTo(DEFAULT_CALCULA_MEDIA_PONDERADA);
+        assertThat(testAlmoxarifado.getBloqueiaEntradaTransferencia()).isEqualTo(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA);
 
         // Validate the Almoxarifado in Elasticsearch
         verify(mockAlmoxarifadoSearchRepository, times(1)).save(testAlmoxarifado);
@@ -212,9 +212,9 @@ public class AlmoxarifadoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAlmoxarifadoMockMvc.perform(post("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Almoxarifado in the database
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
@@ -236,9 +236,9 @@ public class AlmoxarifadoResourceIT {
         AlmoxarifadoDTO almoxarifadoDTO = almoxarifadoMapper.toDto(almoxarifado);
 
         restAlmoxarifadoMockMvc.perform(post("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
         assertThat(almoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -255,9 +255,9 @@ public class AlmoxarifadoResourceIT {
         AlmoxarifadoDTO almoxarifadoDTO = almoxarifadoMapper.toDto(almoxarifado);
 
         restAlmoxarifadoMockMvc.perform(post("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
         assertThat(almoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -274,9 +274,9 @@ public class AlmoxarifadoResourceIT {
         AlmoxarifadoDTO almoxarifadoDTO = almoxarifadoMapper.toDto(almoxarifado);
 
         restAlmoxarifadoMockMvc.perform(post("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
         assertThat(almoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -290,15 +290,15 @@ public class AlmoxarifadoResourceIT {
 
         // Get all the almoxarifadoList
         restAlmoxarifadoMockMvc.perform(get("/api/almoxarifados?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(almoxarifado.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-                .andExpect(jsonPath("$.[*].diasEstoque").value(hasItem(DEFAULT_DIAS_ESTOQUE)))
-                .andExpect(jsonPath("$.[*].central").value(hasItem(DEFAULT_CENTRAL.booleanValue())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].calculaMediaPonderada").value(hasItem(DEFAULT_CALCULA_MEDIA_PONDERADA.booleanValue())))
-                .andExpect(jsonPath("$.[*].bloqueiaEntradaTransferencia").value(hasItem(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(almoxarifado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].diasEstoque").value(hasItem(DEFAULT_DIAS_ESTOQUE)))
+            .andExpect(jsonPath("$.[*].central").value(hasItem(DEFAULT_CENTRAL.booleanValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].calculaMediaPonderada").value(hasItem(DEFAULT_CALCULA_MEDIA_PONDERADA.booleanValue())))
+            .andExpect(jsonPath("$.[*].bloqueiaEntradaTransferencia").value(hasItem(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA.booleanValue())));
     }
 
     @Test
@@ -309,15 +309,15 @@ public class AlmoxarifadoResourceIT {
 
         // Get the almoxarifado
         restAlmoxarifadoMockMvc.perform(get("/api/almoxarifados/{id}", almoxarifado.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(almoxarifado.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
-                .andExpect(jsonPath("$.diasEstoque").value(DEFAULT_DIAS_ESTOQUE))
-                .andExpect(jsonPath("$.central").value(DEFAULT_CENTRAL.booleanValue()))
-                .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-                .andExpect(jsonPath("$.calculaMediaPonderada").value(DEFAULT_CALCULA_MEDIA_PONDERADA.booleanValue()))
-                .andExpect(jsonPath("$.bloqueiaEntradaTransferencia").value(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA.booleanValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(almoxarifado.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
+            .andExpect(jsonPath("$.diasEstoque").value(DEFAULT_DIAS_ESTOQUE))
+            .andExpect(jsonPath("$.central").value(DEFAULT_CENTRAL.booleanValue()))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.calculaMediaPonderada").value(DEFAULT_CALCULA_MEDIA_PONDERADA.booleanValue()))
+            .andExpect(jsonPath("$.bloqueiaEntradaTransferencia").value(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA.booleanValue()));
     }
 
     @Test
@@ -325,7 +325,7 @@ public class AlmoxarifadoResourceIT {
     public void getNonExistingAlmoxarifado() throws Exception {
         // Get the almoxarifado
         restAlmoxarifadoMockMvc.perform(get("/api/almoxarifados/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -340,19 +340,19 @@ public class AlmoxarifadoResourceIT {
         Almoxarifado updatedAlmoxarifado = almoxarifadoRepository.findById(almoxarifado.getId()).get();
         // Disconnect from session so that the updates on updatedAlmoxarifado are not directly saved in db
         em.detach(updatedAlmoxarifado);
-        updatedAlmoxarifado
-                .descricao(UPDATED_DESCRICAO)
-                .diasEstoque(UPDATED_DIAS_ESTOQUE)
-                .central(UPDATED_CENTRAL)
-                .ativo(UPDATED_ATIVO)
-                .calculaMediaPonderada(UPDATED_CALCULA_MEDIA_PONDERADA)
-                .bloqueiaEntradaTransferencia(UPDATED_BLOQUEIA_ENTRADA_TRANSFERENCIA);
+
+        updatedAlmoxarifado.setDescricao(UPDATED_DESCRICAO);
+        updatedAlmoxarifado.setDiasEstoque(UPDATED_DIAS_ESTOQUE);
+        updatedAlmoxarifado.setCentral(UPDATED_CENTRAL);
+        updatedAlmoxarifado.setAtivo(UPDATED_ATIVO);
+        updatedAlmoxarifado.setCalculaMediaPonderada(UPDATED_CALCULA_MEDIA_PONDERADA);
+        updatedAlmoxarifado.setBloqueiaEntradaTransferencia(UPDATED_BLOQUEIA_ENTRADA_TRANSFERENCIA);
         AlmoxarifadoDTO almoxarifadoDTO = almoxarifadoMapper.toDto(updatedAlmoxarifado);
 
         restAlmoxarifadoMockMvc.perform(put("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Almoxarifado in the database
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
@@ -360,10 +360,10 @@ public class AlmoxarifadoResourceIT {
         Almoxarifado testAlmoxarifado = almoxarifadoList.get(almoxarifadoList.size() - 1);
         assertThat(testAlmoxarifado.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
         assertThat(testAlmoxarifado.getDiasEstoque()).isEqualTo(UPDATED_DIAS_ESTOQUE);
-        assertThat(testAlmoxarifado.isCentral()).isEqualTo(UPDATED_CENTRAL);
-        assertThat(testAlmoxarifado.isAtivo()).isEqualTo(UPDATED_ATIVO);
-        assertThat(testAlmoxarifado.isCalculaMediaPonderada()).isEqualTo(UPDATED_CALCULA_MEDIA_PONDERADA);
-        assertThat(testAlmoxarifado.isBloqueiaEntradaTransferencia()).isEqualTo(UPDATED_BLOQUEIA_ENTRADA_TRANSFERENCIA);
+        assertThat(testAlmoxarifado.getCentral()).isEqualTo(UPDATED_CENTRAL);
+        assertThat(testAlmoxarifado.getAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testAlmoxarifado.getCalculaMediaPonderada()).isEqualTo(UPDATED_CALCULA_MEDIA_PONDERADA);
+        assertThat(testAlmoxarifado.getBloqueiaEntradaTransferencia()).isEqualTo(UPDATED_BLOQUEIA_ENTRADA_TRANSFERENCIA);
 
         // Validate the Almoxarifado in Elasticsearch
         verify(mockAlmoxarifadoSearchRepository, times(1)).save(testAlmoxarifado);
@@ -379,9 +379,9 @@ public class AlmoxarifadoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restAlmoxarifadoMockMvc.perform(put("/api/almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(almoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Almoxarifado in the database
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
@@ -401,8 +401,8 @@ public class AlmoxarifadoResourceIT {
 
         // Delete the almoxarifado
         restAlmoxarifadoMockMvc.perform(delete("/api/almoxarifados/{id}", almoxarifado.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Almoxarifado> almoxarifadoList = almoxarifadoRepository.findAll();
@@ -418,18 +418,18 @@ public class AlmoxarifadoResourceIT {
         // Initialize the database
         almoxarifadoRepository.saveAndFlush(almoxarifado);
         when(mockAlmoxarifadoSearchRepository.search(queryStringQuery("id:" + almoxarifado.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(almoxarifado), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(almoxarifado), PageRequest.of(0, 1), 1));
         // Search the almoxarifado
         restAlmoxarifadoMockMvc.perform(get("/api/_search/almoxarifados?query=id:" + almoxarifado.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(almoxarifado.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-                .andExpect(jsonPath("$.[*].diasEstoque").value(hasItem(DEFAULT_DIAS_ESTOQUE)))
-                .andExpect(jsonPath("$.[*].central").value(hasItem(DEFAULT_CENTRAL.booleanValue())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].calculaMediaPonderada").value(hasItem(DEFAULT_CALCULA_MEDIA_PONDERADA.booleanValue())))
-                .andExpect(jsonPath("$.[*].bloqueiaEntradaTransferencia").value(hasItem(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(almoxarifado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].diasEstoque").value(hasItem(DEFAULT_DIAS_ESTOQUE)))
+            .andExpect(jsonPath("$.[*].central").value(hasItem(DEFAULT_CENTRAL.booleanValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].calculaMediaPonderada").value(hasItem(DEFAULT_CALCULA_MEDIA_PONDERADA.booleanValue())))
+            .andExpect(jsonPath("$.[*].bloqueiaEntradaTransferencia").value(hasItem(DEFAULT_BLOQUEIA_ENTRADA_TRANSFERENCIA.booleanValue())));
     }
 
     @Test

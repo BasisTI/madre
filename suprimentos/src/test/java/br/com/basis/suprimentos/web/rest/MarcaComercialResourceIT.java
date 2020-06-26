@@ -94,8 +94,8 @@ public class MarcaComercialResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static MarcaComercial createEntity(EntityManager em) {
-        MarcaComercial marcaComercial = new MarcaComercial()
-                .descricao(DEFAULT_DESCRICAO);
+        MarcaComercial marcaComercial = new MarcaComercial();
+        marcaComercial.setDescricao(DEFAULT_DESCRICAO);
         return marcaComercial;
     }
 
@@ -106,8 +106,8 @@ public class MarcaComercialResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static MarcaComercial createUpdatedEntity(EntityManager em) {
-        MarcaComercial marcaComercial = new MarcaComercial()
-                .descricao(UPDATED_DESCRICAO);
+        MarcaComercial marcaComercial = new MarcaComercial();
+        marcaComercial.setDescricao(UPDATED_DESCRICAO);
         return marcaComercial;
     }
 
@@ -116,11 +116,11 @@ public class MarcaComercialResourceIT {
         MockitoAnnotations.initMocks(this);
         final MarcaComercialResource marcaComercialResource = new MarcaComercialResource(marcaComercialService);
         this.restMarcaComercialMockMvc = MockMvcBuilders.standaloneSetup(marcaComercialResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -136,9 +136,9 @@ public class MarcaComercialResourceIT {
         // Create the MarcaComercial
         MarcaComercialDTO marcaComercialDTO = marcaComercialMapper.toDto(marcaComercial);
         restMarcaComercialMockMvc.perform(post("/api/marca-comercials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the MarcaComercial in the database
         List<MarcaComercial> marcaComercialList = marcaComercialRepository.findAll();
@@ -161,9 +161,9 @@ public class MarcaComercialResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMarcaComercialMockMvc.perform(post("/api/marca-comercials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the MarcaComercial in the database
         List<MarcaComercial> marcaComercialList = marcaComercialRepository.findAll();
@@ -185,9 +185,9 @@ public class MarcaComercialResourceIT {
         MarcaComercialDTO marcaComercialDTO = marcaComercialMapper.toDto(marcaComercial);
 
         restMarcaComercialMockMvc.perform(post("/api/marca-comercials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
+            .andExpect(status().isBadRequest());
 
         List<MarcaComercial> marcaComercialList = marcaComercialRepository.findAll();
         assertThat(marcaComercialList).hasSize(databaseSizeBeforeTest);
@@ -201,10 +201,10 @@ public class MarcaComercialResourceIT {
 
         // Get all the marcaComercialList
         restMarcaComercialMockMvc.perform(get("/api/marca-comercials?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(marcaComercial.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(marcaComercial.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class MarcaComercialResourceIT {
 
         // Get the marcaComercial
         restMarcaComercialMockMvc.perform(get("/api/marca-comercials/{id}", marcaComercial.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(marcaComercial.getId().intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(marcaComercial.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class MarcaComercialResourceIT {
     public void getNonExistingMarcaComercial() throws Exception {
         // Get the marcaComercial
         restMarcaComercialMockMvc.perform(get("/api/marca-comercials/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -241,14 +241,14 @@ public class MarcaComercialResourceIT {
         MarcaComercial updatedMarcaComercial = marcaComercialRepository.findById(marcaComercial.getId()).get();
         // Disconnect from session so that the updates on updatedMarcaComercial are not directly saved in db
         em.detach(updatedMarcaComercial);
-        updatedMarcaComercial
-                .descricao(UPDATED_DESCRICAO);
+
+        updatedMarcaComercial.setDescricao(UPDATED_DESCRICAO);
         MarcaComercialDTO marcaComercialDTO = marcaComercialMapper.toDto(updatedMarcaComercial);
 
         restMarcaComercialMockMvc.perform(put("/api/marca-comercials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
+            .andExpect(status().isOk());
 
         // Validate the MarcaComercial in the database
         List<MarcaComercial> marcaComercialList = marcaComercialRepository.findAll();
@@ -270,9 +270,9 @@ public class MarcaComercialResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restMarcaComercialMockMvc.perform(put("/api/marca-comercials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(marcaComercialDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the MarcaComercial in the database
         List<MarcaComercial> marcaComercialList = marcaComercialRepository.findAll();
@@ -292,8 +292,8 @@ public class MarcaComercialResourceIT {
 
         // Delete the marcaComercial
         restMarcaComercialMockMvc.perform(delete("/api/marca-comercials/{id}", marcaComercial.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<MarcaComercial> marcaComercialList = marcaComercialRepository.findAll();
@@ -309,13 +309,13 @@ public class MarcaComercialResourceIT {
         // Initialize the database
         marcaComercialRepository.saveAndFlush(marcaComercial);
         when(mockMarcaComercialSearchRepository.search(queryStringQuery("id:" + marcaComercial.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(marcaComercial), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(marcaComercial), PageRequest.of(0, 1), 1));
         // Search the marcaComercial
         restMarcaComercialMockMvc.perform(get("/api/_search/marca-comercials?query=id:" + marcaComercial.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(marcaComercial.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(marcaComercial.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

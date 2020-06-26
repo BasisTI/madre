@@ -1,31 +1,40 @@
 package br.com.basis.suprimentos.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
 
 import br.com.basis.suprimentos.domain.enumeration.TipoItemAf;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
-/**
- * A AutorizacaoFornecimento.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+
+@Data
 @Entity
 @Table(name = "autorizacao_fornecimento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "autorizacaofornecimento")
+@Document(indexName = "madre-suprimentos-autorizacaofornecimento")
 public class AutorizacaoFornecimento implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     private Long id;
 
     @NotNull
@@ -45,92 +54,4 @@ public class AutorizacaoFornecimento implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("autorizacaoFornecimentos")
     private Fornecedor fornecedor;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getNumero() {
-        return numero;
-    }
-
-    public AutorizacaoFornecimento numero(Long numero) {
-        this.numero = numero;
-        return this;
-    }
-
-    public void setNumero(Long numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public AutorizacaoFornecimento complemento(String complemento) {
-        this.complemento = complemento;
-        return this;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public TipoItemAf getTipoItem() {
-        return tipoItem;
-    }
-
-    public AutorizacaoFornecimento tipoItem(TipoItemAf tipoItem) {
-        this.tipoItem = tipoItem;
-        return this;
-    }
-
-    public void setTipoItem(TipoItemAf tipoItem) {
-        this.tipoItem = tipoItem;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public AutorizacaoFornecimento fornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-        return this;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof AutorizacaoFornecimento)) {
-            return false;
-        }
-        return id != null && id.equals(((AutorizacaoFornecimento) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "AutorizacaoFornecimento{" +
-            "id=" + getId() +
-            ", numero=" + getNumero() +
-            ", complemento='" + getComplemento() + "'" +
-            ", tipoItem='" + getTipoItem() + "'" +
-            "}";
-    }
 }

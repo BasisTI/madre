@@ -97,9 +97,9 @@ public class CaracteristicaArmazenamentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CaracteristicaArmazenamento createEntity(EntityManager em) {
-        CaracteristicaArmazenamento caracteristicaArmazenamento = new CaracteristicaArmazenamento()
-                .misturaMateriaisDireitos(DEFAULT_MISTURA_MATERIAIS_DIREITOS)
-                .misturaGrupoMateriais(DEFAULT_MISTURA_GRUPO_MATERIAIS);
+        CaracteristicaArmazenamento caracteristicaArmazenamento = new CaracteristicaArmazenamento();
+        caracteristicaArmazenamento.setMisturaMateriaisDireitos(DEFAULT_MISTURA_MATERIAIS_DIREITOS);
+        caracteristicaArmazenamento.setMisturaGrupoMateriais(DEFAULT_MISTURA_GRUPO_MATERIAIS);
         return caracteristicaArmazenamento;
     }
 
@@ -110,9 +110,9 @@ public class CaracteristicaArmazenamentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CaracteristicaArmazenamento createUpdatedEntity(EntityManager em) {
-        CaracteristicaArmazenamento caracteristicaArmazenamento = new CaracteristicaArmazenamento()
-                .misturaMateriaisDireitos(UPDATED_MISTURA_MATERIAIS_DIREITOS)
-                .misturaGrupoMateriais(UPDATED_MISTURA_GRUPO_MATERIAIS);
+        CaracteristicaArmazenamento caracteristicaArmazenamento = new CaracteristicaArmazenamento();
+        caracteristicaArmazenamento.setMisturaMateriaisDireitos(UPDATED_MISTURA_MATERIAIS_DIREITOS);
+        caracteristicaArmazenamento.setMisturaGrupoMateriais(UPDATED_MISTURA_GRUPO_MATERIAIS);
         return caracteristicaArmazenamento;
     }
 
@@ -121,11 +121,11 @@ public class CaracteristicaArmazenamentoResourceIT {
         MockitoAnnotations.initMocks(this);
         final CaracteristicaArmazenamentoResource caracteristicaArmazenamentoResource = new CaracteristicaArmazenamentoResource(caracteristicaArmazenamentoService);
         this.restCaracteristicaArmazenamentoMockMvc = MockMvcBuilders.standaloneSetup(caracteristicaArmazenamentoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -141,16 +141,16 @@ public class CaracteristicaArmazenamentoResourceIT {
         // Create the CaracteristicaArmazenamento
         CaracteristicaArmazenamentoDTO caracteristicaArmazenamentoDTO = caracteristicaArmazenamentoMapper.toDto(caracteristicaArmazenamento);
         restCaracteristicaArmazenamentoMockMvc.perform(post("/api/caracteristica-armazenamentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the CaracteristicaArmazenamento in the database
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
         assertThat(caracteristicaArmazenamentoList).hasSize(databaseSizeBeforeCreate + 1);
         CaracteristicaArmazenamento testCaracteristicaArmazenamento = caracteristicaArmazenamentoList.get(caracteristicaArmazenamentoList.size() - 1);
-        assertThat(testCaracteristicaArmazenamento.isMisturaMateriaisDireitos()).isEqualTo(DEFAULT_MISTURA_MATERIAIS_DIREITOS);
-        assertThat(testCaracteristicaArmazenamento.isMisturaGrupoMateriais()).isEqualTo(DEFAULT_MISTURA_GRUPO_MATERIAIS);
+        assertThat(testCaracteristicaArmazenamento.getMisturaMateriaisDireitos()).isEqualTo(DEFAULT_MISTURA_MATERIAIS_DIREITOS);
+        assertThat(testCaracteristicaArmazenamento.getMisturaGrupoMateriais()).isEqualTo(DEFAULT_MISTURA_GRUPO_MATERIAIS);
 
         // Validate the CaracteristicaArmazenamento in Elasticsearch
         verify(mockCaracteristicaArmazenamentoSearchRepository, times(1)).save(testCaracteristicaArmazenamento);
@@ -167,9 +167,9 @@ public class CaracteristicaArmazenamentoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCaracteristicaArmazenamentoMockMvc.perform(post("/api/caracteristica-armazenamentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the CaracteristicaArmazenamento in the database
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
@@ -191,9 +191,9 @@ public class CaracteristicaArmazenamentoResourceIT {
         CaracteristicaArmazenamentoDTO caracteristicaArmazenamentoDTO = caracteristicaArmazenamentoMapper.toDto(caracteristicaArmazenamento);
 
         restCaracteristicaArmazenamentoMockMvc.perform(post("/api/caracteristica-armazenamentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
         assertThat(caracteristicaArmazenamentoList).hasSize(databaseSizeBeforeTest);
@@ -210,9 +210,9 @@ public class CaracteristicaArmazenamentoResourceIT {
         CaracteristicaArmazenamentoDTO caracteristicaArmazenamentoDTO = caracteristicaArmazenamentoMapper.toDto(caracteristicaArmazenamento);
 
         restCaracteristicaArmazenamentoMockMvc.perform(post("/api/caracteristica-armazenamentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
         assertThat(caracteristicaArmazenamentoList).hasSize(databaseSizeBeforeTest);
@@ -226,11 +226,11 @@ public class CaracteristicaArmazenamentoResourceIT {
 
         // Get all the caracteristicaArmazenamentoList
         restCaracteristicaArmazenamentoMockMvc.perform(get("/api/caracteristica-armazenamentos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(caracteristicaArmazenamento.getId().intValue())))
-                .andExpect(jsonPath("$.[*].misturaMateriaisDireitos").value(hasItem(DEFAULT_MISTURA_MATERIAIS_DIREITOS.booleanValue())))
-                .andExpect(jsonPath("$.[*].misturaGrupoMateriais").value(hasItem(DEFAULT_MISTURA_GRUPO_MATERIAIS.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(caracteristicaArmazenamento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].misturaMateriaisDireitos").value(hasItem(DEFAULT_MISTURA_MATERIAIS_DIREITOS.booleanValue())))
+            .andExpect(jsonPath("$.[*].misturaGrupoMateriais").value(hasItem(DEFAULT_MISTURA_GRUPO_MATERIAIS.booleanValue())));
     }
 
     @Test
@@ -241,11 +241,11 @@ public class CaracteristicaArmazenamentoResourceIT {
 
         // Get the caracteristicaArmazenamento
         restCaracteristicaArmazenamentoMockMvc.perform(get("/api/caracteristica-armazenamentos/{id}", caracteristicaArmazenamento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(caracteristicaArmazenamento.getId().intValue()))
-                .andExpect(jsonPath("$.misturaMateriaisDireitos").value(DEFAULT_MISTURA_MATERIAIS_DIREITOS.booleanValue()))
-                .andExpect(jsonPath("$.misturaGrupoMateriais").value(DEFAULT_MISTURA_GRUPO_MATERIAIS.booleanValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(caracteristicaArmazenamento.getId().intValue()))
+            .andExpect(jsonPath("$.misturaMateriaisDireitos").value(DEFAULT_MISTURA_MATERIAIS_DIREITOS.booleanValue()))
+            .andExpect(jsonPath("$.misturaGrupoMateriais").value(DEFAULT_MISTURA_GRUPO_MATERIAIS.booleanValue()));
     }
 
     @Test
@@ -253,7 +253,7 @@ public class CaracteristicaArmazenamentoResourceIT {
     public void getNonExistingCaracteristicaArmazenamento() throws Exception {
         // Get the caracteristicaArmazenamento
         restCaracteristicaArmazenamentoMockMvc.perform(get("/api/caracteristica-armazenamentos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -268,22 +268,22 @@ public class CaracteristicaArmazenamentoResourceIT {
         CaracteristicaArmazenamento updatedCaracteristicaArmazenamento = caracteristicaArmazenamentoRepository.findById(caracteristicaArmazenamento.getId()).get();
         // Disconnect from session so that the updates on updatedCaracteristicaArmazenamento are not directly saved in db
         em.detach(updatedCaracteristicaArmazenamento);
-        updatedCaracteristicaArmazenamento
-                .misturaMateriaisDireitos(UPDATED_MISTURA_MATERIAIS_DIREITOS)
-                .misturaGrupoMateriais(UPDATED_MISTURA_GRUPO_MATERIAIS);
+
+        updatedCaracteristicaArmazenamento.setMisturaMateriaisDireitos(UPDATED_MISTURA_MATERIAIS_DIREITOS);
+        updatedCaracteristicaArmazenamento.setMisturaGrupoMateriais(UPDATED_MISTURA_GRUPO_MATERIAIS);
         CaracteristicaArmazenamentoDTO caracteristicaArmazenamentoDTO = caracteristicaArmazenamentoMapper.toDto(updatedCaracteristicaArmazenamento);
 
         restCaracteristicaArmazenamentoMockMvc.perform(put("/api/caracteristica-armazenamentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the CaracteristicaArmazenamento in the database
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
         assertThat(caracteristicaArmazenamentoList).hasSize(databaseSizeBeforeUpdate);
         CaracteristicaArmazenamento testCaracteristicaArmazenamento = caracteristicaArmazenamentoList.get(caracteristicaArmazenamentoList.size() - 1);
-        assertThat(testCaracteristicaArmazenamento.isMisturaMateriaisDireitos()).isEqualTo(UPDATED_MISTURA_MATERIAIS_DIREITOS);
-        assertThat(testCaracteristicaArmazenamento.isMisturaGrupoMateriais()).isEqualTo(UPDATED_MISTURA_GRUPO_MATERIAIS);
+        assertThat(testCaracteristicaArmazenamento.getMisturaMateriaisDireitos()).isEqualTo(UPDATED_MISTURA_MATERIAIS_DIREITOS);
+        assertThat(testCaracteristicaArmazenamento.getMisturaGrupoMateriais()).isEqualTo(UPDATED_MISTURA_GRUPO_MATERIAIS);
 
         // Validate the CaracteristicaArmazenamento in Elasticsearch
         verify(mockCaracteristicaArmazenamentoSearchRepository, times(1)).save(testCaracteristicaArmazenamento);
@@ -299,9 +299,9 @@ public class CaracteristicaArmazenamentoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCaracteristicaArmazenamentoMockMvc.perform(put("/api/caracteristica-armazenamentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(caracteristicaArmazenamentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the CaracteristicaArmazenamento in the database
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
@@ -321,8 +321,8 @@ public class CaracteristicaArmazenamentoResourceIT {
 
         // Delete the caracteristicaArmazenamento
         restCaracteristicaArmazenamentoMockMvc.perform(delete("/api/caracteristica-armazenamentos/{id}", caracteristicaArmazenamento.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<CaracteristicaArmazenamento> caracteristicaArmazenamentoList = caracteristicaArmazenamentoRepository.findAll();
@@ -338,14 +338,14 @@ public class CaracteristicaArmazenamentoResourceIT {
         // Initialize the database
         caracteristicaArmazenamentoRepository.saveAndFlush(caracteristicaArmazenamento);
         when(mockCaracteristicaArmazenamentoSearchRepository.search(queryStringQuery("id:" + caracteristicaArmazenamento.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(caracteristicaArmazenamento), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(caracteristicaArmazenamento), PageRequest.of(0, 1), 1));
         // Search the caracteristicaArmazenamento
         restCaracteristicaArmazenamentoMockMvc.perform(get("/api/_search/caracteristica-armazenamentos?query=id:" + caracteristicaArmazenamento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(caracteristicaArmazenamento.getId().intValue())))
-                .andExpect(jsonPath("$.[*].misturaMateriaisDireitos").value(hasItem(DEFAULT_MISTURA_MATERIAIS_DIREITOS.booleanValue())))
-                .andExpect(jsonPath("$.[*].misturaGrupoMateriais").value(hasItem(DEFAULT_MISTURA_GRUPO_MATERIAIS.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(caracteristicaArmazenamento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].misturaMateriaisDireitos").value(hasItem(DEFAULT_MISTURA_MATERIAIS_DIREITOS.booleanValue())))
+            .andExpect(jsonPath("$.[*].misturaGrupoMateriais").value(hasItem(DEFAULT_MISTURA_GRUPO_MATERIAIS.booleanValue())));
     }
 
     @Test

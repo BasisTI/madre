@@ -115,14 +115,14 @@ public class MaterialResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Material createEntity(EntityManager em) {
-        Material material = new Material()
-                .nome(DEFAULT_NOME)
-                .descricao(DEFAULT_DESCRICAO)
-                .ativo(DEFAULT_ATIVO)
-                .regimento(DEFAULT_REGIMENTO)
-                .observacao(DEFAULT_OBSERVACAO)
-                .unidadeId(DEFAULT_UNIDADE_ID)
-                .procedimentoId(DEFAULT_PROCEDIMENTO_ID);
+        Material material = new Material();
+        material.setNome(DEFAULT_NOME);
+        material.setDescricao(DEFAULT_DESCRICAO);
+        material.setAtivo(DEFAULT_ATIVO);
+        material.setRegimento(DEFAULT_REGIMENTO);
+        material.setObservacao(DEFAULT_OBSERVACAO);
+        material.setUnidadeId(DEFAULT_UNIDADE_ID);
+        material.setProcedimentoId(DEFAULT_PROCEDIMENTO_ID);
         // Add required entity
         UnidadeMedida unidadeMedida;
         if (TestUtil.findAll(em, UnidadeMedida.class).isEmpty()) {
@@ -163,14 +163,14 @@ public class MaterialResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Material createUpdatedEntity(EntityManager em) {
-        Material material = new Material()
-                .nome(UPDATED_NOME)
-                .descricao(UPDATED_DESCRICAO)
-                .ativo(UPDATED_ATIVO)
-                .regimento(UPDATED_REGIMENTO)
-                .observacao(UPDATED_OBSERVACAO)
-                .unidadeId(UPDATED_UNIDADE_ID)
-                .procedimentoId(UPDATED_PROCEDIMENTO_ID);
+        Material material = new Material();
+        material.setNome(UPDATED_NOME);
+        material.setDescricao(UPDATED_DESCRICAO);
+        material.setAtivo(UPDATED_ATIVO);
+        material.setRegimento(UPDATED_REGIMENTO);
+        material.setObservacao(UPDATED_OBSERVACAO);
+        material.setUnidadeId(UPDATED_UNIDADE_ID);
+        material.setProcedimentoId(UPDATED_PROCEDIMENTO_ID);
         // Add required entity
         UnidadeMedida unidadeMedida;
         if (TestUtil.findAll(em, UnidadeMedida.class).isEmpty()) {
@@ -209,11 +209,11 @@ public class MaterialResourceIT {
         MockitoAnnotations.initMocks(this);
         final MaterialResource materialResource = new MaterialResource(materialService);
         this.restMaterialMockMvc = MockMvcBuilders.standaloneSetup(materialResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -229,9 +229,9 @@ public class MaterialResourceIT {
         // Create the Material
         MaterialDTO materialDTO = materialMapper.toDto(material);
         restMaterialMockMvc.perform(post("/api/materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Material in the database
         List<Material> materialList = materialRepository.findAll();
@@ -239,7 +239,7 @@ public class MaterialResourceIT {
         Material testMaterial = materialList.get(materialList.size() - 1);
         assertThat(testMaterial.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testMaterial.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
-        assertThat(testMaterial.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testMaterial.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testMaterial.getRegimento()).isEqualTo(DEFAULT_REGIMENTO);
         assertThat(testMaterial.getObservacao()).isEqualTo(DEFAULT_OBSERVACAO);
         assertThat(testMaterial.getUnidadeId()).isEqualTo(DEFAULT_UNIDADE_ID);
@@ -260,9 +260,9 @@ public class MaterialResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMaterialMockMvc.perform(post("/api/materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Material in the database
         List<Material> materialList = materialRepository.findAll();
@@ -284,9 +284,9 @@ public class MaterialResourceIT {
         MaterialDTO materialDTO = materialMapper.toDto(material);
 
         restMaterialMockMvc.perform(post("/api/materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Material> materialList = materialRepository.findAll();
         assertThat(materialList).hasSize(databaseSizeBeforeTest);
@@ -303,9 +303,9 @@ public class MaterialResourceIT {
         MaterialDTO materialDTO = materialMapper.toDto(material);
 
         restMaterialMockMvc.perform(post("/api/materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
 
         List<Material> materialList = materialRepository.findAll();
         assertThat(materialList).hasSize(databaseSizeBeforeTest);
@@ -319,16 +319,16 @@ public class MaterialResourceIT {
 
         // Get all the materialList
         restMaterialMockMvc.perform(get("/api/materials?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(material.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].regimento").value(hasItem(DEFAULT_REGIMENTO)))
-                .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)))
-                .andExpect(jsonPath("$.[*].unidadeId").value(hasItem(DEFAULT_UNIDADE_ID.intValue())))
-                .andExpect(jsonPath("$.[*].procedimentoId").value(hasItem(DEFAULT_PROCEDIMENTO_ID.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(material.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].regimento").value(hasItem(DEFAULT_REGIMENTO)))
+            .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)))
+            .andExpect(jsonPath("$.[*].unidadeId").value(hasItem(DEFAULT_UNIDADE_ID.intValue())))
+            .andExpect(jsonPath("$.[*].procedimentoId").value(hasItem(DEFAULT_PROCEDIMENTO_ID.intValue())));
     }
 
     @Test
@@ -339,16 +339,16 @@ public class MaterialResourceIT {
 
         // Get the material
         restMaterialMockMvc.perform(get("/api/materials/{id}", material.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(material.getId().intValue()))
-                .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
-                .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-                .andExpect(jsonPath("$.regimento").value(DEFAULT_REGIMENTO))
-                .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO))
-                .andExpect(jsonPath("$.unidadeId").value(DEFAULT_UNIDADE_ID.intValue()))
-                .andExpect(jsonPath("$.procedimentoId").value(DEFAULT_PROCEDIMENTO_ID.intValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(material.getId().intValue()))
+            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.regimento").value(DEFAULT_REGIMENTO))
+            .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO))
+            .andExpect(jsonPath("$.unidadeId").value(DEFAULT_UNIDADE_ID.intValue()))
+            .andExpect(jsonPath("$.procedimentoId").value(DEFAULT_PROCEDIMENTO_ID.intValue()));
     }
 
     @Test
@@ -356,7 +356,7 @@ public class MaterialResourceIT {
     public void getNonExistingMaterial() throws Exception {
         // Get the material
         restMaterialMockMvc.perform(get("/api/materials/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -371,20 +371,19 @@ public class MaterialResourceIT {
         Material updatedMaterial = materialRepository.findById(material.getId()).get();
         // Disconnect from session so that the updates on updatedMaterial are not directly saved in db
         em.detach(updatedMaterial);
-        updatedMaterial
-                .nome(UPDATED_NOME)
-                .descricao(UPDATED_DESCRICAO)
-                .ativo(UPDATED_ATIVO)
-                .regimento(UPDATED_REGIMENTO)
-                .observacao(UPDATED_OBSERVACAO)
-                .unidadeId(UPDATED_UNIDADE_ID)
-                .procedimentoId(UPDATED_PROCEDIMENTO_ID);
+        updatedMaterial.setNome(UPDATED_NOME);
+        updatedMaterial.setDescricao(UPDATED_DESCRICAO);
+        updatedMaterial.setAtivo(UPDATED_ATIVO);
+        updatedMaterial.setRegimento(UPDATED_REGIMENTO);
+        updatedMaterial.setObservacao(UPDATED_OBSERVACAO);
+        updatedMaterial.setUnidadeId(UPDATED_UNIDADE_ID);
+        updatedMaterial.setProcedimentoId(UPDATED_PROCEDIMENTO_ID);
         MaterialDTO materialDTO = materialMapper.toDto(updatedMaterial);
 
         restMaterialMockMvc.perform(put("/api/materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Material in the database
         List<Material> materialList = materialRepository.findAll();
@@ -392,7 +391,7 @@ public class MaterialResourceIT {
         Material testMaterial = materialList.get(materialList.size() - 1);
         assertThat(testMaterial.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testMaterial.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
-        assertThat(testMaterial.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testMaterial.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testMaterial.getRegimento()).isEqualTo(UPDATED_REGIMENTO);
         assertThat(testMaterial.getObservacao()).isEqualTo(UPDATED_OBSERVACAO);
         assertThat(testMaterial.getUnidadeId()).isEqualTo(UPDATED_UNIDADE_ID);
@@ -412,9 +411,9 @@ public class MaterialResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restMaterialMockMvc.perform(put("/api/materials")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the Material in the database
         List<Material> materialList = materialRepository.findAll();
@@ -434,8 +433,8 @@ public class MaterialResourceIT {
 
         // Delete the material
         restMaterialMockMvc.perform(delete("/api/materials/{id}", material.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Material> materialList = materialRepository.findAll();
@@ -451,19 +450,19 @@ public class MaterialResourceIT {
         // Initialize the database
         materialRepository.saveAndFlush(material);
         when(mockMaterialSearchRepository.search(queryStringQuery("id:" + material.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(material), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(material), PageRequest.of(0, 1), 1));
         // Search the material
         restMaterialMockMvc.perform(get("/api/_search/materials?query=id:" + material.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(material.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].regimento").value(hasItem(DEFAULT_REGIMENTO)))
-                .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)))
-                .andExpect(jsonPath("$.[*].unidadeId").value(hasItem(DEFAULT_UNIDADE_ID.intValue())))
-                .andExpect(jsonPath("$.[*].procedimentoId").value(hasItem(DEFAULT_PROCEDIMENTO_ID.intValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(material.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].regimento").value(hasItem(DEFAULT_REGIMENTO)))
+            .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)))
+            .andExpect(jsonPath("$.[*].unidadeId").value(hasItem(DEFAULT_UNIDADE_ID.intValue())))
+            .andExpect(jsonPath("$.[*].procedimentoId").value(hasItem(DEFAULT_PROCEDIMENTO_ID.intValue())));
     }
 
     @Test

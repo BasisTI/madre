@@ -1,0 +1,304 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form (ngSubmit)="cadastrar()">
+            <p-accordion>
+                <p-accordionTab header="Cadastro Unidade Funcional" [selected]="true">
+                    <form [formGroup]="cadastroUnidade">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <div class="ui-g-4 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            pTooltip="Digite a sigla da unidade funcional."
+                                            formControlName="sigla"
+                                        />
+                                        <label>Sigla</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-4 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="situacao"
+                                            pTooltip="Informe a situação da unidade funcional."
+                                            [options]="opcoesDeSitucao"
+                                        ></p-dropdown>
+                                        <label>Situação</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-4 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="idAlmoxarifado"
+                                            [options]="almoxarifados"
+                                            optionLabel="descricao"
+                                            placeholder="Almoxarifado"
+                                            pTooltip="Selecione o almoxarifado referente a esta unidade funcional."
+                                        ></p-dropdown>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-3 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            pTooltip="Digite o andar da unidade funcional."
+                                            formControlName="andar"
+                                        />
+                                        <label>Andar</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-3 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            formControlName="capacidade"
+                                            pTooltip="Digite a capacidade da unidade funcional."
+                                        />
+                                        <label>Capacidade</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="alaId"
+                                            pTooltip="Selecione a ala da unidade funcional."
+                                            [options]="alas"
+                                            optionLabel="nome"
+                                            placeholder="Ala"
+                                        ></p-dropdown>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-4 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="clinicaId"
+                                            [options]="clinicas"
+                                            optionLabel="nome"
+                                            placeholder="Clínica"
+                                            pTooltip="Selecione a clinica refente a esta especialidade."
+                                        ></p-dropdown>
+                                    </span>
+                                </div>
+                                <div class="ui-g-3 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            pTooltip="Digite o setor da unidade funcional."
+                                            formControlName="setor"
+                                        />
+                                        <label>Setor</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-5 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="tipoUnidadeId"
+                                            [options]="tipos"
+                                            optionLabel="nome"
+                                            placeholder="Tipos de Unidades"
+                                            pTooltip="Selecione um tipo de unidade funcional."
+                                        ></p-dropdown>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="idCentroDeAtividade"
+                                            pTooltip="Digite a sigla da unidade funcional."
+                                            [options]="centros"
+                                            optionLabel="descricao"
+                                            placeholder="Centro de Atividade"
+                                        ></p-dropdown>
+                                    </span>
+                                </div>
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <p-dropdown
+                                            formControlName="unidadePaiId"
+                                            pTooltip="Selecione a unidade pai."
+                                            [options]="unidadesPai"
+                                            optionLabel="descricao"
+                                            placeholder="Unidade Pai"
+                                        ></p-dropdown>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            formControlName="localExame"
+                                            pTooltip="Digite o local da documentação do exame."
+                                        />
+                                        <label>Local Doc Exame</label>
+                                    </span>
+                                </div>
+                                <div class="ui-g-6 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <input
+                                            type="text"
+                                            pInputText
+                                            formControlName="rotinaDeFuncionamento"
+                                            pTooltip="Digite o local da rotina de funcionamento."
+                                        />
+                                        <label>Rotina de Funcionamento</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-6 ui-sm-12">
+                                    <label>Características</label>
+                                    <span class="ui-float-label">
+                                        <p-multiSelect
+                                            defaultLabel="Características"
+                                            [options]="caracteristicas"
+                                            optionLabel="nome"
+                                            formControlName="caracteristica"
+                                        ></p-multiSelect>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-3 ui-sm-12">
+                                    <label>Anexo de Documentos de Exame?</label>
+                                </div>
+                                <div class="ui-g-3 ui-sm-12">
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="anexoDocumento"
+                                        formControlName="anexoDocumento"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+
+                                <div class="ui-g-3 ui-sm-12">
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="anexoDocumento"
+                                        formControlName="anexoDocumento"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Não</label>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-3 ui-sm-12">
+                                    <label>Controle de Estoque?</label>
+                                </div>
+                                <div class="ui-g-3 ui-sm-12">
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="controleDeEstoque"
+                                        formControlName="controleDeEstoque"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Sim</label>
+                                </div>
+
+                                <div class="ui-g-3 ui-sm-12">
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="controleDeEstoque"
+                                        formControlName="controleDeEstoque"
+                                        pRadioButton
+                                    >
+                                    </p-radioButton>
+                                    <label>Não</label>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-12 ui-sm-12">
+                                    <span class="ui-float-label">
+                                        <textarea
+                                            pInputTextarea
+                                            rows="3"
+                                            formControlName="descricao"
+                                        >
+                                        </textarea>
+                                        <label>Descrição</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </p-accordionTab>
+                <p-accordionTab header="Prescrição Medica">
+                    <app-prescricao-medica-unidade
+                        [precricaoMedica]="precricaoMedica"
+                    ></app-prescricao-medica-unidade>
+                </p-accordionTab>
+                <p-accordionTab header="Prescrição Enfermagem">
+                    <app-prescricao-enfermagem
+                        [precricaoEnfermagem]="precricaoEnfermagem"
+                    ></app-prescricao-enfermagem>
+                </p-accordionTab>
+                <p-accordionTab header="Cirurgia">
+                    <app-cirurgia [cirurgia]="cirurgia"></app-cirurgia>
+                </p-accordionTab>
+                <p-accordionTab header="Horário Atendimento">
+                    <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <div class="ui-g-4 ui-sm-12">
+                                <span class="ui-float-label">
+                                    <p-calendar
+                                        timeOnly="true"
+                                        formControlName="horarioInicio"
+                                    ></p-calendar>
+                                    <label>Início</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-4 ui-sm-12">
+                                <span class="ui-float-label">
+                                    <p-calendar
+                                        timeOnly="true"
+                                        formControlName="horarioFim"
+                                    ></p-calendar>
+                                    <label>Fim</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Chefia">
+                    <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
+                        <div class="ui-g-6">
+                            <span class="ui-float-label">
+                                <p-dropdown
+                                    formControlName="idChefia"
+                                    pTooltip="Selecione a Matrícula da unidade funcional."
+                                ></p-dropdown>
+                                <label>Matrícula</label>
+                            </span>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+            <button pButton type="submit" [disabled]="!valid()" label="Cadastrar"></button>
+        </form>
+    </div>
+</div>

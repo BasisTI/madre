@@ -1,3 +1,4 @@
+import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { CalendarioComponent } from '@internacao/components/leito/calendario.component';
 import { InternacaoDePacienteComponent } from './components/internacao-de-paciente/internacao-de-paciente.component';
@@ -40,5 +41,9 @@ export const routes: Routes = [
     {
         path: 'calendario-leito',
         component: CalendarioComponent,
+    },
+    {
+        path: 'cadastro-unidades',
+        component: CadastroUnidadesComponent,
     },
 ];

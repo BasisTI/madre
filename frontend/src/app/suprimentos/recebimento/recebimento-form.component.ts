@@ -12,13 +12,14 @@ import { UnidadeMedidaService } from '@suprimentos/unidade-medida/unidade-medida
 
 @Component({
     selector: 'app-recebimento',
-    templateUrl: './recebimento.component.html',
+    templateUrl: './recebimento-form.component.html',
 })
-export class RecebimentoComponent implements OnInit {
+export class RecebimentoFormComponent implements OnInit {
     public comAutorizacaoFornecimento = true;
     public unidadesMedida: UnidadeMedida[];
     public marcasComerciais: MarcaComercial[];
     public materiais: Material[];
+    itens = [];
 
     public formGroup = this.fb.group({
         documentoFiscal: this.fb.group(
@@ -70,8 +71,11 @@ export class RecebimentoComponent implements OnInit {
     }
 
     public adicionarItemALista(): void {
-        const itens = this.getItensControlAsFormArray();
-        itens.push(this.itemForm);
+        const item = this.itemForm.value;
+
+        console.log(item);
+        this.itens.push(item);
+        this.itemForm.reset();
     }
 
     public obterUnidadeMedidaPorDescricao(event: {
@@ -99,7 +103,7 @@ export class RecebimentoComponent implements OnInit {
     }
 
     public gravar(): void {
-        const itensArr = this.getItensControlAsFormArray().value;
+        const itensArr = this.itens;
         const itensNotaRecebimento = itensArr.map((item) => {
             return {
                 quantidadeReceber: item.quantidadeReceber,
@@ -117,7 +121,7 @@ export class RecebimentoComponent implements OnInit {
         } = this.formGroup.value;
 
         const dto = {
-            documentoFiscalId,
+            notaFiscalEntradaId: documentoFiscalId,
             autorizacaoFornecimentoId,
             itensNotaRecebimento,
         };

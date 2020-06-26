@@ -95,8 +95,8 @@ public class TransferenciaAlmoxarifadoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TransferenciaAlmoxarifado createEntity(EntityManager em) {
-        TransferenciaAlmoxarifado transferenciaAlmoxarifado = new TransferenciaAlmoxarifado()
-                .ativo(DEFAULT_ATIVO);
+        TransferenciaAlmoxarifado transferenciaAlmoxarifado = new TransferenciaAlmoxarifado();
+        transferenciaAlmoxarifado.setAtivo(DEFAULT_ATIVO);
         // Add required entity
         Almoxarifado almoxarifado;
         if (TestUtil.findAll(em, Almoxarifado.class).isEmpty()) {
@@ -119,8 +119,8 @@ public class TransferenciaAlmoxarifadoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TransferenciaAlmoxarifado createUpdatedEntity(EntityManager em) {
-        TransferenciaAlmoxarifado transferenciaAlmoxarifado = new TransferenciaAlmoxarifado()
-                .ativo(UPDATED_ATIVO);
+        TransferenciaAlmoxarifado transferenciaAlmoxarifado = new TransferenciaAlmoxarifado();
+        transferenciaAlmoxarifado.setAtivo(UPDATED_ATIVO);
         // Add required entity
         Almoxarifado almoxarifado;
         if (TestUtil.findAll(em, Almoxarifado.class).isEmpty()) {
@@ -141,11 +141,11 @@ public class TransferenciaAlmoxarifadoResourceIT {
         MockitoAnnotations.initMocks(this);
         final TransferenciaAlmoxarifadoResource transferenciaAlmoxarifadoResource = new TransferenciaAlmoxarifadoResource(transferenciaAlmoxarifadoService);
         this.restTransferenciaAlmoxarifadoMockMvc = MockMvcBuilders.standaloneSetup(transferenciaAlmoxarifadoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -161,15 +161,15 @@ public class TransferenciaAlmoxarifadoResourceIT {
         // Create the TransferenciaAlmoxarifado
         TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO = transferenciaAlmoxarifadoMapper.toDto(transferenciaAlmoxarifado);
         restTransferenciaAlmoxarifadoMockMvc.perform(post("/api/transferencia-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the TransferenciaAlmoxarifado in the database
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
         assertThat(transferenciaAlmoxarifadoList).hasSize(databaseSizeBeforeCreate + 1);
         TransferenciaAlmoxarifado testTransferenciaAlmoxarifado = transferenciaAlmoxarifadoList.get(transferenciaAlmoxarifadoList.size() - 1);
-        assertThat(testTransferenciaAlmoxarifado.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testTransferenciaAlmoxarifado.getAtivo()).isEqualTo(DEFAULT_ATIVO);
 
         // Validate the TransferenciaAlmoxarifado in Elasticsearch
         verify(mockTransferenciaAlmoxarifadoSearchRepository, times(1)).save(testTransferenciaAlmoxarifado);
@@ -186,9 +186,9 @@ public class TransferenciaAlmoxarifadoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTransferenciaAlmoxarifadoMockMvc.perform(post("/api/transferencia-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the TransferenciaAlmoxarifado in the database
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
@@ -210,9 +210,9 @@ public class TransferenciaAlmoxarifadoResourceIT {
         TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO = transferenciaAlmoxarifadoMapper.toDto(transferenciaAlmoxarifado);
 
         restTransferenciaAlmoxarifadoMockMvc.perform(post("/api/transferencia-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
         assertThat(transferenciaAlmoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -226,10 +226,10 @@ public class TransferenciaAlmoxarifadoResourceIT {
 
         // Get all the transferenciaAlmoxarifadoList
         restTransferenciaAlmoxarifadoMockMvc.perform(get("/api/transferencia-almoxarifados?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(transferenciaAlmoxarifado.getId().intValue())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(transferenciaAlmoxarifado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 
     @Test
@@ -240,10 +240,10 @@ public class TransferenciaAlmoxarifadoResourceIT {
 
         // Get the transferenciaAlmoxarifado
         restTransferenciaAlmoxarifadoMockMvc.perform(get("/api/transferencia-almoxarifados/{id}", transferenciaAlmoxarifado.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(transferenciaAlmoxarifado.getId().intValue()))
-                .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(transferenciaAlmoxarifado.getId().intValue()))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
     }
 
     @Test
@@ -251,7 +251,7 @@ public class TransferenciaAlmoxarifadoResourceIT {
     public void getNonExistingTransferenciaAlmoxarifado() throws Exception {
         // Get the transferenciaAlmoxarifado
         restTransferenciaAlmoxarifadoMockMvc.perform(get("/api/transferencia-almoxarifados/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -267,19 +267,19 @@ public class TransferenciaAlmoxarifadoResourceIT {
         // Disconnect from session so that the updates on updatedTransferenciaAlmoxarifado are not directly saved in db
         em.detach(updatedTransferenciaAlmoxarifado);
         updatedTransferenciaAlmoxarifado
-                .ativo(UPDATED_ATIVO);
+            .setAtivo(UPDATED_ATIVO);
         TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO = transferenciaAlmoxarifadoMapper.toDto(updatedTransferenciaAlmoxarifado);
 
         restTransferenciaAlmoxarifadoMockMvc.perform(put("/api/transferencia-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the TransferenciaAlmoxarifado in the database
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
         assertThat(transferenciaAlmoxarifadoList).hasSize(databaseSizeBeforeUpdate);
         TransferenciaAlmoxarifado testTransferenciaAlmoxarifado = transferenciaAlmoxarifadoList.get(transferenciaAlmoxarifadoList.size() - 1);
-        assertThat(testTransferenciaAlmoxarifado.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testTransferenciaAlmoxarifado.getAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the TransferenciaAlmoxarifado in Elasticsearch
         verify(mockTransferenciaAlmoxarifadoSearchRepository, times(1)).save(testTransferenciaAlmoxarifado);
@@ -295,9 +295,9 @@ public class TransferenciaAlmoxarifadoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restTransferenciaAlmoxarifadoMockMvc.perform(put("/api/transferencia-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(transferenciaAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the TransferenciaAlmoxarifado in the database
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
@@ -317,8 +317,8 @@ public class TransferenciaAlmoxarifadoResourceIT {
 
         // Delete the transferenciaAlmoxarifado
         restTransferenciaAlmoxarifadoMockMvc.perform(delete("/api/transferencia-almoxarifados/{id}", transferenciaAlmoxarifado.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
@@ -334,13 +334,13 @@ public class TransferenciaAlmoxarifadoResourceIT {
         // Initialize the database
         transferenciaAlmoxarifadoRepository.saveAndFlush(transferenciaAlmoxarifado);
         when(mockTransferenciaAlmoxarifadoSearchRepository.search(queryStringQuery("id:" + transferenciaAlmoxarifado.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(transferenciaAlmoxarifado), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(transferenciaAlmoxarifado), PageRequest.of(0, 1), 1));
         // Search the transferenciaAlmoxarifado
         restTransferenciaAlmoxarifadoMockMvc.perform(get("/api/_search/transferencia-almoxarifados?query=id:" + transferenciaAlmoxarifado.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(transferenciaAlmoxarifado.getId().intValue())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(transferenciaAlmoxarifado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 
     @Test

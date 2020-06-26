@@ -115,14 +115,14 @@ public class EstoqueAlmoxarifadoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static EstoqueAlmoxarifado createEntity(EntityManager em) {
-        EstoqueAlmoxarifado estoqueAlmoxarifado = new EstoqueAlmoxarifado()
-                .ativo(DEFAULT_ATIVO)
-                .endereco(DEFAULT_ENDERECO)
-                .quantidadeLimiteArmazenamento(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO)
-                .quantidadeEstoqueMinimo(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO)
-                .quantidadeEstoqueMaximo(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO)
-                .quantidadePontoPedido(DEFAULT_QUANTIDADE_PONTO_PEDIDO)
-                .tempoReposicao(DEFAULT_TEMPO_REPOSICAO);
+        EstoqueAlmoxarifado estoqueAlmoxarifado = new EstoqueAlmoxarifado();
+        estoqueAlmoxarifado.setAtivo(DEFAULT_ATIVO);
+        estoqueAlmoxarifado.setEndereco(DEFAULT_ENDERECO);
+        estoqueAlmoxarifado.setQuantidadeLimiteArmazenamento(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO);
+        estoqueAlmoxarifado.setQuantidadeEstoqueMinimo(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO);
+        estoqueAlmoxarifado.setQuantidadeEstoqueMaximo(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO);
+        estoqueAlmoxarifado.setQuantidadePontoPedido(DEFAULT_QUANTIDADE_PONTO_PEDIDO);
+        estoqueAlmoxarifado.setTempoReposicao(DEFAULT_TEMPO_REPOSICAO);
         // Add required entity
         Almoxarifado almoxarifado;
         if (TestUtil.findAll(em, Almoxarifado.class).isEmpty()) {
@@ -163,14 +163,14 @@ public class EstoqueAlmoxarifadoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static EstoqueAlmoxarifado createUpdatedEntity(EntityManager em) {
-        EstoqueAlmoxarifado estoqueAlmoxarifado = new EstoqueAlmoxarifado()
-                .ativo(UPDATED_ATIVO)
-                .endereco(UPDATED_ENDERECO)
-                .quantidadeLimiteArmazenamento(UPDATED_QUANTIDADE_LIMITE_ARMAZENAMENTO)
-                .quantidadeEstoqueMinimo(UPDATED_QUANTIDADE_ESTOQUE_MINIMO)
-                .quantidadeEstoqueMaximo(UPDATED_QUANTIDADE_ESTOQUE_MAXIMO)
-                .quantidadePontoPedido(UPDATED_QUANTIDADE_PONTO_PEDIDO)
-                .tempoReposicao(UPDATED_TEMPO_REPOSICAO);
+        EstoqueAlmoxarifado estoqueAlmoxarifado = new EstoqueAlmoxarifado();
+        estoqueAlmoxarifado.setAtivo(UPDATED_ATIVO);
+        estoqueAlmoxarifado.setEndereco(UPDATED_ENDERECO);
+        estoqueAlmoxarifado.setQuantidadeLimiteArmazenamento(UPDATED_QUANTIDADE_LIMITE_ARMAZENAMENTO);
+        estoqueAlmoxarifado.setQuantidadeEstoqueMinimo(UPDATED_QUANTIDADE_ESTOQUE_MINIMO);
+        estoqueAlmoxarifado.setQuantidadeEstoqueMaximo(UPDATED_QUANTIDADE_ESTOQUE_MAXIMO);
+        estoqueAlmoxarifado.setQuantidadePontoPedido(UPDATED_QUANTIDADE_PONTO_PEDIDO);
+        estoqueAlmoxarifado.setTempoReposicao(UPDATED_TEMPO_REPOSICAO);
         // Add required entity
         Almoxarifado almoxarifado;
         if (TestUtil.findAll(em, Almoxarifado.class).isEmpty()) {
@@ -209,11 +209,11 @@ public class EstoqueAlmoxarifadoResourceIT {
         MockitoAnnotations.initMocks(this);
         final EstoqueAlmoxarifadoResource estoqueAlmoxarifadoResource = new EstoqueAlmoxarifadoResource(estoqueAlmoxarifadoService);
         this.restEstoqueAlmoxarifadoMockMvc = MockMvcBuilders.standaloneSetup(estoqueAlmoxarifadoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -229,15 +229,15 @@ public class EstoqueAlmoxarifadoResourceIT {
         // Create the EstoqueAlmoxarifado
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(estoqueAlmoxarifado);
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the EstoqueAlmoxarifado in the database
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeCreate + 1);
         EstoqueAlmoxarifado testEstoqueAlmoxarifado = estoqueAlmoxarifadoList.get(estoqueAlmoxarifadoList.size() - 1);
-        assertThat(testEstoqueAlmoxarifado.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testEstoqueAlmoxarifado.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testEstoqueAlmoxarifado.getEndereco()).isEqualTo(DEFAULT_ENDERECO);
         assertThat(testEstoqueAlmoxarifado.getQuantidadeLimiteArmazenamento()).isEqualTo(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO);
         assertThat(testEstoqueAlmoxarifado.getQuantidadeEstoqueMinimo()).isEqualTo(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO);
@@ -260,9 +260,9 @@ public class EstoqueAlmoxarifadoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the EstoqueAlmoxarifado in the database
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
@@ -284,9 +284,9 @@ public class EstoqueAlmoxarifadoResourceIT {
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(estoqueAlmoxarifado);
 
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -303,9 +303,9 @@ public class EstoqueAlmoxarifadoResourceIT {
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(estoqueAlmoxarifado);
 
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -322,9 +322,9 @@ public class EstoqueAlmoxarifadoResourceIT {
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(estoqueAlmoxarifado);
 
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -341,9 +341,9 @@ public class EstoqueAlmoxarifadoResourceIT {
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(estoqueAlmoxarifado);
 
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -360,9 +360,9 @@ public class EstoqueAlmoxarifadoResourceIT {
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(estoqueAlmoxarifado);
 
         restEstoqueAlmoxarifadoMockMvc.perform(post("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeTest);
@@ -376,16 +376,16 @@ public class EstoqueAlmoxarifadoResourceIT {
 
         // Get all the estoqueAlmoxarifadoList
         restEstoqueAlmoxarifadoMockMvc.perform(get("/api/estoque-almoxarifados?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(estoqueAlmoxarifado.getId().intValue())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].endereco").value(hasItem(DEFAULT_ENDERECO)))
-                .andExpect(jsonPath("$.[*].quantidadeLimiteArmazenamento").value(hasItem(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeEstoqueMinimo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeEstoqueMaximo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadePontoPedido").value(hasItem(DEFAULT_QUANTIDADE_PONTO_PEDIDO.intValue())))
-                .andExpect(jsonPath("$.[*].tempoReposicao").value(hasItem(DEFAULT_TEMPO_REPOSICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(estoqueAlmoxarifado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].endereco").value(hasItem(DEFAULT_ENDERECO)))
+            .andExpect(jsonPath("$.[*].quantidadeLimiteArmazenamento").value(hasItem(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeEstoqueMinimo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeEstoqueMaximo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadePontoPedido").value(hasItem(DEFAULT_QUANTIDADE_PONTO_PEDIDO.intValue())))
+            .andExpect(jsonPath("$.[*].tempoReposicao").value(hasItem(DEFAULT_TEMPO_REPOSICAO)));
     }
 
     @Test
@@ -396,16 +396,16 @@ public class EstoqueAlmoxarifadoResourceIT {
 
         // Get the estoqueAlmoxarifado
         restEstoqueAlmoxarifadoMockMvc.perform(get("/api/estoque-almoxarifados/{id}", estoqueAlmoxarifado.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(estoqueAlmoxarifado.getId().intValue()))
-                .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-                .andExpect(jsonPath("$.endereco").value(DEFAULT_ENDERECO))
-                .andExpect(jsonPath("$.quantidadeLimiteArmazenamento").value(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO.intValue()))
-                .andExpect(jsonPath("$.quantidadeEstoqueMinimo").value(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO.intValue()))
-                .andExpect(jsonPath("$.quantidadeEstoqueMaximo").value(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO.intValue()))
-                .andExpect(jsonPath("$.quantidadePontoPedido").value(DEFAULT_QUANTIDADE_PONTO_PEDIDO.intValue()))
-                .andExpect(jsonPath("$.tempoReposicao").value(DEFAULT_TEMPO_REPOSICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(estoqueAlmoxarifado.getId().intValue()))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.endereco").value(DEFAULT_ENDERECO))
+            .andExpect(jsonPath("$.quantidadeLimiteArmazenamento").value(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO.intValue()))
+            .andExpect(jsonPath("$.quantidadeEstoqueMinimo").value(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO.intValue()))
+            .andExpect(jsonPath("$.quantidadeEstoqueMaximo").value(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO.intValue()))
+            .andExpect(jsonPath("$.quantidadePontoPedido").value(DEFAULT_QUANTIDADE_PONTO_PEDIDO.intValue()))
+            .andExpect(jsonPath("$.tempoReposicao").value(DEFAULT_TEMPO_REPOSICAO));
     }
 
     @Test
@@ -413,7 +413,7 @@ public class EstoqueAlmoxarifadoResourceIT {
     public void getNonExistingEstoqueAlmoxarifado() throws Exception {
         // Get the estoqueAlmoxarifado
         restEstoqueAlmoxarifadoMockMvc.perform(get("/api/estoque-almoxarifados/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -428,26 +428,26 @@ public class EstoqueAlmoxarifadoResourceIT {
         EstoqueAlmoxarifado updatedEstoqueAlmoxarifado = estoqueAlmoxarifadoRepository.findById(estoqueAlmoxarifado.getId()).get();
         // Disconnect from session so that the updates on updatedEstoqueAlmoxarifado are not directly saved in db
         em.detach(updatedEstoqueAlmoxarifado);
-        updatedEstoqueAlmoxarifado
-                .ativo(UPDATED_ATIVO)
-                .endereco(UPDATED_ENDERECO)
-                .quantidadeLimiteArmazenamento(UPDATED_QUANTIDADE_LIMITE_ARMAZENAMENTO)
-                .quantidadeEstoqueMinimo(UPDATED_QUANTIDADE_ESTOQUE_MINIMO)
-                .quantidadeEstoqueMaximo(UPDATED_QUANTIDADE_ESTOQUE_MAXIMO)
-                .quantidadePontoPedido(UPDATED_QUANTIDADE_PONTO_PEDIDO)
-                .tempoReposicao(UPDATED_TEMPO_REPOSICAO);
+
+        updatedEstoqueAlmoxarifado.setAtivo(UPDATED_ATIVO);
+        updatedEstoqueAlmoxarifado.setEndereco(UPDATED_ENDERECO);
+        updatedEstoqueAlmoxarifado.setQuantidadeLimiteArmazenamento(UPDATED_QUANTIDADE_LIMITE_ARMAZENAMENTO);
+        updatedEstoqueAlmoxarifado.setQuantidadeEstoqueMinimo(UPDATED_QUANTIDADE_ESTOQUE_MINIMO);
+        updatedEstoqueAlmoxarifado.setQuantidadeEstoqueMaximo(UPDATED_QUANTIDADE_ESTOQUE_MAXIMO);
+        updatedEstoqueAlmoxarifado.setQuantidadePontoPedido(UPDATED_QUANTIDADE_PONTO_PEDIDO);
+        updatedEstoqueAlmoxarifado.setTempoReposicao(UPDATED_TEMPO_REPOSICAO);
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(updatedEstoqueAlmoxarifado);
 
         restEstoqueAlmoxarifadoMockMvc.perform(put("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the EstoqueAlmoxarifado in the database
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
         assertThat(estoqueAlmoxarifadoList).hasSize(databaseSizeBeforeUpdate);
         EstoqueAlmoxarifado testEstoqueAlmoxarifado = estoqueAlmoxarifadoList.get(estoqueAlmoxarifadoList.size() - 1);
-        assertThat(testEstoqueAlmoxarifado.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testEstoqueAlmoxarifado.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testEstoqueAlmoxarifado.getEndereco()).isEqualTo(UPDATED_ENDERECO);
         assertThat(testEstoqueAlmoxarifado.getQuantidadeLimiteArmazenamento()).isEqualTo(UPDATED_QUANTIDADE_LIMITE_ARMAZENAMENTO);
         assertThat(testEstoqueAlmoxarifado.getQuantidadeEstoqueMinimo()).isEqualTo(UPDATED_QUANTIDADE_ESTOQUE_MINIMO);
@@ -469,9 +469,9 @@ public class EstoqueAlmoxarifadoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restEstoqueAlmoxarifadoMockMvc.perform(put("/api/estoque-almoxarifados")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(estoqueAlmoxarifadoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the EstoqueAlmoxarifado in the database
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
@@ -491,8 +491,8 @@ public class EstoqueAlmoxarifadoResourceIT {
 
         // Delete the estoqueAlmoxarifado
         restEstoqueAlmoxarifadoMockMvc.perform(delete("/api/estoque-almoxarifados/{id}", estoqueAlmoxarifado.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<EstoqueAlmoxarifado> estoqueAlmoxarifadoList = estoqueAlmoxarifadoRepository.findAll();
@@ -508,19 +508,19 @@ public class EstoqueAlmoxarifadoResourceIT {
         // Initialize the database
         estoqueAlmoxarifadoRepository.saveAndFlush(estoqueAlmoxarifado);
         when(mockEstoqueAlmoxarifadoSearchRepository.search(queryStringQuery("id:" + estoqueAlmoxarifado.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(estoqueAlmoxarifado), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(estoqueAlmoxarifado), PageRequest.of(0, 1), 1));
         // Search the estoqueAlmoxarifado
         restEstoqueAlmoxarifadoMockMvc.perform(get("/api/_search/estoque-almoxarifados?query=id:" + estoqueAlmoxarifado.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(estoqueAlmoxarifado.getId().intValue())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].endereco").value(hasItem(DEFAULT_ENDERECO)))
-                .andExpect(jsonPath("$.[*].quantidadeLimiteArmazenamento").value(hasItem(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeEstoqueMinimo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadeEstoqueMaximo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO.intValue())))
-                .andExpect(jsonPath("$.[*].quantidadePontoPedido").value(hasItem(DEFAULT_QUANTIDADE_PONTO_PEDIDO.intValue())))
-                .andExpect(jsonPath("$.[*].tempoReposicao").value(hasItem(DEFAULT_TEMPO_REPOSICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(estoqueAlmoxarifado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].endereco").value(hasItem(DEFAULT_ENDERECO)))
+            .andExpect(jsonPath("$.[*].quantidadeLimiteArmazenamento").value(hasItem(DEFAULT_QUANTIDADE_LIMITE_ARMAZENAMENTO.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeEstoqueMinimo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MINIMO.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadeEstoqueMaximo").value(hasItem(DEFAULT_QUANTIDADE_ESTOQUE_MAXIMO.intValue())))
+            .andExpect(jsonPath("$.[*].quantidadePontoPedido").value(hasItem(DEFAULT_QUANTIDADE_PONTO_PEDIDO.intValue())))
+            .andExpect(jsonPath("$.[*].tempoReposicao").value(hasItem(DEFAULT_TEMPO_REPOSICAO)));
     }
 
     @Test

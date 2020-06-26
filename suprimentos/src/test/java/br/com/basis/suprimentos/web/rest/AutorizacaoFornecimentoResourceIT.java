@@ -101,10 +101,10 @@ public class AutorizacaoFornecimentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static AutorizacaoFornecimento createEntity(EntityManager em) {
-        AutorizacaoFornecimento autorizacaoFornecimento = new AutorizacaoFornecimento()
-                .numero(DEFAULT_NUMERO)
-                .complemento(DEFAULT_COMPLEMENTO)
-                .tipoItem(DEFAULT_TIPO_ITEM);
+        AutorizacaoFornecimento autorizacaoFornecimento = new AutorizacaoFornecimento();
+        autorizacaoFornecimento.setNumero(DEFAULT_NUMERO);
+        autorizacaoFornecimento.setComplemento(DEFAULT_COMPLEMENTO);
+        autorizacaoFornecimento.setTipoItem(DEFAULT_TIPO_ITEM);
         return autorizacaoFornecimento;
     }
 
@@ -115,10 +115,10 @@ public class AutorizacaoFornecimentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static AutorizacaoFornecimento createUpdatedEntity(EntityManager em) {
-        AutorizacaoFornecimento autorizacaoFornecimento = new AutorizacaoFornecimento()
-                .numero(UPDATED_NUMERO)
-                .complemento(UPDATED_COMPLEMENTO)
-                .tipoItem(UPDATED_TIPO_ITEM);
+        AutorizacaoFornecimento autorizacaoFornecimento = new AutorizacaoFornecimento();
+        autorizacaoFornecimento.setNumero(UPDATED_NUMERO);
+        autorizacaoFornecimento.setComplemento(UPDATED_COMPLEMENTO);
+        autorizacaoFornecimento.setTipoItem(UPDATED_TIPO_ITEM);
         return autorizacaoFornecimento;
     }
 
@@ -127,11 +127,11 @@ public class AutorizacaoFornecimentoResourceIT {
         MockitoAnnotations.initMocks(this);
         final AutorizacaoFornecimentoResource autorizacaoFornecimentoResource = new AutorizacaoFornecimentoResource(autorizacaoFornecimentoService);
         this.restAutorizacaoFornecimentoMockMvc = MockMvcBuilders.standaloneSetup(autorizacaoFornecimentoResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -147,9 +147,9 @@ public class AutorizacaoFornecimentoResourceIT {
         // Create the AutorizacaoFornecimento
         AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO = autorizacaoFornecimentoMapper.toDto(autorizacaoFornecimento);
         restAutorizacaoFornecimentoMockMvc.perform(post("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the AutorizacaoFornecimento in the database
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
@@ -174,9 +174,9 @@ public class AutorizacaoFornecimentoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAutorizacaoFornecimentoMockMvc.perform(post("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the AutorizacaoFornecimento in the database
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
@@ -198,9 +198,9 @@ public class AutorizacaoFornecimentoResourceIT {
         AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO = autorizacaoFornecimentoMapper.toDto(autorizacaoFornecimento);
 
         restAutorizacaoFornecimentoMockMvc.perform(post("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
         assertThat(autorizacaoFornecimentoList).hasSize(databaseSizeBeforeTest);
@@ -217,9 +217,9 @@ public class AutorizacaoFornecimentoResourceIT {
         AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO = autorizacaoFornecimentoMapper.toDto(autorizacaoFornecimento);
 
         restAutorizacaoFornecimentoMockMvc.perform(post("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
         assertThat(autorizacaoFornecimentoList).hasSize(databaseSizeBeforeTest);
@@ -236,9 +236,9 @@ public class AutorizacaoFornecimentoResourceIT {
         AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO = autorizacaoFornecimentoMapper.toDto(autorizacaoFornecimento);
 
         restAutorizacaoFornecimentoMockMvc.perform(post("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
         assertThat(autorizacaoFornecimentoList).hasSize(databaseSizeBeforeTest);
@@ -252,12 +252,12 @@ public class AutorizacaoFornecimentoResourceIT {
 
         // Get all the autorizacaoFornecimentoList
         restAutorizacaoFornecimentoMockMvc.perform(get("/api/autorizacao-fornecimentos?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(autorizacaoFornecimento.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())))
-                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO)))
-                .andExpect(jsonPath("$.[*].tipoItem").value(hasItem(DEFAULT_TIPO_ITEM.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(autorizacaoFornecimento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())))
+            .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO)))
+            .andExpect(jsonPath("$.[*].tipoItem").value(hasItem(DEFAULT_TIPO_ITEM.toString())));
     }
 
     @Test
@@ -268,12 +268,12 @@ public class AutorizacaoFornecimentoResourceIT {
 
         // Get the autorizacaoFornecimento
         restAutorizacaoFornecimentoMockMvc.perform(get("/api/autorizacao-fornecimentos/{id}", autorizacaoFornecimento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(autorizacaoFornecimento.getId().intValue()))
-                .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO.intValue()))
-                .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO))
-                .andExpect(jsonPath("$.tipoItem").value(DEFAULT_TIPO_ITEM.toString()));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(autorizacaoFornecimento.getId().intValue()))
+            .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO.intValue()))
+            .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO))
+            .andExpect(jsonPath("$.tipoItem").value(DEFAULT_TIPO_ITEM.toString()));
     }
 
     @Test
@@ -281,7 +281,7 @@ public class AutorizacaoFornecimentoResourceIT {
     public void getNonExistingAutorizacaoFornecimento() throws Exception {
         // Get the autorizacaoFornecimento
         restAutorizacaoFornecimentoMockMvc.perform(get("/api/autorizacao-fornecimentos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -296,16 +296,16 @@ public class AutorizacaoFornecimentoResourceIT {
         AutorizacaoFornecimento updatedAutorizacaoFornecimento = autorizacaoFornecimentoRepository.findById(autorizacaoFornecimento.getId()).get();
         // Disconnect from session so that the updates on updatedAutorizacaoFornecimento are not directly saved in db
         em.detach(updatedAutorizacaoFornecimento);
-        updatedAutorizacaoFornecimento
-                .numero(UPDATED_NUMERO)
-                .complemento(UPDATED_COMPLEMENTO)
-                .tipoItem(UPDATED_TIPO_ITEM);
+
+        updatedAutorizacaoFornecimento.setNumero(UPDATED_NUMERO);
+        updatedAutorizacaoFornecimento.setComplemento(UPDATED_COMPLEMENTO);
+        updatedAutorizacaoFornecimento.setTipoItem(UPDATED_TIPO_ITEM);
         AutorizacaoFornecimentoDTO autorizacaoFornecimentoDTO = autorizacaoFornecimentoMapper.toDto(updatedAutorizacaoFornecimento);
 
         restAutorizacaoFornecimentoMockMvc.perform(put("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isOk());
 
         // Validate the AutorizacaoFornecimento in the database
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
@@ -329,9 +329,9 @@ public class AutorizacaoFornecimentoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restAutorizacaoFornecimentoMockMvc.perform(put("/api/autorizacao-fornecimentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(autorizacaoFornecimentoDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the AutorizacaoFornecimento in the database
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
@@ -351,8 +351,8 @@ public class AutorizacaoFornecimentoResourceIT {
 
         // Delete the autorizacaoFornecimento
         restAutorizacaoFornecimentoMockMvc.perform(delete("/api/autorizacao-fornecimentos/{id}", autorizacaoFornecimento.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<AutorizacaoFornecimento> autorizacaoFornecimentoList = autorizacaoFornecimentoRepository.findAll();
@@ -368,15 +368,15 @@ public class AutorizacaoFornecimentoResourceIT {
         // Initialize the database
         autorizacaoFornecimentoRepository.saveAndFlush(autorizacaoFornecimento);
         when(mockAutorizacaoFornecimentoSearchRepository.search(queryStringQuery("id:" + autorizacaoFornecimento.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(autorizacaoFornecimento), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(autorizacaoFornecimento), PageRequest.of(0, 1), 1));
         // Search the autorizacaoFornecimento
         restAutorizacaoFornecimentoMockMvc.perform(get("/api/_search/autorizacao-fornecimentos?query=id:" + autorizacaoFornecimento.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(autorizacaoFornecimento.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())))
-                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO)))
-                .andExpect(jsonPath("$.[*].tipoItem").value(hasItem(DEFAULT_TIPO_ITEM.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(autorizacaoFornecimento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.intValue())))
+            .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO)))
+            .andExpect(jsonPath("$.[*].tipoItem").value(hasItem(DEFAULT_TIPO_ITEM.toString())));
     }
 
     @Test

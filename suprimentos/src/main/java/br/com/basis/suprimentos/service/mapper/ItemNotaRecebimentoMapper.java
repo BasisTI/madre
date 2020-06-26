@@ -1,16 +1,12 @@
 package br.com.basis.suprimentos.service.mapper;
 
-import br.com.basis.suprimentos.domain.*;
+import br.com.basis.suprimentos.domain.ItemNotaRecebimento;
 import br.com.basis.suprimentos.service.dto.ItemNotaRecebimentoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity {@link ItemNotaRecebimento} and its DTO {@link ItemNotaRecebimentoDTO}.
- */
 @Mapper(componentModel = "spring", uses = {RecebimentoMapper.class, MarcaComercialMapper.class, MaterialMapper.class, UnidadeMedidaMapper.class})
 public interface ItemNotaRecebimentoMapper extends EntityMapper<ItemNotaRecebimentoDTO, ItemNotaRecebimento> {
-
     @Mapping(source = "recebimento.id", target = "recebimentoId")
     @Mapping(source = "marcaComercial.id", target = "marcaComercialId")
     @Mapping(source = "material.id", target = "materialId")
