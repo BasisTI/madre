@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Emergencia.
+    -->
+    <changeSet id="20200619145200-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="condicao_de_atendimento_id"
+                                 baseTableName="emergencia"
+                                 constraintName="fk_emergencia_condicao_de_atendimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="condicao_de_atendimento"/>
+
+        <addForeignKeyConstraint baseColumnNames="forma_de_agendamento_id"
+                                 baseTableName="emergencia"
+                                 constraintName="fk_emergencia_forma_de_agendamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="forma_de_agendamento"/>
+
+    </changeSet>
+</databaseChangeLog>
