@@ -1,5 +1,3 @@
-import { OPCAO_TIPO_PAGADOR_CONSULTA } from './../../consulta-opcoes/opcao-tipo-pagador-consulta';
-import { OPCOES_TURNO_CONSULTA } from './../../consulta-opcoes/opcao-turno-consulta';
 import { Paciente } from './../../../internacao/models/paciente';
 import { CRM } from './../../../internacao/models/crm';
 import { Especialidade } from './../../../internacao/models/especialidade';
@@ -9,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
 import { ConsultaPaciente } from '../../consulta-pacientes';
+import { OPCOES_TURNO_CONSULTA } from '../../consulta-opcoes/opcao-turno-consulta';
+import { OPCAO_TIPO_PAGADOR_CONSULTA } from '../../consulta-opcoes/opcao-tipo-pagador-consulta';
 
 @Component({
     selector: 'app-emergencia',
