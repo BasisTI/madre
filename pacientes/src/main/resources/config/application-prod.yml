@@ -53,16 +53,6 @@ spring:
     database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
     database: POSTGRESQL
     show-sql: false
-    properties:
-      hibernate.id.new_generator_mappings: true
-      hibernate.connection.provider_disables_autocommit: true
-      hibernate.cache.use_second_level_cache: true
-      hibernate.cache.use_query_cache: false
-      hibernate.generate_statistics: false
-      hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-      hibernate.cache.hazelcast.instance_name: pacientes
-      hibernate.cache.use_minimal_puts: true
-      hibernate.cache.hazelcast.use_lite_member: true
   data:
     jest:
       uri: http://localhost:9200
@@ -100,14 +90,14 @@ spring:
 # Then, modify the server.ssl properties so your "server" configuration looks like:
 #
 # server:
-#    port: 443
-#    ssl:
-#        key-store: classpath:config/tls/keystore.p12
-#        key-store-password: password
-#        key-store-type: PKCS12
-#        key-alias: pacientes
-#        # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
-#        ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 ,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,TLS_RSA_WITH_CAMELLIA_128_CBC_SHA
+#   port: 443
+#   ssl:
+#     key-store: classpath:config/tls/keystore.p12
+#     key-store-password: password
+#     key-store-type: PKCS12
+#     key-alias: pacientes
+#     # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
+#     ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 ,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,TLS_RSA_WITH_CAMELLIA_128_CBC_SHA
 # ===================================================================
 server:
   port: 8081
@@ -142,7 +132,7 @@ jhipster:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        secret: ZjhmOGFlNzJiNmMyYmUyNzRhMWFjNzYzMzYyZWFjNTU1NWE4ZjBhZDUwNDcyYmZhZTFmN2Y3YzA3MjJiMWNiZjczZTYzMTZkZGJlYmJlMzg4ZmU2YWYzZGE1ZjZiMzg0ZWY1NDUzNmU5NjM2NWNkNWYwMWVmMGMxMDZiZDU3OWE=
+        base64-secret: NWJlMTI2MDhiYzc4MGZjZGJkNTU2ZDEzOTFlZWIwMjYwMTM0ZDM5MmJkYmI4OTk1NmJmN2M5MmU4ZDQwNjFhOTgxOTFiNDk0ODBlMzY2N2MzMGI1MTRmM2I3OTNjMmM3ZDhkMDJkOWY0OWNlYTJmZTNmOTZiZjI5MjU2MWJmZTI=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

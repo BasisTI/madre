@@ -1,7 +1,7 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.domain.Prescricao;
-import br.com.basis.madre.farmacia.repository.search.PrescricaoSerchRepository;
+import br.com.basis.madre.farmacia.repository.search.PrescricaoSearchRepository;
 import br.com.basis.madre.farmacia.service.projection.PrescricaoLocal;
 import com.github.javafaker.Faker;
 import joptsimple.internal.Strings;
@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.time.ZoneId;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
@@ -30,7 +28,7 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 public class PrescricaoResource {
 
     @Autowired
-    private PrescricaoSerchRepository prescricaoRepositorySearch;
+    private PrescricaoSearchRepository prescricaoRepositorySearch;
 
 
     private Faker faker = new Faker(new Locale("pt-BR"));

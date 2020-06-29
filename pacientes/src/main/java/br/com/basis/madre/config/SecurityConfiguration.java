@@ -5,9 +5,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import br.gov.nuvem.comum.microsservico.config.SecurityConfigurationComum;
-import br.gov.nuvem.seguranca.jhipsterjwt.security.jwt.TokenProvider;
-import br.gov.nuvem.seguranca.jhipsterjwt.security.token.TokenResolver;
-import br.gov.nuvem.seguranca.jhipsterjwt.security.AuthoritiesConstants;
+
+import br.gov.nuvem.security.jwt.web.TokenProvider;
+import br.gov.nuvem.security.jwt.web.TokenResolver;
+import br.com.basis.madre.security.AuthoritiesConstants;
 
 @Configuration
 public class SecurityConfiguration extends SecurityConfigurationComum {
@@ -23,6 +24,7 @@ public class SecurityConfiguration extends SecurityConfigurationComum {
     public void configureApp(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+            .antMatchers("/**").permitAll()
             .antMatchers("/api/**").permitAll()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()

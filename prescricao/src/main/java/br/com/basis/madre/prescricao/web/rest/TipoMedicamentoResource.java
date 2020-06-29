@@ -3,7 +3,7 @@ package br.com.basis.madre.prescricao.web.rest;
 import br.com.basis.madre.prescricao.domain.TipoMedicamento;
 import br.com.basis.madre.prescricao.repository.TipoMedicamentoRepository;
 import br.com.basis.madre.prescricao.repository.search.TipoMedicamentoSearchRepository;
-import br.com.basis.madre.prescricao.web.rest.errors.BadRequestAlertException;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;

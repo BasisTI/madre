@@ -1,7 +1,7 @@
 package br.com.basis.madre.prescricao.web.rest;
 
 import br.com.basis.madre.prescricao.service.TipoItemDietaService;
-import br.com.basis.madre.prescricao.web.rest.errors.BadRequestAlertException;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.prescricao.service.dto.TipoItemDietaDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

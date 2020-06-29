@@ -1,32 +1,49 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "br.com.basis.madre.gateway"
+      "packageName": "br.com.basis.madre"
     },
-    "jhipsterVersion": "4.14.3",
-    "baseName": "gatewaymadre",
-    "packageName": "br.com.basis.madre.gateway",
-    "packageFolder": "br/com/basis/madre/gateway",
+    "jhipsterVersion": "6.9.1",
+    "applicationType": "gateway",
+    "baseName": "madregateway",
+    "packageName": "br.com.basis.madre",
+    "packageFolder": "br/com/basis/madre",
     "serverPort": "8080",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
-    "enableHibernateCache": true,
+    "enableHibernateCache": false,
     "websocket": false,
-    "databaseType": "sql",
-    "devDatabaseType": "postgresql",
-    "prodDatabaseType": "postgresql",
+    "databaseType": "no",
+    "devDatabaseType": "no",
+    "prodDatabaseType": "no",
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
-    "enableSocialSignIn": false,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "125fff4649ad83f9e933c1edfd4cacf3b77907c2",
-    "enableTranslation": false,
-    "applicationType": "gateway",
+    "jwtSecretKey": "MTA0ZmQ1MWVhNzk4YmRhY2IwMDMzMWQzMzY4MjEwZjBhYWZjZGEwYWUyODNjOGU1NjZmZDJmZTE2NTRhODczMTQ2NDEzN2NhNjNiOTZlZGE2NTM2OGNjNTcxNjFlOGVhMWI2NDJkMDlmNDg3ZjllYzIxNzZkOTFhZDFkMjJkODc=",
+    "embeddableLaunchScript": false,
+    "userDetailsResource": "user-details",
+    "authenticationProtocol": "oauth2",
+    "creationTimestamp": 1592860962825,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "clientPackageManager": "yarn",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.3"
+      }
+    ],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.3"
+      }
+    ],
     "skipClient": true,
     "skipUserManagement": true
   }
