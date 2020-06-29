@@ -126,6 +126,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['consulta/listar-consultas'],
                     },
                     {
+                        label: 'Calendário',
+                        icon: 'add',
+                        routerLink: ['consulta/consulta-calendario'],
+                    },
+                    {
                         label: 'Emergência',
                         icon: 'add',
                         routerLink: ['consulta/emergencia'],
