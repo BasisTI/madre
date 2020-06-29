@@ -25,9 +25,6 @@ public class EmergenciaDTO implements Serializable {
     @Max(value = 20L)
     private Long grade;
 
-    @Size(max = 80)
-    private String profissional;
-
     @Size(max = 20)
     private String numeroSala;
 
@@ -82,14 +79,6 @@ public class EmergenciaDTO implements Serializable {
 
     public void setGrade(Long grade) {
         this.grade = grade;
-    }
-
-    public String getProfissional() {
-        return profissional;
-    }
-
-    public void setProfissional(String profissional) {
-        this.profissional = profissional;
     }
 
     public String getNumeroSala() {
@@ -200,7 +189,7 @@ public class EmergenciaDTO implements Serializable {
             ", numeroConsulta=" + getNumeroConsulta() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
             ", grade=" + getGrade() +
-            ", profissional='" + getProfissional() + "'" +
+
             ", numeroSala='" + getNumeroSala() + "'" +
             ", turno='" + getTurno() + "'" +
             ", tipoPagador='" + getTipoPagador() + "'" +

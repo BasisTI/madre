@@ -1,5 +1,5 @@
 <div class="ui-g ui-fluid">
-    <form [formGroup]="formEmergencia" (ngSubmit)="(cadastrarConsultas)">
+    <form [formGroup]="formEmergencia" (ngSubmit)="cadastrarConsultas()">
         <div class="ui-g-12">
             <h1>Marcar Consultas - Emergência</h1>
 
@@ -53,8 +53,37 @@
                     <label>Nome</label>
                 </span>
             </div>
-
             <div class="ui-g-12"></div>
+            <div class="ui-g-12">
+                <span class="ui-g-2 ui-float-label">
+                    <input type="text" pInputText formControlName="numeroDeSala" />
+                    <label>Nº de sala</label>
+                </span>
+
+                <span class="ui-g-3 md-inputfield">
+                    <p-dropdown
+                        pInputText
+                        [filter]="true"
+                        [options]="opcaoTurno"
+                        formControlName="turno"
+                        placeholder="Selecione"
+                    ></p-dropdown>
+                    <label>Turno</label>
+                </span>
+
+                <span class="ui-g-4 md-inputfield">
+                    <p-dropdown
+                        pInputText
+                        [filter]="true"
+                        [options]="opcaoTipoPagador"
+                        formControlName="tipoPagador"
+                        placeholder="Selecione"
+                    ></p-dropdown>
+                    <label>Tipo Pagador</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+
             <div class="ui-g-3 ui-sm-12">
                 <span class="md-inputfield">
                     <p-dropdown
@@ -69,7 +98,6 @@
                     <label>Especialidade</label>
                 </span>
             </div>
-            <div class="ui-g-12"></div>
             <div class="ui-g-3 ui-sm-12">
                 <span class="md-inputfield">
                     <p-dropdown
@@ -120,6 +148,14 @@
                     />
                     <label>Justificativa</label>
                 </span>
+            </div>
+
+            <div class="ui-g-12">
+                <p-radioButton
+                    formControlName="gradesDiponiveis"
+                    label="Grades Diponíveis "
+                    pRadioButton
+                ></p-radioButton>
             </div>
 
             <div class="ui-g-12 ui-sm-12">

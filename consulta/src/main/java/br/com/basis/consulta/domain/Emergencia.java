@@ -53,10 +53,6 @@ public class Emergencia implements Serializable {
     @Column(name = "grade")
     private Long grade;
 
-    @Size(max = 80)
-    @Column(name = "profissional", length = 80)
-    private String profissional;
-
     @Size(max = 20)
     @Column(name = "numero_sala", length = 20)
     private String numeroSala;
@@ -93,7 +89,7 @@ public class Emergencia implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private FormaDeAgendamento formaDeAgendamento;
-    
+
     public Emergencia numeroConsulta(Long numeroConsulta) {
         this.numeroConsulta = numeroConsulta;
         return this;
@@ -104,10 +100,6 @@ public class Emergencia implements Serializable {
     }
     public Emergencia grade(Long grade) {
         this.grade = grade;
-        return this;
-    }
-    public Emergencia profissional(String profissional) {
-        this.profissional = profissional;
         return this;
     }
     public Emergencia numeroSala(String numeroSala) {
