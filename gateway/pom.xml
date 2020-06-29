@@ -71,7 +71,7 @@
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
         <autenticacao.version>1.1.1</autenticacao.version>
         <cloud-security-comum.version>2.0.3</cloud-security-comum.version>
-        <microsservico.version>6.9.2-SNAPSHOT</microsservico.version>
+        <microsservico.version>6.9.2</microsservico.version>
         <lombok.version>1.18.10</lombok.version>
         <sonar.coverage.jacoco.xmlReportPaths>${jacoco.utReportFolder}/jacoco.xml, ${jacoco.itReportFolder}/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.junit.reportPaths>${junit.utReportFolder}, ${junit.itReportFolder}</sonar.junit.reportPaths>
