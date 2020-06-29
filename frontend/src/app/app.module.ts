@@ -14,7 +14,7 @@ import {
     PageNotificationModule,
 } from '@nuvem/primeng-components';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppFooterComponent } from './app.footer.component';
@@ -28,7 +28,6 @@ import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { FarmaciaModule } from './farmacia/farmacia/farmacia.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { PRIMENG_IMPORTS } from './primeng-imports';
 import { PreCadastroComponent } from './pacientes/components/pre-cadastro/pre-cadastro.component';
 import { PrescricaoMedicaModule } from './prescricao-medica/prescricao-medica.module';
 import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
