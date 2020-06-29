@@ -16,6 +16,7 @@ export class UnidadePaiService extends CrudServiceNuvem<number, UnidadePai> {
     getListaDeUnidadePais(): Observable<UnidadePai[]> {
         let params = new HttpParams();
         params = params.set('size', '30');
+
         return this.httpClient.get<UnidadePai[]>('internacao/api/unidades', { params });
     }
 }
