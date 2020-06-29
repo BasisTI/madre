@@ -3,12 +3,12 @@ package br.com.basis.madre.domain;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,10 +26,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -166,6 +167,12 @@ public class Paciente implements Serializable {
     @JoinColumn(name = "pre_cadastro_paciente_id", referencedColumnName = "id")
     private PreCadastroPaciente preCadastroPaciente;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_num_prontuario")
+    @SequenceGenerator(name = "seq_num_prontuario")
+    @Field(type = FieldType.Text)
+    @Column(name ="prontuario")
+    private Long prontuario;
+
 //     String numero = cartaoSUS.getNumero();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -175,6 +182,14 @@ public class Paciente implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Long prontuario) {
+        this.prontuario = prontuario;
     }
 
     public String getNome() {
@@ -492,6 +507,7 @@ public class Paciente implements Serializable {
     public String toString() {
         return "Paciente{" +
             "id=" + getId() +
+            "prontuario=" + getProntuario() + "'" +
             ", nome='" + getNome() + "'" +
             ", nomeSocial='" + getNomeSocial() + "'" +
             ", dataDeNascimento='" + getDataDeNascimento() + "'" +

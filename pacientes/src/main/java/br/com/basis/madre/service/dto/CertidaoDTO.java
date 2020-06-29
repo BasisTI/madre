@@ -1,10 +1,10 @@
 package br.com.basis.madre.service.dto;
 
-import java.time.LocalDate;
-import java.io.Serializable;
-import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Certidao} entity.

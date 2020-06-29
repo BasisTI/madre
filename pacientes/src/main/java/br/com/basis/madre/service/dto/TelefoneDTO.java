@@ -1,9 +1,10 @@
 package br.com.basis.madre.service.dto;
 
-import javax.validation.constraints.*;
+import br.com.basis.madre.domain.enumeration.TipoDoContato;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import br.com.basis.madre.domain.enumeration.TipoDoContato;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Telefone} entity.

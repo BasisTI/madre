@@ -4,11 +4,9 @@ import br.com.basis.madre.domain.GrauDeParentesco;
 import br.com.basis.madre.repository.GrauDeParentescoRepository;
 import br.com.basis.madre.repository.search.GrauDeParentescoSearchRepository;
 import br.com.basis.madre.service.dto.GrauDeParentescoDTO;
-import br.com.basis.madre.service.dto.OcupacaoDTO;
 import br.com.basis.madre.service.mapper.GrauDeParentescoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -18,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link GrauDeParentesco}.
