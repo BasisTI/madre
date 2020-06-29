@@ -89,7 +89,6 @@ public class Emergencia implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private FormaDeAgendamento formaDeAgendamento;
-
     public Emergencia numeroConsulta(Long numeroConsulta) {
         this.numeroConsulta = numeroConsulta;
         return this;

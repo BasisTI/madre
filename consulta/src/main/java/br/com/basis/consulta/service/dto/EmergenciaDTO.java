@@ -189,7 +189,6 @@ public class EmergenciaDTO implements Serializable {
             ", numeroConsulta=" + getNumeroConsulta() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
             ", grade=" + getGrade() +
-
             ", numeroSala='" + getNumeroSala() + "'" +
             ", turno='" + getTurno() + "'" +
             ", tipoPagador='" + getTipoPagador() + "'" +
