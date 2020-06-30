@@ -1,6 +1,5 @@
 package br.com.basis.madre.domain.validation.annotation;
 
-import br.com.basis.madre.domain.validation.CartaoSUSValidation;
 import br.com.basis.madre.domain.validation.PISValidation;
 
 import javax.validation.Constraint;

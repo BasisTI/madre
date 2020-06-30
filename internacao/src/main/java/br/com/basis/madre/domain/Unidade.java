@@ -4,6 +4,7 @@ package br.com.basis.madre.domain;
 import br.com.basis.madre.domain.enumeration.Situacao;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -25,7 +26,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -35,6 +35,7 @@ import java.util.Set;
 /**
  * A Unidade.
  */
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Data
 @NoArgsConstructor
@@ -49,6 +50,7 @@ public class Unidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @NotNull

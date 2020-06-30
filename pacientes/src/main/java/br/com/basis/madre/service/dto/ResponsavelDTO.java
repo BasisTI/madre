@@ -4,7 +4,6 @@ import br.com.basis.madre.domain.Telefone;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 

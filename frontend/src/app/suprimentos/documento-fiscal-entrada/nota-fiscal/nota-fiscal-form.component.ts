@@ -1,11 +1,10 @@
-import { CALENDAR_LOCALE, PageNotificationService } from '@nuvem/primeng-components';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
-import { DocumentoFiscalEntradaService } from '../documento-fiscal-entrada.service';
+import { CALENDAR_LOCALE, PageNotificationService } from '@nuvem/primeng-components';
+import { CpfCnpjValidator } from '@shared/cpf-cnpj.validator';
 import { Fornecedor } from '@suprimentos/fornecedor/fornecedor';
 import { FornecedorService } from '@suprimentos/fornecedor/fornecedor.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { DocumentoFiscalEntradaService } from '../documento-fiscal-entrada.service';
 
 @Component({
     selector: 'app-nota-fiscal-form',
@@ -27,7 +26,7 @@ export class NotaFiscalFormComponent implements OnInit {
         dataVencimento: [null, Validators.required],
         valorTotal: [null, Validators.required],
         valorComprometido: [null, Validators.required],
-        cpfCnpj: [null, Validators.required],
+        cpfCnpj: [null, [Validators.required, CpfCnpjValidator.valid]],
         notaEmpenho: [null],
         observacao: [null],
         fornecedorId: [null],
