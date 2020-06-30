@@ -3,6 +3,8 @@ package br.com.basis.madre.domain;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -36,6 +38,8 @@ import java.util.Set;
 /**
  * A Paciente.
  */
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "paciente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -173,40 +177,9 @@ public class Paciente implements Serializable {
     @Column(name ="prontuario")
     private Long prontuario;
 
-//     String numero = cartaoSUS.getNumero();
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getProntuario() {
-        return prontuario;
-    }
-
-    public void setProntuario(Long prontuario) {
-        this.prontuario = prontuario;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
     public Paciente nome(String nome) {
         this.nome = nome;
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNomeSocial() {
-        return nomeSocial;
     }
 
     public Paciente nomeSocial(String nomeSocial) {
@@ -214,25 +187,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setNomeSocial(String nomeSocial) {
-        this.nomeSocial = nomeSocial;
-    }
-
-    public LocalDate getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
     public Paciente dataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
         return this;
-    }
-
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
-    }
-
-    public Instant getHoraDeNascimento() {
-        return horaDeNascimento;
     }
 
     public Paciente horaDeNascimento(Instant horaDeNascimento) {
@@ -240,25 +197,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setHoraDeNascimento(Instant horaDeNascimento) {
-        this.horaDeNascimento = horaDeNascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     public Paciente email(String email) {
         this.email = email;
         return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getObservacao() {
-        return observacao;
     }
 
     public Paciente observacao(String observacao) {
@@ -266,25 +207,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
-    public GrauDeInstrucao getGrauDeInstrucao() {
-        return grauDeInstrucao;
-    }
-
     public Paciente grauDeInstrucao(GrauDeInstrucao grauDeInstrucao) {
         this.grauDeInstrucao = grauDeInstrucao;
         return this;
-    }
-
-    public void setGrauDeInstrucao(GrauDeInstrucao grauDeInstrucao) {
-        this.grauDeInstrucao = grauDeInstrucao;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
     }
 
     public Paciente sexo(Sexo sexo) {
@@ -292,35 +217,11 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
-    }
-
-    public CartaoSUS getCartaoSUS() {
-        return cartaoSUS;
-    }
-
-
     public Paciente cartaoSUS(CartaoSUS cartaoSUS) {
         this.cartaoSUS = cartaoSUS;
         return this;
     }
 
-    public void setCartaoSUS(CartaoSUS cartaoSUS) {
-        this.cartaoSUS = cartaoSUS;
-    }
-
-    public Set<Telefone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(Set<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
-    public Set<Endereco> getEnderecos() {
-        return enderecos;
-    }
 
     public Paciente enderecos(Set<Endereco> enderecos) {
         this.enderecos = enderecos;
@@ -339,25 +240,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setEnderecos(Set<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-    public Responsavel getResponsavel() {
-        return responsavel;
-    }
-
     public Paciente responsavel(Responsavel responsavel) {
         this.responsavel = responsavel;
         return this;
-    }
-
-    public void setResponsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
-    }
-
-    public Documento getDocumento() {
-        return documento;
     }
 
     public Paciente documento(Documento documento) {
@@ -365,25 +250,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setDocumento(Documento documento) {
-        this.documento = documento;
-    }
-
-    public Certidao getCertidao() {
-        return certidao;
-    }
-
     public Paciente certidao(Certidao certidao) {
         this.certidao = certidao;
         return this;
-    }
-
-    public void setCertidao(Certidao certidao) {
-        this.certidao = certidao;
-    }
-
-    public Ocupacao getOcupacao() {
-        return ocupacao;
     }
 
     public Paciente ocupacao(Ocupacao ocupacao) {
@@ -391,25 +260,10 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setOcupacao(Ocupacao ocupacao) {
-        this.ocupacao = ocupacao;
-    }
-
-    public Religiao getReligiao() {
-        return religiao;
-    }
 
     public Paciente religiao(Religiao religiao) {
         this.religiao = religiao;
         return this;
-    }
-
-    public void setReligiao(Religiao religiao) {
-        this.religiao = religiao;
-    }
-
-    public Municipio getNaturalidade() {
-        return naturalidade;
     }
 
     public Paciente naturalidade(Municipio municipio) {
@@ -417,25 +271,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setNaturalidade(Municipio municipio) {
-        this.naturalidade = municipio;
-    }
-
-    public Etnia getEtnia() {
-        return etnia;
-    }
-
     public Paciente etnia(Etnia etnia) {
         this.etnia = etnia;
         return this;
-    }
-
-    public void setEtnia(Etnia etnia) {
-        this.etnia = etnia;
-    }
-
-    public Genitores getGenitores() {
-        return genitores;
     }
 
     public Paciente genitores(Genitores genitores) {
@@ -443,25 +281,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setGenitores(Genitores genitores) {
-        this.genitores = genitores;
-    }
-
-    public Nacionalidade getNacionalidade() {
-        return nacionalidade;
-    }
-
     public Paciente nacionalidade(Nacionalidade nacionalidade) {
         this.nacionalidade = nacionalidade;
         return this;
-    }
-
-    public void setNacionalidade(Nacionalidade nacionalidade) {
-        this.nacionalidade = nacionalidade;
-    }
-
-    public Raca getRaca() {
-        return raca;
     }
 
     public Paciente raca(Raca raca) {
@@ -469,53 +291,9 @@ public class Paciente implements Serializable {
         return this;
     }
 
-    public void setRaca(Raca raca) {
-        this.raca = raca;
-    }
-
-    public EstadoCivil getEstadoCivil() {
-        return estadoCivil;
-    }
-
     public Paciente estadoCivil(EstadoCivil estadoCivil) {
         this.estadoCivil = estadoCivil;
         return this;
     }
 
-    public void setEstadoCivil(EstadoCivil estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Paciente)) {
-            return false;
-        }
-        return id != null && id.equals(((Paciente) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Paciente{" +
-            "id=" + getId() +
-            "prontuario=" + getProntuario() + "'" +
-            ", nome='" + getNome() + "'" +
-            ", nomeSocial='" + getNomeSocial() + "'" +
-            ", dataDeNascimento='" + getDataDeNascimento() + "'" +
-            ", horaDeNascimento='" + getHoraDeNascimento() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", observacao='" + getObservacao() + "'" +
-            ", grauDeInstrucao='" + getGrauDeInstrucao() + "'" +
-            ", sexo='" + getSexo() + "'" +
-            "}";
-    }
 }
