@@ -1,16 +1,13 @@
 package br.com.basis.madre.prescricao.service;
 
-import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
-import br.com.basis.madre.prescricao.domain.Paciente;
-import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
-import br.com.basis.madre.prescricao.domain.enumeration.TipoEvento;
-import br.com.basis.madre.prescricao.domain.evento.EventoPaciente;
-import br.com.basis.madre.prescricao.domain.evento.EventoPrescricaoMedicamento;
-import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
-import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
-import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
-import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
@@ -19,13 +16,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Optional;
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
+import br.com.basis.madre.prescricao.domain.Medicamento;
+import br.com.basis.madre.prescricao.domain.Paciente;
+import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
+import br.com.basis.madre.prescricao.domain.enumeration.TipoEvento;
+import br.com.basis.madre.prescricao.domain.evento.EventoPrescricaoMedicamento;
+import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
+import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
 
-import javax.persistence.EntityNotFoundException;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
+import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
+import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
 
 /**
  * Service Implementation for managing {@link PrescricaoMedicamento}.
@@ -37,11 +39,15 @@ public class PrescricaoMedicamentoService {
     private final Logger log = LoggerFactory.getLogger(PrescricaoMedicamentoService.class);
 
     private final PrescricaoMedicamentoRepository prescricaoMedicamentoRepository;
+    
+    private final MedicamentoService medicamentoService;
 
     private final PrescricaoMedicamentoMapper prescricaoMedicamentoMapper;
 
     private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository;
 
+    
+    private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     private final PacienteRepositorySearch pacienteRepositorySearch;
@@ -53,7 +59,9 @@ public class PrescricaoMedicamentoService {
             PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository,
             ApplicationEventPublisher applicationEventPublisher,
             AuthenticationPrincipalService authenticationPrincipalService,
-            PacienteRepositorySearch pacienteRepositorySearch) {
+            PacienteRepositorySearch pacienteRepositorySearch,
+            MedicamentoService medicamentoService,
+            PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1) {
 
         this.prescricaoMedicamentoRepository = prescricaoMedicamentoRepository;
         this.prescricaoMedicamentoMapper = prescricaoMedicamentoMapper;
@@ -61,6 +69,8 @@ public class PrescricaoMedicamentoService {
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
         this.pacienteRepositorySearch = pacienteRepositorySearch;
+        this.medicamentoService = medicamentoService;
+        this.prescricaoMedicamentoSearchRepository1 = prescricaoMedicamentoSearchRepository1;
     }
 
     /**
@@ -74,9 +84,10 @@ public class PrescricaoMedicamentoService {
         PrescricaoMedicamento prescricaoMedicamento = prescricaoMedicamentoMapper.toEntity(prescricaoMedicamentoDTO);
         Paciente pacienteId = pacienteRepositorySearch.findById(prescricaoMedicamento.getIdPaciente())
                 .orElseThrow(EntityNotFoundException::new);
-      
+        
         for (ItemPrescricaoMedicamento item : prescricaoMedicamento.getItemPrescricaoMedicamentos()) {
             item.setPrescricaoMedicamento(prescricaoMedicamento);
+            item.setMedicamento(medicamentoService.findById(item.getIdMedicamento()));
 
         }
         prescricaoMedicamento = prescricaoMedicamentoRepository.save(prescricaoMedicamento);
