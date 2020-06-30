@@ -21,7 +21,7 @@ public class TestMethodProntuario {
 
     @Test
     public void testMetodo() {
-        ProntuarioService prontuarioService = new ProntuarioService();
+        ProntuarioService prontuarioService = new ProntuarioService(null);
         String a = "1201611227",str;
         int result = prontuarioService.calculoDV(a);
         int retornoEsperado = 3;

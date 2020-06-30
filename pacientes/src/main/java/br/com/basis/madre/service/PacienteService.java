@@ -50,13 +50,16 @@ public class PacienteService {
 
     private final AuthenticationPrincipalService authenticationPrincipalService;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService) {
+    private final ProntuarioService prontuarioService;
+
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
         this.pacienteInclusaoMapper = pacienteInclusaoMapper;
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
+        this.prontuarioService = prontuarioService;
     }
 
     /**
@@ -84,7 +87,7 @@ public class PacienteService {
         Paciente paciente = pacienteInclusaoMapper.toEntity(pacienteDTO);
         paciente = pacienteRepository.save(paciente);
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
-        paciente.setProntuario(pacienteRepository.gerarProntuario());
+        paciente.setProntuario(prontuarioService.gerarProntuario());
         pacienteSearchRepository.save(paciente);
         applicationEventPublisher.publishEvent(
             EventoPaciente

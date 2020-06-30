@@ -1,10 +1,23 @@
 package br.com.basis.madre.service;
 
+import br.com.basis.madre.repository.PacienteRepository;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class ProntuarioService {
+
+    private final PacienteRepository pacienteRepository;
+
+    public ProntuarioService(PacienteRepository pacienteRepository) {
+        this.pacienteRepository = pacienteRepository;
+    }
+
+    public Long gerarProntuario(){
+       Long prontuario=pacienteRepository.gerarProntuario();
+       Integer dv = calculoDV(prontuario.toString());
+       return Long.valueOf(prontuario.toString() + dv);
+    }
 
     public int calculoDV(String num){
         int soma = 0;
