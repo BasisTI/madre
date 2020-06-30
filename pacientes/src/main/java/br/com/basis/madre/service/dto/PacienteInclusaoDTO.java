@@ -1,7 +1,5 @@
 package br.com.basis.madre.service.dto;
 
-import br.com.basis.madre.domain.Endereco;
-import br.com.basis.madre.domain.Telefone;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
 
@@ -19,6 +17,8 @@ import java.util.Set;
 public class PacienteInclusaoDTO implements Serializable {
 
     private Long id;
+
+    private Long prontuario;
 
     @NotNull
     private String nome;
@@ -76,6 +76,14 @@ public class PacienteInclusaoDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Long prontuario) {
+        this.prontuario = prontuario;
     }
 
     public String getNome() {
@@ -287,6 +295,7 @@ public class PacienteInclusaoDTO implements Serializable {
     public String toString() {
         return "PacienteInclusaoDTO{" +
             "id=" + id +
+            ", prontuario=" + prontuario +
             ", nome='" + nome + '\'' +
             ", nomeSocial='" + nomeSocial + '\'' +
             ", dataDeNascimento=" + dataDeNascimento +

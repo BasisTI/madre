@@ -90,7 +90,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 ],
             },
             {
-                label: 'Emergência',
+                label: 'Triagem',
                 icon: 'local_hospital',
                 items: [
                     {
@@ -114,9 +114,21 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         icon: 'add',
                         routerLink: ['pacientes/triagem'],
                     },
+                ],
+            },
+            {
+                label: 'Marcar Consultas',
+                icon: 'watch_later',
+                items: [
                     {
-                        label: 'Atendimento',
+                        label: 'Listar Consultas',
                         icon: 'add',
+                        routerLink: ['consulta/listar-consultas'],
+                    },
+                    {
+                        label: 'Emergência',
+                        icon: 'add',
+                        routerLink: ['consulta/emergencia'],
                     },
                 ],
             },
@@ -145,6 +157,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Internar Paciente',
                         icon: 'add',
                         routerLink: ['internacao/solicitacoes-de-internacao'],
+                    },
+                    {
+                        label: 'Cadastrar Unidade',
+                        icon: 'add',
+                        routerLink: ['internacao/cadastro-unidades'],
                     },
                     {
                         label: 'Leitos',
@@ -192,6 +209,36 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Medicamentos',
                         icon: 'add',
                         routerLink: ['/medicamentos'],
+                    },
+                ],
+            },
+            {
+                label: 'Suprimentos',
+                icon: 'local_shipping',
+                items: [
+                    {
+                        label: 'Almoxarifado',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Recebimento',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/recebimentos/novo'],
+                            },
+                            {
+                                label: 'Documentos Fiscais',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Nota Fiscal',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/documentos-fiscais/notas-fiscais/nova',
+                                        ],
+                                    },
+                                ],
+                            },
+                        ],
                     },
                 ],
             },

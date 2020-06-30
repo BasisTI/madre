@@ -1,0 +1,154 @@
+{
+    "name": "Unidade",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sigla",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "Situacao",
+            "fieldValues": "ATIVO,INATIVO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "controleDeEstoque",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "idAlmoxarifado",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "andar",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "capacidade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "horarioInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "horarioFim",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "localExame",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rotinaDeFuncionamento",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "anexoDocumento",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "setor",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idCentroDeAtividade",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "idChefia",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "unidade",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "unidadePai",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "ala",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "ala",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "clinica",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "clinica",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoUnidade",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipValidateRules": "required",
+            "relationshipName": "tipoUnidade",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricao",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "prescricaoEnfermagem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricao",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "prescricaoMedica",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cirurgia",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "cirurgia",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "caracteristica",
+            "otherEntityRelationshipName": "unidade",
+            "relationshipName": "caracteristica",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200616160417",
+    "entityTableName": "unidade",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}

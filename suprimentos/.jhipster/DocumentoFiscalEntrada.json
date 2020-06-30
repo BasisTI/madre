@@ -1,0 +1,119 @@
+{
+    "name": "DocumentoFiscalEntrada",
+    "fields": [
+        {
+            "fieldName": "numeroDocumento",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "serie",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "notaEmpenho",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 120
+        },
+        {
+            "fieldName": "cpfCnpj",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength",
+                "unique",
+                "required"
+            ],
+            "fieldValidateRulesMinlength": 11,
+            "fieldValidateRulesMaxlength": 14
+        },
+        {
+            "fieldName": "dataGeracao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataEmissao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataEntrada",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataVencimento",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "valorTotal",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipoDocumento",
+            "fieldType": "TipoDocumento",
+            "fieldValues": "NOTA_FISCAL,TERMO_DE_TRANSFERENCIA,DOACAO"
+        },
+        {
+            "fieldName": "tipoDocumentoFiscal",
+            "fieldType": "TipoDocumentoFiscal",
+            "fieldValues": "NFS,DFE,DFS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "observacao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "fornecedor",
+            "otherEntityRelationshipName": "documentoFiscalEntrada",
+            "relationshipValidateRules": "required",
+            "relationshipName": "fornecedor",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123154",
+    "entityTableName": "documento_fiscal_entrada",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

@@ -1,3 +1,6 @@
+import { PrescricaoEnfermagemComponent } from './formulario-unidades/components/prescricao-enfermagem/prescricao-enfermagem.component';
+import { PrescricaoMedicaUnidadeComponent } from './formulario-unidades/components/prescricao-medica-unidade/prescricao-medica-unidade.component';
+import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { ArvoreComponent } from './components/cid/arvore-cid/arvore.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { CalendarioComponent } from './components/leito/calendario.component';
@@ -32,6 +35,7 @@ import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-
 import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-leito/tipo-de-reserva-de-leito.component';
 import { routes } from './internacao.routes';
 import { CardPacienteComponent } from './components/card-paciente/card-paciente.component';
+import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cirurgia.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +68,10 @@ import { CardPacienteComponent } from './components/card-paciente/card-paciente.
         CalendarioComponent,
         PacientesListaComponent,
         CardPacienteComponent,
+        CadastroUnidadesComponent,
+        PrescricaoMedicaUnidadeComponent,
+        PrescricaoEnfermagemComponent,
+        CirurgiaComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

@@ -1,10 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.OrgaoEmissor;
 import br.com.basis.madre.service.dto.OrgaoEmissorDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link OrgaoEmissor} and its DTO {@link OrgaoEmissorDTO}.
