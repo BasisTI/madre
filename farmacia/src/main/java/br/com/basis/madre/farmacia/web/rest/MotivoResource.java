@@ -1,7 +1,7 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.service.MotivoService;
-import br.com.basis.madre.farmacia.web.rest.errors.BadRequestAlertException;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.farmacia.service.dto.MotivoDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;

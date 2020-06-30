@@ -1,16 +1,24 @@
 {
-  "name": "gatewaymadre",
+  "name": "madregateway",
   "version": "0.0.0",
-  "description": "Description for gatewaymadre",
+  "description": "Description for madregateway",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
     "node_modules"
   ],
   "devDependencies": {
-    "generator-jhipster": "4.14.3"
+    "@openapitools/openapi-generator-cli": "1.0.13-4.3.1",
+    "generator-jhipster-nuvem-java": "6.9.3",
+    "generator-jhipster": "6.9.1",
+    "husky": "4.2.5",
+    "lint-staged": "8.2.1",
+    "prettier": "2.0.5"
   },
   "engines": {
-    "node": ">=6.9.0"
+    "node": ">=12.16.1"
+  },
+  "scripts": {
+    "prettier:format": "prettier --write \"{,src/**/}*.{md,json,yml}\""
   }
 }

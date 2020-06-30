@@ -27,7 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.basis.madre.prescricao.service.PrescricaoDietaService;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoDietaDTO;
-import br.com.basis.madre.prescricao.web.rest.errors.BadRequestAlertException;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
