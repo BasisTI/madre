@@ -9,7 +9,7 @@ import org.mapstruct.*;
  * Mapper for the entity {@link ItemPrescricaoMedicamento} and its DTO {@link ItemPrescricaoMedicamentoDTO}.
  */
 @Mapper(componentModel = "spring", uses = {ViasAdministracaoMapper.class, DiluenteMapper.class, UnidadeInfusaoMapper.class, UnidadeDoseMapper.class, PrescricaoMedicamentoMapper.class,
-		TipoAprazamentoMapper.class})
+		TipoAprazamentoMapper.class, MedicamentoMapper.class})
 public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescricaoMedicamentoDTO, ItemPrescricaoMedicamento> {
 
     @Mapping(source = "viasAdministracao.id", target = "viasAdministracaoId")
@@ -17,6 +17,7 @@ public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescr
     @Mapping(source = "unidadeInfusao.id", target = "unidadeInfusaoId")
     @Mapping(source = "unidadeDose.id", target = "unidadeDoseId")
     @Mapping(source = "tipoAprazamento.id", target = "tipoAprazamentoId")
+    @Mapping(source = "medicamento", target="medicamentoDTO")
     ItemPrescricaoMedicamentoDTO toDto(ItemPrescricaoMedicamento itemPrescricaoMedicamento);
 
     @Mapping(source = "viasAdministracaoId", target = "viasAdministracao")
@@ -24,6 +25,7 @@ public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescr
     @Mapping(source = "unidadeInfusaoId", target = "unidadeInfusao")
     @Mapping(source = "unidadeDoseId", target = "unidadeDose")
     @Mapping(source = "tipoAprazamentoId", target = "tipoAprazamento.id")
+    @Mapping(source = "medicamentoDTO", target="medicamento")
     ItemPrescricaoMedicamento toEntity(ItemPrescricaoMedicamentoDTO itemPrescricaoMedicamentoDTO);
 
     default ItemPrescricaoMedicamento fromId(Long id) {
