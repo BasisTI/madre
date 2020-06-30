@@ -1,6 +1,5 @@
 package br.com.basis.suprimentos.domain;
 
-import br.com.basis.suprimentos.domain.annotation.CpfCnpj;
 import br.com.basis.suprimentos.domain.enumeration.TipoDocumento;
 import br.com.basis.suprimentos.domain.enumeration.TipoDocumentoFiscal;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -53,12 +52,6 @@ public class DocumentoFiscalEntrada implements Serializable {
     @Size(max = 120)
     @Column(name = "nota_empenho", length = 120)
     private String notaEmpenho;
-
-    @CpfCnpj
-    @NotNull
-    @Size(min = 11, max = 14)
-    @Column(name = "cpf_cnpj", length = 14, nullable = false, unique = true)
-    private String cpfCnpj;
 
     @NotNull
     @Column(name = "data_geracao", nullable = false)
