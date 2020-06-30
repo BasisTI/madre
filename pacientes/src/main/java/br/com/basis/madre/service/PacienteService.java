@@ -127,6 +127,13 @@ public class PacienteService {
             .map(pacienteInclusaoMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public Optional<PacienteInclusaoDTO> findOneProntuario(Long prontuario) {
+        log.debug("Request to get Paciente : {}", prontuario);
+        return pacienteRepository.findByProntuario(prontuario)
+            .map(pacienteInclusaoMapper::toDto);
+    }
+
     /**
      * Delete the paciente by id.
      *
