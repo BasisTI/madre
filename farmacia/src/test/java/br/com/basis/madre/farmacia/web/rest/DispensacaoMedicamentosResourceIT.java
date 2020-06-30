@@ -7,7 +7,7 @@ import br.com.basis.madre.farmacia.repository.search.DispensacaoMedicamentosSear
 import br.com.basis.madre.farmacia.service.DispensacaoMedicamentosService;
 import br.com.basis.madre.farmacia.service.dto.DispensacaoMedicamentosDTO;
 import br.com.basis.madre.farmacia.service.mapper.DispensacaoMedicamentosMapper;
-import br.com.basis.madre.farmacia.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

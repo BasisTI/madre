@@ -1,7 +1,7 @@
 version: '2'
 services:
-    gatewaymadre-sonar:
-        image: sonarqube:6.5-alpine
-        ports:
-            - 9000:9000
-            - 9092:9092
+  madregateway-sonar:
+    image: sonarqube:8.3.1-community
+    ports:
+      - 9001:9000
+      - 9092:9092
