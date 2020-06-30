@@ -1,12 +1,13 @@
 package br.com.basis.madre.service.dto;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A DTO for the {@link br.com.basis.madre.domain.Paciente} entity.
@@ -14,6 +15,8 @@ import br.com.basis.madre.domain.enumeration.Sexo;
 public class PacienteDTO implements Serializable {
 
     private Long id;
+
+    private Long prontuario;
 
     @NotNull
     private String nome;
@@ -65,6 +68,14 @@ public class PacienteDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Long prontuario) {
+        this.prontuario = prontuario;
     }
 
     public String getNome() {
@@ -251,27 +262,28 @@ public class PacienteDTO implements Serializable {
     @Override
     public String toString() {
         return "PacienteDTO{" +
-            "id=" + getId() +
-            ", nome='" + getNome() + "'" +
-            ", nomeSocial='" + getNomeSocial() + "'" +
-            ", dataDeNascimento='" + getDataDeNascimento() + "'" +
-            ", horaDeNascimento='" + getHoraDeNascimento() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", observacao='" + getObservacao() + "'" +
-            ", grauDeInstrucao='" + getGrauDeInstrucao() + "'" +
-            ", sexo='" + getSexo() + "'" +
-            ", cartaoSUSId=" + getCartaoSUSId() +
-            ", responsavelId=" + getResponsavelId() +
-            ", documentoId=" + getDocumentoId() +
-            ", certidaoId=" + getCertidaoId() +
-            ", ocupacaoId=" + getOcupacaoId() +
-            ", religiaoId=" + getReligiaoId() +
-            ", naturalidadeId=" + getNaturalidadeId() +
-            ", etniaId=" + getEtniaId() +
-            ", genitoresId=" + getGenitoresId() +
-            ", nacionalidadeId=" + getNacionalidadeId() +
-            ", racaId=" + getRacaId() +
-            ", estadoCivilId=" + getEstadoCivilId() +
-            "}";
+            "id=" + id +
+            ", prontuario=" + prontuario +
+            ", nome='" + nome + '\'' +
+            ", nomeSocial='" + nomeSocial + '\'' +
+            ", dataDeNascimento=" + dataDeNascimento +
+            ", horaDeNascimento=" + horaDeNascimento +
+            ", email='" + email + '\'' +
+            ", observacao='" + observacao + '\'' +
+            ", grauDeInstrucao=" + grauDeInstrucao +
+            ", sexo=" + sexo +
+            ", cartaoSUSId=" + cartaoSUSId +
+            ", responsavelId=" + responsavelId +
+            ", documentoId=" + documentoId +
+            ", certidaoId=" + certidaoId +
+            ", ocupacaoId=" + ocupacaoId +
+            ", religiaoId=" + religiaoId +
+            ", naturalidadeId=" + naturalidadeId +
+            ", etniaId=" + etniaId +
+            ", genitoresId=" + genitoresId +
+            ", nacionalidadeId=" + nacionalidadeId +
+            ", racaId=" + racaId +
+            ", estadoCivilId=" + estadoCivilId +
+            '}';
     }
 }

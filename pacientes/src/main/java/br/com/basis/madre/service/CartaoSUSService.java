@@ -7,7 +7,6 @@ import br.com.basis.madre.service.dto.CartaoSUSDTO;
 import br.com.basis.madre.service.mapper.CartaoSUSMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link CartaoSUS}.
@@ -75,7 +74,7 @@ public class CartaoSUSService {
      *  Get all the cartaoSUSES where Paciente is {@code null}.
      *  @return the list of entities.
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<CartaoSUSDTO> findAllWherePacienteIsNull() {
         log.debug("Request to get all cartaoSUSES where Paciente is null");
         return StreamSupport

@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 
 import br.com.basis.madre.prescricao.service.PrescricaoMedicamentoService;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
-import br.com.basis.madre.prescricao.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -105,9 +105,9 @@ public class PrescricaoMedicamentoResource {
 	/**
 	 * {@code GET  /prescricao-medicamentos} : get all the prescricaoMedicamentos.
 	 *
-	 * 
+	 *
 	 * @param pageable the pagination information.
-	 * 
+	 *
 	 * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
 	 *         of prescricaoMedicamentos in body.
 	 */

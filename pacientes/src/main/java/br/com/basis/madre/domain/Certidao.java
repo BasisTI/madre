@@ -1,17 +1,22 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
-import java.util.Objects;
-import java.time.LocalDate;
 
-import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * A Certidao.

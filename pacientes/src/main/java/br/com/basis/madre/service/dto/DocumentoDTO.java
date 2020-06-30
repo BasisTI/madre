@@ -1,7 +1,7 @@
 package br.com.basis.madre.service.dto;
 
-import java.time.LocalDate;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**

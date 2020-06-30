@@ -1,6 +1,6 @@
 package br.com.basis.madre.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ import java.util.Objects;
  * A DTO for the {@link br.com.basis.madre.domain.Municipio} entity.
  */
 public class MunicipioDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -21,7 +21,7 @@ public class MunicipioDTO implements Serializable {
 
 
     private Long ufId;
-    
+
     public Long getId() {
         return id;
     }

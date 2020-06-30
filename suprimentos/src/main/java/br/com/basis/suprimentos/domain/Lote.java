@@ -1,30 +1,39 @@
 package br.com.basis.suprimentos.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- * A Lote.
- */
+@Data
 @Entity
 @Table(name = "lote")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "lote")
+@Document(indexName = "madre-suprimentos-lote")
 public class Lote implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     private Long id;
 
     @NotNull
@@ -60,147 +69,4 @@ public class Lote implements Serializable {
     @NotNull
     @JsonIgnoreProperties("lotes")
     private EstoqueAlmoxarifado estoque;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public Lote descricao(String descricao) {
-        this.descricao = descricao;
-        return this;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getSerie() {
-        return serie;
-    }
-
-    public Lote serie(String serie) {
-        this.serie = serie;
-        return this;
-    }
-
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
-
-    public Long getQuantidadeDisponivel() {
-        return quantidadeDisponivel;
-    }
-
-    public Lote quantidadeDisponivel(Long quantidadeDisponivel) {
-        this.quantidadeDisponivel = quantidadeDisponivel;
-        return this;
-    }
-
-    public void setQuantidadeDisponivel(Long quantidadeDisponivel) {
-        this.quantidadeDisponivel = quantidadeDisponivel;
-    }
-
-    public Long getQuantidadeBloqueada() {
-        return quantidadeBloqueada;
-    }
-
-    public Lote quantidadeBloqueada(Long quantidadeBloqueada) {
-        this.quantidadeBloqueada = quantidadeBloqueada;
-        return this;
-    }
-
-    public void setQuantidadeBloqueada(Long quantidadeBloqueada) {
-        this.quantidadeBloqueada = quantidadeBloqueada;
-    }
-
-    public Long getQuantidadeProblema() {
-        return quantidadeProblema;
-    }
-
-    public Lote quantidadeProblema(Long quantidadeProblema) {
-        this.quantidadeProblema = quantidadeProblema;
-        return this;
-    }
-
-    public void setQuantidadeProblema(Long quantidadeProblema) {
-        this.quantidadeProblema = quantidadeProblema;
-    }
-
-    public LocalDate getDataValidade() {
-        return dataValidade;
-    }
-
-    public Lote dataValidade(LocalDate dataValidade) {
-        this.dataValidade = dataValidade;
-        return this;
-    }
-
-    public void setDataValidade(LocalDate dataValidade) {
-        this.dataValidade = dataValidade;
-    }
-
-    public MarcaComercial getMarcaComercial() {
-        return marcaComercial;
-    }
-
-    public Lote marcaComercial(MarcaComercial marcaComercial) {
-        this.marcaComercial = marcaComercial;
-        return this;
-    }
-
-    public void setMarcaComercial(MarcaComercial marcaComercial) {
-        this.marcaComercial = marcaComercial;
-    }
-
-    public EstoqueAlmoxarifado getEstoque() {
-        return estoque;
-    }
-
-    public Lote estoque(EstoqueAlmoxarifado estoqueAlmoxarifado) {
-        this.estoque = estoqueAlmoxarifado;
-        return this;
-    }
-
-    public void setEstoque(EstoqueAlmoxarifado estoqueAlmoxarifado) {
-        this.estoque = estoqueAlmoxarifado;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Lote)) {
-            return false;
-        }
-        return id != null && id.equals(((Lote) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Lote{" +
-            "id=" + getId() +
-            ", descricao='" + getDescricao() + "'" +
-            ", serie='" + getSerie() + "'" +
-            ", quantidadeDisponivel=" + getQuantidadeDisponivel() +
-            ", quantidadeBloqueada=" + getQuantidadeBloqueada() +
-            ", quantidadeProblema=" + getQuantidadeProblema() +
-            ", dataValidade='" + getDataValidade() + "'" +
-            "}";
-    }
 }

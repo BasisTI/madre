@@ -1,6 +1,5 @@
 package br.com.basis.madre.service.dto;
 
-import br.com.basis.madre.domain.*;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
 

@@ -4,7 +4,7 @@ package br.com.basis.madre.farmacia.service;
 
 import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.domain.evento.EventoPrescricao;
-import br.com.basis.madre.farmacia.repository.search.PrescricaoSerchRepository;
+import br.com.basis.madre.farmacia.repository.search.PrescricaoSearchRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 @Component
 public class PrescricaoMedicamentoConsumer implements Consumer<Message<EventoPrescricao>> {
 
-    private final PrescricaoSerchRepository repository;
+    private final PrescricaoSearchRepository repository;
 
     @Override
     public void accept(Message<EventoPrescricao> message) {

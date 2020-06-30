@@ -84,6 +84,7 @@ public class PacienteService {
         Paciente paciente = pacienteInclusaoMapper.toEntity(pacienteDTO);
         paciente = pacienteRepository.save(paciente);
         PacienteInclusaoDTO result = pacienteInclusaoMapper.toDto(paciente);
+        paciente.setProntuario(pacienteRepository.gerarProntuario());
         pacienteSearchRepository.save(paciente);
         applicationEventPublisher.publishEvent(
             EventoPaciente

@@ -4,7 +4,7 @@ import br.com.basis.madre.prescricao.PrescricaoApp;
 import br.com.basis.madre.prescricao.domain.TipoMedicamento;
 import br.com.basis.madre.prescricao.repository.TipoMedicamentoRepository;
 import br.com.basis.madre.prescricao.repository.search.TipoMedicamentoSearchRepository;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

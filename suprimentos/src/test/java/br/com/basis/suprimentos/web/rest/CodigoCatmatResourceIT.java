@@ -97,9 +97,9 @@ public class CodigoCatmatResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CodigoCatmat createEntity(EntityManager em) {
-        CodigoCatmat codigoCatmat = new CodigoCatmat()
-                .codigo(DEFAULT_CODIGO)
-                .descricao(DEFAULT_DESCRICAO);
+        CodigoCatmat codigoCatmat = new CodigoCatmat();
+        codigoCatmat.setCodigo(DEFAULT_CODIGO);
+        codigoCatmat.setDescricao(DEFAULT_DESCRICAO);
         return codigoCatmat;
     }
 
@@ -110,9 +110,9 @@ public class CodigoCatmatResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CodigoCatmat createUpdatedEntity(EntityManager em) {
-        CodigoCatmat codigoCatmat = new CodigoCatmat()
-                .codigo(UPDATED_CODIGO)
-                .descricao(UPDATED_DESCRICAO);
+        CodigoCatmat codigoCatmat = new CodigoCatmat();
+        codigoCatmat.setCodigo(UPDATED_CODIGO);
+        codigoCatmat.setDescricao(UPDATED_DESCRICAO);
         return codigoCatmat;
     }
 
@@ -121,11 +121,11 @@ public class CodigoCatmatResourceIT {
         MockitoAnnotations.initMocks(this);
         final CodigoCatmatResource codigoCatmatResource = new CodigoCatmatResource(codigoCatmatService);
         this.restCodigoCatmatMockMvc = MockMvcBuilders.standaloneSetup(codigoCatmatResource)
-                .setCustomArgumentResolvers(pageableArgumentResolver)
-                .setControllerAdvice(exceptionTranslator)
-                .setConversionService(createFormattingConversionService())
-                .setMessageConverters(jacksonMessageConverter)
-                .setValidator(validator).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -141,9 +141,9 @@ public class CodigoCatmatResourceIT {
         // Create the CodigoCatmat
         CodigoCatmatDTO codigoCatmatDTO = codigoCatmatMapper.toDto(codigoCatmat);
         restCodigoCatmatMockMvc.perform(post("/api/codigo-catmats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the CodigoCatmat in the database
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
@@ -167,9 +167,9 @@ public class CodigoCatmatResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCodigoCatmatMockMvc.perform(post("/api/codigo-catmats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the CodigoCatmat in the database
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
@@ -191,9 +191,9 @@ public class CodigoCatmatResourceIT {
         CodigoCatmatDTO codigoCatmatDTO = codigoCatmatMapper.toDto(codigoCatmat);
 
         restCodigoCatmatMockMvc.perform(post("/api/codigo-catmats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
+            .andExpect(status().isBadRequest());
 
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
         assertThat(codigoCatmatList).hasSize(databaseSizeBeforeTest);
@@ -210,9 +210,9 @@ public class CodigoCatmatResourceIT {
         CodigoCatmatDTO codigoCatmatDTO = codigoCatmatMapper.toDto(codigoCatmat);
 
         restCodigoCatmatMockMvc.perform(post("/api/codigo-catmats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
+            .andExpect(status().isBadRequest());
 
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
         assertThat(codigoCatmatList).hasSize(databaseSizeBeforeTest);
@@ -226,11 +226,11 @@ public class CodigoCatmatResourceIT {
 
         // Get all the codigoCatmatList
         restCodigoCatmatMockMvc.perform(get("/api/codigo-catmats?sort=id,desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(codigoCatmat.getId().intValue())))
-                .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(codigoCatmat.getId().intValue())))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test
@@ -241,11 +241,11 @@ public class CodigoCatmatResourceIT {
 
         // Get the codigoCatmat
         restCodigoCatmatMockMvc.perform(get("/api/codigo-catmats/{id}", codigoCatmat.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.id").value(codigoCatmat.getId().intValue()))
-                .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO.intValue()))
-                .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(codigoCatmat.getId().intValue()))
+            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO.intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
     @Test
@@ -253,7 +253,7 @@ public class CodigoCatmatResourceIT {
     public void getNonExistingCodigoCatmat() throws Exception {
         // Get the codigoCatmat
         restCodigoCatmatMockMvc.perform(get("/api/codigo-catmats/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -269,14 +269,14 @@ public class CodigoCatmatResourceIT {
         // Disconnect from session so that the updates on updatedCodigoCatmat are not directly saved in db
         em.detach(updatedCodigoCatmat);
         updatedCodigoCatmat
-                .codigo(UPDATED_CODIGO)
-                .descricao(UPDATED_DESCRICAO);
+            .setCodigo(UPDATED_CODIGO);
+        updatedCodigoCatmat.setDescricao(UPDATED_DESCRICAO);
         CodigoCatmatDTO codigoCatmatDTO = codigoCatmatMapper.toDto(updatedCodigoCatmat);
 
         restCodigoCatmatMockMvc.perform(put("/api/codigo-catmats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
+            .andExpect(status().isOk());
 
         // Validate the CodigoCatmat in the database
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
@@ -299,9 +299,9 @@ public class CodigoCatmatResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCodigoCatmatMockMvc.perform(put("/api/codigo-catmats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
-                .andExpect(status().isBadRequest());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(codigoCatmatDTO)))
+            .andExpect(status().isBadRequest());
 
         // Validate the CodigoCatmat in the database
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
@@ -321,8 +321,8 @@ public class CodigoCatmatResourceIT {
 
         // Delete the codigoCatmat
         restCodigoCatmatMockMvc.perform(delete("/api/codigo-catmats/{id}", codigoCatmat.getId())
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<CodigoCatmat> codigoCatmatList = codigoCatmatRepository.findAll();
@@ -338,14 +338,14 @@ public class CodigoCatmatResourceIT {
         // Initialize the database
         codigoCatmatRepository.saveAndFlush(codigoCatmat);
         when(mockCodigoCatmatSearchRepository.search(queryStringQuery("id:" + codigoCatmat.getId()), PageRequest.of(0, 20)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(codigoCatmat), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(codigoCatmat), PageRequest.of(0, 1), 1));
         // Search the codigoCatmat
         restCodigoCatmatMockMvc.perform(get("/api/_search/codigo-catmats?query=id:" + codigoCatmat.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(codigoCatmat.getId().intValue())))
-                .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(codigoCatmat.getId().intValue())))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
 
     @Test

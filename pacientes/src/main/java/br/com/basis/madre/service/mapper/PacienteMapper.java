@@ -1,10 +1,10 @@
 package br.com.basis.madre.service.mapper;
 
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.dto.PacienteDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Paciente} and its DTO {@link PacienteDTO}.
@@ -24,6 +24,7 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "nacionalidade.id", target = "nacionalidadeId")
     @Mapping(source = "raca.id", target = "racaId")
     @Mapping(source = "estadoCivil.id", target = "estadoCivilId")
+    @Mapping(source = "prontuario", target = "prontuario")
     PacienteDTO toDto(Paciente paciente);
 
     @Mapping(source = "cartaoSUSId", target = "cartaoSUS")
@@ -41,6 +42,7 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "nacionalidadeId", target = "nacionalidade")
     @Mapping(source = "racaId", target = "raca")
     @Mapping(source = "estadoCivilId", target = "estadoCivil")
+    @Mapping(source = "prontuario", target = "prontuario")
     Paciente toEntity(PacienteDTO pacienteDTO);
 
     default Paciente fromId(Long id) {

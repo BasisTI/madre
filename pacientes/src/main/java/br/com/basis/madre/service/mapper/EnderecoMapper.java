@@ -1,10 +1,10 @@
 package br.com.basis.madre.service.mapper;
 
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Endereco;
 import br.com.basis.madre.service.dto.EnderecoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Endereco} and its DTO {@link EnderecoDTO}.

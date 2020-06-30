@@ -1,6 +1,6 @@
 package br.com.basis.madre.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ import java.util.Objects;
  * A DTO for the {@link br.com.basis.madre.domain.Genitores} entity.
  */
 public class GenitoresDTO implements Serializable {
-    
+
     private Long id;
 
     private String prontuarioDaMae;
@@ -19,7 +19,7 @@ public class GenitoresDTO implements Serializable {
     @NotNull
     private String nomeDoPai;
 
-    
+
     public Long getId() {
         return id;
     }
