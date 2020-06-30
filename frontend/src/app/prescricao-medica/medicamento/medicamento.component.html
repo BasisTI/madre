@@ -59,6 +59,7 @@
                                 <div class="ui-g-2">
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaUnidadeDose" formControlName="unidadeDoseId" required
                                             #unidadeDose>
                                         </p-dropdown>
@@ -69,6 +70,7 @@
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaViasAdministracao" formControlName="viasAdministracaoId"
                                             required #viaAdministracao>
                                         </p-dropdown>
@@ -106,6 +108,7 @@
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaTipoAprazamento" formControlName="tipoAprazamentoId">
                                         </p-dropdown>
                                         <label>Tipo de Aprazamento</label>
@@ -115,6 +118,7 @@
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true" [options]="listaDiluente"
+                                            emptyFilterMessage="Nenhum registro encontrado."
                                             formControlName="diluenteId" #diluente>
                                         </p-dropdown>
                                         <label>Diluente</label>
@@ -159,6 +163,7 @@
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaUnidadeInfusao" formControlName="unidadeInfusaoId">
                                         </p-dropdown>
                                         <label>Unidade Infusão</label>

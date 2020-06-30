@@ -54,7 +54,8 @@
 
                             <div class="ui-g-12">
                                 <span class="md-inputfield">
-                                    <p-dropdown [autoWidth]="false" [filter]="true" placeholder="Selecione..."
+                                    <p-dropdown [autoWidth]="false" [filter]="true"
+                                        emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
                                         [options]="tiposItens" formControlName="tipoItemDietaId" required
                                         #descricaoItem>
                                     </p-dropdown>
@@ -73,7 +74,8 @@
 
                             <div class="ui-g-6">
                                 <span class="md-inputfield">
-                                    <p-dropdown [autoWidth]="false" [filter]="true" placeholder="Selecione..."
+                                    <p-dropdown [autoWidth]="false" [filter]="true"
+                                        emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
                                         [options]="listaUnidadeDieta" formControlName="tipoUnidadeDietaId">
                                     </p-dropdown>
                                     <label>Unidade</label>
@@ -92,9 +94,9 @@
 
                             <div class="ui-g-5">
                                 <span class="md-inputfield">
-                                    <p-dropdown [autoWidth]="false" placeholder="Selecione..."
-                                        [options]="tiposAprazamentos" formControlName="tipoAprazamentoId"
-                                        #descricaoAprazamento>
+                                    <p-dropdown [autoWidth]="false" placeholder="Selecione..." [filter]="true"
+                                        emptyFilterMessage="Nenhum registro encontrado." [options]="tiposAprazamentos"
+                                        formControlName="tipoAprazamentoId" #descricaoAprazamento>
                                     </p-dropdown>
                                     <label>Aprazamento</label>
                                 </span>
