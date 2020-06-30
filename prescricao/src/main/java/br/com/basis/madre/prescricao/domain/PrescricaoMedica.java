@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -37,7 +36,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED) 
 @Table(name = "prescricao_medica")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "madre-prescricao-prescricaomedica")
+@Document(indexName = "madre-prescricao-prescricaomedica", type = "prescricaomedica")
 public class PrescricaoMedica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -50,27 +49,33 @@ public class PrescricaoMedica implements Serializable {
 
 	@NotNull
 	@Column(name = "id_leito")
+	@Field(type = FieldType.Long)
 	private Long idLeito;
 
 	@NotNull
 	@Column(name = "id_unidade_funcional")
+	@Field(type = FieldType.Long)
 	private Long idUnidadeFuncional;
 
 	@NotNull
 	@Column(name = "id_atendimento")
+	@Field(type = FieldType.Long)
 	private Long idAtendimento;
 
 	@Column(name = "data_prescricao")
+	@Field(type = FieldType.Date)
 	private LocalDate dataPrescricao;
 	
 	@Column(name = "id_paciente")
+	@Field(type = FieldType.Long)
 	private Long idPaciente;
 
 	@Size(max = 255)
 	@Column(name = "observacao", length = 255)
+	@Field(type = FieldType.Text)
 	private String observacao;
 
-	public PrescricaoMedica idLeito(Long idLeito) {
+	public PrescricaoMedica idLeito(Long idLeito) {	
 		this.idLeito = idLeito;
 		return this;
 	}

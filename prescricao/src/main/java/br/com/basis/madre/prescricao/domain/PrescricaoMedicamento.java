@@ -5,12 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -30,8 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "madre-prescricao-prescricaomedicamento")
-
+@Document(indexName = "madre-prescricao-prescricaomedicamento", type="prescricaomedicamento")
 public class PrescricaoMedicamento extends PrescricaoMedica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
