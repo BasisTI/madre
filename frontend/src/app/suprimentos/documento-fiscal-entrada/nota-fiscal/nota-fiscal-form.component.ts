@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { CALENDAR_LOCALE, PageNotificationService } from '@nuvem/primeng-components';
-import { CpfCnpjValidator } from '@shared/cpf-cnpj.validator';
 import { Fornecedor } from '@suprimentos/fornecedor/fornecedor';
 import { FornecedorService } from '@suprimentos/fornecedor/fornecedor.service';
 import { DocumentoFiscalEntradaService } from '../documento-fiscal-entrada.service';
@@ -26,7 +25,7 @@ export class NotaFiscalFormComponent implements OnInit {
         dataVencimento: [null, Validators.required],
         valorTotal: [null, Validators.required],
         valorComprometido: [null, Validators.required],
-        cpfCnpj: [null, [Validators.required, CpfCnpjValidator.valid]],
+        cpfCnpj: this.fb.control({ value: null, disabled: true }),
         notaEmpenho: [null],
         observacao: [null],
         fornecedorId: [null],
@@ -41,6 +40,18 @@ export class NotaFiscalFormComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    public aoSelecionarFornecedor(fornecedor: Fornecedor) {
+        const cpfCnpj = fornecedor?.cpfCnpj;
+
+        if (cpfCnpj.length === 11) {
+            this.isCpf = true;
+        } else if (cpfCnpj.length === 14) {
+            this.isCpf = false;
+        }
+
+        this.notaFiscalForm.get('cpfCnpj').setValue(cpfCnpj);
+    }
+
     public getFornecedoresPorNomeFantasia(nomeFantasia: string): void {
         this.fornecedorService
             .getFornecedoresPorNomeFantasia(nomeFantasia)
@@ -52,10 +63,20 @@ export class NotaFiscalFormComponent implements OnInit {
     }
 
     public gravar(): void {
+        this.documentoFiscalEntradaService
+            .criarNotaFiscal(this.normalizeForm(this.notaFiscalForm))
+            .subscribe((resposta) => {
+                this.notaFiscalForm.reset();
+            });
+    }
+
+    public normalizeForm(form: AbstractControl): { [key: string]: any } {
         const dto = {
-            ...this.notaFiscalForm.value,
+            ...form.value,
             tipoDocumento: 'NOTA_FISCAL',
         };
+
+        dto.cpfCnpj = undefined;
 
         for (let prop in dto) {
             if (dto[prop]?.id) {
@@ -63,24 +84,7 @@ export class NotaFiscalFormComponent implements OnInit {
             }
         }
 
-        this.documentoFiscalEntradaService.criarNotaFiscal(dto).subscribe(
-            (resposta) => {
-                this.notaFiscalForm.reset();
-            },
-            (err) => {
-                if (err.message === 'error.validation' && err.status === 400) {
-                    const errors = err.fieldErrors as Array<any>;
-
-                    errors.forEach((fieldErr) => {
-                        if (fieldErr.objectName === 'documentoFiscalEntrada') {
-                            this.pageNotificationService.addErrorMessage('CPF/CNPJ Inválido');
-                            this.notaFiscalForm.get(fieldErr.field).reset();
-                            this.notaFiscalForm.get(fieldErr.field).markAsDirty();
-                        }
-                    });
-                }
-            },
-        );
+        return dto;
     }
 
     public limpar(): void {

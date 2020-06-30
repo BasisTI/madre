@@ -38,33 +38,6 @@
                 </div>
                 <div class="ui-g-12">
                     <div class="ui-g-2">
-                        <p>Deseja informar um CPF ou CNPJ?</p>
-                    </div>
-                    <div class="ui-g-4">
-                        <div class="ui-g-2" style="margin: 5px;">
-                            <p-radioButton
-                                label="CNPJ"
-                                (onClick)="limparCampoCpfCnpj()"
-                                name="cpfOuCnpj"
-                                [value]="false"
-                                [(ngModel)]="isCpf"
-                                [ngModelOptions]="{ standalone: true }"
-                            ></p-radioButton>
-                        </div>
-                        <div class="ui-g-2" style="margin: 5px;">
-                            <p-radioButton
-                                label="CPF"
-                                (onClick)="limparCampoCpfCnpj()"
-                                name="cpfOuCnpj"
-                                [value]="true"
-                                [(ngModel)]="isCpf"
-                                [ngModelOptions]="{ standalone: true }"
-                            ></p-radioButton>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-g-12">
-                    <div class="ui-g-2">
                         <div *ngIf="isCpf; else cnpj">
                             <span class="md-inputfield" style="margin-top: 5px;">
                                 <p-inputMask
@@ -95,6 +68,7 @@
                                 (completeMethod)="getFornecedoresPorNomeFantasia($event.query)"
                                 [dropdown]="true"
                                 [forceSelection]="true"
+                                (onSelect)="aoSelecionarFornecedor($event)"
                             ></p-autoComplete>
                             <label>Fornecedor</label>
                         </span>
