@@ -136,9 +136,11 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	private PrescricaoMedicamento prescricaoMedicamento;
 
 	@Field(type = FieldType.Object)
+	@Transient
 	private Medicamento medicamento;
 	
 	@Field(type = FieldType.Text)
+	@Transient
 	private String nomeMedicamento;
 
 	public ItemPrescricaoMedicamento frequencia(Integer frequencia) {
