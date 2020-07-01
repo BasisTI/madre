@@ -135,9 +135,11 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;
 
-	@Transient
 	@Field(type = FieldType.Object)
 	private Medicamento medicamento;
+	
+	@Field(type = FieldType.Text)
+	private String nomeMedicamento;
 
 	public ItemPrescricaoMedicamento frequencia(Integer frequencia) {
 		this.frequencia = frequencia;

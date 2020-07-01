@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "madre-prescricao-prescricaomedicamento", type="prescricaomedicamento")
+@Document(indexName = "madre-prescricao-prescricaomedicamento", type = "prescricaomedicamento")
 public class PrescricaoMedicamento extends PrescricaoMedica implements Serializable {
 
 	private static final long serialVersionUID = 1L;

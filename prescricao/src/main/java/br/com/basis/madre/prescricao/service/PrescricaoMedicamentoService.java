@@ -36,118 +36,118 @@ import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
 @Transactional
 public class PrescricaoMedicamentoService {
 
-    private final Logger log = LoggerFactory.getLogger(PrescricaoMedicamentoService.class);
+	private final Logger log = LoggerFactory.getLogger(PrescricaoMedicamentoService.class);
 
-    private final PrescricaoMedicamentoRepository prescricaoMedicamentoRepository;
-    
-    private final MedicamentoService medicamentoService;
+	private final PrescricaoMedicamentoRepository prescricaoMedicamentoRepository;
 
-    private final PrescricaoMedicamentoMapper prescricaoMedicamentoMapper;
+	private final MedicamentoService medicamentoService;
 
-    private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository;
+	private final PrescricaoMedicamentoMapper prescricaoMedicamentoMapper;
 
-    
-    private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1;
-    private final ApplicationEventPublisher applicationEventPublisher;
+	private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository;
 
-    private final PacienteRepositorySearch pacienteRepositorySearch;
+	private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1;
+	private final ApplicationEventPublisher applicationEventPublisher;
 
-    private final AuthenticationPrincipalService authenticationPrincipalService;
+	private final PacienteRepositorySearch pacienteRepositorySearch;
 
-    public PrescricaoMedicamentoService(PrescricaoMedicamentoRepository prescricaoMedicamentoRepository,
-            PrescricaoMedicamentoMapper prescricaoMedicamentoMapper,
-            PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository,
-            ApplicationEventPublisher applicationEventPublisher,
-            AuthenticationPrincipalService authenticationPrincipalService,
-            PacienteRepositorySearch pacienteRepositorySearch,
-            MedicamentoService medicamentoService,
-            PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1) {
+	private final AuthenticationPrincipalService authenticationPrincipalService;
 
-        this.prescricaoMedicamentoRepository = prescricaoMedicamentoRepository;
-        this.prescricaoMedicamentoMapper = prescricaoMedicamentoMapper;
-        this.prescricaoMedicamentoSearchRepository = prescricaoMedicamentoSearchRepository;
-        this.applicationEventPublisher = applicationEventPublisher;
-        this.authenticationPrincipalService = authenticationPrincipalService;
-        this.pacienteRepositorySearch = pacienteRepositorySearch;
-        this.medicamentoService = medicamentoService;
-        this.prescricaoMedicamentoSearchRepository1 = prescricaoMedicamentoSearchRepository1;
-    }
+	public PrescricaoMedicamentoService(PrescricaoMedicamentoRepository prescricaoMedicamentoRepository,
+			PrescricaoMedicamentoMapper prescricaoMedicamentoMapper,
+			PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository,
+			ApplicationEventPublisher applicationEventPublisher,
+			AuthenticationPrincipalService authenticationPrincipalService,
+			PacienteRepositorySearch pacienteRepositorySearch, MedicamentoService medicamentoService,
+			PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1) {
 
-    /**
-     * Save a prescricaoMedicamento.
-     *
-     * @param prescricaoMedicamentoDTO the entity to save.
-     * @return the persisted entity.
-     */
-    public PrescricaoMedicamentoDTO save(PrescricaoMedicamentoDTO prescricaoMedicamentoDTO) {
-        log.debug("Request to save PrescricaoMedicamento : {}", prescricaoMedicamentoDTO);
-        PrescricaoMedicamento prescricaoMedicamento = prescricaoMedicamentoMapper.toEntity(prescricaoMedicamentoDTO);
-        Paciente pacienteId = pacienteRepositorySearch.findById(prescricaoMedicamento.getIdPaciente())
-                .orElseThrow(EntityNotFoundException::new);
-        
-        for (ItemPrescricaoMedicamento item : prescricaoMedicamento.getItemPrescricaoMedicamentos()) {
-            item.setPrescricaoMedicamento(prescricaoMedicamento);
-            item.setMedicamento(medicamentoService.findById(item.getIdMedicamento()));
+		this.prescricaoMedicamentoRepository = prescricaoMedicamentoRepository;
+		this.prescricaoMedicamentoMapper = prescricaoMedicamentoMapper;
+		this.prescricaoMedicamentoSearchRepository = prescricaoMedicamentoSearchRepository;
+		this.applicationEventPublisher = applicationEventPublisher;
+		this.authenticationPrincipalService = authenticationPrincipalService;
+		this.pacienteRepositorySearch = pacienteRepositorySearch;
+		this.medicamentoService = medicamentoService;
+		this.prescricaoMedicamentoSearchRepository1 = prescricaoMedicamentoSearchRepository1;
+	}
 
-        }
-        prescricaoMedicamento = prescricaoMedicamentoRepository.save(prescricaoMedicamento);
-        PrescricaoMedicamentoDTO result = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
+	/**
+	 * Save a prescricaoMedicamento.
+	 *
+	 * @param prescricaoMedicamentoDTO the entity to save.
+	 * @return the persisted entity.
+	 */
+	public PrescricaoMedicamentoDTO save(PrescricaoMedicamentoDTO prescricaoMedicamentoDTO) {
+		log.debug("Request to save PrescricaoMedicamento : {}", prescricaoMedicamentoDTO);
+		PrescricaoMedicamento prescricaoMedicamento = prescricaoMedicamentoMapper.toEntity(prescricaoMedicamentoDTO);
+		Paciente pacienteId = pacienteRepositorySearch.findById(prescricaoMedicamento.getIdPaciente())
+				.orElseThrow(EntityNotFoundException::new);
 
-        prescricaoMedicamentoSearchRepository.save(prescricaoMedicamento);
+		for (ItemPrescricaoMedicamento item : prescricaoMedicamento.getItemPrescricaoMedicamentos()) {
+			item.setPrescricaoMedicamento(prescricaoMedicamento);
 
-        applicationEventPublisher.publishEvent(EventoPrescricaoMedicamento.builder()
-                .login(authenticationPrincipalService.getLoginAtivo()).prescricaoMedicamento(prescricaoMedicamento)
-                .paciente(pacienteId).dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
-                .tipoDoEvento(TipoEvento.CRIACAO).build());
-        return result;
-    }
+			item.setMedicamento(medicamentoService.findById(item.getIdMedicamento()));
 
-    /**
-     * Get all the prescricaoMedicamentos.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public Page<PrescricaoMedicamentoDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all PrescricaoMedicamentos");
-        return prescricaoMedicamentoRepository.findAll(pageable).map(prescricaoMedicamentoMapper::toDto);
-    }
+			item.setNomeMedicamento(item.getMedicamento().getNome());
+		}
+		prescricaoMedicamento = prescricaoMedicamentoRepository.save(prescricaoMedicamento);
+		PrescricaoMedicamentoDTO result = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
 
-    /**
-     * Get one prescricaoMedicamento by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
-    @Transactional(readOnly = true)
-    public Optional<PrescricaoMedicamentoDTO> findOne(Long id) {
-        log.debug("Request to get PrescricaoMedicamento : {}", id);
-        return prescricaoMedicamentoRepository.findById(id).map(prescricaoMedicamentoMapper::toDto);
-    }
+		prescricaoMedicamentoSearchRepository.save(prescricaoMedicamento);
 
-    /**
-     * Delete the prescricaoMedicamento by id.
-     *
-     * @param id the id of the entity.
-     */
-    public void delete(Long id) {
-        log.debug("Request to delete PrescricaoMedicamento : {}", id);
-        prescricaoMedicamentoRepository.deleteById(id);
-        prescricaoMedicamentoSearchRepository.deleteById(id);
-    }
+		applicationEventPublisher.publishEvent(EventoPrescricaoMedicamento.builder()
+				.login(authenticationPrincipalService.getLoginAtivo()).prescricaoMedicamento(prescricaoMedicamento)
+				.paciente(pacienteId).dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
+				.tipoDoEvento(TipoEvento.CRIACAO).build());
+		return result;
+	}
 
-    /**
-     * Search for the prescricaoMedicamento corresponding to the query.
-     *
-     * @param query    the query of the search.
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public Page<PrescricaoMedicamentoDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of PrescricaoMedicamentos for query {}", query);
-        return prescricaoMedicamentoSearchRepository.search(queryStringQuery(query), pageable)
-                .map(prescricaoMedicamentoMapper::toDto);
-    }
+	/**
+	 * Get all the prescricaoMedicamentos.
+	 *
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	@Transactional(readOnly = true)
+	public Page<PrescricaoMedicamentoDTO> findAll(Pageable pageable) {
+		log.debug("Request to get all PrescricaoMedicamentos");
+		return prescricaoMedicamentoRepository.findAll(pageable).map(prescricaoMedicamentoMapper::toDto);
+	}
+
+	/**
+	 * Get one prescricaoMedicamento by id.
+	 *
+	 * @param id the id of the entity.
+	 * @return the entity.
+	 */
+	@Transactional(readOnly = true)
+	public Optional<PrescricaoMedicamentoDTO> findOne(Long id) {
+		log.debug("Request to get PrescricaoMedicamento : {}", id);
+		return prescricaoMedicamentoRepository.findById(id).map(prescricaoMedicamentoMapper::toDto);
+	}
+
+	/**
+	 * Delete the prescricaoMedicamento by id.
+	 *
+	 * @param id the id of the entity.
+	 */
+	public void delete(Long id) {
+		log.debug("Request to delete PrescricaoMedicamento : {}", id);
+		prescricaoMedicamentoRepository.deleteById(id);
+		prescricaoMedicamentoSearchRepository.deleteById(id);
+	}
+
+	/**
+	 * Search for the prescricaoMedicamento corresponding to the query.
+	 *
+	 * @param query    the query of the search.
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	@Transactional(readOnly = true)
+	public Page<PrescricaoMedicamentoDTO> search(String query, Pageable pageable) {
+		log.debug("Request to search for a page of PrescricaoMedicamentos for query {}", query);
+		return prescricaoMedicamentoSearchRepository.search(queryStringQuery(query), pageable)
+				.map(prescricaoMedicamentoMapper::toDto);
+	}
 }

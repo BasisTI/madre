@@ -63,6 +63,8 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	private Long tipoAprazamentoId;
 	
+	private String nomeMedicamento;
+	
 	private MedicamentoDTO medicamentoDTO;
 
 
