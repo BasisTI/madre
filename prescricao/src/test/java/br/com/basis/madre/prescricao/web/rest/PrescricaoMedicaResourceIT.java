@@ -1,13 +1,26 @@
 package br.com.basis.madre.prescricao.web.rest;
 
-import br.com.basis.madre.prescricao.PrescricaoApp;
-import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
-import br.com.basis.madre.prescricao.repository.PrescricaoMedicaRepository;
-import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaSearchRepository;
-import br.com.basis.madre.prescricao.service.PrescricaoMedicaService;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicaDTO;
-import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicaMapper;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import static br.com.basis.madre.prescricao.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,19 +37,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
-
-import static br.com.basis.madre.prescricao.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import br.com.basis.madre.prescricao.PrescricaoApp;
+import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
+import br.com.basis.madre.prescricao.repository.PrescricaoMedicaRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaSearchRepository;
+import br.com.basis.madre.prescricao.service.PrescricaoMedicaService;
+import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicaDTO;
+import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicaMapper;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 /**
  * Integration tests for the {@link PrescricaoMedicaResource} REST controller.
