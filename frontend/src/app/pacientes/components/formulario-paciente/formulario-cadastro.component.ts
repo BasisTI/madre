@@ -1,3 +1,4 @@
+import { CpfCnpjValidator } from './../../../shared/cpf-cnpj.validator';
 import { Certidao } from './models/certidao';
 import { UF } from './../../models/dropdowns/types/uf';
 import { OrgaoEmissor } from './../../models/dropdowns/types/orgao-emissor';
@@ -72,7 +73,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
             orgaoEmissor: [null, [this.customRequired1]],
             uf: [null, [this.customRequired1]],
             dataDeEmissao: [null, [this.customRequired1]],
-            cpf: [null],
+            cpf: [null, [CpfCnpjValidator]],
             pisPasep: [null],
             cnh: [null],
             validadeCNH: [null, this.customRequiredCNH1],
