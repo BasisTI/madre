@@ -93,7 +93,7 @@ public class PrescricaoMedicamentoService {
 		prescricaoMedicamento = prescricaoMedicamentoRepository.save(prescricaoMedicamento);
 		PrescricaoMedicamentoDTO result = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
 
-		prescricaoMedicamentoSearchRepository.save(prescricaoMedicamento);
+		prescricaoMedicamentoSearchRepository.save(prescricaoMedicamentoMapper.toEntity(result));
 
 		applicationEventPublisher.publishEvent(EventoPrescricaoMedicamento.builder()
 				.login(authenticationPrincipalService.getLoginAtivo()).prescricaoMedicamento(prescricaoMedicamento)
