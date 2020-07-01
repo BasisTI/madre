@@ -1,5 +1,5 @@
 import { MunicipioUF } from './../../../models/dropdowns/types/municipio-uf';
-import { map, switchMap } from 'node_modules/rxjs/operators';
+import { map, switchMap, distinctUntilChanged } from 'node_modules/rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { UF } from 'src/app/pacientes/models/dropdowns/types/uf';
 import { UfService } from './../documentos/uf.service';
@@ -8,6 +8,7 @@ import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MunicipioService } from './municipio.service';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../../models/dropdowns/opcoes-de-tipo-de-endereco';
 import { empty } from 'rxjs';
+import { CepService } from './cep.service';
 
 @Component({
     selector: 'app-endereco',
@@ -37,10 +38,42 @@ export class EnderecoComponent implements OnInit {
         private fb: FormBuilder,
         public municipioService: MunicipioService,
         public ufService: UfService,
+        public cepService: CepService,
     ) {}
 
     ngOnInit() {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
+
+        this.endereco
+            .get('cep')
+            .statusChanges.pipe(
+                distinctUntilChanged(),
+                tap((value) => console.log('status CEP:', value)),
+                switchMap((status) =>
+                    status === 'VALID'
+                        ? this.cepService.consultaCEP(this.endereco.get('cep').value)
+                        : empty(),
+                ),
+            )
+            .subscribe((dados) => (dados ? this.populaDadosForm(dados) : {}));
+    }
+
+    consultaCEP() {
+        const cep = this.endereco.get('cep').value;
+
+        console.log(cep);
+
+        if (cep != null && cep !== '') {
+            this.cepService.consultaCEP(cep).subscribe((dados) => this.populaDadosForm(dados));
+        }
+    }
+
+    populaDadosForm(dados) {
+        this.endereco.patchValue({
+            logradouro: dados.logradouro,
+            complemento: dados.complemento,
+            bairro: dados.bairro,
+        });
     }
 
     aoSelecionarUF() {
