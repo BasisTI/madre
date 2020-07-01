@@ -1,19 +1,22 @@
 package br.com.basis.consulta.service.projection;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.swing.border.EmptyBorder;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public interface CalendarioResumo {
 
-
         Long getId();
-        LocalDate getDataHoraDaConsulta();
+
+        Enum getTurno();
+        Enum getTipoPagador();
+
+    @JsonProperty("title")
     String getNumeroSala();
-    Enum getTurno();
-    Enum getTipoPagador();
 
+    @JsonProperty("start")
+    ZonedDateTime getDataHoraDaConsulta();
 
-    }
+}

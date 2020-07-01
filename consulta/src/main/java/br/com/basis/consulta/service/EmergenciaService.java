@@ -5,6 +5,7 @@ import br.com.basis.consulta.repository.EmergenciaRepository;
 import br.com.basis.consulta.repository.search.EmergenciaSearchRepository;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
 import br.com.basis.consulta.service.mapper.EmergenciaMapper;
+import br.com.basis.consulta.service.projection.CalendarioResumo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -102,5 +103,9 @@ public class EmergenciaService {
         log.debug("Request to search for a page of Emergencias for query {}", query);
         return emergenciaSearchRepository.search(queryStringQuery(query), pageable)
             .map(emergenciaMapper::toDto);
+    }
+
+    public Page<CalendarioResumo> buscarCalendarioResumo(Pageable pageable) {
+        return emergenciaRepository.findAllCalendarioResumoBy(pageable);
     }
 }

@@ -3,15 +3,14 @@ import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import * as moment from 'moment';
-import { EventoCalendario } from '@internacao/models/evento-calendario';
-import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
+import { ConsultaCalendarioModel } from '../../consulta-calendario-model ';
 
 @Component({
     selector: 'app-consulta-calendario',
     templateUrl: './consulta-calendario.component.html',
 })
 export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
-    events: Array<ConsultaEmergenciaModel>;
+    events: Array<ConsultaCalendarioModel>;
     options: any;
 
     constructor(

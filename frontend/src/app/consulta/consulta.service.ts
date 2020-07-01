@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConsultaEmergenciaModel } from './consulta-emergencia-model';
 import { Observable } from 'rxjs';
-import { EventoCalendario } from '@internacao/models/evento-calendario';
+import { ConsultaCalendarioModel } from './consulta-calendario-model ';
 
 @Injectable({
     providedIn: 'root',
@@ -31,9 +31,9 @@ export class ConsultaService {
     public buscarPaciente(): Observable<Array<Paciente>> {
         return this.client.get<Array<Paciente>>(`${this.pacUrl}/pacientes`);
     }
-    public obterConsultaCalendario(): Observable<Array<ConsultaEmergenciaModel>> {
-        return this.client.get<Array<ConsultaEmergenciaModel>>(
-            `${this.apiUrl}/consultas-emergencias`,
+    public obterConsultaCalendario(): Observable<Array<ConsultaCalendarioModel>> {
+        return this.client.get<Array<ConsultaCalendarioModel>>(
+            `${this.apiUrl}/consultas-emergencias/calendario`,
         );
     }
 }

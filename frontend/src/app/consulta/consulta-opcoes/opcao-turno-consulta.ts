@@ -1,4 +1,3 @@
-import { OPCAO_SELECIONE } from './../../shared/dropdown/opcao.selecione';
 import { OpcaoCombo } from './../../pacientes/models/dropdowns/opcao-combo';
 
 export const OPCOES_TURNO_CONSULTA: OpcaoCombo[] = [
@@ -8,7 +7,7 @@ export const OPCOES_TURNO_CONSULTA: OpcaoCombo[] = [
     },
     {
         label: 'Vespertino',
-        value: 'VESṔERTINO',
+        value: 'VESPERTINO',
     },
     {
         label: 'Noturno',

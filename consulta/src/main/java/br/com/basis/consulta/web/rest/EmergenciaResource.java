@@ -2,10 +2,12 @@ package br.com.basis.consulta.web.rest;
 
 import br.com.basis.consulta.service.EmergenciaService;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
+import br.com.basis.consulta.service.projection.CalendarioResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -147,4 +149,11 @@ public class EmergenciaResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+    @GetMapping("/consultas-emergencias/calendario")
+    @Timed
+    public ResponseEntity<Page<CalendarioResumo>> buscarCalendarioResumo(Pageable pageable) {
+        log.debug("REST request to get all Triagens");
+        return ResponseEntity.ok(emergenciaService.buscarCalendarioResumo(pageable));
+    }
+
 }
