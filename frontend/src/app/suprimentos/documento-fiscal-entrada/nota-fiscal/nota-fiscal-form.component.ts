@@ -11,7 +11,6 @@ import { DocumentoFiscalEntradaService } from '../documento-fiscal-entrada.servi
 })
 export class NotaFiscalFormComponent implements OnInit {
     public calendarLocale = CALENDAR_LOCALE;
-    public isCpf = false;
     public cpfMask = '999.999.999-99';
     public cnpjMask = '99.999.999/9999-99';
     public fornecedores: Fornecedor[] = [];
@@ -40,16 +39,12 @@ export class NotaFiscalFormComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    public isCpf(): boolean {
+        return this.notaFiscalForm.get('cpfCnpj').value?.length === 11;
+    }
+
     public aoSelecionarFornecedor(fornecedor: Fornecedor) {
-        const cpfCnpj = fornecedor?.cpfCnpj;
-
-        if (cpfCnpj.length === 11) {
-            this.isCpf = true;
-        } else if (cpfCnpj.length === 14) {
-            this.isCpf = false;
-        }
-
-        this.notaFiscalForm.get('cpfCnpj').setValue(cpfCnpj);
+        this.notaFiscalForm.get('cpfCnpj').setValue(fornecedor?.cpfCnpj);
     }
 
     public getFornecedoresPorNomeFantasia(nomeFantasia: string): void {

@@ -38,7 +38,7 @@
                 </div>
                 <div class="ui-g-12">
                     <div class="ui-g-2">
-                        <div *ngIf="isCpf; else cnpj">
+                        <div *ngIf="isCpf(); else cnpj">
                             <span class="md-inputfield" style="margin-top: 5px;">
                                 <p-inputMask
                                     formControlName="cpfCnpj"
