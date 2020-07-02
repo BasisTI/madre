@@ -1,0 +1,26 @@
+{
+  "name": "ItemTransferencia",
+  "fields": [
+    {
+      "fieldName": "quantidadeEnvidada",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200702143313",
+  "entityTableName": "item_transferencia",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madresuprimentos",
+  "applications": "*",
+  "microserviceName": "madresuprimentos",
+  "skipClient": true
+}
