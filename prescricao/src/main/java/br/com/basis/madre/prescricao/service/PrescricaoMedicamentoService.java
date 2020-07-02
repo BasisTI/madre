@@ -46,7 +46,6 @@ public class PrescricaoMedicamentoService {
 
 	private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository;
 
-	private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1;
 	private final ApplicationEventPublisher applicationEventPublisher;
 
 	private final PacienteRepositorySearch pacienteRepositorySearch;
@@ -58,8 +57,7 @@ public class PrescricaoMedicamentoService {
 			PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository,
 			ApplicationEventPublisher applicationEventPublisher,
 			AuthenticationPrincipalService authenticationPrincipalService,
-			PacienteRepositorySearch pacienteRepositorySearch, MedicamentoService medicamentoService,
-			PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository1) {
+			PacienteRepositorySearch pacienteRepositorySearch, MedicamentoService medicamentoService) {
 
 		this.prescricaoMedicamentoRepository = prescricaoMedicamentoRepository;
 		this.prescricaoMedicamentoMapper = prescricaoMedicamentoMapper;
@@ -68,7 +66,6 @@ public class PrescricaoMedicamentoService {
 		this.authenticationPrincipalService = authenticationPrincipalService;
 		this.pacienteRepositorySearch = pacienteRepositorySearch;
 		this.medicamentoService = medicamentoService;
-		this.prescricaoMedicamentoSearchRepository1 = prescricaoMedicamentoSearchRepository1;
 	}
 
 	/**
