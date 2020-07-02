@@ -67,10 +67,8 @@ public class Almoxarifado implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TempoPorClasse> temposPorClasses = new HashSet<>();
 
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties("almoxarifados")
-    private CentroDeAtividade centroDeAtividade;
+    @Column(name = "centro_de_atividade_id")
+    private Long centroDeAtividadeId;
 
     @ManyToOne
     @JsonIgnoreProperties("almoxarifados")

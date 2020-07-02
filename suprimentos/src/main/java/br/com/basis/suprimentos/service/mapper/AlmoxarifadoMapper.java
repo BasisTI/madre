@@ -7,12 +7,10 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {CentroDeAtividadeMapper.class, CaracteristicaArmazenamentoMapper.class})
 public interface AlmoxarifadoMapper extends EntityMapper<AlmoxarifadoDTO, Almoxarifado> {
-    @Mapping(source = "centroDeAtividade.id", target = "centroDeAtividadeId")
     @Mapping(source = "caracteristicaArmazenamento.id", target = "caracteristicaArmazenamentoId")
     AlmoxarifadoDTO toDto(Almoxarifado almoxarifado);
 
     @Mapping(target = "temposPorClasses", ignore = true)
-    @Mapping(source = "centroDeAtividadeId", target = "centroDeAtividade")
     @Mapping(source = "caracteristicaArmazenamentoId", target = "caracteristicaArmazenamento")
     @Mapping(target = "estoques", ignore = true)
     Almoxarifado toEntity(AlmoxarifadoDTO almoxarifadoDTO);
