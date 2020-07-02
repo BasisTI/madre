@@ -238,6 +238,19 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                     },
                                 ],
                             },
+                            {
+                                label: 'Transferências',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Automáticas',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/transferencias-automaticas'
+                                        ]
+                                    }
+                                ]
+                            }
                         ],
                     },
                 ],

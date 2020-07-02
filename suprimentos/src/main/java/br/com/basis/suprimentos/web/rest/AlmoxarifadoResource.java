@@ -65,9 +65,9 @@ public class AlmoxarifadoResource {
     }
 
     @GetMapping("/almoxarifados")
-    public ResponseEntity<List<AlmoxarifadoDTO>> getAllAlmoxarifados(Pageable pageable) {
+    public ResponseEntity<List<AlmoxarifadoDTO>> getAllAlmoxarifados(Pageable pageable, AlmoxarifadoDTO almoxarifadoDTO) {
         log.debug("REST request to get a page of Almoxarifados");
-        Page<AlmoxarifadoDTO> page = almoxarifadoService.findAll(pageable);
+        Page<AlmoxarifadoDTO> page = almoxarifadoService.findAll(pageable, almoxarifadoDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
