@@ -21,7 +21,7 @@ entity InformacaoTransferencia {
 }
 
 entity TransferenciaAlmoxarifado {
-	geradoEm ZonedLocalTime required
+	geradoEm ZonedDateTime required
     geradoPor String required
 }
 
