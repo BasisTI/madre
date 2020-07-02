@@ -56,8 +56,8 @@ public class TransferenciaAlmoxarifado implements Serializable {
     @ManyToMany
     @JoinTable(
         name = "transferencia_almoxarifado_item",
-        joinColumns = @JoinColumn(name = "transferencia_id"),
-        inverseJoinColumns = @JoinColumn(name = "item_id")
+        joinColumns = @JoinColumn(name = "transferencia_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id")
     )
     private Set<ItemTransferencia> itens = new HashSet<>();
 

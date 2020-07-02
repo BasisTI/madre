@@ -80,5 +80,6 @@
     <include
             file="config/liquibase/changelog/20200702143313_added_entity_ItemTransferencia.xml"
             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200702151141_BASIS-135233.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
