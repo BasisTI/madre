@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +38,7 @@ public class PrescricaoMedicamento extends PrescricaoMedica implements Serializa
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "prescricaoMedicamento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	@Field(type = FieldType.Nested)
 	private Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos = new HashSet<>();
 
 	public PrescricaoMedicamento itemPrescricaoMedicamentos(Set<ItemPrescricaoMedicamento> itemPrescricaoMedicamentos) {
