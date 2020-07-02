@@ -1,6 +1,8 @@
 package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.TipoDaCertidao;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -21,6 +23,8 @@ import java.time.LocalDate;
 /**
  * A Certidao.
  */
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "certidao")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -67,30 +71,10 @@ public class Certidao implements Serializable {
     @Column(name = "numero_da_declaracao_de_nascimento")
     private String numeroDaDeclaracaoDeNascimento;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRegistroDeNascimento() {
-        return registroDeNascimento;
-    }
 
     public Certidao registroDeNascimento(String registroDeNascimento) {
         this.registroDeNascimento = registroDeNascimento;
         return this;
-    }
-
-    public void setRegistroDeNascimento(String registroDeNascimento) {
-        this.registroDeNascimento = registroDeNascimento;
-    }
-
-    public TipoDaCertidao getTipoDaCertidao() {
-        return tipoDaCertidao;
     }
 
     public Certidao tipoDaCertidao(TipoDaCertidao tipoDaCertidao) {
@@ -98,25 +82,9 @@ public class Certidao implements Serializable {
         return this;
     }
 
-    public void setTipoDaCertidao(TipoDaCertidao tipoDaCertidao) {
-        this.tipoDaCertidao = tipoDaCertidao;
-    }
-
-    public String getNomeDoCartorio() {
-        return nomeDoCartorio;
-    }
-
     public Certidao nomeDoCartorio(String nomeDoCartorio) {
         this.nomeDoCartorio = nomeDoCartorio;
         return this;
-    }
-
-    public void setNomeDoCartorio(String nomeDoCartorio) {
-        this.nomeDoCartorio = nomeDoCartorio;
-    }
-
-    public String getLivro() {
-        return livro;
     }
 
     public Certidao livro(String livro) {
@@ -124,25 +92,9 @@ public class Certidao implements Serializable {
         return this;
     }
 
-    public void setLivro(String livro) {
-        this.livro = livro;
-    }
-
-    public String getFolhas() {
-        return folhas;
-    }
-
     public Certidao folhas(String folhas) {
         this.folhas = folhas;
         return this;
-    }
-
-    public void setFolhas(String folhas) {
-        this.folhas = folhas;
-    }
-
-    public String getTermo() {
-        return termo;
     }
 
     public Certidao termo(String termo) {
@@ -150,25 +102,9 @@ public class Certidao implements Serializable {
         return this;
     }
 
-    public void setTermo(String termo) {
-        this.termo = termo;
-    }
-
-    public LocalDate getDataDeEmissao() {
-        return dataDeEmissao;
-    }
-
     public Certidao dataDeEmissao(LocalDate dataDeEmissao) {
         this.dataDeEmissao = dataDeEmissao;
         return this;
-    }
-
-    public void setDataDeEmissao(LocalDate dataDeEmissao) {
-        this.dataDeEmissao = dataDeEmissao;
-    }
-
-    public String getNumeroDaDeclaracaoDeNascimento() {
-        return numeroDaDeclaracaoDeNascimento;
     }
 
     public Certidao numeroDaDeclaracaoDeNascimento(String numeroDaDeclaracaoDeNascimento) {
@@ -176,39 +112,5 @@ public class Certidao implements Serializable {
         return this;
     }
 
-    public void setNumeroDaDeclaracaoDeNascimento(String numeroDaDeclaracaoDeNascimento) {
-        this.numeroDaDeclaracaoDeNascimento = numeroDaDeclaracaoDeNascimento;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Certidao)) {
-            return false;
-        }
-        return id != null && id.equals(((Certidao) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Certidao{" +
-            "id=" + getId() +
-            ", registroDeNascimento='" + getRegistroDeNascimento() + "'" +
-            ", tipoDaCertidao='" + getTipoDaCertidao() + "'" +
-            ", nomeDoCartorio='" + getNomeDoCartorio() + "'" +
-            ", livro='" + getLivro() + "'" +
-            ", folhas='" + getFolhas() + "'" +
-            ", termo='" + getTermo() + "'" +
-            ", dataDeEmissao='" + getDataDeEmissao() + "'" +
-            ", numeroDaDeclaracaoDeNascimento='" + getNumeroDaDeclaracaoDeNascimento() + "'" +
-            "}";
-    }
 }

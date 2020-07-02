@@ -2,6 +2,8 @@ package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.validation.annotation.PIS;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.br.CPF;
@@ -23,6 +25,8 @@ import java.time.LocalDate;
 /**
  * A Documento.
  */
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "documento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -78,30 +82,9 @@ public class Documento implements Serializable {
     @JsonIgnoreProperties("documentos")
     private UF uf;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumeroDaIdentidade() {
-        return numeroDaIdentidade;
-    }
-
     public Documento numeroDaIdentidade(String numeroDaIdentidade) {
         this.numeroDaIdentidade = numeroDaIdentidade;
         return this;
-    }
-
-    public void setNumeroDaIdentidade(String numeroDaIdentidade) {
-        this.numeroDaIdentidade = numeroDaIdentidade;
-    }
-
-    public LocalDate getData() {
-        return data;
     }
 
     public Documento data(LocalDate data) {
@@ -109,25 +92,9 @@ public class Documento implements Serializable {
         return this;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
     public Documento cpf(String cpf) {
         this.cpf = cpf;
         return this;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getPisPasep() {
-        return pisPasep;
     }
 
     public Documento pisPasep(String pisPasep) {
@@ -135,26 +102,9 @@ public class Documento implements Serializable {
         return this;
     }
 
-    public void setPisPasep(String pisPasep) {
-        this.pisPasep = pisPasep;
-    }
-
-
-    public LocalDate getValidadeDaCnh() {
-        return validadeDaCnh;
-    }
-
     public Documento validadeDaCnh(LocalDate validadeDaCnh) {
         this.validadeDaCnh = validadeDaCnh;
         return this;
-    }
-
-    public void setValidadeDaCnh(LocalDate validadeDaCnh) {
-        this.validadeDaCnh = validadeDaCnh;
-    }
-
-    public String getCnh() {
-        return cnh;
     }
 
     public Documento cnh(String cnh) {
@@ -162,25 +112,13 @@ public class Documento implements Serializable {
         return this;
     }
 
-    public void setCnh(String cnh) {
-        this.cnh = cnh;
-    }
-
-    public Boolean isDocumentosApresentados() {
-        return documentosApresentados;
-    }
-
     public Documento documentosApresentados(Boolean documentosApresentados) {
         this.documentosApresentados = documentosApresentados;
         return this;
     }
 
-    public void setDocumentosApresentados(Boolean documentosApresentados) {
-        this.documentosApresentados = documentosApresentados;
-    }
-
-    public OrgaoEmissor getOrgaoEmissor() {
-        return orgaoEmissor;
+    public Boolean isDocumentosApresentados() {
+        return documentosApresentados;
     }
 
     public Documento orgaoEmissor(OrgaoEmissor orgaoEmissor) {
@@ -188,51 +126,10 @@ public class Documento implements Serializable {
         return this;
     }
 
-    public void setOrgaoEmissor(OrgaoEmissor orgaoEmissor) {
-        this.orgaoEmissor = orgaoEmissor;
-    }
-
-    public UF getUf() {
-        return uf;
-    }
-
     public Documento uf(UF uF) {
         this.uf = uF;
         return this;
     }
 
-    public void setUf(UF uF) {
-        this.uf = uF;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Documento)) {
-            return false;
-        }
-        return id != null && id.equals(((Documento) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Documento{" +
-            "id=" + getId() +
-            ", numeroDaIdentidade='" + getNumeroDaIdentidade() + "'" +
-            ", data='" + getData() + "'" +
-            ", cpf='" + getCpf() + "'" +
-            ", pisPasep='" + getPisPasep() + "'" +
-            ", cnh='" + getCnh() + "'" +
-            ", validadeDaCnh='" + getValidadeDaCnh() + "'" +
-            ", documentosApresentados='" + isDocumentosApresentados() + "'" +
-            "}";
-    }
 }
