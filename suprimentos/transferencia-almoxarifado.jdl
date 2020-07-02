@@ -1,16 +1,3 @@
-relationship ManyToMany {
-	TransferenciaAlmoxarifado{itens} to ItemTransferencia{transferencia},
-}
-
-relationship ManyToOne {
-	TransferenciaAlmoxarifado{origem required} to Almoxarifado,
-    TransferenciaAlmoxarifado{destino required} to Almoxarifado,
-    TransferenciaAlmoxarifado{informacaoAdicional required} to InformacaoTransferencia,
-    InformacaoTransferencia{classificacaoMaterial} to ClassificacaoMaterial,
-    InformacaoTransferencia{centroAtividade} to CentroAtividade,
-    ItemTransferencia{material required} to Material
-}
-
 entity ClassificacaoMaterial {
 	descricao String required
 }
@@ -20,17 +7,11 @@ entity InformacaoTransferencia {
     efetivada Boolean
 }
 
-entity TransferenciaAlmoxarifado {
-	geradoEm ZonedDateTime required
-    geradoPor String required
-}
-
 entity ItemTransferencia {
 	quantidadeEnvidada Integer required
 }
 
-entity CentroAtividade {}
-
-entity Almoxarifado {}
-
-entity Material {}
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

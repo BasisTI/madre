@@ -1,0 +1,27 @@
+{
+  "name": "InformacaoTransferencia",
+  "fields": [
+    {
+      "fieldName": "ativa",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "efetivada",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200702143213",
+  "entityTableName": "informacao_transferencia",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madresuprimentos",
+  "applications": "*",
+  "microserviceName": "madresuprimentos",
+  "skipClient": true
+}
