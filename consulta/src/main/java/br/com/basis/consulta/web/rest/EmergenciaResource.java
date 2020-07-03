@@ -151,9 +151,9 @@ public class EmergenciaResource {
     }
     @GetMapping("/consultas-emergencias/calendario")
     @Timed
-    public ResponseEntity<Page<CalendarioResumo>> buscarCalendarioResumo(Pageable pageable) {
+    public ResponseEntity<List<CalendarioResumo>> buscarCalendarioResumo(Pageable pageable) {
         log.debug("REST request to get all Triagens");
-        return ResponseEntity.ok(emergenciaService.buscarCalendarioResumo(pageable));
+        return ResponseEntity.ok(emergenciaService.buscarCalendarioResumo(pageable).getContent());
     }
 
 }
