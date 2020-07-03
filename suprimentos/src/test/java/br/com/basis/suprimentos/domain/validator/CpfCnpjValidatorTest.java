@@ -48,7 +48,7 @@ class CpfCnpjValidatorTest {
     @Test
     void cnpjInvalidoTest() {
         final CnpjPlaceholder placeholder = new CnpjPlaceholder("71021524000150");
-        final Set<ConstraintViolation<CnpjPlaceholder>> constraintViolations = validator.validate(placeholder);
+        Set<ConstraintViolation<CnpjPlaceholder>> constraintViolations = validator.validate(placeholder);
         assertFalse(constraintViolations.isEmpty());
     }
 

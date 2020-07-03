@@ -13,11 +13,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -33,10 +39,6 @@ public class TransferenciaAlmoxarifado implements Serializable {
     @Field(type = FieldType.Keyword)
     private Long id;
 
-    @NotNull
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo;
-
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("transferenciaAlmoxarifados")
@@ -46,4 +48,22 @@ public class TransferenciaAlmoxarifado implements Serializable {
     @NotNull
     @JsonIgnoreProperties("transferenciaAlmoxarifados")
     private Almoxarifado destino;
+
+    @ManyToOne
+    @JsonIgnoreProperties("transferenciaAlmoxarifados")
+    private InformacaoTransferencia informacaoTransferencia;
+
+    @ManyToMany
+    @JoinTable(
+        name = "transferencia_almoxarifado_item",
+        joinColumns = @JoinColumn(name = "transferencia_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id")
+    )
+    private Set<ItemTransferencia> itens = new HashSet<>();
+
+    @Column(name = "gerado_por")
+    private String geradoPor;
+
+    @Column(name = "gerado_em")
+    private ZonedDateTime geradoEm;
 }

@@ -3,7 +3,7 @@ package br.com.basis.madre.service.dto;
 import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
 import lombok.Data;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;

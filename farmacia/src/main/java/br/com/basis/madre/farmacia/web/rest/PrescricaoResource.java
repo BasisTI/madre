@@ -32,7 +32,7 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 public class PrescricaoResource {
 
     @Autowired
-    private PrescricaoSerchRepository prescricaoRepositorySearch;
+    private PrescricaoSearchRepository prescricaoRepositorySearch;
 
     private static final String ENTITY_NAME = "prescricao";
     private String applicationName;

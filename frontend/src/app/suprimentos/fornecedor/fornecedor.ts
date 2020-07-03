@@ -1,6 +1,6 @@
 export interface IFornecedor {
     id?: number;
-    cnpj?: string;
+    cpfCnpj?: string;
     razaoSocial?: string;
     nomeFantasia?: string;
 }
@@ -8,7 +8,7 @@ export interface IFornecedor {
 export class Fornecedor {
     constructor(
         public id?: number,
-        public cnpj?: string,
+        public cpfCnpj?: string,
         public razaoSocial?: string,
         public nomeFantasia?: string,
     ) {}

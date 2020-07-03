@@ -7,7 +7,7 @@ import br.com.basis.madre.prescricao.repository.search.DiluenteSearchRepository;
 import br.com.basis.madre.prescricao.service.DiluenteService;
 import br.com.basis.madre.prescricao.service.dto.DiluenteDTO;
 import br.com.basis.madre.prescricao.service.mapper.DiluenteMapper;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.domain;
 
+import br.com.basis.suprimentos.domain.annotation.CpfCnpj;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -32,10 +33,11 @@ public class Fornecedor implements Serializable {
     @Field(type = FieldType.Keyword)
     private Long id;
 
+    @CpfCnpj
     @NotNull
-    @Size(min = 14, max = 14)
-    @Column(name = "cnpj", length = 14, nullable = false, unique = true)
-    private String cnpj;
+    @Size(min = 11, max = 14)
+    @Column(name = "cpf_cnpj", length = 14, nullable = false, unique = true)
+    private String cpfCnpj;
 
     @NotNull
     @Size(max = 255)

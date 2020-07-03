@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "br.com.basis.madre.farmacia"
     },
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
     "baseName": "farmacia",
     "packageName": "br.com.basis.madre.farmacia",
@@ -21,16 +21,28 @@
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "MjhjZmEyNjBkM2YxYWNjMGUyM2QwOGY2YjU5YWVmMDhhN2E5ZDU1OTJjODFkOWI5OWE2M2VhMzc4ZjVhMTkyMGYwMWYzOThkOWYyYTFlMDExNTIxZDUzZmJiN2JlYzdmMjg1ZWQxODE1N2RjOGNmNjA5MmYxOTdlNzA5N2UxYmQ=",
+    "jwtSecretKey": "NWE4Njc3YjgxNzNhZmIzMWUxMzMzODhmNDVmN2M2MDVmYzAzMTk1NDdiMjNiMDhlZDEwMDkyZjBhMjNhMDA4ODJkZmJkN2FmZWRkOThhNDNkZjJiODdhZDk3YzAzZmQwZjlmMjJhZWM5Zjc0YmM0NzEwMTM2NTVlMTBmMWRhYmM=",
     "embeddableLaunchScript": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1592249239337,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
-    "otherModules": [],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "enableTranslation": false,
     "clientPackageManager": "npm",
-    "blueprints": [],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "skipClient": true,
     "skipUserManagement": true
   }

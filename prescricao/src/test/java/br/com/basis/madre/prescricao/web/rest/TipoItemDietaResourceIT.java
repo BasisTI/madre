@@ -7,7 +7,7 @@ import br.com.basis.madre.prescricao.repository.search.TipoItemDietaSearchReposi
 import br.com.basis.madre.prescricao.service.TipoItemDietaService;
 import br.com.basis.madre.prescricao.service.dto.TipoItemDietaDTO;
 import br.com.basis.madre.prescricao.service.mapper.TipoItemDietaMapper;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

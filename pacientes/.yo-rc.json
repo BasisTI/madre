@@ -3,12 +3,12 @@
     "promptValues": {
       "packageName": "br.com.basis.madre"
     },
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
     "baseName": "pacientes",
     "packageName": "br.com.basis.madre",
     "packageFolder": "br/com/basis/madre",
-    "serverPort": "8082",
+    "serverPort": "8081",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
     "enableHibernateCache": true,
@@ -21,12 +21,28 @@
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "OGNiMzdjZTA5YmEwNjhjOTg4Mjg1MTMzMWZlNDg2ODZlMjk0MzM2ODJmYTE4N2I5YzFkOGU2ZDE0OWE0ZGRlMDM0YmNiYjU1ZjRhOGU0N2UyMTU5NDllZmM2YWJlMDhjYWE3NGQyNDJiMDdmNGFmNzA1ODRiZGIyNTkyMmE3MGQ=",
+    "jwtSecretKey": "NWJlMTI2MDhiYzc4MGZjZGJkNTU2ZDEzOTFlZWIwMjYwMTM0ZDM5MmJkYmI4OTk1NmJmN2M5MmU4ZDQwNjFhOTgxOTFiNDk0ODBlMzY2N2MzMGI1MTRmM2I3OTNjMmM3ZDhkMDJkOWY0OWNlYTJmZTNmOTZiZjI5MjU2MWJmZTI=",
+    "embeddableLaunchScript": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1592249669075,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "otherModules": [],
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "enableTranslation": false,
     "clientPackageManager": "npm",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "skipClient": true,
     "skipUserManagement": true
   }

@@ -96,7 +96,6 @@ public class TransferenciaAlmoxarifadoResourceIT {
      */
     public static TransferenciaAlmoxarifado createEntity(EntityManager em) {
         TransferenciaAlmoxarifado transferenciaAlmoxarifado = new TransferenciaAlmoxarifado();
-        transferenciaAlmoxarifado.setAtivo(DEFAULT_ATIVO);
         // Add required entity
         Almoxarifado almoxarifado;
         if (TestUtil.findAll(em, Almoxarifado.class).isEmpty()) {
@@ -120,7 +119,6 @@ public class TransferenciaAlmoxarifadoResourceIT {
      */
     public static TransferenciaAlmoxarifado createUpdatedEntity(EntityManager em) {
         TransferenciaAlmoxarifado transferenciaAlmoxarifado = new TransferenciaAlmoxarifado();
-        transferenciaAlmoxarifado.setAtivo(UPDATED_ATIVO);
         // Add required entity
         Almoxarifado almoxarifado;
         if (TestUtil.findAll(em, Almoxarifado.class).isEmpty()) {
@@ -169,7 +167,6 @@ public class TransferenciaAlmoxarifadoResourceIT {
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
         assertThat(transferenciaAlmoxarifadoList).hasSize(databaseSizeBeforeCreate + 1);
         TransferenciaAlmoxarifado testTransferenciaAlmoxarifado = transferenciaAlmoxarifadoList.get(transferenciaAlmoxarifadoList.size() - 1);
-        assertThat(testTransferenciaAlmoxarifado.getAtivo()).isEqualTo(DEFAULT_ATIVO);
 
         // Validate the TransferenciaAlmoxarifado in Elasticsearch
         verify(mockTransferenciaAlmoxarifadoSearchRepository, times(1)).save(testTransferenciaAlmoxarifado);
@@ -204,7 +201,6 @@ public class TransferenciaAlmoxarifadoResourceIT {
     public void checkAtivoIsRequired() throws Exception {
         int databaseSizeBeforeTest = transferenciaAlmoxarifadoRepository.findAll().size();
         // set the field null
-        transferenciaAlmoxarifado.setAtivo(null);
 
         // Create the TransferenciaAlmoxarifado, which fails.
         TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO = transferenciaAlmoxarifadoMapper.toDto(transferenciaAlmoxarifado);
@@ -266,8 +262,6 @@ public class TransferenciaAlmoxarifadoResourceIT {
         TransferenciaAlmoxarifado updatedTransferenciaAlmoxarifado = transferenciaAlmoxarifadoRepository.findById(transferenciaAlmoxarifado.getId()).get();
         // Disconnect from session so that the updates on updatedTransferenciaAlmoxarifado are not directly saved in db
         em.detach(updatedTransferenciaAlmoxarifado);
-        updatedTransferenciaAlmoxarifado
-            .setAtivo(UPDATED_ATIVO);
         TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO = transferenciaAlmoxarifadoMapper.toDto(updatedTransferenciaAlmoxarifado);
 
         restTransferenciaAlmoxarifadoMockMvc.perform(put("/api/transferencia-almoxarifados")
@@ -279,7 +273,6 @@ public class TransferenciaAlmoxarifadoResourceIT {
         List<TransferenciaAlmoxarifado> transferenciaAlmoxarifadoList = transferenciaAlmoxarifadoRepository.findAll();
         assertThat(transferenciaAlmoxarifadoList).hasSize(databaseSizeBeforeUpdate);
         TransferenciaAlmoxarifado testTransferenciaAlmoxarifado = transferenciaAlmoxarifadoList.get(transferenciaAlmoxarifadoList.size() - 1);
-        assertThat(testTransferenciaAlmoxarifado.getAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the TransferenciaAlmoxarifado in Elasticsearch
         verify(mockTransferenciaAlmoxarifadoSearchRepository, times(1)).save(testTransferenciaAlmoxarifado);

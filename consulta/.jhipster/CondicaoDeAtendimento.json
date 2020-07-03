@@ -1,0 +1,41 @@
+{
+    "name": "CondicaoDeAtendimento",
+    "fields": [
+        {
+            "fieldName": "sigla",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "especialidade",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "emergencia",
+            "otherEntityRelationshipName": "condicaoDeAtendimento",
+            "relationshipName": "emergencia",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200619145300",
+    "entityTableName": "condicao_de_atendimento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "madreconsulta",
+    "applications": "*",
+    "microserviceName": "madreconsulta",
+    "skipClient": true
+}

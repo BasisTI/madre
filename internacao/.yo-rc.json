@@ -1,9 +1,9 @@
 {
-  "generator-jhipster-nuvem-java": {
+  "generator-jhipster": {
     "promptValues": {
       "packageName": "br.com.basis.madre"
     },
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
     "baseName": "internacao",
     "packageName": "br.com.basis.madre",
@@ -21,13 +21,10 @@
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "MzdiNzk1NTI5YTRiZDk5NjU3Mzk2ZmJlNDgxNDNlYzdlMmYwODk0MmY2YWQ2MmE5NzcxOWQ4ZTRjYjY2YTI3YWNlZmViNDI4MjlkMWJkMmUyYTRlMGI3MTQwNTViZTc3NDE5OWY3MTQ1OGQ3MzNiYTVhMWQ4YWU3YWNjNzFjNjA=",
-    "embeddableLaunchScript": false
-  },
-  "generator-jhipster": {
-    "jhipsterVersion": "6.4.1",
-    "applicationType": "microservice",
-    "baseName": "internacao",
+    "jwtSecretKey": "MDEzMGZhOWM3ZDMzNWVjMTg5OGQ4YTVmMzI3YjZmNTNlNzQ4ODg1MzdhNTgwNzYwNzRlNmNjYTVlYTMzZDU4MTM5NTUxZGZlYjMyYmQ0OGJhNTc3YjQyYjMzYWNhZDJlYjJiNTZhNWU1NjI5YzQ5MWRlNjhjY2UyNmE2NTQ1MzM=",
+    "embeddableLaunchScript": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1592249765335,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
@@ -35,7 +32,7 @@
     "otherModules": [
       {
         "name": "generator-jhipster-nuvem-java",
-        "version": "6.5.0"
+        "version": "6.9.2"
       }
     ],
     "enableTranslation": false,
@@ -43,7 +40,7 @@
     "blueprints": [
       {
         "name": "generator-jhipster-nuvem-java",
-        "version": "6.5.0"
+        "version": "6.9.2"
       }
     ],
     "skipClient": true,

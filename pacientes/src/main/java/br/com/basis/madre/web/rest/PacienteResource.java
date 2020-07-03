@@ -2,7 +2,6 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
-import br.com.basis.madre.service.dto.FormularioCadastroDTO;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
@@ -10,12 +9,6 @@ import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import javax.validation.Valid;
-
 import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.domain.Paciente}.
@@ -136,6 +135,14 @@ public class PacienteResource {
     public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
         Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(pacienteDTO);
+    }
+
+    @GetMapping("/pacientes/prontuario/{prontuario}")
+    @Timed
+    public ResponseEntity<PacienteInclusaoDTO> getPacienteProntuario(@PathVariable Long prontuario) {
+        log.debug("REST request to get Paciente : {}", prontuario);
+        Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOneProntuario(prontuario);
         return ResponseUtil.wrapOrNotFound(pacienteDTO);
     }
 
