@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "br.com.basis.madre.prescricao"
     },
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
     "baseName": "prescricao",
     "packageName": "br.com.basis.madre.prescricao",
@@ -14,23 +14,35 @@
     "enableHibernateCache": true,
     "websocket": false,
     "databaseType": "sql",
-    "devDatabaseType": "h2Memory",
+    "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
     "searchEngine": "elasticsearch",
     "messageBroker": false,
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "NWM1ODkwN2MxMTJlMjI3NjM1YTBkMmE0MjgzNjFmZTk0MDg5ZGVjMGRlNmJiNzViYTFhOWZjZWQ4YzViYzNmZDNhM2MxM2NmMjRjMDQyZTg5Zjk2MDU1ZTE1ZjM0NDUyNDI0MTgzYTk2NTg0MjI0YjZkZTU5MTljNWVkMjZkNzk=",
+    "jwtSecretKey": "NDVlMGU0Y2U4YTgzNTIwYmExZDBiMGVlNDU3NmY5M2VjYjk1MzRiNDAyODgwZjA5ODEyNTcxMjVjOGEwZmQxYWIwZTA3Yzc5MjQ4MDI1MTAyYjY3MmZlYzI1Y2UxNGZmZjAwNGJmZmE0YjhjYTcxMmI1MTc1NDk1ZGY5N2I5OTA=",
     "embeddableLaunchScript": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1592254171004,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
-    "otherModules": [],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "enableTranslation": false,
     "clientPackageManager": "npm",
-    "blueprints": [],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.9.2"
+      }
+    ],
     "skipClient": true,
     "skipUserManagement": true
   }

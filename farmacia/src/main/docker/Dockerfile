@@ -17,3 +17,4 @@ ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 8081 5701/udp
 
 ADD *.jar app.jar
+

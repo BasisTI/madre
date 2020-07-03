@@ -7,7 +7,7 @@ import br.com.basis.madre.farmacia.repository.search.MedicamentoSearchRepository
 import br.com.basis.madre.farmacia.service.MedicamentoService;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import br.com.basis.madre.farmacia.service.mapper.MedicamentoMapper;
-import br.com.basis.madre.farmacia.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -7,8 +7,8 @@ import br.com.basis.madre.farmacia.repository.search.EstornoSearchRepository;
 import br.com.basis.madre.farmacia.service.EstornoService;
 import br.com.basis.madre.farmacia.service.dto.EstornoDTO;
 import br.com.basis.madre.farmacia.service.mapper.EstornoMapper;
-import br.com.basis.madre.farmacia.web.rest.errors.ExceptionTranslator;
 
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;

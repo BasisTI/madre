@@ -138,6 +138,14 @@ public class PacienteResource {
         return ResponseUtil.wrapOrNotFound(pacienteDTO);
     }
 
+    @GetMapping("/pacientes/prontuario/{prontuario}")
+    @Timed
+    public ResponseEntity<PacienteInclusaoDTO> getPacienteProntuario(@PathVariable Long prontuario) {
+        log.debug("REST request to get Paciente : {}", prontuario);
+        Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOneProntuario(prontuario);
+        return ResponseUtil.wrapOrNotFound(pacienteDTO);
+    }
+
     /**
      * {@code DELETE  /pacientes/:id} : delete the "id" paciente.
      *

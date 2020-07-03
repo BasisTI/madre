@@ -7,8 +7,8 @@ import br.com.basis.madre.farmacia.repository.search.MotivoSearchRepository;
 import br.com.basis.madre.farmacia.service.MotivoService;
 import br.com.basis.madre.farmacia.service.dto.MotivoDTO;
 import br.com.basis.madre.farmacia.service.mapper.MotivoMapper;
-import br.com.basis.madre.farmacia.web.rest.errors.ExceptionTranslator;
 
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;

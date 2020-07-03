@@ -101,7 +101,7 @@ public class FornecedorResourceIT {
      */
     public static Fornecedor createEntity(EntityManager em) {
         Fornecedor fornecedor = new Fornecedor();
-        fornecedor.setCnpj(DEFAULT_CNPJ);
+        fornecedor.setCpfCnpj(DEFAULT_CNPJ);
         fornecedor.setRazaoSocial(DEFAULT_RAZAO_SOCIAL);
         fornecedor.setNomeFantasia(DEFAULT_NOME_FANTASIA);
         return fornecedor;
@@ -115,7 +115,7 @@ public class FornecedorResourceIT {
      */
     public static Fornecedor createUpdatedEntity(EntityManager em) {
         Fornecedor fornecedor = new Fornecedor();
-        fornecedor.setCnpj(UPDATED_CNPJ);
+        fornecedor.setCpfCnpj(UPDATED_CNPJ);
         fornecedor.setRazaoSocial(UPDATED_RAZAO_SOCIAL);
         fornecedor.setNomeFantasia(UPDATED_NOME_FANTASIA);
         return fornecedor;
@@ -154,7 +154,7 @@ public class FornecedorResourceIT {
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
         assertThat(fornecedorList).hasSize(databaseSizeBeforeCreate + 1);
         Fornecedor testFornecedor = fornecedorList.get(fornecedorList.size() - 1);
-        assertThat(testFornecedor.getCnpj()).isEqualTo(DEFAULT_CNPJ);
+        assertThat(testFornecedor.getCpfCnpj()).isEqualTo(DEFAULT_CNPJ);
         assertThat(testFornecedor.getRazaoSocial()).isEqualTo(DEFAULT_RAZAO_SOCIAL);
         assertThat(testFornecedor.getNomeFantasia()).isEqualTo(DEFAULT_NOME_FANTASIA);
 
@@ -191,7 +191,7 @@ public class FornecedorResourceIT {
     public void checkCnpjIsRequired() throws Exception {
         int databaseSizeBeforeTest = fornecedorRepository.findAll().size();
         // set the field null
-        fornecedor.setCnpj(null);
+        fornecedor.setCpfCnpj(null);
 
         // Create the Fornecedor, which fails.
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(fornecedor);
@@ -295,7 +295,7 @@ public class FornecedorResourceIT {
         Fornecedor updatedFornecedor = fornecedorRepository.findById(fornecedor.getId()).get();
         // Disconnect from session so that the updates on updatedFornecedor are not directly saved in db
         em.detach(updatedFornecedor);
-        updatedFornecedor.setCnpj(UPDATED_CNPJ);
+        updatedFornecedor.setCpfCnpj(UPDATED_CNPJ);
         updatedFornecedor.setRazaoSocial(UPDATED_RAZAO_SOCIAL);
         updatedFornecedor.setNomeFantasia(UPDATED_NOME_FANTASIA);
         FornecedorDTO fornecedorDTO = fornecedorMapper.toDto(updatedFornecedor);
@@ -309,7 +309,7 @@ public class FornecedorResourceIT {
         List<Fornecedor> fornecedorList = fornecedorRepository.findAll();
         assertThat(fornecedorList).hasSize(databaseSizeBeforeUpdate);
         Fornecedor testFornecedor = fornecedorList.get(fornecedorList.size() - 1);
-        assertThat(testFornecedor.getCnpj()).isEqualTo(UPDATED_CNPJ);
+        assertThat(testFornecedor.getCpfCnpj()).isEqualTo(UPDATED_CNPJ);
         assertThat(testFornecedor.getRazaoSocial()).isEqualTo(UPDATED_RAZAO_SOCIAL);
         assertThat(testFornecedor.getNomeFantasia()).isEqualTo(UPDATED_NOME_FANTASIA);
 

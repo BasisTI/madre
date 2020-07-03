@@ -32,6 +32,8 @@ management:
       enabled: false
 
 spring:
+  redis:
+    host: localhost
   profiles:
     active: dev
     include:
@@ -42,7 +44,7 @@ spring:
   devtools:
     restart:
       enabled: true
-      additional-exclude: .h2.server.properties
+      additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
@@ -57,27 +59,15 @@ spring:
       poolName: Hikari
       auto-commit: false
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
-    database: POSTGRESQL
-    show-sql: false
-    properties:
-      hibernate.id.new_generator_mappings: true
-      hibernate.connection.provider_disables_autocommit: true
-      hibernate.cache.use_second_level_cache: true
-      hibernate.cache.use_query_cache: false
-      hibernate.generate_statistics: false
-      hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-      hibernate.cache.hazelcast.instance_name: prescricao
-      hibernate.cache.use_minimal_puts: true
-      hibernate.cache.hazelcast.use_lite_member: true
+    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
+    show-sql: true
   data:
-    elasticsearch:
-      cluster-nodes: localhost:9300
     jest:
       uri: http://localhost:9200
-      # Aumentar o timeout quando executar o sistema pela primeira vez para evitar problema
-      # na criação dos indexs no elasticsearch
-      read-timeout: 10000
+  # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-connecting-to-elasticsearch-jest
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -117,7 +107,7 @@ jhipster:
       management-center: # Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
         enabled: false
         update-interval: 3
-        url: http://localhost:8180/mancenter
+        url: http://localhost:8180/hazelcast-mancenter
   # CORS is disabled by default on microservices, as you should access them through a gateway.
   # If you want to enable it, please uncomment the configuration below.
   # cors:
@@ -131,7 +121,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: NWM1ODkwN2MxMTJlMjI3NjM1YTBkMmE0MjgzNjFmZTk0MDg5ZGVjMGRlNmJiNzViYTFhOWZjZWQ4YzViYzNmZDNhM2MxM2NmMjRjMDQyZTg5Zjk2MDU1ZTE1ZjM0NDUyNDI0MTgzYTk2NTg0MjI0YjZkZTU5MTljNWVkMjZkNzk=
+        base64-secret: NDVlMGU0Y2U4YTgzNTIwYmExZDBiMGVlNDU3NmY5M2VjYjk1MzRiNDAyODgwZjA5ODEyNTcxMjVjOGEwZmQxYWIwZTA3Yzc5MjQ4MDI1MTAyYjY3MmZlYzI1Y2UxNGZmZjAwNGJmZmE0YjhjYTcxMmI1MTc1NDk1ZGY5N2I5OTA=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
