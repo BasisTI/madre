@@ -3,6 +3,7 @@ package br.com.basis.madre.farmacia.web.rest;
 import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.repository.search.PrescricaoSearchRepository;
 import br.com.basis.madre.farmacia.service.projection.PrescricaoLocal;
+
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import com.github.javafaker.Faker;
 import io.github.jhipster.web.util.HeaderUtil;

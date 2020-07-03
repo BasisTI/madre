@@ -1,6 +1,7 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.service.DispensacaoMedicamentosService;
+import br.com.basis.madre.farmacia.web.rest.erro.DispensacaoErro;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.farmacia.service.dto.DispensacaoMedicamentosDTO;
 
@@ -16,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zalando.problem.Status;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -57,6 +59,14 @@ public class DispensacaoMedicamentosResource {
             throw new BadRequestAlertException("A new dispensacaoMedicamentos cannot already have an ID", ENTITY_NAME, "idexists");
         }
         DispensacaoMedicamentosDTO result = dispensacaoMedicamentosService.save(dispensacaoMedicamentosDTO);
+        if(result == null ){
+            DispensacaoErro dispensacaoErro = new DispensacaoErro();
+            dispensacaoErro.setError("dispensacao erro ");
+            dispensacaoErro.setMessage("medicamento Já foi dispensado");
+            dispensacaoErro.setStatus(Status.BAD_REQUEST.getStatusCode());
+            dispensacaoErro.setTimestamp(System.currentTimeMillis());
+            return ResponseEntity.badRequest().body(null);
+        }
         return ResponseEntity.created(new URI("/api/dispensacao-medicamentos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);

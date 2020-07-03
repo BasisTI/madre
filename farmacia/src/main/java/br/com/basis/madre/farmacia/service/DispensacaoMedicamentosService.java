@@ -5,6 +5,7 @@ import br.com.basis.madre.farmacia.domain.Medicamento;
 import br.com.basis.madre.farmacia.domain.Prescricao;
 import br.com.basis.madre.farmacia.repository.DispensacaoMedicamentosRepository;
 import br.com.basis.madre.farmacia.repository.search.DispensacaoMedicamentosSearchRepository;
+import br.com.basis.madre.farmacia.repository.search.PrescricaoSearchRepository;
 import br.com.basis.madre.farmacia.service.dto.DispensacaoDTO;
 import br.com.basis.madre.farmacia.service.dto.DispensacaoMedicamentosDTO;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,9 @@ public class DispensacaoMedicamentosService {
     private final DispensacaoService dispensacaoService;
     private final PrescricaoResource prescricaoResource;
     private final MedicamentoMapper medicamentoMapper;
+    private final PrescricaoSearchRepository prescricaoSearchRepository;
 
-    public DispensacaoMedicamentosService(DispensacaoMedicamentosRepository dispensacaoMedicamentosRepository, DispensacaoMedicamentosMapper dispensacaoMedicamentosMapper, DispensacaoMedicamentosSearchRepository dispensacaoMedicamentosSearchRepository, MedicamentoService medicamento, MedicamentoService medicamentoService, DispensacaoService dispensacaoService, PrescricaoResource prescricaoResource, MedicamentoMapper medicamentoMapper) {
+    public DispensacaoMedicamentosService(DispensacaoMedicamentosRepository dispensacaoMedicamentosRepository, DispensacaoMedicamentosMapper dispensacaoMedicamentosMapper, DispensacaoMedicamentosSearchRepository dispensacaoMedicamentosSearchRepository, MedicamentoService medicamento, MedicamentoService medicamentoService, DispensacaoService dispensacaoService, PrescricaoResource prescricaoResource, MedicamentoMapper medicamentoMapper, PrescricaoSearchRepository prescricaoSearchRepository) {
         this.dispensacaoMedicamentosRepository = dispensacaoMedicamentosRepository;
         this.dispensacaoMedicamentosMapper = dispensacaoMedicamentosMapper;
         this.dispensacaoMedicamentosSearchRepository = dispensacaoMedicamentosSearchRepository;
@@ -54,6 +57,7 @@ public class DispensacaoMedicamentosService {
         this.dispensacaoService = dispensacaoService;
         this.prescricaoResource = prescricaoResource;
         this.medicamentoMapper = medicamentoMapper;
+        this.prescricaoSearchRepository = prescricaoSearchRepository;
     }
 
     /**
@@ -111,15 +115,12 @@ public class DispensacaoMedicamentosService {
             } else if (medicamentosDispensados.size() == 0) {
                 medicamentosDispensados.add(medicamento2);
             } else {
-                for ( int i = 0; i <= medicamentosDispensados.size(); i++) {
-                    if (medicamentosDispensados.get(i) == null) {
-                        medicamentosDispensados.add(i, medicamento2) ;
-                        break;
-                    }
+                medicamentosDispensados.add(medicamento2);
 
-                }
+
             }
             prescricao1.setMedicamentosDispensados(medicamentosDispensados);
+            prescricaoSearchRepository.save(prescricao1);
 
             prescricaoResource.putPrescricao(prescricao1);
 
@@ -189,7 +190,7 @@ public class DispensacaoMedicamentosService {
         Long  idPrescricao = dispensacaoDTO.get().getIdPrescricao();
         Long idMedicamento = dispensacaoMedicamentosDTO.getMedicamentosId();
 
-        Optional<MedicamentoDTO>  medicamento = medicamentoService.findOne(idMedicamento);
+        MedicamentoDTO  medicamento = medicamentoService.findOne(idMedicamento).orElseThrow(EntityNotFoundException::new);
 
         Optional<Prescricao> prescricao = prescricaoResource.getPorId(idPrescricao);
         List<Medicamento> medicamentosDispensados = prescricao.get().getMedicamentosDispensados();
@@ -200,7 +201,9 @@ public class DispensacaoMedicamentosService {
 
         } else {
             for (int i = 0; i < medicamentosDispensados.size(); i++) {
-                Medicamento medicamento1 = medicamentosDispensados.get(i);
+                MedicamentoDTO medicamento1 = medicamentoMapper.toDto(medicamentosDispensados.get(i));
+
+
                 if (medicamento1.equals(medicamento)) {
                     condicao = false;
 
