@@ -1,10 +1,9 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.domain.Prescricao;
-import br.com.basis.madre.farmacia.repository.search.PrescricaoSerchRepository;
-import br.com.basis.madre.farmacia.service.dto.ApresentacaoDTO;
+import br.com.basis.madre.farmacia.repository.search.PrescricaoSearchRepository;
 import br.com.basis.madre.farmacia.service.projection.PrescricaoLocal;
-import br.com.basis.madre.farmacia.web.rest.errors.BadRequestAlertException;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import com.github.javafaker.Faker;
 import io.github.jhipster.web.util.HeaderUtil;
 import joptsimple.internal.Strings;
@@ -19,7 +18,11 @@ import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilde
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.util.Locale;
