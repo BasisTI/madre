@@ -54,37 +54,10 @@ export class DispensacaoMedicamentoComponent implements OnInit {
         console.log(this.prescricao);
         console.log('xx', this.prescricao.medicamentosDispensados);
         this.setDispensacaoDeMedicamento(event);
-        this.getMedicamentoPorId();
-        this.for();
 
-        console.log(this.boolean);
-        if (this.boolean) {
-            this.service
-                .DispensarMedicamento(this.dipensacaoMedicamentos)
-                .subscribe(
-                    (resut) => (
-                        this.dispensacoesMedicamento.push(resut),
-                        console.log('metodo1', this.prescricao.medicamentosDispensados)
-                    ),
-                );
-
-            if (this.prescricao.medicamentosDispensados === null) {
-                this.prescricao.medicamentosDispensados = this.medicamentos;
-                this.prescricao.medicamentosDispensados.push(this.medicamento);
-            } else if (this.prescricao.medicamentosDispensados.length === 0) {
-                this.prescricao.medicamentosDispensados[0] = this.medicamento;
-            } else {
-                for (let i = 0; i <= this.prescricao.medicamentosDispensados.length; i++) {
-                    console.log('for1');
-                    if (this.prescricao.medicamentosDispensados[i] === null) {
-                        console.log('for2');
-                        this.prescricao.medicamentosDispensados[i] = this.medicamento;
-                        break;
-                    }
-                    console.log('vama ver', this.prescricao);
-                }
-            }
-        }
+        this.service.getMedicamentoPorId(this.id).subscribe((resut) => {
+            this.service.DispensarMedicamento(this.dipensacaoMedicamentos).subscribe();
+        });
     }
 
     ngOnInit(): void {
@@ -94,16 +67,14 @@ export class DispensacaoMedicamentoComponent implements OnInit {
 
     for() {
         if (this.prescricao.medicamentosDispensados === null) {
-            this.prescricao.medicamentosDispensados = this.medicamentos;
             this.boolean = true;
         } else if (this.prescricao.medicamentosDispensados.length === 0) {
             this.boolean = true;
         } else {
             for (let i = 0; i <= this.prescricao.medicamentosDispensados.length; i++) {
-                console.log('for4');
                 if (this.prescricao.medicamentosDispensados[i] === this.medicamento) {
                     this.boolean = false;
-                    console.log('for');
+
                     break;
                 } else {
                     this.boolean = true;
@@ -149,3 +120,18 @@ export class DispensacaoMedicamentoComponent implements OnInit {
 //     this.prescricao.medicamentosDispensados[i] = this.medicamento;
 //     break;
 // } else
+
+// if (this.prescricao.medicamentosDispensados === null) {
+//     this.prescricao.medicamentosDispensados = this.medicamentos;
+//     this.prescricao.medicamentosDispensados.push(this.medicamento);
+// } else if (this.prescricao.medicamentosDispensados.length === 0) {
+//     this.prescricao.medicamentosDispensados[0] = this.medicamento;
+// } else {
+//     for (let i = 0; i <= this.prescricao.medicamentosDispensados.length; i++) {
+//         if (this.prescricao.medicamentosDispensados[i] === null) {
+//             this.prescricao.medicamentosDispensados[i] = this.medicamento;
+//             break;
+//         }
+//         console.log('prescricao', this.prescricao);
+//     }
+// }
