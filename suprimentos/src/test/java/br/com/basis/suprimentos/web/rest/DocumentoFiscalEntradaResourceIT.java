@@ -137,7 +137,6 @@ public class DocumentoFiscalEntradaResourceIT {
         documentoFiscalEntrada.setNumeroDocumento(DEFAULT_NUMERO_DOCUMENTO);
         documentoFiscalEntrada.setSerie(DEFAULT_SERIE);
         documentoFiscalEntrada.setNotaEmpenho(DEFAULT_NOTA_EMPENHO);
-        documentoFiscalEntrada.setCpfCnpj(DEFAULT_CPF_CNPJ);
         documentoFiscalEntrada.setDataGeracao(DEFAULT_DATA_GERACAO);
         documentoFiscalEntrada.setDataEmissao(DEFAULT_DATA_EMISSAO);
         documentoFiscalEntrada.setDataEntrada(DEFAULT_DATA_ENTRADA);
@@ -170,7 +169,6 @@ public class DocumentoFiscalEntradaResourceIT {
         documentoFiscalEntrada.setNumeroDocumento(UPDATED_NUMERO_DOCUMENTO);
         documentoFiscalEntrada.setSerie(UPDATED_SERIE);
         documentoFiscalEntrada.setNotaEmpenho(UPDATED_NOTA_EMPENHO);
-        documentoFiscalEntrada.setCpfCnpj(UPDATED_CPF_CNPJ);
         documentoFiscalEntrada.setDataGeracao(UPDATED_DATA_GERACAO);
         documentoFiscalEntrada.setDataEmissao(UPDATED_DATA_EMISSAO);
         documentoFiscalEntrada.setDataGeracao(UPDATED_DATA_ENTRADA);
@@ -228,7 +226,6 @@ public class DocumentoFiscalEntradaResourceIT {
         assertThat(testDocumentoFiscalEntrada.getNumeroDocumento()).isEqualTo(DEFAULT_NUMERO_DOCUMENTO);
         assertThat(testDocumentoFiscalEntrada.getSerie()).isEqualTo(DEFAULT_SERIE);
         assertThat(testDocumentoFiscalEntrada.getNotaEmpenho()).isEqualTo(DEFAULT_NOTA_EMPENHO);
-        assertThat(testDocumentoFiscalEntrada.getCpfCnpj()).isEqualTo(DEFAULT_CPF_CNPJ);
         assertThat(testDocumentoFiscalEntrada.getDataGeracao()).isEqualTo(DEFAULT_DATA_GERACAO);
         assertThat(testDocumentoFiscalEntrada.getDataEmissao()).isEqualTo(DEFAULT_DATA_EMISSAO);
         assertThat(testDocumentoFiscalEntrada.getDataEntrada()).isEqualTo(DEFAULT_DATA_ENTRADA);
@@ -309,8 +306,6 @@ public class DocumentoFiscalEntradaResourceIT {
     public void checkCpfCnpjIsRequired() throws Exception {
         int databaseSizeBeforeTest = documentoFiscalEntradaRepository.findAll().size();
         // set the field null
-        documentoFiscalEntrada.setCpfCnpj(null);
-
         // Create the DocumentoFiscalEntrada, which fails.
         DocumentoFiscalEntradaDTO documentoFiscalEntradaDTO = documentoFiscalEntradaMapper.toDto(documentoFiscalEntrada);
 
@@ -510,7 +505,6 @@ public class DocumentoFiscalEntradaResourceIT {
         updatedDocumentoFiscalEntrada.setNumeroDocumento(UPDATED_NUMERO_DOCUMENTO);
         updatedDocumentoFiscalEntrada.setSerie(UPDATED_SERIE);
         updatedDocumentoFiscalEntrada.setNotaEmpenho(UPDATED_NOTA_EMPENHO);
-        updatedDocumentoFiscalEntrada.setCpfCnpj(UPDATED_CPF_CNPJ);
         updatedDocumentoFiscalEntrada.setDataGeracao(UPDATED_DATA_GERACAO);
         updatedDocumentoFiscalEntrada.setDataEmissao(UPDATED_DATA_EMISSAO);
         updatedDocumentoFiscalEntrada.setDataEntrada(UPDATED_DATA_ENTRADA);
@@ -533,7 +527,6 @@ public class DocumentoFiscalEntradaResourceIT {
         assertThat(testDocumentoFiscalEntrada.getNumeroDocumento()).isEqualTo(UPDATED_NUMERO_DOCUMENTO);
         assertThat(testDocumentoFiscalEntrada.getSerie()).isEqualTo(UPDATED_SERIE);
         assertThat(testDocumentoFiscalEntrada.getNotaEmpenho()).isEqualTo(UPDATED_NOTA_EMPENHO);
-        assertThat(testDocumentoFiscalEntrada.getCpfCnpj()).isEqualTo(UPDATED_CPF_CNPJ);
         assertThat(testDocumentoFiscalEntrada.getDataGeracao()).isEqualTo(UPDATED_DATA_GERACAO);
         assertThat(testDocumentoFiscalEntrada.getDataEmissao()).isEqualTo(UPDATED_DATA_EMISSAO);
         assertThat(testDocumentoFiscalEntrada.getDataEntrada()).isEqualTo(UPDATED_DATA_ENTRADA);

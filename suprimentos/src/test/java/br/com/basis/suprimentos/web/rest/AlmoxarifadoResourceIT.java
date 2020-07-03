@@ -126,7 +126,6 @@ public class AlmoxarifadoResourceIT {
         } else {
             centroDeAtividade = TestUtil.findAll(em, CentroDeAtividade.class).get(0);
         }
-        almoxarifado.setCentroDeAtividade(centroDeAtividade);
         return almoxarifado;
     }
 
@@ -153,7 +152,7 @@ public class AlmoxarifadoResourceIT {
         } else {
             centroDeAtividade = TestUtil.findAll(em, CentroDeAtividade.class).get(0);
         }
-        almoxarifado.setCentroDeAtividade(centroDeAtividade);
+
         return almoxarifado;
     }
 

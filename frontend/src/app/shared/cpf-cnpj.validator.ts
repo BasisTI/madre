@@ -3,9 +3,14 @@ import { AbstractControl } from '@angular/forms';
 export class CpfCnpjValidator {
     static pesoCPF = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
     static pesoCNPJ = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    private static FIELD_ERROR = { cpfCnpj: true };
 
     static valid(control: AbstractControl): { [key: string]: boolean } | null {
         const value = control.value as string;
+
+        if (!value) {
+            return CpfCnpjValidator.FIELD_ERROR;
+        }
 
         if (value.length === 11) {
             if (CpfCnpjValidator.validateCpf(value)) {
@@ -17,7 +22,7 @@ export class CpfCnpjValidator {
             }
         }
 
-        return { cpfCnpj: true };
+        return CpfCnpjValidator.FIELD_ERROR;
     }
 
     static validateCpf(cpf: string): boolean {

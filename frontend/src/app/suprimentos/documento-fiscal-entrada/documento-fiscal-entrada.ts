@@ -3,7 +3,6 @@ export interface IDocumentoFiscalEntrada {
     numeroDocumento?: number;
     serie?: string;
     notaEmpenho?: string;
-    cpfCnpj?: string;
     dataGeracao?: Date;
     dataEmissao?: Date;
     dataEntrada?: Date;
@@ -21,7 +20,6 @@ export class DocumentoFiscalEntrada {
         public numeroDocumento?: number,
         public serie?: string,
         public notaEmpenho?: string,
-        public cpfCnpj?: string,
         public dataGeracao?: Date,
         public dataEmissao?: Date,
         public dataEntrada?: Date,

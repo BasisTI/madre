@@ -23,7 +23,6 @@
     "enableSwaggerCodegen": false,
     "jwtSecretKey": "M2U3ZDA1MDQxYzg1YzEzNDQ1OWNkNDA4ZjY3MTZlNmU5Nzc3ZjJlYzljMDRhODI4ODViMDljNWU2Nzk5YTgxZmUyOTUwZWY4OGQxMzgzMDZkZThiMGQ0YTg5OWQwZTY5ZjJiM2RiY2FkNTk0ZjE1M2M3YWZjODlkN2Y4MzAyOTQ=",
     "embeddableLaunchScript": false,
-    "microserviceStackType": "SpringCloud",
     "creationTimestamp": 1591809817871,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
@@ -32,7 +31,7 @@
     "otherModules": [
       {
         "name": "generator-jhipster-nuvem-java",
-        "version": "6.9.2"
+        "version": "6.9.3"
       }
     ],
     "enableTranslation": false,
@@ -40,7 +39,7 @@
     "blueprints": [
       {
         "name": "generator-jhipster-nuvem-java",
-        "version": "6.9.2"
+        "version": "6.9.3"
       }
     ],
     "skipClient": true,
