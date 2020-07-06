@@ -32,12 +32,6 @@
             <column name="material_id" type="int8"/>
         </addColumn>
     </changeSet>
-    <changeSet author="pedro (generated)" id="1593702707240-12">
-        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="transferencia_almoxarifado_item"
-                                 constraintName="FK2xjd6lpe4lh41iks7r0slufen" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id"
-                                 referencedTableName="item_transferencia" validate="true"/>
-    </changeSet>
     <changeSet author="pedro (generated)" id="1593702707240-13">
         <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="item_transferencia"
                                  constraintName="FKckbm0bl5ue3t3jpqtgthbvdc1" deferrable="false"
@@ -62,12 +56,6 @@
                                  baseTableName="transferencia_almoxarifado" constraintName="FKkn9ld19l1klopjxkg32hj4xw2"
                                  deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
                                  referencedTableName="informacao_transferencia" validate="true"/>
-    </changeSet>
-    <changeSet author="pedro (generated)" id="1593702707240-17">
-        <addForeignKeyConstraint baseColumnNames="transferencia_id" baseTableName="transferencia_almoxarifado_item"
-                                 constraintName="FKq6te1jwnca8cjsxj1ady8w0fu" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id"
-                                 referencedTableName="transferencia_almoxarifado" validate="true"/>
     </changeSet>
     <changeSet author="pedro (generated)" id="1593702707240-21">
         <dropColumn columnName="ativo" tableName="transferencia_almoxarifado"/>
