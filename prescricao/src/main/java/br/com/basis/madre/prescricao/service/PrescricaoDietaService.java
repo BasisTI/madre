@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoDieta;
 import br.com.basis.madre.prescricao.domain.PrescricaoDieta;
 import br.com.basis.madre.prescricao.repository.PrescricaoDietaRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoDietaDTOSearchRepository;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoDietaSearchRepository;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoDietaDTO;
 import br.com.basis.madre.prescricao.service.mapper.PrescricaoDietaMapper;
@@ -32,13 +33,16 @@ public class PrescricaoDietaService {
 	private final PrescricaoDietaMapper prescricaoDietaMapper;
 
 	private final PrescricaoDietaSearchRepository prescricaoDietaSearchRepository;
+	
+	private final PrescricaoDietaDTOSearchRepository prescricaoDietaDTOSearchRepository; 
 
 	public PrescricaoDietaService(PrescricaoDietaRepository prescricaoDietaRepository,
 			PrescricaoDietaMapper prescricaoDietaMapper,
-			PrescricaoDietaSearchRepository prescricaoDietaSearchRepository) {
+			PrescricaoDietaSearchRepository prescricaoDietaSearchRepository, PrescricaoDietaDTOSearchRepository prescricaoDietaDTOSearchRepository) {
 		this.prescricaoDietaRepository = prescricaoDietaRepository;
 		this.prescricaoDietaMapper = prescricaoDietaMapper;
 		this.prescricaoDietaSearchRepository = prescricaoDietaSearchRepository;
+		this.prescricaoDietaDTOSearchRepository = prescricaoDietaDTOSearchRepository;
 	}
 
 	/**
@@ -55,7 +59,7 @@ public class PrescricaoDietaService {
 		}
 		prescricaoDieta = prescricaoDietaRepository.save(prescricaoDieta);
 		PrescricaoDietaDTO result = prescricaoDietaMapper.toDto(prescricaoDieta);
-		prescricaoDietaSearchRepository.save(prescricaoDieta);
+		prescricaoDietaDTOSearchRepository.save(result);
 		return result;
 	}
 

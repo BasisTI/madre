@@ -17,14 +17,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
-import br.com.basis.madre.prescricao.domain.Medicamento;
 import br.com.basis.madre.prescricao.domain.Paciente;
 import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
 import br.com.basis.madre.prescricao.domain.enumeration.TipoEvento;
 import br.com.basis.madre.prescricao.domain.evento.EventoPrescricaoMedicamento;
 import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
 import br.com.basis.madre.prescricao.repository.search.PacienteRepositorySearch;
-
+import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaDTOSearchRepository;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
 import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
@@ -45,20 +44,24 @@ public class PrescricaoMedicamentoService {
 	private final PrescricaoMedicamentoMapper prescricaoMedicamentoMapper;
 
 	private final PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository;
+	
 
 	private final ApplicationEventPublisher applicationEventPublisher;
 
 	private final PacienteRepositorySearch pacienteRepositorySearch;
 
 	private final AuthenticationPrincipalService authenticationPrincipalService;
+	
+	private final PrescricaoMedicaDTOSearchRepository prescricaoMedicaDTOSearchRepository;
 
 	public PrescricaoMedicamentoService(PrescricaoMedicamentoRepository prescricaoMedicamentoRepository,
 			PrescricaoMedicamentoMapper prescricaoMedicamentoMapper,
 			PrescricaoMedicamentoSearchRepository prescricaoMedicamentoSearchRepository,
 			ApplicationEventPublisher applicationEventPublisher,
 			AuthenticationPrincipalService authenticationPrincipalService,
-			PacienteRepositorySearch pacienteRepositorySearch, MedicamentoService medicamentoService) {
-
+			PacienteRepositorySearch pacienteRepositorySearch, MedicamentoService medicamentoService,
+			PrescricaoMedicaDTOSearchRepository prescricaoMedicaDTOSearchRepository) {
+		this.prescricaoMedicaDTOSearchRepository = prescricaoMedicaDTOSearchRepository;
 		this.prescricaoMedicamentoRepository = prescricaoMedicamentoRepository;
 		this.prescricaoMedicamentoMapper = prescricaoMedicamentoMapper;
 		this.prescricaoMedicamentoSearchRepository = prescricaoMedicamentoSearchRepository;
@@ -85,13 +88,11 @@ public class PrescricaoMedicamentoService {
 
 			item.setMedicamento(medicamentoService.findById(item.getIdMedicamento()));
 
-			item.setNomeMedicamento(item.getMedicamento().getNome());
 		}
 		prescricaoMedicamento = prescricaoMedicamentoRepository.save(prescricaoMedicamento);
 		PrescricaoMedicamentoDTO result = prescricaoMedicamentoMapper.toDto(prescricaoMedicamento);
-
-		prescricaoMedicamentoSearchRepository.save(prescricaoMedicamentoMapper.toEntity(result));
-
+		prescricaoMedicaDTOSearchRepository.save(result);
+		prescricaoMedicaDTOSearchRepository.findById(result.getId());
 		applicationEventPublisher.publishEvent(EventoPrescricaoMedicamento.builder()
 				.login(authenticationPrincipalService.getLoginAtivo()).prescricaoMedicamento(prescricaoMedicamento)
 				.paciente(pacienteId).dataDeLancamento(ZonedDateTime.now(ZoneId.systemDefault()))
