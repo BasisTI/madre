@@ -3,6 +3,8 @@ package br.com.basis.madre.domain;
 import br.com.basis.madre.domain.enumeration.DocumentoDeReferencia;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -26,7 +28,8 @@ import java.time.LocalDate;
 /**
  * A CartaoSUS.
  */
-
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "cartao_sus")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -81,30 +84,9 @@ public class CartaoSUS implements Serializable {
     @JsonIgnore
     private Paciente paciente;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumero() {
-        return this.numero;
-    }
-
     public CartaoSUS numero(String numero) {
         this.numero = numero;
         return this;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public DocumentoDeReferencia getDocumentoDeReferencia() {
-        return documentoDeReferencia;
     }
 
     public CartaoSUS documentoDeReferencia(DocumentoDeReferencia documentoDeReferencia) {
@@ -112,25 +94,9 @@ public class CartaoSUS implements Serializable {
         return this;
     }
 
-    public void setDocumentoDeReferencia(DocumentoDeReferencia documentoDeReferencia) {
-        this.documentoDeReferencia = documentoDeReferencia;
-    }
-
-    public String getCartaoNacionalSaudeMae() {
-        return cartaoNacionalSaudeMae;
-    }
-
     public CartaoSUS cartaoNacionalSaudeMae(String cartaoNacionalSaudeMae) {
         this.cartaoNacionalSaudeMae = cartaoNacionalSaudeMae;
         return this;
-    }
-
-    public void setCartaoNacionalSaudeMae(String cartaoNacionalSaudeMae) {
-        this.cartaoNacionalSaudeMae = cartaoNacionalSaudeMae;
-    }
-
-    public LocalDate getDataDeEntradaNoBrasil() {
-        return dataDeEntradaNoBrasil;
     }
 
     public CartaoSUS dataDeEntradaNoBrasil(LocalDate dataDeEntradaNoBrasil) {
@@ -138,25 +104,9 @@ public class CartaoSUS implements Serializable {
         return this;
     }
 
-    public void setDataDeEntradaNoBrasil(LocalDate dataDeEntradaNoBrasil) {
-        this.dataDeEntradaNoBrasil = dataDeEntradaNoBrasil;
-    }
-
-    public LocalDate getDataDeNaturalizacao() {
-        return dataDeNaturalizacao;
-    }
-
     public CartaoSUS dataDeNaturalizacao(LocalDate dataDeNaturalizacao) {
         this.dataDeNaturalizacao = dataDeNaturalizacao;
         return this;
-    }
-
-    public void setDataDeNaturalizacao(LocalDate dataDeNaturalizacao) {
-        this.dataDeNaturalizacao = dataDeNaturalizacao;
-    }
-
-    public String getPortaria() {
-        return portaria;
     }
 
     public CartaoSUS portaria(String portaria) {
@@ -164,25 +114,9 @@ public class CartaoSUS implements Serializable {
         return this;
     }
 
-    public void setPortaria(String portaria) {
-        this.portaria = portaria;
-    }
-
-    public Justificativa getJustificativa() {
-        return justificativa;
-    }
-
     public CartaoSUS justificativa(Justificativa justificativa) {
         this.justificativa = justificativa;
         return this;
-    }
-
-    public void setJustificativa(Justificativa justificativa) {
-        this.justificativa = justificativa;
-    }
-
-    public MotivoDoCadastro getMotivoDoCadastro() {
-        return motivoDoCadastro;
     }
 
     public CartaoSUS motivoDoCadastro(MotivoDoCadastro motivoDoCadastro) {
@@ -190,50 +124,9 @@ public class CartaoSUS implements Serializable {
         return this;
     }
 
-    public void setMotivoDoCadastro(MotivoDoCadastro motivoDoCadastro) {
-        this.motivoDoCadastro = motivoDoCadastro;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
     public CartaoSUS paciente(Paciente paciente) {
         this.paciente = paciente;
         return this;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof CartaoSUS)) {
-            return false;
-        }
-        return id != null && id.equals(((CartaoSUS) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "CartaoSUS{" +
-            "id=" + getId() +
-            ", numero='" + getNumero() + "'" +
-            ", documentoDeReferencia='" + getDocumentoDeReferencia() + "'" +
-            ", cartaoNacionalSaudeMae='" + getCartaoNacionalSaudeMae() + "'" +
-            ", dataDeEntradaNoBrasil='" + getDataDeEntradaNoBrasil() + "'" +
-            ", dataDeNaturalizacao='" + getDataDeNaturalizacao() + "'" +
-            ", portaria='" + getPortaria() + "'" +
-            "}";
-    }
 }

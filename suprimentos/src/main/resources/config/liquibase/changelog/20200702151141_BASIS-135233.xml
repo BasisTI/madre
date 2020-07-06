@@ -1,0 +1,81 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="pedro (generated)" id="1593702707240-5">
+        <createTable tableName="transferencia_almoxarifado_item">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="transferencia_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-6">
+        <addColumn tableName="informacao_transferencia">
+            <column name="centro_de_atividade_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-7">
+        <addColumn tableName="informacao_transferencia">
+            <column name="classificacao_material_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-8">
+        <addColumn tableName="transferencia_almoxarifado">
+            <column name="gerado_em" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-9">
+        <addColumn tableName="transferencia_almoxarifado">
+            <column name="gerado_por" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-10">
+        <addColumn tableName="transferencia_almoxarifado">
+            <column name="informacao_transferencia_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-11">
+        <addColumn tableName="item_transferencia">
+            <column name="material_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-12">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="transferencia_almoxarifado_item"
+                                 constraintName="FK2xjd6lpe4lh41iks7r0slufen" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="item_transferencia" validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-13">
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="item_transferencia"
+                                 constraintName="FKckbm0bl5ue3t3jpqtgthbvdc1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="material"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-14">
+        <addForeignKeyConstraint baseColumnNames="classificacao_material_id" baseTableName="informacao_transferencia"
+                                 constraintName="FKcp0pmxq98c4kafda6m17h1d83" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="classificacao_material" validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-16">
+        <addForeignKeyConstraint baseColumnNames="informacao_transferencia_id"
+                                 baseTableName="transferencia_almoxarifado" constraintName="FKkn9ld19l1klopjxkg32hj4xw2"
+                                 deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="informacao_transferencia" validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-17">
+        <addForeignKeyConstraint baseColumnNames="transferencia_id" baseTableName="transferencia_almoxarifado_item"
+                                 constraintName="FKq6te1jwnca8cjsxj1ady8w0fu" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="transferencia_almoxarifado" validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1593702707240-21">
+        <dropColumn columnName="ativo" tableName="transferencia_almoxarifado"/>
+    </changeSet>
+</databaseChangeLog>

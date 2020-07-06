@@ -7,18 +7,10 @@
         Added the constraints for entity Almoxarifado.
     -->
     <changeSet id="20200618123147-2" author="jhipster">
-
-        <addForeignKeyConstraint baseColumnNames="centro_de_atividade_id"
-                                 baseTableName="almoxarifado"
-                                 constraintName="fk_almoxarifado_centro_de_atividade_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="centro_de_atividade"/>
-
         <addForeignKeyConstraint baseColumnNames="caracteristica_armazenamento_id"
                                  baseTableName="almoxarifado"
                                  constraintName="fk_almoxarifado_caracteristica_armazenamento_id"
                                  referencedColumnNames="id"
                                  referencedTableName="caracteristica_armazenamento"/>
-
     </changeSet>
 </databaseChangeLog>

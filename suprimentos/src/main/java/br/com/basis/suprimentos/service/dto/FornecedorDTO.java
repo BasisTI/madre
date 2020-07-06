@@ -11,8 +11,8 @@ public class FornecedorDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 14, max = 14)
-    private String cnpj;
+    @Size(min = 11, max = 14)
+    private String cpfCnpj;
 
     @NotNull
     @Size(max = 255)

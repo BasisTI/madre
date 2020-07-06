@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-
-
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
     <!--
         Added the entity Fornecedor.
     -->
@@ -41,11 +40,11 @@
     -->
     <changeSet id="20200618123157-1-data" author="jhipster" context="faker">
         <loadData
-                file="config/liquibase/fake-data/fornecedor.csv"
-                separator=";"
-                tableName="fornecedor">
+            file="config/liquibase/fake-data/fornecedor.csv"
+            separator=";"
+            tableName="fornecedor">
             <column name="id" type="numeric"/>
-            <column name="cnpj" type="string"/>
+            <column name="cpf_cnpj" type="string"/>
             <column name="razao_social" type="string"/>
             <column name="nome_fantasia" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
