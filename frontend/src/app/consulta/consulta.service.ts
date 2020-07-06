@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConsultaEmergenciaModel } from './consulta-emergencia-model';
 import { Observable } from 'rxjs';
+import { ConsultaCalendarioModel } from './consulta-calendario-model ';
 
 @Injectable({
     providedIn: 'root',
@@ -17,17 +18,22 @@ export class ConsultaService {
 
     constructor(private client: HttpClient) {}
 
-    cadastrarConsultas(consultas: ConsultaEmergenciaModel) {
+    public cadastrarConsultas(consultas: ConsultaEmergenciaModel) {
         return this.client.post(`${this.apiUrl}/consultas-emergencias`, consultas);
     }
 
-    buscarEspecialidades(): Observable<Array<Especialidade>> {
+    public buscarEspecialidades(): Observable<Array<Especialidade>> {
         return this.client.get<Array<Especialidade>>(`${this.intUrl}/especialidades`);
     }
-    buscarProfissionais(): Observable<Array<CRM>> {
+    public buscarProfissionais(): Observable<Array<CRM>> {
         return this.client.get<Array<CRM>>(`${this.intUrl}/crms`);
     }
-    buscarPaciente(): Observable<Array<Paciente>> {
+    public buscarPaciente(): Observable<Array<Paciente>> {
         return this.client.get<Array<Paciente>>(`${this.pacUrl}/pacientes`);
+    }
+    public obterConsultaCalendario(): Observable<Array<ConsultaCalendarioModel>> {
+        return this.client.get<Array<ConsultaCalendarioModel>>(
+            `${this.apiUrl}/consultas-emergencias/calendario`,
+        );
     }
 }

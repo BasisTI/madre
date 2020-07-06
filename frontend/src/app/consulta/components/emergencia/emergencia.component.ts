@@ -1,9 +1,11 @@
+import { OPCAO_TIPO_PAGADOR_CONSULTA } from './../../consulta-opcoes/opcao-tipo-pagador-consulta';
+import { OPCOES_TURNO_CONSULTA } from './../../consulta-opcoes/opcao-turno-consulta';
 import { Paciente } from './../../../internacao/models/paciente';
 import { CRM } from './../../../internacao/models/crm';
 import { Especialidade } from './../../../internacao/models/especialidade';
 import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
 import { ConsultaPaciente } from '../../consulta-pacientes';
@@ -11,7 +13,6 @@ import { ConsultaPaciente } from '../../consulta-pacientes';
 @Component({
     selector: 'app-emergencia',
     templateUrl: './emergencia.component.html',
-    styleUrls: ['./emergencia.component.css'],
 })
 export class EmergenciaComponent implements OnInit, OnDestroy {
     consultas: any;
@@ -26,19 +27,25 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
     public crm = new Array<CRM>();
     public pacientes = new Array<Paciente>();
     @Input() formularioTriagem: FormGroup;
+    opcaoTurno = OPCOES_TURNO_CONSULTA;
+    opcaoTipoPagador = OPCAO_TIPO_PAGADOR_CONSULTA;
     consultasEmergencia: ConsultaEmergenciaModel;
     formEmergencia = this.fb.group({
         numeroConsulta: [''],
-        dataHoraDaConsulta: [''],
+        dataHoraDaConsulta: ['', Validators.required],
         grade: [''],
         prontuario: [''],
         nome: [''],
+        numeroDeSala: [''],
+        turno: [''],
+        tipoPagador: [''],
         especialidade: [''],
         profissional: [''],
         convenio: [''],
         clinicaCentralId: [''],
         observacao: [''],
         justificativa: [''],
+        gradesDiponiveis: ['true'],
     });
 
     localizacao = CALENDAR_LOCALE;
@@ -75,6 +82,9 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
             grade: cadConsulta.grade,
             prontuario: cadConsulta.prontuario,
             nome: cadConsulta.nome,
+            numeroDeSala: cadConsulta.numeroDeSala,
+            turno: cadConsulta.turno,
+            tipoPagador: cadConsulta.tipoPagador,
             especialidade: cadConsulta.especialidade,
             profissional: cadConsulta.profissional,
             clinicaCentralId: cadConsulta.clinicaCentralId,
@@ -83,6 +93,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
             condicaoDeAtendimentoId: cadConsulta.condicaoDeAtendimentoId,
             formaDeAgendamentoId: cadConsulta.formaDeAgendamentoId,
             pacienteId: cadConsulta.pacienteId,
+            gradesDiponiveis: cadConsulta.gradesDiponiveis,
         };
 
         this.consultaService.cadastrarConsultas(consultasEmergencia).subscribe((e) => {
