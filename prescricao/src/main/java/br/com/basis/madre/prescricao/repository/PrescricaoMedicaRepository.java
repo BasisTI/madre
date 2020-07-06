@@ -14,5 +14,4 @@ import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
 @Repository
 public interface PrescricaoMedicaRepository extends JpaRepository<PrescricaoMedica, Long> {
 
-	List<PrescricaoMedica> findByIdPaciente(Long id);
 }
