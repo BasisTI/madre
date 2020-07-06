@@ -7,6 +7,8 @@ import br.com.basis.suprimentos.service.dto.ClassificacaoMaterialDTO;
 import br.com.basis.suprimentos.service.mapper.ClassificacaoMaterialMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,11 @@ public class ClassificacaoMaterialService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ClassificacaoMaterialDTO> findAll(Pageable pageable) {
+    public Page<ClassificacaoMaterialDTO> findAll(Pageable pageable, ClassificacaoMaterialDTO classificacaoMaterialDTO) {
         log.debug("Request to get all ClassificacaoMaterials");
-        return classificacaoMaterialRepository.findAll(pageable)
+        return classificacaoMaterialRepository.findAll(
+            Example.of(classificacaoMaterialMapper.toEntity(classificacaoMaterialDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable)
             .map(classificacaoMaterialMapper::toDto);
     }
 

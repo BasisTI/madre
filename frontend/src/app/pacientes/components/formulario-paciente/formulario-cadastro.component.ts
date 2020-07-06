@@ -1,4 +1,7 @@
 import { CpfCnpjValidator } from './../../../shared/cpf-cnpj.validator';
+
+import { element } from 'protractor';
+
 import { Certidao } from './models/certidao';
 import { UF } from './../../models/dropdowns/types/uf';
 import { OrgaoEmissor } from './../../models/dropdowns/types/orgao-emissor';
@@ -49,8 +52,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         {
             nomeDoResponsavel: [null, [this.customRequired]],
             grauDeParentesco: [null, [this.customRequired]],
-            ddd: [null, [this.customRequired]],
-            telefone: [null, [this.customRequired]],
             observacao: [null, [this.customRequired]],
         },
         { updateOn: 'blur', validators: this.validateGroup },
@@ -208,6 +209,23 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 ),
             );
         });
+
+        let telefonesCadastroResponsavel = this.telefones.value;
+        let telefonesCadResp: Telefone[] = [];
+        telefonesCadastroResponsavel.forEach((element) => {
+            telefonesCadResp.push(
+                new Telefone(
+                    null,
+                    element.ddd,
+                    element.numero,
+                    element.tipo ? element.tipo : null,
+                    element.observacao ? element.observacao : null,
+                    element.pacienteId,
+                    element.responsavelId,
+                ),
+            );
+        });
+
         let enderecoCadastro = this.enderecos.value;
         let enderecosCad: Endereco[] = [];
         enderecoCadastro.forEach((element) => {
@@ -264,12 +282,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
                 nomeDoResponsavel: resp.nomeDoResponsavel,
                 grauDeParentescoId: resp.grauDeParentesco ? resp.grauDeParentesco.id : null,
                 observacao: resp.observacao,
-                telefones: [
-                    {
-                        ddd: resp.ddd,
-                        numero: resp.telefone,
-                    },
-                ],
+                telefones: telefonesCadResp,
             };
         }
 
