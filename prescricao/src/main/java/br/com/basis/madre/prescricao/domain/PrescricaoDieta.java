@@ -31,7 +31,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "prescricao_dieta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "madre-prescricao-prescricaodieta")
+@Document(indexName = "madre-prescricao-prescricaomedica", type="prescricaomedica")
 public class PrescricaoDieta extends PrescricaoMedica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
