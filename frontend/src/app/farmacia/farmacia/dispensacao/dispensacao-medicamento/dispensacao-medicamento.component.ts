@@ -6,8 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { DispensacaoMedicamento } from './dispensacaoMedicamento';
-import { timingSafeEqual } from 'crypto';
-import { isEmpty } from 'rxjs/operators';
 
 @Component({
     selector: 'app-dispensacao-medicamento',
@@ -42,45 +40,18 @@ export class DispensacaoMedicamentoComponent implements OnInit {
 
     dipensacaoMedicamentos: DispensacaoMedicamento;
     dispensacoesMedicamento = [];
-    arrayDispensacaoMedicamento = new Array<DispensacaoMedicamento>();
-    id;
-    dispensado;
-    boolean;
 
-    medicamento: Medicamento;
-    medicamentos: Medicamento[] = [];
+    id;
 
     dispensar(event: DatatableClickEvent) {
-        console.log(this.prescricao);
-        console.log('xx', this.prescricao.medicamentosDispensados);
         this.setDispensacaoDeMedicamento(event);
 
-        this.service.getMedicamentoPorId(this.id).subscribe((resut) => {
-            this.service.DispensarMedicamento(this.dipensacaoMedicamentos).subscribe();
-        });
+        this.service.DispensarMedicamento(this.dipensacaoMedicamentos).subscribe();
     }
 
     ngOnInit(): void {
         const codigoPaciente = this.route.snapshot.params['id'];
         this.buscaPrescricaoPorId(codigoPaciente);
-    }
-
-    for() {
-        if (this.prescricao.medicamentosDispensados === null) {
-            this.boolean = true;
-        } else if (this.prescricao.medicamentosDispensados.length === 0) {
-            this.boolean = true;
-        } else {
-            for (let i = 0; i <= this.prescricao.medicamentosDispensados.length; i++) {
-                if (this.prescricao.medicamentosDispensados[i] === this.medicamento) {
-                    this.boolean = false;
-
-                    break;
-                } else {
-                    this.boolean = true;
-                }
-            }
-        }
     }
 
     setDispensacaoDeMedicamento(event) {
@@ -93,10 +64,6 @@ export class DispensacaoMedicamentoComponent implements OnInit {
         });
         this.dipensacaoMedicamentos = this.dipensacaoMedicamento.value;
         console.log('set');
-    }
-
-    getMedicamentoPorId() {
-        this.service.getMedicamentoPorId(this.id).subscribe((resut) => (this.medicamento = resut));
     }
 
     buscaPrescricaoPorId(id: number) {
@@ -112,26 +79,3 @@ export class DispensacaoMedicamentoComponent implements OnInit {
         });
     }
 }
-// console.log(this.id);
-// console.log(this.prescricao);
-// console.log(this.dipensacaoMedicamento.value);
-
-// if ((this.prescricao.medicamentosDispensados.length = 0)) {
-//     this.prescricao.medicamentosDispensados[i] = this.medicamento;
-//     break;
-// } else
-
-// if (this.prescricao.medicamentosDispensados === null) {
-//     this.prescricao.medicamentosDispensados = this.medicamentos;
-//     this.prescricao.medicamentosDispensados.push(this.medicamento);
-// } else if (this.prescricao.medicamentosDispensados.length === 0) {
-//     this.prescricao.medicamentosDispensados[0] = this.medicamento;
-// } else {
-//     for (let i = 0; i <= this.prescricao.medicamentosDispensados.length; i++) {
-//         if (this.prescricao.medicamentosDispensados[i] === null) {
-//             this.prescricao.medicamentosDispensados[i] = this.medicamento;
-//             break;
-//         }
-//         console.log('prescricao', this.prescricao);
-//     }
-// }
