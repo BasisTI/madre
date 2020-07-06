@@ -66,9 +66,9 @@ public class ClassificacaoMaterialResource {
     }
 
     @GetMapping("/classificacoes-materiais")
-    public ResponseEntity<List<ClassificacaoMaterialDTO>> getAllClassificacaoMaterials(Pageable pageable) {
+    public ResponseEntity<List<ClassificacaoMaterialDTO>> getAllClassificacaoMaterials(Pageable pageable, ClassificacaoMaterialDTO classificacaoMaterialDTO) {
         log.debug("REST request to get a page of ClassificacaoMaterials");
-        Page<ClassificacaoMaterialDTO> page = classificacaoMaterialService.findAll(pageable);
+        Page<ClassificacaoMaterialDTO> page = classificacaoMaterialService.findAll(pageable, classificacaoMaterialDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

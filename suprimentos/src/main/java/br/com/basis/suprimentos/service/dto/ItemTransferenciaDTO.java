@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class ItemTransferenciaDTO implements Serializable {
     private Long id;
 
-    @NotNull
-    private Integer quantidadeEnvidada;
+    private Long materialId;
+
+    private Integer quantidadeEnviada;
 }

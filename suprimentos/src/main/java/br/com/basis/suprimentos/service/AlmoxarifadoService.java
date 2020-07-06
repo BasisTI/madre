@@ -7,6 +7,8 @@ import br.com.basis.suprimentos.service.dto.AlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.mapper.AlmoxarifadoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,11 @@ public class AlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<AlmoxarifadoDTO> findAll(Pageable pageable) {
+    public Page<AlmoxarifadoDTO> findAll(Pageable pageable, AlmoxarifadoDTO almoxarifadoDTO) {
         log.debug("Request to get all Almoxarifados");
-        return almoxarifadoRepository.findAll(pageable)
+        return almoxarifadoRepository.findAll(
+            Example.of(almoxarifadoMapper.toEntity(almoxarifadoDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable)
             .map(almoxarifadoMapper::toDto);
     }
 

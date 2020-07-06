@@ -9,4 +9,6 @@ public class InformacaoTransferenciaDTO implements Serializable {
     private Long id;
     private Boolean ativa;
     private Boolean efetivada;
+    private Long classificacaoMaterialId;
+    private Long centroDeAtividadeId;
 }

@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.TransferenciaAlmoxarifado;
+import br.com.basis.suprimentos.domain.projection.TransferenciaAutomatica;
 import br.com.basis.suprimentos.repository.TransferenciaAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.TransferenciaAlmoxarifadoSearchRepository;
 import br.com.basis.suprimentos.service.dto.TransferenciaAlmoxarifadoDTO;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -24,21 +27,32 @@ public class TransferenciaAlmoxarifadoService {
     private final TransferenciaAlmoxarifadoRepository transferenciaAlmoxarifadoRepository;
     private final TransferenciaAlmoxarifadoMapper transferenciaAlmoxarifadoMapper;
     private final TransferenciaAlmoxarifadoSearchRepository transferenciaAlmoxarifadoSearchRepository;
+    private final AuthenticationPrincipalService authenticationPrincipalService;
+
+    public TransferenciaAlmoxarifadoDTO criarNovaTransferenciaAutomatica(TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO) {
+        transferenciaAlmoxarifadoDTO.getInformacaoTransferencia().setAtiva(true);
+        transferenciaAlmoxarifadoDTO.getInformacaoTransferencia().setEfetivada(false);
+        transferenciaAlmoxarifadoDTO.setGeradoEm(ZonedDateTime.now(ZoneId.systemDefault()));
+        transferenciaAlmoxarifadoDTO.setGeradoPor(authenticationPrincipalService.getLoginAtivo());
+        return save(transferenciaAlmoxarifadoDTO);
+    }
 
     public TransferenciaAlmoxarifadoDTO save(TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO) {
         log.debug("Request to save TransferenciaAlmoxarifado : {}", transferenciaAlmoxarifadoDTO);
-        TransferenciaAlmoxarifado transferenciaAlmoxarifado = transferenciaAlmoxarifadoMapper.toEntity(transferenciaAlmoxarifadoDTO);
-        transferenciaAlmoxarifado = transferenciaAlmoxarifadoRepository.save(transferenciaAlmoxarifado);
-        TransferenciaAlmoxarifadoDTO result = transferenciaAlmoxarifadoMapper.toDto(transferenciaAlmoxarifado);
+        final TransferenciaAlmoxarifado transferenciaAlmoxarifado = transferenciaAlmoxarifadoMapper.toEntity(transferenciaAlmoxarifadoDTO);
+        transferenciaAlmoxarifado.getItens().forEach(item -> {
+            item.setTransferenciaAlmoxarifado(transferenciaAlmoxarifado);
+        });
+        final TransferenciaAlmoxarifado salvo = transferenciaAlmoxarifadoRepository.save(transferenciaAlmoxarifado);
+        TransferenciaAlmoxarifadoDTO result = transferenciaAlmoxarifadoMapper.toDto(salvo);
         transferenciaAlmoxarifadoSearchRepository.save(transferenciaAlmoxarifado);
         return result;
     }
 
     @Transactional(readOnly = true)
-    public Page<TransferenciaAlmoxarifadoDTO> findAll(Pageable pageable) {
+    public Page<TransferenciaAutomatica> findAllTransferenciasAutomaticas(Pageable pageable) {
         log.debug("Request to get all TransferenciaAlmoxarifados");
-        return transferenciaAlmoxarifadoRepository.findAll(pageable)
-            .map(transferenciaAlmoxarifadoMapper::toDto);
+        return transferenciaAlmoxarifadoRepository.findBy(TransferenciaAutomatica.class, pageable);
     }
 
     @Transactional(readOnly = true)
