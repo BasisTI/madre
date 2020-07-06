@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.basis.madre.prescricao.domain.Medicamento;
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
 import lombok.Data;
 
@@ -33,7 +34,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	@Min(value = 0)
 	private Integer frequencia;
-
+	
 	private Boolean todasVias;
 
 	private Boolean bombaInfusao;
@@ -62,8 +63,6 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 	private Long unidadeDoseId;
 
 	private Long tipoAprazamentoId;
-	
-	private String nomeMedicamento;
 	
 	private MedicamentoDTO medicamentoDTO;
 

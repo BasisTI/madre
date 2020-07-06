@@ -17,8 +17,6 @@ import lombok.Data;
 public class PrescricaoDietaDTO extends PrescricaoMedicaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private Long id;
 	
 	private Boolean bombaInfusao;
 

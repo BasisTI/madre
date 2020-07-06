@@ -30,6 +30,4 @@ public class ItemPrescricaoDietaDTO implements Serializable {
 
     private Long tipoUnidadeDietaId;
 
-    private Long prescricaoDietaId;
-
 }
