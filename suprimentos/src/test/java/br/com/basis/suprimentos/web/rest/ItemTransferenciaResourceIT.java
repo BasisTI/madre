@@ -78,7 +78,7 @@ public class ItemTransferenciaResourceIT {
      */
     public static ItemTransferencia createEntity(EntityManager em) {
         ItemTransferencia itemTransferencia = new ItemTransferencia();
-        itemTransferencia.setQuantidadeEnvidada(DEFAULT_QUANTIDADE_ENVIDADA);
+        itemTransferencia.setQuantidadeEnviada(DEFAULT_QUANTIDADE_ENVIDADA);
         return itemTransferencia;
     }
     /**
@@ -89,7 +89,7 @@ public class ItemTransferenciaResourceIT {
      */
     public static ItemTransferencia createUpdatedEntity(EntityManager em) {
         ItemTransferencia itemTransferencia = new ItemTransferencia();
-        itemTransferencia.setQuantidadeEnvidada(UPDATED_QUANTIDADE_ENVIDADA);
+        itemTransferencia.setQuantidadeEnviada(UPDATED_QUANTIDADE_ENVIDADA);
         return itemTransferencia;
     }
 
@@ -113,7 +113,7 @@ public class ItemTransferenciaResourceIT {
         List<ItemTransferencia> itemTransferenciaList = itemTransferenciaRepository.findAll();
         assertThat(itemTransferenciaList).hasSize(databaseSizeBeforeCreate + 1);
         ItemTransferencia testItemTransferencia = itemTransferenciaList.get(itemTransferenciaList.size() - 1);
-        assertThat(testItemTransferencia.getQuantidadeEnvidada()).isEqualTo(DEFAULT_QUANTIDADE_ENVIDADA);
+        assertThat(testItemTransferencia.getQuantidadeEnviada()).isEqualTo(DEFAULT_QUANTIDADE_ENVIDADA);
 
         // Validate the ItemTransferencia in Elasticsearch
         verify(mockItemTransferenciaSearchRepository, times(1)).save(testItemTransferencia);
@@ -148,7 +148,7 @@ public class ItemTransferenciaResourceIT {
     public void checkQuantidadeEnvidadaIsRequired() throws Exception {
         int databaseSizeBeforeTest = itemTransferenciaRepository.findAll().size();
         // set the field null
-        itemTransferencia.setQuantidadeEnvidada(null);
+        itemTransferencia.setQuantidadeEnviada(null);
 
         // Create the ItemTransferencia, which fails.
         ItemTransferenciaDTO itemTransferenciaDTO = itemTransferenciaMapper.toDto(itemTransferencia);
@@ -211,7 +211,7 @@ public class ItemTransferenciaResourceIT {
         // Disconnect from session so that the updates on updatedItemTransferencia are not directly saved in db
         em.detach(updatedItemTransferencia);
         updatedItemTransferencia
-            .setQuantidadeEnvidada(UPDATED_QUANTIDADE_ENVIDADA);
+            .setQuantidadeEnviada(UPDATED_QUANTIDADE_ENVIDADA);
         ItemTransferenciaDTO itemTransferenciaDTO = itemTransferenciaMapper.toDto(updatedItemTransferencia);
 
         restItemTransferenciaMockMvc.perform(put("/api/item-transferencias")
@@ -223,7 +223,7 @@ public class ItemTransferenciaResourceIT {
         List<ItemTransferencia> itemTransferenciaList = itemTransferenciaRepository.findAll();
         assertThat(itemTransferenciaList).hasSize(databaseSizeBeforeUpdate);
         ItemTransferencia testItemTransferencia = itemTransferenciaList.get(itemTransferenciaList.size() - 1);
-        assertThat(testItemTransferencia.getQuantidadeEnvidada()).isEqualTo(UPDATED_QUANTIDADE_ENVIDADA);
+        assertThat(testItemTransferencia.getQuantidadeEnviada()).isEqualTo(UPDATED_QUANTIDADE_ENVIDADA);
 
         // Validate the ItemTransferencia in Elasticsearch
         verify(mockItemTransferenciaSearchRepository, times(1)).save(testItemTransferencia);

@@ -11,7 +11,10 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="quantidade_envidada" type="integer">
+            <column name="quantidade_enviada" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transferencia_almoxarifado_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

@@ -1,0 +1,67 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Transferências Automáticas</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input
+                                type="text"
+                                pInputText
+                                class="ui-inputtext"
+                        />
+                        <label>Placeholder</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-3">
+                        <button
+                                pButton
+                                type="button"
+                                label="Pesquisar"
+                                icon="ui-icon-search"
+                        ></button>
+                    </div>
+                    <div class="ui-g-3">
+                        <button
+                                pButton
+                                type="button"
+                                label="Nova Transferência"
+                                [routerLink]="['/transferencias-automaticas/nova']"
+                                icon="ui-icon-add"
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable type="server" [url]="datatableUrl">
+                    <p-column header="Almoxarifado Origem" field="origem">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.origem.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Almoxarifado Destino" field="destino">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.destino.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Classificacao Material" field="">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.informacaoTransferencia.classificacaoMaterial.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Gerado Por" field="geradoPor">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.geradoPor }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Gerado Em" field="geradoEm">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.geradoEm }}
+                        </ng-template>
+                    </p-column>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>
