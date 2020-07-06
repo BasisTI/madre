@@ -1,11 +1,11 @@
 id;descricao;serie;quantidade_disponivel;quantidade_bloqueada;quantidade_problema;data_validade;estoque_id
-1;Music;Pants;24595;48780;16068;2020-06-17;1
-2;Gorgeous;Car Internal Sm;52451;1824;41039;2020-06-17;2
-3;Executive Regional Wisconsin;TCP parsing Net;17088;72289;66864;2020-06-17;3
-4;hard drive Mexico Gardens;override silver;42543;19950;50761;2020-06-17;4
-5;Bouvet Island (Bouvetoya);Auto Loan Accou;15436;93201;48114;2020-06-18;5
-6;Checking Account frictionless;Rubber Awesome ;32235;68457;80987;2020-06-18;6
-7;Metal;hack;59563;47316;47157;2020-06-17;7
-8;cross-platform Unbranded;calculating Adm;73086;99092;93834;2020-06-18;8
-9;streamline;synthesize Ariz;13977;82794;79526;2020-06-17;9
-10;back-end;Mouse open-sour;52306;90786;35883;2020-06-18;10
+1;LT 01 - Estoque 01;S;250;0;0;2020-06-17;1
+2;LT 01 - Estoque 02;S;150;0;0;2020-06-17;2
+3;LT 01 - Estoque 03;S;100;0;0;2020-06-17;3
+4;LT 01 - Estoque 04;S;85;0;0;2020-06-17;4
+5;LT 01 - Estoque 05;S;50;0;0;2020-06-18;5
+6;LT 01 - Estoque 06;S;100;0;0;2020-06-18;6
+7;LT 01 - Estoque 07;S;350;0;0;2020-06-17;7
+8;LT 01 - Estoque 08;S;45;0;0;2020-06-18;8
+9;LT 01 - Estoque 09;S;10;0;0;2020-06-17;9
+10;LT 01 - Estoque 10;S;100;0;0;2020-06-18;10
