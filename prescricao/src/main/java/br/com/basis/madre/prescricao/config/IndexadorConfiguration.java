@@ -1,15 +1,48 @@
 package br.com.basis.madre.prescricao.config;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.repository.*;
-import br.com.basis.madre.prescricao.repository.search.*;
-import br.com.basis.madre.prescricao.web.rest.ListaMedicamentoResource;
-import br.gov.nuvem.comum.microsservico.service.reindex.Indexador;
-import br.gov.nuvem.comum.microsservico.service.reindex.IndexadorSemMapper;
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+
+import br.com.basis.madre.prescricao.domain.Diluente;
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoDieta;
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
+import br.com.basis.madre.prescricao.domain.PrescricaoDieta;
+import br.com.basis.madre.prescricao.domain.PrescricaoMedicamento;
+import br.com.basis.madre.prescricao.domain.TipoAprazamento;
+import br.com.basis.madre.prescricao.domain.TipoItemDieta;
+import br.com.basis.madre.prescricao.domain.TipoMedicamento;
+import br.com.basis.madre.prescricao.domain.TipoUnidadeDieta;
+import br.com.basis.madre.prescricao.domain.UnidadeDose;
+import br.com.basis.madre.prescricao.domain.UnidadeInfusao;
+import br.com.basis.madre.prescricao.domain.ViasAdministracao;
+import br.com.basis.madre.prescricao.repository.DiluenteRepository;
+import br.com.basis.madre.prescricao.repository.ItemPrescricaoDietaRepository;
+import br.com.basis.madre.prescricao.repository.ItemPrescricaoMedicamentoRepository;
+import br.com.basis.madre.prescricao.repository.PrescricaoDietaRepository;
+import br.com.basis.madre.prescricao.repository.PrescricaoMedicamentoRepository;
+import br.com.basis.madre.prescricao.repository.TipoAprazamentoRepository;
+import br.com.basis.madre.prescricao.repository.TipoItemDietaRepository;
+import br.com.basis.madre.prescricao.repository.TipoMedicamentoRepository;
+import br.com.basis.madre.prescricao.repository.TipoUnidadeDietaRepository;
+import br.com.basis.madre.prescricao.repository.UnidadeDoseRepository;
+import br.com.basis.madre.prescricao.repository.UnidadeInfusaoRepository;
+import br.com.basis.madre.prescricao.repository.ViasAdministracaoRepository;
+import br.com.basis.madre.prescricao.repository.search.DiluenteSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.ItemPrescricaoDietaSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.ItemPrescricaoMedicamentoSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoDietaSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.TipoAprazamentoSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.TipoItemDietaSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.TipoMedicamentoSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.TipoUnidadeDietaSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.UnidadeDoseSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.UnidadeInfusaoSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.ViasAdministracaoSearchRepository;
+import br.gov.nuvem.comum.microsservico.service.reindex.Indexador;
+import br.gov.nuvem.comum.microsservico.service.reindex.IndexadorSemMapper;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Configuration
