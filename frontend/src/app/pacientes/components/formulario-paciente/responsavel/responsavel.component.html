@@ -1,6 +1,6 @@
 <div class="ui-g ui-fluid" [formGroup]="responsavel">
     <div class="ui-g-12">
-        <div class="ui-g-3 ui-sm-12">
+        <div class="ui-g-6 ui-sm-12">
             <span class="ui-float-label">
                 <input
                     type="text"
@@ -19,7 +19,7 @@
                 "
             ></p-message>
         </div>
-        <div class="ui-g-2 ui-sm-12">
+        <div class="ui-g-4 ui-sm-12">
             <span class="ui-float-label">
                 <div
                     nAutoComplete
@@ -38,39 +38,9 @@
                 "
             ></p-message>
         </div>
-        <div class="ui-g-1 ui-sm-12">
-            <span class="ui-float-label">
-                <p-inputMask
-                    formControlName="ddd"
-                    mask="(999)"
-                    placeholder="(___)"
-                    pTooltip="Digite o DDD do paciente."
-                ></p-inputMask>
-                <label>DDD</label>
-                <p-message
-                    severity="error"
-                    text="O campo 'DDD' é obrigátorio."
-                    *ngIf="responsavel.get('ddd').touched && responsavel.get('ddd').invalid"
-                ></p-message>
-            </span>
-        </div>
-        <div class="ui-g-2 ui-sm-12">
-            <span class="ui-float-label">
-                <p-inputMask
-                    formControlName="telefone"
-                    mask="99999-9999"
-                    placeholder="_____-____"
-                    pTooltip="Digite o telefone do paciente."
-                ></p-inputMask>
-                <label>Telefone</label>
-            </span>
-            <p-message
-                severity="error"
-                text="O campo 'Telefone' é obrigátorio."
-                *ngIf="responsavel.get('telefone').touched && responsavel.get('telefone').invalid"
-            ></p-message>
-        </div>
-        <div class="ui-g-8 ui-sm-12">
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-12 ui-sm-12">
             <span class="ui-float-label">
                 <textarea
                     formControlName="observacao"
