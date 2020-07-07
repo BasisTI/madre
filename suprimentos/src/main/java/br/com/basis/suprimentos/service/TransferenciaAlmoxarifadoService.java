@@ -56,6 +56,12 @@ public class TransferenciaAlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
+    public Page<TransferenciaAutomatica> findAllTransferenciasAutomaticasNaoEvetivadas(Pageable pageable) {
+        log.debug("Request to get all TransferenciaAlmoxarifados");
+        return transferenciaAlmoxarifadoRepository.findByInformacaoTransferenciaEfetivada(false, TransferenciaAutomatica.class, pageable);
+    }
+
+    @Transactional(readOnly = true)
     public Optional<TransferenciaAlmoxarifadoDTO> findOne(Long id) {
         log.debug("Request to get TransferenciaAlmoxarifado : {}", id);
         return transferenciaAlmoxarifadoRepository.findById(id)
