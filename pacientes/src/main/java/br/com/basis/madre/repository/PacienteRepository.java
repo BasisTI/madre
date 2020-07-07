@@ -1,7 +1,6 @@
 package br.com.basis.madre.repository;
 
 import br.com.basis.madre.domain.Paciente;
-import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
