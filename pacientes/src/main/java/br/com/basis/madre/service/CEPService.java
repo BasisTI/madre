@@ -1,10 +1,12 @@
 package br.com.basis.madre.service;
 
 import br.com.basis.madre.domain.CEP;
+import br.com.basis.madre.domain.UF;
 import br.com.basis.madre.repository.CEPRepository;
 import br.com.basis.madre.repository.search.CEPSearchRepository;
 import br.com.basis.madre.service.dto.CEPDTO;
 import br.com.basis.madre.service.mapper.CEPMapper;
+import br.com.basis.madre.service.projection.MunicipioUF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,6 +66,10 @@ public class CEPService {
         log.debug("Request to get all CEPS");
         return cEPRepository.findAll(pageable)
             .map(cEPMapper::toDto);
+    }
+
+    public Page<CEP> findAllCEP(String cep, Pageable pageable) {
+        return cEPRepository.findByCepContainsIgnoreCase(cep,pageable);
     }
 
 

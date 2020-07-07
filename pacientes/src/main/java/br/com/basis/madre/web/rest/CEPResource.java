@@ -1,6 +1,8 @@
 package br.com.basis.madre.web.rest;
 
+import br.com.basis.madre.domain.CEP;
 import br.com.basis.madre.service.CEPService;
+import br.com.basis.madre.service.projection.MunicipioUF;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.service.dto.CEPDTO;
 
@@ -54,6 +56,14 @@ public class CEPResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new cEPDTO, or with status {@code 400 (Bad Request)} if the cEP has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+
+    @GetMapping("/ceps/filtragem")
+    public ResponseEntity<List<CEP>> findAllProjectedCepBy(@RequestParam(required = false)String cep, Pageable pageable) {
+        Page<CEP> page = cEPService
+            .findAllCEP(cep ,pageable);
+        return ResponseEntity.ok(page.getContent());
+    }
+
     @PostMapping("/ceps")
     public ResponseEntity<CEPDTO> createCEP(@RequestBody CEPDTO cEPDTO) throws URISyntaxException {
         log.debug("REST request to save CEP : {}", cEPDTO);

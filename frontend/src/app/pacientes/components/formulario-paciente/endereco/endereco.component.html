@@ -15,14 +15,12 @@
             </div>
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <input
-                        (blur)="consultaCEP()"
-                        pInputText
-                        id="cep"
-                        placeholder="__.___-___"
+                    <p-autoComplete
+                        (completeMethod)="searchCEP($event)"
+                        field="cep"
+                        [suggestions]="ceps"
                         formControlName="cep"
-                        pTooltip="Informe o CEP."
-                    />
+                    ></p-autoComplete>
                     <label>CEP</label>
                 </span>
             </div>

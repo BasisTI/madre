@@ -1,3 +1,4 @@
+import { CEP } from './../models/cep';
 import { MunicipioUF } from './../../../models/dropdowns/types/municipio-uf';
 import { map, switchMap, distinctUntilChanged } from 'node_modules/rxjs/operators';
 import { tap } from 'rxjs/operators';
@@ -21,6 +22,7 @@ export class EnderecoComponent implements OnInit {
 
     ufs: UF[] = [];
     municipios: MunicipioUF[] = [];
+    ceps: CEP[] = [];
 
     endereco = this.fb.group({
         municipioId: [null],
@@ -43,37 +45,6 @@ export class EnderecoComponent implements OnInit {
 
     ngOnInit() {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
-
-        this.endereco
-            .get('cep')
-            .statusChanges.pipe(
-                distinctUntilChanged(),
-                tap((value) => console.log('status CEP:', value)),
-                switchMap((status) =>
-                    status === 'VALID'
-                        ? this.cepService.consultaCEP(this.endereco.get('cep').value)
-                        : empty(),
-                ),
-            )
-            .subscribe((dados) => (dados ? this.populaDadosForm(dados) : {}));
-    }
-
-    consultaCEP() {
-        const cep = this.endereco.get('cep').value;
-
-        console.log(cep);
-
-        if (cep != null && cep !== '') {
-            this.cepService.consultaCEP(cep).subscribe((dados) => this.populaDadosForm(dados));
-        }
-    }
-
-    populaDadosForm(dados) {
-        this.endereco.patchValue({
-            logradouro: dados.logradouro,
-            complemento: dados.complemento,
-            bairro: dados.bairro,
-        });
     }
 
     aoSelecionarUF() {
@@ -89,6 +60,12 @@ export class EnderecoComponent implements OnInit {
             .subscribe((res) => {
                 this.municipios = res;
             });
+    }
+
+    searchCEP(event) {
+        this.cepService.consultaCEP(this.endereco.value.cep).subscribe((res) => {
+            this.ceps = res;
+        });
     }
 
     adicionarEnderecoALista() {
