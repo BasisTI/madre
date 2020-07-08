@@ -9,7 +9,7 @@ import { PacienteService } from '@internacao/services/paciente.service';
             <p-fieldset legend="Paciente">
                 <div class="ui-g">
                     <div class="ui-g-4">
-                        <label>Identificador</label>
+                        <label>Prontuário</label>
                         <input pInputText [value]="this.getProntuario()" />
                     </div>
                     <div class="ui-g-8">
