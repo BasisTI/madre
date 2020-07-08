@@ -5,17 +5,13 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
-                        <input
-                            type="text"
-                            pInputText
-                            class="ui-inputtext"
-                        />
+                        <input type="text" pInputText class="ui-inputtext" />
                         <label>Placeholder</label>
                     </span>
                 </div>
                 <div class="ui-g-12">
                     <div class="ui-g-2"></div>
-                    <div class="ui-g-3">
+                    <div class="ui-g-6">
                         <button
                             pButton
                             type="button"
@@ -23,18 +19,17 @@
                             icon="ui-icon-search"
                         ></button>
                     </div>
-                    <div class="ui-g-3">
-                        <button
-                            pButton
-                            type="button"
-                            label="FOOBAR"
-                            icon="ui-icon-add"
-                        ></button>
-                    </div>
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable type="server" [url]="datatableUrl" [disableDelete]="true" [disableEdit]="true"
-                                 [disableView]="true" #datatable>
+                <basis-datatable
+                    type="server"
+                    [url]="datatableUrl"
+                    [disableDelete]="true"
+                    [disableEdit]="true"
+                    [disableView]="true"
+                    (buttonClick)="onDatatableButtonClick($event)"
+                    #datatable
+                >
                     <p-column header="Almoxarifado Origem" field="origem">
                         <ng-template let-data="rowData" pTemplate="body">
                             {{ data.origem.descricao }}
@@ -60,6 +55,13 @@
                             {{ data.geradoEm | date: 'dd/MM/y H:mm' }}
                         </ng-template>
                     </p-column>
+                    <basis-datatable-button
+                        name="efetivar"
+                        icon="check"
+                        tooltip="Efetivar"
+                        class="ui-button-info"
+                        [disabled]="!datatable.selectedRow"
+                    ></basis-datatable-button>
                 </basis-datatable>
             </div>
         </div>
