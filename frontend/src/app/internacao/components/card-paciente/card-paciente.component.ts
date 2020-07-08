@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PacienteService } from '@internacao/services/paciente.service';
 import { Paciente } from '@internacao/models/paciente';
+import { PacienteService } from '@internacao/services/paciente.service';
 
 @Component({
     selector: 'app-card-paciente',
@@ -10,11 +10,11 @@ import { Paciente } from '@internacao/models/paciente';
                 <div class="ui-g">
                     <div class="ui-g-4">
                         <label>Identificador</label>
-                        <input pInputText [value]="this.getIdentificador()"/>
+                        <input pInputText [value]="this.getProntuario()" />
                     </div>
                     <div class="ui-g-8">
                         <label>Nome do Paciente</label>
-                        <input pInputText [value]="this.getNomeDoPaciente()"/>
+                        <input pInputText [value]="this.getNomeDoPaciente()" />
                     </div>
                 </div>
             </p-fieldset>
@@ -25,14 +25,13 @@ export class CardPacienteComponent implements OnInit {
     /**
      * TODO: Deve ser substituído por 'prontuário'
      */
-    @Input() private identificador: number;
+    @Input() private prontuario: number;
     private paciente: Paciente;
 
-    constructor(private pacienteService: PacienteService) {
-    }
+    constructor(private pacienteService: PacienteService) {}
 
     ngOnInit(): void {
-        this.pacienteService.obterPacientePorId(this.identificador).subscribe(paciente => {
+        this.pacienteService.obterPacientePorId(this.prontuario).subscribe((paciente) => {
             this.paciente = paciente;
         });
     }
@@ -41,7 +40,7 @@ export class CardPacienteComponent implements OnInit {
         return this.paciente?.nome;
     }
 
-    public getIdentificador(): number {
-        return this.identificador;
+    public getProntuario(): number {
+        return this.prontuario;
     }
 }
