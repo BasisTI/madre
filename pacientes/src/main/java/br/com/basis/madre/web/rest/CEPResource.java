@@ -127,6 +127,13 @@ public class CEPResource {
         return ResponseUtil.wrapOrNotFound(cEPDTO);
     }
 
+    @GetMapping("/ceps/buscar/{cep}")
+    public ResponseEntity<CEPDTO> getByCEP(@PathVariable String cep) {
+        log.debug("REST request to get CEP : {}", cep);
+        Optional<CEPDTO> cEPDTO = cEPService.findOneByCep(cep);
+        return ResponseUtil.wrapOrNotFound(cEPDTO);
+    }
+
     /**
      * {@code DELETE  /ceps/:id} : delete the "id" cEP.
      *

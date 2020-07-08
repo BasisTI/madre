@@ -83,6 +83,13 @@ public class CEPService {
             .map(cEPMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public Optional<CEPDTO> findOneByCep(String cep) {
+        log.debug("Request to get CEP : {}", cep);
+        return cEPRepository.findByCep(cep)
+            .map(cEPMapper::toDto);
+    }
+
     /**
      * Delete the cEP by id.
      *
@@ -107,4 +114,6 @@ public class CEPService {
         return cEPSearchRepository.search(queryStringQuery(query), pageable)
             .map(cEPMapper::toDto);
     }
+
+
 }
