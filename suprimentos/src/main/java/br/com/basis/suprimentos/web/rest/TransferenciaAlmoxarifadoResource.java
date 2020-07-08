@@ -75,12 +75,18 @@ public class TransferenciaAlmoxarifadoResource {
 
     @GetMapping("/transferencias-almoxarifado/automaticas/nao-efetivadas")
     public ResponseEntity<List<TransferenciaAutomatica>> getAllTransferenciasAutomaticasNaoEfetivadas(Pageable pageable) {
-        log.debug("REST request to get a page of TransferenciaAlmoxarifados");
+        log.debug("REST request to get a page of TransferenciaAlmoxarifado");
         Page<TransferenciaAutomatica> page = transferenciaAlmoxarifadoService.findAllTransferenciasAutomaticasNaoEvetivadas(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @PutMapping("/transferencias-almoxarifado/automaticas/nao-efetivadas/{id}")
+    public ResponseEntity<Void> efetivarTransferenciaAutomatica(@PathVariable(name = "id") Long id) {
+        log.debug("REST request to 'efetivar' a TransferenciaAlmoxarifado");
+        transferenciaAlmoxarifadoService.efetivarTransferenciaAutomaticaPorId(id);
+        return ResponseEntity.noContent().build();
+    }
 
     @GetMapping("/transferencias-almoxarifado/{id}")
     public ResponseEntity<TransferenciaAlmoxarifadoDTO> getTransferenciaAlmoxarifado(@PathVariable Long id) {

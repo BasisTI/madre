@@ -24,4 +24,11 @@ export class TransferenciaAutomaticaService {
     ): Observable<TransferenciaAutomaticaDTO> {
         return this.httpClient.post<TransferenciaAutomaticaDTO>(this.resource, transferencia);
     }
+
+    public efetivarTransferencia(id: number): Observable<TransferenciaAutomaticaDTO> {
+        return this.httpClient.put<TransferenciaAutomaticaDTO>(
+            `${this.resource}/automaticas/nao-efetivadas/${id}`,
+            {},
+        );
+    }
 }

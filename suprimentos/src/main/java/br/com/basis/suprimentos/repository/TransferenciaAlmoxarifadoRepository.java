@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 /**
  * Spring Data  repository for the TransferenciaAlmoxarifado entity.
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface TransferenciaAlmoxarifadoRepository extends JpaRepository<TransferenciaAlmoxarifado, Long> {
+    <T> Optional<T> findOneById(Long id, Class<T> projectionClass);
+
     <T> Page<T> findBy(Class<T> projectionClass, Pageable pageable);
 
     <T> Page<T> findByInformacaoTransferenciaEfetivada(Boolean ativa, Class<T> projectionClass, Pageable pageable);

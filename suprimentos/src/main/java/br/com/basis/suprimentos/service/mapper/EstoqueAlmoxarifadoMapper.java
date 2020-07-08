@@ -5,6 +5,8 @@ import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Set;
+
 @Mapper(componentModel = "spring", uses = {AlmoxarifadoMapper.class, MaterialMapper.class, FornecedorMapper.class, SolicitacaoComprasMapper.class})
 public interface EstoqueAlmoxarifadoMapper extends EntityMapper<EstoqueAlmoxarifadoDTO, EstoqueAlmoxarifado> {
     @Mapping(source = "almoxarifado.id", target = "almoxarifadoId")
@@ -19,6 +21,8 @@ public interface EstoqueAlmoxarifadoMapper extends EntityMapper<EstoqueAlmoxarif
     @Mapping(source = "fornecedorId", target = "fornecedor")
     @Mapping(source = "solicitacaoComprasId", target = "solicitacaoCompras")
     EstoqueAlmoxarifado toEntity(EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO);
+
+    Set<EstoqueAlmoxarifadoDTO> toDto(Set<EstoqueAlmoxarifado> entityList);
 
     default EstoqueAlmoxarifado fromId(Long id) {
         if (id == null) {

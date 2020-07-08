@@ -6,6 +6,8 @@ import br.com.basis.suprimentos.service.dto.ItemTransferenciaDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Set;
+
 @Mapper(componentModel = "spring", uses = {MaterialMapper.class})
 public interface ItemTransferenciaMapper extends EntityMapper<ItemTransferenciaDTO, ItemTransferencia> {
     @Override
@@ -15,6 +17,10 @@ public interface ItemTransferenciaMapper extends EntityMapper<ItemTransferenciaD
     @Override
     @Mapping(source = "material.id", target = "materialId")
     ItemTransferenciaDTO toDto(ItemTransferencia entity);
+
+    Set<ItemTransferenciaDTO> toDto(Set<ItemTransferencia> entities);
+
+    Set<ItemTransferencia> toEntity(Set<ItemTransferenciaDTO> dtos);
 
     default ItemTransferencia fromId(Long id) {
         if (id == null) {
