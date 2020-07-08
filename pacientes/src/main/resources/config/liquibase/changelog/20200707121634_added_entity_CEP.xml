@@ -24,12 +24,6 @@
             <column name="bairro" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="municipio_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="uf_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -56,8 +50,6 @@
             <column name="cep" type="string"/>
             <column name="logradouro" type="string"/>
             <column name="bairro" type="string"/>
-            <column name="municipio_id" type="numeric"/>
-            <column name="uf_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

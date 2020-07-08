@@ -1,16 +1,11 @@
 package br.com.basis.madre.domain;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
 /**
@@ -39,11 +34,14 @@ public class CEP implements Serializable {
     @Column(name = "bairro")
     private String bairro;
 
-    @Column(name = "municipio_id")
-    private Long municipioId;
 
-    @Column(name = "uf_id")
-    private Long ufId;
+    @ManyToOne
+    @JoinColumn(name = "municipio_id", referencedColumnName = "id")
+    private Municipio municipio;
+
+    @ManyToOne
+    @JoinColumn(name = "uf_id", referencedColumnName = "id")
+    private UF uf;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -93,31 +91,22 @@ public class CEP implements Serializable {
         this.bairro = bairro;
     }
 
-    public Long getMunicipioId() {
-        return municipioId;
+    public Municipio getMunicipio() {
+        return municipio;
     }
 
-    public CEP municipioId(Long municipioId) {
-        this.municipioId = municipioId;
-        return this;
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
     }
 
-    public void setMunicipioId(Long municipioId) {
-        this.municipioId = municipioId;
+    public UF getUf() {
+        return uf;
     }
 
-    public Long getUfId() {
-        return ufId;
+    public void setUf(UF uf) {
+        this.uf = uf;
     }
 
-    public CEP ufId(Long ufId) {
-        this.ufId = ufId;
-        return this;
-    }
-
-    public void setUfId(Long ufId) {
-        this.ufId = ufId;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -139,12 +128,12 @@ public class CEP implements Serializable {
     @Override
     public String toString() {
         return "CEP{" +
-            "id=" + getId() +
-            ", cep='" + getCep() + "'" +
-            ", logradouro='" + getLogradouro() + "'" +
-            ", bairro='" + getBairro() + "'" +
-            ", municipioId=" + getMunicipioId() +
-            ", ufId=" + getUfId() +
-            "}";
+            "id=" + id +
+            ", cep='" + cep + '\'' +
+            ", logradouro='" + logradouro + '\'' +
+            ", bairro='" + bairro + '\'' +
+            ", municipio=" + municipio +
+            ", uf=" + uf +
+            '}';
     }
 }

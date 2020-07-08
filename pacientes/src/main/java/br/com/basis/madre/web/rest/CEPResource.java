@@ -1,9 +1,9 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.domain.CEP;
 import br.com.basis.madre.service.CEPService;
-import br.com.basis.madre.service.dto.CEPDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
+import br.com.basis.madre.service.dto.CEPDTO;
+
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -13,22 +13,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.domain.CEP}.
@@ -57,14 +54,6 @@ public class CEPResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new cEPDTO, or with status {@code 400 (Bad Request)} if the cEP has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-
-    @GetMapping("/ceps/filtragem")
-    public ResponseEntity<List<CEP>> findAllProjectedCepBy(@RequestParam(required = false)String cep, Pageable pageable) {
-        Page<CEP> page = cEPService
-            .findAllCEP(cep ,pageable);
-        return ResponseEntity.ok(page.getContent());
-    }
-
     @PostMapping("/ceps")
     public ResponseEntity<CEPDTO> createCEP(@RequestBody CEPDTO cEPDTO) throws URISyntaxException {
         log.debug("REST request to save CEP : {}", cEPDTO);

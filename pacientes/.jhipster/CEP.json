@@ -12,14 +12,6 @@
         {
             "fieldName": "bairro",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "municipioId",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "ufId",
-            "fieldType": "Long"
         }
     ],
     "relationships": [],

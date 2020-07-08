@@ -51,12 +51,6 @@ public class CEPResourceIT {
     private static final String DEFAULT_BAIRRO = "AAAAAAAAAA";
     private static final String UPDATED_BAIRRO = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_MUNICIPIO_ID = 1L;
-    private static final Long UPDATED_MUNICIPIO_ID = 2L;
-
-    private static final Long DEFAULT_UF_ID = 1L;
-    private static final Long UPDATED_UF_ID = 2L;
-
     @Autowired
     private CEPRepository cEPRepository;
 
@@ -115,9 +109,7 @@ public class CEPResourceIT {
         CEP cEP = new CEP()
             .cep(DEFAULT_CEP)
             .logradouro(DEFAULT_LOGRADOURO)
-            .bairro(DEFAULT_BAIRRO)
-            .municipioId(DEFAULT_MUNICIPIO_ID)
-            .ufId(DEFAULT_UF_ID);
+            .bairro(DEFAULT_BAIRRO);
         return cEP;
     }
     /**
@@ -130,9 +122,7 @@ public class CEPResourceIT {
         CEP cEP = new CEP()
             .cep(UPDATED_CEP)
             .logradouro(UPDATED_LOGRADOURO)
-            .bairro(UPDATED_BAIRRO)
-            .municipioId(UPDATED_MUNICIPIO_ID)
-            .ufId(UPDATED_UF_ID);
+            .bairro(UPDATED_BAIRRO);
         return cEP;
     }
 
@@ -160,8 +150,6 @@ public class CEPResourceIT {
         assertThat(testCEP.getCep()).isEqualTo(DEFAULT_CEP);
         assertThat(testCEP.getLogradouro()).isEqualTo(DEFAULT_LOGRADOURO);
         assertThat(testCEP.getBairro()).isEqualTo(DEFAULT_BAIRRO);
-        assertThat(testCEP.getMunicipioId()).isEqualTo(DEFAULT_MUNICIPIO_ID);
-        assertThat(testCEP.getUfId()).isEqualTo(DEFAULT_UF_ID);
 
         // Validate the CEP in Elasticsearch
         verify(mockCEPSearchRepository, times(1)).save(testCEP);
@@ -204,9 +192,7 @@ public class CEPResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(cEP.getId().intValue())))
             .andExpect(jsonPath("$.[*].cep").value(hasItem(DEFAULT_CEP)))
             .andExpect(jsonPath("$.[*].logradouro").value(hasItem(DEFAULT_LOGRADOURO)))
-            .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO)))
-            .andExpect(jsonPath("$.[*].municipioId").value(hasItem(DEFAULT_MUNICIPIO_ID.intValue())))
-            .andExpect(jsonPath("$.[*].ufId").value(hasItem(DEFAULT_UF_ID.intValue())));
+            .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO)));
     }
     
     @Test
@@ -222,9 +208,7 @@ public class CEPResourceIT {
             .andExpect(jsonPath("$.id").value(cEP.getId().intValue()))
             .andExpect(jsonPath("$.cep").value(DEFAULT_CEP))
             .andExpect(jsonPath("$.logradouro").value(DEFAULT_LOGRADOURO))
-            .andExpect(jsonPath("$.bairro").value(DEFAULT_BAIRRO))
-            .andExpect(jsonPath("$.municipioId").value(DEFAULT_MUNICIPIO_ID.intValue()))
-            .andExpect(jsonPath("$.ufId").value(DEFAULT_UF_ID.intValue()));
+            .andExpect(jsonPath("$.bairro").value(DEFAULT_BAIRRO));
     }
 
     @Test
@@ -250,9 +234,7 @@ public class CEPResourceIT {
         updatedCEP
             .cep(UPDATED_CEP)
             .logradouro(UPDATED_LOGRADOURO)
-            .bairro(UPDATED_BAIRRO)
-            .municipioId(UPDATED_MUNICIPIO_ID)
-            .ufId(UPDATED_UF_ID);
+            .bairro(UPDATED_BAIRRO);
         CEPDTO cEPDTO = cEPMapper.toDto(updatedCEP);
 
         restCEPMockMvc.perform(put("/api/ceps")
@@ -267,8 +249,6 @@ public class CEPResourceIT {
         assertThat(testCEP.getCep()).isEqualTo(UPDATED_CEP);
         assertThat(testCEP.getLogradouro()).isEqualTo(UPDATED_LOGRADOURO);
         assertThat(testCEP.getBairro()).isEqualTo(UPDATED_BAIRRO);
-        assertThat(testCEP.getMunicipioId()).isEqualTo(UPDATED_MUNICIPIO_ID);
-        assertThat(testCEP.getUfId()).isEqualTo(UPDATED_UF_ID);
 
         // Validate the CEP in Elasticsearch
         verify(mockCEPSearchRepository, times(1)).save(testCEP);
@@ -331,9 +311,7 @@ public class CEPResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(cEP.getId().intValue())))
             .andExpect(jsonPath("$.[*].cep").value(hasItem(DEFAULT_CEP)))
             .andExpect(jsonPath("$.[*].logradouro").value(hasItem(DEFAULT_LOGRADOURO)))
-            .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO)))
-            .andExpect(jsonPath("$.[*].municipioId").value(hasItem(DEFAULT_MUNICIPIO_ID.intValue())))
-            .andExpect(jsonPath("$.[*].ufId").value(hasItem(DEFAULT_UF_ID.intValue())));
+            .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO)));
     }
 
     @Test

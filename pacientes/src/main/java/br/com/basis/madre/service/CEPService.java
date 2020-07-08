@@ -7,6 +7,7 @@ import br.com.basis.madre.service.dto.CEPDTO;
 import br.com.basis.madre.service.mapper.CEPMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link CEP}.
@@ -65,10 +66,6 @@ public class CEPService {
             .map(cEPMapper::toDto);
     }
 
-    public Page<CEP> findAllCEP(String cep, Pageable pageable) {
-        return cEPRepository.findByCepContainsIgnoreCase(cep,pageable);
-    }
-
 
     /**
      * Get one cEP by id.
@@ -114,6 +111,4 @@ public class CEPService {
         return cEPSearchRepository.search(queryStringQuery(query), pageable)
             .map(cEPMapper::toDto);
     }
-
-
 }

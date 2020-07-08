@@ -19,7 +19,6 @@ public class CEPDTO implements Serializable {
 
     private Long ufId;
 
-
     public Long getId() {
         return id;
     }
@@ -92,12 +91,12 @@ public class CEPDTO implements Serializable {
     @Override
     public String toString() {
         return "CEPDTO{" +
-            "id=" + getId() +
-            ", cep='" + getCep() + "'" +
-            ", logradouro='" + getLogradouro() + "'" +
-            ", bairro='" + getBairro() + "'" +
-            ", municipioId=" + getMunicipioId() +
-            ", ufId=" + getUfId() +
-            "}";
+            "id=" + id +
+            ", cep='" + cep + '\'' +
+            ", logradouro='" + logradouro + '\'' +
+            ", bairro='" + bairro + '\'' +
+            ", municipioId=" + municipioId +
+            ", ufId=" + ufId +
+            '}';
     }
 }

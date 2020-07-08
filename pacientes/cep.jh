@@ -2,8 +2,6 @@ entity CEP {
     cep String ,
     logradouro String,
     bairro String,
-    municipioId Long,
-    ufId Long,
 }
 
 
