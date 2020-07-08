@@ -45,7 +45,28 @@ export class EnderecoComponent implements OnInit {
 
     ngOnInit() {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
+
     }
+
+    consultaCEP() {
+        const cep = this.endereco.value.cep;
+
+        if (cep != null && cep !== '') {
+      this.cepService.buscarCEP(cep)
+      .subscribe(dados => this.populaDadosForm(dados));
+    }
+    }
+
+    populaDadosForm(dados) {
+
+        this.endereco.patchValue({
+            logradouro: dados.logradouro,
+            bairro: dados.bairro,
+            uf: dados.ufId,
+            municipioId: dados.municipioId.id,
+        });
+        console.log(this.endereco.value.uf);
+      }
 
     aoSelecionarUF() {
         this.endereco.controls.municipioId.setValue(null);
@@ -62,11 +83,7 @@ export class EnderecoComponent implements OnInit {
             });
     }
 
-    searchCEP(event) {
-        this.cepService.consultaCEP(this.endereco.value.cep).subscribe((res) => {
-            this.ceps = res;
-        });
-    }
+
 
     adicionarEnderecoALista() {
         if (this.endereco.valid) {
