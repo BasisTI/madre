@@ -1,10 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.CEP;
 import br.com.basis.madre.service.dto.CEPDTO;
-
-import br.com.basis.madre.service.dto.PacienteDTO;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link CEP} and its DTO {@link CEPDTO}.
