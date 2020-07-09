@@ -23,11 +23,10 @@ public class ItemPrescricaoDietaDTO implements Serializable {
 
     private Integer numeroVezes;
 
+    private TipoItemDietaDTO tipoItemDieta;
 
-    private Long tipoItemDietaId;
+    private TipoAprazamentoDTO tipoAprazamento;
 
-    private Long tipoAprazamentoId;
-
-    private Long tipoUnidadeDietaId;
-
+    private TipoUnidadeDietaDTO tipoUnidadeDieta;
+    
 }

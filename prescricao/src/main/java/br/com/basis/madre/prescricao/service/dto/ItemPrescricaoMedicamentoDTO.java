@@ -9,7 +9,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.basis.madre.prescricao.domain.Medicamento;
 import br.com.basis.madre.prescricao.domain.enumeration.UnidadeTempo;
 import lombok.Data;
 
@@ -54,17 +53,17 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 	@Size(max = 255)
 	private String observacaoCondicao;
 
-	private Long viasAdministracaoId;
+	private ViasAdministracaoDTO viasAdministracao;
 
-	private Long diluenteId;
+	private DiluenteDTO diluente;
 
-	private Long unidadeInfusaoId;
+	private UnidadeInfusaoDTO unidadeInfusao;
 
-	private Long unidadeDoseId;
+	private UnidadeDoseDTO unidadeDose;
 
-	private Long tipoAprazamentoId;
+	private TipoAprazamentoDTO tipoAprazamento;
 	
-	private MedicamentoDTO medicamentoDTO;
-
+	private MedicamentoDTO medicamento;
+	
 
 }

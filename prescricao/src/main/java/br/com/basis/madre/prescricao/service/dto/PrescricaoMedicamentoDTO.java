@@ -20,6 +20,6 @@ public class PrescricaoMedicamentoDTO extends PrescricaoMedicaDTO implements Ser
 
 	private static final long serialVersionUID = 1L;
 
-	private Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentos = new HashSet<>();
+	private Set<ItemPrescricaoMedicamentoDTO> itens = new HashSet<>();
 
 }

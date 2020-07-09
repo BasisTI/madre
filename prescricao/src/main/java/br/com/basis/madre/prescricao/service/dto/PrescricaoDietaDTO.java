@@ -20,7 +20,7 @@ public class PrescricaoDietaDTO extends PrescricaoMedicaDTO implements Serializa
 	
 	private Boolean bombaInfusao;
 
-	private Set<ItemPrescricaoDietaDTO> itemPrescricaoDietaDTO= new HashSet<>();
+	private Set<ItemPrescricaoDietaDTO> itens= new HashSet<>();
 
 
 }
