@@ -20,3 +20,8 @@ entity SituacaoRequisicao {
 entity ItemRequisicao {
     quantidade Integer required
 }
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
