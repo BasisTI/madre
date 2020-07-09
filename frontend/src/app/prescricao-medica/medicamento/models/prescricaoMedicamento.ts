@@ -5,6 +5,6 @@ export class PrescricaoMedicamento {
         public id?: number,
         public idPaciente?: number,
         public observacao?: string,
-        public itemPrescricaoMedicamentos?: ItemPrescricaoMedicamento[]
+        public itens?: ItemPrescricaoMedicamento[]
     ) {}
 }

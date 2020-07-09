@@ -60,7 +60,7 @@
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaUnidadeDose" formControlName="unidadeDoseId" required
+                                            [options]="listaUnidadeDose" formControlName="unidadeDose" required
                                             #unidadeDose>
                                         </p-dropdown>
                                         <label>Unidade</label>
@@ -71,7 +71,7 @@
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaViasAdministracao" formControlName="viasAdministracaoId"
+                                            [options]="listaViasAdministracao" formControlName="viasAdministracao"
                                             required #viaAdministracao>
                                         </p-dropdown>
                                         <label>Via</label>
@@ -109,7 +109,7 @@
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamentoId">
+                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamento">
                                         </p-dropdown>
                                         <label>Tipo de Aprazamento</label>
                                     </span>
@@ -119,7 +119,7 @@
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true" [options]="listaDiluente"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            formControlName="diluenteId" #diluente>
+                                            formControlName="diluente" #diluente>
                                         </p-dropdown>
                                         <label>Diluente</label>
                                     </span>
@@ -164,7 +164,7 @@
                                     <span class="md-inputfield">
                                         <p-dropdown placeholder="Selecione..." [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaUnidadeInfusao" formControlName="unidadeInfusaoId">
+                                            [options]="listaUnidadeInfusao" formControlName="unidadeInfusao">
                                         </p-dropdown>
                                         <label>Unidade Infusão</label>
                                     </span>
@@ -244,14 +244,14 @@
 
                                     <p-column header="Dose" field="dose"></p-column>
 
-                                    <p-column header="Unidade" field="unidadeDoseId">
+                                    <p-column header="Unidade" field="unidadeDose">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined :rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Via" field="viasAdministracaoId">
+                                    <p-column header="Via" field="viasAdministracao">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
@@ -260,14 +260,14 @@
 
                                     <p-column header="Frequencia" field="frequencia"></p-column>
 
-                                    <p-column header="Aprazamento" field="tipoAprazamentoId">
+                                    <p-column header="Aprazamento" field="tipoAprazamento">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Diluente" field="diluenteId">
+                                    <p-column header="Diluente" field="diluente">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>

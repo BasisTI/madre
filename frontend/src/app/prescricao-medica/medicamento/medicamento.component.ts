@@ -45,20 +45,20 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
     itemPrescricaoMedicamento = this.fb.group({
         idMedicamento: [null, Validators.required],
         dose: [null, Validators.required],
-        unidadeDoseId: [null, Validators.required],
-        viasAdministracaoId: [null, Validators.required],
+        unidadeDose: [null, Validators.required],
+        viasAdministracao: [null, Validators.required],
         frequencia: [null],
         todasVias: [null],
         volume: [null],
         bombaInfusao: [null],
-        unidadeInfusaoId: [null],
+        unidadeInfusao: [null],
         velocidadeInfusao: [null],
-        tipoAprazamentoId: [null, Validators.required],
+        tipoAprazamento: [null, Validators.required],
         tempoInfusao: [null],
         unidadeTempo: [null],
         inicioAdministracao: [null],
         condicaoNecessaria: [null],
-        diluenteId: [null],
+        diluente: [null],
         observacaoCondicao: [null]
     });
 
@@ -187,18 +187,15 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         const prescricao = this.prescricaoMedicamento.value;
 
         const prescricaoMedicamento = Object.assign({}, prescricao, {
-            itemPrescricaoMedicamentos: this.itensPrescricaoMedicamento
+            itens: this.itensPrescricaoMedicamento
         });
 
-
-        prescricaoMedicamento.itemPrescricaoMedicamentos = prescricaoMedicamento.itemPrescricaoMedicamentos.map(item => {
-            for (let propriedade in item) {
-                if (item[propriedade]?.id) {
-                    item[propriedade] = item[propriedade].id;
+        prescricaoMedicamento.itens = prescricaoMedicamento.itens.map(item => {
+                if (item.idMedicamento?.id) {
+                    item.idMedicamento = item.idMedicamento.id;
                 }
-            }
-
             return item;
+
         });
 
 

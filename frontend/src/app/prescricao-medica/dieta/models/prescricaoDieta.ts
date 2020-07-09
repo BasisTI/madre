@@ -4,6 +4,6 @@ export class PrescricaoDieta {
         public id?: number,
         public idPaciente?: number,
         public observacao?: string,
-        public itemPrescricaoDietaDTO?: ItemPrescricaoDieta[]
+        public itens?: ItemPrescricaoDieta[]
     ) { }
 }

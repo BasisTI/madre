@@ -56,7 +56,7 @@
                                 <span class="md-inputfield">
                                     <p-dropdown [autoWidth]="false" [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
-                                        [options]="tiposItens" formControlName="tipoItemDietaId" required
+                                        [options]="tiposItens" formControlName="tipoItemDieta" required
                                         #descricaoItem>
                                     </p-dropdown>
                                     <label>Tipo Item</label>
@@ -76,7 +76,7 @@
                                 <span class="md-inputfield">
                                     <p-dropdown [autoWidth]="false" [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
-                                        [options]="listaUnidadeDieta" formControlName="tipoUnidadeDietaId">
+                                        [options]="listaUnidadeDieta" formControlName="tipoUnidadeDieta">
                                     </p-dropdown>
                                     <label>Unidade</label>
                                 </span>
@@ -96,7 +96,7 @@
                                 <span class="md-inputfield">
                                     <p-dropdown [autoWidth]="false" placeholder="Selecione..." [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado." [options]="tiposAprazamentos"
-                                        formControlName="tipoAprazamentoId" #descricaoAprazamento>
+                                        formControlName="tipoAprazamento" #descricaoAprazamento>
                                     </p-dropdown>
                                     <label>Aprazamento</label>
                                 </span>
@@ -120,21 +120,21 @@
                         <div class="ui-g-12">
                             <basis-datatable type="memory" [value]="itensDieta" [disableView]="true"
                                 [disableEdit]="true" [disableDelete]="true">
-                                <p-column header="Item" field="tipoItemDietaId">
+                                <p-column header="Item" field="tipoItemDieta">
                                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                         <span>
                                             {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                     </ng-template>
                                 </p-column>
                                 <p-column header="Quantidade" field="quantidade"></p-column>
-                                <p-column header="Unidade" field="tipoUnidadeDietaId">
+                                <p-column header="Unidade" field="tipoUnidadeDieta">
                                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                         <span>
                                             {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].sigla }}</span>
                                     </ng-template>
                                 </p-column>
                                 <p-column header="Frequência" field="frequencia"></p-column>
-                                <p-column header="Aprazamento" field="tipoAprazamentoId">
+                                <p-column header="Aprazamento" field="tipoAprazamento">
                                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                         <span>
                                             {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>

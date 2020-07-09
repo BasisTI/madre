@@ -39,11 +39,11 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     });
 
     itemPrescricaoDieta = this.fb.group({
-        tipoItemDietaId: [null, Validators.required],
+        tipoItemDieta: [null, Validators.required],
         quantidade: [null],
         frequencia: [null],
-        tipoUnidadeDietaId: [null],
-        tipoAprazamentoId: [null],
+        tipoUnidadeDieta: [null],
+        tipoAprazamento: [null],
         numeroVezes: [null]
     });
 
@@ -131,22 +131,10 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
 
     prescrever() {
 
-
         const prescricao = this.prescricaoDieta.value;
 
         const prescricaoDieta = Object.assign({}, prescricao, {
-            itemPrescricaoDietaDTO: this.itensDieta
-        });
-
-
-        prescricaoDieta.itemPrescricaoDietaDTO = prescricaoDieta.itemPrescricaoDietaDTO.map(item => {
-            for (let propriedade in item) {
-                if (item[propriedade]?.id) {
-                    item[propriedade] = item[propriedade].id;
-                }
-            }
-
-            return item;
+            itens: this.itensDieta
         });
 
         this.prescricaoMedicaDietaService.adicionar(prescricaoDieta).subscribe(
@@ -160,6 +148,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             },
         );
         this.itensDieta = [];
+
     }
 
     ngOnDestroy() {
