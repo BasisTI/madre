@@ -1,6 +1,15 @@
-import {AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, Renderer2, ViewChild,} from '@angular/core';
-import {ScrollPanel} from 'primeng';
-import {MenusService} from '@nuvem/primeng-components';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    NgZone,
+    OnDestroy,
+    OnInit,
+    Renderer2,
+    ViewChild,
+} from '@angular/core';
+import { MenusService } from '@nuvem/primeng-components';
+import { ScrollPanel } from 'primeng';
 
 enum MenuOrientation {
     STATIC,
@@ -241,19 +250,22 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                     {
                                         label: 'Automáticas',
                                         icon: 'add',
-                                        routerLink: [
-                                            '/suprimentos/transferencias-automaticas'
-                                        ]
+                                        routerLink: ['/suprimentos/transferencias-automaticas'],
                                     },
                                     {
                                         label: 'Efetivação',
                                         icon: 'add',
                                         routerLink: [
-                                            '/suprimentos/transferencias-automaticas/nao-efetivadas'
-                                        ]
-                                    }
-                                ]
-                            }
+                                            '/suprimentos/transferencias-automaticas/nao-efetivadas',
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Requisições de Materiais',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/requisicoes-materiais'],
+                            },
                         ],
                     },
                 ],
