@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,11 +19,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
-import java.util.Objects;
 
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "transferenciaAlmoxarifado")
 @Entity
 @Table(name = "item_transferencia")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -45,17 +46,4 @@ public class ItemTransferencia implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("itens")
     private TransferenciaAlmoxarifado transferenciaAlmoxarifado;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ItemTransferencia)) return false;
-        ItemTransferencia that = (ItemTransferencia) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
