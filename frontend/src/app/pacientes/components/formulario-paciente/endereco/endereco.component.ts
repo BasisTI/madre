@@ -50,7 +50,6 @@ export class EnderecoComponent implements OnInit {
 
     consultaCEP() {
         const cep = this.endereco.value.cep;
-
         if (cep != null && cep !== '') {
       this.cepService.buscarCEP(cep)
       .subscribe(dados => this.populaDadosForm(dados));
@@ -58,14 +57,32 @@ export class EnderecoComponent implements OnInit {
     }
 
     populaDadosForm(dados) {
-
         this.endereco.patchValue({
             logradouro: dados.logradouro,
             bairro: dados.bairro,
-            uf: dados.ufId,
-            municipioId: dados.municipioId.id,
         });
-        console.log(this.endereco.value.uf);
+        const municipioId = dados.municipioId;
+        if (municipioId != null && municipioId !== ''){
+            this.municipioService.getMunicipioById(municipioId).subscribe(dados => this.populaMunicipio(dados));
+        }
+        console.log(dados);
+      }
+
+      populaMunicipio(dados){
+          this.endereco.patchValue({
+              municipioId: dados
+          });
+          const ufId = dados.ufId;
+          if(ufId != null && ufId != ''){
+              this.ufService.getUfById(ufId).subscribe(dados => this.populaUF(dados));
+          }
+      }
+
+      populaUF(dados) {
+          this.endereco.patchValue({
+              uf: dados
+          });
+          console.log(dados);
       }
 
     aoSelecionarUF() {
