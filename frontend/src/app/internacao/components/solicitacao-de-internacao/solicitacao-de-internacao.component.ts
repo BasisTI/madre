@@ -1,14 +1,15 @@
-import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
-import { Especialidade } from '@internacao/models/especialidade';
-import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
-import { SolicitacaoDeInternacao } from '@internacao/models/solicitacao-de-internacao';
-import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
-import { CID } from '@internacao/models/cid';
+import { ActivatedRoute } from '@angular/router';
 import { CidComponent } from '@internacao/components/cid/cid.component';
+import { CID } from '@internacao/models/cid';
+import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
+import { Especialidade } from '@internacao/models/especialidade';
+import { Paciente } from '@internacao/models/paciente';
+import { SolicitacaoDeInternacao } from '@internacao/models/solicitacao-de-internacao';
+import { PacienteService } from '@internacao/services/paciente.service';
+import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao-de-internacao.service';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 
 @Component({
     selector: 'app-solicitacao-de-internacao',
@@ -17,7 +18,7 @@ import { CidComponent } from '@internacao/components/cid/cid.component';
 })
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     @ViewChild('secundario') private cidSecundario: CidComponent;
-    public pacienteId: number;
+    public paciente: Paciente;
     public prioridadeDropdown = PrioridadeDropdown;
     public pCalendarConfig = {
         localidade: CALENDAR_LOCALE,
@@ -46,8 +47,8 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
         private route: ActivatedRoute,
-    ) {
-    }
+        private pacienteService: PacienteService,
+    ) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -60,7 +61,11 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
             },
         ]);
 
-        this.pacienteId = Number(this.route.snapshot.params['id']);
+        this.pacienteService
+            .obterPacientePorId(Number(this.route.snapshot.params['id']))
+            .subscribe((paciente) => {
+                this.paciente = paciente;
+            });
     }
 
     ngOnDestroy(): void {
@@ -70,7 +75,8 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     public solicitarInternacao(): void {
         const solicitacao: SolicitacaoDeInternacao = {
             ...this.formGroup.value,
-            pacienteId: this.pacienteId,
+            pacienteId: this.paciente.id,
+            prontuario: this.paciente.prontuario,
         };
 
         this.solicitacaoDeInternacaoService

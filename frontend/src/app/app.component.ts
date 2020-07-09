@@ -1,15 +1,6 @@
-import {
-    Component,
-    AfterViewInit,
-    ElementRef,
-    Renderer2,
-    ViewChild,
-    OnDestroy,
-    OnInit,
-    NgZone,
-} from '@angular/core';
-import { ScrollPanel } from 'primeng';
-import { MenusService } from '@nuvem/primeng-components';
+import {AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, Renderer2, ViewChild,} from '@angular/core';
+import {ScrollPanel} from 'primeng';
+import {MenusService} from '@nuvem/primeng-components';
 
 enum MenuOrientation {
     STATIC,
@@ -124,6 +115,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Listar Consultas',
                         icon: 'add',
                         routerLink: ['consulta/listar-consultas'],
+                    },
+                    {
+                        label: 'Calendário',
+                        icon: 'add',
+                        routerLink: ['consulta/consulta-calendario'],
                     },
                     {
                         label: 'Emergência',
@@ -247,6 +243,13 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                         icon: 'add',
                                         routerLink: [
                                             '/suprimentos/transferencias-automaticas'
+                                        ]
+                                    },
+                                    {
+                                        label: 'Efetivação',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/transferencias-automaticas/nao-efetivadas'
                                         ]
                                     }
                                 ]

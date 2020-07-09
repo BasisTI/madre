@@ -6,6 +6,7 @@ export interface IPaciente {
     sexo?: string;
     nomeDaMae?: string;
     numeroCartaoSUS?: string;
+    prontuario?: number;
 }
 
 export class Paciente implements IPaciente {
@@ -16,4 +17,5 @@ export class Paciente implements IPaciente {
     public sexo?: string;
     public nomeDaMae?: string;
     public numeroCartaoSUS?: string;
+    public prontuario?: number;
 }
