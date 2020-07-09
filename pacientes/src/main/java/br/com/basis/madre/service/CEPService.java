@@ -66,6 +66,10 @@ public class CEPService {
             .map(cEPMapper::toDto);
     }
 
+    public Page<CEP> findAllCEP(String cep, Pageable pageable) {
+        return cEPRepository.findByCepContainsIgnoreCase(cep,pageable);
+    }
+
 
     /**
      * Get one cEP by id.
