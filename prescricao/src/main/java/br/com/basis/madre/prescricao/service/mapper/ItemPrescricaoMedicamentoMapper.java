@@ -12,20 +12,20 @@ import org.mapstruct.*;
 		TipoAprazamentoMapper.class, MedicamentoMapper.class})
 public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescricaoMedicamentoDTO, ItemPrescricaoMedicamento> {
 
-    @Mapping(source = "viasAdministracao.id", target = "viasAdministracaoId")
-    @Mapping(source = "diluente.id", target = "diluenteId")
-    @Mapping(source = "unidadeInfusao.id", target = "unidadeInfusaoId")
-    @Mapping(source = "unidadeDose.id", target = "unidadeDoseId")
-    @Mapping(source = "tipoAprazamento.id", target = "tipoAprazamentoId")
-    @Mapping(source = "medicamento", target="medicamentoDTO")
+    @Mapping(source = "viasAdministracao", target = "viasAdministracao")
+    @Mapping(source = "diluente", target = "diluente")
+    @Mapping(source = "unidadeInfusao", target = "unidadeInfusao")
+    @Mapping(source = "unidadeDose", target = "unidadeDose")
+    @Mapping(source = "tipoAprazamento", target = "tipoAprazamento")
+    @Mapping(source = "medicamento", target="medicamento")
     ItemPrescricaoMedicamentoDTO toDto(ItemPrescricaoMedicamento itemPrescricaoMedicamento);
 
-    @Mapping(source = "viasAdministracaoId", target = "viasAdministracao")
-    @Mapping(source = "diluenteId", target = "diluente")
-    @Mapping(source = "unidadeInfusaoId", target = "unidadeInfusao")
-    @Mapping(source = "unidadeDoseId", target = "unidadeDose")
-    @Mapping(source = "tipoAprazamentoId", target = "tipoAprazamento.id")
-    @Mapping(source = "medicamentoDTO", target="medicamento")
+    @Mapping(source = "viasAdministracao", target = "viasAdministracao")
+    @Mapping(source = "diluente", target = "diluente")
+    @Mapping(source = "unidadeInfusao", target = "unidadeInfusao")
+    @Mapping(source = "unidadeDose", target = "unidadeDose")
+    @Mapping(source = "tipoAprazamento", target = "tipoAprazamento")
+    @Mapping(source = "medicamento", target="medicamento")
     ItemPrescricaoMedicamento toEntity(ItemPrescricaoMedicamentoDTO itemPrescricaoMedicamentoDTO);
 
     default ItemPrescricaoMedicamento fromId(Long id) {
