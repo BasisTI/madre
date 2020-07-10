@@ -1,0 +1,51 @@
+{
+  "name": "RequisicaoMaterial",
+  "fields": [
+    {
+      "fieldName": "geradoEm",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "geradoPor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "confirmadoEm",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "confirmadoPor",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "itemRequisicao",
+      "otherEntityRelationshipName": "requisicao",
+      "relationshipName": "itens"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "situacaoRequisicao",
+      "otherEntityRelationshipName": "requisicaoMaterial",
+      "relationshipName": "situacao",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200709165406",
+  "entityTableName": "requisicao_material",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madresuprimentos",
+  "applications": "*",
+  "microserviceName": "madresuprimentos",
+  "skipClient": true
+}

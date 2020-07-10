@@ -57,6 +57,13 @@
     <include file="config/liquibase/changelog/20200630135304_BASIS_134373_changelog.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200702151141_BASIS-135233.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165506_added_entity_SituacaoRequisicao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165406_added_entity_RequisicaoMaterial.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165606_added_entity_ItemRequisicao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709174126_BASIS-136400.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200618123148_added_entity_constraints_TransferenciaAlmoxarifado.xml"
              relativeToChangelogFile="false"/>
@@ -77,6 +84,10 @@
     <include file="config/liquibase/changelog/20200618123201_added_entity_constraints_Lote.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123202_added_entity_constraints_Material.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165406_added_entity_constraints_RequisicaoMaterial.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165606_added_entity_constraints_ItemRequisicao.xml"
              relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

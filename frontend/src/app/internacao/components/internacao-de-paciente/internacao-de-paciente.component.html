@@ -2,7 +2,7 @@
     <p-fieldset legend="Internar Paciente">
         <form [formGroup]="formGroup">
             <div class="ui-g-12">
-                <app-card-paciente [identificador]="solicitacao.pacienteId"></app-card-paciente>
+                <app-card-paciente [prontuario]="solicitacao.pacienteId"></app-card-paciente>
             </div>
             <div class="ui-g-12">
                 <!-- Leito + Quarto + Unidade Funcional -->
@@ -51,12 +51,7 @@
             </div>
             <div class="ui-g-12">
                 <div class="ui-g-5">
-                    <app-crm
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="crm"
-                        label="CRM"
-                    >
+                    <app-crm [parentFormGroup]="formGroup" [required]="true" name="crm" label="CRM">
                     </app-crm>
                 </div>
             </div>

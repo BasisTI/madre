@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="pedro (generated)" id="1594316491374-8">
+        <addColumn tableName="item_requisicao">
+            <column name="almoxarifado_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-9">
+        <addColumn tableName="requisicao_material">
+            <column name="ca_aplicacao_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-10">
+        <addColumn tableName="requisicao_material">
+            <column name="ca_requisitante_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-11">
+        <addColumn tableName="item_requisicao">
+            <column name="material_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-13">
+        <addForeignKeyConstraint baseColumnNames="ca_requisitante_id" baseTableName="requisicao_material"
+                                 constraintName="FKf8qcsfcw8di35hncb0sfwtwdg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="centro_de_atividade" validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-14">
+        <addForeignKeyConstraint baseColumnNames="ca_aplicacao_id" baseTableName="requisicao_material"
+                                 constraintName="FKg5i7xuwbgbx72yyeqtmj3mxs4" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="centro_de_atividade" validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-16">
+        <addForeignKeyConstraint baseColumnNames="almoxarifado_id" baseTableName="item_requisicao"
+                                 constraintName="FKm5jtk18ig6tm3tdo7tntdngx2" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="almoxarifado"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594316491374-17">
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="item_requisicao"
+                                 constraintName="FKrveem7qku7la5cqhpxjausen1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="material"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

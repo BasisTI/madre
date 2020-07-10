@@ -2,6 +2,10 @@ package br.com.basis.suprimentos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -24,7 +28,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@NoArgsConstructor
+@Setter
+@Getter
+@EqualsAndHashCode(exclude = "lotes")
 @Entity
 @Table(name = "estoque_almoxarifado")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
