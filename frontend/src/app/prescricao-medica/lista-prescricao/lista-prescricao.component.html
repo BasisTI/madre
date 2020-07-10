@@ -1,19 +1,24 @@
-<p-treeTable [value]="listaPrescricoes" [columns]="cols" [scrollable]="true" scrollHeight="200px">
-    <ng-template pTemplate="header" let-columns>
+<p-treeTable [value]="prescricoes" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
         <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Data</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns; let i = index">
-                <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
-                {{rowData[col.field]}}
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr [ttRow]="rowNode">
+            <td>
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                {{rowData.name}}
+            </td>
+            <td>
+                {{rowData.descricao}}
+                {{rowData.alimento}}
+            </td>
+            <td>
+                {{rowData.dataPrescricao | date: 'dd/MM/yyyy'}}
             </td>
         </tr>
     </ng-template>
 </p-treeTable>
-
-

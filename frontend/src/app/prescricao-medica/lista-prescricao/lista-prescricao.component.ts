@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ListaPrescricaoService } from './lista-prescricao.service';
-
+import { TreeNode } from 'primeng/api';
 @Component({
     selector: 'app-lista-prescricao',
     templateUrl: './lista-prescricao.component.html',
@@ -10,8 +10,7 @@ import { ListaPrescricaoService } from './lista-prescricao.service';
 })
 export class ListaPrescricaoComponent implements OnInit, OnDestroy {
 
-    cols: any[];
-    listaPrescricoes = []
+    prescricoes: TreeNode[];
 
     constructor(
         private breadcrumbService: BreadcrumbService,
@@ -32,22 +31,49 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
 
         }
 
-        this.cols = [
-            { field: 'observacao', header: 'Nome' },
-            { field: 'frequencia', header: 'Frequência' },
-            { field: 'tipoAprazamento', header: 'Aprazamento' },
-            { field: 'dataPrescricao', header: 'Data' }
-        ];
     }
 
     carregarListaPrescricoes(id: number) {
 
         return this.listaPrescricaoService.listarPrescricoes(id).subscribe((resposta) => {
-            console.log(resposta);
+
+            this.prescricoes = resposta.map(e => {
+                let node = {
+                    data: {
+                        name: e.tipo,
+                        dataPrescricao: e.dataPrescricao
+                    },
+                    children: []
+                }
+                if (e.tipo === 'MEDICAMENTO') {
+                    node.children = e.itens.map(item => {
+                        let node = {
+                            data: {
+                                name: item.medicamento.nome,
+                                descricao: `${item.diluente.descricao}; ${item.tipoAprazamento.descricao}`,
+                            }
+                        }
+                        return node;
+
+                    })
+                } else if (e.tipo === 'DIETA') {
+                    node.children = e.itens.map(item => {
+                        let node = {
+                            data: {
+                                name: item.tipoItemDieta.descricao,
+                                descricao: `${item.quantidade} ${item.tipoUnidadeDieta.sigla}`,
+                            }
+                        }
+                        return node;
+
+                    })
+                }
+                return node;
+
+            });
 
         });
     }
-
 
 
     ngOnDestroy(): void {

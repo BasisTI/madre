@@ -13,6 +13,6 @@ export class ListaPrescricaoService {
     private readonly baseUrl = '/prescricao/api';
 
     listarPrescricoes(id: number): Observable<any> {
-        return this.http.get(`${this.baseUrl}/prescricao-medicas/lista/${id}`);
+        return this.http.get(`${this.baseUrl}/_search/prescricao-medicas/${id}`);
     }
 }
