@@ -31,17 +31,38 @@
                 </div>
                 <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable
-                    type="memory"
+                    type="server"
+                    [url]="url"
                     [disableDelete]="false"
                     [disableEdit]="true"
                     [disableView]="true"
                     #datatable
                 >
-                    <!-- <p-column header="Gerado Em" field=""> </p-column>
-                    <p-column header="CA Requisição" field=""> </p-column>
-                    <p-column header="CA Requisição" field=""> </p-column>
-                    <p-column header="Situação" field=""> </p-column>
-                    <p-column header="Gerado Por" field=""> </p-column> -->
+                    <p-column header="Gerado Em" field="">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.geradoEm | date: 'dd/MM/yyyy - HH:mm' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="CA Requisição" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.caAplicacao?.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="CA Requisição" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.caRequisitante?.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Situação" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.situacao?.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Gerado Por" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.geradoPor }}
+                        </ng-template>
+                    </p-column>
                 </basis-datatable>
             </div>
         </div>

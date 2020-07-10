@@ -11,6 +11,10 @@ export class RequisicaoMaterialService {
 
     constructor(private client: HttpClient) {}
 
+    public getResource(): string {
+        return this.resource;
+    }
+
     public gerarRequisicaoMaterial(requisicao: any): Observable<any> {
         return this.client.post<any>(this.resource, requisicao);
     }

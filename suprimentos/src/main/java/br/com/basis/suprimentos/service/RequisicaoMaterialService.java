@@ -2,6 +2,7 @@ package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.RequisicaoMaterial;
 import br.com.basis.suprimentos.domain.enumeration.CodigoSituacaoRequisicaoMaterial;
+import br.com.basis.suprimentos.domain.projection.RequisicaoMaterialResumo;
 import br.com.basis.suprimentos.repository.RequisicaoMaterialRepository;
 import br.com.basis.suprimentos.repository.search.RequisicaoMaterialSearchRepository;
 import br.com.basis.suprimentos.service.dto.RequisicaoMaterialDTO;
@@ -46,6 +47,11 @@ public class RequisicaoMaterialService {
         RequisicaoMaterialDTO result = requisicaoMaterialMapper.toDto(saved);
         requisicaoMaterialSearchRepository.save(saved);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<RequisicaoMaterialResumo> findAllRequisicoesMaterialResumo(Pageable pageable) {
+        return requisicaoMaterialRepository.findBy(RequisicaoMaterialResumo.class, pageable);
     }
 
     @Transactional(readOnly = true)
