@@ -1,10 +1,8 @@
 package br.com.basis.suprimentos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -20,30 +18,31 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 
-@NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode(exclude = "transferenciaAlmoxarifado")
+@Data
+@EqualsAndHashCode(exclude = "requisicao")
 @Entity
-@Table(name = "item_transferencia")
+@Table(name = "item_requisicao")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Document(indexName = "madre-suprimentos-itemtransferencia")
-public class ItemTransferencia implements Serializable {
+@Document(indexName = "madre-suprimentos-itemrequisicao")
+public class ItemRequisicao implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqItemRequisicao")
+    @SequenceGenerator(name = "seqItemRequisicao")
     private Long id;
 
     @Min(0)
-    @Column(name = "quantidade_enviada", nullable = false)
-    private Integer quantidadeEnviada;
+    @Column(name = "quantidade", nullable = false)
+    private Integer quantidade;
 
     @ManyToOne
     private Material material;
 
     @ManyToOne
-    @JsonIgnoreProperties("itens")
-    private TransferenciaAlmoxarifado transferenciaAlmoxarifado;
+    private Almoxarifado almoxarifado;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "itens", allowSetters = true)
+    private RequisicaoMaterial requisicao;
 }
