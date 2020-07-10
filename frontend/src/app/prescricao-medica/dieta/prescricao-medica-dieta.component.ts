@@ -34,6 +34,7 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         idPaciente: [null],
         nome: [null],
         tipo: 'DIETA',
+        dataPrescricao: [new Date().toLocaleString()],
         bombaInfusao: [null],
         observacao: [null]
     });

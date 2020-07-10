@@ -38,6 +38,7 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
     prescricaoMedicamento = this.fb.group({
         idPaciente: [null],
         nome: [null],
+        dataPrescricao: [new Date().toLocaleString()],
         tipo: 'MEDICAMENTO',
         observacao: [null]
     });
