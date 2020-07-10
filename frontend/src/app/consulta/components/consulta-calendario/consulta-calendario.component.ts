@@ -39,6 +39,10 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             },
         };
         this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
+            eventos.forEach((e) => {
+                e.url = `/consulta/consulta-calendario/detalha-consulta`;
+            });
+
             this.events = eventos;
         });
     }
