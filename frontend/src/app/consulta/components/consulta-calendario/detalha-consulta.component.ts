@@ -1,6 +1,8 @@
+import { ConsultaService } from './../../consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BreadcrumbService } from '@nuvem/primeng-components';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-detalha-consulta',
@@ -22,7 +24,17 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
         formaDeAgendamentoId: [''],
     });
 
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService) {}
+    localizacao = CALENDAR_LOCALE;
+    dataLimite = new Date();
+    anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
+    formatoDeData = 'dd/mm/yy';
+
+    constructor(
+        private fb: FormBuilder,
+        private breadcrumbService: BreadcrumbService,
+        private route: ActivatedRoute,
+        private consultaService: ConsultaService,
+    ) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -39,7 +51,20 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
                 routerLink: 'detalha-consulta',
             },
         ]);
+
+        const consultaId = this.route.snapshot.params['id'];
+
+        if (consultaId) {
+            this.carregarConsulta(consultaId);
+        }
     }
+
+    carregarConsulta(id: number) {
+        this.consultaService.buscarConsultaId(id).subscribe((consultas) => {
+            this.detalharConsultas = consultas;
+        });
+    }
+
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
     }

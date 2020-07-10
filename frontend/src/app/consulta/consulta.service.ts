@@ -31,6 +31,9 @@ export class ConsultaService {
     public buscarPaciente(): Observable<Array<Paciente>> {
         return this.client.get<Array<Paciente>>(`${this.pacUrl}/pacientes`);
     }
+    public buscarConsultaId(id: number): Observable<any> {
+        return this.client.get(`${this.apiUrl}/emergencias/${id}`);
+    }
     public obterConsultaCalendario(): Observable<Array<ConsultaCalendarioModel>> {
         return this.client.get<Array<ConsultaCalendarioModel>>(
             `${this.apiUrl}/consultas-emergencias/calendario`,

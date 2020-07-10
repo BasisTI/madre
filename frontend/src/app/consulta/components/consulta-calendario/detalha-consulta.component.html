@@ -3,10 +3,10 @@
         <div class="ui-g-12">
             <h1>Detalhamento de Consultas</h1>
 
-            <div class="ui-g-2 ui-sm-12">
+            <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
                     <input type="text" pInputText formControlName="dataHoraDaConsulta" />
-                    <label>Data e hora da Consulta</label>
+                    <label>Data/Hora da Consulta</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
@@ -21,24 +21,18 @@
                     <label>Número da Sala</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="ui-g-12"></div>
+            <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
                     <input type="text" pInputText formControlName="turno" />
                     <label>Turno</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
                     <input type="text" pInputText formControlName="tipoPagador" />
                     <label>Tipo Pagador</label>
                 </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <p-radioButton
-                    formControlName="gradesDiponiveis"
-                    label="Grades Diponíveis "
-                    pRadioButton
-                ></p-radioButton>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
@@ -46,16 +40,29 @@
                     <label>Clinica Central</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="justificativa" />
+            <div class="ui-g-12"></div>
+            <div class="ui-g-8 ui-sm-12">
+                <span class="md-inputfield" style="margin-top: 5px;">
+                    <textarea
+                        [rows]="3"
+                        [cols]="30"
+                        pInputTextarea
+                        autoResize="autoResize"
+                        formControlName="justificativa"
+                    ></textarea>
                     <label>Justificativa</label>
                 </span>
             </div>
-
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="observacoes" />
+            <div class="ui-g-12"></div>
+            <div class="ui-g-8 ui-sm-12">
+                <span class="md-inputfield" style="margin-top: 5px;">
+                    <textarea
+                        [rows]="3"
+                        [cols]="30"
+                        pInputTextarea
+                        autoResize="autoResize"
+                        formControlName="observacoes"
+                    ></textarea>
                     <label>Observações</label>
                 </span>
             </div>
