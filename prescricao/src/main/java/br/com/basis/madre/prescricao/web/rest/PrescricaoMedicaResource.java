@@ -23,11 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
-import br.com.basis.madre.prescricao.repository.PrescricaoMedicaRepository;
 import br.com.basis.madre.prescricao.service.PrescricaoMedicaService;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicaDTO;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -167,9 +164,11 @@ public class PrescricaoMedicaResource {
 	}
 
 	@GetMapping("/_search/prescricao-medicas/{id}")
-	public ResponseEntity<List<PrescricaoMedicaDTO>> searchByIdPaciente(@PathVariable Long id) {
-		List<PrescricaoMedicaDTO> prescricoes = prescricaoMedicaService.searchByIdPaciente(id);
+	public ResponseEntity<List<PrescricaoMedicaDTO>> searchByIdPaciente(@PathVariable Long id, Pageable pageable) {
+		Page<PrescricaoMedicaDTO> page = prescricaoMedicaService.searchByIdPaciente(id, pageable);
 
-		return ResponseEntity.ok(prescricoes);
+		HttpHeaders headers = PaginationUtil
+				.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+		return ResponseEntity.ok().headers(headers).body(page.getContent());
 	}
 }

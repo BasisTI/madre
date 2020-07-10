@@ -1,25 +1,22 @@
 package br.com.basis.madre.prescricao.service;
 
-import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
-import br.com.basis.madre.prescricao.repository.PrescricaoMedicaRepository;
-import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaDTOSearchRepository;
-import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaSearchRepository;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoDietaDTO;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicaDTO;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
-import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicaMapper;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import br.com.basis.madre.prescricao.domain.PrescricaoMedica;
+import br.com.basis.madre.prescricao.repository.PrescricaoMedicaRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaDTOSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicaSearchRepository;
+import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicaDTO;
+import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicaMapper;
 
 /**
  * Service Implementation for managing {@link PrescricaoMedica}.
@@ -58,12 +55,11 @@ public class PrescricaoMedicaService {
 	public PrescricaoMedicaDTO save(PrescricaoMedicaDTO prescricaoMedicaDTO) {
 		log.debug("Request to save PrescricaoMedica : {}", prescricaoMedicaDTO);
 		PrescricaoMedica prescricaoMedica = prescricaoMedicaMapper.toEntity(prescricaoMedicaDTO);
-		
+	
 //		if(prescricaoMedicaDTO instanceof PrescricaoMedicamentoDTO) {
 //		}else if(prescricaoMedicaDTO instanceof PrescricaoDietaDTO) {
 //			
-//		} 
-		
+//		}	
 		prescricaoMedica = prescricaoMedicaRepository.save(prescricaoMedica);
 		PrescricaoMedicaDTO result = prescricaoMedicaMapper.toDto(prescricaoMedica);
 		prescricaoMedicaSearchRepository.save(prescricaoMedica);
@@ -119,7 +115,7 @@ public class PrescricaoMedicaService {
 				.map(prescricaoMedicaMapper::toDto);
 	}
 
-	public List<PrescricaoMedicaDTO> searchByIdPaciente(Long id) {
-		return prescricaoMedicaDTOSearchRepository.findByIdPaciente(id);
+	public Page<PrescricaoMedicaDTO> searchByIdPaciente(Long id, Pageable pageable) {
+		return prescricaoMedicaDTOSearchRepository.findByIdPaciente(id, pageable);
 	}
 }
