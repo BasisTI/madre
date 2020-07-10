@@ -40,19 +40,19 @@ public class CentroDeAtividadeResource {
     private static final String ENTITY_NAME = "madresuprimentosCentroDeAtividade";
     private final CentroDeAtividadeService centroDeAtividadeService;
 
-    @PostMapping("/centro-de-atividades")
+    @PostMapping("/centros-de-atividade")
     public ResponseEntity<CentroDeAtividadeDTO> createCentroDeAtividade(@Valid @RequestBody CentroDeAtividadeDTO centroDeAtividadeDTO) throws URISyntaxException {
         log.debug("REST request to save CentroDeAtividade : {}", centroDeAtividadeDTO);
         if (centroDeAtividadeDTO.getId() != null) {
             throw new BadRequestAlertException("A new centroDeAtividade cannot already have an ID", ENTITY_NAME, "idexists");
         }
         CentroDeAtividadeDTO result = centroDeAtividadeService.save(centroDeAtividadeDTO);
-        return ResponseEntity.created(new URI("/api/centro-de-atividades/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/centros-de-atividade/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
-    @PutMapping("/centro-de-atividades")
+    @PutMapping("/centros-de-atividade")
     public ResponseEntity<CentroDeAtividadeDTO> updateCentroDeAtividade(@Valid @RequestBody CentroDeAtividadeDTO centroDeAtividadeDTO) throws URISyntaxException {
         log.debug("REST request to update CentroDeAtividade : {}", centroDeAtividadeDTO);
         if (centroDeAtividadeDTO.getId() == null) {
@@ -64,29 +64,29 @@ public class CentroDeAtividadeResource {
             .body(result);
     }
 
-    @GetMapping("/centro-de-atividades")
-    public ResponseEntity<List<CentroDeAtividadeDTO>> getAllCentroDeAtividades(Pageable pageable) {
+    @GetMapping("/centros-de-atividade")
+    public ResponseEntity<List<CentroDeAtividadeDTO>> getAllCentroDeAtividades(Pageable pageable, CentroDeAtividadeDTO centroDeAtividadeDTO) {
         log.debug("REST request to get a page of CentroDeAtividades");
-        Page<CentroDeAtividadeDTO> page = centroDeAtividadeService.findAll(pageable);
+        Page<CentroDeAtividadeDTO> page = centroDeAtividadeService.findAll(pageable, centroDeAtividadeDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/centro-de-atividades/{id}")
+    @GetMapping("/centros-de-atividade/{id}")
     public ResponseEntity<CentroDeAtividadeDTO> getCentroDeAtividade(@PathVariable Long id) {
         log.debug("REST request to get CentroDeAtividade : {}", id);
         Optional<CentroDeAtividadeDTO> centroDeAtividadeDTO = centroDeAtividadeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(centroDeAtividadeDTO);
     }
 
-    @DeleteMapping("/centro-de-atividades/{id}")
+    @DeleteMapping("/centros-de-atividade/{id}")
     public ResponseEntity<Void> deleteCentroDeAtividade(@PathVariable Long id) {
         log.debug("REST request to delete CentroDeAtividade : {}", id);
         centroDeAtividadeService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/_search/centro-de-atividades")
+    @GetMapping("/_search/centros-de-atividade")
     public ResponseEntity<List<CentroDeAtividadeDTO>> searchCentroDeAtividades(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of CentroDeAtividades for query {}", query);
         Page<CentroDeAtividadeDTO> page = centroDeAtividadeService.search(query, pageable);

@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.RequisicaoMaterial;
+import br.com.basis.suprimentos.domain.enumeration.CodigoSituacaoRequisicaoMaterial;
 import br.com.basis.suprimentos.repository.RequisicaoMaterialRepository;
 import br.com.basis.suprimentos.repository.search.RequisicaoMaterialSearchRepository;
 import br.com.basis.suprimentos.service.dto.RequisicaoMaterialDTO;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -24,13 +27,24 @@ public class RequisicaoMaterialService {
     private final RequisicaoMaterialRepository requisicaoMaterialRepository;
     private final RequisicaoMaterialMapper requisicaoMaterialMapper;
     private final RequisicaoMaterialSearchRepository requisicaoMaterialSearchRepository;
+    private final AuthenticationPrincipalService authenticationPrincipalService;
+
+    public RequisicaoMaterialDTO criarRequisicaoMaterial(RequisicaoMaterialDTO requisicaoMaterialDTO) {
+        requisicaoMaterialDTO.setGeradoEm(ZonedDateTime.now(ZoneId.systemDefault()));
+        requisicaoMaterialDTO.setGeradoPor(authenticationPrincipalService.getLoginAtivo());
+        requisicaoMaterialDTO.setSituacaoId(CodigoSituacaoRequisicaoMaterial.GERADA.getCodigo());
+        return save(requisicaoMaterialDTO);
+    }
 
     public RequisicaoMaterialDTO save(RequisicaoMaterialDTO requisicaoMaterialDTO) {
         log.debug("Request to save RequisicaoMaterial : {}", requisicaoMaterialDTO);
-        RequisicaoMaterial requisicaoMaterial = requisicaoMaterialMapper.toEntity(requisicaoMaterialDTO);
-        requisicaoMaterial = requisicaoMaterialRepository.save(requisicaoMaterial);
-        RequisicaoMaterialDTO result = requisicaoMaterialMapper.toDto(requisicaoMaterial);
-        requisicaoMaterialSearchRepository.save(requisicaoMaterial);
+        final RequisicaoMaterial requisicaoMaterial = requisicaoMaterialMapper.toEntity(requisicaoMaterialDTO);
+        requisicaoMaterial.getItens().forEach(item -> {
+            item.setRequisicao(requisicaoMaterial);
+        });
+        final RequisicaoMaterial saved = requisicaoMaterialRepository.save(requisicaoMaterial);
+        RequisicaoMaterialDTO result = requisicaoMaterialMapper.toDto(saved);
+        requisicaoMaterialSearchRepository.save(saved);
         return result;
     }
 

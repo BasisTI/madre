@@ -46,7 +46,7 @@ public class RequisicaoMaterialResource {
         if (requisicaoMaterialDTO.getId() != null) {
             throw new BadRequestAlertException("A new requisicaoMaterial cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        RequisicaoMaterialDTO result = requisicaoMaterialService.save(requisicaoMaterialDTO);
+        RequisicaoMaterialDTO result = requisicaoMaterialService.criarRequisicaoMaterial(requisicaoMaterialDTO);
         return ResponseEntity.created(new URI("/api/requisicoes-materiais/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);

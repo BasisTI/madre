@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Almoxarifado } from '@suprimentos/models/almoxarifado';
@@ -14,7 +14,7 @@ import { TransferenciaAutomaticaService } from '@suprimentos/services/transferen
     selector: 'app-transferencia-automatica-form',
     templateUrl: './transferencia-automatica-form.component.html',
 })
-export class TransferenciaAutomaticaFormComponent implements OnInit {
+export class TransferenciaAutomaticaFormComponent {
     public almoxarifados: Almoxarifado[];
     public classificacoes: ClassificacaoMaterial[];
     public materiais: Material[];
@@ -39,6 +39,9 @@ export class TransferenciaAutomaticaFormComponent implements OnInit {
         private materialService: MaterialService,
         private classificacaoMaterialService: ClassificacaoMaterialService,
     ) {}
+    ngOnInit(): void {
+        throw new Error('Method not implemented.');
+    }
 
     public getAlmoxarifadoPorDescricao(descricao: string): void {
         this.almoxarifadoService
@@ -64,9 +67,7 @@ export class TransferenciaAutomaticaFormComponent implements OnInit {
 
     public adicionarItem() {
         const item = this.itemForm.value;
-        console.log('Novo item: ', item);
         this.itens.push(item);
-        console.log('Itens: ', this.itens);
     }
 
     public salvar(): void {
@@ -104,6 +105,4 @@ export class TransferenciaAutomaticaFormComponent implements OnInit {
             },
         };
     }
-
-    ngOnInit(): void {}
 }

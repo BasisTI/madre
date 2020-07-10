@@ -5,17 +5,19 @@ import br.com.basis.suprimentos.service.dto.ItemRequisicaoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {RequisicaoMaterialMapper.class})
+import java.util.Set;
+
+@Mapper(componentModel = "spring")
 public interface ItemRequisicaoMapper extends EntityMapper<ItemRequisicaoDTO, ItemRequisicao> {
-    @Mapping(source = "requisicao.id", target = "requisicaoId")
-    @Mapping(source = "almoxarifado.id", target = "almoxarifadoId")
     @Mapping(source = "material.id", target = "materialId")
     ItemRequisicaoDTO toDto(ItemRequisicao itemRequisicao);
 
-    @Mapping(source = "requisicaoId", target = "requisicao")
     @Mapping(source = "materialId", target = "material.id")
-    @Mapping(source = "almoxarifadoId", target = "almoxarifado.id")
     ItemRequisicao toEntity(ItemRequisicaoDTO itemRequisicaoDTO);
+
+    Set<ItemRequisicao> toEntity(Set<ItemRequisicaoDTO> itens);
+
+    Set<ItemRequisicaoDTO> toDto(Set<ItemRequisicao> itens);
 
     default ItemRequisicao fromId(Long id) {
         if (id == null) {
