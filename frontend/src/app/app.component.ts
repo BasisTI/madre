@@ -1,15 +1,6 @@
-import {
-    Component,
-    AfterViewInit,
-    ElementRef,
-    Renderer2,
-    ViewChild,
-    OnDestroy,
-    OnInit,
-    NgZone,
-} from '@angular/core';
-import { ScrollPanel } from 'primeng';
-import { MenusService } from '@nuvem/primeng-components';
+import {AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, Renderer2, ViewChild,} from '@angular/core';
+import {ScrollPanel} from 'primeng';
+import {MenusService} from '@nuvem/primeng-components';
 
 enum MenuOrientation {
     STATIC,
@@ -126,6 +117,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['consulta/listar-consultas'],
                     },
                     {
+                        label: 'Calendário',
+                        icon: 'add',
+                        routerLink: ['consulta/consulta-calendario'],
+                    },
+                    {
                         label: 'Emergência',
                         icon: 'add',
                         routerLink: ['consulta/emergencia'],
@@ -238,6 +234,26 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                     },
                                 ],
                             },
+                            {
+                                label: 'Transferências',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Automáticas',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/transferencias-automaticas'
+                                        ]
+                                    },
+                                    {
+                                        label: 'Efetivação',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/transferencias-automaticas/nao-efetivadas'
+                                        ]
+                                    }
+                                ]
+                            }
                         ],
                     },
                 ],

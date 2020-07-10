@@ -1,5 +1,9 @@
 package br.com.basis.madre.service.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,6 +11,9 @@ import java.util.Objects;
 /**
  * A DTO for the {@link br.com.basis.madre.domain.MotivoDoCadastro} entity.
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MotivoDoCadastroDTO implements Serializable {
 
     private Long id;
@@ -14,49 +21,4 @@ public class MotivoDoCadastroDTO implements Serializable {
     @NotNull
     private String valor;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
-        this.valor = valor;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        MotivoDoCadastroDTO motivoDoCadastroDTO = (MotivoDoCadastroDTO) o;
-        if (motivoDoCadastroDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), motivoDoCadastroDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "MotivoDoCadastroDTO{" +
-            "id=" + getId() +
-            ", valor='" + getValor() + "'" +
-            "}";
-    }
 }

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -48,6 +49,11 @@ public class EstoqueAlmoxarifadoService {
             .map(estoqueAlmoxarifadoMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public EstoqueAlmoxarifado findOneEntity(Long id) {
+        return estoqueAlmoxarifadoRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    }
+
     public void delete(Long id) {
         log.debug("Request to delete EstoqueAlmoxarifado : {}", id);
         estoqueAlmoxarifadoRepository.deleteById(id);
@@ -59,5 +65,10 @@ public class EstoqueAlmoxarifadoService {
         log.debug("Request to search for a page of EstoqueAlmoxarifados for query {}", query);
         return estoqueAlmoxarifadoSearchRepository.search(queryStringQuery(query), pageable)
             .map(estoqueAlmoxarifadoMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public EstoqueAlmoxarifadoDTO recuperaEstoquePorAlmoxarifadoIdEMaterialId(Long almoxarifadoId, Long materialId) {
+        return estoqueAlmoxarifadoRepository.findByAlmoxarifadoIdAndMaterialId(almoxarifadoId, materialId).map(estoqueAlmoxarifadoMapper::toDto).orElseThrow(EntityNotFoundException::new);
     }
 }

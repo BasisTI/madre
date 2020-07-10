@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.web.rest;
 
+import br.com.basis.suprimentos.domain.projection.TransferenciaAutomatica;
 import br.com.basis.suprimentos.service.TransferenciaAlmoxarifadoService;
 import br.com.basis.suprimentos.service.dto.TransferenciaAlmoxarifadoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -41,12 +42,12 @@ public class TransferenciaAlmoxarifadoResource {
     private String applicationName;
 
     @PostMapping("/transferencias-almoxarifado")
-    public ResponseEntity<TransferenciaAlmoxarifadoDTO> createTransferenciaAlmoxarifado(@Valid @RequestBody TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO) throws URISyntaxException {
+    public ResponseEntity<TransferenciaAlmoxarifadoDTO> createTransferenciaAutomatica(@Valid @RequestBody TransferenciaAlmoxarifadoDTO transferenciaAlmoxarifadoDTO) throws URISyntaxException {
         log.debug("REST request to save TransferenciaAlmoxarifado : {}", transferenciaAlmoxarifadoDTO);
         if (transferenciaAlmoxarifadoDTO.getId() != null) {
             throw new BadRequestAlertException("A new transferenciaAlmoxarifado cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TransferenciaAlmoxarifadoDTO result = transferenciaAlmoxarifadoService.save(transferenciaAlmoxarifadoDTO);
+        TransferenciaAlmoxarifadoDTO result = transferenciaAlmoxarifadoService.criarNovaTransferenciaAutomatica(transferenciaAlmoxarifadoDTO);
         return ResponseEntity.created(new URI("/api/transferencias-almoxarifado/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -64,12 +65,27 @@ public class TransferenciaAlmoxarifadoResource {
             .body(result);
     }
 
-    @GetMapping("/transferencias-almoxarifado")
-    public ResponseEntity<List<TransferenciaAlmoxarifadoDTO>> getAllTransferenciaAlmoxarifados(Pageable pageable) {
+    @GetMapping("/transferencias-almoxarifado/automaticas")
+    public ResponseEntity<List<TransferenciaAutomatica>> getAllTransferenciasAutomaticas(Pageable pageable) {
         log.debug("REST request to get a page of TransferenciaAlmoxarifados");
-        Page<TransferenciaAlmoxarifadoDTO> page = transferenciaAlmoxarifadoService.findAll(pageable);
+        Page<TransferenciaAutomatica> page = transferenciaAlmoxarifadoService.findAllTransferenciasAutomaticas(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/transferencias-almoxarifado/automaticas/nao-efetivadas")
+    public ResponseEntity<List<TransferenciaAutomatica>> getAllTransferenciasAutomaticasNaoEfetivadas(Pageable pageable) {
+        log.debug("REST request to get a page of TransferenciaAlmoxarifado");
+        Page<TransferenciaAutomatica> page = transferenciaAlmoxarifadoService.findAllTransferenciasAutomaticasNaoEvetivadas(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @PutMapping("/transferencias-almoxarifado/automaticas/nao-efetivadas/{id}")
+    public ResponseEntity<Void> efetivarTransferenciaAutomatica(@PathVariable(name = "id") Long id) {
+        log.debug("REST request to 'efetivar' a TransferenciaAlmoxarifado");
+        transferenciaAlmoxarifadoService.efetivarTransferenciaAutomaticaPorId(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/transferencias-almoxarifado/{id}")

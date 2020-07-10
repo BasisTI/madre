@@ -1,6 +1,10 @@
-import { NotaFiscalFormComponent } from './documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
-import { RecebimentoFormComponent } from './recebimento/recebimento-form.component';
 import { Routes } from '@angular/router';
+import { NotaFiscalFormComponent } from './components/documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
+import { EfetivacaoTransferenciaAutomaticaComponent } from './components/efetivacao-transferencia-automatica/efetivacao-transferencia-automatica.component';
+import { RecebimentoFormComponent } from './components/recebimento/recebimento-form.component';
+import { TransferenciaAutomaticaNaoEfetivadaComponent } from './components/transferencia-automatica-nao-efetivada/transferencia-automatica-nao-efetivada.component';
+import { TransferenciaAutomaticaFormComponent } from './components/transferencia-automatica/transferencia-automatica-form.component';
+import { TransferenciaAutomaticaComponent } from './components/transferencia-automatica/transferencia-automatica.component';
 
 export const routes: Routes = [
     {
@@ -12,5 +16,25 @@ export const routes: Routes = [
         path: 'documentos-fiscais/notas-fiscais/nova',
         component: NotaFiscalFormComponent,
         data: { breadcrumb: 'Gerar Nota Fiscal' },
+    },
+    {
+        path: 'transferencias-automaticas',
+        component: TransferenciaAutomaticaComponent,
+        data: { breadcrumb: 'Transferências Automáticas' },
+    },
+    {
+        path: 'transferencias-automaticas/nova',
+        component: TransferenciaAutomaticaFormComponent,
+        data: { breadcrumb: 'Gerar Transferência Automática' },
+    },
+    {
+        path: 'transferencias-automaticas/nao-efetivadas',
+        component: TransferenciaAutomaticaNaoEfetivadaComponent,
+        data: { breadcrumb: 'Transferências Não Efetivadas' },
+    },
+    {
+        path: 'transferencias-automaticas/nao-efetivadas/:id/efetivar',
+        component: EfetivacaoTransferenciaAutomaticaComponent,
+        data: { breadcrumb: 'Efetivar Transferência Automática' },
     },
 ];

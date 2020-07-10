@@ -11,6 +11,14 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123149_added_entity_CentroDeAtividade.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200618123207_added_entity_GrupoMaterial.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200618123158_added_entity_UnidadeMedida.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200618123208_added_entity_MarcaComercial.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200618123202_added_entity_Material.xml"
+             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123150_added_entity_CaracteristicaArmazenamento.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123151_added_entity_TempoPorClasse.xml"
@@ -27,15 +35,11 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123157_added_entity_Fornecedor.xml"
              relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200618123158_added_entity_UnidadeMedida.xml"
-             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123159_added_entity_SolicitacaoCompras.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123200_added_entity_EstoqueAlmoxarifado.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123201_added_entity_Lote.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200618123202_added_entity_Material.xml"
-             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123203_added_entity_CodigoCatmat.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123204_added_entity_OrigemParecerTecnico.xml"
@@ -44,13 +48,23 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123206_added_entity_TipoResiduo.xml"
              relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200618123207_added_entity_GrupoMaterial.xml"
+    <include file="config/liquibase/changelog/20200702143113_added_entity_ClassificacaoMaterial.xml"
              relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200618123208_added_entity_MarcaComercial.xml"
+    <include file="config/liquibase/changelog/20200702143213_added_entity_InformacaoTransferencia.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200702143313_added_entity_ItemTransferencia.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200630135304_BASIS_134373_changelog.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200702151141_BASIS-135233.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165506_added_entity_SituacaoRequisicao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165406_added_entity_RequisicaoMaterial.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165606_added_entity_ItemRequisicao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709174126_BASIS-136400.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20200618123147_added_entity_constraints_Almoxarifado.xml"
-             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123148_added_entity_constraints_TransferenciaAlmoxarifado.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123151_added_entity_constraints_TempoPorClasse.xml"
@@ -70,6 +84,10 @@
     <include file="config/liquibase/changelog/20200618123201_added_entity_constraints_Lote.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200618123202_added_entity_constraints_Material.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165406_added_entity_constraints_RequisicaoMaterial.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200709165606_added_entity_constraints_ItemRequisicao.xml"
              relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -8,16 +8,22 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -33,10 +39,6 @@ public class TransferenciaAlmoxarifado implements Serializable {
     @Field(type = FieldType.Keyword)
     private Long id;
 
-    @NotNull
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo;
-
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("transferenciaAlmoxarifados")
@@ -46,4 +48,18 @@ public class TransferenciaAlmoxarifado implements Serializable {
     @NotNull
     @JsonIgnoreProperties("transferenciaAlmoxarifados")
     private Almoxarifado destino;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("transferenciaAlmoxarifados")
+    private InformacaoTransferencia informacaoTransferencia;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "transferencia_almoxarifado_id")
+    private Set<ItemTransferencia> itens = new HashSet<>();
+
+    @Column(name = "gerado_por")
+    private String geradoPor;
+
+    @Column(name = "gerado_em")
+    private ZonedDateTime geradoEm;
 }
