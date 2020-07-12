@@ -49,7 +49,6 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
     });
 
     localizacao = CALENDAR_LOCALE;
-    fds;
     dataLimite = new Date();
     anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';

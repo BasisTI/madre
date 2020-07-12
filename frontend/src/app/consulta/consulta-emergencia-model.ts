@@ -15,5 +15,5 @@ export interface ConsultaEmergenciaModel {
     condicaoDeAtendimentoId: number;
     formaDeAgendamentoId: number;
     pacienteId: number;
-    gradesDiponiveis: string;
+    gradesDiponiveis: boolean;
 }

@@ -11,4 +11,5 @@ export class ConsultaCalendarioModel implements IConsultaCalendarioModel {
     public turno: string;
     public tipoPagador: string;
     public start: Date;
+    public url: string;
 }
