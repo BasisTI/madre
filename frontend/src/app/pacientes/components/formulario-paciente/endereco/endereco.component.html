@@ -3,6 +3,19 @@
         <div class="ui-g-12">
             <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
+                    <input
+                        id="cep"
+                        (blur)="consultaCEP()"
+                        pInputText
+                        type="text"
+                        formControlName="cep"
+                        pTooltip="Informe o CEP."
+                    />
+                    <label>CEP</label>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
                     <p-dropdown
                         (onChange)="aoSelecionarUF()"
                         [options]="ufs"
@@ -11,17 +24,6 @@
                         [filter]="true"
                         placeholder="UF"
                     ></p-dropdown>
-                </span>
-            </div>
-            <div class="ui-g-5 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-inputMask
-                        placeholder="__.___-___"
-                        mask="99.999-999"
-                        formControlName="cep"
-                        pTooltip="Informe o CEP."
-                    ></p-inputMask>
-                    <label>CEP</label>
                 </span>
             </div>
         </div>

@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="basis (generated)" id="1594230631890-4">
+        <addColumn tableName="cep">
+            <column name="municipio_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1594230631890-5">
+        <addColumn tableName="cep">
+            <column name="uf_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1594230631890-6">
+        <addForeignKeyConstraint baseColumnNames="municipio_id" baseTableName="cep" constraintName="FK8iefw6xa71rbu8g2nbfxpgr06" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="municipio" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1594230631890-7">
+        <addForeignKeyConstraint baseColumnNames="uf_id" baseTableName="cep" constraintName="FKoefs589rin5c1gc48bjjswhjh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="uf" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
