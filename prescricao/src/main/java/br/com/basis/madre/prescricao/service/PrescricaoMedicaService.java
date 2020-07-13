@@ -55,11 +55,7 @@ public class PrescricaoMedicaService {
 	public PrescricaoMedicaDTO save(PrescricaoMedicaDTO prescricaoMedicaDTO) {
 		log.debug("Request to save PrescricaoMedica : {}", prescricaoMedicaDTO);
 		PrescricaoMedica prescricaoMedica = prescricaoMedicaMapper.toEntity(prescricaoMedicaDTO);
-	
-//		if(prescricaoMedicaDTO instanceof PrescricaoMedicamentoDTO) {
-//		}else if(prescricaoMedicaDTO instanceof PrescricaoDietaDTO) {
-//			
-//		}	
+
 		prescricaoMedica = prescricaoMedicaRepository.save(prescricaoMedica);
 		PrescricaoMedicaDTO result = prescricaoMedicaMapper.toDto(prescricaoMedica);
 		prescricaoMedicaSearchRepository.save(prescricaoMedica);
