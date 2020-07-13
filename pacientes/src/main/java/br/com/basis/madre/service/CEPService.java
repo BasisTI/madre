@@ -1,6 +1,6 @@
 package br.com.basis.madre.service;
 
-import br.com.basis.madre.domain.CEP;
+import br.com.basis.madre.domain.EnderecoCEP;
 import br.com.basis.madre.repository.CEPRepository;
 import br.com.basis.madre.repository.search.CEPSearchRepository;
 import br.com.basis.madre.service.dto.CEPDTO;
@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
- * Service Implementation for managing {@link CEP}.
+ * Service Implementation for managing {@link EnderecoCEP}.
  */
 @Service
 @Transactional
@@ -44,8 +44,8 @@ public class CEPService {
      * @return the persisted entity.
      */
     public CEPDTO save(CEPDTO cEPDTO) {
-        log.debug("Request to save CEP : {}", cEPDTO);
-        CEP cEP = cEPMapper.toEntity(cEPDTO);
+        log.debug("Request to save EnderecoCEP : {}", cEPDTO);
+        EnderecoCEP cEP = cEPMapper.toEntity(cEPDTO);
         cEP = cEPRepository.save(cEP);
         CEPDTO result = cEPMapper.toDto(cEP);
         cEPSearchRepository.save(cEP);
@@ -65,7 +65,7 @@ public class CEPService {
             .map(cEPMapper::toDto);
     }
 
-    public Page<CEP> findAllCEP(String cep, Pageable pageable) {
+    public Page<EnderecoCEP> findAllCEP(String cep, Pageable pageable) {
         return cEPRepository.findByCepContainsIgnoreCase(cep,pageable);
     }
 
@@ -78,14 +78,14 @@ public class CEPService {
      */
     @Transactional(readOnly = true)
     public Optional<CEPDTO> findOne(Long id) {
-        log.debug("Request to get CEP : {}", id);
+        log.debug("Request to get EnderecoCEP : {}", id);
         return cEPRepository.findById(id)
             .map(cEPMapper::toDto);
     }
 
     @Transactional(readOnly = true)
     public Optional<CEPDTO> findOneByCep(String cep) {
-        log.debug("Request to get CEP : {}", cep);
+        log.debug("Request to get EnderecoCEP : {}", cep);
         return cEPRepository.findByCep(cep)
             .map(cEPMapper::toDto);
     }
@@ -96,7 +96,7 @@ public class CEPService {
      * @param id the id of the entity.
      */
     public void delete(Long id) {
-        log.debug("Request to delete CEP : {}", id);
+        log.debug("Request to delete EnderecoCEP : {}", id);
         cEPRepository.deleteById(id);
         cEPSearchRepository.deleteById(id);
     }

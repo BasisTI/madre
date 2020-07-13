@@ -23,10 +23,10 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "cep")
+@Table(name = "endereco_cep")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "cep")
-public class CEP implements Serializable {
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-endereco-cep")
+public class EnderecoCEP implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,17 +54,17 @@ public class CEP implements Serializable {
     @JoinColumn(name = "uf_id", referencedColumnName = "id")
     private UF uf;
 
-    public CEP cep(String cep) {
+    public EnderecoCEP cep(String cep) {
         this.cep = cep;
         return this;
     }
 
-    public CEP logradouro(String logradouro) {
+    public EnderecoCEP logradouro(String logradouro) {
         this.logradouro = logradouro;
         return this;
     }
 
-    public CEP bairro(String bairro) {
+    public EnderecoCEP bairro(String bairro) {
         this.bairro = bairro;
         return this;
     }

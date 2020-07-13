@@ -1,6 +1,6 @@
 package br.com.basis.madre.repository;
 
-import br.com.basis.madre.domain.CEP;
+import br.com.basis.madre.domain.EnderecoCEP;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,12 +10,12 @@ import java.util.Optional;
 
 
 /**
- * Spring Data  repository for the CEP entity.
+ * Spring Data  repository for the EnderecoCEP entity.
  */
 @SuppressWarnings("unused")
 @Repository
-public interface CEPRepository extends JpaRepository<CEP, Long> {
-    Optional<CEP> findByCep(String cep);
+public interface CEPRepository extends JpaRepository<EnderecoCEP, Long> {
+    Optional<EnderecoCEP> findByCep(String cep);
 
-    Page<CEP> findByCepContainsIgnoreCase(String cep, Pageable pageable);
+    Page<EnderecoCEP> findByCepContainsIgnoreCase(String cep, Pageable pageable);
 }

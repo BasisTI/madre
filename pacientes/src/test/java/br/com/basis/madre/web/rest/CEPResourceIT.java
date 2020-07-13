@@ -1,7 +1,7 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.PacientesApp;
-import br.com.basis.madre.domain.CEP;
+import br.com.basis.madre.domain.EnderecoCEP;
 import br.com.basis.madre.repository.CEPRepository;
 import br.com.basis.madre.repository.search.CEPSearchRepository;
 import br.com.basis.madre.service.CEPService;
@@ -85,7 +85,7 @@ public class CEPResourceIT {
 
     private MockMvc restCEPMockMvc;
 
-    private CEP cEP;
+    private EnderecoCEP cEP;
 
     @BeforeEach
     public void setup() {
@@ -105,8 +105,8 @@ public class CEPResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static CEP createEntity(EntityManager em) {
-        CEP cEP = new CEP()
+    public static EnderecoCEP createEntity(EntityManager em) {
+        EnderecoCEP cEP = new EnderecoCEP()
             .cep(DEFAULT_CEP)
             .logradouro(DEFAULT_LOGRADOURO)
             .bairro(DEFAULT_BAIRRO);
@@ -118,8 +118,8 @@ public class CEPResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static CEP createUpdatedEntity(EntityManager em) {
-        CEP cEP = new CEP()
+    public static EnderecoCEP createUpdatedEntity(EntityManager em) {
+        EnderecoCEP cEP = new EnderecoCEP()
             .cep(UPDATED_CEP)
             .logradouro(UPDATED_LOGRADOURO)
             .bairro(UPDATED_BAIRRO);
@@ -136,22 +136,22 @@ public class CEPResourceIT {
     public void createCEP() throws Exception {
         int databaseSizeBeforeCreate = cEPRepository.findAll().size();
 
-        // Create the CEP
+        // Create the EnderecoCEP
         CEPDTO cEPDTO = cEPMapper.toDto(cEP);
         restCEPMockMvc.perform(post("/api/ceps")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cEPDTO)))
             .andExpect(status().isCreated());
 
-        // Validate the CEP in the database
-        List<CEP> cEPList = cEPRepository.findAll();
+        // Validate the EnderecoCEP in the database
+        List<EnderecoCEP> cEPList = cEPRepository.findAll();
         assertThat(cEPList).hasSize(databaseSizeBeforeCreate + 1);
-        CEP testCEP = cEPList.get(cEPList.size() - 1);
+        EnderecoCEP testCEP = cEPList.get(cEPList.size() - 1);
         assertThat(testCEP.getCep()).isEqualTo(DEFAULT_CEP);
         assertThat(testCEP.getLogradouro()).isEqualTo(DEFAULT_LOGRADOURO);
         assertThat(testCEP.getBairro()).isEqualTo(DEFAULT_BAIRRO);
 
-        // Validate the CEP in Elasticsearch
+        // Validate the EnderecoCEP in Elasticsearch
         verify(mockCEPSearchRepository, times(1)).save(testCEP);
     }
 
@@ -160,7 +160,7 @@ public class CEPResourceIT {
     public void createCEPWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = cEPRepository.findAll().size();
 
-        // Create the CEP with an existing ID
+        // Create the EnderecoCEP with an existing ID
         cEP.setId(1L);
         CEPDTO cEPDTO = cEPMapper.toDto(cEP);
 
@@ -170,11 +170,11 @@ public class CEPResourceIT {
             .content(TestUtil.convertObjectToJsonBytes(cEPDTO)))
             .andExpect(status().isBadRequest());
 
-        // Validate the CEP in the database
-        List<CEP> cEPList = cEPRepository.findAll();
+        // Validate the EnderecoCEP in the database
+        List<EnderecoCEP> cEPList = cEPRepository.findAll();
         assertThat(cEPList).hasSize(databaseSizeBeforeCreate);
 
-        // Validate the CEP in Elasticsearch
+        // Validate the EnderecoCEP in Elasticsearch
         verify(mockCEPSearchRepository, times(0)).save(cEP);
     }
 
@@ -194,7 +194,7 @@ public class CEPResourceIT {
             .andExpect(jsonPath("$.[*].logradouro").value(hasItem(DEFAULT_LOGRADOURO)))
             .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO)));
     }
-    
+
     @Test
     @Transactional
     public void getCEP() throws Exception {
@@ -228,7 +228,7 @@ public class CEPResourceIT {
         int databaseSizeBeforeUpdate = cEPRepository.findAll().size();
 
         // Update the cEP
-        CEP updatedCEP = cEPRepository.findById(cEP.getId()).get();
+        EnderecoCEP updatedCEP = cEPRepository.findById(cEP.getId()).get();
         // Disconnect from session so that the updates on updatedCEP are not directly saved in db
         em.detach(updatedCEP);
         updatedCEP
@@ -242,15 +242,15 @@ public class CEPResourceIT {
             .content(TestUtil.convertObjectToJsonBytes(cEPDTO)))
             .andExpect(status().isOk());
 
-        // Validate the CEP in the database
-        List<CEP> cEPList = cEPRepository.findAll();
+        // Validate the EnderecoCEP in the database
+        List<EnderecoCEP> cEPList = cEPRepository.findAll();
         assertThat(cEPList).hasSize(databaseSizeBeforeUpdate);
-        CEP testCEP = cEPList.get(cEPList.size() - 1);
+        EnderecoCEP testCEP = cEPList.get(cEPList.size() - 1);
         assertThat(testCEP.getCep()).isEqualTo(UPDATED_CEP);
         assertThat(testCEP.getLogradouro()).isEqualTo(UPDATED_LOGRADOURO);
         assertThat(testCEP.getBairro()).isEqualTo(UPDATED_BAIRRO);
 
-        // Validate the CEP in Elasticsearch
+        // Validate the EnderecoCEP in Elasticsearch
         verify(mockCEPSearchRepository, times(1)).save(testCEP);
     }
 
@@ -259,7 +259,7 @@ public class CEPResourceIT {
     public void updateNonExistingCEP() throws Exception {
         int databaseSizeBeforeUpdate = cEPRepository.findAll().size();
 
-        // Create the CEP
+        // Create the EnderecoCEP
         CEPDTO cEPDTO = cEPMapper.toDto(cEP);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
@@ -268,11 +268,11 @@ public class CEPResourceIT {
             .content(TestUtil.convertObjectToJsonBytes(cEPDTO)))
             .andExpect(status().isBadRequest());
 
-        // Validate the CEP in the database
-        List<CEP> cEPList = cEPRepository.findAll();
+        // Validate the EnderecoCEP in the database
+        List<EnderecoCEP> cEPList = cEPRepository.findAll();
         assertThat(cEPList).hasSize(databaseSizeBeforeUpdate);
 
-        // Validate the CEP in Elasticsearch
+        // Validate the EnderecoCEP in Elasticsearch
         verify(mockCEPSearchRepository, times(0)).save(cEP);
     }
 
@@ -290,10 +290,10 @@ public class CEPResourceIT {
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
-        List<CEP> cEPList = cEPRepository.findAll();
+        List<EnderecoCEP> cEPList = cEPRepository.findAll();
         assertThat(cEPList).hasSize(databaseSizeBeforeDelete - 1);
 
-        // Validate the CEP in Elasticsearch
+        // Validate the EnderecoCEP in Elasticsearch
         verify(mockCEPSearchRepository, times(1)).deleteById(cEP.getId());
     }
 
@@ -317,10 +317,10 @@ public class CEPResourceIT {
     @Test
     @Transactional
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(CEP.class);
-        CEP cEP1 = new CEP();
+        TestUtil.equalsVerifier(EnderecoCEP.class);
+        EnderecoCEP cEP1 = new EnderecoCEP();
         cEP1.setId(1L);
-        CEP cEP2 = new CEP();
+        EnderecoCEP cEP2 = new EnderecoCEP();
         cEP2.setId(cEP1.getId());
         assertThat(cEP1).isEqualTo(cEP2);
         cEP2.setId(2L);

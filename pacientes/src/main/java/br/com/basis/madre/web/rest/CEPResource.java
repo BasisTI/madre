@@ -1,6 +1,6 @@
 package br.com.basis.madre.web.rest;
 
-import br.com.basis.madre.domain.CEP;
+import br.com.basis.madre.domain.EnderecoCEP;
 import br.com.basis.madre.service.CEPService;
 import br.com.basis.madre.service.dto.CEPDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing {@link br.com.basis.madre.domain.CEP}.
+ * REST controller for managing {@link br.com.basis.madre.domain.EnderecoCEP}.
  */
 @RestController
 @RequestMapping("/api")
@@ -59,7 +59,7 @@ public class CEPResource {
      */
     @PostMapping("/ceps")
     public ResponseEntity<CEPDTO> createCEP(@RequestBody CEPDTO cEPDTO) throws URISyntaxException {
-        log.debug("REST request to save CEP : {}", cEPDTO);
+        log.debug("REST request to save EnderecoCEP : {}", cEPDTO);
         if (cEPDTO.getId() != null) {
             throw new BadRequestAlertException("A new cEP cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -70,8 +70,8 @@ public class CEPResource {
     }
 
     @GetMapping("/ceps/filtragem")
-    public ResponseEntity<List<CEP>> findAllProjectedCepBy(@RequestParam(required = false)String cep, Pageable pageable) {
-        Page<CEP> page = cEPService
+    public ResponseEntity<List<EnderecoCEP>> findAllProjectedCepBy(@RequestParam(required = false)String cep, Pageable pageable) {
+        Page<EnderecoCEP> page = cEPService
             .findAllCEP(cep ,pageable);
         return ResponseEntity.ok(page.getContent());
     }
@@ -87,7 +87,7 @@ public class CEPResource {
      */
     @PutMapping("/ceps")
     public ResponseEntity<CEPDTO> updateCEP(@RequestBody CEPDTO cEPDTO) throws URISyntaxException {
-        log.debug("REST request to update CEP : {}", cEPDTO);
+        log.debug("REST request to update EnderecoCEP : {}", cEPDTO);
         if (cEPDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
@@ -121,14 +121,14 @@ public class CEPResource {
      */
     @GetMapping("/ceps/{id}")
     public ResponseEntity<CEPDTO> getCEP(@PathVariable Long id) {
-        log.debug("REST request to get CEP : {}", id);
+        log.debug("REST request to get EnderecoCEP : {}", id);
         Optional<CEPDTO> cEPDTO = cEPService.findOne(id);
         return ResponseUtil.wrapOrNotFound(cEPDTO);
     }
 
     @GetMapping("/ceps/buscar/{cep}")
     public ResponseEntity<CEPDTO> getByCEP(@PathVariable String cep) {
-        log.debug("REST request to get CEP : {}", cep);
+        log.debug("REST request to get EnderecoCEP : {}", cep);
         Optional<CEPDTO> cEPDTO = cEPService.findOneByCep(cep);
         return ResponseUtil.wrapOrNotFound(cEPDTO);
     }
@@ -141,7 +141,7 @@ public class CEPResource {
      */
     @DeleteMapping("/ceps/{id}")
     public ResponseEntity<Void> deleteCEP(@PathVariable Long id) {
-        log.debug("REST request to delete CEP : {}", id);
+        log.debug("REST request to delete EnderecoCEP : {}", id);
         cEPService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
