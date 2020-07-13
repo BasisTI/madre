@@ -39,6 +39,24 @@ public class Clinica implements Serializable {
     @Column(name = "nome")
     private String nome;
 
+    @Column(name = "capacidade_referencial")
+    private Integer capacidadeReferencial;
+
+    @Column(name = "numeroSUS")
+    private String numeroSUS;
+
+    @Column(name = "idade_minima_internacao")
+    private Integer idadeMinimaInternacao;
+
+    @Column(name = "idade_maxima_internacao")
+    private Integer idadeMaximaInternacao;
+
+    @Column(name = "idade_minima_ambulatorio")
+    private Integer idadeMinimaAmbulatorio;
+
+    @Column(name = "idade_maxima_ambulatorio")
+    private Integer idadeMaximaAmbulatorio;
+
 
     public Clinica nome(String nome) {
         this.nome = nome;
