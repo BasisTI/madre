@@ -1,9 +1,9 @@
 export class Clinica {
     id: number;
-    nome: string;
+    descricao: string;
 
-    constructor(id: number, nome: string) {
+    constructor(id: number, descricao: string){
         this.id = id;
-        this.nome = nome;
+        this.descricao = descricao;
     }
 }
