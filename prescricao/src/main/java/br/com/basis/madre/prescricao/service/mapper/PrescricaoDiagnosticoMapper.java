@@ -1,20 +1,23 @@
 package br.com.basis.madre.prescricao.service.mapper;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.service.dto.PrescricaoDiagnosticoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import br.com.basis.madre.prescricao.domain.PrescricaoDiagnostico;
+import br.com.basis.madre.prescricao.service.dto.PrescricaoDiagnosticoDTO;
 
 /**
  * Mapper for the entity {@link PrescricaoDiagnostico} and its DTO {@link PrescricaoDiagnosticoDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {ItemPrescricaoDiagnosticoMapper.class})
 public interface PrescricaoDiagnosticoMapper extends EntityMapper<PrescricaoDiagnosticoDTO, PrescricaoDiagnostico> {
 
 
-    @Mapping(target = "itemPrescricaoDiagnosticos", ignore = true)
-    @Mapping(target = "removeItemPrescricaoDiagnostico", ignore = true)
-    PrescricaoDiagnostico toEntity(PrescricaoDiagnosticoDTO prescricaoDiagnosticoDTO);
+	@Mapping(source = "itemPrescricaoDiagnosticos", target = "itens")
+	PrescricaoDiagnosticoDTO toDto(PrescricaoDiagnostico prescricaoDiagnostico);
+	
+	@Mapping(source = "itens", target = "itemPrescricaoDiagnosticos")
+	PrescricaoDiagnostico toEntity(PrescricaoDiagnosticoDTO prescricaoDiagnosticoDTO);
 
     default PrescricaoDiagnostico fromId(Long id) {
         if (id == null) {
