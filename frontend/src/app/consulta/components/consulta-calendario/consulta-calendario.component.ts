@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -39,6 +40,10 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             },
         };
         this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
+            eventos.forEach((e) => {
+                e.url = `consulta/detalha-consulta/${e.id}`;
+            });
+
             this.events = eventos;
         });
     }

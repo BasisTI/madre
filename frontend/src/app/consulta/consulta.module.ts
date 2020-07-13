@@ -6,9 +6,15 @@ import { RouterModule } from '@angular/router';
 import { routes } from './consulta.routes';
 import { ListarConsultasComponent } from './components/listar-consultas/listar-consultas.component';
 import { EmergenciaComponent } from './components/emergencia/emergencia.component';
+import { DetalhaConsultaComponent } from './components/consulta-calendario/detalha-consulta.component';
 
 @NgModule({
-    declarations: [EmergenciaComponent, ListarConsultasComponent, ConsultaCalendarioComponent],
+    declarations: [
+        EmergenciaComponent,
+        ListarConsultasComponent,
+        ConsultaCalendarioComponent,
+        DetalhaConsultaComponent,
+    ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
 export class ConsultaModule {}
