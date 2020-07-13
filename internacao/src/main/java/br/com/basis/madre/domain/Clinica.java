@@ -36,12 +36,30 @@ public class Clinica implements Serializable {
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "descricao")
+    private String descricao;
+
+    @Column(name = "capacidade_referencial")
+    private Integer capacidadeReferencial;
+
+    @Column(name = "numeroSUS")
+    private String numeroSUS;
+
+    @Column(name = "idade_minima_internacao")
+    private Integer idadeMinimaInternacao;
+
+    @Column(name = "idade_maxima_internacao")
+    private Integer idadeMaximaInternacao;
+
+    @Column(name = "idade_minima_ambulatorio")
+    private Integer idadeMinimaAmbulatorio;
+
+    @Column(name = "idade_maxima_ambulatorio")
+    private Integer idadeMaximaAmbulatorio;
 
 
-    public Clinica nome(String nome) {
-        this.nome = nome;
+    public Clinica descricao(String descricao) {
+        this.descricao = descricao;
         return this;
     }
 
