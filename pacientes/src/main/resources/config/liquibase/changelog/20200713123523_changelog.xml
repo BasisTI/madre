@@ -4,6 +4,6 @@
         <renameTable
                       newTableName="endereco_cep"
                       oldTableName="cep"
-                      schemaName="public"/>
+                      />
     </changeSet>
 </databaseChangeLog>
