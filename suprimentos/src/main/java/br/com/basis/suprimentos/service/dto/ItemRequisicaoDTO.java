@@ -15,6 +15,4 @@ public class ItemRequisicaoDTO implements Serializable {
     private Long materialId;
 
     private Long almoxarifadoId;
-
-    private Long requisicaoId;
 }

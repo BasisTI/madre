@@ -7,6 +7,8 @@ import br.com.basis.suprimentos.service.dto.GrupoMaterialDTO;
 import br.com.basis.suprimentos.service.mapper.GrupoMaterialMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,11 @@ public class GrupoMaterialService {
     }
 
     @Transactional(readOnly = true)
-    public Page<GrupoMaterialDTO> findAll(Pageable pageable) {
+    public Page<GrupoMaterialDTO> findAll(Pageable pageable, GrupoMaterialDTO grupoMaterialDTO) {
         log.debug("Request to get all GrupoMaterials");
-        return grupoMaterialRepository.findAll(pageable)
+        return grupoMaterialRepository.findAll(
+            Example.of(grupoMaterialMapper.toEntity(grupoMaterialDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable)
             .map(grupoMaterialMapper::toDto);
     }
 

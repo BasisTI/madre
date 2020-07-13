@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,7 +55,7 @@ public class RequisicaoMaterial implements Serializable {
     @Column(name = "confirmado_por")
     private String confirmadoPor;
 
-    @OneToMany(mappedBy = "requisicao")
+    @OneToMany(mappedBy = "requisicao", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<ItemRequisicao> itens = new HashSet<>();
 

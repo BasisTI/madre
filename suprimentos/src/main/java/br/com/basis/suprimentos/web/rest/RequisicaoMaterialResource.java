@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.web.rest;
 
+import br.com.basis.suprimentos.domain.projection.RequisicaoMaterialResumo;
 import br.com.basis.suprimentos.service.RequisicaoMaterialService;
 import br.com.basis.suprimentos.service.dto.RequisicaoMaterialDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -46,7 +47,7 @@ public class RequisicaoMaterialResource {
         if (requisicaoMaterialDTO.getId() != null) {
             throw new BadRequestAlertException("A new requisicaoMaterial cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        RequisicaoMaterialDTO result = requisicaoMaterialService.save(requisicaoMaterialDTO);
+        RequisicaoMaterialDTO result = requisicaoMaterialService.criarRequisicaoMaterial(requisicaoMaterialDTO);
         return ResponseEntity.created(new URI("/api/requisicoes-materiais/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -65,9 +66,9 @@ public class RequisicaoMaterialResource {
     }
 
     @GetMapping("/requisicoes-materiais")
-    public ResponseEntity<List<RequisicaoMaterialDTO>> getAllRequisicaoMaterials(Pageable pageable) {
+    public ResponseEntity<List<RequisicaoMaterialResumo>> getAllRequisicaoMaterials(Pageable pageable) {
         log.debug("REST request to get a page of RequisicaoMaterials");
-        Page<RequisicaoMaterialDTO> page = requisicaoMaterialService.findAll(pageable);
+        Page<RequisicaoMaterialResumo> page = requisicaoMaterialService.findAllRequisicoesMaterialResumo(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

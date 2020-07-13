@@ -56,7 +56,7 @@ public class TransferenciaAlmoxarifadoService {
         });
         TransferenciaAlmoxarifado saved = transferenciaAlmoxarifadoRepository.save(transferenciaAlmoxarifado);
         TransferenciaAlmoxarifadoDTO result = transferenciaAlmoxarifadoMapper.toDto(saved);
-        transferenciaAlmoxarifadoSearchRepository.save(transferenciaAlmoxarifado);
+        transferenciaAlmoxarifadoSearchRepository.save(saved);
         return result;
     }
 

@@ -7,6 +7,8 @@ import br.com.basis.suprimentos.service.dto.CentroDeAtividadeDTO;
 import br.com.basis.suprimentos.service.mapper.CentroDeAtividadeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,11 @@ public class CentroDeAtividadeService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CentroDeAtividadeDTO> findAll(Pageable pageable) {
+    public Page<CentroDeAtividadeDTO> findAll(Pageable pageable, CentroDeAtividadeDTO centroDeAtividadeDTO) {
         log.debug("Request to get all CentroDeAtividades");
-        return centroDeAtividadeRepository.findAll(pageable)
+        return centroDeAtividadeRepository.findAll(
+            Example.of(centroDeAtividadeMapper.toEntity(centroDeAtividadeDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            , pageable)
             .map(centroDeAtividadeMapper::toDto);
     }
 
