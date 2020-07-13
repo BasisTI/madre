@@ -7,7 +7,7 @@ import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-medicamento',
@@ -38,26 +38,28 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
     prescricaoMedicamento = this.fb.group({
         idPaciente: [null],
         nome: [null],
+        dataPrescricao: [new Date()],
+        tipo: 'MEDICAMENTO',
         observacao: [null]
     });
 
     itemPrescricaoMedicamento = this.fb.group({
         idMedicamento: [null, Validators.required],
         dose: [null, Validators.required],
-        unidadeDoseId: [null, Validators.required],
-        viasAdministracaoId: [null, Validators.required],
+        unidadeDose: [null, Validators.required],
+        viasAdministracao: [null, Validators.required],
         frequencia: [null],
         todasVias: [null],
         volume: [null],
         bombaInfusao: [null],
-        unidadeInfusaoId: [null],
+        unidadeInfusao: [null],
         velocidadeInfusao: [null],
-        tipoAprazamentoId: [null, Validators.required],
+        tipoAprazamento: [null, Validators.required],
         tempoInfusao: [null],
         unidadeTempo: [null],
         inicioAdministracao: [null],
         condicaoNecessaria: [null],
-        diluenteId: [null],
+        diluente: [null],
         observacaoCondicao: [null]
     });
 
@@ -66,7 +68,8 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private prescricaoMedicaService: PrescricaoMedicaService,
         private medicamentoService: MedicamentoService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private router: Router
     ) { }
 
 
@@ -97,7 +100,7 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
             .subscribe(paciente => {
 
                 this.paciente = paciente;
-                this.prescricaoMedicamento.patchValue({ idPaciente : paciente.id , nome: paciente.nome});
+                this.prescricaoMedicamento.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
 
             });
     }
@@ -182,25 +185,18 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
     }
 
     prescrever() {
-
-
         const prescricao = this.prescricaoMedicamento.value;
-        console.log(prescricao);
-        
 
         const prescricaoMedicamento = Object.assign({}, prescricao, {
-            itemPrescricaoMedicamentos: this.itensPrescricaoMedicamento
+            itens: this.itensPrescricaoMedicamento
         });
 
-
-        prescricaoMedicamento.itemPrescricaoMedicamentos = prescricaoMedicamento.itemPrescricaoMedicamentos.map(item => {
-            for (let propriedade in item) {
-                if (item[propriedade]?.id) {
-                    item[propriedade] = item[propriedade].id;
+        prescricaoMedicamento.itens = prescricaoMedicamento.itens.map(item => {
+                if (item.idMedicamento?.id) {
+                    item.idMedicamento = item.idMedicamento.id;
                 }
-            }
-
             return item;
+
         });
 
 
@@ -208,8 +204,16 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
             this.prescricaoMedicamento.invalid
         }
 
-        this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe();
-            this.itensPrescricaoMedicamento = [];
+        this.medicamentoService.prescreverMedicamento(prescricaoMedicamento).subscribe(
+            (resposta) => {
+                this.router.navigate(['/prescricao-medica/lista/', prescricaoMedicamento.idPaciente]);
+                console.log(resposta);
+
+            },
+            (erro) => {
+                console.error(erro);
+            },
+        );
 
 
     }

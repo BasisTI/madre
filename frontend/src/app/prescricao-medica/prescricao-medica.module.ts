@@ -11,6 +11,8 @@ import { prescricaoMedica } from './prescricao-medica.router';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MedicamentoComponent } from './medicamento/medicamento.component';
+import { ListaPrescricaoComponent } from './lista-prescricao/lista-prescricao.component';
+import { ListaPrescricaoService } from './lista-prescricao/lista-prescricao.service';
 
 
 
@@ -26,8 +28,9 @@ import { MedicamentoComponent } from './medicamento/medicamento.component';
     declarations: [
         PrescricaoMedicaComponent,
         MedicamentoComponent,
+        ListaPrescricaoComponent,
     ],
-    providers: [PrescricaoMedicaService],
+    providers: [PrescricaoMedicaService, ListaPrescricaoService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 

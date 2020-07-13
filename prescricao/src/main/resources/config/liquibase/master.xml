@@ -35,6 +35,7 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200515195410_added_entity_TipoUnidadeDieta.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616152029_added_entity_PrescricaoMedica.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200505210945_added_entity_constraints_ItemPrescricaoMedicamento.xml"
              relativeToChangelogFile="false"/>
@@ -42,5 +43,6 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200516032043_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200519153725_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200619184947_changelog.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

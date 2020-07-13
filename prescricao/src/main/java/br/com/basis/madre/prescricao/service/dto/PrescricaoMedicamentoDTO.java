@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.validation.constraints.Size;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
 
@@ -14,16 +16,10 @@ import lombok.Data;
  */
 
 @Data
-public class PrescricaoMedicamentoDTO implements Serializable {
+public class PrescricaoMedicamentoDTO extends PrescricaoMedicaDTO implements Serializable {
 
-	private Long id;
+	private static final long serialVersionUID = 1L;
 
-	private Long idPaciente;
+	private Set<ItemPrescricaoMedicamentoDTO> itens = new HashSet<>();
 
-	@Size(max = 255)
-	private String observacao;
-
-	private Set<ItemPrescricaoMedicamentoDTO> itemPrescricaoMedicamentos = new HashSet<>();
-
-	
 }

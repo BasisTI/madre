@@ -30,7 +30,7 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);
-        
+
     }
 
     listar() {
@@ -42,7 +42,6 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     }
 
     btnClick(event: DatatableClickEvent) {
-        console.log(event);
 
         if (!event.selection) {
             return;
@@ -54,6 +53,8 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
             case 'prescrever-medicamento':
                 this.router.navigate(['/prescricao-medica/medicamento', event.selection.id]);
                 break;
+            case 'listar-prescricoes':
+                this.router.navigate(['/prescricao-medica/lista', event.selection.id]);
         }
 
     }

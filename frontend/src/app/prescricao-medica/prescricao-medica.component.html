@@ -5,13 +5,13 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield">
-                        <input type="text" pInputText class="ui-inputtext" name="nome" [(ngModel)]="nome" #parametro />
+                        <input type="text" pInputText class="ui-inputtext" name="nome" pTooltip="Pesquisar Paciente por nome" [(ngModel)]="nome" #parametro />
                         <label>Nome paciente</label>
                     </span>
                 </div>
                 <div class="ui-g-12 ui-md-6">
                     <div class="ui-g-12 ui-md-6">
-                        <button pButton label="Pesquisar" icon="ui-icon-search" bTooltip="Pesquisar Paciente por Nome"
+                        <button pButton label="Pesquisar" icon="ui-icon-search" pTooltip="Pesquisar Paciente por Nome"
                             (click)="pesquisar()"></button>
                     </div>
                 </div>
@@ -35,6 +35,11 @@
                     <basis-datatable-button icon="assignment" name="prescrever-medicamento"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
                         class="ui-button-info">
+                    </basis-datatable-button>
+
+                    <basis-datatable-button icon="remove-red-eye" name="listar-prescricoes"
+                        [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Listar Prescrições"
+                        class="ui-button-success">
                     </basis-datatable-button>
 
                 </basis-datatable>
