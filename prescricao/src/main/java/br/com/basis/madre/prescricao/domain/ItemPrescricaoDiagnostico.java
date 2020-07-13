@@ -44,9 +44,6 @@ public class ItemPrescricaoDiagnostico implements Serializable {
     @Column(name = "id_cid", nullable = false)
     private Long idCid;
 
-    /**
-     * Identificador do paciente
-     */
     @Size(max = 255)
     @Column(name = "complemento", length = 255)
     private String complemento;
@@ -65,14 +62,6 @@ public class ItemPrescricaoDiagnostico implements Serializable {
     public ItemPrescricaoDiagnostico complemento(String complemento) {
         this.complemento = complemento;
         return this;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public PrescricaoDiagnostico getPrescricaoDiagnostico() {
-        return prescricaoDiagnostico;
     }
 
     public ItemPrescricaoDiagnostico prescricaoDiagnostico(PrescricaoDiagnostico prescricaoDiagnostico) {
