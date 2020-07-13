@@ -4,7 +4,7 @@ import { TIPO_UNIDADE_TEMPO } from './models/unidadeTempo';
 import { ItemPrescricaoMedicamento } from './models/itemPrescricaoMedicamento';
 import { MedicamentoService } from './medicamento.service';
 import { PrescricaoMedicaService } from './../prescricao-medica.service';
-import { BreadcrumbService } from '@nuvem/primeng-components';
+import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,24 +16,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class MedicamentoComponent implements OnInit, OnDestroy {
 
-    paciente: {};
-    medicamentos = [];
-
-    listaMedicamentos = [];
-
-    listaUnidadeDose = [];
-
-    listaViasAdministracao = [];
-
-    listaTipoAprazamento = [];
-
-    listaDiluente = [];
-
-    listaUnidadeTempo = TIPO_UNIDADE_TEMPO;
-
-    listaUnidadeInfusao = [];
-
-    itensPrescricaoMedicamento: ItemPrescricaoMedicamento[] = [];
+    public paciente: {};
+    public medicamentos = [];
+    public listaMedicamentos = [];
+    public listaUnidadeDose = [];
+    public listaViasAdministracao = [];
+    public listaTipoAprazamento = [];
+    public listaDiluente = [];
+    public listaUnidadeTempo = TIPO_UNIDADE_TEMPO;
+    public listaUnidadeInfusao = [];
+    public itensPrescricaoMedicamento: ItemPrescricaoMedicamento[] = [];
+    public calendarLocale = CALENDAR_LOCALE;
 
     prescricaoMedicamento = this.fb.group({
         idPaciente: [null],
@@ -192,9 +185,9 @@ export class MedicamentoComponent implements OnInit, OnDestroy {
         });
 
         prescricaoMedicamento.itens = prescricaoMedicamento.itens.map(item => {
-                if (item.idMedicamento?.id) {
-                    item.idMedicamento = item.idMedicamento.id;
-                }
+            if (item.idMedicamento?.id) {
+                item.idMedicamento = item.idMedicamento.id;
+            }
             return item;
 
         });
