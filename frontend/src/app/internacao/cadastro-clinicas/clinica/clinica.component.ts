@@ -23,4 +23,12 @@ export class ClinicaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isValid(): boolean{
+    return false;
+  }
+
+  cadastrar(){
+
+  }
+
 }
