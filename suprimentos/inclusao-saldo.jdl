@@ -1,0 +1,24 @@
+relationship ManyToOne {
+    Movimentacao{origem} to Almoxarifado,
+    Movimentacao{destino} to Almoxarifado,
+    Lancamento{tipo} to TipoLancamento,
+    Lancamento{movimentacao} to Movimentacao
+}
+
+entity Movimentacao {
+}
+
+entity Lancamento {
+    lancadoEm ZonedDateTime required
+    lancadoPor String required
+    movimentacaoId Long required
+}
+
+entity TipoLancamento {
+    descricao String required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *
