@@ -106,7 +106,7 @@
                     </form>
                 </p-accordionTab>
             </p-accordion>
-            <button pButton type="submit" label="Cadastrar"></button>
+            <button pButton type="submit" [disabled]="!valid()" label="Cadastrar"></button>
         </form>
     </div>
 </div>
