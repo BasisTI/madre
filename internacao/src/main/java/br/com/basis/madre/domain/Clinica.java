@@ -1,5 +1,6 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.validation.CartaoSUS;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
@@ -42,6 +43,7 @@ public class Clinica implements Serializable {
     @Column(name = "capacidade_referencial")
     private Integer capacidadeReferencial;
 
+    @CartaoSUS
     @Column(name = "numeroSUS")
     private String numeroSUS;
 
