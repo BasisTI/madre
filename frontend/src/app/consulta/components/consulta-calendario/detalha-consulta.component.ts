@@ -22,6 +22,12 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
         pacienteId: [''],
         condicaoDeAtendimentoId: [''],
         formaDeAgendamentoId: [''],
+        numeroConsulta: [''],
+        prontuario: [''],
+        nome: [''],
+        especialidade: [''],
+        profissional: [''],
+        gradesDiponiveis: [''],
     });
 
     localizacao = CALENDAR_LOCALE;

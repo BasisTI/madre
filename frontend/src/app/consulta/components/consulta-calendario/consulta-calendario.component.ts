@@ -31,12 +31,16 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             },
         ]);
         this.options = {
+            locale: 'pt-br',
             plugins: [dayGridPlugin],
             defaultDate: moment().format('YYYY-MM-DD'),
             header: {
                 left: 'prev,next',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay',
+            },
+            dateClick: (evento) => {
+                console.log(evento);
             },
         };
         this.consultaService.obterConsultaCalendario().subscribe((eventos) => {

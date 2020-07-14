@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OPCAO_TIPO_PAGADOR_CONSULTA } from './../../consulta-opcoes/opcao-tipo-pagador-consulta';
 import { OPCOES_TURNO_CONSULTA } from './../../consulta-opcoes/opcao-turno-consulta';
 import { Paciente } from './../../../internacao/models/paciente';
@@ -56,6 +57,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private consultaService: ConsultaService,
         private breadcrumbService: BreadcrumbService,
+        private router: Router,
     ) {}
 
     ngOnInit(): void {
