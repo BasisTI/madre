@@ -19,12 +19,13 @@
                                 </div>
                                 <div class="ui-g-8 ui-sm-12">
                                     <span class="ui-float-label">
-                                        <input
-                                            type="text"
+                                        <p-inputMask
                                             pInputText
-                                            pTooltip="Digite o número do sus da clínica."
                                             formControlName="numeroSUS"
-                                        />
+                                            mask="999999999999999"
+                                            placeholder="___ ____ ____ ____"
+                                            pTooltip="Informe o número do SUS da clínica."
+                                        ></p-inputMask>
                                         <label>Número do SUS</label>
                                     </span>
                                 </div>
