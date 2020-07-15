@@ -35,15 +35,20 @@ public class PrescricaoDiagnosticoService {
 	private final PrescricaoDiagnosticoSearchRepository prescricaoDiagnosticoSearchRepository;
 
 	private final PrescricaoDiagnosticoDTOSearchRepository prescricaoDiagnosticoDTOSearchRepository;
+	
+	private final CIDService cidService;
 
 	public PrescricaoDiagnosticoService(PrescricaoDiagnosticoRepository prescricaoDiagnosticoRepository,
 			PrescricaoDiagnosticoMapper prescricaoDiagnosticoMapper,
 			PrescricaoDiagnosticoSearchRepository prescricaoDiagnosticoSearchRepository,
-			PrescricaoDiagnosticoDTOSearchRepository prescricaoDiagnosticoDTOSearchRepository) {
+			PrescricaoDiagnosticoDTOSearchRepository prescricaoDiagnosticoDTOSearchRepository,
+			CIDService cidService) {
+		
 		this.prescricaoDiagnosticoRepository = prescricaoDiagnosticoRepository;
 		this.prescricaoDiagnosticoMapper = prescricaoDiagnosticoMapper;
 		this.prescricaoDiagnosticoSearchRepository = prescricaoDiagnosticoSearchRepository;
 		this.prescricaoDiagnosticoDTOSearchRepository = prescricaoDiagnosticoDTOSearchRepository;
+		this.cidService = cidService;
 	}
 
 	/**
@@ -58,6 +63,7 @@ public class PrescricaoDiagnosticoService {
 		PrescricaoDiagnostico prescricaoDiagnostico = prescricaoDiagnosticoMapper.toEntity(prescricaoDiagnosticoDTO);
 		for (ItemPrescricaoDiagnostico item : prescricaoDiagnostico.getItemPrescricaoDiagnosticos()) {
 			item.setPrescricaoDiagnostico(prescricaoDiagnostico);
+			item.setCid(cidService.findOne(item.getIdCid()));
 		}
 		prescricaoDiagnostico = prescricaoDiagnosticoRepository.save(prescricaoDiagnostico);
 		PrescricaoDiagnosticoDTO result = prescricaoDiagnosticoMapper.toDto(prescricaoDiagnostico);
