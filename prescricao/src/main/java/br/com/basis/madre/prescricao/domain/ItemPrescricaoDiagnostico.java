@@ -1,4 +1,5 @@
 package br.com.basis.madre.prescricao.domain;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -32,41 +34,43 @@ import lombok.Data;
 @Document(indexName = "itemprescricaodiagnostico")
 public class ItemPrescricaoDiagnostico implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    @Field(type = FieldType.Keyword)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+	@SequenceGenerator(name = "sequenceGenerator")
+	@Field(type = FieldType.Keyword)
+	private Long id;
 
-    @NotNull
-    @Column(name = "id_cid", nullable = false)
-    private Long idCid;
+	@NotNull
+	@Column(name = "id_cid", nullable = false)
+	private Long idCid;
 
-    @Size(max = 255)
-    @Column(name = "complemento", length = 255)
-    private String complemento;
+	@Size(max = 255)
+	@Column(name = "complemento", length = 255)
+	private String complemento;
 
-    @ManyToOne
-    @JsonIgnoreProperties("itemPrescricaoDiagnosticos")
-    private PrescricaoDiagnostico prescricaoDiagnostico;
+	@Field(type = FieldType.Object)
+	@Transient
+	private CID cid;
 
+	@ManyToOne
+	@JsonIgnoreProperties("itemPrescricaoDiagnosticos")
+	private PrescricaoDiagnostico prescricaoDiagnostico;
 
-    public ItemPrescricaoDiagnostico idCid(Long idCid) {
-        this.idCid = idCid;
-        return this;
-    }
+	public ItemPrescricaoDiagnostico idCid(Long idCid) {
+		this.idCid = idCid;
+		return this;
+	}
 
+	public ItemPrescricaoDiagnostico complemento(String complemento) {
+		this.complemento = complemento;
+		return this;
+	}
 
-    public ItemPrescricaoDiagnostico complemento(String complemento) {
-        this.complemento = complemento;
-        return this;
-    }
-
-    public ItemPrescricaoDiagnostico prescricaoDiagnostico(PrescricaoDiagnostico prescricaoDiagnostico) {
-        this.prescricaoDiagnostico = prescricaoDiagnostico;
-        return this;
-    }
+	public ItemPrescricaoDiagnostico prescricaoDiagnostico(PrescricaoDiagnostico prescricaoDiagnostico) {
+		this.prescricaoDiagnostico = prescricaoDiagnostico;
+		return this;
+	}
 
 }

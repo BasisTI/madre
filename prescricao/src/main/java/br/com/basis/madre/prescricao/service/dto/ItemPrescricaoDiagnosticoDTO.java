@@ -21,4 +21,6 @@ public class ItemPrescricaoDiagnosticoDTO implements Serializable {
 
     @Size(max = 255)
     private String complemento;
+    
+    private CidDTO cid;
 }
