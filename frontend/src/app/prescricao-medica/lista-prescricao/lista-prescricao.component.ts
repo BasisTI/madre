@@ -67,9 +67,18 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                         return node;
 
                     })
+                } else if (e.tipo === 'DIAGNOSTICO') {
+                    node.children = e.itens.map(item => {
+                        let node = {
+                            data: {
+                                name: item.cid.codigo,
+                                descricao: item.cid.descricao,
+                            }
+                        }
+                        return node;
+                    })
+                    return node;
                 }
-                return node;
-
             });
 
         });
