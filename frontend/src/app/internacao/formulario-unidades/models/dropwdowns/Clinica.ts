@@ -1,9 +1,12 @@
 export class Clinica {
-    id: number;
-    nome: string;
-
-    constructor(id: number, nome: string) {
-        this.id = id;
-        this.nome = nome;
-    }
+    constructor(
+    public id?: number,
+    public descricao?: string,
+    public capacidadeReferencial?: number,
+    public numeroSUS?: string,
+    public idadeMinimaInternacao?: number,
+    public idadeMaximaInternacao?: number,
+    public idadeMinimaAmbulatorio?: number,
+    public idadeMaximaAmbulatorio?: number,
+    ){}
 }
