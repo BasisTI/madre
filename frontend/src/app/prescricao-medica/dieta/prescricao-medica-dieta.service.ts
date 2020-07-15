@@ -12,12 +12,11 @@ import { TipoItemDieta } from './models/tipoItemDieta';
 export class PrescricaoMedicaDietaService {
 
     private baseUrl = '/prescricao/api';
-    sortUrl= '?sort=descricao';
+    sortUrl = '?sort=descricao';
 
-    constructor(private http: HttpClient,
-        ) { }
+    constructor(private http: HttpClient) { }
 
-    listarDieta(id: number): Observable<any>{
+    listarDieta(id: number): Observable<any> {
         return this.http.get(`${this.baseUrl}/prescricao-dietas/paciente/${id}`);
 
     }
