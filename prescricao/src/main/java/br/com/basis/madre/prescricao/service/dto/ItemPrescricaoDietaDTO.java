@@ -13,7 +13,9 @@ import lombok.Data;
 @Data
 public class ItemPrescricaoDietaDTO implements Serializable {
 
-    private Long id;
+	private static final long serialVersionUID = 1L;
+	
+	private Long id;
 
     @DecimalMin(value = "0")
     private BigDecimal quantidade;
