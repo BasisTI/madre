@@ -145,7 +145,13 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Médica',
                         icon: 'add',
-                        items: [{ label: 'Prescrever', icon: 'add', routerLink: ['/prescricao-medica'] }],
+                        items: [
+                            {
+                                label: 'Prescrever',
+                                icon: 'add',
+                                routerLink: ['/prescricao-medica'],
+                            },
+                        ],
                     },
                 ],
             },
@@ -171,7 +177,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Cadastrar Clínicas',
                         icon: 'add',
-                        routerLink :['internacao/cadastro-clinicas'],
+                        routerLink: ['internacao/cadastro-clinicas'],
                     },
                     {
                         label: 'Leitos',
@@ -267,9 +273,18 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                 ],
                             },
                             {
-                                label: 'Requisições de Materiais',
+                                label: 'Requisições',
                                 icon: 'add',
                                 routerLink: ['/suprimentos/requisicoes-materiais'],
+                                items: [
+                                    {
+                                        label: 'Efetivar Requisição',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/requisicoes-materiais/nao-efetivadas',
+                                        ],
+                                    },
+                                ],
                             },
                         ],
                     },

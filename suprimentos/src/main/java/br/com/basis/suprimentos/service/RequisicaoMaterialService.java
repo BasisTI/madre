@@ -30,6 +30,13 @@ public class RequisicaoMaterialService {
     private final RequisicaoMaterialSearchRepository requisicaoMaterialSearchRepository;
     private final AuthenticationPrincipalService authenticationPrincipalService;
 
+    public RequisicaoMaterialDTO efetivarRequisicao(RequisicaoMaterialDTO requisicaoMaterialDTO) {
+        requisicaoMaterialDTO.setConfirmadoEm(ZonedDateTime.now(ZoneId.systemDefault()));
+        requisicaoMaterialDTO.setConfirmadoPor(authenticationPrincipalService.getLoginAtivo());
+        requisicaoMaterialDTO.setSituacaoId(CodigoSituacaoRequisicaoMaterial.CONFIRMADA.getCodigo());
+        return save(requisicaoMaterialDTO);
+    }
+
     public RequisicaoMaterialDTO criarRequisicaoMaterial(RequisicaoMaterialDTO requisicaoMaterialDTO) {
         requisicaoMaterialDTO.setGeradoEm(ZonedDateTime.now(ZoneId.systemDefault()));
         requisicaoMaterialDTO.setGeradoPor(authenticationPrincipalService.getLoginAtivo());
@@ -52,6 +59,11 @@ public class RequisicaoMaterialService {
     @Transactional(readOnly = true)
     public Page<RequisicaoMaterialResumo> findAllRequisicoesMaterialResumo(Pageable pageable) {
         return requisicaoMaterialRepository.findBy(RequisicaoMaterialResumo.class, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<RequisicaoMaterialResumo> findAllRequisicoesMaterialResumoNaoEfetivadas(Pageable pageable) {
+        return requisicaoMaterialRepository.findByConfirmadoEmIsNull(RequisicaoMaterialResumo.class, pageable);
     }
 
     @Transactional(readOnly = true)

@@ -1,0 +1,69 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Requisições de Materiais Não Efetivadas</h1>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
+                    <span class="md-inputfield" style="margin-top: 5px;">
+                        <input type="text" pInputText class="ui-inputtext" />
+                        <label>Requisição</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-4">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable
+                    type="server"
+                    [url]="url"
+                    [disableDelete]="true"
+                    [disableEdit]="true"
+                    [disableView]="true"
+                    (buttonClick)="onDatatableButtonClick($event)"
+                    #datatable
+                >
+                    <p-column header="Gerado Em" field="">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.geradoEm | date: 'dd/MM/yyyy - HH:mm' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="CA Aplicação" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.caAplicacao?.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="CA Requisição" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.caRequisitante?.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Situação" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.situacao?.descricao }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Gerado Por" field=""
+                        ><ng-template let-data="rowData" pTemplate="body">
+                            {{ data?.geradoPor }}
+                        </ng-template>
+                    </p-column>
+                    <basis-datatable-button
+                        name="efetivar"
+                        icon="check"
+                        tooltip="Efetivar"
+                        class="ui-button-info"
+                        [disabled]="!datatable.selectedRow"
+                    ></basis-datatable-button>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>
