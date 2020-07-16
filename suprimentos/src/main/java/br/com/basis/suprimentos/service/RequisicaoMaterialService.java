@@ -1,11 +1,18 @@
 package br.com.basis.suprimentos.service;
 
+import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado;
+import br.com.basis.suprimentos.domain.Lote;
 import br.com.basis.suprimentos.domain.RequisicaoMaterial;
 import br.com.basis.suprimentos.domain.enumeration.CodigoSituacaoRequisicaoMaterial;
 import br.com.basis.suprimentos.domain.projection.RequisicaoMaterialResumo;
 import br.com.basis.suprimentos.repository.RequisicaoMaterialRepository;
 import br.com.basis.suprimentos.repository.search.RequisicaoMaterialSearchRepository;
+import br.com.basis.suprimentos.service.dto.AlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.ItemRequisicaoDTO;
+import br.com.basis.suprimentos.service.dto.MaterialDTO;
 import br.com.basis.suprimentos.service.dto.RequisicaoMaterialDTO;
+import br.com.basis.suprimentos.service.mapper.LoteMapper;
 import br.com.basis.suprimentos.service.mapper.RequisicaoMaterialMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Optional;
@@ -29,12 +37,27 @@ public class RequisicaoMaterialService {
     private final RequisicaoMaterialMapper requisicaoMaterialMapper;
     private final RequisicaoMaterialSearchRepository requisicaoMaterialSearchRepository;
     private final AuthenticationPrincipalService authenticationPrincipalService;
+    private final EstoqueAlmoxarifadoService estoqueAlmoxarifadoService;
+    private final LoteService loteService;
+    private final LoteMapper loteMapper;
 
     public RequisicaoMaterialDTO efetivarRequisicao(RequisicaoMaterialDTO requisicaoMaterialDTO) {
         requisicaoMaterialDTO.setConfirmadoEm(ZonedDateTime.now(ZoneId.systemDefault()));
         requisicaoMaterialDTO.setConfirmadoPor(authenticationPrincipalService.getLoginAtivo());
         requisicaoMaterialDTO.setSituacaoId(CodigoSituacaoRequisicaoMaterial.CONFIRMADA.getCodigo());
+        requisicaoMaterialDTO.getItens().stream().forEach(item -> {
+            dispensarMaterial(requisicaoMaterialDTO, item);
+        });
+
         return save(requisicaoMaterialDTO);
+    }
+
+    private void dispensarMaterial(RequisicaoMaterialDTO requisicaoMaterialDTO, ItemRequisicaoDTO item) {
+        EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoService.recuperaEstoquePorAlmoxarifadoIdEMaterialId(requisicaoMaterialDTO.getAlmoxarifadoId(), item.getMaterialId());
+        EstoqueAlmoxarifado estoque = estoqueAlmoxarifadoService.findOneEntity(estoqueAlmoxarifadoDTO.getId());
+        Lote lote = estoque.getLotes().stream().filter(l -> l.getQuantidadeDisponivel() >= item.getQuantidade()).findFirst().orElseThrow(EntityNotFoundException::new);
+        lote.setQuantidadeDisponivel(lote.getQuantidadeDisponivel() - item.getQuantidade());
+        loteService.save(loteMapper.toDto(lote));
     }
 
     public RequisicaoMaterialDTO criarRequisicaoMaterial(RequisicaoMaterialDTO requisicaoMaterialDTO) {

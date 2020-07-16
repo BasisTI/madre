@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="pedro (generated)" id="1594915492803-8">
+        <addColumn tableName="requisicao_material">
+            <column name="almoxarifado_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1594915492803-10">
+        <addForeignKeyConstraint baseColumnNames="almoxarifado_id" baseTableName="requisicao_material"
+                                 constraintName="FKebft6mx2chnnq1g1f87140j5x" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="almoxarifado"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

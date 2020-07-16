@@ -36,6 +36,9 @@ public class RequisicaoMaterial implements Serializable {
     private Long id;
 
     @ManyToOne
+    private Almoxarifado almoxarifado;
+
+    @ManyToOne
     private CentroDeAtividade caRequisitante;
 
     @ManyToOne
