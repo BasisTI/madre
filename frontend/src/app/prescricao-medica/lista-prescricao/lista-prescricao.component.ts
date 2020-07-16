@@ -55,7 +55,8 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                         }
                         return node;
 
-                    })
+                    });
+
                 } else if (e.tipo === 'DIETA') {
                     node.children = e.itens.map(item => {
                         let node = {
@@ -66,7 +67,8 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                         }
                         return node;
 
-                    })
+                    });
+
                 } else if (e.tipo === 'DIAGNOSTICO') {
                     node.children = e.itens.map(item => {
                         let node = {
@@ -76,9 +78,11 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                             }
                         }
                         return node;
-                    })
-                    return node;
+                    });
+
                 }
+
+                return node;
             });
 
         });
