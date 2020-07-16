@@ -11,6 +11,8 @@ import { JhiDateUtils } from './date-util.service';
 import { MessageComponent } from './message.component';
 import { PRIMENG_IMPORTS } from '../primeng-imports';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { CidComponent } from './cid/cid.component';
+import { ArvoreComponent } from './cid/arvore-cid/arvore.component';
 
 /* jhipster-needle-add-shared-service-import - JHipster will add shared services imports here */
 
@@ -24,7 +26,7 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
         PageNotificationModule,
         CrudModule,
     ],
-    declarations: [MessageComponent],
+    declarations: [MessageComponent, CidComponent, ArvoreComponent],
     providers: [JhiDateUtils],
     exports: [
         ReactiveFormsModule,
@@ -35,6 +37,9 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
         PageNotificationModule,
         CrudModule,
         MessageComponent,
+        CidComponent,
+        ArvoreComponent
+
     ],
 })
 export class SharedModule {}

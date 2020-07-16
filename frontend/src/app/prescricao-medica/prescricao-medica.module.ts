@@ -1,5 +1,3 @@
-import { InternacaoModule } from './../internacao/internacao.module';
-import { CidComponent } from '@internacao/components/cid/cid.component';
 import { medicamentoRoute } from './medicamento/medicamento.routes';
 import { PrescricaoMedicaDietaModule } from './dieta/prescricao-medica-dieta.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,7 +32,6 @@ import { DiagnosticoService } from './diagnostico/diagnostico.service';
         MedicamentoComponent,
         ListaPrescricaoComponent,
         DiagnosticoComponent,
-        CidComponent
     ],
     providers: [PrescricaoMedicaService, ListaPrescricaoService, DiagnosticoService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
