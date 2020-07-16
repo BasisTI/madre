@@ -17,7 +17,7 @@ public interface CIDMapper {
 	@Mapping(source="id", target="id")
 	@Mapping(source="codigo", target="codigo")
 	@Mapping(source="descricao", target="descricao")
-	CidDTO toDto(CID medicamento);
+	CidDTO toDto(CID cid);
 
     default CID fromId(Long id) {
         if (id == null) {
