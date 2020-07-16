@@ -13,5 +13,17 @@
             <column name="uf_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
+        <loadData
+            file="config/liquibase/data/cep_GO.csv"
+            separator=";"
+            tableName="endereco_cep">
+            <column name="id" type="numeric"/>
+            <column name="cep" type="string"/>
+            <column name="logradouro" type="string"/>
+            <column name="bairro" type="string"/>
+            <column name="municipio_id" type="numeric"/>
+            <column name="uf_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
     </changeSet>
 </databaseChangeLog>
