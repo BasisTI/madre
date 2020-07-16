@@ -47,5 +47,7 @@
     <include file="config/liquibase/changelog/20200519153725_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200619184947_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200713151819_added_entity_constraints_ItemPrescricaoDiagnostico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200716150846_added_notNull_constraints.xml" relativeToChangelogFile="false"/>
+    
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

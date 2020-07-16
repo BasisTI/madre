@@ -54,6 +54,7 @@ public class ItemPrescricaoDiagnostico implements Serializable {
 	@Transient
 	private CID cid;
 
+	@NotNull
 	@ManyToOne
 	@JsonIgnoreProperties("itemPrescricaoDiagnosticos")
 	private PrescricaoDiagnostico prescricaoDiagnostico;
