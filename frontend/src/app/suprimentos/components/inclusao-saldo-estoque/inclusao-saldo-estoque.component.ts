@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Almoxarifado } from '@suprimentos/models/almoxarifado';
+import { InclusaoSaldoEstoqueDTO } from '@suprimentos/models/inclusao-saldo-estoque';
 import { Material } from '@suprimentos/models/material';
 import { AlmoxarifadoService } from '@suprimentos/services/almoxarifado.service';
 import { EstoqueAlmoxarifadoService } from '@suprimentos/services/estoque-almoxarifado.service';
@@ -29,10 +30,19 @@ export class InclusaoSaldoEstoqueComponent {
     ) {}
 
     public incluir(): void {
-        this.estoqueAlmoxarifadoService.incluirSaldoEstoque(this.normalizeForm(this.form));
+        this.estoqueAlmoxarifadoService
+            .incluirSaldoEstoque(this.normalizeForm(this.form))
+            .subscribe(
+                (resposta) => {
+                    console.log(resposta);
+                },
+                (erro) => {
+                    console.error(erro);
+                },
+            );
     }
 
-    public normalizeForm(form: AbstractControl): any {
+    public normalizeForm(form: AbstractControl): InclusaoSaldoEstoqueDTO {
         const value = form.value;
 
         for (const prop in value) {

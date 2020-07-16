@@ -2,6 +2,7 @@ package br.com.basis.suprimentos.web.rest;
 
 import br.com.basis.suprimentos.service.EstoqueAlmoxarifadoService;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -39,6 +40,12 @@ public class EstoqueAlmoxarifadoResource {
     private final EstoqueAlmoxarifadoService estoqueAlmoxarifadoService;
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    @PostMapping("/estoque-almoxarifados/saldo")
+    public ResponseEntity<Void> incluirSaldoEstoque(@RequestBody @Valid InclusaoSaldoEstoqueDTO inclusaoSaldoEstoqueDTO) {
+        estoqueAlmoxarifadoService.incluirSaldoEstoque(inclusaoSaldoEstoqueDTO);
+        return ResponseEntity.noContent().build();
+    }
 
     @PostMapping("/estoque-almoxarifados")
     public ResponseEntity<EstoqueAlmoxarifadoDTO> createEstoqueAlmoxarifado(@Valid @RequestBody EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) throws URISyntaxException {

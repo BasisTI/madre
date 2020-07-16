@@ -4,6 +4,7 @@ import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado;
 import br.com.basis.suprimentos.repository.EstoqueAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.EstoqueAlmoxarifadoSearchRepository;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
 import br.com.basis.suprimentos.service.mapper.EstoqueAlmoxarifadoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -70,5 +71,8 @@ public class EstoqueAlmoxarifadoService {
     @Transactional(readOnly = true)
     public EstoqueAlmoxarifadoDTO recuperaEstoquePorAlmoxarifadoIdEMaterialId(Long almoxarifadoId, Long materialId) {
         return estoqueAlmoxarifadoRepository.findByAlmoxarifadoIdAndMaterialId(almoxarifadoId, materialId).map(estoqueAlmoxarifadoMapper::toDto).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public void incluirSaldoEstoque(InclusaoSaldoEstoqueDTO inclusaoSaldoEstoqueDTO) {
     }
 }
