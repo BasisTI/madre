@@ -98,11 +98,10 @@ export class DiagnosticoComponent implements OnInit, OnDestroy {
             (resposta) => {
                 this.router.navigate(['/prescricao-medica/lista/', prescricaoDiagnostico.idPaciente]);
                 this.itemPrescricaoDiagnostico.reset();
-                console.log(resposta);
-
+                return resposta;
             },
             (erro) => {
-                console.error(erro);
+                return erro;
             },
         );
 
