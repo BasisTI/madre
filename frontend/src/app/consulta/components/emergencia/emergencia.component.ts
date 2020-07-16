@@ -1,5 +1,3 @@
-import { PacienteModel } from '../../models/paciente-model';
-import { Router } from '@angular/router';
 import { OPCAO_TIPO_PAGADOR_CONSULTA } from './../../consulta-opcoes/opcao-tipo-pagador-consulta';
 import { OPCOES_TURNO_CONSULTA } from './../../consulta-opcoes/opcao-turno-consulta';
 import { Paciente } from './../../../internacao/models/paciente';
@@ -9,8 +7,8 @@ import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
-import { ConsultaEmergenciaModel } from '../../models/consulta-emergencia-model';
-import { ConsultaPaciente } from '../../models/consulta-pacientes';
+import { ConsultaEmergenciaModel } from '../../consulta-emergencia-model';
+import { ConsultaPaciente } from '../../consulta-pacientes';
 
 @Component({
     selector: 'app-emergencia',
@@ -27,7 +25,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
 
     public especialidades = new Array<Especialidade>();
     public crm = new Array<CRM>();
-    public pacientes = new Array<PacienteModel>();
+    public pacientes = new Array<Paciente>();
     @Input() formularioTriagem: FormGroup;
     opcaoTurno = OPCOES_TURNO_CONSULTA;
     opcaoTipoPagador = OPCAO_TIPO_PAGADOR_CONSULTA;
@@ -58,7 +56,6 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private consultaService: ConsultaService,
         private breadcrumbService: BreadcrumbService,
-        private router: Router,
     ) {}
 
     ngOnInit(): void {
@@ -96,8 +93,6 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
             formaDeAgendamentoId: cadConsulta.formaDeAgendamentoId,
             pacienteId: cadConsulta.pacienteId,
             gradesDiponiveis: cadConsulta.gradesDiponiveis,
-            url: cadConsulta.url,
-            id: cadConsulta.id,
         };
 
         this.consultaService.cadastrarConsultas(consultasEmergencia).subscribe((e) => {
@@ -123,7 +118,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
     }
 
     listarPacientes() {
-        this.consultaService.buscarPaciente().subscribe((pacientes: Array<PacienteModel>) => {
+        this.consultaService.buscarPaciente().subscribe((pacientes: Array<Paciente>) => {
             this.pacientes = pacientes;
         });
     }

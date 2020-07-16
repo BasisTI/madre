@@ -1,6 +1,4 @@
 export interface ConsultaEmergenciaModel {
-    id: number;
-    url: string;
     numeroConsulta: number;
     dataHoraDaConsulta: Date;
     grade: number;

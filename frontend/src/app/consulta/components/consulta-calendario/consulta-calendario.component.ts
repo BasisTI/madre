@@ -1,22 +1,18 @@
+import { Router } from '@angular/router';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { ConsultaService } from '../../consulta.service';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import * as moment from 'moment';
-import { FullCalendar } from 'primeng';
+import { ConsultaCalendarioModel } from '../../consulta-calendario-model ';
 
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
 @Component({
     selector: 'app-consulta-calendario',
     templateUrl: './consulta-calendario.component.html',
-    styleUrls: ['./consulta-calendario.component.scss'],
 })
 export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
-    events: any;
+    events: Array<ConsultaCalendarioModel>;
     options: any;
-    @ViewChild('daySchedule') fc: FullCalendar;
-    consultaId: any;
 
     constructor(
         private consultaService: ConsultaService,
@@ -35,26 +31,19 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             },
         ]);
         this.options = {
-            locale: 'pt-br',
-            eventLimit: true,
-            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+            plugins: [dayGridPlugin],
             defaultDate: moment().format('YYYY-MM-DD'),
             header: {
                 left: 'prev,next',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay',
-            },
-            editable: true,
-            dateClick: (dateClickEvent) => {
-                // <-- add the callback here as one of the properties of `options`
-                console.log('DATE CLICKED !!!');
+                right: 'month,agendaWeek,agendaDay',
             },
         };
-
         this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
-            eventos.forEach((element) => {
-                element.url = `#/consulta/detalha-consulta/${element.id}`;
+            eventos.forEach((e) => {
+                e.url = `consulta/detalha-consulta/${e.id}`;
             });
+
             this.events = eventos;
         });
     }

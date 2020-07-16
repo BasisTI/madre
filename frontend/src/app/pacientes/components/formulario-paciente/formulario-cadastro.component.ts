@@ -20,6 +20,7 @@ import { Documento } from './models/documento';
 @Component({
     selector: 'app-formulario-cadastro',
     templateUrl: './formulario-cadastro.component.html',
+    styleUrls: ['./formulario-cadastro.component.scss'],
 })
 export class FormularioCadastroComponent implements OnInit, OnDestroy {
     dadosPessoais = this.fb.group({
