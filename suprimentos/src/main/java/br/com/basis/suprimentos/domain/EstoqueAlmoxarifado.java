@@ -1,7 +1,6 @@
 package br.com.basis.suprimentos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -70,6 +69,20 @@ public class EstoqueAlmoxarifado implements Serializable {
     @Min(value = 1L)
     @Column(name = "quantidade_ponto_pedido", nullable = false)
     private Long quantidadePontoPedido;
+
+    @Min(value = 0L)
+    @Column(name = "quantidade_disponivel")
+    private Long quantidadeDisponivel;
+
+    @Min(value = 0L)
+    @Column(name = "quantidade_em_uso")
+    private Long quantidadeEmUso;
+
+    @Column(name = "controla_validade")
+    private Boolean controlaValidade;
+
+    @Column(name = "estocavel")
+    private Boolean estocavel;
 
     @NotNull
     @Min(value = 1)
