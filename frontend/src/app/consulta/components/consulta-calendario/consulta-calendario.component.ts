@@ -1,18 +1,22 @@
-import { Router } from '@angular/router';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { ConsultaService } from '../../consulta.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import * as moment from 'moment';
-import { ConsultaCalendarioModel } from '../../consulta-calendario-model ';
+import { FullCalendar } from 'primeng';
 
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 @Component({
     selector: 'app-consulta-calendario',
     templateUrl: './consulta-calendario.component.html',
+    styleUrls: ['./consulta-calendario.component.scss'],
 })
 export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
-    events: Array<ConsultaCalendarioModel>;
+    events: any;
     options: any;
+    @ViewChild('daySchedule') fc: FullCalendar;
+    consultaId: any;
 
     constructor(
         private consultaService: ConsultaService,
@@ -31,21 +35,32 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             },
         ]);
         this.options = {
-            plugins: [dayGridPlugin],
+            locale: 'pt-br',
+            eventLimit: true,
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
             defaultDate: moment().format('YYYY-MM-DD'),
             header: {
                 left: 'prev,next',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            },
+            editable: true,
+            dateClick: (dateClickEvent) => {
+                console.log('DATE CLICKED !!!');
+            },
+            viewRender: (view, element) => {
+                console.log(' !!!');
+            },
+            events: (events) => {
+                console.log(events);
+                this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
+                    eventos.forEach((element) => {
+                        element.url = `#/consulta/detalha-consulta/${element.id}`;
+                    });
+                    this.events = eventos;
+                });
             },
         };
-        this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
-            eventos.forEach((e) => {
-                e.url = `consulta/detalha-consulta/${e.id}`;
-            });
-
-            this.events = eventos;
-        });
     }
 
     ngOnDestroy(): void {
