@@ -1,0 +1,42 @@
+{
+    "name": "ItemPrescricaoDiagnostico",
+    "fields": [
+        {
+            "fieldName": "idCid",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "complemento",
+            "javadoc": "Identificador do paciente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prescricaoDiagnostico",
+            "otherEntityRelationshipName": "itemPrescricaoDiagnostico",
+            "relationshipName": "prescricaoDiagnostico",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200713151819",
+    "entityTableName": "item_prescricao_diagnostico",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

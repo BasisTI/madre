@@ -3,6 +3,7 @@ import { MedicamentoComponent } from './medicamento/medicamento.component';
 import { PrescricaoMedicaComponent } from './prescricao-medica.component';
 import { PrescricaoMedicaDietaComponent } from './dieta/prescricao-medica-dieta.component';
 import { Routes } from '@angular/router';
+import { DiagnosticoComponent } from './diagnostico/diagnostico.component';
 
 export const prescricaoMedica: Routes = [
     {
@@ -18,6 +19,10 @@ export const prescricaoMedica: Routes = [
     {
         path: 'prescricao-medica/medicamento/:id',
         component: MedicamentoComponent
+    },
+    {
+        path: 'prescricao-medica/diagnostico/:id',
+        component: DiagnosticoComponent
     },
 
     {

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CidComponent } from '@internacao/components/cid/cid.component';
+import { CidComponent } from '@shared/cid/cid.component';
 import { CID } from '@internacao/models/cid';
 import { PrioridadeDropdown } from '@internacao/models/dropdowns/prioridades.dropdown';
 import { Especialidade } from '@internacao/models/especialidade';
