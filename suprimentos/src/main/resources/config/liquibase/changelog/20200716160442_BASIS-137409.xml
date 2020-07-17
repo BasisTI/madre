@@ -9,7 +9,7 @@
     </changeSet>
     <changeSet author="pedro (generated)" id="1594915492803-10">
         <addForeignKeyConstraint baseColumnNames="almoxarifado_id" baseTableName="requisicao_material"
-                                 constraintName="FKebft6mx2chnnq1g1f87140j5x" deferrable="false"
+                                 constraintName="fk_almoxarifado_id" deferrable="false"
                                  initiallyDeferred="false" referencedColumnNames="id" referencedTableName="almoxarifado"
                                  validate="true"/>
     </changeSet>
