@@ -1,0 +1,18 @@
+entity PrescricaoDiagnostico{
+
+}
+
+entity ItemPrescricaoDiagnostico {
+	idCid Long required, /** Identificador do paciente */
+    complemento String maxlength(255) /** Comentário adicional para o CID, campo nao obrigatório */
+}
+
+relationship OneToMany {
+	PrescricaoDiagnostico to ItemPrescricaoDiagnostico
+}
+
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

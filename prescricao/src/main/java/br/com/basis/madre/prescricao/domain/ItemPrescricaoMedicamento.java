@@ -128,6 +128,7 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private TipoAprazamento tipoAprazamento;
 
+	@NotNull
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne(fetch = FetchType.LAZY)

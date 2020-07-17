@@ -10,7 +10,7 @@ import { SharedModule } from './../shared/shared.module';
 import { medicamentoRoute } from './medicamento/medicamento.routes';
 import { procedimentoEspecialRoute } from './procedimento-especial/procedimento-especial.routes';
 
-import { prescricaoMedica } from './prescricao-medica.router';
+import { prescricaoMedica } from './prescricao-medica.routes';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -19,6 +19,8 @@ import { MedicamentoComponent } from './medicamento/medicamento.component';
 import { ProcedimentoEspecialComponent } from './procedimento-especial/procedimento-especial.component';
 import { ListaPrescricaoComponent } from './lista-prescricao/lista-prescricao.component';
 import { ListaPrescricaoService } from './lista-prescricao/lista-prescricao.service';
+import { DiagnosticoComponent } from './diagnostico/diagnostico.component';
+import { DiagnosticoService } from './diagnostico/diagnostico.service';
 
 
 
@@ -38,8 +40,9 @@ import { ListaPrescricaoService } from './lista-prescricao/lista-prescricao.serv
         MedicamentoComponent,
         ProcedimentoEspecialComponent,
         ListaPrescricaoComponent,
+        DiagnosticoComponent,
     ],
-    providers: [PrescricaoMedicaService, ListaPrescricaoService],
+    providers: [PrescricaoMedicaService, ListaPrescricaoService, DiagnosticoService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
