@@ -1,4 +1,3 @@
-import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
 import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { CalendarioComponent } from '@internacao/components/leito/calendario.component';
@@ -47,8 +46,4 @@ export const routes: Routes = [
         path: 'cadastro-unidades',
         component: CadastroUnidadesComponent,
     },
-    {
-        path: 'cadastro-clinicas',
-        component: ClinicaComponent
-    }
 ];

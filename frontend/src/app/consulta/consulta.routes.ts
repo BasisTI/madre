@@ -18,7 +18,7 @@ export const routes: Routes = [
         component: ConsultaCalendarioComponent,
     },
     {
-        path: 'detalha-consulta',
+        path: 'detalha-consulta/:id',
         component: DetalhaConsultaComponent,
     },
 ];
