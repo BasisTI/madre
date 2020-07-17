@@ -13,6 +13,7 @@ import { TransferenciaAutomaticaNaoEfetivadaComponent } from './components/trans
 import { TransferenciaAutomaticaFormComponent } from './components/transferencia-automatica/transferencia-automatica-form.component';
 import { TransferenciaAutomaticaComponent } from './components/transferencia-automatica/transferencia-automatica.component';
 import { routes } from './suprimentos.routes';
+import { RequisicaoMaterialNaoEfetivadaComponent } from './components/requisicao-material-nao-efetivada/requisicao-material-nao-efetivada.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { routes } from './suprimentos.routes';
         TransferenciaAutomaticaNaoEfetivadaComponent,
         RequisicaoMaterialComponent,
         RequisicaoMaterialFormComponent,
+        RequisicaoMaterialNaoEfetivadaComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

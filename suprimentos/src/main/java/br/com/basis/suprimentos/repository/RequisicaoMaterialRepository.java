@@ -14,4 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RequisicaoMaterialRepository extends JpaRepository<RequisicaoMaterial, Long> {
     <T> Page<T> findBy(Class<T> projectionClass, Pageable pageable);
+
+    <T> Page<T> findByConfirmadoEmIsNull(Class<T> projectionClass, Pageable pageable);
 }

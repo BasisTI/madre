@@ -11,6 +11,8 @@ import java.util.Set;
 public class RequisicaoMaterialDTO implements Serializable {
     private Long id;
 
+    private Long almoxarifadoId;
+
     private Long caRequisitanteId;
 
     private Long caAplicacaoId;
