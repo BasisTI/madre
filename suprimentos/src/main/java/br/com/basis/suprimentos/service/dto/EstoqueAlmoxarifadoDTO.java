@@ -35,16 +35,6 @@ public class EstoqueAlmoxarifadoDTO implements Serializable {
     @Min(value = 1)
     private Integer tempoReposicao;
 
-    @Min(value = 0L)
-    private Long quantidadeDisponivel;
-
-    @Min(value = 0L)
-    private Long quantidadeEmUso;
-
-    private Boolean controlaValidade;
-
-    private Boolean estocavel;
-
     private Long almoxarifadoId;
 
     private Long materialId;
