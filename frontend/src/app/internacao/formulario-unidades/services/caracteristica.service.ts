@@ -12,7 +12,7 @@ export class CaracteristicaService extends CrudServiceNuvem<number, Caracteristi
         super('internacao/api/caracteristicas?sort=nome', httpClient);
     }
 
-    getListaDeCaracteristicas(): Observable<Clinica[]> {
+    getListaDeCaracteristicas(): Observable<Caracteristica[]> {
         let params = new HttpParams();
         params = params.set('size', '30');
 
