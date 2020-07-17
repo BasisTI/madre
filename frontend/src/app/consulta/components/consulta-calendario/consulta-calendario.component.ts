@@ -46,17 +46,21 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             },
             editable: true,
             dateClick: (dateClickEvent) => {
-                // <-- add the callback here as one of the properties of `options`
                 console.log('DATE CLICKED !!!');
             },
+            viewRender: (view, element) => {
+                console.log(' !!!');
+            },
+            events: (events) => {
+                console.log(events);
+                this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
+                    eventos.forEach((element) => {
+                        element.url = `#/consulta/detalha-consulta/${element.id}`;
+                    });
+                    this.events = eventos;
+                });
+            },
         };
-
-        this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
-            eventos.forEach((element) => {
-                element.url = `#/consulta/detalha-consulta/${element.id}`;
-            });
-            this.events = eventos;
-        });
     }
 
     ngOnDestroy(): void {
