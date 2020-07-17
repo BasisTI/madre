@@ -3,6 +3,7 @@
         <div class="card card-w-title">
             <h1>Prescrição Médica</h1>
             <div class="ui-g">
+
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield">
                         <input type="text" pInputText class="ui-inputtext" name="nome"
@@ -20,6 +21,7 @@
 
                 <basis-datatable #datatable type="server" [url]="searchUrl" [rows]="10" [disableView]="true"
                     [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)">
+                    <p-column header="Prontuário" field="prontuario"></p-column>
                     <p-column header="Nome" field="nome"></p-column>
                     <p-column header="Dt. Nascimento" field="dataDeNascimento">
                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
