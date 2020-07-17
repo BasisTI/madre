@@ -1,20 +1,27 @@
 package br.com.basis.madre.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A UF.
  */
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "uf")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -38,31 +45,9 @@ public class UF implements Serializable {
     @Column(name = "sigla", nullable = false)
     private String sigla;
 
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUnidadeFederativa() {
-        return unidadeFederativa;
-    }
-
     public UF unidadeFederativa(String unidadeFederativa) {
         this.unidadeFederativa = unidadeFederativa;
         return this;
-    }
-
-    public void setUnidadeFederativa(String unidadeFederativa) {
-        this.unidadeFederativa = unidadeFederativa;
-    }
-
-    public String getSigla() {
-        return sigla;
     }
 
     public UF sigla(String sigla) {
@@ -70,33 +55,4 @@ public class UF implements Serializable {
         return this;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof UF)) {
-            return false;
-        }
-        return id != null && id.equals(((UF) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "UF{" +
-            "id=" + getId() +
-            ", unidadeFederativa='" + getUnidadeFederativa() + "'" +
-            ", sigla='" + getSigla() + "'" +
-            "}";
-    }
 }

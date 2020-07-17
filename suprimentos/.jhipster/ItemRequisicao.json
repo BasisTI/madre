@@ -1,0 +1,32 @@
+{
+  "name": "ItemRequisicao",
+  "fields": [
+    {
+      "fieldName": "quantidade",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "requisicaoMaterial",
+      "otherEntityRelationshipName": "itens",
+      "relationshipName": "requisicao",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200709165606",
+  "entityTableName": "item_requisicao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madresuprimentos",
+  "applications": "*",
+  "microserviceName": "madresuprimentos",
+  "skipClient": true
+}

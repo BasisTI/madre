@@ -1,0 +1,22 @@
+{
+    "name": "TipoUnidade",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200616160420",
+    "entityTableName": "tipo_unidade",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}

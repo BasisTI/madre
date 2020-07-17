@@ -1,15 +1,15 @@
 import {
-    Component,
     AfterViewInit,
+    Component,
     ElementRef,
-    Renderer2,
-    ViewChild,
+    NgZone,
     OnDestroy,
     OnInit,
-    NgZone,
+    Renderer2,
+    ViewChild,
 } from '@angular/core';
-import { ScrollPanel } from 'primeng';
 import { MenusService } from '@nuvem/primeng-components';
+import { ScrollPanel } from 'primeng';
 
 enum MenuOrientation {
     STATIC,
@@ -90,22 +90,50 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 ],
             },
             {
-                label: 'Emergência',
+                label: 'Triagem',
                 icon: 'local_hospital',
                 items: [
                     {
-                        label: 'Pré Cadastro',
-                        icon: 'add',
-                        routerLink: ['pacientes/pre-cadastro'],
+                        label: 'Pré-Cadastro',
+                        icon: 'view_headline',
+                        items: [
+                            {
+                                label: 'Listar Pré-Cadastro',
+                                icon: 'add',
+                                routerLink: ['pacientes/lista-pre-cadastro'],
+                            },
+                            {
+                                label: 'Incluir Pré-Cadastro',
+                                icon: 'add',
+                                routerLink: ['pacientes/pre-cadastro'],
+                            },
+                        ],
                     },
                     {
                         label: 'Triagem',
                         icon: 'add',
                         routerLink: ['pacientes/triagem'],
                     },
+                ],
+            },
+            {
+                label: 'Marcar Consultas',
+                icon: 'watch_later',
+                items: [
                     {
-                        label: 'Atendimento',
+                        label: 'Listar Consultas',
                         icon: 'add',
+                        routerLink: ['consulta/listar-consultas'],
+                    },
+                    {
+                        label: 'Calendário',
+                        icon: 'add',
+                        routerLink: ['consulta/consulta-calendario'],
+                    },
+                    {
+                        label: 'Emergência',
+                        icon: 'add',
+                        routerLink: ['consulta/emergencia'],
                     },
                 ],
             },
@@ -117,7 +145,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Médica',
                         icon: 'add',
-                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
+                        items: [{ label: 'Prescrever', icon: 'add', routerLink: ['/prescricao-medica'] }],
                     },
                 ],
             },
@@ -134,6 +162,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Internar Paciente',
                         icon: 'add',
                         routerLink: ['internacao/solicitacoes-de-internacao'],
+                    },
+                    {
+                        label: 'Cadastrar Unidade',
+                        icon: 'add',
+                        routerLink: ['internacao/cadastro-unidades'],
                     },
                     {
                         label: 'Leitos',
@@ -181,6 +214,59 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Medicamentos',
                         icon: 'add',
                         routerLink: ['/medicamentos'],
+                    },
+                ],
+            },
+            {
+                label: 'Suprimentos',
+                icon: 'local_shipping',
+                items: [
+                    {
+                        label: 'Almoxarifado',
+                        icon: 'add',
+                        items: [
+                            {
+                                label: 'Recebimento',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/recebimentos/novo'],
+                            },
+                            {
+                                label: 'Documentos Fiscais',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Nota Fiscal',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/documentos-fiscais/notas-fiscais/nova',
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Transferências',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Automáticas',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/transferencias-automaticas'],
+                                    },
+                                    {
+                                        label: 'Efetivação',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/transferencias-automaticas/nao-efetivadas',
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Requisições de Materiais',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/requisicoes-materiais'],
+                            },
+                        ],
                     },
                 ],
             },

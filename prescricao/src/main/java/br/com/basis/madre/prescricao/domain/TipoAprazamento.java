@@ -48,40 +48,14 @@ public class TipoAprazamento implements Serializable {
     private String sigla;
 
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public TipoAprazamento descricao(String descricao) {
         this.descricao = descricao;
         return this;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getSigla() {
-        return sigla;
     }
 
     public TipoAprazamento sigla(String sigla) {
         this.sigla = sigla;
         return this;
     }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
 
 }

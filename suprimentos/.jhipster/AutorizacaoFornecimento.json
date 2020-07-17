@@ -1,0 +1,50 @@
+{
+    "name": "AutorizacaoFornecimento",
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "complemento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 120
+        },
+        {
+            "fieldName": "tipoItem",
+            "fieldType": "TipoItemAf",
+            "fieldValues": "MATERIAL,SERVICO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "fornecedor",
+            "otherEntityRelationshipName": "autorizacaoFornecimento",
+            "relationshipName": "fornecedor",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123155",
+    "entityTableName": "autorizacao_fornecimento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

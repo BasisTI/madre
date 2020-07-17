@@ -18,11 +18,11 @@ export class ItemPrescricaoMedicamento {
         public inicioAdministracao?: Date,
         public condicaoNecessaria?: boolean,
         public observacaoCondicao?: string,
-        public viasAdministracaoId?: number,
-        public diluenteId?: number,
-        public unidadeInfusaoId?: number,
-        public unidadeDoseId?: number,
-        public tipoAprazamentoId?: number
+        public viasAdministracao?: ViasAdministracao,
+        public diluente?: Diluente,
+        public unidadeInfusao?: UnidadeInfusao,
+        public unidadeDose?: UnidadeDose,
+        public tipoAprazamento?: TipoAprazamento
 
     ) {}
 }

@@ -16,71 +16,37 @@
 		dbms="mysql, oracle, mssql, mariadb, postgresql" />
 	<property name="uuidType" value="uuid" dbms="h2, postgresql" />
 
-	<include
-		file="config/liquibase/changelog/00000000000000_initial_schema.xml"
-		relativeToChangelogFile="false" />
-
-	<include
-		file="config/liquibase/changelog/20200505210945_added_entity_ItemPrescricaoMedicamento.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200505210946_added_entity_ViasAdministracao.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200505210947_added_entity_Diluente.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200505210948_added_entity_UnidadeDose.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200505210949_added_entity_UnidadeInfusao.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200515195406_added_entity_PrescricaoDieta.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200515195407_added_entity_ItemPrescricaoDieta.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200515195408_added_entity_TipoItemDieta.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200515195409_added_entity_TipoAprazamento.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200515195410_added_entity_TipoUnidadeDieta.xml"
-		relativeToChangelogFile="false" />
-	<!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase 
-		changelogs here -->
-	<include
-		file="config/liquibase/changelog/20200505210945_added_entity_constraints_ItemPrescricaoMedicamento.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200515195407_added_entity_constraints_ItemPrescricaoDieta.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200516032043_changelog.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200519153725_changelog.xml"
-		relativeToChangelogFile="false" />
-
-	<include
-		file="config/liquibase/changelog/20200529172046_added_entity_PrescricaoProcedimento.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200529172047_added_entity_ItemPrescricaoProcedimento.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200529172048_added_entity_TipoProcedimento.xml"
-		relativeToChangelogFile="false" />
-	<include
-		file="config/liquibase/changelog/20200505210944_added_entity_PrescricaoMedicamento.xml"
-		relativeToChangelogFile="false" />
-
-	<include
-		file="config/liquibase/changelog/20200529172047_added_entity_constraints_ItemPrescricaoProcedimento.xml"
-		relativeToChangelogFile="false" />
-	<!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will 
-		add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505210944_added_entity_PrescricaoMedicamento.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505210945_added_entity_ItemPrescricaoMedicamento.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505210946_added_entity_ViasAdministracao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505210947_added_entity_Diluente.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505210948_added_entity_UnidadeDose.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505210949_added_entity_UnidadeInfusao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200515195406_added_entity_PrescricaoDieta.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200515195407_added_entity_ItemPrescricaoDieta.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200515195408_added_entity_TipoItemDieta.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200515195409_added_entity_TipoAprazamento.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200515195410_added_entity_TipoUnidadeDieta.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200616152029_added_entity_PrescricaoMedica.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20200505210945_added_entity_constraints_ItemPrescricaoMedicamento.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200515195407_added_entity_constraints_ItemPrescricaoDieta.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200516032043_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200519153725_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200619184947_changelog.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

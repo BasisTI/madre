@@ -1,0 +1,171 @@
+<div class="ui-g ui-fluid">
+    <form [formGroup]="listaConsultas">
+        <div class="ui-g-12">
+            <h1>Pesquisar Consultas</h1>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-inputMask
+                        mask="9999999/9"
+                        pTooltip="Digite o número do prontuário do paciente."
+                        formControlName="prontuario"
+                    ></p-inputMask>
+
+                    <label>Prontuário</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="codigo" />
+                    <label>Código</label>
+                </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="nome" />
+                    <label>Nome</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Digite o número da consulta."
+                        formControlName="consulta"
+                    />
+                    <label>Consulta</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Digite Código Central."
+                        formControlName="codigoCentral"
+                    />
+                    <label>Código Central</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12"></div>
+
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input type="text" pInputText formControlName="consultaAnterior" />
+                    <label>Consulta Anterior</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        type="text"
+                        pInputText
+                        pTooltip="Selecione a condição de atendimento."
+                        formControlName="condicaoAtendimento"
+                    ></p-dropdown>
+                    <label>Condição de Atendimento</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-dropdown
+                        type="text"
+                        pInputText
+                        pTooltip="Selecione a especialidade."
+                        formControlName="especialidade"
+                    ></p-dropdown>
+                    <label>Especialidade</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        type="text"
+                        pTooltip="Digite a grade."
+                        pInputText
+                        formControlName="grade"
+                    />
+                    <label>Grade</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar
+                        [locale]="localizacao"
+                        [yearRange]="anosDisponiveis"
+                        [dateFormat]="formatoDeData"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                        formControlName="dataInicial"
+                    ></p-calendar>
+                    <label>Data inicial</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar
+                        [locale]="localizacao"
+                        [yearRange]="anosDisponiveis"
+                        [dateFormat]="formatoDeData"
+                        monthNavigator="true"
+                        yearNavigator="true"
+                        formControlName="dataFinal"
+                    ></p-calendar>
+                    <label>Data final</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12 ui-sm-12">
+                <div class="ui-g-2">
+                    <button
+                        pButton
+                        type="button"
+                        label="Pesquisar"
+                        pTooltip="Pesquisar consultas de paciente."
+                    ></button>
+                </div>
+                <div class="ui-g-2">
+                    <button
+                        pButton
+                        type="button"
+                        label="Limpar"
+                        pTooltip="Limpar pesquisa de consultas."
+                    ></button>
+                </div>
+                <div class="ui-g-2">
+                    <button
+                        pButton
+                        type="button"
+                        label="Exportar"
+                        pTooltip="Exportar arquivo de consultas."
+                    ></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-sm-12">
+            <basis-datatable
+                type="memory"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+                [verticalButtons]="false"
+            >
+                <p-column field="historico" header="Hist"></p-column>
+                <p-column field="consultas" header="Consultas"></p-column>
+                <p-column field="dataHora" header="Data/Hora"></p-column>
+                <p-column field="condicaoAtendimento" header="Cond. Atend."></p-column>
+                <p-column field="codigoCentral" header="Central"></p-column>
+                <p-column field="grade" header="Grade"></p-column>
+                <p-column field="especialidade" header="Especialidade"></p-column>
+                <p-column field="unidadeFuncional" header="Unid. Func."></p-column>
+                <p-column field="equipe" header="Equipe"></p-column>
+                <p-column field="profissional" header="Profissional"></p-column>
+                <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
+                <p-column field="excedente" header="Excedente"></p-column>
+            </basis-datatable>
+        </div>
+    </form>
+</div>

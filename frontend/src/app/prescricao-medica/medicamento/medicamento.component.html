@@ -7,13 +7,20 @@
                     <form [formGroup]="prescricaoMedicamento">
                         <div class="ui-g">
                             <div class="ui-g-12">
-                                <div class="ui-g-12">
+                                <div class="ui-g-6">
                                     <span class="md-inputfield">
-                                        <input formControlName="idPaciente" type="text"
-                                            pInputText disabled />
+                                        <input formControlName="nome" type="text" pInputText disabled />
                                         <label>Paciente</label>
                                     </span>
                                 </div>
+
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <input formControlName="dataPrescricao" type="text" pInputText disabled />
+                                        <label>Data Prescrição</label>
+                                    </span>
+                                </div>
+
                             </div>
                             <div class="ui-g-12">
                                 <div class="ui-g-12">
@@ -39,8 +46,8 @@
                                             formControlName="idMedicamento" [dropdown]="true" dataKey="id">
                                         </p-autoComplete>
                                         <label>Medicamentos</label>
-                                        <app-message [control]="itemPrescricaoMedicamento.get('idMedicamento')" error="required"
-                                        text="Campo é obrigatório"></app-message>
+                                        <app-message [control]="itemPrescricaoMedicamento.get('idMedicamento')"
+                                            error="required" text="Campo é obrigatório"></app-message>
                                     </span>
                                 </div>
                             </div>
@@ -49,17 +56,20 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="number" pInputText formControlName="dose" />
+                                        <input pInputText formControlName="dose" />
                                         <label>Dose</label>
                                         <app-message [control]="itemPrescricaoMedicamento.get('dose')" error="required"
-                                        text="Campo é obrigatório"></app-message>
+                                            text="Campo é obrigatório"></app-message>
+
                                     </span>
                                 </div>
 
                                 <div class="ui-g-2">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaUnidadeDose"
-                                            formControlName="unidadeDoseId" required #unidadeDose>
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
+                                            [options]="listaUnidadeDose" formControlName="unidadeDose" required
+                                            #unidadeDose>
                                         </p-dropdown>
                                         <label>Unidade</label>
                                     </span>
@@ -67,8 +77,10 @@
 
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaViasAdministracao"
-                                            formControlName="viasAdministracaoId" required #viaAdministracao>
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
+                                            [options]="listaViasAdministracao" formControlName="viasAdministracao"
+                                            required #viaAdministracao>
                                         </p-dropdown>
                                         <label>Via</label>
                                     </span>
@@ -103,8 +115,9 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaTipoAprazamento"
-                                            formControlName="tipoAprazamentoId">
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
+                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamento">
                                         </p-dropdown>
                                         <label>Tipo de Aprazamento</label>
                                     </span>
@@ -112,8 +125,9 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaDiluente"
-                                            formControlName="diluenteId" #diluente>
+                                        <p-dropdown placeholder="Selecione..." [filter]="true" [options]="listaDiluente"
+                                            emptyFilterMessage="Nenhum registro encontrado." formControlName="diluente"
+                                            #diluente>
                                         </p-dropdown>
                                         <label>Diluente</label>
                                     </span>
@@ -123,8 +137,10 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input pInputText type="text" formControlName="volume" />
+                                        <input pInputText formControlName="volume"
+                                            placeholder="Informe o valume do diluente" />
                                         <label>Volume (ml)</label>
+
                                     </span>
                                 </div>
 
@@ -154,8 +170,9 @@
 
                                 <div class="ui-g-5">
                                     <span class="md-inputfield">
-                                        <p-dropdown placeholder="Selecione..." [options]="listaUnidadeInfusao"
-                                            formControlName="unidadeInfusaoId">
+                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                            emptyFilterMessage="Nenhum registro encontrado."
+                                            [options]="listaUnidadeInfusao" formControlName="unidadeInfusao">
                                         </p-dropdown>
                                         <label>Unidade Infusão</label>
                                     </span>
@@ -235,14 +252,14 @@
 
                                     <p-column header="Dose" field="dose"></p-column>
 
-                                    <p-column header="Unidade" field="unidadeDoseId">
+                                    <p-column header="Unidade" field="unidadeDose">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined :rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Via" field="viasAdministracaoId">
+                                    <p-column header="Via" field="viasAdministracao">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
@@ -251,14 +268,14 @@
 
                                     <p-column header="Frequencia" field="frequencia"></p-column>
 
-                                    <p-column header="Aprazamento" field="tipoAprazamentoId">
+                                    <p-column header="Aprazamento" field="tipoAprazamento">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
-                                    <p-column header="Diluente" field="diluenteId">
+                                    <p-column header="Diluente" field="diluente">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
                                                 {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>

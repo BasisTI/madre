@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PrescricaoMedicaComponent } from './prescricao-medica.component';
 import { MedicamentoComponent } from './medicamento/medicamento.component';
 import { ProcedimentoEspecialComponent } from './procedimento-especial/procedimento-especial.component';
+import { ListaPrescricaoComponent } from './lista-prescricao/lista-prescricao.component';
+import { ListaPrescricaoService } from './lista-prescricao/lista-prescricao.service';
 
 
 
@@ -35,8 +37,9 @@ import { ProcedimentoEspecialComponent } from './procedimento-especial/procedime
         PrescricaoMedicaComponent,
         MedicamentoComponent,
         ProcedimentoEspecialComponent,
+        ListaPrescricaoComponent,
     ],
-    providers: [PrescricaoMedicaService],
+    providers: [PrescricaoMedicaService, ListaPrescricaoService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 

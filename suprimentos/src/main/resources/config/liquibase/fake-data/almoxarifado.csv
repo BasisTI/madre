@@ -1,0 +1,11 @@
+id;descricao;dias_estoque;central;ativo;calcula_media_ponderada;bloqueia_entrada_transferencia;centro_de_atividade_id
+1;Almoxarifado 01;0;false;true;false;false;1
+2;Almoxarifado 02;0;false;true;false;false;2
+3;Almoxarifado 03;0;false;true;false;false;3
+4;Almoxarifado 04;0;false;true;false;false;4
+5;Almoxarifado 05;0;false;true;false;false;5
+6;Almoxarifado 06;0;false;true;false;false;6
+7;Almoxarifado 07;0;false;true;false;false;7
+8;Almoxarifado 08;0;false;true;false;false;8
+9;Almoxarifado 09;0;false;true;false;false;9
+10;Almoxarifado 10;0;false;true;false;false;10

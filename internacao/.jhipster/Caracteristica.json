@@ -1,0 +1,31 @@
+{
+    "name": "Caracteristica",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "unidade",
+            "otherEntityRelationshipName": "caracteristica",
+            "relationshipName": "unidade",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200616160421",
+    "entityTableName": "caracteristica",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}

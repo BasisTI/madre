@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
-import { BreadcrumbService } from '@nuvem/primeng-components';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BreadcrumbService, DatatableComponent, DatatableClickEvent } from '@nuvem/primeng-components';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
-import { DatatableClickEvent } from '@nuvem/primeng-components';
 
 @Component({
     selector: 'app-prescricao-medica',
@@ -11,9 +10,12 @@ import { DatatableClickEvent } from '@nuvem/primeng-components';
 })
 export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
 
+    @ViewChild('datatable') datatable: DatatableComponent;
     pacienteSelecionado: any;
 
     pacientes: [];
+
+    nome: string;
 
     searchUrl = 'prescricao/api/pacientes';
 
@@ -26,19 +28,20 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     ) { }
 
 
-    ngOnInit(
-    ) {
+    ngOnInit(): void {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);
 
-        this.listar();
     }
 
     listar() {
         this.prescricaoMedicaService.listarPacientes();
     }
 
+    pesquisar() {
+        this.datatable.refresh({nome: this.nome})
+    }
+
     btnClick(event: DatatableClickEvent) {
-        console.log(event);
 
         if (!event.selection) {
             return;
@@ -54,6 +57,8 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
             case 'prescrever-procedimento':
                 this.router.navigate(['/prescricao-medica/procedimento-especial', event.selection.id]);
                 break;
+            case 'listar-prescricoes':
+                this.router.navigate(['/prescricao-medica/lista', event.selection.id]);
         }
 
     }

@@ -12,7 +12,16 @@
                         (completeMethod)="buscaPacientes($event)"
                         [dropdown]="true"
                         formControlName="paciente"
+                        (onSelect)="pacienteSelecionado($event)"
                     ></p-autoComplete>
+                    <p-message
+                        severity="error"
+                        text="Nome do paciente obrigatório"
+                        *ngIf="
+                            formTriagem.controls['paciente'].errors?.required &&
+                            formTriagem.controls['paciente'].touched
+                        "
+                    ></p-message>
                     <label>Nome do Paciente</label>
                 </span>
             </div>
@@ -77,6 +86,14 @@
                     />
                     <label>Sinais/Sintomas</label>
                 </span>
+                <p-message
+                    severity="error"
+                    text="Campo tem que possuir no mínimos 3 caracteres"
+                    *ngIf="
+                        formTriagem.controls['sinaisSintomas'].errors?.minlength &&
+                        formTriagem.controls['sinaisSintomas'].touched
+                    "
+                ></p-message>
             </div>
             <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
@@ -90,14 +107,21 @@
                         hourFormat="24"
                     >
                     </p-calendar>
-
                     <label>Data e hora do atendimento</label>
                 </span>
             </div>
 
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="idade" />
+                    <input
+                        type="text"
+                        pInputText
+                        name="idade"
+                        value="0"
+                        disabled
+                        [(ngModel)]="idade"
+                        [ngModelOptions]="{ standalone: true }"
+                    />
                     <label>Idade</label>
                 </span>
             </div>
@@ -120,7 +144,7 @@
                 ></p-message>
                 <p-message
                     severity="error"
-                    text="Campo tem que possuir no mínimos 3"
+                    text="Campo tem que possuir no mínimos 3 caracteres"
                     *ngIf="
                         formTriagem.controls['descricaoQueixa'].errors?.minlength &&
                         formTriagem.controls['descricaoQueixa'].touched

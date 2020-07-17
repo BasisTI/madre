@@ -1,0 +1,109 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Gerar Transferência Automática</h1>
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <form [formGroup]="transferenciaForm">
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                            <span class="md-inputfield" style="margin-top: 5px;">
+                                <p-autoComplete
+                                        [suggestions]="almoxarifados"
+                                        (completeMethod)="getAlmoxarifadoPorDescricao($event.query)"
+                                        [forceSelection]="true"
+                                        [dropdown]="true"
+                                        formControlName="origemId"
+                                        field="descricao"
+                                ></p-autoComplete>
+                                <label>Almoxarifado de Origem</label>
+                            </span>
+                            </div>
+                            <div class="ui-g-4">
+                            <span class="md-inputfield" style="margin-top: 5px;">
+                                <p-autoComplete
+                                        [suggestions]="almoxarifados"
+                                        [forceSelection]="true"
+                                        (completeMethod)="getAlmoxarifadoPorDescricao($event.query)"
+                                        [dropdown]="true"
+                                        formControlName="destinoId"
+                                        field="descricao"
+                                ></p-autoComplete>
+                                <label>Almoxarifado de Destino</label>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                    [suggestions]="classificacoes"
+                                    (completeMethod)="getClassificacoesPorDescricao($event.query)"
+                                    [dropdown]="true"
+                                    formControlName="classificacaoMaterialId"
+                                    field="descricao"
+                            ></p-autoComplete>
+                            <label>Classificação Material</label>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                <button pButton label="Salvar"
+                                        [disabled]="transferenciaForm.invalid || itens.length === 0"
+                                        (click)="salvar()"></button>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+                            <p-fieldset legend="Itens">
+                                <div class="ui-g-12">
+                                    <form [formGroup]="itemForm">
+                                        <div class="ui-g-4">
+                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                                <p-autoComplete
+                                                        [suggestions]="materiais"
+                                                        (completeMethod)="
+                                                        getMateriaisPorNome($event.query)
+                                                    "
+                                                        [dropdown]="true"
+                                                        field="nome"
+                                                        formControlName="material"
+                                                ></p-autoComplete>
+                                                <label>Material</label>
+                                            </span>
+                                        </div>
+                                        <div class="ui-g-2">
+                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                                <input type="number" min="0" pInputText
+                                                       formControlName="quantidadeEnviada"/>
+                                                <label>Quantidade Enviada</label>
+                                            </span>
+                                        </div>
+                                        <div class="ui-g-2">
+                                            <button pButton label="Adicionar" (click)="adicionarItem()"
+                                                    [disabled]="itemForm.invalid"></button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="ui-g-12">
+                                    <basis-datatable type="memory" [value]="itens">
+                                        <p-column header="Material">
+                                            <ng-template let-data="rowData" pTemplate="body">
+                                                {{ data.material.nome }}
+                                            </ng-template>
+                                        </p-column>
+                                        <p-column header="Quantidade Enviada">
+                                            <ng-template let-data="rowData" pTemplate="body">
+                                                {{ data.quantidadeEnviada }}
+                                            </ng-template>
+                                        </p-column>
+                                    </basis-datatable>
+                                </div>
+                            </p-fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

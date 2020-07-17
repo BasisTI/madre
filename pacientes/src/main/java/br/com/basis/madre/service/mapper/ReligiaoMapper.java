@@ -1,10 +1,9 @@
 package br.com.basis.madre.service.mapper;
 
 
-import br.com.basis.madre.domain.*;
+import br.com.basis.madre.domain.Religiao;
 import br.com.basis.madre.service.dto.ReligiaoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link Religiao} and its DTO {@link ReligiaoDTO}.

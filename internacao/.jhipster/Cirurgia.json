@@ -1,0 +1,42 @@
+{
+    "name": "Cirurgia",
+    "fields": [
+        {
+            "fieldName": "tempoMax",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tempoMin",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "limiteDias",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "limteDiasConvenios",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "intervalocirurgia",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "intervaloProcedimento",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200617160802",
+    "entityTableName": "cirurgia",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "internacao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "internacao"
+}

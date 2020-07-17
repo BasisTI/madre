@@ -1,0 +1,78 @@
+{
+    "name": "ItemNotaRecebimento",
+    "fields": [
+        {
+            "fieldName": "quantidadeReceber",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min",
+                "max",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": 255
+        },
+        {
+            "fieldName": "quantidadeConvertida",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "valorTotal",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "recebimento",
+            "otherEntityName": "recebimento",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "marcaComercial",
+            "otherEntityRelationshipName": "itemNotaRecebimento",
+            "relationshipValidateRules": "required",
+            "relationshipName": "marcaComercial",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "material",
+            "otherEntityRelationshipName": "itemNotaRecebimento",
+            "relationshipValidateRules": "required",
+            "relationshipName": "material",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "unidadeMedida",
+            "otherEntityRelationshipName": "itemNotaRecebimento",
+            "relationshipValidateRules": "required",
+            "relationshipName": "unidadeMedida",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200618123156",
+    "entityTableName": "item_nota_recebimento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "madresuprimentos",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "madresuprimentos"
+}

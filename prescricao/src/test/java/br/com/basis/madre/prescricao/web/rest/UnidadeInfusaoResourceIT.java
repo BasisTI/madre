@@ -7,7 +7,7 @@ import br.com.basis.madre.prescricao.repository.search.UnidadeInfusaoSearchRepos
 import br.com.basis.madre.prescricao.service.UnidadeInfusaoService;
 import br.com.basis.madre.prescricao.service.dto.UnidadeInfusaoDTO;
 import br.com.basis.madre.prescricao.service.mapper.UnidadeInfusaoMapper;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

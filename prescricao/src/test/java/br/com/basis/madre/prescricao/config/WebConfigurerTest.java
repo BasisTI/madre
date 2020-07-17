@@ -1,5 +1,6 @@
 package br.com.basis.madre.prescricao.config;
 
+import br.gov.nuvem.comum.microsservico.config.WebConfigurer;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.JHipsterProperties;
 import org.h2.server.web.WebServlet;

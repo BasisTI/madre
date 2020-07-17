@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+
+    <!--
+        Added the entity DocumentoFiscalEntrada.
+    -->
+    <changeSet id="20200618123154-1" author="jhipster">
+        <createTable tableName="documento_fiscal_entrada">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="numero_documento" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="serie" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nota_empenho" type="varchar(120)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="cpf_cnpj" type="varchar(14)">
+                <constraints nullable="false" unique="true"
+                             uniqueConstraintName="ux_documento_fiscal_entrada_cpf_cnpj"/>
+            </column>
+            <column name="data_geracao" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_emissao" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_entrada" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_vencimento" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_total" type="decimal(21,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo_documento" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="tipo_documento_fiscal" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="observacao" type="varchar(500)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="fornecedor_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20200618123154-1-relations" author="jhipster">
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+
+</databaseChangeLog>

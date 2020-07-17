@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Unidade.
+    -->
+    <changeSet id="20200616160417-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="unidade_pai_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_unidade_pai_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="ala_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_ala_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ala"/>
+
+        <addForeignKeyConstraint baseColumnNames="clinica_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_clinica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="clinica"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_unidade_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_tipo_unidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_unidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="prescricao_enfermagem_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_prescricao_enfermagem_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao"/>
+
+        <addForeignKeyConstraint baseColumnNames="prescricao_medica_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_prescricao_medica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao"/>
+
+        <addForeignKeyConstraint baseColumnNames="cirurgia_id"
+                                 baseTableName="unidade"
+                                 constraintName="fk_unidade_cirurgia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cirurgia"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidade_id"
+                                 baseTableName="unidade_caracteristica"
+                                 constraintName="fk_unidade_caracteristica_unidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="caracteristica_id"
+                                 baseTableName="unidade_caracteristica"
+                                 constraintName="fk_unidade_caracteristica_caracteristica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="caracteristica"/>
+        
+    </changeSet>
+</databaseChangeLog>

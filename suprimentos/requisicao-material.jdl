@@ -1,0 +1,27 @@
+relationship ManyToOne {
+    RequisicaoMaterial{situacao} to SituacaoRequisicao
+}
+
+relationship OneToMany {
+    RequisicaoMaterial{itens} to ItemRequisicao{requisicao}
+}
+
+entity RequisicaoMaterial {
+    geradoEm ZonedDateTime required
+    geradoPor String required
+    confirmadoEm ZonedDateTime
+    confirmadoPor String
+}
+
+entity SituacaoRequisicao {
+    descricao String required
+}
+
+entity ItemRequisicao {
+    quantidade Integer required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

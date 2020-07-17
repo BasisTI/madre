@@ -76,12 +76,27 @@
                         </span>
                     </ng-template></p-column
                 >
-                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento"></p-column>
-                <p-column
-                    header="Classificação"
-                    field="classificacaoDeRisco"
-                    [sortable]="true"
-                ></p-column>
+                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span> {{ rowData[col.field] | date: 'dd/MM/yyyy - HH:mm' }}</span>
+                    </ng-template>
+                </p-column>
+                <p-column header="Classificação" field="classificacaoDeRisco" [sortable]="true">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            <div
+                                [ngClass]="{
+                                    urgente: rowData[col.field] == 'URGENTE',
+                                    poucoUrgente: rowData[col.field] == 'POUCO_URGENTE',
+                                    muitoUrgente: rowData[col.field] == 'MUITO_URGENTE',
+                                    emergencia: rowData[col.field] == 'EMERGENCIA',
+                                    naoUrgente: rowData[col.field] == 'NAO_URGENTE'
+                                }"
+                                [pTooltip]="rowData[col.field]"
+                            ></div>
+                        </span>
+                    </ng-template>
+                </p-column>
                 <basis-datatable-button class="ui-button-success" name="edit" icon="edit">
                 </basis-datatable-button>
                 <basis-datatable-button

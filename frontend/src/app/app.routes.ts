@@ -1,8 +1,9 @@
-import { PrescricaoMedicaComponent } from './prescricao-medica/prescricao-medica.component';
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { LoginSuccessComponent } from '@nuvem/angular-base';
+import { ModuleWithProviders } from '@angular/core';
+import { PrescricaoMedicaComponent } from './prescricao-medica/prescricao-medica.component';
 
 export const routes: Routes = [
     {
@@ -28,12 +29,21 @@ export const routes: Routes = [
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
     {
+        path: 'consulta',
+        loadChildren: 'src/app/consulta/consulta.module#ConsultaModule',
+    },
+    {
         path: 'internacao',
         loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
     },
     {
         path: 'farmacia',
         loadChildren: 'src/app/farmacia/farmacia/farmacia.module#FarmaciaModule',
+    },
+    {
+        path: 'suprimentos',
+        loadChildren: 'src/app/suprimentos/suprimentos.module#SuprimentosModule',
+        data: { breadcrumb: 'Suprimentos' },
     },
 ];
 

@@ -7,7 +7,7 @@ import br.com.basis.madre.prescricao.repository.search.PrescricaoMedicamentoSear
 import br.com.basis.madre.prescricao.service.PrescricaoMedicamentoService;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoMedicamentoDTO;
 import br.com.basis.madre.prescricao.service.mapper.PrescricaoMedicamentoMapper;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -103,7 +103,7 @@ public class PrescricaoMedicamentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PrescricaoMedicamento createEntity(EntityManager em) {
-        PrescricaoMedicamento prescricaoMedicamento = new PrescricaoMedicamento()
+        PrescricaoMedicamento prescricaoMedicamento = (PrescricaoMedicamento) new PrescricaoMedicamento()
             .idPaciente(DEFAULT_ID_PACIENTE)
             .observacao(DEFAULT_OBSERVACAO);
         return prescricaoMedicamento;
@@ -115,7 +115,7 @@ public class PrescricaoMedicamentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PrescricaoMedicamento createUpdatedEntity(EntityManager em) {
-        PrescricaoMedicamento prescricaoMedicamento = new PrescricaoMedicamento()
+        PrescricaoMedicamento prescricaoMedicamento = (PrescricaoMedicamento) new PrescricaoMedicamento()
             .idPaciente(UPDATED_ID_PACIENTE)
             .observacao(UPDATED_OBSERVACAO);
         return prescricaoMedicamento;

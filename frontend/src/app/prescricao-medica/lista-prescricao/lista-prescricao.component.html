@@ -1,0 +1,27 @@
+<div class="card card-w-title">
+    <h1>Prescrições</h1>
+    <p-treeTable [value]="prescricoes" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Data</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+            <tr [ttRow]="rowNode">
+                <td>
+                    <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                    {{rowData.name}}
+                </td>
+                <td>
+                    {{rowData.descricao}}
+
+                </td>
+                <td>
+                    {{rowData.dataPrescricao | date: 'dd/MM/yyyy'}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-treeTable>
+</div>

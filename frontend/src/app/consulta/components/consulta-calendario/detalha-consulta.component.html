@@ -1,0 +1,94 @@
+<div class="ui-g ui-fluid">
+    <form [formGroup]="detalharConsultas">
+        <div class="ui-g-12">
+            <h1>Detalhamento de Consultas</h1>
+
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="prontuario" disabled="true" />
+                    <label>Prontuário</label>
+                </span>
+            </div>
+            <div class="ui-g-5 ui-sm-12">
+                <span class="ui-float-label">
+                    <input
+                        field="nome"
+                        pInputText
+                        formControlName="nome"
+                        (completeMethod)="buscarPacientesPorId(id)"
+                    />
+                    <label>Nome</label>
+                    <!-- (onSelect)="aoSelecionarPaciente($event)" -->
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="dataHoraDaConsulta" readonly />
+                    <label>Data/Hora da Consulta</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="grade" readonly />
+                    <label>Grade</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="numeroSala" readonly />
+                    <label>Número da Sala</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="turno" readonly />
+                    <label>Turno</label>
+                </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="tipoPagador" readonly />
+                    <label>Tipo Pagador</label>
+                </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="clinicaCentralId" readonly />
+                    <label>Clinica Central</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-8 ui-sm-12">
+                <span class="md-inputfield" style="margin-top: 5px;">
+                    <textarea
+                        [rows]="3"
+                        [cols]="30"
+                        pInputTextarea
+                        autoResize="autoResize"
+                        formControlName="justificativa"
+                        readonly
+                    ></textarea>
+                    <label>Justificativa</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-8 ui-sm-12">
+                <span class="md-inputfield" style="margin-top: 5px;">
+                    <textarea
+                        [rows]="3"
+                        [cols]="30"
+                        pInputTextarea
+                        autoResize="autoResize"
+                        formControlName="observacoes"
+                        oninvalid="alert('You must fill out the form!');"
+                        readonly
+                    ></textarea>
+                    <label>Observações</label>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>

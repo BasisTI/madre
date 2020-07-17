@@ -1,19 +1,20 @@
 package br.com.basis.madre.domain;
 
+import br.com.basis.madre.domain.validation.annotation.CartaoSUS;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
-import javax.persistence.OneToOne;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -57,6 +58,7 @@ public class PreCadastroPaciente implements Serializable {
     private LocalDate dataDeNascimento;
 
     @NotNull
+    @CartaoSUS
     @Size(max = 30)
     @Column(name = "cartao_sus", length = 30, nullable = false)
     private String cartaoSus;
