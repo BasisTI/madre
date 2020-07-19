@@ -1,0 +1,172 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Consultar Estoque</h1>
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="ui-g-3">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                [suggestions]="almoxarifados"
+                                (completeMethod)="obterAlmoxarifadoPorDescricao($event.query)"
+                                [forceSelection]="true"
+                                [dropdown]="true"
+                                field="descricao"
+                            ></p-autoComplete>
+                            <label>Almoxarifado</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-3">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                [suggestions]="fornecedores"
+                                (completeMethod)="getFornecedoresPorNomeFantasia($event.query)"
+                                [forceSelection]="true"
+                                [dropdown]="true"
+                                field="nomeFantasia"
+                            ></p-autoComplete>
+                            <label>Fornecedor</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                [suggestions]="materiais"
+                                (completeMethod)="obterMateriaisPorNome($event.query)"
+                                [forceSelection]="true"
+                                [dropdown]="true"
+                                field="nome"
+                            ></p-autoComplete>
+                            <label>Material</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <input type="text" pInputText class="ui-inputtext" disabled />
+                            <label>Termo Livre</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-1">
+                        <label>Estocável</label>
+                        <div class="ui-g-12">
+                            <p-radioButton
+                                name="estocavel"
+                                [value]="true"
+                                label="Sim"
+                            ></p-radioButton>
+                        </div>
+                        <div class="ui-g-12">
+                            <p-radioButton
+                                name="estocavel"
+                                [value]="false"
+                                label="Não"
+                            ></p-radioButton>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                        <label>Ativo</label>
+                        <div class="ui-g-12">
+                            <p-radioButton name="ativo" [value]="true" label="Sim"></p-radioButton>
+                        </div>
+                        <div class="ui-g-12">
+                            <p-radioButton name="ativo" [value]="false" label="Não"></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                [suggestions]="null"
+                                (completeMethod)="(null)"
+                                [forceSelection]="true"
+                                [dropdown]="true"
+                                field="descricao"
+                            ></p-autoComplete>
+                            <label>Unidade</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                [suggestions]="grupos"
+                                (completeMethod)="obterGruposPorDescricao($event.query)"
+                                [forceSelection]="true"
+                                [dropdown]="true"
+                                field="descricao"
+                            ></p-autoComplete>
+                            <label>Grupo</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-2">
+                        <span class="md-inputfield" style="margin-top: 5px;">
+                            <p-autoComplete
+                                [suggestions]="classificacoes"
+                                (completeMethod)="getClassificacoesPorDescricao($event.query)"
+                                [dropdown]="true"
+                                field="descricao"
+                            ></p-autoComplete>
+                            <label>Classificação Material</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-2"></div>
+                    <div class="ui-g-6">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="ui-icon-search"
+                            (click)="datatable.refresh('')"
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+                <basis-datatable
+                    type="server"
+                    [url]="api"
+                    [disableDelete]="true"
+                    [disableEdit]="true"
+                    [disableView]="true"
+                    #datatable
+                >
+                    <p-column header="Almox." field="null">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.almoxarifadoId }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Forn." field="null">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.fornecedorId }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Material" field="null">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.materialId }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Un." field="null">
+                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                    </p-column>
+                    <p-column header="Qt. Disp" field="null">
+                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                    </p-column>
+                    <p-column header="Qt. Bloq" field="null">
+                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                    </p-column>
+                    <p-column header="Qt. Prob" field="null">
+                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                    </p-column>
+                    <p-column header="Estocável" field="null">
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.estocavel }}
+                        </ng-template>
+                    </p-column>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>
