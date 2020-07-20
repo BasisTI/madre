@@ -46,7 +46,7 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                     children: []
                 }
                 if (e.tipo === 'MEDICAMENTO') {
-                    node.children = e.itens.map(item => {
+                    node.children = e.itens?.map(item => {
                         let node = {
                             data: {
                                 name: item.medicamento.nome,
@@ -58,7 +58,7 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                     });
 
                 } else if (e.tipo === 'DIETA') {
-                    node.children = e.itens.map(item => {
+                    node.children = e.itens?.map(item => {
                         let node = {
                             data: {
                                 name: item.tipoItemDieta.descricao,
@@ -70,11 +70,22 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                     });
 
                 } else if (e.tipo === 'DIAGNOSTICO') {
-                    node.children = e.itens.map(item => {
+                    node.children = e.itens?.map(item => {
                         let node = {
                             data: {
                                 name: item.cid.codigo,
                                 descricao: item.cid.descricao,
+                            }
+                        }
+                        return node;
+                    });
+
+                } else if (e.tipo === 'PROCEDIMENTO') {
+                    node.children = e.itemPrescricaoProcedimentoDTO?.map(item => {
+                        let node = {
+                            data: {
+                                name: item?.tipoProcedimentoEspecial,
+                                descricao: item?.tipoProcedimentoId.descricao,
                             }
                         }
                         return node;
