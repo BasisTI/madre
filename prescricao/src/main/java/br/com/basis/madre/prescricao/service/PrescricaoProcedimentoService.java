@@ -3,6 +3,7 @@ package br.com.basis.madre.prescricao.service;
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoProcedimento;
 import br.com.basis.madre.prescricao.domain.PrescricaoProcedimento;
 import br.com.basis.madre.prescricao.repository.PrescricaoProcedimentoRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoProcedimentoDTOSearchRepository;
 import br.com.basis.madre.prescricao.repository.search.PrescricaoProcedimentoSearchRepository;
 import br.com.basis.madre.prescricao.service.dto.PrescricaoProcedimentoDTO;
 import br.com.basis.madre.prescricao.service.mapper.PrescricaoProcedimentoMapper;
@@ -32,13 +33,17 @@ public class PrescricaoProcedimentoService {
 	private final PrescricaoProcedimentoMapper prescricaoProcedimentoMapper;
 
 	private final PrescricaoProcedimentoSearchRepository prescricaoProcedimentoSearchRepository;
+	
+	private final PrescricaoProcedimentoDTOSearchRepository prescricaoProcedimentoDTOSearchRepository;
 
 	public PrescricaoProcedimentoService(PrescricaoProcedimentoRepository prescricaoProcedimentoRepository,
 			PrescricaoProcedimentoMapper prescricaoProcedimentoMapper,
-			PrescricaoProcedimentoSearchRepository prescricaoProcedimentoSearchRepository) {
+			PrescricaoProcedimentoSearchRepository prescricaoProcedimentoSearchRepository,
+			PrescricaoProcedimentoDTOSearchRepository prescricaoProcedimentoDTOSearchRepository) {
 		this.prescricaoProcedimentoRepository = prescricaoProcedimentoRepository;
 		this.prescricaoProcedimentoMapper = prescricaoProcedimentoMapper;
 		this.prescricaoProcedimentoSearchRepository = prescricaoProcedimentoSearchRepository;
+		this.prescricaoProcedimentoDTOSearchRepository = prescricaoProcedimentoDTOSearchRepository;
 	}
 
 	/**
@@ -56,7 +61,7 @@ public class PrescricaoProcedimentoService {
 		}
 		prescricaoProcedimento = prescricaoProcedimentoRepository.save(prescricaoProcedimento);
 		PrescricaoProcedimentoDTO result = prescricaoProcedimentoMapper.toDto(prescricaoProcedimento);
-		prescricaoProcedimentoSearchRepository.save(prescricaoProcedimento);
+		prescricaoProcedimentoDTOSearchRepository.save(result);
 		return result;
 	}
 
