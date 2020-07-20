@@ -1,0 +1,2801 @@
+id;cep;logradouro;bairro;municipio_id;uf_id
+869342;68900010;Avenida Coaracy Nunes;Central;5258;4
+869343;68900011;Rua Tapajós;Central;5258;4
+869344;68900012;Rua Rio Juruá;Central;5258;4
+869345;68900013;Rua Amazonas;Central;5258;4
+869346;68900014;Alameda Isac Alcolumbre;Central;5258;4
+869347;68900015;Avenida Antônio Coelho de Carvalho;Central;5258;4
+869348;68900016;Passagem Pedro Dantas;Central;5258;4
+869349;68900017;Passagem Abraan Peres;Central;5258;4
+869350;68900020;Avenida Mendonça Júnior;Central;5258;4
+869351;68900021;Rua Manoel Eudóxio Pereira;Central;5258;4
+869352;68900022;Rua Professor Tostes;Central;5258;4
+869353;68900030;Avenida Padre Júlio Maria Lombaerd;Central;5258;4
+869354;68900031;Vila Montese;Central;5258;4
+869355;68900032;Avenida Salgado Filho;Central;5258;4
+869356;68900033;Passagem José Serra e Silva;Central;5258;4
+869357;68900040;Avenida Professora Cora de Carvalho;Central;5258;4
+869358;68900041;Avenida Almirante Barroso;Central;5258;4
+869359;68900050;Avenida General Gurjão;Central;5258;4
+869360;68900060;Avenida Mendonça Furtado;Central;5258;4
+869361;68900062;Avenida Padre Manoel da Nóbrega;Jesus de Nazaré;5258;4
+869362;68900065;Rua Raimundo Ozanan;Central;5258;4
+869363;68900066;Avenida Machado de Assis;Central;5258;4
+869364;68900067;Rua Leopoldo Machado;Central;5258;4
+869365;68900068;Rua Hamilton Silva;Central;5258;4
+869366;68900070;Avenida Presidente Getúlio Vargas;Central;5258;4
+869367;68900071;Avenida Duque de Caxias;Central;5258;4
+869368;68900072;Avenida Euclides da Cunha;Central;5258;4
+869369;68900073;Avenida FAB;Central;5258;4
+869370;68900074;Avenida Raimundo Álvares da Costa;Central;5258;4
+869371;68900075;Rua Jovino Dinoá;Central;5258;4
+869372;68900080;Rua Francisco Azarias da Silva Coelho Neto;Central;5258;4
+869373;68900081;Avenida Procópio Rola;Central;5258;4
+869374;68900082;Rua General Rondon;Central;5258;4
+869375;68900083;Rua Eliézer Levy;Central;5258;4
+869376;68900090;Rua Independência;Central;5258;4
+869377;68900091;Avenida Rio Maracá;Central;5258;4
+869378;68900092;Avenida Rio Vila Nova;Central;5258;4
+869379;68900093;Avenida Rio Matapi;Central;5258;4
+869380;68900094;Rua Rio Tocantins;Central;5258;4
+869381;68900095;Avenida Ataíde Teive;Central;5258;4
+869382;68900097;Alameda Francisco Serrano;Central;5258;4
+869383;68900098;Rua Tiradentes;Central;5258;4
+869384;68900099;Avenida Iracema Carvão Nunes;Central;5258;4
+869385;68900100;Rua Cândido Mendes;Central;5258;4
+869386;68900101;Avenida Coriolano Jucá;Central;5258;4
+869387;68900102;Praça da Bandeira;Central;5258;4
+869388;68900110;Rua São José;Central;5258;4
+869389;68900115;Avenida Henrique Galúcio;Central;5258;4
+869390;68900116;Avenida Pedro Baião;Central;5258;4
+869391;68900151;Rua Odilardo Silva;Central;5258;4
+869392;68900453;Praça Barão do Rio Branco;Central;5258;4
+869393;68900700;Travessa Floriano Peixoto;Central;5258;4
+869394;68900740;Avenida Mário Cruz;Central;5258;4
+869395;68900760;Passagem Rio Branco;Central;5258;4
+869396;68900800;Praça Isaac Zagury;Central;5258;4
+869397;68900810;Praça Veiga Cabral;Central;5258;4
+869398;68900840;Praça Floriano Peixoto;Central;5258;4
+869399;68900900;Rua Cândido Mendes 1316;Central;5258;4
+869400;68900902;Rua São José 1790;Central;5258;4
+869401;68900903;Avenida Presidente Getúlio Vargas 7;Central;5258;4
+869402;68900904;Rua Cândido Mendes 1520;Central;5258;4
+869403;68900905;Rua Cândido Mendes 1517;Central;5258;4
+869404;68900907;Avenida Coaracy Nunes 101;Central;5258;4
+869405;68900908;Avenida FAB 1374;Central;5258;4
+869406;68900909;Avenida FAB 840;Central;5258;4
+869407;68900910;Avenida Iracema Carvão Nunes 645;Central;5258;4
+869408;68900911;Rua General Rondon 1295;Central;5258;4
+869409;68900912;Rua General Rondon 1039;Julião Ramos;5258;4
+869410;68900913;Avenida Padre Júlio Maria Lombaerd 1900;Central;5258;4
+869411;68900914;Avenida Mendonça Júnior 1502;Central;5258;4
+869412;68900915;Avenida Raimundo Álvares da Costa 1597;Central;5258;4
+869413;68900916;Rua Cândido Mendes 1319;Central;5258;4
+869414;68900917;Rua Cândido Mendes 1404;Central;5258;4
+869415;68900918;Avenida Mendonça Júnior 126;Central;5258;4
+869416;68900971;Avenida Doutor Diógenes Silva 1894;Buritizal;5258;4
+869417;68901016;Rua Eliézer Levy;Trem;5258;4
+869418;68901017;Rua Odilardo Silva;Trem;5258;4
+869419;68901018;Rua General Rondon;Trem;5258;4
+869420;68901019;Avenida Antonio Gonçalves Tocantins;Trem;5258;4
+869421;68901020;Rua Rio Macacoari;Trem;5258;4
+869422;68901021;Rua Rio Pedreira;Trem;5258;4
+869423;68901025;Avenida Feliciano Coelho;Trem;5258;4
+869424;68901045;Praça Nossa Senhora da Conceição;Trem;5258;4
+869425;68901050;Avenida Cônego Domingos Maltês;Trem;5258;4
+869426;68901060;Avenida Maria Quitéria;Trem;5258;4
+869427;68901076;Avenida Procópio Rola;Santa Rita;5258;4
+869428;68901077;Avenida Carlos Gomes;Santa Rita;5258;4
+869429;68901080;Avenida Desidério Antônio Coelho;Trem;5258;4
+869430;68901090;Avenida Doutor Diógenes Silva;Trem;5258;4
+869431;68901092;Avenida Doutor Acelino de Leão;Trem;5258;4
+869432;68901100;Avenida Primeiro de Maio;Trem;5258;4
+869433;68901110;Avenida Clodóvio Coelho;Trem;5258;4
+869434;68901111;Avenida Felipe Camarão;Trem;5258;4
+869435;68901112;Avenida Treze de Setembro;Trem;5258;4
+869436;68901120;Rua Jovino Dinoá;Trem;5258;4
+869437;68901121;Rua Rio Jupati;Trem;5258;4
+869438;68901130;Rua Leopoldo Machado;Trem;5258;4
+869439;68901140;Rua Hamilton Silva;Trem;5258;4
+869440;68901150;Rua Manoel Eudóxio Pereira;Trem;5258;4
+869441;68901254;Avenida Mendonça Furtado;Santa Rita;5258;4
+869442;68901255;Avenida Henrique Galúcio;Santa Rita;5258;4
+869443;68901256;Avenida Raimundo Álvares da Costa;Santa Rita;5258;4
+869444;68901257;Avenida Euclides da Cunha;Santa Rita;5258;4
+869445;68901258;Avenida Duque de Caxias;Santa Rita;5258;4
+869446;68901259;Avenida FAB;Santa Rita;5258;4
+869447;68901260;Rua Paraná;Santa Rita;5258;4
+869448;68901261;Rua Santa Catarina;Santa Rita;5258;4
+869449;68901262;Avenida Presidente Getúlio Vargas;Santa Rita;5258;4
+869450;68901263;Rua Rio Grande do Sul;Santa Rita;5258;4
+869451;68901264;Passagem Santa Catarina;Santa Rita;5258;4
+869452;68901265;Avenida Pedro Baião;Santa Rita;5258;4
+869453;68901266;Rua do Canal;Santa Rita;5258;4
+869454;68901270;Rua Santos Dumont;Santa Rita;5258;4
+869455;68901271;Rua Hildemar Maia;Santa Rita;5258;4
+869456;68901275;Avenida Ataíde Teive;Santa Rita;5258;4
+869457;68901280;Avenida Antônio Coelho de Carvalho;Santa Rita;5258;4
+869458;68901281;Avenida Salgado Filho;Santa Rita;5258;4
+869459;68901282;Avenida Mendonça Júnior;Santa Rita;5258;4
+869460;68901283;Avenida Padre Júlio Maria Lombaerd;Santa Rita;5258;4
+869461;68901285;Avenida Feliciano Coelho;Santa Rita;5258;4
+869462;68901290;Avenida Roque de Souza Penafort;Santa Rita;5258;4
+869463;68901291;Avenida Pedro de Oliveira Gomes;Santa Rita;5258;4
+869464;68901295;Avenida Cônego Domingos Maltês;Santa Rita;5258;4
+869465;68901300;Avenida Francisco Valois Lima;Santa Rita;5258;4
+869466;68901301;Rua Monteiro Lobato;Santa Rita;5258;4
+869467;68901305;Avenida Maria Quitéria;Santa Rita;5258;4
+869468;68901315;Avenida Doutor Acelino de Leão;Santa Rita;5258;4
+869469;68901316;Rua Professor Tostes;Santa Rita;5258;4
+869470;68901320;Avenida José Gomes Bezerra;Santa Rita;5258;4
+869471;68901325;Avenida Desidério Antônio Coelho;Santa Rita;5258;4
+869472;68901326;Avenida Doutor Diógenes Silva;Santa Rita;5258;4
+869473;68901330;Avenida José da Silva Castro;Santa Rita;5258;4
+869474;68901335;Avenida Professora Cora de Carvalho;Santa Rita;5258;4
+869475;68901336;Avenida Almirante Barroso;Santa Rita;5258;4
+869476;68901341;Rua Marcelo Cândia;Santa Rita;5258;4
+869477;68901342;Rua Minas Gerais;Santa Rita;5258;4
+869478;68901345;Avenida Vereador Orlando Pinto;Santa Rita;5258;4
+869479;68901346;Avenida Doutor Silas Salgado;Santa Rita;5258;4
+869480;68901347;Avenida Israel Marques Sozinho;Santa Rita;5258;4
+869481;68901348;Avenida Reinaldo Damasceno;Santa Rita;5258;4
+869482;68901349;Travessa Joaquim Pinheiro Borges;Santa Rita;5258;4
+869483;68901350;Rua Barão de Mauá;Santa Rita;5258;4
+869484;68901370;Rua Rio Gorijuba;Santa Inês;5258;4
+869485;68901380;Rua Iraci Nunes Nadior;Santa Inês;5258;4
+869486;68901390;Rua Rio Araguari;Santa Inês;5258;4
+869487;68901410;Rua Oscar Santos;Santa Inês;5258;4
+869488;68901420;Canal do Mucajá;Santa Inês;5258;4
+869489;68901430;Rua Poços;Santa Inês;5258;4
+869490;68901440;Rua Maria José Aragão de Souza;Santa Inês;5258;4
+869491;68901460;Rua André de Oliveira Costa;Santa Inês;5258;4
+869492;68901470;Rua Beira Rio;Santa Inês;5258;4
+869493;68901480;Rua José Trajano de Souza;Santa Inês;5258;4
+869494;68901481;Travessa Oscar Santos;Santa Inês;5258;4
+869495;68901482;Rua Mucajá;Santa Inês;5258;4
+869496;68901483;Passarela do Mucajá;Santa Inês;5258;4
+869497;68901484;Passagem do Mucajá;Santa Inês;5258;4
+869498;68901485;Rua Santa Inês;Santa Inês;5258;4
+869499;68901486;Travessa José Trajano;Santa Inês;5258;4
+869500;68901487;Passarela Acelino de Leão;Santa Inês;5258;4
+869501;68901490;Travessa Marco Zero;Santa Inês;5258;4
+869502;68901500;Avenida dos Navegantes;Santa Inês;5258;4
+869503;68901510;Rua Novo Horizonte;Santa Inês;5258;4
+869504;68901511;Avenida Elpidio Magalhães Carvalho;Santa Inês;5258;4
+869505;68901520;Avenida Seis de Setembro;Santa Inês;5258;4
+869506;68901530;Avenida Eulálio Modesto de Oliveira;Santa Inês;5258;4
+869507;68901540;Travessa Primeiro de Maio;Santa Inês;5258;4
+869508;68901541;Avenida Pedro Lazarino;Santa Inês;5258;4
+869509;68901542;Avenida Caramuru;Santa Inês;5258;4
+869510;68901543;Travessa José Trajano de Souza;Santa Inês;5258;4
+869511;68901544;Travessa Oscár Santos;Santa Inês;5258;4
+869512;68901550;Travessa Acelino de Leão;Santa Inês;5258;4
+869513;68901560;Travessa Pastor Vicente Rego;Santa Inês;5258;4
+869514;68901570;Travessa Professor Zacarias;Santa Inês;5258;4
+869515;68901590;Avenida José Praxédio de Mendonça;Nova Esperança;5258;4
+869516;68901591;Travessa Cândido Portinari;Nova Esperança;5258;4
+869517;68901592;Passagem Terceiro Bis;Nova Esperança;5258;4
+869518;68901600;Rua Padre Vitório Galiane;Nova Esperança;5258;4
+869519;68901610;Avenida Raimundo Pequilo Gomes de Almeida;Nova Esperança;5258;4
+869520;68901630;Avenida Juracy Muniz Coelho;Nova Esperança;5258;4
+869521;68901640;Avenida Tia Anita;Nova Esperança;5258;4
+869522;68901650;Avenida Ponciano José Joaquim;Nova Esperança;5258;4
+869523;68901660;Avenida Celestino Pinheiro;Nova Esperança;5258;4
+869524;68901670;Avenida Clemência Zagury;Nova Esperança;5258;4
+869525;68901685;Avenida José Corrêa da Costa;Nova Esperança;5258;4
+869526;68901690;Avenida Benedito Malcher;Nova Esperança;5258;4
+869527;68901695;Avenida Luís Pires da Costa;Nova Esperança;5258;4
+869528;68901710;Avenida João Gualberto da Silva;Nova Esperança;5258;4
+869529;68901720;Rua Mateus Valente do Couto;Nova Esperança;5258;4
+869530;68901730;Rua Minas Gerais;Nova Esperança;5258;4
+869531;68901750;Rua Secundino Campos;Nova Esperança;5258;4
+869532;68901760;Travessa Natanair Monteiro da Piedade;Nova Esperança;5258;4
+869533;68901770;Travessa Engenheiro Joaquim;Nova Esperança;5258;4
+869534;68901790;Passagem Minas Gerais;Nova Esperança;5258;4
+869535;68901860;Avenida Natanair Monteiro da Piedade;Nova Esperança;5258;4
+869536;68901901;Rua Marcelo Cândia 742;Santa Rita;5258;4
+869537;68901970;Rua Professor Tostes 1619;Santa Rita;5258;4
+869538;68901971;Rua Leopoldo Machado 2334;Trem;5258;4
+869539;68902000;Rua Manoel Eudóxio Pereira;Beirol;5258;4
+869540;68902001;Rua Manoel Eudóxio Pereira;Muca;5258;4
+869541;68902005;Avenida Anhangüera;Beirol;5258;4
+869542;68902006;Travessa Vasco da Gama;Beirol;5258;4
+869543;68902010;Rua Hamilton Silva;Beirol;5258;4
+869544;68902011;Avenida Maria José de Nazaré Ferreira Lima;Beirol;5258;4
+869545;68902012;Rua Um;Beirol;5258;4
+869546;68902013;Rua Dois;Beirol;5258;4
+869547;68902016;Avenida Seis de Setembro;Beirol;5258;4
+869548;68902017;Rua Três;Beirol;5258;4
+869549;68902018;Rua Quatro;Beirol;5258;4
+869550;68902019;Rua Cinco;Beirol;5258;4
+869551;68902020;Rua Leopoldo Machado;Beirol;5258;4
+869552;68902021;Rua Seis;Beirol;5258;4
+869553;68902022;Rua Sete;Beirol;5258;4
+869554;68902023;Rua Oito;Beirol;5258;4
+869555;68902025;Avenida Creuza Mendes Holanda;Beirol;5258;4
+869556;68902026;Rodovia Juscelino Kubitschek;Beirol;5258;4
+869557;68902030;Rua Jovino Dinoá;Beirol;5258;4
+869558;68902080;Avenida Pedro Lazarino;Beirol;5258;4
+869559;68902100;Avenida Caramuru;Beirol;5258;4
+869560;68902110;Avenida dos Xavantes;Beirol;5258;4
+869561;68902120;Avenida dos Tupiniquins;Beirol;5258;4
+869562;68902130;Avenida dos Galibis;Beirol;5258;4
+869563;68902140;Avenida dos Aimorés;Beirol;5258;4
+869564;68902150;Avenida dos Goitacazes;Beirol;5258;4
+869565;68902160;Avenida dos Guaranis;Beirol;5258;4
+869566;68902170;Avenida dos Timbiras;Beirol;5258;4
+869567;68902180;Avenida dos Tamoios;Beirol;5258;4
+869568;68902190;Avenida dos Tupis;Beirol;5258;4
+869569;68902200;Avenida dos Tembés;Beirol;5258;4
+869570;68902210;Rua Professor Tostes;Muca;5258;4
+869571;68902230;Rua Santos Dumont;Muca;5258;4
+869572;68902280;Avenida Creuza Mendes Holanda;Muca;5258;4
+869573;68902285;Travessa Segunda da Tupis;Muca;5258;4
+869574;68902286;Travessa Rosa Cruz;Muca;5258;4
+869575;68902287;Travessa Professora Eliana Loo li;Muca;5258;4
+869576;68902295;Travessa Terceira daTupis;Muca;5258;4
+869577;68902305;Avenida José de Paula Lobo;Muca;5258;4
+869578;68902313;Avenida G;Muca;5258;4
+869579;68902315;Avenida Quilombo dos Palmares;Muca;5258;4
+869580;68902316;Travessa Quinta da Tupis;Muca;5258;4
+869581;68902317;Rua Remo Amoras de Oliveira;Muca;5258;4
+869582;68902318;Passagem Vila Lobos;Muca;5258;4
+869583;68902320;Avenida Raimundo Ferreira da Silva;Muca;5258;4
+869584;68902321;Passagem S do Sena;Muca;5258;4
+869585;68902322;Passagem do L;Muca;5258;4
+869586;68902323;Passagem Alvaro de Azevedo;Muca;5258;4
+869587;68902324;Passagem Rui Barbosa;Muca;5258;4
+869588;68902330;Avenida Raimundo Nonato Banha Corrêa;Muca;5258;4
+869589;68902335;Rua Hildemar Maia;Muca;5258;4
+869590;68902336;Avenida dos Tamoios;Muca;5258;4
+869591;68902340;Avenida Francisca Praxédio de Mendonça;Muca;5258;4
+869592;68902345;Travessa Primeira da Tupis;Muca;5258;4
+869593;68902346;Avenida dos Tupis;Muca;5258;4
+869594;68902347;Avenida dos Tembés;Muca;5258;4
+869595;68902350;Avenida José Mauro S. do Nascimento;Muca;5258;4
+869596;68902356;Passagem Cleonice Santos Azevedo;Muca;5258;4
+869597;68902357;Passagem Fagundes Varela;Muca;5258;4
+869598;68902358;Passagem da Amizade;Muca;5258;4
+869599;68902359;Passagem Dias Gomes;Muca;5258;4
+869600;68902460;Avenida Maria Rosa Tavares de Almeida;Muca;5258;4
+869601;68902465;Passagem José de Alencar;Muca;5258;4
+869602;68902466;Passagem Eça de Queirós;Muca;5258;4
+869603;68902467;Passagem Gregório de Matos Guerra;Muca;5258;4
+869604;68902468;Passagem Castro Alves;Muca;5258;4
+869605;68902469;Passagem Gonçalves Dias;Muca;5258;4
+869606;68902590;Avenida Teresa Maciel Tavares;Muca;5258;4
+869607;68902610;Travessa Monteiro Lobato;Muca;5258;4
+869608;68902630;Avenida Francisco Xavier Martins;Beirol;5258;4
+869609;68902640;Avenida Odete Castelo;Beirol;5258;4
+869610;68902650;Rua Odilardo Silva;Beirol;5258;4
+869611;68902660;Avenida Emílio Rodrigues;Beirol;5258;4
+869612;68902680;Avenida São Januário;Muca;5258;4
+869613;68902686;Travessa Sexta da Tupis;Muca;5258;4
+869614;68902687;Travessa Quarta da Tupis;Muca;5258;4
+869615;68902689;Travessa Rosa dos Ventos;Muca;5258;4
+869616;68902756;Rua Terceira;Buritizal;5258;4
+869617;68902757;Rua Sexta;Buritizal;5258;4
+869618;68902758;Avenida Tupiniquins;Buritizal;5258;4
+869619;68902759;Rua Monteiro Lobato;Buritizal;5258;4
+869620;68902860;Avenida Anhangüera;Buritizal;5258;4
+869621;68902861;Avenida Felipe Camarão;Buritizal;5258;4
+869622;68902862;Avenida Pedro Lazarino;Buritizal;5258;4
+869623;68902863;Avenida Caramuru;Buritizal;5258;4
+869624;68902864;Avenida dos Xavantes;Buritizal;5258;4
+869625;68902865;Avenida Treze de Setembro;Buritizal;5258;4
+869626;68902866;Avenida dos Tupiniquins;Buritizal;5258;4
+869627;68902867;Avenida dos Galibis;Buritizal;5258;4
+869628;68902868;Avenida dos Aimorés;Buritizal;5258;4
+869629;68902869;Avenida dos Goitacazes;Buritizal;5258;4
+869630;68902870;Rua Hildemar Maia;Buritizal;5258;4
+869631;68902871;Avenida dos Guaranis;Buritizal;5258;4
+869632;68902872;Avenida dos Timbiras;Buritizal;5258;4
+869633;68902873;Rua Barão de Mauá;Buritizal;5258;4
+869634;68902874;Travessa Cinco;Buritizal;5258;4
+869635;68902876;Travessa Quatro;Buritizal;5258;4
+869636;68902877;Travessa Dois;Buritizal;5258;4
+869637;68902878;Travessa Um;Buritizal;5258;4
+869638;68902880;Rua Santos Dumont;Buritizal;5258;4
+869639;68902885;Avenida Clodóvio Coelho;Buritizal;5258;4
+869640;68902891;Avenida Primeiro de Maio;Buritizal;5258;4
+869641;68902892;Rua Professor Tostes;Buritizal;5258;4
+869642;68902900;Rua Jovino Dinoá s/n;Central;5258;4
+869643;68902901;Rua Hildemar Maia 3895;Muca;5258;4
+869644;68902905;Rua Barão de Mauá 1790;Buritizal;5258;4
+869645;68902906;Avenida Treze de Setembro 1971;Buritizal;5258;4
+869646;68902970;Rua Jovino Dinoá s/n;Beirol;5258;4
+869647;68903001;Rua José Chaves Cohen;Jardim Equatorial;5258;4
+869648;68903002;Rua Caripunas;Jardim Equatorial;5258;4
+869649;68903003;Avenida Emanoel Souza da Silva;Jardim Equatorial;5258;4
+869650;68903004;Avenida Graciliano da Silva Trindade;Jardim Equatorial;5258;4
+869651;68903007;Avenida Maurício Trindade;Jardim Equatorial;5258;4
+869652;68903008;Rua Luis Carlos de Araújo Monteiro;Jardim Equatorial;5258;4
+869653;68903009;Rua Mamedio Amaral da Silva;Jardim Equatorial;5258;4
+869654;68903011;Avenida Caetes;Jardim Equatorial;5258;4
+869655;68903012;Rua Antônio Martins da Silva;Jardim Equatorial;5258;4
+869656;68903013;Avenida Grasiliano da Silva Trindade;Jardim Equatorial;5258;4
+869657;68903014;Rodovia Juscelino Kubitschek;Jardim Equatorial;5258;4
+869658;68903015;Rua da Bacia;Jardim Equatorial;5258;4
+869659;68903016;Passagem Tupinambá;Jardim Equatorial;5258;4
+869660;68903022;Rua Doutor Braulino;Zerão;5258;4
+869661;68903025;Avenida Wilson Carvalho;Jardim Equatorial;5258;4
+869662;68903026;Rua Eurico dos Santos Barbosa;Zerão;5258;4
+869663;68903033;Passagem Guajará;Jardim Equatorial;5258;4
+869664;68903035;Avenida Airton Senna;Jardim Equatorial;5258;4
+869665;68903051;Passarela Beira Rio;Zerão;5258;4
+869666;68903055;Rua da Praia do Aturia;Jardim Equatorial;5258;4
+869667;68903095;1ª Travessa Vila dos Oliveiras;Pedrinhas;5258;4
+869668;68903105;2ª Travessa Vila dos Oliveiras;Pedrinhas;5258;4
+869669;68903115;3ª Travessa Vila dos Oliveiras;Pedrinhas;5258;4
+869670;68903116;Rua D;Pedrinhas;5258;4
+869671;68903117;Rua F;Pedrinhas;5258;4
+869672;68903118;Rua E;Pedrinhas;5258;4
+869673;68903119;Rua Um;Pedrinhas;5258;4
+869674;68903121;Vila das Oliveiras;Pedrinhas;5258;4
+869675;68903122;Rua Dois;Pedrinhas;5258;4
+869676;68903123;Rua Três;Pedrinhas;5258;4
+869677;68903124;Rua Quatro;Pedrinhas;5258;4
+869678;68903125;4ª Travessa Vila dos Oliveiras;Pedrinhas;5258;4
+869679;68903126;Avenida Vila dos Oliveiras;Pedrinhas;5258;4
+869680;68903127;Rua Cinco;Pedrinhas;5258;4
+869681;68903128;Avenida Segunda das Oliveira;Pedrinhas;5258;4
+869682;68903129;Rua Seis;Pedrinhas;5258;4
+869683;68903132;Alameda da CPA;Pedrinhas;5258;4
+869684;68903133;Rua Nova das Pedrinhas;Pedrinhas;5258;4
+869685;68903134;Rua A;Pedrinhas;5258;4
+869686;68903135;5ª Travessa Vila dos Oliveiras;Pedrinhas;5258;4
+869687;68903180;Rua Doutor Walter da Silva Pacheco;Jardim Marco Zero;5258;4
+869688;68903181;Rua Pedro Afonso da Silveira;Jardim Marco Zero;5258;4
+869689;68903182;Rua José Domingos dos Santos;Jardim Marco Zero;5258;4
+869690;68903183;Avenida Ivaldo Alves Veras;Jardim Marco Zero;5258;4
+869691;68903184;Passagem Ivaldo Alves Veras;Jardim Marco Zero;5258;4
+869692;68903185;Rua Nova das Pedrinhas;Jardim Marco Zero;5258;4
+869693;68903186;Rua Raimundo Pereira Trindade;Jardim Marco Zero;5258;4
+869694;68903187;Rua Waldomiro Demóstenes Ribeiro;Jardim Marco Zero;5258;4
+869695;68903188;Rua Antônio Wanildo Tavares Pinheiro;Jardim Marco Zero;5258;4
+869696;68903189;Rua Pastor Deocleciano Cabralzinho de Assis;Jardim Marco Zero;5258;4
+869697;68903190;Rua Samuel Trajano de Souza;Jardim Marco Zero;5258;4
+869698;68903191;Travessa Pastor Esdras Pinheiro Torres;Jardim Marco Zero;5258;4
+869699;68903192;Avenida Irineu Lima de Souza;Jardim Marco Zero;5258;4
+869700;68903193;Avenida Stephan Houat;Jardim Marco Zero;5258;4
+869701;68903194;Travessa Jucelino Kubitschek;Jardim Marco Zero;5258;4
+869702;68903195;Rua da Redenção;Jardim Marco Zero;5258;4
+869703;68903197;Rodovia Juscelino Kubitschek;Jardim Marco Zero;5258;4
+869704;68903198;Rua Carlos Cantídio Corte;Jardim Marco Zero;5258;4
+869705;68903199;Rua Lourival dos Santos Furtado;Jardim Marco Zero;5258;4
+869706;68903200;Rua Maria Marola Gato;Jardim Marco Zero;5258;4
+869707;68903204;Rua Redenção;Jardim Marco Zero;5258;4
+869708;68903205;Travessa Rubi;Jardim Marco Zero;5258;4
+869709;68903206;Travessa Tantalita;Jardim Marco Zero;5258;4
+869710;68903207;Travessa Turmalina;Jardim Marco Zero;5258;4
+869711;68903208;Travessa Ametista;Jardim Marco Zero;5258;4
+869712;68903210;Rua Irmã Augusta Miranda de Alencar;Jardim Marco Zero;5258;4
+869713;68903215;Travessa Esmeralda;Jardim Marco Zero;5258;4
+869714;68903220;Rua Agenor Ferreira Pinto;Jardim Marco Zero;5258;4
+869715;68903225;Travessa Pérola;Jardim Marco Zero;5258;4
+869716;68903230;Rua Amadeu Gama;Jardim Marco Zero;5258;4
+869717;68903235;Travessa Diamante;Jardim Marco Zero;5258;4
+869718;68903240;Avenida Álvaro Nobre;Jardim Marco Zero;5258;4
+869719;68903245;Travessa Cristal;Jardim Marco Zero;5258;4
+869720;68903250;Avenida Cabo Maurício;Jardim Marco Zero;5258;4
+869721;68903251;Travessa Professora Maria Guita;Jardim Marco Zero;5258;4
+869722;68903252;Travessa Albino Pena Alves;Jardim Marco Zero;5258;4
+869723;68903253;Alameda Sergio Pinheiro;Jardim Marco Zero;5258;4
+869724;68903254;Alameda Alexandrina;Jardim Marco Zero;5258;4
+869725;68903255;Travessa Quartzo;Jardim Marco Zero;5258;4
+869726;68903256;Rua Antônia Maria de Souza;Jardim Marco Zero;5258;4
+869727;68903257;Avenida Vicente Duarte;Jardim Marco Zero;5258;4
+869728;68903258;Avenida Josefa dos Santos;Jardim Marco Zero;5258;4
+869729;68903259;Avenida Lampião;Jardim Marco Zero;5258;4
+869730;68903261;Avenida Jacinto Lobato;Jardim Marco Zero;5258;4
+869731;68903270;Avenida Dom José Maritano;Jardim Marco Zero;5258;4
+869732;68903275;Avenida David Nunes de Lima;Jardim Marco Zero;5258;4
+869733;68903280;Avenida Francisco Matos;Jardim Marco Zero;5258;4
+869734;68903290;Rua Inspetor Aimoré;Jardim Marco Zero;5258;4
+869735;68903300;Rua Inspetor Marcelino;Jardim Marco Zero;5258;4
+869736;68903310;Avenida Inspetor Orlando Dias;Jardim Marco Zero;5258;4
+869737;68903315;Rua Pedro Souza Silva;Jardim Marco Zero;5258;4
+869738;68903320;Avenida José Nery;Jardim Marco Zero;5258;4
+869739;68903325;Rua Vícta Mota Dias;Jardim Marco Zero;5258;4
+869740;68903326;Ramal Vale das Bençãos;Jardim Marco Zero;5258;4
+869741;68903327;Ramal dos Promotores;Jardim Marco Zero;5258;4
+869742;68903328;Ramal Padre Vitório Galiane;Jardim Marco Zero;5258;4
+869743;68903330;Avenida Lua;Jardim Marco Zero;5258;4
+869744;68903331;Ramal Eurico Gaspar;Jardim Marco Zero;5258;4
+869745;68903332;Ramal Dois Irmãos;Jardim Marco Zero;5258;4
+869746;68903333;Ramal da Asel;Jardim Marco Zero;5258;4
+869747;68903335;Rua C;Jardim Marco Zero;5258;4
+869748;68903345;Avenida Um;Jardim Marco Zero;5258;4
+869749;68903346;Rua José Rodrigues Leitão;Jardim Marco Zero;5258;4
+869750;68903350;Rua Luís Azarias;Jardim Marco Zero;5258;4
+869751;68903355;Avenida Dois;Jardim Marco Zero;5258;4
+869752;68903357;Rua Fernando das Neves Dias;Jardim Marco Zero;5258;4
+869753;68903358;Rua Primeira do Seringal;Jardim Marco Zero;5258;4
+869754;68903359;Rua Segunda do Seringal;Jardim Marco Zero;5258;4
+869755;68903360;Rua Terceira do Seringal;Jardim Marco Zero;5258;4
+869756;68903361;Avenida Equatorial;Jardim Marco Zero;5258;4
+869757;68903362;Avenida Antônio Lisboa Pinheiro;Jardim Marco Zero;5258;4
+869758;68903363;Rua Pedro Siqueira;Jardim Marco Zero;5258;4
+869759;68903364;Rua José Luís Barata;Jardim Marco Zero;5258;4
+869760;68903365;Avenida Luiza Damasceno Soares;Jardim Marco Zero;5258;4
+869761;68903366;Rua Lucimar Amora Delcastilo;Jardim Marco Zero;5258;4
+869762;68903367;Ramal JK;Jardim Marco Zero;5258;4
+869763;68903368;Ramal Assesap;Jardim Marco Zero;5258;4
+869764;68903369;Rua dos Jasmins;Jardim Marco Zero;5258;4
+869765;68903370;Avenida Maria Geovanete Pinheiro Borges da Silva;Jardim Marco Zero;5258;4
+869766;68903371;Rua dos Lirios;Jardim Marco Zero;5258;4
+869767;68903372;Rua dos Girassois;Jardim Marco Zero;5258;4
+869768;68903373;Avenida das Ortências;Jardim Marco Zero;5258;4
+869769;68903374;Avenida das Violetas;Jardim Marco Zero;5258;4
+869770;68903375;Avenida Francisco Soares;Jardim Marco Zero;5258;4
+869771;68903376;Avenida das Orquídeas;Jardim Marco Zero;5258;4
+869772;68903377;Avenida das Rosas;Jardim Marco Zero;5258;4
+869773;68903378;Avenida das Margaridas;Jardim Marco Zero;5258;4
+869774;68903379;Rua Açucenas;Jardim Marco Zero;5258;4
+869775;68903380;Avenida Mario Fortunato Barriga;Jardim Marco Zero;5258;4
+869776;68903381;Ramal Mururema;Jardim Marco Zero;5258;4
+869777;68903382;Avenida Venus;Jardim Marco Zero;5258;4
+869778;68903383;Rua Mercúrio;Jardim Marco Zero;5258;4
+869779;68903384;Avenida Júpiter;Jardim Marco Zero;5258;4
+869780;68903385;Avenida Aurora Boreau;Jardim Marco Zero;5258;4
+869781;68903386;Avenida Saturno;Jardim Marco Zero;5258;4
+869782;68903387;Avenida Marte;Jardim Marco Zero;5258;4
+869783;68903388;Ramal das Benções;Jardim Marco Zero;5258;4
+869784;68903389;Ramal Bom Jesus;Jardim Marco Zero;5258;4
+869785;68903390;Avenida Maria Lúcia Brasão;Jardim Marco Zero;5258;4
+869786;68903395;Passagem Independência;Jardim Marco Zero;5258;4
+869787;68903396;Rua Estrela;Jardim Marco Zero;5258;4
+869788;68903400;Rua Netuno;Jardim Marco Zero;5258;4
+869789;68903405;Passagem Uirapuru;Jardim Marco Zero;5258;4
+869790;68903410;1ª Avenida da Universidade;Universidade;5258;4
+869791;68903411;Avenida Manoel de Souza;Universidade;5258;4
+869792;68903415;2ª Avenida da Universidade;Universidade;5258;4
+869793;68903419;Rodovia Juscelino Kubitschek;Universidade;5258;4
+869794;68903420;Rua Plutão;Jardim Marco Zero;5258;4
+869795;68903425;3ª Avenida da Universidade;Jardim Marco Zero;5258;4
+869796;68903430;Avenida Professor Caramuru;Jardim Marco Zero;5258;4
+869797;68903431;Rua Inspetor Miguel Amorim;Zerão;5258;4
+869798;68903432;Rua Vicente Raimundo Alves;Zerão;5258;4
+869799;68903435;Avenida Quinta da universidade;Jardim Marco Zero;5258;4
+869800;68903436;Ramal da Unifap;Jardim Marco Zero;5258;4
+869801;68903440;Avenida Raimundo Perais Nunes de Ataíde;Jardim Marco Zero;5258;4
+869802;68903445;Travessa Nona da Universidade;Jardim Marco Zero;5258;4
+869803;68903450;Rua Saturno;Jardim Marco Zero;5258;4
+869804;68903455;Travessa Jerusalém;Jardim Marco Zero;5258;4
+869805;68903460;Rua Sol;Jardim Marco Zero;5258;4
+869806;68903465;Travessa Joaquim Nabuco;Jardim Marco Zero;5258;4
+869807;68903470;Rua Terra;Jardim Marco Zero;5258;4
+869808;68903475;Travessa da Paz;Jardim Marco Zero;5258;4
+869809;68903480;Rua Urano;Jardim Marco Zero;5258;4
+869810;68903485;Travessa Maria Nunes dos Santos;Universidade;5258;4
+869811;68903489;Ramal Eurico Gaspar;Universidade;5258;4
+869812;68903491;Ramal dos Promotores;Universidade;5258;4
+869813;68903492;Passagem do Malha;Universidade;5258;4
+869814;68903493;Travessa Professora Neuzona;Universidade;5258;4
+869815;68903494;Travessa Araguaia;Universidade;5258;4
+869816;68903495;Travessa Santa Luzia;Universidade;5258;4
+869817;68903496;Passagem Gruta;Universidade;5258;4
+869818;68903497;Travessa Água Viva;Universidade;5258;4
+869819;68903498;Rua Inspetor Antõnio de Oliveira;Universidade;5258;4
+869820;68903499;Rua Zéca Serra;Universidade;5258;4
+869821;68903501;Rua Doutor Braulino;Universidade;5258;4
+869822;68903502;Travessa Solimões;Universidade;5258;4
+869823;68903505;Travessa Bom Jesus;Universidade;5258;4
+869824;68903511;Rua Eurico dos Santos Barbosa;Universidade;5258;4
+869825;68903513;Rua Três;Universidade;5258;4
+869826;68903514;Passarela Beira Rio;Zerão;5258;4
+869827;68903515;Travessa Gonzaguinha;Universidade;5258;4
+869828;68903516;Avenida Walter Banho;Universidade;5258;4
+869829;68903517;Rua Inspetor Miguel Amorim;Universidade;5258;4
+869830;68903518;Rua Vicente Raimundo Alves;Universidade;5258;4
+869831;68903519;Rua Luis Azarias Neto;Universidade;5258;4
+869832;68903535;Travessa Edilson Borges;Universidade;5258;4
+869833;68903555;Travessa Manoel da Silva;Universidade;5258;4
+869834;68903565;Travessa Tapajós;Universidade;5258;4
+869835;68903575;Avenida Isa Golveia;Universidade;5258;4
+869836;68903585;Travessa Primeira;Universidade;5258;4
+869837;68903595;Travessa Segunda;Universidade;5258;4
+869838;68903605;Travessa José Caetano;Universidade;5258;4
+869839;68903610;Travessa Terceira;Universidade;5258;4
+869840;68903615;Travessa Quarta;Universidade;5258;4
+869841;68903625;Travessa Quinta;Universidade;5258;4
+869842;68903626;Travessa Sexta;Universidade;5258;4
+869843;68903627;Travessa Sétima;Universidade;5258;4
+869844;68903628;Travessa Oitava;Universidade;5258;4
+869845;68903636;Travessa Décima;Universidade;5258;4
+869846;68903637;Avenida Belas Artes;Universidade;5258;4
+869847;68903640;Rua Francisca Feitosa dos Santos;Universidade;5258;4
+869848;68903642;Rua Inspetor Antônio Oliveira;Zerão;5258;4
+869849;68903660;Canal das Pedrinhas;Zerão;5258;4
+869850;68903740;Avenida Walter Jucá;Zerão;5258;4
+869851;68903741;Rua Luis Azarias Neto;Zerão;5258;4
+869852;68903742;Rua Zéca Serra;Zerão;5258;4
+869853;68903743;Rua Djalma Nascimento;Zerão;5258;4
+869854;68903744;Rua Inspetor Antõnio de Oliveira;Zerão;5258;4
+869855;68903750;Avenida Antônio Castro Monteiro;Universidade;5258;4
+869856;68903751;Travessa Raimunda Nóbre;Universidade;5258;4
+869857;68903752;Travessa Benjamim Constant.;Universidade;5258;4
+869858;68903753;Travessa Galileu Galilei;Universidade;5258;4
+869859;68903754;Avenida Ramildo Neves Benicio;Universidade;5258;4
+869860;68903757;Ramal do Rurap;Universidade;5258;4
+869861;68903758;Ramal da Unifap;Universidade;5258;4
+869862;68903759;Ramal Padre Vitório Galiane;Universidade;5258;4
+869863;68903770;Avenida Tenente Amaral;Zerão;5258;4
+869864;68903771;1ª Travessa Setentrional;Araxá;5258;4
+869865;68903772;2ª Travessa Setentrional;Araxá;5258;4
+869866;68903773;3ª Travessa Setentrional;Araxá;5258;4
+869867;68903774;5ª Travessa Setentrional;Araxá;5258;4
+869868;68903775;Travessa Sexts da Setentrional;Araxá;5258;4
+869869;68903776;7ª Travessa Setentrional;Araxá;5258;4
+869870;68903777;Travessa Oitava da Setentrional;Araxá;5258;4
+869871;68903778;10ª Travessa Setentrional;Araxá;5258;4
+869872;68903779;Parque Complexo do Araxá;Araxá;5258;4
+869873;68903780;9ª Travessa Setentrional;Araxá;5258;4
+869874;68903781;Avenida Aturiá;Araxá;5258;4
+869875;68903782;Passagem Primavera;Araxá;5258;4
+869876;68903783;Passagem Maridiana do Norte;Araxá;5258;4
+869877;68903784;Passagem Meridional;Araxá;5258;4
+869878;68903785;Passagem Adelson;Araxá;5258;4
+869879;68903786;Passagem Tiza;Araxá;5258;4
+869880;68903787;Passagem Eli Dutra;Araxá;5258;4
+869881;68903788;Passagem Nazaré;Araxá;5258;4
+869882;68903789;Passagem Liberdade;Araxá;5258;4
+869883;68903790;Passagem Marisol II;Araxá;5258;4
+869884;68903791;Passagem Malafaia;Araxá;5258;4
+869885;68903792;Passagem Equatorial;Araxá;5258;4
+869886;68903793;Passagem Graças;Araxá;5258;4
+869887;68903794;Passagem Santo Antônio;Araxá;5258;4
+869888;68903850;Avenida Raimundo Borges;Araxá;5258;4
+869889;68903851;Avenida Quinta;Araxá;5258;4
+869890;68903852;Avenida Sexta;Araxá;5258;4
+869891;68903853;Avenida Sétima;Araxá;5258;4
+869892;68903854;Avenida Oitava;Araxá;5258;4
+869893;68903855;Rua Setentrional;Araxá;5258;4
+869894;68903856;Avenida Nona;Araxá;5258;4
+869895;68903857;Avenida Décima do Araxá;Araxá;5258;4
+869896;68903858;Avenida Décima Primeira;Araxá;5258;4
+869897;68903859;Avenida Décima Segunda;Araxá;5258;4
+869898;68903860;Avenida Primeira;Araxá;5258;4
+869899;68903861;Passarela Beira Rio;Araxá;5258;4
+869900;68903862;Passarela Marisol;Araxá;5258;4
+869901;68903863;Passarela Liberdade;Araxá;5258;4
+869902;68903864;Passarela Bom Jesus;Araxá;5258;4
+869903;68903865;Rua Alessandro B. Guerra;Araxá;5258;4
+869904;68903866;Alameda Jardim;Araxá;5258;4
+869905;68903867;Passarela Beco da Saudade;Araxá;5258;4
+869906;68903868;Passarela Santa Clara;Araxá;5258;4
+869907;68903869;Passarela Santo Antonio;Araxá;5258;4
+869908;68903870;Rua Adrião Rocha Oliveira;Araxá;5258;4
+869909;68903873;Passarela Bianor;Araxá;5258;4
+869910;68903874;Avenida Humberto Góes Pereira;Araxá;5258;4
+869911;68903875;Avenida Segunda;Araxá;5258;4
+869912;68903876;Passagem Castanhal;Araxá;5258;4
+869913;68903877;Passagem das Graças;Araxá;5258;4
+869914;68903878;Passagem Marisol;Araxá;5258;4
+869915;68903879;Alameda Maridional;Araxá;5258;4
+869916;68903880;Avenida Terceira;Araxá;5258;4
+869917;68903881;Alameda Meridional do Norte;Araxá;5258;4
+869918;68903882;Travessa A;Araxá;5258;4
+869919;68903883;Rua do Araxá;Araxá;5258;4
+869920;68903884;Travessa B;Araxá;5258;4
+869921;68903885;Avenida Quarta;Araxá;5258;4
+869922;68903886;Travessa C;Araxá;5258;4
+869923;68903887;Travessa D;Araxá;5258;4
+869924;68903901;Rua Samuel Trajano de Souza 429;Jardim Marco Zero;5258;4
+869925;68903970;Rodovia Juscelino Kubitschek 1660;Jardim Marco Zero;5258;4
+869926;68903971;Rua Claudomiro de Moraes s/n;Novo Buritizal;5258;4
+869927;68904001;Rua Claudomiro de Moraes;Novo Buritizal;5258;4
+869928;68904010;Rua Raul Monteiro Valdez;Novo Buritizal;5258;4
+869929;68904015;Travessa Clodóvio Coelho;Novo Buritizal;5258;4
+869930;68904016;Passagem Jardim;Novo Buritizal;5258;4
+869931;68904017;Travessa Serram;Novo Buritizal;5258;4
+869932;68904019;Avenida Governador Manoel Bernado de Melo Castro;Novo Buritizal;5258;4
+869933;68904020;Rua Leopoldo Queirós Teixeira;Novo Buritizal;5258;4
+869934;68904030;Avenida Armando Limeira Pontes;Novo Buritizal;5258;4
+869935;68904031;Travessa Segunda de Moraes;Novo Buritizal;5258;4
+869936;68904032;Travessa Primeira de Moraes;Novo Buritizal;5258;4
+869937;68904033;Avenida Saúde Pimentel Canto;Novo Buritizal;5258;4
+869938;68904034;Avenida Segunda de Moraes;Novo Buritizal;5258;4
+869939;68904035;Rua Dois de Moraes;Novo Buritizal;5258;4
+869940;68904036;Rua Raimundo Antônio Machado;Novo Buritizal;5258;4
+869941;68904037;Travessa K. Golveia;Novo Buritizal;5258;4
+869942;68904039;Passagem K Gouveia;Novo Buritizal;5258;4
+869943;68904040;Avenida Miguel Faustino Picanço;Novo Buritizal;5258;4
+869944;68904043;Avenida Raimundo Antônio Machado;Novo Buritizal;5258;4
+869945;68904044;Avenida Violeta Mont'Alverne Moreira;Novo Buritizal;5258;4
+869946;68904050;Avenida Reinaldo Damasceno;Novo Buritizal;5258;4
+869947;68904060;Avenida José de Souza Gomes;Novo Buritizal;5258;4
+869948;68904070;Avenida José Augusto Façanha;Novo Buritizal;5258;4
+869949;68904080;Avenida José Gonçalves Picanço;Novo Buritizal;5258;4
+869950;68904090;Avenida Maximiniano Serra Picanço;Novo Buritizal;5258;4
+869951;68904101;Avenida Dionísio Augusto Costa Filho;Novo Buritizal;5258;4
+869952;68904120;Travessa Avó Guardina;Novo Buritizal;5258;4
+869953;68904125;Travessa Cinco de Outubro;Novo Buritizal;5258;4
+869954;68904130;Travessa Manoel Quaresma Mendes;Novo Buritizal;5258;4
+869955;68904140;Travessa Heráclito Azevedo Coutinho;Novo Buritizal;5258;4
+869956;68904150;Travessa Manoel Valente dos Santos;Novo Buritizal;5258;4
+869957;68904160;Travessa Fortunato Peres;Novo Buritizal;5258;4
+869958;68904225;Avenida Hely da Silva Oliveira;Novo Buritizal;5258;4
+869959;68904250;Rua José Valente dos Santos;Novo Buritizal;5258;4
+869960;68904260;Rua Tiago Flexa da Costa;Novo Buritizal;5258;4
+869961;68904271;Rua Maria do Carmo Tavares;Novo Buritizal;5258;4
+869962;68904272;Rua Eloy Monteiro Nunes;Novo Buritizal;5258;4
+869963;68904273;Rua Sarah Roffe Zagury;Novo Buritizal;5258;4
+869964;68904274;Rua Nilo Coelho;Novo Buritizal;5258;4
+869965;68904275;Rua Francisco Furtado;Novo Buritizal;5258;4
+869966;68904276;Avenida João Batista Coutinho;Novo Buritizal;5258;4
+869967;68904277;Avenida Maria de Nazaré Brito de Souza;Novo Buritizal;5258;4
+869968;68904278;Rua Reinaldo Damasceno;Novo Buritizal;5258;4
+869969;68904279;Rua Mestre Julio;Novo Buritizal;5258;4
+869970;68904281;Avenida Ernesto Pereira Colares;Novo Buritizal;5258;4
+869971;68904282;Avenida Aurora Ferreira da Costa;Novo Buritizal;5258;4
+869972;68904283;Avenida Heráclito Juares Filho;Novo Buritizal;5258;4
+869973;68904284;Avenida Domingos Amorim;Novo Buritizal;5258;4
+869974;68904286;Avenida Cleveland Sá Cavalcante;Novo Buritizal;5258;4
+869975;68904287;Travessa Municipalista;Novo Buritizal;5258;4
+869976;68904288;Passagem Municipalista;Novo Buritizal;5258;4
+869977;68904325;Avenida Vinte e Oito de Julho;Novo Buritizal;5258;4
+869978;68904326;Rua Claudomiro de Moraes;Congós;5258;4
+869979;68904327;Avenida Pompeu Cardoso;Congós;5258;4
+869980;68904328;Avenida Evandro Carneiro de Melo;Congós;5258;4
+869981;68904329;Avenida Laudelino Araújo Corrêa;Congós;5258;4
+869982;68904331;Avenida Vigésima Quarta;Congós;5258;4
+869983;68904340;Avenida Guajarina Duarte Mendes;Congós;5258;4
+869984;68904343;Avenida Luís Alves Cunha;Congós;5258;4
+869985;68904344;Travessa Manoel Ferreira da Silva;Congós;5258;4
+869986;68904345;Rua Doutor Manoel Brasil;Congós;5258;4
+869987;68904350;Avenida Arthur Roque;Congós;5258;4
+869988;68904360;Avenida João Guerra;Congós;5258;4
+869989;68904365;Avenida Telemaco Mira Martins;Congós;5258;4
+869990;68904366;Rua Benedito Lino do Carmo;Congós;5258;4
+869991;68904370;Avenida Cabo Velho;Congós;5258;4
+869992;68904374;Avenida Edite Penafort;Congós;5258;4
+869993;68904376;Rua Carlos Drumond de Andrade;Congós;5258;4
+869994;68904377;Rua Doutor Alberto Lima;Congós;5258;4
+869995;68904378;Avenida Janari de Azevedo Costa;Congós;5258;4
+869996;68904379;Avenida Augusto Santos;Congós;5258;4
+869997;68904381;Avenida Aureliano Rening;Congós;5258;4
+869998;68904382;Avenida Delegado Antônio Melo;Congós;5258;4
+869999;68904383;Avenida Padre Rinaldo Bossi;Congós;5258;4
+870000;68904384;Avenida Padre Ângelo Biraghi;Congós;5258;4
+870001;68904385;Avenida Raimundo Caxias de Souza;Congós;5258;4
+870002;68904386;Avenida Newton Cardoso;Congós;5258;4
+870003;68904387;Avenida Francisco Torquato de Araújo;Congós;5258;4
+870004;68904388;Avenida José Maria Banhos de Araújo;Congós;5258;4
+870005;68904390;Avenida José Moacir Banhos de Araújo;Congós;5258;4
+870006;68904395;Avenida Bem-Hur Corrêa Alves;Congós;5258;4
+870007;68904396;Avenida Nilo Almeida;Congós;5258;4
+870008;68904397;Avenida Comandante Marapanim;Congós;5258;4
+870009;68904398;Avenida José Araguarino de Mont'Alverne;Congós;5258;4
+870010;68904400;Avenida Trinta de Julho;Novo Buritizal;5258;4
+870011;68904405;Travessa Trinta e Um de Julho;Novo Buritizal;5258;4
+870012;68904590;Avenida Vinte e Sete de Julho;Novo Buritizal;5258;4
+870013;68904591;Avenida Trinta de Julho;Novo Buritizal;5258;4
+870014;68904592;Avenida Quinze de Julho;Novo Buritizal;5258;4
+870015;68904600;Avenida Vinte e Nove de Julho;Novo Buritizal;5258;4
+870016;68904615;Rua Maria Raimunda Barros Machado;Novo Buritizal;5258;4
+870017;68904620;Avenida Dezoito de Julho;Novo Buritizal;5258;4
+870018;68904630;Avenida Vinte e Seis de Julho;Novo Buritizal;5258;4
+870019;68904640;Avenida Vinte e Cinco de Julho;Novo Buritizal;5258;4
+870020;68904650;Avenida Vinte e Quatro de Julho;Novo Buritizal;5258;4
+870021;68904660;Avenida Vinte e Três de Julho;Novo Buritizal;5258;4
+870022;68904665;Rua Manoel Ferreira da Silva;Novo Buritizal;5258;4
+870023;68904670;Avenida Vinte e Dois de Julho;Novo Buritizal;5258;4
+870024;68904680;Avenida Vinte e Um de Julho;Novo Buritizal;5258;4
+870025;68904690;Avenida Dezessete de Julho;Novo Buritizal;5258;4
+870026;68904700;Avenida Edilson José Prado Ribeiro;Novo Buritizal;5258;4
+870027;68904710;Avenida Dezesseis de Julho;Novo Buritizal;5258;4
+870028;68904715;Avenida Vinte de Julho;Novo Buritizal;5258;4
+870029;68904720;Avenida Quinze de Julho;Novo Buritizal;5258;4
+870030;68904730;Avenida Quatorze de Julho;Novo Buritizal;5258;4
+870031;68904731;Avenida Treze de Julho;Novo Buritizal;5258;4
+870032;68904740;Avenida Primeiro de Setembro;Novo Buritizal;5258;4
+870033;68904780;Avenida Almerindo S. Farias;Novo Buritizal;5258;4
+870034;68904800;Rua Dezenove de Julho;Novo Buritizal;5258;4
+870035;68904809;Passagem Treze de Setembro;Novo Buritizal;5258;4
+870036;68904810;Rua Dois de Setembro;Novo Buritizal;5258;4
+870037;68904811;Travessa Antônio Ferreira de Jesus;Novo Buritizal;5258;4
+870038;68904812;Rua Antônio Pinheiro Sampaio;Novo Buritizal;5258;4
+870039;68904813;Avenida Treze de Setembro;Novo Buritizal;5258;4
+870040;68904814;Avenida Primeiro de Maio;Novo Buritizal;5258;4
+870041;68904970;Rua Claudomiro de Moraes s/n;Novo Buritizal;5258;4
+870042;68905010;Avenida Raimundo de Souza Mesquita;Cidade Nova;5258;4
+870043;68905015;Avenida Nossa Senhora das Neves;Cidade Nova;5258;4
+870044;68905020;Avenida Nossa Senhora do Carmo;Cidade Nova;5258;4
+870045;68905030;Avenida Nossa Senhora das Graças;Cidade Nova;5258;4
+870046;68905040;Rua Nossa Senhora de Nazaré;Cidade Nova;5258;4
+870047;68905050;Avenida Manoel Domingos Medina;Cidade Nova;5258;4
+870048;68905060;Avenida Nossa Senhora Aparecida;Cidade Nova;5258;4
+870049;68905070;Avenida Juarez Boas Novas;Cidade Nova;5258;4
+870050;68905080;Avenida Manoel Cardoso;Cidade Nova;5258;4
+870051;68905090;Avenida Dezenove de Março;Cidade Nova;5258;4
+870052;68905100;Avenida Oito de Dezembro;Cidade Nova;5258;4
+870053;68905110;Avenida Quinze de Novembro;Cidade Nova;5258;4
+870054;68905120;Rua Ariosvaldo Coelho Caxias;Cidade Nova;5258;4
+870055;68905130;Passagem Rosa dos Ventos;Cidade Nova;5258;4
+870056;68905140;Passagem Orquídeas;Cidade Nova;5258;4
+870057;68905150;Passagem Flor de Lis;Cidade Nova;5258;4
+870058;68905160;Passagem Jasmim;Cidade Nova;5258;4
+870059;68905170;Rua Santa Maria;Cidade Nova;5258;4
+870060;68905180;Passagem São Benedito;Cidade Nova;5258;4
+870061;68905190;Rua São Braz;Cidade Nova;5258;4
+870062;68905200;Rua Santa Cruz;Cidade Nova;5258;4
+870063;68905209;Rua Antônio Pelais de Souza;Cidade Nova;5258;4
+870064;68905222;Rua Raul Clemente Paulo Calins;Cidade Nova;5258;4
+870065;68905240;Rua José Tavares de Almeida;Cidade Nova;5258;4
+870066;68905251;Rua Turibio Orivaldo Guimarães;Cidade Nova;5258;4
+870067;68905261;Rua Raimundo Ramos dos Santos;Cidade Nova;5258;4
+870068;68905271;Rua Acesio Guedes;Cidade Nova;5258;4
+870069;68905290;Rua Sexta da Baixada do Japonês;Cidade Nova;5258;4
+870070;68905300;Rua Sétima da Baixada do Japonês;Cidade Nova;5258;4
+870071;68905320;Rua Josefa Pelaes da Silva;Cidade Nova;5258;4
+870072;68905350;Passagem Ulisses Guimarães;Cidade Nova;5258;4
+870073;68905360;Passagem Flor do Campo;Cidade Nova;5258;4
+870074;68905370;Passagem Girassol;Cidade Nova;5258;4
+870075;68905380;Passagem Lirios do Campo;Cidade Nova;5258;4
+870076;68905390;Passagem Margaridas;Cidade Nova;5258;4
+870077;68905400;Passagem das Carmelias;Cidade Nova;5258;4
+870078;68905410;Passagem Primeira da Turibio;Cidade Nova;5258;4
+870079;68905420;Canal do Jandiá;Cidade Nova;5258;4
+870080;68905440;Passagem Rosa Menina;Cidade Nova;5258;4
+870081;68905450;Passagem Nazaré;Cidade Nova;5258;4
+870082;68905460;Travessa São Benedito;Cidade Nova;5258;4
+870083;68905470;Rua Santa Clara;Cidade Nova;5258;4
+870084;68905510;Rua Rio Tefé;Perpétuo Socorro;5258;4
+870085;68905511;Avenida Nossa Senhora da Conceição;Perpétuo Socorro;5258;4
+870086;68905512;Avenida Nossa Senhora de Fátima;Perpétuo Socorro;5258;4
+870087;68905513;Avenida Nossa Senhora do Perpétuo Socorro;Perpétuo Socorro;5258;4
+870088;68905514;Rua Canal do Perpéto Socorro;Perpétuo Socorro;5258;4
+870089;68905515;Rua Antonio Pereira da Costa de Sousa;Perpétuo Socorro;5258;4
+870090;68905516;Travessa Segunda;Perpétuo Socorro;5258;4
+870091;68905517;Avenida Terceira;Perpétuo Socorro;5258;4
+870092;68905520;Rua Rio Purus;Perpétuo Socorro;5258;4
+870093;68905525;Rua Doutor Walter da Silva Pacheco;Perpétuo Socorro;5258;4
+870094;68905530;Rua Rio Negro;Perpétuo Socorro;5258;4
+870095;68905535;Passagem Rio Negro;Perpétuo Socorro;5258;4
+870096;68905540;Rua Rio Japurá;Perpétuo Socorro;5258;4
+870097;68905545;Passagem Rio Jari;Perpétuo Socorro;5258;4
+870098;68905550;Rua Rio Javari;Perpétuo Socorro;5258;4
+870099;68905555;Passagem Rio Xingu;Perpétuo Socorro;5258;4
+870100;68905565;Passagem Nações Unidas;Perpétuo Socorro;5258;4
+870101;68905570;Avenida Jose Tupinamba de Almeida;Perpétuo Socorro;5258;4
+870102;68905575;Passagem Hugo Alves Pinto;Perpétuo Socorro;5258;4
+870103;68905580;Avenida Quarta;Perpétuo Socorro;5258;4
+870104;68905585;Passagem Ana Nery;Perpétuo Socorro;5258;4
+870105;68905590;Avenida da Maria Silva Chavier;Perpétuo Socorro;5258;4
+870106;68905592;Avenida Marcílio Dias;Perpétuo Socorro;5258;4
+870107;68905595;Passagem São José;Perpétuo Socorro;5258;4
+870108;68905600;Avenida Segunda;Perpétuo Socorro;5258;4
+870109;68905605;Passagem Nossa Senhora do Perpétuo Socorro;Perpétuo Socorro;5258;4
+870110;68905610;Avenida Primeira;Perpétuo Socorro;5258;4
+870111;68905615;Passagem Nossa Senhora de Fátima;Perpétuo Socorro;5258;4
+870112;68905620;Avenida Quinta;Perpétuo Socorro;5258;4
+870113;68905621;Passagem Santa Fé;Perpétuo Socorro;5258;4
+870114;68905623;Avenida Santa Teresinha;Perpétuo Socorro;5258;4
+870115;68905624;Rua Oscar Santos;Perpétuo Socorro;5258;4
+870116;68905625;Passagem Nossa Senhora da Conceição;Perpétuo Socorro;5258;4
+870117;68905626;Rua Raul Clemente Paulo Collins;Perpétuo Socorro;5258;4
+870118;68905627;Avenida José do Espírito Santo Araújo;Perpétuo Socorro;5258;4
+870119;68905628;Rua Acézio Guedes;Perpétuo Socorro;5258;4
+870120;68905629;Rua Quintino Justo de Almeida;Perpétuo Socorro;5258;4
+870121;68905630;Rua Hugo Alves Pinto;Perpétuo Socorro;5258;4
+870122;68905631;Rua Rio Jari;Perpétuo Socorro;5258;4
+870123;68905635;Passagem Santa Terezinha;Perpétuo Socorro;5258;4
+870124;68905640;Rua Rio Madeira;Perpétuo Socorro;5258;4
+870125;68905650;Passagem Rio Purus;Perpétuo Socorro;5258;4
+870126;68905660;Passagem Rio Parú;Perpétuo Socorro;5258;4
+870127;68905670;Rua Cândido Mendes;Perpétuo Socorro;5258;4
+870128;68905695;Passagem Acesio Guedes;Perpétuo Socorro;5258;4
+870129;68905700;Rua Raimundo Ramos dos Passos;Perpétuo Socorro;5258;4
+870130;68905705;Passagem Primeira José do Espírito Santo;Perpétuo Socorro;5258;4
+870131;68905711;Rua Acesio Guedes;Perpétuo Socorro;5258;4
+870132;68905712;Avenida Ana Nery;Perpétuo Socorro;5258;4
+870133;68905715;Passagem Segunda do Espírito Santo;Perpétuo Socorro;5258;4
+870134;68905724;Rua Raimundo Ramos dos Santos;Perpétuo Socorro;5258;4
+870135;68905725;Passagem Terceira José do Espírito Santo;Perpétuo Socorro;5258;4
+870136;68905731;Rua Turibio Orivaldo Guimarães;Perpétuo Socorro;5258;4
+870137;68905735;Passagem Marcílio Dias;Perpétuo Socorro;5258;4
+870138;68905741;Rua José Tavares de Almeida;Perpétuo Socorro;5258;4
+870139;68905745;Passagem Pedro Américo;Perpétuo Socorro;5258;4
+870140;68905751;Rua José Furtado de Oliveira;Perpétuo Socorro;5258;4
+870141;68905761;Rua Raul Clemente Paulo Calins;Perpétuo Socorro;5258;4
+870142;68905771;Rua Antônio Pelais de Souza;Perpétuo Socorro;5258;4
+870143;68905780;Rua Beira Rio;Perpétuo Socorro;5258;4
+870144;68905800;Avenida Amélia Dias dos Santos;Perpétuo Socorro;5258;4
+870145;68905810;Avenida José dos Santos Furtado;Perpétuo Socorro;5258;4
+870146;68905820;Avenida Moacir Braga Coutinho;Perpétuo Socorro;5258;4
+870147;68905830;Avenida Gertrudes Saturnino Loureiro;Perpétuo Socorro;5258;4
+870148;68905850;Passagem Santo Agostinho;Perpétuo Socorro;5258;4
+870149;68905860;Passagem Maestro Miguel;Perpétuo Socorro;5258;4
+870150;68905870;Passagem João Alberto Capiberibe;Perpétuo Socorro;5258;4
+870151;68905880;Passagem Santa Marta;Perpétuo Socorro;5258;4
+870152;68905890;Passagem Raimundo Ramos dos Passos;Perpétuo Socorro;5258;4
+870153;68906003;Rua Goiabal;Goiabal;5258;4
+870154;68906006;Avenida Itamaraca;Goiabal;5258;4
+870155;68906009;Avenida Edilson Pinheiro;Goiabal;5258;4
+870156;68906012;Avenida Francisco de Souza;Goiabal;5258;4
+870157;68906015;Avenida José Cardoso da Silva;Goiabal;5258;4
+870158;68906018;Avenida das Amazonas;Goiabal;5258;4
+870159;68906021;Avenida Leopoldo Amancio;Goiabal;5258;4
+870160;68906024;Rua Zeca Verônica;Goiabal;5258;4
+870161;68906027;Avenida Maria Alta;Goiabal;5258;4
+870162;68906030;2ª Travessa do Goiabal;Goiabal;5258;4
+870163;68906033;Avenida Anastácio Gaudêncio da Silva;Goiabal;5258;4
+870164;68906036;Avenida Nossa Senhora de Fátima;Goiabal;5258;4
+870165;68906039;Avenida Nossa Senhora Aparecida;Goiabal;5258;4
+870166;68906042;Avenida Santa Catarina;Goiabal;5258;4
+870167;68906045;Rua Santa Maria;Goiabal;5258;4
+870168;68906048;Rua Santo Expedito;Goiabal;5258;4
+870169;68906051;Avenida São Benedito;Goiabal;5258;4
+870170;68906054;Avenida Santa Edwiges;Goiabal;5258;4
+870171;68906057;Avenida Nossa Senhora da Conceição;Goiabal;5258;4
+870172;68906060;Avenida Bonfim;Goiabal;5258;4
+870173;68906061;Rua São Lucas;Goiabal;5258;4
+870174;68906063;Avenida Israel;Goiabal;5258;4
+870175;68906066;Rua Nova Aliança;Goiabal;5258;4
+870176;68906069;Rua Montevidéu;Goiabal;5258;4
+870177;68906071;Avenida Maria da Silva Barbosa Barros;Goiabal;5258;4
+870178;68906072;Rua Marrocos;Goiabal;5258;4
+870179;68906075;Rua Estados Unidos;Goiabal;5258;4
+870180;68906078;Rua Egito;Goiabal;5258;4
+870181;68906081;Rua África do Sul;Goiabal;5258;4
+870182;68906082;Avenida Santo Antônio;Goiabal;5258;4
+870183;68906084;Rua Angola;Goiabal;5258;4
+870184;68906087;Travessa Goiabal;Goiabal;5258;4
+870185;68906090;Avenida Nova Jerusalém;Goiabal;5258;4
+870186;68906091;Rua Santa Tereza;Goiabal;5258;4
+870187;68906093;Rua Vitoria Regia;Goiabal;5258;4
+870188;68906096;Rua Josefa da Silva;Goiabal;5258;4
+870189;68906151;Rua São Mateus;São José;5258;4
+870190;68906153;Rua São Lucas;São José;5258;4
+870191;68906156;Rua São Tiago;São José;5258;4
+870192;68906159;Rua São Judas;São José;5258;4
+870193;68906162;Rua São Marcos;São José;5258;4
+870194;68906165;Rua do Trilho;São José;5258;4
+870195;68906301;Rodovia de Duca Serra;Marabaixo;5258;4
+870196;68906501;Rua Linha B da AP-20;Marabaixo;5258;4
+870197;68906502;Avenida Quatro;Marabaixo;5258;4
+870198;68906503;Avenida Três;Marabaixo;5258;4
+870199;68906514;Rua Nona;Marabaixo;5258;4
+870200;68906518;Rua Dez;Marabaixo;5258;4
+870201;68906519;Rua Nove;Marabaixo;5258;4
+870202;68906520;Avenida Benedito Costa;Marabaixo;5258;4
+870203;68906521;Avenida São Lázaro;Marabaixo;5258;4
+870204;68906522;Avenida São João;Marabaixo;5258;4
+870205;68906523;Avenida São Sebastião;Marabaixo;5258;4
+870206;68906524;Rua dos Picapaus;Marabaixo;5258;4
+870207;68906526;Rua das Marrecos;Marabaixo;5258;4
+870208;68906527;Rua das Garças;Marabaixo;5258;4
+870209;68906528;Rua das Araras;Marabaixo;5258;4
+870210;68906529;Rua das Gaivota;Marabaixo;5258;4
+870211;68906533;Ramal do Bueirinho;Alvorada;5258;4
+870212;68906534;Rua Ruthenete Pereira Marques;Alvorada;5258;4
+870213;68906535;Avenida Almirante Barroso;Alvorada;5258;4
+870214;68906545;Avenida Professora Cora de Carvalho;Alvorada;5258;4
+870215;68906620;Travessa Joaquim Gouveia;Alvorada;5258;4
+870216;68906630;Travessa São Francisco;Alvorada;5258;4
+870217;68906631;Rua Terceira;Alvorada;5258;4
+870218;68906632;Rua Segunda;Alvorada;5258;4
+870219;68906633;Rua Tawarys;Alvorada;5258;4
+870220;68906634;Travessa Soldado Deondino dos Santos Coelho;Alvorada;5258;4
+870221;68906635;Travessa Dezessete;Alvorada;5258;4
+870222;68906640;Rua Maria Torres da Silva;Alvorada;5258;4
+870223;68906641;Rua Pastor Otoniel Alencar;Alvorada;5258;4
+870224;68906642;Rua Manoel Bezerra Barbosa;Alvorada;5258;4
+870225;68906643;Travessa Maurício Pacifico Cantuária;Alvorada;5258;4
+870226;68906645;Avenida Padre Júlio Maria Lombaerd;Alvorada;5258;4
+870227;68906646;Rua Ilha Mirim;Alvorada;5258;4
+870228;68906647;Via Dezesseis;Alvorada;5258;4
+870229;68906648;Travessa Alvorada;Alvorada;5258;4
+870230;68906649;Travessa Padre Luis David;Alvorada;5258;4
+870231;68906650;Rua Padre Luis David;Alvorada;5258;4
+870232;68906660;Rua Raimundo Banha Corrêa;Alvorada;5258;4
+870233;68906661;Alameda Padre Primeira Luis David;Alvorada;5258;4
+870234;68906662;Alameda Padre Segunda Luis David;Alvorada;5258;4
+870235;68906663;Alameda Lagoa das Garças;Alvorada;5258;4
+870236;68906664;Travessa Soldado José dos Santos;Alvorada;5258;4
+870237;68906666;Travessa Joaquim Pinheiro Borges;Alvorada;5258;4
+870238;68906670;Rua Sebastião Canúto;Alvorada;5258;4
+870239;68906680;Avenida Josefina Silva da Soledade;Alvorada;5258;4
+870240;68906685;Travessa Eufrázio da Silva Gaia;Alvorada;5258;4
+870241;68906698;Rodovia de Duca Serra;Alvorada;5258;4
+870242;68906711;Travessa do Goiabal;Cabralzinho;5258;4
+870243;68906790;Rua Dois;Cabralzinho;5258;4
+870244;68906800;Rua Três;Cabralzinho;5258;4
+870245;68906801;Rodovia de Duca Serra;Cabralzinho;5258;4
+870246;68906806;Via Local Oito;Cabralzinho;5258;4
+870247;68906807;Rua dos Papaguaios;Cabralzinho;5258;4
+870248;68906808;Via Local Seis;Cabralzinho;5258;4
+870249;68906809;Rua das Araras;Cabralzinho;5258;4
+870250;68906810;Rua Um;Cabralzinho;5258;4
+870251;68906811;Avenida Jaçanã;Cabralzinho;5258;4
+870252;68906812;Avenida Bem-te-vi;Cabralzinho;5258;4
+870253;68906813;Avenida Anabens;Cabralzinho;5258;4
+870254;68906814;Avenida Norte Sul;Cabralzinho;5258;4
+870255;68906815;Rua Beija Flor;Cabralzinho;5258;4
+870256;68906816;Alameda A.;Cabralzinho;5258;4
+870257;68906818;Travessa Arara Azul;Cabralzinho;5258;4
+870258;68906819;Alameda B;Cabralzinho;5258;4
+870259;68906820;Travessa dos Guarás;Cabralzinho;5258;4
+870260;68906821;Rua Segunda;Cabralzinho;5258;4
+870261;68906822;Alameda C;Cabralzinho;5258;4
+870262;68906823;Travessa Tucanos;Cabralzinho;5258;4
+870263;68906824;Travessa Pavão;Cabralzinho;5258;4
+870264;68906825;Rua Terceira;Cabralzinho;5258;4
+870265;68906826;Alameda D;Cabralzinho;5258;4
+870266;68906827;Travessa Terceira;Cabralzinho;5258;4
+870267;68906828;Travessa Quarta;Cabralzinho;5258;4
+870268;68906829;Rua Quarta;Cabralzinho;5258;4
+870269;68906830;Travessa Quinta;Cabralzinho;5258;4
+870270;68906831;Rua Quinta;Cabralzinho;5258;4
+870271;68906832;Rua Rio Araguari;Cabralzinho;5258;4
+870272;68906833;Avenida Sem Denominação 01;Cabralzinho;5258;4
+870273;68906835;Via Local Dois;Cabralzinho;5258;4
+870274;68906836;Via Local Dez;Cabralzinho;5258;4
+870275;68906837;Via Local Onze;Cabralzinho;5258;4
+870276;68906838;Rua Vila Nova;Cabralzinho;5258;4
+870277;68906839;Alameda Curiau;Cabralzinho;5258;4
+870278;68906840;Alameda Maracá;Cabralzinho;5258;4
+870279;68906841;Alameda Mazagão;Cabralzinho;5258;4
+870280;68906842;Alameda Araguary;Cabralzinho;5258;4
+870281;68906843;Alameda Cajari;Cabralzinho;5258;4
+870282;68906844;Alameda Bela Vista;Cabralzinho;5258;4
+870283;68906845;Alameda Ipiranga;Cabralzinho;5258;4
+870284;68906846;Alameda Calçoene;Cabralzinho;5258;4
+870285;68906847;Rua Macapá;Cabralzinho;5258;4
+870286;68906848;Alameda Oiapoque;Cabralzinho;5258;4
+870287;68906849;Alameda Campo Belo;Cabralzinho;5258;4
+870288;68906850;Rua Eli Rodrigues;Cabralzinho;5258;4
+870289;68906851;Avenida Segunda;Cabralzinho;5258;4
+870290;68906852;Avenida Terceira;Cabralzinho;5258;4
+870291;68906853;Avenida Quarta;Cabralzinho;5258;4
+870292;68906854;Avenida Primeira;Cabralzinho;5258;4
+870293;68906855;Avenida Quarta;Cabralzinho;5258;4
+870294;68906856;Avenida Vitoria Regia;Cabralzinho;5258;4
+870295;68906857;Avenida Terceira;Cabralzinho;5258;4
+870296;68906858;Avenida Quarta;Cabralzinho;5258;4
+870297;68906859;Avenida Quinta;Cabralzinho;5258;4
+870298;68906860;Rua Leonor Rodrigues;Cabralzinho;5258;4
+870299;68906861;Avenida Sexta;Cabralzinho;5258;4
+870300;68906865;Avenida Quinta;Cabralzinho;5258;4
+870301;68906870;Avenida Primeira;Cabralzinho;5258;4
+870302;68906875;Alameda Sexta;Cabralzinho;5258;4
+870303;68906880;Avenida Segunda;Cabralzinho;5258;4
+870304;68906885;Avenida Sétima;Cabralzinho;5258;4
+870305;68906890;Avenida Terceira;Cabralzinho;5258;4
+870306;68906891;Ramal da Fortaleza;Cabralzinho;5258;4
+870307;68906892;Ramal Lagoas das Garças;Cabralzinho;5258;4
+870308;68906895;Avenida Primeira;Cabralzinho;5258;4
+870309;68906900;Avenida Padre Júlio Maria Lombaerd 4301;Santa Rita;5258;4
+870310;68906901;Avenida Padre Júlio Maria Lombaerd 2925;Santa Rita;5258;4
+870311;68906902;Avenida Padre Júlio Maria Lombaerd 3007;Alvorada;5258;4
+870312;68906903;Avenida Presidente Getúlio Vargas 4;Santa Rita;5258;4
+870313;68906905;Rua São José 1500;Perpétuo Socorro;5258;4
+870314;68906906;Avenida FAB 1749;Central;5258;4
+870315;68906907;Avenida FAB s/n;Central;5258;4
+870316;68906909;Rua Minas Gerais 32;Santa Rita;5258;4
+870317;68906910;Avenida Coriolano Jucá 125;Central;5258;4
+870318;68906970;Avenida Coriolano Jucá 125;Central;5258;4
+870319;68906971;Avenida Mãe Luzia 107 Área Laguinho;Julião Ramos;5258;4
+870320;68906972;Avenida Alexandre Ferreira da Silva 2165;Novo Horizonte;5258;4
+870321;68906973;Avenida FAB 1854;Central;5258;4
+870322;68906974;Rua Cândido Mendes;Central;5258;4
+870323;68906990;Rodovia Duque de Caixas Km 14;desconhecido;5258;4
+870324;68907010;Rua Creta;Renascer;5258;4
+870325;68907015;Avenida Conteporânea;Renascer;5258;4
+870326;68907020;Alameda Itália;Renascer;5258;4
+870327;68907025;Rua Mar Adriático;Renascer;5258;4
+870328;68907030;Rua Liberdade;Renascer;5258;4
+870329;68907035;Avenida Demiurgos;Renascer;5258;4
+870330;68907040;Avenida Pitágoras;Renascer;5258;4
+870331;68907050;Avenida Heródoto;Renascer;5258;4
+870332;68907060;Avenida Solidários;Renascer;5258;4
+870333;68907070;Avenida Fraternidade;Renascer;5258;4
+870334;68907080;Avenida Igualdade;Renascer;5258;4
+870335;68907090;Avenida Polis;Renascer;5258;4
+870336;68907100;Avenida Lacônia;Renascer;5258;4
+870337;68907110;Avenida Gerusa;Renascer;5258;4
+870338;68907120;Rua Esperimentos;Renascer;5258;4
+870339;68907130;Avenida Classicismo;Renascer;5258;4
+870340;68907140;Rua Platão;Renascer;5258;4
+870341;68907150;Rua Aristóteles;Renascer;5258;4
+870342;68907160;Rua Michelângelo;Renascer;5258;4
+870343;68907170;Avenida Balcans;Renascer;5258;4
+870344;68907180;Avenida Alexandra Lemos;Renascer;5258;4
+870345;68907190;Rua Racionalismo;Renascer;5258;4
+870346;68907200;Rua Antropocentrismo;Renascer;5258;4
+870347;68907201;Rua Dezessete de Junho;Renascer;5258;4
+870348;68907202;Rua Progresso;Renascer;5258;4
+870349;68907203;Rua Independência;Renascer;5258;4
+870350;68907204;Rua Liberdade;Renascer;5258;4
+870351;68907205;Rua Sete de Setembro;Renascer;5258;4
+870352;68907206;Rua Milagres;Renascer;5258;4
+870353;68907207;Avenida Raimunda Maria Albertina;Renascer;5258;4
+870354;68907210;Avenida Metecos;Renascer;5258;4
+870355;68907220;Rua Mar Tireno;Renascer;5258;4
+870356;68907230;Rua Maiêutica;Renascer;5258;4
+870357;68907240;Rua Edi;Renascer;5258;4
+870358;68907250;Rua Iluminismo;Renascer;5258;4
+870359;68907260;Rua Pretores;Renascer;5258;4
+870360;68907270;Avenida Cartagenezes;Renascer;5258;4
+870361;68907280;Rua Tribunícia;Renascer;5258;4
+870362;68907290;Rua Centurião;Renascer;5258;4
+870363;68907300;Rua Tucidetes;Renascer;5258;4
+870364;68907301;Avenida Caubi Sérgio Melo;Pantanal;5258;4
+870365;68907302;Avenida Simplício Caridade;Pantanal;5258;4
+870366;68907303;Avenida Antônio Carlos Farias de Souza;Pantanal;5258;4
+870367;68907304;Avenida Venina dos Santos Carvalho;Pantanal;5258;4
+870368;68907305;Avenida Pedro Cardoso Quaresma;Pantanal;5258;4
+870369;68907306;Avenida Antônio Serafim dos Santos;Pantanal;5258;4
+870370;68907307;Avenida Nessy Costa da Silva;Pantanal;5258;4
+870371;68907308;Avenida Augusto Quaresma Bruno;Pantanal;5258;4
+870372;68907309;Avenida Antônio Rufino da Paixão;Pantanal;5258;4
+870373;68907310;Avenida das Elites;Pantanal;5258;4
+870374;68907311;Avenida Cecília Vicente da Paixão;Pantanal;5258;4
+870375;68907312;Avenida Maria Marques da Costa;Pantanal;5258;4
+870376;68907313;Avenida Marlon Silva Pereira;Pantanal;5258;4
+870377;68907314;Avenida Maria Nunes dos Santos;Pantanal;5258;4
+870378;68907315;Avenida Nicolau Libório;Pantanal;5258;4
+870379;68907316;Rua Euci Rodrigues Farias;Pantanal;5258;4
+870380;68907317;Rua João Almeida do Nascimento;Pantanal;5258;4
+870381;68907318;Rua Benedito Rodrigues Ferreira;Pantanal;5258;4
+870382;68907320;Rua Socialismo;Renascer;5258;4
+870383;68907330;Rua Italiota;Renascer;5258;4
+870384;68907340;Rua Grécia;Pantanal;5258;4
+870385;68907350;Avenida Egito;Pantanal;5258;4
+870386;68907360;Rua Mesopotâmia;Renascer;5258;4
+870387;68907370;Alameda Pereânio;Renascer;5258;4
+870388;68907380;Alameda Poloneso;Renascer;5258;4
+870389;68907390;Rua Roma;Renascer;5258;4
+870390;68907400;Alameda Tróia;Renascer;5258;4
+870391;68907410;Alameda Corito;Renascer;5258;4
+870392;68907420;Rua Bizâncio;Renascer;5258;4
+870393;68907430;Alameda Micenas;Renascer;5258;4
+870394;68907440;Rua Constantinoplas;Renascer;5258;4
+870395;68907450;Avenida Ravena;Renascer;5258;4
+870396;68907460;Avenida Esparta;Renascer;5258;4
+870397;68907470;Alameda Humanismo;Renascer;5258;4
+870398;68907480;Avenida Mar Vermelho;Renascer;5258;4
+870399;68907490;Rua Oséas de Oliveira Pimentel;Renascer;5258;4
+870400;68907500;Rua Constelação de Dellos;Renascer;5258;4
+870401;68907510;Rua das Classes;Renascer;5258;4
+870402;68907520;Rua Espólio;Renascer;5258;4
+870403;68907530;Avenida Mar Egeu;Renascer;5258;4
+870404;68907540;Alameda Monalisa;Renascer;5258;4
+870405;68907550;Avenida Rafael Sânsio;Renascer;5258;4
+870406;68907560;Avenida Leonardo Da Vinci;Renascer;5258;4
+870407;68907570;Avenida Macedônia;Renascer;5258;4
+870408;68907580;Avenida Pérsia;Renascer;5258;4
+870409;68907590;Rua Licínias;Renascer;5258;4
+870410;68907600;Travessa Eupátridas;Renascer;5258;4
+870411;68907610;Travessa Elitismo;Renascer;5258;4
+870412;68907611;Alameda Atenas;Renascer;5258;4
+870413;68907612;Alameda Pompéia;Renascer;5258;4
+870414;68907613;Alameda Pergamo;Renascer;5258;4
+870415;68907614;Rua Samaria;Renascer;5258;4
+870416;68907620;Rua Renascimento;Renascer;5258;4
+870417;68907621;Rua Manoel Francisco de Souza;Renascer;5258;4
+870418;68907622;Alameda Waldemar José Viana;Renascer;5258;4
+870419;68907623;Alameda Waldemar José Pereira;Renascer;5258;4
+870420;68907630;Rua Sócrates;Renascer;5258;4
+870421;68907635;Rua Patrícius;Renascer;5258;4
+870422;68907640;Rua Plebeus;Renascer;5258;4
+870423;68908005;Rua Porto Alegre;Infraero;5258;4
+870424;68908006;Avenida Cid Borges de Santana;Infraero;5258;4
+870425;68908007;Rua Ananindeua;Infraero;5258;4
+870426;68908008;Rua Boa Vista;Infraero;5258;4
+870427;68908009;Rua Belém;Infraero;5258;4
+870428;68908015;Rua São José;Julião Ramos;5258;4
+870429;68908031;Rua Campo Grande;Infraero;5258;4
+870430;68908032;Rua Porto Velho;Infraero;5258;4
+870431;68908033;Rua Palmas;Infraero;5258;4
+870432;68908034;Rua Manaus;Infraero;5258;4
+870433;68908036;Rua Aracaju;Infraero;5258;4
+870434;68908037;Rua Imperatriz;Infraero;5258;4
+870435;68908038;Rua Tucuruí;Infraero;5258;4
+870436;68908039;Rua Rondônia;Infraero;5258;4
+870437;68908041;Rua Caxias do Sul;Infraero;5258;4
+870438;68908042;Rua Yasmin dos Santos Brito;Infraero;5258;4
+870439;68908044;Rua Niterói;Infraero;5258;4
+870440;68908046;Rua Maceió;Infraero;5258;4
+870441;68908047;Rua Londrina;Infraero;5258;4
+870442;68908048;Rua Rio Branco;Infraero;5258;4
+870443;68908049;Rua Ouro Preto;Infraero;5258;4
+870444;68908051;Rua Roraima;Infraero;5258;4
+870445;68908052;Rua Petrolina;Infraero;5258;4
+870446;68908053;Rua Olinda;Infraero;5258;4
+870447;68908054;Rua Monte Alegre;Infraero;5258;4
+870448;68908058;Rua Tocantins;Infraero;5258;4
+870449;68908060;Rua Terezina;Infraero;5258;4
+870450;68908073;Passagem Santa Maria;Infraero;5258;4
+870451;68908074;Avenida Carlos Lins Cortês;Infraero;5258;4
+870452;68908075;Rua Maria Raucilene Passos do Nascimento;Infraero;5258;4
+870453;68908076;Avenida Maria Cavalcante de Azevedo Picanço;Infraero;5258;4
+870454;68908077;Rua Roldão dos Santos Brito;Infraero;5258;4
+870455;68908078;Rua da Paz;Infraero;5258;4
+870456;68908079;Rua Santo Cristo;Infraero;5258;4
+870457;68908081;Rua Shalon;Infraero;5258;4
+870458;68908082;Rua Elchadai;Infraero;5258;4
+870459;68908083;Rua Filadélfia;Infraero;5258;4
+870460;68908084;Rua Jesus de Nazaré;Infraero;5258;4
+870461;68908085;Rua Nova Canaã;Infraero;5258;4
+870462;68908086;Rua Monte Sinai;Infraero;5258;4
+870463;68908087;Rua Sheknan;Infraero;5258;4
+870464;68908088;Rua Salmo Noventa e Um;Infraero;5258;4
+870465;68908089;Rua Salmo Vinte e Três;Infraero;5258;4
+870466;68908091;Rua Salmo Cinquenta e Um;Infraero;5258;4
+870467;68908092;Rua Salmo Cem;Infraero;5258;4
+870468;68908093;Rua Liberdade;Infraero;5258;4
+870469;68908110;Travessa Julião Ramos;Jesus de Nazaré;5258;4
+870470;68908111;Canal da Manoel Eudóxio Pereira;Jesus de Nazaré;5258;4
+870471;68908112;Avenida Padre José de Anchieta;Jesus de Nazaré;5258;4
+870472;68908113;Avenida Princesa Isabel;Jesus de Nazaré;5258;4
+870473;68908114;Praça Chico Noé;Jesus de Nazaré;5258;4
+870474;68908119;Rua Hildemar Maia;Jesus de Nazaré;5258;4
+870475;68908120;Rua Leopoldo Machado;Jesus de Nazaré;5258;4
+870476;68908121;Rua Jovino Dinoá;Jesus de Nazaré;5258;4
+870477;68908122;Avenida Mãe Luzia;Jesus de Nazaré;5258;4
+870478;68908123;Rua Manoel Eudóxio Pereira;Jesus de Nazaré;5258;4
+870479;68908124;Avenida Marcílio Dias;Jesus de Nazaré;5258;4
+870480;68908125;Avenida Carlos Gomes;Jesus de Nazaré;5258;4
+870481;68908126;Avenida Jose Tupinamba de Almeida;Jesus de Nazaré;5258;4
+870482;68908127;Avenida General Osório;Jesus de Nazaré;5258;4
+870483;68908128;Passagem Ponte do Axé;Jesus de Nazaré;5258;4
+870484;68908129;Avenida Ana Nery;Jesus de Nazaré;5258;4
+870485;68908130;Rua Hamilton Silva;Jesus de Nazaré;5258;4
+870486;68908150;Rua José Serafim;Julião Ramos;5258;4
+870487;68908153;Avenida Ana Nery;Julião Ramos;5258;4
+870488;68908160;Avenida Mãe Luzia;Julião Ramos;5258;4
+870489;68908180;Avenida General Osório;Julião Ramos;5258;4
+870490;68908181;Rua General Rondon;Julião Ramos;5258;4
+870491;68908182;Rua Odilardo Silva;Julião Ramos;5258;4
+870492;68908183;Rua Eliézer Levy;Julião Ramos;5258;4
+870493;68908188;Avenida Jose Tupinamba de Almeida;Julião Ramos;5258;4
+870494;68908191;Passagem Santa Marta;Julião Ramos;5258;4
+870495;68908192;Passagem Santa Luzia;Julião Ramos;5258;4
+870496;68908193;Avenida José Antônio Siqueira;Jesus de Nazaré;5258;4
+870497;68908194;Avenida José Antônio Siqueira;Julião Ramos;5258;4
+870498;68908196;Avenida Padre Manoel da Nóbrega;Julião Ramos;5258;4
+870499;68908197;Avenida Ernestino Borges;Jesus de Nazaré;5258;4
+870500;68908198;Avenida Ernestino Borges;Julião Ramos;5258;4
+870501;68908199;Avenida Pedro Américo;Julião Ramos;5258;4
+870502;68908200;Avenida Marcílio Dias;Julião Ramos;5258;4
+870503;68908210;Passagem José Bonifácio;Julião Ramos;5258;4
+870504;68908230;Avenida Pará;Pacoval;5258;4
+870505;68908235;1ª Travessa da Rodovia do Pacoval;Pacoval;5258;4
+870506;68908240;Avenida Maranhão;Pacoval;5258;4
+870507;68908245;2ª Travessa da Rodovia do Pacoval;Pacoval;5258;4
+870508;68908250;Avenida Piauí;Pacoval;5258;4
+870509;68908260;Avenida Ceará;Pacoval;5258;4
+870510;68908265;Travessa Pará;Pacoval;5258;4
+870511;68908270;Avenida Rio Grande do Norte;Pacoval;5258;4
+870512;68908271;Passagem Rio Grande do Norte;Pacoval;5258;4
+870513;68908272;Rua São José;Pacoval;5258;4
+870514;68908275;Rua Manoel Pacífico Cantuária;Pacoval;5258;4
+870515;68908276;Travessa Terceira da Rodovia do Pacoval;Pacoval;5258;4
+870516;68908277;Travessa Primeira da Rodovia do Pacoval;Pacoval;5258;4
+870517;68908278;Travessa Segunda da Rodovia do Pacoval;Pacoval;5258;4
+870518;68908280;Avenida Paraíba;Pacoval;5258;4
+870519;68908285;Avenida São Benedito;Pacoval;5258;4
+870520;68908290;Avenida Pernambuco;Pacoval;5258;4
+870521;68908295;Passagem Nossa Senhora de Nazaré;Pacoval;5258;4
+870522;68908300;Avenida Alagoas;Pacoval;5258;4
+870523;68908305;Passagem Goiás;Pacoval;5258;4
+870524;68908310;Avenida Sergipe;Pacoval;5258;4
+870525;68908317;Rua São Benedito;Pacoval;5258;4
+870526;68908318;Passagem São Paulo;Pacoval;5258;4
+870527;68908319;Avenida Raimundo Souza Mesquita;Pacoval;5258;4
+870528;68908320;Avenida Bahia;Pacoval;5258;4
+870529;68908325;Avenida Maximiano dos Santos Moura;Pacoval;5258;4
+870530;68908330;Avenida Amazonas;Pacoval;5258;4
+870531;68908340;Rua Goiás;Pacoval;5258;4
+870532;68908350;Rua Mato Grosso;Pacoval;5258;4
+870533;68908351;Travessa José Jucá de Mont Alverne;Pacoval;5258;4
+870534;68908360;Rua Guanabara;Pacoval;5258;4
+870535;68908370;Rua São Paulo;Pacoval;5258;4
+870536;68908389;Passagem do Jandiá;Pacoval;5258;4
+870537;68908390;Avenida Acre;Pacoval;5258;4
+870538;68908400;Avenida João Falconery de Sena;São Lázaro;5258;4
+870539;68908401;Rua Luisa Picanço;São Lázaro;5258;4
+870540;68908405;Travessa Porcina de Melo;São Lázaro;5258;4
+870541;68908410;Avenida Luís Lino dos Santos;São Lázaro;5258;4
+870542;68908415;Travessa Manoel Francisco de Souza;São Lázaro;5258;4
+870543;68908420;Avenida José Ferreira do Amaral;São Lázaro;5258;4
+870544;68908425;Travessa José Viana;São Lázaro;5258;4
+870545;68908430;Avenida João Azevedo Tavares;São Lázaro;5258;4
+870546;68908435;Rua Caubi Melo;São Lázaro;5258;4
+870547;68908440;Avenida Dirceu Cordeiro Dias;São Lázaro;5258;4
+870548;68908445;Avenida João de Azevedo Tavares;São Lázaro;5258;4
+870549;68908450;Avenida Germano Silva Souza;São Lázaro;5258;4
+870550;68908455;Travessa Luis Cezar Picanço;São Lázaro;5258;4
+870551;68908460;Avenida José Lino Ramos;São Lázaro;5258;4
+870552;68908465;Rua A;São Lázaro;5258;4
+870553;68908470;Avenida Aurino Borges de Oliveira;São Lázaro;5258;4
+870554;68908475;Passagem Vale Verde;São Lázaro;5258;4
+870555;68908480;Avenida José Alves Pessoa;São Lázaro;5258;4
+870556;68908481;Canal do Jandiá;São Lázaro;5258;4
+870557;68908485;Rua Floriano Waldek;São Lázaro;5258;4
+870558;68908490;Avenida Pantaleão Gomes de Oliveira;São Lázaro;5258;4
+870559;68908500;Avenida Pedro Wilson de Lima;São Lázaro;5258;4
+870560;68908510;Avenida José Pereira Teixeira;São Lázaro;5258;4
+870561;68908520;Avenida Favila Gentil;São Lázaro;5258;4
+870562;68908530;Rua Tancredo Neves;São Lázaro;5258;4
+870563;68908540;Avenida Ambrósio Lúcio da Silva;São Lázaro;5258;4
+870564;68908550;Avenida José Moacir Banhos de Araújo;São Lázaro;5258;4
+870565;68908560;Avenida Armando Tupan Alves de Abreu;São Lázaro;5258;4
+870566;68908570;Avenida Anete Gomes da Silva;São Lázaro;5258;4
+870567;68908571;Rua Adilson José Pinto Pereira;São Lázaro;5258;4
+870568;68908572;Travessa Santo Inácio de Loiola;São Lázaro;5258;4
+870569;68908573;Avenida Miss Fátima Diniz;São Lázaro;5258;4
+870570;68908574;Alameda José Viana;São Lázaro;5258;4
+870571;68908575;Rodovia BR-156;São Lázaro;5258;4
+870572;68908576;Rua Emílio Médici;São Lázaro;5258;4
+870573;68908580;Avenida Raimundo R. Guedes Figueira;São Lázaro;5258;4
+870574;68908640;Travessa José Jucá Mont'Alverne;Pacoval;5258;4
+870575;68908641;Avenida Brasil;Boné Azul;5258;4
+870576;68908642;Avenida Raimundo Almeida Costa;Boné Azul;5258;4
+870577;68908643;Avenida Airton Senna;Boné Azul;5258;4
+870578;68908644;Avenida Macapá;Boné Azul;5258;4
+870579;68908645;Avenida das Flores;Boné Azul;5258;4
+870580;68908646;Avenida Minervina Barcelos;Boné Azul;5258;4
+870581;68908647;Avenida Anibal Barcelos;Boné Azul;5258;4
+870582;68908751;Avenida Pedro Américo;Julião Ramos;5258;4
+870583;68908779;Avenida dos Abacates;Infraero;5258;4
+870584;68908780;Via Acesso Um;Infraero;5258;4
+870585;68908782;Via Acesso Principal;Infraero;5258;4
+870586;68908783;Avenida das Atas;Infraero;5258;4
+870587;68908784;Rua da Biriba;Infraero;5258;4
+870588;68908785;Rua do Cacau;Infraero;5258;4
+870589;68908786;Rua Cacau;Infraero;5258;4
+870590;68908787;Avenida dos Cajus;Infraero;5258;4
+870591;68908788;Avenida dos Figos;Infraero;5258;4
+870592;68908789;Avenida do Jabuticaba;Infraero;5258;4
+870593;68908790;Rua do Limão;Infraero;5258;4
+870594;68908791;Avenida das Limas;Infraero;5258;4
+870595;68908792;Avenida do Muruci;Infraero;5258;4
+870596;68908793;Avenida das Peras;Infraero;5258;4
+870597;68908794;Avenida das Uvas;Infraero;5258;4
+870598;68908795;Avenida do Açai;Infraero;5258;4
+870599;68908801;Avenida Alice do Nascimento Pimentel;Infraero;5258;4
+870600;68908802;Avenida Antenor Epifânio Martins;Infraero;5258;4
+870601;68908803;Avenida Alzir da Silva Maia;Infraero;5258;4
+870602;68908804;Avenida Uriel Sales Araújo;Infraero;5258;4
+870603;68908805;Avenida Francisco Felipe de Miranda;Infraero;5258;4
+870604;68908806;Avenida João Candido Soares Filho;Infraero;5258;4
+870605;68908807;Rua dos Abacaxis;Infraero;5258;4
+870606;68908808;Rua Marabá;Infraero;5258;4
+870607;68908809;Rua Santarém;Infraero;5258;4
+870608;68908810;Rua Maria de Fátima Ardase;Infraero;5258;4
+870609;68908811;Rua Ubiracy Azevedo Picanço;Infraero;5258;4
+870610;68908812;Rua Bertoldo Rosa Duarte;Infraero;5258;4
+870611;68908813;Rua Raimundo Ramos da Silva;Infraero;5258;4
+870612;68908814;Rua Yasmin dos Santos Brito;Infraero;5258;4
+870613;68908815;Rua Antonio Flexa da Costa;Infraero;5258;4
+870614;68908816;Rua Elionai Cesa da Silva;Infraero;5258;4
+870615;68908817;Rua Pedro Rodrigues de Lima;Infraero;5258;4
+870616;68908818;Rua Djanira Mendonça Palheta;Infraero;5258;4
+870617;68908819;Rua Maria Raucilene Passos do Nascimento;Infraero;5258;4
+870618;68908820;Rua Francisco Francine Cavalcante;Infraero;5258;4
+870619;68908821;Rua Agostinho Nogueira de Souza;Infraero;5258;4
+870620;68908826;Rua Imaculada Conceição;Infraero;5258;4
+870621;68908827;Rua dos Ananais;Infraero;5258;4
+870622;68908828;Rua Natecia Rosa da Silva;Infraero;5258;4
+870623;68908829;Rua Redenção;Infraero;5258;4
+870624;68908832;Rua dos Abius;Infraero;5258;4
+870625;68908833;Rua Açai;Infraero;5258;4
+870626;68908834;Rua dos Anajás;Infraero;5258;4
+870627;68908835;Rua dos Araçás;Infraero;5258;4
+870628;68908836;Avenida das Bacabas;Infraero;5258;4
+870629;68908837;Avenida dos Bacuris;Infraero;5258;4
+870630;68908838;Rua dos Buritis;Infraero;5258;4
+870631;68908839;Avenida dos Cajus;Infraero;5258;4
+870632;68908841;Avenida dos Cupuaçus;Infraero;5258;4
+870633;68908842;Avenida das Jacas;Infraero;5258;4
+870634;68908843;Rua dos Jenipapos;Infraero;5258;4
+870635;68908844;Rua dos Mamões;Infraero;5258;4
+870636;68908845;Rua dos Maracujás;Infraero;5258;4
+870637;68908846;Rua dos Maris;Infraero;5258;4
+870638;68908847;Rua dos Morangos;Infraero;5258;4
+870639;68908848;Rua dos Mucajás;Infraero;5258;4
+870640;68908849;Rua dos Murucis;Infraero;5258;4
+870641;68908850;Travessa Doutor André Luís;Infraero;5258;4
+870642;68908851;Rua Rio Amazonas;Infraero;5258;4
+870643;68908852;Avenida Maria Pereira Cardoso;Infraero;5258;4
+870644;68908853;Passagem Tucano;Infraero;5258;4
+870645;68908854;Passagem Búfalo;Infraero;5258;4
+870646;68908855;Passagem Hércules;Infraero;5258;4
+870647;68908856;Avenida Marechal Braga;Infraero;5258;4
+870648;68908857;Passagem Quatorze Bis;Infraero;5258;4
+870649;68908858;Passagem José Ferreira da Paz;Infraero;5258;4
+870650;68908859;Passagem Pedro Furtado;Infraero;5258;4
+870651;68908860;Rua Tony Tavares;Infraero;5258;4
+870652;68908861;Passagem Josefa Banha;Infraero;5258;4
+870653;68908862;Passagem Jonatha Bezerra;Infraero;5258;4
+870654;68908863;Passagem José Barbosa;Infraero;5258;4
+870655;68908864;Avenida Adolfo de Menezes;Infraero;5258;4
+870656;68908865;Passagem Catalina;Infraero;5258;4
+870657;68908867;Avenida André Luís;Infraero;5258;4
+870658;68908868;Passagem Albatroz;Infraero;5258;4
+870659;68908869;Rua Emílio Médici;Infraero;5258;4
+870660;68908870;Rua Pedro Peticov;Infraero;5258;4
+870661;68908871;Avenida Brigadeiro Araripe Macedo;Infraero;5258;4
+870662;68908872;Travessa Ururay;Infraero;5258;4
+870663;68908873;Rua Doze de Dezembro;Infraero;5258;4
+870664;68908874;Rua Primeiro de Janeiro;Infraero;5258;4
+870665;68908875;Passagem Douglas;Infraero;5258;4
+870666;68908876;Rua Janary Nunes;Infraero;5258;4
+870667;68908877;Rua Brigadeiro Helio Costa;Infraero;5258;4
+870668;68908878;Rodovia BR-210;Infraero;5258;4
+870669;68908879;Rua Padre Bartolomeu Gusmão;Infraero;5258;4
+870670;68908880;Rua Maria Neuza do Carmo;Infraero;5258;4
+870671;68908881;Passagem Demossele;Infraero;5258;4
+870672;68908882;Avenida Chico Mendes;Infraero;5258;4
+870673;68908883;Avenida Marechal Eduardo Gomes;Infraero;5258;4
+870674;68908884;Avenida Brigadeiro Farias Lima;Infraero;5258;4
+870675;68908885;Passagem dos Bandeirantes;Infraero;5258;4
+870676;68908887;Avenida Esquadrão Falção;Infraero;5258;4
+870677;68908890;Passagem Jorge Basile;Infraero;5258;4
+870678;68908891;Travessa Zepelim;Infraero;5258;4
+870679;68908892;Travessa Porcina de Melo;Infraero;5258;4
+870680;68908893;Rua Joaquim Navegante;Infraero;5258;4
+870681;68908894;Rua dos Tamarindos;Infraero;5258;4
+870682;68908895;Passagem Joaquim Valente;Infraero;5258;4
+870683;68908896;Rua dos Piquiás;Infraero;5258;4
+870684;68908897;Rua das Pupunhas;Infraero;5258;4
+870685;68908898;Rua dos Taperebás;Infraero;5258;4
+870686;68908899;Rua dos Tucumãs;Infraero;5258;4
+870687;68908901;Avenida Ernestino Borges 1402;Jesus de Nazaré;5258;4
+870688;68908902;Avenida Ernestino Borges 1402;Julião Ramos;5258;4
+870689;68908905;Rodovia BR-210 2131;Infraero;5258;4
+870690;68908908;Rua General Rondon 259;Julião Ramos;5258;4
+870691;68908970;Avenida Acre;Pacoval;5258;4
+870692;68908971;Rodovia Juscelino Kubitschek 1660;Jardim Marco Zero;5258;4
+870693;68908973;Rodovia BR-156;São Lázaro;5258;4
+870694;68909000;Rua Vereador Julio Maria Pinto Pereira;Jardim Felicidade;5258;4
+870695;68909005;Rua Amilar Brenha;Jardim Felicidade;5258;4
+870696;68909006;Avenida da Liberdade;Jardim Felicidade;5258;4
+870697;68909007;Avenida Lourenço Araújo de Sá;Jardim Felicidade;5258;4
+870698;68909008;Avenida Josefa Pelaes da Silva;Jardim Felicidade;5258;4
+870699;68909009;Avenida Maria das Graças Picanço;Jardim Felicidade;5258;4
+870700;68909010;Travessa do Paraíso;Jardim Felicidade;5258;4
+870701;68909011;Avenida Pedro Wanderley Fernandes;Jardim Felicidade;5258;4
+870702;68909012;Avenida Severino Gomes de Almeida;Novo Horizonte;5258;4
+870703;68909013;Avenida Ancelmo Paulo Ramos;Jardim Felicidade;5258;4
+870704;68909014;Travessa Carlos Almeida de Souza;Jardim Felicidade;5258;4
+870705;68909015;Avenida Ana Maria Gomes da Costa;Jardim Felicidade;5258;4
+870706;68909017;Rua Marabaixo;Jardim Felicidade;5258;4
+870707;68909018;Rua Eulália Maria de Menezes;Jardim Felicidade;5258;4
+870708;68909019;Rua Maria da Silva Xavier;Jardim Felicidade;5258;4
+870709;68909020;Travessa do Setentrião;Jardim Felicidade;5258;4
+870710;68909021;Avenida Francisco Alves Corrêa;Novo Horizonte;5258;4
+870711;68909022;Avenida Zarah Valente Gentil;Jardim Felicidade;5258;4
+870712;68909023;Rodovia Curiau;Jardim Felicidade;5258;4
+870713;68909025;Avenida Ana Maria das Graças Picanço;Jardim Felicidade;5258;4
+870714;68909027;Travessa da Luz;Jardim Felicidade;5258;4
+870715;68909029;Travessa Equatorial;Jardim Felicidade;5258;4
+870716;68909030;Rua João Paulo de Souza;Jardim Felicidade;5258;4
+870717;68909031;Travessa dos Emigrantes;Jardim Felicidade;5258;4
+870718;68909032;Travessa Tricolor;Jardim Felicidade;5258;4
+870719;68909033;Avenida Alvaro Carvalho Barbosa;Jardim Felicidade;5258;4
+870720;68909034;Avenida Joaquim Silva do Amaral;Jardim Felicidade;5258;4
+870721;68909035;Avenida Antônio Carlos Reis;Jardim Felicidade;5258;4
+870722;68909038;Travessa Piauí;Jardim Felicidade;5258;4
+870723;68909039;Rua Santo Antônio;Jardim Felicidade;5258;4
+870724;68909040;Rua Nova República;Jardim Felicidade;5258;4
+870725;68909045;Avenida Alexandre Ferreira da Silva;Jardim Felicidade;5258;4
+870726;68909046;Rua São Raimundo;Jardim Felicidade;5258;4
+870727;68909047;Rua São Januario;Jardim Felicidade;5258;4
+870728;68909048;Rua Santa Maria;Jardim Felicidade;5258;4
+870729;68909049;Avenida São Joaquim;Jardim Felicidade;5258;4
+870730;68909050;Rua Francisco Xavier das Chagas;Jardim Felicidade;5258;4
+870731;68909055;Avenida Carlos Almeida de Souza;Jardim Felicidade;5258;4
+870732;68909060;Rua José Maria Silva Azevedo;Jardim Felicidade;5258;4
+870733;68909061;Travessa Pedro Wanderley Fernandes;Jardim Felicidade;5258;4
+870734;68909065;Avenida Deoclides Franco Mont'Alverne;Jardim Felicidade;5258;4
+870735;68909066;Avenida Paulo do Espirito Santo Silva;Jardim Felicidade;5258;4
+870736;68909067;Rua Clodoaldo da Silva Matias;Jardim Felicidade;5258;4
+870737;68909068;Rua Milton de Souza Correia;Jardim Felicidade;5258;4
+870738;68909070;Rua Antônio Osmar;Jardim Felicidade;5258;4
+870739;68909075;Avenida Francisco Alves Corrêa;Jardim Felicidade;5258;4
+870740;68909076;Travessa São Cristovão;Jardim Felicidade;5258;4
+870741;68909080;Rua Guilherme Coelho;Jardim Felicidade;5258;4
+870742;68909081;Avenida Geriba Almeida de Azevedo Costa;Jardim Felicidade;5258;4
+870743;68909090;Rua Raimundo Castro Pontes;Jardim Felicidade;5258;4
+870744;68909091;Travessa da Raça Negra;Jardim Felicidade;5258;4
+870745;68909093;Avenida Veiga Cabral;Jardim Felicidade;5258;4
+870746;68909094;Rodovia BR-156;Jardim Felicidade;5258;4
+870747;68909095;Avenida Hermes Monteiro da Silva;Novo Horizonte;5258;4
+870748;68909096;Travessa dos Mulatos;Jardim Felicidade;5258;4
+870749;68909097;Rua João Alberto Capiberibe;Jardim Felicidade;5258;4
+870750;68909098;Avenida dos Prazeres;Jardim Felicidade;5258;4
+870751;68909099;Avenida Sandoval Almeida Sandin;Jardim Felicidade;5258;4
+870752;68909100;Rua Paula Ramos da Fonseca;Jardim Felicidade;5258;4
+870753;68909115;Avenida José Ferreira Chucre;Jardim Felicidade;5258;4
+870754;68909125;Avenida José Loureiro de Sena;Jardim Felicidade;5258;4
+870755;68909131;Avenida Paulo Sérgio;Boné Azul;5258;4
+870756;68909132;Avenida Gonzaguinha;Boné Azul;5258;4
+870757;68909133;Avenida João Nogueira;Boné Azul;5258;4
+870758;68909134;Avenida Orlando Silva;Boné Azul;5258;4
+870759;68909135;Avenida Machado de Assis;Boné Azul;5258;4
+870760;68909136;Avenida Gregório de Matos;Boné Azul;5258;4
+870761;68909137;Avenida Leandro;Boné Azul;5258;4
+870762;68909139;Avenida Cartola;Boné Azul;5258;4
+870763;68909142;Avenida Castro Alves;Boné Azul;5258;4
+870764;68909143;Avenida Vinícius de Moraes;Boné Azul;5258;4
+870765;68909144;Avenida Elis Regina;Boné Azul;5258;4
+870766;68909145;Rua Tom Jobim;Boné Azul;5258;4
+870767;68909146;Rua Nelson Gonçalves;Boné Azul;5258;4
+870768;68909147;Rua Ataulfo Alves;Boné Azul;5258;4
+870769;68909148;Rua Clara Nunes;Boné Azul;5258;4
+870770;68909149;Rua Renato Russo;Boné Azul;5258;4
+870771;68909151;Rua Augusto dos Anjos;Boné Azul;5258;4
+870772;68909152;Rua Vicente Celestino;Boné Azul;5258;4
+870773;68909153;Rua Leila Diniz;Boné Azul;5258;4
+870774;68909154;Rua Altemar Dutra;Boné Azul;5258;4
+870775;68909155;Rua Pixinguinha;Boné Azul;5258;4
+870776;68909156;Rua Cazuza;Boné Azul;5258;4
+870777;68909157;Rua Aluísio Azevedo;Boné Azul;5258;4
+870778;68909158;Rua Tim Maria;Boné Azul;5258;4
+870779;68909159;Rua Antônio Marcos;Boné Azul;5258;4
+870780;68909161;Rua Dalva de Oliveira;Boné Azul;5258;4
+870781;68909162;Rua Evaldo Braga;Boné Azul;5258;4
+870782;68909163;Rua João Paulo;Boné Azul;5258;4
+870783;68909164;Rua Raul Seixas;Boné Azul;5258;4
+870784;68909165;Rua Rui Barbosa;Boné Azul;5258;4
+870785;68909166;Rua Sérgio Mendes;Boné Azul;5258;4
+870786;68909167;Rua Abelardo Barbosa;Boné Azul;5258;4
+870787;68909170;Avenida Araucária;Boné Azul;5258;4
+870788;68909171;Rua Armindo Pinto;Boné Azul;5258;4
+870789;68909172;Avenida Dener;Boné Azul;5258;4
+870790;68909173;Avenida das Nações;Boné Azul;5258;4
+870791;68909174;Travessa Nona;Boné Azul;5258;4
+870792;68909175;Rua Dona Ermínia;Boné Azul;5258;4
+870793;68909177;Rua Laranjeira;Boné Azul;5258;4
+870794;68909301;Avenida Abacatal;Brasil Novo;5258;4
+870795;68909302;Baixa Abacaxi;Brasil Novo;5258;4
+870796;68909303;Alameda Abil;Brasil Novo;5258;4
+870797;68909304;Avenida Açai;Brasil Novo;5258;4
+870798;68909305;Rua Acerola;Brasil Novo;5258;4
+870799;68909306;Rua Bacabeira;Brasil Novo;5258;4
+870800;68909307;Alameda Bacuri;Brasil Novo;5258;4
+870801;68909308;Rua Bacuris;Brasil Novo;5258;4
+870802;68909309;Avenida Bananeira;Brasil Novo;5258;4
+870803;68909311;Alameda Bom Jesus;Brasil Novo;5258;4
+870804;68909312;Rua Cajueiro;Brasil Novo;5258;4
+870805;68909313;Avenida Caneleira;Brasil Novo;5258;4
+870806;68909314;Alameda Cereja;Brasil Novo;5258;4
+870807;68909315;Avenida Coqueiro;Brasil Novo;5258;4
+870808;68909316;Alameda Cupuaçu;Brasil Novo;5258;4
+870809;68909317;Rua do Cupuaçu;Brasil Novo;5258;4
+870810;68909318;Alameda Cupuaçus;Brasil Novo;5258;4
+870811;68909319;Rua Floresta;Brasil Novo;5258;4
+870812;68909320;Rua Goiabeira;Brasil Novo;5258;4
+870813;68909321;Alameda Graviola;Brasil Novo;5258;4
+870814;68909322;Avenida Jambeiro;Brasil Novo;5258;4
+870815;68909323;Alameda São José;Brasil Novo;5258;4
+870816;68909324;Rua Mamoeiro;Brasil Novo;5258;4
+870817;68909325;Rua Manacapuru;Brasil Novo;5258;4
+870818;68909326;Avenida Manga Rosa;Brasil Novo;5258;4
+870819;68909327;Travessa Palmares;Brasil Novo;5258;4
+870820;68909328;Avenida Perobal;Brasil Novo;5258;4
+870821;68909329;Avenida Pinhal;Brasil Novo;5258;4
+870822;68909332;Avenida Seringal;Brasil Novo;5258;4
+870823;68909333;Alameda Siriguela;Brasil Novo;5258;4
+870824;68909334;Rua Tangerinas;Brasil Novo;5258;4
+870825;68909335;Alameda Tucumã;Brasil Novo;5258;4
+870826;68909336;Rua das Melancias;Brasil Novo;5258;4
+870827;68909398;Rodovia BR-210;Brasil Novo;5258;4
+870828;68909461;Rua Amapá;Boné Azul;5258;4
+870829;68909462;Rua Eucalipto;Boné Azul;5258;4
+870830;68909463;Rua Jatoba;Boné Azul;5258;4
+870831;68909464;Rua Pau Brasil;Boné Azul;5258;4
+870832;68909465;Rua Jaboradi;Boné Azul;5258;4
+870833;68909466;Avenida Aquariquara;Boné Azul;5258;4
+870834;68909467;Avenida Angelim;Boné Azul;5258;4
+870835;68909468;Avenida Mogno;Boné Azul;5258;4
+870836;68909469;Avenida Ipê;Boné Azul;5258;4
+870837;68909470;Avenida Castanheira;Boné Azul;5258;4
+870838;68909471;Avenida Pau Mulato;Boné Azul;5258;4
+870839;68909472;Avenida Maçaranduba;Boné Azul;5258;4
+870840;68909473;Passagem da Amizade;Boné Azul;5258;4
+870841;68909474;Rua Cedro;Boné Azul;5258;4
+870842;68909475;Rua Acapú;Boné Azul;5258;4
+870843;68909486;Rua Rio Araguari;Boné Azul;5258;4
+870844;68909487;Rua Rio Calçoene;Boné Azul;5258;4
+870845;68909488;Rua Rio Curiaú;Boné Azul;5258;4
+870846;68909489;Rua Rio Matapi;Boné Azul;5258;4
+870847;68909490;Rua Rio Vila Nova;Boné Azul;5258;4
+870848;68909491;Rua Rio Amapari;Boné Azul;5258;4
+870849;68909492;Rua Rio Tocantins;Boné Azul;5258;4
+870850;68909493;Rua Rio Xingú;Boné Azul;5258;4
+870851;68909494;Rua Rio Jari;Boné Azul;5258;4
+870852;68909495;Rua Rio Tapajós;Boné Azul;5258;4
+870853;68909496;Rua Rio Negro;Boné Azul;5258;4
+870854;68909497;Rua Rio Madeira;Boné Azul;5258;4
+870855;68909498;Rua Rio Juruá;Boné Azul;5258;4
+870856;68909499;Rua Rio Purus;Boné Azul;5258;4
+870857;68909500;Rua Rio Javari;Boné Azul;5258;4
+870858;68909501;Avenida Rio Amazonas;Boné Azul;5258;4
+870859;68909502;Avenida Rio Solimões;Boné Azul;5258;4
+870860;68909511;Rua São João;Boné Azul;5258;4
+870861;68909512;Rua Santo Antonio;Boné Azul;5258;4
+870862;68909513;Rua São João;Boné Azul;5258;4
+870863;68909514;Rua Nossa Senhora Aparecida;Boné Azul;5258;4
+870864;68909515;Rua Central;Boné Azul;5258;4
+870865;68909516;Avenida Principal;Boné Azul;5258;4
+870866;68909517;Alameda Quinta;Boné Azul;5258;4
+870867;68909518;Alameda Sexta;Boné Azul;5258;4
+870868;68909519;Alameda Setima;Boné Azul;5258;4
+870869;68909520;Alameda Oitava;Boné Azul;5258;4
+870870;68909521;Alameda Nona;Boné Azul;5258;4
+870871;68909522;Alameda Décima;Boné Azul;5258;4
+870872;68909523;Alameda Décima Primeira;Boné Azul;5258;4
+870873;68909524;Alameda Décima Segunda;Boné Azul;5258;4
+870874;68909525;Alameda Décima Terceira;Boné Azul;5258;4
+870875;68909526;Alameda Décima Quarta;Boné Azul;5258;4
+870876;68909527;Alameda Décima Quinta;Boné Azul;5258;4
+870877;68909528;Alameda Décima Sexta;Boné Azul;5258;4
+870878;68909529;Alameda Décima Setima;Boné Azul;5258;4
+870879;68909530;Alameda Décima Oitava;Boné Azul;5258;4
+870880;68909531;Alameda Décima Nona;Boné Azul;5258;4
+870881;68909532;Alameda Vigésima;Boné Azul;5258;4
+870882;68909533;Rua São Benedito;Boné Azul;5258;4
+870883;68909534;Avenida São Sebastião;Boné Azul;5258;4
+870884;68909535;Avenida São Pedro;Boné Azul;5258;4
+870885;68909536;Avenida Santo Antônio;Boné Azul;5258;4
+870886;68909537;Avenida São João;Boné Azul;5258;4
+870887;68909538;Travessa São Sebastião;Boné Azul;5258;4
+870888;68909539;Rua Santo Expedito;Boné Azul;5258;4
+870889;68909543;Rua Pedro Lima;Boné Azul;5258;4
+870890;68909544;Rua José Alencar;Boné Azul;5258;4
+870891;68909545;Rua Magalhães Barata;Boné Azul;5258;4
+870892;68909546;Avenida Alvaro Carvalho Barbosa;Boné Azul;5258;4
+870893;68909547;Avenida Severino Gomes de Almeida;Boné Azul;5258;4
+870894;68909548;Avenida Ana Maria das Graças Picanço;Boné Azul;5258;4
+870895;68909549;Avenida Paulo do Espirito Santo Silva;Boné Azul;5258;4
+870896;68909550;Avenida Alexandre Ferreira da Silva;Boné Azul;5258;4
+870897;68909551;Avenida Joaquim Silva do Amaral;Boné Azul;5258;4
+870898;68909552;Avenida Ana Maria Gomes da Costa;Boné Azul;5258;4
+870899;68909659;Avenida das Oliveiras;Lagoa Azul;5258;4
+870900;68909693;Avenida Itaquatiara;Lagoa Azul;5258;4
+870901;68909694;Avenida Parintins;Lagoa Azul;5258;4
+870902;68909695;Avenida Amazonas;Lagoa Azul;5258;4
+870903;68909696;Avenida Amapá;Lagoa Azul;5258;4
+870904;68909697;Avenida Sem Denominação Vinte;Lagoa Azul;5258;4
+870905;68909698;Rua Mita Cordeiro;Lagoa Azul;5258;4
+870906;68909699;Rua Progresso;Lagoa Azul;5258;4
+870907;68909700;Rua Figueiredo Teles;Lagoa Azul;5258;4
+870908;68909701;Rua Santo Espedito;Lagoa Azul;5258;4
+870909;68909702;Rua Salustiano Alves;Lagoa Azul;5258;4
+870910;68909703;Rua Rodrigues de Souza;Lagoa Azul;5258;4
+870911;68909704;Rua Neves da Luz;Lagoa Azul;5258;4
+870912;68909706;Rua Fabio Cordeiro;Lagoa Azul;5258;4
+870913;68909707;Rua Manacapuru;Lagoa Azul;5258;4
+870914;68909708;Rua Sem Denominação Onze;Lagoa Azul;5258;4
+870915;68909709;Rua Sem Denominação Doze;Lagoa Azul;5258;4
+870916;68909710;Rua Sem Denominação Treze;Lagoa Azul;5258;4
+870917;68909711;Rua Sem Denominação Quatorze;Lagoa Azul;5258;4
+870918;68909712;Rua Sem Denominação Quinze;Lagoa Azul;5258;4
+870919;68909713;Rua Sem Denominação Vinte e Três;Lagoa Azul;5258;4
+870920;68909714;Travessa Amazonas;Lagoa Azul;5258;4
+870921;68909715;Travessa Sem Denominação Vinte e Um;Lagoa Azul;5258;4
+870922;68909788;Rodovia BR-210;Lagoa Azul;5258;4
+870923;68909789;Comunidade Ilha Redonda;Lagoa Azul;5258;4
+870924;68909791;Rua Jose Penha Tavares;Novo Horizonte;5258;4
+870925;68909792;Avenida Raimundo Nery de Matos;Novo Horizonte;5258;4
+870926;68909793;Rua Joaquim Magalhaes dos Santos;Novo Horizonte;5258;4
+870927;68909801;Rua Maria da Silva Xavier;Novo Horizonte;5258;4
+870928;68909802;Rua São João;Novo Horizonte;5258;4
+870929;68909803;Rua Cícero Marques de Souza;Novo Horizonte;5258;4
+870930;68909804;Rua Iracema Castro Santos;Novo Horizonte;5258;4
+870931;68909805;Rua João de Deus;Novo Horizonte;5258;4
+870932;68909806;Rua Fernando Alves de Oliveira;Novo Horizonte;5258;4
+870933;68909807;Rua Maria da Conceição Santos;Novo Horizonte;5258;4
+870934;68909808;Rua Francisco Cassiano da Costa;Novo Horizonte;5258;4
+870935;68909809;Rua Maria Nair da Silva;Novo Horizonte;5258;4
+870936;68909810;Rua Antônio Flexa da Costa;Novo Horizonte;5258;4
+870937;68909811;Rua Raimunda Rodrigues Capiberibe;Novo Horizonte;5258;4
+870938;68909812;Avenida Alvaro Carvalho Barbosa;Novo Horizonte;5258;4
+870939;68909813;Avenida Ana Maria Gomes da Costa;Novo Horizonte;5258;4
+870940;68909814;Avenida Ana Maria das Graças Picanço;Novo Horizonte;5258;4
+870941;68909815;Avenida Sebastião Lamarão;Novo Horizonte;5258;4
+870942;68909816;Avenida Antônio Carlos Reis;Novo Horizonte;5258;4
+870943;68909817;Avenida Alexandre Ferreira da Silva;Novo Horizonte;5258;4
+870944;68909818;Avenida Carlos Almeida de Souza;Novo Horizonte;5258;4
+870945;68909819;Avenida Deoclides Franco Mont'Alverne;Novo Horizonte;5258;4
+870946;68909820;Avenida Antônio Picanço e Silva;Novo Horizonte;5258;4
+870947;68909821;Avenida Glicério de Souza Figueredo;Novo Horizonte;5258;4
+870948;68909822;Avenida Geriba Almeida de Azevedo Costa;Jardim Felicidade;5258;4
+870949;68909823;Avenida Hermes Monteiro da Silva;Novo Horizonte;5258;4
+870950;68909824;Avenida Joaquim Silva do Amaral;Novo Horizonte;5258;4
+870951;68909826;Avenida José Ferreira Chucre;Novo Horizonte;5258;4
+870952;68909827;Avenida José Loureiro de Sena;Novo Horizonte;5258;4
+870953;68909828;Avenida da Liberdade;Novo Horizonte;5258;4
+870954;68909829;Avenida Lourenço Araújo de Sá;Novo Horizonte;5258;4
+870955;68909830;Avenida Josefa Pelaes da Silva;Novo Horizonte;5258;4
+870956;68909831;Avenida Maria das Graças Picanço;Novo Horizonte;5258;4
+870957;68909832;Avenida Pedro Wanderley Fernandes;Novo Horizonte;5258;4
+870958;68909833;Avenida Severino Gomes de Almeida;Jardim Felicidade;5258;4
+870959;68909834;Avenida Ancelmo Paulo Ramos;Novo Horizonte;5258;4
+870960;68909835;Avenida Zelia Cardoso de Melo;Novo Horizonte;5258;4
+870961;68909837;Avenida Antônio Vidal Madureira;Novo Horizonte;5258;4
+870962;68909838;Avenida Paulo do Espirito Santo Silva;Novo Horizonte;5258;4
+870963;68909840;Rua Primeira;Marabaixo;5258;4
+870964;68909841;Avenida Quinta;Marabaixo;5258;4
+870965;68909842;Avenida Sexta;Marabaixo;5258;4
+870966;68909843;Avenida Sétima;Marabaixo;5258;4
+870967;68909844;Avenida Oitava;Marabaixo;5258;4
+870968;68909845;Rua Sétima;Marabaixo;5258;4
+870969;68909846;Avenida Nona;Marabaixo;5258;4
+870970;68909847;Avenida Décima;Marabaixo;5258;4
+870971;68909848;Avenida Décima Primeira;Marabaixo;5258;4
+870972;68909849;Avenida Décima Segunda;Marabaixo;5258;4
+870973;68909850;Rua Segunda;Marabaixo;5258;4
+870974;68909851;Avenida Décima Terceira;Marabaixo;5258;4
+870975;68909852;Avenida Décima Quarta;Marabaixo;5258;4
+870976;68909853;Avenida Décima Quinta;Marabaixo;5258;4
+870977;68909854;Avenida Décima Sexta;Marabaixo;5258;4
+870978;68909855;Rua Oitava;Marabaixo;5258;4
+870979;68909856;Avenida Décima Sétima;Marabaixo;5258;4
+870980;68909857;Avenida Décima Oitava;Marabaixo;5258;4
+870981;68909858;Avenida Décima Nona;Marabaixo;5258;4
+870982;68909859;Rua Décima;Marabaixo;5258;4
+870983;68909861;Ramal Porto do Céu;Marabaixo;5258;4
+870984;68909862;Avenida Beija Flores;Marabaixo;5258;4
+870985;68909863;Avenida dos Guarás;Marabaixo;5258;4
+870986;68909864;Avenida dos Sabiás;Marabaixo;5258;4
+870987;68909865;Avenida Primeira;Marabaixo;5258;4
+870988;68909866;Rua São Francisco de Assis;Marabaixo;5258;4
+870989;68909867;Rua São Raimundo;Marabaixo;5258;4
+870990;68909868;Rua Jacira Silva;Marabaixo;5258;4
+870991;68909869;Rua Professora Nelzarina Silva;Marabaixo;5258;4
+870992;68909870;Rua Quarta;Marabaixo;5258;4
+870993;68909871;Rua Eugênia Damasceno;Marabaixo;5258;4
+870994;68909872;Travessa Goiás;Marabaixo;5258;4
+870995;68909873;Travessa Santo Antônio;Marabaixo;5258;4
+870996;68909874;Travessa São José;Marabaixo;5258;4
+870997;68909875;Avenida Segunda;Marabaixo;5258;4
+870998;68909876;Travessa Julio Amaral;Marabaixo;5258;4
+870999;68909877;Travessa São Benedito;Marabaixo;5258;4
+871000;68909878;Travessa São Pedro;Marabaixo;5258;4
+871001;68909879;Avenida dos Gaviões;Marabaixo;5258;4
+871002;68909880;Rua Quinta;Marabaixo;5258;4
+871003;68909882;Avenida dos Uirapurus;Marabaixo;5258;4
+871004;68909883;Avenida dos Curiós;Marabaixo;5258;4
+871005;68909884;Avenida dos Jaçanãs;Marabaixo;5258;4
+871006;68909885;Avenida Terceira;Marabaixo;5258;4
+871007;68909886;Avenida dos Pardais;Marabaixo;5258;4
+871008;68909887;Avenida dos Maracanás;Marabaixo;5258;4
+871009;68909888;Avenida das Arirambas;Marabaixo;5258;4
+871010;68909889;Avenida dos Juritis;Marabaixo;5258;4
+871011;68909890;Rua Sexta;Marabaixo;5258;4
+871012;68909891;Rua Ranolfo de Souza Gato;Marabaixo;5258;4
+871013;68909892;Avenida dos Bem-te-vis;Marabaixo;5258;4
+871014;68909893;Avenida dos Papagaios;Marabaixo;5258;4
+871015;68909894;Avenida dos Pombos;Marabaixo;5258;4
+871016;68909895;Avenida Quarta;Marabaixo;5258;4
+871017;68909896;Avenida das Andorinhas;Marabaixo;5258;4
+871018;68909897;Avenida dos Rouxinos;Marabaixo;5258;4
+871019;68909898;Avenida dos Canários;Marabaixo;5258;4
+871020;68909899;Rodovia AP-20;Marabaixo;5258;4
+871021;68909970;Rua Açai 107;Loteamento Açaí;5258;4
+871022;68909990;Avenida das Bacabas 5 - BR-156 Km 2;desconhecido;5258;4
+871023;68911004;Passarela Beira Rio;Fazendinha;5258;4
+871024;68911005;Avenida Salvador Diniz;Fazendinha;5258;4
+871025;68911011;Travessa Quinta do Matadouro;Fazendinha;5258;4
+871026;68911012;Travessa do Matadouro;Fazendinha;5258;4
+871027;68911016;Ramal Tia da Dica;Fazendinha;5258;4
+871028;68911020;Avenida Rio Jari;Fazendinha;5258;4
+871029;68911021;Avenida Rio Amapá;Fazendinha;5258;4
+871030;68911022;Avenida Euripedes Afonso Rodrigues;Fazendinha;5258;4
+871031;68911023;Avenida Rio Calçoene;Fazendinha;5258;4
+871032;68911024;Avenida Rio Madeira;Fazendinha;5258;4
+871033;68911025;Rua Oitava;Fazendinha;5258;4
+871034;68911026;Avenida Rio Negro;Fazendinha;5258;4
+871035;68911027;Rua Rio Grande;Fazendinha;5258;4
+871036;68911028;Rua Rio da Prata;Fazendinha;5258;4
+871037;68911029;Rua Rio Canoas;Fazendinha;5258;4
+871038;68911030;Rua Nona;Fazendinha;5258;4
+871039;68911031;Rua Rio Gurijuba;Fazendinha;5258;4
+871040;68911032;Rua Carmelita Lobo Siqueira;Fazendinha;5258;4
+871041;68911033;Rua Rio Japurà;Fazendinha;5258;4
+871042;68911034;Rua Rio Içá;Fazendinha;5258;4
+871043;68911035;Rua F;Fazendinha;5258;4
+871044;68911036;Rua Rio Turvo;Fazendinha;5258;4
+871045;68911037;Rua Rio Purus;Fazendinha;5258;4
+871046;68911038;Rua Rio Juruá;Fazendinha;5258;4
+871047;68911039;Rua Rio Madeira;Fazendinha;5258;4
+871048;68911040;Avenida Rio Amazonas;Fazendinha;5258;4
+871049;68911042;Rua Rio Solimões;Fazendinha;5258;4
+871050;68911043;Rua Rio Xingu;Fazendinha;5258;4
+871051;68911044;Rua Rio Amapari;Fazendinha;5258;4
+871052;68911045;Avenida Rio Araguaia;Fazendinha;5258;4
+871053;68911046;Rua Rio Tocantins;Fazendinha;5258;4
+871054;68911047;Rua Rio Trombetas;Fazendinha;5258;4
+871055;68911048;Avenida Rio de Janeiro;Fazendinha;5258;4
+871056;68911049;Avenida Rio Tieté;Fazendinha;5258;4
+871057;68911050;Avenida Rio Pedreira;Fazendinha;5258;4
+871058;68911051;Avenida Rio Maruanun;Fazendinha;5258;4
+871059;68911052;Avenida Rio Vila Nova;Fazendinha;5258;4
+871060;68911053;Avenida Rio Matapi;Fazendinha;5258;4
+871061;68911055;Avenida Rio Bonito;Fazendinha;5258;4
+871062;68911065;Avenida Rio Oiapoque;Fazendinha;5258;4
+871063;68911070;Avenida Décima Nona;Fazendinha;5258;4
+871064;68911071;Avenida Décima Segunda;Fazendinha;5258;4
+871065;68911075;Ramal Polo Hortefrute;Fazendinha;5258;4
+871066;68911080;Rua do Matadouro;Fazendinha;5258;4
+871067;68911085;Rodovia Salvador Diniz;Fazendinha;5258;4
+871068;68911090;Travessa Bela Vista;Fazendinha;5258;4
+871069;68911095;Avenida Santa Terezinha;Fazendinha;5258;4
+871070;68911100;Avenida Catarina Madureira;Fazendinha;5258;4
+871071;68911105;Rua Caetano Dias Tomaz;Fazendinha;5258;4
+871072;68911115;Avenida Sábino Nobre Borges;Fazendinha;5258;4
+871073;68911120;Avenida Maria de Oliveira Santana;Fazendinha;5258;4
+871074;68911122;Passagem Beira Rio;Fazendinha;5258;4
+871075;68911123;Rua Nova da Praia;Fazendinha;5258;4
+871076;68911124;Avenida Maria Afonso Rodrigues;Fazendinha;5258;4
+871077;68911125;Avenida da Fazendinha;Fazendinha;5258;4
+871078;68911126;Ramal Estaleiro;Fazendinha;5258;4
+871079;68911127;Avenida Rio Murici;Fazendinha;5258;4
+871080;68911128;Avenida Rio Capim;Fazendinha;5258;4
+871081;68911129;Avenida Rio Mamoré;Fazendinha;5258;4
+871082;68911130;Avenida Vicente Brandão;Fazendinha;5258;4
+871083;68911131;Avenida Rio Muju;Fazendinha;5258;4
+871084;68911132;Avenida Rio Guaporé;Fazendinha;5258;4
+871085;68911133;Avenida Rio Acre;Fazendinha;5258;4
+871086;68911134;Rua Rio Iguaçú;Fazendinha;5258;4
+871087;68911135;Rua Antônio Mota Bastos;Fazendinha;5258;4
+871088;68911136;Rua Rio das Velhas;Fazendinha;5258;4
+871089;68911137;Rua Rio Branco;Fazendinha;5258;4
+871090;68911138;Rua Rio Javari;Fazendinha;5258;4
+871091;68911139;Rua Rio Tefé;Fazendinha;5258;4
+871092;68911140;Rua Rio Guama;Fazendinha;5258;4
+871093;68911141;Rua Augusto Lobo de Siqueira;Fazendinha;5258;4
+871094;68911142;Rua Rio Coari;Fazendinha;5258;4
+871095;68911143;Rua Rio Parnaiba;Fazendinha;5258;4
+871096;68911144;Rua Rio Xapuri;Fazendinha;5258;4
+871097;68911145;Rua Raimundo Gomes;Fazendinha;5258;4
+871098;68911150;Passagem Vila Operária;Fazendinha;5258;4
+871099;68911153;Rua Vila Operária;Fazendinha;5258;4
+871100;68911155;Passagem Dona Márcia;Fazendinha;5258;4
+871101;68911158;Avenida Manoel Chaves de Melo;Fazendinha;5258;4
+871102;68911160;Ramal do Mini Polo;Fazendinha;5258;4
+871103;68911165;Avenida José Borges dos Santos;Fazendinha;5258;4
+871104;68911355;Avenida Jose Maria Gonçalves Leão;Muruci (Fazendinha);5258;4
+871105;68911356;Avenida Onina Vieira dos Santos;Muruci (Fazendinha);5258;4
+871106;68911357;Rua Joaquim de Jesus Picanço;Muruci (Fazendinha);5258;4
+871107;68911358;Travessa Floriano Ferreira;Muruci (Fazendinha);5258;4
+871108;68911359;Rua Constancia Leão Tomaz;Muruci (Fazendinha);5258;4
+871109;68911360;Travessa do Goiaba;Muruci (Fazendinha);5258;4
+871110;68911361;Rua Agegerlau Rodrigues das Chagas;Muruci (Fazendinha);5258;4
+871111;68911362;Ramal do Izaque;Muruci (Fazendinha);5258;4
+871112;68911364;Avenida Nova do Murici;Muruci (Fazendinha);5258;4
+871113;68911365;Avenida José Maria da Silva Nunes;Muruci (Fazendinha);5258;4
+871114;68911370;Travessa Arnaldo de Almeida Rodrigues;Muruci (Fazendinha);5258;4
+871115;68911375;Avenida Sexta;Muruci (Fazendinha);5258;4
+871116;68911380;Avenida Raimunda Apolinária da Silva;Muruci (Fazendinha);5258;4
+871117;68911385;Travessa Lucio Neves de Almeida;Muruci (Fazendinha);5258;4
+871118;68911395;Avenida Hubelino Nunes de Almeida;Muruci (Fazendinha);5258;4
+871119;68911400;Avenida Raimundo Dias Tomaz;Muruci (Fazendinha);5258;4
+871120;68911405;Avenida Antenor Vaz dos Santos;Muruci (Fazendinha);5258;4
+871121;68911410;Alameda Manoel Soares;Muruci (Fazendinha);5258;4
+871122;68911411;Travessa Constancia Leão Tomaz;Muruci (Fazendinha);5258;4
+871123;68911415;Rua das Ameixeiras;Muruci (Fazendinha);5258;4
+871124;68911420;Rua Joaquim Procópio de Oliveira;Muruci (Fazendinha);5258;4
+871125;68911425;Rua Raimunda Apolinária;Muruci (Fazendinha);5258;4
+871126;68911430;Ramal da Cascalheira;Muruci (Fazendinha);5258;4
+871127;68911431;Travessa Benoni Peres Ferreira Gomes;Muruci (Fazendinha);5258;4
+871128;68911432;Travessa Ariosvaldo Viera dos Santos;Muruci (Fazendinha);5258;4
+871129;68911435;Ramal Vista Alegre;Muruci (Fazendinha);5258;4
+871130;68911450;Rua da Marinha;Muruci (Fazendinha);5258;4
+871131;68911451;Rua da Praia;Muruci (Fazendinha);5258;4
+871132;68911452;Rua da Castanheira;Muruci (Fazendinha);5258;4
+871133;68911453;Avenida Nove de Novembro;Muruci (Fazendinha);5258;4
+871134;68911454;Rua Rio Amazonas;Muruci (Fazendinha);5258;4
+871135;68911455;Avenida Três de Abril;Muruci (Fazendinha);5258;4
+871136;68911456;Travessa das Hortas;Muruci (Fazendinha);5258;4
+871137;68911457;Travessa Tucumâ;Muruci (Fazendinha);5258;4
+871138;68911458;Travessa dos Buritis;Muruci (Fazendinha);5258;4
+871139;68911459;Travessa Primavera;Muruci (Fazendinha);5258;4
+871140;68911461;Rua da Sapucaia;Muruci (Fazendinha);5258;4
+871141;68911462;Travessa Primeira da Castanheira;Muruci (Fazendinha);5258;4
+871142;68911463;Travessa Segunda da Castanheira;Muruci (Fazendinha);5258;4
+871143;68911464;Travessa Terceira da Castanheira;Muruci (Fazendinha);5258;4
+871144;68911465;Rua do Estaleiro;Muruci (Fazendinha);5258;4
+871145;68911466;Rua Beira Rio;Muruci (Fazendinha);5258;4
+871146;68911467;Avenida Japurá;Muruci (Fazendinha);5258;4
+871147;68911970;Travessa Bela Vista 281;Fazendinha;5258;4
+871148;68912000;desconhecido;Ambé;5258;4
+871149;68912050;desconhecido;Ariri;5258;4
+871150;68912100;desconhecido;Carmo;5258;4
+871151;68912150;desconhecido;Gaivota;5258;4
+871152;68912200;desconhecido;Santa Maria;5258;4
+871153;68912300;desconhecido;Curiaú;5258;4
+871154;68912350;desconhecido;Abacate da Pedreira;5258;4
+871155;68912450;desconhecido;Livramento do Pacuí;5258;4
+871156;68912500;desconhecido;São Joaquim do Pacuí;5258;4
+871157;68912530;desconhecido;Santa Luzia do Pacuí;5258;4
+871158;68912550;desconhecido;São Sebastião do Livramento;5258;4
+871159;68912600;desconhecido;Corre Água;5258;4
+871160;68912650;desconhecido;Gurupora;5258;4
+871161;68912700;desconhecido;São Tomé;5258;4
+871162;68912750;desconhecido;Inajá;5258;4
+871163;68912800;desconhecido;Cantanzal;5258;4
+871164;68913000;desconhecido;Bailique;5258;4
+871165;68913970;Avenida Um s/n;Bailique;5258;4
+871166;68915000;desconhecido;desconhecido;3392;4
+871167;68915970;Avenida Costa e Silva s/n;Centro;3392;4
+871168;68917000;desconhecido;Paredão;3392;4
+871169;68918000;desconhecido;desconhecido;7362;4
+871170;68918970;Avenida São Pedro 649;Centro;7362;4
+871171;68920000;desconhecido;desconhecido;5095;4
+871172;68920970;Rua Tancredo Neves 2795;Agreste;5095;4
+871173;68920971;Rua Tancredo Neves;Agreste;5095;4
+871174;68923000;desconhecido;Boca do Jari;5095;4
+871175;68924000;desconhecido;desconhecido;10347;4
+871176;68924970;Avenida Ayrton Senna 332;Centro;10347;4
+871177;68925001;Avenida Souza Mar;Comercial;8189;4
+871178;68925004;Avenida Shallon;Comercial;8189;4
+871179;68925007;1ª Travessa Shallon;Comercial;8189;4
+871180;68925010;2ª Travessa Shallon;Comercial;8189;4
+871181;68925013;Avenida Jesus de Nazaré;Comercial;8189;4
+871182;68925016;2ª Travessa Jesus de Nazaré;Comercial;8189;4
+871183;68925019;1ª Travessa Jesus de Nazaré;Comercial;8189;4
+871184;68925022;Avenida 14 de Janeiro;Comercial;8189;4
+871185;68925025;Rua Beira-mar;Comercial;8189;4
+871186;68925028;2ª Travessa Beira-mar;Comercial;8189;4
+871187;68925031;1ª Travessa Beira-mar;Comercial;8189;4
+871188;68925034;Avenida 30 de Novembro;Comercial;8189;4
+871189;68925037;Travessa 30 de Novembro;Comercial;8189;4
+871190;68925040;Travessa Calçoene;Comercial;8189;4
+871191;68925043;Avenida Esperança;Comercial;8189;4
+871192;68925046;Travessa Esperança;Comercial;8189;4
+871193;68925049;Rua 31 de Março;Comercial;8189;4
+871194;68925052;Travessa 31 de Março;Comercial;8189;4
+871195;68925055;Avenida Amapá;Comercial;8189;4
+871196;68925058;Rua Rio Jari;Comercial;8189;4
+871197;68925061;Travessa Rio Jari;Comercial;8189;4
+871198;68925064;Travessa Tartarugalzinho;Comercial;8189;4
+871199;68925067;Avenida Ferreira Gomes;Comercial;8189;4
+871200;68925070;Rua Macapá;Comercial;8189;4
+871201;68925073;Rua Calçoene;Comercial;8189;4
+871202;68925076;Avenida Santana;Comercial;8189;4
+871203;68925079;Travessa Santana;Comercial;8189;4
+871204;68925090;Rua Cláudio Lúcio Monteiro;Comercial;8189;4
+871205;68925093;Rua Poeta Machado de Assis;Comercial;8189;4
+871206;68925096;Rua Presidente John Fitzgerald Kennedy;Comercial;8189;4
+871207;68925099;Rua Presidente Arthur Costa e Silva;Comercial;8189;4
+871208;68925102;Rua Pedro Salvador Diniz;Comercial;8189;4
+871209;68925105;Avenida Presidente Marechal Humberto de Alencar Castelo Branco;Comercial;8189;4
+871210;68925108;Avenida 7 de Setembro;Comercial;8189;4
+871211;68925111;Avenida Poeta Castro Alves;Comercial;8189;4
+871212;68925114;Avenida José de Anchieta;Comercial;8189;4
+871213;68925120;Avenida José de Anchieta;Hospitalidade;8189;4
+871214;68925123;Rua Cláudio Lúcio Monteiro;Hospitalidade;8189;4
+871215;68925126;Rua A1;Hospitalidade;8189;4
+871216;68925129;Avenida Princesa Izabel;Hospitalidade;8189;4
+871217;68925132;Travessa Princesa Izabel;Hospitalidade;8189;4
+871218;68925135;Rua Poeta Machado de Assis;Hospitalidade;8189;4
+871219;68925138;Rua Presidente John Fitzgerald Kennedy;Hospitalidade;8189;4
+871220;68925141;Avenida 15 de Novembro;Hospitalidade;8189;4
+871221;68925144;Avenida das Nações;Hospitalidade;8189;4
+871222;68925147;Avenida Dom Pedro I;Hospitalidade;8189;4
+871223;68925150;Travessa Dom Pedro I;Hospitalidade;8189;4
+871224;68925153;Avenida Rio Branco;Hospitalidade;8189;4
+871225;68925156;Travessa Rio Branco;Hospitalidade;8189;4
+871226;68925159;Avenida Ruy Barbosa;Hospitalidade;8189;4
+871227;68925162;Avenida Coelho Neto;Hospitalidade;8189;4
+871228;68925165;Avenida Brasilia;Hospitalidade;8189;4
+871229;68925168;Rua General Ubaldo Figueira;Hospitalidade;8189;4
+871230;68925171;Avenida Maria de Oliveira Colares;Hospitalidade;8189;4
+871231;68925174;Rua Presidente Arthur Costa e Silva;Hospitalidade;8189;4
+871232;68925177;Rua Pedro Salvador Diniz;Hospitalidade;8189;4
+871233;68925180;Rua Pedro Salvador Diniz;Central;8189;4
+871234;68925183;Avenida Coelho Neto;Central;8189;4
+871235;68925186;Rua General Ubaldo Figueira;Central;8189;4
+871236;68925189;Rua Adálvaro Alves Cavalcanti;Central;8189;4
+871237;68925192;Rua Capitão Euclides Rodrigues;Central;8189;4
+871238;68925195;Rua Padre Vitório Galiane;Central;8189;4
+871239;68925198;Avenida Ministro Rui Barbosa;Central;8189;4
+871240;68925201;Avenida Rio Branco;Central;8189;4
+871241;68925204;Avenida Dom Pedro I;Central;8189;4
+871242;68925207;Avenida das Nações;Central;8189;4
+871243;68925210;Avenida Princesa Izabel;Central;8189;4
+871244;68925213;Avenida 15 de Novembro;Central;8189;4
+871245;68925216;Avenida José de Anchieta;Central;8189;4
+871246;68925219;Avenida Poeta Castro Alves;Central;8189;4
+871247;68925222;Avenida 7 de Setembro;Central;8189;4
+871248;68925225;Avenida Presidente Marechal Humberto de Alencar Castelo Branco;Central;8189;4
+871249;68925228;Avenida Santana;Central;8189;4
+871250;68925231;Rodovia Duca Serra;Central;8189;4
+871251;68925234;Travessa Oscar Santos;Central;8189;4
+871252;68925237;Travessa Nossa Senhora de Fátima;Central;8189;4
+871253;68925240;Avenida São Paulo Apóstolo;Central;8189;4
+871254;68925243;Avenida São João Apóstolo;Central;8189;4
+871255;68925250;Rua da Piçarreira;Elesbão;8189;4
+871256;68925254;1ª Travessa da Piçarreira;Elesbão;8189;4
+871257;68925258;2ª Travessa da Piçarreira;Elesbão;8189;4
+871258;68925262;Travessa das Mangueiras;Elesbão;8189;4
+871259;68925266;Travessa Maria Davina;Elesbão;8189;4
+871260;68925270;Rua Raimundo Carvalho de Azevedo;Elesbão;8189;4
+871261;68925274;Travessa João Moreira;Elesbão;8189;4
+871262;68925278;Travessa Passagem do Sistema;Elesbão;8189;4
+871263;68925282;Travessa Dona Maria;Elesbão;8189;4
+871264;68925286;Travessa Maria Ignes;Elesbão;8189;4
+871265;68925290;Travessa Josiel Oliveira Cardoso;Elesbão;8189;4
+871266;68925294;Rua do Delta;Elesbão;8189;4
+871267;68925298;Travessa Manga;Elesbão;8189;4
+871268;68925302;Travessa Açaí;Elesbão;8189;4
+871269;68925306;Travessa Tapereba;Elesbão;8189;4
+871270;68925310;Travessa Biribá;Elesbão;8189;4
+871271;68925314;Travessa Acerola;Elesbão;8189;4
+871272;68925318;Ramal Olaria;Elesbão;8189;4
+871273;68925322;1ª Travessa do Elesbão;Elesbão;8189;4
+871274;68925326;2ª Travessa do Elesbão;Elesbão;8189;4
+871275;68925330;3ª Travessa do Elesbão;Elesbão;8189;4
+871276;68925334;4ª Travessa do Elesbão;Elesbão;8189;4
+871277;68925338;5ª Travessa do Elesbão;Elesbão;8189;4
+871278;68925342;6ª Travessa do Elesbão;Elesbão;8189;4
+871279;68925970;Avenida Poeta Castro Alves 1314;Central;8189;4
+871280;68925974;Avenida Santana 002;Central;8189;4
+871281;68926000;Rua Cláudio Lúcio Monteiro;Novo Horizonte;8189;4
+871282;68926004;Avenida Manoel Francisco Guedes;Novo Horizonte;8189;4
+871283;68926008;Rua Raimundo Ferreira Guedes;Novo Horizonte;8189;4
+871284;68926012;Travessa A;Novo Horizonte;8189;4
+871285;68926016;Travessa B;Novo Horizonte;8189;4
+871286;68926020;Travessa C;Novo Horizonte;8189;4
+871287;68926024;Rua Raimundo Nunes da Cruz;Novo Horizonte;8189;4
+871288;68926028;Rua Maria Jacira Ferreira de Brito;Novo Horizonte;8189;4
+871289;68926032;Avenida Odecia Marques Pereira;Novo Horizonte;8189;4
+871290;68926036;Avenida José Cesar Braga;Novo Horizonte;8189;4
+871291;68926040;Avenida Maria Izabel Pereira da Silva;Novo Horizonte;8189;4
+871292;68926044;Avenida Irmãos Lobato Monteiro;Novo Horizonte;8189;4
+871293;68926048;Avenida Armando Firmino de Matos;Novo Horizonte;8189;4
+871294;68926052;Travessa América;Novo Horizonte;8189;4
+871295;68926056;Avenida Benedito de Jesus Cardoso;Novo Horizonte;8189;4
+871296;68926060;Rua Cláudio Lúcio Monteiro;Daniel;8189;4
+871297;68926064;Travessa Manoel Moura de Carvalho;Daniel;8189;4
+871298;68926068;Avenida João Bitencourt Muniz;Daniel;8189;4
+871299;68926072;Travessa da Luz;Daniel;8189;4
+871300;68926076;Avenida Pedro da Costa Favela;Daniel;8189;4
+871301;68926080;Travessa Manoel Videira;Daniel;8189;4
+871302;68926084;Avenida Lucena de Azevedo;Daniel;8189;4
+871303;68926090;Avenida Lucena de Azevedo;Vila Amazonas;8189;4
+871304;68926094;Travessa Manoel Moura de Carvalho;Vila Amazonas;8189;4
+871305;68926098;Rua D 29;Vila Amazonas;8189;4
+871306;68926102;Avenida B 1;Vila Amazonas;8189;4
+871307;68926106;Rua D 28;Vila Amazonas;8189;4
+871308;68926110;Rua D 27;Vila Amazonas;8189;4
+871309;68926114;Rua D 26;Vila Amazonas;8189;4
+871310;68926118;Rua D 25;Vila Amazonas;8189;4
+871311;68926122;Rua D 24;Vila Amazonas;8189;4
+871312;68926126;Rua D 23;Vila Amazonas;8189;4
+871313;68926130;Rua D 22;Vila Amazonas;8189;4
+871314;68926134;Rua D 21;Vila Amazonas;8189;4
+871315;68926138;Rua D 20;Vila Amazonas;8189;4
+871316;68926142;Rua C 1;Vila Amazonas;8189;4
+871317;68926146;Rua D 10;Vila Amazonas;8189;4
+871318;68926150;Rua D 9;Vila Amazonas;8189;4
+871319;68926154;Rua D 8;Vila Amazonas;8189;4
+871320;68926158;Rua D 7;Vila Amazonas;8189;4
+871321;68926162;Rua D 14;Vila Amazonas;8189;4
+871322;68926166;Rua D 13;Vila Amazonas;8189;4
+871323;68926170;Rua D 12;Vila Amazonas;8189;4
+871324;68926174;Rua D 11;Vila Amazonas;8189;4
+871325;68926178;Rua D 1;Vila Amazonas;8189;4
+871326;68926182;Rua D 2;Vila Amazonas;8189;4
+871327;68926186;Rua D 3;Vila Amazonas;8189;4
+871328;68926190;Rua D 4;Vila Amazonas;8189;4
+871329;68926194;Rua D 5A;Vila Amazonas;8189;4
+871330;68926198;Rua D 5B;Vila Amazonas;8189;4
+871331;68926202;Rua D 6A;Vila Amazonas;8189;4
+871332;68926206;Rua D 6B;Vila Amazonas;8189;4
+871333;68926210;Rua D 6C;Vila Amazonas;8189;4
+871334;68926214;Rodovia Comandante Pedro Salvador Diniz;Vila Amazonas;8189;4
+871335;68926300;Rodovia Comandante Pedro Salvador Diniz;Fortaleza;8189;4
+871336;68926305;Travessa Rio Madeira;Fortaleza;8189;4
+871337;68926310;Travessa Igarapé Sororoca;Fortaleza;8189;4
+871338;68926315;Travessa Rio Matapi Mirim;Fortaleza;8189;4
+871339;68926320;Travessa Rio Macacoari;Fortaleza;8189;4
+871340;68926325;Travessa Igarapé do Lago;Fortaleza;8189;4
+871341;68926330;Travessa Rio Pirativa;Fortaleza;8189;4
+871342;68926335;Travessa Igarapé Maruanum;Fortaleza;8189;4
+871343;68926340;Rua Piauí;Fortaleza;8189;4
+871344;68926345;Travessa Rio Maracá;Fortaleza;8189;4
+871345;68926350;Travessa Rio Tipitinga;Fortaleza;8189;4
+871346;68926355;Rua da Fábrica;Fortaleza;8189;4
+871347;68926360;Travessa Rio Tocantins;Fortaleza;8189;4
+871348;68926365;Travessa Rio Trombetas;Fortaleza;8189;4
+871349;68926370;Travessa Rio Matapi;Fortaleza;8189;4
+871350;68926375;Travessa Rio Vila Nova;Fortaleza;8189;4
+871351;68926380;Avenida Rio Solimões;Fortaleza;8189;4
+871352;68926385;Travessa Igarapé Anaeurapucu;Fortaleza;8189;4
+871353;68926390;Travessa Rio Salvador;Fortaleza;8189;4
+871354;68926395;Travessa Rio Araguari;Fortaleza;8189;4
+871355;68926400;Travessa Rio Xingu;Fortaleza;8189;4
+871356;68926405;Travessa Rio Preto;Fortaleza;8189;4
+871357;68927000;Avenida Maria de Oliveira Colares;Remedios;8189;4
+871358;68927003;Rua Cláudio Lúcio Monteiro;Remedios;8189;4
+871359;68927006;Avenida Francisco de Melo Parente;Remedios;8189;4
+871360;68927009;Avenida Portílio de Melo;Remedios;8189;4
+871361;68927012;Avenida Bento Maciel Parente;Remedios;8189;4
+871362;68927015;Travessa Souza Fundão;Remedios;8189;4
+871363;68927018;Travessa Ângelo de Moraes;Remedios;8189;4
+871364;68927021;Travessa Gomes Freire de Andrade;Remedios;8189;4
+871365;68927024;Travessa 2;Remedios;8189;4
+871366;68927027;Rua Pedro Salvador Diniz;Remedios;8189;4
+871367;68927030;Travessa 3;Remedios;8189;4
+871368;68927033;Travessa 4;Remedios;8189;4
+871369;68927036;Travessa 5;Remedios;8189;4
+871370;68927039;Travessa 6;Remedios;8189;4
+871371;68927042;Travessa 7;Remedios;8189;4
+871372;68927045;Travessa 8;Remedios;8189;4
+871373;68927048;Travessa 9;Remedios;8189;4
+871374;68927051;Travessa 15;Remedios;8189;4
+871375;68927054;Travessa 10;Remedios;8189;4
+871376;68927057;Avenida Tocantinópolis;Remedios;8189;4
+871377;68927060;Travessa Atlântida;Remedios;8189;4
+871378;68927063;Travessa Mário de Andrade;Remedios;8189;4
+871379;68927066;Travessa Senador Nilo Coelho;Remedios;8189;4
+871380;68927069;Travessa Senador Teotônio Vilela;Remedios;8189;4
+871381;68927072;Travessa Veiga Cabral;Remedios;8189;4
+871382;68927075;Rua Presidente Arthur Costa e Silva;Remedios;8189;4
+871383;68927078;Rua Pastor Sozinho;Remedios;8189;4
+871384;68927081;Avenida 15 de Outubro;Remedios;8189;4
+871385;68927084;Avenida Espedito dos Santos;Remedios;8189;4
+871386;68927087;Avenida Feliciana de Silva;Remedios;8189;4
+871387;68927090;Avenida Palmira Miranda Andrade;Remedios;8189;4
+871388;68927093;Rua Presidente John Fitzgerald Kennedy;Remedios;8189;4
+871389;68927096;Travessa John Fitzgerald Kennedy;Remedios;8189;4
+871390;68927099;Travessa Osvaldo de Andrade;Remedios;8189;4
+871391;68927102;Travessa Padres Fúvio;Remedios;8189;4
+871392;68927110;Rua Pastor Sozinho;Provedor I;8189;4
+871393;68927113;Travessa Ana Maria Coelho;Provedor I;8189;4
+871394;68927116;Travessa A R Lima;Provedor I;8189;4
+871395;68927119;Travessa José Deolindo da Silva;Provedor I;8189;4
+871396;68927125;Avenida Palmira Miranda Andrade;Provedor I;8189;4
+871397;68927131;Travessa 15;Provedor I;8189;4
+871398;68927134;Rodovia Comandante Pedro Salvador Diniz;Provedor I;8189;4
+871399;68927137;Travessa 11;Provedor I;8189;4
+871400;68927140;Travessa 12;Provedor I;8189;4
+871401;68927143;Travessa 13;Provedor I;8189;4
+871402;68927149;Travessa 18;Provedor I;8189;4
+871403;68927152;Travessa 19;Provedor I;8189;4
+871404;68927158;Avenida 13;Provedor I;8189;4
+871405;68927161;Avenida 12;Provedor I;8189;4
+871406;68927167;Avenida 10;Provedor I;8189;4
+871407;68927170;Avenida 9;Provedor I;8189;4
+871408;68927173;Avenida 8;Provedor I;8189;4
+871409;68927176;Travessa 26;Provedor I;8189;4
+871410;68927179;Travessa 25;Provedor I;8189;4
+871411;68927182;Travessa 24;Provedor I;8189;4
+871412;68927185;Travessa 23;Provedor I;8189;4
+871413;68927188;Travessa 22;Provedor I;8189;4
+871414;68927191;Travessa 21;Provedor I;8189;4
+871415;68927194;Rua Pedro Salvador Diniz;Provedor I;8189;4
+871416;68927197;Travessa 16;Provedor I;8189;4
+871417;68927200;Travessa 17;Provedor I;8189;4
+871418;68927203;21ª Travessa de Abril;Provedor I;8189;4
+871419;68927206;Avenida Delorizano Monteiro;Provedor I;8189;4
+871420;68927209;Avenida Walter Lopes;Provedor I;8189;4
+871421;68927212;Travessa 14 de Janeiro;Provedor I;8189;4
+871422;68927215;Travessa João Moreira;Provedor I;8189;4
+871423;68927218;Travessa L4 do Provedor;Provedor I;8189;4
+871424;68927221;Travessa Manoel Pestana;Provedor I;8189;4
+871425;68927224;Travessa Raimundo Vasques;Provedor I;8189;4
+871426;68927227;Travessa Sílvio Camilo;Provedor I;8189;4
+871427;68927230;Travessa Pedro Salvador Diniz;Nova Brasília;8189;4
+871428;68927233;Avenida Coelho Neto;Nova Brasília;8189;4
+871429;68927236;Avenida Estelio de Oliveira;Nova Brasília;8189;4
+871430;68927239;Rua General Ubaldo Figueira;Nova Brasília;8189;4
+871431;68927242;Travessa C Martel;Nova Brasília;8189;4
+871432;68927245;Travessa C Abreu;Nova Brasília;8189;4
+871433;68927248;Avenida Antonio Nunes;Nova Brasília;8189;4
+871434;68927251;Travessa Pedro Teixeira;Nova Brasília;8189;4
+871435;68927254;Travessa Miguel de Bulhões;Nova Brasília;8189;4
+871436;68927257;Travessa Manoel Pereira da Rocha;Nova Brasília;8189;4
+871437;68927260;Travessa Nelciana Vasques;Nova Brasília;8189;4
+871438;68927263;Travessa Stélio de Oliveira;Nova Brasília;8189;4
+871439;68927266;Travessa Vicente Conrado;Nova Brasília;8189;4
+871440;68927269;Travessa Geronimo de Albuquerque;Nova Brasília;8189;4
+871441;68927272;Travessa Bernardo de Melo;Nova Brasília;8189;4
+871442;68927275;Avenida Walter Lopes da Cruz;Nova Brasília;8189;4
+871443;68927278;Travessa Delorizano Monteiro;Nova Brasília;8189;4
+871444;68927281;Beco 15 de Novembro;Nova Brasília;8189;4
+871445;68927284;Travessa Apolônio Gomes;Nova Brasília;8189;4
+871446;68927287;Avenida Palmira Miranda Andrade;Nova Brasília;8189;4
+871447;68927290;Rua Adálvaro Alves Cavalcanti;Nova Brasília;8189;4
+871448;68927293;Rua Capitão Euclides Rodrigues;Nova Brasília;8189;4
+871449;68927296;Avenida Brasilia;Nova Brasília;8189;4
+871450;68927299;Avenida Maria de Oliveira Colares;Nova Brasília;8189;4
+871451;68927302;Rua Padre Vitório Galiane;Nova Brasília;8189;4
+871452;68927305;Travessa 1º de Maio;Nova Brasília;8189;4
+871453;68927308;Avenida 21 de Abril;Nova Brasília;8189;4
+871454;68927311;Travessa 25 de Dezembro;Nova Brasília;8189;4
+871455;68927314;Rua Osvaldo Cruz;Nova Brasília;8189;4
+871456;68927320;Travessa S Camilo;Nova Brasília;8189;4
+871457;68927323;Travessa Zenóbia Vileta;Nova Brasília;8189;4
+871458;68927326;Travessa Amélia Silva;Nova Brasília;8189;4
+871459;68927329;Travessa Manoel Pastana;Nova Brasília;8189;4
+871460;68927332;Travessa Antônio Izaias Brandão;Nova Brasília;8189;4
+871461;68927335;Ramal 19 de Maio;Nova Brasília;8189;4
+871462;68927338;Avenida Ana Mária Coelho;Nova Brasília;8189;4
+871463;68927341;Avenida José Deulino;Nova Brasília;8189;4
+871464;68927344;Travessa Pereira de Abreu;Nova Brasília;8189;4
+871465;68927347;Travessa Américo Vespúcio;Nova Brasília;8189;4
+871466;68927350;Travessa Manoel Abreu de Souza;Nova Brasília;8189;4
+871467;68927353;Travessa Oscar Santos;Nova Brasília;8189;4
+871468;68927360;Travessa Apolônio Gomes;Provedor;8189;4
+871469;68927363;Avenida Palmira Miranda Andrade;Provedor;8189;4
+871470;68927366;Rua General Ubaldo Figueira;Provedor;8189;4
+871471;68927369;Travessa L50 do Provedor;Provedor;8189;4
+871472;68927372;Travessa L16 do Provedor;Provedor;8189;4
+871473;68927375;Travessa L13 do Provedor;Provedor;8189;4
+871474;68927378;Travessa L17 do Provedor;Provedor;8189;4
+871475;68927381;Travessa L6 do Provedor;Provedor;8189;4
+871476;68927384;Travessa L10 do Provedor;Provedor;8189;4
+871477;68927387;Travessa L11 do Provedor;Provedor;8189;4
+871478;68927390;Travessa L12 do Provedor;Provedor;8189;4
+871479;68927393;Travessa L14 do Provedor;Provedor;8189;4
+871480;68927396;Travessa L15 do Provedor;Provedor;8189;4
+871481;68927399;Travessa L4 do Provedor;Provedor;8189;4
+871482;68927402;Travessa L3 do Provedor;Provedor;8189;4
+871483;68927405;Travessa L2 do Provedor;Provedor;8189;4
+871484;68927408;Travessa L1 do Provedor;Provedor;8189;4
+871485;68927411;Travessa Américo Vespúcio;Provedor;8189;4
+871486;68927414;Travessa Coelho Vasques;Provedor;8189;4
+871487;68927417;Passagem Sem Denominação;Provedor;8189;4
+871488;68927420;Avenida Walter Lopes da Cruz;Provedor;8189;4
+871489;68927423;Avenida 12 de Abril;Provedor;8189;4
+871490;68927426;Passagem Sem Denominação 2;Provedor;8189;4
+871491;68927429;Avenida 25 de Dezembro;Provedor;8189;4
+871492;68927432;Travessa Manoel Abreu de Souza;Provedor;8189;4
+871493;68927435;Rua Padre Vitório Galiane;Provedor;8189;4
+871494;68927438;Avenida Maria de Oliveira Colares;Provedor;8189;4
+871495;68927441;Avenida Brasilia;Provedor;8189;4
+871496;68927444;Rua Adálvaro Alves Cavalcanti;Provedor;8189;4
+871497;68927447;Rua Capitão Euclides Rodrigues;Provedor;8189;4
+871498;68927450;Travessa L5 do Provedor;Provedor;8189;4
+871499;68927453;Travessa L7 do Provedor;Provedor;8189;4
+871500;68927456;Travessa L8 do Provedor;Provedor;8189;4
+871501;68927459;Travessa L9 do Provedor;Provedor;8189;4
+871502;68928000;Rua Padre Vitório Galiane;Paraíso;8189;4
+871503;68928003;Rua Osvaldo Cruz;Paraíso;8189;4
+871504;68928006;Avenida Princesa Izabel;Paraíso;8189;4
+871505;68928009;Avenida das Nações;Paraíso;8189;4
+871506;68928012;Avenida Dom Pedro I;Paraíso;8189;4
+871507;68928015;Avenida Rio Branco;Paraíso;8189;4
+871508;68928018;Avenida Ministro Rui Barbosa;Paraíso;8189;4
+871509;68928021;Avenida Coelho Neto;Paraíso;8189;4
+871510;68928024;Travessa Um;Paraíso;8189;4
+871511;68928027;Travessa Dois;Paraíso;8189;4
+871512;68928030;Travessa Três;Paraíso;8189;4
+871513;68928033;Travessa Quatro;Paraíso;8189;4
+871514;68928036;Travessa Cinco;Paraíso;8189;4
+871515;68928039;Rua Presidente Getúlio Vargas;Paraíso;8189;4
+871516;68928042;Rua Presidente General Emílio Garrastazu Médice;Paraíso;8189;4
+871517;68928045;Avenida Quinze de Novembro;Paraíso;8189;4
+871518;68928048;Avenida José de Anchieta;Paraíso;8189;4
+871519;68928051;Avenida Poeta Castro Alves;Paraíso;8189;4
+871520;68928054;Avenida Sete de Setembro;Paraíso;8189;4
+871521;68928057;Avenida Presidente Marechal Humberto de Alencar Castelo Branco;Paraíso;8189;4
+871522;68928060;Avenida Santana;Paraíso;8189;4
+871523;68928063;Avenida São Paulo Apóstolo;Paraíso;8189;4
+871524;68928066;Rua Doutor Osvaldo Cruz;Paraíso;8189;4
+871525;68928069;Rua Presidente Juscelino Kubitschek de Oliveira;Paraíso;8189;4
+871526;68928072;Rua Presidente Marechal Deodoro da Fonseca;Paraíso;8189;4
+871527;68928075;Avenida São João Apóstolo;Paraíso;8189;4
+871528;68928078;Avenida Brasilia;Paraíso;8189;4
+871529;68928081;Rua Presidente Tancredo Neves;Paraíso;8189;4
+871530;68928084;Rodovia Duca Serra;Paraíso;8189;4
+871531;68928087;Travessa América;Paraíso;8189;4
+871532;68928090;Avenida Mineira;Paraíso;8189;4
+871533;68928093;Rua Presidente Floriano Peixoto;Paraíso;8189;4
+871534;68928096;Avenida Júlio Cardoso;Paraíso;8189;4
+871535;68928099;Avenida Maria de Oliveira Colares;Paraíso;8189;4
+871536;68928105;Travessa G;Paraíso;8189;4
+871537;68928108;Travessa H;Paraíso;8189;4
+871538;68928111;Travessa I;Paraíso;8189;4
+871539;68928114;Travessa J;Paraíso;8189;4
+871540;68928117;Travessa M;Paraíso;8189;4
+871541;68928120;Travessa N;Paraíso;8189;4
+871542;68928130;Rua Presidente Floriano Peixoto;Fonte Nova;8189;4
+871543;68928133;Avenida das Nações;Fonte Nova;8189;4
+871544;68928136;Alameda Tambaú;Fonte Nova;8189;4
+871545;68928139;Alameda do Poço;Fonte Nova;8189;4
+871546;68928142;Alameda Cabedelo;Fonte Nova;8189;4
+871547;68928145;Rua Alídio Rodrigues;Fonte Nova;8189;4
+871548;68928148;Avenida Rio Branco;Fonte Nova;8189;4
+871549;68928151;Rua Padre Fúlvio;Fonte Nova;8189;4
+871550;68928154;Rua 14;Fonte Nova;8189;4
+871551;68928157;Rua Walter Barbosa de Araújo;Fonte Nova;8189;4
+871552;68928160;Rua Damião da Cruz Barreto;Fonte Nova;8189;4
+871553;68928163;Avenida Dom Pedro I;Fonte Nova;8189;4
+871554;68928166;Avenida Princesa Izabel;Fonte Nova;8189;4
+871555;68928169;Rua dos Imigrantes;Fonte Nova;8189;4
+871556;68928172;Avenida Quinze de Novembro;Fonte Nova;8189;4
+871557;68928175;Avenida José de Anchieta;Fonte Nova;8189;4
+871558;68928178;Rua João Leite Coutinho;Fonte Nova;8189;4
+871559;68928181;Rua Everaldo Vasconcelos;Fonte Nova;8189;4
+871560;68928184;Avenida Poeta Castro Alves;Fonte Nova;8189;4
+871561;68928187;Avenida Sete de Setembro;Fonte Nova;8189;4
+871562;68928190;Travessa L11;Fonte Nova;8189;4
+871563;68928193;Avenida Presidente Marechal Humberto de Alencar Castelo Branco;Fonte Nova;8189;4
+871564;68928196;Avenida Santana;Fonte Nova;8189;4
+871565;68928199;Travessa L1 da Fonte Nova;Fonte Nova;8189;4
+871566;68928202;Travessa L2 da Fonte Nova;Fonte Nova;8189;4
+871567;68928205;Travessa L3 da Fonte Nova;Fonte Nova;8189;4
+871568;68928208;Travessa L4 da Fonte Nova;Fonte Nova;8189;4
+871569;68928211;Travessa L5 da Fonte Nova;Fonte Nova;8189;4
+871570;68928214;Rua Valdomiro Ferreira Uchôa;Fonte Nova;8189;4
+871571;68928217;Travessa L7 da Fonte Nova;Fonte Nova;8189;4
+871572;68928220;Travessa L8 da Fonte Nova;Fonte Nova;8189;4
+871573;68928223;Travessa L9 da Fonte Nova;Fonte Nova;8189;4
+871574;68928226;Travessa L10 da Fonte Nova;Fonte Nova;8189;4
+871575;68928229;Avenida Júlio Cardoso;Fonte Nova;8189;4
+871576;68928232;Avenida São Paulo Apóstolo;Fonte Nova;8189;4
+871577;68928235;Travessa Sem denominação;Fonte Nova;8189;4
+871578;68928238;Alameda dos Jasmins;Fonte Nova;8189;4
+871579;68928241;Rua das Rosas;Fonte Nova;8189;4
+871580;68928244;Avenida dos Cocais;Fonte Nova;8189;4
+871581;68928247;Avenida das Palmeiras;Fonte Nova;8189;4
+871582;68928250;Avenida das Acácias;Fonte Nova;8189;4
+871583;68928253;Alameda das Açucenas;Fonte Nova;8189;4
+871584;68928256;Alameda das Tulipas;Fonte Nova;8189;4
+871585;68928259;Alameda dos Crisatemos;Fonte Nova;8189;4
+871586;68928262;Rua das Orquídeas;Fonte Nova;8189;4
+871587;68928265;Alameda das Margaridas;Fonte Nova;8189;4
+871588;68928268;Alameda das Magnólias;Fonte Nova;8189;4
+871589;68928271;Alameda dos Girassóis;Fonte Nova;8189;4
+871590;68928274;Alameda das Pampolas;Fonte Nova;8189;4
+871591;68928277;Alameda das Violetas;Fonte Nova;8189;4
+871592;68928280;Rodovia Duca Serra;Fonte Nova;8189;4
+871593;68928283;1ª Travessa da São João;Fonte Nova;8189;4
+871594;68928286;2ª Travessa da São João;Fonte Nova;8189;4
+871595;68928289;3ª Travessa da São João;Fonte Nova;8189;4
+871596;68928292;3ª Travessa São João Apóstolo;Fonte Nova;8189;4
+871597;68928295;Alameda A;Fonte Nova;8189;4
+871598;68928298;Alameda B;Fonte Nova;8189;4
+871599;68928301;Alameda C;Fonte Nova;8189;4
+871600;68928304;Alameda D;Fonte Nova;8189;4
+871601;68928307;Alameda das Rosas;Fonte Nova;8189;4
+871602;68928310;Avenida 1º de Maio;Fonte Nova;8189;4
+871603;68928313;Avenida Brasil;Fonte Nova;8189;4
+871604;68928316;Avenida Brasilia;Fonte Nova;8189;4
+871605;68928319;Avenida Carlos Martel;Fonte Nova;8189;4
+871606;68928322;Avenida Coelho Neto;Fonte Nova;8189;4
+871607;68928325;Avenida Maria de Oliveira Colares;Fonte Nova;8189;4
+871608;68928328;Avenida Salmo 23;Fonte Nova;8189;4
+871609;68928331;Avenida Salmo 91;Fonte Nova;8189;4
+871610;68928334;Avenida São João Apóstolo;Fonte Nova;8189;4
+871611;68928337;Rua Antônio Abilio Rodrigues;Fonte Nova;8189;4
+871612;68928340;Travessa Açaí;Fonte Nova;8189;4
+871613;68928346;Travessa Jasmim;Fonte Nova;8189;4
+871614;68928349;Travessa Maracanã;Fonte Nova;8189;4
+871615;68929500;Rodovia Duca Serra;Distrito Industrial;8189;4
+871616;68929504;Ramal do Cajueiro;Distrito Industrial;8189;4
+871617;68929508;Rodovia Macapá-Mazagão;Distrito Industrial;8189;4
+871618;68929512;Rua Dez;Distrito Industrial;8189;4
+871619;68929516;Rua Oito;Distrito Industrial;8189;4
+871620;68929520;Avenida Um;Distrito Industrial;8189;4
+871621;68929524;Rua Onze;Distrito Industrial;8189;4
+871622;68929528;Rua Sete;Distrito Industrial;8189;4
+871623;68929532;Rua Treze;Distrito Industrial;8189;4
+871624;68929536;Rua Zero;Distrito Industrial;8189;4
+871625;68929540;Rua Doze;Distrito Industrial;8189;4
+871626;68929544;Rua Cinco;Distrito Industrial;8189;4
+871627;68929548;Rua Dois;Distrito Industrial;8189;4
+871628;68929552;Rua Um;Distrito Industrial;8189;4
+871629;68929556;Rua Quatro;Distrito Industrial;8189;4
+871630;68929560;Rua Seis;Distrito Industrial;8189;4
+871631;68929564;Avenida São Paulo Apóstolo;Distrito Industrial;8189;4
+871632;68929568;Avenida São João Apóstolo;Distrito Industrial;8189;4
+871633;68929572;Rua Três;Distrito Industrial;8189;4
+871634;68929576;Travessa Fé em Deus;Distrito Industrial;8189;4
+871635;68933000;Rua A;Ilha de Santana;8189;4
+871636;68933005;Rua B;Ilha de Santana;8189;4
+871637;68933010;Rua C;Ilha de Santana;8189;4
+871638;68933015;Rua D;Ilha de Santana;8189;4
+871639;68935000;desconhecido;Igarapé do Lago;8189;4
+871640;68935971;Distrito de Igarapé do Lago s/n;Igarapé do Lago;8189;4
+871641;68937000;desconhecido;Ilha de Santana;8189;4
+871642;68937971;Distrito da Ilha de Santana s/n;Ilha de Santana;8189;4
+871643;68939000;desconhecido;Fortaleza;8189;4
+871644;68940000;desconhecido;desconhecido;5600;4
+871645;68940970;Rua Veiga Cabral 1010;Mazagão;5600;4
+871646;68940971;Vila Carvão s/n;Vila Carvão;5600;4
+871647;68940972;Vila de Mazagão Velho s/n;Vila de Mazagão Velho;5600;4
+871648;68943000;desconhecido;Mazagão Velho;5600;4
+871649;68945000;desconhecido;desconhecido;6795;4
+871650;68945970;Rua Francisco Braz s/n;Centro;6795;4
+871651;68948000;desconhecido;desconhecido;9289;4
+871652;68948970;Quadra BC-04 156;Vila Primária;9289;4
+871653;68950000;desconhecido;desconhecido;340;4
+871654;68950970;Avenida Guarani 242;Centro;340;4
+871655;68958000;desconhecido;Sucuriju;340;4
+871656;68960000;desconhecido;desconhecido;1716;4
+871657;68960970;Avenida Eulálio Modesto s/n;Centro;1716;4
+871658;68960971;Vila Carnot s/n;Vila Carnot;1716;4
+871659;68965000;desconhecido;Cunani;1716;4
+871660;68970000;desconhecido;Lourenço;1716;4
+871661;68970970;Avenida José Lorenço 1299;Lourenço;1716;4
+871662;68973000;desconhecido;desconhecido;2901;4
+871663;68973970;Rua Manoel Raimundo s/n;Centro;2901;4
+871664;68976000;desconhecido;desconhecido;4515;4
+871665;68976970;Rua Laurita Almeida Barbosa 115;Centro;4515;4
+871666;68980000;desconhecido;desconhecido;6320;4
+871667;68980970;Avenida Barão do Rio Branco 261;Centro;6320;4
+871668;68985000;desconhecido;Clevelândia do Norte;6320;4
+871669;68988000;desconhecido;Vila Velha;6320;4
+871670;68990000;desconhecido;desconhecido;9635;4
+871671;68990970;Rua Mãe Verônica 222;Centro;9635;4
+871672;68994000;desconhecido;Aporema;9635;4
+871673;68997000;desconhecido;desconhecido;7309;4
+871674;68997970;Travessa Lourenço de Araujo 552;Centro;7309;4
+871675;68900906;Avenida Coaracy Nunes 97;Central;5258;4
+871676;68901340;Rua Roberto Ferreira da Silva;Santa Rita;5258;4
+871677;68901450;Rua Álvaro Bezerra;Santa Inês;5258;4
+871678;68903006;Avenida João de Castro Sussuarana;Jardim Equatorial;5258;4
+871679;68903080;Ramal Nova Esperança;Pedrinhas;5258;4
+871680;68903081;Passagem do Amor;Pedrinhas;5258;4
+871681;68903082;Passagem das Naçôes;Pedrinhas;5258;4
+871682;68903083;Rua Joaquim Pena;Pedrinhas;5258;4
+871683;68903084;Avenida Jacinto Lobato;Pedrinhas;5258;4
+871684;68903085;Avenida Mário Quirino;Pedrinhas;5258;4
+871685;68903209;Travessa Onix;Jardim Marco Zero;5258;4
+871686;68903329;Ramal da Unifap;Jardim Marco Zero;5258;4
+871687;68903545;Travessa Dulce Estela Ribeiro;Universidade;5258;4
+871688;68903611;Passagem do Gringo;Universidade;5258;4
+871689;68903612;Passagem Boa Fé;Universidade;5258;4
+871690;68903614;Ramal Bom Jesus;Universidade;5258;4
+871691;68903616;Ramal Trinta e Um de Março;Universidade;5258;4
+871692;68903629;Travessa Nona;Universidade;5258;4
+871693;68904061;Alameda Antônio Ferreira de Jusus;Novo Buritizal;5258;4
+871694;68904062;Avenida Antônio Ferreira de Jesus;Novo Buritizal;5258;4
+871695;68905422;Rua José Furtado de Oliveira;Cidade Nova;5258;4
+871696;68905560;Rua Rio Xingu;Perpétuo Socorro;5258;4
+871697;68906172;Avenida França;São José;5258;4
+871698;68906173;Avenida Portugal;São José;5258;4
+871699;68906174;Avenida Itália;São José;5258;4
+871700;68906175;Avenida Inglaterra;São José;5258;4
+871701;68906176;Rua Irlanda;São José;5258;4
+871702;68906177;Rua Belgica;São José;5258;4
+871703;68906178;Rua Espanha;São José;5258;4
+871704;68906179;Rua Suiça;São José;5258;4
+871705;68906180;Avenida Uruguai;São José;5258;4
+871706;68906181;Avenida Argentina;São José;5258;4
+871707;68906182;Avenida Equador;São José;5258;4
+871708;68906183;Avenida Bolivia;São José;5258;4
+871709;68906184;Avenida Brasil;São José;5258;4
+871710;68906185;Avenida Paraguai;São José;5258;4
+871711;68906300;Avenida Sol Nascente;Marabaixo;5258;4
+871712;68906302;Rua Vicente Raimundo Alves;Marabaixo;5258;4
+871713;68906303;Rua do Trilho;Marabaixo;5258;4
+871714;68906304;Travessa Marilene Silva Miranda;Marabaixo;5258;4
+871715;68906305;Avenida São Paulo;Marabaixo;5258;4
+871716;68906306;Avenida Vasco da Gama;Marabaixo;5258;4
+871717;68906307;Travessa Estrela do Manha;Marabaixo;5258;4
+871718;68906308;Travessa Santa Fé;Marabaixo;5258;4
+871719;68906448;Avenida Uruguai;Marabaixo;5258;4
+871720;68906449;Travessa Monte Negro;Marabaixo;5258;4
+871721;68906450;Rua Beira Rio;Marabaixo;5258;4
+871722;68906451;Rua do Prazer;Marabaixo;5258;4
+871723;68906452;Rua Professora Osvaldina Ferreira da Silva;Marabaixo;5258;4
+871724;68906453;Travessa Liberato;Marabaixo;5258;4
+871725;68906454;Avenida Bosque;Marabaixo;5258;4
+871726;68906456;Rua Raimundo Coutinho;Marabaixo;5258;4
+871727;68906457;Travessa Manoel José;Marabaixo;5258;4
+871728;68906458;Rua Mário Veloso Cordeiro;Marabaixo;5258;4
+871729;68906459;Rua do Entrocamento;Marabaixo;5258;4
+871730;68906460;Alameda Olavio da Costa Magno;Marabaixo;5258;4
+871731;68906461;Travessa Nevasca;Marabaixo;5258;4
+871732;68906462;Avenida Verde;Marabaixo;5258;4
+871733;68906463;Avenida Jardin América;Marabaixo;5258;4
+871734;68906464;Avenida Floresta;Marabaixo;5258;4
+871735;68906465;Travessa Raimundo Pinto Ramos;Marabaixo;5258;4
+871736;68906466;Travessa Pedro;Marabaixo;5258;4
+871737;68906467;Rua João Ferreira da Silva;Marabaixo;5258;4
+871738;68906468;Avenida Benedito Ramos Castro;Marabaixo;5258;4
+871739;68906469;Passagem Antonio Cosme de Araujo;Marabaixo;5258;4
+871740;68906470;Travessa Cacique Curuma;Marabaixo;5258;4
+871741;68906471;Travessa João Vicente Medeiros;Marabaixo;5258;4
+871742;68906472;Passagem Jardin America;Marabaixo;5258;4
+871743;68906473;Alameda Beira Rio;Marabaixo;5258;4
+871744;68906474;Travessa Lemos;Marabaixo;5258;4
+871745;68906475;Rua Lucicleiton Trindade de Mira;Marabaixo;5258;4
+871746;68906476;Travessa das Orquidias;Marabaixo;5258;4
+871747;68906477;Travessa Muruci;Marabaixo;5258;4
+871748;68906478;Avenida Waldez Trindade de Souza;Marabaixo;5258;4
+871749;68906479;Passagem X do Sul;Marabaixo;5258;4
+871750;68906480;Avenida Raimundo Ibiapino da Silva;Marabaixo;5258;4
+871751;68906481;Travessa Bom Jardin;Marabaixo;5258;4
+871752;68906482;Travessa Raimundo Jansen de Almeida;Marabaixo;5258;4
+871753;68906483;Passagem Bom Jardin;Marabaixo;5258;4
+871754;68906484;Travessa Santo Expedito;Marabaixo;5258;4
+871755;68906485;Travessa Zolito Nunes;Marabaixo;5258;4
+871756;68906486;Travessa Doutor Araldo da Silva Carvalho;Marabaixo;5258;4
+871757;68906487;Travessa Porto Alegre;Marabaixo;5258;4
+871758;68906488;Travessa Flamengo;Marabaixo;5258;4
+871759;68906489;Rua Doutor Dalton Martins;Marabaixo;5258;4
+871760;68906490;Travessa Alverne;Marabaixo;5258;4
+871761;68906491;Avenida Joaquim Coutinho;Marabaixo;5258;4
+871762;68906492;Avenida Raimundo Nunes Trindade;Marabaixo;5258;4
+871763;68906493;Travessa Municipal;Marabaixo;5258;4
+871764;68906494;Travessa Maria Assunção cruz;Marabaixo;5258;4
+871765;68906495;Passagem do Breu;Marabaixo;5258;4
+871766;68906497;Travessa Pau Brasil;Marabaixo;5258;4
+871767;68906498;Travessa Europa;Marabaixo;5258;4
+871768;68906499;Travessa Rio Solimoes;Marabaixo;5258;4
+871769;68906500;Rua da Lagoa;Marabaixo;5258;4
+871770;68906834;Avenida Rio Amazonas;Cabralzinho;5258;4
+871771;68908001;Rodovia Norte Sul;Infraero;5258;4
+871772;68908020;Avenida Mateus Azevedo Coutinho;Infraero;5258;4
+871773;68908118;Rua Professor Tostes;Jesus de Nazaré;5258;4
+871774;68908402;Rua Jocelina Ramos;São Lázaro;5258;4
+871775;68908511;Rua Vitória Régia;São Lázaro;5258;4
+871776;68908512;Rua Mendes de Sá;São Lázaro;5258;4
+871777;68908513;Rua José de Alencar;São Lázaro;5258;4
+871778;68908514;Rua Duarte da Costa;São Lázaro;5258;4
+871779;68908515;Avenida Marechal Deodoro da Fonseca;São Lázaro;5258;4
+871780;68908516;Passagem do Ambrósio;São Lázaro;5258;4
+871781;68908517;Passagem Vitória Régia;São Lázaro;5258;4
+871782;68908518;Passagem José Moacir Banha de Araújo;São Lázaro;5258;4
+871783;68908519;Travessa das Bacabeiras;São Lázaro;5258;4
+871784;68908522;Ramal dos Colares;São Lázaro;5258;4
+871785;68908886;Avenida Karipunas;Infraero;5258;4
+871786;68908900;Rua Tancredo Neves 201;São Lázaro;5258;4
+871787;68908910;Rodovia Norte Sul s/n;Infraero;5258;4
+871788;68908911;Rodovia Norte Sul s/n;Infraero;5258;4
+871789;68909062;Avenida Ramos;Jardim Felicidade;5258;4
+871790;68909138;Avenida Luís Gonzaga;Boné Azul;5258;4
+871791;68909141;Avenida Cecília Meireles;Boné Azul;5258;4
+871792;68909600;Alameda Minha Cidade;Boné Azul;5258;4
+871793;68909601;Alameda Pérola Azulada;Boné Azul;5258;4
+871794;68909602;Alameda Bacabeira;Boné Azul;5258;4
+871795;68909604;Alameda Pedra Negra;Boné Azul;5258;4
+871796;68909605;Alameda Floração;Boné Azul;5258;4
+871797;68909607;Alameda Lugar Bonito;Boné Azul;5258;4
+871798;68909608;Alameda Colibrir;Boné Azul;5258;4
+871799;68909609;Alameda Padroeiro São José;Boné Azul;5258;4
+871800;68909611;Alameda Negro de Nós;Boné Azul;5258;4
+871801;68909612;Alameda Sereia dos Rios;Boné Azul;5258;4
+871802;68909613;Alameda Sentinela Nortente;Boné Azul;5258;4
+871803;68909614;Alameda Tarumã;Boné Azul;5258;4
+871804;68909615;Alameda Toada Cabocla;Boné Azul;5258;4
+871805;68909616;Alameda Doce Cartar;Boné Azul;5258;4
+871806;68909617;Alameda Rosario de Ouro;Boné Azul;5258;4
+871807;68909800;Rua Alceu Paulo Ramos;Novo Horizonte;5258;4
+871808;68909839;Avenida Ramos;Novo Horizonte;5258;4
+871809;68909860;Rua Virginia da Costa;Marabaixo;5258;4
+871810;68911010;Avenida Nova Brasilia;Fazendinha;5258;4
+871811;68911015;Avenida Marcelo Ribeiro;Fazendinha;5258;4
+871812;68911041;Rua Rio Tapajós;Fazendinha;5258;4
+871813;68911449;Rua Um;Muruci (Fazendinha);5258;4
+871814;68911468;Avenida do Grosso;Muruci (Fazendinha);5258;4
+871815;68911469;Avenida Breviense;Muruci (Fazendinha);5258;4
+871816;68911470;Avenida Araguaia;Muruci (Fazendinha);5258;4
+871817;68911471;Avenida Vinte e Dois de Novembro;Muruci (Fazendinha);5258;4
+871818;68911472;Ramal Estaleiro;Muruci (Fazendinha);5258;4
+871819;68911473;Ramal da Horta;Muruci (Fazendinha);5258;4
+871820;68911474;Ramal do Alemão;Muruci (Fazendinha);5258;4
+871821;68911475;Avenida Bom fim;Muruci (Fazendinha);5258;4
+871822;68911476;Avenida Vale do Rio Doce;Muruci (Fazendinha);5258;4
+871823;68911477;Avenida Vale do Itajaí;Muruci (Fazendinha);5258;4
+871824;68911478;Avenida São Francisco;Muruci (Fazendinha);5258;4
+871825;68911479;Avenida Sapucaia;Muruci (Fazendinha);5258;4
+871826;68927122;Travessa Mário Quirino;Provedor I;8189;4
+871827;68927128;Avenida Tocantinópolis;Provedor I;8189;4
+871828;68927146;Travessa 14;Provedor I;8189;4
+871829;68927155;Travessa 20;Provedor I;8189;4
+871830;68927164;Avenida 11;Provedor I;8189;4
+871831;68928343;Travessa Bem-te-vi;Fonte Nova;8189;4
+871832;68903120;Travessa Anibal Barcelos;Pedrinhas;5258;4
+871833;68903613;Ramal Ferraz;Universidade;5258;4
+871834;68903913;Rodovia Juscelino Kubitschek 3200;Universidade;5258;4
+871835;68906120;Rua Miguel Rodrigues Bittencourt;Cabralzinho;5258;4
+871836;68906122;Avenida Nepal;Cabralzinho;5258;4
+871837;68906123;Avenida Dubai;Cabralzinho;5258;4
+871838;68906124;Avenida Japão;Cabralzinho;5258;4
+871839;68906126;Avenida Tailândia;Cabralzinho;5258;4
+871840;68906127;Avenida China;Cabralzinho;5258;4
+871841;68906128;Avenida Mumbai;Cabralzinho;5258;4
+871842;68906129;Avenida Abu Dhabi;Cabralzinho;5258;4
+871843;68906131;Rua Nova Delhi;Cabralzinho;5258;4
+871844;68906133;Rua Singapura;Cabralzinho;5258;4
+871845;68906139;Rua Jacarta;Cabralzinho;5258;4
+871846;68906140;Avenida Natal;Cabralzinho;5258;4
+871847;68906141;Avenida Porto Alegre;Cabralzinho;5258;4
+871848;68906142;Avenida Florianópolis;Cabralzinho;5258;4
+871849;68906143;Avenida Curitiba;Cabralzinho;5258;4
+871850;68906145;Rua Belo Horizonte;Cabralzinho;5258;4
+871851;68906149;Rua Macapá;Cabralzinho;5258;4
+871852;68906171;Avenida Holanda;São José;5258;4
+871853;68906309;Avenida Murici;Marabaixo;5258;4
+871854;68906447;Rua Julita Alves da Silva;Marabaixo;5258;4
+871855;68906455;Travessa Luis Gonzaga;Marabaixo;5258;4
+871856;68906496;Passagem Miguel de Carvalho Uchoa;Marabaixo;5258;4
+871857;68908016;Rua Francisco das Chagas Bezerra;Infraero;5258;4
+871858;68908017;Rua Miguel Arraes;Infraero;5258;4
+871859;68908018;Rua Jorge Fernandes Ribeiro;Infraero;5258;4
+871860;68908019;Rua Leonardo Gazel;Infraero;5258;4
+871861;68908080;Ramal Fé em Deus;Infraero;5258;4
+871862;68908521;Alameda Quilombo dos Palmares;São Lázaro;5258;4
+871863;68909331;Rua Pêssego;Brasil Novo;5258;4
+871864;68909337;Avenida Jussara;Brasil Novo;5258;4
+871865;68909371;Avenida Piracicaba;Brasil Novo;5258;4
+871866;68909372;Rua Rio Dourados;Brasil Novo;5258;4
+871867;68909373;Avenida Copacabana;Brasil Novo;5258;4
+871868;68909374;Avenida Petrópolis;Brasil Novo;5258;4
+871869;68909375;Avenida Búzios;Brasil Novo;5258;4
+871870;68909376;Avenida Angra dos Reis;Brasil Novo;5258;4
+871871;68909378;Rua Guarujá;Brasil Novo;5258;4
+871872;68909379;Rua Fernando de Noronha;Brasil Novo;5258;4
+871873;68909381;Avenida Fortaleza;Brasil Novo;5258;4
+871874;68909382;Avenida Gramado;Brasil Novo;5258;4
+871875;68909385;Avenida Paris;Brasil Novo;5258;4
+871876;68909603;Alameda Luz do Mundo;Boné Azul;5258;4
+871877;68909606;Alameda Andorinha;Boné Azul;5258;4
+871878;68909881;Avenida dos Tucanos;Marabaixo;5258;4
+871879;68926361;Travessa Raimundo Pereira de Souza;Fortaleza;8189;4
+871880;68905461;Travessa Terceira da Pará;Cidade Nova;5258;4
+871881;68905465;Passarela Ponte da Maranhão;Cidade Nova;5258;4
+871882;68905466;Passarela Ponte da Piauí;Cidade Nova;5258;4
+871883;68905881;Travessa Primeira do Pará;Perpétuo Socorro;5258;4
+871884;68905882;Travessa Segunda do Pará;Perpétuo Socorro;5258;4
+871885;68905885;Travessa Baixada da Maranhão;Perpétuo Socorro;5258;4
+871886;68905886;Travessa Baixada da Piauí;Perpétuo Socorro;5258;4
+871887;68905887;Travessa Baixada da Ceará;Perpétuo Socorro;5258;4
+871888;68908796;Rua Maria do Socorro Vieira Sampaio;Infraero;5258;4
+871889;68926013;Travessa D;Novo Horizonte;8189;4
+871890;68926017;Travessa F;Novo Horizonte;8189;4
+871891;68926021;Travessa E;Novo Horizonte;8189;4
+871892;68902881;Rua Pedro Romualdo Pereira;Buritizal;5258;4
+871893;68902882;Rua Herundino do Espirito Santo;Buritizal;5258;4
+871894;68902883;Avenida Lucimar Araújo Tavares;Buritizal;5258;4
+871895;68902884;Avenida Rufino da Conceição Pinheiro;Buritizal;5258;4
+871896;68902886;Avenida Geraldo Lopes Creão;Buritizal;5258;4
+871897;68903136;Rua Guiomar Cavalcante Rodrigues;Pedrinhas;5258;4
+871898;68903137;Travessa Santa Clara;Pedrinhas;5258;4
+871899;68903201;Rua Um;Jardim Marco Zero;5258;4
+871900;68903202;Rua Dois;Jardim Marco Zero;5258;4
+871901;68903203;Rua Três;Jardim Marco Zero;5258;4
+871902;68903211;Rua Quatro;Jardim Marco Zero;5258;4
+871903;68903212;Rua Cinco;Jardim Marco Zero;5258;4
+871904;68903397;Passagem Cruzeiro do Sul;Jardim Marco Zero;5258;4
+871905;68903398;Passagem Terra;Jardim Marco Zero;5258;4
+871906;68903399;Passagem Sol;Jardim Marco Zero;5258;4
+871907;68903401;Passagem Estrela Dalva;Jardim Marco Zero;5258;4
+871908;68903402;Passagem Amizade;Jardim Marco Zero;5258;4
+871909;68903403;Passagem Venus;Jardim Marco Zero;5258;4
+871910;68903404;Passagem Estrela;Jardim Marco Zero;5258;4
+871911;68903417;Travessa Deus é Fiel;Universidade;5258;4
+871912;68903418;Alameda Esperanca;Universidade;5258;4
+871913;68903617;Ramal São Francisco;Universidade;5258;4
+871914;68903888;Rua Nova Esperança;Araxá;5258;4
+871915;68903889;Travessa Nova Esperança;Araxá;5258;4
+871916;68904263;Avenida Rosa Branca;Novo Buritizal;5258;4
+871917;68904264;Avenida Dois do Açucena;Novo Buritizal;5258;4
+871918;68904265;Avenida Um do Açucena;Novo Buritizal;5258;4
+871919;68904266;Rua Tia Militina;Novo Buritizal;5258;4
+871920;68904267;Rua Tia Iô;Novo Buritizal;5258;4
+871921;68904268;Rua Tia Geralda;Novo Buritizal;5258;4
+871922;68904269;Rua Mãe Venina;Novo Buritizal;5258;4
+871923;68904270;Rua Tia Bela;Novo Buritizal;5258;4
+871924;68904801;Travessa Feira Muluca;Novo Buritizal;5258;4
+871925;68905081;Passagem Primeira da Manoel Cardoso;Cidade Nova;5258;4
+871926;68905082;Passagem Segunda da Manoel Cardoso;Cidade Nova;5258;4
+871927;68905171;Passagem Primeira da Santa Maria;Cidade Nova;5258;4
+871928;68905172;Passagem Segunda da Santa Maria;Cidade Nova;5258;4
+871929;68905392;Travessa Santa Fé;Cidade Nova;5258;4
+871930;68905393;Passagem José Picanço de Menezes;Cidade Nova;5258;4
+871931;68905462;Avenida Projetada;Cidade Nova;5258;4
+871932;68905732;Passagem Segunda da Turíbio;Perpétuo Socorro;5258;4
+871933;68905733;Passagem Terceira da Turíbio;Perpétuo Socorro;5258;4
+871934;68905734;Passagem Quarta da Turíbio;Perpétuo Socorro;5258;4
+871935;68906092;Rua Graunas;Goiabal;5258;4
+871936;68906094;Travessa Shalon;Goiabal;5258;4
+871937;68906146;Rua das Acaciás;Cabralzinho;5258;4
+871938;68906147;Rua das Tulipas;Cabralzinho;5258;4
+871939;68906148;Rua das Hortências;Cabralzinho;5258;4
+871940;68906310;Rua Nair Maria Souza da Costa;Marabaixo;5258;4
+871941;68906311;Ramal Pedro Nonato Vaz da Silva;Marabaixo;5258;4
+871942;68906320;Rua Um;Marabaixo;5258;4
+871943;68906321;Rua Dois;Marabaixo;5258;4
+871944;68906322;Rua Três;Marabaixo;5258;4
+871945;68906323;Rua Quatro;Marabaixo;5258;4
+871946;68906324;Rua Cinco;Marabaixo;5258;4
+871947;68906504;Avenida Floreira;Marabaixo;5258;4
+871948;68906505;Avenida Verde;Marabaixo;5258;4
+871949;68906506;Avenida Campestre;Marabaixo;5258;4
+871950;68906507;Avenida Flora;Marabaixo;5258;4
+871951;68906508;Avenida Jardin;Marabaixo;5258;4
+871952;68906509;Avenida Floresta;Marabaixo;5258;4
+871953;68906510;Rua Bosque;Marabaixo;5258;4
+871954;68906511;Rua Canteiro;Marabaixo;5258;4
+871955;68906512;Rua Parque;Marabaixo;5258;4
+871956;68906513;Rua Campos;Marabaixo;5258;4
+871957;68906651;Rua Mestre Júlio;Alvorada;5258;4
+871958;68906791;Avenida Brasil;Cabralzinho;5258;4
+871959;68906792;Avenida Itália;Cabralzinho;5258;4
+871960;68906793;Avenida Japão;Cabralzinho;5258;4
+871961;68906794;Avenida Reino Unido;Cabralzinho;5258;4
+871962;68906795;Rua Alemanha;Cabralzinho;5258;4
+871963;68906796;Rua Canadá;Cabralzinho;5258;4
+871964;68906797;Rua França;Cabralzinho;5258;4
+871965;68906798;Travessa Estados Unidos da America;Cabralzinho;5258;4
+871966;68906802;Avenida Brunei;Cabralzinho;5258;4
+871967;68906975;Rodovia de Duca Serra Km 03;Cabralzinho;5258;4
+871968;68907181;Rua João Paulo de Souza;Renascer;5258;4
+871969;68907191;Avenida Muruci;Renascer;5258;4
+871970;68907192;Avenida Sapucaia;Renascer;5258;4
+871971;68907193;Avenida Acapu;Renascer;5258;4
+871972;68907194;Rua Angelim;Renascer;5258;4
+871973;68907195;Rua Macacaúba;Renascer;5258;4
+871974;68907196;Rua Jacarandá;Renascer;5258;4
+871975;68907197;Rua Paricá;Renascer;5258;4
+871976;68907198;Rua Jatobá;Renascer;5258;4
+871977;68907199;Rua Ipê;Renascer;5258;4
+871978;68907251;Travessa Durval Melo;Renascer;5258;4
+871979;68908002;Rua Carlos Daniel;Infraero;5258;4
+871980;68908021;Rua Meton Jucá Junior;Infraero;5258;4
+871981;68908022;Rua Herbert de Souza;Infraero;5258;4
+871982;68908023;Rua Aldony Fonseca;Infraero;5258;4
+871983;68908024;Rua Zuleika Angel Jones;Infraero;5258;4
+871984;68908025;Rua Carlos Mariguela;Infraero;5258;4
+871985;68908090;Rua da Ressaca;Infraero;5258;4
+871986;68908094;Rua Salmo Cento e Dezenove;Infraero;5258;4
+871987;68908273;Passagem Jovino Dinoá;Pacoval;5258;4
+871988;68908274;Passagem Manoel Pacífico Cantuária;Pacoval;5258;4
+871989;68908456;Travessa São Jorge;São Lázaro;5258;4
+871990;68908797;Avenida Tucumã;Infraero;5258;4
+871991;68908798;Avenida Oliveiras;Infraero;5258;4
+871992;68908799;Avenida Cupuaçú;Infraero;5258;4
+871993;68908800;Avenida Parauapebas;Infraero;5258;4
+871994;68908830;Avenida das Mangas;Infraero;5258;4
+871995;68908831;Avenida das Melancias;Infraero;5258;4
+871996;68908972;Avenida Sergipe 88 Galpão 376;Pacoval;5258;4
+871997;68909001;Travessa Vinte de Novembro;Jardim Felicidade;5258;4
+871998;68909002;Travessa Leão Zagury;Jardim Felicidade;5258;4
+871999;68909056;Avenida Sebastião Queiroz Alcântara;Jardim Felicidade;5258;4
+872000;68909338;Avenida Bananal;Brasil Novo;5258;4
+872001;68909339;Rua Brasil Novo;Brasil Novo;5258;4
+872002;68909341;Travessa Macaxeira;Brasil Novo;5258;4
+872003;68909342;Rua Piçarreira;Brasil Novo;5258;4
+872004;68909343;Rua Maçã Verde;Brasil Novo;5258;4
+872005;68909344;Rua Uva;Brasil Novo;5258;4
+872006;68909345;Travessa Damasco;Brasil Novo;5258;4
+872007;68909346;Rua Morango;Brasil Novo;5258;4
+872008;68909347;Travessa Bananal;Brasil Novo;5258;4
+872009;68909348;Travessa Prata;Brasil Novo;5258;4
+872010;68909349;Travessa Ás de Ouro;Brasil Novo;5258;4
+872011;68909351;Rua Pitombeira;Brasil Novo;5258;4
+872012;68909352;Rua Kiwi;Brasil Novo;5258;4
+872013;68909353;Rua Lago Verde;Brasil Novo;5258;4
+872014;68909354;Travessa Bananeira;Brasil Novo;5258;4
+872015;68909355;Rua Piquias;Brasil Novo;5258;4
+872016;68909356;Rua Central;Brasil Novo;5258;4
+872017;68909357;Rua Jabuticaba;Brasil Novo;5258;4
+872018;68909358;Travessa Piquias;Brasil Novo;5258;4
+872019;68909359;Travessa Morango;Brasil Novo;5258;4
+872020;68909361;Travessa Macapá;Brasil Novo;5258;4
+872021;68909362;Avenida Belém;Brasil Novo;5258;4
+872022;68909363;Travessa Pitombeira;Brasil Novo;5258;4
+872023;68909364;Avenida Jaqueira;Brasil Novo;5258;4
+872024;68909365;Travessa Dourados;Brasil Novo;5258;4
+872025;68909366;Travessa Saputi;Brasil Novo;5258;4
+872026;68909367;Travessa Buriti;Brasil Novo;5258;4
+872027;68909368;Travessa Goiaba;Brasil Novo;5258;4
+872028;68909369;Travessa Manaus;Brasil Novo;5258;4
+872029;68909377;Rua Piquiá;Brasil Novo;5258;4
+872030;68909383;Travessa Santarém;Brasil Novo;5258;4
+872031;68909384;Travessa Caju;Brasil Novo;5258;4
+872032;68909386;Travessa Asmobil;Brasil Novo;5258;4
+872033;68909387;Travessa Segingais;Brasil Novo;5258;4
+872034;68909388;Rua Dourados;Brasil Novo;5258;4
+872035;68909389;Avenida Dourados;Brasil Novo;5258;4
+872036;68909392;Rua Bananal;Brasil Novo;5258;4
+872037;68909399;Travessa Piquiá;Brasil Novo;5258;4
+872038;68909540;Travessa Nossa Senhora Aparecida;Boné Azul;5258;4
+872039;68909541;Travessa São Francisco;Boné Azul;5258;4
+872040;68909618;Travessa Juá;Boné Azul;5258;4
+872041;68909619;Travessa Juazeiro;Boné Azul;5258;4
+872042;68909620;Rua Cumaru;Boné Azul;5258;4
+872043;68909621;Travessa Pracuúba;Boné Azul;5258;4
+872044;68909622;Travessa Cupiuba;Boné Azul;5258;4
+872045;68909623;Travessa Pau-Roxo;Boné Azul;5258;4
+872046;68909624;Travessa Jacarandá;Boné Azul;5258;4
+872047;68909625;Travessa Pau D'arco;Boné Azul;5258;4
+872048;68909626;Travessa Jerusalém;Boné Azul;5258;4
+872049;68909627;Avenida Jequitibá;Boné Azul;5258;4
+872050;68909628;Rua Quilombo do Curiaú;Boné Azul;5258;4
+872051;68909629;Rua Sucupira;Boné Azul;5258;4
+872052;68909630;Passagem Santo Antônio;Boné Azul;5258;4
+872053;68909651;Rua Um;Lagoa Azul;5258;4
+872054;68909652;Rua Dois;Lagoa Azul;5258;4
+872055;68909653;Rua Três;Lagoa Azul;5258;4
+872056;68909654;Rua Quatro;Lagoa Azul;5258;4
+872057;68909655;Rua Cinco;Lagoa Azul;5258;4
+872058;68909783;Rua Manoel Marreiros Ferreira;Lagoa Azul;5258;4
+872059;68909784;Avenida Maria Edina Rosa Perreira;Lagoa Azul;5258;4
+872060;68909785;Rua São Francisco;Lagoa Azul;5258;4
+872061;68909786;Rua Clenildo Sales;Lagoa Azul;5258;4
+872062;68909787;Rua Manoel Gilberto;Lagoa Azul;5258;4
+872063;68909794;Travessa Leão Zagury;Novo Horizonte;5258;4
+872064;68909795;Avenida Sebastião Queiroz Alcântara;Novo Horizonte;5258;4
+872065;68909796;Alameda Marabaixo;Novo Horizonte;5258;4
+872066;68909797;Travessa da Luz;Novo Horizonte;5258;4
+872067;68909798;Alameda dos Anjos;Novo Horizonte;5258;4
+872068;68909799;Alameda Curiaú;Novo Horizonte;5258;4
+872069;68911116;Rua Benoni Peres Fomes;Fazendinha;5258;4
+872070;68911500;Alameda Primavera;Muruci (Fazendinha);5258;4
+872071;68911501;Alameda Passaros;Muruci (Fazendinha);5258;4
+872072;68911502;Alameda das Cores;Muruci (Fazendinha);5258;4
+872073;68911503;Alameda Flor de Maio;Muruci (Fazendinha);5258;4
+872074;68911504;Alameda das Brisas;Muruci (Fazendinha);5258;4
+872075;68911505;Alameda dos Aromas;Muruci (Fazendinha);5258;4
+872076;68911506;Alameda Caminho da Mata;Muruci (Fazendinha);5258;4
+872077;68911507;Alameda do Sol;Muruci (Fazendinha);5258;4
+872078;68911508;Alameda do Luar;Muruci (Fazendinha);5258;4
+872079;68911509;Alameda Campina;Muruci (Fazendinha);5258;4
+872080;68911510;Alameda Bosque;Muruci (Fazendinha);5258;4
+872081;68911511;Alameda das Flores;Muruci (Fazendinha);5258;4
+872082;68911512;Alameda Horizonte;Muruci (Fazendinha);5258;4
+872083;68911513;Alameda Recanto;Muruci (Fazendinha);5258;4
+872084;68911514;Alameda Paisagem;Muruci (Fazendinha);5258;4
+872085;68911515;Alameda das Estrelas;Muruci (Fazendinha);5258;4
+872086;68911516;Alameda Verão;Muruci (Fazendinha);5258;4
+872087;68925118;Avenida Canal dos Madeireiros;Comercial;8189;4
+872088;68925220;Travessa Álvaro Barros;Central;8189;4
+872089;68925221;Travessa Atlântico;Central;8189;4
+872090;68925223;Travessa Maria Vitorina;Central;8189;4
+872091;68926163;Rua D 15;Vila Amazonas;8189;4
+872092;68928393;Rua Salmo 21;Fé em Deus;8189;4
+872093;68928396;Avenida Salmo 23;Fé em Deus;8189;4
+872094;68928399;Passagem Salmo 23;Fé em Deus;8189;4
+872095;68928401;Passagem Salmo 91;Fé em Deus;8189;4
+872096;68928404;Avenida Salmo 91;Fé em Deus;8189;4
+872097;68928406;Avenida Brasil;Fé em Deus;8189;4
+872098;68928408;Rua Salmo 23;Fé em Deus;8189;4
+872099;68928410;Rua Brasil;Fé em Deus;8189;4
+872100;68929510;Ramal da Banakoba;Distrito Industrial;8189;4
+872101;68929513;Travessa Rio Tefé;Distrito Industrial;8189;4
+872102;68929514;Travessa Rio Tocantins;Distrito Industrial;8189;4
+872103;68929515;Travessa Rio Vila Nova;Distrito Industrial;8189;4
+872104;68929517;Travessa Rio Xingu;Distrito Industrial;8189;4
+872105;68929537;Alameda Mar Mediterrâneo;Distrito Industrial;8189;4
+872106;68929538;Alameda Rio Anajás;Distrito Industrial;8189;4
+872107;68929539;Alameda Rio Araguari;Distrito Industrial;8189;4
+872108;68929541;Alameda Rio Maracá;Distrito Industrial;8189;4
+872109;68929542;Alameda Rio Vila Nova;Distrito Industrial;8189;4
+872110;68929543;Avenida Acquaville;Distrito Industrial;8189;4
+872111;68929545;Avenida Rio Amapá;Distrito Industrial;8189;4
+872112;68929546;Avenida Rio Calçoene;Distrito Industrial;8189;4
+872113;68929547;Avenida Rio Madeira;Distrito Industrial;8189;4
+872114;68929549;Avenida Rio Maracá;Distrito Industrial;8189;4
+872115;68929550;Avenida Rio Tartarugualzinho;Distrito Industrial;8189;4
+872116;68929551;Rua Rio Amapari;Distrito Industrial;8189;4
+872117;68929553;Rua Rio Amazonas;Distrito Industrial;8189;4
+872118;68929554;Rua Rio Araguari;Distrito Industrial;8189;4
+872119;68929555;Rua Rio Pedreira;Distrito Industrial;8189;4
+872120;68929557;Rua Rio Trombetas;Distrito Industrial;8189;4
+872121;68929558;Travessa Baia do Guajará;Distrito Industrial;8189;4
+872122;68929559;Travessa Lago Azul;Distrito Industrial;8189;4
+872123;68929561;Travessa Lago Novo;Distrito Industrial;8189;4
+872124;68929562;Travessa Lago Verde;Distrito Industrial;8189;4
+872125;68929563;Travessa Mar Adriático;Distrito Industrial;8189;4
+872126;68929565;Travessa Parauapebas;Distrito Industrial;8189;4
+872127;68929566;Travessa Rio Branco;Distrito Industrial;8189;4
+872128;68929567;Travessa Rio Flexal;Distrito Industrial;8189;4
+872129;68929569;Travessa Rio Jari;Distrito Industrial;8189;4
+872130;68929570;Travessa Rio Negro;Distrito Industrial;8189;4
+872131;68929571;Travessa Rio Oiapoque;Distrito Industrial;8189;4
+872132;68929573;Travessa Rio Pará;Distrito Industrial;8189;4
+872133;68929574;Travessa Rio Solimões;Distrito Industrial;8189;4
+872134;68929575;Travessa Rio Tapajós;Distrito Industrial;8189;4
+872135;68929577;Alameda Baia do Guajará;Distrito Industrial;8189;4
+872136;68929578;Alameda Grande Rio;Distrito Industrial;8189;4
+872137;68929579;Alameda Mar Vermelho;Distrito Industrial;8189;4
+872138;68933001;Rua Beira Rio;Ilha de Santana;8189;4
+872139;68933002;Travessa Rio Pirativa;Ilha de Santana;8189;4
+872140;68933004;Travessa Santana;Ilha de Santana;8189;4
+872141;68933006;Avenida Antonia Henriqueta;Ilha de Santana;8189;4

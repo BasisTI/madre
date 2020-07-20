@@ -19,10 +19,10 @@ import lombok.Data;
 @Document(indexName = "madre-prescricao-prescricaomedica", type = "prescricaomedica")
 
 @JsonTypeInfo(
-		  use = JsonTypeInfo.Id.NAME, 
-		  include = JsonTypeInfo.As.PROPERTY, 
+		  use = JsonTypeInfo.Id.NAME,
+		  include = JsonTypeInfo.As.PROPERTY,
 		  property = "tipo")
-@JsonSubTypes({ 
+@JsonSubTypes({
 	  @Type(value = PrescricaoMedicamentoDTO.class, name = "MEDICAMENTO"),
 	  @Type(value = PrescricaoDietaDTO.class, name = "DIETA"),
 	  @Type(value = PrescricaoDiagnosticoDTO.class, name = "DIAGNOSTICO"),
@@ -30,7 +30,7 @@ import lombok.Data;
 	})
 public class PrescricaoMedicaDTO implements Serializable {
 
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -46,6 +46,6 @@ public class PrescricaoMedicaDTO implements Serializable {
 	private String observacao;
 
 	private LocalDate dataPrescricao;
-	
+
 
 }

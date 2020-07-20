@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -71,6 +72,20 @@ public class RequisicaoMaterialResource {
         Page<RequisicaoMaterialResumo> page = requisicaoMaterialService.findAllRequisicoesMaterialResumo(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/requisicoes-materiais/nao-efetivadas")
+    public ResponseEntity<List<RequisicaoMaterialResumo>> getAllRequisicoesNaoEfetivadas(Pageable pageable) {
+        Page<RequisicaoMaterialResumo> page = requisicaoMaterialService.findAllRequisicoesMaterialResumoNaoEfetivadas(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @PutMapping("/requisicoes-materiais/nao-efetivadas/{id}")
+    public ResponseEntity<RequisicaoMaterialDTO> efetivarRequisicao(@PathVariable(name = "id") Long id) {
+        RequisicaoMaterialDTO requisicaoMaterialDTO = requisicaoMaterialService.findOne(id).orElseThrow(EntityNotFoundException::new);
+        requisicaoMaterialDTO = requisicaoMaterialService.efetivarRequisicao(requisicaoMaterialDTO);
+        return ResponseEntity.ok().body(requisicaoMaterialDTO);
     }
 
     @GetMapping("/requisicoes-materiais/{id}")

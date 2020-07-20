@@ -92,8 +92,8 @@ export class ListaPrescricaoComponent implements OnInit, OnDestroy {
                     });
 
                 }
-                return node;
 
+                return node;
             });
 
         });
