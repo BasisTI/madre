@@ -7,6 +7,7 @@ import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.mapper.EstoqueAlmoxarifadoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,13 @@ public class EstoqueAlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
+    public <S extends EstoqueAlmoxarifado> Page<EstoqueAlmoxarifadoDTO> findAll(Pageable pageable, Example<S> example) {
+        log.debug("Request to get all EstoqueAlmoxarifados");
+        return estoqueAlmoxarifadoRepository.findAll(example, pageable)
+            .map(estoqueAlmoxarifadoMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
     public Optional<EstoqueAlmoxarifadoDTO> findOne(Long id) {
         log.debug("Request to get EstoqueAlmoxarifado : {}", id);
         return estoqueAlmoxarifadoRepository.findById(id)
@@ -70,5 +78,9 @@ public class EstoqueAlmoxarifadoService {
     @Transactional(readOnly = true)
     public EstoqueAlmoxarifadoDTO recuperaEstoquePorAlmoxarifadoIdEMaterialId(Long almoxarifadoId, Long materialId) {
         return estoqueAlmoxarifadoRepository.findByAlmoxarifadoIdAndMaterialId(almoxarifadoId, materialId).map(estoqueAlmoxarifadoMapper::toDto).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public Page<EstoqueAlmoxarifadoDTO> consultarEstoqueAlmoxarifado(Pageable pageable) {
+        return null;
     }
 }

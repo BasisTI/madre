@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Almoxarifado } from './../../models/almoxarifado';
-import { ClassificacaoMaterial } from './../../models/classificacao-material';
-import { Fornecedor } from './../../models/fornecedor';
-import { GrupoMaterial } from './../../models/grupo-material';
-import { Material } from './../../models/material';
-import { AlmoxarifadoService } from './../../services/almoxarifado.service';
-import { ClassificacaoMaterialService } from './../../services/classificacao-material.service';
-import { EstoqueAlmoxarifadoService } from './../../services/estoque-almoxarifado.service';
-import { FornecedorService } from './../../services/fornecedor.service';
-import { GrupoMaterialService } from './../../services/grupo-material.service';
-import { MaterialService } from './../../services/material.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { DatatableComponent } from '@nuvem/primeng-components';
+import { Almoxarifado } from '@suprimentos/models/almoxarifado';
+import { ClassificacaoMaterial } from '@suprimentos/models/classificacao-material';
+import { Fornecedor } from '@suprimentos/models/fornecedor';
+import { GrupoMaterial } from '@suprimentos/models/grupo-material';
+import { Material } from '@suprimentos/models/material';
+import { UnidadeMedida } from '@suprimentos/models/unidade-medida';
+import { AlmoxarifadoService } from '@suprimentos/services/almoxarifado.service';
+import { ClassificacaoMaterialService } from '@suprimentos/services/classificacao-material.service';
+import { EstoqueAlmoxarifadoService } from '@suprimentos/services/estoque-almoxarifado.service';
+import { FornecedorService } from '@suprimentos/services/fornecedor.service';
+import { GrupoMaterialService } from '@suprimentos/services/grupo-material.service';
+import { MaterialService } from '@suprimentos/services/material.service';
+import { UnidadeMedidaService } from '@suprimentos/services/unidade-medida.service';
 
 @Component({
     selector: 'app-consulta-estoque',
@@ -22,18 +26,46 @@ export class ConsultaEstoqueComponent implements OnInit {
     public almoxarifados: Almoxarifado[] = [];
     public materiais: Material[] = [];
     public classificacoes: ClassificacaoMaterial[] = [];
+    public unidadesMedida: UnidadeMedida[] = [];
+
+    @ViewChild('datatable')
+    public datatable: DatatableComponent;
+
+    public consultaForm = this.fb.group({
+        almoxarifado: [null],
+        fornecedor: [null],
+        material: [null],
+        unidade: [null],
+        grupo: [null],
+        classificacao: [null],
+        estocavel: [null],
+        ativo: [null],
+    });
 
     constructor(
+        private fb: FormBuilder,
         private estoqueService: EstoqueAlmoxarifadoService,
         private fornecedorService: FornecedorService,
         private materialService: MaterialService,
         private almoxarifadoService: AlmoxarifadoService,
         private grupoMaterialService: GrupoMaterialService,
         private classificacaoMaterialService: ClassificacaoMaterialService,
+        private unidadeMedidaService: UnidadeMedidaService,
     ) {}
 
     ngOnInit(): void {
         this.api = this.estoqueService.getResource();
+    }
+
+    public limpar(): void {
+        this.consultaForm.reset();
+        this.datatable.reset();
+    }
+
+    public obterUnidadeMedidaPorDescricao(descricao: string): void {
+        this.unidadeMedidaService
+            .obterUnidadeMedidaPorDescricao(descricao)
+            .subscribe((unidadesMedida) => (this.unidadesMedida = unidadesMedida));
     }
 
     public getClassificacoesPorDescricao(descricao: string): void {
