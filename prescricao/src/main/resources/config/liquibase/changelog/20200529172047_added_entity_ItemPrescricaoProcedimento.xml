@@ -16,7 +16,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="tipo_procedimento_especial" type="varchar(255)" remarks="Tipo do procedimento especial">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <column name="quantidade_ortese_protese" type="integer" remarks="Quanditade da Ortese ou prótese, valor deve ser um inteiro">
                 <constraints nullable="true" />
@@ -34,7 +34,7 @@
                 <constraints nullable="true" />
             </column>
             <column name="prescricao_procedimento_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

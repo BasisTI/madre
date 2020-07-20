@@ -15,12 +15,6 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="id_paciente" type="bigint" remarks="Identificador do paciente">
-                <constraints nullable="false" />
-            </column>
-            <column name="observacao" type="varchar(255)" remarks="Observação ou comentário para a prescrição de procedimento especial">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -44,8 +38,6 @@
                   separator=";"
                   tableName="prescricao_procedimento">
             <column name="id" type="numeric"/>
-            <column name="id_paciente" type="numeric"/>
-            <column name="observacao" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
