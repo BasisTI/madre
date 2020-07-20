@@ -1,9 +1,10 @@
 package br.com.basis.madre.prescricao.service.mapper;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoProcedimentoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoProcedimento;
+import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoProcedimentoDTO;
 
 /**
  * Mapper for the entity {@link ItemPrescricaoProcedimento} and its DTO {@link ItemPrescricaoProcedimentoDTO}.
@@ -11,7 +12,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {TipoProcedimentoMapper.class, PrescricaoProcedimentoMapper.class})
 public interface ItemPrescricaoProcedimentoMapper extends EntityMapper<ItemPrescricaoProcedimentoDTO, ItemPrescricaoProcedimento> {
 
-    @Mapping(source = "tipoProcedimento.id", target = "tipoProcedimentoId")
+    @Mapping(source = "tipoProcedimento", target = "tipoProcedimentoId")
     @Mapping(source = "prescricaoProcedimento.id", target = "prescricaoProcedimentoId")
     ItemPrescricaoProcedimentoDTO toDto(ItemPrescricaoProcedimento itemPrescricaoProcedimento);
 

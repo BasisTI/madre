@@ -7,7 +7,7 @@ import br.com.basis.madre.prescricao.repository.search.ItemPrescricaoProcediment
 import br.com.basis.madre.prescricao.service.ItemPrescricaoProcedimentoService;
 import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoProcedimentoDTO;
 import br.com.basis.madre.prescricao.service.mapper.ItemPrescricaoProcedimentoMapper;
-import br.com.basis.madre.prescricao.web.rest.errors.ExceptionTranslator;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
