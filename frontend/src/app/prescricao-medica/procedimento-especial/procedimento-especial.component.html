@@ -2,15 +2,23 @@
     <div class="ui-g-12">
         <form (ngSubmit)="prescrever()">
             <p-accordion>
-                <p-accordionTab header="Procedimento" [selected]="true">
+                <p-accordionTab header="Dados Gerais" [selected]="true">
                     <form [formGroup]="prescricaoProcedimento">
                         <div class="ui-g">
                             <div class="ui-g-12">
-                                <div class="ui-g-12">
+                                <div class="ui-g-6">
                                     <span class="md-inputfield">
-                                        <input [(ngModel)]="paciente" formControlName="idPaciente" type="text"
+                                        <input formControlName="nome" type="text"
                                             pInputText disabled />
                                         <label>Paciente</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <p-calendar formControlName="dataPrescricao" dateFormat="dd/mm/yy" disabled="true">
+                                        </p-calendar>
+                                        <label>Data Prescrição</label>
                                     </span>
                                 </div>
                             </div>
@@ -40,13 +48,20 @@
 
                             <div class="ui-g-12" [ngSwitch]="tipo.value">
                                 <app-diversos *ngSwitchCase="'DIVERSOS'"
-                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-diversos>
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-diversos>
+
                                 <app-cirurgias-leito *ngSwitchCase="'CIRURGIAS_LEITO'"
-                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-cirurgias-leito>
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-cirurgias-leito>
+
                                 <app-ortese-protese *ngSwitchCase="'ORTESES_PROTESES'"
-                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-ortese-protese>
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-ortese-protese>
+
                                 <app-diversos *ngSwitchDefault
-                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento"></app-diversos>
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-diversos>
                             </div>
 
                             <div class="ui-g-12">

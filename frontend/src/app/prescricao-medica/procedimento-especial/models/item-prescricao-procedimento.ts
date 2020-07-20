@@ -1,3 +1,4 @@
+import { TipoProcedimento } from './tipo-procedimento';
 export class ItemPrescricaoProcedimento {
     constructor(
         public id?: number,
@@ -6,6 +7,6 @@ export class ItemPrescricaoProcedimento {
         public informacoes?: string,
         public justificativa?: string,
         public duracaoSolicitada?: number,
-        public tipoProcedimentoId?: number,
+        public tipoProcedimento?: TipoProcedimento,
     ) { }
 }

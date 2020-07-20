@@ -3,7 +3,7 @@ import { ItemPrescricaoProcedimento } from './models/item-prescricao-procediment
 import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TIPO_PROCEDIMENTO_ESPECIAL } from './models/tipo-procedimento-especial';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
@@ -22,6 +22,9 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
 
     prescricaoProcedimento = this.fb.group({
         idPaciente: [null],
+        nome: [null],
+        tipo: "PROCEDIMENTO",
+        dataPrescricao: [new Date()],
         observacao: [null]
     });
 
@@ -39,7 +42,8 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private prescricaoMedicaService: PrescricaoMedicaService,
-        private procedimentoEspecialService: ProcedimentoEspecialService
+        private procedimentoEspecialService: ProcedimentoEspecialService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -60,8 +64,8 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
         this.prescricaoMedicaService.buscarIdPaciente(id)
             .subscribe(paciente => {
 
-                this.paciente = paciente.nome;
-                this.prescricaoProcedimento.patchValue({ idPaciente: paciente.id });
+                this.paciente = paciente;
+                this.prescricaoProcedimento.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
 
             });
     }
@@ -75,9 +79,7 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
 
     }
 
-
     prescrever() {
-
 
         const prescricao = this.prescricaoProcedimento.value;
 
@@ -85,21 +87,17 @@ export class ProcedimentoEspecialComponent implements OnInit, OnDestroy {
             itemPrescricaoProcedimentoDTO: this.itensPrescricaoProcedimento
         });
 
+        this.procedimentoEspecialService.prescreverProcedimento(prescricaoProcedimentoObject).subscribe(
+            (resposta) => {
+                this.router.navigate(['/prescricao-medica/lista/', prescricaoProcedimentoObject.idPaciente]);
+                return resposta;
 
-        prescricaoProcedimentoObject.itemPrescricaoProcedimentoDTO = prescricaoProcedimentoObject.itemPrescricaoProcedimentoDTO.map(item => {
-            for (let propriedade in item) {
-                if (item[propriedade]?.id) {
-                    item[propriedade] = item[propriedade].id;
-                }
-            }
+            },
+            (erro) => {
+                return erro;
+            },
+        );
 
-            return item;
-        });
-
-
-        this.procedimentoEspecialService.prescreverProcedimento(prescricaoProcedimentoObject).subscribe();
-        console.log(prescricaoProcedimentoObject);
-        
     }
 
     ngOnDestroy() {

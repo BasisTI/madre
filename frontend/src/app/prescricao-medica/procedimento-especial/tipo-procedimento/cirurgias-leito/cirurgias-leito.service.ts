@@ -12,8 +12,8 @@ export class CirurgiasLeitoService {
     private baseUrl = 'prescricao/api';
     constructor(private http: HttpClient) { }
 
-    listarCirurgiasLeito(): Observable<Array<TipoProcedimento>> {
-        return this.http.get<Array<TipoProcedimento>>(`${this.baseUrl}/tipo-procedimentos/teste/cirurgias-leito`);
+    listarCirurgiasLeito(): Observable<any> {
+        return this.http.get<any>(`${this.baseUrl}/tipo-procedimentos/teste/cirurgias-leito`);
 
     }
 }

@@ -11,7 +11,7 @@ export class CirurgiasLeitoComponent implements OnInit, AfterViewInit {
 
     @Input() itemPrescricaoProcedimento: FormGroup;
 
-    listaCirurgiasLeito = TipoProcedimento[''];
+    public listaCirurgiasLeito: any;
 
     constructor(private cirurgiasLeitoService: CirurgiasLeitoService) { }
 
@@ -23,14 +23,15 @@ export class CirurgiasLeitoComponent implements OnInit, AfterViewInit {
     carregarListaEspeciaisDiversos() {
         return this.cirurgiasLeitoService.listarCirurgiasLeito()
             .subscribe(listaCirurgiasLeito => {
-                
+                console.log(listaCirurgiasLeito);
+
                 this.listaCirurgiasLeito = listaCirurgiasLeito.map(item => {
-                    return { label: item.descricao, value: item };
+                    return { label: item.descricao, value: item }
                 });
 
             });
     }
-    ngAfterViewInit(){
+    ngAfterViewInit() {
 
     }
 

@@ -1,3 +1,4 @@
+import { Pageable } from './../../../../shared/pageable';
 import { TipoProcedimento } from './../../models/tipo-procedimento';
 import { FormGroup } from '@angular/forms';
 import { DiversosService } from './diversos.service';
@@ -11,7 +12,7 @@ export class DiversosComponent implements OnInit {
 
     @Input() itemPrescricaoProcedimento: FormGroup;
 
-    listaEspeciaisDiversos = TipoProcedimento[''];
+    listaEspeciaisDiversos: any;
 
     constructor(private diversosService: DiversosService) { }
 
@@ -23,12 +24,12 @@ export class DiversosComponent implements OnInit {
 
     carregarListaEspeciaisDiversos() {
         return this.diversosService.listarEspeciaisDiversos()
-            .subscribe(listaEspeciaisDiversos => {
-                console.log(listaEspeciaisDiversos);
+            .subscribe((listaEspeciaisDiversos) => {
 
                 this.listaEspeciaisDiversos = listaEspeciaisDiversos.map(item => {
-                    return { label: item.descricao, value: item };
-                });
+                    return { label: item.descricao, value: item }
+                });;
+
 
             });
     }
