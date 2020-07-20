@@ -25,7 +25,8 @@ import lombok.Data;
 @JsonSubTypes({ 
 	  @Type(value = PrescricaoMedicamentoDTO.class, name = "MEDICAMENTO"),
 	  @Type(value = PrescricaoDietaDTO.class, name = "DIETA"),
-	  @Type(value = PrescricaoDiagnosticoDTO.class, name = "DIAGNOSTICO")
+	  @Type(value = PrescricaoDiagnosticoDTO.class, name = "DIAGNOSTICO"),
+	  @Type(value = PrescricaoProcedimentoDTO.class, name = "PROCEDIMENTO")
 	})
 public class PrescricaoMedicaDTO implements Serializable {
 

@@ -3,12 +3,15 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoProcedimento;
+import br.com.basis.madre.prescricao.domain.enumeration.TipoProcedimentoEspecial;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -18,7 +21,8 @@ import lombok.Data;
 @Data
 public class TipoProcedimentoDTO implements Serializable {
 
-    private Long id;
+
+	private Long id;
 
     /**
      * descrição de procedimentos especiais diversos
@@ -28,8 +32,9 @@ public class TipoProcedimentoDTO implements Serializable {
     @ApiModelProperty(value = "descrição de procedimentos especiais diversos", required = true)
     private String descricao;
     
-    @JsonIgnore
-    private Set<ItemPrescricaoProcedimento> itemPrescricaoProcedimento = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private TipoProcedimentoEspecial tipoProcedimentoEspecial;
+    
 
 
 }
