@@ -167,21 +167,23 @@
                 >
                     <p-column header="Almox." field="null">
                         <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.almoxarifadoId }}
+                            {{ data.almoxarifado?.descricao }}
                         </ng-template>
                     </p-column>
                     <p-column header="Forn." field="null">
                         <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.fornecedorId }}
+                            {{ data.fornecedor?.nomeFantasia }}
                         </ng-template>
                     </p-column>
                     <p-column header="Material" field="null">
                         <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.materialId }}
+                            {{ data.material?.nome }}
                         </ng-template>
                     </p-column>
                     <p-column header="Un." field="null">
-                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.material?.unidadeMedida?.descricao }}
+                        </ng-template>
                     </p-column>
                     <p-column header="Qt. Disp" field="null">
                         <ng-template let-data="rowData" pTemplate="body"> </ng-template>

@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.domain.projection;
 
+import java.util.List;
 import java.util.Set;
 
 public interface Estoque {
@@ -9,15 +10,6 @@ public interface Estoque {
     _Fornecedor getFornecedor();
     _Material getMaterial();
     _Almoxarifado getAlmoxarifado();
-    Set<_Lote> getLotes();
-
-    interface _Lote {
-        Long getId();
-        String getDescricao();
-        Long getQuantidadeDisponivel();
-        Long getQuantidadeBloqueada();
-        Long getQuantidadeProblema();
-    }
 
     interface _Almoxarifado {
         Long getId();
@@ -32,7 +24,7 @@ public interface Estoque {
     interface _Material {
         Long getId();
         String getNome();
-        _GrupoMaterial getGrupoMaterial();
+        _GrupoMaterial getGrupo();
         _UnidadeMedida getUnidadeMedida();
 
         interface _GrupoMaterial {

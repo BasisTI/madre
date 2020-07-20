@@ -1,5 +1,6 @@
 package br.com.basis.suprimentos.web.rest;
 
+import br.com.basis.suprimentos.domain.projection.Estoque;
 import br.com.basis.suprimentos.service.EstoqueAlmoxarifadoService;
 import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
@@ -29,7 +30,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -67,9 +67,9 @@ public class EstoqueAlmoxarifadoResource {
     }
 
     @GetMapping("/estoque-almoxarifados")
-    public ResponseEntity<List<EstoqueAlmoxarifadoDTO>> getAllEstoqueAlmoxarifados(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
+    public ResponseEntity<List<Estoque>> getAllEstoqueAlmoxarifados(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
         log.debug("REST request to get a page of EstoqueAlmoxarifados");
-        Page<EstoqueAlmoxarifadoDTO> page = estoqueAlmoxarifadoService.consultarEstoqueAlmoxarifado(pageable, consultaEstoqueAlmoxarifadoDTO);
+        Page<Estoque> page = estoqueAlmoxarifadoService.consultarEstoqueAlmoxarifado(pageable, consultaEstoqueAlmoxarifadoDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

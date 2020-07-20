@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado;
+import br.com.basis.suprimentos.domain.projection.Estoque;
 import br.com.basis.suprimentos.repository.EstoqueAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.EstoqueAlmoxarifadoSearchRepository;
 import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
@@ -44,17 +45,15 @@ public class EstoqueAlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<EstoqueAlmoxarifadoDTO> findAll(Pageable pageable) {
+    public <S extends EstoqueAlmoxarifado> Page<Estoque> findAll(Pageable pageable, Example<S> example) {
         log.debug("Request to get all EstoqueAlmoxarifados");
-        return estoqueAlmoxarifadoRepository.findAll(pageable)
-            .map(estoqueAlmoxarifadoMapper::toDto);
+        return estoqueAlmoxarifadoRepository.findBy(example, pageable, Estoque.class);
     }
 
     @Transactional(readOnly = true)
-    public <S extends EstoqueAlmoxarifado> Page<EstoqueAlmoxarifadoDTO> findAll(Pageable pageable, Example<S> example) {
+    public Page<Estoque> findAll(Pageable pageable) {
         log.debug("Request to get all EstoqueAlmoxarifados");
-        return estoqueAlmoxarifadoRepository.findAll(example, pageable)
-            .map(estoqueAlmoxarifadoMapper::toDto);
+        return estoqueAlmoxarifadoRepository.findBy(pageable, Estoque.class);
     }
 
     @Transactional(readOnly = true)
@@ -88,7 +87,7 @@ public class EstoqueAlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<EstoqueAlmoxarifadoDTO> consultarEstoqueAlmoxarifado(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
+    public Page<Estoque> consultarEstoqueAlmoxarifado(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
         EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(consultaEstoqueAlmoxarifadoDTO);
         MaterialDTO materialDTO = materialMapper.toDto(consultaEstoqueAlmoxarifadoDTO);
 
