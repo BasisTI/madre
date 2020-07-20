@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.basis.madre.prescricao.domain.enumeration.TipoProcedimentoEspecial;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -51,12 +54,14 @@ public class TipoProcedimento implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
     
-    @EqualsAndHashCode.Exclude
-    @JsonIgnore
-    @OneToMany(mappedBy = "tipoProcedimento", cascade = CascadeType.ALL)
-	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-	private Set<ItemPrescricaoProcedimento> itemPrescricaoProcedimento;
-
+    /**
+	 * Tipo do procedimento especial
+	 */
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_procedimento_especial")
+	private TipoProcedimentoEspecial tipoProcedimentoEspecial;
+    
 
     public TipoProcedimento descricao(String descricao) {
         this.descricao = descricao;

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
@@ -48,6 +49,7 @@ public class ItemPrescricaoProcedimento implements Serializable {
 	/**
 	 * Tipo do procedimento especial
 	 */
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_procedimento_especial")
 	private TipoProcedimentoEspecial tipoProcedimentoEspecial;
