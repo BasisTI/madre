@@ -119,7 +119,7 @@ public class TipoProcedimentoResource {
 		return ResponseEntity.ok().headers(headers).body(page.getContent());
 	}
 
-	@GetMapping("/tipo-procedimentos/teste/{tipo}")
+	@GetMapping("/tipo-procedimento/{tipo}")
 	public ResponseEntity<List<TipoProcedimento>> listarTipoProcedimento(@PathVariable(name = "tipo") String tipo,
 			Pageable pageable) {
 		Page<TipoProcedimento> page = Page.empty();

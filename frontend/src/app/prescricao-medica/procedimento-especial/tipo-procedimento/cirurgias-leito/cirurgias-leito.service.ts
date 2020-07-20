@@ -13,7 +13,7 @@ export class CirurgiasLeitoService {
     constructor(private http: HttpClient) { }
 
     listarCirurgiasLeito(): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/tipo-procedimentos/teste/cirurgias-leito`);
+        return this.http.get<any>(`${this.baseUrl}/tipo-procedimento/cirurgias-leito`);
 
     }
 }

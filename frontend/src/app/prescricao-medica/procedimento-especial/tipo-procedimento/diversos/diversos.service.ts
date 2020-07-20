@@ -14,7 +14,7 @@ export class DiversosService {
     constructor(private http: HttpClient) { }
 
     listarEspeciaisDiversos(): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/tipo-procedimentos/teste/diversos`);
+        return this.http.get<any>(`${this.baseUrl}/tipo-procedimento/diversos`);
 
     }
 }

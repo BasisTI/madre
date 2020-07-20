@@ -13,7 +13,7 @@ export class OrtesesProteseService {
     constructor(private http: HttpClient) { }
 
     listarOrtesesproteses(): Observable<Array<TipoProcedimento>> {
-        return this.http.get<Array<TipoProcedimento>>(`${this.baseUrl}/tipo-procedimentos/teste/orteses-proteses`);
+        return this.http.get<Array<TipoProcedimento>>(`${this.baseUrl}/tipo-procedimento/orteses-proteses`);
 
     }
 }
