@@ -55,7 +55,7 @@ public class ItemPrescricaoProcedimentoDTO implements Serializable {
      */
     @ApiModelProperty(value = "Chave estrangeira de tipo procedimento")
 
-    private Long tipoProcedimentoId;
+    private TipoProcedimentoDTO tipoProcedimentoId;
 
     private Long prescricaoProcedimentoId;
 

@@ -3,6 +3,7 @@ package br.com.basis.madre.prescricao.service;
 import br.com.basis.madre.prescricao.domain.ItemPrescricaoProcedimento;
 import br.com.basis.madre.prescricao.repository.ItemPrescricaoProcedimentoRepository;
 import br.com.basis.madre.prescricao.repository.search.ItemPrescricaoProcedimentoSearchRepository;
+import br.com.basis.madre.prescricao.repository.search.PrescricaoProcedimentoDTOSearchRepository;
 import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoProcedimentoDTO;
 import br.com.basis.madre.prescricao.service.mapper.ItemPrescricaoProcedimentoMapper;
 import org.slf4j.Logger;
@@ -31,11 +32,12 @@ public class ItemPrescricaoProcedimentoService {
     private final ItemPrescricaoProcedimentoMapper itemPrescricaoProcedimentoMapper;
 
     private final ItemPrescricaoProcedimentoSearchRepository itemPrescricaoProcedimentoSearchRepository;
-
+    
     public ItemPrescricaoProcedimentoService(ItemPrescricaoProcedimentoRepository itemPrescricaoProcedimentoRepository, ItemPrescricaoProcedimentoMapper itemPrescricaoProcedimentoMapper, ItemPrescricaoProcedimentoSearchRepository itemPrescricaoProcedimentoSearchRepository) {
         this.itemPrescricaoProcedimentoRepository = itemPrescricaoProcedimentoRepository;
         this.itemPrescricaoProcedimentoMapper = itemPrescricaoProcedimentoMapper;
         this.itemPrescricaoProcedimentoSearchRepository = itemPrescricaoProcedimentoSearchRepository;
+        
     }
 
     /**
