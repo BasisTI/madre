@@ -68,19 +68,21 @@ public class TipoProcedimentoService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<TipoProcedimentoDTO> listarTipoProcedimentoDiversos(Pageable pageable) {
-		return tipoProcedimentoRepository.listarTipoProcedimentoDiversos(pageable).map(tipoProcedimentoMapper::toDto);
+	public Page<TipoProcedimento> listarTipoProcedimentoDiversos(Pageable pageable) {
+		return tipoProcedimentoRepository.listarTipoProcedimentoDiversos(pageable);
+		
 	}
 
 	@Transactional(readOnly = true)
-	public Page<TipoProcedimentoDTO> listarTipoProcedimentoCirurgias(Pageable pageable) {
-		return tipoProcedimentoRepository.listarTipoProcedimentoCirurgias(pageable).map(tipoProcedimentoMapper::toDto);
+	public Page<TipoProcedimento> listarTipoProcedimentoCirurgias(Pageable pageable) {
+		return tipoProcedimentoRepository.listarTipoProcedimentoCirurgias(pageable);
+	
 	}
 
 	@Transactional(readOnly = true)
-	public Page<TipoProcedimentoDTO> listarTipoProcedimentoOsteseProtese(Pageable pageable) {
-		return tipoProcedimentoRepository.listarTipoProcedimentoOsteseProtese(pageable)
-				.map(tipoProcedimentoMapper::toDto);
+	public Page<TipoProcedimento> listarTipoProcedimentoOsteseProtese(Pageable pageable) {
+		return tipoProcedimentoRepository.listarTipoProcedimentoOsteseProtese(pageable);
+	
 	}
 
 	/**

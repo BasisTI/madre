@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.basis.madre.prescricao.domain.TipoProcedimento;
+import br.com.basis.madre.prescricao.service.dto.TipoProcedimentoDTO;
 
 /**
  * Spring Data repository for the TipoProcedimento entity.
@@ -15,13 +16,14 @@ import br.com.basis.madre.prescricao.domain.TipoProcedimento;
 @Repository
 public interface TipoProcedimentoRepository extends JpaRepository<TipoProcedimento, Long> {
 
-	@Query("select distinct tp from TipoProcedimento tp join tp.itemPrescricaoProcedimento ip where ip.tipoProcedimentoEspecial = 'DIVERSOS'")
+	@Query("select tp from TipoProcedimento tp  where tp.tipoProcedimentoEspecial = 'DIVERSOS'")
 	Page<TipoProcedimento> listarTipoProcedimentoDiversos(Pageable pageable);
 
-	@Query("select distinct tp from TipoProcedimento tp join tp.itemPrescricaoProcedimento ip where ip.tipoProcedimentoEspecial = 'CIRURGIAS_LEITO'")
+	@Query("select tp from TipoProcedimento tp where tp.tipoProcedimentoEspecial = 'CIRURGIAS_LEITO'")
 	Page<TipoProcedimento> listarTipoProcedimentoCirurgias(Pageable pageable);
 	
-	@Query("select distinct tp from TipoProcedimento tp join tp.itemPrescricaoProcedimento ip where ip.tipoProcedimentoEspecial = 'ORTESES_PROTESES'")
+	@Query("select tp from TipoProcedimento tp where tp.tipoProcedimentoEspecial = 'ORTESES_PROTESES'")
 	Page<TipoProcedimento> listarTipoProcedimentoOsteseProtese(Pageable pageable);
+	
 
 }
