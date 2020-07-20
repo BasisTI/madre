@@ -32,14 +32,14 @@ export class ConsultaEstoqueComponent implements OnInit {
     public datatable: DatatableComponent;
 
     public consultaForm = this.fb.group({
-        almoxarifado: [null],
-        fornecedor: [null],
-        material: [null],
-        unidade: [null],
-        grupo: [null],
-        classificacao: [null],
-        estocavel: [null],
-        ativo: [null],
+        almoxarifado: [''],
+        fornecedor: [''],
+        material: [''],
+        unidade: [''],
+        grupo: [''],
+        classificacao: [''],
+        estocavel: [true],
+        ativo: [true],
     });
 
     constructor(
@@ -57,8 +57,27 @@ export class ConsultaEstoqueComponent implements OnInit {
         this.api = this.estoqueService.getResource();
     }
 
+    public pesquisar(): void {
+        const form = this.consultaForm.value;
+        const consulta = {
+            almoxarifadoId: form.almoxarifado?.id ? form.almoxarifado.id : '',
+            fornecedorId: form.fornecedor?.id ? form.fornecedor.id : '',
+            estocavel: form.estocavel,
+            ativo: form.ativo,
+            materialId: form.material?.id ? form.material.id : '',
+            unidadeMedidaId: form.unidade?.id ? form.unidade.id : '',
+            grupoId: form.grupo?.id ? form.grupo.id : '',
+        };
+
+        console.log(consulta);
+
+        this.datatable.refresh(consulta);
+    }
+
     public limpar(): void {
         this.consultaForm.reset();
+        this.consultaForm.controls['ativo'].setValue(true);
+        this.consultaForm.controls['estocavel'].setValue(true);
         this.datatable.reset();
     }
 

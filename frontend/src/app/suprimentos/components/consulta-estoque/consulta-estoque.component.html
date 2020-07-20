@@ -100,6 +100,7 @@
                                     [forceSelection]="true"
                                     [dropdown]="true"
                                     formControlName="unidade"
+                                    [disabled]="consultaForm.value.material"
                                     field="descricao"
                                 ></p-autoComplete>
                                 <label>Unidade</label>
@@ -113,6 +114,7 @@
                                     [forceSelection]="true"
                                     [dropdown]="true"
                                     formControlName="grupo"
+                                    [disabled]="consultaForm.value.material"
                                     field="descricao"
                                 ></p-autoComplete>
                                 <label>Grupo</label>
@@ -125,6 +127,7 @@
                                     (completeMethod)="getClassificacoesPorDescricao($event.query)"
                                     [dropdown]="true"
                                     formControlName="classificacao"
+                                    [disabled]="consultaForm.value.material"
                                     field="descricao"
                                 ></p-autoComplete>
                                 <label>Classificação Material</label>
@@ -140,7 +143,7 @@
                             type="button"
                             label="Pesquisar"
                             icon="ui-icon-search"
-                            (click)="datatable.refresh(consultaForm.value)"
+                            (click)="pesquisar()"
                         ></button>
                     </div>
                     <div class="ui-g-3">

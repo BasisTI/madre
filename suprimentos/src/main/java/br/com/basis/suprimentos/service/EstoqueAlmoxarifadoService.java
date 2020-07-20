@@ -3,17 +3,22 @@ package br.com.basis.suprimentos.service;
 import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado;
 import br.com.basis.suprimentos.repository.EstoqueAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.EstoqueAlmoxarifadoSearchRepository;
+import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.MaterialDTO;
 import br.com.basis.suprimentos.service.mapper.EstoqueAlmoxarifadoMapper;
+import br.com.basis.suprimentos.service.mapper.MaterialMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -26,6 +31,8 @@ public class EstoqueAlmoxarifadoService {
     private final EstoqueAlmoxarifadoRepository estoqueAlmoxarifadoRepository;
     private final EstoqueAlmoxarifadoMapper estoqueAlmoxarifadoMapper;
     private final EstoqueAlmoxarifadoSearchRepository estoqueAlmoxarifadoSearchRepository;
+    private final MaterialService materialService;
+    private final MaterialMapper materialMapper;
 
     public EstoqueAlmoxarifadoDTO save(EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) {
         log.debug("Request to save EstoqueAlmoxarifado : {}", estoqueAlmoxarifadoDTO);
@@ -80,7 +87,18 @@ public class EstoqueAlmoxarifadoService {
         return estoqueAlmoxarifadoRepository.findByAlmoxarifadoIdAndMaterialId(almoxarifadoId, materialId).map(estoqueAlmoxarifadoMapper::toDto).orElseThrow(EntityNotFoundException::new);
     }
 
-    public Page<EstoqueAlmoxarifadoDTO> consultarEstoqueAlmoxarifado(Pageable pageable) {
-        return null;
+    @Transactional(readOnly = true)
+    public Page<EstoqueAlmoxarifadoDTO> consultarEstoqueAlmoxarifado(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
+        EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO = estoqueAlmoxarifadoMapper.toDto(consultaEstoqueAlmoxarifadoDTO);
+        MaterialDTO materialDTO = materialMapper.toDto(consultaEstoqueAlmoxarifadoDTO);
+
+        if (Objects.nonNull(materialDTO.getId())) {
+            estoqueAlmoxarifadoDTO.setMaterialId(materialDTO.getId());
+            return findAll(pageable,
+                Example.of(estoqueAlmoxarifadoMapper.toEntity(estoqueAlmoxarifadoDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING))
+            );
+        }
+
+        return findAll(pageable);
     }
 }
