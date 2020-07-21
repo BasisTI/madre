@@ -186,17 +186,23 @@
                         </ng-template>
                     </p-column>
                     <p-column header="Qt. Disp" field="null">
-                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.quantidadeDisponivel }}
+                        </ng-template>
                     </p-column>
                     <p-column header="Qt. Bloq" field="null">
-                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.quantidadeBloqueada }}
+                        </ng-template>
                     </p-column>
                     <p-column header="Qt. Prob" field="null">
-                        <ng-template let-data="rowData" pTemplate="body"> </ng-template>
+                        <ng-template let-data="rowData" pTemplate="body">
+                            {{ data.quantidadeComProblema }}
+                        </ng-template>
                     </p-column>
                     <p-column header="Estocável" field="null">
                         <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.estocavel }}
+                            {{ data.estocavel ? 'Sim' : 'Não' }}
                         </ng-template>
                     </p-column>
                 </basis-datatable>
