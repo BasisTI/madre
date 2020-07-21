@@ -1,0 +1,37 @@
+{
+  "name": "Lancamento",
+  "fields": [
+    {
+      "fieldName": "lancadoEm",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lancadoPor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tipoLancamento",
+      "otherEntityRelationshipName": "lancamento",
+      "relationshipName": "tipoLancamento",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200721185553",
+  "entityTableName": "lancamento",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madresuprimentos",
+  "applications": "*",
+  "microserviceName": "madresuprimentos",
+  "skipClient": true
+}
