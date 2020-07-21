@@ -1,7 +1,7 @@
 package br.com.basis.suprimentos.web.rest;
 
+import br.com.basis.suprimentos.service.TransacaoService;
 import br.com.basis.suprimentos.service.dto.TransacaoDTO;
-import br.com.basis.suprimentos.service.transacoeservice;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -36,7 +36,7 @@ public class TransacaoResource {
     private static final String ENTITY_NAME = "madresuprimentosTransacao";
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-    private final transacoeservice transacoeservice;
+    private final TransacaoService transacaoService;
 
     @PostMapping("/transacoes")
     public ResponseEntity<TransacaoDTO> createTransacao(@Valid @RequestBody TransacaoDTO transacaoDTO) throws URISyntaxException {
@@ -44,7 +44,7 @@ public class TransacaoResource {
         if (transacaoDTO.getId() != null) {
             throw new BadRequestAlertException("A new transacao cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TransacaoDTO result = transacoeservice.save(transacaoDTO);
+        TransacaoDTO result = transacaoService.save(transacaoDTO);
         return ResponseEntity.created(new URI("/api/transacoes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -53,7 +53,7 @@ public class TransacaoResource {
     @GetMapping("/transacoes")
     public ResponseEntity<List<TransacaoDTO>> getAlltransacoes(Pageable pageable) {
         log.debug("REST request to get a page of transacoes");
-        Page<TransacaoDTO> page = transacoeservice.findAll(pageable);
+        Page<TransacaoDTO> page = transacaoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -61,14 +61,14 @@ public class TransacaoResource {
     @GetMapping("/transacoes/{id}")
     public ResponseEntity<TransacaoDTO> getTransacao(@PathVariable Long id) {
         log.debug("REST request to get Transacao : {}", id);
-        Optional<TransacaoDTO> transacaoDTO = transacoeservice.findOne(id);
+        Optional<TransacaoDTO> transacaoDTO = transacaoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(transacaoDTO);
     }
 
     @GetMapping("/_search/transacoes")
     public ResponseEntity<List<TransacaoDTO>> searchtransacoes(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of transacoes for query {}", query);
-        Page<TransacaoDTO> page = transacoeservice.search(query, pageable);
+        Page<TransacaoDTO> page = transacaoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
