@@ -18,4 +18,8 @@ export class RequisicaoMaterialService {
     public gerarRequisicaoMaterial(requisicao: any): Observable<any> {
         return this.client.post<any>(this.resource, requisicao);
     }
+
+    public efetivarRequisicao(id: number): Observable<any> {
+        return this.client.put<any>(`${this.resource}/nao-efetivadas/${id}`, {});
+    }
 }

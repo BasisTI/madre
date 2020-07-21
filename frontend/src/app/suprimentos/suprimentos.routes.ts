@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { NotaFiscalFormComponent } from './components/documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
 import { EfetivacaoTransferenciaAutomaticaComponent } from './components/efetivacao-transferencia-automatica/efetivacao-transferencia-automatica.component';
 import { RecebimentoFormComponent } from './components/recebimento/recebimento-form.component';
+import { RequisicaoMaterialNaoEfetivadaComponent } from './components/requisicao-material-nao-efetivada/requisicao-material-nao-efetivada.component';
 import { RequisicaoMaterialFormComponent } from './components/requisicao-material/requisicao-material-form.component';
 import { RequisicaoMaterialComponent } from './components/requisicao-material/requisicao-material.component';
 import { TransferenciaAutomaticaNaoEfetivadaComponent } from './components/transferencia-automatica-nao-efetivada/transferencia-automatica-nao-efetivada.component';
@@ -43,6 +44,11 @@ export const routes: Routes = [
         path: 'requisicoes-materiais',
         component: RequisicaoMaterialComponent,
         data: { breadcrumb: 'Requisição de Materiais' },
+    },
+    {
+        path: 'requisicoes-materiais/nao-efetivadas',
+        component: RequisicaoMaterialNaoEfetivadaComponent,
+        data: { breadcrumb: 'Requisições Não Efetivadas' },
     },
     {
         path: 'requisicoes-materiais/nova',
