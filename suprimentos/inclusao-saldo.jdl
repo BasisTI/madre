@@ -1,20 +1,24 @@
 relationship ManyToOne {
-    Movimentacao{origem} to Almoxarifado,
-    Movimentacao{destino} to Almoxarifado,
-    Lancamento{tipo} to TipoLancamento,
-    Lancamento{movimentacao} to Movimentacao
+    Lancamento{tipoLancamento} to TipoLancamento,
+    Transacao{tipoTransacao} to TipoTransacao,
+    Transacao{lancamento} to Lancamento
 }
 
-entity Movimentacao {
+entity TipoTransacao {
+    descricao String required
+}
+
+entity TipoLancamento {
+    descricao String required
+}
+
+entity Transacao {
+    quantidadeItens Long required
 }
 
 entity Lancamento {
     lancadoEm ZonedDateTime required
     lancadoPor String required
-}
-
-entity TipoLancamento {
-    descricao String required
 }
 
 dto * with mapstruct
