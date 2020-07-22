@@ -1,16 +1,15 @@
-import { PacienteModel } from '../../models/paciente-model';
-import { Router } from '@angular/router';
-import { OPCAO_TIPO_PAGADOR_CONSULTA } from './../../consulta-opcoes/opcao-tipo-pagador-consulta';
-import { OPCOES_TURNO_CONSULTA } from './../../consulta-opcoes/opcao-turno-consulta';
-import { Paciente } from './../../../internacao/models/paciente';
-import { CRM } from './../../../internacao/models/crm';
-import { Especialidade } from './../../../internacao/models/especialidade';
-import { ConsultaService } from '../../consulta.service';
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { ConsultaService } from '../../consulta.service';
 import { ConsultaEmergenciaModel } from '../../models/consulta-emergencia-model';
 import { ConsultaPaciente } from '../../models/consulta-pacientes';
+import { PacienteModel } from '../../models/paciente-model';
+import { CRM } from './../../../internacao/models/crm';
+import { Especialidade } from './../../../internacao/models/especialidade';
+import { OPCAO_TIPO_PAGADOR_CONSULTA } from './../../consulta-opcoes/opcao-tipo-pagador-consulta';
+import { OPCOES_TURNO_CONSULTA } from './../../consulta-opcoes/opcao-turno-consulta';
 
 @Component({
     selector: 'app-emergencia',
@@ -76,7 +75,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         this.buscaProfissional();
     }
 
-    cadastrarConsultas(form: FormBuilder) {
+    cadastrarConsultas() {
         const cadConsulta = this.formEmergencia.value;
         const consultasEmergencia: ConsultaEmergenciaModel = {
             numeroConsulta: cadConsulta.numeroConsulta,
