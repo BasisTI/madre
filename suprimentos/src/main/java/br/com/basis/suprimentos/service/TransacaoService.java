@@ -1,8 +1,10 @@
 package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.Transacao;
+import br.com.basis.suprimentos.domain.enumeration.CodigoTipoTransacao;
 import br.com.basis.suprimentos.repository.TransacaoRepository;
 import br.com.basis.suprimentos.repository.search.TransacaoSearchRepository;
+import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
 import br.com.basis.suprimentos.service.dto.TransacaoDTO;
 import br.com.basis.suprimentos.service.mapper.TransacaoMapper;
 import lombok.RequiredArgsConstructor;
@@ -47,11 +49,21 @@ public class TransacaoService {
         return transacaoRepository.findById(id)
             .map(transacaoMapper::toDto);
     }
-    
+
     @Transactional(readOnly = true)
     public Page<TransacaoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Transacaos for query {}", query);
         return transacaoSearchRepository.search(queryStringQuery(query), pageable)
             .map(transacaoMapper::toDto);
+    }
+
+    public TransacaoDTO criarTransacao(InclusaoSaldoEstoqueDTO inclusaoSaldoEstoqueDTO) {
+        TransacaoDTO transacao = new TransacaoDTO();
+        transacao.setTipoTransacaoId(CodigoTipoTransacao.CREDITO.getCodigo());
+        transacao.setQuantidadeItens((long) inclusaoSaldoEstoqueDTO.getQuantidade());
+        transacao.setAlmoxarifadoId(inclusaoSaldoEstoqueDTO.getAlmoxarifadoId());
+        transacao.setMaterialId(inclusaoSaldoEstoqueDTO.getMaterialId());
+
+        return transacao;
     }
 }
