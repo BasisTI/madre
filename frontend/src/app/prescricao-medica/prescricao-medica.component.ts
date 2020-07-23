@@ -38,7 +38,7 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     }
 
     pesquisar() {
-        this.datatable.refresh({nome: this.nome})
+        this.datatable.refresh({ nome: this.nome })
     }
 
     btnClick(event: DatatableClickEvent) {
@@ -53,8 +53,18 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
             case 'prescrever-medicamento':
                 this.router.navigate(['/prescricao-medica/medicamento', event.selection.id]);
                 break;
+
+            case 'prescrever-procedimento':
+                this.router.navigate(['/prescricao-medica/procedimento-especial', event.selection.id]);
+                break;
+
+            case 'prescrever-diagnostico':
+                this.router.navigate(['/prescricao-medica/diagnostico', event.selection.id]);
+                break;
             case 'listar-prescricoes':
                 this.router.navigate(['/prescricao-medica/lista', event.selection.id]);
+                break;
+
         }
 
     }

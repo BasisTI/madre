@@ -1,8 +1,10 @@
+import { PacienteModel } from './../../models/paciente-model';
 import { ConsultaService } from './../../consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ConsultaEmergenciaModel } from '../../models/consulta-emergencia-model';
 
 @Component({
     selector: 'app-detalha-consulta',
@@ -10,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalhaConsultaComponent implements OnInit, OnDestroy {
     detalharConsultas = this.fb.group({
+        prontuario: [''],
+        nome: [''],
         dataHoraDaConsulta: [''],
         grade: [''],
         numeroSala: [''],
@@ -19,15 +23,20 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
         clinicaCentralId: [''],
         justificativa: [''],
         observacoes: [''],
-        pacienteId: [''],
         condicaoDeAtendimentoId: [''],
         formaDeAgendamentoId: [''],
+        numeroConsulta: [''],
+        especialidade: [''],
+        profissional: [''],
+        gradesDiponiveis: [''],
     });
 
     localizacao = CALENDAR_LOCALE;
     dataLimite = new Date();
     anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
+    public consultasEmergenciais = Array<ConsultaEmergenciaModel>();
+    public pacientes = new Array<PacienteModel>();
 
     constructor(
         private fb: FormBuilder,
@@ -60,9 +69,18 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
     }
 
     carregarConsulta(id: number) {
-        this.consultaService.buscarConsultaId(id).subscribe((consultas) => {
-            this.detalharConsultas = consultas;
-        });
+        this.consultaService
+            .buscarConsultaId(id)
+            .subscribe((consultasEmergencia: ConsultaEmergenciaModel) => {
+                this.detalharConsultas.patchValue(consultasEmergencia);
+            });
+    }
+    listarPacientes(id: number) {
+        this.consultaService
+            .buscarPacientesPorId(id)
+            .subscribe((pacientes: Array<PacienteModel>) => {
+                this.pacientes = pacientes;
+            });
     }
 
     ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 package br.com.basis.suprimentos.domain.enumeration;
 
 public enum CodigoSituacaoRequisicaoMaterial {
-    GERADA(1L, "Gerada");
+    GERADA(1L, "Gerada"), CONFIRMADA(2L, "Confirmada");
 
     private Long codigo;
     private String descricao;

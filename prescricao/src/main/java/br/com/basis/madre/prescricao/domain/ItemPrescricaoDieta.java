@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -70,6 +71,7 @@ public class ItemPrescricaoDieta implements Serializable {
     @JsonIgnoreProperties("itemPrescricaoDietas")
     private TipoUnidadeDieta tipoUnidadeDieta;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JsonIgnoreProperties("itemPrescricaoDietas")

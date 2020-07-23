@@ -1,0 +1,28 @@
+{
+    "name": "TipoProcedimento",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "javadoc": "descrição de procedimentos especiais diversos",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200529172048",
+    "entityTableName": "tipo_procedimento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

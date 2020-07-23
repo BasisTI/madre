@@ -1,0 +1,24 @@
+{
+    "name": "PrescricaoDiagnostico",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoDiagnostico",
+            "otherEntityRelationshipName": "prescricaoDiagnostico",
+            "relationshipName": "itemPrescricaoDiagnostico"
+        }
+    ],
+    "changelogDate": "20200713151818",
+    "entityTableName": "prescricao_diagnostico",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}
