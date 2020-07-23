@@ -37,19 +37,19 @@ public class Transacao implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "transacaos", allowSetters = true)
-    @JoinColumn(nullable = "tipo_transacao_id", updatable = false)
+    @JoinColumn(name = "tipo_transacao_id", updatable = false)
     private TipoTransacao tipoTransacao;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "transacaos", allowSetters = true)
-    @JoinColumn(nullable = "lancamento_id", updatable = false)
+    @JoinColumn(name = "lancamento_id", updatable = false)
     private Lancamento lancamento;
 
     @ManyToOne
-    @JoinColumn(nullable = "material_id", updatable = false)
+    @JoinColumn(name = "material_id", updatable = false)
     private Material material;
 
     @ManyToOne
-    @JoinColumn(nullable = "almoxarifado_id", updatable = false)
+    @JoinColumn(name = "almoxarifado_id", updatable = false)
     private Almoxarifado almoxarifado;
 }

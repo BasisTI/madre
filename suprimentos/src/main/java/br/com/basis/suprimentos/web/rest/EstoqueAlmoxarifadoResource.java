@@ -2,6 +2,7 @@ package br.com.basis.suprimentos.web.rest;
 
 import br.com.basis.suprimentos.service.EstoqueAlmoxarifadoService;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;

@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.service;
 
 import br.com.basis.suprimentos.domain.Lancamento;
+import br.com.basis.suprimentos.domain.enumeration.CodigoTipoLancamento;
 import br.com.basis.suprimentos.repository.LancamentoRepository;
 import br.com.basis.suprimentos.repository.search.LancamentoSearchRepository;
 import br.com.basis.suprimentos.service.dto.LancamentoDTO;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -24,6 +27,8 @@ public class LancamentoService {
     private final LancamentoRepository lancamentoRepository;
     private final LancamentoMapper lancamentoMapper;
     private final LancamentoSearchRepository lancamentoSearchRepository;
+    private final TransacaoService transacaoService;
+    private final AuthenticationPrincipalService authenticationPrincipalService;
 
     public LancamentoDTO save(LancamentoDTO lancamentoDTO) {
         log.debug("Request to save Lancamento : {}", lancamentoDTO);
@@ -59,5 +64,13 @@ public class LancamentoService {
         log.debug("Request to search for a page of Lancamentos for query {}", query);
         return lancamentoSearchRepository.search(queryStringQuery(query), pageable)
             .map(lancamentoMapper::toDto);
+    }
+
+    public LancamentoDTO criarLancamento(CodigoTipoLancamento codigoTipoLancamento) {
+        LancamentoDTO novoLancamento = new LancamentoDTO();
+        novoLancamento.setLancadoEm(ZonedDateTime.now(ZoneId.systemDefault()));
+        novoLancamento.setLancadoPor(authenticationPrincipalService.getLoginAtivo());
+        novoLancamento.setTipoLancamentoId(codigoTipoLancamento.getCodigo());
+        return novoLancamento;
     }
 }
