@@ -78,15 +78,4 @@ public class EstoqueAlmoxarifadoService {
     public EstoqueAlmoxarifadoDTO recuperaEstoquePorAlmoxarifadoIdEMaterialId(Long almoxarifadoId, Long materialId) {
         return estoqueAlmoxarifadoRepository.findByAlmoxarifadoIdAndMaterialId(almoxarifadoId, materialId).map(estoqueAlmoxarifadoMapper::toDto).orElseThrow(EntityNotFoundException::new);
     }
-
-    public void incluirSaldoEstoque(InclusaoSaldoEstoqueDTO inclusaoSaldoEstoqueDTO) {
-        LancamentoDTO lancamentoDTO = lancamentoService.criarLancamento(CodigoTipoLancamento.INCLUSAO_SALDO);
-        TransacaoDTO transacaoDTO = transacaoService.criarTransacao(inclusaoSaldoEstoqueDTO);
-
-        // TODO: Incluir saldo no estoque
-
-        lancamentoDTO = lancamentoService.save(lancamentoDTO);
-        transacaoDTO.setLancamentoId(lancamentoDTO.getId());
-        transacaoService.save(transacaoDTO);
-    }
 }

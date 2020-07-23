@@ -41,12 +41,6 @@ public class EstoqueAlmoxarifadoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    @PostMapping("/estoque-almoxarifados/saldo")
-    public ResponseEntity<Void> incluirSaldoEstoque(@RequestBody @Valid InclusaoSaldoEstoqueDTO inclusaoSaldoEstoqueDTO) {
-        estoqueAlmoxarifadoService.incluirSaldoEstoque(inclusaoSaldoEstoqueDTO);
-        return ResponseEntity.noContent().build();
-    }
-
     @PostMapping("/estoque-almoxarifados")
     public ResponseEntity<EstoqueAlmoxarifadoDTO> createEstoqueAlmoxarifado(@Valid @RequestBody EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) throws URISyntaxException {
         log.debug("REST request to save EstoqueAlmoxarifado : {}", estoqueAlmoxarifadoDTO);

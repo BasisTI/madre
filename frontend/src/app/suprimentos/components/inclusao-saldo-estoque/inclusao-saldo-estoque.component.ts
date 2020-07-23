@@ -4,7 +4,7 @@ import { Almoxarifado } from '@suprimentos/models/almoxarifado';
 import { InclusaoSaldoEstoqueDTO } from '@suprimentos/models/inclusao-saldo-estoque';
 import { Material } from '@suprimentos/models/material';
 import { AlmoxarifadoService } from '@suprimentos/services/almoxarifado.service';
-import { EstoqueAlmoxarifadoService } from '@suprimentos/services/estoque-almoxarifado.service';
+import { EstoqueGeralService } from '@suprimentos/services/estoque-geral.service';
 import { MaterialService } from '@suprimentos/services/material.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class InclusaoSaldoEstoqueComponent {
 
     constructor(
         private fb: FormBuilder,
-        private estoqueAlmoxarifadoService: EstoqueAlmoxarifadoService,
+        private estoqueAlmoxarifadoService: EstoqueGeralService,
         private almoxarifadoService: AlmoxarifadoService,
         private materialService: MaterialService,
     ) {}
