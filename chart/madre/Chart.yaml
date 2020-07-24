@@ -13,5 +13,5 @@ maintainers:
     email: basis@basis.com.br
 dependencies:
   - name: common
-    version: 2.0.2
+    version: 2.0.1
     repository: 'http://element.basis.com.br/repository/commons-helm/'
