@@ -112,7 +112,7 @@ public class EstoqueAlmoxarifadoService {
 
         if (Objects.nonNull(materialId)) {
             spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.ID), materialId));
-        } else if (Objects.isNull(materialId)) {
+        } else {
             if (Objects.nonNull(grupoId)) {
                 spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.GRUPO).get(GrupoMaterial_.ID), grupoId));
             }
