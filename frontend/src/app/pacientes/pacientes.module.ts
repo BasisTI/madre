@@ -40,6 +40,7 @@ import { MunicipioService } from './components/formulario-paciente/endereco/muni
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
 import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro/listagem-pre-cadastro.component';
+import { MotivoDoCadastroService } from './components/formulario-paciente/cartao-sus/motivo-do-cadastro.service';
 
 @NgModule({
     declarations: [
@@ -64,19 +65,19 @@ import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro
         PacientesService,
         FormulaCadastroService,
 
-        { provide: CRUD_SERVICE, useExisting: RacaService },
-        { provide: CRUD_SERVICE, useExisting: EtniaService },
-        { provide: CRUD_SERVICE, useExisting: EstadoCivilService },
-        { provide: CRUD_SERVICE, useExisting: NacionalidadeService },
-        { provide: CRUD_SERVICE, useExisting: NaturalidadeService },
-        { provide: CRUD_SERVICE, useExisting: OcupacaoService },
-        { provide: CRUD_SERVICE, useExisting: ReligiaoService },
-        { provide: CRUD_SERVICE, useExisting: GrauDeParentescoService },
-        { provide: CRUD_SERVICE, useExisting: OrgaoEmissorService },
-        { provide: CRUD_SERVICE, useExisting: JustificativaService },
-        { provide: CRUD_SERVICE, useExisting: MotivoDoCadastro },
-        { provide: CRUD_SERVICE, useExisting: UfService },
-        { provide: CRUD_SERVICE, useExisting: MunicipioService },
+        RacaService,
+        EtniaService,
+        EstadoCivilService,
+        NacionalidadeService,
+        NaturalidadeService,
+        OcupacaoService,
+        ReligiaoService,
+        GrauDeParentescoService,
+        OrgaoEmissorService,
+        JustificativaService,
+        MotivoDoCadastroService,
+        UfService,
+        MunicipioService,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],
