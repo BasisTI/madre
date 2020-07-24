@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface EstoqueAlmoxarifadoRepository extends JpaRepository<EstoqueAlmoxarifado, Long>, JpaSpecificationExecutor {
+public interface EstoqueAlmoxarifadoRepository extends JpaRepository<EstoqueAlmoxarifado, Long>, JpaSpecificationExecutor<EstoqueAlmoxarifado> {
     Optional<EstoqueAlmoxarifado> findByAlmoxarifadoIdAndMaterialId(Long almoxarifadoId, Long materialId);
 
     <S extends EstoqueAlmoxarifado, T> Page<T> findBy(Example<S> example, Pageable pageable, Class<T> projectionClass);

@@ -103,7 +103,7 @@ public class EstoqueAlmoxarifadoService {
         Specification<EstoqueAlmoxarifado> spec = Specification.<EstoqueAlmoxarifado>where((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.ativo), ativo)).and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.estocavel), estocavel));
 
         if (Objects.nonNull(fornecedorId)) {
-            spec = spec.and((Specification<EstoqueAlmoxarifado>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.FORNECEDOR).get(Fornecedor_.ID), fornecedorId));
+            spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.FORNECEDOR).get(Fornecedor_.ID), fornecedorId));
         }
 
         if (Objects.nonNull(almoxarifadoId)) {
@@ -123,8 +123,6 @@ public class EstoqueAlmoxarifadoService {
         }
 
         ProjectionFactory projectionFactory = new SpelAwareProxyProjectionFactory();
-        Page page = estoqueAlmoxarifadoRepository.findAll(spec, pageable).map(estoque -> projectionFactory.createProjection(Estoque.class, estoque));
-
-        return page;
+        return estoqueAlmoxarifadoRepository.findAll(spec, pageable).map(estoque -> projectionFactory.createProjection(Estoque.class, estoque));
     }
 }
