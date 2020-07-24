@@ -1,0 +1,39 @@
+{
+  "name": "Transacao",
+  "fields": [
+    {
+      "fieldName": "quantidadeItens",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tipoTransacao",
+      "otherEntityRelationshipName": "transacao",
+      "relationshipName": "tipoTransacao",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "lancamento",
+      "otherEntityRelationshipName": "transacao",
+      "relationshipName": "lancamento",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200721185453",
+  "entityTableName": "transacao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madresuprimentos",
+  "applications": "*",
+  "microserviceName": "madresuprimentos",
+  "skipClient": true
+}

@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="pedro (generated)" id="1595358958689-12">
+        <addColumn tableName="transacao">
+            <column name="almoxarifado_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1595358958689-13">
+        <addColumn tableName="transacao">
+            <column name="material_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1595358958689-14">
+        <addForeignKeyConstraint baseColumnNames="almoxarifado_id" baseTableName="transacao"
+                                 constraintName="fk_almoxarifado_id" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="almoxarifado"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1595358958689-16">
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="transacao"
+                                 constraintName="fK_material_id" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="material"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

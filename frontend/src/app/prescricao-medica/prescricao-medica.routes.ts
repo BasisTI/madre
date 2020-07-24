@@ -29,6 +29,7 @@ export const prescricaoMedica: Routes = [
         path: 'prescricao-medica/lista/:id',
         component: ListaPrescricaoComponent
     },
-]
+
+];
 
 

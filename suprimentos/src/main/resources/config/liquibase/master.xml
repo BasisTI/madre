@@ -66,6 +66,18 @@
     <include file="config/liquibase/changelog/20200709174126_BASIS-136400.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200716160442_BASIS-137409.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200717124805_BASIS-137401.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721185253_added_entity_TipoTransacao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721185353_added_entity_TipoLancamento.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721185453_added_entity_Transacao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721185553_added_entity_Lancamento.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721191551_BASIS-137399.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200723175823_added_entity_EstoqueGeral.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200723182338_BASIS-137400.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200618123148_added_entity_constraints_TransferenciaAlmoxarifado.xml"
              relativeToChangelogFile="false"/>
@@ -90,6 +102,10 @@
     <include file="config/liquibase/changelog/20200709165406_added_entity_constraints_RequisicaoMaterial.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200709165606_added_entity_constraints_ItemRequisicao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721185453_added_entity_constraints_Transacao.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200721185553_added_entity_constraints_Lancamento.xml"
              relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

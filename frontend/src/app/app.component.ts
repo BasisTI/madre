@@ -286,6 +286,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                     },
                                 ],
                             },
+                            {
+                                label: 'Inclusão Saldo de Estoque',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/inclusao-saldo-estoque'],
+                            },
                         ],
                     },
                 ],
