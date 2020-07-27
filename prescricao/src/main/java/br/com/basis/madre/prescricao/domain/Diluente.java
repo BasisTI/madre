@@ -1,4 +1,5 @@
 package br.com.basis.madre.prescricao.domain;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -18,37 +19,40 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * A Diluente.
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "diluente")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "madre-prescricao-diluente")
 public class Diluente implements Serializable {
 
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    @Field(type = FieldType.Keyword)
-    private Long id;
+	private static final long serialVersionUID = -7986991077952979331L;
 
-    @NotEmpty
-    @NotNull
-    @Size(max = 100)
-    @Column(name = "descricao", length = 100, nullable = false)
-    private String descricao;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+	@SequenceGenerator(name = "sequenceGenerator")
+	@Field(type = FieldType.Keyword)
+	private Long id;
 
+	@NotEmpty
+	@NotNull
+	@Size(max = 100)
+	@Column(name = "descricao", length = 100, nullable = false)
+	private String descricao;
 
-    public Diluente descricao(String descricao) {
-        this.descricao = descricao;
-        return this;
-    }
-
+	public Diluente descricao(String descricao) {
+		this.descricao = descricao;
+		return this;
+	}
 
 }
