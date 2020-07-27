@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet id="20200721185553-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="tipo_lancamento_id"
+                                 baseTableName="lancamento"
+                                 constraintName="fk_lancamento_tipo_lancamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_lancamento"/>
+    </changeSet>
+</databaseChangeLog>

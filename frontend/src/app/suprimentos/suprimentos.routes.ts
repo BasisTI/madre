@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ConsultaEstoqueComponent } from './components/consulta-estoque/consulta-estoque.component';
 import { NotaFiscalFormComponent } from './components/documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
 import { EfetivacaoTransferenciaAutomaticaComponent } from './components/efetivacao-transferencia-automatica/efetivacao-transferencia-automatica.component';
+import { InclusaoSaldoEstoqueComponent } from './components/inclusao-saldo-estoque/inclusao-saldo-estoque.component';
 import { RecebimentoFormComponent } from './components/recebimento/recebimento-form.component';
 import { RequisicaoMaterialNaoEfetivadaComponent } from './components/requisicao-material-nao-efetivada/requisicao-material-nao-efetivada.component';
 import { RequisicaoMaterialFormComponent } from './components/requisicao-material/requisicao-material-form.component';
@@ -60,5 +61,10 @@ export const routes: Routes = [
         path: 'requisicoes-materiais/nova',
         component: RequisicaoMaterialFormComponent,
         data: { breadcrumb: 'Gerar Requisição de Materiais' },
+    },
+    {
+        path: 'inclusao-saldo-estoque',
+        component: InclusaoSaldoEstoqueComponent,
+        data: { bradcrumb: 'Inclusão Saldo de Estoque' },
     },
 ];

@@ -4,6 +4,7 @@ import br.com.basis.suprimentos.domain.projection.Estoque;
 import br.com.basis.suprimentos.service.EstoqueAlmoxarifadoService;
 import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;

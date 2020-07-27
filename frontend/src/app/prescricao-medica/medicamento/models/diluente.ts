@@ -1,6 +1,6 @@
 export class Diluente {
     constructor(
-        public id?: string,
+        public id?: number,
         public descricao?: string
     ) {}
 }

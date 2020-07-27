@@ -194,6 +194,42 @@ entity MarcaComercial {
     descricao String maxlength(120) required
 }
 
+relationship ManyToOne {
+    RequisicaoMaterial{situacao} to SituacaoRequisicao
+}
+
+relationship OneToMany {
+    RequisicaoMaterial{itens} to ItemRequisicao{requisicao}
+}
+
+entity RequisicaoMaterial {
+    geradoEm ZonedDateTime required
+    geradoPor String required
+    confirmadoEm ZonedDateTime
+    confirmadoPor String
+}
+
+entity SituacaoRequisicao {
+    descricao String required
+}
+
+entity ItemRequisicao {
+    quantidade Integer required
+}
+
+entity ClassificacaoMaterial {
+	descricao String required
+}
+
+entity InformacaoTransferencia {
+	ativa Boolean
+    efetivada Boolean
+}
+
+entity ItemTransferencia {
+	quantidadeEnvidada Integer required
+}
+
 dto * with mapstruct
 paginate * with pagination
 service * with serviceClass

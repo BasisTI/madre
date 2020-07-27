@@ -14,12 +14,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
 @Entity
@@ -94,4 +96,7 @@ public class Material implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("materials")
     private OrigemParecerTecnico origemParecerTecnico;
+
+    @OneToMany(mappedBy = "material")
+    private Set<EstoqueGeral> estoquesGerais;
 }

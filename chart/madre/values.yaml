@@ -14,8 +14,6 @@ madrecliente:
       secretName: madretst-cert
   ports:
     port: 80
-  imagePullSecrets:
-  - name: basis-registry
   proxy:
     locations:
     - pacientes
@@ -30,8 +28,6 @@ gateway:
     tag: teste
   ports:
     port: 8080
-  imagePullSecrets:
-  - name: basis-registry
   configmap:
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
@@ -45,8 +41,6 @@ pacientes:
     tag: teste
   ports:
     port: 8081
-  imagePullSecrets:
-  - name: basis-registry
   configmap:
     spring:
       data:
@@ -67,8 +61,6 @@ prescricao:
     tag: teste
   ports:
     port: 8081
-  imagePullSecrets:
-  - name: basis-registry
   configmap:
     spring:
       data:
@@ -89,8 +81,6 @@ farmacia:
     tag: teste
   ports:
     port: 8081
-  imagePullSecrets:
-  - name: basis-registry
   configmap:
     spring:
       data:
@@ -111,8 +101,6 @@ internacao:
     tag: teste
   ports:
     port: 8081
-  imagePullSecrets:
-  - name: basis-registry
   configmap:
     spring:
       data:

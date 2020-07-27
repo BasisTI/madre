@@ -1,0 +1,28 @@
+{
+    "name": "EspeciaisDiversos",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "javadoc": "descrição de procedimentos especiais diversos",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200522180302",
+    "entityTableName": "especiais_diversos",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

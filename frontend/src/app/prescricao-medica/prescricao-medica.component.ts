@@ -53,6 +53,11 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
             case 'prescrever-medicamento':
                 this.router.navigate(['/prescricao-medica/medicamento', event.selection.id]);
                 break;
+
+            case 'prescrever-procedimento':
+                this.router.navigate(['/prescricao-medica/procedimento-especial', event.selection.id]);
+                break;
+
             case 'prescrever-diagnostico':
                 this.router.navigate(['/prescricao-medica/diagnostico', event.selection.id]);
                 break;

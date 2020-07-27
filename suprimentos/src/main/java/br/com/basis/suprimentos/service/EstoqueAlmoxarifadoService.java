@@ -8,10 +8,14 @@ import br.com.basis.suprimentos.domain.GrupoMaterial_;
 import br.com.basis.suprimentos.domain.Material_;
 import br.com.basis.suprimentos.domain.UnidadeMedida_;
 import br.com.basis.suprimentos.domain.projection.Estoque;
+import br.com.basis.suprimentos.domain.enumeration.CodigoTipoLancamento;
 import br.com.basis.suprimentos.repository.EstoqueAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.EstoqueAlmoxarifadoSearchRepository;
 import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
+import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
+import br.com.basis.suprimentos.service.dto.LancamentoDTO;
+import br.com.basis.suprimentos.service.dto.TransacaoDTO;
 import br.com.basis.suprimentos.service.mapper.EstoqueAlmoxarifadoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +42,9 @@ public class EstoqueAlmoxarifadoService {
     private final EstoqueAlmoxarifadoRepository estoqueAlmoxarifadoRepository;
     private final EstoqueAlmoxarifadoMapper estoqueAlmoxarifadoMapper;
     private final EstoqueAlmoxarifadoSearchRepository estoqueAlmoxarifadoSearchRepository;
+    private final LancamentoService lancamentoService;
+    private final TransacaoService transacaoService;
+    private final LoteService loteService;
 
     public EstoqueAlmoxarifadoDTO save(EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) {
         log.debug("Request to save EstoqueAlmoxarifado : {}", estoqueAlmoxarifadoDTO);

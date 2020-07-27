@@ -1,0 +1,28 @@
+{
+    "name": "OrteseProtese",
+    "fields": [
+        {
+            "fieldName": "decricao",
+            "javadoc": "descrição de procedimento especial ortese ou prótese",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200522180304",
+    "entityTableName": "ortese_protese",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}
