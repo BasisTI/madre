@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="pedro (generated)" id="1595528623757-13">
+        <addColumn tableName="estoque_geral">
+            <column name="material_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pedro (generated)" id="1595528623757-17">
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="estoque_geral"
+                                 constraintName="FKrd1keikgiu0rarij54dgtcp0b" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="material"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

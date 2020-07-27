@@ -5,7 +5,7 @@ import {
     PageNotificationModule,
 } from '@nuvem/primeng-components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { JhiDateUtils } from './date-util.service';
 import { MessageComponent } from './message.component';
@@ -23,7 +23,6 @@ import { ArvoreComponent } from './cid/arvore-cid/arvore.component';
         PRIMENG_IMPORTS,
         DatatableModule,
         TriStateCheckboxModule,
-        PageNotificationModule,
         CrudModule,
     ],
     declarations: [MessageComponent, CidComponent, ArvoreComponent],
@@ -34,7 +33,6 @@ import { ArvoreComponent } from './cid/arvore-cid/arvore.component';
         PRIMENG_IMPORTS,
         DatatableModule,
         TriStateCheckboxModule,
-        PageNotificationModule,
         CrudModule,
         MessageComponent,
         CidComponent,
