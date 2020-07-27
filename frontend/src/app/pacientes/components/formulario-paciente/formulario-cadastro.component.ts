@@ -1,3 +1,4 @@
+
 import { CpfCnpjValidator } from './../../../shared/cpf-cnpj.validator';
 
 import { element } from 'protractor';
@@ -10,7 +11,7 @@ import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.componen
 import { Paciente } from './models/paciente';
 import { FormulaCadastroService } from './formula-cadastro.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BreadcrumbService } from '@nuvem/primeng-components';
+import { BreadcrumbService, PageNotificationService } from '@nuvem/primeng-components';
 import { FormBuilder, Validators, FormGroup, AbstractControl, FormArray } from '@angular/forms';
 import { Responsavel } from './models/responsavel';
 import { Telefone } from './models/telefone';
@@ -327,6 +328,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         console.log(paciente);
         //if (this.formularioDeCadastro.valid) {
         this.formularioCadastroService.cadastrarPaciente(paciente).subscribe();
+
         //}
     }
 }
