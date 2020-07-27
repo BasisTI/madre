@@ -37,7 +37,7 @@ public class PacienteResource {
     @GetMapping("/{id}")
     public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) {
         Optional<Paciente> paciente = pacienteRepositorySearch.findById(id);
-        if (paciente == null) {
+        if (!paciente.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(paciente.get());
