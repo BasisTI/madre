@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+
 import { CpfCnpjValidator } from './../../../shared/cpf-cnpj.validator';
 
 import { element } from 'protractor';
@@ -97,7 +97,6 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
         private breadcrumbService: BreadcrumbService,
         private fb: FormBuilder,
         private formularioCadastroService: FormulaCadastroService,
-        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -328,15 +327,7 @@ export class FormularioCadastroComponent implements OnInit, OnDestroy {
 
         console.log(paciente);
         //if (this.formularioDeCadastro.valid) {
-        this.formularioCadastroService.cadastrarPaciente(paciente).subscribe(
-            (resposta) => {
-                this.router.navigate(['/pacientes/']);
-                return resposta;
-            },
-            (erro) => {
-                return erro;
-            }
-        );
+        this.formularioCadastroService.cadastrarPaciente(paciente).subscribe();
 
         //}
     }
