@@ -1,9 +1,10 @@
 package br.com.basis.madre.prescricao.service.mapper;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.service.dto.DiluenteDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import br.com.basis.madre.prescricao.domain.Diluente;
+import br.com.basis.madre.prescricao.service.dto.DiluenteDTO;
 
 /**
  * Mapper for the entity {@link Diluente} and its DTO {@link DiluenteDTO}.
@@ -12,8 +13,13 @@ import org.mapstruct.*;
 public interface DiluenteMapper extends EntityMapper<DiluenteDTO, Diluente> {
 
 
+	@Mapping(source="id", target="id")
+	@Mapping(source="descricao", target="descricao")
     Diluente toEntity(DiluenteDTO diluenteDTO);
 
+	@Mapping(source="id", target="id")
+	@Mapping(source="descricao", target="descricao")
+	DiluenteDTO toDto(Diluente diluente);
     default Diluente fromId(Long id) {
         if (id == null) {
             return null;
