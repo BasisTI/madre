@@ -9,17 +9,11 @@ public interface Estoque {
 
     Boolean getEstocavel();
 
-    default Long getQuantidadeBloqueada() {
-        return getLotes().stream().map(_Lote::getQuantidadeBloqueada).reduce(0L, Long::sum);
-    }
+    Long getQuantidadeBloqueada();
 
-    default Long getQuantidadeComProblema() {
-        return getLotes().stream().map(_Lote::getQuantidadeProblema).reduce(0L, Long::sum);
-    }
+    Long getQuantidadeComProblema();
 
-    default Long getQuantidadeDisponivel() {
-        return getLotes().stream().map(_Lote::getQuantidadeDisponivel).reduce(0L, Long::sum);
-    }
+    Long getQuantidadeDisponivel();
 
     _Fornecedor getFornecedor();
 

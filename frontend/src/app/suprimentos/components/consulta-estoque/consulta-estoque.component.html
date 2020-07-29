@@ -165,46 +165,14 @@
                     [disableView]="true"
                     #datatable
                 >
-                    <p-column header="Almox." field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.almoxarifado?.descricao }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Forn." field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.fornecedor?.nomeFantasia }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Material" field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.material?.nome }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Un." field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.material?.unidadeMedida?.descricao }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Qt. Disp" field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.quantidadeDisponivel }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Qt. Bloq" field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.quantidadeBloqueada }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Qt. Prob" field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.quantidadeComProblema }}
-                        </ng-template>
-                    </p-column>
-                    <p-column header="Estocável" field="null">
-                        <ng-template let-data="rowData" pTemplate="body">
-                            {{ data.estocavel ? 'Sim' : 'Não' }}
-                        </ng-template>
-                    </p-column>
+                    <p-column header="Almox." field="nomeAlmoxarifado"> </p-column>
+                    <p-column header="Forn." field="nomeFantasia"> </p-column>
+                    <p-column header="Material" field="nomeMaterial"> </p-column>
+                    <p-column header="Un." field="null"> </p-column>
+                    <p-column header="Qt. Disp" field="quantidadeDisponivel"> </p-column>
+                    <p-column header="Qt. Bloq" field="quantidadeBloqueada"> </p-column>
+                    <p-column header="Qt. Prob" field="quantidadeProblema"> </p-column>
+                    <p-column header="Estocável" field="estocavel"> </p-column>
                 </basis-datatable>
             </div>
         </div>

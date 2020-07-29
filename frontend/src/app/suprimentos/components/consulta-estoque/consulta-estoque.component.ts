@@ -54,7 +54,7 @@ export class ConsultaEstoqueComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.api = this.estoqueService.getResource();
+        this.api = `${this.estoqueService.getResource()}/saldos`;
     }
 
     public pesquisar(): void {

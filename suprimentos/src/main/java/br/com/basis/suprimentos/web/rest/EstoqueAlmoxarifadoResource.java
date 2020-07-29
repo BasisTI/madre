@@ -1,10 +1,9 @@
 package br.com.basis.suprimentos.web.rest;
 
-import br.com.basis.suprimentos.domain.projection.Estoque;
 import br.com.basis.suprimentos.service.EstoqueAlmoxarifadoService;
 import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
-import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
+import br.com.basis.suprimentos.service.dto.SaldoEstoqueAlmoxarifado;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -43,6 +42,13 @@ public class EstoqueAlmoxarifadoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    @GetMapping("/estoque-almoxarifados/saldos")
+    public ResponseEntity<List<SaldoEstoqueAlmoxarifado>> obterSaldoTodosEstoques(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
+        Page<SaldoEstoqueAlmoxarifado> page = estoqueAlmoxarifadoService.obterSaldoTodosEstoques(consultaEstoqueAlmoxarifadoDTO, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     @PostMapping("/estoque-almoxarifados")
     public ResponseEntity<EstoqueAlmoxarifadoDTO> createEstoqueAlmoxarifado(@Valid @RequestBody EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) throws URISyntaxException {
         log.debug("REST request to save EstoqueAlmoxarifado : {}", estoqueAlmoxarifadoDTO);
@@ -68,11 +74,10 @@ public class EstoqueAlmoxarifadoResource {
     }
 
     @GetMapping("/estoque-almoxarifados")
-    public ResponseEntity<List<Estoque>> getAllEstoqueAlmoxarifados(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
+    public ResponseEntity<List<EstoqueAlmoxarifadoDTO>> getAllEstoqueAlmoxarifados(Pageable pageable) {
         log.debug("REST request to get a page of EstoqueAlmoxarifados");
-        Page<Estoque> page = estoqueAlmoxarifadoService.consultarEstoqueAlmoxarifado(pageable, consultaEstoqueAlmoxarifadoDTO);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        Page<EstoqueAlmoxarifadoDTO> page = estoqueAlmoxarifadoService.findAll(pageable);
+        return ResponseEntity.ok(page.getContent());
     }
 
     @GetMapping("/estoque-almoxarifados/{id}")

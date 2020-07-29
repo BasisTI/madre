@@ -5,30 +5,33 @@ import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado;
 import br.com.basis.suprimentos.domain.EstoqueAlmoxarifado_;
 import br.com.basis.suprimentos.domain.Fornecedor_;
 import br.com.basis.suprimentos.domain.GrupoMaterial_;
+import br.com.basis.suprimentos.domain.Lote_;
 import br.com.basis.suprimentos.domain.Material_;
 import br.com.basis.suprimentos.domain.UnidadeMedida_;
 import br.com.basis.suprimentos.domain.projection.Estoque;
-import br.com.basis.suprimentos.domain.enumeration.CodigoTipoLancamento;
 import br.com.basis.suprimentos.repository.EstoqueAlmoxarifadoRepository;
 import br.com.basis.suprimentos.repository.search.EstoqueAlmoxarifadoSearchRepository;
 import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.EstoqueAlmoxarifadoDTO;
-import br.com.basis.suprimentos.service.dto.InclusaoSaldoEstoqueDTO;
-import br.com.basis.suprimentos.service.dto.LancamentoDTO;
-import br.com.basis.suprimentos.service.dto.TransacaoDTO;
+import br.com.basis.suprimentos.service.dto.SaldoEstoqueAlmoxarifado;
 import br.com.basis.suprimentos.service.mapper.EstoqueAlmoxarifadoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.projection.ProjectionFactory;
-import org.springframework.data.projection.SpelAwareProxyProjectionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CompoundSelection;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -45,6 +48,7 @@ public class EstoqueAlmoxarifadoService {
     private final LancamentoService lancamentoService;
     private final TransacaoService transacaoService;
     private final LoteService loteService;
+    private final EntityManager entityManager;
 
     public EstoqueAlmoxarifadoDTO save(EstoqueAlmoxarifadoDTO estoqueAlmoxarifadoDTO) {
         log.debug("Request to save EstoqueAlmoxarifado : {}", estoqueAlmoxarifadoDTO);
@@ -62,9 +66,9 @@ public class EstoqueAlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Estoque> findAll(Pageable pageable) {
+    public Page<EstoqueAlmoxarifadoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all EstoqueAlmoxarifados");
-        return estoqueAlmoxarifadoRepository.findBy(pageable, Estoque.class);
+        return estoqueAlmoxarifadoRepository.findAll(pageable).map(estoqueAlmoxarifadoMapper::toDto);
     }
 
     @Transactional(readOnly = true)
@@ -98,7 +102,7 @@ public class EstoqueAlmoxarifadoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Estoque> consultarEstoqueAlmoxarifado(Pageable pageable, ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO) {
+    public Page<SaldoEstoqueAlmoxarifado> obterSaldoTodosEstoques(ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO, Pageable pageable) {
         Long fornecedorId = consultaEstoqueAlmoxarifadoDTO.getFornecedorId();
         Long almoxarifadoId = consultaEstoqueAlmoxarifadoDTO.getAlmoxarifadoId();
         Long grupoId = consultaEstoqueAlmoxarifadoDTO.getGrupoId();
@@ -107,29 +111,60 @@ public class EstoqueAlmoxarifadoService {
         Boolean ativo = consultaEstoqueAlmoxarifadoDTO.getAtivo();
         Boolean estocavel = consultaEstoqueAlmoxarifadoDTO.getEstocavel();
 
-        Specification<EstoqueAlmoxarifado> spec = Specification.<EstoqueAlmoxarifado>where((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.ativo), ativo)).and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.estocavel), estocavel));
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<SaldoEstoqueAlmoxarifado> query = cb.createQuery(SaldoEstoqueAlmoxarifado.class);
+        Root<EstoqueAlmoxarifado> estoqueAlmoxarifadoRoot = query.from(EstoqueAlmoxarifado.class);
 
-        if (Objects.nonNull(fornecedorId)) {
-            spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.FORNECEDOR).get(Fornecedor_.ID), fornecedorId));
+        CompoundSelection<SaldoEstoqueAlmoxarifado> construct = cb.construct(
+            SaldoEstoqueAlmoxarifado.class,
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ID),
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ATIVO),
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ESTOCAVEL),
+            cb.sum(estoqueAlmoxarifadoRoot.join(EstoqueAlmoxarifado_.LOTES).get(Lote_.QUANTIDADE_DISPONIVEL)),
+            cb.sum(estoqueAlmoxarifadoRoot.join(EstoqueAlmoxarifado_.LOTES).get(Lote_.QUANTIDADE_BLOQUEADA)),
+            cb.sum(estoqueAlmoxarifadoRoot.join(EstoqueAlmoxarifado_.LOTES).get(Lote_.QUANTIDADE_PROBLEMA)),
+            estoqueAlmoxarifadoRoot.join(EstoqueAlmoxarifado_.MATERIAL).get(Material_.NOME).alias("nomeMaterial"),
+            estoqueAlmoxarifadoRoot.join(EstoqueAlmoxarifado_.FORNECEDOR).get(Fornecedor_.NOME_FANTASIA).alias("nomeFantasia"),
+            estoqueAlmoxarifadoRoot.join(EstoqueAlmoxarifado_.ALMOXARIFADO).get(Almoxarifado_.DESCRICAO).alias("nomeAlmoxarifado")
+        );
+
+        query.select(construct);
+        query.groupBy(
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ID),
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.NOME),
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.FORNECEDOR).get(Fornecedor_.NOME_FANTASIA),
+            estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ALMOXARIFADO).get(Almoxarifado_.DESCRICAO)
+        );
+        query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ATIVO), ativo));
+        query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ESTOCAVEL), estocavel));
+
+        if (fornecedorId != null) {
+            query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.FORNECEDOR).get(Fornecedor_.ID), fornecedorId));
         }
 
-        if (Objects.nonNull(almoxarifadoId)) {
-            spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.ALMOXARIFADO).get(Almoxarifado_.ID), almoxarifadoId));
+        if (almoxarifadoId != null) {
+            query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.ALMOXARIFADO).get(Almoxarifado_.ID), almoxarifadoId));
         }
 
-        if (Objects.nonNull(materialId)) {
-            spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.ID), materialId));
+        if (materialId != null) {
+            query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.ID), materialId));
         } else {
             if (Objects.nonNull(grupoId)) {
-                spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.GRUPO).get(GrupoMaterial_.ID), grupoId));
+                query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.GRUPO).get(GrupoMaterial_.ID), grupoId));
             }
 
             if (Objects.nonNull(unidadeMedidaId)) {
-                spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.UNIDADE_MEDIDA).get(UnidadeMedida_.ID), unidadeMedidaId));
+                query.where(cb.equal(estoqueAlmoxarifadoRoot.get(EstoqueAlmoxarifado_.MATERIAL).get(Material_.UNIDADE_MEDIDA).get(UnidadeMedida_.ID), unidadeMedidaId));
             }
         }
 
-        ProjectionFactory projectionFactory = new SpelAwareProxyProjectionFactory();
-        return estoqueAlmoxarifadoRepository.findAll(spec, pageable).map(estoque -> projectionFactory.createProjection(Estoque.class, estoque));
+        TypedQuery<SaldoEstoqueAlmoxarifado> typedQuery = entityManager.createQuery(query);
+        typedQuery.setFirstResult((pageable.getPageNumber()) * pageable.getPageSize());
+        typedQuery.setMaxResults(pageable.getPageSize());
+
+        List<SaldoEstoqueAlmoxarifado> resultList = typedQuery.getResultList();
+        long count = estoqueAlmoxarifadoRepository.count();
+
+        return new PageImpl<>(resultList, pageable, count);
     }
 }
