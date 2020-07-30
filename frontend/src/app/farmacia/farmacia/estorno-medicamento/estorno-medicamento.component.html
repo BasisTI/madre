@@ -1,0 +1,131 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="ui-g-12">
+            <h1>Estorno medicamento</h1>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText type="text" pTooltip="Informe o Nome." [(ngModel)]="nome" />
+                    <label>Nome</label>
+                </span>
+            </div>
+
+            <div class="ui-g-2 ui-sm-12">
+                <span class="ui-float-label">
+                    <p-calendar dateFormat="yy-mm-dd" [(ngModel)]="data"></p-calendar>
+                    <label>Data da dispensação</label>
+                </span>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-2 ui-sm-12">
+                <button
+                    pButton
+                    type="button"
+                    label="Pesquisar"
+                    icon="ui-icon-search"
+                    (click)="listar()"
+                ></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Limpar"></button>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+                <button pButton type="button" label="Exportar"></button>
+            </div>
+        </div>
+        <form [formGroup]="estornoMedicamento">
+            <basis-datatable
+                #datatable
+                type="server"
+                [url]="url"
+                [rows]="10"
+                sortField="brand"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+                (buttonClick)="estornar($event)"
+            >
+                <p-column header="id" field="id" [sortable]="true"></p-column>
+                <p-column header="medicamento" field="medicamentosId" [sortable]="true">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            {{
+                                rowData[col.field] === null || rowData[col.field] === undefined
+                                    ? undefined
+                                    : rowData[col.field].nome
+                            }}</span
+                        >
+                    </ng-template>
+                </p-column>
+                <p-column header="Unidade" field="medicamentosId" [sortable]="true">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            {{
+                                rowData[col.field] === null || rowData[col.field] === undefined
+                                    ? undefined
+                                    : rowData[col.field].unidadeId.nome
+                            }}</span
+                        >
+                    </ng-template>
+                </p-column>
+                <p-column header="Apresentacao" field="medicamentosId" [sortable]="true">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            {{
+                                rowData[col.field] === null || rowData[col.field] === undefined
+                                    ? undefined
+                                    : rowData[col.field].apresentacaoId.nome
+                            }}</span
+                        >
+                    </ng-template>
+                </p-column>
+                <p-column header="Motivo">
+                    <ng-template pTemplate="body">
+                        <p-autoComplete
+                            field="descricao"
+                            [suggestions]="motivo"
+                            (completeMethod)="searchMotivo($event)"
+                            [dropdown]="true"
+                            formControlName="motivoId"
+                        ></p-autoComplete>
+                    </ng-template>
+                </p-column>
+
+                <basis-datatable-button
+                    bTooltip="Dispensar Medicamento"
+                    [disabled]="!datatable.selectedRow"
+                >
+                </basis-datatable-button>
+            </basis-datatable>
+        </form>
+        <!-- <basis-datatable
+            #datatable
+            type="memory"
+            [value]="Prescricao"
+            sortField="brand"
+            [disableView]="true"
+            [disableEdit]="true"
+            [disableDelete]="true"
+            (buttonClick)="dispensarMedicamento($event)"
+        >
+            <p-column header="Medicamento" field="nome" [sortable]="true"></p-column>
+            <p-column header="Apresentação" field="dataInicio"></p-column>
+
+            <p-column header="Unidade" field="dataInicio"></p-column>
+
+            <p-column header="Data" field="dataInicio"></p-column>
+
+            <p-column header="Prescição" field="dataInicio"></p-column>
+
+            <p-column header="Motivo" field="dataInicio"></p-column>
+
+            <basis-datatable-button
+                bTooltip="Estornar Medicamento"
+                [disabled]="datatable.selectedRow ? false : true"
+            >
+            </basis-datatable-button>
+        </basis-datatable> -->
+    </div>
+</div>

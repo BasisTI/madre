@@ -12,11 +12,13 @@ import org.mapstruct.*;
 public interface DispensacaoMedicamentosMapper extends EntityMapper<DispensacaoMedicamentosDTO, DispensacaoMedicamentos> {
 
     @Mapping(source = "dispensacao.id", target = "dispensacaoId")
-    @Mapping(source = "medicamentos.id", target = "medicamentosId")
+    @Mapping(source = "medicamentos", target = "medicamentosId")
+    @Mapping(source = "estornado", target = "estornado")
     DispensacaoMedicamentosDTO toDto(DispensacaoMedicamentos dispensacaoMedicamentos);
 
     @Mapping(source = "dispensacaoId", target = "dispensacao")
     @Mapping(source = "medicamentosId", target = "medicamentos")
+    @Mapping(source = "estornado", target = "estornado")
     DispensacaoMedicamentos toEntity(DispensacaoMedicamentosDTO dispensacaoMedicamentosDTO);
 
     default DispensacaoMedicamentos fromId(Long id) {

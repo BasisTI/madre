@@ -1,4 +1,6 @@
 package br.com.basis.madre.farmacia.service.dto;
+import br.com.basis.madre.farmacia.domain.Medicamento;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,13 +14,22 @@ public class DispensacaoMedicamentosDTO implements Serializable {
     private Long idFarmacia;
 
     private Boolean dispensado;
+    private Boolean estornado;
 
     private Long usuarioQueDispensou;
 
 
     private Long dispensacaoId;
 
-    private Long medicamentosId;
+    private MedicamentoDTO medicamentosId;
+
+    public Boolean getEstornado() {
+        return estornado;
+    }
+
+    public void setEstornado(Boolean estornado) {
+        this.estornado = estornado;
+    }
 
     public Long getId() {
         return id;
@@ -60,11 +71,11 @@ public class DispensacaoMedicamentosDTO implements Serializable {
         this.dispensacaoId = dispensacaoId;
     }
 
-    public Long getMedicamentosId() {
+    public MedicamentoDTO getMedicamentosId() {
         return medicamentosId;
     }
 
-    public void setMedicamentosId(Long medicamentoId) {
+    public void setMedicamentosId(MedicamentoDTO medicamentoId) {
         this.medicamentosId = medicamentoId;
     }
 
@@ -92,12 +103,13 @@ public class DispensacaoMedicamentosDTO implements Serializable {
     @Override
     public String toString() {
         return "DispensacaoMedicamentosDTO{" +
-            "id=" + getId() +
-            ", idFarmacia=" + getIdFarmacia() +
-            ", dispensado='" + isDispensado() + "'" +
-            ", usuarioQueDispensou=" + getUsuarioQueDispensou() +
-            ", dispensacao=" + getDispensacaoId() +
-            ", medicamentos=" + getMedicamentosId() +
-            "}";
+            "id=" + id +
+            ", idFarmacia=" + idFarmacia +
+            ", dispensado=" + dispensado +
+            ", estornado=" + estornado +
+            ", usuarioQueDispensou=" + usuarioQueDispensou +
+            ", dispensacaoId=" + dispensacaoId +
+            ", medicamentosId=" + medicamentosId +
+            '}';
     }
 }

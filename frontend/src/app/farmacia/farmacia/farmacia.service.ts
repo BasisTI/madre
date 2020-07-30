@@ -1,3 +1,5 @@
+import { Motivo } from './estorno-medicamento/Motivo';
+import { Estorno } from './estorno-medicamento/estorno/estorno';
 import { DispensacaoMedicamento } from './dispensacao/dispensacao-medicamento/dispensacaoMedicamento';
 import { TipoMedicamento } from './cadastro-medicamento/tipoMedicamento';
 import { Medicamento } from './medicamentos/Medicamento';
@@ -42,6 +44,11 @@ export class FarmaciaService {
     getResultApresentacao(event): Observable<Array<Apresentacao>> {
         return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`, {
             params: new HttpParams().set('nome', event),
+        });
+    }
+    getResultMotivo(event): Observable<Array<Motivo>> {
+        return this.httpServe.get<Array<Motivo>>(`${this.apiUrl}/motivos`, {
+            params: new HttpParams().set('descricao', event),
         });
     }
 
@@ -91,6 +98,15 @@ export class FarmaciaService {
         console.log(id);
         return this.httpServe.get<Prescricao>(`${this.apiUrl}/dispensacaos/${id}`);
     }
+    getDispensacaoMedicamentoPorId(id: number): Observable<Prescricao> {
+        console.log(id);
+        return this.httpServe.get<Prescricao>(`${this.apiUrl}/dispensacao-medicamentos/${id}`);
+    }
+    getDispensacaoMedicamento(): Observable<Pageable<DispensacaoMedicamento>> {
+        return this.httpServe.get<Pageable<DispensacaoMedicamento>>(
+            `${this.apiUrl}/dispensacao-medicamentos`,
+        );
+    }
 
     getMedicamentoPorId(id): Observable<Medicamento> {
         return this.httpServe.get<Medicamento>(`${this.apiUrl}/medicamentos/${id}`);
@@ -103,5 +119,9 @@ export class FarmaciaService {
             `${this.apiUrl}/dispensacao-medicamentos`,
             DispensacaoMedicamento,
         );
+    }
+    estornar(estorno: Estorno) {
+        console.log('serviço', estorno);
+        return this.httpServe.post(`${this.apiUrl}/estornos`, estorno);
     }
 }

@@ -19,7 +19,7 @@ public class EstornoDTO implements Serializable {
 
     private Long dispensacaoMedicamentosId;
 
-    private Long motivoId;
+    private MotivoDTO motivoId;
 
     public Long getId() {
         return id;
@@ -61,11 +61,11 @@ public class EstornoDTO implements Serializable {
         this.dispensacaoMedicamentosId = dispensacaoMedicamentosId;
     }
 
-    public Long getMotivoId() {
+    public MotivoDTO getMotivoId() {
         return motivoId;
     }
 
-    public void setMotivoId(Long motivoId) {
+    public void setMotivoId(MotivoDTO motivoId) {
         this.motivoId = motivoId;
     }
 

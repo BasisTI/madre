@@ -12,6 +12,10 @@
         {
             "fieldName": "usuarioQueDispensou",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "estornado",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

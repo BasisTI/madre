@@ -201,6 +201,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['/farmacia'],
                     },
                     {
+                        label: 'Estorno Medicamento',
+                        icon: 'add',
+                        routerLink: ['/estorno-medicamento'],
+                    },
+                    {
                         label: 'Cadastro de Medicamento',
                         icon: 'add',
                         routerLink: ['/cadastrar-medicamento'],
@@ -245,12 +250,10 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                     {
                                         label: 'Automáticas',
                                         icon: 'add',
-                                        routerLink: [
-                                            '/suprimentos/transferencias-automaticas'
-                                        ]
-                                    }
-                                ]
-                            }
+                                        routerLink: ['/suprimentos/transferencias-automaticas'],
+                                    },
+                                ],
+                            },
                         ],
                     },
                 ],

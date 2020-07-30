@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface EstornoMapper extends EntityMapper<EstornoDTO, Estorno> {
 
     @Mapping(source = "dispensacaoMedicamentos.id", target = "dispensacaoMedicamentosId")
-    @Mapping(source = "motivo.id", target = "motivoId")
+    @Mapping(source = "motivo", target = "motivoId")
     EstornoDTO toDto(Estorno estorno);
 
     @Mapping(source = "dispensacaoMedicamentosId", target = "dispensacaoMedicamentos")

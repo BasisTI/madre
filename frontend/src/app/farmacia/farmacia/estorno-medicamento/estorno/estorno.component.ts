@@ -1,18 +1,17 @@
-import { Medicamento } from './../../medicamentos/Medicamento';
+import { Prescricao } from './../../dispensacao/prescricao';
 import { DatatableClickEvent } from '@nuvem/primeng-components';
-import { Prescricao } from './../prescricao';
+import { DispensacaoMedicamento } from './../../dispensacao/dispensacao-medicamento/dispensacaoMedicamento';
 import { FarmaciaService } from './../../farmacia.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { DispensacaoMedicamento } from './dispensacaoMedicamento';
 
 @Component({
-    selector: 'app-dispensacao-medicamento',
-    templateUrl: './dispensacao-medicamento.component.html',
-    styleUrls: ['./dispensacao-medicamento.component.css'],
+    selector: 'app-estorno',
+    templateUrl: './estorno.component.html',
+    styleUrls: ['./estorno.component.css'],
 })
-export class DispensacaoMedicamentoComponent implements OnInit {
+export class EstornoComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -60,12 +59,7 @@ export class DispensacaoMedicamentoComponent implements OnInit {
         this.dipensacaoMedicamento.patchValue({
             id: null,
             dispensacaoId: this.prescricao.idDispensacao,
-            medicamentosId: {
-                id: event.selection.id,
-                nome: event.selection.nome,
-                apresentacao: event.selection.apresentacao,
-                unidade: event.selection.unidade,
-            },
+            medicamentosId: this.id,
         });
         this.dipensacaoMedicamentos = this.dipensacaoMedicamento.value;
         console.log('set');

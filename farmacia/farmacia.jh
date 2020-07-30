@@ -19,6 +19,7 @@ entity DispensacaoMedicamentos {
     idFarmacia Long
     dispensado Boolean
     usuarioQueDispensou Long
+    estornado Boolean
 }
 entity Medicamento {
     codigo String

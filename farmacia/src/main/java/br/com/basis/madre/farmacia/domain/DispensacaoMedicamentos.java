@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "dispensacao_medicamentos")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-farmacia-dispensacaomedicamentos")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "dispensacaomedicamentos")
 public class DispensacaoMedicamentos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +36,9 @@ public class DispensacaoMedicamentos implements Serializable {
     @Column(name = "usuario_que_dispensou")
     private Long usuarioQueDispensou;
 
+    @Column(name = "estornado")
+    private Boolean estornado;
+
     @ManyToOne
     @JsonIgnoreProperties("dispensacaoMedicamentos")
     private Dispensacao dispensacao;
@@ -52,8 +55,6 @@ public class DispensacaoMedicamentos implements Serializable {
         return this;
     }
 
-
-
     public Boolean isDispensado() {
         return dispensado;
     }
@@ -69,12 +70,19 @@ public class DispensacaoMedicamentos implements Serializable {
     }
 
 
+    public Boolean isEstornado() {
+        return estornado;
+    }
+
+    public DispensacaoMedicamentos estornado(Boolean estornado) {
+        this.estornado = estornado;
+        return this;
+    }
 
     public DispensacaoMedicamentos dispensacao(Dispensacao dispensacao) {
         this.dispensacao = dispensacao;
         return this;
     }
-
 
 
     public DispensacaoMedicamentos medicamentos(Medicamento medicamento) {

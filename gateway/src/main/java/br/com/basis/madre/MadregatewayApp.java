@@ -50,8 +50,7 @@ public class MadregatewayApp {
         if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_CLOUD)) {
             log.error("You have misconfigured your application! It should not " +
                 "run with both the 'dev' and 'cloud' profiles at the same time.");
-        }
-    }
+        }     }
 
     /**
      * Main method, used to run the application.
