@@ -145,10 +145,9 @@ public class EstoqueAlmoxarifadoService {
 
         adicionarClausulaWhere(cb, query, fornecedorId, root.get(FORNECEDOR).get(Fornecedor_.ID));
         adicionarClausulaWhere(cb, query, almoxarifadoId, root.get(ALMOXARIFADO).get(Almoxarifado_.ID));
+        adicionarClausulaWhere(cb, query, materialId, root.get(MATERIAL).get(Material_.ID));
 
-        if (materialId != null) {
-            adicionarClausulaWhere(cb, query, materialId, root.get(MATERIAL).get(Material_.ID));
-        } else {
+        if (materialId == null) {
             adicionarClausulaWhere(cb, query, grupoId, root.get(MATERIAL).get(Material_.GRUPO).get(GrupoMaterial_.ID));
             adicionarClausulaWhere(cb, query, unidadeMedidaId, root.get(MATERIAL).get(Material_.UNIDADE_MEDIDA).get(UnidadeMedida_.ID));
         }
