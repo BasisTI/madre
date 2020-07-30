@@ -28,6 +28,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CompoundSelection;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import java.util.Optional;
 
@@ -142,27 +143,23 @@ public class EstoqueAlmoxarifadoService {
         query.where(cb.equal(root.get(ATIVO), consultaEstoqueAlmoxarifadoDTO.getAtivo()));
         query.where(cb.equal(root.get(ESTOCAVEL), consultaEstoqueAlmoxarifadoDTO.getEstocavel()));
 
-        if (fornecedorId != null) {
-            query.where(cb.equal(root.get(FORNECEDOR).get(Fornecedor_.ID), fornecedorId));
-        }
-
-        if (almoxarifadoId != null) {
-            query.where(cb.equal(root.get(ALMOXARIFADO).get(Almoxarifado_.ID), almoxarifadoId));
-        }
+        adicionarClausulaWhere(cb, query, fornecedorId, root.get(FORNECEDOR).get(Fornecedor_.ID));
+        adicionarClausulaWhere(cb, query, almoxarifadoId, root.get(ALMOXARIFADO).get(Almoxarifado_.ID));
 
         if (materialId != null) {
-            query.where(cb.equal(root.get(MATERIAL).get(Material_.ID), materialId));
+            adicionarClausulaWhere(cb, query, materialId, root.get(MATERIAL).get(Material_.ID));
         } else {
-            if (grupoId != null) {
-                query.where(cb.equal(root.get(MATERIAL).get(Material_.GRUPO).get(GrupoMaterial_.ID), grupoId));
-            }
-
-            if (unidadeMedidaId != null) {
-                query.where(cb.equal(root.get(MATERIAL).get(Material_.UNIDADE_MEDIDA).get(UnidadeMedida_.ID), unidadeMedidaId));
-            }
+            adicionarClausulaWhere(cb, query, grupoId, root.get(MATERIAL).get(Material_.GRUPO).get(GrupoMaterial_.ID));
+            adicionarClausulaWhere(cb, query, unidadeMedidaId, root.get(MATERIAL).get(Material_.UNIDADE_MEDIDA).get(UnidadeMedida_.ID));
         }
 
         TypedQuery<SaldoEstoqueAlmoxarifado> typedQuery = pageableQueryService.usePageableToLimitResults(pageable, entityManager.createQuery(query));
         return pageableQueryService.getPageFromPageable(pageable, typedQuery.getResultList(), estoqueAlmoxarifadoRepository.count());
+    }
+
+    private <T> void adicionarClausulaWhere(CriteriaBuilder cb, CriteriaQuery<T> query, Long entidadeId, Path<Object> objectPath) {
+        if (entidadeId != null) {
+          query.where(cb.equal(objectPath, entidadeId));
+        }
     }
 }
