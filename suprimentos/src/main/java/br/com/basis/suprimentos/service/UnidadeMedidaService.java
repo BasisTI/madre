@@ -7,6 +7,8 @@ import br.com.basis.suprimentos.service.dto.UnidadeMedidaDTO;
 import br.com.basis.suprimentos.service.mapper.UnidadeMedidaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,9 @@ public class UnidadeMedidaService {
     }
 
     @Transactional(readOnly = true)
-    public Page<UnidadeMedidaDTO> findAll(Pageable pageable) {
+    public Page<UnidadeMedidaDTO> findAll(Pageable pageable, UnidadeMedidaDTO unidadeMedidaDTO) {
         log.debug("Request to get all UnidadeMedidas");
-        return unidadeMedidaRepository.findAll(pageable)
+        return unidadeMedidaRepository.findAll(Example.of(unidadeMedidaMapper.toEntity(unidadeMedidaDTO), ExampleMatcher.matchingAll().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)), pageable)
             .map(unidadeMedidaMapper::toDto);
     }
 

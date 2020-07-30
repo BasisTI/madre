@@ -242,6 +242,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                 routerLink: ['/suprimentos/recebimentos/novo'],
                             },
                             {
+                                label: 'Consultar Estoque',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/consulta-estoque'],
+                            },
+                            {
                                 label: 'Documentos Fiscais',
                                 icon: 'add',
                                 items: [

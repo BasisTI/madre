@@ -1,9 +1,12 @@
 package br.com.basis.suprimentos.service.mapper;
 
 import br.com.basis.suprimentos.domain.Material;
+import br.com.basis.suprimentos.service.dto.ConsultaEstoqueAlmoxarifadoDTO;
 import br.com.basis.suprimentos.service.dto.MaterialDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {UnidadeMedidaMapper.class, GrupoMaterialMapper.class, AlmoxarifadoMapper.class, CodigoCatmatMapper.class, SazonalidadeMapper.class, TipoResiduoMapper.class, OrigemParecerTecnicoMapper.class})
 public interface MaterialMapper extends EntityMapper<MaterialDTO, Material> {
@@ -24,6 +27,9 @@ public interface MaterialMapper extends EntityMapper<MaterialDTO, Material> {
     @Mapping(source = "tipoResiduoId", target = "tipoResiduo")
     @Mapping(source = "origemParecerTecnicoId", target = "origemParecerTecnico")
     Material toEntity(MaterialDTO materialDTO);
+
+    @Mapping(source = "materialId", target = "id")
+    MaterialDTO toDto(ConsultaEstoqueAlmoxarifadoDTO consultaEstoqueAlmoxarifadoDTO);
 
     default Material fromId(Long id) {
         if (id == null) {

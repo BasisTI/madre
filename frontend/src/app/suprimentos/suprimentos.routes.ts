@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ConsultaEstoqueComponent } from './components/consulta-estoque/consulta-estoque.component';
 import { NotaFiscalFormComponent } from './components/documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
 import { EfetivacaoTransferenciaAutomaticaComponent } from './components/efetivacao-transferencia-automatica/efetivacao-transferencia-automatica.component';
 import { InclusaoSaldoEstoqueComponent } from './components/inclusao-saldo-estoque/inclusao-saldo-estoque.component';
@@ -11,6 +12,11 @@ import { TransferenciaAutomaticaFormComponent } from './components/transferencia
 import { TransferenciaAutomaticaComponent } from './components/transferencia-automatica/transferencia-automatica.component';
 
 export const routes: Routes = [
+    {
+        path: 'consulta-estoque',
+        component: ConsultaEstoqueComponent,
+        data: { breadcrumb: 'Consultar Estoque' },
+    },
     {
         path: 'recebimentos/novo',
         component: RecebimentoFormComponent,

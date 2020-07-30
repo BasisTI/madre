@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { AutorizacaoFornecimentoComponent } from './components/autorizacao-fornecimento/autorizacao-fornecimento.component';
+import { ConsultaEstoqueComponent } from './components/consulta-estoque/consulta-estoque.component';
 import { DocumentoFiscalEntradaComponent } from './components/documento-fiscal-entrada/documento-fiscal-entrada.component';
 import { NotaFiscalFormComponent } from './components/documento-fiscal-entrada/nota-fiscal/nota-fiscal-form.component';
 import { EfetivacaoTransferenciaAutomaticaComponent } from './components/efetivacao-transferencia-automatica/efetivacao-transferencia-automatica.component';
@@ -30,6 +31,7 @@ import { routes } from './suprimentos.routes';
         RequisicaoMaterialFormComponent,
         InclusaoSaldoEstoqueComponent,
         RequisicaoMaterialNaoEfetivadaComponent,
+        ConsultaEstoqueComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

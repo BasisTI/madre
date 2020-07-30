@@ -1,6 +1,7 @@
 package br.com.basis.suprimentos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @EqualsAndHashCode(exclude = "lotes")
@@ -89,7 +92,7 @@ public class EstoqueAlmoxarifado implements Serializable {
     @Column(name = "tempo_reposicao", nullable = false)
     private Integer tempoReposicao;
 
-    @OneToMany(mappedBy = "estoque")
+    @OneToMany(mappedBy = "estoque", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Lote> lotes = new HashSet<>();
 

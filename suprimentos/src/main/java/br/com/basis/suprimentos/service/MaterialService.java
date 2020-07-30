@@ -7,12 +7,15 @@ import br.com.basis.suprimentos.service.dto.MaterialDTO;
 import br.com.basis.suprimentos.service.mapper.MaterialMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -39,6 +42,18 @@ public class MaterialService {
         log.debug("Request to get all Materials");
         return materialRepository.findAll(pageable)
             .map(materialMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public <S extends Material> List<MaterialDTO> findAll(Example<S> example) {
+        log.debug("Request to get all Materials");
+        return materialRepository.findAll(example).stream()
+            .map(materialMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public <S extends Material> Optional<MaterialDTO> findOne(Example<S> example) {
+        return materialRepository.findOne(example).map(materialMapper::toDto);
     }
 
     @Transactional(readOnly = true)
