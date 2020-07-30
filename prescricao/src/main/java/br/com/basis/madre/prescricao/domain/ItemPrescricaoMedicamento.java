@@ -8,12 +8,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -41,7 +43,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "item_prescricao_medicamento")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "madre-prescricao-itemprescricaomedicamento")
+@Document(indexName = "madre-prescricao-itemprescricaomedicamento", type="prescricaomedicamento")
 public class ItemPrescricaoMedicamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,6 +56,7 @@ public class ItemPrescricaoMedicamento implements Serializable {
 
 	@NotNull
 	@Column(name = "id_medicamento", nullable = false)
+	@Field(type = FieldType.Long)
 	private Long idMedicamento;
 
 	private Long idListaMedicamentos;
@@ -61,38 +64,48 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@NotNull
 	@DecimalMin(value = "0")
 	@Column(name = "dose", precision = 21, scale = 2, nullable = false)
+	@Field(type = FieldType.Double)
 	private BigDecimal dose;
 
 	@Min(value = 0)
 	@Column(name = "frequencia")
+	@Field(type = FieldType.Integer)
 	private Integer frequencia;
 
 	@Column(name = "todas_vias")
+	@Field(type = FieldType.Boolean)
 	private Boolean todasVias;
 
 	@Column(name = "bomba_infusao")
+	@Field(type = FieldType.Boolean)
 	private Boolean bombaInfusao;
 
 	@DecimalMin(value = "0")
 	@Column(name = "velocidade_infusao", precision = 21, scale = 2)
+	@Field(type = FieldType.Double)
 	private BigDecimal velocidadeInfusao;
 
 	@Min(value = 0)
 	@Column(name = "tempo_infusao")
+	@Field(type = FieldType.Integer)
 	private Integer tempoInfusao;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "unidade_tempo")
+	@Field(type = FieldType.Text)
 	private UnidadeTempo unidadeTempo;
 
 	@Column(name = "inicio_administracao")
+	@Field(type = FieldType.Date)
 	private LocalDate inicioAdministracao;
 
+	@Field(type = FieldType.Boolean)
 	@Column(name = "condicao_necessaria")
 	private Boolean condicaoNecessaria;
 
 	@Size(max = 255)
 	@Column(name = "observacao_condicao", length = 255)
+	@Field(type = FieldType.Text)
 	private String observacaoCondicao;
 
 	@ManyToOne
@@ -115,12 +128,18 @@ public class ItemPrescricaoMedicamento implements Serializable {
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private TipoAprazamento tipoAprazamento;
 
+	@NotNull
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	@JsonIgnoreProperties("itemPrescricaoMedicamentos")
 	private PrescricaoMedicamento prescricaoMedicamento;
+
+	@Field(type = FieldType.Object)
+	@Transient
+	private Medicamento medicamento;
+	
 
 	public ItemPrescricaoMedicamento frequencia(Integer frequencia) {
 		this.frequencia = frequencia;

@@ -1,0 +1,30 @@
+{
+    "name": "CEP",
+    "fields": [
+        {
+            "fieldName": "cep",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "logradouro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bairro",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200707121634",
+    "entityTableName": "cep",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "pacientes",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "pacientes"
+}

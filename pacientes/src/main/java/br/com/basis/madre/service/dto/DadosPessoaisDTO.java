@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor

@@ -11,6 +11,11 @@ export const routes: Routes = [
         path: 'prescricao-medica/dieta',
         component: PrescricaoMedicaDietaComponent
     },
+
+    {
+        path: 'prescricao-medica/dieta/:id',
+        component: PrescricaoMedicaDietaComponent
+    },
 ];
 
 export const PrescricaoMedicaDietaRoutes: ModuleWithProviders = RouterModule.forRoot(routes);

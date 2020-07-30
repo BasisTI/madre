@@ -41,4 +41,10 @@ public class PacienteResource {
         Optional<Paciente> paciente = pacienteService.obterPacientePorId(id);
         return ResponseUtil.wrapOrNotFound(paciente);
     }
+
+    @GetMapping("/pacientes/prontuario/{prontuario}")
+    public ResponseEntity<Paciente> obterPacientePorProntuario(@PathVariable(name = "prontuario") Long prontuario) {
+        Optional<Paciente> paciente = pacienteService.obterPacientePorProntuario(prontuario);
+        return ResponseUtil.wrapOrNotFound(paciente);
+    }
 }

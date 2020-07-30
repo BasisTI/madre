@@ -1,0 +1,130 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form (ngSubmit)="prescrever()">
+            <p-accordion>
+                <p-accordionTab header="Dados Gerais" [selected]="true">
+                    <form [formGroup]="prescricaoProcedimento">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <input formControlName="nome" type="text"
+                                            pInputText disabled />
+                                        <label>Paciente</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <p-calendar formControlName="dataPrescricao" dateFormat="dd/mm/yy" disabled="true">
+                                        </p-calendar>
+                                        <label>Data Prescrição</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-12">
+                                    <span class="md-inputfield">
+                                        <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
+                                            id="observacao" formControlName="observacao"></textarea>
+                                        <label>Observações</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </p-accordionTab>
+
+                <p-accordionTab header="Item Procedimento">
+                    <form [formGroup]="itemPrescricaoProcedimento" (ngSubmit)="incluirItem()">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <div class="ui-g-8">
+                                    <p-selectButton [options]="tipoProcedimento"
+                                        formControlName="tipoProcedimentoEspecial" #tipo>
+                                    </p-selectButton>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12" [ngSwitch]="tipo.value">
+                                <app-diversos *ngSwitchCase="'DIVERSOS'"
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-diversos>
+
+                                <app-cirurgias-leito *ngSwitchCase="'CIRURGIAS_LEITO'"
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-cirurgias-leito>
+
+                                <app-ortese-protese *ngSwitchCase="'ORTESES_PROTESES'"
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-ortese-protese>
+
+                                <app-diversos *ngSwitchDefault
+                                    [itemPrescricaoProcedimento]="itemPrescricaoProcedimento">
+                                </app-diversos>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="informacoes" />
+                                        <label>Informações Complementares</label>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-6">
+                                    <span class="md-inputfield">
+                                        <input type="text" pInputText formControlName="justificativa" />
+                                        <label>Justificativa</label>
+                                    </span>
+                                </div>
+
+                                <div class="ui-g-4">
+                                    <span class="md-inputfield">
+                                        <input type="number" pInputText formControlName="duracaoSolicitada" />
+                                        <label>Duração</label>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-6">
+                                <button label="Adicionar" pButton name="adicionar-item" type="submit"
+                                    [disabled]="itemPrescricaoProcedimento.invalid">
+                                </button>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <basis-datatable type="memory" [value]="itensPrescricaoProcedimento"
+                                    [disableView]="true" [disableEdit]="true" [disableDelete]="true"
+                                    [verticalButtons]="false">
+                                    <p-column header="Procedimento" field="tipoProcedimentoId">
+                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                            <span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                        </ng-template>
+                                    </p-column>
+
+                                    <p-column header="Informações" field="informacoes"></p-column>
+                                    <p-column header="Justificativa" field="justificativa"></p-column>
+                                    <p-column header="Duração" field="duracaoSolicitada"></p-column>
+                                </basis-datatable>
+
+                            </div>
+                        </div>
+                    </form>
+                </p-accordionTab>
+            </p-accordion>
+
+            <div class="ui-g-12">
+                <div class="ui-g-6">
+                    <button pButton type="submit" label="Prescrever">
+                    </button>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

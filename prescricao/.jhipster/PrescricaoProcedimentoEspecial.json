@@ -1,0 +1,42 @@
+{
+    "name": "PrescricaoProcedimentoEspecial",
+    "fields": [
+        {
+            "fieldName": "idPaciente",
+            "javadoc": "Identificador do paciente",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "observacao",
+            "javadoc": "Observação ou comentário para a prescrição de procedimento especial",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "itemPrescricaoProcedimentoEspecial",
+            "otherEntityRelationshipName": "prescricaoProcedimentoEspecial",
+            "relationshipName": "itemPrescricaoProcedimentoEspecial"
+        }
+    ],
+    "changelogDate": "20200522180300",
+    "entityTableName": "prescricao_procedimento_especial",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

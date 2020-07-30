@@ -1,17 +1,19 @@
 export interface ConsultaEmergenciaModel {
-    numeroConsulta: string;
+    numeroConsulta: number;
     dataHoraDaConsulta: Date;
-    grade: string;
+    grade: number;
     prontuario: string;
     nome: string;
+    numeroDeSala: string;
+    turno: string;
+    tipoPagador: string;
     especialidade: string;
-    profissional: string;
-    clinicaCentralId: string;
+    profissional: number;
+    clinicaCentralId: number;
     observacao: string;
     justificativa: string;
-    condicaoDeAtendimentoId: string;
-    formaDeAgendamentoId: string;
-    pacienteId: {
-        nome: string;
-    };
+    condicaoDeAtendimentoId: number;
+    formaDeAgendamentoId: number;
+    pacienteId: number;
+    gradesDiponiveis: boolean;
 }

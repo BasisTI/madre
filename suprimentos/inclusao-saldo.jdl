@@ -1,0 +1,27 @@
+relationship ManyToOne {
+    Lancamento{tipoLancamento} to TipoLancamento,
+    Transacao{tipoTransacao} to TipoTransacao,
+    Transacao{lancamento} to Lancamento
+}
+
+entity TipoTransacao {
+    descricao String required
+}
+
+entity TipoLancamento {
+    descricao String required
+}
+
+entity Transacao {
+    quantidadeItens Long required
+}
+
+entity Lancamento {
+    lancadoEm ZonedDateTime required
+    lancadoPor String required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

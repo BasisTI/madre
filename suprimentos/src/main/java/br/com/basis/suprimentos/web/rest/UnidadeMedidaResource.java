@@ -67,9 +67,9 @@ public class UnidadeMedidaResource {
     }
 
     @GetMapping("/unidades-medida")
-    public ResponseEntity<List<UnidadeMedidaDTO>> getAllUnidadeMedidas(Pageable pageable) {
+    public ResponseEntity<List<UnidadeMedidaDTO>> getAllUnidadeMedidas(Pageable pageable, UnidadeMedidaDTO unidadeMedidaDTO) {
         log.debug("REST request to get a page of UnidadeMedidas");
-        Page<UnidadeMedidaDTO> page = unidadeMedidaService.findAll(pageable);
+        Page<UnidadeMedidaDTO> page = unidadeMedidaService.findAll(pageable, unidadeMedidaDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

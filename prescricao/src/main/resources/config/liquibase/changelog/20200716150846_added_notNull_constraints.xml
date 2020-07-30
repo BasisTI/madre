@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="bragamateus" id="1594912142664-3">
+        <addNotNullConstraint
+            columnDataType="bigint"  
+            columnName="prescricao_diagnostico_id"  
+            constraintName="fk_item_prescricao_diagnostico_prescricao_diagnostico_id"    
+            tableName="item_prescricao_diagnostico"  
+            validate="true"/> 
+    </changeSet>
+    <changeSet author="bragamateus" id="1594912142665-3">
+        <addNotNullConstraint
+            columnDataType="bigint"  
+            columnName="prescricao_dieta_id"  
+            constraintName="fk_item_prescricao_dieta_prescricao_dieta_id"    
+            tableName="item_prescricao_dieta"  
+            validate="true"/> 
+    </changeSet>
+      <changeSet author="bragamateus" id="1594912142666-3">
+        <addNotNullConstraint
+            columnDataType="bigint"  
+            columnName="prescricao_medicamento_id"  
+            constraintName="fk_item_prescricao_medicamento_prescricao_medicamento_id"    
+            tableName="item_prescricao_medicamento"  
+            validate="true"/> 
+    </changeSet>
+</databaseChangeLog>

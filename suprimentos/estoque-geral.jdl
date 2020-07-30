@@ -1,0 +1,9 @@
+entity EstoqueGeral {
+    valor Double required
+    quantidade Long required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

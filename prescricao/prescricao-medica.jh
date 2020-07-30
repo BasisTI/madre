@@ -1,0 +1,11 @@
+entity PrescricaoMedica {
+	idLeito Long,
+    idUnidadeFuncional Long,
+    idAtendimento Long,
+    dataPrescricao LocalDate
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

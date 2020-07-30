@@ -103,7 +103,7 @@ public class PrescricaoDietaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PrescricaoDieta createEntity(EntityManager em) {
-        PrescricaoDieta prescricaoDieta = new PrescricaoDieta()
+        PrescricaoDieta prescricaoDieta = (PrescricaoDieta) new PrescricaoDieta()
             .idPaciente(DEFAULT_ID_PACIENTE)
             .observacao(DEFAULT_OBSERVACAO);
         return prescricaoDieta;
@@ -115,7 +115,7 @@ public class PrescricaoDietaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PrescricaoDieta createUpdatedEntity(EntityManager em) {
-        PrescricaoDieta prescricaoDieta = new PrescricaoDieta()
+        PrescricaoDieta prescricaoDieta = (PrescricaoDieta) new PrescricaoDieta()
             .idPaciente(UPDATED_ID_PACIENTE)
             .observacao(UPDATED_OBSERVACAO);
         return prescricaoDieta;
