@@ -1,0 +1,11 @@
+entity CEP {
+    cep String ,
+    logradouro String,
+    bairro String,
+}
+
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+skipClient *

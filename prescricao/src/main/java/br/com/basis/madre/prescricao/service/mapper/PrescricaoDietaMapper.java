@@ -12,10 +12,10 @@ import br.com.basis.madre.prescricao.service.dto.PrescricaoDietaDTO;
 @Mapper(componentModel = "spring", uses = {ItemPrescricaoDietaMapper.class})
 public interface PrescricaoDietaMapper extends EntityMapper<PrescricaoDietaDTO, PrescricaoDieta> {
 
-	@Mapping(source = "itemPrescricaoDietas", target = "itemPrescricaoDietaDTO")
+	@Mapping(source = "itemPrescricaoDietas", target = "itens")
 	PrescricaoDietaDTO toDto(PrescricaoDieta prescricaoDieta);
 	
-	@Mapping(source = "itemPrescricaoDietaDTO", target = "itemPrescricaoDietas")
+	@Mapping(source = "itens", target = "itemPrescricaoDietas")
     PrescricaoDieta toEntity(PrescricaoDietaDTO prescricaoDietaDTO);
 
     default PrescricaoDieta fromId(Long id) {

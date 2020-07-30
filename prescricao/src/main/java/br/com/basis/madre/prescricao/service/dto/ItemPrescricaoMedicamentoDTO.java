@@ -33,7 +33,7 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 
 	@Min(value = 0)
 	private Integer frequencia;
-
+	
 	private Boolean todasVias;
 
 	private Boolean bombaInfusao;
@@ -53,15 +53,17 @@ public class ItemPrescricaoMedicamentoDTO implements Serializable {
 	@Size(max = 255)
 	private String observacaoCondicao;
 
-	private Long viasAdministracaoId;
+	private ViasAdministracaoDTO viasAdministracao;
 
-	private Long diluenteId;
+	private DiluenteDTO diluente;
 
-	private Long unidadeInfusaoId;
+	private UnidadeInfusaoDTO unidadeInfusao;
 
-	private Long unidadeDoseId;
+	private UnidadeDoseDTO unidadeDose;
 
-	private Long tipoAprazamentoId;
-
+	private TipoAprazamentoDTO tipoAprazamento;
+	
+	private MedicamentoDTO medicamento;
+	
 
 }

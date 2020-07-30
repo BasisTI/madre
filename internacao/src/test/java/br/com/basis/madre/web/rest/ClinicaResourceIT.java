@@ -101,7 +101,7 @@ public class ClinicaResourceIT {
      */
     public static Clinica createEntity(EntityManager em) {
         Clinica clinica = new Clinica()
-            .nome(DEFAULT_NOME);
+            .descricao(DEFAULT_NOME);
         return clinica;
     }
     /**
@@ -112,7 +112,7 @@ public class ClinicaResourceIT {
      */
     public static Clinica createUpdatedEntity(EntityManager em) {
         Clinica clinica = new Clinica()
-            .nome(UPDATED_NOME);
+            .descricao(UPDATED_NOME);
         return clinica;
     }
 
@@ -137,7 +137,7 @@ public class ClinicaResourceIT {
         List<Clinica> clinicaList = clinicaRepository.findAll();
         assertThat(clinicaList).hasSize(databaseSizeBeforeCreate + 1);
         Clinica testClinica = clinicaList.get(clinicaList.size() - 1);
-        assertThat(testClinica.getNome()).isEqualTo(DEFAULT_NOME);
+        assertThat(testClinica.getDescricao()).isEqualTo(DEFAULT_NOME);
 
         // Validate the Clinica in Elasticsearch
         verify(mockClinicaSearchRepository, times(1)).save(testClinica);
@@ -178,9 +178,9 @@ public class ClinicaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(clinica.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)));
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_NOME)));
     }
-    
+
     @Test
     @Transactional
     public void getClinica() throws Exception {
@@ -192,7 +192,7 @@ public class ClinicaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(clinica.getId().intValue()))
-            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME));
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_NOME));
     }
 
     @Test
@@ -216,7 +216,7 @@ public class ClinicaResourceIT {
         // Disconnect from session so that the updates on updatedClinica are not directly saved in db
         em.detach(updatedClinica);
         updatedClinica
-            .nome(UPDATED_NOME);
+            .descricao(UPDATED_NOME);
         ClinicaDTO clinicaDTO = clinicaMapper.toDto(updatedClinica);
 
         restClinicaMockMvc.perform(put("/api/clinicas")
@@ -228,7 +228,7 @@ public class ClinicaResourceIT {
         List<Clinica> clinicaList = clinicaRepository.findAll();
         assertThat(clinicaList).hasSize(databaseSizeBeforeUpdate);
         Clinica testClinica = clinicaList.get(clinicaList.size() - 1);
-        assertThat(testClinica.getNome()).isEqualTo(UPDATED_NOME);
+        assertThat(testClinica.getDescricao()).isEqualTo(UPDATED_NOME);
 
         // Validate the Clinica in Elasticsearch
         verify(mockClinicaSearchRepository, times(1)).save(testClinica);
@@ -289,7 +289,7 @@ public class ClinicaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(clinica.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)));
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_NOME)));
     }
 
     @Test

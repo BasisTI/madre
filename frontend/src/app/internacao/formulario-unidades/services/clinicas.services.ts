@@ -10,7 +10,7 @@ import { Clinica } from '../models/dropwdowns/Clinica';
 })
 export class ClinicaService extends CrudServiceNuvem<number, Clinica> {
     constructor(private httpClient: HttpClient) {
-        super('internacao/api/clinicas?sort=nome', httpClient);
+        super('internacao/api/clinicas?sort=descricao', httpClient);
     }
 
     getListaDeClinicas(): Observable<Clinica[]> {

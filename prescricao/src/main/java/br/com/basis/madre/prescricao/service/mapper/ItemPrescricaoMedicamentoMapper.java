@@ -1,29 +1,32 @@
 package br.com.basis.madre.prescricao.service.mapper;
 
-import br.com.basis.madre.prescricao.domain.*;
-import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoMedicamentoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import br.com.basis.madre.prescricao.domain.ItemPrescricaoMedicamento;
+import br.com.basis.madre.prescricao.service.dto.ItemPrescricaoMedicamentoDTO;
 
 /**
  * Mapper for the entity {@link ItemPrescricaoMedicamento} and its DTO {@link ItemPrescricaoMedicamentoDTO}.
  */
-@Mapper(componentModel = "spring", uses = {ViasAdministracaoMapper.class, DiluenteMapper.class, UnidadeInfusaoMapper.class, UnidadeDoseMapper.class, PrescricaoMedicamentoMapper.class,
-		TipoAprazamentoMapper.class})
+@Mapper(componentModel = "spring", uses = {ViasAdministracaoMapper.class, DiluenteMapper.class, UnidadeInfusaoMapper.class, UnidadeDoseMapper.class,
+		TipoAprazamentoMapper.class, MedicamentoMapper.class})
 public interface ItemPrescricaoMedicamentoMapper extends EntityMapper<ItemPrescricaoMedicamentoDTO, ItemPrescricaoMedicamento> {
 
-    @Mapping(source = "viasAdministracao.id", target = "viasAdministracaoId")
-    @Mapping(source = "diluente.id", target = "diluenteId")
-    @Mapping(source = "unidadeInfusao.id", target = "unidadeInfusaoId")
-    @Mapping(source = "unidadeDose.id", target = "unidadeDoseId")
-    @Mapping(source = "tipoAprazamento.id", target = "tipoAprazamentoId")
+    @Mapping(source = "viasAdministracao", target = "viasAdministracao")
+    @Mapping(source = "diluente", target = "diluente")
+    @Mapping(source = "unidadeInfusao", target = "unidadeInfusao")
+    @Mapping(source = "unidadeDose", target = "unidadeDose")
+    @Mapping(source = "tipoAprazamento", target = "tipoAprazamento")
+    @Mapping(source = "medicamento", target="medicamento")
     ItemPrescricaoMedicamentoDTO toDto(ItemPrescricaoMedicamento itemPrescricaoMedicamento);
 
-    @Mapping(source = "viasAdministracaoId", target = "viasAdministracao")
-    @Mapping(source = "diluenteId", target = "diluente")
-    @Mapping(source = "unidadeInfusaoId", target = "unidadeInfusao")
-    @Mapping(source = "unidadeDoseId", target = "unidadeDose")
-    @Mapping(source = "tipoAprazamentoId", target = "tipoAprazamento.id")
+    @Mapping(source = "viasAdministracao", target = "viasAdministracao")
+    @Mapping(source = "diluente", target = "diluente")
+    @Mapping(source = "unidadeInfusao", target = "unidadeInfusao")
+    @Mapping(source = "unidadeDose", target = "unidadeDose")
+    @Mapping(source = "tipoAprazamento", target = "tipoAprazamento")
+    @Mapping(source = "medicamento", target="medicamento")
     ItemPrescricaoMedicamento toEntity(ItemPrescricaoMedicamentoDTO itemPrescricaoMedicamentoDTO);
 
     default ItemPrescricaoMedicamento fromId(Long id) {

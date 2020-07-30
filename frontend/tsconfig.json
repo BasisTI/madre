@@ -16,6 +16,7 @@
             "@shared/*": ["./src/app/shared/*"],
             "@internacao/*": ["./src/app/internacao/*"],
             "@suprimentos/*": ["./src/app/suprimentos/*"],
+            "@prescricao-medica/*": ["./src/app/prescricao-medica/*"],
             "@breadcrumb/*": ["./src/app/breadcrumb/*"]
         }
     }

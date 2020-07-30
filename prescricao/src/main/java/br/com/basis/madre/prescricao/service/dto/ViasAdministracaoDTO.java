@@ -1,10 +1,9 @@
 package br.com.basis.madre.prescricao.service.dto;
-import javax.validation.constraints.*;
+import java.io.Serializable;
+
+import javax.validation.constraints.Size;
 
 import lombok.Data;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A DTO for the {@link br.com.basis.madre.prescricao.domain.ViasAdministracao} entity.

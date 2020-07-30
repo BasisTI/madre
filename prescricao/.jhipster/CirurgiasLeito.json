@@ -1,0 +1,28 @@
+{
+    "name": "CirurgiasLeito",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "javadoc": "descrição de procedimentos especiais de cirurgias no leito",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200522180303",
+    "entityTableName": "cirurgias_leito",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "prescricao",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "prescricao"
+}

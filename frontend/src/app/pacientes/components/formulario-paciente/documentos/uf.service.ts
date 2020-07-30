@@ -12,6 +12,10 @@ export class UfService extends CrudServiceNuvem<number, UF> {
         super('pacientes/api/ufs?sort=unidadeFederativa', httpClient);
     }
 
+    getUfById(id: number){
+        return this.http.get(`pacientes/api/ufs/${id}`);
+    }
+
     getListaDeUF(): Observable<UF[]> {
         let params = new HttpParams();
         params = params.set('size', '30');

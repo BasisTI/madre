@@ -58,9 +58,6 @@ public class EmergenciaResourceIT {
     private static final Long DEFAULT_GRADE = 20L;
     private static final Long UPDATED_GRADE = 19L;
 
-    private static final String DEFAULT_PROFISSIONAL = "AAAAAAAAAA";
-    private static final String UPDATED_PROFISSIONAL = "BBBBBBBBBB";
-
     private static final String DEFAULT_NUMERO_SALA = "AAAAAAAAAA";
     private static final String UPDATED_NUMERO_SALA = "BBBBBBBBBB";
 
@@ -144,7 +141,6 @@ public class EmergenciaResourceIT {
             .numeroConsulta(DEFAULT_NUMERO_CONSULTA)
             .dataHoraDaConsulta(DEFAULT_DATA_HORA_DA_CONSULTA)
             .grade(DEFAULT_GRADE)
-            .profissional(DEFAULT_PROFISSIONAL)
             .numeroSala(DEFAULT_NUMERO_SALA)
             .turno(DEFAULT_TURNO)
             .tipoPagador(DEFAULT_TIPO_PAGADOR)
@@ -166,7 +162,6 @@ public class EmergenciaResourceIT {
             .numeroConsulta(UPDATED_NUMERO_CONSULTA)
             .dataHoraDaConsulta(UPDATED_DATA_HORA_DA_CONSULTA)
             .grade(UPDATED_GRADE)
-            .profissional(UPDATED_PROFISSIONAL)
             .numeroSala(UPDATED_NUMERO_SALA)
             .turno(UPDATED_TURNO)
             .tipoPagador(UPDATED_TIPO_PAGADOR)
@@ -202,7 +197,6 @@ public class EmergenciaResourceIT {
         assertThat(testEmergencia.getNumeroConsulta()).isEqualTo(DEFAULT_NUMERO_CONSULTA);
         assertThat(testEmergencia.getDataHoraDaConsulta()).isEqualTo(DEFAULT_DATA_HORA_DA_CONSULTA);
         assertThat(testEmergencia.getGrade()).isEqualTo(DEFAULT_GRADE);
-        assertThat(testEmergencia.getProfissional()).isEqualTo(DEFAULT_PROFISSIONAL);
         assertThat(testEmergencia.getNumeroSala()).isEqualTo(DEFAULT_NUMERO_SALA);
         assertThat(testEmergencia.getTurno()).isEqualTo(DEFAULT_TURNO);
         assertThat(testEmergencia.getTipoPagador()).isEqualTo(DEFAULT_TIPO_PAGADOR);
@@ -273,7 +267,6 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.[*].numeroConsulta").value(hasItem(DEFAULT_NUMERO_CONSULTA.intValue())))
             .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA))))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.intValue())))
-            .andExpect(jsonPath("$.[*].profissional").value(hasItem(DEFAULT_PROFISSIONAL)))
             .andExpect(jsonPath("$.[*].numeroSala").value(hasItem(DEFAULT_NUMERO_SALA)))
             .andExpect(jsonPath("$.[*].turno").value(hasItem(DEFAULT_TURNO.toString())))
             .andExpect(jsonPath("$.[*].tipoPagador").value(hasItem(DEFAULT_TIPO_PAGADOR.toString())))
@@ -283,7 +276,6 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.[*].observacoes").value(hasItem(DEFAULT_OBSERVACOES)))
             .andExpect(jsonPath("$.[*].pacienteId").value(hasItem(DEFAULT_PACIENTE_ID.intValue())));
     }
-    
     @Test
     @Transactional
     public void getEmergencia() throws Exception {
@@ -298,7 +290,6 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.numeroConsulta").value(DEFAULT_NUMERO_CONSULTA.intValue()))
             .andExpect(jsonPath("$.dataHoraDaConsulta").value(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA)))
             .andExpect(jsonPath("$.grade").value(DEFAULT_GRADE.intValue()))
-            .andExpect(jsonPath("$.profissional").value(DEFAULT_PROFISSIONAL))
             .andExpect(jsonPath("$.numeroSala").value(DEFAULT_NUMERO_SALA))
             .andExpect(jsonPath("$.turno").value(DEFAULT_TURNO.toString()))
             .andExpect(jsonPath("$.tipoPagador").value(DEFAULT_TIPO_PAGADOR.toString()))
@@ -333,7 +324,6 @@ public class EmergenciaResourceIT {
             .numeroConsulta(UPDATED_NUMERO_CONSULTA)
             .dataHoraDaConsulta(UPDATED_DATA_HORA_DA_CONSULTA)
             .grade(UPDATED_GRADE)
-            .profissional(UPDATED_PROFISSIONAL)
             .numeroSala(UPDATED_NUMERO_SALA)
             .turno(UPDATED_TURNO)
             .tipoPagador(UPDATED_TIPO_PAGADOR)
@@ -356,7 +346,6 @@ public class EmergenciaResourceIT {
         assertThat(testEmergencia.getNumeroConsulta()).isEqualTo(UPDATED_NUMERO_CONSULTA);
         assertThat(testEmergencia.getDataHoraDaConsulta()).isEqualTo(UPDATED_DATA_HORA_DA_CONSULTA);
         assertThat(testEmergencia.getGrade()).isEqualTo(UPDATED_GRADE);
-        assertThat(testEmergencia.getProfissional()).isEqualTo(UPDATED_PROFISSIONAL);
         assertThat(testEmergencia.getNumeroSala()).isEqualTo(UPDATED_NUMERO_SALA);
         assertThat(testEmergencia.getTurno()).isEqualTo(UPDATED_TURNO);
         assertThat(testEmergencia.getTipoPagador()).isEqualTo(UPDATED_TIPO_PAGADOR);
@@ -428,7 +417,6 @@ public class EmergenciaResourceIT {
             .andExpect(jsonPath("$.[*].numeroConsulta").value(hasItem(DEFAULT_NUMERO_CONSULTA.intValue())))
             .andExpect(jsonPath("$.[*].dataHoraDaConsulta").value(hasItem(sameInstant(DEFAULT_DATA_HORA_DA_CONSULTA))))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE.intValue())))
-            .andExpect(jsonPath("$.[*].profissional").value(hasItem(DEFAULT_PROFISSIONAL)))
             .andExpect(jsonPath("$.[*].numeroSala").value(hasItem(DEFAULT_NUMERO_SALA)))
             .andExpect(jsonPath("$.[*].turno").value(hasItem(DEFAULT_TURNO.toString())))
             .andExpect(jsonPath("$.[*].tipoPagador").value(hasItem(DEFAULT_TIPO_PAGADOR.toString())))

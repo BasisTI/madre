@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ItemPrescricaoDiagnostico.
+    -->
+    <changeSet id="20200713151819-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="prescricao_diagnostico_id"
+                                 baseTableName="item_prescricao_diagnostico"
+                                 constraintName="fk_item_prescricao_diagnostico_prescricao_diagnostico_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prescricao_diagnostico"/>
+
+    </changeSet>
+</databaseChangeLog>

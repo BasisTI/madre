@@ -39,4 +39,9 @@ public class PacienteService {
     public Optional<Paciente> obterPacientePorId(Long id) {
         return pacienteSearchRepository.findById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Optional<Paciente> obterPacientePorProntuario(Long prontuario) {
+        return pacienteSearchRepository.findByProntuario(prontuario);
+    }
 }

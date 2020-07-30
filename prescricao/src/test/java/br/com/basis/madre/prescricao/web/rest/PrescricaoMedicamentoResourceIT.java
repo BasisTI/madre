@@ -103,7 +103,7 @@ public class PrescricaoMedicamentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PrescricaoMedicamento createEntity(EntityManager em) {
-        PrescricaoMedicamento prescricaoMedicamento = new PrescricaoMedicamento()
+        PrescricaoMedicamento prescricaoMedicamento = (PrescricaoMedicamento) new PrescricaoMedicamento()
             .idPaciente(DEFAULT_ID_PACIENTE)
             .observacao(DEFAULT_OBSERVACAO);
         return prescricaoMedicamento;
@@ -115,7 +115,7 @@ public class PrescricaoMedicamentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PrescricaoMedicamento createUpdatedEntity(EntityManager em) {
-        PrescricaoMedicamento prescricaoMedicamento = new PrescricaoMedicamento()
+        PrescricaoMedicamento prescricaoMedicamento = (PrescricaoMedicamento) new PrescricaoMedicamento()
             .idPaciente(UPDATED_ID_PACIENTE)
             .observacao(UPDATED_OBSERVACAO);
         return prescricaoMedicamento;

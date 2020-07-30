@@ -1,15 +1,15 @@
 import {
-    Component,
     AfterViewInit,
+    Component,
     ElementRef,
-    Renderer2,
-    ViewChild,
+    NgZone,
     OnDestroy,
     OnInit,
-    NgZone,
+    Renderer2,
+    ViewChild,
 } from '@angular/core';
-import { ScrollPanel } from 'primeng';
 import { MenusService } from '@nuvem/primeng-components';
+import { ScrollPanel } from 'primeng';
 
 enum MenuOrientation {
     STATIC,
@@ -126,6 +126,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         routerLink: ['consulta/listar-consultas'],
                     },
                     {
+                        label: 'Calendário',
+                        icon: 'add',
+                        routerLink: ['consulta/consulta-calendario'],
+                    },
+                    {
                         label: 'Emergência',
                         icon: 'add',
                         routerLink: ['consulta/emergencia'],
@@ -140,7 +145,13 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Médica',
                         icon: 'add',
-                        items: [{ label: 'Prescrever', routerLink: ['/prescricao-medica'] }],
+                        items: [
+                            {
+                                label: 'Prescrever',
+                                icon: 'add',
+                                routerLink: ['/prescricao-medica'],
+                            },
+                        ],
                     },
                 ],
             },
@@ -162,6 +173,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                         label: 'Cadastrar Unidade',
                         icon: 'add',
                         routerLink: ['internacao/cadastro-unidades'],
+                    },
+                    {
+                        label: 'Cadastrar Clínicas',
+                        icon: 'add',
+                        routerLink: ['internacao/cadastro-clinicas'],
                     },
                     {
                         label: 'Leitos',
@@ -231,6 +247,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                 routerLink: ['/suprimentos/recebimentos/novo'],
                             },
                             {
+                                label: 'Consultar Estoque',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/consulta-estoque'],
+                            },
+                            {
                                 label: 'Documentos Fiscais',
                                 icon: 'add',
                                 items: [
@@ -252,7 +273,33 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                                         icon: 'add',
                                         routerLink: ['/suprimentos/transferencias-automaticas'],
                                     },
+                                    {
+                                        label: 'Efetivação',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/transferencias-automaticas/nao-efetivadas',
+                                        ],
+                                    },
                                 ],
+                            },
+                            {
+                                label: 'Requisições',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/requisicoes-materiais'],
+                                items: [
+                                    {
+                                        label: 'Efetivar Requisição',
+                                        icon: 'add',
+                                        routerLink: [
+                                            '/suprimentos/requisicoes-materiais/nao-efetivadas',
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Inclusão Saldo de Estoque',
+                                icon: 'add',
+                                routerLink: ['/suprimentos/inclusao-saldo-estoque'],
                             },
                         ],
                     },

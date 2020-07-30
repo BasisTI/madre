@@ -1,11 +1,9 @@
 import { PrescricaoEnfermagemComponent } from './formulario-unidades/components/prescricao-enfermagem/prescricao-enfermagem.component';
 import { PrescricaoMedicaUnidadeComponent } from './formulario-unidades/components/prescricao-medica-unidade/prescricao-medica-unidade.component';
 import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
-import { ArvoreComponent } from './components/cid/arvore-cid/arvore.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
 import { CalendarioComponent } from './components/leito/calendario.component';
 import { CaraterDaInternacaoComponent } from './components/carater-da-internacao/carater-da-internacao.component';
-import { CidComponent } from './components/cid/cid.component';
 import { CidPipe } from './pipes/cid.pipe';
 import { CommonModule } from '@angular/common';
 import { ConvenioDeSaudeComponent } from './components/convenio-de-saude/convenio-de-saude.component';
@@ -36,17 +34,16 @@ import { TipoDeReservaDeLeitoComponent } from './components/tipo-de-reserva-de-l
 import { routes } from './internacao.routes';
 import { CardPacienteComponent } from './components/card-paciente/card-paciente.component';
 import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cirurgia.component';
+import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
 
 @NgModule({
     declarations: [
         SolicitacaoDeInternacaoComponent,
-        ArvoreComponent,
         CidPipe,
         EspecialidadeComponent,
         EquipeComponent,
         ProcedimentoComponent,
         CrmComponent,
-        CidComponent,
         InternacaoDePacienteComponent,
         PlanoDeSaudeComponent,
         ConvenioDeSaudeComponent,
@@ -72,6 +69,7 @@ import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cir
         PrescricaoMedicaUnidadeComponent,
         PrescricaoEnfermagemComponent,
         CirurgiaComponent,
+        ClinicaComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

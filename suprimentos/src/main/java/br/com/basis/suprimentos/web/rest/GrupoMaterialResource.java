@@ -65,9 +65,9 @@ public class GrupoMaterialResource {
     }
 
     @GetMapping("/grupos-materiais")
-    public ResponseEntity<List<GrupoMaterialDTO>> getAllGrupoMaterials(Pageable pageable) {
+    public ResponseEntity<List<GrupoMaterialDTO>> getAllGrupoMaterials(Pageable pageable, GrupoMaterialDTO grupoMaterialDTO) {
         log.debug("REST request to get a page of GrupoMaterials");
-        Page<GrupoMaterialDTO> page = grupoMaterialService.findAll(pageable);
+        Page<GrupoMaterialDTO> page = grupoMaterialService.findAll(pageable, grupoMaterialDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

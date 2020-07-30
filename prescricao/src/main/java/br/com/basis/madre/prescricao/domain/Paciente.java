@@ -13,14 +13,15 @@ import lombok.Data;
 @Document(indexName = "madre-prescricao-paciente")
 public class Paciente implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
+	@Field(type = FieldType.Text)
+	private String prontuario;
+	
     @Field(type = FieldType.Text)
+    
     private String nome;
 
     @Field(type = FieldType.Date)

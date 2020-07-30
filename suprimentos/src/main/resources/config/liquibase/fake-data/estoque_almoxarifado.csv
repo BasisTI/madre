@@ -1,11 +1,11 @@
 id;ativo;endereco;quantidade_limite_armazenamento;quantidade_estoque_minimo;quantidade_estoque_maximo;quantidade_ponto_pedido;tempo_reposicao;almoxarifado_id;material_id;fornecedor_id
-1;true;Lempira;3931;9229;79941;48115;62790;1;1;1
-2;true;Cambridg;15697;92087;37729;6108;260;2;2;2
-3;false;primary ;20934;53659;37047;92404;48452;3;3;3
-4;false;navigate;72051;74747;6235;3669;14774;4;4;4
-5;false;feed;89520;84444;51168;74961;53211;5;5;5
-6;false;ADP;35414;53262;39716;24247;10487;6;6;6
-7;false;leverage;21144;8921;32750;53534;11977;7;7;7
-8;false;distribu;64882;49844;47958;8692;58420;8;8;8
-9;true;Nevada q;12758;37877;28378;33745;36308;9;9;9
-10;true;Home Loa;49824;98651;33035;60577;93369;10;10;10
+1;true;E1;100;1;100;1;1;1;1;1
+2;true;E2;100;1;100;1;1;1;2;2
+3;false;E3;100;1;100;1;1;1;3;3
+4;false;E4;100;1;100;1;1;1;4;4
+5;false;E5;100;1;100;1;1;1;5;5
+6;false;E6;100;1;100;1;1;2;1;6
+7;false;E7;100;1;100;1;1;2;2;7
+8;false;E8;100;1;100;1;1;2;3;8
+9;true;E9;100;1;100;1;1;2;4;9
+10;true;E10;100;1;100;1;1;2;5;10
