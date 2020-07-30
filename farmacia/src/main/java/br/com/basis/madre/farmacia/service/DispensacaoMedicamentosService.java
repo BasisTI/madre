@@ -14,7 +14,6 @@ import br.com.basis.madre.farmacia.service.mapper.MedicamentoMapper;
 import br.com.basis.madre.farmacia.web.rest.PrescricaoResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,8 +23,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link DispensacaoMedicamentos}.
@@ -67,9 +67,9 @@ public class DispensacaoMedicamentosService {
      * @return the persisted entity.
      */
     public DispensacaoMedicamentosDTO save(DispensacaoMedicamentosDTO dispensacaoMedicamentosDTO) {
-       Boolean codicao=  this.validador(dispensacaoMedicamentosDTO);
+        Boolean codicao = this.validador(dispensacaoMedicamentosDTO);
 
-        if(codicao) {
+        if (codicao) {
             log.debug("Request to save DispensacaoMedicamentos : {}", dispensacaoMedicamentosDTO);
             DispensacaoMedicamentos dispensacaoMedicamentos = dispensacaoMedicamentosMapper.toEntity(dispensacaoMedicamentosDTO);
             dispensacaoMedicamentos = dispensacaoMedicamentosRepository.save(dispensacaoMedicamentos);
@@ -79,50 +79,54 @@ public class DispensacaoMedicamentosService {
 
             Long idDispensacao = dispensacaoMedicamentosDTO.getDispensacaoId();
             Optional<DispensacaoDTO> dispensacaoDTO = dispensacaoService.findOne(idDispensacao);
-            Long  idPrescricao = dispensacaoDTO.get().getIdPrescricao();
+            Long idPrescricao = dispensacaoDTO.get().getIdPrescricao();
             Optional<Prescricao> prescricao = prescricaoResource.getPorId(idPrescricao);
             Long idMedicamento = dispensacaoMedicamentosDTO.getMedicamentosId();
-            Optional<MedicamentoDTO>  medicamento = medicamentoService.findOne(idMedicamento);
+            Optional<MedicamentoDTO> medicamento = medicamentoService.findOne(idMedicamento);
             List<Medicamento> medicamentosDispensados = prescricao.get().getMedicamentosDispensados();
 
-            Prescricao prescricao1 = new Prescricao();
-            prescricao1.setId(prescricao.get().getId());
-            prescricao1.setIdDispensacao(prescricao.get().getIdDispensacao());
-            prescricao1.setMedicamentos(prescricao.get().getMedicamentos());
-            prescricao1.setNome(prescricao.get().getNome());
-            prescricao1.setIdItemPrescricaoMedicamento(prescricao.get().getIdItemPrescricaoMedicamento());
+            if(prescricao.isPresent()) {
+                Prescricao prescricao1 = new Prescricao();
+                prescricao1.setId(prescricao.get().getId());
+                prescricao1.setIdDispensacao(prescricao.get().getIdDispensacao());
+                prescricao1.setMedicamentos(prescricao.get().getMedicamentos());
+                prescricao1.setNome(prescricao.get().getNome());
+                prescricao1.setIdItemPrescricaoMedicamento(prescricao.get().getIdItemPrescricaoMedicamento());
 
 
-            MedicamentoDTO medicamento1 = new MedicamentoDTO();
-            medicamento1.setId(medicamento.get().getId());
-            medicamento1.setApresentacaoId(medicamento.get().getApresentacaoId());
-            medicamento1.setDescricao(medicamento.get().getDescricao());
-            medicamento1.setConcentracao(medicamento.get().getConcentracao());
-            medicamento1.setNome(medicamento.get().getNome());
-            medicamento1.setCodigo(medicamento.get().getCodigo());
-            medicamento1.setTipoMedicamentoId(medicamento.get().getTipoMedicamentoId());
-            medicamento1.setUnidadeId(medicamento.get().getUnidadeId());
-            medicamento1.setAtivo(medicamento.get().isAtivo());
+                if (medicamento.isPresent()) {
+                    MedicamentoDTO medicamento1 = new MedicamentoDTO();
+                    medicamento1.setId(medicamento.get().getId());
+                    medicamento1.setApresentacaoId(medicamento.get().getApresentacaoId());
+                    medicamento1.setDescricao(medicamento.get().getDescricao());
+                    medicamento1.setConcentracao(medicamento.get().getConcentracao());
+                    medicamento1.setNome(medicamento.get().getNome());
+                    medicamento1.setCodigo(medicamento.get().getCodigo());
+                    medicamento1.setTipoMedicamentoId(medicamento.get().getTipoMedicamentoId());
+                    medicamento1.setUnidadeId(medicamento.get().getUnidadeId());
+                    medicamento1.setAtivo(medicamento.get().isAtivo());
 
-            Medicamento medicamento2 = medicamentoMapper.toEntity(medicamento1);
-
-
-            if (medicamentosDispensados == null) {
-                medicamentosDispensados  = new ArrayList<>();
-                medicamentosDispensados.add(medicamento2);
+                    Medicamento medicamento2 = medicamentoMapper.toEntity(medicamento1);
 
 
-            } else if (medicamentosDispensados.size() == 0) {
-                medicamentosDispensados.add(medicamento2);
-            } else {
-                medicamentosDispensados.add(medicamento2);
+                    if (medicamentosDispensados == null) {
+                        medicamentosDispensados = new ArrayList<>();
+                        medicamentosDispensados.add(medicamento2);
 
 
+                    } else if (medicamentosDispensados.size() == 0) {
+                        medicamentosDispensados.add(medicamento2);
+                    } else {
+                        medicamentosDispensados.add(medicamento2);
+
+
+                    }
+                    prescricao1.setMedicamentosDispensados(medicamentosDispensados);
+                    prescricaoSearchRepository.save(prescricao1);
+
+                    prescricaoResource.putPrescricao(prescricao1);
+                }
             }
-            prescricao1.setMedicamentosDispensados(medicamentosDispensados);
-            prescricaoSearchRepository.save(prescricao1);
-
-            prescricaoResource.putPrescricao(prescricao1);
 
             return result;
         }
@@ -172,7 +176,7 @@ public class DispensacaoMedicamentosService {
     /**
      * Search for the dispensacaoMedicamentos corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -184,36 +188,34 @@ public class DispensacaoMedicamentosService {
     }
 
 
-    private Boolean validador(DispensacaoMedicamentosDTO dispensacaoMedicamentosDTO){
+    private Boolean validador(DispensacaoMedicamentosDTO dispensacaoMedicamentosDTO) {
         Long idDispensacao = dispensacaoMedicamentosDTO.getDispensacaoId();
         Optional<DispensacaoDTO> dispensacaoDTO = dispensacaoService.findOne(idDispensacao);
-        Long  idPrescricao = dispensacaoDTO.get().getIdPrescricao();
+        Long idPrescricao = dispensacaoDTO.get().getIdPrescricao();
         Long idMedicamento = dispensacaoMedicamentosDTO.getMedicamentosId();
 
-        MedicamentoDTO  medicamento = medicamentoService.findOne(idMedicamento).orElseThrow(EntityNotFoundException::new);
+        MedicamentoDTO medicamento = medicamentoService.findOne(idMedicamento).orElseThrow(EntityNotFoundException::new);
 
         Optional<Prescricao> prescricao = prescricaoResource.getPorId(idPrescricao);
         List<Medicamento> medicamentosDispensados = prescricao.get().getMedicamentosDispensados();
 
-        Boolean condicao = null;
-     if (medicamentosDispensados == null) {
-         condicao = true;
+        boolean condicao = false;
 
+        if (medicamentosDispensados == null) {
+            condicao = true;
         } else {
-            for (int i = 0; i < medicamentosDispensados.size(); i++) {
-                MedicamentoDTO medicamento1 = medicamentoMapper.toDto(medicamentosDispensados.get(i));
+            boolean contemMedicamento = medicamentosDispensados.stream().map(medicamentoMapper::toDto).collect(Collectors.toList()).contains(medicamento);
 
-
-                if (medicamento1.equals(medicamento)) {
-                    condicao = false;
-
-                    break;
-                } else {
-                    condicao = true;
-                }
+            if (contemMedicamento) {
+                condicao = false;
+            } else {
+                condicao = true;
             }
         }
 
-     return condicao;
+
+
+
+        return condicao;
     }
 }
