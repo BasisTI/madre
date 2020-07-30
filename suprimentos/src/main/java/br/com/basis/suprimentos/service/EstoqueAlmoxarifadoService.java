@@ -127,8 +127,6 @@ public class EstoqueAlmoxarifadoService {
         Long grupoId = consultaEstoqueAlmoxarifadoDTO.getGrupoId();
         Long unidadeMedidaId = consultaEstoqueAlmoxarifadoDTO.getUnidadeMedidaId();
         Long materialId = consultaEstoqueAlmoxarifadoDTO.getMaterialId();
-        Boolean ativo = consultaEstoqueAlmoxarifadoDTO.getAtivo();
-        Boolean estocavel = consultaEstoqueAlmoxarifadoDTO.getEstocavel();
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<SaldoEstoqueAlmoxarifado> query = cb.createQuery(SaldoEstoqueAlmoxarifado.class);
@@ -141,8 +139,8 @@ public class EstoqueAlmoxarifadoService {
                 root.get(FORNECEDOR).get(Fornecedor_.NOME_FANTASIA),
                 root.get(ALMOXARIFADO).get(Almoxarifado_.DESCRICAO)
         );
-        query.where(cb.equal(root.get(ATIVO), ativo));
-        query.where(cb.equal(root.get(ESTOCAVEL), estocavel));
+        query.where(cb.equal(root.get(ATIVO), consultaEstoqueAlmoxarifadoDTO.getAtivo()));
+        query.where(cb.equal(root.get(ESTOCAVEL), consultaEstoqueAlmoxarifadoDTO.getEstocavel()));
 
         if (fornecedorId != null) {
             query.where(cb.equal(root.get(FORNECEDOR).get(Fornecedor_.ID), fornecedorId));
