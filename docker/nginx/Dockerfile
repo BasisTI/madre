@@ -1,6 +1,6 @@
 FROM basisti/build-frontend-npm:node-10.16.0 AS builder
 
-WORKDIR /usr/src/app
+WORKDIR /var/lib/jenkins/frontend
 
 ADD code.tar.gz .
 
@@ -11,4 +11,4 @@ RUN set -eux ; \
 
 FROM nginx
 
-COPY --from=builder /usr/src/app/dist/ /usr/share/nginx/html/
+COPY --from=builder /var/lib/jenkins/frontend/dist/ /usr/share/nginx/html/
