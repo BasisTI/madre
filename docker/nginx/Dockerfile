@@ -2,6 +2,9 @@ FROM basisti/build-frontend-npm:node-10.16.0 AS builder
 
 WORKDIR /var/lib/jenkins/code
 
+RUN set -eux ; \
+      whoami && ls -la /var/lib/jenkins/
+
 ADD code.tar.gz .
 
 ENV NG_CLI_ANALYTICS=ci
