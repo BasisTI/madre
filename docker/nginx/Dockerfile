@@ -1,10 +1,5 @@
 FROM basisti/build-frontend-npm:node-10.16.0 AS builder
 
-WORKDIR /var/lib/jenkins/code
-
-RUN set -eux ; \
-      whoami && ls -la /var/lib/jenkins/
-
 ADD code.tar.gz .
 
 ENV NG_CLI_ANALYTICS=ci
@@ -14,4 +9,4 @@ RUN set -eux ; \
 
 FROM nginx
 
-COPY --from=builder /var/lib/jenkins/code/dist/ /usr/share/nginx/html/
+COPY --from=builder /var/lib/jenkins/dist/ /usr/share/nginx/html/
