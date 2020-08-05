@@ -1,0 +1,11 @@
+<span #notification form-notification class="md-inputfield" [name]="name" [form]="form">
+    <p-dropdown #input
+        [formControl]="formControl"
+        [options]="options"
+        (onChange)="onChangeEvent($event)"
+        [filter]="filter"
+        [optionLabel]="optionLabel"></p-dropdown>
+    <label [for]="name" [innerHTML]="label"></label>
+    <nValidationMessage [control]="formControl" *ngIf="!notification.message"></nValidationMessage>
+    <ng-content></ng-content>
+</span>

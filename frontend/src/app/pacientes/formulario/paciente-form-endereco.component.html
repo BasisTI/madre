@@ -1,0 +1,52 @@
+<div class="ui-g ui-fluid" [formGroup]="endereco">
+    <div class="ui-g-12">
+        <div nInputText label="CEP" formControlName="cep" (blur)="consultaCEP()" class="ui-g-6 ui-sm-12"></div>
+        <div nDropdown label="UF" [options]="ufs" optionLabel="sigla" formControlName="uf" [filter]="true" (onChange)="aoSelecionarUF()" class="ui-g-6 ui-sm-12"></div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-2 ui-sm-12">
+            <span class="md-inputfield">
+                <p-autoComplete
+                    (completeMethod)="searchUnidade($event)"
+                    [disabled]="!endereco.value.uf"
+                    field="nome"
+                    [suggestions]="municipios"
+                    [dropdown]="true"
+                    formControlName="municipioId"></p-autoComplete>
+                <label>Municípios</label>
+            </span>
+        </div>
+        <div nInputText label="Logradouro" formControlName="logradouro" class="ui-g-4 ui-sm-12"></div>
+        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" formControlName="tipoDoEndereco" class="ui-g-6 ui-sm-12"></div>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+        <div nInputText label="Número" formControlName="numero" class="ui-g-3"></div>
+        <div nInputText label="Complemento" formControlName="complemento" class="ui-g-4"></div>
+        <div nInputText label="Bairro" formControlName="bairro" class="ui-g-3"></div>
+    </div>
+    <div class="ui-g-12">
+        <div nCheck label="Correspondência?" formControlName="correspondencia" class="ui-g-9"></div>
+    </div>
+    <p-button
+        label="Adicionar"
+        type="button"
+        [disabled]="endereco.invalid"
+        (onClick)="adicionarEnderecoALista()"
+    ></p-button>
+    <basis-datatable type="memory" [value]="enderecos.value">
+        <p-column header="Município" field="municipioId">
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                <span> {{ rowData[col.field].nome }}</span>
+            </ng-template>
+        </p-column>
+        <p-column header="CEP" field="cep"></p-column>
+        <p-column header="UF" field="uf">
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                <span> {{ rowData[col.field].unidadeFederativa }}</span>
+            </ng-template>
+        </p-column>
+        <p-column header="Bairro" field="bairro"></p-column>
+        <p-column header="Tipo" field="tipoDoEndereco"></p-column>
+        <p-column header="Correspondência" field="correspondencia"></p-column>
+    </basis-datatable>
+</div>

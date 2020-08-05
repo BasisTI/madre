@@ -1,0 +1,24 @@
+
+<div class="card card-w-title">
+    <h1>Pacientes</h1>
+    <div class="ui-g">
+        <nCrudList [form]="paciente">
+            <p-column header="Prontuário" field="prontuario"></p-column>
+            <p-column header="Nome" field="nome"></p-column>
+            <p-column header="Nome da Mãe" field="genitores">
+                <ng-template let-data="rowData" pTemplate="body">
+                    {{ data['genitores']?.nomeDaMae }}
+                </ng-template>
+            </p-column>
+            <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
+            <p-column header="Nº Cartão SUS" field="cartaoSUS">
+                <ng-template let-data="rowData" pTemplate="body">
+                    {{ data['cartaoSUS']?.numero }}
+                </ng-template>
+            </p-column>
+            <div nForm [formGroup]="paciente" class="ui-g-12">
+                <div nInputText label="Nome paciente" formControlName="nome" class="ui-g-12 ui-md-12 ui-fluid"></div>
+            </div>
+        </nCrudList>
+    </div>
+</div>

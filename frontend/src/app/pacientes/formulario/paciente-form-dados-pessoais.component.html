@@ -1,0 +1,48 @@
+<div class="ui-g ui-fluid" [formGroup]="formGroup">
+    <div class="ui-g-12">
+        <div nInputText label="Nome Completo" formControlName="nome" class="ui-g-6 ui-sm-12"></div>
+        <div nInputText label="Nome Social" formControlName="nomeSocial" class="ui-g-6 ui-sm-12"></div>
+    </div>
+    <div class="ui-g-12">
+        <div nDropdown label="Sexo" [options]="opcoesDeSexo" formControlName="sexo" class="ui-g-3 ui-sm-12"></div>
+        <div nAutoComplete [service]="racaService" field="valor" formControlName="racaId" label="Raça/Cor" class="ui-g-3 ui-sm-12"></div>
+        <div nAutoComplete [service]="etniaService" field="valor" formControlName="etniaId" label="Etnia" class="ui-g-3 ui-sm-12"></div>
+        <div nAutoComplete [service]="estadoCivilService" field="valor" formControlName="estadoCivilId" label="Estado Civil" class="ui-g-3 ui-sm-12"></div>
+    </div>
+    <div class="ui-g-12" formGroupName="genitores">
+        <div nInputMask mask="9999999/9" tooltip="Digite o número do prontuário da mãe do paciente." placeholder="_______/_" label="Prontuário da Mãe" formControlName="prontuarioDaMae" class="ui-g-2 ui-sm-12"></div>
+        <div nInputText label="Nome da Mãe" formControlName="nomeDaMae" class="ui-g-5 ui-sm-12"></div>
+        <div nInputText label="Nome do Pai" formControlName="nomeDoPai" class="ui-g-5 ui-sm-12"></div>
+    </div>
+    <div class="ui-g-12 ui-sm-12">
+        <div madreCalendar label="Data de Nascimento" formControlName="dataDeNascimento" class="ui-g-2 ui-sm-12" (onSelect)="aoSelecionarDataDeNascimento()" (onBlur)="aoSelecionarDataDeNascimento()"></div>
+        <div class="ui-g-2 ui-sm-12">
+            <span class="ui-float-label">
+                <p-calendar timeOnly="true" formControlName="horaDoNascimento"></p-calendar>
+                <label>Hora do Nascimento</label>
+            </span>
+        </div>
+        <div class="ui-g-2 ui-sm-12">
+            <span class="md-inputfield">
+                <input pInputText name="idade" type="text" value="0" disabled [(ngModel)]="idade" [ngModelOptions]="{ standalone: true }"/>
+                <label>Idade</label>
+            </span>
+        </div>
+        <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="ui-g-2 ui-sm-12"></div>
+        <div nAutoComplete [service]="naturalidadeService" field="uf.unidadeFederativa" formControlName="naturalidadeId" label="Naturalidade" class="ui-g-2 ui-sm-12"></div>
+        <div class="ui-g-2 ui-sm-12">
+            <span class="md-inputfield">
+                <input pInputText [disabled]="true" />
+                <label>UF</label>
+            </span>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div nDropdown label="Grau de Instrução" [options]="opcoesDeGrauDeInstrucao" formControlName="grauDeInstrucao" class="ui-g-4 ui-sm-12"></div>
+        <div nAutoComplete [service]="ocupacaoService" field="valor" formControlName="ocupacaoId" label="Ocupação" class="ui-g-4 ui-sm-12"></div>
+        <div nAutoComplete [service]="religiaoService" field="valor" formControlName="religiaoId" label="Religião" class="ui-g-4 ui-sm-12"></div>
+    </div>
+    <div class="ui-g-12">
+        <div nInputText maxlength="254" type="email" label="E-mail" formControlName="email" class="ui-g-12 ui-sm-12"></div>
+    </div>
+</div>
