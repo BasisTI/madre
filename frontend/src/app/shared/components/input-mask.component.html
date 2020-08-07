@@ -1,10 +1,8 @@
-<span #notification form-notification class="md-inputfield" [name]="name" [form]="form">
+<span #notification form-notification class="md-inputfield">
     <p-inputMask #input
         pInputText
         [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
         [name]="name"
-        (blur)="onBlurEvent($event)"
-        (focus)="onFocusEvent($event)"
         [formControl]="formControl"
         [mask]="mask"
         [placeholder]="placeholder"
