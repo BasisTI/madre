@@ -1,0 +1,15 @@
+<span #notification form-notification class="md-inputfield" [name]="name" [form]="form">
+    <p-inputMask #input
+        pInputText
+        [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
+        [name]="name"
+        (blur)="onBlurEvent($event)"
+        (focus)="onFocusEvent($event)"
+        [formControl]="formControl"
+        [mask]="mask"
+        [placeholder]="placeholder"
+        [pTooltip]="tooltip"></p-inputMask>
+    <label [for]="name" [innerHTML]="label"></label>
+    <nValidationMessage [control]="formControl" *ngIf="!notification.message"></nValidationMessage>
+    <ng-content></ng-content>
+</span>

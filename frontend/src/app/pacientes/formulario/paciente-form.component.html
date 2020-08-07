@@ -1,0 +1,35 @@
+<nCrudForm [form]="paciente" [formGroup]="paciente">
+    <div class="ui-g-12">
+        <p-accordion>
+            <p-accordionTab header="Dados Pessoais" [selected]="true">
+                <paciente-form-dados-pessoais [formGroup]="paciente"></paciente-form-dados-pessoais>
+            </p-accordionTab>
+            <p-accordionTab header="Contatos do Paciente">
+                <paciente-form-telefone [telefones]="paciente.get('telefones')"> </paciente-form-telefone>
+            </p-accordionTab>
+            <p-accordionTab header="Endereço">
+                <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>
+            </p-accordionTab>
+            <p-accordionTab header="Responsável">
+                <paciente-form-responsavel [formGroup]="paciente"></paciente-form-responsavel>
+            </p-accordionTab>
+            <p-accordionTab header="Documentos">
+                <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
+            </p-accordionTab>
+            <p-accordionTab header="Certidão">
+                <paciente-form-certidao [formGroup]="paciente"></paciente-form-certidao>
+            </p-accordionTab>
+            <p-accordionTab header="Cartão SUS">
+                <paciente-form-cartao-sus [formGroup]="paciente"></paciente-form-cartao-sus>
+            </p-accordionTab>
+            <p-accordionTab header="Observação">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12">
+                        <div nTextArea label="Observação" formControlName="observacao" class="ui-g-12"></div>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</nCrudForm>
+

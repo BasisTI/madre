@@ -1,0 +1,19 @@
+<div class="ui-g ui-fluid" [formGroup]="telefone">
+    <div class="ui-g-12">
+        <div nInputMask mask="(99)" tooltip="Informe o DDD." placeholder="(__)" label="DDD" formControlName="ddd" class="ui-g-3 ui-sm-12"></div>
+        <div nInputMask mask="9 9999-9999" tooltip="Informe o telefone." placeholder="_ ____-____" label="Telefone" formControlName="numero" class="ui-g-6 ui-sm-12"></div>
+        <div nDropdown label="Tipo de Telefone" [options]="opcoesDeTipoDeTelefone" formControlName="tipo" class="ui-g-3 ui-sm-12"></div>
+        <div nTextArea label="Observação" formControlName="observacao" class="ui-g-12 ui-sm-12 ui-float-label"></div>
+    </div>
+    <p-button
+        label="Adicionar"
+        [disabled]="telefone.invalid"
+        type="button"
+        (onClick)="adicionarTelefoneALista()"></p-button>
+    <basis-datatable type="memory" [value]="telefones.value">
+        <p-column header="Tipo" field="tipo"></p-column>
+        <p-column header="DDD" field="ddd"></p-column>
+        <p-column header="Telefone" field="numero"></p-column>
+        <p-column header="Observação" field="observacao"></p-column>
+    </basis-datatable>
+</div>

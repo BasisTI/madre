@@ -1,0 +1,29 @@
+<span #notification form-notification class="ui-g-12" [name]="name" [form]="form">
+    <div class="ui-g-4">
+        <label [innerHTML]="label"></label>
+    </div>
+    <div class="ui-g-4">
+        <p-radioButton
+            [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
+            id="sim"
+            type="radio"
+            value="true"
+            [name]="name"
+            [formControl]="formControl"
+            pRadioButton></p-radioButton>
+        <label>Sim</label>
+    </div>
+    <div class="ui-g-4">
+        <p-radioButton
+            [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
+            id="não"
+            type="radio"
+            value="false"
+            name="correspondencia"
+            [formControl]="formControl"
+            pRadioButton></p-radioButton>
+        <label>Não</label>
+    </div>
+    <nValidationMessage [control]="formControl" *ngIf="!notification.message"></nValidationMessage>
+    <ng-content></ng-content>
+</span>

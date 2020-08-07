@@ -1,4 +1,4 @@
-import { FormulaCadastroService } from './components/formulario-paciente/formula-cadastro.service';
+
 import { HttpClientModule } from '@angular/common/http';
 // tslint:disable-next-line: max-line-length
 import { ClassificacaoDeRiscoComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/classificacao-de-risco.component';
@@ -7,52 +7,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import { DadosPessoaisComponent } from './components/formulario-paciente/dados-pessoais/dados-pessoais.component';
-import { ResponsavelComponent } from './components/formulario-paciente/responsavel/responsavel.component';
-import { DocumentosComponent } from './components/formulario-paciente/documentos/documentos.component';
-import { CertidaoComponent } from './components/formulario-paciente/certidao/certidao.component';
-import { CartaoSusComponent } from './components/formulario-paciente/cartao-sus/cartao-sus.component';
-import { TelefoneComponent } from './components/formulario-paciente/telefone/telefone.component';
-import { EnderecoComponent } from './components/formulario-paciente/endereco/endereco.component';
-import { FormularioCadastroComponent } from './components/formulario-paciente/formulario-cadastro.component';
 import { TriagemComponent } from './components/triagem/triagem.component';
 
 import { routes } from './pacientes.routes';
-import { ListaDePacientesComponent } from './components/lista-de-pacientes/lista-de-pacientes.component';
 import { ProntuarioPipe } from './pipes/prontuario.pipe';
 import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 import { PacientesService } from './pacientes.service';
 
 import { CRUD_SERVICE } from '@nuvem/primeng-components';
-import { RacaService } from './components/formulario-paciente/dados-pessoais/raca.service';
-import { EtniaService } from './components/formulario-paciente/dados-pessoais/etnia.service';
-import { NacionalidadeService } from './components/formulario-paciente/dados-pessoais/nacionalidade.service';
-import { EstadoCivilService } from './components/formulario-paciente/dados-pessoais/estado-civil.service';
-import { NaturalidadeService } from './components/formulario-paciente/dados-pessoais/naturalidade.service';
-import { OcupacaoService } from './components/formulario-paciente/dados-pessoais/ocupacao.service';
-import { ReligiaoService } from './components/formulario-paciente/dados-pessoais/religiao.service';
-import { GrauDeParentescoService } from './components/formulario-paciente/responsavel/grau-de-parentesco.service';
-import { OrgaoEmissorService } from './components/formulario-paciente/documentos/orgao-emissor.service';
-import { JustificativaService } from './components/formulario-paciente/cartao-sus/justificativa.service';
-import { MotivoDoCadastro } from './models/dropdowns/types/motivo-do-cadastro';
-import { UfService } from './components/formulario-paciente/documentos/uf.service';
-import { MunicipioService } from './components/formulario-paciente/endereco/municipio.service';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
 import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro/listagem-pre-cadastro.component';
-import { MotivoDoCadastroService } from './components/formulario-paciente/cartao-sus/motivo-do-cadastro.service';
 
 @NgModule({
     declarations: [
-        DadosPessoaisComponent,
-        ResponsavelComponent,
-        DocumentosComponent,
-        CertidaoComponent,
-        CartaoSusComponent,
-        TelefoneComponent,
-        EnderecoComponent,
-        FormularioCadastroComponent,
-        ListaDePacientesComponent,
         ProntuarioPipe,
         CartaoSusPipe,
         TriagemComponent,
@@ -63,21 +31,6 @@ import { MotivoDoCadastroService } from './components/formulario-paciente/cartao
     ],
     providers: [
         PacientesService,
-        FormulaCadastroService,
-
-        RacaService,
-        EtniaService,
-        EstadoCivilService,
-        NacionalidadeService,
-        NaturalidadeService,
-        OcupacaoService,
-        ReligiaoService,
-        GrauDeParentescoService,
-        OrgaoEmissorService,
-        JustificativaService,
-        MotivoDoCadastroService,
-        UfService,
-        MunicipioService,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
     exports: [],
