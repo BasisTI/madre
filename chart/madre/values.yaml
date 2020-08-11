@@ -2,7 +2,7 @@ madrecliente:
   name: cliente
   image:
     repository: basis-registry.basis.com.br/madre/cliente
-    tag: teste
+    tag: latest
   ingress:
     url: "madre.tst.basis.com.br"
     annotations:
@@ -20,12 +20,13 @@ madrecliente:
     - internacao
     - prescricao
     - farmacia
+    - suprimentos
 
 gateway:
   name: gateway
   image: 
     repository: basis-registry.basis.com.br/madre/madregateway
-    tag: teste
+    tag: latest
   ports:
     port: 8080
   configmap:
@@ -38,7 +39,7 @@ pacientes:
   name: pacientes
   image:
     repository: basis-registry.basis.com.br/madre/madrepacientes
-    tag: teste
+    tag: latest
   ports:
     port: 8081
   configmap:
@@ -58,7 +59,7 @@ prescricao:
   name: prescricao
   image:
     repository: basis-registry.basis.com.br/madre/madreprescricao
-    tag: teste
+    tag: latest
   ports:
     port: 8081
   configmap:
@@ -78,7 +79,7 @@ farmacia:
   name: farmacia
   image:
     repository: basis-registry.basis.com.br/madre/madrefarmacia
-    tag: teste
+    tag: latest
   ports:
     port: 8081
   configmap:
@@ -98,7 +99,7 @@ internacao:
   name: internacao
   image:
     repository: basis-registry.basis.com.br/madre/madreinternacao
-    tag: teste
+    tag: latest
   ports:
     port: 8081
   configmap:
@@ -107,6 +108,26 @@ internacao:
         jest:
           uri: http://elasticsearch-client.elasticsearch:9200
       elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: madre
+        password: madre
+
+suprimentos:
+  name: suprimentos
+  image:
+    repository: basis-registry.basis.com.br/madre/madresuprimentos
+    tag: latest
+  ports:
+    port: 8081
+  configmap:
+    spring:
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch:
         rest:
           uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
