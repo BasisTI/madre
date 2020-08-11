@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { Raca } from '../models/dropdowns/types/raca';
+import { Raca } from '../../models/dropdowns/types/raca';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

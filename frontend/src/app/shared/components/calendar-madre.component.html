@@ -1,10 +1,10 @@
-<span #notification form-notification class="md-inputfield">
+<span #notification form-notification class="md-inputfield" [name]="name" [form]="form">
     <p-calendar #input
         [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
         [name]="name"
         [formControl]="formControl"
-        [locale]="ptBR"
-        [dateFormat]="ptBR.dateFormat"
+        [locale]="locale"
+        [dateFormat]="locale.dateFormat"
         [yearRange]="yearRange"
         [maxDate]="maxDate"
         [monthNavigator]="monthNavigator"

@@ -1,4 +1,4 @@
-import { Naturalidade } from '../models/dropdowns/types/naturalidade';
+import { Naturalidade } from '../../models/dropdowns/types/naturalidade';
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
 import { HttpClient } from '@angular/common/http';

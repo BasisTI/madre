@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { UF } from '../models/dropdowns/types/uf';
+import { UF } from '../../models/dropdowns/types/uf';
 import { Observable } from 'rxjs';
 
 @Injectable({

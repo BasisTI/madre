@@ -3,8 +3,8 @@ import { FormGroup } from "@angular/forms";
 
 import * as moment from 'moment';
 
-import { OPCOES_DE_SEXO } from './../models/dropdowns/opcoes-de-sexo';
-import { OPCOES_DE_GRAU_DE_INSTRUCAO } from './../models/dropdowns/opcoes-de-grau-de-instrucao';
+import { OPCOES_DE_SEXO } from './../../models/dropdowns/opcoes-de-sexo';
+import { OPCOES_DE_GRAU_DE_INSTRUCAO } from './../../models/dropdowns/opcoes-de-grau-de-instrucao';
 
 import { RacaService } from "./raca.service";
 import { EtniaService } from "./etnia.service";

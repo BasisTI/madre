@@ -36,17 +36,21 @@
     <basis-datatable type="memory" [value]="enderecos.value">
         <p-column header="Município" field="municipioId">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                <span> {{ rowData[col.field].nome }}</span>
+                <span> {{ rowData.municipioId?.nome }}</span>
             </ng-template>
         </p-column>
         <p-column header="CEP" field="cep"></p-column>
         <p-column header="UF" field="uf">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                <span> {{ rowData[col.field].unidadeFederativa }}</span>
+                <span> {{ rowData.uf?.unidadeFederativa }}</span>
             </ng-template>
         </p-column>
         <p-column header="Bairro" field="bairro"></p-column>
         <p-column header="Tipo" field="tipoDoEndereco"></p-column>
-        <p-column header="Correspondência" field="correspondencia"></p-column>
+        <p-column header="Correspondência" field="correspondencia">
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                <span> {{ rowData.correspondencia | check }}</span>
+            </ng-template>
+        </p-column>
     </basis-datatable>
 </div>

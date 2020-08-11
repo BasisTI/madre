@@ -9,36 +9,34 @@ import { PacienteFormComponent } from './paciente-form.component';
 import { PacienteListComponent } from './paciente-list.component';
 import { PacienteService } from './paciente.service';
 
-import { CrudModule, CRUD_SERVICE, CrudResolveGuard } from '@nuvem/primeng-components';
+import { CrudModule, CRUD_SERVICE, CrudResolveGuard, FormNotificationModule } from '@nuvem/primeng-components';
 
 import { DatatableModule } from '@nuvem/primeng-components';
 
 import { PRIMENG_IMPORTS } from '../../primeng-imports';
-import { PacienteDadosPessoaisFormComponent } from './paciente-form-dados-pessoais.component';
-import { PacienteResponsavelFormComponent } from './paciente-form-responsavel.component';
-import { PacienteDocumentosFormComponent } from './paciente-form-documentos.component';
-import { PacienteCertidaoFormComponent } from './paciente-form-certidao.component';
-import { PacienteCartaoSusFormComponent } from './paciente-form-cartao-sus.component';
-import { PacienteTelefoneFormComponent } from './paciente-form-telefone.component';
-import { PacienteEnderecoFormComponent } from './paciente-form-endereco.component';
+import { PacienteDadosPessoaisFormComponent } from './dados-pessoais/paciente-form-dados-pessoais.component';
+import { PacienteResponsavelFormComponent } from './responsavel/paciente-form-responsavel.component';
+import { PacienteDocumentosFormComponent } from './documentos/paciente-form-documentos.component';
+import { PacienteCertidaoFormComponent } from './certidao/paciente-form-certidao.component';
+import { PacienteCartaoSusFormComponent } from './cartao-sus/paciente-form-cartao-sus.component';
+import { PacienteTelefoneFormComponent } from './telefone/paciente-form-telefone.component';
+import { PacienteEnderecoFormComponent } from './endereco/paciente-form-endereco.component';
 
-import { InputMaskComponent } from '../../shared/components/input-mask.component';
 import { CalendarMadreComponent } from '../../shared/components/calendar-madre.component';
-import { DropdownComponent } from '../../shared/components/dropdown.component';
-import { CheckComponent } from '../../shared/components/check.component';
-import { RacaService } from './raca.service';
-import { EstadoCivilService } from './estado-civil.service';
-import { NacionalidadeService } from './nacionalidade.service';
-import { NaturalidadeService } from './naturalidade.service';
-import { EtniaService } from './etnia.service';
-import { OcupacaoService } from './ocupacao.service';
-import { ReligiaoService } from './religiao.service';
-import { GrauDeParentescoService } from './grau-de-parentesco.service';
-import { OrgaoEmissorService } from './orgao-emissor.service';
-import { JustificativaService } from './justificativa.service';
-import { MotivoDoCadastroService } from './motivo-do-cadastro.service';
-import { UfService } from './uf.service';
-import { MunicipioService } from './municipio.service';
+import { RacaService } from './dados-pessoais/raca.service';
+import { EstadoCivilService } from './dados-pessoais/estado-civil.service';
+import { NacionalidadeService } from './dados-pessoais/nacionalidade.service';
+import { NaturalidadeService } from './dados-pessoais/naturalidade.service';
+import { EtniaService } from './dados-pessoais/etnia.service';
+import { OcupacaoService } from './dados-pessoais/ocupacao.service';
+import { ReligiaoService } from './dados-pessoais/religiao.service';
+import { GrauDeParentescoService } from './responsavel/grau-de-parentesco.service';
+import { OrgaoEmissorService } from './documentos/orgao-emissor.service';
+import { JustificativaService } from './cartao-sus/justificativa.service';
+import { MotivoDoCadastroService } from './cartao-sus/motivo-do-cadastro.service';
+import { UfService } from './municipio/uf.service';
+import { MunicipioService } from './municipio/municipio.service';
+import { CepService } from './endereco/cep.service';
 
 @NgModule({
   imports: [ 
@@ -49,7 +47,8 @@ import { MunicipioService } from './municipio.service';
     ReactiveFormsModule,
     PacienteRoutingModule,
     HttpClientModule,
-    DatatableModule
+    DatatableModule,
+    FormNotificationModule
   ],
   declarations: [ 
     PacienteComponent,
@@ -62,10 +61,7 @@ import { MunicipioService } from './municipio.service';
     PacienteCartaoSusFormComponent,
     PacienteTelefoneFormComponent,
     PacienteEnderecoFormComponent,
-    InputMaskComponent,
     CalendarMadreComponent,
-    DropdownComponent,
-    CheckComponent
   ],
   providers: [ 
     PacienteService,
@@ -85,6 +81,7 @@ import { MunicipioService } from './municipio.service';
     MotivoDoCadastroService,
     UfService,
     MunicipioService,
+    CepService,
   ]
 })
 export class PacienteModule { }
