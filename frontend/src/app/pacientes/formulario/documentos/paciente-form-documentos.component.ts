@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { OrgaoEmissorService } from "./orgao-emissor.service";
-import { UfService } from "./uf.service";
+import { UfService } from "../municipio/uf.service";
 import { FormGroup } from "@angular/forms";
 
 @Component({

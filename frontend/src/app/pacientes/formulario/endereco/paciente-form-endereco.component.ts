@@ -1,13 +1,13 @@
 import { Component, Input } from "@angular/core";
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
 import { CepService } from "./cep.service";
-import { UfService } from "./uf.service";
-import { MunicipioService } from "./municipio.service";
-import { UF } from "../models/dropdowns/types/uf";
-import { MunicipioUF } from "../models/dropdowns/types/municipio-uf";
+import { UfService } from "../municipio/uf.service";
+import { MunicipioService } from "../municipio/municipio.service";
+import { UF } from "../../models/dropdowns/types/uf";
+import { MunicipioUF } from "../../models/dropdowns/types/municipio-uf";
 import { CEP } from "./cep.model";
 
-import { OPCOES_DE_TIPO_DE_TELEFONE } from '../models/dropdowns/opcoes-de-tipo-de-endereco';
+import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-endereco';
 
 @Component({
     selector: 'paciente-form-endereco',

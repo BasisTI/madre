@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { Validators, FormArray, FormBuilder } from "@angular/forms";
 
-import { OPCOES_DE_TIPO_DE_TELEFONE } from '../models/dropdowns/opcoes-de-tipo-de-telefone';
+import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-telefone';
 
 @Component({
     selector: 'paciente-form-telefone',

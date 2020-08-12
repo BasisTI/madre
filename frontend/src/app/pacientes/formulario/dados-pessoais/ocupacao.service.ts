@@ -1,4 +1,4 @@
-import { Ocupacao } from '../models/dropdowns/types/ocupacao';
+import { Ocupacao } from '../../models/dropdowns/types/ocupacao';
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
 import { HttpClient } from '@angular/common/http';

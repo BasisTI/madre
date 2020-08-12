@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { OPCAO_SELECIONE } from '../models/dropdowns/opcao-selecione';
+import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 import { GrauDeParentescoService } from "./grau-de-parentesco.service";
 import { FormGroup } from "@angular/forms";
 
