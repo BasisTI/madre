@@ -115,8 +115,8 @@ internacao:
         username: madre
         password: madre
 
-suprimentos:
-  name: suprimentos
+madresuprimentos:
+  name: madresuprimentos
   image:
     repository: basis-registry.basis.com.br/madre/madresuprimentos
     tag: latest
