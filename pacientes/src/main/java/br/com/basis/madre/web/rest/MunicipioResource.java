@@ -62,9 +62,9 @@ public class MunicipioResource {
     }
 
     @GetMapping("/municipios/naturalidade")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNacionalidade(Pageable pageable) {
+    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNacionalidade(@RequestParam(required = false)Long idUf,String nome, Pageable pageable) {
         Page<MunicipioUF> page = municipioService
-            .findAllProjectedMunicipioUFByNacionalidade(pageable);
+            .findAllProjectedMunicipioUFByNacionalidade(idUf, nome ,pageable);
         return ResponseEntity.ok(page.getContent());
     }
 

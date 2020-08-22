@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface MunicipioRepository extends JpaRepository<Municipio, Long> {
-  Page<MunicipioUF> findAllProjectedMunicipioUFBy(Pageable pageable);
+  Page<MunicipioUF> findAllProjectedMunicipioUFBy(String nome,UF uf,Pageable pageable);
 
   Page<MunicipioUF> findByNomeContainsIgnoreCaseAndUf(String nome,UF uf,Pageable pageable);
 }
