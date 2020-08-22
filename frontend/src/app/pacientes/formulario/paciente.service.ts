@@ -37,9 +37,9 @@ export class PacienteService implements CrudService<number, Paciente> {
                 ...paciente.documento,
                 orgaoEmissorId: paciente.documento.orgaoEmissorId?.id,
                 ufId: paciente.documento.ufId?.id
-            },            
+            },
         }
-
+        console.log(salvar);
         return this.http.post<Paciente>(this.uriServico, salvar);
     }
 

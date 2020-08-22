@@ -1,3 +1,6 @@
+import { UfService } from './../municipio/uf.service';
+import { Naturalidade } from './../../models/dropdowns/types/naturalidade';
+import { UF } from './../../models/dropdowns/types/uf';
 import { Component, Input } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
@@ -28,15 +31,23 @@ export class PacienteDadosPessoaisFormComponent {
     idade = '';
     uf = '';
 
+    ufs: UF[] = [];
+    naturalidades: Naturalidade[] = [];
+
     constructor(
         public racaService: RacaService,
         public etniaService: EtniaService,
         public estadoCivilService: EstadoCivilService,
         public nacionalidadeService: NacionalidadeService,
+        public ufService: UfService,
         public naturalidadeService: NaturalidadeService,
         public ocupacaoService: OcupacaoService,
         public religiaoService: ReligiaoService,
     ) {
+    }
+
+    ngOnInit() {
+        this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
     }
 
     aoSelecionarDataDeNascimento() {
@@ -57,6 +68,21 @@ export class PacienteDadosPessoaisFormComponent {
         }
 
         this.idade = '';
+    }
+
+    aoSelecionarUF() {
+        this.formGroup.controls.naturalidadeId.setValue(null);
+        this.naturalidadeService
+            .getListaDeNaturalidades(this.formGroup.value.uf.id, '')
+            .subscribe((res) => (this.naturalidades = res));
+    }
+
+    searchUnidade(event) {
+        this.naturalidadeService
+            .getListaDeNaturalidades(this.formGroup.value.uf.id, event.query)
+            .subscribe((res) => {
+                this.naturalidades = res;
+            });
     }
 
 }

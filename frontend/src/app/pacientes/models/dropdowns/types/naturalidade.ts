@@ -7,6 +7,6 @@ export class Naturalidade {
     id: number;
     nome: string;
     uf: UF;
-
-    constructor(id: number, nome: string, uf: UF) {}
 }
+
+
