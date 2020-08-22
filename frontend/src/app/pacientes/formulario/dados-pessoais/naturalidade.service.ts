@@ -1,7 +1,7 @@
 import { Naturalidade } from '../../models/dropdowns/types/naturalidade';
 import { Injectable } from '@angular/core';
 import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,14 @@ export class NaturalidadeService extends CrudServiceNuvem<number, Naturalidade> 
         super('pacientes/api/municipios/naturalidade?sort=nome', httpClient);
     }
 
-    getListaDeNaturalidades(): Observable<Naturalidade[]> {
-        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/naturalidade');
+    getListaDeNaturalidades(idUf: number, nome: string): Observable<Naturalidade[]> {
+        let params = new HttpParams();
+        params = params.append('idUf', idUf.toString());
+        params = params.append('nome', nome);
+        params = params.set('size', '50');
+        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/naturalidade',{
+            params: params,
+        });
     }
+
 }
