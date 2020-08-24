@@ -15,10 +15,12 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
+        final int quantity = 15;
+
         if (s==null){
             return true;
         } else{
-            if (s.length() == 15) {
+            if (s.length() == quantity) {
                 return somaPonderada(s) % 11 == 0;
             }
             return false;
