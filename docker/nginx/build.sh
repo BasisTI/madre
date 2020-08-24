@@ -2,10 +2,6 @@
 
 set -eu
 
-cd frontend/
-npm install
-npm run build --prod
+tar zcvf code.tar.gz -C frontend/ .
 
-cd dist
-tar zcvf dist.tar.gz *
-mv dist.tar.gz ../../docker/nginx/
+mv code.tar.gz docker/nginx/

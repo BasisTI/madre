@@ -115,8 +115,10 @@ public class MunicipioService {
         return municipioRepository.findByNomeContainsIgnoreCaseAndUf(nome,uf,pageable);
     }
 
-    public Page<MunicipioUF> findAllProjectedMunicipioUFByNacionalidade(Pageable pageable) {
-        return municipioRepository.findAllProjectedMunicipioUFBy(pageable);
+    public Page<MunicipioUF> findAllProjectedMunicipioUFByNaturalidade(Long idUf, String nome, Pageable pageable) {
+        UF uf = new UF();
+        uf.setId(idUf);
+        return municipioRepository.findByNomeContainsIgnoreCaseAndUf(nome,uf,pageable);
     }
 
 }

@@ -35,6 +35,8 @@ import { SharedModule } from './shared/shared.module';
 import { SuprimentosModule } from './suprimentos/suprimentos.module';
 import { environment } from '../environments/environment';
 import { ConsultaModule } from './consulta/consulta.module';
+import { PacientesModule } from './pacientes/pacientes.module';
+import { PacienteModule } from './pacientes/formulario/paciente.module';
 
 @NgModule({
     imports: [
@@ -60,6 +62,7 @@ import { ConsultaModule } from './consulta/consulta.module';
         BreadcrumbModule,
         MenuModule,
         ConsultaModule,
+        PacienteModule
     ],
     declarations: [
         AppComponent,

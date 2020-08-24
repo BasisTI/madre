@@ -80,13 +80,13 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Pesquisa de Paciente',
                         icon: 'add',
-                        routerLink: ['/pacientes'],
+                        routerLink: ['/paciente/list'],
                     },
                     {
                         label: 'Cadastro de Paciente',
                         icon: 'add',
-                        routerLink: ['/pacientes/cadastro'],
-                    },
+                        routerLink: ['/paciente/save'],
+                    }
                 ],
             },
             {
