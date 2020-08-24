@@ -18,7 +18,7 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
         if (s==null){
             return true;
         } else{
-            if (s.matches("[1-2]\\d{10}00[0-1]\\d") || s.matches("[7-9]\\d{14}")) {
+            if (s.length() == 15) {
                 return somaPonderada(s) % 11 == 0;
             }
             return false;
