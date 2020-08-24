@@ -29,11 +29,28 @@
             </span>
         </div>
         <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="ui-g-2 ui-sm-12"></div>
-        <div nAutoComplete [service]="naturalidadeService" field="uf.unidadeFederativa" formControlName="naturalidadeId" label="Naturalidade" class="ui-g-2 ui-sm-12"></div>
+        <div class="ui-g-2 ui-sm-12">
+            <span class="ui-float-label">
+                <p-dropdown
+                    (onChange)="aoSelecionarUF()"
+                    [options]="ufs"
+                    optionLabel="sigla"
+                    formControlName="uf"
+                    [filter]="true"
+                    placeholder="UF"
+                ></p-dropdown>
+            </span>
+        </div>
         <div class="ui-g-2 ui-sm-12">
             <span class="md-inputfield">
-                <input pInputText [disabled]="true" />
-                <label>UF</label>
+                <p-autoComplete
+                    (completeMethod)="searchUnidade($event)"
+                    [disabled]="!formGroup.value.uf"
+                    field="nome"
+                    [suggestions]="naturalidades"
+                    [dropdown]="true"
+                    formControlName="naturalidadeId"></p-autoComplete>
+                <label>Naturalidade</label>
             </span>
         </div>
     </div>
