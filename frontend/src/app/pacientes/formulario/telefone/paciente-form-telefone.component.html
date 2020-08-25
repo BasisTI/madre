@@ -10,7 +10,7 @@
         [disabled]="telefone.invalid"
         type="button"
         (onClick)="adicionarTelefoneALista()"></p-button>
-    <basis-datatable type="memory" [value]="telefones.value">
+    <basis-datatable type="memory" [disableView]="true" [value]="telefones.value"  (buttonClick)="datatableClick($event)">
         <p-column header="Tipo" field="tipo"></p-column>
         <p-column header="DDD" field="ddd"></p-column>
         <p-column header="Telefone" field="numero"></p-column>
