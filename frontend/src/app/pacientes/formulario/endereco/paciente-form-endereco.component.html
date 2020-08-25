@@ -33,7 +33,7 @@
         [disabled]="endereco.invalid"
         (onClick)="adicionarEnderecoALista()"
     ></p-button>
-    <basis-datatable type="memory" [value]="enderecos.value">
+    <basis-datatable type="memory" [disableView]="true" [value]="enderecos.value" (buttonClick)="datatableClick($event)">
         <p-column header="Município" field="municipioId">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                 <span> {{ rowData.municipioId?.nome }}</span>

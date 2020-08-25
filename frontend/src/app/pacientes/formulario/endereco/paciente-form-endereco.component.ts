@@ -1,3 +1,4 @@
+import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
 import { CepService } from "./cep.service";
@@ -116,6 +117,20 @@ export class PacienteEnderecoFormComponent {
                 uf: [null],
             });
             this.endereco.reset();
+        }
+    }
+
+    datatableClick(event: DatatableClickEvent) {
+        if (event.selection) {
+            switch (event.button) {
+                case "edit":
+                    console.log("Teste");
+                    break;
+                case "delete":
+                    console.log("Teste");
+                    this.enderecos.clear();
+                    break;
+            }
         }
     }
 
