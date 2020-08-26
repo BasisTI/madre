@@ -128,7 +128,7 @@ export class PacienteEnderecoFormComponent {
                     break;
                 case "delete":
                     console.log("Teste");
-                    this.enderecos.clear();
+                    this.enderecos.removeAt(event.selection.indice);
                     break;
             }
         }

@@ -1,4 +1,4 @@
-import { DatatableClickEvent } from '@nuvem/primeng-components';
+import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
 import { Validators, FormArray, FormBuilder } from "@angular/forms";
 
@@ -21,10 +21,12 @@ export class PacienteTelefoneFormComponent {
         numero: [null, Validators.required],
         tipo: [null, Validators.required],
         observacao: [null],
+        indice: [null],
     });
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService) {
     }
+
 
     adicionarTelefoneALista() {
         if (this.telefone.valid) {
@@ -35,6 +37,7 @@ export class PacienteTelefoneFormComponent {
                 numero: [null, Validators.required],
                 tipo: [null, Validators.required],
                 observacao: [null],
+                indice: [null],
             });
         }
         this.telefone.reset();
@@ -44,14 +47,26 @@ export class PacienteTelefoneFormComponent {
         if (event.selection) {
             switch (event.button) {
                 case "edit":
-                    console.log("Teste");
+                    console.log(this.telefones);
+                    this.telefone.patchValue({
+                        id: event.selection.id,
+                        ddd: event.selection.ddd,
+                        numero: event.selection.numero,
+                        tipo: event.selection.tipo,
+                        observacao: event.selection.observacao,
+                    });
                     break;
                 case "delete":
-                    console.log("Teste");
-                    this.telefones.clear();
+                    console.log(event.selection);
+                    this.telefones.removeAt(event.selection.indice);
+                    console.log(this.telefones);
                     break;
             }
         }
+    }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
     }
 
 }
