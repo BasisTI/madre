@@ -103,6 +103,7 @@ export class PacienteEnderecoFormComponent {
 
     adicionarEnderecoALista() {
         if (this.endereco.valid) {
+            this.endereco.patchValue({indice: this.enderecos.length});
             this.enderecos.push(this.endereco);
             this.endereco = this.fb.group({
                 id: [null],
@@ -125,10 +126,23 @@ export class PacienteEnderecoFormComponent {
             switch (event.button) {
                 case "edit":
                     console.log("Teste");
+                    this.endereco.patchValue({
+                        id: event.selection.id,
+                        cep: event.selection.cep,
+                        logradouro: event.selection.logradouro,
+                        numero: event.selection.numero,
+                        complemento: event.selection.complemento,
+                        bairro: event.selection.bairro,
+                        correspondencia: event.selection.correspondencia,
+                        tipoDoEndereco: event.selection.tipoDoEndereco,
+                        municipioId: event.selection.municipioId,
+                        uf: event.selection.uf,
+                    });
                     break;
                 case "delete":
-                    console.log("Teste");
                     this.enderecos.removeAt(event.selection.indice);
+                    var i = 0;
+                    this.enderecos.controls.forEach((atual) => atual.patchValue({indice: i++}));
                     break;
             }
         }

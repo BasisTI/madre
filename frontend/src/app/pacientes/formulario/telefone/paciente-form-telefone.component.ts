@@ -30,6 +30,7 @@ export class PacienteTelefoneFormComponent {
 
     adicionarTelefoneALista() {
         if (this.telefone.valid) {
+            this.telefone.patchValue({indice: this.telefones.length});
             this.telefones.push(this.telefone);
             this.telefone = this.fb.group({
                 id: [null],
@@ -57,9 +58,9 @@ export class PacienteTelefoneFormComponent {
                     });
                     break;
                 case "delete":
-                    console.log(event.selection);
                     this.telefones.removeAt(event.selection.indice);
-                    console.log(this.telefones);
+                    var i = 0;
+                    this.telefones.controls.forEach((atual) => atual.patchValue({indice: i++}));
                     break;
             }
         }
