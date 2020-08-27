@@ -1,3 +1,4 @@
+import { OPCOES_DE_TIPO_DE_ENDERECO } from './../../models/dropdowns/opcoes-de-tipo-de-endereco';
 import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
@@ -8,7 +9,6 @@ import { UF } from "../../models/dropdowns/types/uf";
 import { MunicipioUF } from "../../models/dropdowns/types/municipio-uf";
 import { CEP } from "./cep.model";
 
-import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-endereco';
 
 @Component({
     selector: 'paciente-form-endereco',
@@ -21,7 +21,7 @@ export class PacienteEnderecoFormComponent {
 
     public controle: boolean;
 
-    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
+    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
     ufs: UF[] = [];
     municipios: MunicipioUF[] = [];
