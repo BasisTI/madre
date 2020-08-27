@@ -11,6 +11,7 @@ import br.com.basis.madre.farmacia.service.dto.DispensacaoMedicamentosDTO;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import br.com.basis.madre.farmacia.service.mapper.DispensacaoMedicamentosMapper;
 import br.com.basis.madre.farmacia.service.mapper.MedicamentoMapper;
+import br.com.basis.madre.farmacia.service.projection.DispensacaoMedicamentosProjection;
 import br.com.basis.madre.farmacia.web.rest.PrescricaoResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,15 +67,24 @@ public class DispensacaoMedicamentosService {
      * @param dispensacaoMedicamentosDTO the entity to save.
      * @return the persisted entity.
      */
+
     public DispensacaoMedicamentosDTO save(DispensacaoMedicamentosDTO dispensacaoMedicamentosDTO) {
+        log.debug("Request to save DispensacaoMedicamentos : {}", dispensacaoMedicamentosDTO);
+        DispensacaoMedicamentos dispensacaoMedicamentos = dispensacaoMedicamentosMapper.toEntity(dispensacaoMedicamentosDTO);
+        dispensacaoMedicamentos = dispensacaoMedicamentosRepository.save(dispensacaoMedicamentos);
+        DispensacaoMedicamentosDTO result = dispensacaoMedicamentosMapper.toDto(dispensacaoMedicamentos);
+        dispensacaoMedicamentosSearchRepository.save(dispensacaoMedicamentos);
+
+        return result;
+
+    }
+
+    public DispensacaoMedicamentosDTO dispensar(DispensacaoMedicamentosDTO dispensacaoMedicamentosDTO) {
        Boolean codicao=  this.validador(dispensacaoMedicamentosDTO);
 
         if(codicao) {
-            log.debug("Request to save DispensacaoMedicamentos : {}", dispensacaoMedicamentosDTO);
-            DispensacaoMedicamentos dispensacaoMedicamentos = dispensacaoMedicamentosMapper.toEntity(dispensacaoMedicamentosDTO);
-            dispensacaoMedicamentos = dispensacaoMedicamentosRepository.save(dispensacaoMedicamentos);
-            DispensacaoMedicamentosDTO result = dispensacaoMedicamentosMapper.toDto(dispensacaoMedicamentos);
-            dispensacaoMedicamentosSearchRepository.save(dispensacaoMedicamentos);
+
+            DispensacaoMedicamentosDTO dispensacaoMedicamentos = save(dispensacaoMedicamentosDTO);
 
             if( dispensacaoMedicamentos.getEstornado()== null) {
                 Long idDispensacao = dispensacaoMedicamentosDTO.getDispensacaoId();
@@ -124,7 +134,7 @@ public class DispensacaoMedicamentosService {
 
                 prescricaoResource.putPrescricao(prescricao1);
             }
-            return result;
+            return dispensacaoMedicamentos;
         }
         return null;
     }
@@ -196,7 +206,7 @@ public class DispensacaoMedicamentosService {
         List<Medicamento> medicamentosDispensados = prescricao.get().getMedicamentosDispensados();
 
         Boolean condicao = null;
-     if (medicamentosDispensados == null|| dispensacaoMedicamentosDTO.isDispensado() == false ) {
+     if (medicamentosDispensados == null|| medicamentosDispensados.size() == 0 || dispensacaoMedicamentosDTO.isDispensado() == false ) {
          condicao = true;
 
         } else {

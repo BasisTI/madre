@@ -1,6 +1,7 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.service.DispensacaoMedicamentosService;
+import br.com.basis.madre.farmacia.service.projection.DispensacaoMedicamentosProjection;
 import br.com.basis.madre.farmacia.web.rest.erro.DispensacaoErro;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.farmacia.service.dto.DispensacaoMedicamentosDTO;
@@ -58,7 +59,7 @@ public class DispensacaoMedicamentosResource {
         if (dispensacaoMedicamentosDTO.getId() != null) {
             throw new BadRequestAlertException("A new dispensacaoMedicamentos cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        DispensacaoMedicamentosDTO result = dispensacaoMedicamentosService.save(dispensacaoMedicamentosDTO);
+        DispensacaoMedicamentosDTO result = dispensacaoMedicamentosService.dispensar(dispensacaoMedicamentosDTO);
         if(result == null ){
             DispensacaoErro dispensacaoErro = new DispensacaoErro();
             dispensacaoErro.setError("dispensacao erro ");
@@ -108,6 +109,10 @@ public class DispensacaoMedicamentosResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+
+
+
 
     /**
      * {@code GET  /dispensacao-medicamentos/:id} : get the "id" dispensacaoMedicamentos.
