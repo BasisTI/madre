@@ -13,6 +13,8 @@ export class PacienteTelefoneFormComponent {
     @Input()
     public telefones: any = FormArray;
 
+    public controle: boolean;
+
     public opcoesDeTipoDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
 
     public telefone = this.fb.group({
@@ -48,9 +50,8 @@ export class PacienteTelefoneFormComponent {
         if (event.selection) {
             switch (event.button) {
                 case "edit":
+                    this.controle = true;
                     this.telefone.patchValue(this.telefones.controls[event.selection.indice].value);
-                    console.log(this.telefones.controls[event.selection.indice].value);
-                    console.log(event.selection);
                     break;
                 case "delete":
                     this.telefones.removeAt(event.selection.indice);
@@ -64,6 +65,7 @@ export class PacienteTelefoneFormComponent {
     atualizarEdicao(): void {
         let atual = this.telefone.value;
         this.telefones.controls[atual.indice].patchValue(atual);
+        this.controle = false;
         this.telefone.reset();
       }
 

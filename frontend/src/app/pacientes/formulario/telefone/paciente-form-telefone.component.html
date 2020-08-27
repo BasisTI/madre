@@ -9,11 +9,13 @@
         <p-button
             label="Adicionar"
             [disabled]="telefone.invalid"
+            [disabled]="controle ? true : null"
             type="button"
             (onClick)="adicionarTelefoneALista()"></p-button>
     </div>
-    <div *ngIf="!telefone.value.indice">
+    <div *ngIf="controle">
         <p-button
+        [disabled]="telefone.invalid"
         label="Editar"
         type="button"
         (onClick)="atualizarEdicao()"
