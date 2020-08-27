@@ -11,7 +11,7 @@ import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tip
 export class PacienteTelefoneFormComponent {
 
     @Input()
-    public telefones: FormArray;
+    public telefones: any = FormArray;
 
     public opcoesDeTipoDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
 
@@ -48,14 +48,9 @@ export class PacienteTelefoneFormComponent {
         if (event.selection) {
             switch (event.button) {
                 case "edit":
-                    console.log(this.telefones);
-                    this.telefone.patchValue({
-                        id: event.selection.id,
-                        ddd: event.selection.ddd,
-                        numero: event.selection.numero,
-                        tipo: event.selection.tipo,
-                        observacao: event.selection.observacao,
-                    });
+                    this.telefone.patchValue(this.telefones.controls[event.selection.indice].value);
+                    console.log(this.telefones.controls[event.selection.indice].value);
+                    console.log(event.selection);
                     break;
                 case "delete":
                     this.telefones.removeAt(event.selection.indice);
@@ -65,6 +60,12 @@ export class PacienteTelefoneFormComponent {
             }
         }
     }
+
+    atualizarEdicao(): void {
+        let atual = this.telefone.value;
+        this.telefones.controls[atual.indice].patchValue(atual);
+        this.telefone.reset();
+      }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();

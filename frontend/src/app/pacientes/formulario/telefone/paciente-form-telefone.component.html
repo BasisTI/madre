@@ -5,11 +5,20 @@
         <div nDropdown label="Tipo de Telefone" [options]="opcoesDeTipoDeTelefone" formControlName="tipo" class="ui-g-3 ui-sm-12"></div>
         <div nTextArea label="Observação" formControlName="observacao" class="ui-g-12 ui-sm-12 ui-float-label"></div>
     </div>
-    <p-button
-        label="Adicionar"
-        [disabled]="telefone.invalid"
+    <div *ngIf="!telefone.value.indice">
+        <p-button
+            label="Adicionar"
+            [disabled]="telefone.invalid"
+            type="button"
+            (onClick)="adicionarTelefoneALista()"></p-button>
+    </div>
+    <div *ngIf="!telefone.value.indice">
+        <p-button
+        label="Editar"
         type="button"
-        (onClick)="adicionarTelefoneALista()"></p-button>
+        (onClick)="atualizarEdicao()"
+        ></p-button>
+    </div>
     <basis-datatable type="memory" [disableView]="true" [value]="telefones.value"  (buttonClick)="datatableClick($event)">
         <p-column header="Tipo" field="tipo"></p-column>
         <p-column header="DDD" field="ddd"></p-column>
