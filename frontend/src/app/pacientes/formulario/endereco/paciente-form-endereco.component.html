@@ -1,7 +1,18 @@
 <div class="ui-g ui-fluid" [formGroup]="endereco">
     <div class="ui-g-12">
         <div nInputText label="CEP" formControlName="cep" (blur)="consultaCEP()" class="ui-g-6 ui-sm-12"></div>
-        <div nDropdown label="UF" [options]="ufs" optionLabel="sigla" formControlName="uf" [filter]="true" (onChange)="aoSelecionarUF()" class="ui-g-6 ui-sm-12"></div>
+        <div class="ui-g-6 ui-sm-12">
+            <span class="ui-float-label">
+                <p-dropdown
+                    (onChange)="aoSelecionarUF()"
+                    [options]="ufs"
+                    optionLabel="sigla"
+                    formControlName="uf"
+                    [filter]="true"
+                    placeholder="UF"
+                ></p-dropdown>
+            </span>
+        </div>
     </div>
     <div class="ui-g-12">
         <div class="ui-g-2 ui-sm-12">
@@ -27,12 +38,22 @@
     <div class="ui-g-12">
         <div nCheck label="Correspondência?" formControlName="correspondencia" class="ui-g-9"></div>
     </div>
-    <p-button
-        label="Adicionar"
-        type="button"
+    <div *ngIf="!endereco.value.indice">
+        <p-button
+            label="Adicionar"
+            [disabled]="endereco.invalid"
+            [disabled]="controle ? true : null"
+            type="button"
+            (onClick)="adicionarEnderecoALista()"></p-button>
+    </div>
+    <div *ngIf="controle">
+        <p-button
         [disabled]="endereco.invalid"
-        (onClick)="adicionarEnderecoALista()"
-    ></p-button>
+        label="Editar"
+        type="button"
+        (onClick)="atualizarEdicao()"
+        ></p-button>
+    </div>
     <basis-datatable type="memory" [disableView]="true" [value]="enderecos.value" (buttonClick)="datatableClick($event)">
         <p-column header="Município" field="municipioId">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">

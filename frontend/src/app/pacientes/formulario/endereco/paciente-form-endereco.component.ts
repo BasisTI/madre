@@ -1,4 +1,4 @@
-import { DatatableClickEvent } from '@nuvem/primeng-components';
+import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
 import { CepService } from "./cep.service";
@@ -17,7 +17,15 @@ import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tip
 export class PacienteEnderecoFormComponent {
 
     @Input()
-    public enderecos: FormArray;
+    public enderecos: any =  FormArray;
+
+    public controle: boolean;
+
+    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
+
+    ufs: UF[] = [];
+    municipios: MunicipioUF[] = [];
+    ceps: CEP[] = [];
 
     endereco = this.fb.group({
         id: [null],
@@ -30,19 +38,15 @@ export class PacienteEnderecoFormComponent {
         tipoDoEndereco: [null, Validators.required],
         municipioId: [null],
         uf: [null],
+        indice: [null],
     });
-
-    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
-
-    ufs: UF[] = [];
-    municipios: MunicipioUF[] = [];
-    ceps: CEP[] = [];
 
     constructor(
         private fb: FormBuilder,
         public municipioService: MunicipioService,
         public ufService: UfService,
         public cepService: CepService,
+        private breadcrumbService: BreadcrumbService
     ) { }
 
     ngOnInit() {
@@ -116,28 +120,18 @@ export class PacienteEnderecoFormComponent {
                 tipoDoEndereco: [null, Validators.required],
                 municipioId: [null],
                 uf: [null],
+                indice: [null],
             });
-            this.endereco.reset();
         }
+        this.endereco.reset();
     }
 
     datatableClick(event: DatatableClickEvent) {
         if (event.selection) {
             switch (event.button) {
                 case "edit":
-                    console.log("Teste");
-                    this.endereco.patchValue({
-                        id: event.selection.id,
-                        cep: event.selection.cep,
-                        logradouro: event.selection.logradouro,
-                        numero: event.selection.numero,
-                        complemento: event.selection.complemento,
-                        bairro: event.selection.bairro,
-                        correspondencia: event.selection.correspondencia,
-                        tipoDoEndereco: event.selection.tipoDoEndereco,
-                        municipioId: event.selection.municipioId,
-                        uf: event.selection.uf,
-                    });
+                    this.controle = true;
+                    this.endereco.patchValue(this.enderecos.controls[event.selection.indice].value);
                     break;
                 case "delete":
                     this.enderecos.removeAt(event.selection.indice);
@@ -146,6 +140,17 @@ export class PacienteEnderecoFormComponent {
                     break;
             }
         }
+    }
+
+    atualizarEdicao(): void {
+        let atual = this.endereco.value;
+        this.enderecos.controls[atual.indice].patchValue(atual);
+        this.controle = false;
+        this.endereco.reset();
+      }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
     }
 
 }
