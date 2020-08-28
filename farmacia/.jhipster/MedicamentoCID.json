@@ -1,0 +1,26 @@
+{
+    "name": "MedicamentoCID",
+    "fields": [
+        {
+            "fieldName": "codigoMedicamento",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codigoCID",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200828201420",
+    "entityTableName": "medicamento_cid",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "farmacia",
+    "applications": "*",
+    "skipClient": true,
+    "microserviceName": "farmacia"
+}
