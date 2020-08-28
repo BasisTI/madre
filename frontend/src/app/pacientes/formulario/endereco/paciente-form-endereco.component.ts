@@ -1,3 +1,5 @@
+import { OPCOES_DE_TIPO_DE_ENDERECO } from './../../models/dropdowns/opcoes-de-tipo-de-endereco';
+import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
 import { CepService } from "./cep.service";
@@ -7,7 +9,6 @@ import { UF } from "../../models/dropdowns/types/uf";
 import { MunicipioUF } from "../../models/dropdowns/types/municipio-uf";
 import { CEP } from "./cep.model";
 
-import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-endereco';
 
 @Component({
     selector: 'paciente-form-endereco',
@@ -16,7 +17,15 @@ import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tip
 export class PacienteEnderecoFormComponent {
 
     @Input()
-    public enderecos: FormArray;
+    public enderecos: any =  FormArray;
+
+    public controle: boolean;
+
+    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
+
+    ufs: UF[] = [];
+    municipios: MunicipioUF[] = [];
+    ceps: CEP[] = [];
 
     endereco = this.fb.group({
         id: [null],
@@ -29,19 +38,15 @@ export class PacienteEnderecoFormComponent {
         tipoDoEndereco: [null, Validators.required],
         municipioId: [null],
         uf: [null],
+        indice: [null],
     });
-
-    opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_TELEFONE;
-
-    ufs: UF[] = [];
-    municipios: MunicipioUF[] = [];
-    ceps: CEP[] = [];
 
     constructor(
         private fb: FormBuilder,
         public municipioService: MunicipioService,
         public ufService: UfService,
         public cepService: CepService,
+        private breadcrumbService: BreadcrumbService
     ) { }
 
     ngOnInit() {
@@ -102,6 +107,7 @@ export class PacienteEnderecoFormComponent {
 
     adicionarEnderecoALista() {
         if (this.endereco.valid) {
+            this.endereco.patchValue({indice: this.enderecos.length});
             this.enderecos.push(this.endereco);
             this.endereco = this.fb.group({
                 id: [null],
@@ -114,9 +120,37 @@ export class PacienteEnderecoFormComponent {
                 tipoDoEndereco: [null, Validators.required],
                 municipioId: [null],
                 uf: [null],
+                indice: [null],
             });
-            this.endereco.reset();
         }
+        this.endereco.reset();
+    }
+
+    datatableClick(event: DatatableClickEvent) {
+        if (event.selection) {
+            switch (event.button) {
+                case "edit":
+                    this.controle = true;
+                    this.endereco.patchValue(this.enderecos.controls[event.selection.indice].value);
+                    break;
+                case "delete":
+                    this.enderecos.removeAt(event.selection.indice);
+                    var i = 0;
+                    this.enderecos.controls.forEach((atual) => atual.patchValue({indice: i++}));
+                    break;
+            }
+        }
+    }
+
+    atualizarEdicao(): void {
+        let atual = this.endereco.value;
+        this.enderecos.controls[atual.indice].patchValue(atual);
+        this.controle = false;
+        this.endereco.reset();
+      }
+
+    ngOnDestroy(): void {
+        this.breadcrumbService.reset();
     }
 
 }
