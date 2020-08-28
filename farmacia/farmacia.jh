@@ -36,6 +36,10 @@ entity TipoMedicamento {
 entity Apresentacao {
 	nome String
 }
+entity MedicamentoCID{
+codigoMedicamento String
+codigoCID String
+}
 relationship OneToMany {
 Dispensacao{dispensacaoMedicamentos} to DispensacaoMedicamentos
 }
