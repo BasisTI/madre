@@ -15,7 +15,7 @@ export class PacienteService implements CrudService<number, Paciente> {
     }
 
     save(paciente: Paciente): Observable<Paciente> {
-        const salvar = {
+        let salvar: any = {
             ...paciente,
             ocupacaoId: paciente.ocupacaoId?.id,
             religiaoId: paciente.religiaoId?.id,
@@ -39,6 +39,17 @@ export class PacienteService implements CrudService<number, Paciente> {
                 ufId: paciente.documento.ufId?.id
             },
         }
+        salvar.enderecos.forEach((endereco) => {
+            endereco.municipioId = endereco.municipioId.id;
+            endereco.bairro = endereco.bairro;
+            endereco.cep = endereco.cep;
+            endereco.logradouro = endereco.logradouro;
+            endereco.numero =  endereco.numero;
+            endereco.complemento = endereco.complemento;
+            endereco.bairro = endereco.bairro;
+            endereco.correspondencia = endereco.correspondencia;
+            endereco.tipoDoEndereco = endereco.tipoDoEndereco;
+          });
         return this.http.post<Paciente>(this.uriServico, salvar);
     }
 
