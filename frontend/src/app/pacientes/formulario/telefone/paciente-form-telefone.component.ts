@@ -19,9 +19,9 @@ export class PacienteTelefoneFormComponent {
 
     public telefone = this.fb.group({
         id: [null],
-        ddd: [null, Validators.required],
-        numero: [null, Validators.required],
-        tipo: [null, Validators.required],
+        ddd: [null],
+        numero: [null],
+        tipo: [null],
         observacao: [null],
         indice: [null],
     });
@@ -36,9 +36,9 @@ export class PacienteTelefoneFormComponent {
             this.telefones.push(this.telefone);
             this.telefone = this.fb.group({
                 id: [null],
-                ddd: [null, Validators.required],
-                numero: [null, Validators.required],
-                tipo: [null, Validators.required],
+                ddd: [null],
+                numero: [null],
+                tipo: [null],
                 observacao: [null],
                 indice: [null],
             });
