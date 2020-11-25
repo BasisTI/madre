@@ -1,18 +1,6 @@
 <div class="ui-g ui-fluid" [formGroup]="endereco">
     <div class="ui-g-12">
-        <div class="ui-g-6 ui-sm-12">
-            <span class="ui-float-label">
-                <input
-                    id="cep"
-                    (blur)="consultaCEP()"
-                    pInputText
-                    type="text"
-                    formControlName="cep"
-                    pTooltip="Informe o CEP."
-                />
-                <label>CEP</label>
-            </span>
-        </div>
+        <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="ui-g-6 ui-sm-12"></div>
         <div class="ui-g-6 ui-sm-12">
             <span class="ui-float-label">
                 <p-dropdown
@@ -22,6 +10,7 @@
                     formControlName="uf"
                     [filter]="true"
                     placeholder="UF"
+                    required
                 ></p-dropdown>
             </span>
         </div>
@@ -39,64 +28,16 @@
                 <label>Municípios</label>
             </span>
         </div>
-        <div class="ui-g-4 ui-sm-12">
-            <span class="ui-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="logradouro"
-                    pTooltip="Informe o logradouro."
-                />
-                <Label>Logradouro</Label>
-            </span>
-        </div>
-        <div class="ui-g-6">
-                <span class="ui-float-label">
-                    <p-dropdown
-                        [options]="opcoesDeTipoDeEndereco"
-                        formControlName="tipoDoEndereco"
-                    ></p-dropdown>
-                    <label>Tipo de Endereço</label>
-                </span>
-            </div>
+        <div nInputText label="Logradouro" formControlName="logradouro" class="ui-g-4 ui-sm-12" required></div>
+        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="ui-g-6 ui-sm-12"></div>
     </div>
     <div class="ui-g-12 ui-fluid">
-        <div class="ui-g-3">
-            <span class="ui-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="numero"
-                    pTooltip="Informe o Numero."
-                />
-                <Label>Número</Label>
-            </span>
-        </div>
-        <div class="ui-g-4">
-            <span class="ui-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="complemento"
-                    pTooltip="Informe o Complemento."
-                />
-                <label>Complemento</label>
-            </span>
-        </div>
-        <div class="ui-g-3">
-            <span class="ui-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="bairro"
-                    pTooltip="Informe o Bairro."
-                />
-                <label>Bairro</label>
-            </span>
-        </div>
+        <div nInputText label="Número" required formControlName="numero" class="ui-g-3"></div>
+        <div nInputText label="Complemento" formControlName="complemento" class="ui-g-4"></div>
+        <div nInputText label="Bairro" required formControlName="bairro" class="ui-g-3"></div>
     </div>
     <div class="ui-g-12">
-        <div nCheck label="Correspondência?" formControlName="correspondencia" class="ui-g-9"></div>
+        <div nCheck label="Correspondência?" required formControlName="correspondencia" class="ui-g-9"></div>
     </div>
     <div *ngIf="!endereco.value.indice">
         <p-button
