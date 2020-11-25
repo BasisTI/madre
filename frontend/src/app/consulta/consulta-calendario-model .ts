@@ -4,6 +4,7 @@ export interface IConsultaCalendarioModel {
     turno?: string;
     tipoPagador?: string;
     start?: Date;
+    description: string;
 }
 export class ConsultaCalendarioModel implements IConsultaCalendarioModel {
     public id: number;
@@ -12,4 +13,5 @@ export class ConsultaCalendarioModel implements IConsultaCalendarioModel {
     public tipoPagador: string;
     public start: Date;
     public url: string;
+    public description: string;
 }
