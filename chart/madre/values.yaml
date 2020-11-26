@@ -21,19 +21,21 @@ madrecliente:
     - prescricao
     - farmacia
     - suprimentos
+    - consulta
 
 gateway:
   name: gateway
   image: 
     repository: basis-registry.basis.com.br/madre/madregateway
     tag: latest
+  imagePullSecrets:
+  - name: basis-registry
   ports:
     port: 8080
   configmap:
-      datasource:
-        url: jdbc:postgresql://pgsql-madre/madre
-        username: madre
-        password: madre
+    spring:
+      profiles:
+        active: prod,swagger
 
 pacientes:
   name: pacientes
@@ -44,16 +46,10 @@ pacientes:
     port: 8081
   configmap:
     spring:
-      data:
-        jest:
-          uri: http://elasticsearch-client.elasticsearch:9200
-      elasticsearch: 
-        rest:
-          uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
-        username: madre
-        password: madre
+        username: pacientes
+        password: pacientes
 
 prescricao:
   name: prescricao
@@ -64,16 +60,10 @@ prescricao:
     port: 8081
   configmap:
     spring:
-      data:
-        jest:
-          uri: http://elasticsearch-client.elasticsearch:9200
-      elasticsearch: 
-        rest:
-          uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
-        username: madre
-        password: madre
+        username: prescricao
+        password: prescricao
 
 farmacia:
   name: farmacia
@@ -84,16 +74,10 @@ farmacia:
     port: 8081
   configmap:
     spring:
-      data:
-        jest:
-          uri: http://elasticsearch-client.elasticsearch:9200
-      elasticsearch: 
-        rest:
-          uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
-        username: madre
-        password: madre
+        username: farmacia
+        password: farmacia
 
 internacao:
   name: internacao
@@ -104,16 +88,10 @@ internacao:
     port: 8081
   configmap:
     spring:
-      data:
-        jest:
-          uri: http://elasticsearch-client.elasticsearch:9200
-      elasticsearch: 
-        rest:
-          uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
-        username: madre
-        password: madre
+        username: internacao
+        password: internacao
 
 madresuprimentos:
   name: madresuprimentos
@@ -122,22 +100,43 @@ madresuprimentos:
     tag: latest
   ports:
     port: 8081
+  jdk: 11
   configmap:
     spring:
-      data:
-        jest:
-          uri: http://elasticsearch-client.elasticsearch:9200
-      elasticsearch:
-        rest:
-          uris: http://elasticsearch-client.elasticsearch:9200
       datasource:
         url: jdbc:postgresql://pgsql-madre/madre
-        username: madre
-        password: madre
+        username: suprimentos
+        password: suprimentos
+
+madreconsulta:
+  name: madreconsulta
+  image:
+    repository: basis-registry.basis.com.br/madre/madreconsulta
+    tag: latest
+  ports:
+    port: 8081
+  configmap:
+    spring:
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: consulta
+        password: consulta
 
 comum:
   imagePullSecrets:
   - name: basis-registry
+  configmap:
+    spring:
+      profiles:
+        active: prod,swagger
+      data:
+        jest:
+          uri: http://elasticsearch-client.elasticsearch:9200
+      elasticsearch: 
+        rest:
+          uris: http://elasticsearch-client.elasticsearch:9200
+      kafka:
+        bootstrap-servers: confluent-cp-kafka.confluent:9092
 
 postgresql:
   install: true
