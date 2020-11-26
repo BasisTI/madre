@@ -21,7 +21,7 @@ public class MedicamentoCID implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+
     private Long id;
 
     @Column(name = "codigo_medicamento")
