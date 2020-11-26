@@ -29,13 +29,13 @@ export class PacienteEnderecoFormComponent {
 
     endereco = this.fb.group({
         id: [null],
-        cep: [null, Validators.required],
-        logradouro: [null, Validators.required],
-        numero: [null, Validators.required],
+        cep: [null],
+        logradouro: [null],
+        numero: [null],
         complemento: [null],
-        bairro: [null, Validators.required],
-        correspondencia: [null, Validators.required],
-        tipoDoEndereco: [null, Validators.required],
+        bairro: [null],
+        correspondencia: [null],
+        tipoDoEndereco: [null],
         municipioId: [null],
         uf: [null],
         indice: [null],
@@ -53,7 +53,7 @@ export class PacienteEnderecoFormComponent {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
     }
 
-    consultaCEP() {
+    consultaCEP(event) {
         const cep = this.endereco.value.cep;
         if (cep != null && cep !== '') {
             this.cepService.buscarCEP(cep)
@@ -111,13 +111,13 @@ export class PacienteEnderecoFormComponent {
             this.enderecos.push(this.endereco);
             this.endereco = this.fb.group({
                 id: [null],
-                cep: [null, Validators.required],
-                logradouro: [null, Validators.required],
-                numero: [null, Validators.required],
+                cep: [null],
+                logradouro: [null],
+                numero: [null],
                 complemento: [null],
-                bairro: [null, Validators.required],
-                correspondencia: [null, Validators.required],
-                tipoDoEndereco: [null, Validators.required],
+                bairro: [null],
+                correspondencia: [null],
+                tipoDoEndereco: [null],
                 municipioId: [null],
                 uf: [null],
                 indice: [null],
