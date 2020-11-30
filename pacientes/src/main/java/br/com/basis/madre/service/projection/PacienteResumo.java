@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @JsonInclude(Include.NON_NULL)
 public interface PacienteResumo {
     Long getId();
+    Long getProntuario();
     String getNome();
     LocalDate getDataDeNascimento();
     Genitores_ getGenitores();
