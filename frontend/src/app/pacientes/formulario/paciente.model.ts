@@ -109,7 +109,7 @@ export class Paciente {
         public responsavel: PacienteResponsavel,
         public documento: PacienteDocumento,
         public certidao: PacienteCertidao,
-        public prontuario: number
+        public prontuario: number | any
     ) {}
 
 }
