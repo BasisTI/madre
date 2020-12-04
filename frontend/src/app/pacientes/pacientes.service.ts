@@ -15,13 +15,12 @@ export class PacientesService {
     getListaDePacientes(): Observable<Pageable<PacienteResumo>> {
         return this.httpService.get<Pageable<PacienteResumo>>(`${this.apiUrl}/_resumo`);
     }
-    getListaDePacientesElastic(nome: string): Observable<Pageable<PacienteResumo>> {
-        const params = new HttpParams().set('nome', nome);
-
+    getListaDePacientesElastic(nome: string, prontuario: string): Observable<Pageable<PacienteResumo>> {
+        const params = new HttpParams().set('nome', nome).set('prontuario', prontuario);
         return this.httpService.get<Pageable<PacienteResumo>>(
             `${this.apiUrl}/lista-de-pacientes-elastic`,
             {
-                params,
+                params
             },
         );
     }
