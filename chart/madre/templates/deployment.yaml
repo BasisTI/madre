@@ -12,4 +12,6 @@
 ---
 {{- template "common.microservice" (dict "context" . "microservice" (merge .Values.madresuprimentos .Values.comum)) -}}
 ---
+{{- template "common.microservice" (dict "context" . "microservice" (merge .Values.madreconsulta .Values.comum)) -}}
+---
 {{- template "common.client" (dict "context" . "client" (merge .Values.madrecliente .Values.comum) "gateway" .Values.gateway) -}}
