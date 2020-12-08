@@ -1,4 +1,5 @@
 export interface PacienteResumo {
+    prontuario: number;
     nome: string;
     dataDeNascimento: string;
     genitores: {

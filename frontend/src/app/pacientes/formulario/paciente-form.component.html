@@ -25,7 +25,18 @@
             <p-accordionTab header="Observação">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12">
-                        <div nTextArea label="Observação" formControlName="observacao" class="ui-g-12"></div>
+                        <div class="ui-g-12 ui-sm-12">
+                            <span class="ui-float-label">
+                                <textarea
+                                    formControlName="observacao"
+                                    [rows]="3"
+                                    pInputTextarea
+                                    autoResize="autoResize"
+                                    pTooltip="Informe o observação."
+                                ></textarea>
+                                <label>Observação</label>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </p-accordionTab>
