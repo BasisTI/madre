@@ -174,7 +174,6 @@ public class PacienteService {
             new NativeSearchQueryBuilder()
                 .withQuery(QueryBuilders.fuzzyQuery("nome", nome))
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario","nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
-
                 .build()
         );
     }
