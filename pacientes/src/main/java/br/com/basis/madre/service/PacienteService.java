@@ -166,15 +166,14 @@ public class PacienteService {
 
         if (Strings.isNullOrEmpty(nome)) {
             return pacienteSearchRepository.search(new NativeSearchQueryBuilder()
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario","nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
                 .build());
         }
 
         return pacienteSearchRepository.search(
             new NativeSearchQueryBuilder()
                 .withQuery(QueryBuilders.fuzzyQuery("nome", nome))
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("id", "nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
-
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario","nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
                 .build()
         );
     }
