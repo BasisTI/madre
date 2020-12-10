@@ -11,7 +11,7 @@ madrecliente:
     tls:
       - hosts:
           - madre.tst.basis.com.br
-    secretName: madretst-cert
+        secretName: madretst-cert
   ports:
     port: 80
   proxy:
