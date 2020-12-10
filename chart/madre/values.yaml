@@ -9,27 +9,27 @@ madrecliente:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       kubernetes.io/tls-acme: "true"
     tls:
-    - hosts:
-      - madre.tst.basis.com.br
-      secretName: madretst-cert
+      - hosts:
+          - madre.tst.basis.com.br
+        secretName: madretst-cert
   ports:
     port: 80
   proxy:
     locations:
-    - pacientes
-    - internacao
-    - prescricao
-    - farmacia
-    - suprimentos
-    - consulta
+      - pacientes
+      - internacao
+      - prescricao
+      - farmacia
+      - suprimentos
+      - madreconsulta
 
 gateway:
   name: gateway
-  image: 
+  image:
     repository: basis-registry.basis.com.br/madre/madregateway
     tag: latest
   imagePullSecrets:
-  - name: basis-registry
+    - name: basis-registry
   ports:
     port: 8080
   configmap:
@@ -124,7 +124,7 @@ madreconsulta:
 
 comum:
   imagePullSecrets:
-  - name: basis-registry
+    - name: basis-registry
   configmap:
     spring:
       profiles:
@@ -132,7 +132,7 @@ comum:
       data:
         jest:
           uri: http://elasticsearch-client.elasticsearch:9200
-      elasticsearch: 
+      elasticsearch:
         rest:
           uris: http://elasticsearch-client.elasticsearch:9200
       kafka:
@@ -148,4 +148,3 @@ postgresql:
   persistence:
     storageClass: nfs-kube-des
     size: 10Gi
-
