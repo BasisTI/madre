@@ -10,7 +10,7 @@ madrecliente:
       kubernetes.io/tls-acme: "true"
     tls:
       - hosts:
-      - madre.tst.basis.com.br
+          - madre.tst.basis.com.br
     secretName: madretst-cert
   ports:
     port: 80
