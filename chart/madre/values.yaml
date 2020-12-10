@@ -16,12 +16,12 @@ madrecliente:
     port: 80
   proxy:
     locations:
-      - pacientes
-      - internacao
-      - prescricao
-      - farmacia
-      - suprimentos
-      - madreconsulta
+    - pacientes
+    - internacao
+    - prescricao
+    - farmacia
+    - suprimentos
+    - madreconsulta
 
 gateway:
   name: gateway
