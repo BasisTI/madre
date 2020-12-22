@@ -8,7 +8,8 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class PacienteListComponent {
 
     paciente: FormGroup = this.fb.group({
-        nome: []
+        nome: [],
+        prontuario: []
     });
 
     constructor(private fb: FormBuilder) {
