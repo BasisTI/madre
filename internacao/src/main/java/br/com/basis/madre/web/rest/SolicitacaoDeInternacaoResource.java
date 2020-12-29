@@ -107,9 +107,9 @@ public class SolicitacaoDeInternacaoResource {
      */
     @GetMapping("/solicitacoes-de-internacao")
     public ResponseEntity<List<SolicitacaoDeInternacaoDTO>> getAllSolicitacaoDeInternacaos(
-        Pageable pageable) {
+        Pageable pageable, @RequestParam(name = "query", required = false) String query) {
         log.debug("REST request to get a page of SolicitacaoDeInternacaos");
-        Page<SolicitacaoDeInternacaoDTO> page = solicitacaoDeInternacaoService.findAll(pageable);
+        Page<SolicitacaoDeInternacaoDTO> page = solicitacaoDeInternacaoService.findAll(pageable,query);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
