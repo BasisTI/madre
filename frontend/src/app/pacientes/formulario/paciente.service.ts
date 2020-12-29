@@ -10,6 +10,7 @@ export class PacienteService implements CrudService<number, Paciente> {
 
     uriServico: string = '/pacientes/api/pacientes';
     uri: string = `${this.uriServico}/lista-de-pacientes-elastic`;
+    uriProntuario: string = `${this.uriServico}/prontuario`;
 
     constructor(private http: HttpClient) {
     }
@@ -65,8 +66,8 @@ export class PacienteService implements CrudService<number, Paciente> {
         return this.http.delete<Paciente>(`${this.uriServico}/${id}`);
     }
 
-    findAll(entity: Paciente): Observable<Paciente> {
-        const params = new HttpParams().set('nome', entity.nome);
+    findAll(entity: Paciente): Observable<Paciente>{
+        const params = new HttpParams().set('nome', entity.nome).set('prontuario', entity.prontuario);
         return this.http.get<Paciente>(`${this.uri}`, { params });
     }
 

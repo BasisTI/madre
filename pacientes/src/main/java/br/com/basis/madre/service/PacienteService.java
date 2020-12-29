@@ -161,21 +161,35 @@ public class PacienteService {
 
     private ElasticsearchTemplate elasticsearchTemplate;
 
-    public Page<Paciente> buscaPacientePorNome(String nome, Pageable pageable) {
+    public Page<Paciente> buscaPacientePorNome(String nome, Long prontuario, Pageable pageable) {
 
-
-        if (Strings.isNullOrEmpty(nome)) {
-            return pacienteSearchRepository.search(new NativeSearchQueryBuilder()
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario","nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
+        if (Strings.isNullOrEmpty(nome) && prontuario == null) {
+            return pacienteSearchRepository.search(
+                new NativeSearchQueryBuilder()
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario", "nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
                 .build());
         }
 
+        NativeSearchQueryBuilder query = new NativeSearchQueryBuilder();
         return pacienteSearchRepository.search(
-            new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.fuzzyQuery("nome", nome))
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario","nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
+            queryPorProntuario(prontuario, queryPorNome(nome, query))
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario", "nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
                 .build()
         );
     }
 
+    public NativeSearchQueryBuilder queryPorNome(String nome, NativeSearchQueryBuilder query) {
+        if(Strings.isNullOrEmpty(nome)) { return query; }
+        else {
+            return query.withQuery(QueryBuilders.fuzzyQuery("nome", nome));
+        }
+    }
+
+    public NativeSearchQueryBuilder queryPorProntuario(Long prontuario, NativeSearchQueryBuilder query) {
+        if (prontuario == null) { return query; }
+        else {
+            return query.withQuery(QueryBuilders.commonTermsQuery("prontuario", prontuario));
+        }
+    }
 }
+
