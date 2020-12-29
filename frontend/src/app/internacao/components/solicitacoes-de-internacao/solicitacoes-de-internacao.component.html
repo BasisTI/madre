@@ -5,7 +5,7 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-fluid">
                     <span class="md-inputfield" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" />
+                        <input type="text" pInputText class="ui-inputtext" [(ngModel)]="filtroNomeDoPaciente"/>
                         <label>Nome do Paciente</label>
                     </span>
                 </div>
@@ -17,6 +17,8 @@
                             type="button"
                             label="Pesquisar"
                             icon="ui-icon-search"
+                            (click)="datatable.refresh(filtroNomeDoPaciente)"
+                            bTooltip="Pesquisar paciente por nome."
                         ></button>
                     </div>
                 </div>
