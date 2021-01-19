@@ -7,17 +7,20 @@ import br.com.basis.madre.repository.search.SolicitacaoDeInternacaoSearchReposit
 import br.com.basis.madre.service.dto.SolicitacaoDeInternacaoDTO;
 import br.com.basis.madre.service.mapper.SolicitacaoDeInternacaoMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 @RequiredArgsConstructor
 @Service
@@ -58,9 +61,23 @@ public class SolicitacaoDeInternacaoService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<SolicitacaoDeInternacaoDTO> findAll(Pageable pageable) {
+    public Page<SolicitacaoDeInternacaoDTO> findAll(Pageable pageable, String query) {
         log.debug("Request to get all SolicitacaoDeInternacaos");
-        return solicitacaoDeInternacaoRepository.findAll(pageable)
+        Page<SolicitacaoDeInternacao> solicitacoes = solicitacaoDeInternacaoRepository.findAll(pageable);
+        if (Strings.isNotBlank(query) || Strings.isNotEmpty(query)) {
+            Page<Paciente> pacientes = pacienteService.obterTodosPacientes(pageable, query);
+            List<SolicitacaoDeInternacaoDTO> solicitacoesDTO = new ArrayList<>();
+            List<SolicitacaoDeInternacaoDTO> solicitacoesDTOFiltrada = new ArrayList<>();
+            solicitacoes.forEach(s -> solicitacoesDTO.add(solicitacaoDeInternacaoMapper.toDto(s)));
+            solicitacoesDTO.forEach(s -> {
+                if(buscaValida(pacientes, s)){
+                    s.setNomeDoPaciente(pacienteService.obterPacientePorId(s.getPacienteId()).get().getNome());
+                    solicitacoesDTOFiltrada.add(s);
+                }
+            });
+            return new PageImpl<>(solicitacoesDTOFiltrada);
+        }
+        return solicitacoes
             .map(solicitacao -> {
                 SolicitacaoDeInternacaoDTO dto = solicitacaoDeInternacaoMapper.toDto(solicitacao);
                 Paciente paciente = pacienteService.obterPacientePorId(dto.getPacienteId()).orElseThrow(EntityNotFoundException::new);
@@ -68,7 +85,15 @@ public class SolicitacaoDeInternacaoService {
                 return dto;
             });
     }
-
+    private boolean buscaValida(Page<Paciente> pacientes, SolicitacaoDeInternacaoDTO s) {
+        AtomicBoolean result = new AtomicBoolean(false);
+        pacientes.forEach(paciente -> {
+            if(s.getPacienteId().equals(paciente.getId())){
+                result.set(true);
+            }
+        });
+        return result.get();
+    }
 
     /**
      * Get one solicitacaoDeInternacao by id.

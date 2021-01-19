@@ -11,6 +11,7 @@ import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao
 })
 export class SolicitacoesDeInternacaoComponent implements OnInit, OnDestroy {
     public api: string;
+    public filtroNomeDoPaciente: string;
 
     constructor(
         private solicitacaoDeInternacaoService: SolicitacaoDeInternacaoService,
