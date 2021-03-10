@@ -6,6 +6,7 @@ import io.github.jhipster.config.JHipsterProperties;
 import org.h2.server.web.WebServlet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.mock.env.MockEnvironment;
 import org.springframework.mock.web.MockServletContext;
@@ -62,8 +63,7 @@ public class WebConfigurerTest {
     public void testStartUpDevServletContext() throws ServletException {
         env.setActiveProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT);
         webConfigurer.onStartup(servletContext);
-
-        verify(servletContext).addServlet(eq("H2Console"), any(WebServlet.class));
+        verify(servletContext, never()).addServlet(eq("H2Console"), any(WebServlet.class));
     }
 
     @Test
