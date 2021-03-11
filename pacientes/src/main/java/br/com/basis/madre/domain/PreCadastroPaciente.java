@@ -63,7 +63,7 @@ public class PreCadastroPaciente implements Serializable {
     @Column(name = "cartao_sus", length = 30, nullable = false)
     private String cartaoSus;
 
-    @Column(name = "ativo")
+    @Column(name = "status")
     private Boolean ativo;
 
     @OneToMany(mappedBy = "preCadastroPaciente")
