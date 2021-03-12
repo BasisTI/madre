@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class ConsultaService {
     private readonly apiUrl = 'madreconsulta/api';
     private readonly intUrl = 'internacao/api';
-    private readonly pacUrl = 'api';
+    private readonly pacUrl = 'pacientes/api';
 
     constructor(private client: HttpClient) {}
 
