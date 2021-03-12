@@ -32,7 +32,12 @@
         (onClick)="atualizarEdicao()"
         ></p-button>
     </div>
-    <basis-datatable type="memory" [disableView]="true" [value]="telefones.value"  (buttonClick)="datatableClick($event)">
+    <basis-datatable type="memory" 
+    [disableView]="true" 
+    [value]="telefones.value"  
+    (buttonClick)="datatableClick($event)"
+    #datatable
+    >
         <p-column header="Tipo" field="tipo"></p-column>
         <p-column header="DDD" field="ddd"></p-column>
         <p-column header="Telefone" field="numero"></p-column>

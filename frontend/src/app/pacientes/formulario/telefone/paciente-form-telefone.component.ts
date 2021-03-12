@@ -1,6 +1,6 @@
 import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
-import { Validators, FormArray, FormBuilder } from "@angular/forms";
+import { FormArray, FormBuilder } from "@angular/forms";
 
 import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-telefone';
 
@@ -23,7 +23,7 @@ export class PacienteTelefoneFormComponent {
         numero: [null],
         tipo: [null],
         observacao: [null],
-        indice: [null],
+        indice: [null]
     });
 
     constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService) {
@@ -40,7 +40,7 @@ export class PacienteTelefoneFormComponent {
                 numero: [null],
                 tipo: [null],
                 observacao: [null],
-                indice: [null],
+                indice: [null]
             });
         }
         this.telefone.reset();
