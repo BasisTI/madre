@@ -3,10 +3,5 @@
         <div nInputText label="Nome do Responsável" formControlName="nomeDoResponsavel" class="ui-g-6 ui-sm-12"></div>
         <div nAutoComplete [service]="grauDeParentescoService" field="valor" formControlName="grauDeParentescoId" label="Grau de Parentesco" class="ui-g-6 ui-sm-12"></div>
     </div>
-<!--
-    <div class="ui-g-12" formGroupName="responsavel">
-        <div nTextArea label="Observação" formControlName="observacao" class="ui-g-12 ui-sm-12"></div>
-    </div>
--->
     <paciente-form-telefone [telefones]="formGroup.get('responsavel.telefones')"> </paciente-form-telefone>
 </div>
