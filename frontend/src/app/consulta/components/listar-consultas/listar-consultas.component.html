@@ -147,24 +147,23 @@
 
         <div class="ui-g-12 ui-sm-12">
             <basis-datatable
-                type="memory"
-                [disableView]="true"
-                [disableEdit]="true"
-                [disableDelete]="true"
-                [verticalButtons]="false"
+            [disableEdit]="true"
+            [disableDelete]="true"
+            [disableView]="true"
+            #datatable type="server" 
+            [url]="searchUrl"
+            sortField="brand"
             >
-                <p-column field="historico" header="Hist"></p-column>
-                <p-column field="consultas" header="Consultas"></p-column>
-                <p-column field="dataHora" header="Data/Hora"></p-column>
-                <p-column field="condicaoAtendimento" header="Cond. Atend."></p-column>
-                <p-column field="codigoCentral" header="Central"></p-column>
+                <p-column field="numeroConsulta" header="Consultas"></p-column>
+                <p-column field="dataHoraDaConsulta" header="Data/Hora"></p-column>
+                <p-column field="condicaoDeAtendimentoId" header="Cond. Atend."></p-column>
+                <p-column field="clinicaCentralId" header="Central"></p-column>
                 <p-column field="grade" header="Grade"></p-column>
                 <p-column field="especialidade" header="Especialidade"></p-column>
-                <p-column field="unidadeFuncional" header="Unid. Func."></p-column>
+                <p-column field="unidadeFuncional" header="Tipo. Func."></p-column>
                 <p-column field="equipe" header="Equipe"></p-column>
                 <p-column field="profissional" header="Profissional"></p-column>
                 <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
-                <p-column field="excedente" header="Excedente"></p-column>
             </basis-datatable>
         </div>
     </form>

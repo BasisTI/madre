@@ -2,6 +2,9 @@ package br.com.basis.consulta.service.dto;
 
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
 import br.com.basis.consulta.domain.enumeration.Turno;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JacksonInject;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -24,6 +27,10 @@ public class EmergenciaDTO implements Serializable {
 
     @Max(value = 20L)
     private Long grade;
+
+    private String profissional;
+
+    private String especialidade;
 
     @Size(max = 20)
     private String numeroSala;
@@ -48,6 +55,9 @@ public class EmergenciaDTO implements Serializable {
     private Long condicaoDeAtendimentoId;
 
     private Long formaDeAgendamentoId;
+
+    public EmergenciaDTO() {
+    }
 
     public Long getId() {
         return id;
@@ -80,6 +90,22 @@ public class EmergenciaDTO implements Serializable {
     public void setGrade(Long grade) {
         this.grade = grade;
     }
+
+    public String getProfissional() { return profissional; }
+
+    public void setProfissional(String profissional) {
+        this.profissional = profissional;
+    }
+
+
+        public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
+
 
     public String getNumeroSala() {
         return numeroSala;
@@ -189,6 +215,8 @@ public class EmergenciaDTO implements Serializable {
             ", numeroConsulta=" + getNumeroConsulta() +
             ", dataHoraDaConsulta='" + getDataHoraDaConsulta() + "'" +
             ", grade=" + getGrade() +
+            ", especialidade=" + getEspecialidade() +
+            ", profissional=" + getProfissional()+
             ", numeroSala='" + getNumeroSala() + "'" +
             ", turno='" + getTurno() + "'" +
             ", tipoPagador='" + getTipoPagador() + "'" +

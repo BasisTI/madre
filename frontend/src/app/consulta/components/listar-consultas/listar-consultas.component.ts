@@ -1,12 +1,19 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
+import { ConsultaEmergencia } from '../../consulta-emergencia-model';
+import { ConsultaService } from '../../consulta.service';
 
 @Component({
     selector: 'app-listar-consultas',
     templateUrl: './listar-consultas.component.html',
 })
 export class ListarConsultasComponent implements OnInit, OnDestroy {
+
+    searchUrl = 'madreconsulta/api/consultas-emergencias';
+
+    consulta: ConsultaEmergencia[];
+
     listaConsultas = this.fb.group({
         prontuario: [''],
         codigo: [''],
@@ -34,7 +41,7 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
     dataLimite = new Date();
     anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService) {}
+    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, private consultaService: ConsultaService) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -48,6 +55,7 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
             },
         ]);
     }
+
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
     }

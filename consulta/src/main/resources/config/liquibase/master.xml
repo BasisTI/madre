@@ -11,5 +11,5 @@
       <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200619145200_added_entity_constraints_Emergencia.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-    <include file="config/liquibase/changelog/20200629120201_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210319000218_changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
