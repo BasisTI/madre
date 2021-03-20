@@ -2,7 +2,8 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { CpfCnpjValidator } from '../../shared/cpf-cnpj.validator';
-import { PacienteService } from "@internacao/services/paciente.service";
+import { Paciente } from "./paciente.model";
+import { PacienteService } from "./paciente.service";
 import { PacienteValidators } from "./paciente.validators";
 
 @Component({
@@ -88,5 +89,9 @@ export class PacienteFormComponent {
         }),
 
     });
+
+    public savePaciente(paciente){
+        console.log("Apertou botão salvar");
+    }
 
 }

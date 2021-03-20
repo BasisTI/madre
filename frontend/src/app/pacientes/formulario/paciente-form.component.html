@@ -1,4 +1,4 @@
-<nCrudForm [form]="paciente" [formGroup]="paciente">
+<nCrudForm [form]="paciente" [action]="savePaciente(this.paciente)">
     <div class="ui-g-12">
         <p-accordion>
             <p-accordionTab header="Dados Pessoais" [selected]="true">
