@@ -10,6 +10,7 @@ entity Emergencia {
     dataHoraDaConsulta ZonedDateTime required
     //dia da semana: calculo dataHoraDaConsulta
     grade Long max (20)
+    especialidade String
     profissional String maxlength(80)
     numeroSala String maxlength(20)
     turno Turno

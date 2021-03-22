@@ -14,7 +14,7 @@ export class ConsultaService {
     private readonly intUrl = 'internacao/api';
     private readonly pacUrl = 'pacientes/api';
 
-    constructor(private client: HttpClient) {}
+    constructor(private client: HttpClient) { }
 
     public cadastrarConsultas(consultas: ConsultaEmergenciaModel) {
         return this.client.post(`${this.apiUrl}/consultas-emergencias`, consultas);

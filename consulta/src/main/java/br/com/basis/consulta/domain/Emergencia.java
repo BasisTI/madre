@@ -2,9 +2,13 @@ package br.com.basis.consulta.domain;
 
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
 import br.com.basis.consulta.domain.enumeration.Turno;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.annotations.ApiParam;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JacksonInject;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Column;
@@ -52,6 +56,13 @@ public class Emergencia implements Serializable {
     @Max(value = 20L)
     @Column(name = "grade")
     private Long grade;
+
+
+    @Column(name = "profissional" , length = 240)
+    private String profissional;
+
+    @Column(name = "especialidade", length = 240)
+    private String especialidade;
 
     @Size(max = 20)
     @Column(name = "numero_sala", length = 20)
@@ -101,6 +112,17 @@ public class Emergencia implements Serializable {
         this.grade = grade;
         return this;
     }
+
+    public Emergencia profissional(  String profissional){
+        this.profissional = profissional;
+        return  this;
+    }
+
+    public Emergencia especialidade(String especialidade){
+        this.especialidade = especialidade;
+        return this;
+    }
+
     public Emergencia numeroSala(String numeroSala) {
         this.numeroSala = numeroSala;
         return this;
