@@ -10,4 +10,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
+
+    private Integer elasticSearchFuzzyParameter;
+
+    public Integer getElasticSearchFuzzyParameter() {
+        return elasticSearchFuzzyParameter;
+    }
+    public void setElasticSearchFuzzyParameter(Integer newParameter){
+        this.elasticSearchFuzzyParameter = newParameter;
+    }
 }
+

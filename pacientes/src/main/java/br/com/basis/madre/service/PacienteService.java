@@ -1,5 +1,6 @@
 package br.com.basis.madre.service;
 
+import br.com.basis.madre.config.ApplicationProperties;
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.domain.enumeration.TipoEvento;
 import br.com.basis.madre.domain.evento.EventoPaciente;
@@ -11,20 +12,20 @@ import br.com.basis.madre.service.mapper.PacienteInclusaoMapper;
 import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.com.basis.madre.service.projection.PacienteResumo;
 import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -52,7 +53,9 @@ public class PacienteService {
 
     private final ProntuarioService prontuarioService;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService) {
+    private final ApplicationProperties properties;
+
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService, ApplicationProperties properties) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
@@ -60,6 +63,7 @@ public class PacienteService {
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
         this.prontuarioService = prontuarioService;
+        this.properties = properties;
     }
 
     /**
@@ -159,37 +163,20 @@ public class PacienteService {
             .map(pacienteMapper::toDto);
     }
 
-    private ElasticsearchTemplate elasticsearchTemplate;
-
-    public Page<Paciente> buscaPacientePorNome(String nome, Long prontuario, Pageable pageable) {
-
-        if (Strings.isNullOrEmpty(nome) && prontuario == null) {
-            return pacienteSearchRepository.search(
-                new NativeSearchQueryBuilder()
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario", "nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
-                .build());
+    public Page<Paciente> findPacienteByNomeOrProntuario(String nome, Long prontuario, Pageable pageable) {
+        if(Strings.isNullOrEmpty(nome) && prontuario == null){
+            log.debug("Request to find all Pacientes");
+            return pacienteSearchRepository.findAll(pageable);
         }
-
-        NativeSearchQueryBuilder query = new NativeSearchQueryBuilder();
-        return pacienteSearchRepository.search(
-            queryPorProntuario(prontuario, queryPorNome(nome, query))
-                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("prontuario", "nome", "dataDeNascimento", "genitores", "cartaoSUS").build())
-                .build()
-        );
-    }
-
-    public NativeSearchQueryBuilder queryPorNome(String nome, NativeSearchQueryBuilder query) {
-        if(Strings.isNullOrEmpty(nome)) { return query; }
-        else {
-            return query.withQuery(QueryBuilders.fuzzyQuery("nome", nome));
+        if(!Strings.isNullOrEmpty(nome) && prontuario == null){
+            log.debug("Request to find Paciente by name: {}", nome);
+            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(this.properties.getElasticSearchFuzzyParameter());
+            return pacienteSearchRepository.search(query,pageable);
         }
-    }
-
-    public NativeSearchQueryBuilder queryPorProntuario(Long prontuario, NativeSearchQueryBuilder query) {
-        if (prontuario == null) { return query; }
-        else {
-            return query.withQuery(QueryBuilders.commonTermsQuery("prontuario", prontuario));
-        }
+        log.debug("Request to find Paciente by prontuario: {}", prontuario);
+        List<Paciente> list = pacienteSearchRepository.findByProntuario(prontuario);
+        Page<Paciente> page = new PageImpl<>(list,pageable,list.size());
+        return page;
     }
 }
 

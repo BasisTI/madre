@@ -64,9 +64,10 @@ public class PacienteResource {
 
     /*lista de paciente com elasticsearch*/
     @GetMapping("/pacientes/lista-de-pacientes-elastic")
-    public ResponseEntity<Page<Paciente>> buscaPacientePorNome(@RequestParam(required = false) String nome, Long prontuario, Pageable pageable) {
-
-        return ResponseEntity.ok(pacienteService.buscaPacientePorNome(nome, prontuario, pageable));
+    public ResponseEntity<Page<Paciente>> findPacienteByNameOrProntuario(@RequestParam(value = "nome",required = false) String nome,
+                                                               @RequestParam(value = "prontuario",required = false) Long prontuario,
+                                                               Pageable pageable) {
+        return ResponseEntity.ok(pacienteService.findPacienteByNomeOrProntuario(nome, prontuario, pageable));
     }
 
     /**
