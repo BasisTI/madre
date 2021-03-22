@@ -1,5 +1,6 @@
 package br.com.basis.madre.service;
 
+import br.com.basis.madre.config.ApplicationProperties;
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.domain.enumeration.TipoEvento;
 import br.com.basis.madre.domain.evento.EventoPaciente;
@@ -19,9 +20,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +53,9 @@ public class PacienteService {
 
     private final ProntuarioService prontuarioService;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService) {
+    private final ApplicationProperties properties;
+
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService, ApplicationProperties properties) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
@@ -63,6 +63,7 @@ public class PacienteService {
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
         this.prontuarioService = prontuarioService;
+        this.properties = properties;
     }
 
     /**
@@ -169,7 +170,7 @@ public class PacienteService {
         }
         if(!Strings.isNullOrEmpty(nome) && prontuario == null){
             log.debug("Request to find Paciente by name: {}", nome);
-            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(4);
+            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(this.properties.getElasticSearchFuzzyParameter());
             return pacienteSearchRepository.search(query,pageable);
         }
         log.debug("Request to find Paciente by prontuario: {}", prontuario);

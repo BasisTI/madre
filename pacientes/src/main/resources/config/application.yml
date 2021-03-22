@@ -224,3 +224,6 @@ jhipster:
 
 # application:
 nuvem.elasticsearch.reindex.enabled: true
+
+application:
+  elasticSearchFuzzyParameter: 2
