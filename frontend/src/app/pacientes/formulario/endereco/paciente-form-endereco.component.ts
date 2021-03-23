@@ -19,7 +19,7 @@ export class PacienteEnderecoFormComponent {
     @Input()
     public enderecos: any =  FormArray;
 
-    public controle: boolean;
+    public controle: boolean = false;
 
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
@@ -48,6 +48,8 @@ export class PacienteEnderecoFormComponent {
         public cepService: CepService,
         private breadcrumbService: BreadcrumbService
     ) { }
+
+    buttonControlAdd: boolean = this.endereco.valid && this.controle===false;
 
     ngOnInit() {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
@@ -147,7 +149,7 @@ export class PacienteEnderecoFormComponent {
         this.enderecos.controls[atual.indice].patchValue(atual);
         this.controle = false;
         this.endereco.reset();
-      }
+    }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
