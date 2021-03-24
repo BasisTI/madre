@@ -12,6 +12,10 @@ export class PacienteListComponent {
         prontuario: []
     });
 
+    datatableExtraParams = {
+        rows: 20
+    }
+
     constructor(private fb: FormBuilder) {
     }
 
