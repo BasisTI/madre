@@ -19,7 +19,7 @@ export class PacienteEnderecoFormComponent {
     @Input()
     public enderecos: any =  FormArray;
 
-    public controle: boolean;
+    public controle: boolean = false;
 
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
