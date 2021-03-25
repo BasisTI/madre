@@ -2,7 +2,7 @@ import { Telefone } from './../paciente.model';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from './../../models/dropdowns/opcoes-de-tipo-de-telefone';
 import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
-import { FormArray, FormBuilder, OnInit } from "@angular/forms";
+import { FormArray, FormBuilder } from "@angular/forms";
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { OPCOES_DE_DDD } from '../../models/dropdowns/opcoes-de-DDD';
 
@@ -10,7 +10,7 @@ import { OPCOES_DE_DDD } from '../../models/dropdowns/opcoes-de-DDD';
     selector: 'paciente-form-telefone',
     templateUrl: './paciente-form-telefone.component.html',
 })
-export class PacienteTelefoneFormComponent implements OnInit{
+export class PacienteTelefoneFormComponent{
 
     @Input()
     public telefones: any = FormArray;
@@ -73,14 +73,6 @@ export class PacienteTelefoneFormComponent implements OnInit{
         this.telefones.controls[atual.indice].patchValue(atual);
         this.controle = false;
         this.telefone.reset();
-      }
-
-    getPhoneFromInput(event:any){
-        this.valueInput =  JSON.stringify(<HTMLElement>(event.target).value); 
-        this.ddd = this.valueInput.substring(2,4);
-        this.numero = this.valueInput.substring(5, this.valueInput.length-1);
-        console.log(this.ddd)
-        console.log(this.numero)
     }
 
     setTypePhone(event){
