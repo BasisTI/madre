@@ -1,8 +1,9 @@
+import { Telefone } from './../paciente.model';
+import { OPCOES_DE_TIPO_DE_TELEFONE } from './../../models/dropdowns/opcoes-de-tipo-de-telefone';
 import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, Input } from "@angular/core";
 import { FormArray, FormBuilder } from "@angular/forms";
-
-import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-telefone';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'paciente-form-telefone',
@@ -15,7 +16,15 @@ export class PacienteTelefoneFormComponent {
 
     public controle: boolean;
 
+    public valueInput: string = "";
+    public numero: string = "";
+    public ddd: string = "";
+
     public opcoesDeTipoDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
+
+    public selectedTypePhone: string;
+
+    public typeMask: string = "(99) 9999-9999"; 
 
     public telefone = this.fb.group({
         id: [null],
@@ -68,6 +77,25 @@ export class PacienteTelefoneFormComponent {
         this.controle = false;
         this.telefone.reset();
       }
+
+    getPhoneFromInput(event:any){
+        this.valueInput =  JSON.stringify(<HTMLElement>(event.target).value); 
+        this.ddd = this.valueInput.substring(2,4);
+        this.numero = this.valueInput.substring(5, this.valueInput.length-1);
+        console.log(this.ddd)
+        console.log(this.numero)
+    }
+
+    setTypePhone(event){
+        this.selectedTypePhone = event.value;
+        if(this.selectedTypePhone === 'CELULAR'){
+            this.typeMask = "(99) 9 9999-9999";
+        }
+        else{
+            this.typeMask = "(99) 9999-9999";
+        }
+
+    }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
