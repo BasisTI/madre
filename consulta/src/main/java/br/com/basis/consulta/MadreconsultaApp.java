@@ -76,6 +76,7 @@ public class MadreconsultaApp {
         try {
             hostAddress = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
+            log.error(String.valueOf(e));
             log.warn("The host name could not be determined, using `localhost` as fallback");
         }
         log.info("\n----------------------------------------------------------\n\t" +

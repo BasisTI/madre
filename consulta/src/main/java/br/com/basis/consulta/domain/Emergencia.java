@@ -2,13 +2,9 @@ package br.com.basis.consulta.domain;
 
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
 import br.com.basis.consulta.domain.enumeration.Turno;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiParam;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JacksonInject;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Column;
