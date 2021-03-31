@@ -2,9 +2,7 @@ package br.com.basis.consulta.service.dto;
 
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
 import br.com.basis.consulta.domain.enumeration.Turno;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JacksonInject;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -16,6 +14,7 @@ import java.util.Objects;
 /**
  * A DTO for the {@link br.com.basis.consulta.domain.Emergencia} entity.
  */
+@NoArgsConstructor
 public class EmergenciaDTO implements Serializable {
 
     private Long id;
@@ -55,9 +54,6 @@ public class EmergenciaDTO implements Serializable {
     private Long condicaoDeAtendimentoId;
 
     private Long formaDeAgendamentoId;
-
-    public EmergenciaDTO() {
-    }
 
     public Long getId() {
         return id;
