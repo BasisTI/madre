@@ -1,3 +1,5 @@
+import { BaseEntity } from "../shared";
+
 export interface ConsultaEmergenciaModel {
     numeroConsulta: number;
     dataHoraDaConsulta: Date;
@@ -18,26 +20,34 @@ export interface ConsultaEmergenciaModel {
     gradesDiponiveis: boolean;
 }
 
-export class ConsultaEmergencia {
-    public id?: number;
-    public url?: string;
-    public numeroConsulta?: number;
-    public dataHoraDaConsulta?: Date;
-    public grade?: number;
-    public prontuario?: string;
-    public nome?: string;
-    public numeroDeSala?: string;
-    public turno?: string;
-    public tipoPagador?: string;
-    public clinicaCentralId?: number;
-    public observacao?: string;
-    public justificativa?: string;
-    public condicaoDeAtendimentoId?: number;
-    public formaDeAgendamentoId: number;
-    public pacienteId?: number;
-    public gradesDiponiveis?: boolean;
-    public especialidade: string;
-    public profissional:  string;
+export class ConsultaEmergencia implements BaseEntity {
+constructor( public id?: number,
+    public url?: string,
+    public numeroConsulta?: number,
+    public dataHoraDaConsulta?: Date,
+    public grade?: number,
+    public prontuario?: string,
+    public nome?: string,
+    public numeroDeSala?: string,
+    public turno?: string,
+    public tipoPagador?: string,
+    public clinicaCentralId?: number,
+    public observacao?: string,
+    public justificativa?: string,
+    public condicaoDeAtendimentoId?: number,
+    public pacienteId?: number,
+    public gradesDiponiveis?: boolean,
+     ) {}
  }
+
+ export class SearchGroup {
+
+    constructor(
+        public numeroConsulta?: string,
+        public grade?: string,
+        public clinicaCentralId?: string
+    ) {
+    }
+  }
  
 

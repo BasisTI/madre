@@ -2,7 +2,9 @@ package br.com.basis.consulta.service.dto;
 
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
 import br.com.basis.consulta.domain.enumeration.Turno;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -22,6 +24,8 @@ public class EmergenciaDTO implements Serializable {
     private Long numeroConsulta;
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private ZonedDateTime dataHoraDaConsulta;
 
     @Max(value = 20L)

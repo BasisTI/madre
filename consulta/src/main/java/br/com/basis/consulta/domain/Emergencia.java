@@ -6,6 +6,7 @@ import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,6 +48,7 @@ public class Emergencia implements Serializable {
 
     @NotNull
     @Column(name = "data_hora_da_consulta", nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private ZonedDateTime dataHoraDaConsulta;
 
     @Max(value = 20L)

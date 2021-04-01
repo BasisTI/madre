@@ -215,3 +215,4 @@ jhipster:
 # ===================================================================
 
 # application:
+nuvem.elasticsearch.reindex.enabled: true

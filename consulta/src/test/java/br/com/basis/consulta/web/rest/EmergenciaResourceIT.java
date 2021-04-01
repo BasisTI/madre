@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -91,6 +92,11 @@ public class EmergenciaResourceIT {
     @Autowired
     private EmergenciaService emergenciaService;
 
+    @Autowired
+    private EmergenciaSearchRepository emergenciaSearchRepository;
+
+
+
     /**
      * This repository is mocked in the br.com.basis.consulta.repository.search test package.
      *
@@ -121,7 +127,7 @@ public class EmergenciaResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EmergenciaResource emergenciaResource = new EmergenciaResource(emergenciaService);
+        final EmergenciaResource emergenciaResource = new EmergenciaResource(emergenciaService, emergenciaSearchRepository);
         this.restEmergenciaMockMvc = MockMvcBuilders.standaloneSetup(emergenciaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

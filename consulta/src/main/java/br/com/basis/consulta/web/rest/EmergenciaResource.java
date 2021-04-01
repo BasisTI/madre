@@ -1,10 +1,12 @@
 package br.com.basis.consulta.web.rest;
 
+import br.com.basis.consulta.repository.search.EmergenciaSearchRepository;
 import br.com.basis.consulta.service.EmergenciaService;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
 import br.com.basis.consulta.service.projection.CalendarioResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
+
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +35,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+
+
 /**
  * REST controller for managing {@link br.com.basis.consulta.domain.Emergencia}.
  */
@@ -43,13 +48,19 @@ public class EmergenciaResource {
 
     private static final String ENTITY_NAME = "madreconsultaEmergencia";
 
+    public static final String API_EMERGENCIA = "/api/analises/";
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final EmergenciaService emergenciaService;
 
-    public EmergenciaResource(EmergenciaService emergenciaService) {
+    private final EmergenciaSearchRepository emergenciaSearchRepository;
+
+
+    public EmergenciaResource(EmergenciaService emergenciaService, EmergenciaSearchRepository emergenciaSearchRepository) {
         this.emergenciaService = emergenciaService;
+        this.emergenciaSearchRepository = emergenciaSearchRepository;
     }
 
     /**
@@ -143,12 +154,16 @@ public class EmergenciaResource {
      * @return the result of the search.
      */
     @GetMapping("/_search/consultas-emergencias")
-    public ResponseEntity<List<EmergenciaDTO>> searchEmergencias(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<EmergenciaDTO>> searchEmergencias(@RequestParam(defaultValue = "*") String query, Pageable pageable) throws URISyntaxException {
         log.debug("REST request to search for a page of Emergencias for query {}", query);
+        System.out.println(query);
         Page<EmergenciaDTO> page = emergenciaService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        HttpHeaders headers = br.com.basis.consulta.web.rest.util.PaginationUtil.generateSearchPaginationHttpHeaders(query, page,
+            "/api/_search/consultas-emergencias");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+
     }
+
     @GetMapping("/consultas-emergencias/calendario")
     @Timed
     public ResponseEntity<List<CalendarioResumo>> buscarCalendarioResumo(Pageable pageable) {
