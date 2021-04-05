@@ -1,8 +1,8 @@
 <div class="ui-g ui-fluid" [formGroup]="telefone">
     <div class="ui-g-12">
-        <div nInputMask required mask="(99)" tooltip="Informe o DDD." placeholder="(__)" label="DDD" formControlName="ddd" class="ui-g-3 ui-sm-12"></div>
-        <div nInputMask required mask="9 9999-9999" tooltip="Informe o telefone." placeholder="_ ____-____" label="Telefone" formControlName="numero" class="ui-g-6 ui-sm-12"></div>
-        <div nDropdown required label="Tipo de Telefone" [options]="opcoesDeTipoDeTelefone" formControlName="tipo" class="ui-g-3 ui-sm-12"></div>
+        <div nDropdown required label="Tipo de Telefone" [options]="opcoesDeDDD" formControlName="tipo" (onChange)="tipoTelefone($event)" class="ui-g-4 ui-sm-12"></div>
+        <div nDropdown required label="DDD" [options]="opcoesDeDDD" formControlName="ddd" class="ui-g-2 ui-sm-12"></div>
+        <div nInputMask required [mask]="typeMask" tooltip="Informe o telefone." label="Telefone" formControlName="numero" class="ui-g-6 ui-sm-12"></div>
         <div class="ui-g-12 ui-sm-12">
             <span class="ui-float-label">
                 <textarea

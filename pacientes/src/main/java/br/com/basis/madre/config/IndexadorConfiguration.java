@@ -2,6 +2,7 @@ package br.com.basis.madre.config;
 
 import br.com.basis.madre.domain.CartaoSUS;
 import br.com.basis.madre.domain.Certidao;
+import br.com.basis.madre.domain.DDD;
 import br.com.basis.madre.domain.Documento;
 import br.com.basis.madre.domain.Endereco;
 import br.com.basis.madre.domain.EstadoCivil;
@@ -24,6 +25,7 @@ import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.domain.UF;
 import br.com.basis.madre.repository.CartaoSUSRepository;
 import br.com.basis.madre.repository.CertidaoRepository;
+import br.com.basis.madre.repository.DDDRepository;
 import br.com.basis.madre.repository.DocumentoRepository;
 import br.com.basis.madre.repository.EnderecoRepository;
 import br.com.basis.madre.repository.EstadoCivilRepository;
@@ -46,6 +48,7 @@ import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.UFRepository;
 import br.com.basis.madre.repository.search.CartaoSUSSearchRepository;
 import br.com.basis.madre.repository.search.CertidaoSearchRepository;
+import br.com.basis.madre.repository.search.DDDSearchRepository;
 import br.com.basis.madre.repository.search.DocumentoSearchRepository;
 import br.com.basis.madre.repository.search.EnderecoSearchRepository;
 import br.com.basis.madre.repository.search.EstadoCivilSearchRepository;
@@ -129,6 +132,9 @@ public class IndexadorConfiguration {
 
     private final RacaRepository racaRepository;
     private final RacaSearchRepository racaSearchRepository;
+
+    private final DDDRepository dddRepository;
+    private final DDDSearchRepository dddSearchRepository;
 
     private final ReligiaoRepository religiaoRepository;
     private final ReligiaoSearchRepository religiaoSearchRepository;
@@ -328,6 +334,17 @@ public class IndexadorConfiguration {
             .descricao("Raça")
             .jpaRepository(racaRepository)
             .elasticsearchClassRepository(racaSearchRepository)
+            .elasticsearchOperations(elasticsearchOperations)
+            .build();
+    }
+
+    @Bean
+    public Indexador indexadorDDD() {
+        return IndexadorSemMapper.<DDD, Long>builder()
+            .codigo("ddd")
+            .descricao("DDD")
+            .jpaRepository(dddRepository)
+            .elasticsearchClassRepository(dddSearchRepository)
             .elasticsearchOperations(elasticsearchOperations)
             .build();
     }
