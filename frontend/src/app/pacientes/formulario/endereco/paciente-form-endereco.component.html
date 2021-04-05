@@ -39,7 +39,7 @@
     <div class="ui-g-12">
         <div nCheck label="Correspondência?" required formControlName="correspondencia" class="ui-g-9"></div>
     </div>
-    <div *ngIf="!controle">
+    <div *ngIf="!enderecoValido">
         <p-button
             label="Adicionar"
             [disabled]="endereco.invalid"
@@ -48,7 +48,7 @@
             style="margin-left: 20px; width: 90px;">
         </p-button>
     </div>
-    <div *ngIf="controle">
+    <div *ngIf="enderecoValido">
         <p-button
         [disabled]="endereco.invalid"
         label="Editar"
