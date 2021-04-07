@@ -36,6 +36,7 @@
             </div>
         </div>
         <div class="ui-g-12">
+            <!-- Botão Pesquisar-->
             <div class="ui-g-2 ui-sm-12">
                 <button
                     pButton
@@ -46,16 +47,33 @@
                 ></button>
             </div>
             <div class="ui-g-2 ui-sm-12">
-                <button pButton type="button" label="Cadastrar"></button>
+                <button 
+                    pButton 
+                    type="button" 
+                    routerLink="/cadastrar-medicamento"
+                    label="Cadastrar">
+                </button>
             </div>
             <div class="ui-g-2 ui-sm-12">
-                <button pButton type="button" label="Limpar"></button>
+                <button 
+                    pButton type="button" 
+                    label="Limpar"
+                    (click)="limparPesquisa()">
+                </button>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <button pButton type="button" label="Exportar"></button>
             </div>
         </div>
-        <basis-datatable type="memory" [value]="medicamento" sortField="brand">
+        <basis-datatable type="memory" 
+                [value]="medicamento" 
+                sortField="brand"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+                (buttonClick)="btnClick($event)"
+                #datatable>
+        
             <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
             <p-column header="Concentração" field="concentracao"></p-column>
             <p-column header="Unidade" field="unidade">
@@ -68,7 +86,7 @@
                         }}</span
                     >
                 </ng-template>
-            </p-column>
+            </p-column>        
             <p-column header="Apresentação" field="apresentacao">
                 <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                     <span>
@@ -82,9 +100,32 @@
             </p-column>
             <p-column header="Situação" field="ativo">
                 <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                    <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }}</span>
+                    <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>
                 </ng-template>
             </p-column>
+
+            <basis-datatable-button 
+                name="edit"
+                icon="edit" 
+                [disabled]="datatable.selectedRow == null"
+                class="ui-button-success">
+            </basis-datatable-button>
+
+            <basis-datatable-button
+                ng-reflect-icon="ui-icon-remove-red-eye"
+                ng-reflect-b-tooltip="Escolha um registro para visualizar"
+                class="ng-star-inserted"
+                [disabled]="datatable.selectedRow == null"
+                name="view"
+                icon="remove-red-eye">
+            </basis-datatable-button>
+            
+            <basis-datatable-button
+                class="ui-button-danger"
+                [disabled]="datatable.selectedRow == null"
+                (buttonClick)="btnClick($event)"
+                icon="delete">
+            </basis-datatable-button>        
         </basis-datatable>
     </div>
 </div>
