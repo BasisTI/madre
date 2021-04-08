@@ -55,14 +55,14 @@ public class PacientesApp {
      *
      * @param args the command line arguments.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(PacientesApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
+        Environment env = app.run(args.clone()).getEnvironment();
         logApplicationStartup(env);
     }
 
-    private static void logApplicationStartup(Environment env) {
+    private static void logApplicationStartup(Environment env) throws UnknownHostException {
         String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";

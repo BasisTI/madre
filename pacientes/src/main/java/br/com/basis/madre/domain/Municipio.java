@@ -37,19 +37,18 @@ public class Municipio implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Field(type = FieldType.Text)
     @NotNull
-    @Column(name = "nome", nullable = false)
+    @Field(type = FieldType.Text)
+    @Column(name = "nome")
     private String nome;
 
     @Field(type = FieldType.Text)
     @Column(name = "nome_do_distrito")
     private String nomeDoDistrito;
 
-
-    @Field(type = FieldType.Text)
     @NotNull
-    @Column(name = "ibge", nullable = false)
+    @Field(type = FieldType.Text)
+    @Column(name = "ibge")
     private String ibge;
 
     @Field(type = FieldType.Object)

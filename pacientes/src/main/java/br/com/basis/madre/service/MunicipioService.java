@@ -33,8 +33,7 @@ public class MunicipioService {
 
     private final MunicipioSearchRepository municipioSearchRepository;
 
-    public MunicipioService(MunicipioRepository municipioRepository,
-        MunicipioMapper municipioMapper, MunicipioSearchRepository municipioSearchRepository) {
+    public MunicipioService(MunicipioRepository municipioRepository, MunicipioMapper municipioMapper, MunicipioSearchRepository municipioSearchRepository) {
         this.municipioRepository = municipioRepository;
         this.municipioMapper = municipioMapper;
         this.municipioSearchRepository = municipioSearchRepository;
@@ -107,13 +106,8 @@ public class MunicipioService {
     }
 
     /**
-     * TODO: Write documentation
+     *  Write documentation
      */
-    public Page<MunicipioUF> findAllProjectedMunicipioUFBy(Long idUf, String nome, Pageable pageable) {
-        UF uf = new UF();
-        uf.setId(idUf);
-        return municipioRepository.findByNomeContainsIgnoreCaseAndUf(nome,uf,pageable);
-    }
 
     public Page<MunicipioUF> findAllProjectedMunicipioUFByNaturalidade(Long idUf, String nome, Pageable pageable) {
         UF uf = new UF();

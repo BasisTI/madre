@@ -52,15 +52,8 @@ public class MunicipioResource {
     }
 
     /**
-     * TODO: Write documentation
+     * Write documentation
      */
-    @GetMapping("/municipios/filtragem")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFBy(@RequestParam(required = false)Long idUf,String nome, Pageable pageable) {
-        Page<MunicipioUF> page = municipioService
-            .findAllProjectedMunicipioUFBy(idUf, nome ,pageable);
-        return ResponseEntity.ok(page.getContent());
-    }
-
     @GetMapping("/municipios/naturalidade")
     public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNaturalidade(@RequestParam(required = false)Long idUf,String nome, Pageable pageable) {
         Page<MunicipioUF> page = municipioService
@@ -168,7 +161,7 @@ public class MunicipioResource {
      */
     @GetMapping("/_search/municipios")
     public ResponseEntity<List<MunicipioDTO>> searchMunicipios(@RequestParam String query,
-        Pageable pageable) {
+                                                               Pageable pageable) {
         log.debug("REST request to search for a page of Municipios for query {}", query);
         Page<MunicipioDTO> page = municipioService.search(query, pageable);
         HttpHeaders headers = PaginationUtil

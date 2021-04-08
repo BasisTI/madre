@@ -11,14 +11,14 @@ public interface PacienteResumo {
     Long getProntuario();
     String getNome();
     LocalDate getDataDeNascimento();
-    Genitores_ getGenitores();
-    CartaoSUS_ getCartaoSUS();
+    GenitoresInterface getGenitores();
+    CartaoSUSInterface getCartaoSUS();
 
-    static interface Genitores_ {
+    static interface GenitoresInterface {
         String getNomeDaMae();
     }
 
-    static interface CartaoSUS_ {
+    static interface CartaoSUSInterface {
         String getNumero();
     }
 }

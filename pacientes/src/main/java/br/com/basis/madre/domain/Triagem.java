@@ -1,7 +1,9 @@
 package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -136,7 +138,7 @@ public class Triagem implements Serializable {
         return this;
     }
 
-    public Triagem ClassificacaoDeRisco (ClassificacaoDeRisco classificacaoDeRisco) {
+    public Triagem classificacaoDeRisco (ClassificacaoDeRisco classificacaoDeRisco) {
         this.classificacaoDeRisco = classificacaoDeRisco;
         return this;
     }

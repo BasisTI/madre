@@ -20,7 +20,6 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     Optional<Paciente> findByProntuario(Long prontuario);
 
-    @Query(value = "select nextval('seq_num_prontuario') ", nativeQuery =
-        true)
+    @Query(value = "select nextval('seq_num_prontuario') ", nativeQuery = true)
     Long gerarProntuario();
 }

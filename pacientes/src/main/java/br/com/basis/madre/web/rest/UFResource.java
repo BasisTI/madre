@@ -91,7 +91,7 @@ public class UFResource {
     }
 
     /**
-     * TODO: Write documentation
+     *  Write documentation
      */
     @GetMapping("/ufs")
     public ResponseEntity<List<UFDTO>> getAllUFS(Pageable pageable) {

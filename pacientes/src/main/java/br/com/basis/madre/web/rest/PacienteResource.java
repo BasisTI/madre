@@ -55,7 +55,7 @@ public class PacienteResource {
     }
 
     /**
-     * TODO: Write documentation
+     * Write documentation
      */
     @GetMapping("/pacientes/_resumo")
     public ResponseEntity<Page<PacienteResumo>> findAllProjectedPacienteResumoBy(@RequestParam(required = false,defaultValue = "") String nome,Pageable pageable) {

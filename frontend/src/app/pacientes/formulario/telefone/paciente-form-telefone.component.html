@@ -1,8 +1,8 @@
 <div class="ui-g ui-fluid" [formGroup]="telefone">
     <div class="ui-g-12">
-        <div nDropdown required label="Tipo de Telefone" [options]="opcoesDeDDD" formControlName="tipo" (onChange)="tipoTelefone($event)" class="ui-g-4 ui-sm-12"></div>
-        <div nDropdown required label="DDD" [options]="opcoesDeDDD" formControlName="ddd" class="ui-g-2 ui-sm-12"></div>
-        <div nInputMask required [mask]="typeMask" tooltip="Informe o telefone." label="Telefone" formControlName="numero" class="ui-g-6 ui-sm-12"></div>
+        <div nDropdown required label="Tipo de Telefone" [options]="opcoesDeTipoDeTelefone" formControlName="tipo" (onChange)="tipoTelefone($event)" class="ui-g-4 ui-sm-12"></div>
+        <div nDropdown required label="DDD" [service]="dddService" optionLabel="valor" formControlName="ddd" class="ui-g-2 ui-sm-12"></div>
+        <div nInputMask required [mask]="tipoMascara" tooltip="Informe o telefone." label="Telefone" formControlName="numero" class="ui-g-6 ui-sm-12"></div>
         <div class="ui-g-12 ui-sm-12">
             <span class="ui-float-label">
                 <textarea
@@ -20,11 +20,11 @@
         <p-button
             label="Adicionar"
             [disabled]="telefone.invalid"
-            [disabled]="controle ? true : null"
+            [disabled]="validaTelefone ? true : null"
             type="button"
             (onClick)="adicionarTelefoneALista()"></p-button>
     </div>
-    <div *ngIf="controle">
+    <div *ngIf="validaTelefone">
         <p-button
         [disabled]="telefone.invalid"
         label="Editar"

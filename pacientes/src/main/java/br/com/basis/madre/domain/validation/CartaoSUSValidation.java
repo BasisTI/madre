@@ -6,13 +6,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, String> {
-    private final int TAMANHO_NUM_CARTAO_SUS = 15;
-
-    @Override
-    public void initialize(CartaoSUS constraintAnnotation) {
-
-        //Value não está sendo ultilizado  this.value = constraintAnnotation.value();
-    }
+    private static final int TAMANHO_NUM_CARTAO_SUS = 15;
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
@@ -24,9 +18,8 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
             }
             return false;
         }
-
-
     }
+
     private int somaPonderada(String s) {
         char[] cs = s.toCharArray();
         int soma = 0;
@@ -35,9 +28,5 @@ public class CartaoSUSValidation implements ConstraintValidator<CartaoSUS, Strin
         }
         return soma;
     }
-
-
-
-
 
 }
