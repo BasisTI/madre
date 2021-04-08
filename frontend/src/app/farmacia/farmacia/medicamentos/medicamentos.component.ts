@@ -52,11 +52,11 @@ export class MedicamentosComponent implements OnInit {
     }
 
     public limparPesquisa() {
-        //this.elasticQuery.reset();
-        //this.recarregarDataTable();
         this.codigo = '';
         this.descricao = '';
         this.listar();
+        this.recarregarDataTable();
+        this.datatable.filter();
     }
 
     public recarregarDataTable() {
@@ -81,10 +81,6 @@ export class MedicamentosComponent implements OnInit {
                 this.abrirVisualizar(event.selection);
                 break;
             }
-            // case 'delete': {
-            //     this.confirmDelete(event.selection);
-            //    break;
-            // }
             default: {
                 break;
              }
