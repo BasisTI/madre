@@ -19,8 +19,8 @@ export class PacienteEnderecoFormComponent {
     @Input()
     public enderecos: any =  FormArray;
 
-    public controle: boolean;
-
+    public enderecoValido: boolean = false;
+    
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
     ufs: UF[] = [];
@@ -130,7 +130,7 @@ export class PacienteEnderecoFormComponent {
         if (event.selection) {
             switch (event.button) {
                 case "edit":
-                    this.controle = true;
+                    this.enderecoValido = true;
                     this.endereco.patchValue(this.enderecos.controls[event.selection.indice].value);
                     break;
                 case "delete":
@@ -145,7 +145,7 @@ export class PacienteEnderecoFormComponent {
     atualizarEdicao(): void {
         let atual = this.endereco.value;
         this.enderecos.controls[atual.indice].patchValue(atual);
-        this.controle = false;
+        this.enderecoValido = false;
         this.endereco.reset();
       }
 
