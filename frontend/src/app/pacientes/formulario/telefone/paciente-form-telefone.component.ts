@@ -5,7 +5,6 @@ import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-component
 import { Component, Input, OnInit } from "@angular/core";
 import { FormArray, FormBuilder } from "@angular/forms";
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { OPCOES_DE_DDD } from '../../models/dropdowns/opcoes-de-DDD';
 import { DDD } from '../../models/dropdowns/types/DDD';
 
 @Component({
@@ -19,7 +18,6 @@ export class PacienteTelefoneFormComponent implements OnInit{
 
     public controle: boolean;
 
-    public opcoesDeDDD = OPCOES_DE_DDD;
     public listaDDD: DDD[] = [];
 
     public tipoDeTelefoneSelecionado: string;
