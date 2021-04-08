@@ -75,8 +75,7 @@ public class TriagemResource {
 
     @PutMapping("/triagens")
     @Timed
-    public ResponseEntity<TriagemDTO> updateTriagem(@Valid @RequestBody TriagemDTO triagemDTO)
-        throws URISyntaxException {
+    public ResponseEntity<TriagemDTO> updateTriagem(@Valid @RequestBody TriagemDTO triagemDTO) {
         log.debug("REST request to update Triagem : {}", triagemDTO);
         if (triagemDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

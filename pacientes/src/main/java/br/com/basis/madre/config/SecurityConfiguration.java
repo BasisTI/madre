@@ -22,12 +22,12 @@ public class SecurityConfiguration extends SecurityConfigurationComum {
     public void configureApp(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/**").permitAll()
-            .antMatchers("/api/**").permitAll()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/**").permitAll()
+            .antMatchers("/**").permitAll();
     }
 
 }

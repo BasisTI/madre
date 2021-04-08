@@ -3,6 +3,7 @@ package br.com.basis.madre.domain;
 import br.com.basis.madre.domain.enumeration.GrauDeInstrucao;
 import br.com.basis.madre.domain.enumeration.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
@@ -222,11 +223,6 @@ public class Paciente implements Serializable {
         return this;
     }
 
-
-    public Paciente enderecos(Set<Endereco> enderecos) {
-        this.enderecos = enderecos;
-        return this;
-    }
 
     public Paciente addEndereco(Endereco endereco) {
         this.enderecos.add(endereco);

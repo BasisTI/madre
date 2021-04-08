@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public interface MunicipioUF {
     Long getId();
     String getNome();
-    UF_ getUf();
+    UFInterface getUf();
 
-    static interface UF_ {
+    static interface UFInterface{
         String getUnidadeFederativa();
         String getSigla();
     }

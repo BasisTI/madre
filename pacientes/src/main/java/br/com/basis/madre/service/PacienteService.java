@@ -1,6 +1,5 @@
 package br.com.basis.madre.service;
 
-import br.com.basis.madre.config.ApplicationProperties;
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.domain.enumeration.TipoEvento;
 import br.com.basis.madre.domain.evento.EventoPaciente;
@@ -16,6 +15,7 @@ import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -53,9 +53,10 @@ public class PacienteService {
 
     private final ProntuarioService prontuarioService;
 
-    private final ApplicationProperties properties;
+    @Value("${application.elasticSearchFuzzyParameter}")
+    private static Integer elasticSearchFuzzyParam;
 
-    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService, ApplicationProperties properties) {
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, PacienteSearchRepository pacienteSearchRepository, PacienteInclusaoMapper pacienteInclusaoMapper, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, ProntuarioService prontuarioService) {
         this.pacienteRepository = pacienteRepository;
         this.pacienteMapper = pacienteMapper;
         this.pacienteSearchRepository = pacienteSearchRepository;
@@ -63,11 +64,10 @@ public class PacienteService {
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
         this.prontuarioService = prontuarioService;
-        this.properties = properties;
     }
 
     /**
-     * TODO: Write documentation
+     * Write documentation
      */
     public Page<PacienteResumo> findAllProjectedPacienteResumoBy(String nome,Pageable pageable) {
         return pacienteRepository.findAllProjectedPacienteResumoByNomeContainingIgnoreCase(nome, pageable);
@@ -170,13 +170,12 @@ public class PacienteService {
         }
         if(!Strings.isNullOrEmpty(nome) && prontuario == null){
             log.debug("Request to find Paciente by name: {}", nome);
-            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(this.properties.getElasticSearchFuzzyParameter());
+            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(this.elasticSearchFuzzyParam);
             return pacienteSearchRepository.search(query,pageable);
         }
         log.debug("Request to find Paciente by prontuario: {}", prontuario);
         List<Paciente> list = pacienteSearchRepository.findByProntuario(prontuario);
-        Page<Paciente> page = new PageImpl<>(list,pageable,list.size());
-        return page;
+        return new PageImpl<>(list,pageable,list.size());
     }
 }
 

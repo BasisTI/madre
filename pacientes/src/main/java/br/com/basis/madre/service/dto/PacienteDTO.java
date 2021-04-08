@@ -28,20 +28,21 @@ public class PacienteDTO implements Serializable {
 
     private String nomeSocial;
 
+    private Instant horaDeNascimento;
+
     @NotNull
     private LocalDate dataDeNascimento;
 
-    private Instant horaDeNascimento;
+    private String observacao;
 
     private String email;
 
-    private String observacao;
+    @NotNull
+    private Sexo sexo;
 
     @NotNull
     private GrauDeInstrucao grauDeInstrucao;
 
-    @NotNull
-    private Sexo sexo;
 
     private Long cartaoSUSId;
 
