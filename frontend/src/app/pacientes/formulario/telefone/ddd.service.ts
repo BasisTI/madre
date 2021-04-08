@@ -14,8 +14,5 @@ export class DDDService extends CrudServiceNuvem<number, DDD>{
   constructor(private httpClient: HttpClient) {
     super('/pacientes/api/list/ddd', httpClient);
   }
-
-/*getListaDeDDDs(): Observable<DDD[]>{
-    return this.httpClient.get<DDD[]>(this.uriServico);
-  }*/
+  
 }
