@@ -33,8 +33,7 @@ public class MunicipioService {
 
     private final MunicipioSearchRepository municipioSearchRepository;
 
-    public MunicipioService(MunicipioRepository municipioRepository,
-                            MunicipioMapper municipioMapper, MunicipioSearchRepository municipioSearchRepository) {
+    public MunicipioService(MunicipioRepository municipioRepository, MunicipioMapper municipioMapper, MunicipioSearchRepository municipioSearchRepository) {
         this.municipioRepository = municipioRepository;
         this.municipioMapper = municipioMapper;
         this.municipioSearchRepository = municipioSearchRepository;
