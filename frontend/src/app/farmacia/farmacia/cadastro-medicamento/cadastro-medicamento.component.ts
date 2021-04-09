@@ -7,7 +7,6 @@ import { Apresentacao } from './apresentacao';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Medicamentos } from '../medicamentos/Medicamento';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MedicamentoComponent } from '@prescricao-medica/medicamento/medicamento.component';
 import { ConfirmationService } from 'primeng';
 
 @Component({
