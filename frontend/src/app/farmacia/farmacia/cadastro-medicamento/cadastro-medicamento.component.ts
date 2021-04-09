@@ -35,12 +35,8 @@ export class CadastroMedicamentoComponent implements OnInit {
     submit() {
         console.log(this.form.value);
         this.medicamento = this.form.value;
-        if(this.medicamentoId){
-            this.medicamento.id = this.medicamentoId;
-            this.service.atualizar(this.medicamento).subscribe();
-        }else{
-            this.service.cadastrar(this.medicamento).subscribe();
-        }        
+        this.service.cadastrar(this.medicamento).subscribe();
+                
     }
 
     searchTipoMedicamento(event) {
