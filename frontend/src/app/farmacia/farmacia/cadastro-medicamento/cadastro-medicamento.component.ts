@@ -7,7 +7,6 @@ import { Apresentacao } from './apresentacao';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Medicamentos } from '../medicamentos/Medicamento';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MedicamentoComponent } from '@prescricao-medica/medicamento/medicamento.component';
 import { ConfirmationService } from 'primeng';
 
 @Component({
@@ -35,12 +34,8 @@ export class CadastroMedicamentoComponent implements OnInit {
     submit() {
         console.log(this.form.value);
         this.medicamento = this.form.value;
-        if(this.medicamentoId){
-            this.medicamento.id = this.medicamentoId;
-            this.service.atualizar(this.medicamento).subscribe();
-        }else{
-            this.service.cadastrar(this.medicamento).subscribe();
-        }        
+        this.service.cadastrar(this.medicamento).subscribe();
+                
     }
 
     searchTipoMedicamento(event) {
