@@ -2,7 +2,7 @@ package br.com.basis.madre.service.mapper;
 
 
 import br.com.basis.madre.domain.DDD;
-import br.com.basis.madre.service.dto.DDD_DTO;
+import br.com.basis.madre.service.dto.DddDto;
 import org.mapstruct.Mapper;
 
 /**
@@ -11,9 +11,9 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {})
 public interface DDDMapper {
 
-    DDD_DTO toDto(DDD ddd);
+    DddDto toDto(DDD ddd);
 
-    DDD toEntity(DDD_DTO dddDTO);
+    DDD toEntity(DddDto dddDTO);
 
     default DDD fromId(Long id) {
         if (id == null) {

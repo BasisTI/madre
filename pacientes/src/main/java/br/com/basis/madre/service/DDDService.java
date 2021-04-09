@@ -3,7 +3,7 @@ package br.com.basis.madre.service;
 import br.com.basis.madre.domain.DDD;
 import br.com.basis.madre.repository.DDDRepository;
 import br.com.basis.madre.repository.search.DDDSearchRepository;
-import br.com.basis.madre.service.dto.DDD_DTO;
+import br.com.basis.madre.service.dto.DddDto;
 import br.com.basis.madre.service.mapper.DDDMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,17 +43,17 @@ public class DDDService {
      * @return the persisted entity.
      */
 
-    public DDD_DTO save(DDD_DTO dddDTO) {
+    public DddDto save(DddDto dddDTO) {
         log.debug("Request to save DDD : {}", dddDTO);
         DDD ddd = dddMapper.toEntity(dddDTO);
         ddd = dddRepository.save(ddd);
-        DDD_DTO result = dddMapper.toDto(ddd);
+        DddDto result = dddMapper.toDto(ddd);
         dddSearchRepository.save(ddd);
         return result;
     }
 
     @Transactional(readOnly = true)
-    public Page<DDD_DTO> findAll(DDD_DTO dddDTO, Pageable pageable) {
+    public Page<DddDto> findAll(DddDto dddDTO, Pageable pageable) {
         log.debug("Request to get all DDDs");
         return dddRepository.findAll(
             Example.of(dddMapper.toEntity(dddDTO),
@@ -72,7 +72,7 @@ public class DDDService {
      */
 
     @Transactional(readOnly = true)
-    public Page<DDD_DTO> findAll(Pageable pageable) {
+    public Page<DddDto> findAll(Pageable pageable) {
         log.debug("Request to get all DDDs");
         return dddRepository.findAll(pageable)
             .map(dddMapper::toDto);
@@ -86,7 +86,7 @@ public class DDDService {
      */
 
     @Transactional(readOnly = true)
-    public Optional<DDD_DTO> findOne(Long id) {
+    public Optional<DddDto> findOne(Long id) {
         log.debug("Request to get DDD : {}", id);
         return dddRepository.findById(id)
             .map(dddMapper::toDto);

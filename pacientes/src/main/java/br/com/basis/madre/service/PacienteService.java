@@ -170,7 +170,7 @@ public class PacienteService {
         }
         if(!Strings.isNullOrEmpty(nome) && prontuario == null){
             log.debug("Request to find Paciente by name: {}", nome);
-            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(this.elasticSearchFuzzyParam);
+            MultiMatchQueryBuilder query = QueryBuilders.multiMatchQuery(nome).field("nome").type(MultiMatchQueryBuilder.Type.BEST_FIELDS).fuzziness(PacienteService.elasticSearchFuzzyParam);
             return pacienteSearchRepository.search(query,pageable);
         }
         log.debug("Request to find Paciente by prontuario: {}", prontuario);
