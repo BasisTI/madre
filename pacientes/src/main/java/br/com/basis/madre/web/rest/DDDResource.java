@@ -1,22 +1,24 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.DDDService;
-import br.com.basis.madre.service.EtniaService;
-import br.com.basis.madre.service.dto.DDD_DTO;
-import br.com.basis.madre.service.dto.EtniaDTO;
+import br.com.basis.madre.service.dto.DddDto;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
-import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -24,8 +26,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
-import static org.hibernate.id.IdentifierGenerator.ENTITY_NAME;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.domain.DDD}.
@@ -52,12 +52,12 @@ public class DDDResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/ddd")
-    public ResponseEntity<DDD_DTO> createDDD(@Valid @RequestBody DDD_DTO dddDTO) throws URISyntaxException {
+    public ResponseEntity<DddDto> createDDD(@Valid @RequestBody DddDto dddDTO) throws URISyntaxException {
         log.debug("REST request to save DDD : {}", dddDTO);
         if (dddDTO.getId () != null) {
             throw new BadRequestAlertException("A new ddd cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        DDD_DTO result = dddService.save(dddDTO);
+        DddDto result = dddService.save(dddDTO);
         URI uri = new URI("/api/ddd/" + result.getId());
         return ResponseEntity.created(uri).body(result);
     }
@@ -72,19 +72,19 @@ public class DDDResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/ddd")
-    public ResponseEntity<DDD_DTO> updateDDD(@Valid @RequestBody DDD_DTO dddDTO) throws URISyntaxException {
+    public ResponseEntity<DddDto> updateDDD(@Valid @RequestBody DddDto dddDTO) throws URISyntaxException {
         log.debug("REST request to update DDD : {}", dddDTO);
         if (dddDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        DDD_DTO result = dddService.save(dddDTO);
+        DddDto result = dddService.save(dddDTO);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/list/ddd")
-    public ResponseEntity<List<DDD_DTO>> getAllDDD(DDD_DTO dddDTO, @PageableDefault(value = 100) Pageable pageable) {
+    public ResponseEntity<List<DddDto>> getAllDDD(DddDto dddDTO, @PageableDefault(value = 100) Pageable pageable) {
         log.debug("REST request to get a page of DDD");
-        Page<DDD_DTO> page = dddService.findAll(dddDTO, pageable);
+        Page<DddDto> page = dddService.findAll(dddDTO, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -96,9 +96,9 @@ public class DDDResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the dddDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/ddd/{id}")
-    public ResponseEntity<DDD_DTO> getDDD(@PathVariable Long id) {
+    public ResponseEntity<DddDto> getDDD(@PathVariable Long id) {
         log.debug("REST request to get DDD : {}", id);
-        Optional<DDD_DTO> dddDTO = dddService.findOne(id);
+        Optional<DddDto> dddDTO = dddService.findOne(id);
         return ResponseUtil.wrapOrNotFound(dddDTO);
     }
 

@@ -10,7 +10,7 @@ import { DDD } from '../../models/dropdowns/types/DDD';
     selector: 'paciente-form-telefone',
     templateUrl: './paciente-form-telefone.component.html',
 })
-export class PacienteTelefoneFormComponent{
+export class PacienteTelefoneFormComponent {
 
     @Input()
     public telefones: any = FormArray;
@@ -34,7 +34,7 @@ export class PacienteTelefoneFormComponent{
         indice: [null]
     });
 
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, private dddService: DDDService) {
+    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, protected dddService: DDDService) {
     }
 
     adicionarTelefoneALista() {
@@ -84,6 +84,12 @@ export class PacienteTelefoneFormComponent{
         else{
             this.tipoMascara = "9999-9999";
         }
+    }
+
+    atualizarDDD(evento){
+        this.telefone.patchValue({
+            ddd: evento.value.valor
+        })
     }
 
     ngOnDestroy(): void {

@@ -58,7 +58,8 @@ public class PacientesApp {
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(PacientesApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args.clone()).getEnvironment();
+        String cloneArgs[] = args.clone();
+        Environment env = app.run(cloneArgs).getEnvironment();
         logApplicationStartup(env);
     }
 
@@ -76,7 +77,7 @@ public class PacientesApp {
         try {
             hostAddress = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            log.warn("The host name could not be determined, using `localhost` as fallback");
+            log.warn("The host name could not be determined, using `localhost` as fallback: ", e.getMessage());
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +
