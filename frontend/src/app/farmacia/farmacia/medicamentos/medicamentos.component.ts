@@ -1,8 +1,12 @@
-import { Medicamento } from './Medicamento';
+import { Medicamento, Medicamentos } from './Medicamento';
 import { Prescricao } from './../dispensacao/prescricao';
 import { FarmaciaService } from './../farmacia.service';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DatatableClickEvent, DatatableComponent, PageNotificationService } from '@nuvem/primeng-components';
+import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { ElasticQuery } from 'src/app/shared/elastic-query';
 
 @Component({
     selector: 'app-medicamentos',
@@ -10,12 +14,17 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./medicamentos.component.css'],
 })
 export class MedicamentosComponent implements OnInit {
+
+    @ViewChild(DatatableComponent) datatable: DatatableComponent;
+
     descricao = '';
     codigo = '';
     situacao = '';
     results = [];
     medicamento: Medicamento[];
     '';
+    elasticQuery: ElasticQuery = new ElasticQuery();
+   
 
     listar() {
         this.service
@@ -27,7 +36,10 @@ export class MedicamentosComponent implements OnInit {
         console.log(this.medicamento);
     }
 
-    constructor(private service: FarmaciaService) {
+    constructor(private service: FarmaciaService,
+        private router: Router,
+        private pageNotificationService: PageNotificationService,
+        private confirmationService: ConfirmationService) {
         this.results = [
             { label: 'Selecione Situação' },
             { label: 'Ativo', value: 'true' },
@@ -38,4 +50,41 @@ export class MedicamentosComponent implements OnInit {
     ngOnInit(): void {
         this.listar();
     }
+
+    public limparPesquisa() {
+        this.codigo = '';
+        this.descricao = '';
+        this.listar();
+        this.recarregarDataTable();
+        this.datatable.filter();
+    }
+
+    public recarregarDataTable() {
+        this.datatable.refresh(this.elasticQuery.query);
+    }
+
+    abrirEditar(tipoMedicamentoSelecionada: Medicamento) {
+        this.router.navigate(['/medicamentos/edit', tipoMedicamentoSelecionada.id]);
+    }
+
+    abrirVisualizar(tipoMedicamentoSelecionada: Medicamentos) {
+        this.router.navigate(['/medicamentos', tipoMedicamentoSelecionada.id, 'view']);
+    }
+
+    btnClick(event: DatatableClickEvent) {
+        switch (event.button) {
+            case 'edit': {
+                this.abrirEditar(event.selection);
+               break;
+            }
+            case 'view': {
+                this.abrirVisualizar(event.selection);
+                break;
+            }
+            default: {
+                break;
+             }
+        }
+    }
+    
 }

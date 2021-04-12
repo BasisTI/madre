@@ -1,5 +1,5 @@
 import { TipoMedicamento } from './cadastro-medicamento/tipoMedicamento';
-import { Medicamento } from './medicamentos/Medicamento';
+import { Medicamento, Medicamentos } from './medicamentos/Medicamento';
 import { Pageable } from './../../shared/pageable';
 import { Observable } from 'rxjs';
 import { Unidade } from './dispensacao/unidade';
@@ -68,7 +68,6 @@ export class FarmaciaService {
 
         return this.httpServe.post<any>(`${this.apiUrl}/medicamentos`, dto);
     }
-
     getMedicamentos(
         nome: string,
         descricao: string,
@@ -80,5 +79,17 @@ export class FarmaciaService {
                 .set('descricao', descricao)
                 .set('ativo', situacao),
         });
+    }
+
+    find(id: number): Observable<Medicamentos> {
+        return this.httpServe.get(`${this.apiUrl}/medicamentos/${id}`);
+    }
+
+    delete(id: number): Observable<Medicamentos> {
+        return this.httpServe.delete(`${this.apiUrl}/medicamentos/${id}`);
+    }
+
+    alterarMedicamento(medicamento: any): Observable<any> {
+        return this.httpServe.put(`${this.apiUrl}/medicamentos`, Response);
     }
 }
