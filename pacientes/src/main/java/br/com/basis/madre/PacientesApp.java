@@ -55,15 +55,15 @@ public class PacientesApp {
      *
      * @param args the command line arguments.
      */
-    public static void main(String[] args) throws UnknownHostException {
+    public static void main(String[] args) {
         SpringApplication app = new SpringApplication(PacientesApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
-        String cloneArgs[] = args.clone();
+        String[] cloneArgs = args.clone();
         Environment env = app.run(cloneArgs).getEnvironment();
         logApplicationStartup(env);
     }
 
-    private static void logApplicationStartup(Environment env) throws UnknownHostException {
+    private static void logApplicationStartup(Environment env) {
         String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";
@@ -77,7 +77,7 @@ public class PacientesApp {
         try {
             hostAddress = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            log.warn("The host name could not be determined, using `localhost` as fallback: ", e.getMessage());
+            log.warn("The host name could not be determined, using `localhost` as fallback: {}", e.getMessage());
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +

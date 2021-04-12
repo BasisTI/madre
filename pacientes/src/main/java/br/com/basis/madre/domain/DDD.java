@@ -20,7 +20,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Document(indexName = "ddd")
+@Document(indexName = "madre-pacientes-ddd")
 public class DDD implements Serializable {
 
     @Id
