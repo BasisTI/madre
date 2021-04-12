@@ -34,7 +34,7 @@ export class PacienteTelefoneFormComponent {
         indice: [null]
     });
 
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, protected dddService: DDDService) {
+    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, public dddService: DDDService) {
     }
 
     adicionarTelefoneALista() {

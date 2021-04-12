@@ -4,6 +4,7 @@ import br.com.basis.madre.domain.validation.annotation.CartaoSUS;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Column;
@@ -63,7 +64,8 @@ public class PreCadastroPaciente implements Serializable {
     @Column(name = "cartao_sus", length = 30, nullable = false)
     private String cartaoSus;
 
-    @Column(name = "status")
+    @Field(name = "ativo", type = FieldType.Boolean)
+    @Column(name = "ativo")
     private Boolean ativo;
 
     @OneToMany(mappedBy = "preCadastroPaciente")
