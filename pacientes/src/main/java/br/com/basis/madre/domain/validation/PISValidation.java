@@ -26,7 +26,7 @@ public class PISValidation implements ConstraintValidator<PIS, String> {
             for (int i = 1; i <= 10; i++) {
                 total += Integer.parseInt(parteNumerica.substring(i - 1, i)) * peso[i - 1];
             }
-            double resto = Math.floor(total % 11);
+            int resto = total % 11;
             if (resto != 0) {
                 resto = 11 - resto;
             }
