@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity ItemPrescricaoDiagnostico.
     -->
@@ -49,6 +49,8 @@
             <column name="id" type="numeric"/>
             <column name="id_cid" type="numeric"/>
             <column name="complemento" type="string"/>
+            <column name="prescricao_diagnostico_id" type="numeric"/>
+
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

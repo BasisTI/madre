@@ -94,6 +94,7 @@
             <column name="inicio_administracao" type="date"/>
             <column name="condicao_necessaria" type="boolean"/>
             <column name="observacao_condicao" type="string"/>
+            <column name="prescricao_medicamento_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
