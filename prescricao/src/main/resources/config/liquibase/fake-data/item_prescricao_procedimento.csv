@@ -1,11 +1,11 @@
-id;tipo_procedimento_especial;quantidade_ortese_protese;informacoes;justificativa;duracao_solicitada
-1;ORTESES_PROTESES;23089;Monitored Bahamian Dollar Investment Account;Games Regional Digitized;66252
-2;ORTESES_PROTESES;18485;Facilitator;Views e-enable Communications;72727
-3;CIRURGIAS_LEITO;96117;navigating;interactive generating compelling;28093
-4;ORTESES_PROTESES;80219;Small;deliverables reinvent 24 hour;1407
-5;CIRURGIAS_LEITO;60595;Identity;Frozen IB;62329
-6;CIRURGIAS_LEITO;32518;pixel withdrawal;Mississippi embrace Developer;84891
-7;DIVERSOS;4043;system Small;Intelligent Outdoors;63641
-8;DIVERSOS;90756;Phased;Saint Lucia white;94285
-9;CIRURGIAS_LEITO;69478;JSON;virtual deposit;87146
-10;DIVERSOS;89255;Ghana back-end National;Direct;27213
+id;tipo_procedimento_especial;quantidade_ortese_protese;informacoes;justificativa;duracao_solicitada;tipo_procedimento_id;prescricao_procedimento_id
+1;ORTESES_PROTESES;23089;Monitored Bahamian Dollar Investment Account;Games Regional Digitized;66252;1;1
+2;ORTESES_PROTESES;18485;Facilitator;Views e-enable Communications;72727;2;2
+3;CIRURGIAS_LEITO;96117;navigating;interactive generating compelling;28093;3;3
+4;ORTESES_PROTESES;80219;Small;deliverables reinvent 24 hour;1407;4;4
+5;CIRURGIAS_LEITO;60595;Identity;Frozen IB;62329;5;5
+6;CIRURGIAS_LEITO;32518;pixel withdrawal;Mississippi embrace Developer;84891;6;6
+7;DIVERSOS;4043;system Small;Intelligent Outdoors;63641;7;7
+8;DIVERSOS;90756;Phased;Saint Lucia white;94285;8;8
+9;CIRURGIAS_LEITO;69478;JSON;virtual deposit;87146;9;9
+10;DIVERSOS;89255;Ghana back-end National;Direct;27213;10;10

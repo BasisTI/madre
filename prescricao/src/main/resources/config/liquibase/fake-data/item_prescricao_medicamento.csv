@@ -1,11 +1,11 @@
-id;id_medicamento;dose;frequencia;todas_vias;bomba_infusao;velocidade_infusao;tempo_infusao;unidade_tempo;inicio_administracao;condicao_necessaria;observacao_condicao
-1;96563;56328;80839;false;false;1596;9767;HORAS;2020-05-10;true;Investment Account
-2;83319;3438;17336;true;false;25877;18223;MINUTOS;2020-05-10;true;Chair Facilitator
-3;77513;44975;93949;false;true;92665;59789;HORAS;2020-05-10;true;navigating
-4;74732;27134;53969;true;true;35675;96525;MINUTOS;2020-05-10;false;back-end
-5;7455;1563;98688;false;true;39488;19871;HORAS;2020-05-09;false;monitor 1080p Checking Account
-6;92630;35846;65107;false;true;86310;85003;MINUTOS;2020-05-10;false;moratorium pixel withdrawal
-7;88721;56124;47221;false;false;97171;71324;HORAS;2020-05-10;false;system Small
-8;43933;10789;20171;false;true;63641;47537;HORAS;2020-05-09;true;Phased
-9;41038;53984;75555;false;false;94285;7697;MINUTOS;2020-05-09;true;modular Refined Squares
-10;21844;18657;41650;true;true;53934;32434;HORAS;2020-05-10;false;synergies copying
+id;id_medicamento;dose;frequencia;todas_vias;bomba_infusao;velocidade_infusao;tempo_infusao;unidade_tempo;inicio_administracao;condicao_necessaria;observacao_condicao;prescricao_medicamento_id
+1;96563;56328;80839;false;false;1596;9767;HORAS;2020-05-10;true;Investment Account;1
+2;83319;3438;17336;true;false;25877;18223;MINUTOS;2020-05-10;true;Chair Facilitator;2
+3;77513;44975;93949;false;true;92665;59789;HORAS;2020-05-10;true;navigating;3
+4;74732;27134;53969;true;true;35675;96525;MINUTOS;2020-05-10;false;back-end;4
+5;7455;1563;98688;false;true;39488;19871;HORAS;2020-05-09;false;monitor 1080p Checking Account;5
+6;92630;35846;65107;false;true;86310;85003;MINUTOS;2020-05-10;false;moratorium pixel withdrawal;6
+7;88721;56124;47221;false;false;97171;71324;HORAS;2020-05-10;false;system Small;7
+8;43933;10789;20171;false;true;63641;47537;HORAS;2020-05-09;true;Phased;8
+9;41038;53984;75555;false;false;94285;7697;MINUTOS;2020-05-09;true;modular Refined Squares;9
+10;21844;18657;41650;true;true;53934;32434;HORAS;2020-05-10;false;synergies copying;10
