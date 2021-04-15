@@ -57,7 +57,7 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input pInputText formControlName="dose" />
+                                        <input type="number" pInputText formControlName="dose" />
                                         <label>Dose</label>
                                         <app-message [control]="itemPrescricaoMedicamento.get('dose')" error="required"
                                             text="Campo é obrigatório"></app-message>
@@ -109,7 +109,7 @@
                                 <div class="ui-g-2">
                                     <span class="md-inputfield">
 
-                                        <input type="text" pInputText formControlName="frequencia" />
+                                        <input type="number" pInputText formControlName="frequencia" />
                                         <label>Frequência</label>
                                     </span>
                                 </div>
@@ -138,7 +138,7 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input pInputText formControlName="volume"
+                                        <input type="number" pInputText formControlName="volume"
                                             placeholder="Informe o valume do diluente" />
                                         <label>Volume (ml)</label>
 
@@ -164,7 +164,7 @@
                             <div class="ui-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
-                                        <input type="text" pInputText formControlName="velocidadeInfusao" />
+                                        <input type="number" pInputText formControlName="velocidadeInfusao" />
                                         <label>Velocidade de Infusão</label>
                                     </span>
                                 </div>
