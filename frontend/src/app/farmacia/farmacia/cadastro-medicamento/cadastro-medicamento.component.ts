@@ -17,7 +17,8 @@ import { ConfirmationService } from 'primeng';
 export class CadastroMedicamentoComponent implements OnInit {
     medicamento: Medicamentos = new Medicamentos(); 
     form = this.fb.group({
-        medicamento: ['', Validators.required],
+        id: [''],
+        nome: ['', Validators.required],
         descricao: ['', Validators.required],
         concentracao: ['', Validators.required],
         unidade: ['', Validators.required],
@@ -30,13 +31,6 @@ export class CadastroMedicamentoComponent implements OnInit {
     apresentacao = new Array<Apresentacao>();
     pageNotificationService: any;
     medicamentoId: number;
-
-    submit() {
-        console.log(this.form.value);
-        this.medicamento = this.form.value;
-        this.service.cadastrar(this.medicamento).subscribe();
-                
-    }
 
     searchTipoMedicamento(event) {
         this.service
@@ -69,21 +63,15 @@ export class CadastroMedicamentoComponent implements OnInit {
         
         this.route.params.subscribe(params => {
             if (params['id']) {
-                this.service.find(params['id']).subscribe(medicamento => this.medicamento = medicamento);
-                this.medicamento.id = params['id'];
+                this.service.find(params['id']).subscribe(medicamento => {
+                    this.form.patchValue(medicamento);
+                    this.medicamento = medicamento;
+                });
             }
         })
 
-        this.medicamentoId = this.route.snapshot.params['id'];
-
-        if(this.medicamentoId) {
-            this.carregarMedicamento(this.medicamentoId);
-        }
+        this.medicamentoId = this.route.snapshot.params['id'];      
         
-        this.breadcrumbService.setItems([
-            { label: 'Medicamentos', routerLink: 'medicamentos' },
-            { label: 'Cadastrar Medicamentos', routerLink: 'cadastrar-medicamento'},
-        ]);
         
         this.searchApresentacao(event);
         this.searchUnidade(event);
@@ -91,10 +79,17 @@ export class CadastroMedicamentoComponent implements OnInit {
         
     }
 
+    submit() {
+        this.medicamento = this.form.value;
+          if (this.medicamento.id == null) {
+            this.service.cadastrar(this.medicamento).subscribe();
+          } else {
+            this.service.editar(this.medicamento).subscribe();
+          }      
+    }
+
     carregarMedicamento(id: number) {
         this.service.find(id).subscribe((medicamento) => {
-            this.form.patchValue(medicamento);
-            this.form.patchValue({ medicamento: medicamento.nome });
         });
     }
 
