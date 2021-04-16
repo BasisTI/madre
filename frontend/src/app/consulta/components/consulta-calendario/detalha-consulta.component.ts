@@ -67,7 +67,6 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
 
         if (consultaId) {
             this.carregarConsulta(consultaId);
-            console.log(consultaId);
         }
     }
 
@@ -84,7 +83,6 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
       this.consultaService.buscarPacientesPorId(this.detalharConsultas.value.pacienteId).subscribe((paciente: PacienteModel) =>{
         this.detalharConsultas.controls['nome'].setValue(paciente.nome);
         this.detalharConsultas.controls['prontuario'].setValue(paciente.prontuario);
-        console.log(paciente);
       });
 
     }
