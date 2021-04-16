@@ -5,19 +5,30 @@
 
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <input pInputText formControlName="prontuario" disabled="true" />
+                    <input field="prontuario" pInputText formControlName="prontuario" readonly />
                     <label>Prontuário</label>
                 </span>
             </div>
-            <div class="ui-g-5 ui-sm-12">
+            <div class="ui-g-4 ui-sm-12">
                 <span class="ui-float-label">
-                    <input field="nome" pInputText formControlName="nome" />
+                    <input field="nome" pInputText formControlName="nome" readonly />
                     <label>Nome</label>
-                    <!-- (onSelect)="aoSelecionarPaciente($event)" -->
                 </span>
             </div>
             <div class="ui-g-12"></div>
-
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="especialidade" readonly />
+                    <label>Especialidade</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                    <input pInputText formControlName="profissional" readonly />
+                    <label>profissional</label>
+                </span>
+            </div>
+            <div class="ui-g-12"></div>
             <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
                     <input pInputText formControlName="dataHoraDaConsulta" readonly />

@@ -6,14 +6,16 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultaEmergenciaModel } from '../../models/consulta-emergencia-model';
 
+
 @Component({
     selector: 'app-detalha-consulta',
     templateUrl: './detalha-consulta.component.html',
 })
 export class DetalhaConsultaComponent implements OnInit, OnDestroy {
     detalharConsultas = this.fb.group({
-        prontuario: [''],
+        pacienteId: [''],
         nome: [''],
+        prontuario: [''],
         dataHoraDaConsulta: [''],
         grade: [''],
         numeroSala: [''],
@@ -65,6 +67,7 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
 
         if (consultaId) {
             this.carregarConsulta(consultaId);
+            console.log(consultaId);
         }
     }
 
@@ -73,16 +76,19 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
             .buscarConsultaId(id)
             .subscribe((consultasEmergencia: ConsultaEmergenciaModel) => {
                 this.detalharConsultas.patchValue(consultasEmergencia);
-            });
-    }
-    listarPacientes(id: number) {
-        this.consultaService
-            .buscarPacientesPorId(id)
-            .subscribe((pacientes: Array<PacienteModel>) => {
-                this.pacientes = pacientes;
+                this.carregarPaciente();
             });
     }
 
+    carregarPaciente(){
+      this.consultaService.buscarPacientesPorId(this.detalharConsultas.value.pacienteId).subscribe((paciente: PacienteModel) =>{
+        this.detalharConsultas.controls['nome'].setValue(paciente.nome);
+        this.detalharConsultas.controls['prontuario'].setValue(paciente.prontuario);
+        console.log(paciente);
+      });
+
+    }
+    
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
     }

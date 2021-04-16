@@ -2,11 +2,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
-import * as moment from 'moment';
 import { FullCalendar } from 'primeng';
-
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { moment } from 'fullcalendar';
+
 @Component({
     selector: 'app-consulta-calendario',
     templateUrl: './consulta-calendario.component.html',
@@ -51,16 +51,20 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
             viewRender: (view, element) => {
                 console.log(' !!!');
             },
+
+    
             events: (events) => {
-                console.log(events);
-                this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
+               this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
                     eventos.forEach((element) => {
-                        element.url = `#/consulta/detalha-consulta/${element.id}`;
+    
+                     element.url = `#/consulta/detalha-consulta/${element.id}`;
+                     
                     });
-                    this.events = eventos;
+                   this.events = eventos
                 });
             },
         };
+
     }
 
     ngOnDestroy(): void {
