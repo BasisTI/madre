@@ -7,6 +7,8 @@ import { UnidadeDose } from './models/unidadeDose';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Medicamentos } from 'src/app/farmacia/farmacia/medicamentos/Medicamento';
+import { DatatableComponent } from '@nuvem/primeng-components';
 
 @Injectable({
     providedIn: 'root'
@@ -53,5 +55,5 @@ export class MedicamentoService {
         return this.http.post(`${this.baseUrl}/prescricao-medicamentos`, prescricao);
     }
 
-
+    
 }

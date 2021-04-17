@@ -3,7 +3,7 @@ import { Prescricao } from './../dispensacao/prescricao';
 import { FarmaciaService } from './../farmacia.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DatatableClickEvent, DatatableComponent, PageNotificationService } from '@nuvem/primeng-components';
+import { DatatableClickEvent, DatatablePaginationParameters, DatatableComponent, PageNotificationService } from '@nuvem/primeng-components';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { ElasticQuery } from 'src/app/shared/elastic-query';
@@ -15,8 +15,10 @@ import { ElasticQuery } from 'src/app/shared/elastic-query';
 })
 export class MedicamentosComponent implements OnInit {
 
-    @ViewChild(DatatableComponent) datatable: DatatableComponent;
-
+    paginationParameters: DatatablePaginationParameters;
+    @ViewChild(DatatableComponent) dataTable: DatatableComponent;
+    tipoMedicamentoSelecionada: Medicamentos = new Medicamentos();
+    
     descricao = '';
     codigo = '';
     situacao = '';
@@ -33,7 +35,6 @@ export class MedicamentosComponent implements OnInit {
                 this.medicamento = medicamentos.content;
             });
         this.situacao = '';
-        console.log(this.medicamento);
     }
 
     constructor(private service: FarmaciaService,
@@ -51,24 +52,37 @@ export class MedicamentosComponent implements OnInit {
         this.listar();
     }
 
+
     public limparPesquisa() {
         this.codigo = '';
         this.descricao = '';
         this.listar();
         this.recarregarDataTable();
-        this.datatable.filter();
+        this.dataTable.filter();
     }
 
     public recarregarDataTable() {
-        this.datatable.refresh(this.elasticQuery.query);
+        this.dataTable.refresh(this.elasticQuery.query);
     }
 
-    abrirEditar(tipoMedicamentoSelecionada: Medicamento) {
-        this.router.navigate(['/medicamentos/edit', tipoMedicamentoSelecionada.id]);
+    abrirEditar(tipoMedicamentoSelecionada: Medicamentos) {
+        this.router.navigate(['/medicamentos', tipoMedicamentoSelecionada.id, 'edit']);
     }
 
     abrirVisualizar(tipoMedicamentoSelecionada: Medicamentos) {
         this.router.navigate(['/medicamentos', tipoMedicamentoSelecionada.id, 'view']);
+    }
+
+    confirmDelete(tipoMedicamentoSelecionada: Medicamentos) {
+        this.confirmationService.confirm({
+            message: "Tem certeza que deseja excluir o registro?",
+            accept: () => {
+                    this.service.delete(tipoMedicamentoSelecionada.id).subscribe(() => {
+                    this.pageNotificationService.addDeleteMsg();
+                    this.listar();
+                });
+            }
+        });
     }
 
     btnClick(event: DatatableClickEvent) {
@@ -81,9 +95,20 @@ export class MedicamentosComponent implements OnInit {
                 this.abrirVisualizar(event.selection);
                 break;
             }
+            case 'delete': {
+                this.confirmDelete(event.selection);
+            }
             default: {
                 break;
              }
+        }
+    }
+
+    public onRowDblclick(event) {
+        if (event.target.nodeName === 'TD') {
+            this.abrirEditar(this.tipoMedicamentoSelecionada);
+        } else if (event.target.parentNode.nodeName === 'TD') {
+            this.abrirEditar(this.tipoMedicamentoSelecionada);
         }
     }
     

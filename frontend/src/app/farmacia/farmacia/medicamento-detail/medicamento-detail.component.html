@@ -1,0 +1,23 @@
+<div class="ui-g ui-fluid" *ngIf="medicamento">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1 >Visualizar Tipo Medicamento</h1>
+            <div class="ui-g">
+                <div class="ui-g-9">
+                    <label>Nome: {{ medicamento.nome }}</label>
+                </div>
+                <div class="ui-g-9">
+                    <label>Descrição: {{ medicamento.descricao }}</label>
+                </div>
+                <div class="ui-g-9">
+                    <label>Concentração: {{ medicamento.concentracao }}</label>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-5 ui-sm-5">
+                    <button pButton type="button" label="Voltar" routerLink="/medicamentos"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

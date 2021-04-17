@@ -7,13 +7,17 @@ import { Prescricao } from './dispensacao/prescricao';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apresentacao } from './cadastro-medicamento/apresentacao';
+import { medicamentoRoute } from '@prescricao-medica/medicamento/medicamento.routes';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root',
 })
 export class FarmaciaService {
+    medicamento: Medicamentos = new Medicamentos;
     constructor(private httpServe: HttpClient) {}
     private readonly apiUrl = '/farmacia/api';
+    private readonly api = '/farmacia/api/medicamentos';
 
     getPrescricao(
         nome: string,
@@ -47,7 +51,7 @@ export class FarmaciaService {
     cadastrar(medicamento: any): Observable<any> {
         const dto = {
             codigo: null,
-            nome: medicamento.medicamento,
+            nome: medicamento.nome,
             descricao: medicamento.descricao,
             concentracao: medicamento.concentracao,
             ativo: medicamento.ativo,
@@ -64,10 +68,34 @@ export class FarmaciaService {
 
             tipoMedicamentoId: null,
         };
-        console.log(dto);
 
         return this.httpServe.post<any>(`${this.apiUrl}/medicamentos`, dto);
     }
+
+    editar(medicamento: any): Observable<any> {
+        const dto = {
+            id: medicamento.id,
+            nome: medicamento.nome,
+            descricao: medicamento.descricao,
+            concentracao: medicamento.concentracao,
+            ativo: medicamento.ativo,
+
+            apresentacaoId: {
+                id: medicamento.apresentacao.id,
+                nome: medicamento.apresentacao.nome,
+            },
+
+            unidadeId: {
+                id: medicamento.unidade.id,
+                nome: medicamento.unidade.nome,
+            },
+
+            tipoMedicamentoId: null,
+        };
+
+        return this.httpServe.put<any>(`${this.api}`, dto);
+    }
+
     getMedicamentos(
         nome: string,
         descricao: string,
@@ -87,9 +115,5 @@ export class FarmaciaService {
 
     delete(id: number): Observable<Medicamentos> {
         return this.httpServe.delete(`${this.apiUrl}/medicamentos/${id}`);
-    }
-
-    alterarMedicamento(medicamento: any): Observable<any> {
-        return this.httpServe.put(`${this.apiUrl}/medicamentos`, Response);
     }
 }

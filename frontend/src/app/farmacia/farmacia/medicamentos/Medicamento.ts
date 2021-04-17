@@ -29,12 +29,15 @@ export class Medicamentos implements BaseEntity {
         public ativo?: boolean,
 
         public apresentacao?: {
+            id: number,
             nome: string;
         },
         public unidade?: {
+            id: number,
             nome: string;
         },
         public tipo?: {
+            id: number,
             nome: string;
         },
     )
