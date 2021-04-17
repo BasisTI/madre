@@ -1,5 +1,6 @@
 package br.com.basis.consulta.service.projection;
 
+import br.com.basis.consulta.domain.CondicaoDeAtendimento;
 import br.com.basis.consulta.domain.enumeration.TipoPagador;
 import br.com.basis.consulta.domain.enumeration.Turno;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -15,8 +16,12 @@ public interface CalendarioResumo {
         Turno getTurno();
         TipoPagador getTipoPagador();
 
-    @JsonProperty("title")
     String getNumeroSala();
+
+    @JsonProperty("title")
+    String getEspecialidade();
+
+    String getPacienteId();
 
     @JsonProperty("start")
     ZonedDateTime getDataHoraDaConsulta();
