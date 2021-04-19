@@ -81,11 +81,12 @@ export class CadastroMedicamentoComponent implements OnInit {
 
     submit() {
         this.medicamento = this.form.value;
-          if (this.medicamento.id == null) {
-            this.service.cadastrar(this.medicamento).subscribe();
-          } else {
+          if (this.form.value.id != 0) {
             this.service.editar(this.medicamento).subscribe();
+          } else {
+            this.service.cadastrar(this.medicamento).subscribe();
           }      
+          
     }
 
     carregarMedicamento(id: number) {
