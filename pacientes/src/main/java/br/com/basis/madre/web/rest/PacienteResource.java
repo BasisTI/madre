@@ -2,7 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
-import br.com.basis.madre.service.PdfPacienteService;
+import br.com.basis.madre.service.reports.PdfPacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;

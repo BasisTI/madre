@@ -1,9 +1,8 @@
-package br.com.basis.madre.service;
+package br.com.basis.madre.service.reports;
 
 import br.com.basis.madre.domain.Justificativa;
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.repository.PacienteRepository;
-import br.com.basis.madre.service.reports.PdfUtils;
 import com.lowagie.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -23,11 +24,11 @@ public class PdfPacienteService {
 
     private final Logger log = LoggerFactory.getLogger(PdfPacienteService.class);
     private PacienteRepository pacienteRepository;
-    private PdfUtils pdfUtils;
+    private PdfService pdfService;
 
-    public PdfPacienteService(PacienteRepository pacienteRepository, PdfUtils pdfUtils){
+    public PdfPacienteService(PacienteRepository pacienteRepository, PdfService pdfService){
         this.pacienteRepository = pacienteRepository;
-        this.pdfUtils = pdfUtils;
+        this.pdfService = pdfService;
     }
 
     @Transactional(readOnly = true)
@@ -39,11 +40,12 @@ public class PdfPacienteService {
 
     public byte[] gerarPdfParaPaciente(Paciente obj) throws IOException, DocumentException {
         Paciente paciente = validationFields(obj);
-        Context context = new Context();
-        context.setVariable("paciente", paciente);
-        context.setVariable("idade", ageCalculate(paciente.getDataDeNascimento()));
-        String html = pdfUtils.getTemplateEngine().process("paciente", context);
-        String xHtml = pdfUtils.converterParaXhtml(html);
+        Map<String, Object> variaveisTemplate = new HashMap<>();
+        variaveisTemplate.put("paciente", paciente);
+        variaveisTemplate.put("idade", calcularIdade(paciente.getDataDeNascimento()));
+        Context context = pdfService.definirContexto(variaveisTemplate);
+        String html = pdfService.processarHtml("paciente", context);
+        String xHtml = pdfService.converterParaXhtml(html);
         String url = this.getClass().getClassLoader().getResource("templates/").toString();
 
         ITextRenderer renderer = new ITextRenderer();
@@ -73,7 +75,7 @@ public class PdfPacienteService {
         return paciente;
     }
 
-    private int ageCalculate(LocalDate dataNascimento){
+    private int calcularIdade(LocalDate dataNascimento){
         LocalDate now = LocalDate.now();
         Period diff = Period.between(dataNascimento, now);
         return diff.getYears();
