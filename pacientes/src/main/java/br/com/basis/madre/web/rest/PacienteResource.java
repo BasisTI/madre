@@ -147,7 +147,7 @@ public class PacienteResource {
 
     @GetMapping("/pacientes/formulario/{id}")
     @Timed
-    public ResponseEntity<byte[]> getFormularioPaciente(@PathVariable Long id) throws IOException, DocumentException {
+    public ResponseEntity<byte[]> getFormularioPaciente(@PathVariable Long id) throws DocumentException {
         log.debug("REST request to get formulario by Paciente: {}", id);
         return ResponseEntity.ok(pdfPacienteService.getPdfPorPacienteId(id));
     }

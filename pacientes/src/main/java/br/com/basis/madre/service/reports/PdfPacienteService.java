@@ -8,10 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.context.Context;
-import org.xhtmlrenderer.pdf.ITextRenderer;
-
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -32,30 +28,21 @@ public class PdfPacienteService {
     }
 
     @Transactional(readOnly = true)
-    public byte[] getPdfPorPacienteId(Long id) throws IOException, DocumentException {
+    public byte[] getPdfPorPacienteId(Long id) throws DocumentException {
         log.debug("Request to get pdf for Paciente id : {}", id);
         Paciente obj = pacienteRepository.findById(id).get();
         return gerarPdfParaPaciente(obj);
     }
 
-    public byte[] gerarPdfParaPaciente(Paciente obj) throws IOException, DocumentException {
+    public byte[] gerarPdfParaPaciente(Paciente obj) throws DocumentException {
         Paciente paciente = validationFields(obj);
         Map<String, Object> variaveisTemplate = new HashMap<>();
         variaveisTemplate.put("paciente", paciente);
         variaveisTemplate.put("idade", calcularIdade(paciente.getDataDeNascimento()));
-        Context context = pdfService.definirContexto(variaveisTemplate);
-        String html = pdfService.processarHtml("paciente", context);
-        String xHtml = pdfService.converterParaXhtml(html);
+
         String url = this.getClass().getClassLoader().getResource("templates/").toString();
 
-        ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(xHtml, url);
-        renderer.layout();
-
-        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-        renderer.createPDF(byteArray);
-
-        return byteArray.toByteArray();
+        return pdfService.gerarPdf(variaveisTemplate, "paciente", url);
     }
 
     private Paciente validationFields(Paciente paciente){
