@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8"></meta>
+   <link rel="stylesheet" type="text/css" media="all" th:href="@{estilo.css}"></link>
+</head>
+<body>
+   <header>
+      <div class="header-informations">
+         <div class="logo">
+            <img th:src="@{logo2x.jpg}" alt="logo"></img>
+         </div>
+         <div class="informations">
+            <h4>Paciente: [[${paciente.getNome()}]]</h4>
+            <h4>Prontuário: [[${paciente.getProntuario()}]]</h4>
+         </div>
+      </div>
+      <h4>Distribuído por Basis Tecnologia da Informação</h4>
+   </header>
+   <div id="form">
+      <div id="dados-pessoais">
+         <table>
+            <tr>
+               <th><h5>Nome Completo</h5></th>
+               <th><h5>Nome Social</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getNome()}]]</p></td> 
+               <td><p>[[${paciente.getNomeSocial()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Sexo</h5></th>
+               <th><h5>Raça/Cor</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getSexo()}]]</p></td>
+               <td><p>[[${paciente.getRaca().getValor()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Etnia</h5></th>
+               <th><h5>Estado Civil</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getEtnia().getValor()}]]</p></td>
+               <td><p>[[${paciente.getEstadoCivil().getValor()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Prontuário da Mãe</h5></th>
+               <th><h5>Nome da Mãe</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getGenitores().getProntuarioDaMae()}]]</p></td>
+               <td><p>[[${paciente.getGenitores().getNomeDaMae()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Nome do Pai</h5></th>
+               <th><h5>Data de Nascimento</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getGenitores().getNomeDoPai()}]]</p></td>
+               <td><p>[[${paciente.getDataDeNascimento()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>idade</h5></th>
+               <th><h5>Nacionalidade</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${idade}]]</p></td>
+               <td><p>[[${paciente.getNacionalidade().getValor()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>UF</h5></th>
+               <th><h5>Naturalidade</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getNaturalidade().getUf().getSigla()}]]</p></td>
+               <td><p>[[${paciente.getNaturalidade().getNome()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Grau de Instrução</h5></th>
+               <th><h5>Ocupação</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getGrauDeInstrucao()}]]</p></td>
+               <td><p>[[${paciente.getOcupacao().getValor()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Religião</h5></th>
+               <th><h5>E-mail</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getReligiao().getValor()}]]</p></td>
+               <td><p>[[${paciente.getEmail()}]]</p></td>
+            </tr>
+         </table>
+      </div>
+      <div id="contatos-paciente">
+         <p>Contatos do Paciente:</p>
+         <table>
+            <tr>
+               <th>Tipo</th>
+               <th>DDD</th>
+               <th>Telefone</th>
+               <th>Observação</th>
+            </tr>
+            <tr th:each="telefone, stats : ${paciente.getTelefones()}">
+               <td th:text="${telefone.getTipo()}"></td>
+               <td th:text="${telefone.getDdd()}"></td>
+               <td th:text="${telefone.getNumero()}"></td>
+               <td th:text="${telefone.getObservacao()}"></td>
+            </tr>
+         </table>
+      </div>
+      <div id="endereco">
+         <p>Endereços:</p>
+         <table>
+            <tr>
+               <th>Município</th>
+               <th>CEP</th>
+               <th>UF</th>
+               <th>Bairro</th>
+               <th>Tipo</th>
+               <th>Correspondência</th>
+            </tr>
+            <tr th:each="endereco, stats : ${paciente.getEnderecos()}">
+               <td th:text="${endereco.getMunicipio().getNome()}"></td>
+               <td th:text="${endereco.getCep()}"></td>
+               <td th:text="${endereco.getMunicipio().getUf().getSigla()}"></td>
+               <td th:text="${endereco.getBairro())}"></td>
+               <td th:text="${endereco.getTipoDoEndereco()}"></td>
+               <td th:text="${endereco.getCorrespondencia()}"></td>
+            </tr>
+         </table>
+      </div>
+      <div id="responsavel">
+         <table>
+            <tr>
+               <th><h5>Nome do Responsável</h5></th>
+               <th><h5>Grau de Parentesco</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getResponsavel().getNomeDoResponsavel()}]]</p></td>
+               <td><p>[[${paciente.getResponsavel().getGrauDeParentesco().getValor()}]]</p></td>
+            </tr>
+         </table>
+         <div id="responsavel-tabela">
+            <table>
+               <tr>
+                  <th>Tipo</th>
+                  <th>DDD</th>
+                  <th>Telefone</th>
+                  <th>Observação</th>
+               </tr>
+               <tr th:each="telefone, stats : ${paciente.getResponsavel().getTelefones()}">
+                  <td th:text="${telefone.getTipo()}"></td>
+                  <td th:text="${telefone.getDdd()}"></td>
+                  <td th:text="${telefone.getNumero()}"></td>
+                  <td th:text="${telefone.getObservacao()}"></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+      <div id="documentos">
+         <table>
+            <tr>
+               <th><h5>Número da Identidade</h5></th>
+               <th><h5>Órgão Emissor</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getDocumento().getNumeroDaIdentidade()}]]</p></td>
+               <td><p>[[${paciente.getDocumento().getOrgaoEmissor().getValor()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>UF</h5></th>
+               <th><h5>Data de Emissão</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getDocumento().getUf().getSigla()}]]</p></td>
+               <td><p>[[${paciente.getDocumento().getData()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>CPF</h5></th>
+               <th><h5>PIS/PASEP</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getDocumento().getCpf()}]]</p></td>
+               <td><p>[[${paciente.getDocumento().getPisPasep()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>CNH</h5></th>
+               <th><h5>Validade CNH</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getDocumento().getCnh()}]]</p></td>
+               <td><p>[[${paciente.getDocumento().getValidadeDaCnh() == null ? "" : paciente.getDocumento().getValidadeDaCnh()}]]</p></td>
+            </tr>
+         </table>
+      </div>
+      <div id="certidao">
+         <table>
+            <tr>
+               <th><h5>Registro de Nascimento</h5></th>
+               <th><h5>Tipo de Certidão</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCertidao().getRegistroDeNascimento()}]]</p></td>
+               <td><p>[[${paciente.getCertidao().getTipoDaCertidao()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Nome do Cartório</h5></th>
+               <th><h5>Livro</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCertidao().getNomeDoCartorio()}]]</p></td>
+               <td><p>[[${paciente.getCertidao().getLivro()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Folhas</h5></th>
+               <th><h5>Termo</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCertidao().getFolhas()}]]</p></td>
+               <td><p>[[${paciente.getCertidao().getTermo()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Data de Emissão</h5></th>
+               <th><h5>Número da DN</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCertidao().getDataDeEmissao()}]]</p></td>
+               <td><p>[[${paciente.getCertidao().getNumeroDaDeclaracaoDeNascimento()}]]</p></td>
+            </tr>
+         </table>
+      </div>
+      <div id="sus-container">
+         <table>
+            <tr>
+               <th><h5>Número CNS</h5></th>
+               <th><h5>Justificativa da Ausẽncia CNS</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCartaoSUS().getNumero()}]]</p></td>
+               <td><p>[[${paciente.getCartaoSUS().getJustificativa().getValor()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Motivo Cadastro</h5></th>
+               <th><h5>Doc. Referência</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCartaoSUS().getMotivoDoCadastro().getValor()}]]</p></td>
+               <td><p>[[${paciente.getCartaoSUS().getDocumentoDeReferencia()}]]</p></td>
+            </tr>
+            <tr>
+               <th><h5>Cartão CNS Mãe</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCartaoSUS().getCartaoNacionalSaudeMae()}]]</p></td>
+            </tr>
+         </table>
+            <h4>Se naturalizado:</h4>
+         <table>
+            <tr>
+               <th><h5>Data de Entrada no Brasil</h5></th>
+               <th><h5>Data de Naturalização</h5></th>
+               <th><h5>Portaria</h5></th>
+            </tr>
+            <tr>
+               <td><p>[[${paciente.getCartaoSUS().getDataDeEntradaNoBrasil() == null ? "" : paciente.getCartaoSUS().getDataDeEntradaNoBrasil()}]]</p></td>
+               <td><p>[[${paciente.getCartaoSUS().getDataDeNaturalizacao() == null ? "" : paciente.getCartaoSUS().getDataDeNaturalizacao()}]]</p></td>
+               <td><p>[[${paciente.getCartaoSUS().getPortaria()}]]</p></td>
+            </tr>
+         </table>   
+      </div>
+      <div id="observacao">
+         <div>
+            <h5>Observação</h5>
+               <p class="container-span"><span class="textarea" role="textbox">[[${paciente.getObservacao()}]]</span></p>
+         </div>
+      </div>
+   </div>             
+</body>
+</html>

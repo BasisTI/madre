@@ -7,6 +7,7 @@ import br.com.basis.madre.domain.enumeration.Sexo;
 import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.search.PacienteSearchRepository;
 import br.com.basis.madre.service.PacienteService;
+import br.com.basis.madre.service.reports.PdfPacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.mapper.PacienteMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
@@ -111,10 +112,14 @@ public class PacienteResourceIntTest {
 
     private Paciente paciente;
 
+    @Autowired
+    private PdfPacienteService pdfPacienteService;
+
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PacienteResource pacienteResource = new PacienteResource(pacienteService);
+        final PacienteResource pacienteResource = new PacienteResource(pacienteService, pdfPacienteService);
         this.restPacienteMockMvc = MockMvcBuilders.standaloneSetup(pacienteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

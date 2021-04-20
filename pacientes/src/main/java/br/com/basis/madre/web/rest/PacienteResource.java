@@ -2,10 +2,12 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
+import br.com.basis.madre.service.reports.PdfPacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
+import com.lowagie.text.DocumentException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -49,9 +52,11 @@ public class PacienteResource {
     private String applicationName;
 
     private final PacienteService pacienteService;
+    private final PdfPacienteService pdfPacienteService;
 
-    public PacienteResource(PacienteService pacienteService) {
+    public PacienteResource(PacienteService pacienteService, PdfPacienteService pdfPacienteService) {
         this.pacienteService = pacienteService;
+        this.pdfPacienteService = pdfPacienteService;
     }
 
     /**
@@ -134,10 +139,17 @@ public class PacienteResource {
      */
     @GetMapping("/pacientes/{id}")
     @Timed
-    public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) {
+    public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) throws IOException, DocumentException {
         log.debug("REST request to get Paciente : {}", id);
         Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOne(id);
         return ResponseUtil.wrapOrNotFound(pacienteDTO);
+    }
+
+    @GetMapping("/pacientes/formulario/{id}")
+    @Timed
+    public ResponseEntity<byte[]> getFormularioPaciente(@PathVariable Long id) throws DocumentException {
+        log.debug("REST request to get formulario by Paciente: {}", id);
+        return ResponseEntity.ok(pdfPacienteService.getPdfPorPacienteId(id));
     }
 
     @GetMapping("/pacientes/prontuario/{prontuario}")
