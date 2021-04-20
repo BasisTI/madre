@@ -23,7 +23,7 @@ export class CirurgiasLeitoComponent implements OnInit, AfterViewInit {
     carregarListaEspeciaisDiversos() {
         return this.cirurgiasLeitoService.listarCirurgiasLeito()
             .subscribe(listaCirurgiasLeito => {
-                console.log(listaCirurgiasLeito);
+           
 
                 this.listaCirurgiasLeito = listaCirurgiasLeito.map(item => {
                     return { label: item.descricao, value: item }

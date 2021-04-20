@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet id="21401819165718-1" author="jhipster" context="faker">
+        <modifyDataType  tableName="tipo_procedimento"
+                         columnName="descricao"
+                         newDataType="varchar(255)"
+                         />
+    </changeSet>
+    <changeSet id="21401819165718-1-data" author="jhipster" context="faker">
+    <loadData
+        file="config/liquibase/fake-data/tipo_procedimento.csv"
+        separator=";"
+        tableName="tipo_procedimento">
+        <column name="id" type="numeric"/>
+        <column name="descricao" type="string"/>
+        <column name="tipo_procedimento_especial" type="string"/>
+        <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+    </loadData>
+</changeSet>
+</databaseChangeLog>
