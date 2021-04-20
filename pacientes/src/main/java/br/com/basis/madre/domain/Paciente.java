@@ -98,14 +98,12 @@ public class Paciente implements Serializable {
     @JoinColumn(unique = true)
     private CartaoSUS cartaoSUS;
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "paciente_telefone",
         joinColumns = {@JoinColumn(name = "paciente_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "telefone_id", referencedColumnName = "id")}
     )
-
     private Set<Telefone> telefones = new HashSet<>();
 
     @Field(type = FieldType.Nested)

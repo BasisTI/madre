@@ -43,4 +43,9 @@
         </p-accordion>
     </div>
 </nCrudForm>
+<div class="ui-g-12" *ngIf = "paciente.get('id').value">
+    <div class="ui-g-4 ui-sm-12">
+        <button pButton label="Visualizar impressão" (click)="imprimirRelatorioPaciente(paciente.get('id').value)"></button>
+    </div>
+</div>
 

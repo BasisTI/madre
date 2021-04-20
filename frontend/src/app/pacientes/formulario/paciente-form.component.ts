@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { DatatableComponent } from '@nuvem/primeng-components';
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DatatableClickEvent } from '@nuvem/primeng-components';
 
 import { CpfCnpjValidator } from '../../shared/cpf-cnpj.validator';
 import { Paciente } from "./paciente.model";
@@ -14,8 +16,11 @@ export class PacienteFormComponent  implements OnInit{
 
     paciente: FormGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private service: PacienteService) {
     }
+
+    @ViewChild('datatable', { static: true }) datatable: DatatableComponent;
+
     ngOnInit(): void {
         this.paciente = this.fb.group({
             id: [null],
@@ -91,4 +96,9 @@ export class PacienteFormComponent  implements OnInit{
             })
         });
     }
+
+    imprimirRelatorioPaciente(id){
+        this.service.geraRelatorioPaciente(id);
+    }
+
 }

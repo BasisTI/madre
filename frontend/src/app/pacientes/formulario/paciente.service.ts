@@ -1,3 +1,4 @@
+import { BlockUiService } from '@nuvem/angular-base';
 import { Injectable } from "@angular/core";
 import { CrudService } from "@nuvem/primeng-components";
 import { HttpClient, HttpParams } from "@angular/common/http";
@@ -11,8 +12,9 @@ export class PacienteService implements CrudService<number, Paciente> {
     uriServico: string = '/pacientes/api/pacientes';
     uri: string = `${this.uriServico}/lista-de-pacientes-elastic`;
     uriProntuario: string = `${this.uriServico}/prontuario`;
+    uriFormulario: string =`${this.uriServico}/formulario`;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private blockUiService: BlockUiService) {
     }
 
     save(paciente: Paciente): Observable<Paciente> {
@@ -69,6 +71,25 @@ export class PacienteService implements CrudService<number, Paciente> {
     findAll(entity: Paciente): Observable<Paciente>{
         const params = new HttpParams().set('nome', entity.nome).set('prontuario', entity.prontuario);
         return this.http.get<Paciente>(`${this.uri}`, { params });
+    }
+
+    public geraRelatorioPaciente(id: number): Observable<string> {
+        this.blockUiService.show();
+        this.http.request('get', `${this.uriFormulario}/${id}`, {
+            responseType: 'blob',
+        }).subscribe(
+            (response) => {
+                const mediaType = 'application/pdf';
+                const blob = new Blob([response], { type: mediaType });
+                const fileURL = window.URL.createObjectURL(blob);
+                const anchor = document.createElement('a');
+                anchor.download = 'paciente.pdf';
+                anchor.href = fileURL;
+                window.open(fileURL, '_blank', '');
+                this.blockUiService.hide();
+                return null;
+            });
+        return null;
     }
 
 }
