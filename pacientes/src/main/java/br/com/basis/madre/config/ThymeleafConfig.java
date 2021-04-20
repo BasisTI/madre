@@ -10,18 +10,21 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Configuration
 public class ThymeleafConfig {
 
+    public final static String PREFIX = "templates/";
     public final static String ENCODING = "UTF-8";
     public final static String MODE_HTML = "HTML5";
     public final static String MODE_XHTML = "XHTML";
+    public final static boolean CACHEABLE = false;
+    public final static String SUFFIX = ".html";
 
     @Bean
     public ClassLoaderTemplateResolver templateResolver(){
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/");
+        templateResolver.setPrefix(PREFIX);
         templateResolver.setCharacterEncoding(ENCODING);
         templateResolver.setTemplateMode(MODE_HTML);
-        templateResolver.setCacheable(false);
-        templateResolver.setSuffix(".html");
+        templateResolver.setCacheable(CACHEABLE);
+        templateResolver.setSuffix(SUFFIX);
         templateResolver.setTemplateMode(MODE_XHTML);
 
         return templateResolver;

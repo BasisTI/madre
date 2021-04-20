@@ -2,7 +2,7 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.service.PacienteService;
-import br.com.basis.madre.service.PdfService;
+import br.com.basis.madre.service.PdfPacienteService;
 import br.com.basis.madre.service.dto.PacienteDTO;
 import br.com.basis.madre.service.dto.PacienteInclusaoDTO;
 import br.com.basis.madre.service.projection.PacienteResumo;
@@ -52,11 +52,11 @@ public class PacienteResource {
     private String applicationName;
 
     private final PacienteService pacienteService;
-    private final PdfService pdfService;
+    private final PdfPacienteService pdfPacienteService;
 
-    public PacienteResource(PacienteService pacienteService, PdfService pdfService) {
+    public PacienteResource(PacienteService pacienteService, PdfPacienteService pdfPacienteService) {
         this.pacienteService = pacienteService;
-        this.pdfService = pdfService;
+        this.pdfPacienteService = pdfPacienteService;
     }
 
     /**
@@ -149,7 +149,7 @@ public class PacienteResource {
     @Timed
     public ResponseEntity<byte[]> getFormularioPaciente(@PathVariable Long id) throws IOException, DocumentException {
         log.debug("REST request to get formulario by Paciente: {}", id);
-        return ResponseEntity.ok(pdfService.getPdfByPacienteId(id));
+        return ResponseEntity.ok(pdfPacienteService.getPdfPorPacienteId(id));
     }
 
     @GetMapping("/pacientes/prontuario/{prontuario}")
