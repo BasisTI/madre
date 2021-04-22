@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" xml:lang="pt-br">
 <head>
    <meta charset="UTF-8"></meta>
    <link rel="stylesheet" type="text/css" media="all" th:href="@{estilo.css}"></link>
+   <title>Formulário Paciente</title>
 </head>
 <body>
    <header>
@@ -19,74 +20,74 @@
    </header>
    <div id="form">
       <div id="dados-pessoais">
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th><h5>Nome Completo</h5></th>
-               <th><h5>Nome Social</h5></th>
+               <th scope="col"><h5>Nome Completo</h5></th>
+               <th scope="col"><h5>Nome Social</h5></th>
             </tr>
             <tr>
-               <td><p>[[${paciente.getNome()}]]</p></td> 
+               <td><p>[[${paciente.getNome()}]]</p></td>
                <td><p>[[${paciente.getNomeSocial()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Sexo</h5></th>
-               <th><h5>Raça/Cor</h5></th>
+               <th scope="col"><h5>Sexo</h5></th>
+               <th scope="col"><h5>Raça/Cor</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getSexo()}]]</p></td>
                <td><p>[[${paciente.getRaca().getValor()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Etnia</h5></th>
-               <th><h5>Estado Civil</h5></th>
+               <th scope="col"><h5>Etnia</h5></th>
+               <th scope="col"><h5>Estado Civil</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getEtnia().getValor()}]]</p></td>
                <td><p>[[${paciente.getEstadoCivil().getValor()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Prontuário da Mãe</h5></th>
-               <th><h5>Nome da Mãe</h5></th>
+               <th scope="col"><h5>Prontuário da Mãe</h5></th>
+               <th scope="col"><h5>Nome da Mãe</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getGenitores().getProntuarioDaMae()}]]</p></td>
                <td><p>[[${paciente.getGenitores().getNomeDaMae()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Nome do Pai</h5></th>
-               <th><h5>Data de Nascimento</h5></th>
+               <th scope="col"><h5>Nome do Pai</h5></th>
+               <th scope="col"><h5>Data de Nascimento</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getGenitores().getNomeDoPai()}]]</p></td>
                <td><p>[[${paciente.getDataDeNascimento()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>idade</h5></th>
-               <th><h5>Nacionalidade</h5></th>
+               <th scope="col"><h5>idade</h5></th>
+               <th scope="col"><h5>Nacionalidade</h5></th>
             </tr>
             <tr>
                <td><p>[[${idade}]]</p></td>
                <td><p>[[${paciente.getNacionalidade().getValor()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>UF</h5></th>
-               <th><h5>Naturalidade</h5></th>
+               <th scope="col"><h5>UF</h5></th>
+               <th scope="col"><h5>Naturalidade</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getNaturalidade().getUf().getSigla()}]]</p></td>
                <td><p>[[${paciente.getNaturalidade().getNome()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Grau de Instrução</h5></th>
-               <th><h5>Ocupação</h5></th>
+               <th scope="col"><h5>Grau de Instrução</h5></th>
+               <th scope="col"><h5>Ocupação</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getGrauDeInstrucao()}]]</p></td>
                <td><p>[[${paciente.getOcupacao().getValor()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Religião</h5></th>
-               <th><h5>E-mail</h5></th>
+               <th scope="col"><h5>Religião</h5></th>
+               <th scope="col"><h5>E-mail</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getReligiao().getValor()}]]</p></td>
@@ -96,12 +97,12 @@
       </div>
       <div id="contatos-paciente">
          <p>Contatos do Paciente:</p>
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th>Tipo</th>
-               <th>DDD</th>
-               <th>Telefone</th>
-               <th>Observação</th>
+               <th scope="col">Tipo</th>
+               <th scope="col">DDD</th>
+               <th scope="col">Telefone</th>
+               <th scope="col">Observação</th>
             </tr>
             <tr th:each="telefone, stats : ${paciente.getTelefones()}">
                <td th:text="${telefone.getTipo()}"></td>
@@ -113,14 +114,14 @@
       </div>
       <div id="endereco">
          <p>Endereços:</p>
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th>Município</th>
-               <th>CEP</th>
-               <th>UF</th>
-               <th>Bairro</th>
-               <th>Tipo</th>
-               <th>Correspondência</th>
+               <th scope="col">Município</th>
+               <th scope="col">CEP</th>
+               <th scope="col">UF</th>
+               <th scope="col">Bairro</th>
+               <th scope="col">Tipo</th>
+               <th scope="col">Correspondência</th>
             </tr>
             <tr th:each="endereco, stats : ${paciente.getEnderecos()}">
                <td th:text="${endereco.getMunicipio().getNome()}"></td>
@@ -133,10 +134,10 @@
          </table>
       </div>
       <div id="responsavel">
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th><h5>Nome do Responsável</h5></th>
-               <th><h5>Grau de Parentesco</h5></th>
+               <th scope="col"><h5>Nome do Responsável</h5></th>
+               <th scope="col"><h5>Grau de Parentesco</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getResponsavel().getNomeDoResponsavel()}]]</p></td>
@@ -144,12 +145,12 @@
             </tr>
          </table>
          <div id="responsavel-tabela">
-            <table>
+            <table summary="Dados Pessoais">
                <tr>
-                  <th>Tipo</th>
-                  <th>DDD</th>
-                  <th>Telefone</th>
-                  <th>Observação</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">DDD</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Observação</th>
                </tr>
                <tr th:each="telefone, stats : ${paciente.getResponsavel().getTelefones()}">
                   <td th:text="${telefone.getTipo()}"></td>
@@ -161,34 +162,34 @@
          </div>
       </div>
       <div id="documentos">
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th><h5>Número da Identidade</h5></th>
-               <th><h5>Órgão Emissor</h5></th>
+               <th scope="col"><h5>Número da Identidade</h5></th>
+               <th scope="col"><h5>Órgão Emissor</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getDocumento().getNumeroDaIdentidade()}]]</p></td>
                <td><p>[[${paciente.getDocumento().getOrgaoEmissor().getValor()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>UF</h5></th>
-               <th><h5>Data de Emissão</h5></th>
+               <th scope="col"><h5>UF</h5></th>
+               <th scope="col"><h5>Data de Emissão</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getDocumento().getUf().getSigla()}]]</p></td>
                <td><p>[[${paciente.getDocumento().getData()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>CPF</h5></th>
-               <th><h5>PIS/PASEP</h5></th>
+               <th scope="col"><h5>CPF</h5></th>
+               <th scope="col"><h5>PIS/PASEP</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getDocumento().getCpf()}]]</p></td>
                <td><p>[[${paciente.getDocumento().getPisPasep()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>CNH</h5></th>
-               <th><h5>Validade CNH</h5></th>
+               <th scope="col"><h5>CNH</h5></th>
+               <th scope="col"><h5>Validade CNH</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getDocumento().getCnh()}]]</p></td>
@@ -197,34 +198,34 @@
          </table>
       </div>
       <div id="certidao">
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th><h5>Registro de Nascimento</h5></th>
-               <th><h5>Tipo de Certidão</h5></th>
+               <th scope="col"><h5>Registro de Nascimento</h5></th>
+               <th scope="col"><h5>Tipo de Certidão</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCertidao().getRegistroDeNascimento()}]]</p></td>
                <td><p>[[${paciente.getCertidao().getTipoDaCertidao()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Nome do Cartório</h5></th>
-               <th><h5>Livro</h5></th>
+               <th scope="col"><h5>Nome do Cartório</h5></th>
+               <th scope="col"><h5>Livro</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCertidao().getNomeDoCartorio()}]]</p></td>
                <td><p>[[${paciente.getCertidao().getLivro()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Folhas</h5></th>
-               <th><h5>Termo</h5></th>
+               <th scope="col"><h5>Folhas</h5></th>
+               <th scope="col"><h5>Termo</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCertidao().getFolhas()}]]</p></td>
                <td><p>[[${paciente.getCertidao().getTermo()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Data de Emissão</h5></th>
-               <th><h5>Número da DN</h5></th>
+               <th scope="col"><h5>Data de Emissão</h5></th>
+               <th scope="col"><h5>Número da DN</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCertidao().getDataDeEmissao()}]]</p></td>
@@ -233,43 +234,43 @@
          </table>
       </div>
       <div id="sus-container">
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th><h5>Número CNS</h5></th>
-               <th><h5>Justificativa da Ausẽncia CNS</h5></th>
+               <th scope="col"><h5>Número CNS</h5></th>
+               <th scope="col"><h5>Justificativa da Ausẽncia CNS</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCartaoSUS().getNumero()}]]</p></td>
                <td><p>[[${paciente.getCartaoSUS().getJustificativa().getValor()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Motivo Cadastro</h5></th>
-               <th><h5>Doc. Referência</h5></th>
+               <th scope="col"><h5>Motivo Cadastro</h5></th>
+               <th scope="col"><h5>Doc. Referência</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCartaoSUS().getMotivoDoCadastro().getValor()}]]</p></td>
                <td><p>[[${paciente.getCartaoSUS().getDocumentoDeReferencia()}]]</p></td>
             </tr>
             <tr>
-               <th><h5>Cartão CNS Mãe</h5></th>
+               <th scope="col"><h5>Cartão CNS Mãe</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCartaoSUS().getCartaoNacionalSaudeMae()}]]</p></td>
             </tr>
          </table>
             <h4>Se naturalizado:</h4>
-         <table>
+         <table summary="Dados Pessoais">
             <tr>
-               <th><h5>Data de Entrada no Brasil</h5></th>
-               <th><h5>Data de Naturalização</h5></th>
-               <th><h5>Portaria</h5></th>
+               <th scope="col"><h5>Data de Entrada no Brasil</h5></th>
+               <th scope="col"><h5>Data de Naturalização</h5></th>
+               <th scope="col"><h5>Portaria</h5></th>
             </tr>
             <tr>
                <td><p>[[${paciente.getCartaoSUS().getDataDeEntradaNoBrasil() == null ? "" : paciente.getCartaoSUS().getDataDeEntradaNoBrasil()}]]</p></td>
                <td><p>[[${paciente.getCartaoSUS().getDataDeNaturalizacao() == null ? "" : paciente.getCartaoSUS().getDataDeNaturalizacao()}]]</p></td>
                <td><p>[[${paciente.getCartaoSUS().getPortaria()}]]</p></td>
             </tr>
-         </table>   
+         </table>
       </div>
       <div id="observacao">
          <div>
@@ -277,6 +278,6 @@
                <p class="container-span"><span class="textarea" role="textbox">[[${paciente.getObservacao()}]]</span></p>
          </div>
       </div>
-   </div>             
+   </div>
 </body>
 </html>

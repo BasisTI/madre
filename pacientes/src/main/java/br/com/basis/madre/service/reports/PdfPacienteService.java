@@ -3,16 +3,17 @@ package br.com.basis.madre.service.reports;
 import br.com.basis.madre.domain.Justificativa;
 import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.repository.PacienteRepository;
+import br.com.basis.madre.service.exceptions.PacienteNotFoundException;
 import com.lowagie.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -30,8 +31,13 @@ public class PdfPacienteService {
     @Transactional(readOnly = true)
     public byte[] getPdfPorPacienteId(Long id) throws DocumentException {
         log.debug("Request to get pdf for Paciente id : {}", id);
-        Paciente obj = pacienteRepository.findById(id).get();
-        return gerarPdfParaPaciente(obj);
+        Optional<Paciente> obj = pacienteRepository.findById(id);
+        if(obj.isPresent()){
+            return gerarPdfParaPaciente(obj.get());
+        }
+        else {
+            throw new PacienteNotFoundException("Não há paciente com o id informado");
+        }
     }
 
     public byte[] gerarPdfParaPaciente(Paciente obj) throws DocumentException {
