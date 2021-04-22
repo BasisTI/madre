@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class PdfService {
 
-    private static SpringTemplateEngine templateEngine;
+    private SpringTemplateEngine templateEngine;
 
     public PdfService(SpringTemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
@@ -51,7 +51,7 @@ public class PdfService {
         return byteArray.toByteArray();
     }
 
-    public static SpringTemplateEngine getTemplateEngine() {
+    public SpringTemplateEngine getTemplateEngine() {
         return templateEngine;
     }
 }

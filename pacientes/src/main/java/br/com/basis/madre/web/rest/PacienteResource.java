@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -105,7 +104,7 @@ public class PacienteResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/pacientes")
-    public ResponseEntity<PacienteInclusaoDTO> updatePaciente(@Valid @RequestBody PacienteInclusaoDTO pacienteDTO) throws URISyntaxException {
+    public ResponseEntity<PacienteInclusaoDTO> updatePaciente(@Valid @RequestBody PacienteInclusaoDTO pacienteDTO) {
         log.debug("REST request to update Paciente : {}", pacienteDTO);
         if (pacienteDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -139,7 +138,7 @@ public class PacienteResource {
      */
     @GetMapping("/pacientes/{id}")
     @Timed
-    public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) throws IOException, DocumentException {
+    public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
         Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOne(id);
         return ResponseUtil.wrapOrNotFound(pacienteDTO);

@@ -10,12 +10,11 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Configuration
 public class ThymeleafConfig {
 
-    public final static String PREFIX = "templates/";
-    public final static String ENCODING = "UTF-8";
-    public final static String MODE_HTML = "HTML5";
-    public final static String MODE_XHTML = "XHTML";
-    public final static boolean CACHEABLE = false;
-    public final static String SUFFIX = ".html";
+    public static final String PREFIX = "templates/";
+    public static final String ENCODING = "UTF-8";
+    public static final String MODE_HTML = "HTML5";
+    public static final String MODE_XHTML = "XHTML";
+    public static final String SUFFIX = ".html";
 
     @Bean
     public ClassLoaderTemplateResolver templateResolver(){
@@ -23,7 +22,7 @@ public class ThymeleafConfig {
         templateResolver.setPrefix(PREFIX);
         templateResolver.setCharacterEncoding(ENCODING);
         templateResolver.setTemplateMode(MODE_HTML);
-        templateResolver.setCacheable(CACHEABLE);
+        templateResolver.setCacheable(false);
         templateResolver.setSuffix(SUFFIX);
         templateResolver.setTemplateMode(MODE_XHTML);
 
@@ -41,7 +40,7 @@ public class ThymeleafConfig {
     public ViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setCharacterEncoding("UTF-8");
+        viewResolver.setCharacterEncoding(ENCODING);
         return viewResolver;
     }
 }
