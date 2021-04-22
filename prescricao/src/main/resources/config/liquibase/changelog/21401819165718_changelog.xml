@@ -6,7 +6,7 @@
                          newDataType="varchar(255)"
                          />
     </changeSet>
-    <changeSet id="21401819165718-1-data" author="jhipster" context="faker">
+    <changeSet id="21401819165718-1-data" author="jhipster" context="carga-exemplos">
     <loadData
         file="config/liquibase/data/tipo_procedimento.csv"
         separator=";"
