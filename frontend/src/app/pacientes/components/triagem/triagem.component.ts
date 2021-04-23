@@ -1,103 +1,79 @@
-import { DatatableClickEvent } from '@nuvem/primeng-components';
+import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
 import { Router } from '@angular/router';
 import { TriagemService } from './triagem.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, EventEmitter } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
+import { Table } from 'primeng';
+import { TriagemModel } from '../../models/triagem-model';
 
 @Component({
     selector: 'app-triagem',
     templateUrl: './triagem.component.html',
-    styles: [
-        `
-            .ui-widget.read-only:disabled {
-                opacity: 1;
-                background-color: #dddddd;
-            }
-
-            div {
-                margin: 3px;
-            }
-        `,
-    ],
-    styleUrls: ['triagem.scss'],
+    styleUrls: ['triagem.scss']
 })
-export class TriagemComponent implements OnInit, OnDestroy {
-    constructor(
-        private breadcrumbService: BreadcrumbService,
-        private triagemService: TriagemService,
-        private router: Router,
-    ) {}
 
-    triagens: any;
+export class TriagemComponent implements OnInit{
+    
+    constructor(private triagemService: TriagemService){
+    }
 
-    searchUrl = 'pacientes/api/triagens/listagem';
+    triagens: TriagemModel[] = [];
+
+    @ViewChild(Table) pDatatableComponent: Table;
+
+    searchUrl:string = 'pacientes/api/triagens/listagem';
 
     ngOnInit(): void {
-        this.breadcrumbService.setItems([
-            { label: 'Pacientes', routerLink: 'pacientes' },
-            { label: 'Triagem', routerLink: 'triagem' },
-        ]);
 
-        this.listarTriagens();
+        this.triagemService.listarTriagem().subscribe(res => {
+            this.triagens = res.content;
+            this.triagens.forEach(obj => {
+                switch(obj.classificacaoDeRisco){
+                    case 'EMERGENCIA':{
+                        obj.classificacaoDeRisco = 'A - EMERGENCIA';
+                        break;
+                    }
+                    case 'MUITO_URGENTE':{
+                        obj.classificacaoDeRisco = 'B - MUITO_URGENTE';
+                        break;
+                    }
+                    case 'URGENTE':{
+                        obj.classificacaoDeRisco = 'C - URGENTE';
+                        break;
+                    }
+                    case 'POUCO_URGENTE':{
+                        obj.classificacaoDeRisco = 'D - POUCO_URGENTE';
+                        break;
+                    }
+                    case 'NAO_URGENTE':{
+                        obj.classificacaoDeRisco = 'E - NAO_URGENTE';
+                        break;
+                    }
+                }
+            })
+            this.triagens.sort((a, b) => {
+                if(a.classificacaoDeRisco == b.classificacaoDeRisco){
+                    if(a.dataHoraDoAtendimento < b.dataHoraDoAtendimento){
+                        return -1;
+                    }
+                    else if(a.dataHoraDoAtendimento > b.dataHoraDoAtendimento){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                }
+                else if(a.classificacaoDeRisco < b.classificacaoDeRisco){
+                    return -1;
+                }
+                else{
+                    return 1;
+                }
+            })
+
+            console.log(this.triagens);
+        })
+
     }
 
-    listarTriagemId(id: number) {
-        this.triagemService.buscarTriagemId(id).subscribe((triagem) => {
-            this.triagens = triagem;
-        });
-    }
-
-    listarTriagens() {
-        this.triagemService.listarTriagem().subscribe((triagens) => {
-            this.triagens = triagens.content;
-            console.log(triagens.content);
-        });
-    }
-    getMensagem(tipo: String): string {
-        let descricao = 'Não informado';
-        switch (tipo) {
-            case 'EMERGENCIA': {
-                descricao = 'Emergência';
-                break;
-            }
-            case 'MUITO_URGENTE': {
-                descricao = 'Muito urgente';
-                break;
-            }
-            case 'URGENTE': {
-                descricao = 'Urgente';
-                break;
-            }
-
-            case 'POUCO_URGENTE': {
-                descricao = 'Pouco urgente';
-                break;
-            }
-            case 'NAO': {
-                descricao = 'Não urgente';
-                break;
-            }
-        }
-        return descricao;
-    }
-
-    btnClick(event: DatatableClickEvent) {
-        console.log(event);
-
-        if (!event.selection) {
-            return;
-        }
-        switch (event.button) {
-            case 'edit':
-                console.log('clicado');
-
-                this.router.navigate(['/triagem/edit', event.selection.id]);
-                console.log(event.selection);
-                break;
-        }
-    }
-
-    ngOnDestroy(): void {
-        this.breadcrumbService.reset();
-    }
 }
