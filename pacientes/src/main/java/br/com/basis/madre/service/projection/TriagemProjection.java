@@ -4,9 +4,10 @@ import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.ZonedDateTime;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public interface TriagemProjection {
+public interface TriagemProjection{
 
     Long getId();
     ZonedDateTime getDataHoraDoAtendimento();
@@ -24,4 +25,20 @@ public interface TriagemProjection {
         }
     }
 
+    Map<ClassificacaoDeRisco, Integer> niveisEmergencia = ClassificacaoDeRisco.getNiveisEmergencia();
+
+    default int compareTo(TriagemProjection o){
+        if(niveisEmergencia.get(this.getClassificacaoDeRisco()) < niveisEmergencia.get(o.getClassificacaoDeRisco())){
+            return -1;
+        }
+        else if(niveisEmergencia.get(this.getClassificacaoDeRisco()) > niveisEmergencia.get(o.getClassificacaoDeRisco())){
+            return 1;
+        }
+        else{
+            if(this.getDataHoraDoAtendimento() != null && o.getDataHoraDoAtendimento() != null){
+                return this.getDataHoraDoAtendimento().compareTo(o.getDataHoraDoAtendimento());
+            }
+            return 0;
+        }
+    }
 }

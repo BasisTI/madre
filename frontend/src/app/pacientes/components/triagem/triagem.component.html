@@ -35,81 +35,45 @@
                 </div>
             </div>
             <div class="ui-g-12 ui-md-3"></div>
-            <basis-datatable
-                type="server"
-                [url]="searchUrl"
-                [value]="triagens"
-                [disableView]="true"
-                [disableEdit]="true"
-                [disableDelete]="true"
-                (buttonClick)="btnClick($event)"
-                #datatable
-            >
-                <p-column field="paciente" header="Nome do Paciente" [sortable]="true">
-                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                        <span>{{
-                            rowData[col.field] === null || rowData[col.field] === undefined
-                                ? undefined
-                                : rowData[col.field].nome
-                        }}</span>
-                    </ng-template>
-                </p-column>
-                <p-column header="Nome Social" field="paciente"
-                    ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                        <span>
-                            {{
-                                rowData[col.field] === null || rowData[col.field] === undefined
-                                    ? undefined
-                                    : rowData[col.field].nomeSocial
-                            }}
-                        </span>
-                    </ng-template></p-column
-                >
-                <p-column header="Nome da Mãe" field="paciente"
-                    ><ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                        <span>
-                            {{
-                                rowData[col.field] === null || rowData[col.field] === undefined
-                                    ? undefined
-                                    : rowData[col.field].genitores.nomeDaMae
-                            }}
-                        </span>
-                    </ng-template></p-column
-                >
-                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
-                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                        <span> {{ rowData[col.field] | date: 'dd/MM/yyyy - HH:mm' }}</span>
-                    </ng-template>
-                </p-column>
-                <p-column header="Classificação" field="classificacaoDeRisco" [sortable]="true">
-                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                        <span>
-                            <div
-                                [ngClass]="{
-                                    urgente: rowData[col.field] == 'URGENTE',
-                                    poucoUrgente: rowData[col.field] == 'POUCO_URGENTE',
-                                    muitoUrgente: rowData[col.field] == 'MUITO_URGENTE',
-                                    emergencia: rowData[col.field] == 'EMERGENCIA',
-                                    naoUrgente: rowData[col.field] == 'NAO_URGENTE'
-                                }"
-                                [pTooltip]="rowData[col.field]"
-                            ></div>
-                        </span>
-                    </ng-template>
-                </p-column>
-                <basis-datatable-button class="ui-button-success" name="edit" icon="edit">
-                </basis-datatable-button>
-                <basis-datatable-button
-                    ng-reflect-icon="ui-icon-remove-red-eye"
-                    ng-reflect-b-tooltip="Escolha um registro para visualizar"
-                    class="ng-star-inserted"
-                    icon="remove-red-eye"
-                >
-                </basis-datatable-button>
-                <basis-datatable-button
-                    class="ui-button-danger"
-                    icon="delete"
-                ></basis-datatable-button>
+            <basis-datatable [value]="triagens" (click)="selectPaciente"
+            (buttonClick)="onClick($event)" #datatable>
+
+            <p-column header="Nome do Paciente" field="paciente">
+                <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
+                    {{ paciente[col.field] === null || paciente[col.field] === undefined ? undefined : paciente[col.field].nome }}
+                </ng-template>
+            </p-column>
+            <p-column header="Nome Social" field="paciente">
+                <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
+                    {{ paciente[col.field] === null || paciente[col.field] === undefined ? undefined : paciente[col.field].nomeSocial }}
+                </ng-template>
+            </p-column>  
+            <p-column header="Nome da Mãe" field="paciente">
+                <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
+                    {{ paciente[col.field].genitores === null || paciente[col.field].genitores === undefined ? undefined : paciente[col.field].genitores.nomeDaMae }}
+                </ng-template>
+            </p-column>
+            <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    {{ rowData[col.field] | date: 'dd/MM/yyyy - HH:mm' }}
+                </ng-template>
+            </p-column>
+            <p-column header="Classificação" field="classificacaoDeRisco">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span>
+                        <div
+                            [ngClass]="{
+                                emergencia: rowData[col.field] == 'EMERGENCIA',
+                                muitoUrgente: rowData[col.field] == 'MUITO_URGENTE',
+                                urgente: rowData[col.field] == 'URGENTE',
+                                poucoUrgente: rowData[col.field] == 'POUCO_URGENTE',
+                                naoUrgente: rowData[col.field] == 'NAO_URGENTE'
+                            }"
+                            [pTooltip]="rowData[col.field]"
+                        ></div>
+                    </span>
+                </ng-template>
+            </p-column>
             </basis-datatable>
             <div class="ui-g-9"></div>
             <div class="ui-g-2">
