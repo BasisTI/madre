@@ -12,13 +12,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -127,7 +131,10 @@ public class TriagemService {
     }
 
     public Page<TriagemProjection> buscarResumoTriagem(Pageable pageable) {
-        return triagemRepository.findAllResumoTriagemBy(pageable);
+        Page<TriagemProjection> page = triagemRepository.findAllResumoTriagemBy(pageable);
+        List<TriagemProjection> list = page.stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
+
+        return new PageImpl(list, pageable, list.size());
     }
 
 }
