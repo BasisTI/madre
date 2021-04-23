@@ -2,6 +2,7 @@ import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy, ViewChild, EventEmitter } from '@angular/core';
 import { Table } from 'primeng';
 import { TriagemModel } from '../../models/triagem-model';
+import { BreadcrumbService } from '@nuvem/primeng-components';
 
 @Component({
     selector: 'app-triagem',
@@ -25,7 +26,6 @@ export class TriagemComponent implements OnInit{
         this.triagemService.listarTriagem().subscribe(res => {
             this.triagens = res.content;
         })
-
     }
-
+    
 }
