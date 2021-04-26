@@ -11,6 +11,8 @@ export const routes: Routes = [
     { path: 'pre-cadastro', component: PreCadastroComponent },
     { path: 'triagem', component: TriagemComponent },
     { path: 'formulario', component: FormularioTriagemComponent },
+    { path: 'formulario/edit/:id', component: FormularioTriagemComponent },
+    { path: 'formulario/view/:id', component: FormularioTriagemComponent },
     { path: 'edit/:id', component: FormularioTriagemComponent },
     { path: 'solicitacao-de-internacao', component: SolicitacaoDeInternacaoComponent },
 ];

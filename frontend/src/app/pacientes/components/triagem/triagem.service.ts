@@ -9,24 +9,28 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class TriagemService {
-    private readonly apiUrl = 'pacientes/api';
+    private readonly apiUrl = 'pacientes/api/triagens';
 
     constructor(private httpService: HttpClient) {}
 
     cadastrarTriagem(triagem: TriagemModel) {
-        return this.httpService.post(`${this.apiUrl}/triagens`, triagem);
+        return this.httpService.post(`${this.apiUrl}`, triagem);
     }
 
     buscarTriagemId(id: number): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/${id}`);
+        return this.httpService.get(`${this.apiUrl}/${id}`);
     }
 
     alterarTriagem(id: number): Observable<any> {
-        return this.httpService.put(`${this.apiUrl}/triagens`, Response);
+        return this.httpService.put(`${this.apiUrl}`, Response);
     }
 
     listarTriagem(): Observable<any> {
-        return this.httpService.get(`${this.apiUrl}/triagens/listagem`);
+        return this.httpService.get(`${this.apiUrl}/listagem`);
+    }
+
+    deletarTriagem(id: number): Observable<any>{
+        return this.httpService.delete(`${this.apiUrl}/${id}`);
     }
 
     getResultPacientes(event): Observable<Pageable<ListaPacientesTriagem>> {

@@ -1,6 +1,6 @@
 import { ListaPacientesTriagem } from './../lista-pacientes-triagem';
 import { Paciente } from './../../../../internacao/models/paciente';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TriagemModel } from '../../../models/triagem-model';
 import { TriagemService } from './../triagem.service';
 import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
@@ -8,6 +8,7 @@ import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -45,6 +46,8 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     formatoDeData = 'dd/mm/yy';
     listaPacientesTriagem = new Array<ListaPacientesTriagem>();
     idade = '';
+    urlObserver: Subscription;
+    isEdit: boolean = true;
 
     buscaPacientes(event) {
         this.triagemService.getResultPacientes(event.query).subscribe((data) => {
@@ -57,7 +60,10 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private triagemService: TriagemService,
         private route: ActivatedRoute,
-    ) {}
+        private router: Router
+    ) {
+        
+    }
     private idadePaciente(dtNascimento: Date) {
         if (dtNascimento) {
             const idade = moment().diff(moment(dtNascimento), 'years');
@@ -82,11 +88,17 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             { label: 'Formulário' },
         ]);
 
-        const triagemId = this.route.snapshot.params['id'];
+        this.route.url.subscribe(url => url.forEach(el => {
+            if(el.path == 'view'){
+                this.isEdit = !this.isEdit;
+            }
+        }))
+        this.urlObserver = this.route.params.subscribe(params => {
+            if(params["id"]){
+                this.carregarTriagem(Number(params["id"]));
+            }
+        })
 
-        if (triagemId) {
-            this.carregarTriagem(triagemId);
-        }
     }
     get editando() {
         return Boolean(this.triagem.id);
@@ -112,24 +124,29 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         this.triagemService.cadastrarTriagem(triagem).subscribe((e) => {
             this.formTriagem.reset();
         });
-        console.log(triagem);
     }
 
     carregarTriagem(id: number) {
         this.triagemService.buscarTriagemId(id).subscribe((triagem) => {
-            console.log(triagem);
 
             this.formTriagem.patchValue(triagem);
-            this.formTriagem.patchValue({ paciente: triagem.paciente.nome });
+            this.formTriagem.patchValue({ 
+                paciente: triagem.paciente
+
+            });
         });
     }
 
     pacienteSelecionado(evt: any) {
         this.idadePaciente(evt.dataDeNascimento);
-        console.log(evt);
+    }
+
+    cancelarFormulario(){
+        this.router.navigateByUrl('/pacientes/triagem');
     }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
+        this.urlObserver.unsubscribe();
     }
 }

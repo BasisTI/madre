@@ -211,7 +211,7 @@
 
         <div class="ui-g-12">
             <div class="ui-g-12 ui-sm-12">
-                <div class="ui-float-label">
+                <div class="ui-float-label" *ngIf="isEdit">
                     <div class="ui-g-3"></div>
                     <div class="ui-g-3">
                         <button
@@ -219,6 +219,7 @@
                             type="button"
                             label="Cancelar"
                             pTooltip="Cancelar registro de triagem."
+                            (click)="cancelarFormulario()"
                         ></button>
                     </div>
 
@@ -229,6 +230,18 @@
                             label="Salvar"
                             [disabled]="!formTriagem.valid"
                             pTooltip="Salvar registro de triagem."
+                        ></button>
+                    </div>
+                </div>
+                <div class="ui-float-label" *ngIf="!isEdit">
+                    <div class="ui-g-6"></div>
+                    <div class="ui-g-6 ui-sm-6">
+                        <button
+                            pButton
+                            type="button"
+                            label="Voltar"
+                            pTooltip="Voltar para lista de triagem."
+                            (click)="cancelarFormulario()"
                         ></button>
                     </div>
                 </div>
