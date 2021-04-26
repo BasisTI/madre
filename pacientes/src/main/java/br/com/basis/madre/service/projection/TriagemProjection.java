@@ -4,7 +4,6 @@ import br.com.basis.madre.domain.enumeration.ClassificacaoDeRisco;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.ZonedDateTime;
-import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public interface TriagemProjection{
@@ -25,20 +24,15 @@ public interface TriagemProjection{
         }
     }
 
-    Map<ClassificacaoDeRisco, Integer> niveisEmergencia = ClassificacaoDeRisco.getNiveisEmergencia();
 
     default int compareTo(TriagemProjection o){
-        if(niveisEmergencia.get(this.getClassificacaoDeRisco()) < niveisEmergencia.get(o.getClassificacaoDeRisco())){
-            return -1;
-        }
-        else if(niveisEmergencia.get(this.getClassificacaoDeRisco()) > niveisEmergencia.get(o.getClassificacaoDeRisco())){
-            return 1;
+        if(this.getClassificacaoDeRisco().nivelEmergencia().compareTo(o.getClassificacaoDeRisco().nivelEmergencia()) == 0){
+            ZonedDateTime thisHoraDeAtendimento = this.getDataHoraDoAtendimento() == null ? ZonedDateTime.now() : this.getDataHoraDoAtendimento();
+            ZonedDateTime otherHoraDeAtendimento = o.getDataHoraDoAtendimento() == null ? ZonedDateTime.now() : o.getDataHoraDoAtendimento();
+            return thisHoraDeAtendimento.compareTo(otherHoraDeAtendimento);
         }
         else{
-            if(this.getDataHoraDoAtendimento() != null && o.getDataHoraDoAtendimento() != null){
-                return this.getDataHoraDoAtendimento().compareTo(o.getDataHoraDoAtendimento());
-            }
-            return 0;
+            return this.getClassificacaoDeRisco().nivelEmergencia().compareTo(o.getClassificacaoDeRisco().nivelEmergencia());
         }
     }
 }

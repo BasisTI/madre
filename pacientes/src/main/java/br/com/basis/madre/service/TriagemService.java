@@ -133,7 +133,7 @@ public class TriagemService {
         Page<TriagemProjection> page = triagemRepository.findAllResumoTriagemBy(pageable);
         List<TriagemProjection> list = page.stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
 
-        return new PageImpl(list, pageable, list.size());
+        return new PageImpl<TriagemProjection>(list, pageable, list.size());
     }
 
 }
