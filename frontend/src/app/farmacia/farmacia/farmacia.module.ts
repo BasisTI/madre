@@ -10,6 +10,7 @@ import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-me
 
 import { MedicamentosComponent } from './medicamentos/medicamentos.component';
 import { MedicamentoDetailComponent } from './medicamento-detail/medicamento-detail.component';
+import { DispensacaoDetailComponent } from './dispensacao-detail/dispensacao-detail.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { MedicamentoDetailComponent } from './medicamento-detail/medicamento-det
         MedicamentosComponent,
         CadastroMedicamentoComponent,
         MedicamentoDetailComponent,
+        DispensacaoDetailComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(Farmacia)],
 })
