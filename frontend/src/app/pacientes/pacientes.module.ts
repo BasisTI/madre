@@ -14,7 +14,7 @@ import { ProntuarioPipe } from './pipes/prontuario.pipe';
 import { CartaoSusPipe } from './pipes/cartao-sus.pipe';
 import { PacientesService } from './pacientes.service';
 
-import { CRUD_SERVICE } from '@nuvem/primeng-components';
+import { CRUD_SERVICE, PageNotificationModule } from '@nuvem/primeng-components';
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
 import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro/listagem-pre-cadastro.component';
@@ -32,7 +32,7 @@ import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro
     providers: [
         PacientesService,
     ],
-    imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, SharedModule, RouterModule.forChild(routes), PageNotificationModule],
     exports: [],
 })
 export class PacientesModule {}

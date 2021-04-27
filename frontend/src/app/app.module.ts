@@ -1,3 +1,4 @@
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {
     AccessbilityModule,
     ClipboardModule,
@@ -62,7 +63,8 @@ import { PacienteModule } from './pacientes/formulario/paciente.module';
         BreadcrumbModule,
         MenuModule,
         ConsultaModule,
-        PacienteModule
+        PacienteModule,
+        ConfirmDialogModule
     ],
     declarations: [
         AppComponent,
