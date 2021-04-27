@@ -35,8 +35,7 @@
                 </div>
             </div>
             <div class="ui-g-12 ui-md-3"></div>
-            <basis-datatable [value]="triagens" (click)="selectPaciente"
-            (buttonClick)="onClick($event)" #datatable>
+            <basis-datatable [value]="triagens" (buttonClick)="onClick($event)">
 
             <p-column header="Nome do Paciente" field="paciente">
                 <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
