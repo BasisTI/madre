@@ -1,4 +1,3 @@
-import { TriagemComponentRoutes } from './triagem-routes';
 import { Router } from '@angular/router';
 import { DatatableComponent, DatatableClickEvent, PageNotificationService } from '@nuvem/primeng-components';
 import { TriagemService } from './triagem.service';
