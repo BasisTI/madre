@@ -3,18 +3,17 @@ import { Medicamento, Medicamentos } from './medicamentos/Medicamento';
 import { Pageable } from './../../shared/pageable';
 import { Observable } from 'rxjs';
 import { Unidade } from './dispensacao/unidade';
-import { Prescricao } from './dispensacao/prescricao';
+import { Prescricao, Prescricaos } from './dispensacao/prescricao';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apresentacao } from './cadastro-medicamento/apresentacao';
-import { medicamentoRoute } from '@prescricao-medica/medicamento/medicamento.routes';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root',
 })
 export class FarmaciaService {
     medicamento: Medicamentos = new Medicamentos;
+    prescricao: Prescricaos = new Prescricaos;
     constructor(private httpServe: HttpClient) {}
     private readonly apiUrl = '/farmacia/api';
     private readonly api = '/farmacia/api/medicamentos';
@@ -115,5 +114,13 @@ export class FarmaciaService {
 
     delete(id: number): Observable<Medicamentos> {
         return this.httpServe.delete(`${this.apiUrl}/medicamentos/${id}`);
+    }
+
+    findP(id: number): Observable<Prescricaos> {
+        return this.httpServe.get(`${this.apiUrl}/prescricao/${id}`);
+    }
+    
+    deleteP(id: number): Observable<Prescricaos> {
+        return this.httpServe.delete(`${this.apiUrl}/prescricao/${id}`);
     }
 }

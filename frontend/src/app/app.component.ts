@@ -214,7 +214,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                     {
                         label: 'Dispensação medica',
                         icon: 'add',
-                        routerLink: ['/farmacia'],
+                        routerLink: ['/dispensacaos'],
                     },
                     {
                         label: 'Cadastro de Medicamento',

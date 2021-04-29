@@ -25,6 +25,7 @@ public class PrescricaoMedicamentoConsumer implements Consumer<Message<EventoPre
         EventoPrescricao evento = message.getPayload();
         log.debug("Mensagem recebida = {}", evento);
         Prescricao prescricao = new Prescricao();
+        prescricao.setId(evento.getPaciente().getId());
         prescricao.setNome(evento.getPaciente().getNome());
         prescricao.setDataInicio(evento.getDataDeLancamento().toLocalDate());
         repository.save(prescricao);
