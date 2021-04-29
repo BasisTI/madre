@@ -9,7 +9,6 @@ import br.com.basis.consulta.service.projection.CalendarioResumo;
 import org.elasticsearch.common.Strings;
 
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,13 +117,13 @@ public class EmergenciaService {
     @Transactional(readOnly = true)
     public Page<Emergencia> filtraConsultaEmergencial(Pageable pageable, String numeroConsulta, String grade, String pacienteId,String profissional, String especialidade, String clinicaCentral, String dataConsulta) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
-        filtraGrade(queryBuilder, grade);
-        filtraConsulta(queryBuilder, numeroConsulta);
-        filtraPaciente(queryBuilder, pacienteId);
-        filtraEspecialidade(queryBuilder,especialidade);
-        filtraProfissional(queryBuilder,profissional);
-        filtraClinicaCentral(queryBuilder,clinicaCentral);
-        filtraDataConsulta(queryBuilder,dataConsulta);
+        filter(queryBuilder,"grade",grade);
+        filter(queryBuilder, "numeroConsulta",numeroConsulta);
+        filter(queryBuilder, "pacienteId", pacienteId);
+        filter(queryBuilder, "profissional",especialidade);
+        filter(queryBuilder, "especialidade",profissional);
+        filter(queryBuilder ,"clinicaCentralId",clinicaCentral);
+        filter(queryBuilder,"dataHoraDaConsulta",dataConsulta);
         SearchQuery query = new NativeSearchQueryBuilder()
             .withQuery(queryBuilder)
             .withPageable(pageable)
@@ -132,45 +131,9 @@ public class EmergenciaService {
         return emergenciaSearchRepository.search(query);
     }
 
-    private void filtraGrade(BoolQueryBuilder queryBuilder, String grade) {
-        if (!Strings.isNullOrEmpty(grade)) {
-            queryBuilder.must(QueryBuilders.matchQuery("grade", grade));
-        }
-    }
-
-    private void filtraConsulta(BoolQueryBuilder queryBuilder, String numeroConsulta) {
-        if (!Strings.isNullOrEmpty(numeroConsulta)) {
-            queryBuilder.must(QueryBuilders.matchQuery("numeroConsulta", numeroConsulta));
-        }
-    }
-
-    private void filtraPaciente(BoolQueryBuilder queryBuilder, String pacienteId) {
-        if (!Strings.isNullOrEmpty(pacienteId)) {
-            queryBuilder.must(QueryBuilders.matchQuery("pacienteId", pacienteId));
-        }
-    }
-
-    private void filtraProfissional(BoolQueryBuilder queryBuilder, String profissional){
-        if (!Strings.isNullOrEmpty(profissional)){
-            queryBuilder.must(QueryBuilders.matchQuery("profissional", profissional));
-        }
-    }
-
-    private void filtraEspecialidade(BoolQueryBuilder queryBuilder, String especialidade){
-        if (!Strings.isNullOrEmpty(especialidade)){
-            queryBuilder.must(QueryBuilders.matchQuery("especialidade", especialidade));
-        }
-    }
-
-    private void filtraClinicaCentral(BoolQueryBuilder queryBuilder, String clinicaCentral){
-        if (!Strings.isNullOrEmpty(clinicaCentral)){
-            queryBuilder.must(QueryBuilders.matchQuery("clinicaCentralId", clinicaCentral));
-        }
-    }
-
-    private void filtraDataConsulta(BoolQueryBuilder queryBuilder, String dataConsulta){
-        if (!Strings.isNullOrEmpty(dataConsulta)){
-            queryBuilder.must(QueryBuilders.matchQuery("dataHoraDaConsulta", dataConsulta));
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name,valueName));
         }
     }
 }
