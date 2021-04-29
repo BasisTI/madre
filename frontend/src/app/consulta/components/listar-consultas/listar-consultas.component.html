@@ -4,79 +4,41 @@
             <h1>Pesquisar Consultas</h1>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-inputMask
-                        mask="9999999/9"
-                        pTooltip="Digite o número do prontuário do paciente."
-                        formControlName="prontuario"
-                    ></p-inputMask>
-
-                    <label>Prontuário</label>
-                </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="codigo" />
-                    <label>Código</label>
-                </span>
-            </div>
-            <div class="ui-g-4 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="nome" />
-                    <label>Nome</label>
-                </span>
-            </div>
-            <div class="ui-g-12"></div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
                     <input
                         type="text"
                         pInputText
                         pTooltip="Digite o número da consulta."
                         formControlName="consulta"
+                        [(ngModel)]="numeroConsulta"
                     />
                     <label>Consulta</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="ui-g-5 ui-sm-12">
                 <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pInputText
-                        pTooltip="Digite Código Central."
-                        formControlName="codigoCentral"
-                    />
-                    <label>Código Central</label>
-                </span>
-            </div>
-
-            <div class="ui-g-12"></div>
-
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="consultaAnterior" />
-                    <label>Consulta Anterior</label>
+                    <p-autoComplete
+                     field="nome"
+                     [suggestions]="pacientes"
+                     pInputText
+                     formControlName="nome"
+                     (completeMethod)="listarPacientes()"
+                     (onBlur)="selecionarPaciente($event)"
+                     [dropdown]="true"
+                        >
+                    </p-autoComplete>
+                    <label>Nome Paciente</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-dropdown
-                        type="text"
-                        pInputText
-                        pTooltip="Selecione a condição de atendimento."
-                        formControlName="condicaoAtendimento"
-                    ></p-dropdown>
-                    <label>Condição de Atendimento</label>
-                </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-dropdown
-                        type="text"
-                        pInputText
-                        pTooltip="Selecione a especialidade."
-                        formControlName="especialidade"
-                    ></p-dropdown>
-                    <label>Especialidade</label>
+                <span class="md-inputfield">
+                    <input 
+                    pInputText 
+                    disabled="true" 
+                    [(ngModel)]="prontuario"
+                     formControlName="prontuario" 
+                     placeholder="Selecione um paciente"
+                   />
+                    <label>Prontuário</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
@@ -86,37 +48,64 @@
                         pTooltip="Digite a grade."
                         pInputText
                         formControlName="grade"
+                        [(ngModel)]="grade"
                     />
                     <label>Grade</label>
                 </span>
             </div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="md-inputfield">
+                    <p-dropdown
+                    optionLabel="nome"
+                    [options]="crm"
+                     placeholder="Selecione..."
+                     [filter]="true"
+                     InputText
+                     formControlName="profissional"
+                     (onClick)="selecionarProfissional($event)"
+                        >
+                    </p-dropdown>
+                    <label>Pofissional</label>
+                </span>
+            </div>
+            <div class="ui-g-3 ui-sm-12">
+                <span class="ui-float-label">
+                     <p-autoComplete
+                    field="especialidade"
+                    [suggestions]="especialidades"
+                    pInputText
+                    formControlName="especialidade"
+                    (completeMethod)="listarEspecialidade()"
+                    (onBlur)="selecionarEspecialidade($event)"
+                    [dropdown]="true"
+                ></p-autoComplete> 
+                    <label>Especialidade</label>
+                </span>
+            </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
-                    <p-calendar
-                        [locale]="localizacao"
-                        [yearRange]="anosDisponiveis"
-                        [dateFormat]="formatoDeData"
-                        monthNavigator="true"
-                        yearNavigator="true"
-                        formControlName="dataInicial"
-                    ></p-calendar>
-                    <label>Data inicial</label>
+                    <input
+                        type="text"
+                        pInputText
+                        pTooltip="Digite Código Central."
+                        formControlName="codigoCentral"
+                        [(ngModel)]="clinicaCentralId"
+                    />
+                    <label>Código Central</label>
                 </span>
             </div>
             <div class="ui-g-2 ui-sm-12">
                 <span class="ui-float-label">
                     <p-calendar
-                        [locale]="localizacao"
-                        [yearRange]="anosDisponiveis"
-                        [dateFormat]="formatoDeData"
-                        monthNavigator="true"
-                        yearNavigator="true"
-                        formControlName="dataFinal"
-                    ></p-calendar>
-                    <label>Data final</label>
+                    [locale]="localizacao" 
+                    dateFormat="yy-mm-dd"
+                    formControlName="dataFinal"
+                    [(ngModel)]="data">
+                    </p-calendar>
+                    <label>Data da Consulta</label>
                 </span>
             </div>
-
             <div class="ui-g-12 ui-sm-12">
                 <div class="ui-g-2">
                     <button
@@ -124,6 +113,7 @@
                         type="button"
                         label="Pesquisar"
                         pTooltip="Pesquisar consultas de paciente."
+                        (click)="listar()"
                     ></button>
                 </div>
                 <div class="ui-g-2">
@@ -132,27 +122,20 @@
                         type="button"
                         label="Limpar"
                         pTooltip="Limpar pesquisa de consultas."
-                    ></button>
-                </div>
-                <div class="ui-g-2">
-                    <button
-                        pButton
-                        type="button"
-                        label="Exportar"
-                        pTooltip="Exportar arquivo de consultas."
+                        (click)="limparPesquisa()"
                     ></button>
                 </div>
             </div>
         </div>
-
         <div class="ui-g-12 ui-sm-12">
             <basis-datatable
             [disableEdit]="true"
             [disableDelete]="true"
             [disableView]="true"
-            #datatable type="server" 
-            [url]="searchUrl"
-            sortField="brand"
+            #datatable
+            type="memory" 
+            [value]="consulta"
+            sortField="brand"    
             >
                 <p-column field="numeroConsulta" header="Consultas"></p-column>
                 <p-column field="dataHoraDaConsulta" header="Data/Hora"></p-column>
@@ -165,6 +148,16 @@
                 <p-column field="profissional" header="Profissional"></p-column>
                 <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
             </basis-datatable>
+            <div class="ui-g-12 ui-sm-12">
+            <div class="ui-g-2">
+                <button
+                    pButton
+                    type="button"
+                    label="Exportar"
+                    pTooltip="Exportar arquivo de consultas."
+                ></button>
+            </div>
+            </div>
         </div>
     </form>
 </div>
