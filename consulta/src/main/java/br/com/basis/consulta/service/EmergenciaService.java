@@ -9,10 +9,10 @@ import br.com.basis.consulta.service.projection.CalendarioResumo;
 import org.elasticsearch.common.Strings;
 
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -37,9 +37,6 @@ public class EmergenciaService {
     private final EmergenciaMapper emergenciaMapper;
 
     private final EmergenciaSearchRepository emergenciaSearchRepository;
-
-    @Value("${application.elasticSearchFuzzyParameter}")
-    private static Integer elasticSearchFuzzyParam;
 
     public EmergenciaService(EmergenciaRepository emergenciaRepository, EmergenciaMapper emergenciaMapper, EmergenciaSearchRepository emergenciaSearchRepository) {
         this.emergenciaRepository = emergenciaRepository;

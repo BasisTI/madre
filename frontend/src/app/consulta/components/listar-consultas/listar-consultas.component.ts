@@ -67,18 +67,9 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
 
     constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, private consultaService: ConsultaService) {}
 
-    formatarData(data: Date): string {
-        const normalize = (x: number): string => (x < 10 ? `0${x}` : `${x}`);
-
-        const dateObjectToFormattedString = (dateObject: Date): string => {
-            const year = normalize(dateObject.getFullYear());
-            const day = normalize(dateObject.getDate());
-            const month = normalize(dateObject.getMonth() + 1);
-
-            return `${year}-${month}-${day}`;
-        };
-        return dateObjectToFormattedString(data);
-    }
+    formatarData(){
+        this.dataConsulta= ((this.data.getUTCFullYear() ) + "-" + ("0" + (this.data.getMonth() + 1)).slice(-2) + "-" + ("0" + this.data.getDate()).slice(-2));
+     }
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -99,7 +90,7 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
 
     listar() {
         if (this.data != null) {
-            this.dataConsulta = this.formatarData(this.data);
+             this.formatarData();
         }
         this.consultaService
             .getConsulta(this.grade, this.numeroConsulta, this.prontuario, this.clinicaCentralId, this.dataConsulta,this.especialidade, this.profissional, this.paciente)
