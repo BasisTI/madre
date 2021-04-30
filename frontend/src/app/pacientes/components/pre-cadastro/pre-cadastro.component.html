@@ -35,14 +35,6 @@
                         formControlName="nomeSocial"
                         pTooltip="Infome o nome social do Paciente."
                     />
-                    <p-message
-                        severity="error"
-                        text="Nome social Obrigatório"
-                        *ngIf="
-                            preCadastro.controls['nomeSocial'].errors?.required &&
-                            preCadastro.controls['nomeSocial'].touched
-                        "
-                    ></p-message>
                     <label>Nome Social</label>
                 </span>
             </div>
@@ -113,6 +105,7 @@
                         type="button"
                         label="Cancelar"
                         pTooltip="Cancelar registro de Pré-Cadastro."
+                        routerLink="/pacientes/lista-pre-cadastro"
                     ></button>
                 </div>
                 <div class="ui-g-3">
