@@ -1,5 +1,7 @@
 package br.com.basis.consulta.web.rest;
 
+import br.com.basis.consulta.domain.Emergencia;
+import br.com.basis.consulta.repository.search.EmergenciaSearchRepository;
 import br.com.basis.consulta.service.EmergenciaService;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
 import br.com.basis.consulta.service.projection.CalendarioResumo;
@@ -15,15 +17,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -31,6 +35,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
 
 /**
  * REST controller for managing {@link br.com.basis.consulta.domain.Emergencia}.
@@ -42,14 +47,17 @@ public class EmergenciaResource {
     private final Logger log = LoggerFactory.getLogger(EmergenciaResource.class);
 
     private static final String ENTITY_NAME = "madreconsultaEmergencia";
+    private static final String PAGE = "page";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final EmergenciaService emergenciaService;
+    private final EmergenciaSearchRepository emergenciaSearchRepository;
 
-    public EmergenciaResource(EmergenciaService emergenciaService) {
+    public EmergenciaResource(EmergenciaService emergenciaService, EmergenciaSearchRepository emergenciaSearchRepository) {
         this.emergenciaService = emergenciaService;
+        this.emergenciaSearchRepository = emergenciaSearchRepository;
     }
 
     /**
@@ -95,16 +103,14 @@ public class EmergenciaResource {
     /**
      * {@code GET  /emergencias} : get all the emergencias.
      *
-
      * @param pageable the pagination information.
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of emergencias in body.
      */
     @GetMapping("/consultas-emergencias")
     public ResponseEntity<List<EmergenciaDTO>> getAllEmergencias(Pageable pageable) {
         log.debug("REST request to get a page of Emergencias");
         Page<EmergenciaDTO> page = emergenciaService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = io.github.jhipster.web.util.PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -137,18 +143,37 @@ public class EmergenciaResource {
     /**
      * {@code SEARCH  /_search/emergencias?query=:query} : search for the emergencia corresponding
      * to the query.
+     * <p>
+     *    * @param query the query of the emergencia search.
+     *    * @param pageable the pagination information.
      *
-     * @param query the query of the emergencia search.
-     * @param pageable the pagination information.
      * @return the result of the search.
      */
-    @GetMapping("/_search/consultas-emergencias")
+    @GetMapping("/_search/consultas")
     public ResponseEntity<List<EmergenciaDTO>> searchEmergencias(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Emergencias for query {}", query);
         Page<EmergenciaDTO> page = emergenciaService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+    @GetMapping("/_search/consultas-emergencias")
+    public ResponseEntity<List<Emergencia>> obterTodosPacientes(Pageable pageable,
+                                                                @RequestParam(name = "numeroConsulta", required = false) String numeroConsulta,
+                                                                @RequestParam(name = "grade", required = false) String grade,
+                                                                @RequestParam(name = "pacienteId", required = false) String pacienteId,
+                                                                @RequestParam(name = "profissional", required = false) String profissional,
+                                                                @RequestParam(name = "especialidade", required = false) String especialidade,
+                                                                @RequestParam(name = "clinicaCentralId", required = false) String clinicaCentral,
+                                                                @RequestParam(name = "dataHoraDaConsulta", required = false) String dataConsulta
+    ) {
+        log.debug("Request REST para obter uma página de consultas.");
+        Page<Emergencia> page = emergenciaService.filtraConsultaEmergencial(pageable, numeroConsulta, grade, pacienteId, profissional, especialidade, clinicaCentral, dataConsulta);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     @GetMapping("/consultas-emergencias/calendario")
     @Timed
     public ResponseEntity<List<CalendarioResumo>> buscarCalendarioResumo(Pageable pageable) {

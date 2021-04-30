@@ -6,15 +6,20 @@ import br.com.basis.consulta.repository.search.EmergenciaSearchRepository;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
 import br.com.basis.consulta.service.mapper.EmergenciaMapper;
 import br.com.basis.consulta.service.projection.CalendarioResumo;
+import org.elasticsearch.common.Strings;
+
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
-
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
@@ -94,7 +99,7 @@ public class EmergenciaService {
     /**
      * Search for the emergencia corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -108,4 +113,28 @@ public class EmergenciaService {
     public Page<CalendarioResumo> buscarCalendarioResumo(Pageable pageable) {
         return emergenciaRepository.findAllCalendarioResumoBy(pageable);
     }
+
+    @Transactional(readOnly = true)
+    public Page<Emergencia> filtraConsultaEmergencial(Pageable pageable, String numeroConsulta, String grade, String pacienteId,String profissional, String especialidade, String clinicaCentral, String dataConsulta) {
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder,"grade",grade);
+        filter(queryBuilder, "numeroConsulta",numeroConsulta);
+        filter(queryBuilder, "pacienteId", pacienteId);
+        filter(queryBuilder, "profissional",especialidade);
+        filter(queryBuilder, "especialidade",profissional);
+        filter(queryBuilder ,"clinicaCentralId",clinicaCentral);
+        filter(queryBuilder,"dataHoraDaConsulta",dataConsulta);
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+        return emergenciaSearchRepository.search(query);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name,valueName));
+        }
+    }
 }
+

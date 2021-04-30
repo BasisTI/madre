@@ -5,6 +5,8 @@ import { Especialidade } from './../internacao/models/especialidade';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pageable } from '@shared/pageable';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
@@ -39,5 +41,29 @@ export class ConsultaService {
         return this.client.get<Array<ConsultaEmergenciaModel>>(
             `${this.apiUrl}/consultas-emergencias/calendario`,
         );
+    }
+
+    public  getConsulta(
+        grade: string,
+        numeroConsulta: string,
+        prontuario: string,
+        clinicaCentralId: string,
+        dataConsulta: string,
+        especialidade: string,
+        profissional: string,
+        pacienteId: string,
+    ): Observable<ConsultaEmergenciaModel[]> {
+        return this.client.get<ConsultaEmergenciaModel[]>(`${this.apiUrl}/_search/consultas-emergencias`, {
+            params: new HttpParams()
+                .set('grade', grade )
+                .set('numeroConsulta', numeroConsulta)
+                .set('prontuario', prontuario)
+                .set('clinicaCentralId',clinicaCentralId)
+                .set('dataHoraDaConsulta', dataConsulta)
+                .set('especialidade', especialidade)
+                .set('profissional', profissional)
+                .set('pacienteId' ,pacienteId),
+                
+        });
     }
 }

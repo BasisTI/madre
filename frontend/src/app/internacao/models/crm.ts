@@ -7,5 +7,5 @@ export interface ICRM {
 export class CRM implements ICRM {
     public id?: number;
     public codigo?: string;
-    publicnome?: string;
+    public nome?: string;
 }

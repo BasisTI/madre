@@ -1,7 +1,7 @@
 export interface ConsultaEmergenciaModel {
     id: number;
     url: string;
-    numeroConsulta: number;
+    numeroConsulta: string;
     dataHoraDaConsulta: Date;
     grade: number;
     prontuario: string;
