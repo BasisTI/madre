@@ -25,7 +25,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
 
     preCadastro = this.fb.group({
         nome: ['', Validators.required],
-        nomeSocial: ['', Validators.required],
+        nomeSocial: [''],
         nomeDaMae: ['', Validators.required],
         dataDeNascimento: ['', Validators.required],
         cartaoSus: ['', [this.validaSus]],
@@ -50,7 +50,7 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
             ativo: pre.ativo,
         };
         this.preCadastroService.preCadastrarPaciente(preCadastroPaciente).subscribe();
-        console.log(preCadastroPaciente);
+        this.limpar();
     }
 
     validaSus(control: AbstractControl) {
@@ -71,6 +71,10 @@ export class PreCadastroComponent implements OnInit, OnDestroy {
                 ) % 11;
 
         return soma % 11 === 0 ? null : { customCns: true };
+    }
+
+    limpar(){
+        this.preCadastro.reset()
     }
 
     ngOnDestroy() {
