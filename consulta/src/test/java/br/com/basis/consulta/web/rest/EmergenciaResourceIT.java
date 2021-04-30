@@ -121,7 +121,7 @@ public class EmergenciaResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EmergenciaResource emergenciaResource = new EmergenciaResource(emergenciaService);
+        final EmergenciaResource emergenciaResource = new EmergenciaResource(emergenciaService,mockEmergenciaSearchRepository);
         this.restEmergenciaMockMvc = MockMvcBuilders.standaloneSetup(emergenciaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
