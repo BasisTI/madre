@@ -7,7 +7,7 @@ export class TriagemModel {
         public pressaoArterial?: number,
 
         public frequenciaCardiaca?: number,
-        //
+        
         public temperatura?: number,
 
         public peso?: number,
@@ -25,5 +25,11 @@ export class TriagemModel {
         public observacao?: string,
 
         public pacienteId?: number,
+
+        public paciente?: {
+            id: number,
+            nome: string;
+        },
+
     ) {}
 }

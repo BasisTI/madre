@@ -70,7 +70,6 @@ export class TriagemComponent implements OnInit{
     }
 
     confirmarDelete(triagem: TriagemModel){
-        console.log(this.confirmationService)
         this.confirmationService.confirm({
             message: 'Você tem certeza que deseja excluir o registro?',
             accept: () => {

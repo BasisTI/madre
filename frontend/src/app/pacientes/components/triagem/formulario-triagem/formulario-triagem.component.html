@@ -1,4 +1,4 @@
-<form class="ui-g ui-fluid" #form [formGroup]="formTriagem" (ngSubmit)="cadastrar(form)">
+<form class="ui-g ui-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
     <div class="ui-g-12">
         <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>
     </div>
@@ -8,10 +8,10 @@
                 <span class="ui-float-label">
                     <p-autoComplete
                         field="nome"
+                        formControlName="paciente"  
                         [suggestions]="listaPacientesTriagem"
                         (completeMethod)="buscaPacientes($event)"
                         [dropdown]="true"
-                        formControlName="paciente"
                         (onSelect)="pacienteSelecionado($event)"
                     ></p-autoComplete>
                     <p-message
@@ -39,7 +39,6 @@
                     <label>Pressão Arterial (MMHG)</label>
                 </span>
             </div>
-
             <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
                     <input

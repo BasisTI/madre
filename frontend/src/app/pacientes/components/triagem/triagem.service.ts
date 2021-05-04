@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 })
 export class TriagemService {
     private readonly apiUrl = 'pacientes/api/triagens';
-
+    private readonly api ='pacientes/api';
     constructor(private httpService: HttpClient) {}
 
     cadastrarTriagem(triagem: TriagemModel) {
@@ -21,8 +21,8 @@ export class TriagemService {
         return this.httpService.get(`${this.apiUrl}/${id}`);
     }
 
-    alterarTriagem(id: number): Observable<any> {
-        return this.httpService.put(`${this.apiUrl}`, Response);
+    alterarTriagem(triagem: TriagemModel): Observable<any> {
+        return this.httpService.put(`${this.apiUrl}`, triagem);
     }
 
     listarTriagem(): Observable<any> {
@@ -35,7 +35,7 @@ export class TriagemService {
 
     getResultPacientes(event): Observable<Pageable<ListaPacientesTriagem>> {
         return this.httpService.get<Pageable<ListaPacientesTriagem>>(
-            `${this.apiUrl}/pacientes/_resumo`,
+            `${this.api}/pacientes/_resumo`,
             {
                 params: new HttpParams().set('nome', event).set('sort', 'nome'),
             },
