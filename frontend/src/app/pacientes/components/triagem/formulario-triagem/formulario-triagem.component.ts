@@ -7,8 +7,8 @@ import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
-import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { moment } from 'fullcalendar';
 
 @Component({
     selector: 'app-formulario-triagem',
