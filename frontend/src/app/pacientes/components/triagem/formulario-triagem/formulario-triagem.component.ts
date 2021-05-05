@@ -7,8 +7,8 @@ import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { OnInit, OnDestroy, Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
-import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { moment } from 'fullcalendar';
 
 @Component({
     selector: 'app-formulario-triagem',
@@ -24,6 +24,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
     selectedValue: string;
     triagem: TriagemModel;
     formTriagem = this.fb.group({
+        id:[''],
         classificacaoDeRisco: ['', Validators.required],
         paciente: ['', Validators.required],
         pressaoArterial: [''],
@@ -98,15 +99,15 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
                 this.carregarTriagem(Number(params["id"]));
             }
         })
-
     }
     get editando() {
         return Boolean(this.triagem.id);
     }
 
-    cadastrar(form: FormBuilder) {
+    submit(form: FormBuilder) {
         const tri = this.formTriagem.value;
         const triagem: TriagemModel = {
+            id: tri.id,
             classificacaoDeRisco: tri.classificacaoDeRisco,
             pressaoArterial: tri.pressaoArterial,
             frequenciaCardiaca: tri.frequenciaCardiaca,
@@ -121,19 +122,24 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
             pacienteId: tri.paciente.id,
         };
 
-        this.triagemService.cadastrarTriagem(triagem).subscribe((e) => {
-            this.formTriagem.reset();
-        });
+        if (this.formTriagem.value.id != 0) {
+            this.triagemService.alterarTriagem(triagem).subscribe((e) => {
+                this.formTriagem.reset();
+            });
+        } else {
+            this.triagemService.cadastrarTriagem(triagem).subscribe((e) => {
+                this.formTriagem.reset();
+            });
+        }   
     }
 
     carregarTriagem(id: number) {
         this.triagemService.buscarTriagemId(id).subscribe((triagem) => {
-
-            this.formTriagem.patchValue(triagem);
             this.formTriagem.patchValue({ 
-                paciente: triagem.paciente
-
+                paciente: triagem.paciente,
+                descricaoQueixa: triagem.descricaoQueixa,
             });
+            this.formTriagem.patchValue(triagem);
         });
     }
 
