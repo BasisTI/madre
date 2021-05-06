@@ -1,48 +1,43 @@
-<div class="topbar clearfix">
-    <div class="topbar-left">
-        <div class="logo"></div>
+<div class="layout-topbar p-shadow-4">
+    <div class="layout-topbar-left">
+        <a class="layout-topbar-logo" routerLink="/">
+            <img id="app-logo" src="assets/layout/images/logo.jpg" alt="madre" style="height: 2.25rem">
+        </a>
+
+        <a class="layout-menu-button p-shadow-6" (click)="app.onMenuButtonClick($event)" pRipple>
+            <i class="pi pi-chevron-right"></i>
+        </a>
+
+        <a class="layout-topbar-mobile-button" (click)="app.onTopbarMobileButtonClick($event)" pRipple>
+            <i class="pi pi-ellipsis-v fs-large"></i>
+        </a>
     </div>
-    <div class="topbar-right">
-        <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
-            <i></i>
-        </a>
-        <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
-            <i class="material-icons">menu</i>
-        </a>
-        <ul class="topbar-items animated fadeInDown" [ngClass]="{'topbar-items-visible': app.topbarMenuActive}">
-            <li #settings [ngClass]="{'active-top-menu':app.activeTopbarItem === settings}">
-                <a href="#" (click)="app.onTopbarItemClick($event,settings)">
-                    <i class="topbar-icon material-icons">settings</i>
-                    <span class="topbar-item-name">Settings</span>
-                </a>
-                <ul class="ultima-menu animated fadeInDown">
-                    <li role="menuitem">
-                        <a routerLink="/diario-erros">
-                            <i class="material-icons">error</i>
-                            <span>Diário de Erros</span>
-                        </a>
-                    </li>
-                    <li role="menuitem">
-                        <a logout>
-                            <i class="material-icons">power_settings_new</i>
-                            <span>Sair</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li #user [ngClass]="{'active-top-menu':app.activeTopbarItem === user}" *ngIf="usuario">
-                <a href="#" (click)="app.onTopbarItemClick($event,user)">
-                    <i class="topbar-icon material-icons">person</i>
-                    <span class="topbar-item-name">Usuário</span>
-                </a>
-                <ul class="ultima-menu animated fadeInDown">
-                    <li role="menuitem">
-                        <a>
-                            <span user><strong>Usuário: </strong></span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+
+    <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': app.mobileTopbarActive}">
+        <div class="layout-topbar-actions-left"></div>
+        <div class="layout-topbar-actions-right">
+            <ul class="layout-topbar-items">
+                <li class="layout-topbar-item">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
+                        <i class="pi pi-cog"></i>
+                    </a>
+                    <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="app.activeTopbarItem === 'profile'">
+                        <li class="layout-topbar-action-item">
+                            <a routerLink="/error-stack" class="p-d-flex p-flex-row p-ai-center" pRipple>
+                                <i class="pi pi-cog" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
+                                <span>&nbsp; Diário de Erros</span>
+                            </a>
+                        </li>
+                        <li class="layout-topbar-action-item">
+                            <a class="p-d-flex p-flex-row p-ai-center" pRipple>
+                                <i class="pi pi-power-off" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
+                                <span>&nbsp; Sair</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+

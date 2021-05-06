@@ -5,7 +5,7 @@ import { PacienteService } from '@internacao/services/paciente.service';
 @Component({
     selector: 'app-card-paciente',
     template: `
-        <div class="ui-g ui-fluid">
+        <div class="ui-g p-fluid">
             <p-fieldset legend="Paciente">
                 <div class="ui-g">
                     <div class="ui-g-4">

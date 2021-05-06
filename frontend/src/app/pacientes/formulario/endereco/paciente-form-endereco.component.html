@@ -1,5 +1,5 @@
-<div class="ui-g ui-fluid" [formGroup]="endereco">
-    <div class="ui-g-12">
+<div class="ui-g p-fluid" [formGroup]="endereco">
+    <div class="p-g-12">
         <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="ui-g-6 ui-sm-12"></div>
         <div class="ui-g-6 ui-sm-12">
             <span class="ui-float-label">
@@ -15,7 +15,7 @@
             </span>
         </div>
     </div>
-    <div class="ui-g-12">
+    <div class="p-g-12">
         <div class="ui-g-2 ui-sm-12">
             <span class="md-inputfield">
                 <p-autoComplete
@@ -31,12 +31,12 @@
         <div nInputText label="Logradouro" formControlName="logradouro" class="ui-g-4 ui-sm-12" required></div>
         <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="ui-g-6 ui-sm-12"></div>
     </div>
-    <div class="ui-g-12 ui-fluid">
+    <div class="p-g-12 p-fluid">
         <div nInputText label="Número" required formControlName="numero" class="ui-g-3"></div>
         <div nInputText label="Complemento" formControlName="complemento" class="ui-g-4"></div>
         <div nInputText label="Bairro" required formControlName="bairro" class="ui-g-3"></div>
     </div>
-    <div class="ui-g-12">
+    <div class="p-g-12">
         <div nCheck label="Correspondência?" required formControlName="correspondencia" class="ui-g-9"></div>
     </div>
 

@@ -1,17 +1,17 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="ui-g p-fluid">
+    <div class="p-g-12">
         <div class="card card-w-title">
             <h1>Gerar Recebimento</h1>
             <div class="ui-g">
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <p-fieldset legend="Nota Fiscal de Entrada">
                         <app-documento-fiscal-entrada
                             [parentFormGroup]="formGroup.controls.documentoFiscal"
                         ></app-documento-fiscal-entrada>
                     </p-fieldset>
                 </div>
-                <div class="ui-g-12">
-                    <div class="ui-g-12">
+                <div class="p-g-12">
+                    <div class="p-g-12">
                         <div class="card card-w-title">
                             <h4>Com Autorização de Fornecimento?</h4>
                             <div style="margin: 0px 10px; display: inline;">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="ui-g-12" *ngIf="comAutorizacaoFornecimento">
+                <div class="p-g-12" *ngIf="comAutorizacaoFornecimento">
                     <p-fieldset
                         legend="
                             Autorização de Fornecimento
@@ -45,9 +45,9 @@
                         ></app-autorizacao-fornecimento>
                     </p-fieldset>
                 </div>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <p-fieldset legend="Itens de Entrega AF" *ngIf="comAutorizacaoFornecimento">
-                        <div class="ui-g-12">
+                        <div class="p-g-12">
                             <div class="ui-g-2">
                                 <button
                                     pButton
@@ -58,12 +58,12 @@
                             </div>
                         </div>
                     </p-fieldset>
-                    <div *ngIf="!comAutorizacaoFornecimento" class="ui-g-12">
+                    <div *ngIf="!comAutorizacaoFornecimento" class="p-g-12">
                         <p-fieldset legend="Itens Nota de Recebimento">
                             <!-- Item Form -->
                             <div class="ui-g">
                                 <form [formGroup]="itemForm">
-                                    <div class="ui-g-12">
+                                    <div class="p-g-12">
                                         <div class="ui-g-2">
                                             <span class="md-inputfield" style="margin-top: 5px;">
                                                 <p-autoComplete
@@ -93,7 +93,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="ui-g-12">
+                                    <div class="p-g-12">
                                         <div class="ui-g-2">
                                             <span class="md-inputfield" style="margin-top: 5px;">
                                                 <input

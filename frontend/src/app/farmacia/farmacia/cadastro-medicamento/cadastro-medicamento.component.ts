@@ -7,7 +7,7 @@ import { Apresentacao } from './apresentacao';
 import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Medicamentos } from '../medicamentos/Medicamento';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService } from 'primeng';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
     selector: 'app-cadastro-medicamento',

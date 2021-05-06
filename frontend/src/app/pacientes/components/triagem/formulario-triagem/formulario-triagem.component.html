@@ -1,10 +1,10 @@
-<form class="ui-g ui-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
-    <div class="ui-g-12">
+<form class="ui-g p-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
+    <div class="p-g-12">
         <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>
     </div>
-    <div class="ui-g-12">
-        <div class="ui-g-12">
-            <div class="ui-g-12 ui-sm-12">
+    <div class="p-g-12">
+        <div class="p-g-12">
+            <div class="p-g-12 ui-sm-12">
                 <span class="ui-float-label">
                     <p-autoComplete
                         field="nome"
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
+        <div class="p-g-12">
             <div class="ui-g-3 ui-sm-12">
                 <span class="ui-float-label">
                     <input
@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
+        <div class="p-g-12">
             <div class="ui-g-6 ui-sm-12">
                 <span class="ui-float-label">
                     <input
@@ -126,8 +126,8 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
-            <div class="ui-g-12 ui-sm-12">
+        <div class="p-g-12">
+            <div class="p-g-12 ui-sm-12">
                 <span class="ui-float-label">
                     <input type="text" pInputText formControlName="descricaoQueixa" />
                     <label>Descrição/Queixa</label>
@@ -152,7 +152,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
+        <div class="p-g-12">
             <div class="ui-g-3 ui-sm-12">
                 <legend>Vítima de acidente</legend>
 
@@ -194,8 +194,8 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
-            <div class="ui-g-12 ui-sm-12">
+        <div class="p-g-12">
+            <div class="p-g-12 ui-sm-12">
                 <span class="ui-float-label">
                     <input
                         type="text"
@@ -208,8 +208,8 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
-            <div class="ui-g-12 ui-sm-12">
+        <div class="p-g-12">
+            <div class="p-g-12 ui-sm-12">
                 <div class="ui-float-label" *ngIf="isEdit">
                     <div class="ui-g-3"></div>
                     <div class="ui-g-3">

@@ -1,11 +1,11 @@
-<div class="ui-g ui-fluid" [formGroup]="formGroup">
-    <div class="ui-g-12" formGroupName="documento">
+<div class="ui-g p-fluid" [formGroup]="formGroup">
+    <div class="p-g-12" formGroupName="documento">
         <div nInputText label="Número da Identidades" formControlName="numeroDaIdentidade" class="ui-g-3 ui-sm-12"></div>
         <div nAutoComplete [service]="orgaoEmissorService" field="valor" formControlName="orgaoEmissorId" label="Órgão Emissor" class="ui-g-3 ui-sm-12"></div>
         <div nAutoComplete [service]="ufService" field="sigla" formControlName="ufId" label="UF" class="ui-g-2 ui-sm-12"></div>
         <div madreCalendar label="Data de Emissão" formControlName="data" class="ui-g-2 ui-sm-12"></div>
     </div>
-    <div class="ui-g-12" formGroupName="documento">
+    <div class="p-g-12" formGroupName="documento">
         <div nInputMask label="CPF" formControlName="cpf" mask="999.999.999-99" placeholder="___.___.___-__" tooltip="Digite o CPF do paciente." class="ui-g-3 ui-sm-12"></div>
         <div nInputMask label="PIS/PASEP" formControlName="pisPasep" mask="999.99999.99-9" placeholder="___._____.__-_" tooltip="Digite o PIS/PASEP do paciente." class="ui-g-3 ui-sm-12"></div>
         <div nInputMask label="CNH" formControlName="cnh" mask="99999999999" placeholder="___________" tooltip="Digite a CNH do paciente." class="ui-g-3 ui-sm-12"></div>

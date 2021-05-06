@@ -3,7 +3,7 @@ import { DatatableComponent, DatatableClickEvent, PageNotificationService } from
 import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy, ViewChild, EventEmitter } from '@angular/core';
 import { TriagemModel } from '../../models/triagem-model';
-import { ConfirmationService } from 'primeng';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
     selector: 'app-triagem',

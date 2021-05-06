@@ -2,7 +2,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { ConsultaService } from '../../consulta.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BreadcrumbService } from '@nuvem/primeng-components';
-import { FullCalendar } from 'primeng';
+import { FullCalendar } from 'primeng/fullcalendar';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { moment } from 'fullcalendar';

@@ -1,9 +1,9 @@
-<div class="ui-g ui-fluid">
+<div class="ui-g p-fluid">
     <div class="card card-w-title">
-        <div class="ui-g-12">
+        <div class="p-g-12">
             <h1>Gerar Nota Fiscal</h1>
             <form [formGroup]="notaFiscalForm">
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <div class="ui-g-1">
                         <span class="md-inputfield" style="margin-top: 5px;">
                             <input
@@ -36,7 +36,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <div class="ui-g-2">
                         <div *ngIf="isCpf(); else cnpj">
                             <span class="md-inputfield" style="margin-top: 5px;">
@@ -85,7 +85,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <div class="ui-g-2">
                         <span class="md-inputfield" style="margin-top: 5px;">
                             <p-calendar
@@ -114,7 +114,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <div class="ui-g-2">
                         <span class="md-inputfield" style="margin-top: 5px;">
                             <input pInputText type="number" formControlName="valorTotal" />
@@ -140,7 +140,7 @@
                         <label>Observação</label>
                     </span>
                 </div>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <div class="ui-g-3">
                         <button
                             pButton

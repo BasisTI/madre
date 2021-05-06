@@ -15,5 +15,5 @@ export const medicamentoRoute: Routes = [
     },
 ];
 
-export const MedicamentoRoutes: ModuleWithProviders = RouterModule.forRoot(medicamentoRoute);
+export const MedicamentoRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(medicamentoRoute);
 

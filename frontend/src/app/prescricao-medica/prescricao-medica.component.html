@@ -1,23 +1,23 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="ui-g p-fluid">
+    <div class="p-g-12">
         <div class="card card-w-title">
             <h1>Prescrição Médica</h1>
             <div class="ui-g">
 
-                <div class="ui-g-12 ui-md-12 ui-fluid">
+                <div class="p-g-12 p-md-12 p-fluid">
                     <span class="md-inputfield">
                         <input type="text" pInputText class="ui-inputtext" name="nome"
                             pTooltip="Pesquisar Paciente por nome" [(ngModel)]="nome" #parametro />
                         <label>Nome paciente</label>
                     </span>
                 </div>
-                <div class="ui-g-12 ui-md-6">
-                    <div class="ui-g-12 ui-md-6">
+                <div class="p-g-12 ui-md-6">
+                    <div class="p-g-12 ui-md-6">
                         <button pButton label="Pesquisar" icon="ui-icon-search" pTooltip="Pesquisar Paciente por Nome"
                             (click)="pesquisar()"></button>
                     </div>
                 </div>
-                <div class="ui-g-12 ui-md-3"></div>
+                <div class="p-g-12 ui-md-3"></div>
 
                 <basis-datatable #datatable type="server" [url]="searchUrl" [rows]="10" [disableView]="true"
                     [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)">

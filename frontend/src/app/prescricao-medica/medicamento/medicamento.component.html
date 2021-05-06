@@ -1,12 +1,12 @@
-<div class="ui-g ui-fluid">
+<div class="ui-g p-fluid">
 
-    <div class="ui-g-12">
+    <div class="p-g-12">
         <form (ngSubmit)="prescrever()">
             <p-accordion>
                 <p-accordionTab header="Dados Gerais" [selected]="true">
                     <form [formGroup]="prescricaoMedicamento">
                         <div class="ui-g">
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-6">
                                     <span class="md-inputfield">
                                         <input formControlName="nome" type="text" pInputText disabled />
@@ -23,8 +23,8 @@
                                 </div>
 
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-12">
+                            <div class="p-g-12">
+                                <div class="p-g-12">
                                     <span class="md-inputfield">
                                         <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                             id="observacao" formControlName="observacao"></textarea>
@@ -39,7 +39,7 @@
                 <p-accordionTab [selected]="true" header="Itens Prescrição Medicamento">
                     <form [formGroup]="itemPrescricaoMedicamento" (ngSubmit)="incluirItem()">
                         <div class="ui-g">
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-8">
                                     <span class="md-inputfield">
                                         <p-autoComplete field="nome" [suggestions]="medicamentos"
@@ -52,9 +52,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12"></div>
+                            <div class="p-g-12"></div>
 
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
                                         <input type="number" pInputText formControlName="dose" />
@@ -105,7 +105,7 @@
 
                             </div>
 
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-2">
                                     <span class="md-inputfield">
 
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
 
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
                                         <input type="number" pInputText formControlName="volume"
@@ -161,7 +161,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
                                         <input type="number" pInputText formControlName="velocidadeInfusao" />
@@ -197,7 +197,7 @@
                                 </div>
                             </div>
 
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <div class="ui-g-3">
                                     <span class="md-inputfield">
                                         <p-calendar type="text" timeOnly="true" pInputText
@@ -224,8 +224,8 @@
                                 </div>
                             </div>
 
-                            <div class="ui-g-12">
-                                <div class="ui-g-12">
+                            <div class="p-g-12">
+                                <div class="p-g-12">
                                     <span class="md-inputfield">
                                         <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                             id="observacaoCondicao" formControlName="observacaoCondicao"></textarea>
@@ -240,7 +240,7 @@
                                 </button>
                             </div>
 
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <basis-datatable type="memory" [value]="itensPrescricaoMedicamento" [disableView]="true"
                                     [disableEdit]="true" [disableDelete]="true" [verticalButtons]="false">
                                     <p-column header="Medicamentos" field="idMedicamento">
@@ -297,7 +297,7 @@
                 </p-accordionTab>
             </p-accordion>
 
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-6">
                     <button pButton type="submit" label="Prescrever"></button>
 

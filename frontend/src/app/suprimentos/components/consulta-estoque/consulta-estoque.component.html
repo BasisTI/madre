@@ -1,10 +1,10 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="ui-g p-fluid">
+    <div class="p-g-12">
         <div class="card card-w-title">
             <h1>Consultar Estoque</h1>
             <div class="ui-g">
                 <form [formGroup]="consultaForm">
-                    <div class="ui-g-12">
+                    <div class="p-g-12">
                         <div class="ui-g-3">
                             <span class="md-inputfield" style="margin-top: 5px;">
                                 <p-autoComplete
@@ -32,7 +32,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="ui-g-12">
+                    <div class="p-g-12">
                         <div class="ui-g-2">
                             <span class="md-inputfield" style="margin-top: 5px;">
                                 <p-autoComplete
@@ -54,7 +54,7 @@
                         </div>
                         <div class="ui-g-1">
                             <label>Estocável</label>
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <p-radioButton
                                     name="estocavel"
                                     [value]="true"
@@ -62,7 +62,7 @@
                                     formControlName="estocavel"
                                 ></p-radioButton>
                             </div>
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <p-radioButton
                                     name="estocavel"
                                     [value]="false"
@@ -73,7 +73,7 @@
                         </div>
                         <div class="ui-g-1">
                             <label>Ativo</label>
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <p-radioButton
                                     name="ativo"
                                     [value]="true"
@@ -81,7 +81,7 @@
                                     formControlName="ativo"
                                 ></p-radioButton>
                             </div>
-                            <div class="ui-g-12">
+                            <div class="p-g-12">
                                 <p-radioButton
                                     name="ativo"
                                     [value]="false"
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ui-g-12">
+                    <div class="p-g-12">
                         <div class="ui-g-2">
                             <span class="md-inputfield" style="margin-top: 5px;">
                                 <p-autoComplete
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <div class="ui-g-2"></div>
                     <div class="ui-g-3">
                         <button
@@ -156,7 +156,7 @@
                         ></button>
                     </div>
                 </div>
-                <div class="ui-g-12 ui-md-3"></div>
+                <div class="p-g-12 ui-md-3"></div>
                 <basis-datatable
                     type="server"
                     [url]="api"

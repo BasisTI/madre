@@ -1,11 +1,11 @@
-<div class="ui-g ui-fluid">
+<div class="ui-g p-fluid">
     <p-fieldset legend="Solicitação de Internação">
         <form [formGroup]="formGroup">
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <app-card-paciente [prontuario]="paciente.id"></app-card-paciente>
             </div>
             <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-4">
                     <span class="ui-float-label">
                         <p-calendar
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <!-- Especialidade* & Equipe -->
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-4">
                     <app-especialidade
                         [parentFormGroup]="formGroup"
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <!-- CRM* -->
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-4">
                     <app-crm
                         [parentFormGroup]="formGroup"
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-4">
                     <label>Principais Sinais e Sintomas Clínicos</label>
                     <textarea
@@ -107,7 +107,7 @@
                 </div>
             </div>
             <!-- Procedimento* -->
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-4">
                     <app-procedimento
                         [parentFormGroup]="formGroup"
@@ -118,8 +118,8 @@
                 </div>
             </div>
             <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
-            <div class="ui-g-12">
-                <div class="ui-g-12">
+            <div class="p-g-12">
+                <div class="p-g-12">
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -129,7 +129,7 @@
                         label="CID Principal"
                     ></app-cid>
                 </div>
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [showClear]="true"
@@ -139,7 +139,7 @@
                     ></app-cid>
                 </div>
             </div>
-            <div class="ui-g-12">
+            <div class="p-g-12">
                 <div class="ui-g-4">
                     <p-button
                         icon="pi pi-check"

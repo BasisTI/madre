@@ -1,11 +1,11 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="ui-g p-fluid">
+    <div class="p-g-12">
         <div class="card card-w-title">
             <h1>Gerar Transferência Automática</h1>
             <div class="ui-g">
-                <div class="ui-g-12">
+                <div class="p-g-12">
                     <form [formGroup]="transferenciaForm">
-                        <div class="ui-g-12">
+                        <div class="p-g-12">
                             <div class="ui-g-4">
                             <span class="md-inputfield" style="margin-top: 5px;">
                                 <p-autoComplete
@@ -33,7 +33,7 @@
                             </span>
                             </div>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="p-g-12">
                             <div class="ui-g-4">
                         <span class="md-inputfield" style="margin-top: 5px;">
                             <p-autoComplete
@@ -47,16 +47,16 @@
                         </span>
                             </div>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="p-g-12">
                             <div class="ui-g-4">
                                 <button pButton label="Salvar"
                                         [disabled]="transferenciaForm.invalid || itens.length === 0"
                                         (click)="salvar()"></button>
                             </div>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="p-g-12">
                             <p-fieldset legend="Itens">
-                                <div class="ui-g-12">
+                                <div class="p-g-12">
                                     <form [formGroup]="itemForm">
                                         <div class="ui-g-4">
                                             <span class="md-inputfield" style="margin-top: 5px;">
@@ -85,7 +85,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="ui-g-12">
+                                <div class="p-g-12">
                                     <basis-datatable type="memory" [value]="itens">
                                         <p-column header="Material">
                                             <ng-template let-data="rowData" pTemplate="body">
