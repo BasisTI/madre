@@ -8,12 +8,16 @@ import br.com.basis.madre.service.dto.TriagemDTO;
 import br.com.basis.madre.service.projection.TriagemProjection;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +28,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -114,10 +118,24 @@ public class TriagemResource {
 
     @GetMapping("/_search/triagens")
     @Timed
-    public List<Triagem> searchTriagens(@RequestParam String query) {
+    public ResponseEntity<List<Triagem>> searchTriagens(@RequestParam(defaultValue = "*") String query,
+                                        @RequestParam(defaultValue = "ASC")String order,
+                                        @RequestParam(name="page") int pageNumber,
+                                        @RequestParam int size,
+                                        @RequestParam(defaultValue="id", required = false) String sort) {
         log.debug("REST request to search Triagens for query {}", query);
-        return StreamSupport
-            .stream(triagemSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .collect(Collectors.toList());
+        Sort.Direction sortOrder = null;
+        switch(order) {
+            case "ASC": {
+                sortOrder = Sort.Direction.ASC;
+            } break;
+            case "DESC": {
+                sortOrder = Sort.Direction.DESC;
+            }break;
+        }
+        Page<Triagem> page = triagemSearchRepository.search(queryStringQuery(query), PageRequest.of(pageNumber, size, sortOrder, sort));
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

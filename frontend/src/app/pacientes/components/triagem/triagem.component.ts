@@ -4,6 +4,7 @@ import { TriagemService } from './triagem.service';
 import { Component, OnInit, OnDestroy, ViewChild, EventEmitter } from '@angular/core';
 import { TriagemModel } from '../../models/triagem-model';
 import { ConfirmationService } from 'primeng';
+import { ElasticQuery } from '@shared/elastic-query';
 
 @Component({
     selector: 'app-triagem',
@@ -23,16 +24,14 @@ export class TriagemComponent implements OnInit{
 
     triagens: TriagemModel[] = [];
 
+    elasticQuery: ElasticQuery = new ElasticQuery();
+
     @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
-    searchUrl:string = 'pacientes/api/triagens/listagem';
+    searchUrl:string = 'pacientes/api/_search/triagens';
 
     ngOnInit(): void {
-
-        this.triagemService.listarTriagem().subscribe(res => {
-            this.triagens = res.content;
-        })
-
+        this.pesquisar();
     }
 
     onClick(event: DatatableClickEvent) {
@@ -55,10 +54,20 @@ export class TriagemComponent implements OnInit{
         }
     }
 
+    pesquisar(){
+        this.datatable.refresh(this.elasticQuery.query);
+    }
+
+    public limparPesquisa() {
+        this.elasticQuery.reset();
+        this.datatable.refresh(this.elasticQuery.reset)
+    }
+
+
     recarregarDatatable(){
-        this.triagemService.listarTriagem().subscribe(res => {
-            this.triagens = res.content;
-        });
+        
+            this.datatable.refresh(this.elasticQuery.query);
+        
     }
 
     abrirEditar(triagem: TriagemModel) {
@@ -74,7 +83,7 @@ export class TriagemComponent implements OnInit{
             message: 'Você tem certeza que deseja excluir o registro?',
             accept: () => {
                 this.triagemService.deletarTriagem(triagem.id).subscribe(() => {
-                    this.recarregarDatatable();                    
+                    this.datatable.refresh(this.elasticQuery.query);                
                     this.pageNotificationService.addSuccessMessage('Registro excluído com sucesso!');   
                 });            
             }
