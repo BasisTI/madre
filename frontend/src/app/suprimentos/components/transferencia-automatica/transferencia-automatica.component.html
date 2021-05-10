@@ -1,39 +1,39 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Transferências Automáticas</h1>
-            <div class="ui-g">
-                <div class="p-g-12 p-md-12 p-fluid">
-                    <span class="md-inputfield" style="margin-top: 5px;">
+            <div class="p-grid">
+                <div class="p-md-12 p-fluid">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input
                                 type="text"
                                 pInputText
-                                class="ui-inputtext"
+                                class="p-inputtext"
                         />
                         <label>Placeholder</label>
                     </span>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-2"></div>
-                    <div class="ui-g-3">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2"></div>
+                    <div class="p-md-3">
                         <button
                                 pButton
                                 type="button"
                                 label="Pesquisar"
-                                icon="ui-icon-search"
+                                icon="p-icon-search"
                         ></button>
                     </div>
-                    <div class="ui-g-3">
+                    <div class="p-md-3">
                         <button
                             pButton
                             type="button"
                             label="Nova Transferência"
                             [routerLink]="['/transferencias-automaticas/nova']"
-                            icon="ui-icon-add"
+                            icon="p-icon-add"
                         ></button>
                     </div>
                 </div>
-                <div class="p-g-12 ui-md-3"></div>
+                <div class="p-col-12 p-grid p-md-3"></div>
                 <basis-datatable type="server" [url]="datatableUrl" [disableDelete]="false" [disableEdit]="true"
                                  [disableView]="true" #datatable>
                     <p-column header="Almoxarifado Origem" field="origem">

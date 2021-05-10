@@ -1,5 +1,5 @@
 <nCrudForm [form]="paciente" >
-    <div class="p-g-12">
+    <div class="p-col-12 p-grid">
         <p-accordion>
             <p-accordionTab header="Dados Pessoais" [selected]="true">
                 <paciente-form-dados-pessoais [formGroup]="paciente"></paciente-form-dados-pessoais>
@@ -22,11 +22,11 @@
             <p-accordionTab header="Cartão SUS">
                 <paciente-form-cartao-sus [formGroup]="paciente"></paciente-form-cartao-sus>
             </p-accordionTab>
-            <p-accordionTab header="Observação">
-                <div class="ui-g p-fluid">
-                    <div class="p-g-12">
-                        <div class="p-g-12 ui-sm-12">
-                            <span class="ui-float-label">
+            <p-accordionTab header="Observação" [formGroup]="paciente">
+                <div class="p-grid p-fluid">
+                    <div class="p-col-12 p-grid">
+                        <div class="p-md-12">
+                            <span class="p-float-label">
                                 <textarea
                                     formControlName="observacao"
                                     [rows]="3"
@@ -43,8 +43,8 @@
         </p-accordion>
     </div>
 </nCrudForm>
-<div class="p-g-12" *ngIf = "paciente.get('id').value">
-    <div class="ui-g-4 ui-sm-12">
+<div class="p-col-12 p-grid" *ngIf = "paciente.get('id').value">
+    <div class="p-md-4 p-sm-12">
         <button pButton label="Visualizar impressão" (click)="imprimirRelatorioPaciente(paciente.get('id').value)"></button>
     </div>
 </div>

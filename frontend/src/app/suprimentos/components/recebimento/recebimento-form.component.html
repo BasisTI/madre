@@ -1,17 +1,17 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Gerar Recebimento</h1>
-            <div class="ui-g">
-                <div class="p-g-12">
+            <div class="p-grid">
+                <div class="p-col-12 p-grid">
                     <p-fieldset legend="Nota Fiscal de Entrada">
                         <app-documento-fiscal-entrada
                             [parentFormGroup]="formGroup.controls.documentoFiscal"
                         ></app-documento-fiscal-entrada>
                     </p-fieldset>
                 </div>
-                <div class="p-g-12">
-                    <div class="p-g-12">
+                <div class="p-col-12 p-grid">
+                    <div class="p-col-12 p-grid">
                         <div class="card card-w-title">
                             <h4>Com Autorização de Fornecimento?</h4>
                             <div style="margin: 0px 10px; display: inline;">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-g-12" *ngIf="comAutorizacaoFornecimento">
+                <div class="p-col-12 p-grid" *ngIf="comAutorizacaoFornecimento">
                     <p-fieldset
                         legend="
                             Autorização de Fornecimento
@@ -45,10 +45,10 @@
                         ></app-autorizacao-fornecimento>
                     </p-fieldset>
                 </div>
-                <div class="p-g-12">
+                <div class="p-col-12 p-grid">
                     <p-fieldset legend="Itens de Entrega AF" *ngIf="comAutorizacaoFornecimento">
-                        <div class="p-g-12">
-                            <div class="ui-g-2">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-2">
                                 <button
                                     pButton
                                     label="Gravar"
@@ -58,14 +58,14 @@
                             </div>
                         </div>
                     </p-fieldset>
-                    <div *ngIf="!comAutorizacaoFornecimento" class="p-g-12">
+                    <div *ngIf="!comAutorizacaoFornecimento" class="p-col-12 p-grid">
                         <p-fieldset legend="Itens Nota de Recebimento">
                             <!-- Item Form -->
-                            <div class="ui-g">
+                            <div class="p-grid">
                                 <form [formGroup]="itemForm">
-                                    <div class="p-g-12">
-                                        <div class="ui-g-2">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                    <div class="p-col-12 p-grid">
+                                        <div class="p-md-2">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <p-autoComplete
                                                     [suggestions]="materiais"
                                                     (completeMethod)="
@@ -78,8 +78,8 @@
                                                 <label>Material</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-2">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                        <div class="p-md-2">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <p-autoComplete
                                                     [suggestions]="marcasComerciais"
                                                     (completeMethod)="
@@ -93,9 +93,9 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="p-g-12">
-                                        <div class="ui-g-2">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                    <div class="p-col-12 p-grid">
+                                        <div class="p-md-2">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <input
                                                     pInputText
                                                     type="number"
@@ -104,8 +104,8 @@
                                                 <label>Quantidade a Receber</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-2">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                        <div class="p-md-2">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <p-autoComplete
                                                     [suggestions]="unidadesMedida"
                                                     (completeMethod)="
@@ -118,8 +118,8 @@
                                                 <label>Unidade de Medida</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-2">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                        <div class="p-md-2">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <input
                                                     pInputText
                                                     type="text"
@@ -128,8 +128,8 @@
                                                 <label>Quantidade Convertida</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-1">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                        <div class="p-md-1">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <input
                                                     pInputText
                                                     type="text"
@@ -138,11 +138,11 @@
                                                 <label>Valor Total</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-2">
+                                        <div class="p-md-2">
                                             <button
                                                 pButton
                                                 label="Adicionar"
-                                                icon="ui-icon-add"
+                                                icon="p-icon-add"
                                                 [disabled]="itemForm.invalid"
                                                 (click)="adicionarItemALista()"
                                             ></button>
@@ -179,8 +179,8 @@
                                 <p-column header="R$ Valor Total" field="valorTotal"></p-column>
                             </basis-datatable>
                         </p-fieldset>
-                        <div class="ui-g-2"></div>
-                        <div class="ui-g-4">
+                        <div class="p-md-2"></div>
+                        <div class="p-md-4">
                             <button
                                 pButton
                                 label="Gravar"
@@ -188,7 +188,7 @@
                                 [disabled]="formGroup.invalid"
                             ></button>
                         </div>
-                        <div class="ui-g-4">
+                        <div class="p-md-4">
                             <button pButton label="Limpar"></button>
                         </div>
                     </div>

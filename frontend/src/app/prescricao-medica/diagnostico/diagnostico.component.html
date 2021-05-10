@@ -1,18 +1,18 @@
-<div class="p-g-12 p-fluid">
+<div class="p-col-12 p-grid p-fluid">
     <form autocomplete="off" (ngSubmit)="prescrever()">
         <p-accordion>
             <p-accordionTab [selected]="true" header="Dados Gerais">
                 <form [formGroup]="prescricaoDiagnostico">
-                    <div class="ui-g">
-                        <div class="p-g-12">
-                            <div class="ui-g-6">
-                                <span class="md-inputfield">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-6">
+                                <span class="md-inputfield p-float-label">
                                     <input formControlName="nome" type="text" pInputText disabled />
                                     <label>Paciente</label>
                                 </span>
                             </div>
-                            <div class="ui-g-6">
-                                <span class="md-inputfield">
+                            <div class="p-md-6">
+                                <span class="md-inputfield p-float-label">
                                     <p-calendar formControlName="dataPrescricao" dateFormat="dd/mm/yy" disabled="true">
                                     </p-calendar>
                                     <label>Data Prescrição</label>
@@ -20,9 +20,9 @@
                             </div>
                         </div>
 
-                        <div class="p-g-12">
-                            <div class="p-g-12">
-                                <span class="md-inputfield">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-col-12 p-grid">
+                                <span class="md-inputfield p-float-label">
                                     <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                         id="observacao" formControlName="observacao"></textarea>
                                     <label>Observações</label>
@@ -36,16 +36,16 @@
 
             <p-accordionTab header="Itens Diagnóstico" [selected]="true">
                 <form [formGroup]="itemPrescricaoDiagnostico" (ngSubmit)="incluirItem()">
-                    <div class="ui-g">
-                        <div class="ui-g-8">
+                    <div class="p-grid">
+                        <div class="p-md-8">
                             <app-cid [parentFormGroup]="itemPrescricaoDiagnostico" [required]="true" [showTree]="true"
                                 name="idCid" label="CID">
                             </app-cid>
                         </div>
 
-                        <div class="p-g-12">
-                            <div class="p-g-12">
-                                <span class="md-inputfield">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-col-12 p-grid">
+                                <span class="md-inputfield p-float-label">
                                     <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                         formControlName="complemento"></textarea>
                                     <label>Complemento</label>
@@ -53,14 +53,14 @@
                             </div>
                         </div>
 
-                        <div class="ui-g-6">
+                        <div class="p-md-6">
                             <button label="Adicionar" pButton name="adicionar-item" type="submit">
                             </button>
                         </div>
 
-                        <div class="p-g-12"></div>
+                        <div class="p-col-12 p-grid"></div>
 
-                        <div class="p-g-12">
+                        <div class="p-col-12 p-grid">
                             <basis-datatable type="memory" [value]="itensDiagnostico" [disableView]="true"
                                 [disableEdit]="true" [disableDelete]="true">
                                 <p-column header="CID" field="idCid">
@@ -79,8 +79,8 @@
             </p-accordionTab>
         </p-accordion>
 
-        <div class="p-g-12">
-            <div class="ui-g-6">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-6">
                 <button pButton type="submit" label="Prescrever">
                 </button>
 

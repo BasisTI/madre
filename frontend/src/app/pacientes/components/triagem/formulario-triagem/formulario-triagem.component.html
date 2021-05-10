@@ -1,35 +1,32 @@
-<form class="ui-g p-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
-    <div class="p-g-12">
+<form class="p-grid p-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
+    <div class="p-md-12">
         <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>
     </div>
-    <div class="p-g-12">
-        <div class="p-g-12">
-            <div class="p-g-12 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-autoComplete
-                        field="nome"
-                        formControlName="paciente"  
-                        [suggestions]="listaPacientesTriagem"
-                        (completeMethod)="buscaPacientes($event)"
-                        [dropdown]="true"
-                        (onSelect)="pacienteSelecionado($event)"
-                    ></p-autoComplete>
-                    <p-message
-                        severity="error"
-                        text="Nome do paciente obrigatório"
-                        *ngIf="
-                            formTriagem.controls['paciente'].errors?.required &&
-                            formTriagem.controls['paciente'].touched
-                        "
-                    ></p-message>
-                    <label>Nome do Paciente</label>
-                </span>
-            </div>
+    <div class="p-col-12 p-grid">
+        <div class="p-md-12">
+            <span class="p-float-label">
+                <p-autoComplete
+                    field="nome"
+                    formControlName="paciente"  
+                    [suggestions]="listaPacientesTriagem"
+                    (completeMethod)="buscaPacientes($event)"
+                    [dropdown]="true"
+                    (onSelect)="pacienteSelecionado($event)"
+                ></p-autoComplete>
+                <label>Nome do Paciente</label>
+            </span>
+            <p-message
+                severity="error"
+                text="Nome do paciente obrigatório"
+                *ngIf="
+                    formTriagem.controls['paciente'].errors?.required &&
+                    formTriagem.controls['paciente'].touched">
+            </p-message>
         </div>
 
-        <div class="p-g-12">
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pTooltip="Informe a Pressão Arterial"
@@ -39,8 +36,8 @@
                     <label>Pressão Arterial (MMHG)</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pTooltip="Informe a Frequência Cardíaca"
@@ -50,8 +47,8 @@
                     <label>Frequência cardiaca (BPM)</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText
@@ -61,8 +58,8 @@
                     <label>Temperatura (C°)</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText
@@ -74,9 +71,9 @@
             </div>
         </div>
 
-        <div class="p-g-12">
-            <div class="ui-g-6 ui-sm-12">
-                <span class="ui-float-label">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-6 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText
@@ -94,8 +91,8 @@
                     "
                 ></p-message>
             </div>
-            <div class="ui-g-4 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-4 p-sm-12">
+                <span class="p-float-label">
                     <p-calendar
                         formControlName="dataHoraDoAtendimento"
                         [locale]="localizacao"
@@ -110,8 +107,8 @@
                 </span>
             </div>
 
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-2 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText
@@ -125,78 +122,101 @@
                 </span>
             </div>
         </div>
+        <div class="p-md-12">
+            <span class="p-float-label">
+                <input type="text" pInputText formControlName="descricaoQueixa" />
+                <label>Descrição/Queixa</label>
+            </span>
 
-        <div class="p-g-12">
-            <div class="p-g-12 ui-sm-12">
-                <span class="ui-float-label">
-                    <input type="text" pInputText formControlName="descricaoQueixa" />
-                    <label>Descrição/Queixa</label>
-                </span>
+            <p-message
+                severity="error"
+                text="Campo requerido"
+                *ngIf="
+                    formTriagem.controls['descricaoQueixa'].errors?.required &&
+                    formTriagem.controls['descricaoQueixa'].touched
+                "
+            ></p-message>
+            <p-message
+                severity="error"
+                text="Campo tem que possuir no mínimos 3 caracteres"
+                *ngIf="
+                    formTriagem.controls['descricaoQueixa'].errors?.minlength &&
+                    formTriagem.controls['descricaoQueixa'].touched
+                "
+            ></p-message>
+        </div>
 
-                <p-message
-                    severity="error"
-                    text="Campo requerido"
-                    *ngIf="
-                        formTriagem.controls['descricaoQueixa'].errors?.required &&
-                        formTriagem.controls['descricaoQueixa'].touched
-                    "
-                ></p-message>
-                <p-message
-                    severity="error"
-                    text="Campo tem que possuir no mínimos 3 caracteres"
-                    *ngIf="
-                        formTriagem.controls['descricaoQueixa'].errors?.minlength &&
-                        formTriagem.controls['descricaoQueixa'].touched
-                    "
-                ></p-message>
+        <div class="p-md-12">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <div class="p-col-12 p-grid">
+                        <div class="p-md-12">
+                            <legend>Vítima de acidente?</legend>
+                        </div>
+                        <div class="p-md-3">
+                            <div class="p-field-radiobutton">
+                                <p-radioButton
+                                    name="vitimaDeAcidente"
+                                    formControlName="vitimaDeAcidente"
+                                    type="radio"
+                                    value="true"
+                                    pRadioButton
+                                ></p-radioButton>
+                                <label class="radioBtn">Sim</label>
+                            </div>
+                        </div>
+                        <div class="p-md-3">
+                            <div class="p-field-radiobutton">
+                                <p-radioButton
+                                    name="vitimaDeAcidente"
+                                    formControlName="vitimaDeAcidente"
+                                    type="radio"
+                                    value="false"
+                                    pRadioButton
+                                ></p-radioButton>
+                                <label class="radioBtn">Não</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <div class="p-col-12 p-grid">
+                        <div class="p-md-12">
+                            <legend>Removido de Ambulância?</legend>
+                        </div>
+
+                        <div class="p-md-3">
+                            <div class="p-field-radiobutton">
+                                <p-radioButton
+                                    name="removidoDeAmbulancia"
+                                    formControlName="removidoDeAmbulancia"
+                                    type="radio"
+                                    value="true"
+                                ></p-radioButton>
+                                <label class="radioBtn">Sim</label>
+                            </div>
+                        </div>
+
+                        <div class="p-md-3">
+                            <div class="p-field-radiobutton">
+                                <p-radioButton
+                                name="removidoDeAmbulancia"
+                                formControlName="removidoDeAmbulancia"
+                                type="radio"
+                                value="false"
+                                ></p-radioButton>
+                                <label class="radioBtn">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="p-g-12">
-            <div class="ui-g-3 ui-sm-12">
-                <legend>Vítima de acidente</legend>
-
-                <label class="radioBtn">Sim</label>
-                <p-radioButton
-                    name="vitimaDeAcidente"
-                    formControlName="vitimaDeAcidente"
-                    type="radio"
-                    value="true"
-                    pRadioButton
-                ></p-radioButton>
-
-                <label class="radioBtn">Não</label>
-                <p-radioButton
-                    name="vitimaDeAcidente"
-                    formControlName="vitimaDeAcidente"
-                    type="radio"
-                    value="false"
-                    pRadioButton
-                ></p-radioButton>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <legend>Removido de Ambulância</legend>
-                <label class="radioBtn">Sim</label>
-                <p-radioButton
-                    name="removidoDeAmbulancia"
-                    formControlName="removidoDeAmbulancia"
-                    type="radio"
-                    value="true"
-                ></p-radioButton>
-
-                <label class="radioBtn">Não</label>
-                <p-radioButton
-                    name="removidoDeAmbulancia"
-                    formControlName="removidoDeAmbulancia"
-                    type="radio"
-                    value="false"
-                ></p-radioButton>
-            </div>
-        </div>
-
-        <div class="p-g-12">
-            <div class="p-g-12 ui-sm-12">
-                <span class="ui-float-label">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText
@@ -208,11 +228,11 @@
             </div>
         </div>
 
-        <div class="p-g-12">
-            <div class="p-g-12 ui-sm-12">
-                <div class="ui-float-label" *ngIf="isEdit">
-                    <div class="ui-g-3"></div>
-                    <div class="ui-g-3">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-12  p-grid">
+                <ng-template [ngIf]="isEdit">
+                    <div class="p-md-3"></div>
+                    <div class="p-md-3">
                         <button
                             pButton
                             type="button"
@@ -222,7 +242,7 @@
                         ></button>
                     </div>
 
-                    <div class="ui-g-3">
+                    <div class="p-md-3">
                         <button
                             pButton
                             type="submit"
@@ -231,10 +251,10 @@
                             pTooltip="Salvar registro de triagem."
                         ></button>
                     </div>
-                </div>
-                <div class="ui-float-label" *ngIf="!isEdit">
-                    <div class="ui-g-6"></div>
-                    <div class="ui-g-6 ui-sm-6">
+                </ng-template>
+                <ng-template [ngIf]="!isEdit">
+                    <div class="p-md-6"></div>
+                    <div class="p-md-6 p-sm-6">
                         <button
                             pButton
                             type="button"
@@ -243,7 +263,7 @@
                             (click)="cancelarFormulario()"
                         ></button>
                     </div>
-                </div>
+                </ng-template>
             </div>
         </div>
     </div>

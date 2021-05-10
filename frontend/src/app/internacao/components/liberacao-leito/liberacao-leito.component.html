@@ -1,8 +1,8 @@
-<div class="ui-g p-fluid">
+<div class="p-grid p-fluid">
     <form [formGroup]="formGroup">
         <!-- Leito -->
-        <div class="p-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-4 p-sm-12">
                 <app-leito
                     [parentFormGroup]="formGroup"
                     [required]="true"
@@ -15,9 +15,9 @@
             </div>
         </div>
         <!-- Data do Lançamento -->
-        <div class="p-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <span class="ui-float-label">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-4 p-sm-12">
+                <span class="p-float-label">
                     <p-calendar
                         [locale]="pCalendarConfig.localidade"
                         [yearRange]="pCalendarConfig.anosDisponiveis"
@@ -34,9 +34,9 @@
             </div>
         </div>
         <!-- Justificativa -->
-        <div class="p-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <span class="ui-float-label">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-4 p-sm-12">
+                <span class="p-float-label">
                     <textarea
                         pInputTextarea
                         [rows]="3"
@@ -48,8 +48,8 @@
                 </span>
             </div>
         </div>
-        <div class="p-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-4 p-sm-12">
                 <p-button
                     label="Liberar Leito"
                     icon="pi pi-check"

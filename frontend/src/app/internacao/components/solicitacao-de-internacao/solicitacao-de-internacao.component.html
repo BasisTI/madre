@@ -1,13 +1,13 @@
-<div class="ui-g p-fluid">
+<div class="p-grid p-fluid">
     <p-fieldset legend="Solicitação de Internação">
         <form [formGroup]="formGroup">
-            <div class="p-g-12">
+            <div class="p-col-12 p-grid">
                 <app-card-paciente [prontuario]="paciente.id"></app-card-paciente>
             </div>
             <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
-            <div class="p-g-12">
-                <div class="ui-g-4">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4">
+                    <span class="p-float-label">
                         <p-calendar
                             [locale]="pCalendarConfig.localidade"
                             [yearRange]="pCalendarConfig.anosDisponiveis"
@@ -21,8 +21,8 @@
                         <label>Data Provável da Internação</label>
                     </span>
                 </div>
-                <div class="ui-g-4">
-                    <span class="ui-float-label">
+                <div class="p-md-4">
+                    <span class="p-float-label">
                         <p-calendar
                             [locale]="pCalendarConfig.localidade"
                             [yearRange]="pCalendarConfig.anosDisponiveis"
@@ -35,7 +35,7 @@
                         <label>Data Provável da Cirurgia</label>
                     </span>
                 </div>
-                <div class="ui-g-2">
+                <div class="p-md-2">
                     <label>Prioridade</label>
                     <p-dropdown
                         [options]="prioridadeDropdown"
@@ -45,8 +45,8 @@
                 </div>
             </div>
             <!-- Especialidade* & Equipe -->
-            <div class="p-g-12">
-                <div class="ui-g-4">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4">
                     <app-especialidade
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -55,7 +55,7 @@
                         (select)="aoSelecionarEspecialidade($event)"
                     ></app-especialidade>
                 </div>
-                <div class="ui-g-4">
+                <div class="p-md-4">
                     <app-equipe
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <!-- CRM* -->
-            <div class="p-g-12">
-                <div class="ui-g-4">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4">
                     <app-crm
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -77,8 +77,8 @@
                 </div>
             </div>
             <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
-            <div class="p-g-12">
-                <div class="ui-g-4">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4">
                     <label>Principais Sinais e Sintomas Clínicos</label>
                     <textarea
                         pInputTextarea
@@ -87,7 +87,7 @@
                         formControlName="principaisSinaisESintomasClinicos"
                     ></textarea>
                 </div>
-                <div class="ui-g-4">
+                <div class="p-md-4">
                     <label>Condições que Justificam a Internação</label>
                     <textarea
                         pInputTextarea
@@ -96,7 +96,7 @@
                         formControlName="condicoesQueJustificamInternacao"
                     ></textarea>
                 </div>
-                <div class="ui-g-4">
+                <div class="p-md-4">
                     <label>Principais Resultados Provas Diagnósticas</label>
                     <textarea
                         pInputTextarea
@@ -107,8 +107,8 @@
                 </div>
             </div>
             <!-- Procedimento* -->
-            <div class="p-g-12">
-                <div class="ui-g-4">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4">
                     <app-procedimento
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -118,8 +118,8 @@
                 </div>
             </div>
             <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
-            <div class="p-g-12">
-                <div class="p-g-12">
+            <div class="p-col-12 p-grid">
+                <div class="p-col-12 p-grid">
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -129,7 +129,7 @@
                         label="CID Principal"
                     ></app-cid>
                 </div>
-                <div class="p-g-12">
+                <div class="p-col-12 p-grid">
                     <app-cid
                         [parentFormGroup]="formGroup"
                         [showClear]="true"
@@ -139,8 +139,8 @@
                     ></app-cid>
                 </div>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-4">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4">
                     <p-button
                         icon="pi pi-check"
                         label="Solicitar"

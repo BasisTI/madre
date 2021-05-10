@@ -1,7 +1,7 @@
 <form [formGroup]="itemPrescricaoProcedimento">
-    <div class="p-g-12">
-        <div class="ui-g-6">
-            <span class="md-inputfield">
+    <div class="p-col-12 p-grid">
+        <div class="p-md-6">
+            <span class="md-inputfield p-float-label">
                 <p-dropdown placeholder="Selecione..." [filter]="true" InputText [options]="listaOrtesesProteses" formControlName="tipoProcedimentoId"
                     #orteseProtese>
                 </p-dropdown>
@@ -10,9 +10,9 @@
         </div>
     </div>
 
-    <div class="p-g-12">
-        <div class="ui-g-6">
-            <span class="md-inputfield">
+    <div class="p-col-12 p-grid">
+        <div class="p-md-6">
+            <span class="md-inputfield p-float-label">
                 <input type="number" pInputText formControlName="quantidadeOrteseProtese" />
                 <label>Quantidade</label>
             </span>

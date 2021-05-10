@@ -1,14 +1,14 @@
-<div class="ui-g p-fluid" [formGroup]="formGroup">
-    <div class="p-g-12" formGroupName="certidao">
-        <div nInputText label="Registro de Nascimento" formControlName="registroDeNascimento" class="ui-g-4"></div>
-        <div nDropdown label="Tipo de Certidão" [options]="opcoesDeTipoDeCertidao" formControlName="tipoDaCertidao" class="ui-g-2"></div>
-        <div nInputText label="Nome do Cartório" formControlName="nomeDoCartorio" class="ui-g-2"></div>
-        <div nInputText label="Livro" formControlName="livro" class="ui-g-2"></div>
-        <div nInputText label="Folhas" formControlName="folhas" class="ui-g-2"></div>
+<div class="p-grid p-fluid" [formGroup]="formGroup">
+    <div class="p-col-12 p-grid" formGroupName="certidao">
+        <div nInputText label="Registro de Nascimento" formControlName="registroDeNascimento" class="p-md-4"></div>
+        <div nDropdown label="Tipo de Certidão" [options]="opcoesDeTipoDeCertidao" formControlName="tipoDaCertidao" class="p-md-2"></div>
+        <div nInputText label="Nome do Cartório" formControlName="nomeDoCartorio" class="p-md-2"></div>
+        <div nInputText label="Livro" formControlName="livro" class="p-md-2"></div>
+        <div nInputText label="Folhas" formControlName="folhas" class="p-md-2"></div>
     </div>
-    <div class="p-g-12" formGroupName="certidao">
-        <div nInputText label="Termo" formControlName="termo" class="ui-g-4"></div>
-        <div madreCalendar label="Data de Emissão" formControlName="dataDeEmissao" class="ui-g-4"></div>
-        <div nInputText label="Número da DN" formControlName="numeroDaDeclaracaoDeNascimento" class="ui-g-4"></div>
+    <div class="p-col-12 p-grid" formGroupName="certidao">
+        <div nInputText label="Termo" formControlName="termo" class="p-md-4"></div>
+        <div madreCalendar label="Data de Emissão" formControlName="dataDeEmissao" class="p-md-4"></div>
+        <div nInputText label="Número da DN" formControlName="numeroDaDeclaracaoDeNascimento" class="p-md-4"></div>
     </div>
 </div>

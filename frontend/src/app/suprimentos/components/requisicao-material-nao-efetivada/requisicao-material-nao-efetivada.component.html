@@ -1,26 +1,26 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Requisições de Materiais Não Efetivadas</h1>
-            <div class="ui-g">
-                <div class="p-g-12 p-md-12 p-fluid">
-                    <span class="md-inputfield" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" />
+            <div class="p-grid">
+                <div class="p-md-12 p-fluid">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" />
                         <label>Requisição</label>
                     </span>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-2"></div>
-                    <div class="ui-g-4">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2"></div>
+                    <div class="p-md-4">
                         <button
                             pButton
                             type="button"
                             label="Pesquisar"
-                            icon="ui-icon-search"
+                            icon="p-icon-search"
                         ></button>
                     </div>
                 </div>
-                <div class="p-g-12 ui-md-3"></div>
+                <div class="p-col-12 p-grid p-md-3"></div>
                 <basis-datatable
                     type="server"
                     [url]="url"
@@ -59,7 +59,7 @@
                         name="efetivar"
                         icon="check"
                         tooltip="Efetivar"
-                        class="ui-button-info"
+                        class="p-button-info"
                         [disabled]="!datatable.selectedRow"
                     ></basis-datatable-button>
                 </basis-datatable>

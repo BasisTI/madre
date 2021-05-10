@@ -1,13 +1,13 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <form (ngSubmit)="cadastrar()">
             <p-accordion>
                 <p-accordionTab header="Cadastrar Clínicas" [selected]="true">
                     <form [formGroup]="clinica">
-                        <div class="ui-g">
-                            <div class="p-g-12">
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-4 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -17,8 +17,8 @@
                                         <label>Capacidade Referencial</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-8 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-8 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-inputMask
                                             pInputText
                                             formControlName="numeroSUS"
@@ -30,9 +30,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="p-g-12">
-                                <div class="p-g-12 sm-12">
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-col-12 p-grid sm-12">
+                                    <span class="p-float-label">
                                         <textarea
                                             pInputTextarea
                                             rows="3"
@@ -48,10 +48,10 @@
                 </p-accordionTab>
                 <p-accordionTab header="Internação">
                     <form [formGroup]="clinica">
-                        <div class="ui-g">
-                            <div class="p-g-12">
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -61,8 +61,8 @@
                                         <label>Idade Mínima</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -78,10 +78,10 @@
                 </p-accordionTab>
                 <p-accordionTab header="Ambulatório">
                     <form [formGroup]="clinica">
-                        <div class="ui-g">
-                            <div class="p-g-12">
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -91,8 +91,8 @@
                                         <label>Idade Mínima</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText

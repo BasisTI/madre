@@ -1,11 +1,11 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
-        <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="p-col-12 p-grid">
             <h1>Medicamentos</h1>
         </div>
-        <div class="p-g-12">
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-2 p-sm-12">
+                <span class="p-float-label">
                     <input
                         pInputText
                         type="text"
@@ -15,8 +15,8 @@
                     <label>Medicamento</label>
                 </span>
             </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-2 p-sm-12">
+                <span class="p-float-label">
                     <input
                         pInputText
                         type="text"
@@ -27,7 +27,7 @@
                 </span>
             </div>
 
-            <div class="ui-g-2 ui-sm-12">
+            <div class="p-md-2 p-sm-12">
                 <p-dropdown
                     pTooltip="Informe a Situação."
                     [options]="results"
@@ -35,17 +35,17 @@
                 ></p-dropdown>
             </div>
         </div>
-        <div class="p-g-12">
-            <div class="ui-g-2 ui-sm-12">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-2 p-sm-12">
                 <button
                     pButton
                     type="button"
                     label="Pesquisar"
-                    icon="ui-icon-search"
+                    icon="p-icon-search"
                     (click)="listar()"
                 ></button>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="p-md-2 p-sm-12">
                 <button 
                     pButton 
                     type="button" 
@@ -53,14 +53,14 @@
                     label="Cadastrar">
                 </button>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="p-md-2 p-sm-12">
                 <button 
                     pButton type="button" 
                     label="Limpar"
                     (click)="limparPesquisa()">
                 </button>
             </div>
-            <div class="ui-g-2 ui-sm-12">
+            <div class="p-md-2 p-sm-12">
                 <button pButton type="button" label="Exportar"></button>
             </div>
         </div>
@@ -107,11 +107,11 @@
                 name="edit"
                 icon="edit" 
                 [disabled]="datatable.selectedRow == null"
-                class="ui-button-success">
+                class="p-button-success">
             </basis-datatable-button>
 
             <basis-datatable-button
-                ng-reflect-icon="ui-icon-remove-red-eye"
+                ng-reflect-icon="p-icon-remove-red-eye"
                 ng-reflect-b-tooltip="Escolha um registro para visualizar"
                 class="ng-star-inserted"
                 [disabled]="datatable.selectedRow == null"
@@ -120,7 +120,7 @@
             </basis-datatable-button>
             
             <basis-datatable-button
-                class="ui-button-danger"
+                class="p-button-danger"
                 [disabled]="datatable.selectedRow == null"
                 (buttonClick)="btnClick($event)"
                 name="delete"

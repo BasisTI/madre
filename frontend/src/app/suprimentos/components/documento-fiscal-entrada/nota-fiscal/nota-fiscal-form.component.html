@@ -1,11 +1,11 @@
-<div class="ui-g p-fluid">
+<div class="p-grid p-fluid">
     <div class="card card-w-title">
-        <div class="p-g-12">
+        <div class="p-col-12 p-grid">
             <h1>Gerar Nota Fiscal</h1>
             <form [formGroup]="notaFiscalForm">
-                <div class="p-g-12">
-                    <div class="ui-g-1">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-1">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <input
                                 pInputText
                                 type="text"
@@ -15,14 +15,14 @@
                             <label>Número</label>
                         </span>
                     </div>
-                    <div class="ui-g-1">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-1">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <input pInputText type="text" maxlength="3" formControlName="serie" />
                             <label>Série</label>
                         </span>
                     </div>
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-dropdown
                                 [options]="[
                                     { label: 'Selecione', value: null },
@@ -36,10 +36,10 @@
                         </span>
                     </div>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-2">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
                         <div *ngIf="isCpf(); else cnpj">
-                            <span class="md-inputfield" style="margin-top: 5px;">
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                 <p-inputMask
                                     formControlName="cpfCnpj"
                                     [mask]="cpfMask"
@@ -49,7 +49,7 @@
                             </span>
                         </div>
                         <ng-template #cnpj>
-                            <span class="md-inputfield" style="margin-top: 5px;">
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                 <p-inputMask
                                     formControlName="cpfCnpj"
                                     [mask]="cnpjMask"
@@ -59,8 +59,8 @@
                             </span>
                         </ng-template>
                     </div>
-                    <div class="ui-g-3">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-3">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-autoComplete
                                 formControlName="fornecedorId"
                                 [suggestions]="fornecedores"
@@ -73,8 +73,8 @@
                             <label>Fornecedor</label>
                         </span>
                     </div>
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <input
                                 pInputText
                                 type="text"
@@ -85,9 +85,9 @@
                         </span>
                     </div>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-calendar
                                 [locale]="calendarLocale"
                                 formControlName="dataEmissao"
@@ -95,8 +95,8 @@
                             <label>Data de Emissão</label>
                         </span>
                     </div>
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-calendar
                                 [locale]="calendarLocale"
                                 formControlName="dataEntrada"
@@ -104,8 +104,8 @@
                             <label>Data de Entrada</label>
                         </span>
                     </div>
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-calendar
                                 [locale]="calendarLocale"
                                 formControlName="dataVencimento"
@@ -114,22 +114,22 @@
                         </span>
                     </div>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <input pInputText type="number" formControlName="valorTotal" />
                             <label>R$ Valor Total</label>
                         </span>
                     </div>
-                    <div class="ui-g-2">
-                        <span class="md-inputfield" style="margin-top: 5px;">
+                    <div class="p-md-2">
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <input pInputText type="number" formControlName="valorComprometido" />
                             <label>R$ Valor Comprometido</label>
                         </span>
                     </div>
                 </div>
-                <div class="ui-g-6">
-                    <span class="md-inputfield" style="margin-top: 5px;">
+                <div class="p-md-6">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <textarea
                             [rows]="5"
                             [cols]="30"
@@ -140,21 +140,21 @@
                         <label>Observação</label>
                     </span>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-3">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-3">
                         <button
                             pButton
                             label="Gravar"
-                            icon="ui-icon-add"
+                            icon="p-icon-add"
                             [disabled]="notaFiscalForm.invalid"
                             (click)="gravar()"
                         ></button>
                     </div>
-                    <div class="ui-g-2">
+                    <div class="p-md-2">
                         <button
                             pButton
                             label="Limpar"
-                            icon="ui-icon-minus"
+                            icon="p-icon-minus"
                             (click)="limpar()"
                         ></button>
                     </div>

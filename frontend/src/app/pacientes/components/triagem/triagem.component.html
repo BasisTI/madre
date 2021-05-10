@@ -1,92 +1,95 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
-        <span class>
-            <input pInputText disabled />
-            <h1>Triagem</h1>
-        </span>
-
-        <div class="ui-g">
-            <div class="ui-g-11 p-fluid ui-float-label">
-                <span class style="margin-top: 5px;">
-                    <input type="text" pInputText name="filtro" required="true" />
-                    <label>Pesquisar Triagem</label>
-                </span>
-            </div>
-            <div class="p-g-12">
-                <div class="ui-g-2"></div>
-                <div class="ui-g-3">
-                    <button
-                        pButton
-                        type="button"
-                        label="Pesquisar"
-                        icon="ui-icon-search"
-                        bTooltip="Pesquisar paciente por nome."
-                    ></button>
-                </div>
-                <div class="ui-g-3">
-                    <button
-                        pButton
-                        type="button"
-                        label="Nova Triagem"
-                        icon="ui-icon-add"
-                        routerLink="/triagem/formulario"
-                        bTooltip="Cadastrar nova Triagem."
-                    ></button>
-                </div>
-            </div>
-            <div class="p-g-12 ui-md-3"></div>
-            <basis-datatable  [value]="triagens" (buttonClick)="onClick($event)">
-
-            <p-column header="Nome do Paciente" field="paciente">
-                <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
-                    {{ paciente[col.field] === null || paciente[col.field] === undefined ? undefined : paciente[col.field].nome }}
-                </ng-template>
-            </p-column>
-            <p-column header="Nome Social" field="paciente">
-                <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
-                    {{ paciente[col.field] === null || paciente[col.field] === undefined ? undefined : paciente[col.field].nomeSocial }}
-                </ng-template>
-            </p-column>  
-            <p-column header="Nome da Mãe" field="paciente">
-                <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
-                    {{ paciente[col.field].genitores === null || paciente[col.field].genitores === undefined ? undefined : paciente[col.field].genitores.nomeDaMae }}
-                </ng-template>
-            </p-column>
-            <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
-                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                    {{ rowData[col.field] | date: 'dd/MM/yyyy - HH:mm' }}
-                </ng-template>
-            </p-column>
-            <p-column header="Classificação" field="classificacaoDeRisco">
-                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                    <span>
-                        <div
-                            [ngClass]="{
-                                emergencia: rowData[col.field] == 'EMERGENCIA',
-                                muitoUrgente: rowData[col.field] == 'MUITO_URGENTE',
-                                urgente: rowData[col.field] == 'URGENTE',
-                                poucoUrgente: rowData[col.field] == 'POUCO_URGENTE',
-                                naoUrgente: rowData[col.field] == 'NAO_URGENTE'
-                            }"
-                            [pTooltip]="rowData[col.field]"
-                        ></div>
+<div class="card">
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
+            <span class>
+                <!-- TODO: Verificar input -->
+                <!-- <input pInputText disabled /> -->
+                <h1>Triagem</h1>
+            </span>
+    
+            <div class="p-grid">
+                <div class="p-md-11 p-fluid p-float-label">
+                    <span class="p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText name="filtro" required="true" />
+                        <label>Pesquisar Triagem</label>
                     </span>
-                </ng-template>
-            </p-column>
-            </basis-datatable>
-            <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não">
-            </p-confirmDialog>            
-            <div class="ui-g-9"></div>
-            <div class="ui-g-2">
-                <button
-                    name="export"
-                    pButton
-                    textAlign="right"
-                    type="button"
-                    label="Exportar"
-                    icon="pi pi-upload"
-                    bTooltip="Exportar arquivo"
-                ></button>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2"></div>
+                    <div class="p-md-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="p-icon-search"
+                            bTooltip="Pesquisar paciente por nome."
+                        ></button>
+                    </div>
+                    <div class="p-md-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Nova Triagem"
+                            icon="p-icon-add"
+                            routerLink="/triagem/formulario"
+                            bTooltip="Cadastrar nova Triagem."
+                        ></button>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid p-md-3"></div>
+                <basis-datatable  [value]="triagens" (buttonClick)="onClick($event)">
+    
+                <p-column header="Nome do Paciente" field="paciente">
+                    <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
+                        {{ paciente[col.field] === null || paciente[col.field] === undefined ? undefined : paciente[col.field].nome }}
+                    </ng-template>
+                </p-column>
+                <p-column header="Nome Social" field="paciente">
+                    <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
+                        {{ paciente[col.field] === null || paciente[col.field] === undefined ? undefined : paciente[col.field].nomeSocial }}
+                    </ng-template>
+                </p-column>  
+                <p-column header="Nome da Mãe" field="paciente">
+                    <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
+                        {{ paciente[col.field].genitores === null || paciente[col.field].genitores === undefined ? undefined : paciente[col.field].genitores.nomeDaMae }}
+                    </ng-template>
+                </p-column>
+                <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        {{ rowData[col.field] | date: 'dd/MM/yyyy - HH:mm' }}
+                    </ng-template>
+                </p-column>
+                <p-column header="Classificação" field="classificacaoDeRisco">
+                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                        <span>
+                            <div
+                                [ngClass]="{
+                                    emergencia: rowData[col.field] == 'EMERGENCIA',
+                                    muitoUrgente: rowData[col.field] == 'MUITO_URGENTE',
+                                    urgente: rowData[col.field] == 'URGENTE',
+                                    poucoUrgente: rowData[col.field] == 'POUCO_URGENTE',
+                                    naoUrgente: rowData[col.field] == 'NAO_URGENTE'
+                                }"
+                                [pTooltip]="rowData[col.field]"
+                            ></div>
+                        </span>
+                    </ng-template>
+                </p-column>
+                </basis-datatable>
+                <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não">
+                </p-confirmDialog>            
+                <div class="p-md-9"></div>
+                <div class="p-md-2">
+                    <button
+                        name="export"
+                        pButton
+                        textAlign="right"
+                        type="button"
+                        label="Exportar"
+                        icon="pi pi-upload"
+                        bTooltip="Exportar arquivo"
+                    ></button>
+                </div>
             </div>
         </div>
     </div>

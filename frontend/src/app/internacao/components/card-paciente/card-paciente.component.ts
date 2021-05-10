@@ -5,14 +5,14 @@ import { PacienteService } from '@internacao/services/paciente.service';
 @Component({
     selector: 'app-card-paciente',
     template: `
-        <div class="ui-g p-fluid">
+        <div class="p-grid p-fluid">
             <p-fieldset legend="Paciente">
-                <div class="ui-g">
-                    <div class="ui-g-4">
+                <div class="p-grid">
+                    <div class="p-md-4">
                         <label>Prontuário</label>
                         <input pInputText [value]="this.getProntuario()" />
                     </div>
-                    <div class="ui-g-8">
+                    <div class="p-md-8">
                         <label>Nome do Paciente</label>
                         <input pInputText [value]="this.getNomeDoPaciente()" />
                     </div>

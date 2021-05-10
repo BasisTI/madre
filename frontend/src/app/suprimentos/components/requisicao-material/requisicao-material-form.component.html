@@ -1,13 +1,13 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Gerar Requisição de Materiais</h1>
-            <div class="ui-g">
-                <div class="p-g-12">
+            <div class="p-grid">
+                <div class="p-col-12 p-grid">
                     <form [formGroup]="requisicaoForm">
-                        <div class="p-g-12">
-                            <div class="ui-g-4">
-                                <span class="md-inputfield" style="margin-top: 5px;">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-4">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                     <p-autoComplete
                                         [suggestions]="centros"
                                         (completeMethod)="obterCentrosPorDescricao($event.query)"
@@ -19,8 +19,8 @@
                                     <label>CA Requisição</label>
                                 </span>
                             </div>
-                            <div class="ui-g-4">
-                                <span class="md-inputfield" style="margin-top: 5px;">
+                            <div class="p-md-4">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                     <p-autoComplete
                                         [suggestions]="centros"
                                         (completeMethod)="obterCentrosPorDescricao($event.query)"
@@ -33,9 +33,9 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="p-g-12">
-                            <div class="ui-g-4">
-                                <span class="md-inputfield" style="margin-top: 5px;">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-4">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                     <p-autoComplete
                                         [suggestions]="almoxarifados"
                                         (completeMethod)="
@@ -49,8 +49,8 @@
                                     <label>Almoxarifado</label>
                                 </span>
                             </div>
-                            <div class="ui-g-4">
-                                <span class="md-inputfield" style="margin-top: 5px;">
+                            <div class="p-md-4">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                     <p-autoComplete
                                         [suggestions]="grupos"
                                         (completeMethod)="obterGruposPorDescricao($event.query)"
@@ -63,8 +63,8 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="p-g-12">
-                            <div class="ui-g-4">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-4">
                                 <button
                                     pButton
                                     label="Salvar"
@@ -73,12 +73,12 @@
                                 ></button>
                             </div>
                         </div>
-                        <div class="p-g-12">
+                        <div class="p-col-12 p-grid">
                             <p-fieldset legend="Itens">
-                                <div class="p-g-12">
+                                <div class="p-col-12 p-grid">
                                     <form [formGroup]="itemForm">
-                                        <div class="ui-g-4">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                        <div class="p-md-4">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <p-autoComplete
                                                     [suggestions]="materiais"
                                                     (completeMethod)="
@@ -92,8 +92,8 @@
                                                 <label>Material</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-2">
-                                            <span class="md-inputfield" style="margin-top: 5px;">
+                                        <div class="p-md-2">
+                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <input
                                                     type="number"
                                                     pInputText
@@ -103,7 +103,7 @@
                                                 <label>Quantidade</label>
                                             </span>
                                         </div>
-                                        <div class="ui-g-2">
+                                        <div class="p-md-2">
                                             <button
                                                 pButton
                                                 label="Adicionar"
@@ -113,7 +113,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="p-g-12">
+                                <div class="p-col-12 p-grid">
                                     <basis-datatable
                                         type="memory"
                                         [value]="itens"

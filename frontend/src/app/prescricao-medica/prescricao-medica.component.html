@@ -1,23 +1,23 @@
-<div class="ui-g p-fluid">
-    <div class="p-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Prescrição Médica</h1>
-            <div class="ui-g">
+            <div class="p-grid">
 
-                <div class="p-g-12 p-md-12 p-fluid">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText class="ui-inputtext" name="nome"
+                <div class="p-md-12 p-fluid">
+                    <span class="md-inputfield p-float-label">
+                        <input type="text" pInputText class="p-inputtext" name="nome"
                             pTooltip="Pesquisar Paciente por nome" [(ngModel)]="nome" #parametro />
                         <label>Nome paciente</label>
                     </span>
                 </div>
-                <div class="p-g-12 ui-md-6">
-                    <div class="p-g-12 ui-md-6">
-                        <button pButton label="Pesquisar" icon="ui-icon-search" pTooltip="Pesquisar Paciente por Nome"
+                <div class="p-col-12 p-grid p-md-6">
+                    <div class="p-col-12 p-grid p-md-6">
+                        <button pButton label="Pesquisar" icon="p-icon-search" pTooltip="Pesquisar Paciente por Nome"
                             (click)="pesquisar()"></button>
                     </div>
                 </div>
-                <div class="p-g-12 ui-md-3"></div>
+                <div class="p-col-12 p-grid p-md-3"></div>
 
                 <basis-datatable #datatable type="server" [url]="searchUrl" [rows]="10" [disableView]="true"
                     [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)">
@@ -32,26 +32,26 @@
 
                     <basis-datatable-button icon="restaurant" name="prescrever-dieta"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Dieta"
-                        class="ui-button-info">
+                        class="p-button-info">
                     </basis-datatable-button>
 
                     <basis-datatable-button icon="add-box" name="prescrever-medicamento"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
-                        class="ui-button-info">
+                        class="p-button-info">
                     </basis-datatable-button>
 
                     <basis-datatable-button icon="control-point" name="prescrever-procedimento" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Procedimento Especial"
-                        class="ui-button-info">
+                        class="p-button-info">
                     </basis-datatable-button>
 
                     <basis-datatable-button icon="assignment" name="prescrever-diagnostico"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Diagnóstico"
-                        class="ui-button-info">
+                        class="p-button-info">
                     </basis-datatable-button>
 
                     <basis-datatable-button icon="remove-red-eye" name="listar-prescricoes"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Listar Prescrições"
-                        class="ui-button-success">
+                        class="p-button-success">
                     </basis-datatable-button>
 
                 </basis-datatable>

@@ -1,12 +1,12 @@
-<div class="ui-g p-fluid">
+<div class="p-grid p-fluid">
         <h1>{{ medicamento.id ? (' Editar Medicamentos ') : (' Cadastrar Medicamentos ') }}</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="p-g-12">
-            <div class="p-g-12">
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-grid">
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5 ui-sm-12">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5 p-sm-12">
+                    <span class="p-float-label">
                         <input 
                             pInputText 
                             type="text"
@@ -17,9 +17,9 @@
                     </span>
                 </div>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5 ui-sm-12">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5 p-sm-12">
+                    <span class="p-float-label">
                         <input 
                             pInputText 
                             type="text" 
@@ -30,9 +30,9 @@
                     </span>
                 </div>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5 ui-sm-12">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5 p-sm-12">
+                    <span class="p-float-label">
                         <input 
                         pInputText 
                         type="text" 
@@ -43,9 +43,9 @@
                     </span>
                 </div>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5 ui-sm-12">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5 p-sm-12">
+                    <span class="p-float-label">
                         <p-autoComplete 
                             field="nome" 
                             [suggestions]="unidade" 
@@ -58,9 +58,9 @@
                     </span>
                 </div>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5 ui-sm-12">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5 p-sm-12">
+                    <span class="p-float-label">
                         <p-autoComplete 
                             field="nome" 
                             [suggestions]="apresentacao"
@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="p-g-12">
+            <div class="p-col-12 p-grid">
                 <h3>Situação</h3>
                 <p-radioButton 
                     type="radio" 
@@ -93,8 +93,8 @@
                     pRadioButton
                 ></p-radioButton>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5 ui-sm-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5 p-sm-5">
                     <button 
                         pButton 
                         type="submit" 
@@ -102,7 +102,7 @@
                         [disabled]="form.invalid"
                     ></button>
                 </div>
-                <div class="ui-g-5 ui-sm-5">
+                <div class="p-md-5 p-sm-5">
                     <button pButton type="button" label="Cancelar" routerLink="/medicamentos"></button>
                 </div>
             </div>

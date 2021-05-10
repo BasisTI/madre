@@ -1,162 +1,108 @@
-<div class="ui-g p-fluid">
+<div class="card">
+    <h1>Pesquisar Consultas</h1>
     <form [formGroup]="listaConsultas">
-        <div class="p-g-12">
-            <h1>Pesquisar Consultas</h1>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pInputText
-                        pTooltip="Digite o número da consulta."
-                        formControlName="consulta"
-                        [(ngModel)]="numeroConsulta"
-                    />
-                    <label>Consulta</label>
-                </span>
-            </div>
-            <div class="ui-g-5 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-autoComplete
-                     field="nome"
-                     [suggestions]="pacientes"
-                     pInputText
-                     formControlName="nome"
-                     (completeMethod)="listarPacientes()"
-                     (onBlur)="selecionarPaciente($event)"
-                     [dropdown]="true"
-                        >
-                    </p-autoComplete>
-                    <label>Nome Paciente</label>
-                </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="md-inputfield">
-                    <input 
-                    pInputText 
-                    disabled="true" 
-                    [(ngModel)]="prontuario"
-                     formControlName="prontuario" 
-                     placeholder="Selecione um paciente"
-                   />
-                    <label>Prontuário</label>
-                </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pTooltip="Digite a grade."
-                        pInputText
-                        formControlName="grade"
-                        [(ngModel)]="grade"
-                    />
-                    <label>Grade</label>
-                </span>
-            </div>
-            <div class="p-g-12"></div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="md-inputfield">
-                    <p-dropdown
-                    optionLabel="nome"
-                    [options]="crm"
-                     placeholder="Selecione..."
-                     [filter]="true"
-                     InputText
-                     formControlName="profissional"
-                     (onClick)="selecionarProfissional($event)"
-                        >
-                    </p-dropdown>
-                    <label>Pofissional</label>
-                </span>
-            </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
-                     <p-autoComplete
-                    field="especialidade"
-                    [suggestions]="especialidades"
-                    pInputText
-                    formControlName="especialidade"
-                    (completeMethod)="listarEspecialidade()"
-                    (onBlur)="selecionarEspecialidade($event)"
-                    [dropdown]="true"
-                ></p-autoComplete> 
-                    <label>Especialidade</label>
-                </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pInputText
-                        pTooltip="Digite Código Central."
-                        formControlName="codigoCentral"
-                        [(ngModel)]="clinicaCentralId"
-                    />
-                    <label>Código Central</label>
-                </span>
-            </div>
-            <div class="ui-g-2 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-calendar
-                    [locale]="localizacao" 
-                    dateFormat="dd-mm-yy"
-                    formControlName="dataFinal"
-                    [(ngModel)]="data">
-                    </p-calendar>
-                    <label>Data da Consulta</label>
-                </span>
-            </div>
-            <div class="p-g-12 ui-sm-12">
-                <div class="ui-g-2">
-                    <button
-                        pButton
-                        type="button"
-                        label="Pesquisar"
-                        pTooltip="Pesquisar consultas de paciente."
-                        (click)="listar()"
-                    ></button>
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText pTooltip="Digite o número da consulta." formControlName="consulta"
+                            [(ngModel)]="numeroConsulta" />
+                        <label>Consulta</label>
+                    </span>
                 </div>
-                <div class="ui-g-2">
-                    <button
-                        pButton
-                        type="button"
-                        label="Limpar"
-                        pTooltip="Limpar pesquisa de consultas."
-                        (click)="limparPesquisa()"
-                    ></button>
+                <div class="p-md-6 p-sm-12">
+                    <span class="p-float-label">
+                        <p-autoComplete 
+                            field="nome" 
+                            [suggestions]="pacientes" 
+                            formControlName="nome"
+                            (completeMethod)="listarPacientes()" 
+                            (onBlur)="selecionarPaciente($event)"
+                            [dropdown]="true">
+                        </p-autoComplete>
+                        <label>Nome Paciente</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input pInputText 
+                            disabled="true" 
+                            [(ngModel)]="prontuario" 
+                            formControlName="prontuario"
+                            placeholder="Selecione um paciente" />
+                        <label>Prontuário</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pTooltip="Digite a grade." pInputText formControlName="grade"
+                            [(ngModel)]="grade" />
+                        <label>Grade</label>
+                    </span>
+                </div>
+                <div class="p-col-12 p-grid"></div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="md-inputfield p-float-label">
+                        <p-dropdown optionLabel="nome" [options]="crm" [filter]="true"
+                            InputText formControlName="profissional" (onClick)="selecionarProfissional($event)">
+                        </p-dropdown>
+                        <label>Pofissional</label>
+                    </span>
+                </div>
+                <div class="p-md-5 p-sm-12">
+                    <span class="p-float-label">
+                        <p-autoComplete field="especialidade" [suggestions]="especialidades"
+                            formControlName="especialidade" (completeMethod)="listarEspecialidade()"
+                            (onBlur)="selecionarEspecialidade($event)" [dropdown]="true"></p-autoComplete>
+                        <label>Especialidade</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText pTooltip="Digite Código Central." formControlName="codigoCentral"
+                            [(ngModel)]="clinicaCentralId" />
+                        <label>Código Central</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar [locale]="localizacao" dateFormat="dd-mm-yy" formControlName="dataFinal"
+                            [(ngModel)]="data">
+                        </p-calendar>
+                        <label>Data da Consulta</label>
+                    </span>
+                </div>
+                <div class="p-col-12  p-grid">
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Pesquisar" pTooltip="Pesquisar consultas de paciente."
+                            (click)="listar()"></button>
+                    </div>
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Limpar" pTooltip="Limpar pesquisa de consultas."
+                            (click)="limparPesquisa()"></button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-g-12 ui-sm-12">
-            <basis-datatable
-            [disableEdit]="true"
-            [disableDelete]="true"
-            [disableView]="true"
-            #datatable
-            type="memory" 
-            [value]="consulta"
-            sortField="brand"    
-            >
-                <p-column field="numeroConsulta" header="Consultas"></p-column>
-                <p-column field="dataHoraDaConsulta" header="Data/Hora"></p-column>
-                <p-column field="condicaoDeAtendimentoId" header="Cond. Atend."></p-column>
-                <p-column field="clinicaCentralId" header="Central"></p-column>
-                <p-column field="grade" header="Grade"></p-column>
-                <p-column field="especialidade" header="Especialidade"></p-column>
-                <p-column field="unidadeFuncional" header="Tipo. Func."></p-column>
-                <p-column field="equipe" header="Equipe"></p-column>
-                <p-column field="profissional" header="Profissional"></p-column>
-                <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
-            </basis-datatable>
-            <div class="p-g-12 ui-sm-12">
-            <div class="ui-g-2">
-                <button
-                    pButton
-                    type="button"
-                    label="Exportar"
-                    pTooltip="Exportar arquivo de consultas."
-                ></button>
-            </div>
+            <div class="p-col-12  p-grid">
+                <basis-datatable [verticalButtons]="false" [disableEdit]="true" [disableDelete]="true" [disableView]="true" #datatable
+                    type="memory" [value]="consulta" sortField="brand">
+                    <p-column field="numeroConsulta" header="Consultas"></p-column>
+                    <p-column field="dataHoraDaConsulta" header="Data/Hora"></p-column>
+                    <p-column field="condicaoDeAtendimentoId" header="Cond. Atend."></p-column>
+                    <p-column field="clinicaCentralId" header="Central"></p-column>
+                    <p-column field="grade" header="Grade"></p-column>
+                    <p-column field="especialidade" header="Especialidade"></p-column>
+                    <p-column field="unidadeFuncional" header="Tipo. Func."></p-column>
+                    <p-column field="equipe" header="Equipe"></p-column>
+                    <p-column field="profissional" header="Profissional"></p-column>
+                    <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
+                </basis-datatable>
+                <div class="p-col-12  p-grid">
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Exportar"
+                            pTooltip="Exportar arquivo de consultas."></button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

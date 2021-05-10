@@ -1,12 +1,12 @@
-<div class="ui-g p-fluid">
+<div class="p-grid p-fluid">
     <p-fieldset legend="Internar Paciente">
         <form [formGroup]="formGroup">
-            <div class="p-g-12">
+            <div class="p-col-12 p-grid">
                 <app-card-paciente [prontuario]="solicitacao.pacienteId"></app-card-paciente>
             </div>
-            <div class="p-g-12">
+            <div class="p-col-12 p-grid">
                 <!-- Leito + Quarto + Unidade Funcional -->
-                <div class="ui-g-2">
+                <div class="p-md-2">
                     <app-leito
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -18,8 +18,8 @@
                 </div>
             </div>
             <!-- Especialidade -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-especialidade
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -29,8 +29,8 @@
                 </div>
             </div>
             <!-- Plano de Saúde + Convênio de Saúde -->
-            <div class="p-g-12">
-                <div class="ui-g-3">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3">
                     <app-plano-de-saude
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -38,8 +38,8 @@
                         label="Plano de Saúde"
                     ></app-plano-de-saude>
                 </div>
-                <div class="p-g-12">
-                    <div class="ui-g-3">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-3">
                         <app-convenio-de-saude
                             [parentFormGroup]="formGroup"
                             [required]="true"
@@ -49,15 +49,15 @@
                     </div>
                 </div>
             </div>
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-crm [parentFormGroup]="formGroup" [required]="true" name="crm" label="CRM">
                     </app-crm>
                 </div>
             </div>
             <!-- Caráter da Internação -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-carater-da-internacao
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -68,8 +68,8 @@
                 </div>
             </div>
             <!-- Origem da Internação -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-origem-da-internacao
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -79,8 +79,8 @@
                 </div>
             </div>
             <!-- Hospital de Origem -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-hospital
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -91,8 +91,8 @@
                 </div>
             </div>
             <!-- Procedências -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-procedencia
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -102,8 +102,8 @@
                 </div>
             </div>
             <!-- Local de Atendimento -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-local-de-atendimento
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -113,8 +113,8 @@
                 </div>
             </div>
             <!-- Modalidade Assistencial -->
-            <div class="p-g-12">
-                <div class="ui-g-5">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-5">
                     <app-modalidade-assistencial
                         [parentFormGroup]="formGroup"
                         [required]="true"
@@ -125,9 +125,9 @@
                 </div>
             </div>
             <!-- Data da Internação + Diferença de Classe + Solicitar Prontuário -->
-            <div class="p-g-12">
-                <div class="ui-g-2">
-                    <span class="ui-float-label">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2">
+                    <span class="p-float-label">
                         <p-calendar
                             [locale]="pCalendarConfig.localidade"
                             [yearRange]="pCalendarConfig.anosDisponiveis"
@@ -140,7 +140,7 @@
                         <label>Data da Internação</label>
                     </span>
                 </div>
-                <div class="ui-g-3">
+                <div class="p-md-3">
                     <label style="margin: 3px;">Diferença de Classe?</label>
                     <p-radioButton
                         name="diferencaDeClasse"
@@ -155,7 +155,7 @@
                     ></p-radioButton>
                     <label style="margin: 3px;">Não</label>
                 </div>
-                <div class="ui-g-3">
+                <div class="p-md-3">
                     <label style="margin: 3px;">Solicitar Prontuário?</label>
                     <p-radioButton
                         name="solicitarProntuario"
@@ -172,7 +172,7 @@
                 </div>
             </div>
             <!-- Justificativa -->
-            <div class="p-g-12">
+            <div class="p-col-12 p-grid">
                 <label>Justificativa</label>
                 <textarea
                     pInputTextarea
