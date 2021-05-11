@@ -24,6 +24,8 @@ export class TriagemComponent implements OnInit{
 
     triagens: TriagemModel[] = [];
 
+    rowsPerPageOptions: number[] = [5,10,20]
+
     elasticQuery: ElasticQuery = new ElasticQuery();
 
     @ViewChild(DatatableComponent) datatable: DatatableComponent;

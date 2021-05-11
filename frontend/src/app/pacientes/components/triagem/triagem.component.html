@@ -51,8 +51,11 @@
                 </div>
             </div>
             <div class="ui-g-12 ui-md-3"></div>
-            <basis-datatable [url]="searchUrl" (buttonClick)="onClick($event)">
-
+            <basis-datatable
+             [url]="searchUrl"
+             [showPaginationFooter]="true"
+             [rowsPerPageOptions]="rowsPerPageOptions"
+             (buttonClick)="onClick($event)">
             <p-column header="Nome do Paciente" field="paciente.nome">
                 <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
                     {{ triagem?.paciente?.nome === undefined ? "" : triagem?.paciente?.nome}}

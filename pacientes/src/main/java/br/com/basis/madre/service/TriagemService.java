@@ -50,7 +50,6 @@ public class TriagemService {
     private final PacienteRepository pacienteRepository;
 
 
-
     @Value("${application.elasticSearchFuzzyParameter}")
     private static Integer elasticSearchFuzzyParam;
 
@@ -137,9 +136,18 @@ public class TriagemService {
      */
     @Transactional(readOnly = true)
     public Page<TriagemDTO> search(String query, Pageable pageable) {
+        Page<Triagem> page = triagemSearchRepository.search(queryStringQuery(query), pageable);
         log.debug("Request to search for a page of Triagems for query {}", query);
         return triagemSearchRepository.search(queryStringQuery(query), pageable)
             .map(triagemMapper::toDto);
+    }
+
+    public Page<Triagem> listarTriagem(String query, Pageable pageable) {
+        Page<Triagem> page = triagemSearchRepository.search(queryStringQuery(query), pageable);
+        List<Triagem> list = page.toList().stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
+        page = new PageImpl<Triagem>(list , pageable, page.getTotalElements());
+        log.debug("Request to search for a page of Triagems for query {}", query);
+        return page;
     }
 
     public Page<TriagemProjection> buscarResumoTriagem(Pageable pageable) {

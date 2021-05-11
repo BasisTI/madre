@@ -35,7 +35,7 @@ import java.time.ZonedDateTime;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "madre-pacientes-triagem")
 @Data
-public class Triagem implements Serializable {
+public class Triagem implements Serializable, Comparable<Triagem> {
 
     private static final long serialVersionUID = 1L;
 
@@ -169,5 +169,17 @@ public class Triagem implements Serializable {
     public Triagem preCadastroPaciente(PreCadastroPaciente preCadastroPaciente) {
         this.preCadastroPaciente = preCadastroPaciente;
         return this;
+    }
+
+    @Override
+    public int compareTo(Triagem o) {
+        if(this.getClassificacaoDeRisco().nivelEmergencia().compareTo(o.getClassificacaoDeRisco().nivelEmergencia()) == 0){
+            ZonedDateTime thisHoraDeAtendimento = this.getDataHoraDoAtendimento() == null ? ZonedDateTime.now() : this.getDataHoraDoAtendimento();
+            ZonedDateTime otherHoraDeAtendimento = o.getDataHoraDoAtendimento() == null ? ZonedDateTime.now() : o.getDataHoraDoAtendimento();
+            return thisHoraDeAtendimento.compareTo(otherHoraDeAtendimento);
+        }
+        else{
+            return this.getClassificacaoDeRisco().nivelEmergencia().compareTo(o.getClassificacaoDeRisco().nivelEmergencia());
+        }
     }
 }
