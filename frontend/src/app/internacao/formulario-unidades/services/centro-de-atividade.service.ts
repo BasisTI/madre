@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class CentroService extends CrudServiceNuvem<number, CentroDeAtividade> {
     constructor(private httpClient: HttpClient) {
-        super('madresuprimentos/api/centro-de-atividades?sort=descricao', httpClient);
+        super('madresuprimentos/api/centros-de-atividade?sort=descricao', httpClient);
     }
 
     getListaDeCentros(): Observable<CentroDeAtividade[]> {
@@ -17,7 +17,7 @@ export class CentroService extends CrudServiceNuvem<number, CentroDeAtividade> {
         params = params.set('size', '30');
 
         return this.httpClient.get<CentroDeAtividade[]>(
-            'madresuprimentos/api/centro-de-atividades',
+            'madresuprimentos/api/centros-de-atividade',
             {
                 params,
             },
