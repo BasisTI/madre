@@ -1,8 +1,10 @@
 package br.com.basis.madre.service;
 
+import br.com.basis.madre.domain.Paciente;
 import br.com.basis.madre.domain.Triagem;
 import br.com.basis.madre.domain.enumeration.TipoEvento;
 import br.com.basis.madre.domain.evento.EventoTriagem;
+import br.com.basis.madre.repository.PacienteRepository;
 import br.com.basis.madre.repository.TriagemRepository;
 import br.com.basis.madre.repository.search.TriagemSearchRepository;
 import br.com.basis.madre.service.dto.TriagemDTO;
@@ -10,6 +12,7 @@ import br.com.basis.madre.service.mapper.TriagemMapper;
 import br.com.basis.madre.service.projection.TriagemProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -44,12 +47,19 @@ public class TriagemService {
 
     private final AuthenticationPrincipalService authenticationPrincipalService;
 
-    public TriagemService(TriagemRepository triagemRepository, TriagemMapper triagemMapper, TriagemSearchRepository triagemSearchRepository, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService) {
+    private final PacienteRepository pacienteRepository;
+
+
+    @Value("${application.elasticSearchFuzzyParameter}")
+    private static Integer elasticSearchFuzzyParam;
+
+    public TriagemService(TriagemRepository triagemRepository, TriagemMapper triagemMapper, TriagemSearchRepository triagemSearchRepository, ApplicationEventPublisher applicationEventPublisher, AuthenticationPrincipalService authenticationPrincipalService, PacienteRepository pacienteRepository) {
         this.triagemRepository = triagemRepository;
         this.triagemMapper = triagemMapper;
         this.triagemSearchRepository = triagemSearchRepository;
         this.applicationEventPublisher = applicationEventPublisher;
         this.authenticationPrincipalService = authenticationPrincipalService;
+        this.pacienteRepository = pacienteRepository;
     }
 
     /**
@@ -62,9 +72,11 @@ public class TriagemService {
     public TriagemDTO save(TriagemDTO triagemDTO) {
         log.debug("Request to save Triagem : {}", triagemDTO);
         Triagem triagem = triagemMapper.toEntity(triagemDTO);
+        Optional<Paciente> paciente = pacienteRepository.findById(triagemDTO.getPacienteId());
+        triagem.setPaciente(paciente.get());
         triagem = triagemRepository.save(triagem);
-        TriagemDTO result = triagemMapper.toDto(triagem);
         triagemSearchRepository.save(triagem);
+        TriagemDTO result = triagemMapper.toDto(triagem);
         applicationEventPublisher.publishEvent(
             EventoTriagem
                 .builder()
@@ -129,11 +141,18 @@ public class TriagemService {
             .map(triagemMapper::toDto);
     }
 
+    public Page<Triagem> listarTriagem(String query, Pageable pageable) {
+        Page<Triagem> page = triagemSearchRepository.search(queryStringQuery(query), pageable);
+        List<Triagem> list = page.toList().stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
+        page = new PageImpl<Triagem>(list , pageable, page.getTotalElements());
+        log.debug("Request to search for a page of Triagems for query {}", query);
+        return page;
+    }
+
     public Page<TriagemProjection> buscarResumoTriagem(Pageable pageable) {
         Page<TriagemProjection> page = triagemRepository.findAllResumoTriagemBy(pageable);
         List<TriagemProjection> list = page.stream().sorted((a, b) -> a.compareTo(b)).collect(Collectors.toList());
         page = new PageImpl<>(list, pageable, list.size());
         return page;
     }
-
 }

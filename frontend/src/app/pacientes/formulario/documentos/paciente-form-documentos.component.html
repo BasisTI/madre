@@ -1,9 +1,9 @@
 <div class="p-grid p-fluid" [formGroup]="formGroup">
     <div class="p-col-12 p-grid" formGroupName="documento">
-        <div nInputText label="Número da Identidades" formControlName="numeroDaIdentidade" class="p-md-3 p-sm-12"></div>
-        <div nAutoComplete [service]="orgaoEmissorService" field="valor" formControlName="orgaoEmissorId" label="Órgão Emissor" class="p-md-3 p-sm-12"></div>
-        <div nAutoComplete [service]="ufService" field="sigla" formControlName="ufId" label="UF" class="p-md-2 p-sm-12"></div>
-        <div madreCalendar label="Data de Emissão" formControlName="data" class="p-md-2 p-sm-12"></div>
+        <div nInputText label="Número da Identidade" formControlName="numeroDaIdentidade" class="ui-g-3 ui-sm-12"></div>
+        <div nAutoComplete [service]="orgaoEmissorService" field="valor" formControlName="orgaoEmissorId" label="Órgão Emissor" class="ui-g-3 ui-sm-12"></div>
+        <div nAutoComplete [service]="ufService" field="sigla" formControlName="ufId" label="UF" class="ui-g-2 ui-sm-12"></div>
+        <div madreCalendar label="Data de Emissão" formControlName="data" class="ui-g-2 ui-sm-12"></div>
     </div>
     <div class="p-col-12 p-grid" formGroupName="documento">
         <div nInputMask label="CPF" formControlName="cpf" mask="999.999.999-99" placeholder="___.___.___-__" tooltip="Digite o CPF do paciente." class="p-md-3 p-sm-12"></div>

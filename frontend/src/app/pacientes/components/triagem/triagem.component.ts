@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
 import { DatatableComponent, DatatableClickEvent, PageNotificationService } from '@nuvem/primeng-components';
 import { TriagemService } from './triagem.service';
-import { Component, OnInit, OnDestroy, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
 import { TriagemModel } from '../../models/triagem-model';
 import { ConfirmationService } from 'primeng/api';
+import { ElasticQuery } from '@shared/elastic-query';
 
 @Component({
     selector: 'app-triagem',
@@ -11,7 +12,7 @@ import { ConfirmationService } from 'primeng/api';
     styleUrls: ['triagem.scss'],
 })
 
-export class TriagemComponent implements OnInit{
+export class TriagemComponent implements AfterViewInit {
     
     constructor(
         private triagemService: TriagemService, 
@@ -23,16 +24,16 @@ export class TriagemComponent implements OnInit{
 
     triagens: TriagemModel[] = [];
 
+    rowsPerPageOptions: number[] = [5,10,20]
+
+    elasticQuery: ElasticQuery = new ElasticQuery();
+
     @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
-    searchUrl:string = 'pacientes/api/triagens/listagem';
+    searchUrl:string = 'pacientes/api/_search/triagens';
 
-    ngOnInit(): void {
-
-        this.triagemService.listarTriagem().subscribe(res => {
-            this.triagens = res.content;
-        })
-
+    ngAfterViewInit(): void {
+        this.pesquisar();
     }
 
     onClick(event: DatatableClickEvent) {
@@ -55,10 +56,20 @@ export class TriagemComponent implements OnInit{
         }
     }
 
+    pesquisar(){
+        this.datatable.refresh(this.elasticQuery.query);
+    }
+
+    public limparPesquisa() {
+        this.elasticQuery.reset();
+        this.datatable.refresh(this.elasticQuery.reset)
+    }
+
+
     recarregarDatatable(){
-        this.triagemService.listarTriagem().subscribe(res => {
-            this.triagens = res.content;
-        });
+        
+            this.datatable.refresh(this.elasticQuery.query);
+        
     }
 
     abrirEditar(triagem: TriagemModel) {
@@ -74,7 +85,7 @@ export class TriagemComponent implements OnInit{
             message: 'Você tem certeza que deseja excluir o registro?',
             accept: () => {
                 this.triagemService.deletarTriagem(triagem.id).subscribe(() => {
-                    this.recarregarDatatable();                    
+                    this.datatable.refresh(this.elasticQuery.query);                
                     this.pageNotificationService.addSuccessMessage('Registro excluído com sucesso!');   
                 });            
             }
