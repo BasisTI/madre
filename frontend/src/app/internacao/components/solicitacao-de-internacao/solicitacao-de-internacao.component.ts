@@ -18,7 +18,7 @@ import { BreadcrumbService, CALENDAR_LOCALE } from '@nuvem/primeng-components';
 })
 export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
     @ViewChild('secundario') private cidSecundario: CidComponent;
-    public paciente: Paciente;
+    public paciente: Paciente = new Paciente();
     public prioridadeDropdown = PrioridadeDropdown;
     public pCalendarConfig = {
         localidade: CALENDAR_LOCALE,
@@ -61,8 +61,9 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
             },
         ]);
 
+        this.paciente.id = Number(this.route.snapshot.params['id']);
         this.pacienteService
-            .obterPacientePorId(Number(this.route.snapshot.params['id']))
+            .obterPacientePorId(this.paciente.id)
             .subscribe((paciente) => {
                 this.paciente = paciente;
             });

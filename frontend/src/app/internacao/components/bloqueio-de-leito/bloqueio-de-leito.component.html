@@ -1,110 +1,113 @@
-<div class="p-grid p-fluid">
+<div class="card">
+    <h1>Bloquear Leito</h1>
     <form [formGroup]="formGroup">
-        <!-- Leito -->
-        <div class="p-col-12 p-grid">
-            <div class="p-md-4 p-sm-12">
-                <app-leito
-                    [parentFormGroup]="formGroup"
-                    [required]="true"
-                    situacao="liberado"
-                    name="leito"
-                    label="Leito"
-                    (select)="aoSelecionarLeito($event)"
-                >
-                </app-leito>
-            </div>
-        </div>
-        <!-- Motivo -->
-        <div class="p-col-12 p-grid">
-            <div class="p-md-4 p-sm-12">
-                <span class="p-float-label">
-                    <app-motivo-do-bloqueio-de-leito
+    <div class="p-grid p-fluid">
+            <!-- Leito -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <app-leito
                         [parentFormGroup]="formGroup"
                         [required]="true"
-                        name="motivo"
-                        label="Motivo"
+                        situacao="liberado"
+                        name="leito"
+                        label="Leito"
+                        (select)="aoSelecionarLeito($event)"
                     >
-                    </app-motivo-do-bloqueio-de-leito>
-                </span>
+                    </app-leito>
+                </div>
             </div>
-        </div>
-        <!-- Data do Lançamento -->
-        <div class="p-col-12 p-grid">
-            <div class="p-md-4 p-sm-12">
-                <span class="p-float-label">
-                    <p-calendar
-                        [locale]="pCalendarConfig.localidade"
-                        [yearRange]="pCalendarConfig.anosDisponiveis"
-                        dateFormat="dd/mm/yy"
-                        showTime="true"
-                        hourFormat="24"
-                        showButtonBar="true"
-                        [yearNavigator]="true"
-                        [monthNavigator]="true"
-                        formControlName="dataDoLancamento"
-                    ></p-calendar>
-                    <label>Data do Lançamento</label>
-                </span>
+            <!-- Motivo -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <app-motivo-do-bloqueio-de-leito
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="motivo"
+                            label="Motivo"
+                        >
+                        </app-motivo-do-bloqueio-de-leito>
+                    </span>
+                </div>
             </div>
-        </div>
-        <!-- Data do Início | Data do Fim -->
-        <div class="p-col-12 p-grid">
-            <div class="p-md-4 p-sm-12">
-                <span class="p-float-label">
-                    <p-calendar
-                        [locale]="pCalendarConfig.localidade"
-                        [yearRange]="pCalendarConfig.anosDisponiveis"
-                        dateFormat="dd/mm/yy"
-                        showTime="true"
-                        hourFormat="24"
-                        showButtonBar="true"
-                        [yearNavigator]="true"
-                        [monthNavigator]="true"
-                        formControlName="dataInicio"
-                    ></p-calendar>
-                    <label>Data do Início</label>
-                </span>
+            <!-- Data do Lançamento -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar
+                            [locale]="pCalendarConfig.localidade"
+                            [yearRange]="pCalendarConfig.anosDisponiveis"
+                            dateFormat="dd/mm/yy"
+                            showTime="true"
+                            hourFormat="24"
+                            showButtonBar="true"
+                            [yearNavigator]="true"
+                            [monthNavigator]="true"
+                            formControlName="dataDoLancamento"
+                        ></p-calendar>
+                        <label>Data do Lançamento</label>
+                    </span>
+                </div>
             </div>
-            <div class="p-md-4 p-sm-12">
-                <span class="p-float-label">
-                    <p-calendar
-                        [locale]="pCalendarConfig.localidade"
-                        [yearRange]="pCalendarConfig.anosDisponiveis"
-                        dateFormat="dd/mm/yy"
-                        showTime="true"
-                        hourFormat="24"
-                        showButtonBar="true"
-                        [yearNavigator]="true"
-                        [monthNavigator]="true"
-                        formControlName="dataFim"
-                    ></p-calendar>
-                    <label>Data do Fim</label>
-                </span>
+            <!-- Data do Início | Data do Fim -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar
+                            [locale]="pCalendarConfig.localidade"
+                            [yearRange]="pCalendarConfig.anosDisponiveis"
+                            dateFormat="dd/mm/yy"
+                            showTime="true"
+                            hourFormat="24"
+                            showButtonBar="true"
+                            [yearNavigator]="true"
+                            [monthNavigator]="true"
+                            formControlName="dataInicio"
+                        ></p-calendar>
+                        <label>Data do Início</label>
+                    </span>
+                </div>
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar
+                            [locale]="pCalendarConfig.localidade"
+                            [yearRange]="pCalendarConfig.anosDisponiveis"
+                            dateFormat="dd/mm/yy"
+                            showTime="true"
+                            hourFormat="24"
+                            showButtonBar="true"
+                            [yearNavigator]="true"
+                            [monthNavigator]="true"
+                            formControlName="dataFim"
+                        ></p-calendar>
+                        <label>Data do Fim</label>
+                    </span>
+                </div>
             </div>
-        </div>
-        <!-- Justificativa -->
-        <div class="p-col-12 p-grid">
-            <div class="p-md-4 p-sm-12">
-                <span class="p-float-label">
-                    <textarea
-                        pInputTextarea
-                        [rows]="3"
-                        [cols]="30"
-                        autoResize="false"
-                        formControlName="justificativa"
-                    ></textarea>
-                    <label>Justificativa</label>
-                </span>
+            <!-- Justificativa -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <textarea
+                            pInputTextarea
+                            [rows]="3"
+                            [cols]="30"
+                            autoResize="false"
+                            formControlName="justificativa"
+                        ></textarea>
+                        <label>Justificativa</label>
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="p-col-12 p-grid">
-            <div class="p-md-4 p-sm-12">
-                <p-button
-                    label="Bloquear Leito"
-                    icon="pi pi-check"
-                    [disabled]="formGroup.invalid"
-                    (click)="reservarLeito()"
-                ></p-button>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <p-button
+                        label="Bloquear Leito"
+                        icon="pi pi-check"
+                        [disabled]="formGroup.invalid"
+                        (click)="reservarLeito()"
+                    ></p-button>
+                </div>
             </div>
         </div>
     </form>

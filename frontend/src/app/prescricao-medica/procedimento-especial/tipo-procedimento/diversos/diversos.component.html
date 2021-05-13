@@ -1,13 +1,11 @@
 <form [formGroup]="itemPrescricaoProcedimento">
-    <div class="p-col-12 p-grid" >
-        <div class="p-md-6">
-            <span class="md-inputfield p-float-label">
-                <p-dropdown placeholder="Selecione..." [filter]="true" InputText [options]="listaEspeciaisDiversos" formControlName="tipoProcedimentoId" required
-                    #especiaisDiversos>
-                </p-dropdown>
-                <label>Especiais Diversos</label>
-            </span>
-        </div>
+    <div class="p-md-6">
+        <span class="md-inputfield p-float-label">
+            <p-dropdown [filter]="true" InputText [options]="listaEspeciaisDiversos" formControlName="tipoProcedimentoId" required
+                #especiaisDiversos>
+            </p-dropdown>
+            <label>Especiais Diversos</label>
+        </span>
     </div>
 </form>
 

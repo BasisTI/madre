@@ -1,5 +1,4 @@
 <div class="p-grid p-fluid">
-
     <!-- {{profileForm.value | json}} -->
     <form autocomplete="off" (ngSubmit)="prescrever()">
         <p-accordion>
@@ -24,7 +23,7 @@
                         </div>
 
                         <div class="p-col-12 p-grid">
-                            <div class="p-col-12 p-grid">
+                            <div class="p-md-12">
                                 <span class="md-inputfield p-float-label">
                                     <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                         id="observacao" formControlName="observacao"></textarea>
@@ -41,13 +40,13 @@
                                 <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao"
                                     formControlName="bombaInfusao" pRadioButton>
                                 </p-radioButton>
-                                <label>Sim</label>
+                                <label class="p-ml-2">Sim</label>
                             </div>
                             <div class="p-md-1">
                                 <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao"
                                     formControlName="bombaInfusao" pRadioButton>
                                 </p-radioButton>
-                                <label>Não</label>
+                                <label class="p-ml-2">Não</label>
 
                             </div>
                         </div>
@@ -60,10 +59,10 @@
                     <div class="p-grid">
                         <div class="p-col-12 p-grid">
 
-                            <div class="p-col-12 p-grid">
+                            <div class="p-md-12">
                                 <span class="md-inputfield p-float-label">
                                     <p-dropdown [autoWidth]="false" [filter]="true"
-                                        emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
+                                        emptyFilterMessage="Nenhum registro encontrado."
                                         [options]="tiposItens" formControlName="tipoItemDieta" required #descricaoItem>
                                     </p-dropdown>
                                     <label>Tipo Item</label>
@@ -82,7 +81,7 @@
                             <div class="p-md-6">
                                 <span class="md-inputfield p-float-label">
                                     <p-dropdown [autoWidth]="false" [filter]="true"
-                                        emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
+                                        emptyFilterMessage="Nenhum registro encontrado."
                                         [options]="listaUnidadeDieta" formControlName="tipoUnidadeDieta">
                                     </p-dropdown>
                                     <label>Unidade</label>
@@ -101,7 +100,7 @@
 
                             <div class="p-md-5">
                                 <span class="md-inputfield p-float-label">
-                                    <p-dropdown [autoWidth]="false" placeholder="Selecione..." [filter]="true"
+                                    <p-dropdown [autoWidth]="false" [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado." [options]="tiposAprazamentos"
                                         formControlName="tipoAprazamento" #descricaoAprazamento>
                                     </p-dropdown>
@@ -125,7 +124,7 @@
                         <div class="p-col-12 p-grid"></div>
 
                         <div class="p-col-12 p-grid">
-                            <basis-datatable type="memory" [value]="itensDieta" [disableView]="true"
+                            <basis-datatable [verticalButtons]="false" type="memory" [value]="itensDieta" [disableView]="true"
                                 [disableEdit]="true" [disableDelete]="true">
                                 <p-column header="Item" field="tipoItemDieta">
                                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">

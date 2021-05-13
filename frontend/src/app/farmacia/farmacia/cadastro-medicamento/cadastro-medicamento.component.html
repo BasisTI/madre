@@ -1,111 +1,117 @@
-<div class="p-grid p-fluid">
-        <h1>{{ medicamento.id ? (' Editar Medicamentos ') : (' Cadastrar Medicamentos ') }}</h1>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="p-col-12 p-grid">
+<div class="card">
+    <h1>{{ medicamento.id ? (' Editar Medicamentos ') : (' Cadastrar Medicamentos ') }}</h1>
+    <div class="p-grid p-fluid">
+        <form [formGroup]="form" (ngSubmit)="submit()">
             <div class="p-col-12 p-grid">
-            </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-5 p-sm-12">
-                    <span class="p-float-label">
-                        <input 
-                            pInputText 
-                            type="text"
-                            pTooltip="Informe o Prontuario." 
-                            formControlName="nome" 
-                            />
-                        <label>Medicamento</label>
-                    </span>
+                <div class="p-col-12 p-grid">
                 </div>
-            </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-5 p-sm-12">
-                    <span class="p-float-label">
-                        <input 
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5 p-sm-12">
+                        <span class="p-float-label">
+                            <input 
+                                pInputText 
+                                type="text"
+                                pTooltip="Informe o Prontuario." 
+                                formControlName="nome" 
+                                />
+                            <label>Medicamento</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5 p-sm-12">
+                        <span class="p-float-label">
+                            <input 
+                                pInputText 
+                                type="text" 
+                                pTooltip="Informe o Prontuario." 
+                                formControlName="descricao" 
+                                />
+                            <label>Descrição Etiqueta</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5 p-sm-12">
+                        <span class="p-float-label">
+                            <input 
                             pInputText 
                             type="text" 
                             pTooltip="Informe o Prontuario." 
-                            formControlName="descricao" 
+                            formControlName="concentracao" 
                             />
-                        <label>Descrição Etiqueta</label>
-                    </span>
+                            <label>Concentração</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5 p-sm-12">
+                        <span class="p-float-label">
+                            <p-autoComplete 
+                                field="nome" 
+                                [suggestions]="unidade" 
+                                (completeMethod)="searchUnidade($event)"
+                                [dropdown]="true" 
+                                formControlName="unidade"
+                                ></p-autoComplete>
+    
+                            <label>Unidade</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5 p-sm-12">
+                        <span class="p-float-label">
+                            <p-autoComplete 
+                                field="nome" 
+                                [suggestions]="apresentacao"
+                                (completeMethod)="searchApresentacao($event)" 
+                                [dropdown]="true"
+                                formControlName="apresentacao"
+                                ></p-autoComplete>
+    
+                            <label>Apresentação</label>
+                        </span>
+                    </div>
+                </div>
+    
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
+                        <label class="card-subtitle">Situação</label>
+                    </div>
+                    <div class="p-md-2">
+                        <p-radioButton 
+                            type="radio" 
+                            value="true" 
+                            formControlName="ativo" 
+                            label="Ativo "
+                            pRadioButton
+                        ></p-radioButton>
+                    </div>
+                    <div class="p-md-2">
+                        <p-radioButton 
+                            type="radio" 
+                            value="false" 
+                            formControlName="ativo" 
+                            label="Inativo"
+                            pRadioButton
+                        ></p-radioButton>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5 p-sm-5">
+                        <button 
+                            pButton 
+                            type="submit" 
+                            label="Salvar" 
+                            [disabled]="form.invalid"
+                        ></button>
+                    </div>
+                    <div class="p-md-5 p-sm-5">
+                        <button pButton type="button" label="Cancelar" routerLink="/medicamentos"></button>
+                    </div>
                 </div>
             </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-5 p-sm-12">
-                    <span class="p-float-label">
-                        <input 
-                        pInputText 
-                        type="text" 
-                        pTooltip="Informe o Prontuario." 
-                        formControlName="concentracao" 
-                        />
-                        <label>Concentração</label>
-                    </span>
-                </div>
-            </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-5 p-sm-12">
-                    <span class="p-float-label">
-                        <p-autoComplete 
-                            field="nome" 
-                            [suggestions]="unidade" 
-                            (completeMethod)="searchUnidade($event)"
-                            [dropdown]="true" 
-                            formControlName="unidade"
-                            ></p-autoComplete>
-
-                        <label>Unidade</label>
-                    </span>
-                </div>
-            </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-5 p-sm-12">
-                    <span class="p-float-label">
-                        <p-autoComplete 
-                            field="nome" 
-                            [suggestions]="apresentacao"
-                            (completeMethod)="searchApresentacao($event)" 
-                            [dropdown]="true"
-                            formControlName="apresentacao"
-                            ></p-autoComplete>
-
-                        <label>Apresentação</label>
-                    </span>
-                </div>
-            </div>
-
-            <div class="p-col-12 p-grid">
-                <h3>Situação</h3>
-                <p-radioButton 
-                    type="radio" 
-                    name="groupname" 
-                    value="true" 
-                    formControlName="ativo" 
-                    label="Ativo "
-                    pRadioButton
-                ></p-radioButton>
-                <p-radioButton 
-                    type="radio" 
-                    name="groupname" 
-                    value="false" 
-                    formControlName="ativo" 
-                    label="Inativo"
-                    pRadioButton
-                ></p-radioButton>
-            </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-5 p-sm-5">
-                    <button 
-                        pButton 
-                        type="submit" 
-                        label="Salvar" 
-                        [disabled]="form.invalid"
-                    ></button>
-                </div>
-                <div class="p-md-5 p-sm-5">
-                    <button pButton type="button" label="Cancelar" routerLink="/medicamentos"></button>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

@@ -1,21 +1,23 @@
-<div class="p-grid p-fluid" *ngIf="medicamento">
-    <div class="p-col-12 p-grid">
-        <div class="card card-w-title">
-            <h1 >Visualizar Tipo Medicamento</h1>
-            <div class="p-grid">
-                <div class="p-md-9">
-                    <label>Nome: {{ medicamento.nome }}</label>
+<div class="card">
+    <h1>Visualizar Tipo Medicamento</h1>
+    <div class="p-grid p-fluid" *ngIf="medicamento">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-12">
+                <div class="p-grid">
+                    <div class="p-md-9">
+                        <label>Nome: {{ medicamento.nome }}</label>
+                    </div>
+                    <div class="p-md-9">
+                        <label>Descrição: {{ medicamento.descricao }}</label>
+                    </div>
+                    <div class="p-md-9">
+                        <label>Concentração: {{ medicamento.concentracao }}</label>
+                    </div>
                 </div>
-                <div class="p-md-9">
-                    <label>Descrição: {{ medicamento.descricao }}</label>
-                </div>
-                <div class="p-md-9">
-                    <label>Concentração: {{ medicamento.concentracao }}</label>
-                </div>
-            </div>
-            <div class="p-grid">
-                <div class="p-md-5 p-sm-5">
-                    <button pButton type="button" label="Voltar" routerLink="/medicamentos"></button>
+                <div class="p-grid">
+                    <div class="p-md-5 p-sm-5 p-mt-5">
+                        <button pButton type="button" label="Voltar" routerLink="/medicamentos"></button>
+                    </div>
                 </div>
             </div>
         </div>

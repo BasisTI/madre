@@ -1,5 +1,4 @@
 <div class="p-grid p-fluid">
-
     <div class="p-col-12 p-grid">
         <form (ngSubmit)="prescrever()">
             <p-accordion>
@@ -24,7 +23,7 @@
 
                             </div>
                             <div class="p-col-12 p-grid">
-                                <div class="p-col-12 p-grid">
+                                <div class="p-md-12">
                                     <span class="md-inputfield p-float-label">
                                         <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                             id="observacao" formControlName="observacao"></textarea>
@@ -67,7 +66,7 @@
 
                                 <div class="p-md-2">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                        <p-dropdown  [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaUnidadeDose" formControlName="unidadeDose" required
                                             #unidadeDose>
@@ -78,7 +77,7 @@
 
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                        <p-dropdown  [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaViasAdministracao" formControlName="viasAdministracao"
                                             required #viaAdministracao>
@@ -94,13 +93,13 @@
                                     <p-radioButton id="sim" type="radio" value="true" name="todasVias"
                                         formControlName="todasVias" pRadioButton>
                                     </p-radioButton>
-                                    <label>Sim</label>
+                                    <label class="p-ml-2">Sim</label>
                                 </div>
                                 <div class="p-md-1">
                                     <p-radioButton id="nao" type="radio" value="false" name="todasVias"
                                         formControlName="todasVias" pRadioButton>
                                     </p-radioButton>
-                                    <label>Não</label>
+                                    <label class="p-ml-2">Não</label>
                                 </div>
 
                             </div>
@@ -116,7 +115,7 @@
 
                                 <div class="p-md-5">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                        <p-dropdown  [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaTipoAprazamento" formControlName="tipoAprazamento">
                                         </p-dropdown>
@@ -126,7 +125,7 @@
 
                                 <div class="p-md-5">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown placeholder="Selecione..." [filter]="true" [options]="listaDiluente"
+                                        <p-dropdown  [filter]="true" [options]="listaDiluente"
                                             emptyFilterMessage="Nenhum registro encontrado." formControlName="diluente"
                                             #diluente>
                                         </p-dropdown>
@@ -138,11 +137,10 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <input type="number" pInputText formControlName="volume"
-                                            placeholder="Informe o valume do diluente" />
+                                        <input type="number" pInputText formControlName="volume"/>
                                         <label>Volume (ml)</label>
-
                                     </span>
+                                    <small>Informe o volume do diluente</small>
                                 </div>
 
                                 <div class="p-md-3">
@@ -171,7 +169,7 @@
 
                                 <div class="p-md-5">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown placeholder="Selecione..." [filter]="true"
+                                        <p-dropdown  [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
                                             [options]="listaUnidadeInfusao" formControlName="unidadeInfusao">
                                         </p-dropdown>
@@ -186,13 +184,13 @@
                                     <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao"
                                         formControlName="bombaInfusao" pRadioButton>
                                     </p-radioButton>
-                                    <label>Sim</label>
+                                    <label class="p-ml-2">Sim</label>
                                 </div>
                                 <div class="p-md-1">
                                     <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao"
                                         formControlName="bombaInfusao" pRadioButton>
                                     </p-radioButton>
-                                    <label>Não</label>
+                                    <label class="p-ml-2">Não</label>
 
                                 </div>
                             </div>
@@ -200,7 +198,7 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <p-calendar type="text" timeOnly="true" pInputText
+                                        <p-calendar type="text" timeOnly="true"
                                             formControlName="inicioAdministracao"></p-calendar>
                                         <label>Início Adm.</label>
                                     </span>
@@ -213,19 +211,19 @@
                                     <p-radioButton id="sim" type="radio" value="true" name="condicaoNecessaria"
                                         pRadioButton formControlName="condicaoNecessaria">
                                     </p-radioButton>
-                                    <label>Sim</label>
+                                    <label class="p-ml-2">Sim</label>
                                 </div>
                                 <div class="p-md-1">
                                     <p-radioButton id="nao" type="radio" value="false" name="condicaoNecessaria"
                                         pRadioButton formControlName="condicaoNecessaria">
                                     </p-radioButton>
-                                    <label>Não</label>
+                                    <label class="p-ml-2">Não</label>
 
                                 </div>
                             </div>
 
                             <div class="p-col-12 p-grid">
-                                <div class="p-col-12 p-grid">
+                                <div class="p-md-12">
                                     <span class="md-inputfield p-float-label">
                                         <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                             id="observacaoCondicao" formControlName="observacaoCondicao"></textarea>
@@ -298,12 +296,10 @@
             </p-accordion>
 
             <div class="p-col-12 p-grid">
-                <div class="p-md-6">
+                <div class="p-md-6 p-pl-0">
                     <button pButton type="submit" label="Prescrever"></button>
-
                 </div>
             </div>
         </form>
-
     </div>
 </div>

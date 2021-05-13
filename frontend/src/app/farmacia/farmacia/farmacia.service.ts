@@ -31,17 +31,17 @@ export class FarmaciaService {
         });
     }
 
-    getResultTipoMedicamento(event): Observable<Array<TipoMedicamento>> {
+    getResultTipoMedicamento(event?): Observable<Array<TipoMedicamento>> {
         return this.httpServe.get<Array<TipoMedicamento>>(`${this.apiUrl}/tipo-medicamentos`, {
             params: new HttpParams().set('nome', event),
         });
     }
-    getResultUnidade(event): Observable<Array<Unidade>> {
+    getResultUnidade(event?): Observable<Array<Unidade>> {
         return this.httpServe.get<Array<Unidade>>(`${this.apiUrl}/unidades`, {
             params: new HttpParams().set('nome', event),
         });
     }
-    getResultApresentacao(event): Observable<Array<Apresentacao>> {
+    getResultApresentacao(event?): Observable<Array<Apresentacao>> {
         return this.httpServe.get<Array<Apresentacao>>(`${this.apiUrl}/apresentacaos`, {
             params: new HttpParams().set('nome', event),
         });

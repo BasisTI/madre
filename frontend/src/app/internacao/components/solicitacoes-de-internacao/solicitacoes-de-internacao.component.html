@@ -9,20 +9,18 @@
                         <label>Nome do Paciente</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-2"></div>
+                <div class="p-col-12 p-grid p-d-flex p-jc-center">
                     <div class="p-md-4">
                         <button
                             pButton
                             type="button"
                             label="Pesquisar"
-                            icon="p-icon-search"
+                            icon="pi pi-search"
                             (click)="datatable.refresh(filtroNomeDoPaciente)"
                             bTooltip="Pesquisar paciente por nome."
                         ></button>
                     </div>
                 </div>
-                <div class="p-col-12 p-grid p-md-3"></div>
                 <basis-datatable
                     type="server"
                     [url]="api"
@@ -40,7 +38,7 @@
                         </ng-template>
                     </p-column>
                     <basis-datatable-button
-                        icon="add"
+                        icon="pi pi-plus"
                         name="create"
                         [disabled]="datatable.selectedRow ? false : true"
                         class="p-button-info"

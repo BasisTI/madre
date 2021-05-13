@@ -1,15 +1,11 @@
-<div class="p-grid p-fluid">
-    <div class="p-col-12 p-grid">
-        <form [formGroup]="parentFormGroup">
-            <div class="p-md-1">
+<form [formGroup]="parentFormGroup">
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-2">
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-autoComplete
-                        [suggestions]="autorizacoes"
-                        (completeMethod)="obterAutorizacaoFornecimentoPeloNumero($event)"
-                        [dropdown]="true"
-                        (onSelect)="aoSelecionarUmaAutorizacao($event)"
-                        field="numero"
-                    ></p-autoComplete>
+                    <p-autoComplete [suggestions]="autorizacoes"
+                        (completeMethod)="obterAutorizacaoFornecimentoPeloNumero($event)" [dropdown]="true"
+                        (onSelect)="aoSelecionarUmaAutorizacao($event)" field="numero"></p-autoComplete>
                     <label>Número AF</label>
                 </span>
             </div>
@@ -31,6 +27,6 @@
                     <label>Tipo Item</label>
                 </span>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>

@@ -19,11 +19,11 @@
             <ul class="layout-topbar-items">
                 <li class="layout-topbar-item">
                     <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
-                        <i class="pi pi-cog"></i>
+                        <i class="pi pi-cog" style="font-size: 2rem"></i>
                     </a>
                     <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="app.activeTopbarItem === 'profile'">
                         <li class="layout-topbar-action-item">
-                            <a routerLink="/error-stack" class="p-d-flex p-flex-row p-ai-center" pRipple>
+                            <a routerLink="/diario-erros" class="p-d-flex p-flex-row p-ai-center" pRipple>
                                 <i class="pi pi-cog" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
                                 <span>&nbsp; Diário de Erros</span>
                             </a>

@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="p-col-12 p-grid">
-                            <div class="p-col-12 p-grid">
+                            <div class="p-md-12">
                                 <span class="md-inputfield p-float-label">
                                     <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                         id="observacao" formControlName="observacao"></textarea>
@@ -36,7 +36,7 @@
 
             <p-accordionTab header="Itens Diagnóstico" [selected]="true">
                 <form [formGroup]="itemPrescricaoDiagnostico" (ngSubmit)="incluirItem()">
-                    <div class="p-grid">
+                    <div class="p-col-12 p-grid">
                         <div class="p-md-8">
                             <app-cid [parentFormGroup]="itemPrescricaoDiagnostico" [required]="true" [showTree]="true"
                                 name="idCid" label="CID">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="p-col-12 p-grid">
-                            <div class="p-col-12 p-grid">
+                            <div class="p-md-12">
                                 <span class="md-inputfield p-float-label">
                                     <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                         formControlName="complemento"></textarea>
@@ -61,12 +61,13 @@
                         <div class="p-col-12 p-grid"></div>
 
                         <div class="p-col-12 p-grid">
-                            <basis-datatable type="memory" [value]="itensDiagnostico" [disableView]="true"
+                            <basis-datatable [verticalButtons]="false" type="memory" [value]="itensDiagnostico" [disableView]="true"
                                 [disableEdit]="true" [disableDelete]="true">
                                 <p-column header="CID" field="idCid">
                                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                         <span>
-                                            {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                            {{ rowData[col.field] === null || rowData[col.field] === undefined ?
+                                            undefined : rowData[col.field].descricao }}</span>
                                     </ng-template>
                                 </p-column>
                                 <p-column header="Complemento" field="complemento"></p-column>
@@ -80,10 +81,8 @@
         </p-accordion>
 
         <div class="p-col-12 p-grid">
-            <div class="p-md-6">
-                <button pButton type="submit" label="Prescrever">
-                </button>
-
+            <div class="p-md-6 p-pl-0">
+                <button pButton type="submit" label="Prescrever"></button>
             </div>
         </div>
     </form>

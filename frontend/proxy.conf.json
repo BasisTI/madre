@@ -1,49 +1,39 @@
 {
     "/pacientes/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
-
+        "target": "http://localhost:8080",
+        "secure": false
     },
 
     "/prescricao/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/internacao/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/login/cas": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/cas/logout": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/farmacia/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/madreconsulta/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/madresuprimentos/api": {
-        "target": "https://madre.tst.basis.com.br",
-        "secure": false,
-        "changeOrigin": true
+        "target": "http://localhost:8080",
+        "secure": false
     }
 }

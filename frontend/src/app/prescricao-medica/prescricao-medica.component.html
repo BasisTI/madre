@@ -2,8 +2,7 @@
     <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Prescrição Médica</h1>
-            <div class="p-grid">
-
+            <div class="p-col-12 p-grid">
                 <div class="p-md-12 p-fluid">
                     <span class="md-inputfield p-float-label">
                         <input type="text" pInputText class="p-inputtext" name="nome"
@@ -11,13 +10,10 @@
                         <label>Nome paciente</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid p-md-6">
-                    <div class="p-col-12 p-grid p-md-6">
-                        <button pButton label="Pesquisar" icon="p-icon-search" pTooltip="Pesquisar Paciente por Nome"
-                            (click)="pesquisar()"></button>
-                    </div>
+                <div class="p-md-3 p-mb-5">
+                    <button pButton label="Pesquisar" icon="pi pi-search" pTooltip="Pesquisar Paciente por Nome"
+                        (click)="pesquisar()"></button>
                 </div>
-                <div class="p-col-12 p-grid p-md-3"></div>
 
                 <basis-datatable #datatable type="server" [url]="searchUrl" [rows]="10" [disableView]="true"
                     [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)">
@@ -30,26 +26,26 @@
                     </p-column>
 
 
-                    <basis-datatable-button icon="restaurant" name="prescrever-dieta"
+                    <basis-datatable-button icon="fas fa-utensils" name="prescrever-dieta"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Dieta"
                         class="p-button-info">
                     </basis-datatable-button>
 
-                    <basis-datatable-button icon="add-box" name="prescrever-medicamento"
+                    <basis-datatable-button icon="fas fa-plus-square" name="prescrever-medicamento"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Medicamento"
                         class="p-button-info">
                     </basis-datatable-button>
 
-                    <basis-datatable-button icon="control-point" name="prescrever-procedimento" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Procedimento Especial"
+                    <basis-datatable-button icon="fas fa-plus-circle" name="prescrever-procedimento" [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Procedimento Especial"
                         class="p-button-info">
                     </basis-datatable-button>
 
-                    <basis-datatable-button icon="assignment" name="prescrever-diagnostico"
+                    <basis-datatable-button icon="fab fa-wpforms" name="prescrever-diagnostico"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Prescrever Diagnóstico"
                         class="p-button-info">
                     </basis-datatable-button>
 
-                    <basis-datatable-button icon="remove-red-eye" name="listar-prescricoes"
+                    <basis-datatable-button icon="far fa-eye" name="listar-prescricoes"
                         [disabled]="(datatable.selectedRow) ? false : true" bTooltip="Listar Prescrições"
                         class="p-button-success">
                     </basis-datatable-button>

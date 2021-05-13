@@ -6,10 +6,13 @@
         <div nDropdown label="Doc. Referência" [options]="opcoesDeDocumentoDeReferencia" formControlName="documentoDeReferencia" class="p-md-2"></div>
         <div nInputMask label="Cartão Nacional Saúde Mãe" formControlName="cartaoNacionalSaudeMae" mask="999999999999999" placeholder="___ ____ ____ ____" tooltip="Informe o CNS da mãe do paciente." class="p-md-3"></div>
     </div>
-    <legend>Se Naturalizado Brasileiro</legend>
-    <div class="p-col-12 p-grid" formGroupName="cartaoSUS">
-        <div madreCalendar label="Data de Entrada no Brasil" formControlName="dataDeEntradaNoBrasil" class="p-md-4 p-sm-12"></div>
-        <div madreCalendar label="Data de Naturalização" formControlName="dataDeNaturalizacao" class="p-md-4 p-sm-12"></div>
-        <div nInputText label="Portaria" formControlName="portaria" class="p-md-4 p-sm-12"></div>
+    <div class="p-md-12">
+        <p-fieldset legend="Se Naturalizado Brasileiro">
+            <div class="p-col-12 p-grid" formGroupName="cartaoSUS">
+                <div madreCalendar label="Data de Entrada no Brasil" formControlName="dataDeEntradaNoBrasil" class="p-md-4 p-sm-12"></div>
+                <div madreCalendar label="Data de Naturalização" formControlName="dataDeNaturalizacao" class="p-md-4 p-sm-12"></div>
+                <div nInputText label="Portaria" formControlName="portaria" class="p-md-4 p-sm-12"></div>
+            </div>
+        </p-fieldset>
     </div>
 </div>

@@ -8,22 +8,22 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-6">
                                     <span class="md-inputfield p-float-label">
-                                        <input formControlName="nome" type="text"
-                                            pInputText disabled />
+                                        <input formControlName="nome" type="text" pInputText disabled />
                                         <label>Paciente</label>
                                     </span>
                                 </div>
 
                                 <div class="p-md-6">
                                     <span class="md-inputfield p-float-label">
-                                        <p-calendar formControlName="dataPrescricao" dateFormat="dd/mm/yy" disabled="true">
+                                        <p-calendar formControlName="dataPrescricao" dateFormat="dd/mm/yy"
+                                            disabled="true">
                                         </p-calendar>
                                         <label>Data Prescrição</label>
                                     </span>
                                 </div>
                             </div>
                             <div class="p-col-12 p-grid">
-                                <div class="p-col-12 p-grid">
+                                <div class="p-md-12">
                                     <span class="md-inputfield p-float-label">
                                         <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                             id="observacao" formControlName="observacao"></textarea>
@@ -102,7 +102,8 @@
                                     <p-column header="Procedimento" field="tipoProcedimentoId">
                                         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                                             <span>
-                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ?
+                                                undefined : rowData[col.field].descricao }}</span>
                                         </ng-template>
                                     </p-column>
 
@@ -116,15 +117,11 @@
                     </form>
                 </p-accordionTab>
             </p-accordion>
-
-            <div class="p-col-12 p-grid">
-                <div class="p-md-6">
-                    <button pButton type="submit" label="Prescrever">
-                    </button>
-
+            <div class="p-col-6 p-grid">
+                <div class="p-md-12 p-pl-0">
+                    <button pButton type="submit" label="Prescrever"></button>
                 </div>
             </div>
         </form>
-
     </div>
 </div>

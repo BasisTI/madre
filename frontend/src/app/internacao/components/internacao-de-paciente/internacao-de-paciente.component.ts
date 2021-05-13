@@ -14,7 +14,7 @@ import { SolicitacaoDeInternacaoService } from '@internacao/services/solicitacao
     styleUrls: ['./internacao-de-paciente.component.scss'],
 })
 export class InternacaoDePacienteComponent implements OnInit, OnDestroy {
-    public solicitacao: SolicitacaoDeInternacaoDTO;
+    public solicitacao: SolicitacaoDeInternacaoDTO = new SolicitacaoDeInternacaoDTO();
 
     public pCalendarConfig = {
         localidade: CALENDAR_LOCALE,

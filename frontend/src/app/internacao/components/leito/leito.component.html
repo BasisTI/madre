@@ -1,11 +1,12 @@
 <form [formGroup]="parentFormGroup">
-    <label>{{ label }}</label>
-    <p-dropdown
-        [options]="leitos"
-        optionLabel="nome"
-        [formControlName]="name"
-        [filter]="true"
-        (onChange)="aoSelecionar()"
-        placeholder="Selecione um Leito"
-    ></p-dropdown>
+    <span class="p-float-label">
+        <p-dropdown
+            [options]="leitos"
+            optionLabel="nome"
+            [formControlName]="name"
+            [filter]="true"
+            (onChange)="aoSelecionar()"
+        ></p-dropdown>
+        <label>{{ label }}</label>
+    </span>
 </form>

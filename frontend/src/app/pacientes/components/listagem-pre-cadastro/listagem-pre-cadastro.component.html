@@ -16,20 +16,18 @@
                         <label>Nome paciente</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-4"></div>
+                <div class="p-col-12 p-grid p-jc-center">
                     <div class="p-md-3">
                         <button
                             pButton
                             type="button"
                             label="Pesquisar"
-                            icon="p-icon-search"
+                            icon="pi pi-search"
                             bTooltip="Pesquisar paciente por nome."
                             (click)="datatable.refresh(query.value)"
                         ></button>
                     </div>
                 </div>
-                <div class="p-col-12 p-grid p-md-3"></div>
                 <basis-datatable
                     #datatable
                     type="server"

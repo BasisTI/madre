@@ -1,27 +1,26 @@
 <div class="card">
+    <h1>Triagem</h1>
     <div class="p-grid p-fluid">
         <div class="p-col-12 p-grid">
             <span class>
                 <!-- TODO: Verificar input -->
                 <!-- <input pInputText disabled /> -->
-                <h1>Triagem</h1>
             </span>
     
             <div class="p-grid">
-                <div class="p-md-11 p-fluid p-float-label">
+                <div class="p-md-12 p-fluid p-float-label">
                     <span class="p-float-label" style="margin-top: 5px;">
                         <input type="text" pInputText name="filtro" required="true" />
                         <label>Pesquisar Triagem</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-2"></div>
+                <div class="p-col-12 p-grid p-jc-center">
                     <div class="p-md-3">
                         <button
                             pButton
                             type="button"
                             label="Pesquisar"
-                            icon="p-icon-search"
+                            icon="pi pi-search"
                             bTooltip="Pesquisar paciente por nome."
                         ></button>
                     </div>
@@ -30,13 +29,12 @@
                             pButton
                             type="button"
                             label="Nova Triagem"
-                            icon="p-icon-add"
+                            icon="pi pi-add"
                             routerLink="/triagem/formulario"
                             bTooltip="Cadastrar nova Triagem."
                         ></button>
                     </div>
                 </div>
-                <div class="p-col-12 p-grid p-md-3"></div>
                 <basis-datatable  [value]="triagens" (buttonClick)="onClick($event)">
     
                 <p-column header="Nome do Paciente" field="paciente">
@@ -51,7 +49,7 @@
                 </p-column>  
                 <p-column header="Nome da Mãe" field="paciente">
                     <ng-template let-col="col" let-paciente="rowData" pTemplate="body">
-                        {{ paciente[col.field].genitores === null || paciente[col.field].genitores === undefined ? undefined : paciente[col.field].genitores.nomeDaMae }}
+                        {{ paciente[col.field] && paciente[col.field].genitores ? paciente[col.field].genitores.nomeDaMae : undefined }}
                     </ng-template>
                 </p-column>
                 <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
@@ -77,18 +75,19 @@
                 </p-column>
                 </basis-datatable>
                 <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não">
-                </p-confirmDialog>            
-                <div class="p-md-9"></div>
-                <div class="p-md-2">
-                    <button
-                        name="export"
-                        pButton
-                        textAlign="right"
-                        type="button"
-                        label="Exportar"
-                        icon="pi pi-upload"
-                        bTooltip="Exportar arquivo"
-                    ></button>
+                </p-confirmDialog>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-3">
+                        <button
+                            name="export"
+                            pButton
+                            textAlign="right"
+                            type="button"
+                            label="Exportar"
+                            icon="pi pi-upload"
+                            bTooltip="Exportar arquivo">
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

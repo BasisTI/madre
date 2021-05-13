@@ -7,7 +7,7 @@ import { PacienteService } from '@internacao/services/paciente.service';
     template: `
         <div class="p-grid p-fluid">
             <p-fieldset legend="Paciente">
-                <div class="p-grid">
+                <div class="p-col-12 p-grid">
                     <div class="p-md-4">
                         <label>Prontuário</label>
                         <input pInputText [value]="this.getProntuario()" />
@@ -26,6 +26,7 @@ export class CardPacienteComponent implements OnInit {
      * TODO: Deve ser substituído por 'prontuário'
      */
     @Input() private prontuario: number;
+    
     private paciente: Paciente;
 
     constructor(private pacienteService: PacienteService) {}

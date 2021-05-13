@@ -28,8 +28,7 @@
                         <input pInputText 
                             disabled="true" 
                             [(ngModel)]="prontuario" 
-                            formControlName="prontuario"
-                            placeholder="Selecione um paciente" />
+                            formControlName="prontuario"/>
                         <label>Prontuário</label>
                     </span>
                 </div>
@@ -66,13 +65,15 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar [locale]="localizacao" dateFormat="dd-mm-yy" formControlName="dataFinal"
+                        <p-calendar [locale]="localizacao" 
+                            dateFormat="dd-mm-yy" 
+                            formControlName="dataFinal"
                             [(ngModel)]="data">
                         </p-calendar>
                         <label>Data da Consulta</label>
                     </span>
                 </div>
-                <div class="p-col-12  p-grid">
+                <div class="p-col-12 p-grid">
                     <div class="p-md-2">
                         <button pButton type="button" label="Pesquisar" pTooltip="Pesquisar consultas de paciente."
                             (click)="listar()"></button>
@@ -83,8 +84,8 @@
                     </div>
                 </div>
             </div>
-            <div class="p-col-12  p-grid">
-                <basis-datatable [verticalButtons]="false" [disableEdit]="true" [disableDelete]="true" [disableView]="true" #datatable
+            <div class="p-md-12">
+                <basis-datatable [verticalButtons]="false" #datatable
                     type="memory" [value]="consulta" sortField="brand">
                     <p-column field="numeroConsulta" header="Consultas"></p-column>
                     <p-column field="dataHoraDaConsulta" header="Data/Hora"></p-column>
@@ -97,11 +98,11 @@
                     <p-column field="profissional" header="Profissional"></p-column>
                     <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
                 </basis-datatable>
-                <div class="p-col-12  p-grid">
-                    <div class="p-md-2">
-                        <button pButton type="button" label="Exportar"
-                            pTooltip="Exportar arquivo de consultas."></button>
-                    </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2">
+                    <button pButton type="button" label="Exportar"
+                        pTooltip="Exportar arquivo de consultas."></button>
                 </div>
             </div>
         </div>
