@@ -136,7 +136,6 @@ public class TriagemService {
      */
     @Transactional(readOnly = true)
     public Page<TriagemDTO> search(String query, Pageable pageable) {
-        Page<Triagem> page = triagemSearchRepository.search(queryStringQuery(query), pageable);
         log.debug("Request to search for a page of Triagems for query {}", query);
         return triagemSearchRepository.search(queryStringQuery(query), pageable)
             .map(triagemMapper::toDto);
