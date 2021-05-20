@@ -2,7 +2,7 @@ import { Medicamento, Medicamentos } from './Medicamento';
 import { Prescricao } from './../dispensacao/prescricao';
 import { FarmaciaService } from './../farmacia.service';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DatatableClickEvent, DatatablePaginationParameters, DatatableComponent, PageNotificationService } from '@nuvem/primeng-components';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -18,7 +18,7 @@ export class MedicamentosComponent implements OnInit {
     paginationParameters: DatatablePaginationParameters;
     @ViewChild(DatatableComponent) dataTable: DatatableComponent;
     tipoMedicamentoSelecionada: Medicamentos = new Medicamentos();
-    
+
     descricao = '';
     codigo = '';
     situacao = '';
@@ -26,7 +26,7 @@ export class MedicamentosComponent implements OnInit {
     medicamento: Medicamento[];
     '';
     elasticQuery: ElasticQuery = new ElasticQuery();
-   
+
 
     listar() {
         this.service
@@ -51,7 +51,6 @@ export class MedicamentosComponent implements OnInit {
     ngOnInit(): void {
         this.listar();
     }
-
 
     public limparPesquisa() {
         this.codigo = '';
@@ -111,5 +110,5 @@ export class MedicamentosComponent implements OnInit {
             this.abrirEditar(this.tipoMedicamentoSelecionada);
         }
     }
-    
+
 }
