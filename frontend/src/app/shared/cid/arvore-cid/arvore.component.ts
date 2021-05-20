@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CID } from '@internacao/models/cid';
 import { ArvoreCidService } from '@internacao/services/arvore-cid.service';
-import { TreeNode, Tree } from 'primeng';
+import { TreeNode } from 'primeng/api';
 
 @Component({
     selector: 'app-arvore',

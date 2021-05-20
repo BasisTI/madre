@@ -3,7 +3,7 @@ import { api } from '@internacao/api';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CID } from '@internacao/models/cid';
-import { SelectItem } from 'primeng';
+import { SelectItem } from 'primeng/api';
 
 @Injectable({
     providedIn: 'root',

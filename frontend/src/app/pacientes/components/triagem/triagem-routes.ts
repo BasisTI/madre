@@ -25,4 +25,4 @@ const routes: Routes = [
     },
 ];
 
-export const TriagemComponentRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
+export const TriagemComponentRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes);

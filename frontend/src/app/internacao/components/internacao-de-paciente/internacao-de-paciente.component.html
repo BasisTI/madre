@@ -1,192 +1,201 @@
-<div class="ui-g ui-fluid">
-    <p-fieldset legend="Internar Paciente">
-        <form [formGroup]="formGroup">
-            <div class="ui-g-12">
-                <app-card-paciente [prontuario]="solicitacao.pacienteId"></app-card-paciente>
-            </div>
-            <div class="ui-g-12">
-                <!-- Leito + Quarto + Unidade Funcional -->
-                <div class="ui-g-2">
-                    <app-leito
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        situacao="liberado"
-                        name="leito"
-                        label="Leito"
-                    >
-                    </app-leito>
+<div class="card">
+    <div class="p-col-12 p-grid p-fluid">
+        <p-fieldset legend="Internar Paciente">
+            <form [formGroup]="formGroup">
+                <div class="p-col-12 p-grid">
+                    <ng-template [ngIf]="solicitacao.pacienteId">
+                        <app-card-paciente class="p-md-12" [prontuario]="solicitacao.pacienteId"></app-card-paciente>
+                    </ng-template>
                 </div>
-            </div>
-            <!-- Especialidade -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-especialidade
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="especialidade"
-                        label="Especialidade"
-                    ></app-especialidade>
-                </div>
-            </div>
-            <!-- Plano de Saúde + Convênio de Saúde -->
-            <div class="ui-g-12">
-                <div class="ui-g-3">
-                    <app-plano-de-saude
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="planoDeSaude"
-                        label="Plano de Saúde"
-                    ></app-plano-de-saude>
-                </div>
-                <div class="ui-g-12">
-                    <div class="ui-g-3">
-                        <app-convenio-de-saude
+                <div class="p-col-12 p-grid">
+                    <!-- Leito + Quarto + Unidade Funcional -->
+                    <div class="p-md-2">
+                        <app-leito
                             [parentFormGroup]="formGroup"
                             [required]="true"
-                            name="convenioDeSaude"
-                            label="Convênio de Saúde"
-                        ></app-convenio-de-saude>
+                            situacao="liberado"
+                            name="leito"
+                            label="Leito"
+                        >
+                        </app-leito>
                     </div>
                 </div>
-            </div>
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-crm [parentFormGroup]="formGroup" [required]="true" name="crm" label="CRM">
-                    </app-crm>
+                <!-- Especialidade -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-especialidade
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="especialidade"
+                            label="Especialidade"
+                        ></app-especialidade>
+                    </div>
                 </div>
-            </div>
-            <!-- Caráter da Internação -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-carater-da-internacao
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="caraterDaInternacao"
-                        label="Caráter da Internação"
-                    >
-                    </app-carater-da-internacao>
+                <!-- Plano de Saúde + Convênio de Saúde -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-3">
+                        <app-plano-de-saude
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="planoDeSaude"
+                            label="Plano de Saúde"
+                        ></app-plano-de-saude>
+                    </div>
+                    <div class="p-col-12 p-grid">
+                        <div class="p-md-3">
+                            <app-convenio-de-saude
+                                [parentFormGroup]="formGroup"
+                                [required]="true"
+                                name="convenioDeSaude"
+                                label="Convênio de Saúde"
+                            ></app-convenio-de-saude>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- Origem da Internação -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-origem-da-internacao
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="origemDaInternacao"
-                        label="Origem da Internação"
-                    ></app-origem-da-internacao>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-crm [parentFormGroup]="formGroup" [required]="true" name="crm" label="CRM">
+                        </app-crm>
+                    </div>
                 </div>
-            </div>
-            <!-- Hospital de Origem -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-hospital
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="hospitalDeOrigem"
-                        label="Hospital de Origem"
-                    >
-                    </app-hospital>
+                <!-- Caráter da Internação -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-carater-da-internacao
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="caraterDaInternacao"
+                            label="Caráter da Internação"
+                        >
+                        </app-carater-da-internacao>
+                    </div>
                 </div>
-            </div>
-            <!-- Procedências -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-procedencia
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="procedencia"
-                        label="Procedência"
-                    ></app-procedencia>
+                <!-- Origem da Internação -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-origem-da-internacao
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="origemDaInternacao"
+                            label="Origem da Internação"
+                        ></app-origem-da-internacao>
+                    </div>
                 </div>
-            </div>
-            <!-- Local de Atendimento -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-local-de-atendimento
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="localDeAtendimento"
-                        label="Local de Atendimento"
-                    ></app-local-de-atendimento>
+                <!-- Hospital de Origem -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-hospital
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="hospitalDeOrigem"
+                            label="Hospital de Origem"
+                        >
+                        </app-hospital>
+                    </div>
                 </div>
-            </div>
-            <!-- Modalidade Assistencial -->
-            <div class="ui-g-12">
-                <div class="ui-g-5">
-                    <app-modalidade-assistencial
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="modalidadeAssistencial"
-                        label="Modalidade Assistencial"
-                    >
-                    </app-modalidade-assistencial>
+                <!-- Procedências -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-procedencia
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="procedencia"
+                            label="Procedência"
+                        ></app-procedencia>
+                    </div>
                 </div>
-            </div>
-            <!-- Data da Internação + Diferença de Classe + Solicitar Prontuário -->
-            <div class="ui-g-12">
-                <div class="ui-g-2">
-                    <span class="ui-float-label">
-                        <p-calendar
-                            [locale]="pCalendarConfig.localidade"
-                            [yearRange]="pCalendarConfig.anosDisponiveis"
-                            [minDate]="pCalendarConfig.dataMinima"
-                            monthNavigator="true"
-                            yearNavigator="true"
-                            [dateFormat]="pCalendarConfig.formatoDeData"
-                            formControlName="dataDaInternacao"
-                        ></p-calendar>
-                        <label>Data da Internação</label>
-                    </span>
+                <!-- Local de Atendimento -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-local-de-atendimento
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="localDeAtendimento"
+                            label="Local de Atendimento"
+                        ></app-local-de-atendimento>
+                    </div>
                 </div>
-                <div class="ui-g-3">
-                    <label style="margin: 3px;">Diferença de Classe?</label>
-                    <p-radioButton
-                        name="diferencaDeClasse"
-                        [value]="true"
-                        formControlName="diferencaDeClasse"
-                    ></p-radioButton>
-                    <label style="margin: 3px;">Sim</label>
-                    <p-radioButton
-                        name="diferencaDeClasse"
-                        [value]="false"
-                        formControlName="diferencaDeClasse"
-                    ></p-radioButton>
-                    <label style="margin: 3px;">Não</label>
+                <!-- Modalidade Assistencial -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-5">
+                        <app-modalidade-assistencial
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="modalidadeAssistencial"
+                            label="Modalidade Assistencial"
+                        >
+                        </app-modalidade-assistencial>
+                    </div>
                 </div>
-                <div class="ui-g-3">
-                    <label style="margin: 3px;">Solicitar Prontuário?</label>
-                    <p-radioButton
-                        name="solicitarProntuario"
-                        [value]="true"
-                        formControlName="solicitarProntuario"
-                    ></p-radioButton>
-                    <label style="margin: 3px;">Sim</label>
-                    <p-radioButton
-                        name="solicitarProntuario"
-                        [value]="false"
-                        formControlName="solicitarProntuario"
-                    ></p-radioButton>
-                    <label style="margin: 3px;">Não</label>
+                <!-- Data da Internação + Diferença de Classe + Solicitar Prontuário -->
+                <div class="p-grid">
+                    <div class="p-md-2">
+                        <span class="p-float-label">
+                            <p-calendar
+                                [locale]="pCalendarConfig.localidade"
+                                [yearRange]="pCalendarConfig.anosDisponiveis"
+                                [minDate]="pCalendarConfig.dataMinima"
+                                monthNavigator="true"
+                                yearNavigator="true"
+                                [dateFormat]="pCalendarConfig.formatoDeData"
+                                formControlName="dataDaInternacao"
+                            ></p-calendar>
+                            <label>Data da Internação</label>
+                        </span>
+                    </div>
+                    <div class="p-md-3">
+                        <label style="margin: 3px;">Diferença de Classe?</label>
+                        <p-radioButton
+                            name="diferencaDeClasse"
+                            [value]="true"
+                            formControlName="diferencaDeClasse"
+                        ></p-radioButton>
+                        <label style="margin: 3px;">Sim</label>
+                        <p-radioButton
+                            name="diferencaDeClasse"
+                            [value]="false"
+                            formControlName="diferencaDeClasse"
+                        ></p-radioButton>
+                        <label style="margin: 3px;">Não</label>
+                    </div>
+                    <div class="p-md-3">
+                        <label style="margin: 3px;">Solicitar Prontuário?</label>
+                        <p-radioButton
+                            name="solicitarProntuario"
+                            [value]="true"
+                            formControlName="solicitarProntuario"
+                        ></p-radioButton>
+                        <label style="margin: 3px;">Sim</label>
+                        <p-radioButton
+                            name="solicitarProntuario"
+                            [value]="false"
+                            formControlName="solicitarProntuario"
+                        ></p-radioButton>
+                        <label style="margin: 3px;">Não</label>
+                    </div>
                 </div>
-            </div>
-            <!-- Justificativa -->
-            <div class="ui-g-12">
-                <label>Justificativa</label>
-                <textarea
-                    pInputTextarea
-                    [rows]="5"
-                    autoResize="autoResize"
-                    formControlName="justificativa"
-                ></textarea>
-            </div>
-            <p-button
-                icon="pi pi-check"
-                label="Internar Paciente"
-                (onClick)="internarPaciente()"
-                [disabled]="formGroup.invalid"
-            ></p-button>
-        </form>
-    </p-fieldset>
+                <!-- Justificativa -->
+                <div class="p-md-12 ">
+                    <label>Justificativa</label>
+                    <textarea
+                        pInputTextarea
+                        [rows]="5"
+                        autoResize="autoResize"
+                        formControlName="justificativa"
+                    ></textarea>
+                </div>
+                <div class="p-col-12 p-grid p-fluid">
+                    <div class="p-md-3">
+                        <p-button
+                            icon="pi pi-check"
+                            label="Internar Paciente"
+                            (onClick)="internarPaciente()"
+                            [disabled]="formGroup.invalid"
+                        ></p-button>
+                    </div>
+                </div>
+            </form>
+        </p-fieldset>
+    </div>
 </div>
+

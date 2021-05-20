@@ -1,17 +1,17 @@
-<div class="ui-g ui-fluid" *ngIf="prescricao">
-    <div class="ui-g-12">
+<div class="p-grid p-fluid" *ngIf="prescricao">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1 >Visualizar Prescrição Médica</h1>
-            <div class="ui-g">
-                <div class="ui-g-9">
+            <div class="p-grid">
+                <div class="p-md-9">
                     <label>Nome: {{ prescricao.nome }}</label>
                 </div>
-                <div class="ui-g-9">
+                <div class="p-md-9">
                     <label>Início da Prescrição: {{ prescricao.dataInicio }}</label>
                 </div>
             </div>
-            <div class="ui-g">
-                <div class="ui-g-5 ui-sm-5">
+            <div class="p-grid">
+                <div class="p-md-5 p-sm-5">
                     <button pButton type="button" label="Voltar" routerLink="/dispensacaos"></button>
                 </div>
             </div>

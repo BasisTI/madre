@@ -1,154 +1,163 @@
-<div class="ui-g ui-fluid">
-    <p-fieldset legend="Solicitação de Internação">
-        <form [formGroup]="formGroup">
-            <div class="ui-g-12">
-                <app-card-paciente [prontuario]="paciente.id"></app-card-paciente>
-            </div>
-            <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
-            <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <p-calendar
-                            [locale]="pCalendarConfig.localidade"
-                            [yearRange]="pCalendarConfig.anosDisponiveis"
-                            [minDate]="pCalendarConfig.dataMinima"
-                            monthNavigator="true"
-                            yearNavigator="true"
-                            [dateFormat]="pCalendarConfig.formatoDeData"
-                            formControlName="dataProvavelDaInternacao"
+<div class="card">
+    <div class="p-grid p-fluid">
+        <p-fieldset legend="Solicitação de Internação">
+            <form [formGroup]="formGroup">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-12">
+                        <app-card-paciente [prontuario]="paciente.id"></app-card-paciente>
+                    </div>
+                </div>
+                <!-- Data Provável Intenação* & Data Provável Cirurgia & Prioridade* -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <span class="p-float-label">
+                            <p-calendar
+                                [locale]="pCalendarConfig.localidade"
+                                [yearRange]="pCalendarConfig.anosDisponiveis"
+                                [minDate]="pCalendarConfig.dataMinima"
+                                monthNavigator="true"
+                                yearNavigator="true"
+                                [dateFormat]="pCalendarConfig.formatoDeData"
+                                formControlName="dataProvavelDaInternacao"
+                                [required]="true"
+                            ></p-calendar>
+                            <label>Data Provável da Internação</label>
+                        </span>
+                    </div>
+                    <div class="p-md-4">
+                        <span class="p-float-label">
+                            <p-calendar
+                                [locale]="pCalendarConfig.localidade"
+                                [yearRange]="pCalendarConfig.anosDisponiveis"
+                                [minDate]="pCalendarConfig.dataMinima"
+                                monthNavigator="true"
+                                yearNavigator="true"
+                                [dateFormat]="pCalendarConfig.formatoDeData"
+                                formControlName="dataProvavelDaCirurgia"
+                            ></p-calendar>
+                            <label>Data Provável da Cirurgia</label>
+                        </span>
+                    </div>
+                    <div class="p-md-2">
+                        <span class="p-float-label">
+                            <p-dropdown
+                            [options]="prioridadeDropdown"
+                            formControlName="prioridade"
                             [required]="true"
-                        ></p-calendar>
-                        <label>Data Provável da Internação</label>
-                    </span>
+                            ></p-dropdown>
+                            <label>Prioridade</label>
+                        </span>
+                    </div>
                 </div>
-                <div class="ui-g-4">
-                    <span class="ui-float-label">
-                        <p-calendar
-                            [locale]="pCalendarConfig.localidade"
-                            [yearRange]="pCalendarConfig.anosDisponiveis"
-                            [minDate]="pCalendarConfig.dataMinima"
-                            monthNavigator="true"
-                            yearNavigator="true"
-                            [dateFormat]="pCalendarConfig.formatoDeData"
-                            formControlName="dataProvavelDaCirurgia"
-                        ></p-calendar>
-                        <label>Data Provável da Cirurgia</label>
-                    </span>
+                <!-- Especialidade* & Equipe -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <app-especialidade
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="especialidade"
+                            label="Especialidade"
+                            (select)="aoSelecionarEspecialidade($event)"
+                        ></app-especialidade>
+                    </div>
+                    <div class="p-md-4">
+                        <app-equipe
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="equipe"
+                            label="Equipe"
+                            [especialidade]="formGroup.controls.especialidade"
+                        ></app-equipe>
+                    </div>
                 </div>
-                <div class="ui-g-2">
-                    <label>Prioridade</label>
-                    <p-dropdown
-                        [options]="prioridadeDropdown"
-                        formControlName="prioridade"
-                        [required]="true"
-                    ></p-dropdown>
+                <!-- CRM* -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <app-crm
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="crm"
+                            label="CRM"
+                        ></app-crm>
+                    </div>
                 </div>
-            </div>
-            <!-- Especialidade* & Equipe -->
-            <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <app-especialidade
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="especialidade"
-                        label="Especialidade"
-                        (select)="aoSelecionarEspecialidade($event)"
-                    ></app-especialidade>
+                <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <label>Principais Sinais e Sintomas Clínicos</label>
+                        <textarea
+                            class="p-mt-2"
+                            pInputTextarea
+                            [rows]="5"
+                            autoResize="autoResize"
+                            formControlName="principaisSinaisESintomasClinicos"
+                        ></textarea>
+                    </div>
+                    <div class="p-md-4">
+                        <label>Condições que Justificam a Internação</label>
+                        <textarea
+                            class="p-mt-2"
+                            pInputTextarea
+                            [rows]="5"
+                            autoResize="autoResize"
+                            formControlName="condicoesQueJustificamInternacao"
+                        ></textarea>
+                    </div>
+                    <div class="p-md-4">
+                        <label>Principais Resultados Provas Diagnósticas</label>
+                        <textarea
+                            class="p-mt-2"
+                            pInputTextarea
+                            [rows]="5"
+                            autoResize="autoResize"
+                            formControlName="principaisResultadosProvasDiagnosticas"
+                        ></textarea>
+                    </div>
                 </div>
-                <div class="ui-g-4">
-                    <app-equipe
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="equipe"
-                        label="Equipe"
-                        [especialidade]="formGroup.controls.especialidade"
-                    ></app-equipe>
+                <!-- Procedimento* -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <app-procedimento
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="procedimento"
+                            label="Procedimento"
+                        ></app-procedimento>
+                    </div>
                 </div>
-            </div>
-            <!-- CRM* -->
-            <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <app-crm
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="crm"
-                        label="CRM"
-                    ></app-crm>
+                <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-12">
+                        <app-cid
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            (select)="aoSelecionarCidPrincipal($event)"
+                            [showTree]="true"
+                            name="cidPrincipal"
+                            label="CID Principal"
+                        ></app-cid>
+                    </div>
+                    <div class="p-md-12">
+                        <app-cid
+                            [parentFormGroup]="formGroup"
+                            [showClear]="true"
+                            name="cidSecundario"
+                            label="CID Secundário"
+                            #secundario
+                        ></app-cid>
+                    </div>
                 </div>
-            </div>
-            <!-- Principais Sinais e Sintomas Clínicos* & Condições que Justificam Internação* & Principais Resultados Provas Diagnósticas* -->
-            <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <label>Principais Sinais e Sintomas Clínicos</label>
-                    <textarea
-                        pInputTextarea
-                        [rows]="5"
-                        autoResize="autoResize"
-                        formControlName="principaisSinaisESintomasClinicos"
-                    ></textarea>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <p-button
+                            icon="pi pi-check"
+                            label="Solicitar"
+                            (onClick)="solicitarInternacao()"
+                            [disabled]="formGroup.invalid"
+                        ></p-button>
+                    </div>
                 </div>
-                <div class="ui-g-4">
-                    <label>Condições que Justificam a Internação</label>
-                    <textarea
-                        pInputTextarea
-                        [rows]="5"
-                        autoResize="autoResize"
-                        formControlName="condicoesQueJustificamInternacao"
-                    ></textarea>
-                </div>
-                <div class="ui-g-4">
-                    <label>Principais Resultados Provas Diagnósticas</label>
-                    <textarea
-                        pInputTextarea
-                        [rows]="5"
-                        autoResize="autoResize"
-                        formControlName="principaisResultadosProvasDiagnosticas"
-                    ></textarea>
-                </div>
-            </div>
-            <!-- Procedimento* -->
-            <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <app-procedimento
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        name="procedimento"
-                        label="Procedimento"
-                    ></app-procedimento>
-                </div>
-            </div>
-            <!-- CID Pricipal que Admite Internação* & CID Secundário que Admite Internação -->
-            <div class="ui-g-12">
-                <div class="ui-g-12">
-                    <app-cid
-                        [parentFormGroup]="formGroup"
-                        [required]="true"
-                        (select)="aoSelecionarCidPrincipal($event)"
-                        [showTree]="true"
-                        name="cidPrincipal"
-                        label="CID Principal"
-                    ></app-cid>
-                </div>
-                <div class="ui-g-12">
-                    <app-cid
-                        [parentFormGroup]="formGroup"
-                        [showClear]="true"
-                        name="cidSecundario"
-                        label="CID Secundário"
-                        #secundario
-                    ></app-cid>
-                </div>
-            </div>
-            <div class="ui-g-12">
-                <div class="ui-g-4">
-                    <p-button
-                        icon="pi pi-check"
-                        label="Solicitar"
-                        (onClick)="solicitarInternacao()"
-                        [disabled]="formGroup.invalid"
-                    ></p-button>
-                </div>
-            </div>
-        </form>
-    </p-fieldset>
+            </form>
+        </p-fieldset>
+    </div>
 </div>

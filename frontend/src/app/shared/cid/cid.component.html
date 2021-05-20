@@ -1,15 +1,15 @@
-<div class="ui-g ui-fluid"></div>
+<div class="p-grid p-fluid"></div>
 <form [formGroup]="parentFormGroup">
-    <div class="ui-g-12">
-        <div class="ui-g-4">
+    <div class="p-col-12 p-grid">
+        <div class="p-md-4">
             <label>{{ label }}</label>
         </div>
     </div>
-    <div class="ui-g-12">
-        <div class="ui-g-1" *ngIf="showTree">
+    <div class="p-col-12 p-grid">
+        <div class="p-md-1" *ngIf="showTree">
             <app-arvore (onSelect)="aoSelecionarCidNaArvore($event)"></app-arvore>
         </div>
-        <div class="ui-g-8">
+        <div class="p-md-8">
             <p-dropdown
                 [options]="cids"
                 [filter]="true"

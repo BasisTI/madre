@@ -1,13 +1,13 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <form (ngSubmit)="cadastrar()">
             <p-accordion>
                 <p-accordionTab header="Cadastro Unidade Funcional" [selected]="true">
                     <form [formGroup]="cadastroUnidade">
-                        <div class="ui-g">
-                            <div class="ui-g-12">
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-4 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -17,8 +17,8 @@
                                         <label>Sigla</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-4 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="situacao"
                                             pTooltip="Informe a situação da unidade funcional."
@@ -27,8 +27,8 @@
                                         <label>Situação</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-4 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="idAlmoxarifado"
                                             [options]="almoxarifados"
@@ -40,9 +40,9 @@
                                 </div>
                             </div>
 
-                            <div class="ui-g-12">
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -52,8 +52,8 @@
                                         <label>Andar</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -63,8 +63,8 @@
                                         <label>Capacidade</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-6 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-6 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="alaId"
                                             pTooltip="Selecione a ala da unidade funcional."
@@ -75,9 +75,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-4 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="clinicaId"
                                             [options]="clinicas"
@@ -87,8 +87,8 @@
                                         ></p-dropdown>
                                     </span>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -98,8 +98,8 @@
                                         <label>Setor</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-5 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-5 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="tipoUnidadeId"
                                             [options]="tipos"
@@ -110,9 +110,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-6 ui-sm-12">
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-6 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="idCentroDeAtividade"
                                             pTooltip="Digite a sigla da unidade funcional."
@@ -122,8 +122,8 @@
                                         ></p-dropdown>
                                     </span>
                                 </div>
-                                <div class="ui-g-6 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-6 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-dropdown
                                             formControlName="unidadePaiId"
                                             pTooltip="Selecione a unidade pai."
@@ -134,9 +134,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-6 ui-sm-12">
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-6 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -146,8 +146,8 @@
                                         <label>Local Doc Exame</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-6 ui-sm-12">
-                                    <span class="ui-float-label">
+                                <div class="p-md-6 p-sm-12">
+                                    <span class="p-float-label">
                                         <input
                                             type="text"
                                             pInputText
@@ -158,24 +158,24 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-6 ui-sm-12">
-                                    <label>Características</label>
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-6 p-sm-12">
+                                    <span class="p-float-label">
                                         <p-multiSelect
-                                            defaultLabel="Características"
-                                            [options]="caracteristicas"
-                                            optionLabel="nome"
-                                            formControlName="caracteristica"
+                                        defaultLabel="Características"
+                                        [options]="caracteristicas"
+                                        optionLabel="nome"
+                                        formControlName="caracteristica"
                                         ></p-multiSelect>
+                                        <label>Características</label>
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-3 ui-sm-12">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
                                     <label>Anexo de Documentos de Exame?</label>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
+                                <div class="p-md-3 p-sm-12">
                                     <p-radioButton
                                         id="sim"
                                         type="radio"
@@ -188,7 +188,7 @@
                                     <label>Sim</label>
                                 </div>
 
-                                <div class="ui-g-3 ui-sm-12">
+                                <div class="p-md-3 p-sm-12">
                                     <p-radioButton
                                         id="nao"
                                         type="radio"
@@ -201,11 +201,11 @@
                                     <label>Não</label>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-3 ui-sm-12">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
                                     <label>Controle de Estoque?</label>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
+                                <div class="p-md-3 p-sm-12">
                                     <p-radioButton
                                         id="sim"
                                         type="radio"
@@ -218,7 +218,7 @@
                                     <label>Sim</label>
                                 </div>
 
-                                <div class="ui-g-3 ui-sm-12">
+                                <div class="p-md-3 p-sm-12">
                                     <p-radioButton
                                         id="nao"
                                         type="radio"
@@ -231,9 +231,9 @@
                                     <label>Não</label>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-12 ui-sm-12">
-                                    <span class="ui-float-label">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-12">
+                                    <span class="p-float-label">
                                         <textarea
                                             pInputTextarea
                                             rows="3"
@@ -261,10 +261,10 @@
                     <app-cirurgia [cirurgia]="cirurgia"></app-cirurgia>
                 </p-accordionTab>
                 <p-accordionTab header="Horário Atendimento">
-                    <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
-                        <div class="ui-g-12">
-                            <div class="ui-g-4 ui-sm-12">
-                                <span class="ui-float-label">
+                    <div [formGroup]="cadastroUnidade" class="p-grid p-fluid">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-4 p-sm-12">
+                                <span class="p-float-label">
                                     <p-calendar
                                         timeOnly="true"
                                         formControlName="horarioInicio"
@@ -272,8 +272,8 @@
                                     <label>Início</label>
                                 </span>
                             </div>
-                            <div class="ui-g-4 ui-sm-12">
-                                <span class="ui-float-label">
+                            <div class="p-md-4 p-sm-12">
+                                <span class="p-float-label">
                                     <p-calendar
                                         timeOnly="true"
                                         formControlName="horarioFim"
@@ -285,9 +285,9 @@
                     </div>
                 </p-accordionTab>
                 <p-accordionTab header="Chefia">
-                    <div [formGroup]="cadastroUnidade" class="ui-g ui-fluid">
-                        <div class="ui-g-6">
-                            <span class="ui-float-label">
+                    <div [formGroup]="cadastroUnidade" class="p-grid p-fluid">
+                        <div class="p-md-6">
+                            <span class="p-float-label">
                                 <p-dropdown
                                     formControlName="idChefia"
                                     pTooltip="Selecione a Matrícula da unidade funcional."

@@ -10,7 +10,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppBreadcrumbComponent } from './app.breadcrumb.component';
 import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
 import { BreadcrumbService } from './breadcrumb.service';
-import { ScrollPanelModule } from 'primeng/primeng';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 describe('AppComponent', () => {
     beforeEach(() => {

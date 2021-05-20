@@ -36,7 +36,6 @@ import { SharedModule } from './shared/shared.module';
 import { SuprimentosModule } from './suprimentos/suprimentos.module';
 import { environment } from '../environments/environment';
 import { ConsultaModule } from './consulta/consulta.module';
-import { PacientesModule } from './pacientes/pacientes.module';
 import { PacienteModule } from './pacientes/formulario/paciente.module';
 
 @NgModule({
@@ -47,7 +46,7 @@ import { PacienteModule } from './pacientes/formulario/paciente.module';
         HttpClientModule,
         BrowserAnimationsModule,
         AccessbilityModule,
-        VersionTagModule,
+        VersionTagModule.forRoot(environment),
         SharedModule,
         BlockUiModule,
         PageNotificationModule,
@@ -64,7 +63,7 @@ import { PacienteModule } from './pacientes/formulario/paciente.module';
         MenuModule,
         ConsultaModule,
         PacienteModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
     ],
     declarations: [
         AppComponent,

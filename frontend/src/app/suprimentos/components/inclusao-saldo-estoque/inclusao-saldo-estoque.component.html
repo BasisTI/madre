@@ -1,14 +1,14 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Incluir Saldo de Estoque</h1>
-            <div class="ui-g">
-                <div class="ui-g-12">
+            <div class="p-grid">
+                <div class="p-col-12 p-grid">
                     <form [formGroup]="form">
                         <p-fieldset legend="Incluir Saldo">
-                            <div class="ui-g-12">
-                                <div class="ui-g-4">
-                                    <span class="md-inputfield" style="margin-top: 5px;">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-4">
+                                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                         <p-autoComplete
                                             [suggestions]="almoxarifados"
                                             (completeMethod)="
@@ -23,9 +23,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-4">
-                                    <span class="md-inputfield" style="margin-top: 5px;">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-4">
+                                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                         <p-autoComplete
                                             [suggestions]="materiais"
                                             (completeMethod)="getMateriaisPorNome($event.query)"
@@ -38,10 +38,10 @@
                                 </div>
                             </div>
                         </p-fieldset>
-                        <div class="ui-g-12">
+                        <div class="p-col-12 p-grid">
                             <p-fieldset legend="Saldo Inicial">
-                                <div class="ui-g-2">
-                                    <span class="md-inputfield" style="margin-top: 5px;">
+                                <div class="p-md-2">
+                                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                         <input
                                             type="number"
                                             min="1"
@@ -52,8 +52,8 @@
                                         <label>Quantidade</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-3">
-                                    <span class="md-inputfield" style="margin-top: 5px;">
+                                <div class="p-md-3">
+                                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                         <input
                                             type="number"
                                             min="0"
@@ -64,8 +64,8 @@
                                         <label>R$ Valor Total</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-2">
-                                    <span class="md-inputfield" style="margin-top: 5px;">
+                                <div class="p-md-2">
+                                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                         <input
                                             type="text"
                                             pInputText
@@ -81,8 +81,8 @@
                                 </div>
                             </p-fieldset>
                         </div>
-                        <div class="ui-g-12">
-                            <div class="ui-g-4">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-4">
                                 <button pButton label="Incluir" (click)="incluir()"></button>
                             </div>
                         </div>

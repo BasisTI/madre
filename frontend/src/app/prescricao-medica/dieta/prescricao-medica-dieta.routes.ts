@@ -18,4 +18,4 @@ export const routes: Routes = [
     },
 ];
 
-export const PrescricaoMedicaDietaRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
+export const PrescricaoMedicaDietaRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes);

@@ -1,20 +1,19 @@
-<div class="ui-g ui-fluid">
-
+<div class="p-grid p-fluid">
     <!-- {{profileForm.value | json}} -->
     <form autocomplete="off" (ngSubmit)="prescrever()">
         <p-accordion>
             <p-accordionTab [selected]="true" header="Dados Gerais">
                 <form [formGroup]="prescricaoDieta">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
-                            <div class="ui-g-6">
-                                <span class="md-inputfield">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-6">
+                                <span class="md-inputfield p-float-label">
                                     <input formControlName="nome" type="text" pInputText disabled />
                                     <label>Paciente</label>
                                 </span>
                             </div>
-                            <div class="ui-g-6">
-                                <span class="md-inputfield">
+                            <div class="p-md-6">
+                                <span class="md-inputfield p-float-label">
                                     <p-calendar [locale]="calendarLocale" formControlName="dataPrescricao"
                                         dateFormat="dd/mm/yy" disabled="true">
                                     </p-calendar>
@@ -23,9 +22,9 @@
                             </div>
                         </div>
 
-                        <div class="ui-g-12">
-                            <div class="ui-g-12">
-                                <span class="md-inputfield">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-12">
+                                <span class="md-inputfield p-float-label">
                                     <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
                                         id="observacao" formControlName="observacao"></textarea>
                                     <label>Observações</label>
@@ -33,21 +32,21 @@
                             </div>
                         </div>
 
-                        <div class="ui-g-12">
-                            <div class="ui-g-2">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-2">
                                 <label>Bomba Infusão?</label>
                             </div>
-                            <div class="ui-g-1">
+                            <div class="p-md-1">
                                 <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao"
                                     formControlName="bombaInfusao" pRadioButton>
                                 </p-radioButton>
-                                <label>Sim</label>
+                                <label class="p-ml-2">Sim</label>
                             </div>
-                            <div class="ui-g-1">
+                            <div class="p-md-1">
                                 <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao"
                                     formControlName="bombaInfusao" pRadioButton>
                                 </p-radioButton>
-                                <label>Não</label>
+                                <label class="p-ml-2">Não</label>
 
                             </div>
                         </div>
@@ -57,13 +56,13 @@
 
             <p-accordionTab header="Itens Dieta" [selected]="true">
                 <form [formGroup]="itemPrescricaoDieta" (ngSubmit)="incluirItem()">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-grid">
 
-                            <div class="ui-g-12">
-                                <span class="md-inputfield">
+                            <div class="p-md-12">
+                                <span class="md-inputfield p-float-label">
                                     <p-dropdown [autoWidth]="false" [filter]="true"
-                                        emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
+                                        emptyFilterMessage="Nenhum registro encontrado."
                                         [options]="tiposItens" formControlName="tipoItemDieta" required #descricaoItem>
                                     </p-dropdown>
                                     <label>Tipo Item</label>
@@ -71,18 +70,18 @@
                             </div>
                         </div>
 
-                        <div class="ui-g-12">
-                            <div class="ui-g-6">
-                                <span class="md-inputfield">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-6">
+                                <span class="md-inputfield p-float-label">
                                     <input type="number" pInputText formControlName="quantidade" />
                                     <label>Quantidade</label>
                                 </span>
                             </div>
 
-                            <div class="ui-g-6">
-                                <span class="md-inputfield">
+                            <div class="p-md-6">
+                                <span class="md-inputfield p-float-label">
                                     <p-dropdown [autoWidth]="false" [filter]="true"
-                                        emptyFilterMessage="Nenhum registro encontrado." placeholder="Selecione..."
+                                        emptyFilterMessage="Nenhum registro encontrado."
                                         [options]="listaUnidadeDieta" formControlName="tipoUnidadeDieta">
                                     </p-dropdown>
                                     <label>Unidade</label>
@@ -91,17 +90,17 @@
 
                         </div>
 
-                        <div class="ui-g-12">
-                            <div class="ui-g-5">
-                                <span class="md-inputfield">
+                        <div class="p-col-12 p-grid">
+                            <div class="p-md-5">
+                                <span class="md-inputfield p-float-label">
                                     <input type="number" pInputText formControlName="frequencia" />
                                     <label>Frequência</label>
                                 </span>
                             </div>
 
-                            <div class="ui-g-5">
-                                <span class="md-inputfield">
-                                    <p-dropdown [autoWidth]="false" placeholder="Selecione..." [filter]="true"
+                            <div class="p-md-5">
+                                <span class="md-inputfield p-float-label">
+                                    <p-dropdown [autoWidth]="false" [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado." [options]="tiposAprazamentos"
                                         formControlName="tipoAprazamento" #descricaoAprazamento>
                                     </p-dropdown>
@@ -109,23 +108,23 @@
                                 </span>
                             </div>
 
-                            <div class="ui-g-2">
-                                <span class="md-inputfield">
+                            <div class="p-md-2">
+                                <span class="md-inputfield p-float-label">
                                     <input type="number" pInputText formControlName="numeroVezes" />
                                     <label>Número vezes</label>
                                 </span>
                             </div>
                         </div>
-                        <div class="ui-g-6">
+                        <div class="p-md-6">
                             <button label="Adicionar" pButton name="adicionar-item" type="submit"
                                 [disabled]="itemPrescricaoDieta.invalid">
                             </button>
                         </div>
 
-                        <div class="ui-g-12"></div>
+                        <div class="p-col-12 p-grid"></div>
 
-                        <div class="ui-g-12">
-                            <basis-datatable type="memory" [value]="itensDieta" [disableView]="true"
+                        <div class="p-col-12 p-grid">
+                            <basis-datatable [verticalButtons]="false" type="memory" [value]="itensDieta" [disableView]="true"
                                 [disableEdit]="true" [disableDelete]="true">
                                 <p-column header="Item" field="tipoItemDieta">
                                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
@@ -156,8 +155,8 @@
             </p-accordionTab>
         </p-accordion>
 
-        <div class="ui-g-12">
-            <div class="ui-g-6">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-6">
                 <button pButton type="submit" label="Prescrever">
                 </button>
 

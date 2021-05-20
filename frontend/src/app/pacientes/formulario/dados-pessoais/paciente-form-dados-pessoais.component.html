@@ -1,36 +1,36 @@
-<div class="ui-g ui-fluid" [formGroup]="formGroup">
-    <div class="ui-g-12">
-        <div nInputText label="Nome Completo" formControlName="nome" class="ui-g-6 ui-sm-12"></div>
-        <div nInputText label="Nome Social" formControlName="nomeSocial" class="ui-g-6 ui-sm-12"></div>
+<div class="p-grid p-fluid" [formGroup]="formGroup">
+    <div class="p-col-12 p-grid">
+        <div nInputText label="Nome Completo" formControlName="nome" class="p-md-6 p-sm-12"></div>
+        <div nInputText label="Nome Social" formControlName="nomeSocial" class="p-md-6 p-sm-12"></div>
     </div>
-    <div class="ui-g-12">
-        <div nDropdown label="Sexo" [options]="opcoesDeSexo" formControlName="sexo" class="ui-g-3 ui-sm-12"></div>
-        <div nAutoComplete [service]="racaService" field="valor" formControlName="racaId" label="Raça/Cor" class="ui-g-3 ui-sm-12"></div>
-        <div nAutoComplete [service]="etniaService" field="valor" formControlName="etniaId" label="Etnia" class="ui-g-3 ui-sm-12"></div>
-        <div nAutoComplete [service]="estadoCivilService" field="valor" formControlName="estadoCivilId" label="Estado Civil" class="ui-g-3 ui-sm-12"></div>
+    <div class="p-col-12 p-grid">
+        <div nDropdown label="Sexo" [options]="opcoesDeSexo" formControlName="sexo" class="p-md-3 p-sm-12"></div>
+        <div nAutoComplete [service]="racaService" field="valor" formControlName="racaId" label="Raça/Cor" class="p-md-3 p-sm-12"></div>
+        <div nAutoComplete [service]="etniaService" field="valor" formControlName="etniaId" label="Etnia" class="p-md-3 p-sm-12"></div>
+        <div nAutoComplete [service]="estadoCivilService" field="valor" formControlName="estadoCivilId" label="Estado Civil" class="p-md-3 p-sm-12"></div>
     </div>
-    <div class="ui-g-12" formGroupName="genitores">
-        <div nInputMask mask="9999999/9" tooltip="Digite o número do prontuário da mãe do paciente." placeholder="_______/_" label="Prontuário da Mãe" formControlName="prontuarioDaMae" class="ui-g-2 ui-sm-12"></div>
-        <div nInputText label="Nome da Mãe" formControlName="nomeDaMae" class="ui-g-5 ui-sm-12"></div>
-        <div nInputText label="Nome do Pai" formControlName="nomeDoPai" class="ui-g-5 ui-sm-12"></div>
+    <div class="p-col-12 p-grid" formGroupName="genitores">
+        <div nInputMask mask="9999999/9" tooltip="Digite o número do prontuário da mãe do paciente." placeholder="_______/_" label="Prontuário da Mãe" formControlName="prontuarioDaMae" class="p-md-2 p-sm-12"></div>
+        <div nInputText label="Nome da Mãe" formControlName="nomeDaMae" class="p-md-5 p-sm-12"></div>
+        <div nInputText label="Nome do Pai" formControlName="nomeDoPai" class="p-md-5 p-sm-12"></div>
     </div>
-    <div class="ui-g-12 ui-sm-12">
-        <div madreCalendar label="Data de Nascimento" formControlName="dataDeNascimento" class="ui-g-2 ui-sm-12" (onSelect)="aoSelecionarDataDeNascimento()" (onBlur)="aoSelecionarDataDeNascimento()"></div>
-        <div class="ui-g-2 ui-sm-12">
-            <span class="ui-float-label">
+    <div class="p-col-12 p-grid">
+        <div madreCalendar label="Data de Nascimento" formControlName="dataDeNascimento" class="p-md-2 p-sm-12" (onSelect)="aoSelecionarDataDeNascimento()" (onBlur)="aoSelecionarDataDeNascimento()"></div>
+        <div class="p-md-2 p-sm-12">
+            <span class="p-float-label">
                 <p-calendar timeOnly="true" formControlName="horaDeNascimento"></p-calendar>
                 <label>Hora do Nascimento</label>
             </span>
         </div>
-        <div class="ui-g-2 ui-sm-12">
-            <span class="md-inputfield">
+        <div class="p-md-2 p-sm-12">
+            <span class="md-inputfield p-float-label">
                 <input pInputText name="idade" type="text" value="0" disabled [(ngModel)]="idade" [ngModelOptions]="{ standalone: true }"/>
                 <label>Idade</label>
             </span>
         </div>
-        <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="ui-g-2 ui-sm-12"></div>
-        <div class="ui-g-2 ui-sm-12">
-            <span class="ui-float-label">
+        <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="p-md-2 p-sm-12"></div>
+        <div class="p-md-2 p-sm-12">
+            <span class="p-float-label">
                 <p-dropdown
                     (onChange)="aoSelecionarUF()"
                     [options]="ufs"
@@ -41,25 +41,26 @@
                 ></p-dropdown>
             </span>
         </div>
-        <div class="ui-g-2 ui-sm-12">
-            <span class="md-inputfield">
+        <div class="p-md-2 p-sm-12">
+            <span class="md-inputfield p-float-label">
                 <p-autoComplete
                     (completeMethod)="searchUnidade($event)"
                     [disabled]="!formGroup.value.uf"
                     field="nome"
                     [suggestions]="naturalidades"
                     [dropdown]="true"
-                    formControlName="naturalidadeId"></p-autoComplete>
+                    formControlName="naturalidadeId">
+                </p-autoComplete>
                 <label>Naturalidade</label>
             </span>
         </div>
     </div>
-    <div class="ui-g-12">
-        <div nDropdown label="Grau de Instrução" [options]="opcoesDeGrauDeInstrucao" formControlName="grauDeInstrucao" class="ui-g-4 ui-sm-12"></div>
-        <div nAutoComplete [service]="ocupacaoService" field="valor" formControlName="ocupacaoId" label="Ocupação" class="ui-g-4 ui-sm-12"></div>
-        <div nAutoComplete [service]="religiaoService" field="valor" formControlName="religiaoId" label="Religião" class="ui-g-4 ui-sm-12"></div>
+    <div class="p-col-12 p-grid">
+        <div nDropdown label="Grau de Instrução" [options]="opcoesDeGrauDeInstrucao" formControlName="grauDeInstrucao" class="p-md-4 p-sm-12"></div>
+        <div nAutoComplete [service]="ocupacaoService" field="valor" formControlName="ocupacaoId" label="Ocupação" class="p-md-4 p-sm-12"></div>
+        <div nAutoComplete [service]="religiaoService" field="valor" formControlName="religiaoId" label="Religião" class="p-md-4 p-sm-12"></div>
     </div>
-    <div class="ui-g-12">
-        <div nInputText maxlength="254" type="email" label="E-mail" formControlName="email" class="ui-g-12 ui-sm-12"></div>
+    <div class="p-col-12 p-grid">
+        <div nInputText maxlength="254" type="email" label="E-mail" formControlName="email" class="p-col-12"></div>
     </div>
 </div>

@@ -1,14 +1,14 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Listagem de Pré-Cadastro</h1>
-            <div class="ui-g">
-                <div class="ui-g-12 ui-md-12 ui-fluid">
-                    <span class="md-inputfield" style="margin-top: 5px;">
+            <div class="p-grid">
+                <div class="p-md-12 p-fluid">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input
                             type="text"
                             pInputText
-                            class="ui-inputtext"
+                            class="p-inputtext"
                             name="filtro"
                             [(ngModel)]="nome"
                             #query
@@ -16,20 +16,18 @@
                         <label>Nome paciente</label>
                     </span>
                 </div>
-                <div class="ui-g-12">
-                    <div class="ui-g-4"></div>
-                    <div class="ui-g-3">
+                <div class="p-col-12 p-grid p-jc-center">
+                    <div class="p-md-3">
                         <button
                             pButton
                             type="button"
                             label="Pesquisar"
-                            icon="ui-icon-search"
+                            icon="pi pi-search"
                             bTooltip="Pesquisar paciente por nome."
                             (click)="datatable.refresh(query.value)"
                         ></button>
                     </div>
                 </div>
-                <div class="ui-g-12 ui-md-3"></div>
                 <basis-datatable
                     #datatable
                     type="server"

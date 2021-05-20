@@ -14,4 +14,4 @@ export const procedimentoEspecialRoute: Routes = [
     },
 ];
 
-export const ProcedimentoEspecialRoutes: ModuleWithProviders = RouterModule.forRoot(procedimentoEspecialRoute);
+export const ProcedimentoEspecialRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(procedimentoEspecialRoute);

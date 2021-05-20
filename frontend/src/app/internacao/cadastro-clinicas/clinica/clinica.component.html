@@ -1,43 +1,31 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
-        <form (ngSubmit)="cadastrar()">
+<form (ngSubmit)="cadastrar()">
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
             <p-accordion>
                 <p-accordionTab header="Cadastrar Clínicas" [selected]="true">
                     <form [formGroup]="clinica">
-                        <div class="ui-g">
-                            <div class="ui-g-12">
-                                <div class="ui-g-4 ui-sm-12">
-                                    <span class="ui-float-label">
-                                        <input
-                                            type="text"
-                                            pInputText
-                                            pTooltip="Digite a capacidade referencial."
-                                            formControlName="capacidadeReferencial"
-                                        />
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-4 p-sm-12">
+                                    <span class="p-float-label">
+                                        <input type="text" pInputText pTooltip="Digite a capacidade referencial."
+                                            formControlName="capacidadeReferencial" />
                                         <label>Capacidade Referencial</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-8 ui-sm-12">
-                                    <span class="ui-float-label">
-                                        <p-inputMask
-                                            pInputText
-                                            formControlName="numeroSUS"
-                                            mask="999999999999999"
+                                <div class="p-md-8 p-sm-12">
+                                    <span class="p-float-label">
+                                        <p-inputMask pInputText formControlName="numeroSUS" mask="999999999999999"
                                             placeholder="___ ____ ____ ____"
-                                            pTooltip="Informe o número do SUS da clínica."
-                                        ></p-inputMask>
+                                            pTooltip="Informe o número do SUS da clínica."></p-inputMask>
                                         <label>Número do SUS</label>
                                     </span>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-12 sm-12">
-                                    <span class="ui-float-label">
-                                        <textarea
-                                            pInputTextarea
-                                            rows="3"
-                                            formControlName="descricao"
-                                        >
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-12 sm-12">
+                                    <span class="p-float-label">
+                                        <textarea pInputTextarea rows="3" formControlName="descricao">
                                         </textarea>
                                         <label>Descrição</label>
                                     </span>
@@ -48,27 +36,19 @@
                 </p-accordionTab>
                 <p-accordionTab header="Internação">
                     <form [formGroup]="clinica">
-                        <div class="ui-g">
-                            <div class="ui-g-12">
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
-                                        <input
-                                            type="text"
-                                            pInputText
-                                            pTooltip="Digite a idade mínima para internação."
-                                            formControlName="idadeMinimaInternacao"
-                                        />
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
+                                        <input type="text" pInputText pTooltip="Digite a idade mínima para internação."
+                                            formControlName="idadeMinimaInternacao" />
                                         <label>Idade Mínima</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
-                                        <input
-                                            type="text"
-                                            pInputText
-                                            pTooltip="Digite a idade máxima para internação."
-                                            formControlName="idadeMaximaInternacao"
-                                        />
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
+                                        <input type="text" pInputText pTooltip="Digite a idade máxima para internação."
+                                            formControlName="idadeMaximaInternacao" />
                                         <label>Idade Máxima</label>
                                     </span>
                                 </div>
@@ -78,27 +58,19 @@
                 </p-accordionTab>
                 <p-accordionTab header="Ambulatório">
                     <form [formGroup]="clinica">
-                        <div class="ui-g">
-                            <div class="ui-g-12">
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
-                                        <input
-                                            type="text"
-                                            pInputText
-                                            pTooltip="Digite a idade mínima para ambulatório."
-                                            formControlName="idadeMinimaAmbulatorio"
-                                        />
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid">
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
+                                        <input type="text" pInputText pTooltip="Digite a idade mínima para ambulatório."
+                                            formControlName="idadeMinimaAmbulatorio" />
                                         <label>Idade Mínima</label>
                                     </span>
                                 </div>
-                                <div class="ui-g-3 ui-sm-12">
-                                    <span class="ui-float-label">
-                                        <input
-                                            type="text"
-                                            pInputText
-                                            pTooltip="Digite a idade máxima para ambulatório."
-                                            formControlName="idadeMaximaAmbulatorio"
-                                        />
+                                <div class="p-md-3 p-sm-12">
+                                    <span class="p-float-label">
+                                        <input type="text" pInputText pTooltip="Digite a idade máxima para ambulatório."
+                                            formControlName="idadeMaximaAmbulatorio" />
                                         <label>Idade Máxima</label>
                                     </span>
                                 </div>
@@ -108,6 +80,6 @@
                 </p-accordionTab>
             </p-accordion>
             <button pButton type="submit" [disabled]="!valid()" label="Cadastrar"></button>
-        </form>
+        </div>
     </div>
-</div>
+</form>

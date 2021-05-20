@@ -1,9 +1,9 @@
-.ui-inputtext:disabled {
+.p-inputtext:disabled {
     color: black;
     opacity: unset;
 }
 
-.ui-float-label {
+.p-float-label {
     margin: 5px;
 }
 

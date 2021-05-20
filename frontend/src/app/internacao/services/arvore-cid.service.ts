@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { api } from '@internacao/api';
 import { CID } from '@internacao/models/cid';
-import { TreeNode } from 'primeng';
+import { TreeNode } from 'primeng/api';
 
 @Injectable({
     providedIn: 'root',

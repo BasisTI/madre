@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CID } from '@internacao/models/cid';
 import { CidService } from '@internacao/services/cid.service';
-import { SelectItem } from 'primeng';
+import { SelectItem } from 'primeng/api';
 import { FormGroup } from '@angular/forms';
 
 @Component({

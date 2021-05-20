@@ -1,61 +1,42 @@
-<div class="ui-g ui-fluid">
+<div class="card">
+    <h1>Liberar Leito</h1>
     <form [formGroup]="formGroup">
-        <!-- Leito -->
-        <div class="ui-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <app-leito
-                    [parentFormGroup]="formGroup"
-                    [required]="true"
-                    situacao="ocupado"
-                    name="leito"
-                    label="Leito"
-                    (select)="aoSelecionarLeito($event)"
-                >
-                </app-leito>
+        <div class="p-grid p-fluid">
+            <!-- Leito -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <app-leito [parentFormGroup]="formGroup" [required]="true" situacao="ocupado" name="leito"
+                        label="Leito" (select)="aoSelecionarLeito($event)">
+                    </app-leito>
+                </div>
             </div>
-        </div>
-        <!-- Data do Lançamento -->
-        <div class="ui-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <span class="ui-float-label">
-                    <p-calendar
-                        [locale]="pCalendarConfig.localidade"
-                        [yearRange]="pCalendarConfig.anosDisponiveis"
-                        dateFormat="dd/mm/yy"
-                        showTime="true"
-                        hourFormat="24"
-                        showButtonBar="true"
-                        [yearNavigator]="true"
-                        [monthNavigator]="true"
-                        formControlName="dataDoLancamento"
-                    ></p-calendar>
-                    <label>Data do Lançamento</label>
-                </span>
+            <!-- Data do Lançamento -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar [locale]="pCalendarConfig.localidade" [yearRange]="pCalendarConfig.anosDisponiveis"
+                            dateFormat="dd/mm/yy" showTime="true" hourFormat="24" showButtonBar="true"
+                            [yearNavigator]="true" [monthNavigator]="true" formControlName="dataDoLancamento">
+                        </p-calendar>
+                        <label>Data do Lançamento</label>
+                    </span>
+                </div>
             </div>
-        </div>
-        <!-- Justificativa -->
-        <div class="ui-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <span class="ui-float-label">
-                    <textarea
-                        pInputTextarea
-                        [rows]="3"
-                        [cols]="30"
-                        autoResize="false"
-                        formControlName="justificativa"
-                    ></textarea>
-                    <label>Justificativa</label>
-                </span>
+            <!-- Justificativa -->
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <span class="p-float-label">
+                        <textarea pInputTextarea [rows]="3" [cols]="30" autoResize="false"
+                            formControlName="justificativa"></textarea>
+                        <label>Justificativa</label>
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4 ui-md-4 ui-sm-12">
-                <p-button
-                    label="Liberar Leito"
-                    icon="pi pi-check"
-                    [disabled]="formGroup.invalid"
-                    (click)="liberarLeito()"
-                ></p-button>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-4 p-sm-12">
+                    <p-button label="Liberar Leito" icon="pi pi-check" [disabled]="formGroup.invalid"
+                        (click)="liberarLeito()"></p-button>
+                </div>
             </div>
         </div>
     </form>

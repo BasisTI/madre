@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { LoginSuccessComponent } from '@nuvem/angular-base';
 import { ModuleWithProviders } from '@angular/core';
-import { PrescricaoMedicaComponent } from './prescricao-medica/prescricao-medica.component';
 
 export const routes: Routes = [
     {
@@ -47,4 +46,4 @@ export const routes: Routes = [
     },
 ];
 
-export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
+export const AppRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes);

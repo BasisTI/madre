@@ -1,123 +1,128 @@
-<form
-    class="ui-g ui-fluid ui-float-label"
-    #form
-    [formGroup]="preCadastro"
-    (ngSubmit)="preCadastrar(form)"
->
-    <div class="ui-g-12 ui-md-12">
-        <div class="preCad ui-sm-12">
-            <h1>Incluir Pré-Cadastro de Pacientes</h1>
-
-            <div class="ui-g-8 ui-md-08 ui-fluid">
-                <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pInputText
-                        formControlName="nome"
-                        pTooltip="Infome o nome do Paciente."
-                    />
-                    <p-message
-                        severity="error"
-                        text="Nome do paciente Obrigatório"
-                        *ngIf="
-                            preCadastro.controls['nome'].errors?.required &&
-                            preCadastro.controls['nome'].touched
-                        "
-                    ></p-message>
-                    <label>Nome paciente</label>
-                </span>
-            </div>
-            <div class="ui-g-4">
-                <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pInputText
-                        formControlName="nomeSocial"
-                        pTooltip="Infome o nome social do Paciente."
-                    />
-                    <label>Nome Social</label>
-                </span>
-            </div>
-            <div class="ui-g-12"></div>
-            <div class="ui-g-8">
-                <span class="ui-float-label">
-                    <input
-                        type="text"
-                        pInputText
-                        formControlName="nomeDaMae"
-                        pTooltip="Infome o nome de mãe do Paciente."
-                    />
-                    <p-message
-                        severity="error"
-                        text="Nome da mãe Obrigatório"
-                        *ngIf="
-                            preCadastro.controls['nomeDaMae'].errors?.required &&
-                            preCadastro.controls['nomeDaMae'].touched
-                        "
-                    ></p-message>
-                    <label>Nome da Mãe</label>
-                </span>
-            </div>
-
-            <div class="ui-g-4">
-                <span class="ui-float-label">
-                    <p-calendar
-                        formControlName="dataDeNascimento"
-                        [locale]="localizacao"
-                        [yearRange]="yearRange"
-                        dateFormat="dd/mm/yy"
-                        [maxDate]="maxDate"
-                        monthNavigator="true"
-                        yearNavigator="true"
-                    >
-                    </p-calendar>
-                    <label>Data de Nascimento</label>
-                </span>
-            </div>
-
-            <div class="ui-g-12"></div>
-            <div class="ui-g-4">
-                <span class="ui-float-label">
-                    <p-inputMask
-                        formControlName="cartaoSus"
-                        pInputText
-                        mask="999999999999999"
-                        placeholder="___ ____ ____ ____"
-                        pTooltip="Informe o CNS do paciente."
-                    ></p-inputMask>
-                    <p-message
-                        severity="error"
-                        text="Cartão inválido"
-                        *ngIf="
-                            preCadastro.controls['cartaoSus'].errors?.customCns &&
-                            preCadastro.controls['cartaoSus'].touched
-                        "
-                    ></p-message>
-                    <label>Nº do Cartão SUS</label>
-                </span>
-            </div>
-
-            <div class="ui-g-12">
-                <div class="ui-g-3"></div>
-                <div class="ui-g-3">
-                    <button
-                        pButton
-                        type="button"
-                        label="Cancelar"
-                        pTooltip="Cancelar registro de Pré-Cadastro."
-                        routerLink="/pacientes/lista-pre-cadastro"
-                    ></button>
+<div class="card">
+    <form
+        class="p-grid p-fluid"
+        #form
+        [formGroup]="preCadastro"
+        (ngSubmit)="preCadastrar(form)"
+    >
+        <div class="p-md-12">
+            <div class="preCad p-sm-12">
+                <h1>Incluir Pré-Cadastro de Pacientes</h1>
+                <div class="p-grid p-col-12">
+                    <div class="p-md-8 p-fluid">
+                        <span class="p-float-label">
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="nome"
+                                pTooltip="Infome o nome do Paciente."
+                            />
+                            <label>Nome paciente</label>
+                        </span>
+                        <p-message
+                            severity="error"
+                            text="Nome do paciente Obrigatório"
+                            *ngIf="
+                                preCadastro.controls['nome'].errors?.required &&
+                                preCadastro.controls['nome'].touched
+                            "
+                        ></p-message>
+                    </div>
+                    <div class="p-md-4">
+                        <span class="p-float-label">
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="nomeSocial"
+                                pTooltip="Infome o nome social do Paciente."
+                            />
+                            <label>Nome Social</label>
+                        </span>
+                    </div>
                 </div>
-                <div class="ui-g-3">
-                    <button
-                        pButton
-                        type="submit"
-                        label="Salvar"
-                        [disabled]="preCadastro.invalid"
-                        pTooltip="Salvar registro de Pré-Cadastro."
-                    ></button>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-8">
+                        <span class="p-float-label">
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="nomeDaMae"
+                                pTooltip="Infome o nome de mãe do Paciente."
+                            />
+                            <label>Nome da Mãe</label>
+                        </span>
+                        <p-message
+                            severity="error"
+                            text="Nome da mãe Obrigatório"
+                            *ngIf="
+                                preCadastro.controls['nomeDaMae'].errors?.required &&
+                                preCadastro.controls['nomeDaMae'].touched
+                            "
+                        ></p-message>
+                    </div>
+        
+                    <div class="p-md-4">
+                        <span class="p-float-label">
+                            <p-calendar
+                                formControlName="dataDeNascimento"
+                                [locale]="localizacao"
+                                [yearRange]="yearRange"
+                                dateFormat="dd/mm/yy"
+                                [maxDate]="maxDate"
+                                monthNavigator="true"
+                                yearNavigator="true"
+                            >
+                            <label>Data de Nascimento</label>
+                            </p-calendar>
+                        </span>
+                    </div>
+                </div>
+    
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-4">
+                        <span class="p-float-label">
+                            <p-inputMask
+                                formControlName="cartaoSus"
+                                pInputText
+                                mask="999999999999999"
+                                placeholder="___ ____ ____ ____"
+                                pTooltip="Informe o CNS do paciente."
+                            ></p-inputMask>
+                            <label>Nº do Cartão SUS</label>
+                        </span>
+                        <p-message
+                            severity="error"
+                            text="Cartão inválido"
+                            *ngIf="
+                                preCadastro.controls['cartaoSus'].errors?.customCns &&
+                                preCadastro.controls['cartaoSus'].touched
+                            "
+                        ></p-message>
+                    </div>
+                </div>
+    
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-3"></div>
+                    <div class="p-md-3">
+                        <button
+                            pButton
+                            type="button"
+                            label="Cancelar"
+                            pTooltip="Cancelar registro de Pré-Cadastro."
+                            routerLink="/pacientes/lista-pre-cadastro"
+                        ></button>
+                    </div>
+                    <div class="p-md-3">
+                        <button
+                            pButton
+                            type="submit"
+                            label="Salvar"
+                            [disabled]="preCadastro.invalid"
+                            pTooltip="Salvar registro de Pré-Cadastro."
+                        ></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

@@ -1,7 +1,6 @@
 
 <div class="card card-w-title">
     <h1>Pacientes</h1>
-    <div class="ui-g">
         <nCrudList [form]="paciente">
             <p-column header="Prontuário" field="prontuario"></p-column>
             <p-column header="Nome" field="nome"></p-column>
@@ -16,10 +15,11 @@
                     {{ data['cartaoSUS']?.numero }}
                 </ng-template>
             </p-column>
-            <div nForm [formGroup]="paciente" class="ui-g-12">
-                <div nInputText label="Nome paciente" formControlName="nome" class="ui-g-12 ui-md-12 ui-fluid"></div>
-                <div nInputText label="Prontuario paciente" formControlName="prontuario" class="ui-g-12 ui-md-12 ui-fluid"></div>
+            <div nForm [formGroup]="paciente">
+                <div class="p-grid p-fluid p-mb-5">
+                    <div nInputText label="Nome paciente" formControlName="nome" class="p-col-12"></div>
+                    <div nInputText label="Prontuario paciente" formControlName="prontuario" class="p-col-12"></div>
+                </div>
             </div>
         </nCrudList>
-    </div>
 </div>

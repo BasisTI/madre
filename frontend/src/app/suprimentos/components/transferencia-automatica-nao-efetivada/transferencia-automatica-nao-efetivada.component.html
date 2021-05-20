@@ -1,35 +1,21 @@
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12">
-        <div class="card card-w-title">
-            <h1>Transferências Automáticas (Não Efetivadas)</h1>
-            <div class="ui-g">
-                <div class="ui-g-12 ui-md-12 ui-fluid">
-                    <span class="md-inputfield" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" />
+<div class="card card-w-title">
+    <h1>Transferências Automáticas (Não Efetivadas)</h1>
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
+            <div class="p-grid">
+                <div class="p-md-12 p-fluid">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" />
                         <label>Placeholder</label>
                     </span>
                 </div>
-                <div class="ui-g-12">
-                    <div class="ui-g-2"></div>
-                    <div class="ui-g-6">
-                        <button
-                            pButton
-                            type="button"
-                            label="Pesquisar"
-                            icon="ui-icon-search"
-                        ></button>
+                <div class="p-col-12 p-grid p-jc-center">
+                    <div class="p-md-4">
+                        <button pButton type="button" label="Pesquisar" icon="pi pi-search"></button>
                     </div>
                 </div>
-                <div class="ui-g-12 ui-md-3"></div>
-                <basis-datatable
-                    type="server"
-                    [url]="datatableUrl"
-                    [disableDelete]="true"
-                    [disableEdit]="true"
-                    [disableView]="true"
-                    (buttonClick)="onDatatableButtonClick($event)"
-                    #datatable
-                >
+                <basis-datatable type="server" [url]="datatableUrl" [disableDelete]="true" [disableEdit]="true"
+                    [disableView]="true" (buttonClick)="onDatatableButtonClick($event)" #datatable>
                     <p-column header="Almoxarifado Origem" field="origem">
                         <ng-template let-data="rowData" pTemplate="body">
                             {{ data.origem.descricao }}
@@ -55,13 +41,10 @@
                             {{ data.geradoEm | date: 'dd/MM/y H:mm' }}
                         </ng-template>
                     </p-column>
-                    <basis-datatable-button
-                        name="efetivar"
-                        icon="check"
-                        tooltip="Efetivar"
-                        class="ui-button-info"
-                        [disabled]="!datatable.selectedRow"
-                    ></basis-datatable-button>
+                    <basis-datatable-button 
+                        name="efetivar" 
+                        icon="pi pi-check" tooltip="Efetivar" class="p-button-info"
+                        [disabled]="!datatable.selectedRow"></basis-datatable-button>
                 </basis-datatable>
             </div>
         </div>

@@ -1,8 +1,8 @@
-<div class="ui-g ui-fluid" [formGroup]="endereco">
-    <div class="ui-g-12">
-        <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="ui-g-6 ui-sm-12"></div>
-        <div class="ui-g-6 ui-sm-12">
-            <span class="ui-float-label">
+<div class="p-grid p-fluid" [formGroup]="endereco">
+    <div class="p-col-12 p-grid">
+        <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="p-md-6 p-sm-12"></div>
+        <div class="p-md-6 p-sm-12">
+            <span class="p-float-label">
                 <p-dropdown
                     (onChange)="aoSelecionarUF()"
                     [options]="ufs"
@@ -15,9 +15,9 @@
             </span>
         </div>
     </div>
-    <div class="ui-g-12">
-        <div class="ui-g-2 ui-sm-12">
-            <span class="md-inputfield">
+    <div class="p-col-12 p-grid">
+        <div class="p-md-2 p-sm-12">
+            <span class="md-inputfield p-float-label">
                 <p-autoComplete
                     (completeMethod)="searchUnidade($event)"
                     [disabled]="!endereco.value.uf"
@@ -28,16 +28,38 @@
                 <label>Municípios</label>
             </span>
         </div>
-        <div nInputText label="Logradouro" formControlName="logradouro" class="ui-g-4 ui-sm-12" required></div>
-        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="ui-g-6 ui-sm-12"></div>
+        <div nInputText label="Logradouro" formControlName="logradouro" class="p-md-4 p-sm-12" required></div>
+        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="p-md-6 p-sm-12"></div>
     </div>
-    <div class="ui-g-12 ui-fluid">
-        <div nInputText label="Número" required formControlName="numero" class="ui-g-3"></div>
-        <div nInputText label="Complemento" formControlName="complemento" class="ui-g-4"></div>
-        <div nInputText label="Bairro" required formControlName="bairro" class="ui-g-3"></div>
+    <div class="p-col-12 p-grid p-fluid">
+        <div nInputText label="Número" required formControlName="numero" class="p-md-2"></div>
+        <div nInputText label="Complemento" formControlName="complemento" class="p-md-4"></div>
+        <div nInputText label="Bairro" required formControlName="bairro" class="p-md-6"></div>
     </div>
-    <div class="ui-g-12">
-        <div nCheck label="Correspondência?" required formControlName="correspondencia" class="ui-g-9"></div>
+    <div class="p-col-12 p-grid">
+        <div class="p-md-2">Correspondência?</div>
+        <div class="p-md-2">
+            <p-radioButton
+                id="sim"
+                type="radio"
+                [value]="true"
+                name="correspondencia"
+                formControlName="correspondencia"
+                pRadioButton>
+            </p-radioButton>
+            <label>Sim</label>
+        </div>
+        <div class="p-md-2">
+            <p-radioButton
+                id="nao"
+                type="radio"
+                [value]="false"
+                name="correspondencia"
+                formControlName="correspondencia"
+                pRadioButton>
+            </p-radioButton>
+            <label>Não</label>
+        </div>
     </div>
 
     <div *ngIf="!enderecoValido">
@@ -46,7 +68,8 @@
             [disabled]="endereco.invalid"
             type="button"
             (onClick)="adicionarEnderecoALista()"
-            style="margin-left: 20px; width: 90px;">
+            [style.margin-left]="20"
+            [style.width]="90">
         </p-button>
     </div>
     <div *ngIf="enderecoValido">
@@ -55,7 +78,8 @@
         label="Editar"
         type="button"
         (onClick)="atualizarEdicao()"
-        style="margin-left: 20px; width: 90px;">
+        [style.margin-left]="20"
+        [style.width]="90">
         </p-button>
     </div>
     <basis-datatable type="memory" [disableView]="true" [value]="enderecos.value" (buttonClick)="datatableClick($event)">

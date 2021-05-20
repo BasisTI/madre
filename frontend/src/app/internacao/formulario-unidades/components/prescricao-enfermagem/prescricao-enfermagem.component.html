@@ -1,14 +1,14 @@
 <form [formGroup]="precricaoEnfermagem">
-    <div class="ui-g">
-        <div class="ui-g-12">
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+    <div class="p-grid">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <p-calendar timeOnly="true" formControlName="horarioValidade"></p-calendar>
                     <label>Horário Validade</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText
@@ -18,15 +18,15 @@
                     <label>Tempo Adiantada</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <p-dropdown formControlName="unidadeTempo" [options]="opcoesDeTempoDeUnidade">
                     </p-dropdown>
                     <label>Unidade Tempo</label>
                 </span>
             </div>
-            <div class="ui-g-3 ui-sm-12">
-                <span class="ui-float-label">
+            <div class="p-md-3 p-sm-12">
+                <span class="p-float-label">
                     <input
                         type="text"
                         pInputText

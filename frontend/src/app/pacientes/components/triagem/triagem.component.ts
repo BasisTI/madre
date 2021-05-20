@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { DatatableComponent, DatatableClickEvent, PageNotificationService } from '@nuvem/primeng-components';
 import { TriagemService } from './triagem.service';
-import { Component, OnInit, OnDestroy, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
 import { TriagemModel } from '../../models/triagem-model';
-import { ConfirmationService } from 'primeng';
+import { ConfirmationService } from 'primeng/api';
 import { ElasticQuery } from '@shared/elastic-query';
 
 @Component({
@@ -12,7 +12,7 @@ import { ElasticQuery } from '@shared/elastic-query';
     styleUrls: ['triagem.scss'],
 })
 
-export class TriagemComponent implements OnInit{
+export class TriagemComponent implements AfterViewInit {
     
     constructor(
         private triagemService: TriagemService, 
@@ -32,7 +32,7 @@ export class TriagemComponent implements OnInit{
 
     searchUrl:string = 'pacientes/api/_search/triagens';
 
-    ngOnInit(): void {
+    ngAfterViewInit(): void {
         this.pesquisar();
     }
 
