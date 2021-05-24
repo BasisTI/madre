@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Repository
@@ -15,6 +16,9 @@ public interface EventoLeitoRepository extends JpaRepository<EventoLeito, Long> 
 
     Optional<EventoLeito> findOneByLeitoIdAndTipoDoEventoAndDataFimIsNull(Long leitoId,
                                                                           TipoDoEventoLeito tipoDoEventoLeito);
+
+    boolean existsBydataInicio(ZonedDateTime dataInicio);
+    boolean existsByLeitoId(Long leitoID);
 
     Page<EventoCalendario> findEventoCalendarioBy(Pageable pageable);
 

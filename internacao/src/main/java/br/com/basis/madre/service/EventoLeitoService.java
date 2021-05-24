@@ -69,15 +69,23 @@ public class EventoLeitoService {
     public void ocuparLeito(InternacaoDTO internacaoDTO) {
         EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
 
-        eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
-        eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
-        eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
-        eventoLeitoDTO.setLeitoId(internacaoDTO.getLeitoId());
-        eventoLeitoDTO.setJustificativa(internacaoDTO.getJustificativa());
+        boolean verificaDataInicioOcupada = eventoLeitoRepository.existsBydataInicio(internacaoDTO.getDataDaInternacao());
+        boolean verificaLeitoOcupado = eventoLeitoRepository.existsByLeitoId(internacaoDTO.getLeitoId());
 
-        EventoLeito eventoLeito = eventoLeitoRepository
-            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
-        eventoLeitoSearchRepository.save(eventoLeito);
+        if (!verificaDataInicioOcupada && !verificaLeitoOcupado) {
+            eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
+            eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
+            eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
+            eventoLeitoDTO.setLeitoId(internacaoDTO.getLeitoId());
+            eventoLeitoDTO.setJustificativa(internacaoDTO.getJustificativa());
+
+            EventoLeito eventoLeito = eventoLeitoRepository
+                .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
+            eventoLeitoSearchRepository.save(eventoLeito);
+
+        } else
+            System.err.println("Leito ocupado");
+
     }
 
     public LiberacaoDeLeitoDTO liberarLeito(LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
