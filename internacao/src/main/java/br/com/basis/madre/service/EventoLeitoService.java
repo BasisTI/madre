@@ -69,10 +69,9 @@ public class EventoLeitoService {
     public void ocuparLeito(InternacaoDTO internacaoDTO) {
         EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
 
-        boolean verificaDataInicioOcupada = eventoLeitoRepository.existsBydataInicio(internacaoDTO.getDataDaInternacao());
         boolean verificaLeitoOcupado = eventoLeitoRepository.existsByLeitoId(internacaoDTO.getLeitoId());
 
-        if (!verificaDataInicioOcupada && !verificaLeitoOcupado) {
+        if (!verificaLeitoOcupado) {
             eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
             eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
             eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
