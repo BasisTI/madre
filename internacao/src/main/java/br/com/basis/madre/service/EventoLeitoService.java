@@ -72,11 +72,7 @@ public class EventoLeitoService {
         boolean verificaLeitoOcupado = eventoLeitoRepository.existsByLeitoId(internacaoDTO.getLeitoId());
         System.err.println("VALOR INICIAL: " + verificaLeitoOcupado);
 
-        if (verificaLeitoOcupado) {
-            System.err.println("Leito Ocupado");
-            System.err.println("Valor dentro do IF: " + verificaLeitoOcupado);
-
-        } else {
+        if (!verificaLeitoOcupado) {
             eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
             eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
             eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
@@ -86,9 +82,7 @@ public class EventoLeitoService {
             EventoLeito eventoLeito = eventoLeitoRepository
                 .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
             eventoLeitoSearchRepository.save(eventoLeito);
-            System.err.println("VALOR DENTRO DO ELSE: " + verificaLeitoOcupado);
         }
-        System.err.println("VALOR FINAL (FORA DO IF): " + verificaLeitoOcupado);
 
         return verificaLeitoOcupado;
     }

@@ -33,7 +33,7 @@ public class InternacaoService {
     private final EventoLeitoService eventoLeitoService;
 
     public Optional<InternacaoDTO> save(InternacaoDTO internacaoDTO) {
-        if (eventoLeitoService.ocuparLeito(internacaoDTO)){
+        if (!eventoLeitoService.ocuparLeito(internacaoDTO)){
             Internacao internacao = internacaoMapper.toEntity(internacaoDTO);
             internacao = internacaoRepository.save(internacao);
             InternacaoDTO result = internacaoMapper.toDto(internacao);
