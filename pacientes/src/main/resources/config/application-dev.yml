@@ -52,7 +52,7 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/pacientes
+    url: jdbc:postgresql://localhost:5435/pacientes
     username: pacientes
     password:
     hikari:
@@ -92,7 +92,7 @@ spring:
         enabled: true
 
 server:
-  port: 8081
+  port: 8084
 
 # ===================================================================
 # JHipster specific properties
