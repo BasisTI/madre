@@ -52,7 +52,10 @@ public class InternacaoResource {
             throw new BadRequestAlertException("A new internacao cannot already have an ID",
                 ENTITY_NAME, "idexists");
         }
-        InternacaoDTO result = internacaoService.save(internacaoDTO);
+            InternacaoDTO result = internacaoService.save(internacaoDTO).orElseThrow(() ->  new BadRequestAlertException
+                ("Leito já ocupado", ENTITY_NAME, "leitoOcupado"));
+
+
         return ResponseEntity.created(new URI("/api/internacaos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME,
                 result.getId().toString()))
@@ -75,7 +78,9 @@ public class InternacaoResource {
         if (internacaoDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        InternacaoDTO result = internacaoService.save(internacaoDTO);
+        InternacaoDTO result = internacaoService.save(internacaoDTO).orElseThrow(() ->  new BadRequestAlertException
+            ("Leito já ocupado", ENTITY_NAME, "leitoOcupado"));
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
                 internacaoDTO.getId().toString()))
