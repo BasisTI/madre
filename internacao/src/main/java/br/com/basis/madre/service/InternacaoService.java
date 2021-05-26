@@ -32,14 +32,16 @@ public class InternacaoService {
 
     private final EventoLeitoService eventoLeitoService;
 
-    public InternacaoDTO save(InternacaoDTO internacaoDTO) {
-        eventoLeitoService.ocuparLeito(internacaoDTO);
+    public Optional<InternacaoDTO> save(InternacaoDTO internacaoDTO) {
+        if (!eventoLeitoService.ocuparLeito(internacaoDTO)){
+            Internacao internacao = internacaoMapper.toEntity(internacaoDTO);
+            internacao = internacaoRepository.save(internacao);
+            InternacaoDTO result = internacaoMapper.toDto(internacao);
+            internacaoSearchRepository.save(internacao);
+            return Optional.of(result);
+        }
 
-        Internacao internacao = internacaoMapper.toEntity(internacaoDTO);
-        internacao = internacaoRepository.save(internacao);
-        InternacaoDTO result = internacaoMapper.toDto(internacao);
-        internacaoSearchRepository.save(internacao);
-        return result;
+        return Optional.empty();
     }
 
     /**
