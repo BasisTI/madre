@@ -1,4 +1,7 @@
+import { version } from 'package.json';
+
 export const environment = {
+    appVersion: version,
     production: true,
     apiUrl: '/api',
     auth: {
