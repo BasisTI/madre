@@ -17,10 +17,10 @@ public interface EventoLeitoRepository extends JpaRepository<EventoLeito, Long> 
     Optional<EventoLeito> findOneByLeitoIdAndTipoDoEventoAndDataFimIsNull(Long leitoId,
                                                                           TipoDoEventoLeito tipoDoEventoLeito);
 
-    boolean existsBydataInicio(ZonedDateTime dataInicio);
-    boolean existsByLeitoId(Long leitoID);
+    boolean existsByLeitoId(Long leitoId);
+    boolean findEventoLeitoById(Long leitoId);
 
 
-    Page<EventoCalendario> findEventoCalendarioBy(Pageable pageable);
+    Page<EventoCalendario> findEventoCalendarioByDataFimIsNull(Pageable pageable);
 
 }

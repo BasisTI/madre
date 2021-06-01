@@ -3,13 +3,9 @@ package br.com.basis.madre.service;
 import br.com.basis.madre.domain.EventoLeito;
 import br.com.basis.madre.domain.enumeration.CodigoDoTipoEventoLeito;
 import br.com.basis.madre.repository.EventoLeitoRepository;
+import br.com.basis.madre.repository.LeitoRepository;
 import br.com.basis.madre.repository.search.EventoLeitoSearchRepository;
-import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
-import br.com.basis.madre.service.dto.EventoLeitoDTO;
-import br.com.basis.madre.service.dto.InternacaoDTO;
-import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
-import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
-import br.com.basis.madre.service.dto.TipoDoEventoLeitoDTO;
+import br.com.basis.madre.service.dto.*;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
 import br.com.basis.madre.service.mapper.TipoDoEventoLeitoMapper;
 import br.com.basis.madre.service.projection.EventoCalendario;
@@ -23,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.ZonedDateTime;
+import java.util.EventObject;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -35,6 +32,8 @@ public class EventoLeitoService {
     private final Logger log = LoggerFactory.getLogger(EventoLeitoService.class);
 
     private final EventoLeitoRepository eventoLeitoRepository;
+
+    private final LeitoRepository leitoRepository;
 
     private final EventoLeitoMapper eventoLeitoMapper;
 
@@ -68,9 +67,7 @@ public class EventoLeitoService {
 
     public boolean ocuparLeito(InternacaoDTO internacaoDTO) {
         EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
-
         boolean verificaLeitoOcupado = eventoLeitoRepository.existsByLeitoId(internacaoDTO.getLeitoId());
-        System.err.println("VALOR INICIAL: " + verificaLeitoOcupado);
 
         if (!verificaLeitoOcupado) {
             eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
@@ -91,10 +88,10 @@ public class EventoLeitoService {
         EventoLeitoDTO eventoLeitoDTO = eventoLeitoMapper.toDto(liberacaoDeLeitoDTO);
         eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.LIBERACAO.getValor());
 
-        EventoLeito eventoLeito = eventoLeitoRepository
-            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
-        eventoLeitoSearchRepository.save(eventoLeito);
-        liberacaoDeLeitoDTO.setId(eventoLeito.getId());
+//        EventoLeito eventoLeito = eventoLeitoRepository
+//            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
+//        eventoLeitoSearchRepository.save(eventoLeito);
+//        liberacaoDeLeitoDTO.setId(eventoLeito.getId());
 
         return liberacaoDeLeitoDTO;
     }
@@ -109,12 +106,13 @@ public class EventoLeitoService {
             ).orElseThrow(EntityNotFoundException::new);
 
         eventoLeito.setDataFim(ZonedDateTime.now());
-        eventoLeitoRepository.save(eventoLeito);
-        eventoLeitoSearchRepository.save(eventoLeito);
+        eventoLeitoRepository.delete(eventoLeito);
+//        eventoLeitoRepository.save(eventoLeito);
+//        eventoLeitoSearchRepository.save(eventoLeito);
     }
 
     public Page<EventoCalendario> obterEventosCalendario(Pageable pageable) {
-        return eventoLeitoRepository.findEventoCalendarioBy(pageable);
+        return eventoLeitoRepository.findEventoCalendarioByDataFimIsNull(pageable);
     }
 
     /**
@@ -166,8 +164,18 @@ public class EventoLeitoService {
      */
     public void delete(Long id) {
         log.debug("Request to delete EventoLeito : {}", id);
-        eventoLeitoRepository.deleteById(id);
-        eventoLeitoSearchRepository.deleteById(id);
+        EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
+        LeitoDTO leitoDTO = new LeitoDTO();
+
+        if (leitoRepository.findLeitoById(id).equals(leitoDTO.getId())) {
+            eventoLeitoRepository.deleteById(eventoLeitoDTO.getId());
+            eventoLeitoSearchRepository.deleteById(eventoLeitoDTO.getId());
+        }
+    }
+
+    public Long buscarLeitoId() {
+        LeitoDTO leitoDTO = new LeitoDTO();
+        return leitoDTO.getId();
     }
 
     /**

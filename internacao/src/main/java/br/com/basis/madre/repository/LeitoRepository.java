@@ -35,4 +35,7 @@ public interface LeitoRepository extends JpaRepository<Leito, Long> {
 
     @Query(Queries.obterTodosOsLeitosLiberados)
     Page<Leito> obterTodosOsLeitosLiberados(Pageable pageable);
+
+
+    Long findLeitoById(Long leitoId);
 }
