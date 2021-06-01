@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { DatatableParams } from "@nuvem/primeng-components";
 
 @Component({
     selector: 'paciente-list',
@@ -12,9 +13,9 @@ export class PacienteListComponent {
         prontuario: []
     });
 
-    datatableExtraParams = {
-        rows: 20
-    }
+    datatableParams: DatatableParams = {
+        rows: 10
+    };
 
     constructor(private fb: FormBuilder) {
     }
