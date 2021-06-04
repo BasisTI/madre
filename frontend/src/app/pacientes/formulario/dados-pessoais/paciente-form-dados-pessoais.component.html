@@ -33,6 +33,7 @@
             <span class="p-float-label">
                 <p-dropdown
                     (onChange)="aoSelecionarUF()"
+                    [disabled]="!formGroup.value.nacionalidadeId"
                     [options]="ufs"
                     optionLabel="sigla"
                     formControlName="uf"

@@ -66,10 +66,7 @@ public class EventoLeitoResource {
         @RequestBody @Valid LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
         Long leitoId = liberacaoDeLeitoDTO.getLeitoId();
         eventoLeitoService.desocuparLeito(leitoId);
-        eventoLeitoService.delete(eventoLeitoService.buscarLeitoId());
-
         return ResponseEntity.ok(eventoLeitoService.liberarLeito(liberacaoDeLeitoDTO));
-//        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/eventos-calendario")

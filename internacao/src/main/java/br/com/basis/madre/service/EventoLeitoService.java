@@ -88,11 +88,6 @@ public class EventoLeitoService {
         EventoLeitoDTO eventoLeitoDTO = eventoLeitoMapper.toDto(liberacaoDeLeitoDTO);
         eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.LIBERACAO.getValor());
 
-//        EventoLeito eventoLeito = eventoLeitoRepository
-//            .save(eventoLeitoMapper.toEntity(eventoLeitoDTO));
-//        eventoLeitoSearchRepository.save(eventoLeito);
-//        liberacaoDeLeitoDTO.setId(eventoLeito.getId());
-
         return liberacaoDeLeitoDTO;
     }
 
@@ -107,8 +102,6 @@ public class EventoLeitoService {
 
         eventoLeito.setDataFim(ZonedDateTime.now());
         eventoLeitoRepository.delete(eventoLeito);
-//        eventoLeitoRepository.save(eventoLeito);
-//        eventoLeitoSearchRepository.save(eventoLeito);
     }
 
     public Page<EventoCalendario> obterEventosCalendario(Pageable pageable) {
