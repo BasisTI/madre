@@ -20,13 +20,10 @@ public interface EventoLeitoRepository extends JpaRepository<EventoLeito, Long> 
                                                                           TipoDoEventoLeito tipoDoEventoLeito);
 
     boolean existsByLeitoId(Long leitoId);
-    boolean findEventoLeitoById(Long leitoId);
 
     @Query("from EventoLeito l where l.leitoExcluido = false")
     List<EventoLeito> buscarLeitosOcupados();
 
-    List<EventoLeito> findEventoLeitoByLeitoExcluidoIsFalse();
-//    Page<EventoLeito> findEventoLeitoByLeitoExcluidoIsFalse(Pageable pageable);
 
     Page<EventoCalendario> findEventoCalendarioByLeitoExcluidoIsFalse(Pageable pageable);
 
