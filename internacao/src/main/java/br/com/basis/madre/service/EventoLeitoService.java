@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.ZonedDateTime;
-import java.util.EventObject;
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -67,9 +67,9 @@ public class EventoLeitoService {
 
     public boolean ocuparLeito(InternacaoDTO internacaoDTO) {
         EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
-        boolean verificaLeitoOcupado = eventoLeitoRepository.existsByLeitoId(internacaoDTO.getLeitoId());
+        boolean verificaDataNotNull = eventoLeitoRepository.existsByLeitoId(eventoLeitoDTO.getLeitoId());
 
-        if (!verificaLeitoOcupado) {
+        if (!verificaDataNotNull) {
             eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
             eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
             eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
@@ -81,7 +81,7 @@ public class EventoLeitoService {
             eventoLeitoSearchRepository.save(eventoLeito);
         }
 
-        return verificaLeitoOcupado;
+        return verificaDataNotNull;
     }
 
     public LiberacaoDeLeitoDTO liberarLeito(LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
@@ -95,17 +95,28 @@ public class EventoLeitoService {
         TipoDoEventoLeitoDTO tipoDoEventoLeitoDTO = new TipoDoEventoLeitoDTO();
         tipoDoEventoLeitoDTO.setId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
 
+        filtrarLeitosNaoExcluidos();
         EventoLeito eventoLeito = eventoLeitoRepository
             .findOneByLeitoIdAndTipoDoEventoAndDataFimIsNull(leitoId,
                 tipoDoEventoLeitoMapper.toEntity(tipoDoEventoLeitoDTO)
             ).orElseThrow(EntityNotFoundException::new);
 
         eventoLeito.setDataFim(ZonedDateTime.now());
-        eventoLeitoRepository.delete(eventoLeito);
+        eventoLeito.setLeitoExcluido(Boolean.TRUE);
+
     }
 
+    public List<EventoLeito> filtrarLeitosNaoExcluidos(){
+        return eventoLeitoRepository.buscarLeitosOcupados() ;
+    }
+
+
+//    public Page<EventoLeito> filtrarLeitosExcluidos(Pageable pageable){
+//        return eventoLeitoRepository.findEventoLeitoByLeitoExcluidoIsFalse(pageable);
+//    }
+
     public Page<EventoCalendario> obterEventosCalendario(Pageable pageable) {
-        return eventoLeitoRepository.findEventoCalendarioByDataFimIsNull(pageable);
+        return eventoLeitoRepository.findEventoCalendarioByLeitoExcluidoIsFalse(pageable);
     }
 
     /**

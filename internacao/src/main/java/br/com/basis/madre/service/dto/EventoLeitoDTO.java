@@ -30,4 +30,5 @@ public class EventoLeitoDTO implements Serializable {
 
     private Long motivoId;
 
+    private Boolean leitoExcluido = false;
 }
