@@ -44,6 +44,10 @@ public class EventoLeito implements Serializable {
     @Column(name = "data_do_inicio")
     private ZonedDateTime dataInicio;
 
+    @NotNull
+    @Column(name = "excluido", nullable = true, columnDefinition = "boolean default false")
+    private Boolean leitoExcluido = false;
+
     @Column(name = "data_do_fim")
     private ZonedDateTime dataFim;
 
