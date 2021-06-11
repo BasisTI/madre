@@ -5,7 +5,7 @@ import br.com.basis.madre.domain.enumeration.CodigoDoTipoEventoLeito;
 import br.com.basis.madre.repository.EventoLeitoRepository;
 import br.com.basis.madre.repository.search.EventoLeitoSearchRepository;
 import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
-import br.com.basis.madre.service.dto.EventoLeitoDTO;
+import br.com.basis.madre.service.dto.EventoLeitoDTO ;
 import br.com.basis.madre.service.dto.InternacaoDTO;
 import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
 import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
