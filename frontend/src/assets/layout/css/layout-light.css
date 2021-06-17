@@ -1,5 +1,6 @@
 :root {
   --divider-color:#E4E4E4;
+  
 }
 
 /* Add your variable customizations of layout here */
@@ -658,9 +659,19 @@ body .p-overlay-badge .p-badge {
   left: auto;
   right: 0;
 }
+.layout-topbar-logo {
+  font-family: 'Open Sans';
+  font-size: 36px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+  font-weight: bold;
+  padding-right: 20px;
+}
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-left .layout-topbar-logo {
   padding-right: 0;
   padding-left: 1.25rem;
+
 }
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-left .layout-menu-button {
   left: auto;
@@ -750,17 +761,21 @@ body .p-overlay-badge .p-badge {
   position: relative;
 }
 .layout-topbar .layout-topbar-left .layout-topbar-logo {
-  width: 17rem;
+  /*width: 19rem;*/
   height: 100%;
-  padding-right: 1.25rem;
+  /*padding-right: 1.25rem;*/
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
+.example-spacer {
+  flex : 1  1 auto;
+}      
 .layout-topbar .layout-topbar-left .layout-menu-button {
   position: absolute;
   top: 50%;
-  left: 15.75rem;
+  left: 14px;
   width: 2.5rem;
   height: 2.5rem;
   margin-top: -1.25rem;
@@ -768,7 +783,6 @@ body .p-overlay-badge .p-badge {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 50%;
 }
 .layout-topbar .layout-topbar-left .layout-menu-button i {
   transition: transform 0.2s;
@@ -784,7 +798,7 @@ body .p-overlay-badge .p-badge {
 }
 .layout-topbar .layout-topbar-right {
   display: flex;
-  flex-grow: 1;
+  /*flex-grow: 1;*/
   align-items: center;
   justify-content: space-between;
   padding-left: 2rem;
@@ -1559,25 +1573,15 @@ body .p-overlay-badge .p-badge {
 }
 .layout-topbar-teal .layout-topbar {
   color: #ffffff;
-  background-color: #00796B;
+  background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
+  width: 1920px;
+  
 }
 .layout-topbar-teal .layout-topbar a {
   color: #ffffff;
 }
-.layout-topbar-teal .layout-topbar a:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  transition: background-color 0.2s;
-}
 .layout-topbar-teal .layout-topbar .layout-topbar-left {
-  background-color: #004D40;
-}
-.layout-topbar-teal .layout-topbar .layout-topbar-left .layout-menu-button {
-  color: #ffffff;
-  background-color: #D32F2F;
-}
-.layout-topbar-teal .layout-topbar .layout-topbar-left .layout-menu-button:hover {
-  background-color: rgba(211, 47, 47, 0.7);
-  transition: background-color 0.2s;
+  background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
 }
 .layout-topbar-teal .layout-topbar .layout-topbar-right .layout-topbar-actions-left .layout-megamenu {
   background: none;
@@ -2502,7 +2506,7 @@ body .p-overlay-badge .p-badge {
 }
 .menu-wrapper {
   height: calc(100% - 4rem);
-  width: 17rem;
+  /*width: 17rem;*/
   position: fixed;
   left: 0;
   top: 4rem;
@@ -2821,7 +2825,7 @@ body .p-overlay-badge .p-badge {
   background-color: #FDFEFF;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a {
-  color: #515C66;
+  color: var(--primary-menu-text-color);
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a i {
   color: #515C66;
@@ -3778,6 +3782,7 @@ body .p-overlay-badge .p-badge {
 }
 .landing-container #footer {
   border-top: 1px solid #E4E4E4;
+  text-align: center;
 }
 .landing-container #footer a {
   color: #212121;
@@ -4204,7 +4209,9 @@ html {
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
   font-size: 1rem;
   color: #212121;
   -webkit-font-smoothing: antialiased;
@@ -4216,7 +4223,8 @@ body {
 }
 body a {
   text-decoration: none;
-  color: #616161;
+  color: #02487B;
+  ;
 }
 
 .layout-mask {
@@ -4255,7 +4263,7 @@ body a {
 }
 
 .layout-footer {
-  background-color: #ffffff;
+  background: #C3CBD9;
 }
 
 .layout-config {

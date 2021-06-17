@@ -8,11 +8,12 @@
   --surface-f:#ffffff;
   --text-color:rgba(0, 0, 0, 0.87);
   --text-color-secondary:rgba(0, 0, 0, 0.6);
-  --primary-color:#009688;
-  --primary-menu-text-color:#009688;
-  --primary-lightest-color:#E0F2F1;
+  --primary-color:#1FAAEE;
+  --primary-menu-text-color:#02487B;
+  --primary-lightest-color:#C3E6FF99;
   --primary-color-text:#ffffff;
-  --font-family:Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  --font-family: Open Sans;
+
 }
 
 /* Add your variable customizations of theme here */
@@ -21,7 +22,7 @@
 }
 
 .p-component {
-  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-family: Open Sans;
   font-size: 1rem;
   font-weight: normal;
 }

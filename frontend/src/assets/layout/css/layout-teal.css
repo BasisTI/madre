@@ -1746,11 +1746,11 @@ body a {
   padding: 0.5em;
 }
 .layout-container .footer .footer-text-left {
-  float: left;
+  float: center;
 }
 .layout-container .footer .footer-text-right {
   color: #757575;
-  float: right;
+  float: center;
 }
 .layout-container .footer .footer-text-right span {
   vertical-align: middle;

@@ -4,13 +4,7 @@ import { Component } from '@angular/core';
     selector: 'app-footer',
     template: `
         <div class="layout-footer p-d-flex p-ai-center p-p-4 p-shadow-2">
-            <span class="footer-text-left">BASIS Tecnologia - </span>
-            <app-version-tag cssClass="footer-text-left"></app-version-tag>
-            <span class="p-ml-auto p-mr-2">
-                <span class="p-icon p-icon-copyright"></span>
-                <span>Todos os direitos reservados</span>
-            </span>
-        </div>
+            <span class="footer-text-left" styles="background: #C3CBD9;">MADRE- 2021. Todos os direitos reservados. - Versão 01.007.008-009</span>
     `,
 })
 export class AppFooterComponent {}

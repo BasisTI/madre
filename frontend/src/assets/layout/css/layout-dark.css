@@ -658,6 +658,16 @@ body .p-overlay-badge .p-badge {
   left: auto;
   right: 0;
 }
+.ng-tns-c226-0 {
+  font-family: Open Sans;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+
+}
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-left .layout-topbar-logo {
   padding-right: 0;
   padding-left: 1.25rem;
@@ -2502,7 +2512,7 @@ body .p-overlay-badge .p-badge {
 }
 .menu-wrapper {
   height: calc(100% - 4rem);
-  width: 17rem;
+  /*width: 17rem;*/
   position: fixed;
   left: 0;
   top: 4rem;
