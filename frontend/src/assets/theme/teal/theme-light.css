@@ -8,9 +8,9 @@
   --surface-f:#ffffff;
   --text-color:rgba(0, 0, 0, 0.87);
   --text-color-secondary:rgba(0, 0, 0, 0.6);
-  --primary-color:#1FAAEE;
+  --primary-color:rgba(195, 230, 255, 0,6);
   --primary-menu-text-color:#02487B;
-  --primary-lightest-color:#C3E6FF99;
+  --primary-lightest-color:#0267B0;
   --primary-color-text:#ffffff;
   --font-family: Open Sans;
 
@@ -1402,7 +1402,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 
 .p-button {
   color: #ffffff;
-  background: #009688;
+  background: #0267B0;
   border: 0 none;
   padding: 0.643rem 0.75rem;
   font-size: 1rem;
@@ -1932,12 +1932,12 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-datatable .p-datatable-thead > tr > th {
   text-align: left;
-  padding: 0.75rem 0.75rem;
+  padding: 0.60rem 0.75rem;
   border: 1px solid #e4e4e4;
   border-width: 0 0 1px 0;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.87);
-  background: #ffffff;
+  color: #ffffff;
+  background: #1FAAEE;
   transition: none;
 }
 .p-datatable .p-datatable-tfoot > tr > td {
@@ -2575,9 +2575,9 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   border-radius: 50%;
 }
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  background: rgba(0, 150, 136, 0.12);
+  background:#C3E6FF99;
   border-color: rgba(0, 150, 136, 0.12);
-  color: #009688;
+  color: #02487B;
 }
 .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
   background: rgba(0, 0, 0, 0.04);

@@ -6,7 +6,7 @@
 /* Add your variable customizations of layout here */
 /* roboto-300 - latin */
 @font-face {
-  font-family: "Roboto";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 300;
   src: url("../fonts/roboto-v15-latin-300.eot");
@@ -16,17 +16,17 @@
 }
 /* roboto-regular - latin */
 @font-face {
-  font-family: "Roboto";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 400;
   src: url("../fonts/roboto-v15-latin-regular.eot");
   /* IE9 Compat Modes */
-  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/roboto-v15-latin-regular.eot#iefix") format("embedded-opentype"), url("../fonts/roboto-v15-latin-regular.woff2") format("woff2"), url("../fonts/roboto-v15-latin-regular.woff") format("woff"), url("../fonts/roboto-v15-latin-regular.ttf") format("truetype"), url("../fonts/roboto-v15-latin-regular.svg#Roboto") format("svg");
+  src: local(Open Sans), local("Roboto-Regular"), url("../fonts/roboto-v15-latin-regular.eot#iefix") format("embedded-opentype"), url("../fonts/roboto-v15-latin-regular.woff2") format("woff2"), url("../fonts/roboto-v15-latin-regular.woff") format("woff"), url("../fonts/roboto-v15-latin-regular.ttf") format("truetype"), url("../fonts/roboto-v15-latin-regular.svg#Roboto") format("svg");
   /* Legacy iOS */
 }
 /* roboto-700 - latin */
 @font-face {
-  font-family: "Roboto";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 700;
   src: url("../fonts/roboto-v15-latin-700.eot");
@@ -1258,8 +1258,8 @@ body a {
   font-size: 1.5em;
   /* Preferred icon size */
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  /*width: 1em;*/
+  /*height: 1em;*/
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;

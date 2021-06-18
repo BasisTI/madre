@@ -1,13 +1,15 @@
 <div class="layout-topbar p-shadow-4">
     <div class="layout-topbar-left">        
-        <a class="layout-menu-button" (click)="app.onMenuButtonClick($event)" pRipple>
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </a>
-
+        
     </div>
     <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': app.mobileTopbarActive}">
-        <div class="layout-topbar-actions-left">
-            <span routerLink="/" class="layout-topbar-logo" style="padding: 0 0 0 40px;" href="/">MADRE | SISTEMA DE GESTÃO HOSPITALAR</span>
+        <div routerLink="/" class="layout-topbar-actions-left">
+            <a class="layout-menu-button" (click)="app.onMenuButtonClick($event)" pRipple>
+                <i class="fa fa-bars"  aria-hidden="true"></i>
+            </a>    
+            <span class="layout-topbar-logo-madre">MADRE </span>
+            <span class="layout-topbar-logo-barra"> | </span>
+            <span class="layout-topbar-logo-gestao"> SISTEMA DE GESTÃO HOSPITALAR</span>
         </div>
 
         <div class="layout-topbar-actions-right">
@@ -27,6 +29,7 @@
                             <a class="p-d-flex p-flex-row p-ai-center" pRipple>
                                 <i class="pi pi-power-off" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
                                 <span>&nbsp; Sair</span>
+
                             </a>
                         </li>
                     </ul>
