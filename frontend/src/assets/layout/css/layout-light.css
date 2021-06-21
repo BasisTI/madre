@@ -2,7 +2,10 @@
   --divider-color:#E4E4E4;
   
 }
+.layout-topbar hr{
+  color: red;
 
+}
 /* Add your variable customizations of layout here */
 h1, h2, h3, h4, h5, h6 {
   margin: 1.5rem 0 1rem 0;
@@ -662,24 +665,30 @@ body .p-overlay-badge .p-badge {
 .layout-topbar-logo-madre {
   font-family: 'Open Sans';
   font-size: 36px;
-  line-height: 16px;
-  letter-spacing: 0px;
-  text-align: left;
   font-weight: bold;
-  padding-left: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  margin: 10px;
+  margin-right: 20px;
+}
+.separador {
+  position: absolute;
+  width: 24px;
+  /* height: 1px; */
+  left: 198px;
+  top: 15px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 1px 1px 4px rgb(0 0 0 / 25%);
+  transform: rotate(90deg);
 }
 .layout-topbar-logo-barra {
   font-family: Open Sans;
   margin: 20px;
   font-size: 28.5px;
-  line-height: 24px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 .layout-topbar-logo-gestao {
   font-family: Open Sans;
   font-size: 28.5px;
-  line-height: 24px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-left .layout-topbar-logo {
@@ -773,6 +782,12 @@ body .p-overlay-badge .p-badge {
   align-items: center;
   height: 100%;
   position: relative;
+  justify-content: space-between;
+  padding-left: 1rem;
+}
+.layout-topbar-left-items {
+  display: flex;
+  align-items: center;
 }
 .layout-topbar .layout-topbar-left .layout-topbar-logo {
   /*width: 19rem;*/
@@ -787,19 +802,21 @@ body .p-overlay-badge .p-badge {
   flex : 1  1 auto;
 }      
 .layout-topbar .layout-topbar-left .layout-menu-button {
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-top: -1.25rem;
-  display: flex;
-  align-items: center;
   justify-content: center;
   cursor: pointer;
 }
+
+.logo {
+  padding-left: 1rem;
+  height: 100%;
+}
+
 .layout-topbar .layout-topbar-left .layout-menu-button i {
   transition: transform 0.2s;
+  
+}
+.layout-topbar .layout-topbar-left .layout-topbar-actions-left .layout-menu-button a {
+  font-size: 2rem;
 }
 .layout-topbar .layout-topbar-left .layout-topbar-mobile-button {
   display: none;
@@ -817,6 +834,7 @@ body .p-overlay-badge .p-badge {
   justify-content: space-between;
   padding-left: 2rem;
   height: 100%;
+  align-items: center;
 }
 .layout-topbar .layout-topbar-right .layout-topbar-actions-left {
   display: flex;
@@ -1593,6 +1611,7 @@ body .p-overlay-badge .p-badge {
 }
 .layout-topbar-teal .layout-topbar a {
   color: #ffffff;
+  font-size: 2.5rem;
 }
 .layout-topbar-teal .layout-topbar .layout-topbar-left {
   background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
@@ -4391,3 +4410,7 @@ body a {
 }
 
 /* Add your customizations of layout here */
+
+.fa fa-bars {
+  font-size: x-large;
+}

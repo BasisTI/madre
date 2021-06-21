@@ -1932,7 +1932,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-datatable .p-datatable-thead > tr > th {
   text-align: left;
-  padding: 0.60rem 0.75rem;
+  padding: 0.rem 0.75rem;
   border: 1px solid #e4e4e4;
   border-width: 0 0 1px 0;
   font-weight: 500;

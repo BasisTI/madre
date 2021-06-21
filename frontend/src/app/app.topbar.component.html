@@ -1,33 +1,41 @@
-<div class="layout-topbar p-shadow-4">
-    <div class="layout-topbar-left">        
-        
-    </div>
-    <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': app.mobileTopbarActive}">
-        <div routerLink="/" class="layout-topbar-actions-left">
-            <a class="layout-menu-button" (click)="app.onMenuButtonClick($event)" pRipple>
-                <i class="fa fa-bars"  aria-hidden="true"></i>
-            </a>    
-            <span class="layout-topbar-logo-madre">MADRE </span>
-            <span class="layout-topbar-logo-barra"> | </span>
-            <span class="layout-topbar-logo-gestao"> SISTEMA DE GESTÃO HOSPITALAR</span>
-        </div>
+<div class="layout-topbar">
+    <div class="layout-topbar-left">  <!--p-shadow-4 -->
+        <div class="layout-topbar-left-items">
+            <div routerLink="/" class="layout-topbar-actions-left">
+                <a class="layout-menu-button" (click)="app.onMenuButtonClick($event)" pRipple>
+                    <i class="fa fa-bars"  aria-hidden="true" ></i>
+                </a>
+            </div>  
+            <div class="logo">
+                <span class="layout-topbar-logo-madre">MADRE </span>
+                <!-- <span class="layout-topbar-logo-barra"> | </span> -->
+                <hr class="separador">
+                <span class="layout-topbar-logo-gestao"> SISTEMA DE GESTÃO HOSPITALAR</span>
+            </div>
+        </div>          
+    </div> 
 
+    <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': app.mobileTopbarActive}">
         <div class="layout-topbar-actions-right">
             <ul class="layout-topbar-items">
                 <li class="layout-topbar-item">
-                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
+                        (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
                         <i class="pi pi-cog" style="font-size: 2rem"></i>
                     </a>
-                    <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="app.activeTopbarItem === 'profile'">
+                    <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'"
+                        *ngIf="app.activeTopbarItem === 'profile'">
                         <li class="layout-topbar-action-item">
                             <a routerLink="/diario-erros" class="p-d-flex p-flex-row p-ai-center" pRipple>
-                                <i class="pi pi-cog" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
+                                <i class="pi pi-cog"
+                                    [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
                                 <span>&nbsp; Diário de Erros</span>
                             </a>
                         </li>
                         <li class="layout-topbar-action-item">
                             <a class="p-d-flex p-flex-row p-ai-center" pRipple>
-                                <i class="pi pi-power-off" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
+                                <i class="pi pi-power-off"
+                                    [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
                                 <span>&nbsp; Sair</span>
 
                             </a>
@@ -38,4 +46,6 @@
         </div>
     </div>
 </div>
-
+<div class="layout-topbar-underline">
+    <hr class="line-header">
+</div>
