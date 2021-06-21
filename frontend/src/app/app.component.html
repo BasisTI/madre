@@ -8,7 +8,9 @@
         'layout-topbar-mobile-active': mobileTopbarActive,
         'layout-rtl': config.isRTL}" [class]="'layout-menu-' + config.menuTheme + ' layout-topbar-' + config.topbarTheme">
 
-    <app-topbar></app-topbar>
+       
+    <app-topbar>
+    </app-topbar>
 
 
     <div class="menu-wrapper" (click)="onMenuClick($event)">
