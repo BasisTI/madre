@@ -1,6 +1,7 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.domain.Medicamento;
+import br.com.basis.madre.farmacia.service.ExportarMedicamentoService;
 import br.com.basis.madre.farmacia.service.MedicamentoService;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -137,5 +140,15 @@ public class MedicamentoResource {
 
         return page;
     }
+
+    @GetMapping("/medicamentos/exportar")
+    public void exportMedicamento(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+
+        List<Medicamento> listarMedicamentos = medicamentoService.listarTodos();
+        ExportarMedicamentoService exportarMedicamentoService = new ExportarMedicamentoService(listarMedicamentos);
+        exportarMedicamentoService.exportar(response);
+    }
+
 
 }
