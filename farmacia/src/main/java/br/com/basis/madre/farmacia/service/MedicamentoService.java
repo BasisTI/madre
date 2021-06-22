@@ -27,6 +27,8 @@ import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
+import org.apache.poi.ss.*;
+
 /**
  * Service Implementation for managing {@link Medicamento}.
  */
