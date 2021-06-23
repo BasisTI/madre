@@ -11,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExportarMedicamentoService {
@@ -18,6 +19,7 @@ public class ExportarMedicamentoService {
     private XSSFSheet sheet;
     private List<Medicamento> ListaMedicamentos;
 
+    private String nomeHeader;
     public ExportarMedicamentoService(List<Medicamento> listaMedicamentos) {
         ListaMedicamentos = listaMedicamentos;
         workbook = new XSSFWorkbook();
@@ -26,6 +28,7 @@ public class ExportarMedicamentoService {
 
     private void escreverHeaderRow() {
         Row row = sheet.createRow(0);
+        Cell cell;
 
         CellStyle estilo = workbook.createCellStyle();
         XSSFFont fonte = workbook.createFont();
@@ -34,29 +37,19 @@ public class ExportarMedicamentoService {
         estilo.setFont(fonte);
         estilo.getVerticalAlignment();
 
-        Cell cell = row.createCell(0);
-        cell.setCellValue("Nome");
-        cell.setCellStyle(estilo);
+        ArrayList<String> listaHeader = new ArrayList<>();
+        listaHeader.add("Nome");
+        listaHeader.add("Descrição");
+        listaHeader.add("Concentração");
+        listaHeader.add("Unidade");
+        listaHeader.add("Apresentação");
+        listaHeader.add("Situação");
 
-        cell = row.createCell(1);
-        cell.setCellValue("Descrição");
-        cell.setCellStyle(estilo);
-
-        cell = row.createCell(2);
-        cell.setCellValue("Concentração");
-        cell.setCellStyle(estilo);
-
-        cell = row.createCell(3);
-        cell.setCellValue("Unidade");
-        cell.setCellStyle(estilo);
-
-        cell = row.createCell(4);
-        cell.setCellValue("Apresentação");
-        cell.setCellStyle(estilo);
-
-        cell = row.createCell(5);
-        cell.setCellValue("Situação");
-        cell.setCellStyle(estilo);
+        for(int i=0; i<=listaHeader.size()-1; i++){
+            cell = row.createCell(i);
+            cell.setCellValue(listaHeader.get(i));
+            cell.setCellStyle(estilo);
+        }
 
     }
 
