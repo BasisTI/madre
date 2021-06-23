@@ -869,7 +869,7 @@ body .p-overlay-badge .p-badge {
 .layout-topbar .layout-topbar-right .layout-topbar-actions-right .layout-topbar-items .layout-topbar-item .layout-topbar-action {
   user-select: none;
   padding: 0 0.8rem;
-  margin: 0 0.4rem;
+  /*margin: 0 0.4rem;*/
   border-radius: 4px;
   height: 3.2rem;
   min-width: 3.2rem;

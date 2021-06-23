@@ -26,9 +26,19 @@
         <div class="layout-topbar-actions-right">
             <ul class="layout-topbar-items">
                 <li class="layout-topbar-item">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                        <img src="../assets/layout/images/notif.png">
+                    </a>
+                </li>
+                <li class="layout-topbar-item">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                        <img src="../assets/layout/images/usuario.png">
+                    </a>
+                </li>
+                <li class="layout-topbar-item">
                     <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
                         (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
-                        <i class="pi pi-cog" style="font-size: 2rem"></i>
+                        <img src="../assets/layout/images/config.png">                
                     </a>
                     <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'"
                         *ngIf="app.activeTopbarItem === 'profile'">
@@ -50,7 +60,9 @@
                     </ul>
                 </li>
                 <li class="layout-topbar-item">
-
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                        <img src="../assets/layout/images/sair.png">
+                    </a>
                 </li>
             </ul>
         </div>
