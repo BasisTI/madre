@@ -1,8 +1,18 @@
+<h1>Pesquisa de Paciente</h1>
 
 <div class="card card-w-title">
-    <h1>Pesquisa de Paciente</h1>
-        <nCrudList [form]="paciente" [datatableParams]="datatableParams">
-            <p-column header="Prontuário" field="prontuario"></p-column>
+    <div nForm [formGroup]="paciente">
+        <div class="p-grid p-fluid p-mb-5">
+            <div nInputText label="Nome paciente" formControlName="nome" class="p-col-12" style="width: 35%"></div>
+            <div nInputText label="Prontuario paciente" formControlName="prontuario" class="p-col-12" style="width: 35%"></div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-w-title">
+    <nCrudList [form]="paciente" [datatableParams]="datatableParams">
+        <p-column header="Prontuário" field="prontuario"></p-column>
+            <a><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a>
             <p-column header="Nome" field="nome"></p-column>
             <p-column header="Nome da Mãe" field="genitores">
                 <ng-template let-data="rowData" pTemplate="body">
@@ -15,11 +25,6 @@
                     {{ data['cartaoSUS']?.numero }}
                 </ng-template>
             </p-column>
-            <div nForm [formGroup]="paciente">
-                <div class="p-grid p-fluid p-mb-5">
-                    <div nInputText label="Nome paciente" formControlName="nome" class="p-col-12"></div>
-                    <div nInputText label="Prontuario paciente" formControlName="prontuario" class="p-col-12"></div>
-                </div>
-            </div>
-        </nCrudList>
+            <p-column header="Ações" field=""></p-column>
+    </nCrudList>
 </div>

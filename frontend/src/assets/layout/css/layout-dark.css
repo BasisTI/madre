@@ -2831,10 +2831,12 @@ body .p-overlay-badge .p-badge {
   background-color: #FDFEFF;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a i {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a:hover {
   background-color: rgba(0, 0, 0, 0.04);
@@ -2850,15 +2852,18 @@ body .p-overlay-badge .p-badge {
   border-color: #e4e4e4;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu a {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action,
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action i,
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item i {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action:hover,
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item:hover {

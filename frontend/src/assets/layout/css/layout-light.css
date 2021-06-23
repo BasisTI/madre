@@ -2,6 +2,7 @@
   --divider-color:#E4E4E4;
   
 }
+
 .line-header {
   /* margin-top: 4rem; */
   /* background: red; */
@@ -24,6 +25,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
   margin-top: 0;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 38px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: #02487B;
 }
 
 h1 {
@@ -831,7 +840,7 @@ body .p-overlay-badge .p-badge {
 }
 .layout-topbar .layout-topbar-right {
   display: flex;
-  /*flex-grow: 1;*/
+  flex-grow: 1;
   align-items: center;
   justify-content: space-between;
   padding-left: 2rem;
@@ -1608,7 +1617,7 @@ body .p-overlay-badge .p-badge {
 .layout-topbar-teal .layout-topbar {
   color: #ffffff;
   background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
-  width: 1920px;
+  width: 100vw;
   box-shadow: 0px 0px 20px rgb(0 0 0);
 }
 .layout-topbar-teal .layout-topbar a {
@@ -2541,7 +2550,7 @@ body .p-overlay-badge .p-badge {
 }
 .menu-wrapper {
   height: calc(100% - 4rem);
-  /*width: 17rem;*/
+  width: 17rem;
   position: fixed;
   left: 0;
   top: 4rem;
@@ -2587,7 +2596,6 @@ body .p-overlay-badge .p-badge {
   display: flex;
   align-items: center;
   padding: 0.75rem;
-  border-radius: 4px;
   cursor: pointer;
   user-select: none;
   transition: background-color 0.2s, color 0.2s;
@@ -2615,14 +2623,14 @@ body .p-overlay-badge .p-badge {
   transform: rotate(-180deg);
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul {
-  padding: 0 0.5rem;
+  
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul li ul {
   padding: 0 0 0.25rem;
   overflow: hidden;
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul > li {
-  margin-top: 0.2rem;
+  
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul > li.layout-root-menuitem > a {
   display: flex;
@@ -2863,15 +2871,56 @@ body .p-overlay-badge .p-badge {
   color: var(--primary-menu-text-color);
 }*/
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a i {
-  color: #515C66;
+  color: #02487B;
+
+}
+.icon-home {
+  background: url(../images/icon-home.png) no-repeat; 
+  width: 34px;
+  height: 34px;
+}
+.icon-pacientes {
+  background: url(../images/icon-pacientes.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-triagem {
+  background: url(../images/icon-triagem.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-marcar-consultas {
+  background: url(../images/icon-marcar-consultas.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-prescricao {
+  background: url(../images/icon-prescricao.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-internacao {
+  background: url(../images/icon-internacao.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-farmacia {
+  background: url(../images/icon-farmacia.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-suprimentos {
+  background: url(../images/icon-suprimentos.png) no-repeat;
+  width: 34px;
+  height: 34px;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a:hover {
   background: #C3E6FF99;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a {
-  background-color: var(--primary-lightest-color);
-  color: #ffffff;
+  background-color: #C3E6FF99;
 }
+
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a > i {
   color: var(--primary-menu-text-color);
 }
@@ -2879,15 +2928,18 @@ body .p-overlay-badge .p-badge {
   border-color: #e4e4e4;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu a {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action,
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action i,
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item i {
-  color: #515C66;
+  color: #02487B;
+
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action:hover,
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item:hover {

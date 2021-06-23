@@ -5613,9 +5613,6 @@ p-chips.ng-dirty.ng-invalid .p-chips .p-chips-multiple-container:not(.p-disabled
 .p-datatable .p-sortable-column {
   outline: 0 none;
 }
-.p-datatable .p-sortable-column:focus {
-  background-color: rgba(0, 0, 0, 0.03);
-}
 .p-datatable .p-datatable-tbody > tr {
   outline: 0 none;
 }

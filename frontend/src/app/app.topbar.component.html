@@ -3,23 +3,26 @@
     <div class="layout-topbar-back">
         <hr class="line-header">
     </div>
+
     <div class="layout-topbar-left">  <!--p-shadow-4 -->
         <div class="layout-topbar-left-items">
-            <div routerLink="/" class="layout-topbar-actions-left">
+            <div class="layout-topbar-actions-left">
                 <a class="layout-menu-button" (click)="app.onMenuButtonClick($event)" pRipple>
                     <i class="fa fa-bars"  aria-hidden="true" ></i>
                 </a>
             </div>  
-            <div class="logo">
-                <span class="layout-topbar-logo-madre">MADRE </span>
-                <!-- <span class="layout-topbar-logo-barra"> | </span> -->
+            <div class="logo" routerLink="/">
+                <img src="../assets/layout/images/logo.png">
+                <!-- <span class="layout-topbar-logo-madre">MADRE </span>
+                <span class="layout-topbar-logo-barra"> | </span>
                 <hr class="barra">
-                <span class="layout-topbar-logo-gestao"> SISTEMA DE GESTÃO HOSPITALAR</span>
+                <span class="layout-topbar-logo-gestao"> SISTEMA DE GESTÃO HOSPITALAR</span> -->
             </div>
         </div>          
     </div> 
 
     <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': app.mobileTopbarActive}">
+        <div class="layout-topbar-actions-left"></div>
         <div class="layout-topbar-actions-right">
             <ul class="layout-topbar-items">
                 <li class="layout-topbar-item">
@@ -45,6 +48,9 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="layout-topbar-item">
+
                 </li>
             </ul>
         </div>
