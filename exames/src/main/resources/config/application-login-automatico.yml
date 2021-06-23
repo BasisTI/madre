@@ -1,0 +1,8 @@
+login.automatico:
+  principal: admin # usuário para login automático
+  usuario.admin: ADMIN, AUDITOR # usuário admin e suas roles separadas por vírgula
+  usuario.teste: LEITURA, CADASTRO # usuário teste e suas roles separadas por vírgula
+  usuario.xxxx: LEITURA, XPTO # usuário xxxx e suas roles separadas por vírgula
+  attributes:
+    attr1: 1
+    attr2: VALOR2
