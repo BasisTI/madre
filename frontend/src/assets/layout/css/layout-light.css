@@ -2637,6 +2637,7 @@ body .p-overlay-badge .p-badge {
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul > li ul li a {
   padding-left: 1.75rem;
+  padding-top: 1rem;
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul > li ul li ul li a {
   padding-left: 2.625rem;
