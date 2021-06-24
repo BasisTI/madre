@@ -38,14 +38,17 @@ public class MedicamentoResource {
     private final Logger log = LoggerFactory.getLogger(MedicamentoResource.class);
 
     private static final String ENTITY_NAME = "farmaciaMedicamento";
+    private final ExportarMedicamentoService exportarMedicamentoService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final MedicamentoService medicamentoService;
 
-    public MedicamentoResource(MedicamentoService medicamentoService) {
+
+    public MedicamentoResource(MedicamentoService medicamentoService, ExportarMedicamentoService exportarMedicamentoService) {
         this.medicamentoService = medicamentoService;
+        this.exportarMedicamentoService = exportarMedicamentoService;
     }
 
     /**
@@ -143,11 +146,8 @@ public class MedicamentoResource {
 
     @GetMapping("/medicamentos/exportar")
     public void exportMedicamento(HttpServletResponse response) throws IOException {
-        response.setContentType("application/octet-stream");
 
-        List<Medicamento> listarMedicamentos = medicamentoService.listarTodos();
-        ExportarMedicamentoService exportarMedicamentoService = new ExportarMedicamentoService(listarMedicamentos);
-        exportarMedicamentoService.exportar(response);
+          exportarMedicamentoService.exportar(response);
     }
 
 

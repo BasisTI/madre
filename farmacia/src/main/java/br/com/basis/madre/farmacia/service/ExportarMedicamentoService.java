@@ -1,12 +1,16 @@
 package br.com.basis.madre.farmacia.service;
 
 import br.com.basis.madre.farmacia.domain.Medicamento;
+import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -14,16 +18,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ExportarMedicamentoService {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private List<Medicamento> ListaMedicamentos;
 
-    private String nomeHeader;
+    @Autowired
+    private MedicamentoService medicamentoService;
+
     public ExportarMedicamentoService(List<Medicamento> listaMedicamentos) {
         ListaMedicamentos = listaMedicamentos;
-        workbook = new XSSFWorkbook();
-        sheet = workbook.createSheet("Medicamentos");
+
     }
 
     private void escreverHeaderRow() {
@@ -60,7 +66,7 @@ public class ExportarMedicamentoService {
         fonte.setFontHeight(12);
         estilo.setFont(fonte);
 
-        for (Medicamento medicamento : ListaMedicamentos) {
+        for (MedicamentoDTO medicamento : medicamentoService.findAll(Pageable.unpaged())) {
             Row row = sheet.createRow(rowCount++);
 
             Cell cell = row.createCell(0);
@@ -79,23 +85,26 @@ public class ExportarMedicamentoService {
             sheet.autoSizeColumn(2);
 
             cell = row.createCell(3);
-            cell.setCellValue(medicamento.getUnidade().getNome());
+            cell.setCellValue(medicamento.getUnidadeId().getNome());
             cell.setCellStyle(estilo);
             sheet.autoSizeColumn(3);
 
             cell = row.createCell(4);
-            cell.setCellValue(medicamento.getApresentacao().getNome());
+            cell.setCellValue(medicamento.getApresentacaoId().getNome());
             cell.setCellStyle(estilo);
             sheet.autoSizeColumn(4);
 
             cell = row.createCell(5);
-            cell.setCellValue(medicamento.getAtivo() ? "Ativo" : "Inativo");
+            cell.setCellValue(medicamento.isAtivo() ? "Ativo" : "Inativo");
             cell.setCellStyle(estilo);
             sheet.autoSizeColumn(5);
         }
     }
 
     public void exportar(HttpServletResponse response) throws IOException {
+        workbook = new XSSFWorkbook();
+        sheet = workbook.createSheet("Medicamentos");
+        response.setContentType("application/octet-stream");
         escreverHeaderRow();
         escreverDataRows();
 
