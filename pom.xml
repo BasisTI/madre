@@ -25,6 +25,7 @@
         <module>prescricao</module>
         <module>suprimentos</module>
         <module>internacao</module>
+        <module>exames</module>
     </modules>
 
 </project>
