@@ -1,0 +1,45 @@
+{
+  "name": "ControleQualidade",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "material",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigoConvenio",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigoPlano",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "convenioPlano",
+      "fieldType": "ConvenioPlano",
+      "fieldValues": "SUS_internacao,SUS_planoAmbulatorio"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210623125908",
+  "entityTableName": "controle_qualidade",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "searchEngine": "elastisearch",
+  "microserviceName": "madreexames",
+  "databaseType": "sql"
+}

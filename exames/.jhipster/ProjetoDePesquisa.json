@@ -1,0 +1,25 @@
+{
+  "name": "ProjetoDePesquisa",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210623125708",
+  "entityTableName": "projeto_de_pesquisa",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "searchEngine": "elastisearch",
+  "microserviceName": "madreexames",
+  "databaseType": "sql"
+}
