@@ -1,35 +1,42 @@
+<h1>Triagem</h1>
+
+<div class="card">
+    <div class="p-md-12">
+        <span class="p-float-label" style="margin-top: 5px;">
+            <input type="text" pInputText class="ui-inputtext" name="filtro"
+                [(ngModel)]="elasticQuery.value" />
+            <label>Nome paciente</label>
+        </span>
+    </div>
+    <div class="p-grid p-col-12">
+        <div class="p-grid p-col-12">
+            <div class="p-col-3">
+                <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
+                    bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
+            </div>
+            <div class="p-col-3">
+                <button pButton type="button" label="Limpar" bTooltip="Limpar pesquisa de triagem."
+                    (click)="limparPesquisa()"></button>
+            </div>
+            <div class="p-col-3">
+                <button pButton type="button" label="Nova Triagem" icon="ui-icon-add"
+                    routerLink="/triagem/formulario" bTooltip="Cadastrar nova Triagem."></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="p-grid p-fluid">
         <div class="p-md-12">
             <span class>
                 <!-- <input pInputText disabled /> -->
-                <h1>Triagem</h1>
             </span>
 
             <div class="p-grid">
-                <div class="p-md-12">
-                    <span class="p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" name="filtro"
-                            [(ngModel)]="elasticQuery.value" />
-                        <label>Nome paciente</label>
-                    </span>
+                <div class="p-col-12 p-md3">
+
                 </div>
-                <div class="p-grid p-col-12">
-                    <div class="p-grid p-col-12">
-                        <div class="p-col-3">
-                            <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
-                                bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
-                        </div>
-                        <div class="p-col-3">
-                            <button pButton type="button" label="Limpar" bTooltip="Limpar pesquisa de triagem."
-                                (click)="limparPesquisa()"></button>
-                        </div>
-                        <div class="p-col-3">
-                            <button pButton type="button" label="Nova Triagem" icon="ui-icon-add"
-                                routerLink="/triagem/formulario" bTooltip="Cadastrar nova Triagem."></button>
-                        </div>
-                    </div>
-                    <div class="p-col-12 p-md3"></div>
                     <basis-datatable [url]="searchUrl" [showPaginationFooter]="true"
                         [rowsPerPageOptions]="rowsPerPageOptions" (buttonClick)="onClick($event)">
                         <p-column header="Nome do Paciente" field="paciente.nome">
@@ -74,7 +81,7 @@
                         <button name="export" pButton textAlign="right" type="button" label="Exportar"
                             icon="pi pi-upload" bTooltip="Exportar arquivo"></button>
                     </div>
-                </div>
             </div>
         </div>
     </div>
+</div>

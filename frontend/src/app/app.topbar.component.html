@@ -45,18 +45,14 @@
                                 <span>&nbsp; Diário de Erros</span>
                             </a>
                         </li>
-                        <li class="layout-topbar-action-item">
-                            <a class="p-d-flex p-flex-row p-ai-center" pRipple>
-                                <i class="pi pi-power-off"
-                                    [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
-                                <span>&nbsp; Sair</span>
-
-                            </a>
+                        <li>
+                            <button _ngcontent-dxo-c144="" pbutton="" pripple="" type="button" icon="pi pi-sliders-h" class="p-button-rounded p-button-text p-button-plain p-mr-1 p-button p-component p-button-icon-only" ng-reflect-icon="pi pi-sliders-h" title="Habilitar alto contraste"><span class="p-button-icon pi pi-sliders-h" aria-hidden="true"></span><span aria-hidden="true" class="p-button-label">&amp;nbsp;</span></button>
                         </li>
                     </ul>
                 </li>
                 <li class="layout-topbar-item">
-                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
+                        [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}">
                         <img src="../assets/layout/images/sair.png">
                     </a>
                 </li>

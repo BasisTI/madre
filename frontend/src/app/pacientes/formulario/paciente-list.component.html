@@ -11,8 +11,8 @@
 
 <div class="card card-w-title">
     <nCrudList [form]="paciente" [datatableParams]="datatableParams">
-        <p-column header="Prontuário" field="prontuario"></p-column>
-            <a><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a>
+        <p-column header="Prontuário" icon="" field="prontuario">
+        </p-column>
             <p-column header="Nome" field="nome"></p-column>
             <p-column header="Nome da Mãe" field="genitores">
                 <ng-template let-data="rowData" pTemplate="body">

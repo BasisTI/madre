@@ -459,7 +459,7 @@ body .p-overlay-badge .p-badge {
 }
 
 .teal-color {
-  color: #009688 !important;
+  color: #0267B0 !important;
 }
 
 .cyan-color {
@@ -531,7 +531,7 @@ body .p-overlay-badge .p-badge {
 }
 
 .teal-bgcolor {
-  background-color: #009688 !important;
+  background-color: #0267B0 !important;
 }
 
 .cyan-bgcolor {
@@ -1624,9 +1624,6 @@ body .p-overlay-badge .p-badge {
   color: #ffffff;
   font-size: 2.5rem;
 }
-.layout-topbar-teal .layout-topbar .layout-topbar-left {
-  background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
-}
 .layout-topbar-teal .layout-topbar .layout-topbar-right .layout-topbar-actions-left .layout-megamenu {
   background: none;
 }
@@ -2622,15 +2619,9 @@ body .p-overlay-badge .p-badge {
   transition: all 0.2s;
   transform: rotate(-180deg);
 }
-.menu-wrapper .layout-menu-container .layout-menu li > ul {
-  
-}
 .menu-wrapper .layout-menu-container .layout-menu li > ul li ul {
   padding: 0 0 0.25rem;
   overflow: hidden;
-}
-.menu-wrapper .layout-menu-container .layout-menu li > ul > li {
-  
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul > li.layout-root-menuitem > a {
   display: flex;
@@ -2865,16 +2856,16 @@ body .p-overlay-badge .p-badge {
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > div .layout-menuitem-text {
   color: #657380;
 }
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a:hover {
+  background: #02487B;
+  color: white;
+}
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul {
   background-color: #FDFEFF;
 }
 /*.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a {
   color: var(--primary-menu-text-color);
 }*/
-.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a i {
-  color: #02487B;
-
-}
 .icon-home {
   background: url(../images/icon-home.png) no-repeat; 
   width: 34px;
@@ -2915,13 +2906,13 @@ body .p-overlay-badge .p-badge {
   width: 34px;
   height: 34px;
 }
-.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a:hover {
-  background: #C3E6FF99;
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a > ul > li > a {
+  background: #1FAAEE;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a {
-  background-color: #C3E6FF99;
+  background: #C3E6FF99;
+  color: #02487B;
 }
-
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a > i {
   color: var(--primary-menu-text-color);
 }
@@ -4453,10 +4444,8 @@ body a {
     background-color: transparent;
   }
 }
-.layout-breadcrumb-container {
-  background-color: #ffffff;
-}
-.layout-breadcrumb-container .layout-breadcrumb {
+
+/*.layout-breadcrumb-container .layout-breadcrumb {
   background: transparent;
   border: 0 none;
   border-radius: 0;
@@ -4464,7 +4453,7 @@ body a {
 .layout-breadcrumb-container .layout-breadcrumb-buttons .p-button {
   width: 2.5rem;
   height: 2.5rem;
-}
+}*/
 
 /* Add your customizations of layout here */
 
