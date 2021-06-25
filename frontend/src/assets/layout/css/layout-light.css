@@ -4460,3 +4460,9 @@ body a {
 .fa fa-bars {
   font-size: x-large;
 }
+
+.button-margin {
+  display: inline;
+  margin-left: 5px;
+  margin-top: 5px;
+}

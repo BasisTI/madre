@@ -1,6 +1,6 @@
 <h1>Pesquisa de Paciente</h1>
 
-<div class="card card-w-title">
+<div class="card">
     <div nForm [formGroup]="paciente">
         <div class="p-grid p-fluid p-mb-5">
             <div nInputText label="Nome paciente" formControlName="nome" class="p-col-12" style="width: 35%"></div>
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="card card-w-title">
+<div class="card">
     <nCrudList [form]="paciente" [datatableParams]="datatableParams">
         <p-column header="Prontuário" icon="" field="prontuario">
         </p-column>

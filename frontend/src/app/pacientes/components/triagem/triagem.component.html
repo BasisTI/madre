@@ -2,27 +2,23 @@
 
 <div class="card">
     <div class="p-md-12">
-        <span class="p-float-label" style="margin-top: 5px;">
+        <span class="p-float-label" style="margin-top: 5px; display: inline-block;">
             <input type="text" pInputText class="ui-inputtext" name="filtro"
                 [(ngModel)]="elasticQuery.value" />
             <label>Nome paciente</label>
         </span>
-    </div>
-    <div class="p-grid p-col-12">
-        <div class="p-grid p-col-12">
-            <div class="p-col-3">
+            <div class="button-margin">
                 <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
                     bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
             </div>
-            <div class="p-col-3">
+            <div class="button-margin">
                 <button pButton type="button" label="Limpar" bTooltip="Limpar pesquisa de triagem."
                     (click)="limparPesquisa()"></button>
             </div>
-            <div class="p-col-3">
+            <div class="button-margin">
                 <button pButton type="button" label="Nova Triagem" icon="ui-icon-add"
                     routerLink="/triagem/formulario" bTooltip="Cadastrar nova Triagem."></button>
             </div>
-        </div>
     </div>
 </div>
 
@@ -72,6 +68,9 @@
                                 }" [pTooltip]="triagem[col.field]"></div>
                                 </span>
                             </ng-template>
+                        </p-column>
+                        <p-column header="Ações" field="acoes">
+                            
                         </p-column>
                     </basis-datatable>
                     <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não">
