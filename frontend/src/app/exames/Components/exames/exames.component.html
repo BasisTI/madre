@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="label">
+        <h5 class="Title">Exames</h5>
+    </div>
+    <div class="TableDiv">
+        <p-tabView class="tableContent">
+            <p-tabPanel header="por Exames">
+                <div class="form">
+                    <div class="data-field-1">
+                        <p-radioButton class="radial-button" name="filter" label="Pesquisar pelo primeiro nome" value="val1" [(ngModel)]="selectedValue"></p-radioButton>
+                        <p-radioButton class="radial-button" name="filter" label="Pesquisar pelo nome completo" value="val2" [(ngModel)]="selectedValue"></p-radioButton>
+                    </div>
+                    <div class="data-field-2">
+                        <p-checkbox [(ngModel)]="value" label="Filtrar pro unidade funcional" [binary]="true"></p-checkbox>
+                    </div>
+                </div>
+            </p-tabPanel>   
+            <p-tabPanel header="por Lote">
+                Content 2
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

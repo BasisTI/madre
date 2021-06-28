@@ -61,8 +61,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     @ViewChild('scrollPanel', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
 
     constructor(
-        public renderer: Renderer2, 
-        public zone: NgZone, 
+        public renderer: Renderer2,
+        public zone: NgZone,
         public menuService: MenusService,
         private primengConfig: PrimeNGConfig,
         private router: Router) { }
@@ -139,7 +139,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         },
                     ],
                 },
-    
+
                 {
                     label: 'Prescrição',
                     icon: 'icon-prescricao',
@@ -300,6 +300,22 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
+                    ],
+                },
+                {
+                    label: 'Exames',
+                    icon: 'person_add',
+                    items: [
+                        {
+                            label: 'Solicitar Exame',
+                            icon: 'add',
+                            routerLink: ['/exames/solicitar-exame'],
+                        },
+                        {
+                            label: 'Atendimento Diverso',
+                            icon: 'add',
+                            routerLink: ['/exames'],
+                        }
                     ],
                 },
             ]}

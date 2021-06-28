@@ -1,0 +1,63 @@
+.container {
+  width: 100%;
+  height: min-content;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 2px 2px #ccc;
+  border-width: 1px;
+  background-color: blue;
+}
+
+.label {
+  width: 95%;
+  height: min-content;
+  align-items: center;
+}
+
+.title {
+  font-size: 1rem;
+  margin-left: 15px;
+  margin: 0px;
+}
+
+.tableContent {
+  width: 100%;
+  height: 100%;
+}
+
+.TableDiv {
+  width: 100%;
+  height: 75%;
+}
+
+.form {
+  width: 100%;
+  height: min-content;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.data-field-1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.data-field-2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.data-field-3 {
+
+}
+
+.radial-button {
+  margin-right: 25px;
+}

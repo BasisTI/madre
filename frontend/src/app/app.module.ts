@@ -37,6 +37,7 @@ import { SuprimentosModule } from './suprimentos/suprimentos.module';
 import { environment } from '../environments/environment';
 import { ConsultaModule } from './consulta/consulta.module';
 import { PacienteModule } from './pacientes/formulario/paciente.module';
+import { ExamesComponent } from './exames/Components/exames/exames.component';
 
 @NgModule({
     imports: [
@@ -73,6 +74,7 @@ import { PacienteModule } from './pacientes/formulario/paciente.module';
         AppInlineProfileComponent,
         DiarioErrosComponent,
         PreCadastroComponent,
+        ExamesComponent,
     ],
     providers: [
         {

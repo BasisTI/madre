@@ -44,6 +44,10 @@ export const routes: Routes = [
         loadChildren: 'src/app/suprimentos/suprimentos.module#SuprimentosModule',
         data: { breadcrumb: 'Suprimentos' },
     },
+    {
+        path: 'exames',
+        loadChildren: 'src/app/exames/exames.module#ExamesModule',
+    },
 ];
 
 export const AppRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes);
