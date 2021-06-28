@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 import java.io.Serializable;
 
 /**
@@ -58,7 +59,6 @@ public class Clinica implements Serializable {
 
     @Column(name = "idade_maxima_ambulatorio")
     private Integer idadeMaximaAmbulatorio;
-
 
     public Clinica descricao(String descricao) {
         this.descricao = descricao;
