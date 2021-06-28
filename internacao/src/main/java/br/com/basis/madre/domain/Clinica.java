@@ -14,8 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+
 
 import java.io.Serializable;
 
@@ -58,7 +57,7 @@ public class Clinica implements Serializable {
     @Column(name = "idade_minima_ambulatorio")
     private Integer idadeMinimaAmbulatorio;
 
-    @Column(name = "idade_maxima_ambulatorio") @Max(50L)
+    @Column(name = "idade_maxima_ambulatorio")
     private Integer idadeMaximaAmbulatorio;
 
     public Clinica descricao(String descricao) {
