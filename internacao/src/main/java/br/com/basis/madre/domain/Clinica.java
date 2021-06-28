@@ -50,19 +50,15 @@ public class Clinica implements Serializable {
     private String numeroSUS;
 
     @Column(name = "idade_minima_internacao")
-    @Min(1L)
     private Integer idadeMinimaInternacao;
 
     @Column(name = "idade_maxima_internacao")
-    @Max(50L)
     private Integer idadeMaximaInternacao;
 
     @Column(name = "idade_minima_ambulatorio")
-    @Min(1L)
     private Integer idadeMinimaAmbulatorio;
 
-    @Column(name = "idade_maxima_ambulatorio")
-    @Max(50L)
+    @Column(name = "idade_maxima_ambulatorio") @Max(50L)
     private Integer idadeMaximaAmbulatorio;
 
     public Clinica descricao(String descricao) {
