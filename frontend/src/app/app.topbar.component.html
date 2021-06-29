@@ -1,11 +1,19 @@
 <div class="layout-topbar p-shadow-4">
+    <div>
+        <img class="barra" src="../assets/layout/images/barra.png">
+        
+    </div>
+
     <div class="layout-topbar-left">
         <a class="layout-topbar-logo" routerLink="/">
-            <img id="app-logo" src="assets/layout/images/logo.jpg" alt="madre" style="height: 2.25rem">
+            <img class="barra" src="../assets/layout/images/logo2.png">
         </a>
 
-        <a class="layout-menu-button p-shadow-6" (click)="app.onMenuButtonClick($event)" pRipple>
-            <i class="pi pi-chevron-right"></i>
+
+
+        <a class="layout-menu-button " (click)="app.onMenuButtonClick($event)" pRipple>
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            
         </a>
 
         <a class="layout-topbar-mobile-button" (click)="app.onTopbarMobileButtonClick($event)" pRipple>
@@ -18,8 +26,20 @@
         <div class="layout-topbar-actions-right">
             <ul class="layout-topbar-items">
                 <li class="layout-topbar-item">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                        <img src="../assets/layout/images/sino.png">
+                    </a>
+                </li>
+                
+                <li class="layout-topbar-item">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" >
+                        <img src="../assets/layout/images/usuario.png">
+                    </a>
+                </li>
+
+                <li class="layout-topbar-item">
                     <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
-                        <i class="pi pi-cog" style="font-size: 2rem"></i>
+                        <img src="../assets/layout/images/engrenagem.png">
                     </a>
                     <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="app.activeTopbarItem === 'profile'">
                         <li class="layout-topbar-action-item">
@@ -35,6 +55,11 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="layout-topbar-item">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                        <img src="../assets/layout/images/sair.png">
+                    </a>
                 </li>
             </ul>
         </div>

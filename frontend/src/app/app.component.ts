@@ -72,10 +72,10 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.primengConfig.ripple = true;
         this.menuService.itens = [
             { label: '', items: [
-                { label: 'Dashboard', icon: 'material-icons dashboard', routerLink: ['/'] },
+                { label: 'HOME', icon: 'home', routerLink: ['/'] },
                 {
                     label: 'Pacientes',
-                    icon: 'person_add',
+                    icon: 'pacientes',
                     items: [
                         {
                             label: 'Pesquisa de Paciente',
@@ -91,7 +91,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Triagem',
-                    icon: 'local_hospital',
+                    icon: 'triagem',
                     items: [
                         {
                             label: 'Pré-Cadastro',
@@ -118,7 +118,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Marcar Consultas',
-                    icon: 'watch_later',
+                    icon: 'marcar-consultas',
                     items: [
                         {
                             label: 'Listar Consultas',
@@ -140,7 +140,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     
                 {
                     label: 'Prescrição',
-                    icon: 'assignment_ind',
+                    icon: 'prescrição',
                     items: [
                         {
                             label: 'Médica',
@@ -157,7 +157,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Internação',
-                    icon: 'airline_seat_individual_suite',
+                    icon: 'internação',
                     items: [
                         {
                             label: 'Solicitar Internação',
@@ -209,7 +209,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Farmacia',
-                    icon: 'local_pharmacy',
+                    icon: 'farmacia',
                     items: [
                         {
                             label: 'Dispensação medica',
@@ -230,7 +230,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Suprimentos',
-                    icon: 'local_shipping',
+                    icon: 'suprimentos',
                     items: [
                         {
                             label: 'Almoxarifado',

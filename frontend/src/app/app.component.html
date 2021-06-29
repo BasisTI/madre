@@ -7,19 +7,23 @@
         'layout-menu-mobile-active': mobileMenuActive,
         'layout-topbar-mobile-active': mobileTopbarActive,
         'layout-rtl': config.isRTL}" [class]="'layout-menu-' + config.menuTheme + ' layout-topbar-' + config.topbarTheme">
-
-    <app-topbar></app-topbar>
-
-    <div class="menu-wrapper" (click)="onMenuClick($event)">
-        <div class="layout-menu-container">
-            <app-menu></app-menu>
+        
+        <app-topbar></app-topbar>
+        
+        <img class="marca" src="../assets/layout/images/logo-madre-cinza-bg 1.png">
+        
+        
+        
+        <div class="menu-wrapper" (click)="onMenuClick($event)">
+            <div class="layout-menu-container">
+                <app-menu></app-menu>
+            </div>
         </div>
-    </div>
-
-    <div class="layout-main">
-        <breadcrumb></breadcrumb>
-
-        <div class="layout-content">
+        
+        <div class="layout-main">
+            <breadcrumb></breadcrumb>
+            
+            <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>

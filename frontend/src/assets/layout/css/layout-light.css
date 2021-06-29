@@ -438,7 +438,7 @@ body .p-overlay-badge .p-badge {
 }
 
 .teal-color {
-  color: #009688 !important;
+  color: #02487B !important;
 }
 
 .cyan-color {
@@ -661,6 +661,7 @@ body .p-overlay-badge .p-badge {
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-left .layout-topbar-logo {
   padding-right: 0;
   padding-left: 1.25rem;
+  
 }
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-left .layout-menu-button {
   left: auto;
@@ -750,25 +751,29 @@ body .p-overlay-badge .p-badge {
   position: relative;
 }
 .layout-topbar .layout-topbar-left .layout-topbar-logo {
-  width: 17rem;
+  
+  width: 59rem;
   height: 100%;
   padding-right: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 36px;
+  margin-top: -45px;
 }
 .layout-topbar .layout-topbar-left .layout-menu-button {
   position: absolute;
   top: 50%;
-  left: 15.75rem;
-  width: 2.5rem;
+  left: 1.75rem;
+  width: 0.5rem;
   height: 2.5rem;
   margin-top: -1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 63%;
+  font-size: 31px;
 }
 .layout-topbar .layout-topbar-left .layout-menu-button i {
   transition: transform 0.2s;
@@ -1554,12 +1559,13 @@ body .p-overlay-badge .p-badge {
 }
 
 .layout-topbar-teal {
-  --topbar-bg-color:#00796B;
+  --topbar-bg-color:#1FAAEE;
   --topbar-text-color: #ffffff;
 }
 .layout-topbar-teal .layout-topbar {
   color: #ffffff;
-  background-color: #00796B;
+  background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
+  ;
 }
 .layout-topbar-teal .layout-topbar a {
   color: #ffffff;
@@ -1569,14 +1575,14 @@ body .p-overlay-badge .p-badge {
   transition: background-color 0.2s;
 }
 .layout-topbar-teal .layout-topbar .layout-topbar-left {
-  background-color: #004D40;
+  background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
 }
 .layout-topbar-teal .layout-topbar .layout-topbar-left .layout-menu-button {
   color: #ffffff;
-  background-color: #D32F2F;
+    ;
 }
 .layout-topbar-teal .layout-topbar .layout-topbar-left .layout-menu-button:hover {
-  background-color: rgba(211, 47, 47, 0.7);
+  background: linear-gradient(180deg, #0272C3 0%, #0267B0 100%);
   transition: background-color 0.2s;
 }
 .layout-topbar-teal .layout-topbar .layout-topbar-right .layout-topbar-actions-left .layout-megamenu {
@@ -2808,7 +2814,7 @@ body .p-overlay-badge .p-badge {
 }
 .layout-menu-light {
   --menu-bg-color:#FDFEFF;
-  --menu-text-color: #657380;
+  --menu-text-color: #02487B;
 }
 .layout-menu-light .menu-wrapper {
   background-color: #FDFEFF;
@@ -2821,16 +2827,17 @@ body .p-overlay-badge .p-badge {
   background-color: #FDFEFF;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a {
-  color: #515C66;
+  color: #000508;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a i {
-  color: #515C66;
+  color: #ffffff;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(2, 103, 176, 1);
+  color: white;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a {
-  background-color: var(--primary-lightest-color);
+  background-color: #C3E6FF;
   color: var(--primary-menu-text-color);
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a > i {
@@ -4369,3 +4376,76 @@ body a {
 }
 
 /* Add your customizations of layout here */
+
+.home {
+  background: url(../images/icon-home\(1\).png) no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+  .pacientes {
+  background: url(../images/icon-pacientes\(1\).png) no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+
+.triagem {
+  background: url(../images/icon-triagem.png) no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+
+.marcar-consultas {
+  background: url(../images/icon-marcar-consultas.png) no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+
+.prescrição {
+  background: url(../images/icon-prescricao.png) no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+
+.internação {
+  background: url(../images/icon-internacao.png)no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+
+.farmacia {
+  background: url(../images/icon-farmacia.png)no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+}
+.suprimentos {
+  background: url(../images/icon-suprimentos.png)no-repeat;
+  height: 34px;
+  width: 34px;
+  left: 13px;
+  top: 73px;
+  border-radius: 0px;
+
+}
+
+}

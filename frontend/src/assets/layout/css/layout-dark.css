@@ -756,6 +756,7 @@ body .p-overlay-badge .p-badge {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 .layout-topbar .layout-topbar-left .layout-menu-button {
   position: absolute;
@@ -4240,8 +4241,8 @@ body a {
   min-height: 100vh;
 }
 .layout-wrapper .layout-main .layout-content {
-  padding: 2rem;
-  padding-top: 1rem;
+  padding: 36rem;
+  padding-top: 12rem;
   flex: 1 1 0;
 }
 
