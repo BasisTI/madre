@@ -4493,7 +4493,6 @@ body a {
   flex-direction: row;
   justify-content: flex-end;
   height: 100%;
-  cursor: pointer;
   margin: 0;
 }
 
@@ -4589,3 +4588,13 @@ body a {
 input text {
   width: 100%;
 }
+
+.icon-barra {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
