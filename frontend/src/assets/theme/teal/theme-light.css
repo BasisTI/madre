@@ -847,7 +847,7 @@ p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
   background: rgba(0, 150, 136, 0.5);
 }
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
-  background: #0267B0;
+  background: #00A7FF;
 }
 .p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
   background: rgba(0, 150, 136, 0.5);
@@ -5833,6 +5833,7 @@ p-inputnumber.ng-dirty.ng-invalid .p-inputtext:enabled:focus {
 .p-input-filled .p-float-label .p-inputtext {
   padding-top: 1.25rem;
   padding-bottom: 0.25rem;
+  width: 100%;
 }
 .p-input-filled .p-float-label input:focus ~ label,
 .p-input-filled .p-float-label input.p-filled ~ label,

@@ -16,6 +16,18 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 /* Add your variable customizations of layout here */
+.sub-title {
+  height: 20px;
+  left: 105px;
+  right: 849px;
+  top: calc(50% - 20px/2 - 401px);
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 80%;
+  color: #40556B;
+}
 h1, h2, h3, h4, h5, h6 {
   margin: 1.5rem 0 1rem 0;
   font-family: inherit;
@@ -23,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   color: inherit;
 }
-h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+h1:first-child {
   margin-top: 0;
   font-family: Open Sans;
   font-style: normal;
@@ -4465,4 +4477,115 @@ body a {
   display: inline;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+.item-paciente-list {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 5px;
+}
+
+.itens-paciente-list {
+  list-style: none;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+}
+
+.classificacao-de-risco {
+  list-style: none;
+  padding: 0;
+}
+
+.classificacao-de-risco li {
+  text-align: center;
+  width: 17%;
+  vertical-align: top;
+  margin: 0 1.5%;
+  padding: 10px 0;
+  background: #F5F5F5;
+  box-sizing: border-box;
+  border: 2px solid #D4DDE5;
+  border-radius: 4px;
+  display: inline-block;
+  box-shadow: 0px 6px 18px rgb(0 0 0 / 6%);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.classificacao-de-risco h3 {
+  font-family: Open Sans;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 45px;
+  letter-spacing: 0px;
+  text-align: center;
+  text-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
+}
+
+.classificacao-de-risco li:hover h3{
+  color: white;
+}
+
+.classificacao-de-risco-descricao {
+  font-size: 14px;
+  background: #E3E3E3;
+  box-sizing: border-box;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.nao-urgente:hover {
+  background: linear-gradient(112.64deg, #1FAAEE -0.07%, #0982BD 100%), #F5F5F5;
+  border: solid #0982BD;
+}
+
+.nao-urgente:hover p {
+  background: #0673A8;
+}
+
+.pouco-urgente:hover {
+  background: linear-gradient(112.64deg, #33A987 -0.07%, #088762 100%), #F5F5F5;
+  border: solid #088762;
+}
+
+.pouco-urgente:hover p {
+  background: #047151;
+}
+
+.urgente:hover {
+  background: linear-gradient(112.64deg, #FCE300 -0.07%, #FCC605 100%), #F5F5F5;
+  border: solid #E5B302;
+}
+
+.urgente:hover p {
+  background: #E6B302;
+}
+
+.muito-urgente:hover {
+  background: linear-gradient(112.64deg, #FC8509 -0.07%, #CC6403 100%), #F5F5F5;
+  border: #CC6403;
+}
+
+.muito-urgente:hover p {
+  background: #B95A02;
+}
+
+.emergencia:hover {
+  background: linear-gradient(112.64deg, #E22526 -0.07%, #B60832 100%), #F5F5F5;
+  border: #AD0404;
+}
+
+.emergencia:hover p {
+  background: #9B0303;
+}
+
+input text {
+  width: 100%;
 }

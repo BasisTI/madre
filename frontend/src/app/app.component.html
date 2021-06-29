@@ -9,9 +9,7 @@
         'layout-rtl': config.isRTL}" [class]="'layout-menu-' + config.menuTheme + ' layout-topbar-' + config.topbarTheme">
 
        
-    <app-topbar>
-    </app-topbar>
-
+    <app-topbar></app-topbar>
 
     <div class="menu-wrapper" (click)="onMenuClick($event)">
         <div class="layout-menu-container">
@@ -20,7 +18,6 @@
     </div>
 
     <div class="layout-main">
-        
         <div class="layout-content">
             <!-- <breadcrumb></breadcrumb> -->
             <router-outlet></router-outlet>
