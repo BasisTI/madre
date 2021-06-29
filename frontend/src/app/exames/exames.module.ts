@@ -6,10 +6,6 @@ import {ExamesComponent} from "./Components/exames/exames.component";
 import {SharedModule} from "@shared/shared.module";
 import {RouterModule} from "@angular/router";
 
-import {TabViewModule} from 'primeng/tabview';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {CheckboxModule} from 'primeng/checkbox';
-
 
 @NgModule({
   declarations: [
@@ -19,9 +15,6 @@ import {CheckboxModule} from 'primeng/checkbox';
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    TabViewModule,
-    RadioButtonModule,
-    CheckboxModule,
   ],
 })
 export class ExamesModule { }

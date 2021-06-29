@@ -1,15 +1,20 @@
 .container {
-  width: 100%;
-  height: min-content;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 2px 2px #ccc;
-  border-width: 1px;
+  display: grid;
+  grid-column: 50%;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: 12;
+  row-gap: 20px;
+}
+
+.headerDiv {
   background-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.dropdown {
+  width: 40%;
 }
 
 .label {
@@ -31,31 +36,34 @@
 
 .TableDiv {
   width: 100%;
-  height: 75%;
 }
 
 .form {
   width: 100%;
   height: min-content;
-  background-color: green;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.data-field-1 {
-  display: flex;
-  flex-direction: row;
+.field-1 {
+  display: grid;
+  grid-template-columns: 25% 25%;
 }
 
-.data-field-2 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 25px;
+field-2 {
+  display: grid;
+  grid-template-columns: 10% 10% 10%;
 }
 
-.data-field-3 {
+.field-3 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 
+.add-button {
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
 .radial-button {
