@@ -29,5 +29,6 @@ export class PacienteListComponent {
     pesquisar(){
         this.datatable.refresh(this.elasticQuery.query);
     }
+    
 
 }

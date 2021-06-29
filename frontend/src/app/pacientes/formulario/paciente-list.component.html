@@ -5,13 +5,11 @@
         <div class="p-md-12 p-d-inline">
             <div class="p-md-6" style="display: flex; width: 100%;">
                 <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%;">
-                    <input type="text" pInputText class="ui-inputtext" name="filtro"
-                        [(ngModel)]="elasticQuery.value" />
+                    <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
                     <label>Nome paciente</label>
                 </span>
                 <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%;">
-                    <input type="text" pInputText class="ui-inputtext" name="filtro"
-                        [(ngModel)]="elasticQuery.value" />
+                    <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
                     <label>Prontuario paciente</label>
                 </span>
                 <div class="button-margin">
@@ -37,7 +35,7 @@
             </li>
             <li class="item-paciente-list">
                 <button class="icon-barra" pTooltip="Download" tooltipPosition="top">
-                   <img src="../../../assets/layout/images/icon-download.png"> 
+                    <img src="../../../assets/layout/images/icon-download.png">
                 </button>
             </li>
             <li class="item-paciente-list">
@@ -73,20 +71,60 @@
             </li>
         </ul>
     </div>
-    <nCrudList [form]="paciente" [datatableParams]="datatableParams">
+   <!-- <basis-datatable [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions"
+        (buttonClick)="onClick($event)">
+        <p-column header="Nome do Paciente" field="paciente.nome">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                {{ triagem?.paciente?.nome === undefined ? "" : triagem?.paciente?.nome}}
+            </ng-template>
+        </p-column>
+        <p-column header="Nome Social" field="paciente.nomeSocial">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                {{ triagem?.paciente?.nomeSocial === undefined ? "" : triagem?.paciente?.nomeSocial }}
+            </ng-template>
+        </p-column>
+        <p-column header="Nome da Mãe" field="paciente.genitores.nomeDaMae">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                {{ triagem?.paciente?.genitores?.nomeDaMae === undefined ? "" :
+                triagem?.paciente?.genitores?.nomeDaMae}}
+            </ng-template>
+        </p-column>
+        <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                {{ triagem?.dataHoraDoAtendimento | date: 'dd/MM/yyyy - HH:mm' }}
+            </ng-template>
+        </p-column>
+        <p-column header="Classificação" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                <span>
+                    <div [ngClass]="{
+                                    emergencia: triagem[col.field] == 'EMERGENCIA',
+                                    muitoUrgente: triagem[col.field] == 'MUITO_URGENTE',
+                                    urgente: triagem[col.field] == 'URGENTE',
+                                    poucoUrgente: triagem[col.field] == 'POUCO_URGENTE',
+                                    naoUrgente: triagem[col.field] == 'NAO_URGENTE'
+                                }" [pTooltip]="triagem[col.field]"></div>
+                </span>
+            </ng-template>
+        </p-column>
+        <p-column header="Ações" field="acoes">
+
+        </p-column>
+    </basis-datatable>-->
+    <nCrudList [disableSave]="true" [form]="paciente" [datatableParams]="datatableParams">
         <p-column header="Prontuário" icon="" field="prontuario"></p-column>
-            <p-column header="Nome" field="nome"></p-column>
-            <p-column header="Nome da Mãe" field="genitores">
-                <ng-template let-data="rowData" pTemplate="body">
-                    {{ data['genitores']?.nomeDaMae }}
-                </ng-template>
-            </p-column>
-            <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
-            <p-column header="Nº Cartão SUS" field="cartaoSUS">
-                <ng-template let-data="rowData" pTemplate="body">
-                    {{ data['cartaoSUS']?.numero }}
-                </ng-template>
-            </p-column>
-            <p-column header="Ações" field=""></p-column>
+        <p-column header="Nome" field="nome"></p-column>
+        <p-column header="Nome da Mãe" field="genitores">
+            <ng-template let-data="rowData" pTemplate="body">
+                {{ data['genitores']?.nomeDaMae }}
+            </ng-template>
+        </p-column>
+        <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
+        <p-column header="Nº Cartão SUS" field="cartaoSUS">
+            <ng-template let-data="rowData" pTemplate="body">
+                {{ data['cartaoSUS']?.numero }}
+            </ng-template>
+        </p-column>
+        <p-column header="Ações" field=""></p-column>
     </nCrudList>
 </div>
