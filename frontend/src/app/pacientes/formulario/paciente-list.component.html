@@ -13,7 +13,7 @@
                     <label>Prontuario paciente</label>
                 </span>
                 <div class="button-margin">
-                    <button pButton type="submit" label="Pesquisar" icon="ui-icon-search"
+                    <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
                         bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
                 </div>
                 <div class="button-margin">
@@ -71,39 +71,10 @@
             </li>
         </ul>
     </div>
-    <!-- <basis-datatable disableEdit="disabled" disableView="disabled" disableDelete="disabled" [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
-        <p-column header="Prontuario" field="paciente.prontuario">
-            <ng-template let-col="col" let-data="rowData" pTemplate="body">
-                {{paciente?.prontuario === undefined ? "" : paciente?.prontuario}}
-            </ng-template>
-        </p-column>
-        <p-column header="Nome" field="paciente.nome">
-            <ng-template let-col="col" let-data="rowData" pTemplate="body">
-                {{ paciente?.nome === undefined ? "" : paciente?.nome }}
-            </ng-template>
-        </p-column>
-        <p-column header="Nome da Mãe" field="paciente.genitores.nomeDaMae">
-            <ng-template let-col="col" let-data="rowData" pTemplate="body">
-                {{ paciente?.genitores?.nomeDaMae === undefined ? "" : paciente?.genitores?.nomeDaMae}}
-            </ng-template>
-        </p-column>
-        <p-column header="Data de Nascimento" field="paciente.dataDeNascimento">
-            <ng-template let-col="col" let-data="rowData" pTemplate="body">
-                {{ paciente?.dataDeNascimento | date: 'dd/MM/yyyy' }}
-            </ng-template>
-        </p-column>
-        <p-column header="Nº Cartão SUS" field="paciente.cartaoSUS">
-            <ng-template let-col="col" let-data="rowData" pTemplate="body">
-               {{ paciente?.cartaoSUS === undefined ? "" : paciente?.cartaoSUS }}
-            </ng-template>
-        </p-column>
-        <p-column header="Ações" field="acoes">
-
-        </p-column>
-    </basis-datatable> -->
-
-    <nCrudList [disableSave]="true" [form]="paciente" [datatableParams]="datatableParams">
-        <p-column header="Prontuário" icon="" field="prontuario"></p-column>
+    
+    <basis-datatable disableEdit="disabled" disableView="disabled" disableDelete="disabled" [url]="searchUrl"
+        [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
+        <p-column header="Prontuário"field="prontuario"></p-column>
         <p-column header="Nome" field="nome"></p-column>
         <p-column header="Nome da Mãe" field="genitores">
             <ng-template let-data="rowData" pTemplate="body">
@@ -117,7 +88,5 @@
             </ng-template>
         </p-column>
         <p-column header="Ações" field=""></p-column>
-    </nCrudList>
-    
-    
+    </basis-datatable>
 </div>

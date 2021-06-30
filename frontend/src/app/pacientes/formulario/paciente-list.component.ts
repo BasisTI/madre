@@ -3,12 +3,15 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { DatatableParams } from "@nuvem/primeng-components";
 import { ElasticQuery } from '@shared/elastic-query';
 import { DatatableComponent, DatatableClickEvent, PageNotificationService } from '@nuvem/primeng-components';
+import { AfterContentInit } from "@angular/core";
 
 @Component({
     selector: 'paciente-list',
     templateUrl: './paciente-list.component.html',
 })
-export class PacienteListComponent {
+export class PacienteListComponent implements AfterContentInit {
+
+
 
     elasticQuery: ElasticQuery = new ElasticQuery();
     
@@ -25,6 +28,9 @@ export class PacienteListComponent {
 
     constructor(private fb: FormBuilder) {
     }
+    ngAfterContentInit(): void {
+        throw new Error("Method not implemented.");
+    }
 
     searchUrl:string = 'pacientes/api/_search/pacientes';
 
@@ -32,6 +38,10 @@ export class PacienteListComponent {
 
     pesquisar(){
         this.datatable.refresh(this.elasticQuery.query);
+    }
+
+    ngAfterViewInit(): void {
+        this.pesquisar();
     }
     
 

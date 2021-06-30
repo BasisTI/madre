@@ -5161,7 +5161,7 @@ p-autocomplete.ng-dirty.ng-invalid .p-autocomplete .p-autocomplete-multiple-cont
 }
 .p-button:enabled:focus {
   background: rgba(0, 150, 136, 0.76);
-}
+}*/
 .p-button:enabled:active {
   background: rgba(0, 150, 136, 0.68);
 }
@@ -6186,3 +6186,4 @@ p-multiselect.ng-dirty.ng-invalid .p-multiselect:not(.p-disabled).p-focus {
 }
 
 /* Add your customizations of the theme here */
+
