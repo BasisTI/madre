@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class OcupacaoService extends CrudServiceNuvem<number, Ocupacao> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/ocupacaos?sort=valor', httpClient);
+        super('pacientes/api/ocupacaos', httpClient);
     }
 
     getListaDeOcupacoes(): Observable<Ocupacao[]> {

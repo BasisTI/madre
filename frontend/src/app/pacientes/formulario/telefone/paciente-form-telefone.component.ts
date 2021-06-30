@@ -1,19 +1,24 @@
 import { DDDService } from './ddd.service';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from './../../models/dropdowns/opcoes-de-tipo-de-telefone';
-import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
-import { Component, Input } from "@angular/core";
-import { FormArray, FormBuilder } from "@angular/forms";
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { DatatableClickEvent, BreadcrumbService, DatatableComponent } from '@nuvem/primeng-components';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from "@angular/core";
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
+import { importExpr, THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { DDD } from '../../models/dropdowns/types/DDD';
 
 @Component({
     selector: 'paciente-form-telefone',
     templateUrl: './paciente-form-telefone.component.html',
 })
-export class PacienteTelefoneFormComponent {
+export class PacienteTelefoneFormComponent implements OnInit{
 
     @Input()
-    public telefones: any = FormArray;
+    public telefones: any = [];
+    
+    @ViewChild(DatatableComponent) table: DatatableComponent;
+
+    @Input()
+    public formGroup: FormGroup;
 
     public validaTelefone: boolean;
 
@@ -37,6 +42,15 @@ export class PacienteTelefoneFormComponent {
     constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, public dddService: DDDService) {
     }
 
+    ngOnInit(): void {
+        
+        if(this.formGroup != null){
+            //this.telefones = this.formGroup.get("telefones");
+        }
+        
+    }
+    
+
     adicionarTelefoneALista() {
         if (this.telefone.valid) {
             this.telefone.patchValue({indice: this.telefones.length});
@@ -51,6 +65,7 @@ export class PacienteTelefoneFormComponent {
             });
         }
         this.telefone.reset();
+        this.table.refresh();
     }
 
     datatableClick(event: DatatableClickEvent) {

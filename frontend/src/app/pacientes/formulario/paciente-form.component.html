@@ -1,51 +1,38 @@
 <nCrudForm [form]="paciente" >
-    <div class="p-col-12 p-grid">
-        <p-accordion>
-            <p-accordionTab header="Dados Pessoais" [selected]="true">
-                <paciente-form-dados-pessoais [formGroup]="paciente"></paciente-form-dados-pessoais>
-            </p-accordionTab>
-            <p-accordionTab header="Contatos do Paciente">
-                <paciente-form-telefone [telefones]="paciente.get('telefones')"> </paciente-form-telefone>
-            </p-accordionTab>
-            <p-accordionTab header="Endereço">
-                <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>
-            </p-accordionTab>
-            <p-accordionTab header="Responsável">
-                <paciente-form-responsavel [formGroup]="paciente"></paciente-form-responsavel>
-            </p-accordionTab>
-            <p-accordionTab header="Documentos">
-                <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
-            </p-accordionTab>
-            <p-accordionTab header="Certidão">
-                <paciente-form-certidao [formGroup]="paciente"></paciente-form-certidao>
-            </p-accordionTab>
-            <p-accordionTab header="Cartão SUS">
-                <paciente-form-cartao-sus [formGroup]="paciente"></paciente-form-cartao-sus>
-            </p-accordionTab>
-            <p-accordionTab header="Observação" [formGroup]="paciente">
-                <div class="p-grid p-fluid">
-                    <div class="p-col-12 p-grid">
-                        <div class="p-md-12">
-                            <span class="p-float-label">
-                                <textarea
-                                    formControlName="observacao"
-                                    [rows]="3"
-                                    pInputTextarea
-                                    autoResize="autoResize"
-                                    pTooltip="Informe o observação."
-                                ></textarea>
-                                <label>Observação</label>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+    <p-tabView>
+        <p-tabPanel header="Dados Pessoais">
+            <paciente-form-dados-pessoais [formGroup]="paciente"></paciente-form-dados-pessoais>
+            <paciente-form-certidao [formGroup]="paciente"></paciente-form-certidao>
+            <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
+        </p-tabPanel>
+        <p-tabPanel header="Contatos do Paciente">
+            <paciente-form-telefone [formGroup]="paciente"> </paciente-form-telefone>
+        </p-tabPanel>
+        <p-tabPanel header="Endereço">
+            <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>
+        </p-tabPanel>
+        <p-tabPanel header="Responsável">
+            <paciente-form-responsavel [formGroup]="paciente"></paciente-form-responsavel>
+        </p-tabPanel>
+        <p-tabPanel header="Cartão SUS">
+            <paciente-form-cartao-sus [formGroup]="paciente"></paciente-form-cartao-sus>
+        </p-tabPanel>
+    </p-tabView>
+
+    <div class="card observacao">
+        <h4 class="p-md-6 p-sm-12">Observação</h4>
+        <div class="p-grid p-fluid" [formGroup]="formGroup">
+            <span class="p-float-label p-sm-12">
+                <textarea class = "p-md-2 p-sm-12"
+                    formControlName="observacao"
+                    [rows]="3"
+                    pInputTextarea
+                    autoResize="autoResize"
+                    pTooltip="Informe a observação sobre o paciente"
+                ></textarea>
+                <label>Observação sobre o paciente</label>
+            </span>
+            
+        </div>
     </div>
 </nCrudForm>
-<div class="p-col-12 p-grid" *ngIf = "paciente.get('id').value">
-    <div class="p-md-4 p-sm-12">
-        <button pButton label="Visualizar impressão" (click)="imprimirRelatorioPaciente(paciente.get('id').value)"></button>
-    </div>
-</div>
-
