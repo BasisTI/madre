@@ -7,121 +7,140 @@
     <div class="TableDiv">
         <p-tabView class="tableContent">
             <p-tabPanel header="por Exames">
-                    <span class="container">
-                      <span class="field-1">
+              <div class="container">
+                <span class="data-field-1">
+                  <p-radioButton
+                    class="radial-button"
+                    name="filter"
+                    label="Pesquisar pelo primeiro nome"
+                    value="firstName"
+                    [(ngModel)]="selectedValue"
+                  ></p-radioButton>
+                  
+                  <p-radioButton
+                    class="radial-button"
+                    name="filter"
+                    label="Pesquisar pelo nome completo"
+                    value="fullName"
+                    [(ngModel)]="selectedValue"
+                    style="margin-left: 20px;"
+                  ></p-radioButton>
+                </span>
+                  
+                <span class="data-field-2">
 
-                        <p-radioButton
-                        class="radial-button"
-                        name="filter"
-                        label="Pesquisar pelo primeiro nome"
-                        value="val1"
-                        [(ngModel)]="selectedValue"
-                        ></p-radioButton>
-                        
-                        <p-radioButton
-                        class="radial-button"
-                        name="filter"
-                        label="Pesquisar pelo nome completo"
-                        value="val2"
-                        [(ngModel)]="selectedValue"
-                        ></p-radioButton>
-                      </span>
+                  <p-checkbox
+                    [(ngModel)]="unitCheckbox"
+                    label="Filtrar por unidade funcional"
+                    [binary]="true"
+                    pTooltip="Filtrar busca por exame disponíveis pela unidade funcional vinculada."
+                  ></p-checkbox>
+                  
+                  <label style="margin-bottom: 10px;">Exame:</label>
+                  <p-autoComplete
+                    [(ngModel)]="text"
+                    [suggestions]="options"
+                    (completeMethod)="search($event)"
+                    dropdown="true"
+                    formControlName="Exames"
+                    pTooltip="Selecione um exame"
+                  ></p-autoComplete>
+                </span>
+              
+                <span class="data-field-3">
+                  <p-checkbox
+                    class="urgent-checkbox"
+                    [(ngModel)]="urgentCheck"
+                    label="Urgente"
+                    [binary]="true"
+                  ></p-checkbox>
+                  
+                  <span class="calendar-div">
+                    Data/Hora programada:
+                    <p-calendar
+                      class="calendar-input"
+                      [(ngModel)]="date"
+                      showIcon="true"
+                      icon="pi pi-calendar"
+                      [readonlyInput]="true"
+                      showTime="true"
+                      dateFormat="dd/mm/yy"
+                    ></p-calendar>
+                  </span>
+                    
+                  <div class="dropdown-div">
+                    Situação:
+                    <p-dropdown
+                    [options]="situationDropdown"
+                    [(ngModel)]="selectedSituation"
+                    ></p-dropdown>
+                  </div>
+                </span>
+                
+                <span class="add-button">
+                  <button
+                    pButton
+                    label="Adicionar"
+                    type="button"
+                    icon="pi pi-plus"
+                    iconPos="left"
+                  ></button>
+                </span>
 
-
-                      <p-checkbox
-                        [(ngModel)]="value"
-                        label="Filtrar pro unidade funcional"
-                        [binary]="true"
-                      ></p-checkbox>
-
-                      
-                      <p-autoComplete
-                      [(ngModel)]="text"
-                      [suggestions]="results"
-                      (completeMethod)="search($event)"
-                      dropdown="true"
-                      ></p-autoComplete>
-                      
-                      <span class="field-3">
-
-                        <p-checkbox
-                          [(ngModel)]="value"
-                          label="Urgente"
-                          [binary]="true"
-                        ></p-checkbox>
-                        
-                        <p-calendar
-                          [(ngModel)]="value"
-                          showIcon="true"
-                          icon="pi pi-calendar"
-                        ></p-calendar>
-                        
-                        <p-dropdown
-                          [options]="cities"
-                          [(ngModel)]="selectedCity"
-                          optionLabel="Situação"
-                          class="dropdown"
-                        ></p-dropdown>
-                      </span>
-                        
-                      <button
-                        class="p-col-12 p-md-6 p-lg-2"
-                        pButton
-                        label="Adicionar"
-                        type="button"
-                        icon="pi pi-plus"
-                        iconPos="left"
-                      ></button>
-
-                    </span>
+              </div>
             </p-tabPanel> 
 
             <p-tabPanel header="por Lote">
-              <span class="container">
-                <h5>Tipo de lote</h5>
-                <span class="field-2">
-                  <p-radioButton
-                    class="radial-button"
-                    name="filter"
-                    label="Unidade"
-                    value="val1"
-                    [(ngModel)]="selectedValue"
-                  ></p-radioButton>
-                        
-                  <p-radioButton
-                    class="radial-button"
-                    name="filter"
-                    label="Grupo"
-                    value="val2"
-                    [(ngModel)]="selectedValue"
-                  ></p-radioButton>
+              <div class="container-2">
+                <div class="lote-title">
+                  Tipo do lote:
+                  <div class="lote-field-1">
+                    <p-radioButton
+                      class="radial-button"
+                      name="filter"
+                      label="Unidade"
+                      value="val1"
+                      [(ngModel)]="selectedLote"
+                    ></p-radioButton>
+                          
+                    <p-radioButton
+                      class="radial-button"
+                      name="filter"
+                      label="Grupo"
+                      value="val2"
+                      [(ngModel)]="selectedLote"
+                    ></p-radioButton>
 
-                  <p-radioButton
-                    class="radial-button"
-                    name="filter"
-                    label="Especialidade"
-                    value="val3"
-                    [(ngModel)]="selectedValue"
-                  ></p-radioButton>
+                    <p-radioButton
+                      class="radial-button"
+                      name="filter"
+                      label="Especialidade"
+                      value="val3"
+                      [(ngModel)]="selectedLote"
+                    ></p-radioButton>
+                  </div>
+                </div>
+                <div class="lote-field-2">
+                  <label>Grupo:</label>
+                  <p-autoComplete
+                    [(ngModel)]="group"
+                    [suggestions]="results"
+                    (completeMethod)="search($event)"
+                    dropdown="true"
+                  ></p-autoComplete>
+                </div>
+
+                <span class="lote-button"> 
+                  <button
+                    pButton
+                    label="Adicionar"
+                    type="button"
+                    icon="pi pi-plus"
+                    iconPos="left"
+                  ></button>
                 </span>
-                
-                <p-autoComplete
-                  [(ngModel)]="text"
-                  [suggestions]="results"
-                  (completeMethod)="search($event)"
-                  dropdown="true"
-                ></p-autoComplete>
 
-                <button
-                  class="p-col-12 p-md-6 p-lg-2"
-                  pButton
-                  label="Adicionar"
-                  type="button"
-                  icon="pi pi-plus"
-                  iconPos="left"
-                ></button>
-
-              </span>
+              </div>
             </p-tabPanel>
         </p-tabView>
     </div>

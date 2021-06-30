@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
 
 @Component({
   selector: 'app-exames',
@@ -7,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamesComponent implements OnInit {
 
+  // Por exame
   selectedValue: String;
-  value: Boolean;
+  unitCheckbox: Boolean;
+  text: String;
+  urgentCheck: Boolean;
+  date: Date;
+  selectedSituation: String;
+
+  // Por lote
+  selectedLote: String;
+  group: String;
+  results: String[];
+  teste: String[] = ["Ana", "Rogerio", "Gustavo"];
+  situationDropdown = SituationDropdown;
+
 
   constructor() { }
+
+  handleDropdown(event) {
+    //event.query = current value in input field
+  }
 
 
   ngOnInit(): void {
