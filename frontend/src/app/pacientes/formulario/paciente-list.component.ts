@@ -26,6 +26,10 @@ export class PacienteListComponent {
     constructor(private fb: FormBuilder) {
     }
 
+    searchUrl:string = 'pacientes/api/_search/pacientes';
+
+    rowsPerPageOptions: number[] = [5,10,20]
+
     pesquisar(){
         this.datatable.refresh(this.elasticQuery.query);
     }
