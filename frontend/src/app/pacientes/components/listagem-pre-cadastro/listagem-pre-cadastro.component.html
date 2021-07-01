@@ -1,9 +1,11 @@
+<h1>Listagem de Pré-Cadastro</h1>
+
 <div class="p-grid p-fluid">
     <div class="p-col-12 p-grid">
         <div class="card card-w-title">
-            <h1>Listagem de Pré-Cadastro</h1>
+            
             <div class="p-grid">
-                <div class="p-md-12 p-fluid">
+                <div class="p-md-9 p-fluid">
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input
                             type="text"
@@ -16,17 +18,15 @@
                         <label>Nome paciente</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid p-jc-center">
-                    <div class="p-md-3">
-                        <button
-                            pButton
-                            type="button"
-                            label="Pesquisar"
-                            icon="pi pi-search"
-                            bTooltip="Pesquisar paciente por nome."
-                            (click)="datatable.refresh(query.value)"
-                        ></button>
-                    </div>
+                <div class="p-md-3">
+                    <button
+                        pButton
+                        type="button"
+                        label="Pesquisar"
+                        icon="pi pi-search"
+                        bTooltip="Pesquisar paciente por nome."
+                        (click)="datatable.refresh(query.value)"
+                    ></button>
                 </div>
                 <basis-datatable
                     #datatable

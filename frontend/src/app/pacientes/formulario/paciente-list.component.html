@@ -27,8 +27,7 @@
 
 <div class="card">
 
-    <basis-datatable defaultButtons="disabled" disableEdit="disabled" disableView="disabled" disableDelete="disabled" [url]="searchUrl"
-        [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
+    <basis-datatable [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
         <p-column header="Prontuário"field="prontuario"></p-column>
         <p-column header="Nome" field="nome"></p-column>
         <p-column header="Nome da Mãe" field="genitores">

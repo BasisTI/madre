@@ -1415,12 +1415,12 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   margin-top: 5px;
 }
 .p-button:enabled:hover {
-  background: rgba(0, 150, 136, 0.92);
+  background: rgba(31, 170, 238, 1);
   color: #ffffff;
   border-color: transparent;
 }
 .p-button:enabled:active {
-  background: rgba(0, 150, 136, 0.68);
+  background: rgba(31, 170, 238, 1);
   color: #ffffff;
   border-color: transparent;
 }
