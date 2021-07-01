@@ -71,8 +71,7 @@
             </li>
         </ul>
     </div>
-    
-    <basis-datatable disableEdit="disabled" disableView="disabled" disableDelete="disabled" [url]="searchUrl"
+    <basis-datatable defaultButtons="disabled" disableEdit="disabled" disableView="disabled" disableDelete="disabled" [url]="searchUrl"
         [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
         <p-column header="Prontuário"field="prontuario"></p-column>
         <p-column header="Nome" field="nome"></p-column>
@@ -89,4 +88,5 @@
         </p-column>
         <p-column header="Ações" field=""></p-column>
     </basis-datatable>
+    
 </div>

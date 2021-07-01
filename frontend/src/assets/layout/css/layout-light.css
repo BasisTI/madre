@@ -1636,6 +1636,10 @@ body .p-overlay-badge .p-badge {
   color: #ffffff;
   font-size: 2.5rem;
 }
+.layout-topbar-teal .layout-topbar a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transition: background-color 0.2s ease 0s;
+}
 .layout-topbar-teal .layout-topbar .layout-topbar-right .layout-topbar-actions-left .layout-megamenu {
   background: none;
 }
@@ -4456,7 +4460,7 @@ body a {
   }
 }
 
-/*.layout-breadcrumb-container .layout-breadcrumb {
+.layout-breadcrumb-container .layout-breadcrumb {
   background: transparent;
   border: 0 none;
   border-radius: 0;
@@ -4464,7 +4468,7 @@ body a {
 .layout-breadcrumb-container .layout-breadcrumb-buttons .p-button {
   width: 2.5rem;
   height: 2.5rem;
-}*/
+}
 
 /* Add your customizations of layout here */
 
