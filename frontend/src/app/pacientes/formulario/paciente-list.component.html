@@ -26,51 +26,7 @@
 </div>
 
 <div class="card">
-    <div class="p-md-12">
-        <ul class="itens-paciente-list">
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="Lixo" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-lixo.png">
-                </button>
-            </li>
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="Download" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-download.png">
-                </button>
-            </li>
-            <li class="item-paciente-list">
-                <a><img src="../../../assets/layout/images/icon-separador.png"></a>
-            </li>
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-densidade-baixa.png">
-                </button>
-            </li>
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-densidade-alta.png">
-                </button>
-            </li>
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="Selecionar Colunas" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-selecionar-colunas.png">
-                </button>
-            </li>
-            <li class="item-paciente-list">
-                <a><img src="../../../assets/layout/images/icon-separador.png"></a>
-            </li>
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="Filtrar por Coluna" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-filtro-coluna.png">
-                </button>
-            </li>
-            <li class="item-paciente-list">
-                <button class="icon-barra" pTooltip="Pesquisar Paciente" tooltipPosition="top">
-                    <img src="../../../assets/layout/images/icon-procurar.png">
-                </button>
-            </li>
-        </ul>
-    </div>
+
     <basis-datatable defaultButtons="disabled" disableEdit="disabled" disableView="disabled" disableDelete="disabled" [url]="searchUrl"
         [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
         <p-column header="Prontuário"field="prontuario"></p-column>
