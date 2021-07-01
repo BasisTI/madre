@@ -1,6 +1,15 @@
 <form class="p-grid p-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
     <div class="p-md-12">
-        <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>
+       
+        <img src="../../../../../assets/layout/images/não urgente.png" >
+        <img src="../../../../../assets/layout/images/pouco urgente.png">
+        <img src="../../../../../assets/layout/images/urgente.png">
+        <img src="../../../../../assets/layout/images/muito urgente.png">
+        <img src="../../../../../assets/layout/images/emergencia.png">
+
+
+
+
     </div>
     <div class="p-col-12 p-grid">
         <div class="p-md-12">
@@ -29,7 +38,7 @@
                 <span class="p-float-label">
                     <input
                         type="text"
-                        pTooltip="Informe a Pressão Arterial"
+                        pTooltip="Informe a Pressão Arte"
                         pInputText
                         formControlName="pressaoArterial"
                     />

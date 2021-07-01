@@ -1967,7 +1967,6 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   margin-left: 0.5rem;
 }
 .p-datatable .p-sortable-column:not(.p-highlight):hover {
-  background: rgba(2, 44, 74, 1);
   color: rgba(255, 255, 255, 1));
 }
 .p-datatable .p-sortable-column:not(.p-highlight):hover .p-sortable-column-icon {
@@ -5615,7 +5614,9 @@ p-chips.ng-dirty.ng-invalid .p-chips .p-chips-multiple-container:not(.p-disabled
   outline: 0 none;
 }
 .p-datatable .p-sortable-column:focus {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: #1FAAEE;
+  color: #FDFDFD;
+}
 }
 .p-datatable .p-datatable-tbody > tr {
   outline: 0 none;
@@ -6197,7 +6198,7 @@ p-multiselect.ng-dirty.ng-invalid .p-multiselect:not(.p-disabled).p-focus {
   margin-top: 50px;
   margin-left: 300px;
   margin-top: 150px;
-  opacity: 50%;
+  opacity: 20%;
 }
 
 /* Add your customizations of the theme here */

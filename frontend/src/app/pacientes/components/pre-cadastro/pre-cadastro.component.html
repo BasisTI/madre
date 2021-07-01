@@ -20,21 +20,21 @@
                             <label>Nome paciente</label>
                         </span>
                         <p-message
-                            severity="error"
-                            text="Nome do paciente Obrigatório"
-                            *ngIf="
-                                preCadastro.controls['nome'].errors?.required &&
-                                preCadastro.controls['nome'].touched
-                            "
+                        severity="error"
+                        text="Nome do paciente Obrigatório"
+                        *ngIf="
+                        preCadastro.controls['nome'].errors?.required &&
+                        preCadastro.controls['nome'].touched
+                        "
                         ></p-message>
                     </div>
                     <div class="p-md-4">
                         <span class="p-float-label">
                             <input
-                                type="text"
-                                pInputText
-                                formControlName="nomeSocial"
-                                pTooltip="Infome o nome social do Paciente."
+                            type="text"
+                            pInputText
+                            formControlName="nomeSocial"
+                            pTooltip="Infome o nome social do Paciente."
                             />
                             <label>Nome Social</label>
                         </span>

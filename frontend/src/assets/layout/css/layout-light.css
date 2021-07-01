@@ -4262,7 +4262,11 @@ body a {
 }
 
 .layout-footer {
-  background-color: #ffffff;
+  background-color: #c3cbd9;
+}
+
+.footer-text-left {
+  padding: 0 35%;
 }
 
 .layout-config {

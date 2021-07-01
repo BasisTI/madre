@@ -1,7 +1,6 @@
 
 <div class="card card-w-title">
     <h1>Pesquisa de Pacientes</h1>
-    
         <nCrudList [form]="paciente" [datatableParams]="datatableParams">
             <p-column header="Prontuário" field="prontuario"></p-column>
 
@@ -17,7 +16,7 @@
             <p-column header="Data de Nascimento" field="dataDeNascimento"></p-column>
 
             <p-column header="Nº Cartão SUS" field="cartaoSUS">
-
+                
                 <ng-template let-data="rowData" pTemplate="body">
                     {{ data['cartaoSUS']?.numero }}
                 </ng-template>

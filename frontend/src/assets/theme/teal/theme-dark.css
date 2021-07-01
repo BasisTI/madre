@@ -20,14 +20,9 @@
 }
 
 .p-component {
-  font-family: Open Sans;
-  font-size: 14px;
-  font-weight: 700;
-  font-style: normal;
-  line-height: 16px;
-  letter-spacing: 0;
-  text-align: left;
-}
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .p-component-overlay {

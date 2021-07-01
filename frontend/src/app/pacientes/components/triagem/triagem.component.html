@@ -42,6 +42,7 @@
                                 {{ triagem?.paciente?.nomeSocial === undefined ? "" : triagem?.paciente?.nomeSocial }}
                             </ng-template>
                         </p-column>
+                        <img src="../../../../assets/layout/images/organiza.png">
                         <p-column header="Nome da Mãe" field="paciente.genitores.nomeDaMae">
                             <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
                                 {{ triagem?.paciente?.genitores?.nomeDaMae === undefined ? "" :
@@ -57,11 +58,7 @@
                             <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
                                 <span>
                                     <div [ngClass]="{
-                                    emergencia: triagem[col.field] == 'EMERGENCIA',
-                                    muitoUrgente: triagem[col.field] == 'MUITO_URGENTE',
-                                    urgente: triagem[col.field] == 'URGENTE',
-                                    poucoUrgente: triagem[col.field] == 'POUCO_URGENTE',
-                                    naoUrgente: triagem[col.field] == 'NAO_URGENTE'
+                                    
                                 }" [pTooltip]="triagem[col.field]"></div>
                                 </span>
                             </ng-template>
