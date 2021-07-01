@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { GroupDropdown } from '../../models/dropdowns/groups.dropdown';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
+import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
+// import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
   selector: 'app-exames',
@@ -8,30 +11,47 @@ import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
 })
 export class ExamesComponent implements OnInit {
 
-  // Por exame
+  // Por exame:
+  situationDropdown = SituationDropdown;
   selectedValue: String;
   unitCheckbox: Boolean;
   text: String;
   urgentCheck: Boolean;
   date: Date;
   selectedSituation: String;
+  // options = AutoCompleteDemo;
 
-  // Por lote
+  // Por lote:
+  groupDropdown = GroupDropdown;
+  results: String[];
   selectedLote: String;
   group: String;
-  results: String[];
-  teste: String[] = ["Ana", "Rogerio", "Gustavo"];
-  situationDropdown = SituationDropdown;
 
 
-  constructor() { }
+  constructor(private breadcrumbService: BreadcrumbService) { }
 
   handleDropdown(event) {
     //event.query = current value in input field
   }
 
+  handleClick() {
+    console.log("For exam Data");
+    console.log(this.selectedValue);
+    console.log(this.unitCheckbox);
+    console.log(this.text);
+    console.log(this.urgentCheck);
+    console.log(this.date);
+    console.log(this.selectedSituation);
 
-  ngOnInit(): void {
+    
+    console.log("For Lote Data");
+    console.log(this.selectedLote);
+    console.log(this.group);
+  }
+
+
+  ngOnInit(): void{
+
   }
 
 }

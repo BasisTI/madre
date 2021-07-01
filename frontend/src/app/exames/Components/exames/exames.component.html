@@ -76,17 +76,6 @@
                     ></p-dropdown>
                   </div>
                 </span>
-                
-                <span class="add-button">
-                  <button
-                    pButton
-                    label="Adicionar"
-                    type="button"
-                    icon="pi pi-plus"
-                    iconPos="left"
-                  ></button>
-                </span>
-
               </div>
             </p-tabPanel> 
 
@@ -122,26 +111,24 @@
                 </div>
                 <div class="lote-field-2">
                   <label>Grupo:</label>
-                  <p-autoComplete
+                  <p-dropdown
+                    [options]="groupDropdown"
                     [(ngModel)]="group"
-                    [suggestions]="results"
-                    (completeMethod)="search($event)"
-                    dropdown="true"
-                  ></p-autoComplete>
+                  ></p-dropdown>
                 </div>
-
-                <span class="lote-button"> 
-                  <button
-                    pButton
-                    label="Adicionar"
-                    type="button"
-                    icon="pi pi-plus"
-                    iconPos="left"
-                  ></button>
-                </span>
-
               </div>
             </p-tabPanel>
+
+            <!-- If needed, crete one button for each Tab view. then, change click method for each button. -->
+            <button
+              pButton
+              label="Adicionar"
+              type="button"
+              icon="pi pi-plus"
+              iconPos="left"
+              (click)="handleClick($event)"
+            ></button>
+
         </p-tabView>
     </div>
 </p-fieldset>

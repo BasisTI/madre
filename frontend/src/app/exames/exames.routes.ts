@@ -5,6 +5,7 @@ export const routes: Routes = [
     {
         path: 'solicitar-exame',
         component: ExamesComponent,
+        data: { breadcrumb: 'Solicitar Exames' },
     },
     {
         path: 'atendimento-diverso',

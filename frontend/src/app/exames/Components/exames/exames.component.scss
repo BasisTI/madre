@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-rows: 2fr 2fr 2fr 2fr 1fr ;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
 }
@@ -53,7 +53,7 @@
 
 .container-2 {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 2fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 20px;
 }

@@ -47,6 +47,7 @@ export const routes: Routes = [
     {
         path: 'exames',
         loadChildren: 'src/app/exames/exames.module#ExamesModule',
+        data: { breadcrumb: 'Exames' },
     },
 ];
 
