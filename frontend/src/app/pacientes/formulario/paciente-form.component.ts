@@ -7,6 +7,8 @@ import { CpfCnpjValidator } from '../../shared/cpf-cnpj.validator';
 import { Paciente } from "./paciente.model";
 import { PacienteService } from "./paciente.service";
 import { PacienteValidators } from "./paciente.validators";
+import { MenuItem } from 'primeng/api';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 @Component({
     selector: 'paciente-form',
@@ -15,6 +17,8 @@ import { PacienteValidators } from "./paciente.validators";
 export class PacienteFormComponent  implements OnInit{
 
     paciente: FormGroup;
+    items: MenuItem[];
+    activeItem: MenuItem;
 
     constructor(private fb: FormBuilder, private service: PacienteService) {
     }
@@ -95,6 +99,14 @@ export class PacienteFormComponent  implements OnInit{
                 numeroDaDeclaracaoDeNascimento: [null]
             })
         });
+        this.items = [
+            {label: 'Dados Pessoais'},
+            {label: 'Contatos do Paciente'},
+            {label: 'Endereço'},
+            {label: 'Responsável'},
+            {label: 'Cartão SUS'}
+        ];
+        this.activeItem = this.items[0];
     }
 
     imprimirRelatorioPaciente(id){
