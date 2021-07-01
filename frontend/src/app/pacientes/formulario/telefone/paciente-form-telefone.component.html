@@ -1,28 +1,20 @@
 <div class="p-grid p-fluid" [formGroup]="telefone">
-    <div class="p-col-12 p-grid">
-        <div nDropdown required label="Tipo de Telefone" [options]="opcoesDeTipoDeTelefone" formControlName="tipo" (onChange)="tipoTelefone($event)" class="p-md-4 p-sm-12"></div>
+    <div class="p-col-10 p-grid">
+        <div nDropdown required label="Tipo de Telefone" [options]="opcoesDeTipoDeTelefone" formControlName="tipo" (onChange)="tipoTelefone($event)" class="p-md-2 p-sm-12"></div>
         <div nDropdown required label="DDD" [service]="dddService" optionLabel="valor" (onChange)="atualizarDDD($event)" class="p-md-2 p-sm-12"></div>
-        <div nInputMask required [mask]="tipoMascara" tooltip="Informe o telefone." label="Telefone" formControlName="numero" class="p-md-6 p-sm-12"></div>
-        <div class="p-md-12">
-                <span class="p-float-label">
-                    <textarea
-                        formControlName="observacao"
-                        [rows]="3"
-                        pInputTextarea
-                        autoResize="autoResize"
-                        pTooltip="Informe o observação."
-                    ></textarea>
-                    <label>Observação</label>
-                </span>
-        </div>
+        <div nInputMask required [mask]="tipoMascara" tooltip="Informe o telefone." label="Telefone" formControlName="numero" class="p-md-2 p-sm-12"></div>
+        <div nInputText label="Observação" formControlName="observacao" class="p-md-6 p-sm-12"></div>        
     </div>
-    <div *ngIf="!telefone.value.indice">
-        <p-button
-            label="Adicionar"
-            [disabled]="telefone.invalid"
-            [disabled]="validaTelefone ? true : null"
-            type="button"
-            (onClick)="adicionarTelefoneALista()"></p-button>
+    <div *ngIf="!telefone.value.indice" class="p-col-2 p-grid">
+        <div class="p-md-12 p-sm-12">
+            <p-button
+                label="Adicionar"
+                [disabled]="telefone.invalid"
+                [disabled]="validaTelefone ? true : null"
+                type="button"
+                (onClick)="adicionarTelefoneALista()">
+            </p-button>
+        </div>
     </div>
     <div *ngIf="validaTelefone">
         <p-button
