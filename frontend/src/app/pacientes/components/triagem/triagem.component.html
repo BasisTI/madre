@@ -31,40 +31,8 @@
             </span>
 
             <div class="p-grid">
-                <div class="p-md-12">
-                    <ul class="itens-paciente-list">
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-lixo.png"></a>
-                        </li>
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-download.png"></a>
-                        </li>
-                        <li class="item-paciente-list" style="cursor: none;">
-                            <a><img src="../../../assets/layout/images/icon-separador.png"></a>
-                        </li>
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-densidade-baixa.png"></a>
-                        </li>
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-densidade-alta.png"></a>
-                        </li>
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-selecionar-colunas.png"></a>
-                        </li>
-                        <li class="item-paciente-list" style="cursor: none;">
-                            <a><img src="../../../assets/layout/images/icon-separador.png"></a>
-                        </li>
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-filtro-coluna.png"></a>
-                        </li>
-                        <li class="item-paciente-list">
-                            <a><img src="../../../assets/layout/images/icon-procurar.png"></a>
-                        </li>
-                    </ul>
-                </div>
-
                 <basis-datatable disableEdit="disabled" disableView="disabled" disableDelete="disabled"
-                    [url]="searchUrl" [showPaginationFooter]="true"[rowsPerPageOptions]="rowsPerPageOptions" 
+                    [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions"
                     (buttonClick)="onClick($event)">
                     <p-column header="Nome do Paciente" field="paciente.nome">
                         <ng-template let-col="col" let-triagem="rowData" pTemplate="body">

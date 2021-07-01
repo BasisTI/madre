@@ -4356,7 +4356,7 @@ body a {
   background: #C3CBD9;
 }
 .footer-text-left {
-  padding: 0 20%;
+  padding: 0 30%;
 }
 .layout-config {
   transition: transform 0.2s;
@@ -4456,7 +4456,7 @@ body a {
   }
 }
 
-/*.layout-breadcrumb-container .layout-breadcrumb {
+.layout-breadcrumb-container .layout-breadcrumb {
   background: transparent;
   border: 0 none;
   border-radius: 0;
@@ -4464,7 +4464,7 @@ body a {
 .layout-breadcrumb-container .layout-breadcrumb-buttons .p-button {
   width: 2.5rem;
   height: 2.5rem;
-}*/
+}
 
 /* Add your customizations of layout here */
 
