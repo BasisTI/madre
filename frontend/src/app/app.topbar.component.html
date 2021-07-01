@@ -1,25 +1,21 @@
-<div class="layout-topbar p-shadow-4">
-    <div>
-        <img class="barra" src="../assets/layout/images/barra.png">
-        
+
+<div class="layout-topbar">
+    <div class="layout-topbar-back">
+        <hr class="line-header">
     </div>
 
-    <div class="layout-topbar-left">
-        <a class="layout-topbar-logo" routerLink="/">
-            <img class="barra" src="../assets/layout/images/logo2.png">
-        </a>
-
-
-
-        <a class="layout-menu-button " (click)="app.onMenuButtonClick($event)" pRipple>
-            <i class="fa fa-bars" aria-hidden="true"></i>
-            
-        </a>
-
-        <a class="layout-topbar-mobile-button" (click)="app.onTopbarMobileButtonClick($event)" pRipple>
-            <i class="pi pi-ellipsis-v fs-large"></i>
-        </a>
-    </div>
+    <div class="layout-topbar-left">  <!--p-shadow-4 -->
+        <div class="layout-topbar-left-items">
+            <div class="layout-topbar-actions-left">
+                <a class="layout-menu-button" (click)="app.onMenuButtonClick($event)" pRipple>
+                    <i class="fa fa-bars"  aria-hidden="true" ></i>
+                </a>
+            </div>  
+            <div class="logo" routerLink="/">
+                <img src="../assets/layout/images/logo.png" style="margin-top: 8px;">
+            </div>
+        </div>          
+    </div> 
 
     <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': app.mobileTopbarActive}">
         <div class="layout-topbar-actions-left"></div>
@@ -27,42 +23,40 @@
             <ul class="layout-topbar-items">
                 <li class="layout-topbar-item">
                     <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
-                        <img src="../assets/layout/images/sino.png">
+                        <img src="../assets/layout/images/notif.png">
                     </a>
                 </li>
-                
                 <li class="layout-topbar-item">
-                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" >
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
                         <img src="../assets/layout/images/usuario.png">
                     </a>
                 </li>
-
                 <li class="layout-topbar-item">
-                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
-                        <img src="../assets/layout/images/engrenagem.png">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
+                        (click)="app.onTopbarItemClick($event, 'profile')" pRipple>
+                        <img src="../assets/layout/images/config.png">                
                     </a>
-                    <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="app.activeTopbarItem === 'profile'">
+                    <ul class="layout-topbar-action-panel p-shadow-6" [@topbarActionPanelAnimation]="'visible'"
+                        *ngIf="app.activeTopbarItem === 'profile'">
                         <li class="layout-topbar-action-item">
                             <a routerLink="/diario-erros" class="p-d-flex p-flex-row p-ai-center" pRipple>
-                                <i class="pi pi-cog" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
+                                <i class="pi pi-cog"
+                                    [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
                                 <span>&nbsp; Diário de Erros</span>
                             </a>
                         </li>
-                        <li class="layout-topbar-action-item">
-                            <a class="p-d-flex p-flex-row p-ai-center" pRipple>
-                                <i class="pi pi-power-off" [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}"></i>
-                                <span>&nbsp; Sair</span>
-                            </a>
+                        <li>
+                            
                         </li>
                     </ul>
                 </li>
                 <li class="layout-topbar-item">
-                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle">
+                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
+                        [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}">
                         <img src="../assets/layout/images/sair.png">
                     </a>
                 </li>
             </ul>
         </div>
-    </div>
+    </div> 
 </div>
-

@@ -6,7 +6,7 @@
 /* Add your variable customizations of layout here */
 /* roboto-300 - latin */
 @font-face {
-  font-family: "Roboto";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 300;
   src: url("../fonts/roboto-v15-latin-300.eot");
@@ -16,17 +16,17 @@
 }
 /* roboto-regular - latin */
 @font-face {
-  font-family: "Roboto";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 400;
   src: url("../fonts/roboto-v15-latin-regular.eot");
   /* IE9 Compat Modes */
-  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/roboto-v15-latin-regular.eot#iefix") format("embedded-opentype"), url("../fonts/roboto-v15-latin-regular.woff2") format("woff2"), url("../fonts/roboto-v15-latin-regular.woff") format("woff"), url("../fonts/roboto-v15-latin-regular.ttf") format("truetype"), url("../fonts/roboto-v15-latin-regular.svg#Roboto") format("svg");
+  src: local(Open Sans), local("Roboto-Regular"), url("../fonts/roboto-v15-latin-regular.eot#iefix") format("embedded-opentype"), url("../fonts/roboto-v15-latin-regular.woff2") format("woff2"), url("../fonts/roboto-v15-latin-regular.woff") format("woff"), url("../fonts/roboto-v15-latin-regular.ttf") format("truetype"), url("../fonts/roboto-v15-latin-regular.svg#Roboto") format("svg");
   /* Legacy iOS */
 }
 /* roboto-700 - latin */
 @font-face {
-  font-family: "Roboto";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 700;
   src: url("../fonts/roboto-v15-latin-700.eot");
@@ -174,11 +174,11 @@
   animation-name: fadeOutUp;
 }
 
-.p-shadow-1 {
+/*.p-shadow-1 {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
+} 
 
 .p-shadow-2 {
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -202,7 +202,7 @@
   -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-}
+}*/
 
 .p-g {
   -ms-flex-wrap: wrap;
@@ -1263,8 +1263,8 @@ body a {
   font-size: 1.5em;
   /* Preferred icon size */
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  /*width: 1em;*/
+  /*height: 1em;*/
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -1573,10 +1573,6 @@ body a {
   display: none;
 }
 .layout-container .layout-breadcrumb {
-  background-color: #ffffff;
-  box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
-  -webkit-box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
-  -moz-box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
   min-height: 42px;
 }
 .layout-container .layout-breadcrumb:before, .layout-container .layout-breadcrumb:after {
@@ -1751,11 +1747,11 @@ body a {
   padding: 0.5em;
 }
 .layout-container .footer .footer-text-left {
-  float: left;
+  float: center;
 }
 .layout-container .footer .footer-text-right {
   color: #757575;
-  float: right;
+  float: center;
 }
 .layout-container .footer .footer-text-right span {
   vertical-align: middle;

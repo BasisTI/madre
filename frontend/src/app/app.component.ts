@@ -3,6 +3,7 @@ import { ScrollPanel } from 'primeng/scrollpanel';
 import { MenusService, MenuOrientation } from '@nuvem/primeng-components';
 import { PrimeNGConfig } from 'primeng/api';
 import { Router } from '@angular/router';
+// @import { local_hospital } from 'material-icons/iconfont/material-icons.css';
 
 @Component({
     selector: 'app-root',
@@ -72,15 +73,16 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.primengConfig.ripple = true;
         this.menuService.itens = [
             { label: '', items: [
-                { label: 'HOME', icon: 'home', routerLink: ['/'] },
+                { label: 'HOME', icon: 'icon-home', routerLink: ['/'],url:'' },
                 {
                     label: 'Pacientes',
-                    icon: 'pacientes',
+                    icon: 'icon-pacientes',
                     items: [
                         {
                             label: 'Pesquisa de Paciente',
                             icon: 'add',
                             routerLink: ['/paciente/list'],
+                            url:'src/assets/layout/images/icon.png',
                         },
                         {
                             label: 'Cadastro de Paciente',
@@ -91,7 +93,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Triagem',
-                    icon: 'triagem',
+                    icon: 'icon-triagem',
                     items: [
                         {
                             label: 'Pré-Cadastro',
@@ -118,7 +120,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Marcar Consultas',
-                    icon: 'marcar-consultas',
+                    icon: 'icon-marcar-consultas',
                     items: [
                         {
                             label: 'Listar Consultas',
@@ -140,7 +142,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     
                 {
                     label: 'Prescrição',
-                    icon: 'prescrição',
+                    icon: 'icon-prescricao',
                     items: [
                         {
                             label: 'Médica',
@@ -157,7 +159,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Internação',
-                    icon: 'internação',
+                    icon: 'icon-internacao',
                     items: [
                         {
                             label: 'Solicitar Internação',
@@ -209,7 +211,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Farmacia',
-                    icon: 'farmacia',
+                    icon: 'icon-farmacia',
                     items: [
                         {
                             label: 'Dispensação medica',
@@ -230,7 +232,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Suprimentos',
-                    icon: 'suprimentos',
+                    icon: 'icon-suprimentos',
                     items: [
                         {
                             label: 'Almoxarifado',
