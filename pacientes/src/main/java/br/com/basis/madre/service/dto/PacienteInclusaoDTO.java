@@ -63,6 +63,8 @@ public class PacienteInclusaoDTO implements Serializable {
 
     private Long religiaoId;
 
+    private Long ufId;
+
     private Long naturalidadeId;
 
     private Long etniaId;

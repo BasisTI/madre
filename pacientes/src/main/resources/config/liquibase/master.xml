@@ -110,4 +110,8 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210405193632_changelog.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210615193632_create_seq_num_prontuario.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210615181102_changelog.xml"
+             relativeToChangelogFile="false"/>
 </databaseChangeLog>
