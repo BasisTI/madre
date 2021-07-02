@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { routes } from './exames.routes';
-import {SharedModule} from "@shared/shared.module";
-import {RouterModule} from "@angular/router";
+import { routesExam } from './exames.routes';
+import { SharedModule } from "@shared/shared.module";
+import { RouterModule } from "@angular/router";
 
-import {ExamesComponent} from "./Components/exames/exames.component";
+import { ExamesComponent } from "./Components/exames/exames.component";
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import {ExamesComponent} from "./Components/exames/exames.component";
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routesExam),
   ],
 })
+
 export class ExamesModule { }

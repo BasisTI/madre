@@ -38,11 +38,13 @@
                   
                   <label style="margin-bottom: 10px;">Exame:</label>
                   <p-autoComplete
-                    [(ngModel)]="text"
-                    [suggestions]="options"
-                    (completeMethod)="search($event)"
+                    name="exame"
+                    [(ngModel)]="selectedExam"
+                    [suggestions]="exames"
+                    (completeMethod)="listarExames()"
                     dropdown="true"
                     formControlName="Exames"
+                    (onSelect)="aoSelecionarExame()"
                     pTooltip="Selecione um exame"
                   ></p-autoComplete>
                 </span>
