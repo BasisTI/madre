@@ -8,6 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RacaService extends CrudServiceNuvem<number, Raca> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/racas?sort=valor', httpClient);
+        super('pacientes/api/racas', httpClient);
     }
 }
