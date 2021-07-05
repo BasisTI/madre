@@ -1,0 +1,78 @@
+{
+  "name": "AtendimentoDiverso",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "informacoesComplementares",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "informacoes",
+      "otherEntityField": "codigo",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "projetoDePesquisa",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "projeto",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "laboratorioExterno",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "laboratorio",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "controleQualidade",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "controle",
+      "otherEntityField": "codigo",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "cadaver",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "cadaver",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "informacoesComplementares",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "atendimentoDiverso"
+    }
+  ],
+  "changelogDate": "20210705120218",
+  "entityTableName": "atendimento_diverso",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}
