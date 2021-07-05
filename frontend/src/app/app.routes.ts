@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { LoginSuccessComponent } from '@nuvem/angular-base';
 import { ModuleWithProviders } from '@angular/core';
-import { ExamesModule } from './exames/exames.module';
-import { ExamesComponent } from './exames/Components/exames/exames.component';
 
 export const routes: Routes = [
     {
@@ -49,7 +47,6 @@ export const routes: Routes = [
     {
         path: 'exames',
         loadChildren: 'src/app/exames/exames.module#ExamesModule',
-        component: ExamesComponent,
     },
 ];
 

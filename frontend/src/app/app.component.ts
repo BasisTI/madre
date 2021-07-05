@@ -314,7 +314,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         {
                             label: 'Atendimento Diverso',
                             icon: 'add',
-                            routerLink: ['/exames'],
+                            routerLink: ['/exames/atendimento-diverso'],
                         }
                     ],
                 },

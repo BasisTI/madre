@@ -6,11 +6,13 @@ import { SharedModule } from "@shared/shared.module";
 import { RouterModule } from "@angular/router";
 
 import { ExamesComponent } from "./Components/exames/exames.component";
+import { SolicitarExameComponent } from './views/solicitar-exame/solicitar-exame.component';
 
 
 @NgModule({
   declarations: [
       ExamesComponent,
+      SolicitarExameComponent,
   ],
   imports: [
     CommonModule,
