@@ -12,6 +12,7 @@ services:
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
       - SPRING_DATA_JEST_URI=http://madreexames-elasticsearch:9200
       - SPRING_ELASTICSEARCH_REST_URIS=http://madreexames-elasticsearch:9200
+      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
   madreexames-postgresql:
     extends:
       file: postgresql.yml
@@ -20,6 +21,17 @@ services:
     extends:
       file: elasticsearch.yml
       service: madreexames-elasticsearch
+  kafka:
+    extends:
+      file: kafka.yml
+      service: kafka
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+  zookeeper:
+    extends:
+      file: kafka.yml
+      service: zookeeper
   jhipster-registry:
     extends:
       file: jhipster-registry.yml
