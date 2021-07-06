@@ -1,0 +1,127 @@
+<div class="p-grid p-fluid">
+
+    <div class="p-col-12 p-grid">
+        <div class="p-col-12 card card-w-title">
+            <h1>Identificar Unidade Executora</h1>
+            <div class="p-fluid" pTooltip="Selecione uma Unidade Executora">
+                Unidade Executora
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <input type="text" pInputText class="p-inputtext" />
+                    <label>Lorem ipsum</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="card card-w-title">
+            <h1>Solicitar Exames</h1>
+            <div class="p-grid">
+                <div class="p-md-1 p-fluid">
+                    Prontuário
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Consulta
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Nome / Nome Social do Paciente
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum dolor sit amet</label>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Idade
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="number" pInputText class="p-inputtext" disabled />
+                        <label>Lorem</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Data/Hora Atendimento
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="datetime" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum doloro</label>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Origem
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Localização
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+
+                <div class="p-md-2 p-fluid" pTooltip="Selecione a unidade solicitante de exames">
+                    Unidade Funcional
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+
+                <div class="p-md-2 p-fluid" pTooltip="Selecione o responsável pela solicitação do(s) exame(s)">
+                    Responsável
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+
+
+
+                <div class="p-inputtextarea p-fluid">
+                    Informações Clínicas
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
+                        <textarea [rows]="5" pInputTextarea autoResize="autoResize"
+                            pTooltip="Digite as informações clínicas do paciente.">
+                        </textarea>
+                        <label>Digite as informações clínicas do paciente.</label>
+                    </span>
+                </div>
+
+                <div>
+                    <br>
+                    Paciente utiliza antimicrobianos a mais de 24 horas
+                    <p-dropdown label="Paciente utiliza antimicrobianos a mais de 24 horas"
+                        [options]="opcoesDeAntimicrobianos"
+                        pTooltip="Selecione se o paciente utiliza antimicrobianos há mais de 24 horas.">
+                    </p-dropdown>
+
+
+                    <br>
+                    Pedido para 1° exame ou comparativo
+                    <p-dropdown label="Pedido para 1° exame ou comparativo"
+                        [options]="opcoesDeExameOuComparativo"
+                        pTooltip="Selecione se é o primeiro exame do paciente ou se é um exame comparativo.">
+                    </p-dropdown>
+                </div>
+
+                <div class="p-col-12 p-grid p-d-flex p-jc-center">(Componente Exames)</div>
+
+                <div class="p-col-12 p-grid p-d-flex p-jc-center">
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Salvar" icon="pi pi-save"></button>
+                    </div>
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Limpar" icon="pi pi-times"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
