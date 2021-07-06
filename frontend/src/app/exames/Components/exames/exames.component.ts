@@ -3,8 +3,6 @@ import { GroupDropdown } from '../../models/dropdowns/groups.dropdown';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
 import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
 import { ExamModel } from '../../models/subjects/exames-model';
-import { ConsultaExame } from '../../models/subjects/consulta-exame';
-import { ExameService } from '../../Services/exame.service';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
@@ -34,7 +32,6 @@ export class ExamesComponent implements OnInit, OnDestroy {
 
   constructor(
     private breadcrumbService: BreadcrumbService,
-    private exameService: ExameService,
     ) { }
 
   handleClick() {
@@ -60,22 +57,11 @@ export class ExamesComponent implements OnInit, OnDestroy {
       },
       { 
         label: 'Solicitar Exame',
-        routerLink: 'solicitar-exame',
       }
     ])
   }
 
   // Métodos
-
-  listarExames() {
-    this.exameService.buscarPaciente().subscribe((exames: Array<ExamModel>) => {
-        this.exames = exames;
-    });
-  }
-
-  // aoSelecionarExame(selectPaciente: ConsultaExame): void {
-  //   this.formEmergencia.controls['prontuario'].setValue(selectPaciente.id);
-  // }
   
   ngOnDestroy(): void {
     this.breadcrumbService.reset();

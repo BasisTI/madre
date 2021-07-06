@@ -37,8 +37,7 @@ import { SuprimentosModule } from './suprimentos/suprimentos.module';
 import { environment } from '../environments/environment';
 import { ConsultaModule } from './consulta/consulta.module';
 import { PacienteModule } from './pacientes/formulario/paciente.module';
-import { ExamesComponent } from './exames/Components/exames/exames.component';
-import { SolicitarExameComponent } from './exames/views/solicitar-exame/solicitar-exame.component';
+import { ExamesModule } from './exames/exames.module';
 
 @NgModule({
     imports: [
@@ -66,6 +65,7 @@ import { SolicitarExameComponent } from './exames/views/solicitar-exame/solicita
         ConsultaModule,
         PacienteModule,
         ConfirmDialogModule,
+        ExamesModule,
     ],
     declarations: [
         AppComponent,
@@ -75,8 +75,6 @@ import { SolicitarExameComponent } from './exames/views/solicitar-exame/solicita
         AppInlineProfileComponent,
         DiarioErrosComponent,
         PreCadastroComponent,
-        ExamesComponent,
-        SolicitarExameComponent,
     ],
     providers: [
         {

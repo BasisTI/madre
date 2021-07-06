@@ -23,7 +23,6 @@
                     label="Pesquisar pelo nome completo"
                     value="fullName"
                     [(ngModel)]="selectedValue"
-                    style="margin-left: 20px;"
                   ></p-radioButton>
                 </span>
                   
@@ -43,7 +42,6 @@
                     [suggestions]="exames"
                     (completeMethod)="listarExames()"
                     dropdown="true"
-                    formControlName="Exames"
                     (onSelect)="aoSelecionarExame()"
                     pTooltip="Selecione um exame"
                   ></p-autoComplete>
@@ -73,8 +71,8 @@
                   <div class="dropdown-div">
                     Situação:
                     <p-dropdown
-                    [options]="situationDropdown"
-                    [(ngModel)]="selectedSituation"
+                      [options]="situationDropdown"
+                      [(ngModel)]="selectedSituation"
                     ></p-dropdown>
                   </div>
                 </span>
