@@ -1,55 +1,94 @@
-p-radioButton {
-    margin-left: 15px;
-    margin-right: 15px;
-}
-h4 {
+
+  .classificacao-de-risco h3 {
+    font-family: Open Sans;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 0px;
     text-align: center;
-}
-img {
-    height: 50px;
-    width: 50px;
-}
-H3 {
-    color: red;
-    text-align: right;
-    margin-right: 30px;
-}
+    text-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
+  }
 
-.emergencia {
-    background-color: red;
-    height: 50px;
-    width: 50px;
-    border: 1px solid grey;
-    border-radius: 10px;
-    align-self: center;
-}
+  .classificacao-de-risco {
+    display: flex;
+  }
+  
+  .button-triagem {
+    background: #F5F5F5;
+    border: 1px solid #D4DDE5;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    margin: 10px;
+    height: 200px;
+    width: 100%;
+  }
+    
+  .nao-urgente:hover {
+    background: linear-gradient(112.64deg, #1FAAEE -0.07%, #0982BD 100%), #F5F5F5;
+    border: solid #0982BD;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .nao-urgente:hover p {
+    background: #0673A8;
+  }
 
-.muitoUrgente {
-    background-color: orange;
-    height: 50px;
-    width: 50px;
-    border: 1px solid grey;
-    border-radius: 10px;
-}
-.urgente {
-    background-color: yellow;
-    height: 50px;
-    width: 50px;
-    border: 1px solid grey;
-    border-radius: 10px;
-}
-.poucoUrgente {
-    background-color: green;
-    height: 50px;
-    width: 50px;
-    border: 1px solid grey;
-    border-radius: 10px;
-}
-
-.naoUrgente {
-    background-color: blue;
-    height: 50px;
-    width: 50px;
-    border: 1px solid grey;
-    border-radius: 10px;
-}
+  .nao-urgente:active {
+    background: linear-gradient(112.64deg, #1FAAEE -0.07%, #0982BD 100%), #F5F5F5;
+    border: solid #0982BD;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .pouco-urgente:hover {
+    background: linear-gradient(112.64deg, #33A987 -0.07%, #088762 100%), #F5F5F5;
+    border: solid #088762;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .pouco-urgente:hover p {
+    background: #047151;
+  }
+  
+  .urgente:hover {
+    background: linear-gradient(112.64deg, #FCE300 -0.07%, #FCC605 100%), #F5F5F5;
+    border: solid #E5B302;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .urgente:hover p {
+    background: #E6B302;
+  }
+  
+  .muito-urgente:hover {
+    background: linear-gradient(112.64deg, #FC8509 -0.07%, #CC6403 100%), #F5F5F5;
+    border: 4px solid #CC6403;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .muito-urgente:hover p {
+    background: #B95A02;
+  }
+  
+  .emergencia:hover {
+    background: linear-gradient(112.64deg, #E22526 -0.07%, #B60832 100%), #F5F5F5;
+    border: 4px solid #AD0404;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .emergencia:hover p {
+    background: #9B0303;
+  }

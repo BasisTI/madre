@@ -1,7 +1,48 @@
 <form [formGroup]="formTriagem" class="p-grid p-fluid">
-    <div class="p-md-7"></div>
-    <h4>Classificação de Risco</h4>
-    <div class="p-dataview p-grid p-md-12 p-sm-12">
+    <h2 class="sub-title">Classificação de Risco</h2>
+    <div class="classificacao-de-risco">
+        <app-nivel-emergencia class="nivel-emergencia" cor="nao-urgente" (click)="valor(4)"
+            title="NÃO URGENTE" descricao="Sem risco de agravo à saúde, pode aguardar atendimento">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia class="nivel-emergencia" cor="pouco-urgente"
+            title="POUCO URGENTE" descricao="Baixo risco de agravo a saúde, pode aguardar atendimento">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia class="nivel-emergencia" cor="urgente"
+            title="URGENTE" descricao="Necessita de atendimento rápido, mas pode aguardar">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia class="nivel-emergencia" cor="muito-urgente"
+            title="MUITO URGENTE" descricao="Necessita de atendimento praticamente imediato">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia class="nivel-emergencia" cor="emergencia"
+            title="EMERGÊNCIA" descricao="Necessita de atendimento imediato">
+        </app-nivel-emergencia>
+    </div> 
+
+        <!-- <button class="button-triagem pouco-urgente">
+            <h3>POUCO URGENTE</h3>
+            <p class="classificacao-de-risco-descricao">Baixo risco de agravo a saúde, pode aguardar atendimento
+            </p>
+        </button>
+
+        <button class="button-triagem urgente">
+            <h3>URGENTE</h3>
+            <p class="classificacao-de-risco-descricao">Necessita de atendimento rápido, mas pode aguardar</p>
+        </button>
+
+        <button class="button-triagem muito-urgente">
+            <h3>MUITO URGENTE</h3>
+            <p class="classificacao-de-risco-descricao">Necessita de atendimento praticamente imediato</p>
+        </button>
+
+        <button class="button-triagem emergencia">
+            <h3>EMERGÊNCIA</h3>
+            <p class="classificacao-de-risco-descricao">Necessita de atendimento imediato</p>
+        </button> -->
+    <!-- <div class="p-dataview p-grid p-md-12 p-sm-12">
         <div class="p-md-7">
             <h3>
                 <span>{{ formTriagem.value.classificacaoDeRisco | classificaoDeRisco }}</span>
@@ -77,6 +118,7 @@
                     formControlName="classificacaoDeRisco"
                 ></p-radioButton>
             </div>
-        </div>
-    </div>
+        </div> 
+    </div> -->
+
 </form>
