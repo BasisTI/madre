@@ -1,0 +1,69 @@
+entity Exame {
+nome String required
+nomeUsual String
+sigla String required
+}
+
+entity Material {
+nome String required
+codigo Integer required
+}
+
+entity Recomendacao {
+descricao String required
+avisoResponsavel Boolean required
+responsavel Responsavel
+abrangencia Abrangencia
+}
+
+entity TipoAmostra {
+nome String required
+}
+
+entity ItemSolicitacaoExame {
+urgente Boolean required
+dataProgramada LocalDate required
+situacao Situacao required
+}
+
+entity SolicitacaoExame {
+id Integer required
+infoClinica String required
+usoAntimicrobianos24h Boolean required
+pedidoPrimeiroExame Boolean required
+}
+
+entity Sinonimo {
+nome String required
+situacao Boolean
+}
+
+enum Responsavel {
+COLETADOR, SOLICITANTE, PACIENTE
+}
+
+enum Abrangencia {
+AMBULATORIO, INTERNACAO, AMBOS
+}
+
+enum Situacao {
+A_COLETAR, AREA_EXECUTORA, COLETADO
+}
+
+relationship OneToMany {
+Material{material(nome)} to Recomendacao,
+SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
+}
+
+relationship ManyToOne {
+Exame{materialExame(nome)} to Material,
+Sinonimo{sinonimo(nome)} to Exame,
+Exame{amostraExame(nome)} to TipoAmostra,
+ItemSolicitacaoExame{itemSolicitacaoExame(situacao)} to Exame
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+search * with elasticsearch
+skipClient *

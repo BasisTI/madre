@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: DEBUG
     io.github.jhipster: DEBUG
-    br.com.basis.madre.exames: DEBUG
+    br.com.basis.madre.madreexames: DEBUG
 
 eureka:
   instance:
@@ -62,10 +62,12 @@ spring:
     database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
     show-sql: true
   data:
-    elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
+    jest:
+      uri: http://localhost:9200
+      # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-connecting-to-elasticsearch-jest
+      elasticsearch:
+        rest:
+          uris: http://localhost:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -119,7 +121,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: YzFhNzY5ZTc5MTM4MmUzMDM3ZDYwMWNkZjBlOTg5NTJjZDlmNzc2NDg1ZTI5ZWE2NDEyNjI0MjNhOGVmYWM4N2UzZDdlZThlNDUwZjk1NzIwYjcyMDRkOGM1ZTA4NWRiZTdkZjczNGE1NWViNDliNjMwYTlmOTAwYTQ2YzExZTI=
+        base64-secret: YmQ4ZDBiOGNjNmFkYjAzZTMyZDU1MGYyOTE4YmY2ZjNkZjYyYTJmYTUwMzU3YTZkMWExYzE5YWE2ZGNmNDk1Y2VmZGRiZWU2OGUwMTJiNWVkOGE3YTBiODJjOTEzZjEzYWYzMzhjZmY1YWVjMDA4ZDVhNjg1NTg0YjlhZGZkMmQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

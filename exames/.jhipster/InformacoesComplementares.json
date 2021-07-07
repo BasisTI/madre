@@ -20,10 +20,10 @@
       "otherEntityField": "id"
     }
   ],
-  "changelogDate": "20210623125608",
+  "changelogDate": "20210705120318",
   "entityTableName": "informacoes_complementares",
   "dto": "mapstruct",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "serviceClass",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
@@ -31,7 +31,8 @@
   "embedded": false,
   "clientRootFolder": "madreexames",
   "applications": "*",
-  "searchEngine": "elastisearch",
   "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
   "databaseType": "sql"
 }

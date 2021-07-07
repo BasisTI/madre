@@ -21,21 +21,21 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "material",
       "otherEntityRelationshipName": "exame",
-      "relationshipName": "exame",
+      "relationshipName": "materialExame",
       "otherEntityField": "nome"
     },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "tipoAmostra",
       "otherEntityRelationshipName": "exame",
-      "relationshipName": "exame",
+      "relationshipName": "amostraExame",
       "otherEntityField": "nome"
     }
   ],
-  "changelogDate": "20210617164235",
+  "changelogDate": "20210705114508",
   "entityTableName": "exame",
   "dto": "mapstruct",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "serviceClass",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
@@ -43,7 +43,8 @@
   "embedded": false,
   "clientRootFolder": "madreexames",
   "applications": "*",
-  "searchEngine": "elastisearch",
   "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
   "databaseType": "sql"
 }

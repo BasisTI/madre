@@ -17,40 +17,40 @@
       "relationshipType": "one-to-one",
       "otherEntityName": "informacoesComplementares",
       "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso",
-      "otherEntityField": "infoClinica",
+      "relationshipName": "informacoes",
+      "otherEntityField": "codigo",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "projetoDePesquisa",
       "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso",
-      "otherEntityField": "infoClinica",
+      "relationshipName": "projeto",
+      "otherEntityField": "nome",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "laboratorioExterno",
       "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso",
-      "otherEntityField": "infoClinica",
+      "relationshipName": "laboratorio",
+      "otherEntityField": "nome",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "controleQualidade",
       "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso",
-      "otherEntityField": "infoClinica",
+      "relationshipName": "controle",
+      "otherEntityField": "codigo",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "cadaver",
       "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso",
-      "otherEntityField": "infoClinica",
+      "relationshipName": "cadaver",
+      "otherEntityField": "nome",
       "ownerSide": true
     },
     {
@@ -60,10 +60,10 @@
       "relationshipName": "atendimentoDiverso"
     }
   ],
-  "changelogDate": "20210623125508",
+  "changelogDate": "20210705120218",
   "entityTableName": "atendimento_diverso",
   "dto": "mapstruct",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "serviceClass",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
@@ -71,7 +71,8 @@
   "embedded": false,
   "clientRootFolder": "madreexames",
   "applications": "*",
-  "searchEngine": "elastisearch",
   "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
   "databaseType": "sql"
 }

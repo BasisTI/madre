@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     io.github.jhipster: INFO
-    br.com.basis.madre.exames: INFO
+    br.com.basis.madre.madreexames: INFO
 
 eureka:
   instance:
@@ -131,7 +131,7 @@ jhipster:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: YzFhNzY5ZTc5MTM4MmUzMDM3ZDYwMWNkZjBlOTg5NTJjZDlmNzc2NDg1ZTI5ZWE2NDEyNjI0MjNhOGVmYWM4N2UzZDdlZThlNDUwZjk1NzIwYjcyMDRkOGM1ZTA4NWRiZTdkZjczNGE1NWViNDliNjMwYTlmOTAwYTQ2YzExZTI=
+        base64-secret: YmQ4ZDBiOGNjNmFkYjAzZTMyZDU1MGYyOTE4YmY2ZjNkZjYyYTJmYTUwMzU3YTZkMWExYzE5YWE2ZGNmNDk1Y2VmZGRiZWU2OGUwMTJiNWVkOGE3YTBiODJjOTEzZjEzYWYzMzhjZmY1YWVjMDA4ZDVhNjg1NTg0YjlhZGZkMmQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

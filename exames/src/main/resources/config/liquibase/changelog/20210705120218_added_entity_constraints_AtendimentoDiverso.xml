@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity AtendimentoDiverso.
+    -->
+    <changeSet id="20210705120218-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="informacoes_id"
+                                 baseTableName="atendimento_diverso"
+                                 constraintName="fk_atendimento_diverso_informacoes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="informacoes_complementares"/>
+
+        <addForeignKeyConstraint baseColumnNames="projeto_id"
+                                 baseTableName="atendimento_diverso"
+                                 constraintName="fk_atendimento_diverso_projeto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="projeto_de_pesquisa"/>
+
+        <addForeignKeyConstraint baseColumnNames="laboratorio_id"
+                                 baseTableName="atendimento_diverso"
+                                 constraintName="fk_atendimento_diverso_laboratorio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="laboratorio_externo"/>
+
+        <addForeignKeyConstraint baseColumnNames="controle_id"
+                                 baseTableName="atendimento_diverso"
+                                 constraintName="fk_atendimento_diverso_controle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="controle_qualidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="cadaver_id"
+                                 baseTableName="atendimento_diverso"
+                                 constraintName="fk_atendimento_diverso_cadaver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cadaver"/>
+
+    </changeSet>
+</databaseChangeLog>

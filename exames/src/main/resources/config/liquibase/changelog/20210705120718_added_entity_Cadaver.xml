@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    
+    <!--
+        Added the entity Cadaver.
+    -->
+    <changeSet id="20210705120718-1" author="jhipster">
+        <createTable tableName="cadaver">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codigo" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="nome" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="data_nascimento" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="raca" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="grupo_sanguineo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="data_remocao" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="causa_obito" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="realizado_por" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="lido_por" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="procedencia" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="retirada" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="codigo_plano" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="convenio_plano" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="observacao" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20210705120718-1-relations" author="jhipster">
+
+    </changeSet>
+    
+    <changeSet id="20210705120718-1-sequence" author="jhipster">
+        <createSequence sequenceName="seq_cadaver" startValue="1050" incrementBy="50" />
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210705120718-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/cadaver.csv"
+                  separator=";"
+                  tableName="cadaver">
+            <column name="id" type="numeric"/>
+            <column name="codigo" type="numeric"/>
+            <column name="nome" type="string"/>
+            <column name="data_nascimento" type="date"/>
+            <column name="raca" type="string"/>
+            <column name="grupo_sanguineo" type="string"/>
+            <column name="data_remocao" type="date"/>
+            <column name="causa_obito" type="string"/>
+            <column name="realizado_por" type="string"/>
+            <column name="lido_por" type="string"/>
+            <column name="procedencia" type="string"/>
+            <column name="retirada" type="string"/>
+            <column name="codigo_plano" type="string"/>
+            <column name="convenio_plano" type="string"/>
+            <column name="observacao" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
