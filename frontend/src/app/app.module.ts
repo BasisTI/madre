@@ -37,7 +37,6 @@ import { SuprimentosModule } from './suprimentos/suprimentos.module';
 import { environment } from '../environments/environment';
 import { ConsultaModule } from './consulta/consulta.module';
 import { PacienteModule } from './pacientes/formulario/paciente.module';
-
 @NgModule({
     imports: [
         BrowserModule,
