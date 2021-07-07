@@ -1,6 +1,6 @@
 :root {
   --divider-color:#E4E4E4;
-  
+
 }
 
 .line-header {
@@ -823,7 +823,7 @@ body .p-overlay-badge .p-badge {
 }
 .example-spacer {
   flex : 1  1 auto;
-}      
+}
 .layout-topbar .layout-topbar-left .layout-menu-button {
   justify-content: center;
   cursor: pointer;
@@ -836,7 +836,7 @@ body .p-overlay-badge .p-badge {
 
 .layout-topbar .layout-topbar-left .layout-menu-button i {
   transition: transform 0.2s;
-  
+
 }
 .layout-topbar .layout-topbar-left .layout-topbar-actions-left .layout-menu-button a {
   font-size: 2rem;
@@ -2883,7 +2883,7 @@ body .p-overlay-badge .p-badge {
   color: var(--primary-menu-text-color);
 }*/
 .icon-home {
-  background: url(../images/icon-home.png) no-repeat; 
+  background: url(../images/icon-home.png) no-repeat;
   width: 34px;
   height: 34px;
 }
@@ -2894,6 +2894,11 @@ body .p-overlay-badge .p-badge {
 }
 .icon-triagem {
   background: url(../images/icon-triagem.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-exames {
+  background: url(../images/icon-exames.png) no-repeat;
   width: 34px;
   height: 34px;
 }

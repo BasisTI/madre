@@ -211,7 +211,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Exames',
-                    icon: 'icon-triagem',
+                    icon: 'icon-exames',
                     items: [
                         {
                             label: 'Pesquisar Atendimento',
