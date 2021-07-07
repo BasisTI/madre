@@ -158,18 +158,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                     ],
                 },
                 {
-                    label: 'Exames',
-                    icon: 'person_add',
-                    items: [
-                        {
-                            label: 'Atendimento Diverso',
-                            icon: 'add',
-                            routerLink: ['exames/atendimento-diverso'],
-                        }
-                    ],
-                },
-
-                {
                     label: 'Internação',
                     icon: 'icon-internacao',
                     items: [
@@ -226,6 +214,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                     icon: 'icon-exames',
                     items: [
                         {
+                            label: 'Atendimento Diverso',
+                            icon: 'add',
+                            routerLink: ['exames/atendimento-diverso'],
+                        }
+                        ,{
                             label: 'Pesquisar Atendimento',
                             icon: 'add',
                             routerLink: ['exames/pesquisar-atendimento'],
@@ -328,10 +321,10 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
-                        
+
                     ],
                 },
-                
+
             ]}
 
         ];
