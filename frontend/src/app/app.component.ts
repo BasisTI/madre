@@ -158,6 +158,18 @@ export class AppComponent implements AfterViewInit, OnInit {
                     ],
                 },
                 {
+                    label: 'Exames',
+                    icon: 'person_add',
+                    items: [
+                        {
+                            label: 'Atendimento Diverso',
+                            icon: 'add',
+                            routerLink: ['exames/atendimento-diverso'],
+                        }
+                    ],
+                },
+
+                {
                     label: 'Internação',
                     icon: 'icon-internacao',
                     items: [
@@ -316,8 +328,10 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
+                        
                     ],
                 },
+                
             ]}
 
         ];

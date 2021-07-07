@@ -1,0 +1,34 @@
+.pesquisar {
+    margin: 0px;
+    padding: 0px;
+}
+#grupo {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+#codigo {
+    height: min-content;
+    margin: 0px 0px 0px 0px; 
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.atend {
+    line-height: 10px;
+    padding: 10px;
+    margin-bottom: 3px;
+}
+.protuario{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin-right: 10px;
+ }
+.botton{
+    margin-bottom: 3px;
+}
