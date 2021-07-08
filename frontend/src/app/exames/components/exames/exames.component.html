@@ -1,9 +1,7 @@
-<p-fieldset>
-  <ng-template pTemplate="header">
-    <div class="headerDiv">
-      Exames
-    </div>
-  </ng-template>
+<div class="p-col-12 card card-w-title">
+    <h1>
+        Exames
+      </h1>
     <div class="TableDiv">
         <p-tabView class="tableContent">
             <p-tabPanel header="por Exames">
@@ -16,7 +14,7 @@
                     value="firstName"
                     [(ngModel)]="selectedValue"
                   ></p-radioButton>
-                  
+
                   <p-radioButton
                     class="radial-button"
                     name="filter"
@@ -25,7 +23,7 @@
                     [(ngModel)]="selectedValue"
                   ></p-radioButton>
                 </span>
-                  
+
                 <span class="data-field-2">
 
                   <p-checkbox
@@ -34,7 +32,7 @@
                     [binary]="true"
                     pTooltip="Filtrar busca por exame disponíveis pela unidade funcional vinculada."
                   ></p-checkbox>
-                  
+
                   <label style="margin-bottom: 10px;">Exame:</label>
                   <p-autoComplete
                     name="exame"
@@ -46,7 +44,7 @@
                     pTooltip="Selecione um exame"
                   ></p-autoComplete>
                 </span>
-              
+
                 <span class="data-field-3">
                   <p-checkbox
                     class="urgent-checkbox"
@@ -54,7 +52,7 @@
                     label="Urgente"
                     [binary]="true"
                   ></p-checkbox>
-                  
+
                   <span class="calendar-div">
                     Data/Hora programada:
                     <p-calendar
@@ -67,7 +65,7 @@
                       dateFormat="dd/mm/yy"
                     ></p-calendar>
                   </span>
-                    
+
                   <div class="dropdown-div">
                     Situação:
                     <p-dropdown
@@ -77,7 +75,7 @@
                   </div>
                 </span>
               </div>
-            </p-tabPanel> 
+            </p-tabPanel>
 
             <p-tabPanel header="por Lote">
               <div class="container-2">
@@ -91,7 +89,7 @@
                       value="val1"
                       [(ngModel)]="selectedLote"
                     ></p-radioButton>
-                          
+
                     <p-radioButton
                       class="radial-button"
                       name="filter"
@@ -131,4 +129,4 @@
 
         </p-tabView>
     </div>
-</p-fieldset>
+  </div>
