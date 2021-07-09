@@ -8,42 +8,42 @@ export const GroupDropdown: OpcaoDropdown[] = [
         value: '1',
     },
     {
-        label: 'ACIDENTE DE TRABALHO - FONTE',
+        label: 'Acidente de trabalho - Fonte',
         value: '2'
 
     },
     {
-        label: 'ACIDENTE DE TRABALHO - PROFISSIONAL',
+        label: 'Acidente de trabalho - Profissional',
         value: '3'
 
     },
     {
-        label: 'BIÓPSIA PERCUTÂNEA GUIADA POR TOMOGRAFIA',
+        label: 'Biópsia percutânea guiada por tomografia',
         value: '4'
 
     },
     {
-        label: 'COVID-19 ADMISSÃO',
+        label: 'COVID-19 Amissão',
         value: '5'
 
     },
     {
-        label: 'COVID-19 ROTINA',
+        label: 'COVID-19 Rotina',
         value: '6'
 
     },
     {
-        label: 'CTI - DOENÇA CORONARIANA',
+        label: 'CTI - Doença Coroniana',
         value: '7'
 
     },
     {
-        label: 'CTI - ROTINA BÁSICA',
+        label: 'CTI - Rotina Básica',
         value: '8'
 
     },
     {
-        label: 'CTI - ROTINA BÁSICA COM GASOMETRIA',
+        label: 'CTI - Rotina Básica com gasometria',
         value: '9'
 
     },
@@ -53,34 +53,34 @@ export const GroupDropdown: OpcaoDropdown[] = [
 
     },
     {
-        label: 'DIÁLISE PERITONEAL ANUAL OU ADMISSIONAL',
+        label: 'Diálise peritoneal anual ou admissional',
         value: '11'
 
     },
     {
-        label: 'DIÁLISE PERITONEAL MENSAL',
+        label: 'Diálise peritoneal mensal',
         value: '12'
 
     },
     {
-        label: 'DIÁLISE PERITONEAL SEMESTRAL',
+        label: 'Diálise peritoneal semestral',
         value: '13'
 
     },
     {
-        label: 'DIÁLISE PERITONEAL TRIMESTRAL',
+        label: 'Diálise peritonealL trimestral',
         value: '14'
 
     },
     {
-        label: 'DIP - PROTOCOLO CONTROLE',
+        label: 'DIP - Protocolo controle',
         value: '15'
 
     },
     {
-        label: 'DIP - PROTOCOLO INICIAL',
+        label: 'DIP - Protocolo inicial',
         value: '16'
 
-    }    
+    }
 ];
 

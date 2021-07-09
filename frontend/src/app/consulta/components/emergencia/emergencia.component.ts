@@ -64,7 +64,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         this.breadcrumbService.setItems([
             {
                 label: 'Consultas',
-                // routerLink: 'consulta',
+                routerLink: 'consulta',
             },
             {
                 label: 'Emergência',
