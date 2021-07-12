@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 
@@ -10,6 +10,7 @@ import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classi
 export class NivelEmergenciaComponent implements OnInit {
 
   @Input() formTriagem: FormGroup;
+  opcaoClassificacao = CLASSIFICACAO_RISCO;
 
   @Input()
   title: string;
@@ -20,23 +21,20 @@ export class NivelEmergenciaComponent implements OnInit {
   @Input()
   cor: string;
 
-  @Output()
-  value: string;
-  
-  opcaoClassificacao = CLASSIFICACAO_RISCO;
+  nivel: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  classificacaoDeRisco() {
-    console.log("skdjalsifjikp");
+  mudarCor(cor:string){
+    if(cor == "nao-urgente"){
+      cor = "nao-urgente-selecionado"
+      console.log("mudar cor")
+    } else {
+      cor = "nao-urgente"
+      console.log("nao mudar cor")
+    }
   }
-
-  valor(valor:number){
-    console.log(valor);
-    this.value = this.opcaoClassificacao[valor].value
-  }
-
 }

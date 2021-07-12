@@ -1,6 +1,6 @@
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 import { BreadcrumbService } from '@nuvem/primeng-components';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { NivelEmergenciaComponent } from './nivel-emergencia/nivel-emergencia.component';
@@ -22,17 +22,14 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     justifyOptions: any[];
     checked: string;
 
-    value: string;
+    formControlName: string;
+    value: any;
 
-    handleClick() {}
+    handleClick() { }
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
         this.risk = [];
     }
 
-    ngOnInit() {}
-    
-    valor(valor:number ){
-        console.log(this.opcaoClassificacao[valor]);
-    }
+    ngOnInit() { }
 }
