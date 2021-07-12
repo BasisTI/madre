@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +67,11 @@ public class ExportarMedicamentoService {
         fonte.setFontHeight(12);
         estilo.setFont(fonte);
 
-        for (MedicamentoDTO medicamento : medicamentoService.findAll(Pageable.unpaged())) {
+        String medicamentoQuery = "select * from medicamento";
+        int medicamentoSize = medicamentoService.listarTodos().size();
+        Pageable medicamentos = PageRequest.of(0, medicamentoSize);
+
+        for (MedicamentoDTO medicamento : medicamentoService.search(medicamentoQuery, medicamentos)) {
             Row row = sheet.createRow(rowCount++);
 
             Cell cell = row.createCell(0);
