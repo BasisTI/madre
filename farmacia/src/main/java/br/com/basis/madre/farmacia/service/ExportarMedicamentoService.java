@@ -23,15 +23,9 @@ import java.util.List;
 public class ExportarMedicamentoService {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
-    private List<Medicamento> ListaMedicamentos;
 
     @Autowired
     private MedicamentoService medicamentoService;
-
-    public ExportarMedicamentoService(List<Medicamento> listaMedicamentos) {
-        ListaMedicamentos = listaMedicamentos;
-
-    }
 
     private void escreverHeaderRow() {
         Row row = sheet.createRow(0);
