@@ -21,20 +21,14 @@ export class NivelEmergenciaComponent implements OnInit {
   @Input()
   cor: string;
 
+  @Input()
   nivel: number;
+
+  @Input()
+  descricaoC: string;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  mudarCor(cor:string){
-    if(cor == "nao-urgente"){
-      cor = "nao-urgente-selecionado"
-      console.log("mudar cor")
-    } else {
-      cor = "nao-urgente"
-      console.log("nao mudar cor")
-    }
   }
 }

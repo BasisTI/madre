@@ -25,11 +25,19 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     formControlName: string;
     value: any;
 
-    handleClick() { }
-
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
         this.risk = [];
     }
 
     ngOnInit() { }
+
+
+
+    /* toggle = true;
+    status = 'Enable';
+
+    enableDisableRule(job) {
+        this.toggle = !this.toggle;
+        this.status = this.toggle ? 'Enable' : 'Disable';
+    } */
 }

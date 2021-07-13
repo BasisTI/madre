@@ -1,33 +1,37 @@
 <form [formGroup]="formTriagem" class="p-grid p-fluid">
-    <h2 class="sub-title">Classificação de Risco</h2>
+    <h2 class="p-md-12 sub-title">Classificação de Risco</h2>
     <div class="classificacao-de-risco">
 
-        <label class="button-triagem nao-urgente" ><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[4].value" formControlName="classificacaoDeRisco" >
+        <app-nivel-emergencia class="button-triagem" cor="nao-urgente" title="NÃO URGENTE"
+            descricao="Sem risco de agravo à saúde, pode aguardar atendimento" value="opcaoClassificacao[3].value">
+        </app-nivel-emergencia>
+
+        <!-- <label class="button-triagem nao-urgente"><input type="radio" name="classificacaoDeRisco"
+                [value]="opcaoClassificacao[4].value" formControlName="classificacaoDeRisco">
             <h3>NÃO URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Sem risco de agravo à saúde, pode aguardar atendimento</p>
-        </label>
+        </label> -->
 
         <label class="button-triagem pouco-urgente"><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[3].value" formControlName="classificacaoDeRisco" >
+                [value]="opcaoClassificacao[3].value" formControlName="classificacaoDeRisco">
             <h3>POUCO URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Baixo risco de agravo a saúde, pode aguardar atendimento</p>
         </label>
 
         <label class="button-triagem urgente"><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[2].value" formControlName="classificacaoDeRisco" >
+                [value]="opcaoClassificacao[2].value" formControlName="classificacaoDeRisco">
             <h3>URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Necessita de atendimento rápido, mas pode aguardar</p>
         </label>
 
         <label class="button-triagem muito-urgente"><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[1].value" formControlName="classificacaoDeRisco" >
+                [value]="opcaoClassificacao[1].value" formControlName="classificacaoDeRisco">
             <h3>MUITO URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Necessita de atendimento praticamente imediato</p>
         </label>
 
         <label class="button-triagem emergencia"><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[0].value" formControlName="classificacaoDeRisco" >
+                [value]="opcaoClassificacao[0].value" formControlName="classificacaoDeRisco">
             <h3>EMERGÊNCIA</h3>
             <p class="classificacao-de-risco-descricao">Necessita de atendimento imediato</p>
         </label>
@@ -59,25 +63,25 @@
     </div>
 
     <!-- <button class="button-triagem pouco-urgente">
-            <h3>POUCO URGENTE</h3>
-            <p class="classificacao-de-risco-descricao">Baixo risco de agravo a saúde, pode aguardar atendimento
-            </p>
-        </button>
+        <h3>POUCO URGENTE</h3>
+        <p class="classificacao-de-risco-descricao">Baixo risco de agravo a saúde, pode aguardar atendimento
+        </p>
+    </button>
 
-        <button class="button-triagem urgente">
-            <h3>URGENTE</h3>
-            <p class="classificacao-de-risco-descricao">Necessita de atendimento rápido, mas pode aguardar</p>
-        </button>
+    <button class="button-triagem urgente">
+        <h3>URGENTE</h3>
+        <p class="classificacao-de-risco-descricao">Necessita de atendimento rápido, mas pode aguardar</p>
+    </button>
 
-        <button class="button-triagem muito-urgente">
-            <h3>MUITO URGENTE</h3>
-            <p class="classificacao-de-risco-descricao">Necessita de atendimento praticamente imediato</p>
-        </button>
+    <button class="button-triagem muito-urgente">
+        <h3>MUITO URGENTE</h3>
+        <p class="classificacao-de-risco-descricao">Necessita de atendimento praticamente imediato</p>
+    </button>
 
-        <button class="button-triagem emergencia">
-            <h3>EMERGÊNCIA</h3>
-            <p class="classificacao-de-risco-descricao">Necessita de atendimento imediato</p>
-        </button> -->
+    <button class="button-triagem emergencia">
+        <h3>EMERGÊNCIA</h3>
+        <p class="classificacao-de-risco-descricao">Necessita de atendimento imediato</p>
+    </button> -->
 
     <!-- <div class="p-dataview p-grid p-md-12 p-sm-12">
         <div class="p-md-7">
