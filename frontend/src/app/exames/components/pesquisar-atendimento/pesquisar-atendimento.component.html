@@ -69,6 +69,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="card card-w-title">
+            <div class="p-md-12">
+                <basis-datatable [verticalButtons]="false" #datatable
+                    type="memory" [value]="" sortField="brand">
+                    <p-column field="" header="Ação"></p-column>
+                    <p-column field="" header="Prontuário"></p-column>
+                    <p-column field="" header="Nome"></p-column>
+                    <p-column field="" header="Idade"></p-column>
+                    <p-column field="" header="Data Atendimento"></p-column>
+                    <p-column field="" header="Especialidade"></p-column>
+                    <p-column field="" header="Origem"></p-column>
+                    <p-column field="" header="Local"></p-column>
+                </basis-datatable>
+            </div>
+        </div>
+
         <app-solicitacao-exame></app-solicitacao-exame>
 
     </div>
