@@ -1,0 +1,92 @@
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="card card-w-title">
+            <h1>Pesquisar Atendimentos de Pacientes</h1>
+            <div class="p-grid">
+                <div class="p-md-1 p-fluid">
+                    Prontuário
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" pTooltip="Digite o prontuário do paciente." />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Consulta
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" pTooltip="Digite o número da consulta." />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-fluid">
+                    Nome
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" [(ngModel)]="filtroNomeDoPaciente"
+                            pTooltip="Digite o nome do paciente." />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+
+                <div class="p-md-2 p-fluid" pTooltip="Selecione a origem do atendimento.">
+                    Origem
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <p-dropdown label="Pedido para 1° exame ou comparativo" [options]="opcoesDeOrigem">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Leito
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" pTooltip="Digite o leito." />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Quarto
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" pTooltip="Digite o número do quarto." />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+
+                <div class="p-md-2 p-fluid">
+                    Unidade Funcional
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                        <p-dropdown [options]="opcoesDeOrigem" pTooltip="Selecione a unidade de internação.">
+                        </p-dropdown>
+                    </span>
+                </div>
+
+                <div class="p-col-12 p-grid p-d-flex p-jc-center">
+                    <div class="p-md-4">
+                        <button pButton type="button" label="Pesquisar" icon="pi pi-search"
+                            (click)="datatable.refresh(filtroNomeDoPaciente)"
+                            bTooltip="Pesquisar paciente por nome."></button>
+                    </div>
+                    <div class="p-md-4">
+                        <button pButton type="button" label="Limpar" icon="pi pi-times"></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-w-title">
+            <div class="p-md-12">
+                <basis-datatable [verticalButtons]="false" #datatable
+                    type="memory" [value]="" sortField="brand">
+                    <p-column field="" header="Ação"></p-column>
+                    <p-column field="" header="Prontuário"></p-column>
+                    <p-column field="" header="Nome"></p-column>
+                    <p-column field="" header="Idade"></p-column>
+                    <p-column field="" header="Data Atendimento"></p-column>
+                    <p-column field="" header="Especialidade"></p-column>
+                    <p-column field="" header="Origem"></p-column>
+                    <p-column field="" header="Local"></p-column>
+                </basis-datatable>
+            </div>
+        </div>
+
+        <app-solicitacao-exame></app-solicitacao-exame>
+
+    </div>
+</div>
