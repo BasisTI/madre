@@ -76,7 +76,6 @@ export class PacienteService implements CrudService<number, Paciente> {
 
     findAll(entity: Paciente): Observable<Paciente>{
         const params = new HttpParams().set('nome', entity.nome).set('prontuario', entity.prontuario);
-        console.log(params);
         return this.http.get<Paciente>(`${this.uri}`, { params });
     }
 
