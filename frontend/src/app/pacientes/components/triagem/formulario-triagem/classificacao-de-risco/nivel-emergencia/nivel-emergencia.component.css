@@ -32,7 +32,7 @@
     width: 100%;
 }
 
-.nao-urgente:hover {
+.nao-urgente:hover, .nao-urgente.checked {
     background: linear-gradient(112.64deg, #1FAAEE -0.07%, #0982BD 100%), #F5F5F5;
     border: solid #0982BD;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
@@ -52,7 +52,7 @@
     color: white;
 }
 
-.pouco-urgente:hover {
+.pouco-urgente:hover, .pouco-urgente.checked {
     background: linear-gradient(112.64deg, #33A987 -0.07%, #088762 100%), #F5F5F5;
     border: solid #088762;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
@@ -64,7 +64,7 @@
     background: #047151;
 }
 
-.urgente:hover {
+.urgente:hover, .urgente.checked {
     background: linear-gradient(112.64deg, #FCE300 -0.07%, #FCC605 100%), #F5F5F5;
     border: solid #E5B302;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
@@ -76,7 +76,7 @@
     background: #E6B302;
 }
 
-.muito-urgente:hover {
+.muito-urgente:hover, .muito-urgente.checked {
     background: linear-gradient(112.64deg, #FC8509 -0.07%, #CC6403 100%), #F5F5F5;
     border: 4px solid #CC6403;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
@@ -88,7 +88,7 @@
     background: #B95A02;
 }
 
-.emergencia:hover {
+.emergencia:hover, .emergencia.checked {
     background: linear-gradient(112.64deg, #E22526 -0.07%, #B60832 100%), #F5F5F5;
     border: 4px solid #AD0404;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);

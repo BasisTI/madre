@@ -1,5 +1,7 @@
-<label class="button-triagem {{ cor }}"><input type="radio" name="classificacaoDeRisco"
-        formControlName="classificacaoDeRisco">
-    <h3>{{ title }}</h3>
-    <p class="classificacao-de-risco-descricao">{{ descricao }}</p>
-</label>
+<div class="button-triagem {{ cor }}" [ngClass]="{'checked': control.value == value}">
+    <label>
+        <input type="radio" name="classificacaoDeRisco" [value]="value" [formControl]="control">
+        <h3>{{ title }}</h3>
+        <p class="classificacao-de-risco-descricao">{{ descricao }}</p>
+    </label>
+</div>

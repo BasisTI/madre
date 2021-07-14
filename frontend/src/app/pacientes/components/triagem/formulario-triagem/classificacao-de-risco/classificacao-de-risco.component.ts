@@ -3,7 +3,7 @@ import { BreadcrumbService } from '@nuvem/primeng-components';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { NivelEmergenciaComponent } from './nivel-emergencia/nivel-emergencia.component';
+
 @Component({
     selector: 'app-classificacao-de-risco',
     templateUrl: './classificacao-de-risco.component.html',
@@ -29,7 +29,14 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
         this.risk = [];
     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.formTriagem.patchValue({classificacaoDeRisco: CLASSIFICACAO_RISCO[2].value});
+
+        // this.formTriagem.controls.classificacaoDeRisco.valueChanges.subscribe((value) => {
+        //     console.log(value);
+        // })
+        
+    }
 
 
 

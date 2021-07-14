@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classificacao-risco';
 
 @Component({
@@ -9,8 +9,7 @@ import { CLASSIFICACAO_RISCO } from 'src/app/pacientes/models/radioButton/classi
 })
 export class NivelEmergenciaComponent implements OnInit {
 
-  @Input() formTriagem: FormGroup;
-  opcaoClassificacao = CLASSIFICACAO_RISCO;
+  @Input() control: FormControl;
 
   @Input()
   title: string;
@@ -20,6 +19,9 @@ export class NivelEmergenciaComponent implements OnInit {
 
   @Input()
   cor: string;
+
+  @Input()
+  value: string;
 
   @Input()
   nivel: number;

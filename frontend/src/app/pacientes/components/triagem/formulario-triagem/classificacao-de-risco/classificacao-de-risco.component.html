@@ -2,9 +2,51 @@
     <h2 class="p-md-12 sub-title">Classificação de Risco</h2>
     <div class="classificacao-de-risco">
 
-        <app-nivel-emergencia class="button-triagem" cor="nao-urgente" title="NÃO URGENTE"
-            descricao="Sem risco de agravo à saúde, pode aguardar atendimento" value="opcaoClassificacao[3].value">
+        <app-nivel-emergencia 
+            [control]="formTriagem.controls.classificacaoDeRisco" 
+            class="button-triagem" 
+            cor="nao-urgente" 
+            title="NÃO URGENTE"
+            descricao="Sem risco de agravo à saúde, pode aguardar atendimento" 
+            [value]="opcaoClassificacao[4].value">
         </app-nivel-emergencia>
+
+        <app-nivel-emergencia 
+            [control]="formTriagem.controls.classificacaoDeRisco" 
+            class="button-triagem" 
+            cor="pouco-urgente" 
+            title="POUCO URGENTE"
+            descricao="Baixo risco de agravo a saúde, pode aguardar atendimento" 
+            [value]="opcaoClassificacao[3].value">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia 
+            [control]="formTriagem.get('classificacaoDeRisco')" 
+            class="button-triagem" 
+            cor="urgente" 
+            title="URGENTE"
+            descricao="Necessita de atendimento rápido, mas pode aguardar" 
+            [value]="opcaoClassificacao[2].value">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia 
+            [control]="formTriagem.get('classificacaoDeRisco')" 
+            class="button-triagem" 
+            cor="muito-urgente" 
+            title="MUITO URGENTE"
+            descricao="Necessita de atendimento praticamente imediato" 
+            [value]="opcaoClassificacao[1].value">
+        </app-nivel-emergencia>
+
+        <app-nivel-emergencia 
+            [control]="formTriagem.get('classificacaoDeRisco')" 
+            class="button-triagem" 
+            cor="emergencia" 
+            title="EMERGÊNCIA"
+            descricao="Necessita de atendimento imediato" 
+            [value]="opcaoClassificacao[0].value">
+        </app-nivel-emergencia>
+
 
         <!-- <label class="button-triagem nao-urgente"><input type="radio" name="classificacaoDeRisco"
                 [value]="opcaoClassificacao[4].value" formControlName="classificacaoDeRisco">
@@ -12,19 +54,26 @@
             <p class="classificacao-de-risco-descricao">Sem risco de agravo à saúde, pode aguardar atendimento</p>
         </label> -->
 
-        <label class="button-triagem pouco-urgente"><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[3].value" formControlName="classificacaoDeRisco">
+        <!-- <label [ngClass]="{'button-triagem pouco-urgente': true }">
+            <input 
+                type="radio" 
+                name="classificacaoDeRisco"
+                [value]="opcaoClassificacao[3].value" 
+                formControlName="classificacaoDeRisco">
             <h3>POUCO URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Baixo risco de agravo a saúde, pode aguardar atendimento</p>
-        </label>
+        </label> -->
 
-        <label class="button-triagem urgente"><input type="radio" name="classificacaoDeRisco"
-                [value]="opcaoClassificacao[2].value" formControlName="classificacaoDeRisco">
+        <!-- <label class="button-triagem urgente">
+            <input type="radio" 
+                name="classificacaoDeRisco"
+                [value]="opcaoClassificacao[2].value" 
+                formControlName="classificacaoDeRisco">
             <h3>URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Necessita de atendimento rápido, mas pode aguardar</p>
-        </label>
+        </label> -->
 
-        <label class="button-triagem muito-urgente"><input type="radio" name="classificacaoDeRisco"
+        <!-- <label class="button-triagem muito-urgente"><input type="radio" name="classificacaoDeRisco"
                 [value]="opcaoClassificacao[1].value" formControlName="classificacaoDeRisco">
             <h3>MUITO URGENTE</h3>
             <p class="classificacao-de-risco-descricao">Necessita de atendimento praticamente imediato</p>
@@ -34,7 +83,7 @@
                 [value]="opcaoClassificacao[0].value" formControlName="classificacaoDeRisco">
             <h3>EMERGÊNCIA</h3>
             <p class="classificacao-de-risco-descricao">Necessita de atendimento imediato</p>
-        </label>
+        </label> -->
 
         <!-- <app-nivel-emergencia cor="nao-urgente" title="NÃO URGENTE"
             descricao="Sem risco de agravo à saúde, pode aguardar atendimento">
