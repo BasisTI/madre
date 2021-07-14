@@ -29,18 +29,10 @@
     {
       "relationshipType": "many-to-many",
       "otherEntityName": "exame",
-      "otherEntityRelationshipName": "exame",
-      "relationshipName": "grupoAgendamento",
+      "otherEntityRelationshipName": "grupoAgendamentoExame",
+      "relationshipName": "exame",
       "otherEntityField": "nome",
       "ownerSide": true
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "exame",
-      "otherEntityRelationshipName": "exame",
-      "relationshipName": "grupoAgendamentoExame",
-      "otherEntityField": "nome",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20210714162530",

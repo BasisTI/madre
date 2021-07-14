@@ -9,14 +9,14 @@
     <changeSet id="20210714162530-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="grupo_agendamento_exame_id"
-                                 baseTableName="grupo_agendamento_exame_grupo_agendamento"
-                                 constraintName="grupo_agendamento_exame_grupo__grupo_agendamento_exame_id"
+                                 baseTableName="grupo_agendamento_exame_exame"
+                                 constraintName="fk_grupo_agendamento_exame_exame_grupo_agendamento_exame_id"
                                  referencedColumnNames="id"
                                  referencedTableName="grupo_agendamento_exame"/>
 
-        <addForeignKeyConstraint baseColumnNames="grupo_agendamento_id"
-                                 baseTableName="grupo_agendamento_exame_grupo_agendamento"
-                                 constraintName="grupo_agendamento_exame_grupo__grupo_agendamento_id"
+        <addForeignKeyConstraint baseColumnNames="exame_id"
+                                 baseTableName="grupo_agendamento_exame_exame"
+                                 constraintName="fk_grupo_agendamento_exame_exame_exame_id"
                                  referencedColumnNames="id"
                                  referencedTableName="exame"/>
         

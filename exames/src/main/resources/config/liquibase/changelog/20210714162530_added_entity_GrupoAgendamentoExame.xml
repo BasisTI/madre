@@ -36,8 +36,8 @@
 
     <changeSet id="20210714162530-1-relations" author="jhipster">
 
-        <createTable tableName="grupo_agendamento_exame_grupo_agendamento">
-            <column name="grupo_agendamento_id" type="bigint">
+        <createTable tableName="grupo_agendamento_exame_exame">
+            <column name="exame_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="grupo_agendamento_exame_id" type="bigint">
@@ -45,7 +45,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="grupo_agendamento_exame_id, grupo_agendamento_id" tableName="grupo_agendamento_exame_grupo_agendamento"/>
+        <addPrimaryKey columnNames="grupo_agendamento_exame_id, exame_id" tableName="grupo_agendamento_exame_exame"/>
         
     </changeSet>
     

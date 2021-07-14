@@ -17,13 +17,13 @@ import java.util.Optional;
 @Repository
 public interface GrupoAgendamentoExameRepository extends JpaRepository<GrupoAgendamentoExame, Long> {
 
-    @Query(value = "select distinct grupoAgendamentoExame from GrupoAgendamentoExame grupoAgendamentoExame left join fetch grupoAgendamentoExame.grupoAgendamentos",
+    @Query(value = "select distinct grupoAgendamentoExame from GrupoAgendamentoExame grupoAgendamentoExame left join fetch grupoAgendamentoExame.exames",
         countQuery = "select count(distinct grupoAgendamentoExame) from GrupoAgendamentoExame grupoAgendamentoExame")
     Page<GrupoAgendamentoExame> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct grupoAgendamentoExame from GrupoAgendamentoExame grupoAgendamentoExame left join fetch grupoAgendamentoExame.grupoAgendamentos")
+    @Query("select distinct grupoAgendamentoExame from GrupoAgendamentoExame grupoAgendamentoExame left join fetch grupoAgendamentoExame.exames")
     List<GrupoAgendamentoExame> findAllWithEagerRelationships();
 
-    @Query("select grupoAgendamentoExame from GrupoAgendamentoExame grupoAgendamentoExame left join fetch grupoAgendamentoExame.grupoAgendamentos where grupoAgendamentoExame.id =:id")
+    @Query("select grupoAgendamentoExame from GrupoAgendamentoExame grupoAgendamentoExame left join fetch grupoAgendamentoExame.exames where grupoAgendamentoExame.id =:id")
     Optional<GrupoAgendamentoExame> findOneWithEagerRelationships(@Param("id") Long id);
 }

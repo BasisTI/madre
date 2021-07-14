@@ -48,17 +48,10 @@ public class Exame implements Serializable {
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
     private TipoAmostra amostraExame;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "exame_exame",
-               joinColumns = @JoinColumn(name = "exame_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "exame_id", referencedColumnName = "id"))
-    private Set<GrupoAgendamentoExame> exames = new HashSet<>();
-
-    @ManyToMany(mappedBy = "grupoAgendamentos")
+    @ManyToMany(mappedBy = "exames")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
-    private Set<GrupoAgendamentoExame> exames = new HashSet<>();
+    private Set<GrupoAgendamentoExame> grupoAgendamentoExames = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -134,54 +127,29 @@ public class Exame implements Serializable {
         this.amostraExame = tipoAmostra;
     }
 
-    public Set<GrupoAgendamentoExame> getExames() {
-        return exames;
+    public Set<GrupoAgendamentoExame> getGrupoAgendamentoExames() {
+        return grupoAgendamentoExames;
     }
 
-    public Exame exames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.exames = grupoAgendamentoExames;
+    public Exame grupoAgendamentoExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
+        this.grupoAgendamentoExames = grupoAgendamentoExames;
         return this;
     }
 
-    public Exame addExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.exames.add(grupoAgendamentoExame);
-        grupoAgendamentoExame.getGrupoAgendamentos().add(this);
+    public Exame addGrupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
+        this.grupoAgendamentoExames.add(grupoAgendamentoExame);
+        grupoAgendamentoExame.getExames().add(this);
         return this;
     }
 
-    public Exame removeExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.exames.remove(grupoAgendamentoExame);
-        grupoAgendamentoExame.getGrupoAgendamentos().remove(this);
+    public Exame removeGrupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
+        this.grupoAgendamentoExames.remove(grupoAgendamentoExame);
+        grupoAgendamentoExame.getExames().remove(this);
         return this;
     }
 
-    public void setExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.exames = grupoAgendamentoExames;
-    }
-
-    public Set<GrupoAgendamentoExame> getExames() {
-        return exames;
-    }
-
-    public Exame exames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.exames = grupoAgendamentoExames;
-        return this;
-    }
-
-    public Exame addExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.exames.add(grupoAgendamentoExame);
-        grupoAgendamentoExame.getGrupoAgendamentos().add(this);
-        return this;
-    }
-
-    public Exame removeExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.exames.remove(grupoAgendamentoExame);
-        grupoAgendamentoExame.getGrupoAgendamentos().remove(this);
-        return this;
-    }
-
-    public void setExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.exames = grupoAgendamentoExames;
+    public void setGrupoAgendamentoExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
+        this.grupoAgendamentoExames = grupoAgendamentoExames;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

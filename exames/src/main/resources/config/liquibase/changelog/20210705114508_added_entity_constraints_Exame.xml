@@ -20,17 +20,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_amostra"/>
 
-        <addForeignKeyConstraint baseColumnNames="exame_id"
-                                 baseTableName="exame_exame"
-                                 constraintName="fk_exame_exame_exame_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="exame"/>
-
-        <addForeignKeyConstraint baseColumnNames="exame_id"
-                                 baseTableName="exame_exame"
-                                 constraintName="fk_exame_exame_exame_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="grupo_agendamento_exame"/>
-        
     </changeSet>
 </databaseChangeLog>

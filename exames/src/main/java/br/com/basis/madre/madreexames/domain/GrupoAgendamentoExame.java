@@ -1,6 +1,5 @@
 package br.com.basis.madre.madreexames.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -48,15 +47,10 @@ public class GrupoAgendamentoExame implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "grupo_agendamento_exame_grupo_agendamento",
+    @JoinTable(name = "grupo_agendamento_exame_exame",
                joinColumns = @JoinColumn(name = "grupo_agendamento_exame_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "grupo_agendamento_id", referencedColumnName = "id"))
-    private Set<Exame> grupoAgendamentos = new HashSet<>();
-
-    @ManyToMany(mappedBy = "exames")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnore
-    private Set<Exame> grupoAgendamentoExames = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name = "exame_id", referencedColumnName = "id"))
+    private Set<Exame> exames = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -132,54 +126,29 @@ public class GrupoAgendamentoExame implements Serializable {
         this.ativo = ativo;
     }
 
-    public Set<Exame> getGrupoAgendamentos() {
-        return grupoAgendamentos;
+    public Set<Exame> getExames() {
+        return exames;
     }
 
-    public GrupoAgendamentoExame grupoAgendamentos(Set<Exame> exames) {
-        this.grupoAgendamentos = exames;
+    public GrupoAgendamentoExame exames(Set<Exame> exames) {
+        this.exames = exames;
         return this;
     }
 
-    public GrupoAgendamentoExame addGrupoAgendamento(Exame exame) {
-        this.grupoAgendamentos.add(exame);
-        exame.getExames().add(this);
+    public GrupoAgendamentoExame addExame(Exame exame) {
+        this.exames.add(exame);
+        exame.getGrupoAgendamentoExames().add(this);
         return this;
     }
 
-    public GrupoAgendamentoExame removeGrupoAgendamento(Exame exame) {
-        this.grupoAgendamentos.remove(exame);
-        exame.getExames().remove(this);
+    public GrupoAgendamentoExame removeExame(Exame exame) {
+        this.exames.remove(exame);
+        exame.getGrupoAgendamentoExames().remove(this);
         return this;
     }
 
-    public void setGrupoAgendamentos(Set<Exame> exames) {
-        this.grupoAgendamentos = exames;
-    }
-
-    public Set<Exame> getGrupoAgendamentoExames() {
-        return grupoAgendamentoExames;
-    }
-
-    public GrupoAgendamentoExame grupoAgendamentoExames(Set<Exame> exames) {
-        this.grupoAgendamentoExames = exames;
-        return this;
-    }
-
-    public GrupoAgendamentoExame addGrupoAgendamentoExame(Exame exame) {
-        this.grupoAgendamentoExames.add(exame);
-        exame.getExames().add(this);
-        return this;
-    }
-
-    public GrupoAgendamentoExame removeGrupoAgendamentoExame(Exame exame) {
-        this.grupoAgendamentoExames.remove(exame);
-        exame.getExames().remove(this);
-        return this;
-    }
-
-    public void setGrupoAgendamentoExames(Set<Exame> exames) {
-        this.grupoAgendamentoExames = exames;
+    public void setExames(Set<Exame> exames) {
+        this.exames = exames;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

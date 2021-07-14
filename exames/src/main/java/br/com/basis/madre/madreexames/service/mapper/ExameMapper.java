@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Exame} and its DTO {@link ExameDTO}.
  */
-@Mapper(componentModel = "spring", uses = {MaterialMapper.class, TipoAmostraMapper.class, GrupoAgendamentoExameMapper.class})
+@Mapper(componentModel = "spring", uses = {MaterialMapper.class, TipoAmostraMapper.class})
 public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
 
     @Mapping(source = "materialExame.id", target = "materialExameId")
@@ -20,9 +20,8 @@ public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
 
     @Mapping(source = "materialExameId", target = "materialExame")
     @Mapping(source = "amostraExameId", target = "amostraExame")
-    @Mapping(target = "removeExame", ignore = true)
-    @Mapping(target = "exames", ignore = true)
-    @Mapping(target = "removeExame", ignore = true)
+    @Mapping(target = "grupoAgendamentoExames", ignore = true)
+    @Mapping(target = "removeGrupoAgendamentoExame", ignore = true)
     Exame toEntity(ExameDTO exameDTO);
 
     default Exame fromId(Long id) {

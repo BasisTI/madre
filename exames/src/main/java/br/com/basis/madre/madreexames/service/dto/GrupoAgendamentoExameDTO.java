@@ -25,7 +25,7 @@ public class GrupoAgendamentoExameDTO implements Serializable {
     @NotNull
     private Boolean ativo;
 
-    private Set<ExameDTO> grupoAgendamentos = new HashSet<>();
+    private Set<ExameDTO> exames = new HashSet<>();
     
     public Long getId() {
         return id;
@@ -75,12 +75,12 @@ public class GrupoAgendamentoExameDTO implements Serializable {
         this.ativo = ativo;
     }
 
-    public Set<ExameDTO> getGrupoAgendamentos() {
-        return grupoAgendamentos;
+    public Set<ExameDTO> getExames() {
+        return exames;
     }
 
-    public void setGrupoAgendamentos(Set<ExameDTO> exames) {
-        this.grupoAgendamentos = exames;
+    public void setExames(Set<ExameDTO> exames) {
+        this.exames = exames;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class GrupoAgendamentoExameDTO implements Serializable {
             ", agendarEmConjunto='" + isAgendarEmConjunto() + "'" +
             ", calcularOcupacao='" + isCalcularOcupacao() + "'" +
             ", ativo='" + isAtivo() + "'" +
-            ", grupoAgendamentos='" + getGrupoAgendamentos() + "'" +
+            ", exames='" + getExames() + "'" +
             "}";
     }
 }

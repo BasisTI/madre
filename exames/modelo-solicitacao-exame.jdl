@@ -73,8 +73,7 @@ ItemSolicitacaoExame{itemSolicitacaoExame(situacao)} to Exame
 }
 
 relationship ManyToMany {
-Exame {exame(nome)} to GrupoAgendamentoExame {grupoAgendamentoExame(nome)},
-GrupoAgendamentoExame{grupoAgendamento(nome)} to Exame {exame(nome)}
+GrupoAgendamentoExame {Exame(nome)} to Exame {grupoAgendamentoExame(nome)}
 }
 
 dto * with mapstruct

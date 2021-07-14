@@ -34,16 +34,8 @@
     {
       "relationshipType": "many-to-many",
       "otherEntityName": "grupoAgendamentoExame",
-      "otherEntityRelationshipName": "grupoAgendamentoExame",
-      "relationshipName": "exame",
-      "otherEntityField": "nome",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "grupoAgendamentoExame",
-      "otherEntityRelationshipName": "grupoAgendamento",
-      "relationshipName": "exame",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "grupoAgendamentoExame",
       "otherEntityField": "nome",
       "ownerSide": false
     }
