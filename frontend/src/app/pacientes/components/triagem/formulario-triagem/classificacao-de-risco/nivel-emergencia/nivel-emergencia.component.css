@@ -11,7 +11,7 @@
 }
 
 .classificacao-de-risco {
-    display: flex;
+    align-items: center;
 }
 
 .descricao {
@@ -29,7 +29,7 @@
     border-radius: 4px;
     margin: 10px;
     height: 100%;
-    width: 100%;
+
 }
 
 .nao-urgente:hover, .nao-urgente.checked {
@@ -40,16 +40,8 @@
     color: white;
 }
 
-.nao-urgente:hover .descricao {
+.nao-urgente:hover p, .nao-urgente.checked p {
     background: #0673A8;
-}
-
-.nao-urgente-selecionado {
-    background: linear-gradient(112.64deg, #1FAAEE -0.07%, #0982BD 100%), #F5F5F5;
-    border: solid #0982BD;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
-    border-radius: 4px;
-    color: white;
 }
 
 .pouco-urgente:hover, .pouco-urgente.checked {
@@ -60,7 +52,7 @@
     color: white;
 }
 
-.pouco-urgente:hover p {
+.pouco-urgente:hover p, .pouco-urgente.checked p {
     background: #047151;
 }
 
@@ -72,7 +64,7 @@
     color: white;
 }
 
-.urgente:hover p {
+.urgente:hover p, .urgente.checked p {
     background: #E6B302;
 }
 
@@ -84,7 +76,7 @@
     color: white;
 }
 
-.muito-urgente:hover p {
+.muito-urgente:hover p, .muito-urgente.checked p {
     background: #B95A02;
 }
 
@@ -96,6 +88,6 @@
     color: white;
 }
 
-.emergencia:hover p {
+.emergencia:hover p, .emergencia.checked p {
     background: #9B0303;
 }

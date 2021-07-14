@@ -30,21 +30,10 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     }
 
     ngOnInit() { 
-        this.formTriagem.patchValue({classificacaoDeRisco: CLASSIFICACAO_RISCO[2].value});
 
         // this.formTriagem.controls.classificacaoDeRisco.valueChanges.subscribe((value) => {
         //     console.log(value);
         // })
         
     }
-
-
-
-    /* toggle = true;
-    status = 'Enable';
-
-    enableDisableRule(job) {
-        this.toggle = !this.toggle;
-        this.status = this.toggle ? 'Enable' : 'Disable';
-    } */
 }
