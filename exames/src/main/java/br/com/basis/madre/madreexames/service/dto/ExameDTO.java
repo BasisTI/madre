@@ -2,6 +2,8 @@ package br.com.basis.madre.madreexames.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Exame} entity.
@@ -26,6 +28,7 @@ public class ExameDTO implements Serializable {
     private Long amostraExameId;
 
     private String amostraExameNome;
+    private Set<GrupoAgendamentoExameDTO> exames = new HashSet<>();
     
     public Long getId() {
         return id;
@@ -91,6 +94,14 @@ public class ExameDTO implements Serializable {
         this.amostraExameNome = tipoAmostraNome;
     }
 
+    public Set<GrupoAgendamentoExameDTO> getExames() {
+        return exames;
+    }
+
+    public void setExames(Set<GrupoAgendamentoExameDTO> grupoAgendamentoExames) {
+        this.exames = grupoAgendamentoExames;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -120,6 +131,7 @@ public class ExameDTO implements Serializable {
             ", materialExameNome='" + getMaterialExameNome() + "'" +
             ", amostraExameId=" + getAmostraExameId() +
             ", amostraExameNome='" + getAmostraExameNome() + "'" +
+            ", exames='" + getExames() + "'" +
             "}";
     }
 }

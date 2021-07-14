@@ -1,0 +1,61 @@
+{
+  "name": "GrupoAgendamentoExame",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "agendarEmConjunto",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "calcularOcupacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "grupoAgendamento",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "grupoAgendamentoExame",
+      "otherEntityField": "nome",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210714162530",
+  "entityTableName": "grupo_agendamento_exame",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

@@ -23,6 +23,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,8 +55,14 @@ public class ExameResourceIT {
     @Autowired
     private ExameRepository exameRepository;
 
+    @Mock
+    private ExameRepository exameRepositoryMock;
+
     @Autowired
     private ExameMapper exameMapper;
+
+    @Mock
+    private ExameService exameServiceMock;
 
     @Autowired
     private ExameService exameService;
@@ -211,6 +218,26 @@ public class ExameResourceIT {
             .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllExamesWithEagerRelationshipsIsEnabled() throws Exception {
+        when(exameServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restExameMockMvc.perform(get("/api/exames?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(exameServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllExamesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(exameServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restExameMockMvc.perform(get("/api/exames?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(exameServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getExame() throws Exception {

@@ -18,6 +18,7 @@
     <include file="config/liquibase/changelog/20210705120518_added_entity_LaboratorioExterno.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705120618_added_entity_ControleQualidade.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705120718_added_entity_Cadaver.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210714162530_added_entity_GrupoAgendamentoExame.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20210705114508_added_entity_constraints_Exame.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705114708_added_entity_constraints_Recomendacao.xml" relativeToChangelogFile="false"/>
@@ -25,5 +26,6 @@
     <include file="config/liquibase/changelog/20210705115108_added_entity_constraints_Sinonimo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705120218_added_entity_constraints_AtendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705120318_added_entity_constraints_InformacoesComplementares.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210714162530_added_entity_constraints_GrupoAgendamentoExame.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

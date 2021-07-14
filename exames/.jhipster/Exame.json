@@ -30,6 +30,22 @@
       "otherEntityRelationshipName": "exame",
       "relationshipName": "amostraExame",
       "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "grupoAgendamentoExame",
+      "otherEntityRelationshipName": "grupoAgendamentoExame",
+      "relationshipName": "exame",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "grupoAgendamentoExame",
+      "otherEntityRelationshipName": "grupoAgendamento",
+      "relationshipName": "exame",
+      "otherEntityField": "nome",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20210705114508",

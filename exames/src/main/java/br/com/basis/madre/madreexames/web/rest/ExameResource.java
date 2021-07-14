@@ -91,12 +91,18 @@ public class ExameResource {
      * {@code GET  /exames} : get all the exames.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of exames in body.
      */
     @GetMapping("/exames")
-    public ResponseEntity<List<ExameDTO>> getAllExames(Pageable pageable) {
+    public ResponseEntity<List<ExameDTO>> getAllExames(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Exames");
-        Page<ExameDTO> page = exameService.findAll(pageable);
+        Page<ExameDTO> page;
+        if (eagerload) {
+            page = exameService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = exameService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
