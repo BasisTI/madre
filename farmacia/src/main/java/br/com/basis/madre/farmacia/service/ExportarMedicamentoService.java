@@ -1,7 +1,8 @@
 package br.com.basis.madre.farmacia.service;
 
-import br.com.basis.madre.farmacia.domain.Medicamento;
+import br.com.basis.madre.farmacia.repository.MedicamentoRepository;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,15 +18,24 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ExportarMedicamentoService {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    @Autowired
-    private MedicamentoService medicamentoService;
+    private final MedicamentoService medicamentoService;
+    private final MedicamentoRepository medicamentoRepository;
+
+    private void estilizarPlanilha(CellStyle estilo, XSSFFont fonte, Boolean negrito) {
+        estilo = workbook.createCellStyle();
+        fonte = workbook.createFont();
+        fonte.setBold(negrito);
+        fonte.setFontHeight(12);
+        estilo.setFont(fonte);
+        estilo.getVerticalAlignment();
+    }
 
     private void escreverHeaderRow() {
         Row row = sheet.createRow(0);
@@ -46,12 +56,25 @@ public class ExportarMedicamentoService {
         listaHeader.add("Apresentação");
         listaHeader.add("Situação");
 
-        for(int i=0; i<=listaHeader.size()-1; i++){
+        for (int i = 0; i <= listaHeader.size() - 1; i++) {
             cell = row.createCell(i);
             cell.setCellValue(listaHeader.get(i));
             cell.setCellStyle(estilo);
         }
 
+    }
+
+    private void escreverColunas(Row rowCell, CellStyle cellStyle, int column, String value) {
+        Cell cell = rowCell.createCell(column);
+        cell.setCellValue(value);
+        cell.setCellStyle(cellStyle);
+        sheet.autoSizeColumn(column);
+    }
+    private void escreverDescricao(Row rowCell, CellStyle cellStyle, int column, String value) {
+        Cell cell = rowCell.createCell(column);
+        cell.setCellValue(value);
+        cell.setCellStyle(cellStyle);
+        sheet.setDefaultColumnWidth(65);
     }
 
     private void escreverDataRows() {
@@ -60,43 +83,25 @@ public class ExportarMedicamentoService {
         XSSFFont fonte = workbook.createFont();
         fonte.setFontHeight(12);
         estilo.setFont(fonte);
+        String medicamentoQuery = "select * from medicamento where ativo = true";
+//        int medicamentoSize = medicamentoService.listarTodos().size();
 
-        String medicamentoQuery = "select * from medicamento";
-        int medicamentoSize = medicamentoService.listarTodos().size();
-        Pageable medicamentos = PageRequest.of(0, medicamentoSize);
+
+        int contaMedicamentos = medicamentoRepository.countByAtivoIsTrue().intValue();
+
+        Pageable medicamentos = PageRequest.of(0, contaMedicamentos);
+
 
         for (MedicamentoDTO medicamento : medicamentoService.search(medicamentoQuery, medicamentos)) {
             Row row = sheet.createRow(rowCount++);
 
-            Cell cell = row.createCell(0);
-            cell.setCellValue(medicamento.getNome());
-            cell.setCellStyle(estilo);
-            sheet.autoSizeColumn(0);
+            escreverColunas(row, estilo, 0, medicamento.getNome());
+            escreverDescricao(row, estilo, 1, medicamento.getDescricao());
+            escreverColunas(row, estilo, 2, medicamento.getConcentracao());
+            escreverColunas(row, estilo, 3, medicamento.getUnidadeId().getNome());
+            escreverColunas(row, estilo, 4, medicamento.getApresentacaoId().getNome());
+            escreverColunas(row, estilo, 5, medicamento.isAtivo() ? "Ativo" : "Inativo");
 
-            cell = row.createCell(1);
-            cell.setCellValue(medicamento.getDescricao());
-            cell.setCellStyle(estilo);
-            sheet.setDefaultColumnWidth(65);
-
-            cell = row.createCell(2);
-            cell.setCellValue(medicamento.getConcentracao());
-            cell.setCellStyle(estilo);
-            sheet.autoSizeColumn(2);
-
-            cell = row.createCell(3);
-            cell.setCellValue(medicamento.getUnidadeId().getNome());
-            cell.setCellStyle(estilo);
-            sheet.autoSizeColumn(3);
-
-            cell = row.createCell(4);
-            cell.setCellValue(medicamento.getApresentacaoId().getNome());
-            cell.setCellStyle(estilo);
-            sheet.autoSizeColumn(4);
-
-            cell = row.createCell(5);
-            cell.setCellValue(medicamento.isAtivo() ? "Ativo" : "Inativo");
-            cell.setCellStyle(estilo);
-            sheet.autoSizeColumn(5);
         }
     }
 
