@@ -1,0 +1,43 @@
+{
+  "name": "SolicitacaoExame",
+  "fields": [
+    {
+      "fieldName": "infoClinica",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "usoAntimicrobianos24h",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "pedidoPrimeiroExame",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "itemSolicitacaoExame",
+      "otherEntityRelationshipName": "solicitacaoExame",
+      "relationshipName": "solicitacaoExame"
+    }
+  ],
+  "changelogDate": "20210705115008",
+  "entityTableName": "solicitacao_exame",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

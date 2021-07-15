@@ -13,6 +13,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
 @Component({
     selector: 'paciente-form',
     templateUrl: './paciente-form.component.html',
+    styleUrls: ['./paciente-form.component.css']
 })
 export class PacienteFormComponent  implements OnInit{
 
@@ -37,14 +38,14 @@ export class PacienteFormComponent  implements OnInit{
             ocupacaoId: [null],
             religiaoId: [null],
             etniaId: [null],
-            uf: [null],
+            ufId: [null],
             naturalidadeId: [null],
             nacionalidadeId: [null, Validators.required],
             racaId: [null, Validators.required],
             estadoCivilId: [null, Validators.required],
             grauDeInstrucao: [null, Validators.required],
             sexo: [null, Validators.required],
-            telefones: this.fb.array([]),
+            telefones: [],
             enderecos: this.fb.array([]),
             genitores: this.fb.group({
                 id: [null],

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class EstadoCivilService extends CrudServiceNuvem<number, EstadoCivil> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/estado-civils?sort=valor', httpClient);
+        super('pacientes/api/estado-civils', httpClient);
     }
 
     getListaDeEstadoCivis(): Observable<EstadoCivil[]> {

@@ -61,8 +61,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     @ViewChild('scrollPanel', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
 
     constructor(
-        public renderer: Renderer2, 
-        public zone: NgZone, 
+        public renderer: Renderer2,
+        public zone: NgZone,
         public menuService: MenusService,
         private primengConfig: PrimeNGConfig,
         private router: Router) { }
@@ -139,7 +139,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         },
                     ],
                 },
-    
+
                 {
                     label: 'Prescrição',
                     icon: 'icon-prescricao',
@@ -208,6 +208,27 @@ export class AppComponent implements AfterViewInit, OnInit {
                             ],
                         },
                     ],
+                },
+                {
+                    label: 'Exames',
+                    icon: 'icon-exames',
+                    items: [
+                        {
+                            label: 'Atendimento Diverso',
+                            icon: 'add',
+                            routerLink: ['exames/atendimento-diverso'],
+                        }
+                        ,{
+                            label: 'Pesquisar Atendimento',
+                            icon: 'add',
+                            routerLink: ['exames/pesquisar-atendimento'],
+                        },
+                        {
+                            label: 'Solicitar Exame',
+                            icon: 'add',
+                            routerLink: ['exames/solicitar-exame'],
+                        },
+                    ]
                 },
                 {
                     label: 'Farmacia',
@@ -300,6 +321,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
+
                     ],
                 },
             ]}

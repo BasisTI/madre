@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MotivoDoCadastroService extends CrudServiceNuvem<number, MotivoDoCadastro> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/motivo-do-cadastros?sort=valor', httpClient);
+        super('pacientes/api/motivo-do-cadastros', httpClient);
     }
 
     getListaDeMotivos(): Observable<MotivoDoCadastro[]> {

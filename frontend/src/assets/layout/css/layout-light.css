@@ -1,5 +1,5 @@
 :root {
-  --divider-color: #E4E4E4;
+  --divider-color:#E4E4E4;
 }
 
 .line-header {
@@ -869,6 +869,7 @@ body .p-overlay-badge .p-badge {
 .example-spacer {
   flex: 1 1 auto;
 }
+
 
 .layout-topbar .layout-topbar-left .layout-menu-button {
   justify-content: center;
@@ -3230,6 +3231,11 @@ body .p-overlay-badge .p-badge {
 
 .icon-triagem {
   background: url(../images/icon-triagem.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+.icon-exames {
+  background: url(../images/icon-exames.png) no-repeat;
   width: 34px;
   height: 34px;
 }

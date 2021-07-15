@@ -1,6 +1,7 @@
 package br.com.basis.madre.farmacia.web.rest;
 
 import br.com.basis.madre.farmacia.domain.Medicamento;
+import br.com.basis.madre.farmacia.service.ExportarMedicamentoService;
 import br.com.basis.madre.farmacia.service.MedicamentoService;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -35,14 +38,17 @@ public class MedicamentoResource {
     private final Logger log = LoggerFactory.getLogger(MedicamentoResource.class);
 
     private static final String ENTITY_NAME = "farmaciaMedicamento";
+    private final ExportarMedicamentoService exportarMedicamentoService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final MedicamentoService medicamentoService;
 
-    public MedicamentoResource(MedicamentoService medicamentoService) {
+
+    public MedicamentoResource(MedicamentoService medicamentoService, ExportarMedicamentoService exportarMedicamentoService) {
         this.medicamentoService = medicamentoService;
+        this.exportarMedicamentoService = exportarMedicamentoService;
     }
 
     /**
@@ -137,5 +143,12 @@ public class MedicamentoResource {
 
         return page;
     }
+
+    @GetMapping("/medicamentos/exportar")
+    public void exportMedicamento(HttpServletResponse response) throws IOException {
+
+          exportarMedicamentoService.exportar(response);
+    }
+
 
 }

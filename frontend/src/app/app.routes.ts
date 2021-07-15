@@ -36,6 +36,10 @@ export const routes: Routes = [
         loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
     },
     {
+        path: 'exames',
+        loadChildren: 'src/app/exames/exames.module#ExamesModule',
+    },
+    {
         path: 'farmacia',
         loadChildren: 'src/app/farmacia/farmacia/farmacia.module#FarmaciaModule',
     },
@@ -43,6 +47,10 @@ export const routes: Routes = [
         path: 'suprimentos',
         loadChildren: 'src/app/suprimentos/suprimentos.module#SuprimentosModule',
         data: { breadcrumb: 'Suprimentos' },
+    },
+    {
+        path: 'exames',
+        loadChildren: 'src/app/exames/exames.module#ExamesModule',
     },
 ];
 

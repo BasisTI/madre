@@ -1,0 +1,50 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.basis.madre.madreexames"
+    },
+    "jhipsterVersion": "6.9.1",
+    "applicationType": "microservice",
+    "baseName": "madreexames",
+    "packageName": "br.com.basis.madre.madreexames",
+    "packageFolder": "br/com/basis/madre/madreexames",
+    "serverPort": "8087",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YmQ4ZDBiOGNjNmFkYjAzZTMyZDU1MGYyOTE4YmY2ZjNkZjYyYTJmYTUwMzU3YTZkMWExYzE5YWE2ZGNmNDk1Y2VmZGRiZWU2OGUwMTJiNWVkOGE3YTBiODJjOTEzZjEzYWYzMzhjZmY1YWVjMDA4ZDVhNjg1NTg0YjlhZGZkMmQ=",
+    "embeddableLaunchScript": false,
+    "userDetailsResource": false,
+    "microserviceStackType": "SpringCloud",
+    "creationTimestamp": 1625485343411,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.10.4"
+      }
+    ],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.10.4"
+      }
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

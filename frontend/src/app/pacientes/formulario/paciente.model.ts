@@ -95,6 +95,7 @@ export class Paciente {
         public observacao: string,
         public ocupacaoId: number | any,
         public religiaoId: number | any,
+        public ufId: number | any, 
         public naturalidadeId: number | any,
         public etniaId: number | any,
         public nacionalidadeId: number | any,

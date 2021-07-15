@@ -1,0 +1,52 @@
+{
+  "name": "ItemSolicitacaoExame",
+  "fields": [
+    {
+      "fieldName": "urgente",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataProgramada",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "Situacao",
+      "fieldValues": "A_COLETAR,AREA_EXECUTORA,COLETADO",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "itemSolicitacaoExame",
+      "relationshipName": "itemSolicitacaoExame",
+      "otherEntityField": "situacao"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "solicitacaoExame",
+      "otherEntityRelationshipName": "solicitacaoExame",
+      "relationshipName": "solicitacaoExame",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210705114908",
+  "entityTableName": "item_solicitacao_exame",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

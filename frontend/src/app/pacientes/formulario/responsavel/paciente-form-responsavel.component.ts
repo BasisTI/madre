@@ -7,6 +7,7 @@ import { FormGroup } from "@angular/forms";
 @Component({
     selector: 'paciente-form-responsavel',
     templateUrl: './paciente-form-responsavel.component.html',
+    styleUrls: ['paciente-form-responsavel.component.css']
 })
 export class PacienteResponsavelFormComponent {
     @Input() formGroup: FormGroup;

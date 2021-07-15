@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class NacionalidadeService extends CrudServiceNuvem<number, Nacionalidade> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/nacionalidades?sort=valor', httpClient);
+        super('pacientes/api/nacionalidades', httpClient);
     }
 
     getListaDeNacionalidades(): Observable<Nacionalidade[]> {

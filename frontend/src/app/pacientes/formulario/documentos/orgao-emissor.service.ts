@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class OrgaoEmissorService extends CrudServiceNuvem<number, OrgaoEmissor> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/orgao-emissors?sort=valor', httpClient);
+        super('pacientes/api/orgao-emissors', httpClient);
     }
 
     getListaDeOrgaosEmissores(): Observable<OrgaoEmissor[]> {

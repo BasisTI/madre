@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class JustificativaService extends CrudServiceNuvem<number, Justificativa> {
     constructor(private httpClient: HttpClient) {
-        super('pacientes/api/justificativas?sort=valor', httpClient);
+        super('pacientes/api/justificativas', httpClient);
     }
 
     getListaDeJustificativas(): Observable<Justificativa[]> {
