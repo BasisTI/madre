@@ -26,10 +26,10 @@ export class ExamesComponent implements OnInit, OnDestroy {
   // options = AutoCompleteDemo;
 
   // Por lote:
-  groupDropdown = GroupDropdown;
+  groupDropdown: GroupDropdown[] = []
   results: String[];
   selectedLote: String;
-  group: String;
+  group: String = null;
   groups: GrupoModel[];
 
 
@@ -65,7 +65,14 @@ export class ExamesComponent implements OnInit, OnDestroy {
     ])
     this.gruposExamesService.GetGrupos().subscribe((response) => {
       this.groups = response;
-      console.log(response);
+      
+      this.groups.forEach(element => {
+        let a: GroupDropdown = {
+          label: element.nome,
+          value: element.id,
+        }
+        this.groupDropdown.push(a);
+      });
     })
 
   }

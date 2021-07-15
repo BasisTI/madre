@@ -124,9 +124,12 @@
               type="button"
               icon="pi pi-plus"
               iconPos="left"
-              (click)="handleClick($event)"
+              (click)="handleClick()"
             ></button>
 
         </p-tabView>
+    </div>
+    <div *ngIf="group" style="background-color: red;">
+      teste
     </div>
   </div>
