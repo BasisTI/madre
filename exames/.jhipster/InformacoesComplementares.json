@@ -1,0 +1,37 @@
+{
+  "name": "InformacoesComplementares",
+  "fields": [
+    {
+      "fieldName": "prontuario",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "atendimentoDiverso",
+      "otherEntityRelationshipName": "atendimentoDiverso",
+      "relationshipName": "atendimentoDiverso",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210623125608",
+  "entityTableName": "informacoes_complementares",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "searchEngine": "elastisearch",
+  "microserviceName": "madreexames",
+  "databaseType": "sql"
+}

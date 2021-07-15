@@ -1,0 +1,49 @@
+{
+  "name": "Exame",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomeUsual",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "exame",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tipoAmostra",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "exame",
+      "otherEntityField": "nome"
+    }
+  ],
+  "changelogDate": "20210617164235",
+  "entityTableName": "exame",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "searchEngine": "elastisearch",
+  "microserviceName": "madreexames",
+  "databaseType": "sql"
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Sinonimo",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "sinonimo",
+      "relationshipName": "sinonimo",
+      "otherEntityField": "nome"
+    }
+  ],
+  "changelogDate": "20210617164835",
+  "entityTableName": "sinonimo",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "searchEngine": "elastisearch",
+  "microserviceName": "madreexames",
+  "databaseType": "sql"
+}

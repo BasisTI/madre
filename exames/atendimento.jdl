@@ -1,0 +1,99 @@
+@dto(mapstruct)
+@searchEngine(elastisearch)
+@service(serviceClass)
+entity AtendimentoDiverso {
+Codigo Integer required
+Descricao String required
+}
+
+@dto(mapstruct)
+@searchEngine(elastisearch)
+@service(serviceClass)
+entity InformacoesComplementares {
+Prontuario Integer required
+Codigo Integer
+}
+
+@dto(mapstruct)
+@searchEngine(elastisearch)
+@service(serviceClass)
+entity ProjetoDePesquisa {
+id String required
+Nome String required
+}
+
+@dto(mapstruct)
+@searchEngine(elastisearch)
+@service(serviceClass)
+entity LaboratorioExterno {
+Codigo Integer required
+Nome String required
+Sigla String required
+Endereco String required
+Municipio String required
+Cep Integer required
+Telefone Integer required
+Fax Integer required
+Email String required
+Cgc String required
+CodigoConvenio String required
+CodigoPlano String required
+ConvenioPlano ConvenioPlano
+FormaEnvio FormaEnvio
+}
+
+@dto(mapstruct)
+@searchEngine(elastisearch)
+@service(serviceClass)
+entity ControleQualidade {
+Codigo Integer required
+Material String required
+CodigoConvenio String required
+CodigoPlano String required
+ConvenioPlano ConvenioPlano
+}
+
+@dto(mapstruct)
+@searchEngine(elastisearch)
+@service(serviceClass)
+entity Cadaver {
+Codigo Integer required
+Nome String required
+DataNascimento LocalDate required
+Raca Raca
+GrupoSanguineo GrupoSanguineo
+DataRemocao LocalDate required
+CausaObito String required
+RealizadoPor String required
+LidoPor String required
+Procedencia String required
+Retirada String required
+CodigoPlano String required
+ConvenioPlano ConvenioPlano
+Observacao String required
+}
+
+enum ConvenioPlano {
+SUS_internacao, SUS_planoAmbulatorio
+}
+enum FormaEnvio {
+Correio, Fax
+}
+enum Raca {
+Branca, Preta, Parda, Amarela, Indigena
+}
+enum GrupoSanguineo {
+O, A, B, AB, Indeterminado
+}
+relationship OneToMany {
+AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to InformacoesComplementares
+
+}
+relationship OneToOne {
+AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to InformacoesComplementares
+AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to ProjetoDePesquisa
+AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to LaboratorioExterno
+AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to ControleQualidade
+AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to Cadaver
+}
+

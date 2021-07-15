@@ -5,7 +5,13 @@ import br.com.basis.madre.domain.enumeration.CodigoDoTipoEventoLeito;
 import br.com.basis.madre.repository.EventoLeitoRepository;
 import br.com.basis.madre.repository.LeitoRepository;
 import br.com.basis.madre.repository.search.EventoLeitoSearchRepository;
-import br.com.basis.madre.service.dto.*;
+import br.com.basis.madre.service.dto.BloqueioDeLeitoDTO;
+import br.com.basis.madre.service.dto.EventoLeitoDTO;
+import br.com.basis.madre.service.dto.InternacaoDTO;
+import br.com.basis.madre.service.dto.LiberacaoDeLeitoDTO;
+import br.com.basis.madre.service.dto.ReservaDeLeitoDTO;
+import br.com.basis.madre.service.dto.TipoDoEventoLeitoDTO;
+import br.com.basis.madre.service.dto.LeitoDTO;
 import br.com.basis.madre.service.mapper.EventoLeitoMapper;
 import br.com.basis.madre.service.mapper.TipoDoEventoLeitoMapper;
 import br.com.basis.madre.service.projection.EventoCalendario;
@@ -19,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.ZonedDateTime;
-import java.util.EventObject;
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -67,9 +73,9 @@ public class EventoLeitoService {
 
     public boolean ocuparLeito(InternacaoDTO internacaoDTO) {
         EventoLeitoDTO eventoLeitoDTO = new EventoLeitoDTO();
-        boolean verificaLeitoOcupado = eventoLeitoRepository.existsByLeitoId(internacaoDTO.getLeitoId());
+        boolean verificaDataNotNull = eventoLeitoRepository.existsByLeitoId(eventoLeitoDTO.getLeitoId());
 
-        if (!verificaLeitoOcupado) {
+        if (!verificaDataNotNull) {
             eventoLeitoDTO.setTipoDoEventoId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
             eventoLeitoDTO.setDataDoLancamento(ZonedDateTime.now());
             eventoLeitoDTO.setDataInicio(internacaoDTO.getDataDaInternacao());
@@ -81,7 +87,7 @@ public class EventoLeitoService {
             eventoLeitoSearchRepository.save(eventoLeito);
         }
 
-        return verificaLeitoOcupado;
+        return verificaDataNotNull;
     }
 
     public LiberacaoDeLeitoDTO liberarLeito(LiberacaoDeLeitoDTO liberacaoDeLeitoDTO) {
@@ -95,17 +101,23 @@ public class EventoLeitoService {
         TipoDoEventoLeitoDTO tipoDoEventoLeitoDTO = new TipoDoEventoLeitoDTO();
         tipoDoEventoLeitoDTO.setId(CodigoDoTipoEventoLeito.OCUPACAO.getValor());
 
+        filtrarLeitosNaoExcluidos();
         EventoLeito eventoLeito = eventoLeitoRepository
             .findOneByLeitoIdAndTipoDoEventoAndDataFimIsNull(leitoId,
                 tipoDoEventoLeitoMapper.toEntity(tipoDoEventoLeitoDTO)
             ).orElseThrow(EntityNotFoundException::new);
 
         eventoLeito.setDataFim(ZonedDateTime.now());
-        eventoLeitoRepository.delete(eventoLeito);
+        eventoLeito.setLeitoExcluido(Boolean.TRUE);
+
+    }
+
+    public List<EventoLeito> filtrarLeitosNaoExcluidos(){
+        return eventoLeitoRepository.buscarLeitosOcupados() ;
     }
 
     public Page<EventoCalendario> obterEventosCalendario(Pageable pageable) {
-        return eventoLeitoRepository.findEventoCalendarioByDataFimIsNull(pageable);
+        return eventoLeitoRepository.findEventoCalendarioByLeitoExcluidoIsFalse(pageable);
     }
 
     /**
@@ -164,11 +176,6 @@ public class EventoLeitoService {
             eventoLeitoRepository.deleteById(eventoLeitoDTO.getId());
             eventoLeitoSearchRepository.deleteById(eventoLeitoDTO.getId());
         }
-    }
-
-    public Long buscarLeitoId() {
-        LeitoDTO leitoDTO = new LeitoDTO();
-        return leitoDTO.getId();
     }
 
     /**
