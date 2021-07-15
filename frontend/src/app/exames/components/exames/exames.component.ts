@@ -3,6 +3,8 @@ import { GroupDropdown } from '../../models/dropdowns/groups.dropdown';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
 import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
 import { ExamModel } from '../../models/subjects/exames-model';
+import { GruposExamesService } from '../../services/grupos-exames.service';
+import { GrupoModel } from '../../models/subjects/grupo-model';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
@@ -28,10 +30,12 @@ export class ExamesComponent implements OnInit, OnDestroy {
   results: String[];
   selectedLote: String;
   group: String;
+  groups: GrupoModel[];
 
 
   constructor(
     private breadcrumbService: BreadcrumbService,
+    private gruposExamesService: GruposExamesService,
     ) { }
 
   handleClick() {
@@ -59,9 +63,18 @@ export class ExamesComponent implements OnInit, OnDestroy {
         label: 'Solicitar Exame',
       }
     ])
+    this.gruposExamesService.GetGrupos().subscribe((response) => {
+      this.groups = response;
+      console.log(response);
+    })
+
   }
 
   // Métodos
+
+  Listar() {
+    
+  }
   
   ngOnDestroy(): void {
     this.breadcrumbService.reset();
