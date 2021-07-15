@@ -12,6 +12,7 @@
 
 .classificacao-de-risco {
     align-items: center;
+    display: inline-block;
 }
 
 .descricao {
@@ -29,7 +30,6 @@
     border-radius: 4px;
     margin: 10px;
     height: 100%;
-
 }
 
 .nao-urgente:hover, .nao-urgente.checked {
