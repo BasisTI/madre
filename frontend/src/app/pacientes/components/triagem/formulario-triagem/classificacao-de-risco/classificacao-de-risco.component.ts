@@ -9,7 +9,7 @@ import { SelectItem } from 'primeng/api';
     templateUrl: './classificacao-de-risco.component.html',
     styleUrls: ['./classificacao-de-risco.component.scss'],
 })
-export class ClassificacaoDeRiscoComponent implements OnInit {
+export class ClassificacaoDeRiscoComponent {
     @Input() formTriagem: FormGroup;
     opcaoClassificacao = CLASSIFICACAO_RISCO;
     types: SelectItem[];
@@ -27,13 +27,5 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
         this.risk = [];
-    }
-
-    ngOnInit() { 
-
-        // this.formTriagem.controls.classificacaoDeRisco.valueChanges.subscribe((value) => {
-        //     console.log(value);
-        // })
-        
     }
 }
