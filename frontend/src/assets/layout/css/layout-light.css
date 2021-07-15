@@ -3,14 +3,10 @@
 }
 
 .line-header {
-  /* margin-top: 4rem; */
-  /* background: red; */
   margin: 4rem 0 0 0;
   width: 100%;
   border: 5px;
   position: absolute;
-  /* width: 24px; */
-  /* border: red; */
   border: solid #C30202;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
@@ -3219,10 +3215,6 @@ body .p-overlay-badge .p-badge {
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu>li>ul {
   background-color: #FDFEFF;
 }
-
-/*.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a {
-  color: var(--primary-menu-text-color);
-}*/
 
 .icon-home {
   background: url(../images/icon-home.png) no-repeat;

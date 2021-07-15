@@ -30,10 +30,5 @@ export class ClassificacaoDeRiscoComponent implements OnInit {
     }
 
     ngOnInit() { 
-
-        // this.formTriagem.controls.classificacaoDeRisco.valueChanges.subscribe((value) => {
-        //     console.log(value);
-        // })
-        
     }
 }
