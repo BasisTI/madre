@@ -29,7 +29,10 @@
                 <div class="p-md-2 p-fluid" pTooltip="Selecione a origem do atendimento.">
                     Origem
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <p-dropdown label="Pedido para 1° exame ou comparativo" [options]="opcoesDeOrigem">
+                        <p-dropdown label="Pedido para 1° exame ou comparativo" 
+                        [options]="unidadesFuncionais"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'">
                         </p-dropdown>
                     </span>
                 </div>
@@ -51,7 +54,7 @@
                 <div class="p-md-2 p-fluid">
                     Unidade Funcional
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <p-dropdown [options]="opcoesDeOrigem" pTooltip="Selecione a unidade de internação.">
+                        <p-dropdown [options]="unidadesFuncionais" pTooltip="Selecione a unidade de internação.">
                         </p-dropdown>
                     </span>
                 </div>
