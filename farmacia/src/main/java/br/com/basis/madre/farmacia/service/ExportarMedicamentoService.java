@@ -84,7 +84,6 @@ public class ExportarMedicamentoService {
         fonte.setFontHeight(12);
         estilo.setFont(fonte);
         String medicamentoQuery = "select * from medicamento where ativo = true";
-//        int medicamentoSize = medicamentoService.listarTodos().size();
 
 
         int contaMedicamentos = medicamentoRepository.countByAtivoIsTrue().intValue();

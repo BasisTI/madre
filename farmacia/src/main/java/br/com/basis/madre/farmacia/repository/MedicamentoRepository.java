@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> {
 
-//    Page<Medicamento> findAllByAtivoIsTrue(Pageable pageable);
 
     @Query("from Medicamento m where m.ativo = true")
     String findByAtivoIsTrue();
