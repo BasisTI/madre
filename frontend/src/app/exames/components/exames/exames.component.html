@@ -110,7 +110,9 @@
                 <div class="lote-field-2">
                   <label>Grupo:</label>
                   <p-dropdown
-                    [options]="groupDropdown"
+                    [options]="groups"
+                    [optionLabel]="'nome'"
+                    [optionValue]="'id'"
                     [(ngModel)]="group"
                   ></p-dropdown>
                 </div>
@@ -130,6 +132,8 @@
         </p-tabView>
     </div>
     <div *ngIf="group" style="background-color: red;">
-      teste
+      <div>
+        aaa
+      </div>
     </div>
   </div>

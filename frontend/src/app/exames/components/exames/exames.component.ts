@@ -14,6 +14,29 @@ import { GrupoModel } from '../../models/subjects/grupo-model';
 })
 export class ExamesComponent implements OnInit, OnDestroy {
 
+  fakeExame: ExamModel[] = [
+    {
+      id: 1,
+      nome: "Ambulatório",
+      nomeusual: "string",
+      sigla: "string",
+      materialExameId: 3921839,
+      material: "string",
+      amostraExameId: 98328911,
+      amostraExameNome: "string",
+    },
+    {
+      id: 2,
+      nome: "maca",
+      nomeusual: "string",
+      sigla: "MC",
+      materialExameId: 8234783,
+      material: "tecido",
+      amostraExameId: 58239,
+      amostraExameNome: "nada",
+    }
+  ]
+
   // Por exame:
   situationDropdown = SituationDropdown;
   selectedValue: String;
@@ -26,7 +49,6 @@ export class ExamesComponent implements OnInit, OnDestroy {
   // options = AutoCompleteDemo;
 
   // Por lote:
-  groupDropdown: GroupDropdown[] = []
   results: String[];
   selectedLote: String;
   group: String = null;
@@ -65,14 +87,6 @@ export class ExamesComponent implements OnInit, OnDestroy {
     ])
     this.gruposExamesService.GetGrupos().subscribe((response) => {
       this.groups = response;
-      
-      this.groups.forEach(element => {
-        let a: GroupDropdown = {
-          label: element.nome,
-          value: element.id,
-        }
-        this.groupDropdown.push(a);
-      });
     })
 
   }

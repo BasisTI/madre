@@ -10,13 +10,13 @@ export interface IExamModel {
 }
 
 export class ExamModel implements IExamModel {
-    public id?: number;
-    public nome?: string;
-    public nomeusual?: string;
-    public sigla?: string;
-    public materialExameId?: number;
-    public material?: string;
-    public amostraExameId?: number;
-    public amostraExameNome?: string;
+    public id: number;
+    public nome: string;
+    public nomeusual: string;
+    public sigla: string;
+    public materialExameId: number;
+    public material: string;
+    public amostraExameId: number;
+    public amostraExameNome: string;
 
 }
