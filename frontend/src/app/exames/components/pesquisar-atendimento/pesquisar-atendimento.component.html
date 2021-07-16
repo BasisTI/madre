@@ -20,8 +20,8 @@
                 <div class="p-md-3 p-fluid">
                     Nome
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="p-inputtext" [(ngModel)]="filtroNomeDoPaciente"
-                            pTooltip="Digite o nome do paciente." />
+                        <input type="text" pInputText class="p-inputtext"
+                        pTooltip="Digite o nome do paciente." />
                         <label>Lorem ipsum</label>
                     </span>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="p-col-12 p-grid p-d-flex p-jc-center">
                     <div class="p-md-4">
                         <button pButton type="button" label="Pesquisar" icon="pi pi-search"
-                            (click)="datatable.refresh(filtroNomeDoPaciente)"
+                            (click)="datatable.refresh()"
                             bTooltip="Pesquisar paciente por nome."></button>
                     </div>
                     <div class="p-md-4">
@@ -85,8 +85,6 @@
                 </basis-datatable>
             </div>
         </div>
-
-        <app-solicitacao-exame></app-solicitacao-exame>
 
     </div>
 </div>

@@ -28,7 +28,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { FarmaciaModule } from './farmacia/farmacia/farmacia.module';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PreCadastroComponent } from './pacientes/components/pre-cadastro/pre-cadastro.component';
 import { PrescricaoMedicaModule } from './prescricao-medica/prescricao-medica.module';
 import { PrescricaoMedicaService } from './prescricao-medica/prescricao-medica.service';
