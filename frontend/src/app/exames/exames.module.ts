@@ -7,6 +7,8 @@ import { ExamesComponent } from "./components/exames/exames.component";
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
+import { ExameComponent } from './components/exames/components/exame/exame.component';
+import { SituacaoExameComponent } from './components/exames/components/situacao-exame/situacao-exame.component';
 
 
 
@@ -15,7 +17,9 @@ import { routes } from './exames.routes';
         PesquisarAtendimentoComponent,
         SolicitarExameComponent,
         ExamesComponent,
-        AtendimentoDiversoComponent
+        AtendimentoDiversoComponent,
+        ExameComponent,
+        SituacaoExameComponent
 
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],

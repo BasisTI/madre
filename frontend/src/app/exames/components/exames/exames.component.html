@@ -38,9 +38,7 @@
                     name="exame"
                     [(ngModel)]="selectedExam"
                     [suggestions]="exames"
-                    (completeMethod)="listarExames()"
                     dropdown="true"
-                    (onSelect)="aoSelecionarExame()"
                     pTooltip="Selecione um exame"
                   ></p-autoComplete>
                 </span>
@@ -117,6 +115,13 @@
                   ></p-dropdown>
                 </div>
               </div>
+
+              <!-- Componente Exames -->
+              <app-exame *ngIf="group" [Exames]="fakeExame"></app-exame>
+
+              <!-- Componente continuar -->
+              <app-situacao-exame *ngIf="group"></app-situacao-exame>
+
             </p-tabPanel>
 
             <!-- If needed, crete one button for each Tab view. then, change and add a click method for each button. -->
@@ -130,10 +135,5 @@
             ></button>
 
         </p-tabView>
-    </div>
-    <div *ngIf="group" style="background-color: red;">
-      <div>
-        aaa
-      </div>
     </div>
   </div>
