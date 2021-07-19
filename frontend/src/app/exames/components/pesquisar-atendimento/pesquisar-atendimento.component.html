@@ -20,7 +20,7 @@
                 <div class="p-md-3 p-fluid">
                     Nome
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="p-inputtext" [(ngModel)]="filtroNomeDoPaciente"
+                        <input type="text" pInputText class="p-inputtext"
                             pTooltip="Digite o nome do paciente." />
                         <label>Lorem ipsum</label>
                     </span>
@@ -29,7 +29,10 @@
                 <div class="p-md-2 p-fluid" pTooltip="Selecione a origem do atendimento.">
                     Origem
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <p-dropdown label="Pedido para 1° exame ou comparativo" [options]="opcoesDeOrigem">
+                        <p-dropdown label="Pedido para 1° exame ou comparativo"
+                        [options]="origens"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'">
                         </p-dropdown>
                     </span>
                 </div>
@@ -62,7 +65,6 @@
                 <div class="p-col-12 p-grid p-d-flex p-jc-center">
                     <div class="p-md-4">
                         <button pButton type="button" label="Pesquisar" icon="pi pi-search"
-                            (click)="datatable.refresh(filtroNomeDoPaciente)"
                             bTooltip="Pesquisar paciente por nome."></button>
                     </div>
                     <div class="p-md-4">
@@ -88,8 +90,6 @@
                 </basis-datatable>
             </div>
         </div>
-
-        <app-solicitacao-exame></app-solicitacao-exame>
 
     </div>
 </div>

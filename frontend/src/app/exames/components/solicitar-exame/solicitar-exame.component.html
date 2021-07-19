@@ -93,21 +93,41 @@
                     </span>
                 </div>
 
-                <div>
-                    <br>
-                    Paciente utiliza antimicrobianos a mais de 24 horas
-                    <p-dropdown label="Paciente utiliza antimicrobianos a mais de 24 horas"
-                        [options]="opcoesDeAntimicrobianos"
-                        pTooltip="Selecione se o paciente utiliza antimicrobianos há mais de 24 horas.">
-                    </p-dropdown>
+                <div style="margin-top: 10px">
+                    Paciente utiliza antimicrobianos a mais de 24 horas:
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <p-radioButton 
+                        name="antimicrobianos" 
+                        value="SIM" 
+                        [(ngModel)]="opcoesDeAntimicrobianos" 
+                        label="Sim" 
+                        style="margin-right: 15px"></p-radioButton>
 
+                        <p-radioButton 
+                        name="antimicrobianos" 
+                        value="NAO" 
+                        [(ngModel)]="opcoesDeAntimicrobianos" 
+                        label="Não"
+                        style="margin-right: 15px"></p-radioButton>
+                    </div>
 
-                    <br>
-                    Pedido para 1° exame ou comparativo
-                    <p-dropdown label="Pedido para 1° exame ou comparativo"
-                        [options]="opcoesDeExameOuComparativo"
-                        pTooltip="Selecione se é o primeiro exame do paciente ou se é um exame comparativo.">
-                    </p-dropdown>
+                    Pedido para 1° exame ou comparativo:
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <p-radioButton 
+                        name="exameOuComparativo" 
+                        value="PRIMEIRO_EXAME" 
+                        [(ngModel)]="opcoesDeExameOuComparativo" 
+                        label="1º Exame" 
+                        style="margin-right: 15px"></p-radioButton>
+
+                        <p-radioButton 
+                        name="exameOuComparativo" 
+                        value="COMPARATIVO" 
+                        [(ngModel)]="opcoesDeExameOuComparativo" 
+                        label="Comparativo"
+                        style="margin-right: 15px"></p-radioButton>
+                    </div>
+
                 </div>
 
                 <div class="p-col-12 p-grid p-d-flex p-jc-center">

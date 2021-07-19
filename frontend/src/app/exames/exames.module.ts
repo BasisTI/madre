@@ -9,14 +9,12 @@ import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
 
 
-
 @NgModule({
     declarations: [
         PesquisarAtendimentoComponent,
         SolicitarExameComponent,
         ExamesComponent,
-        AtendimentoDiversoComponent
-
+        AtendimentoDiversoComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

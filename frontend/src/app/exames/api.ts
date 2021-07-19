@@ -1,1 +1,1 @@
-export const api = 'exames/api';
+export const api = 'madreexames/api';
