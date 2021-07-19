@@ -4,7 +4,7 @@
     <span id="grupo">
       <label> Unidade Executora: </label> <br>
 
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
+      <p-dropdown [options]="" ></p-dropdown>
     </span>
     <span id="grupo">
       <label> Codigo: </label> <br>
@@ -69,13 +69,16 @@
     <div>
       <span id="grupo"> <br>
         <label> Especialidade: </label> <br>
-        <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
+        <p-dropdown 
+        [options]="especialidades" [optionLabel]="'especialidade'" [optionValue]="'id'"
+        ></p-dropdown>
       </span>
     </div>
     <div>
       <span id="grupo"> <br>
         <label> Centro de Atividades: </label> <br>
-        <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
+        <p-dropdown 
+        [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
         ></p-dropdown> <br>
       </span>
     </div>

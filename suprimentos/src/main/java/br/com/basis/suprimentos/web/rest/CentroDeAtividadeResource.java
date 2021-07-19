@@ -52,7 +52,7 @@ public class CentroDeAtividadeResource {
             .body(result);
     }
 
-    @PutMapping("/  ")
+    @PutMapping("/centros-de-atividade")
     public ResponseEntity<CentroDeAtividadeDTO> updateCentroDeAtividade(@Valid @RequestBody CentroDeAtividadeDTO centroDeAtividadeDTO) throws URISyntaxException {
         log.debug("REST request to update CentroDeAtividade : {}", centroDeAtividadeDTO);
         if (centroDeAtividadeDTO.getId() == null) {
