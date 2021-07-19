@@ -1,16 +1,6 @@
 <div class="p-grid p-fluid">
 
     <div class="p-col-12 p-grid">
-        <div class="p-col-12 card card-w-title">
-            <h1>Identificar Unidade Executora</h1>
-            <div class="p-fluid" pTooltip="Selecione uma Unidade Executora">
-                Unidade Executora
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <input type="text" pInputText class="p-inputtext" />
-                    <label>Lorem ipsum</label>
-                </span>
-            </div>
-        </div>
 
         <div class="card card-w-title">
             <h1>Solicitar Exames</h1>
@@ -65,21 +55,28 @@
                     </span>
                 </div>
 
-                <div class="p-md-2 p-fluid" pTooltip="Selecione a unidade solicitante de exames">
+                <div class="p-md-2 p-fluid">
                     Unidade Funcional
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="p-inputtext" />
-                        <label>Lorem ipsum</label>
+                        <p-dropdown [options]="unidades"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'"
+                        pTooltip="Selecione a unidade de internação.">
+                        </p-dropdown>
                     </span>
                 </div>
 
-                <div class="p-md-2 p-fluid" pTooltip="Selecione o responsável pela solicitação do(s) exame(s)">
+                <div class="p-md-2 p-fluid">
                     Responsável
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="p-inputtext" />
-                        <label>Lorem ipsum</label>
+                        <p-dropdown [options]="responsaveis"
+                        [optionLabel]="'nomeDoResponsavel'"
+                        [optionValue]="'id'"
+                        pTooltip="Selecione a unidade de internação.">
+                        </p-dropdown>
                     </span>
                 </div>
+
 
 
 
