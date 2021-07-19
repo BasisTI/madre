@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GroupDropdown } from '../../models/dropdowns/groups.dropdown';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
 import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { GruposExamesService } from '../../services/grupos-exames.service';
+import { ExamesService } from '../../services/exames.service';
 import { GrupoModel } from '../../models/subjects/grupo-model';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
@@ -14,42 +14,21 @@ import { GrupoModel } from '../../models/subjects/grupo-model';
 })
 export class ExamesComponent implements OnInit, OnDestroy {
 
-  fakeExame: ExamModel[] = [
-    {
-      id: 1,
-      nome: "Ambulatório",
-      nomeusual: "string",
-      sigla: "string",
-      materialExameId: 3921839,
-      material: "string",
-      amostraExameId: 98328911,
-      amostraExameNome: "string",
-    },
-    {
-      id: 2,
-      nome: "maca",
-      nomeusual: "string",
-      sigla: "MC",
-      materialExameId: 8234783,
-      material: "tecido",
-      amostraExameId: 58239,
-      amostraExameNome: "nada",
-    }
-  ]
+  exames: ExamModel[] = [];
 
   // Por exame:
   situationDropdown = SituationDropdown;
   selectedValue: String;
   unitCheckbox: Boolean;
   selectedExam: ExamModel;
+  exameNome: string;
   urgentCheck: Boolean;
   date: Date;
   selectedSituation: String;
-  public exames = new Array<ExamModel>();
+  // public exames = new Array<ExamModel>();
   // options = AutoCompleteDemo;
 
   // Por lote:
-  results: String[];
   selectedLote: String;
   group: String = null;
   groups: GrupoModel[];
@@ -58,6 +37,7 @@ export class ExamesComponent implements OnInit, OnDestroy {
   constructor(
     private breadcrumbService: BreadcrumbService,
     private gruposExamesService: GruposExamesService,
+    private examesService: ExamesService
     ) { }
 
   handleClick() {
@@ -77,24 +57,29 @@ export class ExamesComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void{
-    this.breadcrumbService.setItems([
-      {
-        label: 'Exames',
-      },
-      { 
-        label: 'Solicitar Exame',
-      }
-    ])
     this.gruposExamesService.GetGrupos().subscribe((response) => {
       this.groups = response;
+    })
+    this.examesService.GetExames().subscribe((response) => {
+      this.exames = response;
+      console.log(response);
     })
 
   }
 
   // Métodos
 
-  Listar() {
-    
+  search() {
+    this.examesService.GetExames().subscribe(data => {
+        this.exames = data;
+    });
+  }
+
+  selecionarExame(event) {
+    this.selectedExam = event.query;
+
+    this.exameNome = event.query.nome;
+
   }
   
   ngOnDestroy(): void {

@@ -1,25 +1,23 @@
 <div class="p-col-12 card card-w-title">
-    <h1>
-      Exame
-    </h1>
-    <p-table [value]="Exames">
-      <ng-template pTemplate="header">
-          <tr>
-              <th style="width: 5%;">Ação</th>
-              <th style="text-align: center;">Exame</th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-fake>
-          <tr>
-              <td style="text-align: center;">
-                <p-checkbox
-                  class="exame-checkbox"
-                  [(ngModel)]="teste"
-                  [binary]="true"
-                ></p-checkbox>
-              </td>
-              <td style="text-align: center;">{{fake.nome}}</td>
-          </tr>
-      </ng-template>
-    </p-table>
-  </div>
+  <h1>
+    Exame
+  </h1>
+  <p-table [value]="exames" [(selection)]="examesSelecionados" dataKey="id">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th style="text-align: center;">Exame</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-exame>
+      <tr>
+        <td style="width: 3rem">
+          <p-tableCheckbox [value]="exame"></p-tableCheckbox>
+        </td>
+        <td style="text-align: center;">{{exame.nome}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

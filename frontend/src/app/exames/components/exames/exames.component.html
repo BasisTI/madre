@@ -35,12 +35,26 @@
 
                   <label style="margin-bottom: 10px;">Exame:</label>
                   <p-autoComplete
-                    name="exame"
                     [(ngModel)]="selectedExam"
                     [suggestions]="exames"
                     dropdown="true"
                     pTooltip="Selecione um exame"
-                  ></p-autoComplete>
+                    (completeMethod)="search()"
+                    [showTransitionOptions]="'500ms'"
+                    [hideTransitionOptions]="'500ms'"
+                    placeholder="buscar..."
+                    (onSelect)="selecionarExame($event)"
+                  >
+                    <ng-template let-exames pTemplate="item">
+                      <div style="width: 80vw; display: flex; flex-direction: row;">
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">{{exames.nomeUsual}}</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">teste</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">teste</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">{{exames.sigla}}</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">{{exames.nome}}</span>
+                      </div>
+                    </ng-template>
+                  </p-autoComplete>
                 </span>
 
                 <span class="data-field-3">
@@ -73,6 +87,16 @@
                   </div>
                 </span>
               </div>
+
+              <button
+              pButton
+              label="Adicionar"
+              type="button"
+              icon="pi pi-plus"
+              iconPos="left"
+              (click)="handleClick()"
+            ></button>
+
             </p-tabPanel>
 
             <p-tabPanel header="por Lote">
@@ -122,10 +146,7 @@
               <!-- Componente continuar -->
               <app-situacao-exame *ngIf="group"></app-situacao-exame>
 
-            </p-tabPanel>
-
-            <!-- If needed, crete one button for each Tab view. then, change and add a click method for each button. -->
-            <button
+              <button
               pButton
               label="Adicionar"
               type="button"
@@ -133,6 +154,10 @@
               iconPos="left"
               (click)="handleClick()"
             ></button>
+
+            </p-tabPanel>
+
+            <!-- If needed, crete one button for each Tab view. then, change and add a click method for each button. -->
 
         </p-tabView>
     </div>

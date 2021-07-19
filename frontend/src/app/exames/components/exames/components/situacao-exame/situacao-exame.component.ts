@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SituationDropdown } from 'src/app/exames/models/dropdowns/situation.dropdown';
 
 @Component({
   selector: 'app-situacao-exame',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./situacao-exame.component.css']
 })
 export class SituacaoExameComponent implements OnInit {
+
+  urgentCheck: boolean = false;
+  date: Date;
+  situationDropdown = SituationDropdown;
+  selectedSituation: string;
 
   constructor() { }
 
