@@ -1,4 +1,3 @@
-
 export class CadaverModel {
     codigo?:number;
     nome?:string;

@@ -24,7 +24,9 @@
       <span id="grupo">
         <label> Controle de qualidade: </label> <br>
       </span>
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
+      <p-dropdown 
+      [options]="controles" [optionLabel]="'material'" [optionValue]="'codigo'"
+      ></p-dropdown>
     </div>
     <div class="atend">
       <span id="grupo">
@@ -34,7 +36,6 @@
         [options]="groups" [optionLabel]="'nome'" [optionValue]="'codigo'"
       ></p-dropdown>
     </div>
-
   </p-fieldset>
 
   <p-fieldset legend="Informações complementares ">
