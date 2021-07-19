@@ -75,7 +75,8 @@
     <div>
       <span id="grupo"> <br>
         <label> Centro de Atividades: </label> <br>
-        <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown> <br>
+        <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
+        ></p-dropdown> <br>
       </span>
     </div>
 

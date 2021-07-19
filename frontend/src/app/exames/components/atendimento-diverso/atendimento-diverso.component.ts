@@ -7,6 +7,9 @@ import { ControleQualidadeservice } from '../../services/controleQualidade.servi
 import { ControleQualidadeModel } from '../../models/subjects/controleQualidade-model';
 import { LaboratorioExternoService } from '../../services/laboratorioExterno.service';
 import { LaboratorioExternoModel } from '../../models/subjects/laboratorioExterno-model';
+import { CentroService } from '@internacao/formulario-unidades/services/centro-de-atividade.service';
+import { CentroDeAtividade } from '@internacao/formulario-unidades/models/dropwdowns/centro-de-atividade';
+
 
 
 @Component({
@@ -20,6 +23,7 @@ export class AtendimentoDiversoComponent implements OnInit {
   cadavers: CadaverModel[];
   controles: ControleQualidadeModel[];
   laboratorios: LaboratorioExternoModel[];
+  centros: CentroDeAtividade[];
 
   TipoAmostra: string[] = ["Selecione","Doador","Receptor",];
   selectedTipo: string; 
@@ -39,7 +43,8 @@ export class AtendimentoDiversoComponent implements OnInit {
 
   constructor(private CadaverService: CadaverService, 
     private ControleQualidadeservice: ControleQualidadeservice,
-     private LaboratorioExternoService: LaboratorioExternoService) { }
+     private LaboratorioExternoService: LaboratorioExternoService,
+     private centroService: CentroService) { }
 
      ngOnInit() : void{
        this.CadaverService.GetCadaver().subscribe((response)=>{
@@ -53,6 +58,13 @@ export class AtendimentoDiversoComponent implements OnInit {
        this.LaboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
         this.laboratorios = response; 
        });
+
+       this.LaboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
+        this.laboratorios = response; 
+       });
+       this.centroService.getListaDeCentros().subscribe((response)=>{
+         this.centros = response;
+       })
      }
     
 }
