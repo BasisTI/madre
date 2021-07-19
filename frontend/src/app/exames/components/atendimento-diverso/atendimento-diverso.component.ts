@@ -5,6 +5,9 @@ import { CadaverService } from '../../services/cadaver.service';
 import { group } from '@angular/animations';
 import { ControleQualidadeservice } from '../../services/controleQualidade.service';
 import { ControleQualidadeModel } from '../../models/subjects/controleQualidade-model';
+import { LaboratorioExternoService } from '../../services/laboratorioExterno.service';
+import { LaboratorioExternoModel } from '../../models/subjects/laboratorioExterno-model';
+
 
 @Component({
   selector: 'app-atendimento-diverso',
@@ -14,8 +17,9 @@ import { ControleQualidadeModel } from '../../models/subjects/controleQualidade-
 })
 export class AtendimentoDiversoComponent implements OnInit {
 
-  groups: CadaverModel[];
+  cadavers: CadaverModel[];
   controles: ControleQualidadeModel[];
+  laboratorios: LaboratorioExternoModel[];
 
   TipoAmostra: string[] = ["Selecione","Doador","Receptor",];
   selectedTipo: string; 
@@ -29,21 +33,25 @@ export class AtendimentoDiversoComponent implements OnInit {
   teste: string[] = ["Selecione","teste","teste01",];
   selectedTeste: string;
   
-  public exames = new Array<CadaverModel>();
-  public exame = new Array<ControleQualidadeModel>();
+  public cadaver = new Array<CadaverModel>();
+  public controle = new Array<ControleQualidadeModel>();
+  public laboratorio = new Array<LaboratorioExternoModel>();
 
   constructor(private CadaverService: CadaverService, 
-    private ControleQualidadeservice: ControleQualidadeservice) { }
+    private ControleQualidadeservice: ControleQualidadeservice,
+     private LaboratorioExternoService: LaboratorioExternoService) { }
 
      ngOnInit() : void{
        this.CadaverService.GetCadaver().subscribe((response)=>{
-         this.groups = response;
-
-         
+         this.cadavers = response; 
        });
 
        this.ControleQualidadeservice.GetControleQualidade().subscribe((response)=>{
         this.controles = response; 
+       });
+
+       this.LaboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
+        this.laboratorios = response; 
        });
      }
     

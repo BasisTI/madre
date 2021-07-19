@@ -18,7 +18,9 @@
       <span id="grupo">
         <label> Laboratorio Externo: </label> <br>
       </span>
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
+      <p-dropdown 
+      [options]="laboratorios" [optionLabel]="'nome'" [optionValue]="'codigo'"
+       ></p-dropdown>
     </div>
     <div class="atend">
       <span id="grupo">
@@ -33,7 +35,7 @@
         <label> Cadavér: </label> <br>
       </span>
       <p-dropdown
-        [options]="groups" [optionLabel]="'nome'" [optionValue]="'codigo'"
+        [options]="cadavers" [optionLabel]="'nome'" [optionValue]="'codigo'"
       ></p-dropdown>
     </div>
   </p-fieldset>

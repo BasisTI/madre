@@ -10,4 +10,3 @@ export class ControleQualidade implements IControleQualidade{
     public CodigoConvenio: String ;
     public CodigoPlano: String ;
 }
-
