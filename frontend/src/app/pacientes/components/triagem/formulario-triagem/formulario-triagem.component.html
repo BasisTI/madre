@@ -88,9 +88,13 @@
                         </div>
                         <div class="p-md-3">
                             <div class="p-field-radiobutton">
-                                <p-inputSwitch name="vitimaDeAcidente" formControlName="vitimaDeAcidente" value="true">
-                                </p-inputSwitch>
-                                <label class="text-form">Não</label>
+                                <p-radioButton name="vitimaDeAcidente" formControlName="vitimaDeAcidente" value="false"
+                                    required>
+                                </p-radioButton>
+                                <label class="radioBtn">Não</label>
+                                <p-radioButton name="vitimaDeAcidente" formControlName="vitimaDeAcidente" value="true">
+                                </p-radioButton>
+                                <label class="radioBtn">Sim</label>
                             </div>
                         </div>
                     </div>
@@ -103,9 +107,12 @@
 
                         <div class="p-md-3">
                             <div class="p-field-radiobutton">
-                                <p-inputSwitch name="removidoDeAmbulancia" formControlName="removidoDeAmbulancia"
-                                    value="true"></p-inputSwitch>
-                                <label class="text-form">Sim</label>
+                                <p-radioButton name="removidoDeAmbulancia" formControlName="removidoDeAmbulancia"
+                                    value="false"></p-radioButton>
+                                <label class="radioBtn">Não</label>
+                                <p-radioButton name="removidoDeAmbulancia" formControlName="removidoDeAmbulancia"
+                                    value="true" required></p-radioButton>
+                                <label class="radioBtn">Sim</label>
                             </div>
                         </div>
                     </div>
