@@ -231,7 +231,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                     ]
                 },
                 {
-                    label: 'Farmacia',
+                    label: 'Farmácia',
                     icon: 'icon-farmacia',
                     items: [
                         {

@@ -61,6 +61,9 @@
                         <p-dropdown [options]="unidades"
                         [optionLabel]="'nome'"
                         [optionValue]="'id'"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [showClear]="true"
                         pTooltip="Selecione a unidade de internação.">
                         </p-dropdown>
                     </span>
@@ -72,6 +75,9 @@
                         <p-dropdown [options]="responsaveis"
                         [optionLabel]="'nomeDoResponsavel'"
                         [optionValue]="'id'"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [showClear]="true"
                         pTooltip="Selecione a unidade de internação.">
                         </p-dropdown>
                     </span>
@@ -83,8 +89,11 @@
                 <div class="p-inputtextarea p-fluid">
                     Informações Clínicas
                     <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
-                        <textarea [rows]="5" pInputTextarea autoResize="autoResize"
-                            pTooltip="Digite as informações clínicas do paciente.">
+                        <textarea 
+                        pInputTextarea 
+                        [rows]="5"
+                        autoResize="autoResize"
+                        pTooltip="Digite as informações clínicas do paciente.">
                         </textarea>
                         <label>Digite as informações clínicas do paciente.</label>
                     </span>
