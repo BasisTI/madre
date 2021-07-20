@@ -9,7 +9,8 @@ import { LaboratorioExternoService } from '../../services/laboratorioExterno.ser
 import { LaboratorioExternoModel } from '../../models/subjects/laboratorioExterno-model';
 import { CentroService } from '@internacao/formulario-unidades/services/centro-de-atividade.service';
 import { CentroDeAtividade } from '@internacao/formulario-unidades/models/dropwdowns/centro-de-atividade';
-
+import { UnidadeFuncional } from '../../models/subjects/unidade-funcional-model';
+import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 
 @Component({
   selector: 'app-atendimento-diverso',
@@ -25,6 +26,8 @@ export class AtendimentoDiversoComponent implements OnInit {
   laboratorios: LaboratorioExternoModel[];
   centros: CentroDeAtividade[];
   especialidades: Especialidade[];
+  unidadesFuncionais: UnidadeFuncional[];
+
  
 
   TipoAmostra: string[] = ["Doador","Receptor",];
@@ -36,11 +39,14 @@ export class AtendimentoDiversoComponent implements OnInit {
   Sexo: string[] = ["Feminino","Masculino","Ignorado",];
   selectedSexo: string;
 
+  valor: number;
+
   constructor(private cadaverService: CadaverService, 
     private controleQualidadeservice: ControleQualidadeservice,
     private laboratorioExternoService: LaboratorioExternoService,
     private centroService: CentroService,
-    private especialidadeservice: EspecialidadeService) { }
+    private especialidadeservice: EspecialidadeService,
+    private unidadeFuncionalService: UnidadeFuncionalService) { }
 
      ngOnInit() : void{
 
@@ -66,7 +72,9 @@ export class AtendimentoDiversoComponent implements OnInit {
 
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
         this.especialidades = response; 
-       })
+       });
+       this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response) => {
+        this.unidadesFuncionais = response; });
      }
     
 }

@@ -4,11 +4,13 @@
     <span id="grupo">
       <label> Unidade Executora: </label> <br>
 
-      <p-dropdown [options]="" ></p-dropdown>
+      <p-dropdown 
+      [options]="unidadesFuncionais" [optionLabel]="'nome'" [optionValue]="'id'" [(ngModel)]= "valor"
+       ></p-dropdown>
     </span>
     <span id="grupo">
       <label> Codigo: </label> <br>
-      <input type="text" pInputText />
+      <input type="text" value={{valor}} pInputText />
     </span>
   </div>
 
@@ -83,20 +85,6 @@
       </span>
     </div>
 
-
-    <button pButton type="button" label="Pesquisar Fonetica" icon="ui-icon-search" bTooltip="Pesquisar Fonetica."
-      (click)="pesquisar()"></button>
-
-    <div id="codigo">
-      <span id="grupo">
-        <label> Prontuario: </label> <br>
-        <input type="text" pInputText />
-      </span>
-      <span style="display: flex; flex-direction: column; width: 15%">
-        <label> Codigo: </label> <br>
-        <input type="text" pInputText /><br>
-      </span>
-    </div>
     <div id="codigo">
       <span id="grupo">
         <label> Nome Paciente Externo: </label> <br>
