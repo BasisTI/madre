@@ -4,6 +4,7 @@ import br.com.basis.madre.farmacia.FarmaciaApp;
 import br.com.basis.madre.farmacia.domain.Medicamento;
 import br.com.basis.madre.farmacia.repository.MedicamentoRepository;
 import br.com.basis.madre.farmacia.repository.search.MedicamentoSearchRepository;
+import br.com.basis.madre.farmacia.service.ExportarMedicamentoService;
 import br.com.basis.madre.farmacia.service.MedicamentoService;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import br.com.basis.madre.farmacia.service.mapper.MedicamentoMapper;
@@ -66,6 +67,9 @@ public class MedicamentoResourceIT {
     @Autowired
     private MedicamentoService medicamentoService;
 
+    @Autowired
+    private ExportarMedicamentoService exportarMedicamentoService;
+
     /**
      * This repository is mocked in the br.com.basis.madre.farmacia.repository.search test package.
      *
@@ -96,7 +100,7 @@ public class MedicamentoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final MedicamentoResource medicamentoResource = new MedicamentoResource(medicamentoService);
+        final MedicamentoResource medicamentoResource = new MedicamentoResource(medicamentoService, exportarMedicamentoService);
         this.restMedicamentoMockMvc = MockMvcBuilders.standaloneSetup(medicamentoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -208,7 +212,7 @@ public class MedicamentoResourceIT {
             .andExpect(jsonPath("$.[*].concentracao").value(hasItem(DEFAULT_CONCENTRACAO)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getMedicamento() throws Exception {

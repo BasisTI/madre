@@ -183,7 +183,7 @@ public class PacienteResource {
      */
     @GetMapping("/_search/pacientes")
     @Timed
-    public ResponseEntity<List<PacienteDTO>> searchPacientes(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<PacienteDTO>> searchPacientes(@RequestParam(defaultValue = "*", required = false) String query, Pageable pageable) {
         log.debug("REST request to search for a page of Pacientes for query {}", query);
         Page<PacienteDTO> page = pacienteService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);

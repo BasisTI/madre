@@ -1265,7 +1265,7 @@ p-radiobutton.ng-dirty.ng-invalid > .p-radiobutton > .p-radiobutton-box {
 }
 
 .p-selectbutton .p-button {
-  background: #ffffff;
+  background: #F5F5F5;
   border: 1px solid rgba(0, 0, 0, 0.12);
   color: rgba(0, 0, 0, 0.87);
   transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
@@ -1284,8 +1284,8 @@ p-radiobutton.ng-dirty.ng-invalid > .p-radiobutton > .p-radiobutton-box {
   color: rgba(0, 0, 0, 0.6);
 }
 .p-selectbutton .p-button.p-highlight {
-  background: #e0e0e1;
-  border-color: #e0e0e1;
+  background: #F5F5F5;
+  border: 1px solid #D4DDE5;
   color: rgba(0, 0, 0, 0.87);
 }
 .p-selectbutton .p-button.p-highlight .p-button-icon-left,
@@ -1546,6 +1546,15 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-fluid .p-buttonset .p-button {
   flex: 1;
+  margin: 0 1.5%;
+  text-align: center;
+  background: #F5F5F5;
+  border: 2px solid #D4DDE5;
+  border-radius: 4px;
+  box-shadow: 0px 6px 18px rgb(0 0 0 / 6%);
+  cursor: pointer;
+  height: 213px;
+
 }
 
 .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
@@ -5160,10 +5169,10 @@ p-autocomplete.ng-dirty.ng-invalid .p-autocomplete .p-autocomplete-multiple-cont
   min-width: auto;
 }
 .p-button:enabled:focus {
-  background: rgba(0, 150, 136, 0.76);
-}*/
+  background: rgba(31, 170, 238, 1);
+}
 .p-button:enabled:active {
-  background: rgba(0, 150, 136, 0.68);
+  background: rgba(31, 170, 238, 1);
 }
 .p-button .p-ink {
   background-color: rgba(255, 255, 255, 0.32);

@@ -1,5 +1,7 @@
 package br.com.basis.madre.farmacia.repository;
 import br.com.basis.madre.farmacia.domain.Medicamento;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +12,12 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> {
+
+
+    @Query("from Medicamento m where m.ativo = true")
+    String findByAtivoIsTrue();
+
+    Long countByAtivoIsTrue();
+
 
 }
