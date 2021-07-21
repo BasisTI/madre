@@ -10,11 +10,11 @@
     </span>
     <span id="grupo">
       <label> Codigo: </label> <br>
-      <input type="text" value={{valor}} pInputText />
+       <input type="text" value={{valor}} pInputText/> 
     </span>
   </div>
 
-  <p-fieldset id="atendendimento" legend="Tipo Atendimento">
+  <p-fieldset legend="Tipo Atendimento">
 
     <div class="atend">
       <span id="grupo">
@@ -22,7 +22,7 @@
       </span>
       <p-dropdown 
       [options]="laboratorios" [optionLabel]="'nome'" [optionValue]="'codigo'"
-       ></p-dropdown>
+      ></p-dropdown>
     </div>
     <div class="atend">
       <span id="grupo">
@@ -88,7 +88,9 @@
     <div id="codigo">
       <span id="grupo">
         <label> Nome Paciente Externo: </label> <br>
-        <input type="text" pInputText />
+        <p-dropdown 
+        [options]="cadastros" [optionLabel]="'nome'" [optionValue]="'id'"
+        ></p-dropdown>
       </span>
       <span id="grupo">
         <label> Data Nascimento: </label> <br>

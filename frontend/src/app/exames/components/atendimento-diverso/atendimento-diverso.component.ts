@@ -1,3 +1,4 @@
+import { PreCadastroModel } from './../../../pacientes/models/pre-cadastro-model';
 import { EspecialidadeService } from '@internacao/services/especialidade.service';
 import { Especialidade } from './../../../internacao/models/especialidade';
 import { CadaverModel } from './../../models/subjects/cadaver-model';
@@ -11,6 +12,8 @@ import { CentroService } from '@internacao/formulario-unidades/services/centro-d
 import { CentroDeAtividade } from '@internacao/formulario-unidades/models/dropwdowns/centro-de-atividade';
 import { UnidadeFuncional } from '../../models/subjects/unidade-funcional-model';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
+import { PacientesService } from '../../services/paciente.service';
+
 
 @Component({
   selector: 'app-atendimento-diverso',
@@ -27,8 +30,7 @@ export class AtendimentoDiversoComponent implements OnInit {
   centros: CentroDeAtividade[];
   especialidades: Especialidade[];
   unidadesFuncionais: UnidadeFuncional[];
-
- 
+  cadastros: PreCadastroModel[];
 
   TipoAmostra: string[] = ["Doador","Receptor",];
   selectedTipo: string; 
@@ -46,7 +48,8 @@ export class AtendimentoDiversoComponent implements OnInit {
     private laboratorioExternoService: LaboratorioExternoService,
     private centroService: CentroService,
     private especialidadeservice: EspecialidadeService,
-    private unidadeFuncionalService: UnidadeFuncionalService) { }
+    private unidadeFuncionalService: UnidadeFuncionalService,
+    private pacientesService: PacientesService) { }
 
      ngOnInit() : void{
 
@@ -62,19 +65,21 @@ export class AtendimentoDiversoComponent implements OnInit {
         this.laboratorios = response; 
        });
 
-       this.laboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
-        this.laboratorios = response; 
-       });
-
        this.centroService.getListaDeCentros().subscribe((response)=>{
          this.centros = response;
+       });
+
+       this.pacientesService.getPaciente().subscribe((response)=>{
+         this.cadastros = response;
        });
 
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
         this.especialidades = response; 
        });
        this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response) => {
-        this.unidadesFuncionais = response; });
+       this.unidadesFuncionais = response; 
+      });
+
      }
     
 }
