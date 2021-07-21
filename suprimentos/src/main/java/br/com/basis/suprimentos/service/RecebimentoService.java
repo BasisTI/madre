@@ -34,10 +34,10 @@ public class RecebimentoService {
         RecebimentoDTO result = recebimentoMapper.toDto(recebimentoSalvo);
         recebimentoSearchRepository.save(recebimentoSalvo);
 
-        recebimentoSalvo.getItensNotaRecebimentos().stream().forEach(item -> {
-            item.setRecebimento(recebimentoSalvo);
-            itemNotaRecebimentoRepository.save(item);
-        });
+//        recebimentoSalvo.getItensNotaRecebimentos().forEach(item -> {
+//            item.setRecebimento(recebimentoSalvo);
+//            itemNotaRecebimentoRepository.save(item);
+//        });
 
         return result;
     }
