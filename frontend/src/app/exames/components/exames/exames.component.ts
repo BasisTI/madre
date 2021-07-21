@@ -33,6 +33,7 @@ export class ExamesComponent implements OnInit, OnDestroy {
   group: String = null;
   groups: GrupoModel[];
 
+  teste: string = "teste"
 
   constructor(
     private breadcrumbService: BreadcrumbService,

@@ -45,13 +45,23 @@
                     placeholder="buscar..."
                     (onSelect)="selecionarExame($event)"
                   >
-                    <ng-template let-exames pTemplate="item">
+                    <ng-template
+                      let-exames
+                      pTemplate="item"
+                    >
+                      <div *ngIf="exames.id == 1" style="width: 100%; display: flex; flex-direction: row; background-color: lightblue;">
+                        <span style="font: size 4rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">Nome Usual</span>
+                        <span style="font: size 4rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">Material</span>
+                        <span style="font: size 4rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">Amostra do Exame</span>
+                        <span style="font: size 4rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">Sigla</span>
+                        <span style="font: size 4rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">Nome do Exame</span>
+                      </div>
                       <div style="width: 80vw; display: flex; flex-direction: row;">
-                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">{{exames.nomeUsual}}</span>
-                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">teste</span>
-                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">teste</span>
-                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">{{exames.sigla}}</span>
-                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden;">{{exames.nome}}</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">{{exames.nomeUsual}}{{i}}</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">teste</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">teste</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">{{exames.sigla}}</span>
+                        <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">{{exames.nome}}</span>
                       </div>
                     </ng-template>
                   </p-autoComplete>
@@ -141,23 +151,23 @@
               </div>
 
               <!-- Componente Exames -->
-              <app-exame *ngIf="group" [Exames]="fakeExame"></app-exame>
+              <app-exame *ngIf="group" [Exames]="exames"></app-exame>
 
               <!-- Componente continuar -->
               <app-situacao-exame *ngIf="group"></app-situacao-exame>
 
               <button
-              pButton
-              label="Adicionar"
-              type="button"
-              icon="pi pi-plus"
-              iconPos="left"
-              (click)="handleClick()"
-            ></button>
+                pButton
+                label="Adicionar"
+                type="button" 
+                icon="pi pi-plus"
+                iconPos="left"
+                (click)="handleClick()"
+              ></button>
 
             </p-tabPanel>
 
-            <!-- If needed, crete one button for each Tab view. then, change and add a click method for each button. -->
+            <app-tabela-exames></app-tabela-exames>
 
         </p-tabView>
     </div>

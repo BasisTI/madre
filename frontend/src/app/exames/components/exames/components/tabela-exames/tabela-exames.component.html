@@ -1,0 +1,30 @@
+<div class="card">
+    <p-table #dt [rows]="10" [paginator]="true" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th> Exame </th>
+                <th> Item </th>
+                <th> Descrição do Exame	</th>
+                <th> Urgente </th>
+                <th> Data Programada </th>
+                <th> Situação </th>
+                <th> Ação</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body">
+            <tr>
+                <td> teste 1</td>
+                <td> teste 2 </td>
+                <td> teste 3 </td>
+                <td> teste 4 </td>
+                <td> teste 5 </td>
+                <td> teste 6 </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

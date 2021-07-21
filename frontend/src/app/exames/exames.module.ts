@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
 import { ExameComponent } from './components/exames/components/exame/exame.component';
 import { SituacaoExameComponent } from './components/exames/components/situacao-exame/situacao-exame.component';
+import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 
 
 
@@ -19,7 +20,8 @@ import { SituacaoExameComponent } from './components/exames/components/situacao-
         ExamesComponent,
         AtendimentoDiversoComponent,
         ExameComponent,
-        SituacaoExameComponent
+        SituacaoExameComponent,
+        TabelaExamesComponent
 
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
