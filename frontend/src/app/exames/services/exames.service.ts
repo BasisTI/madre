@@ -14,7 +14,13 @@ export class ExamesService {
     private client: HttpClient
   ) { }
 
+  // Pegar todos os exames
   public GetExames(): Observable<Array<ExamModel>> {
     return this.client.get<Array<ExamModel>>(`${this.URL}/exames`);
+  }
+
+  // Pegar os exames pelo ID do grupo
+  public GetExamesPorGrupo(id: number): Observable<Array<ExamModel>> {
+    return this.client.get<Array<ExamModel>>(`${this.URL}/exames/grupos/${id}`);
   }
 }

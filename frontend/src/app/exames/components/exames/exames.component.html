@@ -39,7 +39,7 @@
                     [suggestions]="exames"
                     dropdown="true"
                     pTooltip="Selecione um exame"
-                    (completeMethod)="search()"
+                    (completeMethod)="search($event.query)"
                     [showTransitionOptions]="'500ms'"
                     [hideTransitionOptions]="'500ms'"
                     placeholder="buscar..."
@@ -146,12 +146,13 @@
                     [optionLabel]="'nome'"
                     [optionValue]="'id'"
                     [(ngModel)]="group"
+                    placeholder="Selecione um grupo"
                   ></p-dropdown>
                 </div>
               </div>
 
               <!-- Componente Exames -->
-              <app-exame *ngIf="group" [Exames]="exames"></app-exame>
+              <app-exame *ngIf="group" [GrupoID]="group" (examesSelecionados)="examesSelecionados"></app-exame>
 
               <!-- Componente continuar -->
               <app-situacao-exame *ngIf="group"></app-situacao-exame>

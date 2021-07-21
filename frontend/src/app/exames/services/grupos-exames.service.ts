@@ -14,6 +14,7 @@ export class GruposExamesService {
     private client: HttpClient
   ) { }
 
+  // Pegar todos os grupos
   public GetGrupos(): Observable<Array<GrupoModel>> {
     return this.client.get<Array<GrupoModel>>(`${this.grupoURL}/grupo-agendamento-exames`);
   }

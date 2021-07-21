@@ -33,7 +33,6 @@ export class ExamesComponent implements OnInit, OnDestroy {
   group: String = null;
   groups: GrupoModel[];
 
-  teste: string = "teste"
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -63,16 +62,15 @@ export class ExamesComponent implements OnInit, OnDestroy {
     })
     this.examesService.GetExames().subscribe((response) => {
       this.exames = response;
-      console.log(response);
     })
 
   }
 
   // Métodos
 
-  search() {
+  search(texto: string) {
     this.examesService.GetExames().subscribe(data => {
-        this.exames = data;
+        this.exames = data.filter((elem)=> elem.nome.includes(texto))
     });
   }
 

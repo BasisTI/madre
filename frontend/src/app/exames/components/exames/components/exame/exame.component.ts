@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output } from '@angular/core';
 import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
 import { ExamesService } from '../../../../services/exames.service'
 
@@ -7,22 +7,31 @@ import { ExamesService } from '../../../../services/exames.service'
   templateUrl: './exame.component.html',
   styleUrls: ['./exame.component.css']
 })
-export class ExameComponent implements OnInit {
+export class ExameComponent implements OnInit, OnChanges {
 
   @Input()
-  Exames: ExamModel[];
+  GrupoID: number;
 
-  teste: boolean;
   exames: ExamModel[] = [];
+
+  @Output()
   examesSelecionados: ExamModel[];
 
   constructor( private exameService: ExamesService ) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.listarExames();
+  }
+
   ngOnInit(): void {
 
-    this.exameService.GetExames().subscribe((response) => {
+  }
+
+  // Métodos
+  listarExames() {
+    this.exameService.GetExamesPorGrupo(this.GrupoID).subscribe((response) => {
       this.exames = response;
-      console.log(response, "uswhsiu")
+      console.log(this.GrupoID)
     })
   }
 
