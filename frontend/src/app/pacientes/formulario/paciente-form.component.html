@@ -1,39 +1,40 @@
+<div class='my-component'>
+    <nCrudForm class="crud-component" [form]="paciente" >
+        <p-tabView>
+            <p-tabPanel header="Dados Pessoais">
+                <paciente-form-dados-pessoais [formGroup]="paciente"></paciente-form-dados-pessoais>
+                <paciente-form-certidao [formGroup]="paciente"></paciente-form-certidao>
+                <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
+            </p-tabPanel>
+            <p-tabPanel header="Contatos do Paciente">
+                <paciente-form-telefone [formGroup]="paciente"> </paciente-form-telefone>
+            </p-tabPanel>
+            <p-tabPanel header="Endereço">
+                <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>
+            </p-tabPanel>
+            <p-tabPanel header="Responsável">
+                <paciente-form-responsavel [formGroup]="paciente"></paciente-form-responsavel>
+            </p-tabPanel>
+            <p-tabPanel header="Cartão SUS">
+                <paciente-form-cartao-sus [formGroup]="paciente"></paciente-form-cartao-sus>
+            </p-tabPanel>
+        </p-tabView>
 
-<nCrudForm [form]="paciente" >
-    <p-tabView>
-        <p-tabPanel header="Dados Pessoais">
-            <paciente-form-dados-pessoais [formGroup]="paciente"></paciente-form-dados-pessoais>
-            <paciente-form-certidao [formGroup]="paciente"></paciente-form-certidao>
-            <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
-        </p-tabPanel>
-        <p-tabPanel header="Contatos do Paciente">
-            <paciente-form-telefone [formGroup]="paciente"> </paciente-form-telefone>
-        </p-tabPanel>
-        <p-tabPanel header="Endereço">
-            <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>
-        </p-tabPanel>
-        <p-tabPanel header="Responsável">
-            <paciente-form-responsavel [formGroup]="paciente"></paciente-form-responsavel>
-        </p-tabPanel>
-        <p-tabPanel header="Cartão SUS">
-            <paciente-form-cartao-sus [formGroup]="paciente"></paciente-form-cartao-sus>
-        </p-tabPanel>
-    </p-tabView>
-
-    <div class="card observacao">
-        <h4 class="p-md-6 p-sm-12">Observação</h4>
-        <div class="p-grid p-fluid" [formGroup]="paciente">
-            <span class="p-float-label p-sm-12">
-                <textarea class = "p-md-2 p-sm-12"
-                    formControlName="observacao"
-                    [rows]="3"
-                    pInputTextarea
-                    autoResize="autoResize"
-                    pTooltip="Informe a observação sobre o paciente"
-                ></textarea>
-                <label>Observação sobre o paciente</label>
-            </span>
-            
+        <div class="card observacao">
+            <h4 class="p-md-6 p-sm-12 p-col-12">Observação</h4>
+            <div class="p-grid p-fluid" [formGroup]="paciente">
+                <span class="p-float-label p-sm-12 p-col-12">
+                    <textarea class = "p-md-2 p-sm-12 p-col-12"
+                        formControlName="observacao"
+                        [rows]="3"
+                        pInputTextarea
+                        autoResize="autoResize"
+                        pTooltip="Informe a observação sobre o paciente"
+                    ></textarea>
+                    <label>Observação sobre o paciente</label>
+                </span>
+                
+            </div>
         </div>
-    </div>
-</nCrudForm>
+    </nCrudForm>
+</div>

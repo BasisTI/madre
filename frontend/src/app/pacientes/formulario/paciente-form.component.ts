@@ -10,6 +10,7 @@ import { PacienteValidators } from "./paciente.validators";
 import { MenuItem } from 'primeng/api';
 import {TabMenuModule} from 'primeng/tabmenu';
 
+
 @Component({
     selector: 'paciente-form',
     templateUrl: './paciente-form.component.html',

@@ -1,13 +1,13 @@
 <div class="p-grid p-fluid" [formGroup]="formGroup">
     <h4 class="p-md-6 p-sm-12">Documentos</h4>
     <div class="p-col-12 p-grid" formGroupName="documento">
-        <div nInputText label="Número da Identidade" formControlName="numeroDaIdentidade" class="p-md-2 p-sm-12"></div>
-        <div nAutoComplete [service]="orgaoEmissorService" field="valor" formControlName="orgaoEmissorId" label="Órgão Emissor" class="p-md-2 p-sm-12"></div>
-        <div nAutoComplete [service]="ufService" field="sigla" formControlName="ufId" label="UF" class="p-md-1 p-sm-12"></div>
-        <div madreCalendar label="Data de Emissão" formControlName="data" class="p-md-1 p-sm-12"></div>
-        <div nInputMask label="CPF" formControlName="cpf" mask="999.999.999-99" placeholder="___.___.___-__" tooltip="Digite o CPF do paciente." class="p-md-2 p-sm-12"></div>
-        <div nInputMask label="PIS/PASEP" formControlName="pisPasep" mask="999.99999.99-9" placeholder="___._____.__-_" tooltip="Digite o PIS/PASEP do paciente." class="p-md-2 p-sm-12"></div>
-        <div nInputMask label="CNH" formControlName="cnh" mask="99999999999" placeholder="___________" tooltip="Digite a CNH do paciente." class="p-md-1 p-sm-12"></div>
-        <div madreCalendar label="Validade da CNH" formControlName="validadeDaCnh" class="p-md-1 p-sm-12"></div>
+        <div nInputText label="Número da Identidade" formControlName="numeroDaIdentidade" class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nAutoComplete [service]="orgaoEmissorService" field="valor" formControlName="orgaoEmissorId" label="Órgão Emissor" class="p-md-5 p-sm-10 p-col-12"></div>
+        <div nAutoComplete [service]="ufService" field="sigla" formControlName="ufId" label="UF" class="p-md-1 p-sm-2 p-col-4"></div>
+        <div madreCalendar label="Data de Emissão" formControlName="data" class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nInputMask label="CPF" formControlName="cpf" mask="999.999.999-99" placeholder="___.___.___-__" tooltip="Digite o CPF do paciente." class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nInputMask label="PIS/PASEP" formControlName="pisPasep" mask="999.99999.99-9" placeholder="___._____.__-_" tooltip="Digite o PIS/PASEP do paciente." class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nInputMask label="CNH" formControlName="cnh" mask="99999999999" placeholder="___________" tooltip="Digite a CNH do paciente." class="p-md-2 p-sm-4 p-col-8"></div>
+        <div madreCalendar label="Validade da CNH" formControlName="validadeDaCnh" class="p-md-2 p-sm-4 p-col-8"></div>
     </div>
 </div>

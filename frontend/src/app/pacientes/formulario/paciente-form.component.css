@@ -11,3 +11,7 @@ h4{
 textarea{
     color: #40556B;
 }
+
+:host ::ng-deep button{
+    float: right;
+}

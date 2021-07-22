@@ -1,7 +1,7 @@
 <div class="p-grid p-fluid" [formGroup]="endereco">
     <div class="p-col-12 p-grid">
-        <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="p-md-6 p-sm-12"></div>
-        <div class="p-md-6 p-sm-12">
+        <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="p-md-6 p-sm-12 p-col-12"></div>
+        <div class="p-md-6 p-sm-12 p-col-12">
             <span class="p-float-label">
                 <p-dropdown
                     (onChange)="aoSelecionarUF()"
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="p-col-12 p-grid">
-        <div class="p-md-2 p-sm-12">
+        <div class="p-md-2 p-sm-4 p-col-8">
             <span class="md-inputfield p-float-label">
                 <p-autoComplete
                     (completeMethod)="searchUnidade($event)"
@@ -28,17 +28,17 @@
                 <label>Municípios</label>
             </span>
         </div>
-        <div nInputText label="Logradouro" formControlName="logradouro" class="p-md-4 p-sm-12" required></div>
-        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="p-md-6 p-sm-12"></div>
+        <div nInputText label="Logradouro" formControlName="logradouro" class="p-md-4 p-sm-8 p-col-12" required></div>
+        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid p-fluid">
-        <div nInputText label="Número" required formControlName="numero" class="p-md-2"></div>
-        <div nInputText label="Complemento" formControlName="complemento" class="p-md-4"></div>
-        <div nInputText label="Bairro" required formControlName="bairro" class="p-md-6"></div>
+        <div nInputText label="Número" required formControlName="numero" class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nInputText label="Complemento" formControlName="complemento" class="p-md-4 p-sm-8 p-col-12"></div>
+        <div nInputText label="Bairro" required formControlName="bairro" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid">
-        <div class="p-md-2">Correspondência?</div>
-        <div class="p-md-2">
+        <div class="p-md-2 p-sm-4 p-col-8">Correspondência?</div>
+        <div class="p-md-2 p-sm-4 p-col-8">
             <p-radioButton
                 id="sim"
                 type="radio"
@@ -49,7 +49,7 @@
             </p-radioButton>
             <label>Sim</label>
         </div>
-        <div class="p-md-2">
+        <div class="p-md-2 p-sm-4 p-col-8">
             <p-radioButton
                 id="nao"
                 type="radio"
