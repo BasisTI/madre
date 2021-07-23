@@ -18,6 +18,7 @@ import { CRUD_SERVICE, PageNotificationModule } from '@nuvem/primeng-components'
 import { FormularioTriagemComponent } from './components/triagem/formulario-triagem/formulario-triagem.component';
 import { ClassificaoDeRiscoPipe } from './pipes/classificao-de-risco.pipe';
 import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro/listagem-pre-cadastro.component';
+import { NivelEmergenciaComponent } from './components/triagem/formulario-triagem/classificacao-de-risco/nivel-emergencia/nivel-emergencia.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { ListagemPreCadastroComponent } from './components/listagem-pre-cadastro
         FormularioTriagemComponent,
         ClassificaoDeRiscoPipe,
         ListagemPreCadastroComponent,
+        NivelEmergenciaComponent,
     ],
     providers: [
         PacientesService,

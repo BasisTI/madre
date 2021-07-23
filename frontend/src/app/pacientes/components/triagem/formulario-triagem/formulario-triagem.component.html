@@ -3,34 +3,11 @@
 <form class="p-grid p-fluid" #form [formGroup]="formTriagem" (ngSubmit)="submit(form)">
     <div class="card">
         <div class="p-md-12">
-            <!-- <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>-->
-            <h2 class="sub-title">Classificação de Risco</h2>
-            <ul class="classificacao-de-risco">
-                <li class="nao-urgente">
-                    <h3>NÃO URGENTE</h3>
-                    <p class="classificacao-de-risco-descricao">Sem risco de agravo à saúde, pode aguardar atendimento
-                    </p>
-                </li>
-                <li class="pouco-urgente">
-                    <h3>POUCO URGENTE</h3>
-                    <p class="classificacao-de-risco-descricao">Baixo risco de agravo a saúde, pode aguardar atendimento
-                    </p>
-                </li>
-                <li class="urgente">
-                    <h3>URGENTE</h3>
-                    <p class="classificacao-de-risco-descricao">Necessita de atendimento rápido, mas pode aguardar</p>
-                </li>
-                <li class="muito-urgente">
-                    <h3>MUITO URGENTE</h3>
-                    <p class="classificacao-de-risco-descricao">Necessita de atendimento praticamente imediato</p>
-                </li>
-                <li class="emergencia">
-                    <h3>EMERGÊNCIA</h3>
-                    <p class="classificacao-de-risco-descricao">Necessita de atendimento imediato</p>
-                </li>
-            </ul>
+            <app-classificacao-de-risco [formTriagem]="formTriagem"></app-classificacao-de-risco>
         </div>
     </div>
+
+
     <div class="card">
         <div class="p-col-12 p-grid">
             <div class="p-md-12">
@@ -111,9 +88,13 @@
                         </div>
                         <div class="p-md-3">
                             <div class="p-field-radiobutton">
-                                <p-inputSwitch name="vitimaDeAcidente" formControlName="vitimaDeAcidente" value="true">
-                                </p-inputSwitch>
-                                <label class="text-form">Não</label>
+                                <p-radioButton name="vitimaDeAcidente" formControlName="vitimaDeAcidente" value="false"
+                                    required>
+                                </p-radioButton>
+                                <label class="radioBtn">Não</label>
+                                <p-radioButton name="vitimaDeAcidente" formControlName="vitimaDeAcidente" value="true">
+                                </p-radioButton>
+                                <label class="radioBtn">Sim</label>
                             </div>
                         </div>
                     </div>
@@ -126,9 +107,12 @@
 
                         <div class="p-md-3">
                             <div class="p-field-radiobutton">
-                                <p-inputSwitch name="removidoDeAmbulancia" formControlName="removidoDeAmbulancia"
-                                    value="true"></p-inputSwitch>
-                                <label class="text-form">Sim</label>
+                                <p-radioButton name="removidoDeAmbulancia" formControlName="removidoDeAmbulancia"
+                                    value="false"></p-radioButton>
+                                <label class="radioBtn">Não</label>
+                                <p-radioButton name="removidoDeAmbulancia" formControlName="removidoDeAmbulancia"
+                                    value="true" required></p-radioButton>
+                                <label class="radioBtn">Sim</label>
                             </div>
                         </div>
                     </div>
@@ -177,8 +161,8 @@
             <ng-template [ngIf]="!isEdit">
                 <div class="p-md-6"></div>
                 <div class="p-md-6 p-sm-6">
-                    <button class="cancelar" pButton type="button" label="Voltar" pTooltip="Voltar para lista de triagem."
-                        (click)="cancelarFormulario()"></button>
+                    <button class="cancelar" pButton type="button" label="Voltar"
+                        pTooltip="Voltar para lista de triagem." (click)="cancelarFormulario()"></button>
                 </div>
             </ng-template>
         </div>

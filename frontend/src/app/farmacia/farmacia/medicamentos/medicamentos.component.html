@@ -27,7 +27,7 @@
                         <label>Descrição</label>
                     </span>
                 </div>
-    
+
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
                         pTooltip="Informe a Situação."
@@ -47,30 +47,37 @@
                     ></button>
                 </div>
                 <div class="p-md-2 p-sm-12">
-                    <button 
-                        pButton 
-                        type="button" 
+                    <button
+                        pButton
+                        type="button"
                         routerLink="/cadastrar-medicamento"
                         label="Cadastrar">
                     </button>
                 </div>
                 <div class="p-md-2 p-sm-12">
-                    <button 
-                        pButton type="button" 
+                    <button
+                        pButton type="button"
+                        label="Exportar"
+                        (click)="exportarMedicamentos()">
+                    </button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton type="button"
                         label="Limpar"
                         (click)="limparPesquisa()">
                     </button>
                 </div>
             </div>
-            <basis-datatable type="memory" 
-                    [value]="medicamento" 
+            <basis-datatable type="memory"
+                    [value]="medicamento"
                     sortField="brand"
                     [disableView]="true"
                     [disableEdit]="true"
                     [disableDelete]="true"
                     (buttonClick)="btnClick($event)"
                     #datatable>
-            
+
                 <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
                 <p-column header="Concentração" field="concentracao"></p-column>
                 <p-column header="Unidade" field="unidade">
@@ -83,7 +90,7 @@
                             }}</span
                         >
                     </ng-template>
-                </p-column>        
+                </p-column>
                 <p-column header="Apresentação" field="apresentacao">
                     <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                         <span>
@@ -100,14 +107,14 @@
                         <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>
                     </ng-template>
                 </p-column>
-    
-                <basis-datatable-button 
+
+                <basis-datatable-button
                     name="edit"
-                    icon="pi pi-pencil" 
+                    icon="pi pi-pencil"
                     [disabled]="datatable.selectedRow == null"
                     class="p-button-success">
                 </basis-datatable-button>
-    
+
                 <basis-datatable-button
                     ng-reflect-icon="pi pi-remove-red-eye"
                     ng-reflect-b-tooltip="Escolha um registro para visualizar"
@@ -116,16 +123,16 @@
                     name="view"
                     icon="pi pi-eye">
                 </basis-datatable-button>
-                
+
                 <basis-datatable-button
                     class="p-button-danger"
                     [disabled]="datatable.selectedRow == null"
                     (buttonClick)="btnClick($event)"
                     name="delete"
                     icon="pi pi-trash">
-                </basis-datatable-button>        
+                </basis-datatable-button>
             </basis-datatable>
-            
+
             <p-confirmDialog #dialog header="Confirmação" icon="pi pi-exclamation-triangle">
                 <p-footer>
                     <button type="button" pButton icon="pi pi-times" label="Não" (click)="dialog.reject()"></button>

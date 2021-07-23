@@ -40,8 +40,6 @@
                     dropdown="true"
                     pTooltip="Selecione um exame"
                     (completeMethod)="search($event.query)"
-                    [showTransitionOptions]="'500ms'"
-                    [hideTransitionOptions]="'500ms'"
                     placeholder="buscar..."
                     (onSelect)="selecionarExame($event)"
                   >
@@ -151,10 +149,8 @@
                 </div>
               </div>
 
-              <!-- Componente Exames -->
               <app-exame *ngIf="group" [GrupoID]="group" (examesSelecionados)="examesSelecionados"></app-exame>
 
-              <!-- Componente continuar -->
               <app-situacao-exame *ngIf="group"></app-situacao-exame>
 
               <button
@@ -169,6 +165,14 @@
             </p-tabPanel>
 
             <app-tabela-exames></app-tabela-exames>
+            <button
+              pButton
+              label="Adicionar"
+              type="button"
+              icon="pi pi-plus"
+              iconPos="left"
+              (click)="handleClick()"
+            ></button>
 
         </p-tabView>
     </div>

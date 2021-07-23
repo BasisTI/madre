@@ -1,12 +1,12 @@
 <h1>Pesquisa de Paciente</h1>
 
 <div class="card">
-    <div nForm [formGroup]="paciente">
+    <nForm [form]="paciente">
         <div class="p-md-12 p-d-inline">
             <div class="p-md-6" style="display: flex; width: 100%;">
                 <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%;">
                     <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
-                    <label>Nome paciente</label>
+                    <label>Nome do paciente</label>
                 </span>
                 <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%;">
                     <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
@@ -22,12 +22,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </nForm>
 </div>
 
 <div class="card">
-
-    <basis-datatable [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
+    <basis-datatable (buttonClick)="datatableClick($event)" [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
         <p-column header="Prontuário"field="prontuario"></p-column>
         <p-column header="Nome" field="nome"></p-column>
         <p-column header="Nome da Mãe" field="genitores">
@@ -45,3 +44,5 @@
     </basis-datatable>
     
 </div>
+
+<p-confirmDialog header="Confirmar Exclusão" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle"></p-confirmDialog>

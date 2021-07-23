@@ -55,6 +55,10 @@ export class ExamesComponent implements OnInit, OnDestroy {
     console.log(this.group);
   }
 
+  listarExames(){ }
+
+  aoSelecionarExame(){ }
+
 
   ngOnInit(): void{
     this.gruposExamesService.GetGrupos().subscribe((response) => {

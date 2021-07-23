@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { OrigemDaInternacao } from '@internacao/models/origem-da-internacao';
+import { OrigemDaInternacaoService } from '@internacao/services/origem-da-internacao.service';
+import { UnidadeFuncional } from '../../models/subjects/unidade-model';
 import { OPCOES_DE_ORIGEM } from '../../models/dropdowns/opcoes-de-origem';
+import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 
 @Component({
   selector: 'app-pesquisar-atendimento',
@@ -8,12 +12,22 @@ import { OPCOES_DE_ORIGEM } from '../../models/dropdowns/opcoes-de-origem';
 })
 export class PesquisarAtendimentoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private unidadeFuncionalService: UnidadeFuncionalService, 
+              private origemdDaInternacaoService: OrigemDaInternacaoService) { }
 
-  opcoesDeOrigem = OPCOES_DE_ORIGEM;
 
+  unidades: UnidadeFuncional[] = [];
+  origens: OrigemDaInternacao[] = [];
 
   ngOnInit(): void {
+    this.unidadeFuncionalService.GetUnidades().subscribe((response) => {
+      this.unidades = response;
+    });
+
+    this.origemdDaInternacaoService.getOrigensDaInternacao().subscribe((response) => {
+      this.origens = response;
+    });
+
   }
 
 }

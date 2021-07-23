@@ -1,16 +1,6 @@
 <div class="p-grid p-fluid">
 
     <div class="p-col-12 p-grid">
-        <div class="p-col-12 card card-w-title">
-            <h1>Identificar Unidade Executora</h1>
-            <div class="p-fluid" pTooltip="Selecione uma Unidade Executora">
-                Unidade Executora
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <input type="text" pInputText class="p-inputtext" />
-                    <label>Lorem ipsum</label>
-                </span>
-            </div>
-        </div>
 
         <div class="card card-w-title">
             <h1>Solicitar Exames</h1>
@@ -65,49 +55,85 @@
                     </span>
                 </div>
 
-                <div class="p-md-2 p-fluid" pTooltip="Selecione a unidade solicitante de exames">
+                <div class="p-md-2 p-fluid">
                     Unidade Funcional
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="p-inputtext" />
-                        <label>Lorem ipsum</label>
+                        <p-dropdown [options]="unidades"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [showClear]="true"
+                        pTooltip="Selecione a unidade de internação.">
+                        </p-dropdown>
                     </span>
                 </div>
 
-                <div class="p-md-2 p-fluid" pTooltip="Selecione o responsável pela solicitação do(s) exame(s)">
+                <div class="p-md-2 p-fluid">
                     Responsável
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="p-inputtext" />
-                        <label>Lorem ipsum</label>
+                        <p-dropdown [options]="responsaveis"
+                        [optionLabel]="'nomeDoResponsavel'"
+                        [optionValue]="'id'"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [showClear]="true"
+                        pTooltip="Selecione a unidade de internação.">
+                        </p-dropdown>
                     </span>
                 </div>
+
 
 
 
                 <div class="p-inputtextarea p-fluid">
                     Informações Clínicas
                     <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
-                        <textarea [rows]="5" pInputTextarea autoResize="autoResize"
-                            pTooltip="Digite as informações clínicas do paciente.">
+                        <textarea 
+                        pInputTextarea 
+                        [rows]="5"
+                        autoResize="autoResize"
+                        pTooltip="Digite as informações clínicas do paciente.">
                         </textarea>
                         <label>Digite as informações clínicas do paciente.</label>
                     </span>
                 </div>
 
-                <div>
-                    <br>
-                    Paciente utiliza antimicrobianos a mais de 24 horas
-                    <p-dropdown label="Paciente utiliza antimicrobianos a mais de 24 horas"
-                        [options]="opcoesDeAntimicrobianos"
-                        pTooltip="Selecione se o paciente utiliza antimicrobianos há mais de 24 horas.">
-                    </p-dropdown>
+                <div style="margin-top: 10px">
+                    Paciente utiliza antimicrobianos a mais de 24 horas:
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <p-radioButton 
+                        name="antimicrobianos" 
+                        value="SIM" 
+                        [(ngModel)]="opcoesDeAntimicrobianos" 
+                        label="Sim" 
+                        style="margin-right: 15px"></p-radioButton>
 
+                        <p-radioButton 
+                        name="antimicrobianos" 
+                        value="NAO" 
+                        [(ngModel)]="opcoesDeAntimicrobianos" 
+                        label="Não"
+                        style="margin-right: 15px"></p-radioButton>
+                    </div>
 
-                    <br>
-                    Pedido para 1° exame ou comparativo
-                    <p-dropdown label="Pedido para 1° exame ou comparativo"
-                        [options]="opcoesDeExameOuComparativo"
-                        pTooltip="Selecione se é o primeiro exame do paciente ou se é um exame comparativo.">
-                    </p-dropdown>
+                    Pedido para 1° exame ou comparativo:
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <p-radioButton 
+                        name="exameOuComparativo" 
+                        value="PRIMEIRO_EXAME" 
+                        [(ngModel)]="opcoesDeExameOuComparativo" 
+                        label="1º Exame" 
+                        style="margin-right: 15px"></p-radioButton>
+
+                        <p-radioButton 
+                        name="exameOuComparativo" 
+                        value="COMPARATIVO" 
+                        [(ngModel)]="opcoesDeExameOuComparativo" 
+                        label="Comparativo"
+                        style="margin-right: 15px"></p-radioButton>
+                    </div>
+
                 </div>
 
                 <div class="p-col-12 p-grid p-d-flex p-jc-center">
