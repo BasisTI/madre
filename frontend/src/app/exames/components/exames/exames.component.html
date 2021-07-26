@@ -34,14 +34,13 @@
                   ></p-checkbox>
 
                   <label style="margin-bottom: 10px;">Exame:</label>
-                  <p-autoComplete
+                  <p-dropdown
                     [(ngModel)]="selectedExam"
-                    [suggestions]="exames"
-                    dropdown="true"
-                    pTooltip="Selecione um exame"
-                    (completeMethod)="search($event.query)"
-                    placeholder="buscar..."
-                    (onSelect)="selecionarExame($event)"
+                    [options]="exames"
+                    [optionLabel]="'nomeUsual'"
+                    [optionValue]="'id'"
+                    filter="true"
+                    placeholder="Buscar..."
                   >
                     <ng-template
                       let-exames
@@ -62,7 +61,7 @@
                         <span style="font: size 3rem; width: 20%; text-overflow: ellipsis; overflow: hidden; text-align: center;">{{exames.nome}}</span>
                       </div>
                     </ng-template>
-                  </p-autoComplete>
+                  </p-dropdown>
                 </span>
 
                 <span class="data-field-3">
