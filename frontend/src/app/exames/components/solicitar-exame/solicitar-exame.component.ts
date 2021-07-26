@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ExamModel } from '../../models/subjects/exames-model';
+import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
 import { Responsavel } from '../../models/subjects/responsavel-model';
 import { SolicitacaoExame } from '../../models/subjects/solicitacao-exame';
 import { UnidadeFuncional } from '../../models/subjects/unidade-model';
+import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
 import { ResponsavelService } from '../../services/responsavel.service';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
@@ -30,7 +32,7 @@ export class SolicitarExameComponent implements OnInit {
     infoClinica: [null, Validators.required],
     usoAntimicrobianos24h: [null, Validators.required],
     pedidoPrimeiroExame: [null, Validators.required],
-});
+  });
 
 
   ngOnInit(): void {

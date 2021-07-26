@@ -5,6 +5,9 @@ import { ExamModel } from '../../models/subjects/exames-model';
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { ExamesService } from '../../services/exames.service';
 import { GrupoModel } from '../../models/subjects/grupo-model';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
+import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
@@ -12,7 +15,7 @@ import { GrupoModel } from '../../models/subjects/grupo-model';
   templateUrl: './exames.component.html',
   styleUrls: ['./exames.component.scss']
 })
-export class ExamesComponent implements OnInit, OnDestroy {
+export class ExamesComponent implements OnInit {
 
   exames: ExamModel[] = [];
 
@@ -22,7 +25,7 @@ export class ExamesComponent implements OnInit, OnDestroy {
   unitCheckbox: Boolean;
   selectedExam: ExamModel;
   exameNome: string;
-  urgentCheck: Boolean;
+  urgente: Boolean;
   date: Date;
   selectedSituation: String;
   // public exames = new Array<ExamModel>();
@@ -37,15 +40,25 @@ export class ExamesComponent implements OnInit, OnDestroy {
   constructor(
     private breadcrumbService: BreadcrumbService,
     private gruposExamesService: GruposExamesService,
-    private examesService: ExamesService
+    private examesService: ExamesService,
+    private fb: FormBuilder,
+    private itemSolicitacaoExameService: ItemSolicitacaoExameService
     ) { }
+
+
+    itemSolicitacao = this.fb.group({
+      urgente: [null, Validators.required],
+      dataProgramada: [null, Validators.required],
+      situacao: [null, Validators.required]
+    });
+
 
   handleClick() {
     console.log("For exam Data");
     console.log(this.selectedValue);
     console.log(this.unitCheckbox);
     console.log(this.selectedExam);
-    console.log(this.urgentCheck);
+    console.log(this.urgente);
     console.log(this.date);
     console.log(this.selectedSituation);
 
@@ -85,7 +98,15 @@ export class ExamesComponent implements OnInit, OnDestroy {
 
   }
   
-  ngOnDestroy(): void {
-    this.breadcrumbService.reset();
+  cadastrar() {
+    let itemExame = this.itemSolicitacao.value;
+
+    let item: ItemSolicitacaoExame = {
+      urgente: itemExame.urgente,
+      dataProgramada: itemExame.dataProgramada,
+      situacao: itemExame.situacao
+    }
+
+    this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
   }
 }
