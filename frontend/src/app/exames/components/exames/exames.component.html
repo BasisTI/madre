@@ -114,6 +114,8 @@
             (click)="handleClick()"></button>
 
         </p-tabPanel>
+              <!-- Componente Exames -->
+              <app-exame *ngIf="group" [GrupoID]="group" (examesSelecionados)="examesSelecionados" (AoSelecionar)="receberExamesSelecionados($event)"></app-exame>
 
         <app-tabela-exames></app-tabela-exames>
         <button pButton label="Adicionar" type="button" icon="pi pi-plus" iconPos="left"
@@ -122,7 +124,5 @@
       </p-tabView>
 
     </form>
-
-
   </div>
 </div>

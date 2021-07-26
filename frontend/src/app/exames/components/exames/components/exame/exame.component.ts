@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+// import { Observable, Subject } from 'rxjs';
 import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
 import { ExamesService } from '../../../../services/exames.service'
 
@@ -12,10 +13,12 @@ export class ExameComponent implements OnInit, OnChanges {
   @Input()
   GrupoID: number;
 
-  exames: ExamModel[] = [];
-
   @Output()
-  examesSelecionados: ExamModel[];
+  AoSelecionar = new EventEmitter<ExamModel[]>();
+
+  // Constantes
+  exames: ExamModel[] = [];
+  examesSelecionados: ExamModel[] = [];
 
   constructor( private exameService: ExamesService ) { }
 
@@ -23,16 +26,18 @@ export class ExameComponent implements OnInit, OnChanges {
     this.listarExames();
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   // Métodos
   listarExames() {
     this.exameService.GetExamesPorGrupo(this.GrupoID).subscribe((response) => {
       this.exames = response;
-      console.log(this.GrupoID)
     })
   }
 
+  AdicionarExame() {
+    console.log(this.examesSelecionados, "passou");
+    this.AoSelecionar.emit(this.examesSelecionados)
+  }
+  
 }

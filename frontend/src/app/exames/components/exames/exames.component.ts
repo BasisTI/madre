@@ -18,6 +18,7 @@ import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exa
 export class ExamesComponent implements OnInit {
 
   exames: ExamModel[] = [];
+  examesSelecionados: ExamModel[] = [];
 
   // Por exame:
   situationDropdown = SituationDropdown;
@@ -95,7 +96,11 @@ export class ExamesComponent implements OnInit {
     this.selectedExam = event.query;
 
     this.exameNome = event.query.nome;
+  }
 
+  receberExamesSelecionados(event) {
+    console.log(event, "passou para o pai");
+    this.examesSelecionados = event;
   }
   
   cadastrar() {
