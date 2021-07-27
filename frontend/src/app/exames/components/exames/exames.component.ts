@@ -44,26 +44,13 @@ export class ExamesComponent implements OnInit {
 
 
     itemSolicitacao = this.fb.group({
+      exameId: [null, Validators.required],
       urgente: [null, Validators.required],
       dataProgramada: [null, Validators.required],
       situacao: [null, Validators.required]
     });
 
 
-  handleClick() {
-    console.log("For exam Data");
-    console.log(this.selectedValue);
-    console.log(this.unitCheckbox);
-    console.log(this.selectedExam);
-    console.log(this.urgente);
-    console.log(this.date);
-    console.log(this.selectedSituation);
-
-    
-    console.log("For Lote Data");
-    console.log(this.selectedLote);
-    console.log(this.group);
-  }
 
   ngOnInit(): void{
     this.gruposExamesService.GetGrupos().subscribe((response) => {
@@ -75,13 +62,6 @@ export class ExamesComponent implements OnInit {
 
   }
 
-  // Métodos
-  selecionarExame(event) {
-    this.selectedExam = event.query;
-
-    this.exameNome = event.query.nome;
-  }
-
   receberExamesSelecionados(event) {
     this.examesSelecionados = event;
   }
@@ -90,6 +70,7 @@ export class ExamesComponent implements OnInit {
     let itemExame = this.itemSolicitacao.value;
 
     let item: ItemSolicitacaoExame = {
+      itemSolicitacaoExameId: itemExame.itemSolicitacaoExameId,
       urgente: itemExame.urgente,
       dataProgramada: itemExame.dataProgramada,
       situacao: itemExame.situacao

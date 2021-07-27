@@ -5,7 +5,6 @@
         <div class="card card-w-title">
             <h1>Solicitar Exames</h1>
 
-            <form [formGroup]="solicitarExame" (ngSubmit)="cadastrar()">
                 <div class="p-grid p-fluid">
 
 
@@ -79,9 +78,7 @@
                         </span>
                     </div>
 
-
-
-                    <div class="p-inputtextarea p-fluid">
+                    <div class="p-inputtextarea p-fluid" [formGroup]="solicitarExame">
                         Informações Clínicas
                         <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
                             <textarea pInputTextarea [rows]="5" autoResize="autoResize"
@@ -91,7 +88,7 @@
                         </span>
                     </div>
 
-                    <div style="margin-top: 10px">
+                    <div style="margin-top: 10px" [formGroup]="solicitarExame">
                         Paciente utiliza antimicrobianos a mais de 24 horas:
                         <div style="margin-top: 5px; margin-bottom: 10px;">
                             <p-radioButton name="antimicrobianos" value=true [(ngModel)]="opcoesDeAntimicrobianos"
@@ -104,7 +101,7 @@
                         </div>
 
                         Pedido para 1° exame ou comparativo:
-                        <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <div style="margin-top: 5px; margin-bottom: 10px;" [formGroup]="solicitarExame">
                             <p-radioButton name="exameOuComparativo" value=true [(ngModel)]="opcoesDeExameOuComparativo"
                                 label="1º Exame" style="margin-right: 15px" formControlName="pedidoPrimeiroExame">
                             </p-radioButton>
@@ -119,22 +116,21 @@
                     <div class="p-col-12 p-grid p-d-flex p-jc-center">
                         <div class="p-md-2">
                             <button pButton type="submit" [disabled]="!valid()" label="Salvar"
-                                icon="pi pi-save"></button>
+                                icon="pi pi-save" 
+                                (click)="cadastrar()  "></button>
                         </div>
                         <div class="p-md-2">
                             <button pButton type="text" label="Limpar" 
                             icon="pi pi-times"
-                            (click)="cadastrar()"></button>
+                            ></button>
                         </div>
                     </div>
 
                 </div>
-            </form>
 
 
 
         </div>
     </div>
 </div>
-
 <app-exames></app-exames>
