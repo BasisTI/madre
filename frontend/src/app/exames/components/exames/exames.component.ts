@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
-import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { ExamesService } from '../../services/exames.service';
@@ -38,7 +37,6 @@ export class ExamesComponent implements OnInit {
 
 
   constructor(
-    private breadcrumbService: BreadcrumbService,
     private gruposExamesService: GruposExamesService,
     private examesService: ExamesService,
     private fb: FormBuilder,

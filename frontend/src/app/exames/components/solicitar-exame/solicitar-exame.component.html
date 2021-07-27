@@ -5,154 +5,133 @@
         <div class="card card-w-title">
             <h1>Solicitar Exames</h1>
 
-                <form [formGroup]="solicitarExame" (ngSubmit)="cadastrar()">
+            <form [formGroup]="solicitarExame" (ngSubmit)="cadastrar()">
+                <div class="p-grid p-fluid">
 
-                    <div class="p-grid">
-                        <div class="p-md-1 p-fluid">
-                            Prontuário
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="text" pInputText class="p-inputtext" disabled />
-                                <label>Lorem ipsum</label>
-                            </span>
-                        </div>
-                        <div class="p-md-2 p-fluid">
-                            Consulta
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="text" pInputText class="p-inputtext" disabled />
-                                <label>Lorem ipsum</label>
-                            </span>
-                        </div>
-                        <div class="p-md-2 p-fluid">
-                            Nome / Nome Social do Paciente
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="text" pInputText class="p-inputtext" disabled />
-                                <label>Lorem ipsum dolor sit amet</label>
-                            </span>
-                        </div>
-                        <div class="p-md-1 p-fluid">
-                            Idade
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="number" pInputText class="p-inputtext" disabled />
-                                <label>Lorem</label>
-                            </span>
-                        </div>
-                        <div class="p-md-2 p-fluid">
-                            Data/Hora Atendimento
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="datetime" pInputText class="p-inputtext" disabled />
-                                <label>Lorem ipsum doloro</label>
-                            </span>
-                        </div>
-                        <div class="p-md-1 p-fluid">
-                            Origem
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="text" pInputText class="p-inputtext" disabled />
-                                <label>Lorem</label>
-                            </span>
-                        </div>
-                        <div class="p-md-2 p-fluid">
-                            Localização
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <input type="text" pInputText class="p-inputtext" disabled />
-                                <label>Lorem ipsum</label>
-                            </span>
-                        </div>
 
-                        <div class="p-md-2 p-fluid">
-                            Unidade Funcional
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-dropdown [options]="unidades"
-                                [optionLabel]="'nome'"
-                                [optionValue]="'id'"
-                                [filter]="true"
-                                [resetFilterOnHide]="true"
-                                [showClear]="true"
+                    <div class="p-md-1 p-fluid">
+                        Prontuário
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="text" pInputText class="p-inputtext" disabled />
+                            <label>Lorem ipsum</label>
+                        </span>
+                    </div>
+                    <div class="p-md-2 p-fluid">
+                        Consulta
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="text" pInputText class="p-inputtext" disabled />
+                            <label>Lorem ipsum</label>
+                        </span>
+                    </div>
+                    <div class="p-md-2 p-fluid">
+                        Nome / Nome Social do Paciente
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="text" pInputText class="p-inputtext" disabled />
+                            <label>Lorem ipsum dolor sit amet</label>
+                        </span>
+                    </div>
+                    <div class="p-md-1 p-fluid">
+                        Idade
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="number" pInputText class="p-inputtext" disabled />
+                            <label>Lorem</label>
+                        </span>
+                    </div>
+                    <div class="p-md-2 p-fluid">
+                        Data/Hora Atendimento
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="datetime" pInputText class="p-inputtext" disabled />
+                            <label>Lorem ipsum doloro</label>
+                        </span>
+                    </div>
+                    <div class="p-md-1 p-fluid">
+                        Origem
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="text" pInputText class="p-inputtext" disabled />
+                            <label>Lorem</label>
+                        </span>
+                    </div>
+                    <div class="p-md-2 p-fluid">
+                        Localização
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <input type="text" pInputText class="p-inputtext" disabled />
+                            <label>Lorem ipsum</label>
+                        </span>
+                    </div>
+
+                    <div class="p-md-2 p-fluid">
+                        Unidade Funcional
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <p-dropdown [options]="unidades" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                                [resetFilterOnHide]="true" [showClear]="true"
                                 pTooltip="Selecione a unidade de internação.">
-                                </p-dropdown>
-                            </span>
-                        </div>
+                            </p-dropdown>
+                        </span>
+                    </div>
 
-                        <div class="p-md-2 p-fluid">
-                            Responsável
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-dropdown [options]="responsaveis"
-                                [optionLabel]="'nomeDoResponsavel'"
-                                [optionValue]="'id'"
-                                [filter]="true"
-                                [resetFilterOnHide]="true"
-                                [showClear]="true"
+                    <div class="p-md-2 p-fluid">
+                        Responsável
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <p-dropdown [options]="responsaveis" [optionLabel]="'nomeDoResponsavel'"
+                                [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                                 pTooltip="Selecione a unidade de internação.">
-                                </p-dropdown>
-                            </span>
+                            </p-dropdown>
+                        </span>
+                    </div>
+
+
+
+                    <div class="p-inputtextarea p-fluid">
+                        Informações Clínicas
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
+                            <textarea pInputTextarea [rows]="5" autoResize="autoResize"
+                                pTooltip="Digite as informações clínicas do paciente." formControlName="infoClinica">
+                                        </textarea>
+                            <label>Digite as informações clínicas do paciente.</label>
+                        </span>
+                    </div>
+
+                    <div style="margin-top: 10px">
+                        Paciente utiliza antimicrobianos a mais de 24 horas:
+                        <div style="margin-top: 5px; margin-bottom: 10px;">
+                            <p-radioButton name="antimicrobianos" value=true [(ngModel)]="opcoesDeAntimicrobianos"
+                                label="Sim" style="margin-right: 15px" formControlName="usoAntimicrobianos24h">
+                            </p-radioButton>
+
+                            <p-radioButton name="antimicrobianos" value=false [(ngModel)]="opcoesDeAntimicrobianos"
+                                label="Não" style="margin-right: 15px" formControlName="usoAntimicrobianos24h">
+                            </p-radioButton>
                         </div>
 
+                        Pedido para 1° exame ou comparativo:
+                        <div style="margin-top: 5px; margin-bottom: 10px;">
+                            <p-radioButton name="exameOuComparativo" value=true [(ngModel)]="opcoesDeExameOuComparativo"
+                                label="1º Exame" style="margin-right: 15px" formControlName="pedidoPrimeiroExame">
+                            </p-radioButton>
 
-
-
-                        <div class="p-inputtextarea p-fluid">
-                            Informações Clínicas
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
-                                <textarea 
-                                pInputTextarea 
-                                [rows]="5"
-                                autoResize="autoResize"
-                                pTooltip="Digite as informações clínicas do paciente."
-                                formControlName="infoClinica">
-                                </textarea>
-                                <label>Digite as informações clínicas do paciente.</label>
-                            </span>
-                        </div>
-
-                        <div style="margin-top: 10px">
-                            Paciente utiliza antimicrobianos a mais de 24 horas:
-                            <div style="margin-top: 5px; margin-bottom: 10px;">
-                                <p-radioButton 
-                                name="antimicrobianos" 
-                                value=true 
-                                [(ngModel)]="opcoesDeAntimicrobianos" 
-                                label="Sim" 
-                                style="margin-right: 15px"
-                                formControlName="usoAntimicrobianos24h"></p-radioButton>
-
-                                <p-radioButton 
-                                name="antimicrobianos" 
-                                value=false 
-                                [(ngModel)]="opcoesDeAntimicrobianos" 
-                                label="Não"
-                                style="margin-right: 15px"
+                            <p-radioButton name="exameOuComparativo" value=false
+                                [(ngModel)]="opcoesDeExameOuComparativo" label="Comparativo" style="margin-right: 15px"
                                 formControlName="pedidoPrimeiroExame"></p-radioButton>
-                            </div>
-
-                            Pedido para 1° exame ou comparativo:
-                            <div style="margin-top: 5px; margin-bottom: 10px;">
-                                <p-radioButton 
-                                name="exameOuComparativo" 
-                                value=true 
-                                [(ngModel)]="opcoesDeExameOuComparativo" 
-                                label="1º Exame" 
-                                style="margin-right: 15px"></p-radioButton>
-
-                                <p-radioButton 
-                                name="exameOuComparativo" 
-                                value=false 
-                                [(ngModel)]="opcoesDeExameOuComparativo" 
-                                label="Comparativo"
-                                style="margin-right: 15px"></p-radioButton>
-                            </div>solicitacao-exames
-
                         </div>
 
-                        <div class="p-col-12 p-grid p-d-flex p-jc-center">
-                            <div class="p-md-2">
-                                <button pButton type="submit" [disabled]="!valid()" label="Salvar" icon="pi pi-save"></button>
-                            </div>
-                            <div class="p-md-2">
-                                <button pButton type="text" label="Limpar" icon="pi pi-times"></button>
-                            </div>
+                    </div>
+
+                    <div class="p-col-12 p-grid p-d-flex p-jc-center">
+                        <div class="p-md-2">
+                            <button pButton type="submit" [disabled]="!valid()" label="Salvar"
+                                icon="pi pi-save"></button>
+                        </div>
+                        <div class="p-md-2">
+                            <button pButton type="text" label="Limpar" 
+                            icon="pi pi-times"
+                            (click)="cadastrar()"></button>
                         </div>
                     </div>
 
-                </form>
+                </div>
+            </form>
+
+
 
         </div>
     </div>
