@@ -14,7 +14,7 @@
     <ng-template pTemplate="body" let-exame>
       <tr>
         <td style="width: 3rem">
-          <p-tableCheckbox [value]="exame"></p-tableCheckbox>
+          <p-tableCheckbox (click)="AdicionarExame()" [value]="exame"></p-tableCheckbox>
         </td>
         <td style="text-align: center;">{{exame.nome}}</td>
       </tr>

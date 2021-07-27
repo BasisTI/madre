@@ -17,6 +17,7 @@ import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exa
 export class ExamesComponent implements OnInit {
 
   exames: ExamModel[] = [];
+  examesSelecionados: ExamModel[] = [];
 
   // Por exame:
   situationDropdown = SituationDropdown;
@@ -27,8 +28,6 @@ export class ExamesComponent implements OnInit {
   urgente: Boolean;
   date: Date;
   selectedSituation: String;
-  // public exames = new Array<ExamModel>();
-  // options = AutoCompleteDemo;
 
   // Por lote:
   selectedLote: String;
@@ -66,11 +65,6 @@ export class ExamesComponent implements OnInit {
     console.log(this.group);
   }
 
-  listarExames(){ }
-
-  aoSelecionarExame(){ }
-
-
   ngOnInit(): void{
     this.gruposExamesService.GetGrupos().subscribe((response) => {
       this.groups = response;
@@ -82,18 +76,14 @@ export class ExamesComponent implements OnInit {
   }
 
   // Métodos
-
-  search(texto: string) {
-    this.examesService.GetExames().subscribe(data => {
-        this.exames = data.filter((elem)=> elem.nome.includes(texto))
-    });
-  }
-
   selecionarExame(event) {
     this.selectedExam = event.query;
 
     this.exameNome = event.query.nome;
+  }
 
+  receberExamesSelecionados(event) {
+    this.examesSelecionados = event;
   }
   
   cadastrar() {

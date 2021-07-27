@@ -3,10 +3,6 @@
     Exames
   </h1>
   <div class="TableDiv">
-
-
-    <form [formGroup]="itemSolicitacao" (ngSubmit)="cadastrar()">
-
       <p-tabView class="tableContent">
         <p-tabPanel header="por Exames">
           <div class="container">
@@ -106,7 +102,7 @@
             </div>
           </div>
 
-          <app-exame *ngIf="group" [GrupoID]="group" (examesSelecionados)="examesSelecionados"></app-exame>
+          <app-exame *ngIf="group" [GrupoID]="group" (AoSelecionar)="receberExamesSelecionados($event)"></app-exame>
 
           <app-situacao-exame *ngIf="group"></app-situacao-exame>
 
@@ -115,14 +111,8 @@
 
         </p-tabPanel>
 
-        <app-tabela-exames></app-tabela-exames>
-        <button pButton label="Adicionar" type="button" icon="pi pi-plus" iconPos="left"
-          (click)="handleClick()"></button>
+        <app-tabela-exames *ngIf="examesSelecionados.length > 0" [examesAdicionados]="examesSelecionados"></app-tabela-exames>
 
       </p-tabView>
-
-    </form>
-
-
   </div>
 </div>
