@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
 
 @Component({
   selector: 'app-tabela-exames',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabelaExamesComponent implements OnInit {
 
-  numbers: string[] = ["1","2"];
+  
+  @Input()
+  examesAdicionados: ExamModel;
 
   constructor() { }
 

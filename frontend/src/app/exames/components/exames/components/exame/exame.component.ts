@@ -36,7 +36,6 @@ export class ExameComponent implements OnInit, OnChanges {
   }
 
   AdicionarExame() {
-    console.log(this.examesSelecionados, "passou");
     this.AoSelecionar.emit(this.examesSelecionados)
   }
   
