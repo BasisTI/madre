@@ -11,10 +11,10 @@ import { ExamesService } from '../../../../services/exames.service'
 export class ExameComponent implements OnInit, OnChanges {
 
   @Input()
-  GrupoID: number;
+  grupoID: number;
 
   @Output()
-  AoSelecionar = new EventEmitter<ExamModel[]>();
+  aoSelecionar = new EventEmitter<ExamModel[]>();
 
   // Constantes
   exames: ExamModel[] = [];
@@ -30,13 +30,17 @@ export class ExameComponent implements OnInit, OnChanges {
 
   // Métodos
   listarExames() {
-    this.exameService.GetExamesPorGrupo(this.GrupoID).subscribe((response) => {
+    this.exameService.GetExamesPorGrupo(this.grupoID).subscribe((response) => {
       this.exames = response;
     })
   }
 
   AdicionarExame() {
-    this.AoSelecionar.emit(this.examesSelecionados)
+    this.aoSelecionar.emit(this.examesSelecionados)
+  }
+
+  visualizar() {
+    console.log("teste");
   }
   
 }
