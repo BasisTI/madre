@@ -83,7 +83,8 @@
             </span>
           </div>
 
-          <button pButton label="Adicionar" type="submit" icon="pi pi-plus" iconPos="left" (click)="cadastrar()"></button>
+          <button pButton label="Adicionar" type="button" icon="pi pi-plus" iconPos="left" [disabled]="!valid()"
+            (click)="cadastrar()"></button>
 
         </p-tabPanel>
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GrupoModel } from "../models/subjects/grupo-model";
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { api } from '@internacao/api';
 import { Observable } from 'rxjs';
 import { UnidadeFuncional } from '../models/subjects/unidade-funcional-model';

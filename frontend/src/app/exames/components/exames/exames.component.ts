@@ -44,7 +44,7 @@ export class ExamesComponent implements OnInit {
 
 
     itemSolicitacao = this.fb.group({
-      exameId: [null, Validators.required],
+      exameId: [null],
       urgente: [null, Validators.required],
       dataProgramada: [null, Validators.required],
       situacao: [null, Validators.required]
@@ -65,12 +65,16 @@ export class ExamesComponent implements OnInit {
   receberExamesSelecionados(event) {
     this.examesSelecionados = event;
   }
+
+  valid(): boolean {
+    return this.itemSolicitacao.valid;
+  }
   
   cadastrar() {
     let itemExame = this.itemSolicitacao.value;
 
     let item: ItemSolicitacaoExame = {
-      itemSolicitacaoExameId: itemExame.itemSolicitacaoExameId,
+      itemSolicitacaoExameId: itemExame.itemSolicitacaoExameId ? itemExame.itemSolicitacaoExameId.id: null,
       urgente: itemExame.urgente,
       dataProgramada: itemExame.dataProgramada,
       situacao: itemExame.situacao
