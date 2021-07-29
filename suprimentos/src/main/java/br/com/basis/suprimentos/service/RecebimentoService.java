@@ -27,6 +27,7 @@ public class RecebimentoService {
     private final RecebimentoMapper recebimentoMapper;
     private final RecebimentoSearchRepository recebimentoSearchRepository;
 
+    @Transactional
     public RecebimentoDTO save(RecebimentoDTO recebimentoDTO) {
         log.debug("Request to save Recebimento : {}", recebimentoDTO);
         Recebimento recebimento = recebimentoMapper.toEntity(recebimentoDTO);
