@@ -18,15 +18,16 @@ import { ExameComponent } from './components/exame/exame.component';
 })
 export class ExamesComponent implements OnInit {
 
-  ItemsSolicitacaoExame: ItemSolicitacaoExame[] =[]
+  itemsSolicitacaoExame: ItemSolicitacaoExame[] =[]
   exames: ExamModel[] = [];
   examesSelecionados: ExamModel[] = [];
+  itemsSolicitacaoIDs: number[];
 
   @ViewChild(ExameComponent) appExame: ExameComponent;
 
   // Por exame:
   situationDropdown = SituationDropdown;
-  selectedExam: ExamModel;
+  selectedExamID: number;
 
   // Por lote:
   group: String = null;
@@ -70,18 +71,18 @@ export class ExamesComponent implements OnInit {
 
   // Métodos
   
-  cadastrar() {
+  cadastrarPorExame() {
 
     let item: ItemSolicitacaoExame = {
 
       urgente: this.itemSolicitacaoPorExame.value.urgente,
       dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
       situacao: this.itemSolicitacaoPorExame.value.situacao,
-      itemSolicitacaoExameId: this.selectedExam.id,
+      itemSolicitacaoExameId: this.selectedExamID,
     }
     
-    this.ItemsSolicitacaoExame.push(item);
-    this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+    this.itemsSolicitacaoExame.push(item);
+    // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
   }
 
   cadastrarPorLote() {
@@ -99,14 +100,14 @@ export class ExamesComponent implements OnInit {
 
       }
       
-      this.ItemsSolicitacaoExame.push(item);
-      this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+      this.itemsSolicitacaoExame.push(item);
+      // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
     })
   }
 
   salvarItemsSolicitacaoExame() {
 
-    this.ItemsSolicitacaoExame.forEach((item)=> {
+    this.itemsSolicitacaoExame.forEach((item)=> {
 
       this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
     })

@@ -20,7 +20,7 @@
                 pTooltip="Filtrar busca por exame disponíveis pela unidade funcional vinculada."></p-checkbox>
 
               <label style="margin-bottom: 10px;">Exame:</label>
-              <p-dropdown [(ngModel)]="selectedExam" [options]="exames" [optionLabel]="'nomeUsual'" [optionValue]="'id'"
+              <p-dropdown [(ngModel)]="selectedExamID" [options]="exames" [optionLabel]="'nomeUsual'" [optionValue]="'id'"
                 filter="true" placeholder="Buscar...">
                 <ng-template let-exames pTemplate="item">
                   <div *ngIf="exames.id == 1"
@@ -75,7 +75,7 @@
             </span>
           </div>
 
-          <button pButton label="Adicionar" type="submit" icon="pi pi-plus" iconPos="left" (click)="cadastrar()"></button>
+          <button pButton label="Adicionar" type="submit" icon="pi pi-plus" iconPos="left" (click)="cadastrarPorExame()"></button>
 
         </p-tabPanel>
 
@@ -127,7 +127,7 @@
 
         </p-tabPanel>
 
-        <app-tabela-exames #tabelaExame *ngIf="ItemsSolicitacaoExame.length > 0" [itemsRecebidos]="ItemsSolicitacaoExame"></app-tabela-exames>
+        <app-tabela-exames #tabelaExame *ngIf="itemsSolicitacaoExame.length > 0" [itemsRecebidos]="itemsSolicitacaoExame"></app-tabela-exames>
 
       </p-tabView>
   </div>
