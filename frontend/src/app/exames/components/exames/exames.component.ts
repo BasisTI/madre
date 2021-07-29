@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
+import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { ExamesService } from '../../services/exames.service';
@@ -7,6 +8,7 @@ import { GrupoModel } from '../../models/subjects/grupo-model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
 import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
+import { ExameComponent } from './components/exame/exame.component';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
@@ -16,26 +18,23 @@ import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exa
 })
 export class ExamesComponent implements OnInit {
 
+  ItemsSolicitacaoExame: ItemSolicitacaoExame[] =[]
   exames: ExamModel[] = [];
   examesSelecionados: ExamModel[] = [];
 
+  @ViewChild(ExameComponent) appExame: ExameComponent;
+
   // Por exame:
   situationDropdown = SituationDropdown;
-  selectedValue: String;
-  unitCheckbox: Boolean;
   selectedExam: ExamModel;
-  exameNome: string;
-  urgente: Boolean;
-  date: Date;
-  selectedSituation: String;
 
   // Por lote:
-  selectedLote: String;
   group: String = null;
   groups: GrupoModel[];
 
 
   constructor(
+    private breadcrumbService: BreadcrumbService,
     private gruposExamesService: GruposExamesService,
     private examesService: ExamesService,
     private fb: FormBuilder,
@@ -43,14 +42,21 @@ export class ExamesComponent implements OnInit {
     ) { }
 
 
-    itemSolicitacao = this.fb.group({
-      exameId: [null],
-      urgente: [null, Validators.required],
-      dataProgramada: [null, Validators.required],
-      situacao: [null, Validators.required]
-    });
+    itemSolicitacaoPorExame = this.fb.group(
+      {
+        urgente: [false, Validators.required],
+        dataProgramada: [new Date(), Validators.required],
+        situacao: [null, Validators.required],
+      }
+    );
 
-
+    itemSolicitacaoPorLote = this.fb.group(
+      {
+        urgente: [false, Validators.required],
+        dataProgramada: [new Date(), Validators.required],
+        situacao: [null, Validators.required],
+      }
+    );
 
   ngOnInit(): void{
     this.gruposExamesService.GetGrupos().subscribe((response) => {
@@ -62,24 +68,52 @@ export class ExamesComponent implements OnInit {
 
   }
 
+  // Métodos
   receberExamesSelecionados(event) {
     this.examesSelecionados = event;
-  }
 
-  valid(): boolean {
-    return this.itemSolicitacao.valid;
+    console.log(event)
   }
   
   cadastrar() {
-    let itemExame = this.itemSolicitacao.value;
 
-    let item: ItemSolicitacaoExame = {
-      itemSolicitacaoExameId: itemExame.itemSolicitacaoExameId ? itemExame.itemSolicitacaoExameId.id: null,
-      urgente: itemExame.urgente,
-      dataProgramada: itemExame.dataProgramada,
-      situacao: itemExame.situacao
-    }
+      let item: ItemSolicitacaoExame = {
 
-    this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+        urgente: this.itemSolicitacaoPorExame.value.urgente,
+        dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
+        situacao: this.itemSolicitacaoPorExame.value.situacao,
+        itemSolicitacaoExameId: this.selectedExam.id,
+      }
+      
+      this.ItemsSolicitacaoExame.push(item);
+      // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+  }
+
+  cadastrarPorLote() {
+
+    this.appExame.visualizar();
+
+    this.examesSelecionados.forEach((exame)=> {
+
+      let item: ItemSolicitacaoExame = {
+
+        urgente: this.itemSolicitacaoPorLote.value.urgente,
+        dataProgramada: this.itemSolicitacaoPorLote.value.dataProgramada,
+        situacao: this.itemSolicitacaoPorLote.value.situacao,
+        itemSolicitacaoExameId: exame.id,
+
+      }
+      
+      this.ItemsSolicitacaoExame.push(item);
+      // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+    })
+  }
+
+  salvarItemsSolicitacaoExame() {
+
+    this.ItemsSolicitacaoExame.forEach((item)=> {
+
+      this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+    })
   }
 }

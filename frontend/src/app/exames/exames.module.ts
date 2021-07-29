@@ -7,7 +7,6 @@ import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
 import { ExameComponent } from './components/exames/components/exame/exame.component';
-import { SituacaoExameComponent } from './components/exames/components/situacao-exame/situacao-exame.component';
 import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 
 import { ExamesComponent } from './components/exames/exames.component';
@@ -20,7 +19,6 @@ import { ExamesComponent } from './components/exames/exames.component';
         ExamesComponent,
         AtendimentoDiversoComponent,
         ExameComponent,
-        SituacaoExameComponent,
         TabelaExamesComponent
 
     ],

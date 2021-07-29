@@ -5,14 +5,14 @@ export const SituationDropdown: OpcaoDropdown[] = [
     OPCAO_SELECIONE,
     {
         label: 'A Coletar',
-        value: 'A_COLETAR',
+        value: 'A Coletar',
     },
     {
         label: 'Area Executora',
-        value: 'AREA_EXECUTORA',
+        value: 'A coletar',
     },
     {
         label: 'Coletado',
-        value: 'COLETADO',
+        value: 'Coletado',
     },
 ];

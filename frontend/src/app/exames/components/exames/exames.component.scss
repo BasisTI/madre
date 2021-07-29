@@ -87,3 +87,19 @@
   .radial-button {
     margin-right: 15px;
   }
+
+  .celula {
+    font: size 4rem;
+    width: 20%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .celulaContent {
+    font: size 3rem;
+    width: 20%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+  }

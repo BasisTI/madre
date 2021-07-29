@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
+import { ItemSolicitacaoExame } from 'src/app/exames/models/subjects/item-solicitacao-exame';
 
 @Component({
   selector: 'app-tabela-exames',
@@ -10,11 +11,13 @@ export class TabelaExamesComponent implements OnInit {
 
   
   @Input()
-  examesAdicionados: ExamModel;
+  itemsRecebidos: ItemSolicitacaoExame;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  // método
 
 }
