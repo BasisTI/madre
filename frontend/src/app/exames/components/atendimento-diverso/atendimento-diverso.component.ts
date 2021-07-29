@@ -1,3 +1,5 @@
+import { PageNotificationService } from '@nuvem/primeng-components';
+import { atendimentoDiverso } from './../../models/atendimentoDiverso';
 import { PreCadastroModel } from './../../../pacientes/models/pre-cadastro-model';
 import { EspecialidadeService } from '@internacao/services/especialidade.service';
 import { Especialidade } from './../../../internacao/models/especialidade';
@@ -13,13 +15,14 @@ import { CentroDeAtividade } from '@internacao/formulario-unidades/models/dropwd
 import { UnidadeFuncional } from '../../models/subjects/unidade-funcional-model';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { PacientesService } from '../../services/paciente.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AtendimentoDiversoService } from '../../services/atendimentodiverso.service';
 
 
 @Component({
   selector: 'app-atendimento-diverso',
   templateUrl: './atendimento-diverso.component.html',
   styleUrls: ['./atendimento-diverso.component.css'],
-
 })
 
 export class AtendimentoDiversoComponent implements OnInit {
@@ -32,26 +35,41 @@ export class AtendimentoDiversoComponent implements OnInit {
   unidadesFuncionais: UnidadeFuncional[];
   cadastros: PreCadastroModel[];
 
-  TipoAmostra: string[] = ["Doador","Receptor",];
+  TipoAmostra: string[] = ["Doador","Receptor"];
   selectedTipo: string; 
 
-  OrigemAmostra: string[] = ["Humano","Não Humano",];
+  OrigemAmostra: string[] = ["Humano","Não Humano"];
   selectedOrigem: string;
 
-  Sexo: string[] = ["Feminino","Masculino","Ignorado",];
+  Sexo: string[] = ["Feminino","Masculino","Ignorado"];
   selectedSexo: string;
 
   valor: number;
 
-  constructor(private cadaverService: CadaverService, 
+  cadastroAtendimentoDiverso :FormGroup
+
+  constructor(
+    private fb: FormBuilder,
+    private cadaverService: CadaverService, 
     private controleQualidadeservice: ControleQualidadeservice,
     private laboratorioExternoService: LaboratorioExternoService,
     private centroService: CentroService,
     private especialidadeservice: EspecialidadeService,
     private unidadeFuncionalService: UnidadeFuncionalService,
-    private pacientesService: PacientesService) { }
+    private pacientesService: PacientesService,
+    private atendimentoDiversoService: AtendimentoDiversoService,
+    private pageNotificationService: PageNotificationService
+    ) { }
 
      ngOnInit() : void{
+      this.cadastroAtendimentoDiverso = this.fb.group({
+        codigo: [null, Validators.required],
+        descricao: [null, Validators.required],
+        informacoesId:[null],
+        laboratorioNome: [null],
+        controleCodigo: [null],
+        cadaverNome:[null]
+    });
 
        this.cadaverService.GetCadaver().subscribe((response)=>{
          this.cadavers = response; 
@@ -76,10 +94,24 @@ export class AtendimentoDiversoComponent implements OnInit {
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
         this.especialidades = response; 
        });
-       this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response) => {
+       this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
        this.unidadesFuncionais = response; 
       });
 
-     }
-    
+  }
+
+  valid(): boolean {
+    return this.cadastroAtendimentoDiverso.valid;
+  }
+
+    cadastrar() { 
+      if (!this.cadastroAtendimentoDiverso.valid){
+        this.pageNotificationService.addErrorMessage('preencher o campo codigo')
+        return;
+      }
+      let atendimentoDiverso = this.cadastroAtendimentoDiverso.value;
+
+    this.atendimentoDiversoService.cadastrarAtendimento(atendimentoDiverso).subscribe();
 }
+}
+
