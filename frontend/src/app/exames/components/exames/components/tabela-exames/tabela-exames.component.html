@@ -23,17 +23,10 @@
                 <td> teste 1 </td>
                 <td> {{item.itemSolicitacaoExameId}} </td>
                 <td> teste 3 </td>
-                <td> {{item.urgente}} </td>
-                <td> {{item}} </td>
+                <td> {{item.urgente ? 'Sim' : 'Não'}} </td>
+                <td> {{item.dataProgramada.getDate()}}/{{item.dataProgramada.getMonth() + 1}}/{{item.dataProgramada.getFullYear()}} </td>
                 <td> {{item.situacao}} </td>
                 <td style="display: flex; flex-direction: row;">
-                    <button
-                        pButton
-                        pRipple
-                        icon="pi pi-pencil"
-                        class="p-button-rounded p-button-success p-mr-2"
-                        (click)="editProduct(product)"
-                    ></button>
                     <button
                         pButton
                         pRipple

@@ -81,7 +81,7 @@ export class ExamesComponent implements OnInit {
     }
     
     this.ItemsSolicitacaoExame.push(item);
-    // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+    this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
   }
 
   cadastrarPorLote() {
@@ -100,7 +100,7 @@ export class ExamesComponent implements OnInit {
       }
       
       this.ItemsSolicitacaoExame.push(item);
-      // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+      this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
     })
   }
 
