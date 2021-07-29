@@ -59,17 +59,18 @@
               <p-checkbox class="urgent-checkbox" 
               label="Urgente" 
               [binary]="true"
+              formControlName="urgente"
               ></p-checkbox>
 
               <span class="calendar-div">
                 Data/Hora programada:
-                <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
+                <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar" formControlName="dataProgramada"
                   [readonlyInput]="true" showTime="true" dateFormat="dd/mm/yy"></p-calendar>
               </span>
 
               <div class="dropdown-div">
                 Situação:
-                <p-dropdown [options]="situationDropdown"></p-dropdown>
+                <p-dropdown [options]="situationDropdown" formControlName="situacao"></p-dropdown>
               </div>
             </span>
           </div>
@@ -100,7 +101,7 @@
             </div>
           </div>
 
-          <app-exame #appExame *ngIf="group" [grupoID]="group" (aoSelecionar)="receberExamesSelecionados($event)"></app-exame>
+          <app-exame #appExame *ngIf="group" [grupoID]="group"></app-exame>
 
           <span class="data-field-3" [formGroup]="itemSolicitacaoPorLote">
             <p-checkbox class="urgent-checkbox" 
