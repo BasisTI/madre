@@ -69,29 +69,24 @@ export class ExamesComponent implements OnInit {
   }
 
   // Métodos
-  receberExamesSelecionados(event) {
-    this.examesSelecionados = event;
-
-    console.log(event)
-  }
   
   cadastrar() {
 
-      let item: ItemSolicitacaoExame = {
+    let item: ItemSolicitacaoExame = {
 
-        urgente: this.itemSolicitacaoPorExame.value.urgente,
-        dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
-        situacao: this.itemSolicitacaoPorExame.value.situacao,
-        itemSolicitacaoExameId: this.selectedExam.id,
-      }
-      
-      this.ItemsSolicitacaoExame.push(item);
-      // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+      urgente: this.itemSolicitacaoPorExame.value.urgente,
+      dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
+      situacao: this.itemSolicitacaoPorExame.value.situacao,
+      itemSolicitacaoExameId: this.selectedExam.id,
+    }
+    
+    this.ItemsSolicitacaoExame.push(item);
+    // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
   }
 
   cadastrarPorLote() {
 
-    this.appExame.visualizar();
+    this.examesSelecionados = this.appExame.pegarExames();
 
     this.examesSelecionados.forEach((exame)=> {
 
