@@ -23,4 +23,9 @@ export class ExamesService {
   public GetExamesPorGrupo(id: number): Observable<Array<ExamModel>> {
     return this.client.get<Array<ExamModel>>(`${this.URL}/exames/grupos/${id}`);
   }
+  
+  // Pegar os exames pelo ID
+  public GetExamesPorId(id: number): Observable<ExamModel> {
+    return this.client.get<ExamModel>(`${this.URL}/exames/${id}`);
+  }
 }

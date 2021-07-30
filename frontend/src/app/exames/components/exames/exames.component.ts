@@ -9,6 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
 import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
 import { ExameComponent } from './components/exame/exame.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
@@ -69,30 +70,35 @@ export class ExamesComponent implements OnInit {
 
   }
 
-  // Métodos
   
   cadastrarPorExame() {
 
     let item: ItemSolicitacaoExame = {
-
       urgente: this.itemSolicitacaoPorExame.value.urgente,
       dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
       situacao: this.itemSolicitacaoPorExame.value.situacao,
       itemSolicitacaoExameId: this.selectedExamID,
     }
     
+    let itemVisual: ItemSolicitacaoExame = {
+      urgente: this.itemSolicitacaoPorExame.value.urgente,
+      dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
+      situacao: this.itemSolicitacaoPorExame.value.situacao,
+      itemSolicitacaoExameId: this.selectedExamID,
+    }
+
     this.itemsSolicitacaoExame.push(item);
-    // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
+    this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => {
+    });
   }
 
   cadastrarPorLote() {
 
     this.examesSelecionados = this.appExame.pegarExames();
 
-    this.examesSelecionados.forEach((exame)=> {
+    this.examesSelecionados.forEach((exame) => {
 
       let item: ItemSolicitacaoExame = {
-
         urgente: this.itemSolicitacaoPorLote.value.urgente,
         dataProgramada: this.itemSolicitacaoPorLote.value.dataProgramada,
         situacao: this.itemSolicitacaoPorLote.value.situacao,
@@ -101,13 +107,17 @@ export class ExamesComponent implements OnInit {
       }
       
       this.itemsSolicitacaoExame.push(item);
-      // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
-    })
+      this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => {
+        // this.itemsSolicitacaoExame.push(res);
+        console.log(res);
+      });
+
+      })
   }
 
   salvarItemsSolicitacaoExame() {
 
-    this.itemsSolicitacaoExame.forEach((item)=> {
+    this.itemsSolicitacaoExame.forEach((item) => {
 
       this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
     })

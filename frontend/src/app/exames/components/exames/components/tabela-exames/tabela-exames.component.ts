@@ -1,6 +1,13 @@
+import { ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
+import { ElasticQuery } from '@shared/elastic-query';
+import { ConfirmationService } from 'primeng/api';
 import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
 import { ItemSolicitacaoExame } from 'src/app/exames/models/subjects/item-solicitacao-exame';
+import { ExamesService } from 'src/app/exames/services/exames.service';
+import { ItemSolicitacaoExameService } from 'src/app/exames/services/item-solicitacao-exame.service';
 
 @Component({
   selector: 'app-tabela-exames',
@@ -9,15 +16,41 @@ import { ItemSolicitacaoExame } from 'src/app/exames/models/subjects/item-solici
 })
 export class TabelaExamesComponent implements OnInit {
 
-  
   @Input()
-  itemsRecebidos: ItemSolicitacaoExame;
+  itemsRecebidos: ItemSolicitacaoExame[];
 
-  constructor() { }
+  itemsTratados: any[];
+  // exames: ExamModel[];
+
+  itemsSolicitacao: any;
+
+  constructor(private examesService: ExamesService,
+              private router: Router,) { }
 
   ngOnInit(): void {
+    this.itemsRecebidos.forEach((element) => {
+
+      this.examesService.GetExamesPorId(element.itemSolicitacaoExameId).subscribe((res) => {
+
+        this.itemsSolicitacao = {
+          urgente: element.urgente,
+          situacao: element.situacao,
+          dataProgramada: element.dataProgramada,
+          exame: res,
+        }
+        this.itemsTratados.push(this.itemsSolicitacao);
+
+      })
+        
+
+      console.log(this.itemsTratados, "passou")
+      console.log(this.itemsTratados)
+    });
+
   }
 
-  // método
 
+  datatableClick(event: DatatableClickEvent) {
+}
+ 
 }
