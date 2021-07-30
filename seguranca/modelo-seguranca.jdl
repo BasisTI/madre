@@ -1,0 +1,198 @@
+entity Servidor {
+	codigo Integer required
+	matricula String
+	codigoStarh String
+	inicioDoVinculo LocalDate required
+	fimDoVinculo LocalDate
+	situacao Boolean
+	situacaoDoServidor SituacaoDoServidor
+	centroDeAtividadeIdLotacao Integer
+	centroDeAtividadeIdAtuacao Integer
+	ocupacao String
+	cargaHoraria String
+	tipoDeRemuneracao TipoDeRemuneracao
+	idade String
+	tempoDeContrato String
+	funcaoDoCracha String
+	chefeDoCentroDeAtividade String
+}
+
+entity Ramal {
+	numero String
+    urgencia Boolean
+}
+
+entity GrupoFuncional {
+	codigo Integer required
+	descricao String required
+}
+
+entity Pessoa {
+	codigo Integer required
+	nome String required
+	nomeDaMae String required
+	nomeDoPai String 
+	sexo Sexo required
+	estadoCivil EstadoCivil
+	dataDeNascimento LocalDate required
+	nascionalidade String required
+	naturalidade String required
+	grauDeInstrucao GrauDeInstrucao
+	nomeUsual String
+	email String unique
+}
+
+entity Documentos {
+	numeroDaIdentidade Integer
+	dataDeEmissao LocalDate
+	pisPasep String
+	codigoPac String
+	ctps String
+	serie String
+	tituloEleitoral String
+	zona String
+	secao String
+}
+
+entity OrgaoEmissor {
+    valor String 
+}
+
+entity UF {
+    unidadeFederativa String 
+    sigla String
+}
+
+entity Telefone {
+    ddd String 
+    numero String 
+    tipo TipoDoContato
+    observacao String
+    ramal String
+}
+
+entity Endereco {
+    cep String required
+    logradouro String required
+    numero String required
+    complemento String
+    bairro String required
+    correspondencia Boolean required
+    tipoDoEndereco TipoDoEndereco
+}
+
+entity Municipio {
+    nome String required
+    nomeDoDistrito String
+    ibge String required
+}
+
+entity Cargo {
+	codigo Integer required
+	descricao String required 
+	situacao Boolean required
+}
+
+entity OcupacaoDeCargo {
+	codigo Integer required
+    descricao String required 
+	situacao Boolean required
+	informarCbo Boolean
+    informarCns Boolean
+}
+
+entity Vinculo {
+    codigo Integer required
+    descricao String required 
+    situacao Boolean required
+    infDependente Boolean 
+    exTermino Boolean 
+    geraMatricula Boolean 
+    exCentroAtividade Boolean 
+    exOcupacao Boolean 
+    transfereStarh Boolean 
+    permiteDuplos Boolean 
+    exCpfRg Boolean 
+    gestapDesempenho Boolean 
+    emiteContrato Boolean 
+    numerosDeDiasAdmissao String
+    tituloMasculino String
+    tituloFeminino String
+}
+
+entity Usuario {
+	codigo Integer required
+    login String 
+}
+
+enum TipoDeRemuneracao {
+	MENSALISTA, HORISTA
+}
+
+enum SituacaoDoServidor {
+	RESIDENTE, PROFESSOR
+}
+
+enum TipoDoEndereco {
+    COMERCIAL,
+    RESIDENCIAL,
+    CONTATO,
+    OUTROS
+}
+
+enum Sexo {
+	MASCULINO, FEMININO, IGNORADO
+}
+
+enum EstadoCivil {
+	CASADO, SOLTEIRO, SEPARADO, DESQUITADO, 
+	UNIAO_ESTAVEL, VIUVO, OUTRO
+}
+
+enum GrauDeInstrucao {
+    NENHUM,
+    IGNORADO,
+    PRIMEIRO_GRAU_INCOMPLETO,
+    PRIMEIRO_GRAU_COMPLETO,
+    SEGUNDO_GRAU_INCOMPLETO,
+    SEGUNDO_GRAU_COMPLETO,
+    SUPERIOR_INCOMPLETO,
+    SUPERIOR_COMPLETO
+}
+
+enum TipoDoContato {
+    CELULAR,
+    RESIDENCIAL,
+    RECADO,
+    COMERCIAL,
+    EMERGENCIAL
+}
+
+relationship OneToMany {
+	Pessoa{endereco(cep)} to Endereco,
+	Pessoa{telefone(numero)} to Telefone,
+	OcupacaoDeCargo{cargo(descricao)} to Cargo,
+    Servidor{grupofuncional(descricao)} to GrupoFuncional
+}
+
+relationship ManyToOne {
+	Endereco{municipio(nome)} to Municipio,
+	Municipio{uf(unidadeFederativa)} to UF,
+	OrgaoEmissor{documentos(numeroDaIdentidade)} to Documentos,
+    Servidor {usuario(login)} to Usuario
+}
+
+relationship OneToOne {
+	Pessoa {documenetos(numeroDaIdentidade)} to Documentos
+    Servidor {vinculo(descricao)} to Vinculo
+    Servidor {pessoa(codigo)} to Pessoa
+    Pessoa {cargo(descricao)} to Cargo
+    Servidor {ramal(numero)} to Ramal
+    
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+search * with elasticsearch
+skipClient *
