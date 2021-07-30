@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity GrupoFuncional.
+    -->
+    <changeSet id="20210730173649-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="servidor_id"
+                                 baseTableName="grupo_funcional"
+                                 constraintName="fk_grupo_funcional_servidor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="servidor"/>
+
+    </changeSet>
+</databaseChangeLog>

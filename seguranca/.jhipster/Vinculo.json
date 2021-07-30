@@ -1,0 +1,88 @@
+{
+  "name": "Vinculo",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "infDependente",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exTermino",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "geraMatricula",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exCentroAtividade",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exOcupacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "transfereStarh",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "permiteDuplos",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exCpfRg",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "gestapDesempenho",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "emiteContrato",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "numerosDeDiasAdmissao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tituloMasculino",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tituloFeminino",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210730174649",
+  "entityTableName": "vinculo",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

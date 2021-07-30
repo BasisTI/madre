@@ -1,0 +1,57 @@
+{
+  "name": "Documentos",
+  "fields": [
+    {
+      "fieldName": "numeroDaIdentidade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataDeEmissao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "pisPasep",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codigoPac",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ctps",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "serie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tituloEleitoral",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zona",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secao",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210730173849",
+  "entityTableName": "documentos",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

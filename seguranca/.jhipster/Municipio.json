@@ -1,0 +1,43 @@
+{
+  "name": "Municipio",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomeDoDistrito",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ibge",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "uF",
+      "otherEntityRelationshipName": "municipio",
+      "relationshipName": "uf",
+      "otherEntityField": "unidadeFederativa"
+    }
+  ],
+  "changelogDate": "20210730174349",
+  "entityTableName": "municipio",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}
