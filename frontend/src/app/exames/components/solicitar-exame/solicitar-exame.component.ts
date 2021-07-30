@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
@@ -9,6 +9,7 @@ import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exa
 import { ResponsavelService } from '../../services/responsavel.service';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
+import { ExamesComponent } from '../exames/exames.component';
 
 @Component({
   selector: 'app-solicitar-exame',
@@ -16,6 +17,8 @@ import { UnidadeFuncionalService } from '../../services/unidade-funcional.servic
   styleUrls: ['./solicitar-exame.component.css']
 })
 export class SolicitarExameComponent implements OnInit {
+
+  @ViewChild(ExamesComponent) appExames: ExamesComponent
 
   constructor(private fb: FormBuilder,
               private unidadeFuncionalService: UnidadeFuncionalService,
@@ -50,13 +53,19 @@ export class SolicitarExameComponent implements OnInit {
   }
 
   cadastrar() {
+
+    let itensSolicitacaoExame = this.appExames.pegarItensSolicitacaoExame();
+
     let solicitacaoExame = this.solicitarExame.value;
 
     let solicitacao: SolicitacaoExame = {
       infoClinica: solicitacaoExame.infoClinica,
       usoAntimicrobianos24h: solicitacaoExame.usoAntimicrobianos24h,
-      pedidoPrimeiroExame: solicitacaoExame.pedidoPrimeiroExame
+      pedidoPrimeiroExame: solicitacaoExame.pedidoPrimeiroExame,
+      itemSolicitacao: itensSolicitacaoExame
     };
+
+    console.log(solicitacao); 
 
     this.solicitacaoExameService.solicitarExame(solicitacao).subscribe();
   }

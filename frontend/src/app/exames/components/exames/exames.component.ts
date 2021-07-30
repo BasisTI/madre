@@ -19,7 +19,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class ExamesComponent implements OnInit {
 
-  itemsSolicitacaoExame: ItemSolicitacaoExame[] =[]
+  itemsSolicitacaoExame: ItemSolicitacaoExame[] = []
   exames: ExamModel[] = [];
   examesSelecionados: ExamModel[] = [];
   itemsSolicitacaoIDs: number[];
@@ -42,7 +42,6 @@ export class ExamesComponent implements OnInit {
     private fb: FormBuilder,
     private itemSolicitacaoExameService: ItemSolicitacaoExameService
     ) { }
-
 
     itemSolicitacaoPorExame = this.fb.group(
       {
@@ -69,10 +68,8 @@ export class ExamesComponent implements OnInit {
     })
 
   }
-
   
   cadastrarPorExame() {
-
     let item: ItemSolicitacaoExame = {
       urgente: this.itemSolicitacaoPorExame.value.urgente,
       dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
@@ -80,20 +77,11 @@ export class ExamesComponent implements OnInit {
       itemSolicitacaoExameId: this.selectedExamID,
     }
     
-    let itemVisual: ItemSolicitacaoExame = {
-      urgente: this.itemSolicitacaoPorExame.value.urgente,
-      dataProgramada: this.itemSolicitacaoPorExame.value.dataProgramada,
-      situacao: this.itemSolicitacaoPorExame.value.situacao,
-      itemSolicitacaoExameId: this.selectedExamID,
-    }
-
     this.itemsSolicitacaoExame.push(item);
-    this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => {
-    });
+    // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => { });
   }
 
   cadastrarPorLote() {
-
     this.examesSelecionados = this.appExame.pegarExames();
 
     this.examesSelecionados.forEach((exame) => {
@@ -103,23 +91,13 @@ export class ExamesComponent implements OnInit {
         dataProgramada: this.itemSolicitacaoPorLote.value.dataProgramada,
         situacao: this.itemSolicitacaoPorLote.value.situacao,
         itemSolicitacaoExameId: exame.id,
-
       }
       
       this.itemsSolicitacaoExame.push(item);
-      this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => {
-        // this.itemsSolicitacaoExame.push(res);
-        console.log(res);
       });
-
-      })
   }
-
-  salvarItemsSolicitacaoExame() {
-
-    this.itemsSolicitacaoExame.forEach((item) => {
-
-      this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe();
-    })
+  
+  pegarItensSolicitacaoExame(): ItemSolicitacaoExame[] {
+    return this.itemsSolicitacaoExame;
   }
 }

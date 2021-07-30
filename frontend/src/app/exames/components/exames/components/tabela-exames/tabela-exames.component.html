@@ -24,7 +24,7 @@
                 <td> {{item.itemSolicitacaoExameId}} </td>
                 <td> teste 3 </td>
                 <td> {{item.urgente ? 'Sim' : 'Não'}} </td>
-                <td> {{item.dataProgramada.getDate()}}/{{item.dataProgramada.getMonth() + 1}}/{{item.dataProgramada.getFullYear()}} </td>
+                <td> {{item.dataProgramada | date: 'dd/MM/yyyy'}} </td>
                 <td> {{item.situacao}} </td>
                 <td style="display: flex; flex-direction: row;">
                     <button

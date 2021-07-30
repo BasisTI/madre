@@ -2,9 +2,6 @@ import { ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
-import { ElasticQuery } from '@shared/elastic-query';
-import { ConfirmationService } from 'primeng/api';
-import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
 import { ItemSolicitacaoExame } from 'src/app/exames/models/subjects/item-solicitacao-exame';
 import { ExamesService } from 'src/app/exames/services/exames.service';
 import { ItemSolicitacaoExameService } from 'src/app/exames/services/item-solicitacao-exame.service';
@@ -20,9 +17,7 @@ export class TabelaExamesComponent implements OnInit {
   itemsRecebidos: ItemSolicitacaoExame[];
 
   itemsTratados: any[];
-  // exames: ExamModel[];
-
-  itemsSolicitacao: any;
+  itemSolicitacao: any;
 
   constructor(private examesService: ExamesService,
               private router: Router,) { }
@@ -32,23 +27,18 @@ export class TabelaExamesComponent implements OnInit {
 
       this.examesService.GetExamesPorId(element.itemSolicitacaoExameId).subscribe((res) => {
 
-        this.itemsSolicitacao = {
+        this.itemSolicitacao = {
           urgente: element.urgente,
           situacao: element.situacao,
           dataProgramada: element.dataProgramada,
           exame: res,
         }
-        this.itemsTratados.push(this.itemsSolicitacao);
 
+        console.log(this.itemSolicitacao)
       })
-        
-
-      console.log(this.itemsTratados, "passou")
-      console.log(this.itemsTratados)
     });
 
   }
-
 
   datatableClick(event: DatatableClickEvent) {
 }
