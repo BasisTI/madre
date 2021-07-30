@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
 import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
 import { ExameComponent } from './components/exame/exame.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { TabelaExamesComponent } from './components/tabela-exames/tabela-exames.component';
 // import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
 
 @Component({
@@ -26,6 +26,8 @@ export class ExamesComponent implements OnInit {
 
   @ViewChild(ExameComponent) appExame: ExameComponent;
 
+  @ViewChild(TabelaExamesComponent) appTabela: TabelaExamesComponent
+
   // Por exame:
   situationDropdown = SituationDropdown;
   selectedExamID: number;
@@ -33,7 +35,6 @@ export class ExamesComponent implements OnInit {
   // Por lote:
   group: String = null;
   groups: GrupoModel[];
-
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -79,6 +80,7 @@ export class ExamesComponent implements OnInit {
     
     this.itemsSolicitacaoExame.push(item);
     // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => { });
+    this.appTabela.salvarItems();
   }
 
   cadastrarPorLote() {
@@ -95,6 +97,8 @@ export class ExamesComponent implements OnInit {
       
       this.itemsSolicitacaoExame.push(item);
       });
+
+      this.examesSelecionados = [];
   }
   
   pegarItensSolicitacaoExame(): ItemSolicitacaoExame[] {

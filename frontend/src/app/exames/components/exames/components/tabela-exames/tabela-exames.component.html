@@ -3,7 +3,7 @@
         [paginator]="true"
         [rowHover]="true"
         dataKey="id"
-        [value]="itemsRecebidos"
+        [value]="itemsTratados"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [showCurrentPageReport]="true"
     >
@@ -22,7 +22,7 @@
             <tr>
                 <td> teste 1 </td>
                 <td> {{item.itemSolicitacaoExameId}} </td>
-                <td> teste 3 </td>
+                <td> {{item.exame.nome}} </td>
                 <td> {{item.urgente ? 'Sim' : 'Não'}} </td>
                 <td> {{item.dataProgramada | date: 'dd/MM/yyyy'}} </td>
                 <td> {{item.situacao}} </td>

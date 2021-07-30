@@ -14,15 +14,19 @@ import { ItemSolicitacaoExameService } from 'src/app/exames/services/item-solici
 export class TabelaExamesComponent implements OnInit {
 
   @Input()
-  itemsRecebidos: ItemSolicitacaoExame[];
+  itemsRecebidos: ItemSolicitacaoExame[] = [];
 
-  itemsTratados: any[];
+  itemsTratados: any[] = [];
   itemSolicitacao: any;
 
   constructor(private examesService: ExamesService,
               private router: Router,) { }
 
   ngOnInit(): void {
+    this.salvarItems()
+  }
+
+  salvarItems() {
     this.itemsRecebidos.forEach((element) => {
 
       this.examesService.GetExamesPorId(element.itemSolicitacaoExameId).subscribe((res) => {
@@ -34,10 +38,11 @@ export class TabelaExamesComponent implements OnInit {
           exame: res,
         }
 
-        console.log(this.itemSolicitacao)
+        this.itemsTratados.push(this.itemSolicitacao)
       })
-    });
+    })
 
+    this.itemsRecebidos = [];
   }
 
   datatableClick(event: DatatableClickEvent) {
