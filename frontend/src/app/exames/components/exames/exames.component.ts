@@ -20,6 +20,7 @@ import { TabelaExamesComponent } from './components/tabela-exames/tabela-exames.
 export class ExamesComponent implements OnInit {
 
   itemsSolicitacaoExame: ItemSolicitacaoExame[] = []
+  itemsSolicitacaoExame2: ItemSolicitacaoExame[] = []
   exames: ExamModel[] = [];
   examesSelecionados: ExamModel[] = [];
   itemsSolicitacaoIDs: number[];
@@ -42,25 +43,25 @@ export class ExamesComponent implements OnInit {
     private examesService: ExamesService,
     private fb: FormBuilder,
     private itemSolicitacaoExameService: ItemSolicitacaoExameService
-    ) { }
+  ) { }
 
-    itemSolicitacaoPorExame = this.fb.group(
-      {
-        urgente: [false, Validators.required],
-        dataProgramada: [new Date(), Validators.required],
-        situacao: [null, Validators.required],
-      }
-    );
+  itemSolicitacaoPorExame = this.fb.group(
+    {
+      urgente: [false, Validators.required],
+      dataProgramada: [new Date(), Validators.required],
+      situacao: [null, Validators.required],
+    }
+  );
 
-    itemSolicitacaoPorLote = this.fb.group(
-      {
-        urgente: [false, Validators.required],
-        dataProgramada: [new Date(), Validators.required],
-        situacao: [null, Validators.required],
-      }
-    );
+  itemSolicitacaoPorLote = this.fb.group(
+    {
+      urgente: [false, Validators.required],
+      dataProgramada: [new Date(), Validators.required],
+      situacao: [null, Validators.required],
+    }
+  );
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.gruposExamesService.GetGrupos().subscribe((response) => {
       this.groups = response;
     })
@@ -69,7 +70,7 @@ export class ExamesComponent implements OnInit {
     })
 
   }
-  
+
   cadastrarPorExame() {
     let item: ItemSolicitacaoExame = {
       urgente: this.itemSolicitacaoPorExame.value.urgente,
@@ -77,10 +78,9 @@ export class ExamesComponent implements OnInit {
       situacao: this.itemSolicitacaoPorExame.value.situacao,
       itemSolicitacaoExameId: this.selectedExamID,
     }
-    
-    this.itemsSolicitacaoExame.push(item);
+    this.itemsSolicitacaoExame2.push(item)
+    this.itemsSolicitacaoExame = this.itemsSolicitacaoExame2
     // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => { });
-    this.appTabela.salvarItems();
   }
 
   cadastrarPorLote() {
@@ -94,13 +94,14 @@ export class ExamesComponent implements OnInit {
         situacao: this.itemSolicitacaoPorLote.value.situacao,
         itemSolicitacaoExameId: exame.id,
       }
-      
-      this.itemsSolicitacaoExame.push(item);
-      });
 
-      this.examesSelecionados = [];
+      this.itemsSolicitacaoExame2.push(item)
+    });
+    this.itemsSolicitacaoExame = this.itemsSolicitacaoExame2
+
+    this.examesSelecionados = [];
   }
-  
+
   pegarItensSolicitacaoExame(): ItemSolicitacaoExame[] {
     return this.itemsSolicitacaoExame;
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 // import { Observable, Subject } from 'rxjs';
 import { ExamModel } from 'src/app/exames/models/subjects/exames-model';
 import { ExamesService } from '../../../../services/exames.service'
@@ -33,7 +33,6 @@ export class ExameComponent implements OnInit, OnChanges {
   }
 
   pegarExames(): ExamModel[] {
-    console.log("teste");
     return this.examesSelecionados;
   }
   

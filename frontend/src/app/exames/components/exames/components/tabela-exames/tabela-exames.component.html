@@ -18,21 +18,21 @@
                 <th> Ação</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-item>
+        <ng-template pTemplate="body" let-item >
             <tr>
-                <td> teste 1 </td>
-                <td> {{item.itemSolicitacaoExameId}} </td>
-                <td> {{item.exame.nome}} </td>
+                <td> {{item.index}} </td>
+                <td> {{item.exame.sigla}}-{{item.exame.nomeUsual}}-{{item.exame.nome}} </td>
+                <td> {{item.exame.material}}-{{item.exame.amostra}} </td>
                 <td> {{item.urgente ? 'Sim' : 'Não'}} </td>
                 <td> {{item.dataProgramada | date: 'dd/MM/yyyy'}} </td>
                 <td> {{item.situacao}} </td>
-                <td style="display: flex; flex-direction: row;">
+                <td>
                     <button
                         pButton
                         pRipple
                         icon="pi pi-trash"
                         class="p-button-rounded p-button-warning"
-                        (click)="deleteProduct(product)"
+                        (click)="removerItem(item.index)"
                     ></button>
                 </td>
             </tr>

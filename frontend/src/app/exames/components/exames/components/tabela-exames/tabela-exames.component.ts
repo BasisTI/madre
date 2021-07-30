@@ -1,29 +1,33 @@
-import { ViewChild } from '@angular/core';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
 import { ItemSolicitacaoExame } from 'src/app/exames/models/subjects/item-solicitacao-exame';
 import { ExamesService } from 'src/app/exames/services/exames.service';
-import { ItemSolicitacaoExameService } from 'src/app/exames/services/item-solicitacao-exame.service';
+// import { ItemSolicitacaoExameService } from 'src/app/exames/services/item-solicitacao-exame.service';
 
 @Component({
   selector: 'app-tabela-exames',
   templateUrl: './tabela-exames.component.html',
   styleUrls: ['./tabela-exames.component.css']
 })
-export class TabelaExamesComponent implements OnInit {
+export class TabelaExamesComponent implements OnInit, OnChanges {
 
   @Input()
   itemsRecebidos: ItemSolicitacaoExame[] = [];
 
   itemsTratados: any[] = [];
   itemSolicitacao: any;
+  index: number = 1
 
   constructor(private examesService: ExamesService,
-              private router: Router,) { }
+    private router: Router,) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("hfeiudhaudhuwidhiudhwaiudhuwdhuidhqiudhqwiudhwaiudawhdiu")
+    this.salvarItems();
+  }
 
   ngOnInit(): void {
-    this.salvarItems()
   }
 
   salvarItems() {
@@ -36,8 +40,10 @@ export class TabelaExamesComponent implements OnInit {
           situacao: element.situacao,
           dataProgramada: element.dataProgramada,
           exame: res,
+          index: this.index
         }
 
+        this.index++;
         this.itemsTratados.push(this.itemSolicitacao)
       })
     })
@@ -45,7 +51,8 @@ export class TabelaExamesComponent implements OnInit {
     this.itemsRecebidos = [];
   }
 
-  datatableClick(event: DatatableClickEvent) {
-}
- 
+  removerItem(index: number) {
+    this.itemsTratados = this.itemsTratados.filter((item) => (item.index != index));
+  }
+
 }
