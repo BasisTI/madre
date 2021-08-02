@@ -48,10 +48,6 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
     })
   }
 
-  teste() {
-    console.log(this.itemsRecebidos)
-    this.salvarItems()
-  }
 
   removerItem(index: number) {
     this.itemsTratados = this.itemsTratados.filter((item) => (item.index != index));

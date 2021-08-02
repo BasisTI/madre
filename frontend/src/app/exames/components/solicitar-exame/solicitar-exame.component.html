@@ -112,25 +112,21 @@
                         </div>
 
                     </div>
-
-                    <div class="p-col-12 p-grid p-d-flex p-jc-center">
-                        <div class="p-md-2">
-                            <button pButton type="submit" [disabled]="!valid()" label="Salvar"
-                                icon="pi pi-save" 
-                                (click)="cadastrar()  "></button>
-                        </div>
-                        <div class="p-md-2">
-                            <button pButton type="text" label="Limpar" 
-                            icon="pi pi-times"
-                            ></button>
-                        </div>
-                    </div>
-
                 </div>
-
-
-
         </div>
     </div>
 </div>
 <app-exames #appExames ></app-exames>
+
+<div class="buttonDiv">
+    <div class="p-md-2">
+        <button pButton type="submit" [disabled]="!valid()" label="Salvar"
+            icon="pi pi-save" 
+            (click)="cadastrar()"></button>
+    </div>
+    <div class="p-md-2">
+        <button pButton type="text" label="Limpar" 
+        icon="pi pi-times" (click)="limpar()"
+        ></button>
+    </div>
+</div>

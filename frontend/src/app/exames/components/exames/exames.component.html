@@ -70,12 +70,12 @@
 
               <div class="dropdown-div">
                 Situação:
-                <p-dropdown [options]="situationDropdown" formControlName="situacao"></p-dropdown>
+                <p-dropdown placeholder="Selecione" [options]="situationDropdown" formControlName="situacao"></p-dropdown>
               </div>
             </span>
           </div>
 
-          <button pButton label="Adicionar" type="submit" icon="pi pi-plus" iconPos="left" (click)="cadastrarPorExame()"></button>
+          <button pButton label="Adicionar" type="submit" icon="pi pi-plus" iconPos="left" (click)="cadastrarPorExame()" [disabled]="!validarPorExame()"></button>
 
         </p-tabPanel>
 
@@ -118,12 +118,12 @@
 
             <div class="dropdown-div">
               <label for="situacao">Situação:</label>
-              <p-dropdown [options]="situationDropdown" formControlName="situacao"></p-dropdown>
+              <p-dropdown placeholder="Selecione" [options]="situationDropdown" formControlName="situacao"></p-dropdown>
             </div>
           </span>
 
           <button pButton label="Adicionar" type="button" icon="pi pi-plus" iconPos="left"
-            (click)="cadastrarPorLote()" style="margin-top: 15px;"></button>
+            (click)="cadastrarPorLote()" style="margin-top: 15px;" [disabled]="!validarPorLote()"></button>
 
         </p-tabPanel>
 

@@ -57,7 +57,7 @@ export class ExamesComponent implements OnInit {
     {
       urgente: [false, Validators.required],
       dataProgramada: [new Date(), Validators.required],
-      situacao: [null, Validators.required],
+      situacao: [null , Validators.required],
     }
   );
 
@@ -69,6 +69,20 @@ export class ExamesComponent implements OnInit {
       this.exames = response;
     })
 
+  }
+
+  validarPorExame() {
+    if(this.itemSolicitacaoPorExame.valid && this.selectedExamID) {
+      return true;
+    }
+    return false;
+  }
+
+  validarPorLote() {
+    if(this.itemSolicitacaoPorLote.valid && this.examesSelecionados.length > 0) {
+      return true;
+    }
+    return false;
   }
 
   cadastrarPorExame() {
