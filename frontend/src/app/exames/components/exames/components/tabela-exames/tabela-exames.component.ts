@@ -56,5 +56,4 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
   pegarItemsTratados(): any[] {
     return this.itemsTratados;
   }
-
 }

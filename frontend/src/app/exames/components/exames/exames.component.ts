@@ -79,7 +79,7 @@ export class ExamesComponent implements OnInit {
   }
 
   validarPorLote() {
-    if(this.itemSolicitacaoPorLote.valid && this.examesSelecionados.length > 0) {
+    if(this.itemSolicitacaoPorLote.valid) {
       return true;
     }
     return false;

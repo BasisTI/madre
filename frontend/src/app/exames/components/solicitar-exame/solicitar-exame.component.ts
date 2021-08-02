@@ -82,7 +82,7 @@ export class SolicitarExameComponent implements OnInit {
       itemSolicitacao: this.itensSolicitacaoExame
     };
 
-    // console.log(solicitacao); 
+    console.log(solicitacao); 
 
     this.solicitacaoExameService.solicitarExame(solicitacao).subscribe();
   }
