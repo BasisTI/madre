@@ -1,6 +1,4 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
 import { ItemSolicitacaoExame } from 'src/app/exames/models/subjects/item-solicitacao-exame';
 import { ExamesService } from 'src/app/exames/services/exames.service';
 // import { ItemSolicitacaoExameService } from 'src/app/exames/services/item-solicitacao-exame.service';
@@ -15,15 +13,16 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
   @Input()
   itemsRecebidos: ItemSolicitacaoExame[] = [];
 
+  @Input()
+  flag: boolean;
+
   itemsTratados: any[] = [];
   itemSolicitacao: any;
   index: number = 1
 
-  constructor(private examesService: ExamesService,
-    private router: Router,) { }
+  constructor(private examesService: ExamesService) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("hfeiudhaudhuwidhiudhwaiudhuwdhuidhqiudhqwiudhwaiudawhdiu")
+  ngOnChanges(changes: SimpleChanges) {
     this.salvarItems();
   }
 
@@ -47,12 +46,19 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
         this.itemsTratados.push(this.itemSolicitacao)
       })
     })
+  }
 
-    this.itemsRecebidos = [];
+  teste() {
+    console.log(this.itemsRecebidos)
+    this.salvarItems()
   }
 
   removerItem(index: number) {
     this.itemsTratados = this.itemsTratados.filter((item) => (item.index != index));
+  }
+
+  pegarItemsTratados(): any {
+    return this.itemsTratados;
   }
 
 }

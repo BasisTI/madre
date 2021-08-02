@@ -20,10 +20,10 @@ import { TabelaExamesComponent } from './components/tabela-exames/tabela-exames.
 export class ExamesComponent implements OnInit {
 
   itemsSolicitacaoExame: ItemSolicitacaoExame[] = []
-  itemsSolicitacaoExame2: ItemSolicitacaoExame[] = []
+  alocarItemsSolicitacaoExame: ItemSolicitacaoExame[] = []
   exames: ExamModel[] = [];
   examesSelecionados: ExamModel[] = [];
-  itemsSolicitacaoIDs: number[];
+  flag: boolean = false;
 
   @ViewChild(ExameComponent) appExame: ExameComponent;
 
@@ -78,9 +78,10 @@ export class ExamesComponent implements OnInit {
       situacao: this.itemSolicitacaoPorExame.value.situacao,
       itemSolicitacaoExameId: this.selectedExamID,
     }
-    this.itemsSolicitacaoExame2.push(item)
-    this.itemsSolicitacaoExame = this.itemsSolicitacaoExame2
-    // this.itemSolicitacaoExameService.adicionarItemExame(item).subscribe((res: ItemSolicitacaoExame) => { });
+    this.alocarItemsSolicitacaoExame.push(item);
+    this.itemsSolicitacaoExame = this.alocarItemsSolicitacaoExame;
+    this.alocarItemsSolicitacaoExame = [];
+    this.flag = !this.flag
   }
 
   cadastrarPorLote() {
@@ -95,11 +96,10 @@ export class ExamesComponent implements OnInit {
         itemSolicitacaoExameId: exame.id,
       }
 
-      this.itemsSolicitacaoExame2.push(item)
+      this.alocarItemsSolicitacaoExame.push(item)
     });
-    this.itemsSolicitacaoExame = this.itemsSolicitacaoExame2
-
-    this.examesSelecionados = [];
+    this.itemsSolicitacaoExame = this.alocarItemsSolicitacaoExame;
+    this.alocarItemsSolicitacaoExame = [];
   }
 
   pegarItensSolicitacaoExame(): ItemSolicitacaoExame[] {

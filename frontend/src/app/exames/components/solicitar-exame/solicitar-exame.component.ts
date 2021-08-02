@@ -9,6 +9,7 @@ import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exa
 import { ResponsavelService } from '../../services/responsavel.service';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
+import { TabelaExamesComponent } from '../exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from '../exames/exames.component';
 
 @Component({
@@ -19,6 +20,8 @@ import { ExamesComponent } from '../exames/exames.component';
 export class SolicitarExameComponent implements OnInit {
 
   @ViewChild(ExamesComponent) appExames: ExamesComponent
+
+  @ViewChild(TabelaExamesComponent) appTabela: TabelaExamesComponent
 
   constructor(private fb: FormBuilder,
               private unidadeFuncionalService: UnidadeFuncionalService,
@@ -54,7 +57,16 @@ export class SolicitarExameComponent implements OnInit {
 
   cadastrar() {
 
-    let itensSolicitacaoExame = this.appExames.pegarItensSolicitacaoExame();
+    let itens = this.appTabela.pegarItemsTratados();
+
+    let itensSolicitacaoExame = itens.array.forEach(element =>
+      {
+        urgente: element.urgente;
+        situacao: element.situacao;
+        dataProgramada: element.dataProgramada;
+        exame: element.exame.id;
+      }
+    );
 
     let solicitacaoExame = this.solicitarExame.value;
 
