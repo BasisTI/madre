@@ -7,15 +7,11 @@ import java.io.Serializable;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.AtendimentoDiverso} entity.
  */
 public class AtendimentoDiversoDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
     private Integer codigo;
-
-    @NotNull
-    private String descricao;
-
 
     private Long informacoesId;
 
@@ -36,7 +32,7 @@ public class AtendimentoDiversoDTO implements Serializable {
     private Long cadaverId;
 
     private String cadaverNome;
-    
+
     public Long getId() {
         return id;
     }
@@ -53,13 +49,6 @@ public class AtendimentoDiversoDTO implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
     public Long getInformacoesId() {
         return informacoesId;
@@ -164,7 +153,6 @@ public class AtendimentoDiversoDTO implements Serializable {
         return "AtendimentoDiversoDTO{" +
             "id=" + getId() +
             ", codigo=" + getCodigo() +
-            ", descricao='" + getDescricao() + "'" +
             ", informacoesId=" + getInformacoesId() +
             ", informacoesCodigo='" + getInformacoesCodigo() + "'" +
             ", projetoId=" + getProjetoId() +

@@ -1,4 +1,4 @@
-import { atendimentoDiverso } from './../models/atendimentoDiverso';
+import { AtendimentoDiverso } from './../models/atendimentoDiverso';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -10,7 +10,7 @@ export class AtendimentoDiversoService {
 
     constructor(private httpService: HttpClient) {}
 
-    cadastrarAtendimento(atendimentoDiverso: atendimentoDiverso) {
+    cadastrarAtendimento(atendimentoDiverso: AtendimentoDiverso) {
     
         return this.httpService.post(this.apiUrl, atendimentoDiverso);
     }

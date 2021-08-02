@@ -1,5 +1,4 @@
 import { PageNotificationService } from '@nuvem/primeng-components';
-import { atendimentoDiverso } from './../../models/atendimentoDiverso';
 import { PreCadastroModel } from './../../../pacientes/models/pre-cadastro-model';
 import { EspecialidadeService } from '@internacao/services/especialidade.service';
 import { Especialidade } from './../../../internacao/models/especialidade';
@@ -64,11 +63,11 @@ export class AtendimentoDiversoComponent implements OnInit {
      ngOnInit() : void{
       this.cadastroAtendimentoDiverso = this.fb.group({
         codigo: [null, Validators.required],
-        descricao: [null, Validators.required],
         informacoesId:[null],
-        laboratorioNome: [null],
-        controleCodigo: [null],
-        cadaverNome:[null]
+        projetoId: [null],
+        laboratorioId: [null],
+        controleId:[null],
+        cadaverId:[null]
     });
 
        this.cadaverService.GetCadaver().subscribe((response)=>{
@@ -97,7 +96,6 @@ export class AtendimentoDiversoComponent implements OnInit {
        this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
        this.unidadesFuncionais = response; 
       });
-
   }
 
   valid(): boolean {

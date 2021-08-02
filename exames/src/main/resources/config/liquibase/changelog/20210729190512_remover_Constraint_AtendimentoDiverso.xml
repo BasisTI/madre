@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="basis (generated)" id="1627585541783-1">
+            <dropUniqueConstraint
+                                   constraintName="ux_atendimento_diverso_informacoes_id"
+                                   tableName="atendimento_diverso"
+                                   uniqueColumns="informacoes_id"/>
+    </changeSet>
+
+    <changeSet author="basis (generated)" id="1627585541783-2">
+        <dropUniqueConstraint
+            constraintName="ux_atendimento_diverso_projeto_id"
+            tableName="atendimento_diverso"
+            uniqueColumns="projeto_id"/>
+    </changeSet>
+
+    <changeSet author="basis (generated)" id="1627585541783-3">
+        <dropUniqueConstraint
+            constraintName="ux_atendimento_diverso_laboratorio_id"
+            tableName="atendimento_diverso"
+            uniqueColumns="laboratorio_id"/>
+    </changeSet>
+
+    <changeSet author="basis (generated)" id="1627585541783-4">
+        <dropUniqueConstraint
+            constraintName="ux_atendimento_diverso_controle_id"
+            tableName="atendimento_diverso"
+            uniqueColumns="controle_id"/>
+    </changeSet>
+
+    <changeSet author="basis (generated)" id="1627585541783-5">
+        <dropUniqueConstraint
+            constraintName="ux_atendimento_diverso_cadaver_id"
+            tableName="atendimento_diverso"
+            uniqueColumns="cadaver_id"/>
+    </changeSet>
+
+</databaseChangeLog>

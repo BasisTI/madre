@@ -45,8 +45,6 @@ public class AtendimentoDiversoResourceIT {
     private static final Integer DEFAULT_CODIGO = 1;
     private static final Integer UPDATED_CODIGO = 2;
 
-    private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
-    private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
     @Autowired
     private AtendimentoDiversoRepository atendimentoDiversoRepository;
@@ -81,8 +79,7 @@ public class AtendimentoDiversoResourceIT {
      */
     public static AtendimentoDiverso createEntity(EntityManager em) {
         AtendimentoDiverso atendimentoDiverso = new AtendimentoDiverso()
-            .codigo(DEFAULT_CODIGO)
-            .descricao(DEFAULT_DESCRICAO);
+            .codigo(DEFAULT_CODIGO);
         return atendimentoDiverso;
     }
     /**
@@ -93,8 +90,7 @@ public class AtendimentoDiversoResourceIT {
      */
     public static AtendimentoDiverso createUpdatedEntity(EntityManager em) {
         AtendimentoDiverso atendimentoDiverso = new AtendimentoDiverso()
-            .codigo(UPDATED_CODIGO)
-            .descricao(UPDATED_DESCRICAO);
+            .codigo(UPDATED_CODIGO);
         return atendimentoDiverso;
     }
 
@@ -119,7 +115,6 @@ public class AtendimentoDiversoResourceIT {
         assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeCreate + 1);
         AtendimentoDiverso testAtendimentoDiverso = atendimentoDiversoList.get(atendimentoDiversoList.size() - 1);
         assertThat(testAtendimentoDiverso.getCodigo()).isEqualTo(DEFAULT_CODIGO);
-        assertThat(testAtendimentoDiverso.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
 
         // Validate the AtendimentoDiverso in Elasticsearch
         verify(mockAtendimentoDiversoSearchRepository, times(1)).save(testAtendimentoDiverso);
@@ -169,25 +164,6 @@ public class AtendimentoDiversoResourceIT {
         assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeTest);
     }
 
-    @Test
-    @Transactional
-    public void checkDescricaoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = atendimentoDiversoRepository.findAll().size();
-        // set the field null
-        atendimentoDiverso.setDescricao(null);
-
-        // Create the AtendimentoDiverso, which fails.
-        AtendimentoDiversoDTO atendimentoDiversoDTO = atendimentoDiversoMapper.toDto(atendimentoDiverso);
-
-
-        restAtendimentoDiversoMockMvc.perform(post("/api/atendimento-diversos")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(atendimentoDiversoDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<AtendimentoDiverso> atendimentoDiversoList = atendimentoDiversoRepository.findAll();
-        assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -200,10 +176,9 @@ public class AtendimentoDiversoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(atendimentoDiverso.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
-            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)));
     }
-    
+
     @Test
     @Transactional
     public void getAtendimentoDiverso() throws Exception {
@@ -215,8 +190,7 @@ public class AtendimentoDiversoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(atendimentoDiverso.getId().intValue()))
-            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
-            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO));
     }
     @Test
     @Transactional
@@ -239,8 +213,7 @@ public class AtendimentoDiversoResourceIT {
         // Disconnect from session so that the updates on updatedAtendimentoDiverso are not directly saved in db
         em.detach(updatedAtendimentoDiverso);
         updatedAtendimentoDiverso
-            .codigo(UPDATED_CODIGO)
-            .descricao(UPDATED_DESCRICAO);
+            .codigo(UPDATED_CODIGO);
         AtendimentoDiversoDTO atendimentoDiversoDTO = atendimentoDiversoMapper.toDto(updatedAtendimentoDiverso);
 
         restAtendimentoDiversoMockMvc.perform(put("/api/atendimento-diversos")
@@ -253,7 +226,6 @@ public class AtendimentoDiversoResourceIT {
         assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeUpdate);
         AtendimentoDiverso testAtendimentoDiverso = atendimentoDiversoList.get(atendimentoDiversoList.size() - 1);
         assertThat(testAtendimentoDiverso.getCodigo()).isEqualTo(UPDATED_CODIGO);
-        assertThat(testAtendimentoDiverso.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
 
         // Validate the AtendimentoDiverso in Elasticsearch
         verify(mockAtendimentoDiversoSearchRepository, times(1)).save(testAtendimentoDiverso);
@@ -316,7 +288,6 @@ public class AtendimentoDiversoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(atendimentoDiverso.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
-            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)));
     }
 }

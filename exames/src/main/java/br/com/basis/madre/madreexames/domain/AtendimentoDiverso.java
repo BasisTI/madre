@@ -31,27 +31,23 @@ public class AtendimentoDiverso implements Serializable {
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
 
-    @NotNull
-    @Column(name = "descricao", nullable = false)
-    private String descricao;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(unique = true)
     private InformacoesComplementares informacoes;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(unique = true)
     private ProjetoDePesquisa projeto;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(unique = true)
     private LaboratorioExterno laboratorio;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(unique = true)
     private ControleQualidade controle;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(unique = true)
     private Cadaver cadaver;
 
@@ -81,18 +77,6 @@ public class AtendimentoDiverso implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public AtendimentoDiverso descricao(String descricao) {
-        this.descricao = descricao;
-        return this;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
     public InformacoesComplementares getInformacoes() {
         return informacoes;
@@ -207,7 +191,6 @@ public class AtendimentoDiverso implements Serializable {
         return "AtendimentoDiverso{" +
             "id=" + getId() +
             ", codigo=" + getCodigo() +
-            ", descricao='" + getDescricao() + "'" +
             "}";
     }
 }

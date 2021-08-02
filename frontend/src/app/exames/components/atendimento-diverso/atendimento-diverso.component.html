@@ -11,7 +11,7 @@
       </span>
       <span id="grupo" >
         <label > Codigo:  </label> <br>
-        <input type="text" value={{valor}} formControlName="codigo"    pInputText/>
+        <input type="text"  formControlName="codigo" pInputText/>
       </span>
     </div>
   
@@ -22,8 +22,8 @@
           <label> Laboratorio Externo: </label> <br>
         </span>
         <p-dropdown 
-        [options]="laboratorios" [optionLabel]="'nome'" [optionValue]="'codigo'"
-        formControlName="laboratorioNome"
+        [options]="laboratorios" [optionLabel]="'nome'" [optionValue]="'id'"
+        formControlName="laboratorioId"
         ></p-dropdown>
       </div>
       <div class="atend">
@@ -31,8 +31,8 @@
           <label> Controle de qualidade: </label> <br>
         </span>
         <p-dropdown 
-        [options]="controles" [optionLabel]="'material'" [optionValue]="'codigo'"
-        formControlName="controleCodigo"
+        [options]="controles" [optionLabel]="'material'" [optionValue]="'id'"
+        formControlName="controleId"
         ></p-dropdown>
       </div>
       <div class="atend">
@@ -40,8 +40,8 @@
           <label> Cadavér: </label> <br>
         </span>
         <p-dropdown
-          [options]="cadavers" [optionLabel]="'nome'" [optionValue]="'codigo'"
-          formControlName="cadaverNome"
+          [options]="cadavers" [optionLabel]="'nome'" [optionValue]="'id'"
+          formControlName="cadaverId"
         ></p-dropdown>
       </div>
     </p-fieldset>
@@ -61,7 +61,7 @@
         </span>
         <span id="grupo">
           <label> Identificação:  </label> <br>
-          <input type="text" formControlName="descricao" pInputText /> <br>
+          <input type="text" pInputText /> <br>
         </span>
         <span id="grupo">
           <label> Data Soro: </label> <br>
