@@ -102,7 +102,7 @@ export class ExamesComponent implements OnInit {
     this.alocarItemsSolicitacaoExame = [];
   }
 
-  pegarItensSolicitacaoExame(): ItemSolicitacaoExame[] {
-    return this.itemsSolicitacaoExame;
+  pegarItensSolicitacaoExame(): any[] {
+    return this.appTabela.pegarItemsTratados();
   }
 }

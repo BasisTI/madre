@@ -57,7 +57,7 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
     this.itemsTratados = this.itemsTratados.filter((item) => (item.index != index));
   }
 
-  pegarItemsTratados(): any {
+  pegarItemsTratados(): any[] {
     return this.itemsTratados;
   }
 

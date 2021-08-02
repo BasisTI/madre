@@ -19,6 +19,9 @@ import { ExamesComponent } from '../exames/exames.component';
 })
 export class SolicitarExameComponent implements OnInit {
 
+  itensSolicitacaoExame: ItemSolicitacaoExame[] = [];
+  itemSolicitacao: ItemSolicitacaoExame;
+
   @ViewChild(ExamesComponent) appExames: ExamesComponent
 
   @ViewChild(TabelaExamesComponent) appTabela: TabelaExamesComponent
@@ -57,16 +60,18 @@ export class SolicitarExameComponent implements OnInit {
 
   cadastrar() {
 
-    let itens = this.appTabela.pegarItemsTratados();
+    let itens = this.appExames.pegarItensSolicitacaoExame();
 
-    let itensSolicitacaoExame = itens.array.forEach(element =>
-      {
-        urgente: element.urgente;
-        situacao: element.situacao;
-        dataProgramada: element.dataProgramada;
-        exame: element.exame.id;
+    itens.map((element) => {
+      this.itemSolicitacao = {
+        urgente: element.urgente,
+        situacao: element.situacao,
+        dataProgramada: element.dataProgramada,
+        itemSolicitacaoExameId: element.exame.id,
       }
-    );
+
+      this.itensSolicitacaoExame.push(this.itemSolicitacao)
+    });
 
     let solicitacaoExame = this.solicitarExame.value;
 
@@ -74,7 +79,7 @@ export class SolicitarExameComponent implements OnInit {
       infoClinica: solicitacaoExame.infoClinica,
       usoAntimicrobianos24h: solicitacaoExame.usoAntimicrobianos24h,
       pedidoPrimeiroExame: solicitacaoExame.pedidoPrimeiroExame,
-      itemSolicitacao: itensSolicitacaoExame
+      itemSolicitacao: this.itensSolicitacaoExame
     };
 
     console.log(solicitacao); 
