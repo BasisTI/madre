@@ -4,6 +4,8 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \
     JAVA_OPTS=""
 
+RUN apk add --no-cache msttcorefonts-installer fontconfig && update-ms-fonts
+
 # Add a jhipster user to run our application so that it doesn't need to run as root
 RUN adduser -D -s /bin/sh jhipster
 WORKDIR /home/jhipster
