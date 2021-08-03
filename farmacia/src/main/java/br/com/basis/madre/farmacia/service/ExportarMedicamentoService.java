@@ -36,7 +36,7 @@ public class ExportarMedicamentoService {
         XSSFFont fonte = workbook.createFont();
         fonte.setBold(true);
         fonte.setFontHeight(12);
-        fonte.setFontName("Arial");
+        fonte.setFontName("Sans Serif");
         estilo.setFont(fonte);
         estilo.getVerticalAlignment();
 
