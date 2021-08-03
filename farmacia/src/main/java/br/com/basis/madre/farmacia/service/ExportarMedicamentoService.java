@@ -32,6 +32,7 @@ public class ExportarMedicamentoService {
         estilo = workbook.createCellStyle();
         fonte = workbook.createFont();
         fonte.setBold(negrito);
+        fonte.setFontName("Arial");
         fonte.setFontHeight(12);
         estilo.setFont(fonte);
         estilo.getVerticalAlignment();
@@ -45,6 +46,7 @@ public class ExportarMedicamentoService {
         XSSFFont fonte = workbook.createFont();
         fonte.setBold(true);
         fonte.setFontHeight(12);
+        fonte.setFontName("Arial");
         estilo.setFont(fonte);
         estilo.getVerticalAlignment();
 
@@ -82,6 +84,7 @@ public class ExportarMedicamentoService {
         CellStyle estilo = workbook.createCellStyle();
         XSSFFont fonte = workbook.createFont();
         fonte.setFontHeight(12);
+        fonte.setFontName("Arial");
         estilo.setFont(fonte);
         String medicamentoQuery = "select * from medicamento where ativo = true";
 
