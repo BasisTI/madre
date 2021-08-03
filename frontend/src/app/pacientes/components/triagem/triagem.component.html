@@ -1,80 +1,84 @@
+<h1>Triagem</h1>
+
+<div class="card">
+    <div class="p-md-12 p-d-inline">
+        <div class="p-md-6" style="display: flex; width: 100%;">
+            <span class="p-float-label" style="margin-top: 6px; width: 100%;">
+                <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
+                <label>Nome paciente</label>
+            </span>
+            <div class="button-margin">
+                <button pButton type="button" style="background: #8CA3B9;" label="Limpar"
+                    bTooltip="Limpar pesquisa de triagem." (click)="limparPesquisa()"></button>
+            </div>
+            <div class="button-margin">
+                <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
+                    bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
+            </div>
+            <div class="button-margin">
+                <button pButton type="button" style="background: #009370;" label="Nova Triagem" icon="ui-icon-add"
+                    routerLink="/triagem/formulario" bTooltip="Cadastrar nova Triagem."></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="p-grid p-fluid">
         <div class="p-md-12">
             <span class>
                 <!-- <input pInputText disabled /> -->
-                <h1>Triagem</h1>
             </span>
 
             <div class="p-grid">
-                <div class="p-md-12">
-                    <span class="p-float-label" style="margin-top: 5px;">
-                        <input type="text" pInputText class="ui-inputtext" name="filtro"
-                            [(ngModel)]="elasticQuery.value" />
-                        <label>Nome paciente</label>
-                    </span>
-                </div>
-                <div class="p-grid p-col-12">
-                    <div class="p-grid p-col-12">
-                        <div class="p-col-3">
-                            <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
-                                bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
-                        </div>
-                        <div class="p-col-3">
-                            <button pButton type="button" label="Limpar" bTooltip="Limpar pesquisa de triagem."
-                                (click)="limparPesquisa()"></button>
-                        </div>
-                        <div class="p-col-3">
-                            <button pButton type="button" label="Nova Triagem" icon="ui-icon-add"
-                                routerLink="/triagem/formulario" bTooltip="Cadastrar nova Triagem."></button>
-                        </div>
-                    </div>
-                    <div class="p-col-12 p-md3"></div>
-                    <basis-datatable [url]="searchUrl" [showPaginationFooter]="true"
-                        [rowsPerPageOptions]="rowsPerPageOptions" (buttonClick)="onClick($event)">
-                        <p-column header="Nome do Paciente" field="paciente.nome">
-                            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
-                                {{ triagem?.paciente?.nome === undefined ? "" : triagem?.paciente?.nome}}
-                            </ng-template>
-                        </p-column>
-                        <p-column header="Nome Social" field="paciente.nomeSocial">
-                            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
-                                {{ triagem?.paciente?.nomeSocial === undefined ? "" : triagem?.paciente?.nomeSocial }}
-                            </ng-template>
-                        </p-column>
-                        <p-column header="Nome da Mãe" field="paciente.genitores.nomeDaMae">
-                            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
-                                {{ triagem?.paciente?.genitores?.nomeDaMae === undefined ? "" :
-                                triagem?.paciente?.genitores?.nomeDaMae}}
-                            </ng-template>
-                        </p-column>
-                        <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
-                            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
-                                {{ triagem?.dataHoraDoAtendimento | date: 'dd/MM/yyyy - HH:mm' }}
-                            </ng-template>
-                        </p-column>
-                        <p-column header="Classificação" field="classificacaoDeRisco">
-                            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
-                                <span>
-                                    <div [ngClass]="{
+                <basis-datatable [url]="searchUrl" [showPaginationFooter]="true"[rowsPerPageOptions]="rowsPerPageOptions" 
+                    (buttonClick)="onClick($event)">
+                    <p-column header="Nome do Paciente" field="paciente.nome">
+                        <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                            {{ triagem?.paciente?.nome === undefined ? "" : triagem?.paciente?.nome}}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Nome Social" field="paciente.nomeSocial">
+                        <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                            {{ triagem?.paciente?.nomeSocial === undefined ? "" : triagem?.paciente?.nomeSocial }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Nome da Mãe" field="paciente.genitores.nomeDaMae">
+                        <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                            {{ triagem?.paciente?.genitores?.nomeDaMae === undefined ? "" :
+                            triagem?.paciente?.genitores?.nomeDaMae}}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Data/Hora da Chegada" field="dataHoraDoAtendimento">
+                        <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                            {{ triagem?.dataHoraDoAtendimento | date: 'dd/MM/yyyy - HH:mm' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Classificação" field="classificacaoDeRisco">
+                        <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                            <span>
+                                <div [ngClass]="{
                                     emergencia: triagem[col.field] == 'EMERGENCIA',
                                     muitoUrgente: triagem[col.field] == 'MUITO_URGENTE',
                                     urgente: triagem[col.field] == 'URGENTE',
                                     poucoUrgente: triagem[col.field] == 'POUCO_URGENTE',
                                     naoUrgente: triagem[col.field] == 'NAO_URGENTE'
                                 }" [pTooltip]="triagem[col.field]"></div>
-                                </span>
-                            </ng-template>
-                        </p-column>
-                    </basis-datatable>
-                    <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não">
-                    </p-confirmDialog>
-                    <div class="p-col-9"></div>
-                    <div class="p-col-2">
+                            </span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Ações" field="acoes">
+
+                    </p-column>
+                </basis-datatable>
+                <p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não">
+                </p-confirmDialog>
+                <div class="p-col-9"></div>
+                <!--<div class="p-col-2">
                         <button name="export" pButton textAlign="right" type="button" label="Exportar"
                             icon="pi pi-upload" bTooltip="Exportar arquivo"></button>
-                    </div>
-                </div>
+                    </div> -->
             </div>
         </div>
     </div>
+</div>

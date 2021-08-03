@@ -1,0 +1,131 @@
+<div class="p-col-12 card card-w-title">
+    <h1>
+        Exames
+      </h1>
+    <div class="TableDiv">
+        <p-tabView class="tableContent">
+            <p-tabPanel header="por Exames">
+              <div class="container">
+                <span class="data-field-1">
+                  <p-radioButton
+                    class="radial-button"
+                    name="filter"
+                    label="Pesquisar pelo primeiro nome"
+                    value="firstName"
+                    [(ngModel)]="selectedValue"
+                  ></p-radioButton>
+
+                  <p-radioButton
+                    class="radial-button"
+                    name="filter"
+                    label="Pesquisar pelo nome completo"
+                    value="fullName"
+                    [(ngModel)]="selectedValue"
+                  ></p-radioButton>
+                </span>
+
+                <span class="data-field-2">
+
+                  <p-checkbox
+                    [(ngModel)]="unitCheckbox"
+                    label="Filtrar por unidade funcional"
+                    [binary]="true"
+                    pTooltip="Filtrar busca por exame disponíveis pela unidade funcional vinculada."
+                  ></p-checkbox>
+
+                  <label style="margin-bottom: 10px;">Exame:</label>
+                  <p-autoComplete
+                    name="exame"
+                    [(ngModel)]="selectedExam"
+                    [suggestions]="exames"
+                    (completeMethod)="listarExames()"
+                    dropdown="true"
+                    (onSelect)="aoSelecionarExame()"
+                    pTooltip="Selecione um exame"
+                  ></p-autoComplete>
+                </span>
+
+                <span class="data-field-3">
+                  <p-checkbox
+                    class="urgent-checkbox"
+                    [(ngModel)]="urgentCheck"
+                    label="Urgente"
+                    [binary]="true"
+                  ></p-checkbox>
+
+                  <span class="calendar-div">
+                    Data/Hora programada:
+                    <p-calendar
+                      class="calendar-input"
+                      [(ngModel)]="date"
+                      showIcon="true"
+                      icon="pi pi-calendar"
+                      [readonlyInput]="true"
+                      showTime="true"
+                      dateFormat="dd/mm/yy"
+                    ></p-calendar>
+                  </span>
+
+                  <div class="dropdown-div">
+                    Situação:
+                    <p-dropdown
+                      [options]="situationDropdown"
+                      [(ngModel)]="selectedSituation"
+                    ></p-dropdown>
+                  </div>
+                </span>
+              </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="por Lote">
+              <div class="container-2">
+                <div class="lote-title">
+                  Tipo do lote:
+                  <div class="lote-field-1">
+                    <p-radioButton
+                      class="radial-button"
+                      name="filter"
+                      label="Unidade"
+                      value="val1"
+                      [(ngModel)]="selectedLote"
+                    ></p-radioButton>
+
+                    <p-radioButton
+                      class="radial-button"
+                      name="filter"
+                      label="Grupo"
+                      value="val2"
+                      [(ngModel)]="selectedLote"
+                    ></p-radioButton>
+
+                    <p-radioButton
+                      class="radial-button"
+                      name="filter"
+                      label="Especialidade"
+                      value="val3"
+                      [(ngModel)]="selectedLote"
+                    ></p-radioButton>
+                  </div>
+                </div>
+                <div class="lote-field-2">
+                  <label>Grupo:</label>
+                  <p-dropdown
+                    [options]="groupDropdown"
+                    [(ngModel)]="group"
+                  ></p-dropdown>
+                </div>
+              </div>
+            </p-tabPanel>
+
+            <button
+              pButton
+              label="Adicionar"
+              type="button"
+              icon="pi pi-plus"
+              iconPos="left"
+              (click)="handleClick()"
+            ></button>
+
+        </p-tabView>
+    </div>
+  </div>

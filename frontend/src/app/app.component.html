@@ -8,6 +8,7 @@
         'layout-topbar-mobile-active': mobileTopbarActive,
         'layout-rtl': config.isRTL}" [class]="'layout-menu-' + config.menuTheme + ' layout-topbar-' + config.topbarTheme">
 
+       
     <app-topbar></app-topbar>
 
     <div class="menu-wrapper" (click)="onMenuClick($event)">
@@ -17,14 +18,12 @@
     </div>
 
     <div class="layout-main">
-        <breadcrumb></breadcrumb>
-
         <div class="layout-content">
+           <!-- <breadcrumb></breadcrumb> --> 
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>
-    </div>
-
+    </div>  
     <basis-page-notification></basis-page-notification>
     <div class="layout-mask"></div>
 </div>

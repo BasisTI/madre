@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 /**
  * Mapper for the entity {@link Paciente} and its DTO {@link PacienteDTO}.
  */
-@Mapper(componentModel = "spring", uses = {CartaoSUSMapper.class, ResponsavelMapper.class, DocumentoMapper.class, CertidaoMapper.class, OcupacaoMapper.class, ReligiaoMapper.class, MunicipioMapper.class, EtniaMapper.class, GenitoresMapper.class, NacionalidadeMapper.class, RacaMapper.class, EstadoCivilMapper.class,TelefoneMapper.class, EnderecoMapper.class})
+@Mapper(componentModel = "spring", uses = {CartaoSUSMapper.class, ResponsavelMapper.class, DocumentoMapper.class, CertidaoMapper.class, OcupacaoMapper.class, ReligiaoMapper.class, MunicipioMapper.class, EtniaMapper.class, GenitoresMapper.class, NacionalidadeMapper.class, RacaMapper.class, EstadoCivilMapper.class,TelefoneMapper.class, EnderecoMapper.class, UFMapper.class})
 public interface PacienteInclusaoMapper extends EntityMapper<PacienteInclusaoDTO, Paciente> {
 
 
@@ -22,6 +22,7 @@ public interface PacienteInclusaoMapper extends EntityMapper<PacienteInclusaoDTO
     @Mapping(source = "raca.id", target = "racaId")
     @Mapping(source = "estadoCivil.id", target = "estadoCivilId")
     @Mapping(source = "prontuario", target = "prontuario")
+    @Mapping(source = "unidadeFederativa.id", target = "ufId")
     PacienteInclusaoDTO toDto(Paciente paciente);
 
 
@@ -33,6 +34,7 @@ public interface PacienteInclusaoMapper extends EntityMapper<PacienteInclusaoDTO
     @Mapping(source = "racaId", target = "raca")
     @Mapping(source = "estadoCivilId", target = "estadoCivil")
     @Mapping(source = "prontuario", target = "prontuario")
+    @Mapping(source = "ufId", target = "unidadeFederativa")
     Paciente toEntity(PacienteInclusaoDTO pacienteDTO);
 
     default Paciente fromId(Long id) {

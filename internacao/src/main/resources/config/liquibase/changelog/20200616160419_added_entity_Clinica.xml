@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity Clinica.
     -->
@@ -15,16 +15,19 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="nome" type="varchar(255)">
+            <column name="descricao" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="capacidade_referencial" type="int4"/>
+            <column name="idade_maxima_ambulatorio" type="int4"/>
+            <column name="idade_maxima_internacao" type="int4"/>
+            <column name="idade_minima_ambulatorio" type="int4"/>
+            <column name="idade_minima_internacao" type="int4"/>
+            <column name="numerosus" type="varchar(255)"/>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
 
-    <changeSet id="20200616160419-1-relations" author="jhipster">
-
-    </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
     <!--
@@ -41,7 +44,13 @@
                   separator=";"
                   tableName="clinica">
             <column name="id" type="numeric"/>
-            <column name="nome" type="string"/>
+            <column name="descricao" type="string"/>
+            <column name="capacidade_referencial" type="numeric"/>
+            <column name="idade_maxima_ambulatorio" type="numeric"/>
+            <column name="idade_maxima_internacao" type="numeric"/>
+            <column name="idade_minima_ambulatorio" type="numeric"/>
+            <column name="idade_minima_internacao" type="numeric"/>
+            <column name="numerosus" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

@@ -3,6 +3,7 @@ import { ScrollPanel } from 'primeng/scrollpanel';
 import { MenusService, MenuOrientation } from '@nuvem/primeng-components';
 import { PrimeNGConfig } from 'primeng/api';
 import { Router } from '@angular/router';
+// @import { local_hospital } from 'material-icons/iconfont/material-icons.css';
 
 @Component({
     selector: 'app-root',
@@ -60,8 +61,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     @ViewChild('scrollPanel', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
 
     constructor(
-        public renderer: Renderer2, 
-        public zone: NgZone, 
+        public renderer: Renderer2,
+        public zone: NgZone,
         public menuService: MenusService,
         private primengConfig: PrimeNGConfig,
         private router: Router) { }
@@ -72,15 +73,16 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.primengConfig.ripple = true;
         this.menuService.itens = [
             { label: '', items: [
-                { label: 'Dashboard', icon: 'material-icons dashboard', routerLink: ['/'] },
+                { label: 'HOME', icon: 'icon-home', routerLink: ['/'],url:'' },
                 {
                     label: 'Pacientes',
-                    icon: 'person_add',
+                    icon: 'icon-pacientes',
                     items: [
                         {
                             label: 'Pesquisa de Paciente',
                             icon: 'add',
                             routerLink: ['/paciente/list'],
+                            url:'src/assets/layout/images/icon.png',
                         },
                         {
                             label: 'Cadastro de Paciente',
@@ -91,7 +93,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Triagem',
-                    icon: 'local_hospital',
+                    icon: 'icon-triagem',
                     items: [
                         {
                             label: 'Pré-Cadastro',
@@ -118,7 +120,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Marcar Consultas',
-                    icon: 'watch_later',
+                    icon: 'icon-marcar-consultas',
                     items: [
                         {
                             label: 'Listar Consultas',
@@ -137,10 +139,10 @@ export class AppComponent implements AfterViewInit, OnInit {
                         },
                     ],
                 },
-    
+
                 {
                     label: 'Prescrição',
-                    icon: 'assignment_ind',
+                    icon: 'icon-prescricao',
                     items: [
                         {
                             label: 'Médica',
@@ -157,7 +159,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Internação',
-                    icon: 'airline_seat_individual_suite',
+                    icon: 'icon-internacao',
                     items: [
                         {
                             label: 'Solicitar Internação',
@@ -208,8 +210,29 @@ export class AppComponent implements AfterViewInit, OnInit {
                     ],
                 },
                 {
+                    label: 'Exames',
+                    icon: 'icon-exames',
+                    items: [
+                        {
+                            label: 'Atendimento Diverso',
+                            icon: 'add',
+                            routerLink: ['exames/atendimento-diverso'],
+                        }
+                        ,{
+                            label: 'Pesquisar Atendimento',
+                            icon: 'add',
+                            routerLink: ['exames/pesquisar-atendimento'],
+                        },
+                        {
+                            label: 'Solicitar Exame',
+                            icon: 'add',
+                            routerLink: ['exames/solicitar-exame'],
+                        },
+                    ]
+                },
+                {
                     label: 'Farmacia',
-                    icon: 'local_pharmacy',
+                    icon: 'icon-farmacia',
                     items: [
                         {
                             label: 'Dispensação medica',
@@ -230,7 +253,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                 },
                 {
                     label: 'Suprimentos',
-                    icon: 'local_shipping',
+                    icon: 'icon-suprimentos',
                     items: [
                         {
                             label: 'Almoxarifado',
@@ -298,6 +321,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
+
                     ],
                 },
             ]}

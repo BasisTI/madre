@@ -7,14 +7,19 @@ import { CpfCnpjValidator } from '../../shared/cpf-cnpj.validator';
 import { Paciente } from "./paciente.model";
 import { PacienteService } from "./paciente.service";
 import { PacienteValidators } from "./paciente.validators";
+import { MenuItem } from 'primeng/api';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 @Component({
     selector: 'paciente-form',
     templateUrl: './paciente-form.component.html',
+    styleUrls: ['./paciente-form.component.css']
 })
 export class PacienteFormComponent  implements OnInit{
 
     paciente: FormGroup;
+    items: MenuItem[];
+    activeItem: MenuItem;
 
     constructor(private fb: FormBuilder, private service: PacienteService) {
     }
@@ -33,14 +38,14 @@ export class PacienteFormComponent  implements OnInit{
             ocupacaoId: [null],
             religiaoId: [null],
             etniaId: [null],
-            uf: [null],
+            ufId: [null],
             naturalidadeId: [null],
             nacionalidadeId: [null, Validators.required],
             racaId: [null, Validators.required],
             estadoCivilId: [null, Validators.required],
             grauDeInstrucao: [null, Validators.required],
             sexo: [null, Validators.required],
-            telefones: this.fb.array([]),
+            telefones: [],
             enderecos: this.fb.array([]),
             genitores: this.fb.group({
                 id: [null],
@@ -95,6 +100,14 @@ export class PacienteFormComponent  implements OnInit{
                 numeroDaDeclaracaoDeNascimento: [null]
             })
         });
+        this.items = [
+            {label: 'Dados Pessoais'},
+            {label: 'Contatos do Paciente'},
+            {label: 'Endereço'},
+            {label: 'Responsável'},
+            {label: 'Cartão SUS'}
+        ];
+        this.activeItem = this.items[0];
     }
 
     imprimirRelatorioPaciente(id){

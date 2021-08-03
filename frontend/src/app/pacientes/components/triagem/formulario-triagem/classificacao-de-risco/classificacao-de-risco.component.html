@@ -1,82 +1,51 @@
 <form [formGroup]="formTriagem" class="p-grid p-fluid">
-    <div class="p-md-7"></div>
-    <h4>Classificação de Risco</h4>
-    <div class="p-dataview p-grid p-md-12 p-sm-12">
-        <div class="p-md-7">
-            <h3>
-                <span>{{ formTriagem.value.classificacaoDeRisco | classificaoDeRisco }}</span>
-            </h3>
-        </div>
-        <div class="p-md-1" value="classificacaoDeRisco">
-            <div
-                class="naoUrgente"
-                pTooltip="Sem risco de agravo à saúde, pode aguardar atendimento"
-            ></div>
-            <div class="p-col-12 p-grid"></div>
-            <div>
-                <p-radioButton
-                    name="classificacaoDeRisco"
-                    [value]="opcaoClassificacao[4].value"
-                    formControlName="classificacaoDeRisco"
-                ></p-radioButton>
-            </div>
-        </div>
+    <h2 class="p-md-12 sub-title">Classificação de Risco</h2>
+    <div class="p-grid classificacao-de-risco">
+        <app-nivel-emergencia 
+            [control]="formTriagem.controls.classificacaoDeRisco" 
+            class="p-col button-triagem" 
+            cor="nao-urgente" 
+            title="NÃO URGENTE"
+            descricao="Sem risco de agravo à saúde, pode aguardar atendimento" 
+            [value]="opcaoClassificacao[4].value">
+        </app-nivel-emergencia>
 
-        <div class="p-md-1">
-            <div
-                class="poucoUrgente"
-                pTooltip="Baixo risco de agravo a saúde, pode aguardar atendimento"
-            ></div>
-            <div class="p-col-12 p-grid"></div>
-            <div>
-                <p-radioButton
-                    name="classificacaoDeRisco"
-                    [value]="opcaoClassificacao[3].value"
-                    formControlName="classificacaoDeRisco"
-                ></p-radioButton>
-            </div>
-        </div>
+        <app-nivel-emergencia 
+            [control]="formTriagem.controls.classificacaoDeRisco" 
+            class="p-col button-triagem" 
+            cor="pouco-urgente" 
+            title="POUCO URGENTE"
+            descricao="Baixo risco de agravo a saúde, pode aguardar atendimento" 
+            [value]="opcaoClassificacao[3].value"
+            style="width: 20%;">
+        </app-nivel-emergencia>
 
-        <div class="p-md-1">
-            <div
-                class="urgente"
-                pTooltip="Necessita de atendimento rápido, mas pode aguardar"
-            ></div>
-            <div class="p-col-12 p-grid"></div>
-            <div>
-                <p-radioButton
-                    name="classificacaoDeRisco"
-                    [value]="opcaoClassificacao[2].value"
-                    formControlName="classificacaoDeRisco"
-                ></p-radioButton>
-            </div>
-        </div>
+        <app-nivel-emergencia 
+            [control]="formTriagem.get('classificacaoDeRisco')" 
+            class="p-col button-triagem" 
+            cor="urgente" 
+            title="URGENTE"
+            descricao="Necessita de atendimento rápido, mas pode aguardar" 
+            [value]="opcaoClassificacao[2].value">
+        </app-nivel-emergencia>
 
-        <div class="p-md-1">
-            <div
-                class="muitoUrgente"
-                pTooltip="Necessita de atendimento praticamente imediato"
-            ></div>
-            <div class="p-col-12 p-grid"></div>
-            <div>
-                <p-radioButton
-                    name="classificacaoDeRisco"
-                    [value]="opcaoClassificacao[1].value"
-                    formControlName="classificacaoDeRisco"
-                ></p-radioButton>
-            </div>
-        </div>
+        <app-nivel-emergencia 
+            [control]="formTriagem.get('classificacaoDeRisco')" 
+            class="p-col button-triagem" 
+            cor="muito-urgente" 
+            title="MUITO URGENTE"
+            descricao="Necessita de atendimento praticamente imediato" 
+            [value]="opcaoClassificacao[1].value">
+        </app-nivel-emergencia>
 
-        <div class="p-md-1">
-            <div class="emergencia" pTooltip="Necessita de atendimento imediato"></div>
-            <div class="p-col-12 p-grid"></div>
-            <div>
-                <p-radioButton
-                    name="classificacaoDeRisco"
-                    [value]="opcaoClassificacao[0].value"
-                    formControlName="classificacaoDeRisco"
-                ></p-radioButton>
-            </div>
-        </div>
+        <app-nivel-emergencia 
+            [control]="formTriagem.get('classificacaoDeRisco')" 
+            class="p-col button-triagem" 
+            cor="emergencia" 
+            title="EMERGÊNCIA"
+            descricao="Necessita de atendimento imediato" 
+            [value]="opcaoClassificacao[0].value">
+        </app-nivel-emergencia>
+
     </div>
 </form>

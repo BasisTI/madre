@@ -17,8 +17,8 @@ export class PacienteService implements CrudService<number, Paciente> {
     constructor(private http: HttpClient, private blockUiService: BlockUiService) {
     }
 
-    save(paciente: Paciente): Observable<Paciente> {
-        let salvar: any = {
+    formatEntity(paciente: Paciente){
+        let entity: any = {
             ...paciente,
             ocupacaoId: paciente.ocupacaoId?.id,
             religiaoId: paciente.religiaoId?.id,
@@ -27,6 +27,7 @@ export class PacienteService implements CrudService<number, Paciente> {
             nacionalidadeId: paciente.nacionalidadeId?.id,
             racaId: paciente.racaId?.id,
             estadoCivilId: paciente.estadoCivilId?.id,
+            ufId: paciente.ufId?.id,
             cartaoSUS: {
                 ...paciente.cartaoSUS,
                 justificativaId: paciente.cartaoSUS.justificativaId?.id,
@@ -42,7 +43,7 @@ export class PacienteService implements CrudService<number, Paciente> {
                 ufId: paciente.documento.ufId?.id
             },
         }
-        salvar.enderecos.forEach((endereco) => {
+        entity.enderecos.forEach((endereco) => {
             endereco.municipioId = endereco.municipioId.id;
             endereco.bairro = endereco.bairro;
             endereco.cep = endereco.cep;
@@ -53,11 +54,16 @@ export class PacienteService implements CrudService<number, Paciente> {
             endereco.correspondencia = endereco.correspondencia;
             endereco.tipoDoEndereco = endereco.tipoDoEndereco;
           });
-        return this.http.post<Paciente>(this.uriServico, salvar);
+
+        return entity;
+    }
+    
+    save(paciente: Paciente): Observable<Paciente> {
+        return this.http.post<Paciente>(this.uriServico, this.formatEntity(paciente));
     }
 
-    edit(entity: Paciente): Observable<Paciente> {
-        return this.http.put<Paciente>(this.uriServico, entity);
+    edit(paciente: Paciente): Observable<Paciente> {
+        return this.http.put<Paciente>(this.uriServico, this.formatEntity(paciente));
     }
 
     find(id: number): Observable<Paciente> {

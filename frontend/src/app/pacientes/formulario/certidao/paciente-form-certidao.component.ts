@@ -6,6 +6,7 @@ import { FormGroup } from "@angular/forms";
 @Component({
     selector: 'paciente-form-certidao',
     templateUrl: './paciente-form-certidao.component.html',
+    styleUrls: ['paciente-form-certidao.component.css']
 })
 export class PacienteCertidaoFormComponent {
 

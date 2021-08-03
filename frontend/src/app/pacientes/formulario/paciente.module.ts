@@ -37,6 +37,8 @@ import { MotivoDoCadastroService } from './cartao-sus/motivo-do-cadastro.service
 import { UfService } from './municipio/uf.service';
 import { MunicipioService } from './municipio/municipio.service';
 import { CepService } from './endereco/cep.service';
+import {TabViewModule} from 'primeng/tabview';
+
 
 @NgModule({
   imports: [ 
@@ -48,7 +50,8 @@ import { CepService } from './endereco/cep.service';
     PacienteRoutingModule,
     HttpClientModule,
     DatatableModule,
-    FormNotificationModule
+    FormNotificationModule,
+    TabViewModule
   ],
   declarations: [ 
     PacienteComponent,

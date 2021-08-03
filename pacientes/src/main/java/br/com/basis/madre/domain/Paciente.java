@@ -139,6 +139,11 @@ public class Paciente implements Serializable {
     @Field(type = FieldType.Nested)
     @ManyToOne
     @JsonIgnoreProperties("pacientes")
+    private UF unidadeFederativa;
+
+    @Field(type = FieldType.Nested)
+    @ManyToOne
+    @JsonIgnoreProperties("pacientes")
     private Municipio naturalidade;
 
     @Field(type = FieldType.Nested)

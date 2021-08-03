@@ -133,6 +133,7 @@ public class TransferenciaAlmoxarifadoService {
             return;
         }
 
+        dto.getInformacaoTransferencia().getEfetivada();
         dto.getInformacaoTransferencia().setEfetivada(true);
         transferirItensEntreAlmoxarifados(dto.getOrigemId(), dto.getDestinoId(), dto.getItens());
     }

@@ -1,0 +1,91 @@
+{
+  "name": "LaboratorioExterno",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endereco",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "municipio",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cgc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigoConvenio",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigoPlano",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "convenioPlano",
+      "fieldType": "ConvenioPlano",
+      "fieldValues": "SUS_internacao,SUS_planoAmbulatorio"
+    },
+    {
+      "fieldName": "formaEnvio",
+      "fieldType": "FormaEnvio",
+      "fieldValues": "Correio,Fax"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210705120518",
+  "entityTableName": "laboratorio_externo",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}
