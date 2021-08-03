@@ -48,7 +48,6 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
     })
   }
 
-
   removerItem(index: number) {
     this.itemsTratados = this.itemsTratados.filter((item) => (item.index != index));
   }

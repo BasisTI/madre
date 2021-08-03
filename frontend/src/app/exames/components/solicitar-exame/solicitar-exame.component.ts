@@ -79,7 +79,7 @@ export class SolicitarExameComponent implements OnInit {
       infoClinica: solicitacaoExame.infoClinica,
       usoAntimicrobianos24h: solicitacaoExame.usoAntimicrobianos24h,
       pedidoPrimeiroExame: solicitacaoExame.pedidoPrimeiroExame,
-      itemSolicitacao: this.itensSolicitacaoExame
+      solicitacaoExames: this.itensSolicitacaoExame
     };
 
     console.log(solicitacao); 

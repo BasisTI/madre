@@ -92,23 +92,22 @@
                         Paciente utiliza antimicrobianos a mais de 24 horas:
                         <div style="margin-top: 5px; margin-bottom: 10px;">
                             <p-radioButton name="antimicrobianos" value=true [(ngModel)]="opcoesDeAntimicrobianos"
-                                label="Sim" style="margin-right: 15px" formControlName="usoAntimicrobianos24h">
+                                label="Sim" formControlName="usoAntimicrobianos24h">
                             </p-radioButton>
 
                             <p-radioButton name="antimicrobianos" value=false [(ngModel)]="opcoesDeAntimicrobianos"
-                                label="Não" style="margin-right: 15px" formControlName="usoAntimicrobianos24h">
+                                label="Não" formControlName="usoAntimicrobianos24h">
                             </p-radioButton>
                         </div>
 
                         Pedido para 1° exame ou comparativo:
                         <div style="margin-top: 5px; margin-bottom: 10px;" [formGroup]="solicitarExame">
                             <p-radioButton name="exameOuComparativo" value=true [(ngModel)]="opcoesDeExameOuComparativo"
-                                label="1º Exame" style="margin-right: 15px" formControlName="pedidoPrimeiroExame">
+                                label="1º Exame" formControlName="pedidoPrimeiroExame">
                             </p-radioButton>
 
                             <p-radioButton name="exameOuComparativo" value=false
-                                [(ngModel)]="opcoesDeExameOuComparativo" label="Comparativo" style="margin-right: 15px"
-                                formControlName="pedidoPrimeiroExame"></p-radioButton>
+                                [(ngModel)]="opcoesDeExameOuComparativo" label="Comparativo"                                formControlName="pedidoPrimeiroExame"></p-radioButton>
                         </div>
 
                     </div>

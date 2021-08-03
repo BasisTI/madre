@@ -11,7 +11,6 @@ export class ItemSolicitacaoExameService {
     constructor(private httpService: HttpClient) {}
 
     adicionarItemExame(itemExame: ItemSolicitacaoExame) {
-        console.log(itemExame);
 
         return this.httpService.post(this.apiUrl, itemExame);
     }

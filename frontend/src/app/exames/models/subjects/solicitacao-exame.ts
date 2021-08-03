@@ -6,6 +6,6 @@ export class SolicitacaoExame {
         public infoClinica?: string,
         public usoAntimicrobianos24h?: boolean,
         public pedidoPrimeiroExame?: boolean,
-        public itemSolicitacao?: IitemSolicitacaoExame[]
+        public solicitacaoExames?: IitemSolicitacaoExame[]
     ) {}
 }
