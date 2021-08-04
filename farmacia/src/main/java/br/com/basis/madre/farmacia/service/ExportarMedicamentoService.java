@@ -1,5 +1,6 @@
 package br.com.basis.madre.farmacia.service;
 
+import br.com.basis.madre.farmacia.domain.Medicamento;
 import br.com.basis.madre.farmacia.repository.MedicamentoRepository;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import lombok.RequiredArgsConstructor;
@@ -76,13 +77,12 @@ public class ExportarMedicamentoService {
         fonte.setFontHeight(12);
         fonte.setFontName("Arial");
         estilo.setFont(fonte);
-        String medicamentoQuery = "select * from medicamento where ativo = true";
 
-        int contaMedicamentos = medicamentoRepository.countByAtivoIsTrue().intValue();
+        int contaMedicamentos = medicamentoRepository.countAllByIdIsNotNull().intValue();
 
         Pageable medicamentos = PageRequest.of(0, contaMedicamentos);
 
-        for (MedicamentoDTO medicamento : medicamentoService.search(medicamentoQuery, medicamentos)) {
+        for (MedicamentoDTO medicamento : medicamentoService.buscarTodosMedicamentos(medicamentos)) {
             Row row = sheet.createRow(rowCount++);
 
             escreverColunas(row, estilo, 0, medicamento.getNome());

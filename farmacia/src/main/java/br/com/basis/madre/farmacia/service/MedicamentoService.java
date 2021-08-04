@@ -132,8 +132,16 @@ public class MedicamentoService {
         return medicamentoSearchRepository.search(nativeSearchQueryBuilder);
     }
 
-    public List<Medicamento> listarTodos() {
-        return medicamentoRepository.findAll();
+    public Page<MedicamentoDTO> buscarTodosMedicamentos(Pageable pageable) {
+        NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
+
+            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+                (includes).build())
+            .withPageable(pageable)
+            .build();
+
+        return medicamentoSearchRepository.search(nativeSearchQueryBuilder)
+            .map(medicamentoMapper::toDto);
     }
 
     public Page<Medicamento> buscaPorAtivo(String ativo, Pageable pageable) {
