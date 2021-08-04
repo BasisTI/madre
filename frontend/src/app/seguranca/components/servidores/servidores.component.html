@@ -1,0 +1,127 @@
+<h1>Servidores</h1>
+<div class="card">
+    <h2 class="sub-title">Pesquisa Servidores</h2>
+    <div class="p-md-12 p-d-inline">
+        <div class=" p-grid">
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'codigo'">
+                </p-dropdown>
+                <label>Pessoa</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <input type="text" pInputText pTooltip="Informe o login do servidor" formControlName="login" />
+                <label>Login</label>
+            </span>
+
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="vinculos" [optionLabel]="'descricao'" [optionValue]="'codigo'">
+                </p-dropdown>
+                <label>Vinculo</label>
+            </div>
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <input type="text" pInputText pTooltip="Informe a matrícula do servidor" formControlName="login" />
+                <label>Matrícula</label>
+            </span>
+            <span class="p-col-12 p-md-6 p-lg-3">
+                <label>Situação</label>
+                <p-dropdown [options]="situacaoDoServidor" pTooltip="Informe a situação do servidor">
+                </p-dropdown>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3">
+                <label>Tipo Remuneração</label>
+                <p-dropdown [options]="tipoDeRemuneracao" pTooltip="Informe o tipo de remuneração">
+                </p-dropdown>
+            </span>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"></p-dropdown>
+                <label>Centro de Atividade Lotação</label>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"></p-dropdown>
+                <label>Centro de Atividade Atuação</label>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="ocupacao" [optionLabel]="'valor'" [optionValue]="'id'"></p-dropdown>
+                <label>Ocupação</label>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-lg-3">
+                <p-radioButton class="radial-button" label="Vínculo Próximo de Expirar"></p-radioButton>
+            </div>
+        </div>
+
+    </div>
+    <div class="p-grid p-jc-end">
+        <div class="button-margin">
+            <button pButton type="button" label="Novo Servidor" icon="ui-icon-add" routerLink="/seguranca/formulario"
+                bTooltip="Cadastrar novo Servidor."></button>
+        </div>
+    
+        <div class="button-margin">
+            <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
+                bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
+        </div>
+    </div>
+</div> 
+
+<div class="p-grid">
+    <basis-datatable [url]="searchUrl" [showPaginationFooter]="true"[rowsPerPageOptions]="rowsPerPageOptions">
+        <p-column header="Vínculo" field="pessoa.descricao">
+            <ng-template let-col="col" let-seguranca="rowData" pTemplate="body">
+                {{ seguranca?.vinculo?.descricao === undefined ? "" : seguranca?.vinculo?.descricao}}
+            </ng-template>
+        </p-column>
+        <p-column header="Matrícula" field="paciente.nomeSocial">
+            <ng-template let-col="col" let-seguranca="rowData" pTemplate="body">
+                {{ seguranca?.servidor?.matricula === undefined ? "" : seguranca?.servidor?.matricula}}
+            </ng-template>
+        </p-column>
+        <p-column header="Código" field="paciente.genitores.nomeDaMae">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                {{ triagem?.paciente?.genitores?.nomeDaMae === undefined ? "" :
+                triagem?.paciente?.genitores?.nomeDaMae}}
+            </ng-template>
+        </p-column>
+        <p-column header="Nome" field="dataHoraDoAtendimento">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+                {{ triagem?.dataHoraDoAtendimento | date: 'dd/MM/yyyy - HH:mm' }}
+            </ng-template>
+        </p-column>
+        <p-column header="Usuário" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+            </ng-template>
+        </p-column>
+        <p-column header="C. Atividade Lotação" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+            </ng-template>
+        </p-column>
+        <p-column header="C. Atividade Atuação" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+            </ng-template>
+        </p-column>
+        <p-column header="Ocupação" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+            </ng-template>
+        </p-column>
+        <p-column header="Remuneração" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+            </ng-template>
+        </p-column>
+        <p-column header="Situação" field="classificacaoDeRisco">
+            <ng-template let-col="col" let-triagem="rowData" pTemplate="body">
+            </ng-template>
+        </p-column>
+    </basis-datatable>
+</div>

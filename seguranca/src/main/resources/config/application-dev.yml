@@ -62,13 +62,15 @@ spring:
     database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
     show-sql: true
   data:
-    elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
-  liquibase:
-    # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    jest:
+      uri: http://localhost:9200
+      # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-connecting-to-elasticsearch-jest
+      elasticsearch:
+        rest:
+          uris: http://localhost:9200
+    liquibase:
+      # Remove 'faker' if you do not want the sample data to be loaded automatically
+      contexts: dev, faker
   mail:
     host: localhost
     port: 25

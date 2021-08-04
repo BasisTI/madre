@@ -17,4 +17,8 @@ export class CentroAtividadeService {
             params: new HttpParams().set('sort', 'descricao').set('descricao', descricao),
         });
     }
+
+    public getCentros(): Observable<Array<CentroAtividade>> {
+        return this.client.get<Array<CentroAtividade>>(`${this.resource}`);
+    }
 }

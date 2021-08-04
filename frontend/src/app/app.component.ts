@@ -324,6 +324,18 @@ export class AppComponent implements AfterViewInit, OnInit {
 
                     ],
                 },
+                {
+                    label: 'Segurança',
+                    icon: 'add',
+                    items: [
+                        {
+                            label: 'Servidores',
+                            icon: 'add',
+                            routerLink: ['/seguranca/servidores'],
+                        },
+                    ],
+                },
+                
             ]}
 
         ];

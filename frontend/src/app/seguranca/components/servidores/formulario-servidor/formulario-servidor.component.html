@@ -1,0 +1,83 @@
+<h1>Servidores</h1>
+<div class="card">
+    <h2 class="sub-title">Cadastro de Servidor</h2>
+    <div class="p-md-12 p-d-inline">
+        <div class=" p-grid">
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="pessoas" [optionLabel]="'codigo'" [optionValue]="'id'">
+                </p-dropdown>
+                <label>Código</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="login" [optionLabel]="'login'" [optionValue]="'id'">
+                </p-dropdown>
+                <label>Login</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="vinculo" [optionLabel]="'descricao'" [optionValue]="'id'">
+                </p-dropdown>
+                <label>Vínculo</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <input type="text" pInputText formControlName="matricula" />
+                <label>Matrícula</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <input type="text" pInputText formControlName="codStarh" />
+                <label>Código STARH</label>
+            </span>
+
+            <span class="p-float-label">
+                <p-calendar formControlName="inicioVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
+                    monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
+                </p-calendar>
+                <label>Início do Vínculo</label>
+            </span>
+
+            <span class="p-float-label">
+                <p-calendar formControlName="inicioVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
+                    monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
+                </p-calendar>
+                <label>Fim do Vínculo</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="situacaoDoServidor">
+                </p-dropdown>
+                <label>Situação</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="opcoesDeSituacaoDoServidor">
+                </p-dropdown>
+                <label>Situação do servidor</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"></p-dropdown>
+                <label>Centro de Atividade Lotação</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"></p-dropdown>
+                <label>Centro de Atividade Atuação</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <p-dropdown [options]="ocupacao" [optionLabel]="'valor'" [optionValue]="'id'"></p-dropdown>
+                <label>Ocupação</label>
+            </span>
+
+
+        </div>
+        <div class="p-grid p-jc-end">
+            <div class="button-margin">
+                <button pButton type="button" label="Salvar" icon="ui-icon-add"
+                    bTooltip="Cadastrar novo Servidor."></button>
+            </div>
+        </div>
+    </div>
