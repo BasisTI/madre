@@ -13,11 +13,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> {
 
-
-    @Query("from Medicamento m where m.ativo = true")
-    String findByAtivoIsTrue();
-
     Long countByAtivoIsTrue();
+
+    Long countAllByIdIsNotNull();
 
 
 }
