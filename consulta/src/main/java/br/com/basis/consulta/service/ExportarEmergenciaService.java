@@ -17,10 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.time.format.DateTimeFormatter;
-=======
->>>>>>> 135e126d91c9234486c2729ee4e028d0df5a779f
 import java.util.ArrayList;
 
 @Service
@@ -83,7 +80,6 @@ public class ExportarEmergenciaService {
 
         Pageable medicamentos = PageRequest.of(0, contaEmergencias);
 
-<<<<<<< HEAD
         for (EmergenciaDTO emergencia : emergenciaService.findAll(medicamentos)){
             Row row = sheet.createRow(rowCount++);
 
@@ -97,20 +93,6 @@ public class ExportarEmergenciaService {
             escreverColunas(row, estilo, 7, emergencia.getJustificativa());
             escreverColunas(row, estilo, 8, emergencia.getObservacoes());
             escreverColunas(row, estilo, 9, emergencia.getPacienteId().toString());
-=======
-        for (EmergenciaDTO emergencia : emergenciaService.buscarTodasEmergencias(medicamentos)){
-            Row row = sheet.createRow(rowCount++);
-
-            escreverColunas(row, estilo, 0, emergencia.getGrade().toString());
-            escreverColunas(row, estilo, 1, emergencia.getDataHoraDaConsulta().toString());
-            escreverColunas(row, estilo, 2, emergencia.getNumeroSala());
-            escreverColunas(row, estilo, 3, emergencia.getTurno().name());
-            escreverColunas(row, estilo, 4, emergencia.getTipoPagador().name());
-            escreverColunas(row, estilo, 5, emergencia.getClinicaCentralId().toString());
-            escreverColunas(row, estilo, 6, emergencia.getJustificativa());
-            escreverColunas(row,estilo, 7, emergencia.getObservacoes());
-            escreverColunas(row, estilo, 8, emergencia.getPacienteId().toString());
->>>>>>> 135e126d91c9234486c2729ee4e028d0df5a779f
 
         }
     }
