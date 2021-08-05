@@ -77,9 +77,9 @@ public class ExportarEmergenciaService {
 
         int contaEmergencias = emergenciaRepository.countAllByIdIsNotNull().intValue();
 
-        Pageable medicamentos = PageRequest.of(0, 10);
+        Pageable medicamentos = PageRequest.of(0, contaEmergencias);
 
-        for (Emergencia emergencia : emergenciaService.buscaEmergencias(medicamentos)){
+        for (EmergenciaDTO emergencia : emergenciaService.buscarTodasEmergencias(medicamentos)){
             Row row = sheet.createRow(rowCount++);
 
             escreverColunas(row, estilo, 0, emergencia.getGrade().toString());

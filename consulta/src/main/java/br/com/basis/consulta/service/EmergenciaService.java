@@ -137,18 +137,6 @@ public class EmergenciaService {
         return emergenciaSearchRepository.search(query);
     }
 
-    public Page<Emergencia> buscaEmergencias(Pageable pageable) {
-        NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
-
-            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
-                (includes).build())
-            .withPageable(pageable)
-            .build();
-
-
-        return emergenciaSearchRepository.search(nativeSearchQueryBuilder);
-    }
-
     public Page<EmergenciaDTO> buscarTodasEmergencias(Pageable pageable) {
         NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
 
