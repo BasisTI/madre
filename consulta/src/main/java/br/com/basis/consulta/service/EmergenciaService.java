@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,8 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 @Transactional
 public class EmergenciaService {
 
+    public static final String NUMERO_CONSULTA = "numeroConsulta";
+    public static final String DATA_HORA_CONSULTA = "dataHoraDaConsulta";
     private final Logger log = LoggerFactory.getLogger(EmergenciaService.class);
 
     private final EmergenciaRepository emergenciaRepository;
@@ -36,6 +40,8 @@ public class EmergenciaService {
     private final EmergenciaMapper emergenciaMapper;
 
     private final EmergenciaSearchRepository emergenciaSearchRepository;
+
+    private final String[] includes = new String[]{"id", NUMERO_CONSULTA, DATA_HORA_CONSULTA, "grade", "numeroSala", "turno", "tipoPagador", "gradesDisponiveis", "clinicaCentralId", "justificativa", "observacoes", "pacienteId", "condicaoDeAtendimento", "formaDeAgendamento", "especialidade", "profissional"};
 
     public EmergenciaService(EmergenciaRepository emergenciaRepository, EmergenciaMapper emergenciaMapper, EmergenciaSearchRepository emergenciaSearchRepository) {
         this.emergenciaRepository = emergenciaRepository;
@@ -129,6 +135,18 @@ public class EmergenciaService {
             .withPageable(pageable)
             .build();
         return emergenciaSearchRepository.search(query);
+    }
+
+    public Page<EmergenciaDTO> buscarTodasEmergencias(Pageable pageable) {
+        NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
+
+            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes
+                (includes).build())
+            .withPageable(pageable)
+            .build();
+
+        return emergenciaSearchRepository.search(nativeSearchQueryBuilder)
+            .map(emergenciaMapper::toDto);
     }
 
     private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
