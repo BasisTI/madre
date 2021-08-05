@@ -16,4 +16,5 @@ import org.springframework.stereotype.Repository;
 public interface EmergenciaRepository extends JpaRepository<Emergencia, Long> {
     Page<CalendarioResumo> findAllCalendarioResumoBy(Pageable pageable);
 
+    Long countAllByIdIsNotNull();
 }

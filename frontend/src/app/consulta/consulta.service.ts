@@ -18,6 +18,10 @@ export class ConsultaService {
 
     constructor(private client: HttpClient) { }
 
+    exportarConsultas(): Observable<Blob> {
+        return this.client.get(`${this.apiUrl}/consultas-emergencias/exportar`, {responseType: 'blob'});
+    }
+
     public cadastrarConsultas(consultas: ConsultaEmergenciaModel) {
         return this.client.post(`${this.apiUrl}/consultas-emergencias`, consultas);
     }
