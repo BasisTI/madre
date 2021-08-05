@@ -1,6 +1,7 @@
 package br.com.basis.madre.seguranca.web.rest;
 
 import br.com.basis.madre.seguranca.service.PessoaService;
+import br.com.basis.madre.service.projection.PessoaResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
 
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +23,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.seguranca.domain.Pessoa}.
@@ -141,5 +138,10 @@ public class PessoaResource {
         Page<PessoaDTO> page = pessoaService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-        }
+    }
+
+    @GetMapping("/pessoas/_resumo")
+    public ResponseEntity<Page<PessoaResumo>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome, Pageable pageable) {
+        return ResponseEntity.ok(pessoaService.findAllProjectedPessoaResumoBy(nome,pageable));
+    }
 }

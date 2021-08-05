@@ -3,10 +3,11 @@
     <h2 class="sub-title">Cadastro de Servidor</h2>
     <div class="p-md-12 p-d-inline">
         <div class=" p-grid">
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="pessoas" [optionLabel]="'codigo'" [optionValue]="'id'">
-                </p-dropdown>
-                <label>Código</label>
+
+            <span class="p-float-label">
+                <p-autoComplete field="nome" formControlName="pessoa" [suggestions]="listaPessoasServidor"
+                    (completeMethod)="buscaPessoas($event)" (onSelect)="pessoaSelecionada($event)" [dropdown]="true"></p-autoComplete>
+                <label>Nome do Paciente</label>
             </span>
 
             <span class="p-col-12 p-md-6 p-float-label">
@@ -72,12 +73,41 @@
                 <label>Ocupação</label>
             </span>
 
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="grupoFuncional" [optionLabel]="'descricao'" [optionValue]="'id'">
+                </p-dropdown>
+                <label>Grupo Funcional</label>
+            </span>
 
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <input type="text" pInputText formControlName="emailParticular" />
+                <label>E-mail Particular</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
+                <input type="text" pInputText formControlName="cargaHoraria" />
+                <label>Carga Horária</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="opcoesDeTipoDeRemuneracao">
+                </p-dropdown>
+                <label>Tipo de Remuneração</label>
+            </span>
+
+            <span class="p-col-12 p-md-6 p-float-label">
+                <p-dropdown [options]="ramal" [optionLabel]="'numero'" [optionValue]="'id'">
+                </p-dropdown>
+                <label>Ramal</label>
+            </span>
         </div>
+        
         <div class="p-grid p-jc-end">
             <div class="button-margin">
                 <button pButton type="button" label="Salvar" icon="ui-icon-add"
                     bTooltip="Cadastrar novo Servidor."></button>
             </div>
         </div>
+
+        
     </div>

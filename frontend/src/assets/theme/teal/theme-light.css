@@ -5106,6 +5106,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-input-filled .p-autocomplete .p-autocomplete-multiple-container .p-inputtext {
   background-image: none;
   background-color: transparent;
+  width: 100%;
 }
 .p-input-filled .p-autocomplete .p-autocomplete-multiple-container:not(.p-disabled):hover {
   background-color: #ececec;

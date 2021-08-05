@@ -2,20 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
-import { Vinculo } from '../models/vinculo-model';
+import { Ramal } from '../models/ramal';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VinculoService{
+export class RamalService{
 
-  private readonly resource = `${api}/vinculos`;
+  private readonly resource = `${api}/ramals`;
 
 
   constructor(private client: HttpClient) {}
 
-  public getVinculo(): Observable<Array<Vinculo>> {
-    return this.client.get<Array<Vinculo>>(`${this.resource}`);
+  public getRamal(): Observable<Array<Ramal>> {
+    return this.client.get<Array<Ramal>>(`${this.resource}`);
   }
 
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pageable } from '@shared/pageable';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
 import { Servidor } from '../models/servidor-model';
@@ -15,7 +16,7 @@ export class ServidorService{
 
   constructor(private client: HttpClient) {}
 
-  public getServidor(): Observable<Array<Servidor>> {
+  getServidor(): Observable<Array<Servidor>> {
     return this.client.get<Array<Servidor>>(`${this.resource}`);
   }
 
