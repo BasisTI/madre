@@ -32,7 +32,7 @@
         "@ngx-progressbar/core": "^5.2.1",
         "@ngx-progressbar/http": "^5.2.1",
         "@nuvem/angular-base": "^11.2.1",
-        "@nuvem/primeng-components": "^11.2.1",
+        "@nuvem/primeng-components": "^11.2.1-0",
         "chart.js": "2.9.4",
         "classlist.js": "^1.1.20150312",
         "core-js": "~3.5.0",

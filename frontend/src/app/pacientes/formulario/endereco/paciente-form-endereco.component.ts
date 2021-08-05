@@ -1,6 +1,6 @@
 import { OPCOES_DE_TIPO_DE_ENDERECO } from './../../models/dropdowns/opcoes-de-tipo-de-endereco';
-import { DatatableClickEvent, BreadcrumbService } from '@nuvem/primeng-components';
-import { Component, Input } from "@angular/core";
+import { DatatableClickEvent, BreadcrumbService, DatatableComponent } from '@nuvem/primeng-components';
+import { Component, Input, ViewChild } from "@angular/core";
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
 import { CepService } from "./cep.service";
 import { UfService } from "../municipio/uf.service";
@@ -8,18 +8,20 @@ import { MunicipioService } from "../municipio/municipio.service";
 import { UF } from "../../models/dropdowns/types/uf";
 import { MunicipioUF } from "../../models/dropdowns/types/municipio-uf";
 import { CEP } from "./cep.model";
+import { element } from 'protractor';
 
 
 @Component({
     selector: 'paciente-form-endereco',
-    templateUrl: './paciente-form-endereco.component.html',
+    templateUrl: './paciente-form-endereco.component.html'
 })
 export class PacienteEnderecoFormComponent {
 
-    @Input()
-    public enderecos: any =  FormArray;
+    @ViewChild('datatable') table: DatatableComponent;
 
-    public enderecoValido: boolean = false;
+    @Input() public enderecos: any = [];
+
+    public validaEndereco: boolean = false;
     
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
@@ -107,10 +109,14 @@ export class PacienteEnderecoFormComponent {
 
     adicionarEnderecoALista() {
         if (this.endereco.valid) {
-            this.endereco.patchValue({indice: this.enderecos.length});
-            this.enderecos.push(this.endereco);
+            let endr = {
+                ...this.endereco.value,
+                id: this.enderecos.value?.length
+            }
+            
+            this.enderecos.value.push(endr);
             this.endereco = this.fb.group({
-                id: [null],
+                id: this.enderecos.lenght,
                 cep: [null],
                 logradouro: [null],
                 numero: [null],
@@ -122,32 +128,46 @@ export class PacienteEnderecoFormComponent {
                 uf: [null],
                 indice: [null],
             });
+
+            this.endereco.reset();
+            this.table.refresh();
         }
-        this.endereco.reset();
     }
 
     datatableClick(event: DatatableClickEvent) {
         if (event.selection) {
             switch (event.button) {
                 case "edit":
-                    this.enderecoValido = true;
-                    this.endereco.patchValue(this.enderecos.controls[event.selection.indice].value);
+                    this.validaEndereco = true;
+                    this.endereco.patchValue(event.selection);
                     break;
                 case "delete":
-                    this.enderecos.removeAt(event.selection.indice);
-                    var i = 0;
-                    this.enderecos.controls.forEach((atual) => atual.patchValue({indice: i++}));
+                    let enderecos = this.enderecos.value.filter((e) => e.id != event.selection.id)
+                    this.enderecos.setValue(enderecos);
                     break;
             }
+            this.table.refresh();
         }
     }
 
     atualizarEdicao(): void {
-        let atual = this.endereco.value;
-        this.enderecos.controls[atual.indice].patchValue(atual);
-        this.enderecoValido = false;
-        this.endereco.reset();
-      }
+        if (this.endereco.valid) {
+            let endr = {
+                ...this.endereco.value
+            };
+        
+            let enderecos = this.enderecos.value.map((element) => {
+                if(element.id = endr.id){
+                    return endr;
+                }
+                return element;
+            });
+            
+            this.enderecos.setValue(enderecos);
+            this.validaEndereco = false;
+            this.endereco.reset();
+        }
+    }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();

@@ -74,9 +74,9 @@ export class PacienteService implements CrudService<number, Paciente> {
         return this.http.delete<Paciente>(`${this.uriServico}/${id}`);
     }
 
-    findAll(entity: Paciente): Observable<Paciente>{
+    findAll(entity: Paciente): Observable<Paciente[]>{
         const params = new HttpParams().set('nome', entity.nome).set('prontuario', entity.prontuario);
-        return this.http.get<Paciente>(`${this.uri}`, { params });
+        return this.http.get<Paciente[]>(`${this.uri}`, { params });
     }
 
     public geraRelatorioPaciente(id: number): Observable<string> {

@@ -1,4 +1,4 @@
-<div class='my-component'>
+
     <nCrudForm class="crud-component" [form]="paciente" >
         <p-tabView>
             <p-tabPanel header="Dados Pessoais">
@@ -7,7 +7,7 @@
                 <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
             </p-tabPanel>
             <p-tabPanel header="Contatos do Paciente">
-                <paciente-form-telefone [formGroup]="paciente"> </paciente-form-telefone>
+                <paciente-form-telefone [telefones]="paciente.get('telefones')"> </paciente-form-telefone>
             </p-tabPanel>
             <p-tabPanel header="Endereço">
                 <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>
@@ -37,4 +37,3 @@
             </div>
         </div>
     </nCrudForm>
-</div>

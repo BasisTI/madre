@@ -15,4 +15,8 @@ export class DDDService extends CrudServiceNuvem<number, DDD>{
     super('/pacientes/api/list/ddd', httpClient);
   }
   
+  all(): Observable<DDD[]> {
+    return this.http.get<DDD[]>(`${this.uri}`);
+  }
+
 }

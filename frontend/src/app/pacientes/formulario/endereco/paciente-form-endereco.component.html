@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="p-col-12 p-grid">
-        <div class="p-md-2 p-sm-4 p-col-8">
+        <div class="p-md-2 p-sm-12 p-col-12">
             <span class="md-inputfield p-float-label">
                 <p-autoComplete
                     (completeMethod)="searchUnidade($event)"
@@ -28,12 +28,12 @@
                 <label>Municípios</label>
             </span>
         </div>
-        <div nInputText label="Logradouro" formControlName="logradouro" class="p-md-4 p-sm-8 p-col-12" required></div>
+        <div nInputText label="Logradouro" formControlName="logradouro" class="p-md-4 p-sm-12 p-col-12" required></div>
         <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid p-fluid">
-        <div nInputText label="Número" required formControlName="numero" class="p-md-2 p-sm-4 p-col-8"></div>
-        <div nInputText label="Complemento" formControlName="complemento" class="p-md-4 p-sm-8 p-col-12"></div>
+        <div nInputText label="Número" required formControlName="numero" class="p-md-2 p-sm-12 p-col-12"></div>
+        <div nInputText label="Complemento" formControlName="complemento" class="p-md-4 p-sm-12 p-col-12"></div>
         <div nInputText label="Bairro" required formControlName="bairro" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid">
@@ -49,7 +49,7 @@
             </p-radioButton>
             <label>Sim</label>
         </div>
-        <div class="p-md-2 p-sm-4 p-col-8">
+        <div class="p-md-2 p-sm-6 p-col-12">
             <p-radioButton
                 id="nao"
                 type="radio"
@@ -62,27 +62,28 @@
         </div>
     </div>
 
-    <div *ngIf="!enderecoValido">
+    <div *ngIf="!endereco.value.indice">
         <p-button
             label="Adicionar"
             [disabled]="endereco.invalid"
+            [disabled]="validaEndereco ? true : null"
             type="button"
-            (onClick)="adicionarEnderecoALista()"
-            [style.margin-left]="20"
-            [style.width]="90">
+            (onClick)="adicionarEnderecoALista()">
         </p-button>
     </div>
-    <div *ngIf="enderecoValido">
+    <div *ngIf="validaEndereco">
         <p-button
         [disabled]="endereco.invalid"
         label="Editar"
         type="button"
         (onClick)="atualizarEdicao()"
-        [style.margin-left]="20"
-        [style.width]="90">
-        </p-button>
+        ></p-button>
     </div>
-    <basis-datatable type="memory" [disableView]="true" [value]="enderecos.value" (buttonClick)="datatableClick($event)">
+    <basis-datatable type="memory" 
+    [disableView]="true" 
+    [value]="enderecos.value" 
+    (buttonClick)="datatableClick($event)"
+    #datatable>
         <p-column header="Município" field="municipioId">
             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                 <span> {{ rowData.municipioId?.nome }}</span>

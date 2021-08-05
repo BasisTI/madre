@@ -1,24 +1,19 @@
 import { DDDService } from './ddd.service';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from './../../models/dropdowns/opcoes-de-tipo-de-telefone';
 import { DatatableClickEvent, BreadcrumbService, DatatableComponent } from '@nuvem/primeng-components';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
-import { importExpr, THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, Input, ViewChild , ChangeDetectorRef, OnInit} from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { DDD } from '../../models/dropdowns/types/DDD';
 
 @Component({
     selector: 'paciente-form-telefone',
     templateUrl: './paciente-form-telefone.component.html',
 })
-export class PacienteTelefoneFormComponent implements OnInit{
+export class PacienteTelefoneFormComponent implements OnInit {
 
-    @Input()
-    public telefones: any = [];
+    @ViewChild('datatable') table: DatatableComponent;
     
-    @ViewChild(DatatableComponent) table: DatatableComponent;
-
-    @Input()
-    public formGroup: FormGroup;
+    @Input() telefones: any = [];
 
     public validaTelefone: boolean;
 
@@ -31,41 +26,49 @@ export class PacienteTelefoneFormComponent implements OnInit{
     public tipoMascara: string = "9999-9999"; 
 
     public telefone = this.fb.group({
-        id: [null],
-        ddd:[null],
-        numero: [null],
-        tipo: [null],
+        id: this.telefones.length,
+        ddd:[null, Validators.required],
+        numero: [null, Validators.required],
+        tipo: [null, Validators.required],
         observacao: [null],
         indice: [null]
     });
 
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, public dddService: DDDService) {
-    }
+    constructor(
+        private fb: FormBuilder, 
+        private breadcrumbService: BreadcrumbService, 
+        public dddService: DDDService, 
+        private changeDetectorRef: ChangeDetectorRef
+    ) {}
 
-    ngOnInit(): void {
-        
-        if(this.formGroup != null){
-            //this.telefones = this.formGroup.get("telefones");
-        }
-        
+    ngOnInit() {
+        this.dddService.all().subscribe((result) => {
+            result.forEach(element => {
+                this.listaDDD.push(element);
+            });
+        });
     }
-    
 
     adicionarTelefoneALista() {
         if (this.telefone.valid) {
-            this.telefone.patchValue({indice: this.telefones.length});
-            this.telefones.push(this.telefone);
+            let fone = {
+                ...this.telefone.value, 
+                id: this.telefones.value?.length,
+                ddd: this.telefone.get('ddd').value.valor
+            };
+            
+            this.telefones.value.push(fone);
             this.telefone = this.fb.group({
-                id: [null],
+                id: this.telefones.length,
                 ddd: [null],
                 numero: [null],
                 tipo: [null],
                 observacao: [null],
                 indice: [null]
             });
+            this.telefone.reset();
+            this.table.refresh();
         }
-        this.telefone.reset();
-        this.table.refresh();
     }
 
     datatableClick(event: DatatableClickEvent) {
@@ -73,22 +76,36 @@ export class PacienteTelefoneFormComponent implements OnInit{
             switch (event.button) {
                 case "edit":
                     this.validaTelefone = true;
-                    this.telefone.patchValue(this.telefones.controls[event.selection.indice].value);
+                    this.telefone.patchValue(event.selection);
+                    
                     break;
                 case "delete":
-                    this.telefones.removeAt(event.selection.indice);
-                    var i = 0;
-                    this.telefones.controls.forEach((atual) => atual.patchValue({indice: i++}));
+                    let telefones = this.telefones.value.filter((e) => e.id != event.selection.id)
+                    this.telefones.setValue(telefones);
                     break;
             }
+            this.table.refresh();
         }
     }
 
     atualizarEdicao(): void {
-        let atual = this.telefone.value;
-        this.telefones.controls[atual.indice].patchValue(atual);
-        this.validaTelefone = false;
-        this.telefone.reset();
+        if (this.telefone.valid) {
+            let fone = {
+                ...this.telefone.value, 
+                ddd: this.telefone.get('ddd').value.valor
+            };
+    
+            let telefones = this.telefones.value.map((element) => {
+                if (element.id == fone.id) {
+                    return fone;
+                }
+                return element;
+            });
+    
+            this.telefones.setValue(telefones);
+            this.validaTelefone = false;
+            this.telefone.reset();
+        }
     }
 
     tipoTelefone(event){
@@ -99,12 +116,8 @@ export class PacienteTelefoneFormComponent implements OnInit{
         else{
             this.tipoMascara = "9999-9999";
         }
-    }
 
-    atualizarDDD(evento){
-        this.telefone.patchValue({
-            ddd: evento.value.valor
-        })
+        this.changeDetectorRef.detectChanges();
     }
 
     ngOnDestroy(): void {

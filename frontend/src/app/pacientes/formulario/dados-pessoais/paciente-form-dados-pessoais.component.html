@@ -8,32 +8,34 @@
         <div nInputText label="Nome Social" formControlName="nomeSocial" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid">
-        <div nDropdown label="Sexo" [options]="opcoesDeSexo" formControlName="sexo" class="p-md-2 p-sm-4 p-col-8"></div>
-        <div nAutoComplete [service]="racaService" field="valor" formControlName="racaId" label="Raça/Cor" class="p-md-2 p-sm-4 p-col-8"></div>
-        <div nAutoComplete [service]="etniaService" field="valor" formControlName="etniaId" label="Etnia" class="p-md-5 p-sm-10 p-col-12"></div>
-        <div nAutoComplete [service]="estadoCivilService" field="valor" formControlName="estadoCivilId" label="Estado Civil" class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nDropdown label="Sexo" [options]="opcoesDeSexo" formControlName="sexo" class="p-md-2 p-sm-12 p-col-12"></div>
+        <div nAutoComplete [service]="racaService" field="valor" formControlName="racaId" label="Raça/Cor" class="p-md-2 p-sm-12 p-col-12"></div>
+        <div nAutoComplete [service]="etniaService" field="valor" formControlName="etniaId" label="Etnia" class="p-md-5 p-sm-12 p-col-12"></div>
+        <div nAutoComplete [service]="estadoCivilService" field="valor" formControlName="estadoCivilId" label="Estado Civil" class="p-md-2 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid" formGroupName="genitores">
         <div nInputText label="Nome da Mãe" formControlName="nomeDaMae" class="p-md-6 p-sm-12 p-col-12"></div>
         <div nInputText label="Nome do Pai" formControlName="nomeDoPai" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
     <div class="p-col-12 p-grid">
-        <div nInputMask mask="9999999/9" tooltip="Digite o número do prontuário da mãe do paciente." placeholder="_______/_" label="Prontuário da Mãe" formControlName="prontuarioDaMae" class="p-md-2 p-sm-4 p-col-8"></div>
-        <div madreCalendar label="Data de Nascimento" formControlName="dataDeNascimento" class="p-md-2 p-sm-4 p-col-8" (onSelect)="aoSelecionarDataDeNascimento()" (onBlur)="aoSelecionarDataDeNascimento()"></div>
-        <div class="p-md-2 p-sm-4 p-col-8">
+        <div formGroupName="genitores" class="p-md-2 p-sm-12 p-col-12">
+            <div nInputMask mask="9999999/9" tooltip="Digite o número do prontuário da mãe do paciente." placeholder="_______/_" label="Prontuário da Mãe" formControlName="prontuarioDaMae"></div>
+        </div>
+        <div madreCalendar label="Data de Nascimento" formControlName="dataDeNascimento" class="p-md-2 p-sm-12 p-col-12" (onSelect)="aoSelecionarDataDeNascimento()" (onBlur)="aoSelecionarDataDeNascimento()"></div>
+        <div class="p-md-2 p-sm-12 p-col-12">
             <span class="p-float-label">
                 <p-calendar timeOnly="true" formControlName="horaDeNascimento"></p-calendar>
                 <label>Hora do Nascimento</label>
             </span>
         </div>
-        <div class="p-md-2 p-sm-4 p-col-8">
+        <div class="p-md-2 p-sm-12 p-col-12">
             <span class="md-inputfield p-float-label">
                 <input pInputText name="idade" type="text" value="0" disabled [(ngModel)]="idade" [ngModelOptions]="{ standalone: true }"/>
                 <label>Idade</label>
             </span>
         </div>
-        <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="p-md-2 p-sm-4 p-col-8"></div>
-        <div class="p-md-2 p-sm-4 p-col-8">
+        <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="p-md-2 p-sm-12 p-col-12"></div>
+        <div class="p-md-2 p-sm-12 p-col-12">
             <span class="p-float-label">
                 <p-dropdown
                     (onChange)="aoSelecionarUF()"
@@ -47,10 +49,8 @@
             </span>
         </div>
     </div>
-   
-    
     <div class="p-col-12 p-grid">
-        <div class="p-md-2 p-sm-4 p-col-8">
+        <div class="p-md-3 p-sm-12 p-col-12">
             <span class="md-inputfield p-float-label">
                 <p-autoComplete
                     (completeMethod)="searchUnidade($event)"
@@ -64,13 +64,13 @@
             </span>
         </div>
 
-        <div nDropdown label="Grau de Instrução" [options]="opcoesDeGrauDeInstrucao" formControlName="grauDeInstrucao" class="p-md-2 p-sm-4 p-col-8"></div>
+        <div nDropdown label="Grau de Instrução" [options]="opcoesDeGrauDeInstrucao" formControlName="grauDeInstrucao" class="p-md-3 p-sm-12 p-col-12"></div>
         <div nAutoComplete [service]="ocupacaoService" field="valor" formControlName="ocupacaoId" label="Ocupação" class="p-md-6 p-sm-12 p-col-12"></div>
     </div>
 
     <div class="p-col-12 p-grid">
-        <div nAutoComplete [service]="religiaoService" field="valor" formControlName="religiaoId" label="Religião" class="p-md-4 p-sm-8 p-col-12"></div>
-        <div nInputText maxlength="254" type="email" label="E-mail" formControlName="email" class="p-md-8 p-sm-12 p-col-12"></div>
+        <div nAutoComplete [service]="religiaoService" field="valor" formControlName="religiaoId" label="Religião" class="p-md-5 p-sm-12 p-col-12"></div>
+        <div nInputText maxlength="254" type="email" label="E-mail" formControlName="email" class="p-md-7 p-sm-12 p-col-12"></div>
     </div>
     
 </div>

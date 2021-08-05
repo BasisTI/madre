@@ -5,9 +5,11 @@ export class PacienteValidators {
 
     static validarNumero(control: AbstractControl) : ValidationErrors | null {
         let cns = control.value;
-        cns = cns.replace(/\D/g, '');
 
-        if (cns.length !== 15) {
+
+        cns = cns?.replace(/\D/g, '');
+
+        if (cns?.length !== 15) {
             return { customCns: true };
         }
 
