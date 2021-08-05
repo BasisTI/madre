@@ -38,11 +38,9 @@ export class ExamesComponent implements OnInit {
   groups: GrupoModel[];
 
   constructor(
-    private breadcrumbService: BreadcrumbService,
     private gruposExamesService: GruposExamesService,
     private examesService: ExamesService,
     private fb: FormBuilder,
-    private itemSolicitacaoExameService: ItemSolicitacaoExameService
   ) { }
 
   itemSolicitacaoPorExame = this.fb.group(
@@ -117,6 +115,12 @@ export class ExamesComponent implements OnInit {
   }
 
   pegarItensSolicitacaoExame(): any[] {
-    return this.appTabela.pegarItemsTratados();
+
+    if(this.itemsSolicitacaoExame.length >= 1) {
+
+      return this.appTabela.pegarItemsTratados();
+    }
+
+    return null;
   }
 }

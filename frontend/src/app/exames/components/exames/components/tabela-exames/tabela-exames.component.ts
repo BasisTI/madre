@@ -53,6 +53,12 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
   }
 
   pegarItemsTratados(): any[] {
-    return this.itemsTratados;
+
+    if(this.itemsTratados.length >= 1){
+
+      return this.itemsTratados;
+    }
+
+    return null;
   }
 }

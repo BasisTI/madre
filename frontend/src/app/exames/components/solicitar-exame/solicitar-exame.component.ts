@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ExamModel } from '../../models/subjects/exames-model';
+import { MessageService } from 'primeng/api';
 import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
 import { Responsavel } from '../../models/subjects/responsavel-model';
 import { SolicitacaoExame } from '../../models/subjects/solicitacao-exame';
 import { UnidadeFuncional } from '../../models/subjects/unidade-model';
-import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
 import { ResponsavelService } from '../../services/responsavel.service';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
@@ -21,6 +20,7 @@ export class SolicitarExameComponent implements OnInit {
 
   itensSolicitacaoExame: ItemSolicitacaoExame[] = [];
   itemSolicitacao: ItemSolicitacaoExame;
+  position: string;
 
   @ViewChild(ExamesComponent) appExames: ExamesComponent
 
@@ -29,13 +29,12 @@ export class SolicitarExameComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private unidadeFuncionalService: UnidadeFuncionalService,
               private responsavelService: ResponsavelService,
-              private solicitacaoExameService: SolicitacaoExameService) { }
+              private solicitacaoExameService: SolicitacaoExameService,
+              private mensagem: MessageService,
+              ) { }
 
-  opcoesDeAntimicrobianos: boolean;
-  opcoesDeExameOuComparativo: boolean;
   unidades: UnidadeFuncional[] = [];
   responsaveis: Responsavel[] = [];
-  exames: ExamModel[] = [];
 
   solicitarExame = this.fb.group({
     infoClinica: [null, Validators.required],
@@ -58,9 +57,14 @@ export class SolicitarExameComponent implements OnInit {
     return this.solicitarExame.valid;
   }
 
-  cadastrar() {
+  cadastrar(position: string) {
 
     let itens = this.appExames.pegarItensSolicitacaoExame();
+
+    if(itens == null) {
+      this.mensagem.add({severity:'info', summary: 'Info', detail: 'Por favor, adicione um exame para completar a solicitação!'});
+      return;
+    }
 
     itens.map((element) => {
       this.itemSolicitacao = {
