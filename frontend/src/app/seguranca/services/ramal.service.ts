@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
-import { Ramal } from '../models/ramal';
+import { Ramal } from '../models/dropdowns/ramal';
 
 @Injectable({
   providedIn: 'root'

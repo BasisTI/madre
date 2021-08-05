@@ -5,7 +5,7 @@ import br.com.basis.madre.seguranca.repository.PessoaRepository;
 import br.com.basis.madre.seguranca.repository.search.PessoaSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
 import br.com.basis.madre.seguranca.service.mapper.PessoaMapper;
-import br.com.basis.madre.service.projection.PessoaResumo;
+import br.com.basis.madre.seguranca.service.projection.PessoaResumo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

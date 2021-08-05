@@ -1,9 +1,9 @@
 export interface IRamal {
     numero?: string;
-    codigo?: number;
+    id?: number;
 }
 
 export class Ramal implements IRamal {
     public numero: string;
-    public codigo: number;
+    public id: number;
 }

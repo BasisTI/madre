@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
-import { Vinculo } from '../models/vinculo-model';
+import { Vinculo } from '../models/dropdowns/vinculo-model';
 
 @Injectable({
   providedIn: 'root'

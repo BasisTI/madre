@@ -1,7 +1,7 @@
 package br.com.basis.madre.seguranca.web.rest;
 
 import br.com.basis.madre.seguranca.service.PessoaService;
-import br.com.basis.madre.service.projection.PessoaResumo;
+import br.com.basis.madre.seguranca.service.projection.PessoaResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
 

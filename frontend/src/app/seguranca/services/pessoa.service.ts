@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Pageable } from '@shared/pageable';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
-import { ListaPessoasServidor } from '../models/lista-pessoa-servidor';
-import { Pessoa } from '../models/pessoa-model';
+import { ListaPessoasServidor } from '../models/dropdowns/lista-pessoa-servidor';
+import { Pessoa } from '../models/dropdowns/pessoa-model';
+
 
 @Injectable({
   providedIn: 'root'

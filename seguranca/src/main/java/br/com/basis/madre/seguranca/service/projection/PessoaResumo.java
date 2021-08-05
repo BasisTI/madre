@@ -1,7 +1,7 @@
-package br.com.basis.madre.service.projection;
+package br.com.basis.madre.seguranca.service.projection;
 
-// import com.fasterxml.jackson.annotation.JsonInclude;
-// import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import java.time.LocalDate;
 
@@ -9,5 +9,4 @@ import java.time.LocalDate;
 public interface PessoaResumo {
     Long getId();
     String getNome();
-    LocalDate getDataDeNascimento();
 }

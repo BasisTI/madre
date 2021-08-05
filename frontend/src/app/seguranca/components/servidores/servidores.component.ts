@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CentroAtividade } from '@suprimentos/models/centro-atividade';
 import { CentroAtividadeService } from '@suprimentos/services/centro-atividade.service';
 import { Ocupacao } from 'src/app/pacientes/models/dropdowns/types/ocupacao';
-import { Pessoa } from '../../models/pessoa-model';
-import { Vinculo } from '../../models/vinculo-model';
 import { PessoaService } from '../../services/pessoa.service';
 import { VinculoService } from '../../services/vinculo.service';
 import { OcupacaoService } from 'src/app/pacientes/formulario/dados-pessoais/ocupacao.service';
@@ -13,6 +11,8 @@ import { ViewChild } from '@angular/core';
 import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
 import { ElasticQuery } from '@shared/elastic-query';
 import { OPCOES_DE_SITUACOES } from '@internacao/formulario-unidades/models/dropwdowns/types/opcoes-de-situacoes';
+import { Pessoa } from '../../models/dropdowns/pessoa-model';
+import { Vinculo } from '../../models/dropdowns/vinculo-model';
 @Component({
   selector: 'app-servidores',
   templateUrl: './servidores.component.html',
