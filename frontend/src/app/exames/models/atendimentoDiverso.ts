@@ -4,7 +4,25 @@ export class AtendimentoDiverso {
 
     public codigo: number;
 
-    public informacoesId:number;
+    public unidadeExecutoraId : number;
+
+    public origemAmostra : String;
+
+    public tipoAmostra : String;
+
+    public identificacao : String;
+
+    public dataSoro : number;
+
+    public material : String;
+
+    public especialidadeId : number;
+
+    public centroAtividadeId : number;
+
+    public dataNascimento : number;
+
+    public sexo : String;
 
     public projetoId:number;
 
@@ -13,8 +31,5 @@ export class AtendimentoDiverso {
     public controleId:number;
 
     public cadaverId:number;
-
-    
-
     
 }

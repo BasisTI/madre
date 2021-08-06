@@ -1,58 +1,58 @@
 entity AtendimentoDiverso {
-Codigo Integer required
-Descricao String required
+codigo Integer required
+unidadeExecutoraId Integer required
+origemAmostra String required
+tipoAmostra String required
+identificacao String required
+dataSoro LocalDate required
+material String required
+especialidadeId Integer required
+centroAtividadeId Integer required
+dataNascimento LocalDate required
+sexo String required
 }
 
-entity InformacoesComplementares {
-Prontuario Integer required
-Codigo Integer
-}
-
-entity ProjetoDePesquisa {
-id String required
-Nome String required
-}
 
 entity LaboratorioExterno {
-Codigo Integer required
-Nome String required
-Sigla String required
-Endereco String required
-Municipio String required
-Cep Integer required
-Telefone Integer required
-Fax Integer required
-Email String required
-Cgc String required
-CodigoConvenio String required
-CodigoPlano String required
-ConvenioPlano ConvenioPlano
-FormaEnvio FormaEnvio
+codigo Integer required
+nome String required
+sigla String required
+endereco String required
+municipio String required
+cep Integer required
+telefone Integer required
+fax Integer required
+email String required
+cgc String required
+codigoConvenio String required
+codigoPlano String required
+convenioPlano ConvenioPlano
+formaEnvio FormaEnvio
 }
 
 entity ControleQualidade {
-Codigo Integer required
-Material String required
-CodigoConvenio String required
-CodigoPlano String required
-ConvenioPlano ConvenioPlano
+codigo Integer required
+material String required
+codigoConvenio String required
+codigoPlano String required
+convenioPlano ConvenioPlano
 }
 
 entity Cadaver {
-Codigo Integer required
-Nome String required
-DataNascimento LocalDate required
-Raca Raca
-GrupoSanguineo GrupoSanguineo
-DataRemocao LocalDate required
-CausaObito String required
-RealizadoPor String required
-LidoPor String required
-Procedencia String required
-Retirada String required
-CodigoPlano String required
-ConvenioPlano ConvenioPlano
-Observacao String required
+codigo Integer required
+nome String required
+dataNascimento LocalDate required
+raca Raca
+grupoSanguineo GrupoSanguineo
+dataRemocao LocalDate required
+causaObito String required
+realizadoPor String required
+lidoPor String required
+procedencia String required
+retirada String required
+codigoPlano String required
+convenioPlano ConvenioPlano
+observacao String required
 }
 
 enum ConvenioPlano {
@@ -67,16 +67,12 @@ Branca, Preta, Parda, Amarela, Indigena
 enum GrupoSanguineo {
 O, A, B, AB, Indeterminado
 }
-relationship OneToMany {
-AtendimentoDiverso{AtendimentoDiverso(infoClinica)} to InformacoesComplementares
 
-}
-relationship OneToOne {
-AtendimentoDiverso{informacoes(codigo)} to InformacoesComplementares
-AtendimentoDiverso{projeto(nome)} to ProjetoDePesquisa
+relationship ManyToOne {
 AtendimentoDiverso{laboratorio(nome)} to LaboratorioExterno
 AtendimentoDiverso{controle(codigo)} to ControleQualidade
 AtendimentoDiverso{cadaver(nome)} to Cadaver
+
 }
 
 

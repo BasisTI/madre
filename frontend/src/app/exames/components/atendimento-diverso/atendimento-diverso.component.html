@@ -1,14 +1,16 @@
 <form [formGroup]="cadastroAtendimentoDiverso" (ngSubmit)="cadastrar()">  
 <div id="card" >
   <p-fieldset >
-    <h1>Pesquisar atendimento diverso</h1>
+    <h1>Manter atendimento diverso</h1>
     <div id="codigo" >
       <span id="grupo">
-        <label> Unidade Executora: </label> <br>
+        <label> Unidade Executora:  </label> <br>
         <p-dropdown 
-        [options]="unidadesFuncionais" [optionLabel]="'nome'" [optionValue]="'id'" [(ngModel)]= "valor" [ngModelOptions]="{standalone: true}"
+        [options]="unidadesFuncionais" [optionLabel]="'nome'" [optionValue]="'id'" [(ngModel)]= "valor" 
+        
         ></p-dropdown>
       </span>
+
       <span id="grupo" >
         <label > Codigo:  </label> <br>
         <input type="text"  formControlName="codigo" pInputText/>
@@ -26,6 +28,7 @@
         formControlName="laboratorioId"
         ></p-dropdown>
       </div>
+
       <div class="atend">
         <span id="grupo">
           <label> Controle de qualidade: </label> <br>
@@ -35,6 +38,7 @@
         formControlName="controleId"
         ></p-dropdown>
       </div>
+
       <div class="atend">
         <span id="grupo">
           <label> Cadavér: </label> <br>
@@ -51,43 +55,52 @@
         <span id="grupo">
           <label> Origem Amostra: </label> <br>
           <p-dropdown 
-          [options]="OrigemAmostra" [(ngModel)]="selectedOrigem" [ngModelOptions]="{standalone: true}"></p-dropdown>
+          [options]="OrigemAmostra" [(ngModel)]="selectedOrigem" formControlName="origemAmostra"
+          ></p-dropdown>
         </span>
         <span id="grupo">
           <label> Tipo
              Amostra: </label> <br>
           <p-dropdown
-           [options]="TipoAmostra" [(ngModel)]="selectedTipo" [ngModelOptions]="{standalone: true}"></p-dropdown>
+           [options]="TipoAmostra" [(ngModel)]="selectedTipo" 
+           formControlName="tipoAmostra"
+           ></p-dropdown>
         </span>
+
         <span id="grupo">
           <label> Identificação:  </label> <br>
-          <input type="text" pInputText /> <br>
+          <input type="text" formControlName="identificacao" pInputText /> <br>
         </span>
+
         <span id="grupo">
           <label> Data Soro: </label> <br>
           <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
-            [readonlyInput]="true" dateFormat="dd/mm/yy"></p-calendar>
+            [readonlyInput]="true" dateFormat="dd/mm/yy" formControlName="dataSoro"></p-calendar >
         </span>
       </div>
       <div>
         <span id="grupo"> <br>
           <label> Material: </label> <br>
-          <input type="text" pInputText />
+          <input type="text" pInputText formControlName="material" />
         </span>
       </div>
+
       <div>
         <span id="grupo"> <br>
           <label> Especialidade: </label> <br>
           <p-dropdown 
           [options]="especialidades" [optionLabel]="'especialidade'" [optionValue]="'id'"
+          formControlName="especialidadeId"
           ></p-dropdown>
         </span>
       </div>
+
       <div>
         <span id="grupo"> <br>
           <label> Centro de Atividades: </label> <br>
           <p-dropdown 
           [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
+          formControlName="centroAtividadeId"
           ></p-dropdown> <br>
         </span>
       </div>
@@ -100,15 +113,17 @@
           ></p-dropdown>
         </span>
         <span id="grupo">
-          <label> Data Nascimento: </label> <br>
+          <label> Data Nascimento: </label > <br>
           <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
-            [readonlyInput]="true" dateFormat="dd/mm/yy"></p-calendar>
+            [readonlyInput]="true" dateFormat="dd/mm/yy"  formControlName="dataNascimento"></p-calendar>
+            
         </span>
         <span id="grupo">
-          <label> Sexo: </label> <br>
-          <p-dropdown [options]="Sexo" [(ngModel)]="selectedSexo" [ngModelOptions]="{standalone: true}"></p-dropdown>
+          <label> Sexo:  </label> <br>
+          <p-dropdown 
+          [options]="Sexo" [(ngModel)]="selectedSexo" formControlName="sexo"
+          ></p-dropdown>
         </span>
-     
       </div>
     
     </p-fieldset> <br>

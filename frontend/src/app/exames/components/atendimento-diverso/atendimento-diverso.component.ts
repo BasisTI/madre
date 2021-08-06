@@ -63,11 +63,31 @@ export class AtendimentoDiversoComponent implements OnInit {
      ngOnInit() : void{
       this.cadastroAtendimentoDiverso = this.fb.group({
         codigo: [null, Validators.required],
-        informacoesId:[null],
-        projetoId: [null],
-        laboratorioId: [null],
+
+        origemAmostra : [null],
+
+        tipoAmostra : [null],
+
+        identificacao : [null],
+
+        dataSoro : [null],
+
+        material : [null],
+
+        especialidadeId : [null],
+
+        centroAtividadeId : [null],
+        
+        dataNascimento : [null],
+
+        sexo : [null],
+
+        laboratorioId:[null],
+
         controleId:[null],
+
         cadaverId:[null]
+
     });
 
        this.cadaverService.GetCadaver().subscribe((response)=>{

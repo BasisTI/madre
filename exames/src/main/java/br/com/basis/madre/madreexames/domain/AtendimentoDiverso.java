@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,8 +9,7 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 /**
  * A AtendimentoDiverso.
@@ -31,29 +31,57 @@ public class AtendimentoDiverso implements Serializable {
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
 
-    @ManyToOne
-    @JoinColumn(unique = true)
-    private InformacoesComplementares informacoes;
+    @NotNull
+    @Column(name = "unidade_executora_id", nullable = false)
+    private Integer unidadeExecutoraId;
+
+    @NotNull
+    @Column(name = "origem_amostra", nullable = false)
+    private String origemAmostra;
+
+    @NotNull
+    @Column(name = "tipo_amostra", nullable = false)
+    private String tipoAmostra;
+
+    @NotNull
+    @Column(name = "identificacao", nullable = false)
+    private String identificacao;
+
+    @NotNull
+    @Column(name = "data_soro", nullable = false)
+    private LocalDate dataSoro;
+
+    @NotNull
+    @Column(name = "material", nullable = false)
+    private String material;
+
+    @NotNull
+    @Column(name = "especialidade_id", nullable = false)
+    private Integer especialidadeId;
+
+    @NotNull
+    @Column(name = "centro_atividade_id", nullable = false)
+    private Integer centroAtividadeId;
+
+    @NotNull
+    @Column(name = "data_nascimento", nullable = false)
+    private LocalDate dataNascimento;
+
+    @NotNull
+    @Column(name = "sexo", nullable = false)
+    private String sexo;
 
     @ManyToOne
-    @JoinColumn(unique = true)
-    private ProjetoDePesquisa projeto;
-
-    @ManyToOne
-    @JoinColumn(unique = true)
+    @JsonIgnoreProperties(value = "atendimentoDiversos", allowSetters = true)
     private LaboratorioExterno laboratorio;
 
     @ManyToOne
-    @JoinColumn(unique = true)
+    @JsonIgnoreProperties(value = "atendimentoDiversos", allowSetters = true)
     private ControleQualidade controle;
 
     @ManyToOne
-    @JoinColumn(unique = true)
+    @JsonIgnoreProperties(value = "atendimentoDiversos", allowSetters = true)
     private Cadaver cadaver;
-
-    @OneToMany(mappedBy = "atendimentoDiverso")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<InformacoesComplementares> atendimentoDiversos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -77,31 +105,134 @@ public class AtendimentoDiverso implements Serializable {
         this.codigo = codigo;
     }
 
-
-    public InformacoesComplementares getInformacoes() {
-        return informacoes;
+    public Integer getUnidadeExecutoraId() {
+        return unidadeExecutoraId;
     }
 
-    public AtendimentoDiverso informacoes(InformacoesComplementares informacoesComplementares) {
-        this.informacoes = informacoesComplementares;
+    public AtendimentoDiverso unidadeExecutoraId(Integer unidadeExecutoraId) {
+        this.unidadeExecutoraId = unidadeExecutoraId;
         return this;
     }
 
-    public void setInformacoes(InformacoesComplementares informacoesComplementares) {
-        this.informacoes = informacoesComplementares;
+    public void setUnidadeExecutoraId(Integer unidadeExecutoraId) {
+        this.unidadeExecutoraId = unidadeExecutoraId;
     }
 
-    public ProjetoDePesquisa getProjeto() {
-        return projeto;
+    public String getOrigemAmostra() {
+        return origemAmostra;
     }
 
-    public AtendimentoDiverso projeto(ProjetoDePesquisa projetoDePesquisa) {
-        this.projeto = projetoDePesquisa;
+    public AtendimentoDiverso origemAmostra(String origemAmostra) {
+        this.origemAmostra = origemAmostra;
         return this;
     }
 
-    public void setProjeto(ProjetoDePesquisa projetoDePesquisa) {
-        this.projeto = projetoDePesquisa;
+    public void setOrigemAmostra(String origemAmostra) {
+        this.origemAmostra = origemAmostra;
+    }
+
+    public String getTipoAmostra() {
+        return tipoAmostra;
+    }
+
+    public AtendimentoDiverso tipoAmostra(String tipoAmostra) {
+        this.tipoAmostra = tipoAmostra;
+        return this;
+    }
+
+    public void setTipoAmostra(String tipoAmostra) {
+        this.tipoAmostra = tipoAmostra;
+    }
+
+    public String getIdentificacao() {
+        return identificacao;
+    }
+
+    public AtendimentoDiverso identificacao(String identificacao) {
+        this.identificacao = identificacao;
+        return this;
+    }
+
+    public void setIdentificacao(String identificacao) {
+        this.identificacao = identificacao;
+    }
+
+    public LocalDate getDataSoro() {
+        return dataSoro;
+    }
+
+    public AtendimentoDiverso dataSoro(LocalDate dataSoro) {
+        this.dataSoro = dataSoro;
+        return this;
+    }
+
+    public void setDataSoro(LocalDate dataSoro) {
+        this.dataSoro = dataSoro;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public AtendimentoDiverso material(String material) {
+        this.material = material;
+        return this;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public Integer getEspecialidadeId() {
+        return especialidadeId;
+    }
+
+    public AtendimentoDiverso especialidadeId(Integer especialidadeId) {
+        this.especialidadeId = especialidadeId;
+        return this;
+    }
+
+    public void setEspecialidadeId(Integer especialidadeId) {
+        this.especialidadeId = especialidadeId;
+    }
+
+    public Integer getCentroAtividadeId() {
+        return centroAtividadeId;
+    }
+
+    public AtendimentoDiverso centroAtividadeId(Integer centroAtividadeId) {
+        this.centroAtividadeId = centroAtividadeId;
+        return this;
+    }
+
+    public void setCentroAtividadeId(Integer centroAtividadeId) {
+        this.centroAtividadeId = centroAtividadeId;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public AtendimentoDiverso dataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+        return this;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public AtendimentoDiverso sexo(String sexo) {
+        this.sexo = sexo;
+        return this;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public LaboratorioExterno getLaboratorio() {
@@ -142,31 +273,6 @@ public class AtendimentoDiverso implements Serializable {
     public void setCadaver(Cadaver cadaver) {
         this.cadaver = cadaver;
     }
-
-    public Set<InformacoesComplementares> getAtendimentoDiversos() {
-        return atendimentoDiversos;
-    }
-
-    public AtendimentoDiverso atendimentoDiversos(Set<InformacoesComplementares> informacoesComplementares) {
-        this.atendimentoDiversos = informacoesComplementares;
-        return this;
-    }
-
-    public AtendimentoDiverso addAtendimentoDiverso(InformacoesComplementares informacoesComplementares) {
-        this.atendimentoDiversos.add(informacoesComplementares);
-        informacoesComplementares.setAtendimentoDiverso(this);
-        return this;
-    }
-
-    public AtendimentoDiverso removeAtendimentoDiverso(InformacoesComplementares informacoesComplementares) {
-        this.atendimentoDiversos.remove(informacoesComplementares);
-        informacoesComplementares.setAtendimentoDiverso(null);
-        return this;
-    }
-
-    public void setAtendimentoDiversos(Set<InformacoesComplementares> informacoesComplementares) {
-        this.atendimentoDiversos = informacoesComplementares;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -191,6 +297,16 @@ public class AtendimentoDiverso implements Serializable {
         return "AtendimentoDiverso{" +
             "id=" + getId() +
             ", codigo=" + getCodigo() +
+            ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
+            ", origemAmostra='" + getOrigemAmostra() + "'" +
+            ", tipoAmostra='" + getTipoAmostra() + "'" +
+            ", identificacao='" + getIdentificacao() + "'" +
+            ", dataSoro='" + getDataSoro() + "'" +
+            ", material='" + getMaterial() + "'" +
+            ", especialidadeId=" + getEspecialidadeId() +
+            ", centroAtividadeId=" + getCentroAtividadeId() +
+            ", dataNascimento='" + getDataNascimento() + "'" +
+            ", sexo='" + getSexo() + "'" +
             "}";
     }
 }

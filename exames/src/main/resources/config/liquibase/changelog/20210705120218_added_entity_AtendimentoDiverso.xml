@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity AtendimentoDiverso.
     -->
@@ -43,7 +43,7 @@
     <changeSet id="20210705120218-1-relations" author="jhipster">
 
     </changeSet>
-    
+
     <changeSet id="20210705120218-1-sequence" author="jhipster">
         <createSequence sequenceName="seq_atendimento_diverso" startValue="1050" incrementBy="50" />
     </changeSet>
@@ -57,16 +57,6 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20210705120218-1-data" author="jhipster" context="faker">
-        <loadData
-                  file="config/liquibase/fake-data/atendimento_diverso.csv"
-                  separator=";"
-                  tableName="atendimento_diverso">
-            <column name="id" type="numeric"/>
-            <column name="codigo" type="numeric"/>
-            <column name="descricao" type="string"/>
-            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
-        </loadData>
-    </changeSet>
+
 
 </databaseChangeLog>

@@ -1,0 +1,92 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="basis (generated)" id="1628170632606-13">
+        <addColumn tableName="atendimento_diverso">
+            <column name="centro_atividade_id" type="int4">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-14">
+        <addColumn tableName="atendimento_diverso">
+            <column name="data_nascimento" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-15">
+        <addColumn tableName="atendimento_diverso">
+            <column name="data_soro" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-16">
+        <addColumn tableName="atendimento_diverso">
+            <column name="especialidade_id" type="int4">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-17">
+        <addColumn tableName="atendimento_diverso">
+            <column name="identificacao" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-18">
+        <addColumn tableName="atendimento_diverso">
+            <column name="material" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-19">
+        <addColumn tableName="atendimento_diverso">
+            <column name="origem_amostra" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-20">
+        <addColumn tableName="atendimento_diverso">
+            <column name="sexo" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-21">
+        <addColumn tableName="atendimento_diverso">
+            <column name="tipo_amostra" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-22">
+        <addColumn tableName="atendimento_diverso">
+            <column name="unidade_executora_id" type="int4">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-23">
+        <dropForeignKeyConstraint baseTableName="atendimento_diverso" constraintName="fk_atendimento_diverso_informacoes_id"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-24">
+        <dropForeignKeyConstraint baseTableName="atendimento_diverso" constraintName="fk_atendimento_diverso_projeto_id"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-25">
+        <dropForeignKeyConstraint baseTableName="informacoes_complementares" constraintName="fk_informacoes_complementares_atendimento_diverso_id"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-26">
+        <dropTable tableName="informacoes_complementares"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-27">
+        <dropColumn columnName="informacoes_id" tableName="atendimento_diverso"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628170632606-28">
+        <dropColumn columnName="projeto_id" tableName="atendimento_diverso"/>
+    </changeSet>
+
+</databaseChangeLog>

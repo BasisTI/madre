@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
@@ -7,19 +8,42 @@ import java.io.Serializable;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.AtendimentoDiverso} entity.
  */
 public class AtendimentoDiversoDTO implements Serializable {
-
+    
     private Long id;
 
     @NotNull
     private Integer codigo;
 
-    private Long informacoesId;
+    @NotNull
+    private Integer unidadeExecutoraId;
 
-    private String informacoesCodigo;
+    @NotNull
+    private String origemAmostra;
 
-    private Long projetoId;
+    @NotNull
+    private String tipoAmostra;
 
-    private String projetoNome;
+    @NotNull
+    private String identificacao;
+
+    @NotNull
+    private LocalDate dataSoro;
+
+    @NotNull
+    private String material;
+
+    @NotNull
+    private Integer especialidadeId;
+
+    @NotNull
+    private Integer centroAtividadeId;
+
+    @NotNull
+    private LocalDate dataNascimento;
+
+    @NotNull
+    private String sexo;
+
 
     private Long laboratorioId;
 
@@ -32,7 +56,7 @@ public class AtendimentoDiversoDTO implements Serializable {
     private Long cadaverId;
 
     private String cadaverNome;
-
+    
     public Long getId() {
         return id;
     }
@@ -49,37 +73,84 @@ public class AtendimentoDiversoDTO implements Serializable {
         this.codigo = codigo;
     }
 
-
-    public Long getInformacoesId() {
-        return informacoesId;
+    public Integer getUnidadeExecutoraId() {
+        return unidadeExecutoraId;
     }
 
-    public void setInformacoesId(Long informacoesComplementaresId) {
-        this.informacoesId = informacoesComplementaresId;
+    public void setUnidadeExecutoraId(Integer unidadeExecutoraId) {
+        this.unidadeExecutoraId = unidadeExecutoraId;
     }
 
-    public String getInformacoesCodigo() {
-        return informacoesCodigo;
+    public String getOrigemAmostra() {
+        return origemAmostra;
     }
 
-    public void setInformacoesCodigo(String informacoesComplementaresCodigo) {
-        this.informacoesCodigo = informacoesComplementaresCodigo;
+    public void setOrigemAmostra(String origemAmostra) {
+        this.origemAmostra = origemAmostra;
     }
 
-    public Long getProjetoId() {
-        return projetoId;
+    public String getTipoAmostra() {
+        return tipoAmostra;
     }
 
-    public void setProjetoId(Long projetoDePesquisaId) {
-        this.projetoId = projetoDePesquisaId;
+    public void setTipoAmostra(String tipoAmostra) {
+        this.tipoAmostra = tipoAmostra;
     }
 
-    public String getProjetoNome() {
-        return projetoNome;
+    public String getIdentificacao() {
+        return identificacao;
     }
 
-    public void setProjetoNome(String projetoDePesquisaNome) {
-        this.projetoNome = projetoDePesquisaNome;
+    public void setIdentificacao(String identificacao) {
+        this.identificacao = identificacao;
+    }
+
+    public LocalDate getDataSoro() {
+        return dataSoro;
+    }
+
+    public void setDataSoro(LocalDate dataSoro) {
+        this.dataSoro = dataSoro;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public Integer getEspecialidadeId() {
+        return especialidadeId;
+    }
+
+    public void setEspecialidadeId(Integer especialidadeId) {
+        this.especialidadeId = especialidadeId;
+    }
+
+    public Integer getCentroAtividadeId() {
+        return centroAtividadeId;
+    }
+
+    public void setCentroAtividadeId(Integer centroAtividadeId) {
+        this.centroAtividadeId = centroAtividadeId;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public Long getLaboratorioId() {
@@ -153,10 +224,16 @@ public class AtendimentoDiversoDTO implements Serializable {
         return "AtendimentoDiversoDTO{" +
             "id=" + getId() +
             ", codigo=" + getCodigo() +
-            ", informacoesId=" + getInformacoesId() +
-            ", informacoesCodigo='" + getInformacoesCodigo() + "'" +
-            ", projetoId=" + getProjetoId() +
-            ", projetoNome='" + getProjetoNome() + "'" +
+            ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
+            ", origemAmostra='" + getOrigemAmostra() + "'" +
+            ", tipoAmostra='" + getTipoAmostra() + "'" +
+            ", identificacao='" + getIdentificacao() + "'" +
+            ", dataSoro='" + getDataSoro() + "'" +
+            ", material='" + getMaterial() + "'" +
+            ", especialidadeId=" + getEspecialidadeId() +
+            ", centroAtividadeId=" + getCentroAtividadeId() +
+            ", dataNascimento='" + getDataNascimento() + "'" +
+            ", sexo='" + getSexo() + "'" +
             ", laboratorioId=" + getLaboratorioId() +
             ", laboratorioNome='" + getLaboratorioNome() + "'" +
             ", controleId=" + getControleId() +
