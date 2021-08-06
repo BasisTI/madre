@@ -116,11 +116,11 @@ export class FormularioServidorComponent implements OnInit {
   opcoesDeTipoDeRemuneracao = OPCOES_DE_TIPO_DE_REMUNERACAO;
 
   ngOnInit(): void {
-    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; });
-    this.loginService.getUsuario().subscribe((response) => { this.login = response; });
-    this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response });
-    this.centrosService.getCentros().subscribe((response) => { this.centros = response; });
-    this.ocupacaoService.getOcupacoes().subscribe((response) => { this.ocupacao = response; });
+    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({id:null, nome: "Selecione"}) });
+    this.loginService.getUsuario().subscribe((response) => { this.login = response; this.login.unshift({id:null,login: "Selecione" }) });
+    this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id:null, descricao: "Selecione"}) });
+    this.centrosService.getCentros().subscribe((response) => { this.centros = response; this.centros.unshift({ id: null, descricao: "Selecione" }) });
+    this.ocupacaoService.getOcupacoes().subscribe((response) => { this.ocupacao = response; this.ocupacao.unshift({ id: null, valor: "Selecione" }) });
     this.grupoFuncionalService.getGrupoFuncional().subscribe((response) => { this.grupoFuncional = response; this.grupoFuncional.unshift({ id: null, descricao: "Selecione" }) });
     this.ramalService.getRamal().subscribe((response) => { this.ramal = response; this.ramal.unshift({ id: null, numero: "Selecione" }) });
   }

@@ -1,9 +1,9 @@
 export interface IVinculo {
     descricao?: string;
-    codigo?: number;
+    id?: number;
 }
 
 export class Vinculo implements IVinculo {
     public descricao: string;
-    public codigo: number;
+    public id: number;
 }

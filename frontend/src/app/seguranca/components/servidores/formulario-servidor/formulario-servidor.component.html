@@ -1,136 +1,179 @@
 <h1>Servidores</h1>
-<div class="card">
-    <h2 class="sub-title">Cadastro de Servidor</h2>
-    <div class="p-md-12 p-d-inline">
-        <form class="p-grid" #form [formGroup]="formServidor" (ngSubmit)="submit()">
-            <div>
-                <span class="p-col-12 p-md-12 p-float-label">
-                    <p-autoComplete field="nome" formControlName="codigo" [suggestions]="listaPessoasServidor"
-                        (completeMethod)="buscaPessoas($event)" (onSelect)="pessoaSelecionada($event)"
-                        [dropdown]="true"></p-autoComplete>
-                    <label>Nome</label>
-                </span>
-                <p-message severity="error" text="Nome do servidor obrigatório" *ngIf="
-                    formServidor.controls['codigo'].errors?.required &&
-                    formServidor.controls['codigo'].touched">
-                </p-message>
+
+<form #form [formGroup]="formServidor" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-12">
+                <h2 class="sub-title">Cadastro de Servidor</h2>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-6 p-lg-3">
+                        <span class="p-float-label">
+                            <p-autoComplete field="nome" formControlName="codigo" [suggestions]="listaPessoasServidor"
+                                (completeMethod)="buscaPessoas($event)" (onSelect)="pessoaSelecionada($event)"
+                                [dropdown]="true"></p-autoComplete>
+                            <label>Nome</label>
+                        </span>
+                        <p-message severity="error" text="Nome do servidor obrigatório" *ngIf="
+                                formServidor.controls['codigo'].errors?.required &&
+                                formServidor.controls['codigo'].touched">
+                        </p-message>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="idade" />
+                            <label>Idade</label>
+                        </span>
+                    </div>
+                </div>
             </div>
 
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="login" [optionLabel]="'login'" [optionValue]="'id'" formControlName="login">
-                </p-dropdown>
-                <label>Login</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="vinculo" [optionLabel]="'descricao'" [optionValue]="'id'"
-                    formControlName="vinculo">
-                </p-dropdown>
-                <label>Vínculo</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="matricula" />
-                <label>Matrícula</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="codigoStarh" />
-                <label>Código STARH</label>
-            </span>
-
-            <span class="p-float-label">
-                <p-calendar formControlName="inicioDoVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
-                    monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
-                </p-calendar>
-                <label>Início do Vínculo</label>
-            </span>
-
-            <span class="p-float-label">
-                <p-calendar formControlName="fimDoVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
-                    monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
-                </p-calendar>
-                <label>Fim do Vínculo</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="situacaoDoServidor" formControlName="situacao">
-                </p-dropdown>
-                <label>Situação</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="opcoesDeSituacaoDoServidor" formControlName="situacaoDoServidor">
-                </p-dropdown>
-                <label>Situação do servidor</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
-                    formControlName="centroDeAtividadeIdLotacao"></p-dropdown>
-                <label>Centro de Atividade Lotação</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
-                    formControlName="centroDeAtividadeIdAtuacao"></p-dropdown>
-                <label>Centro de Atividade Atuação</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <p-dropdown [options]="ocupacao" [optionLabel]="'valor'" [optionValue]="'id'"
-                    formControlName="ocupacao"></p-dropdown>
-                <label>Ocupação</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="grupoFuncional" [optionLabel]="'descricao'" [optionValue]="'id'"
-                    formControlName="grupoFuncional">
-                </p-dropdown>
-                <label>Grupo Funcional</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="cargaHoraria" />
-                <label>Carga Horária</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="opcoesDeTipoDeRemuneracao" formControlName="tipoDeRemuneracao">
-                </p-dropdown>
-                <label>Tipo de Remuneração</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="idade" />
-                <label>Idade</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="tempoDeContrato" />
-                <label>Tempo de Contrato</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="funcaoDoCracha" />
-                <label>Função do Crachá</label>
-            </span>
-
-            <span class="p-col-12 p-md-6 p-lg-3 p-float-label">
-                <input type="text" pInputText formControlName="chefeDoCentroDeAtividade" />
-                <label>Chefe do C. Atividade</label>
-            </span>
-
-
-            <span class="p-col-12 p-md-6 p-float-label">
-                <p-dropdown [options]="ramal" [optionLabel]="'numero'" [optionValue]="'id'" formControlName="ramal">
-                </p-dropdown>
-                <label>Ramal</label>
-            </span>
-
-            <div class="p-md-3">
-                <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"></button>
+            <div class="p-col-12 p-grid">
+                <div class="p-col-12 p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="login" [optionLabel]="'login'" [optionValue]="'id'"
+                            formControlName="login">
+                        </p-dropdown>
+                        <label>Login</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="vinculo" [optionLabel]="'descricao'" [optionValue]="'id'"
+                            formControlName="vinculo">
+                        </p-dropdown>
+                        <label>Vínculo</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="matricula" />
+                        <label>Matrícula</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="codigoStarh" />
+                        <label>Código STARH</label>
+                    </span>
+                </div>
             </div>
-        </form>
+
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar formControlName="inicioDoVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
+                            monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
+                        </p-calendar>
+                        <label>Início do Vínculo</label>
+                    </span>
+                    <p-message severity="error" text="Início do Vínculo obrigatório" *ngIf="
+                                formServidor.controls['inicioDoVinculo'].errors?.required &&
+                                formServidor.controls['inicioDoVinculo'].touched">
+                    </p-message>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar formControlName="fimDoVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
+                            monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
+                        </p-calendar>
+                        <label>Fim do Vínculo</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="situacaoDoServidor" formControlName="situacao">
+                        </p-dropdown>
+                        <label>Situação</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="opcoesDeSituacaoDoServidor" formControlName="situacaoDoServidor">
+                        </p-dropdown>
+                        <label>Situação do servidor</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-grid" style="align-items: center;">
+                <div class="p-col">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
+                            formControlName="centroDeAtividadeIdLotacao"></p-dropdown>
+                        <label>Centro de Atividade Lotação</label>
+                    </span>
+                </div>
+                <div class="p-col">
+                    <span class="p-col p-float-label">
+                        <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
+                            formControlName="centroDeAtividadeIdAtuacao"></p-dropdown>
+                        <label>Centro de Atividade Atuação</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="ocupacao" [optionLabel]="'valor'" [optionValue]="'id'"
+                            formControlName="ocupacao"></p-dropdown>
+                        <label>Ocupação</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="grupoFuncional" [optionLabel]="'descricao'" [optionValue]="'id'"
+                            formControlName="grupoFuncional">
+                        </p-dropdown>
+                        <label>Grupo Funcional</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="opcoesDeTipoDeRemuneracao" formControlName="tipoDeRemuneracao">
+                        </p-dropdown>
+                        <label>Tipo de Remuneração</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="ramal" [optionLabel]="'numero'" [optionValue]="'id'"
+                            formControlName="ramal">
+                        </p-dropdown>
+                        <label>Ramal</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="cargaHoraria" />
+                        <label>Carga Horária</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="tempoDeContrato" />
+                        <label>Tempo de Contrato</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="funcaoDoCracha" />
+                        <label>Função do Crachá</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="chefeDoCentroDeAtividade" />
+                        <label>Chefe do C. Atividade</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"></button>
+        </div>
     </div>
-</div>
+</form>

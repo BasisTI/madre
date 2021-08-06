@@ -5656,6 +5656,7 @@ p-chips.ng-dirty.ng-invalid .p-chips .p-chips-multiple-container:not(.p-disabled
   background-size: 0 2px, 100% 1px;
   background-position: 50% 100%, 50% 100%;
   background-origin: border-box;
+  width: 100%;
 }
 .p-input-filled .p-dropdown .p-inputtext {
   background-image: none;
