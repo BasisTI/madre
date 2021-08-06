@@ -47,6 +47,7 @@ export class FormularioServidorComponent implements OnInit {
   formularioServidor: FormGroup;
   localizacao = CALENDAR_LOCALE;
   formatoDeData = 'dd/mm/yy';
+  dataAtual = new Date();
   listaPessoasServidor = new Array<ListaPessoasServidor>();
   idade = '';
   formServidor = this.fb.group({
@@ -83,10 +84,6 @@ export class FormularioServidorComponent implements OnInit {
     });
   }
 
-  pessoaSelecionada(evt: any) {
-    this.idadePaciente(evt.dataDeNascimento);
-  }
-
   constructor(private servidorService: ServidorService,
     private pessoasService: PessoaService,
     private loginService: LoginService,
@@ -98,9 +95,9 @@ export class FormularioServidorComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
-  private idadePaciente(dtNascimento: Date) {
-    if (dtNascimento) {
-      const idade = moment().diff(moment(dtNascimento), 'years');
+  private idadePessoa(dataDeNascimento: Date) {
+    if (dataDeNascimento) {
+      const idade = moment().diff(moment(dataDeNascimento), 'years');
 
       if (idade === 0) {
         this.idade = 'Menos de 1 ano';
@@ -119,9 +116,9 @@ export class FormularioServidorComponent implements OnInit {
   opcoesDeTipoDeRemuneracao = OPCOES_DE_TIPO_DE_REMUNERACAO;
 
   ngOnInit(): void {
-    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({id:null, nome: "Selecione"}) });
-    this.loginService.getUsuario().subscribe((response) => { this.login = response; this.login.unshift({id:null,login: "Selecione" }) });
-    this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id:null, descricao: "Selecione"}) });
+    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, nome: "Selecione" }) });
+    this.loginService.getUsuario().subscribe((response) => { this.login = response; this.login.unshift({ id: null, login: "Selecione" }) });
+    this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id: null, descricao: "Selecione" }) });
     this.centrosService.getCentros().subscribe((response) => { this.centros = response; this.centros.unshift({ id: null, descricao: "Selecione" }) });
     this.ocupacaoService.getOcupacoes().subscribe((response) => { this.ocupacao = response; this.ocupacao.unshift({ id: null, valor: "Selecione" }) });
     this.grupoFuncionalService.getGrupoFuncional().subscribe((response) => { this.grupoFuncional = response; this.grupoFuncional.unshift({ id: null, descricao: "Selecione" }) });
@@ -165,6 +162,11 @@ export class FormularioServidorComponent implements OnInit {
         this.formServidor.reset();
       });
     }
+  }
+
+  pessoaSelecionada(evt: any) {
+    this.idadePessoa(evt.dataDeNascimento);
+    console.log(this.idade)
   }
 
 }

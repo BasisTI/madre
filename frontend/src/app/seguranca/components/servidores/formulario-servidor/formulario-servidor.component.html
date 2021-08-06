@@ -20,7 +20,8 @@
                     </div>
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <input type="text" pInputText formControlName="idade" />
+                            <input type="text" pInputText value="0" disabled [(ngModel)]="idade"
+                                [ngModelOptions]="{ standalone: true }" />
                             <label>Idade</label>
                         </span>
                     </div>
@@ -173,7 +174,8 @@
             </div>
         </div>
         <div class="p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor" [disabled]="!valid()"></button>
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"
+                [disabled]="!valid()"></button>
         </div>
     </div>
 </form>

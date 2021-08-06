@@ -118,6 +118,7 @@ entity Vinculo {
     numerosDeDiasAdmissao String
     tituloMasculino String
     tituloFeminino String
+    matricula Integer
 }
 
 entity Usuario {

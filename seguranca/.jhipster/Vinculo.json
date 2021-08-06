@@ -67,6 +67,10 @@
     {
       "fieldName": "tituloFeminino",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "matricula",
+      "fieldType": "Integer"
     }
   ],
   "relationships": [],

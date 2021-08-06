@@ -76,6 +76,9 @@ public class Vinculo implements Serializable {
     @Column(name = "titulo_feminino")
     private String tituloFeminino;
 
+    @Column(name = "matricula")
+    private Integer matricula;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -292,6 +295,19 @@ public class Vinculo implements Serializable {
     public void setTituloFeminino(String tituloFeminino) {
         this.tituloFeminino = tituloFeminino;
     }
+
+    public Integer getMatricula() {
+        return matricula;
+    }
+
+    public Vinculo matricula(Integer matricula) {
+        this.matricula = matricula;
+        return this;
+    }
+
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -331,6 +347,7 @@ public class Vinculo implements Serializable {
             ", numerosDeDiasAdmissao='" + getNumerosDeDiasAdmissao() + "'" +
             ", tituloMasculino='" + getTituloMasculino() + "'" +
             ", tituloFeminino='" + getTituloFeminino() + "'" +
+            ", matricula=" + getMatricula() +
             "}";
     }
 }

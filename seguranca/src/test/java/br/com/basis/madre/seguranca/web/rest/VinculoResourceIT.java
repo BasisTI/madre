@@ -90,6 +90,9 @@ public class VinculoResourceIT {
     private static final String DEFAULT_TITULO_FEMININO = "AAAAAAAAAA";
     private static final String UPDATED_TITULO_FEMININO = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_MATRICULA = 1;
+    private static final Integer UPDATED_MATRICULA = 2;
+
     @Autowired
     private VinculoRepository vinculoRepository;
 
@@ -138,7 +141,8 @@ public class VinculoResourceIT {
             .emiteContrato(DEFAULT_EMITE_CONTRATO)
             .numerosDeDiasAdmissao(DEFAULT_NUMEROS_DE_DIAS_ADMISSAO)
             .tituloMasculino(DEFAULT_TITULO_MASCULINO)
-            .tituloFeminino(DEFAULT_TITULO_FEMININO);
+            .tituloFeminino(DEFAULT_TITULO_FEMININO)
+            .matricula(DEFAULT_MATRICULA);
         return vinculo;
     }
     /**
@@ -164,7 +168,8 @@ public class VinculoResourceIT {
             .emiteContrato(UPDATED_EMITE_CONTRATO)
             .numerosDeDiasAdmissao(UPDATED_NUMEROS_DE_DIAS_ADMISSAO)
             .tituloMasculino(UPDATED_TITULO_MASCULINO)
-            .tituloFeminino(UPDATED_TITULO_FEMININO);
+            .tituloFeminino(UPDATED_TITULO_FEMININO)
+            .matricula(UPDATED_MATRICULA);
         return vinculo;
     }
 
@@ -204,6 +209,7 @@ public class VinculoResourceIT {
         assertThat(testVinculo.getNumerosDeDiasAdmissao()).isEqualTo(DEFAULT_NUMEROS_DE_DIAS_ADMISSAO);
         assertThat(testVinculo.getTituloMasculino()).isEqualTo(DEFAULT_TITULO_MASCULINO);
         assertThat(testVinculo.getTituloFeminino()).isEqualTo(DEFAULT_TITULO_FEMININO);
+        assertThat(testVinculo.getMatricula()).isEqualTo(DEFAULT_MATRICULA);
 
         // Validate the Vinculo in Elasticsearch
         verify(mockVinculoSearchRepository, times(1)).save(testVinculo);
@@ -319,7 +325,8 @@ public class VinculoResourceIT {
             .andExpect(jsonPath("$.[*].emiteContrato").value(hasItem(DEFAULT_EMITE_CONTRATO.booleanValue())))
             .andExpect(jsonPath("$.[*].numerosDeDiasAdmissao").value(hasItem(DEFAULT_NUMEROS_DE_DIAS_ADMISSAO)))
             .andExpect(jsonPath("$.[*].tituloMasculino").value(hasItem(DEFAULT_TITULO_MASCULINO)))
-            .andExpect(jsonPath("$.[*].tituloFeminino").value(hasItem(DEFAULT_TITULO_FEMININO)));
+            .andExpect(jsonPath("$.[*].tituloFeminino").value(hasItem(DEFAULT_TITULO_FEMININO)))
+            .andExpect(jsonPath("$.[*].matricula").value(hasItem(DEFAULT_MATRICULA)));
     }
     
     @Test
@@ -348,7 +355,8 @@ public class VinculoResourceIT {
             .andExpect(jsonPath("$.emiteContrato").value(DEFAULT_EMITE_CONTRATO.booleanValue()))
             .andExpect(jsonPath("$.numerosDeDiasAdmissao").value(DEFAULT_NUMEROS_DE_DIAS_ADMISSAO))
             .andExpect(jsonPath("$.tituloMasculino").value(DEFAULT_TITULO_MASCULINO))
-            .andExpect(jsonPath("$.tituloFeminino").value(DEFAULT_TITULO_FEMININO));
+            .andExpect(jsonPath("$.tituloFeminino").value(DEFAULT_TITULO_FEMININO))
+            .andExpect(jsonPath("$.matricula").value(DEFAULT_MATRICULA));
     }
     @Test
     @Transactional
@@ -386,7 +394,8 @@ public class VinculoResourceIT {
             .emiteContrato(UPDATED_EMITE_CONTRATO)
             .numerosDeDiasAdmissao(UPDATED_NUMEROS_DE_DIAS_ADMISSAO)
             .tituloMasculino(UPDATED_TITULO_MASCULINO)
-            .tituloFeminino(UPDATED_TITULO_FEMININO);
+            .tituloFeminino(UPDATED_TITULO_FEMININO)
+            .matricula(UPDATED_MATRICULA);
         VinculoDTO vinculoDTO = vinculoMapper.toDto(updatedVinculo);
 
         restVinculoMockMvc.perform(put("/api/vinculos")
@@ -414,6 +423,7 @@ public class VinculoResourceIT {
         assertThat(testVinculo.getNumerosDeDiasAdmissao()).isEqualTo(UPDATED_NUMEROS_DE_DIAS_ADMISSAO);
         assertThat(testVinculo.getTituloMasculino()).isEqualTo(UPDATED_TITULO_MASCULINO);
         assertThat(testVinculo.getTituloFeminino()).isEqualTo(UPDATED_TITULO_FEMININO);
+        assertThat(testVinculo.getMatricula()).isEqualTo(UPDATED_MATRICULA);
 
         // Validate the Vinculo in Elasticsearch
         verify(mockVinculoSearchRepository, times(1)).save(testVinculo);
@@ -491,6 +501,7 @@ public class VinculoResourceIT {
             .andExpect(jsonPath("$.[*].emiteContrato").value(hasItem(DEFAULT_EMITE_CONTRATO.booleanValue())))
             .andExpect(jsonPath("$.[*].numerosDeDiasAdmissao").value(hasItem(DEFAULT_NUMEROS_DE_DIAS_ADMISSAO)))
             .andExpect(jsonPath("$.[*].tituloMasculino").value(hasItem(DEFAULT_TITULO_MASCULINO)))
-            .andExpect(jsonPath("$.[*].tituloFeminino").value(hasItem(DEFAULT_TITULO_FEMININO)));
+            .andExpect(jsonPath("$.[*].tituloFeminino").value(hasItem(DEFAULT_TITULO_FEMININO)))
+            .andExpect(jsonPath("$.[*].matricula").value(hasItem(DEFAULT_MATRICULA)));
     }
 }

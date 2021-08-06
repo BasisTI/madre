@@ -45,6 +45,8 @@ public class VinculoDTO implements Serializable {
 
     private String tituloFeminino;
 
+    private Integer matricula;
+
     
     public Long getId() {
         return id;
@@ -182,6 +184,14 @@ public class VinculoDTO implements Serializable {
         this.tituloFeminino = tituloFeminino;
     }
 
+    public Integer getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -220,6 +230,7 @@ public class VinculoDTO implements Serializable {
             ", numerosDeDiasAdmissao='" + getNumerosDeDiasAdmissao() + "'" +
             ", tituloMasculino='" + getTituloMasculino() + "'" +
             ", tituloFeminino='" + getTituloFeminino() + "'" +
+            ", matricula=" + getMatricula() +
             "}";
     }
 }
