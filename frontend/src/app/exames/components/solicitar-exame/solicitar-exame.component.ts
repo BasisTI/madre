@@ -86,9 +86,13 @@ export class SolicitarExameComponent implements OnInit {
       solicitacaoExames: this.itensSolicitacaoExame
     };
 
-    console.log(solicitacao); 
+    console.log(solicitacao);
 
     this.solicitacaoExameService.solicitarExame(solicitacao).subscribe();
+
+      if(itens.length > 0) {
+          itens.length = 0;
+      }
   }
 
   limpar() {
