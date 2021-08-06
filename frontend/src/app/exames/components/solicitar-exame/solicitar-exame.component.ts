@@ -57,7 +57,7 @@ export class SolicitarExameComponent implements OnInit {
     return this.solicitarExame.valid;
   }
 
-  cadastrar(position: string) {
+  cadastrar() {
 
     let itens = this.appExames.pegarItensSolicitacaoExame();
 

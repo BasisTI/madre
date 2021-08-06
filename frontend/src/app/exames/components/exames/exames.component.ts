@@ -1,17 +1,13 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SituationDropdown } from "../../models/dropdowns/situation.dropdown";
-import { BreadcrumbService, CALENDAR_LOCALE, DatatableComponent } from '@nuvem/primeng-components';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { ExamesService } from '../../services/exames.service';
 import { GrupoModel } from '../../models/subjects/grupo-model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ItemSolicitacaoExame } from '../../models/subjects/item-solicitacao-exame';
-import { ItemSolicitacaoExameService } from '../../services/item-solicitacao-exame.service';
 import { ExameComponent } from './components/exame/exame.component';
 import { TabelaExamesComponent } from './components/tabela-exames/tabela-exames.component';
-// import { AutoCompleteDemo } from '../../models/dropdowns/exams.dropdown';
-
 @Component({
   selector: 'app-exames',
   templateUrl: './exames.component.html',
