@@ -77,6 +77,13 @@ public class EmergenciaService {
             .map(emergenciaMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public Page<EmergenciaDTO> buscarTodos(Pageable pageable) {
+        log.debug("Request to get all Emergencias");
+        EmergenciaService emergenciaSearchRepositoryRepository;
+        return emergenciaSearchRepository.findAll(pageable)
+            .map(emergenciaMapper::toDto);
+    }
 
     /**
      * Get one emergencia by id.

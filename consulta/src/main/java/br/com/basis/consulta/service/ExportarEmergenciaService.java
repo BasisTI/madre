@@ -83,7 +83,7 @@ public class ExportarEmergenciaService {
         for (EmergenciaDTO emergencia : emergenciaService.findAll(medicamentos)){
             Row row = sheet.createRow(rowCount++);
 
-            escreverColunas(row, estilo, 1, emergencia.getNumeroConsulta().toString());
+            escreverColunas(row, estilo, 0, emergencia.getNumeroConsulta().toString());
             escreverColunas(row, estilo, 1, emergencia.getGrade().toString());
             escreverColunas(row, estilo, 2, emergencia.getDataHoraDaConsulta().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             escreverColunas(row, estilo, 3, emergencia.getNumeroSala());

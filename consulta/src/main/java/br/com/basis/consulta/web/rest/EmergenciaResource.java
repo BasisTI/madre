@@ -50,7 +50,6 @@ public class EmergenciaResource {
     private final Logger log = LoggerFactory.getLogger(EmergenciaResource.class);
 
     private static final String ENTITY_NAME = "madreconsultaEmergencia";
-    private static final String PAGE = "page";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -58,11 +57,9 @@ public class EmergenciaResource {
     private final ExportarEmergenciaService exportarEmergenciaService;
 
     private final EmergenciaService emergenciaService;
-    private final EmergenciaSearchRepository emergenciaSearchRepository;
 
-    public EmergenciaResource(EmergenciaService emergenciaService, EmergenciaSearchRepository emergenciaSearchRepository, ExportarEmergenciaService exportarEmergenciaService) {
+    public EmergenciaResource(EmergenciaService emergenciaService, ExportarEmergenciaService exportarEmergenciaService) {
         this.emergenciaService = emergenciaService;
-        this.emergenciaSearchRepository = emergenciaSearchRepository;
         this.exportarEmergenciaService = exportarEmergenciaService;
     }
 
