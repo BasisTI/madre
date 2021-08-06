@@ -173,7 +173,7 @@
             </div>
         </div>
         <div class="p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"></button>
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor" [disabled]="!valid()"></button>
         </div>
     </div>
 </form>

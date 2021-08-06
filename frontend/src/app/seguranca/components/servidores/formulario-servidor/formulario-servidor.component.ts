@@ -73,6 +73,9 @@ export class FormularioServidorComponent implements OnInit {
     ramal: [''],
   });
 
+  valid(): boolean {
+    return this.formServidor.valid;
+  }
 
   buscaPessoas(event) {
     this.pessoasService.getResultPessoas(event.query).subscribe((data) => {
