@@ -80,7 +80,7 @@ public class ExportarEmergenciaService {
 
         Pageable medicamentos = PageRequest.of(0, contaEmergencias);
 
-        for (EmergenciaDTO emergencia : emergenciaService.findAll(medicamentos)){
+        for (EmergenciaDTO emergencia : emergenciaService.buscarTodasEmergencias(medicamentos)){
             Row row = sheet.createRow(rowCount++);
 
             escreverColunas(row, estilo, 0, emergencia.getNumeroConsulta().toString());
@@ -89,7 +89,7 @@ public class ExportarEmergenciaService {
             escreverColunas(row, estilo, 3, emergencia.getNumeroSala());
             escreverColunas(row, estilo, 4, emergencia.getTurno().name());
             escreverColunas(row, estilo, 5, emergencia.getTipoPagador().name());
-            escreverColunas(row, estilo, 6, emergencia.getClinicaCentralId().toString());
+            escreverColunas(row, estilo, 6, "teste");
             escreverColunas(row, estilo, 7, emergencia.getJustificativa());
             escreverColunas(row, estilo, 8, emergencia.getObservacoes());
             escreverColunas(row, estilo, 9, emergencia.getPacienteId().toString());
