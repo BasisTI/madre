@@ -8,9 +8,9 @@
                 <div class="p-col-12 p-grid">
                     <div class="p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-autoComplete field="nome" formControlName="codigo" [suggestions]="listaPessoasServidor"
-                                (completeMethod)="buscaPessoas($event)" (onSelect)="pessoaSelecionada($event)"
-                                [dropdown]="true"></p-autoComplete>
+                            <p-autoComplete field="nome" formControlName="codigo" 
+                                [suggestions]="listaPessoasServidor" (completeMethod)="buscaPessoas($event)"
+                                (onSelect)="aoSelecionarUmaPessoa($event)" [dropdown]="true"></p-autoComplete>
                             <label>Nome</label>
                         </span>
                         <p-message severity="error" text="Nome do servidor obrigatório" *ngIf="
@@ -20,8 +20,7 @@
                     </div>
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <input type="text" pInputText value="0" disabled [(ngModel)]="idade"
-                                [ngModelOptions]="{ standalone: true }" />
+                            <input type="text" pInputText disabled formControlName="idade" />
                             <label>Idade</label>
                         </span>
                     </div>
@@ -39,15 +38,17 @@
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="vinculo" [optionLabel]="'descricao'" [optionValue]="'id'"
-                            formControlName="vinculo">
-                        </p-dropdown>
-                        <label>Vínculo</label>
+                        <span class="p-float-label">
+                            <p-autoComplete field="descricao" formControlName="vinculo"
+                                [suggestions]="listaVinculosServidor" (completeMethod)="buscaVinculos($event)"
+                                (onSelect)="aoSelecionarUmVinculo($event)" [dropdown]="true"></p-autoComplete>
+                            <label>Vínculo</label>
+                        </span>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <input type="text" pInputText formControlName="matricula" />
+                        <input type="text" pInputText disabled formControlName="matricula" />
                         <label>Matrícula</label>
                     </span>
                 </div>

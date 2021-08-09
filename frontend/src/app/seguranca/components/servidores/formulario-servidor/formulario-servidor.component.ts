@@ -23,6 +23,7 @@ import { Vinculo } from 'src/app/seguranca/models/dropdowns/vinculo-model';
 import { Ramal } from 'src/app/seguranca/models/dropdowns/ramal';
 import { ListaPessoasServidor } from 'src/app/seguranca/models/dropdowns/lista-pessoa-servidor';
 import { ServidorModel } from 'src/app/seguranca/models/servidor-model';
+import { ListaVinculosServidor } from 'src/app/seguranca/models/dropdowns/lista-vinculo-servidor';
 
 
 @Component({
@@ -43,13 +44,16 @@ export class FormularioServidorComponent implements OnInit {
 
   situacaoDoServidor = OPCOES_DE_SITUACOES;
 
-  @Input()
-  formularioServidor: FormGroup;
+  @Input() formularioServidor: FormGroup;
   localizacao = CALENDAR_LOCALE;
   formatoDeData = 'dd/mm/yy';
-  dataAtual = new Date();
+  anoAtual = moment().format("YYYY");
+
   listaPessoasServidor = new Array<ListaPessoasServidor>();
-  idade = '';
+  listaVinculosServidor = new Array<ListaVinculosServidor>();
+
+  idade: number;
+
   formServidor = this.fb.group({
     id: [''],
     codigo: ['', Validators.required],
@@ -84,6 +88,12 @@ export class FormularioServidorComponent implements OnInit {
     });
   }
 
+  buscaVinculos(event) {
+    this.vinculoService.getResultVinculo(event.query).subscribe((data) => {
+      this.listaVinculosServidor = data.content;
+    });
+  }
+
   constructor(private servidorService: ServidorService,
     private pessoasService: PessoaService,
     private loginService: LoginService,
@@ -95,30 +105,13 @@ export class FormularioServidorComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
-  private idadePessoa(dataDeNascimento: Date) {
-    if (dataDeNascimento) {
-      const idade = moment().diff(moment(dataDeNascimento), 'years');
-
-      if (idade === 0) {
-        this.idade = 'Menos de 1 ano';
-        return;
-      }
-
-      this.idade = String(idade);
-
-      return;
-    }
-
-    this.idade = '';
-  }
-
   opcoesDeSituacaoDoServidor = OPCOES_DE_SITUACOES_SERVIDOR;
   opcoesDeTipoDeRemuneracao = OPCOES_DE_TIPO_DE_REMUNERACAO;
 
   ngOnInit(): void {
-    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, nome: "Selecione" }) });
+    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, dataDeNascimento: null, nome: "Selecione" }) });
     this.loginService.getUsuario().subscribe((response) => { this.login = response; this.login.unshift({ id: null, login: "Selecione" }) });
-    this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id: null, descricao: "Selecione" }) });
+    this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id: null, descricao: "Selecione", matricula: null }) });
     this.centrosService.getCentros().subscribe((response) => { this.centros = response; this.centros.unshift({ id: null, descricao: "Selecione" }) });
     this.ocupacaoService.getOcupacoes().subscribe((response) => { this.ocupacao = response; this.ocupacao.unshift({ id: null, valor: "Selecione" }) });
     this.grupoFuncionalService.getGrupoFuncional().subscribe((response) => { this.grupoFuncional = response; this.grupoFuncional.unshift({ id: null, descricao: "Selecione" }) });
@@ -152,21 +145,29 @@ export class FormularioServidorComponent implements OnInit {
     };
 
     if (this.formServidor.value.id != 0) {
-      console.log("alterar")
       this.servidorService.alterarServidor(servidor).subscribe((e) => {
         this.formServidor.reset();
       });
     } else {
-      console.log("cadastrar")
       this.servidorService.cadastrarServidor(servidor).subscribe((e) => {
         this.formServidor.reset();
       });
     }
   }
 
-  pessoaSelecionada(evt: any) {
-    this.idadePessoa(evt.dataDeNascimento);
-    console.log(this.idade)
+  calculaIdade(dataDeNascimento: Date) {
+    const idade = moment().diff(moment(dataDeNascimento), 'years');
+    return idade
   }
 
+  aoSelecionarUmaPessoa(pessoa: Pessoa): void {
+
+    const idade = this.calculaIdade(pessoa.dataDeNascimento);
+
+    this.formServidor.controls['idade'].setValue(idade)
+  }
+
+  aoSelecionarUmVinculo(vinculo: Vinculo): void {
+    this.formServidor.controls['matricula'].setValue(vinculo.matricula);
+  }
 }

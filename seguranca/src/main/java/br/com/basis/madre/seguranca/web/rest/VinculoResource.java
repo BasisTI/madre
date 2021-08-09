@@ -1,6 +1,8 @@
 package br.com.basis.madre.seguranca.web.rest;
 
 import br.com.basis.madre.seguranca.service.VinculoService;
+import br.com.basis.madre.seguranca.service.projection.PessoaResumo;
+import br.com.basis.madre.seguranca.service.projection.VinculoResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.seguranca.service.dto.VinculoDTO;
 
@@ -141,5 +143,10 @@ public class VinculoResource {
         Page<VinculoDTO> page = vinculoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-        }
+    }
+
+    @GetMapping("/vinculos/_resumo")
+    public ResponseEntity<Page<VinculoResumo>> findAllProjectedVinculoResumoBy(@RequestParam(required = false,defaultValue = "") String descricao, Pageable pageable) {
+        return ResponseEntity.ok(vinculoService.findAllProjectedVinculoResumoBy(descricao,pageable));
+    }
 }

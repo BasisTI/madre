@@ -5,6 +5,7 @@ import br.com.basis.madre.seguranca.repository.VinculoRepository;
 import br.com.basis.madre.seguranca.repository.search.VinculoSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.VinculoDTO;
 import br.com.basis.madre.seguranca.service.mapper.VinculoMapper;
+import br.com.basis.madre.seguranca.service.projection.VinculoResumo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -103,5 +104,9 @@ public class VinculoService {
         log.debug("Request to search for a page of Vinculos for query {}", query);
         return vinculoSearchRepository.search(queryStringQuery(query), pageable)
             .map(vinculoMapper::toDto);
+    }
+
+    public Page<VinculoResumo> findAllProjectedVinculoResumoBy(String descricao, Pageable pageable) {
+        return vinculoRepository.findAllProjectedVinculoResumoByDescricaoContainingIgnoreCase(descricao, pageable);
     }
 }
