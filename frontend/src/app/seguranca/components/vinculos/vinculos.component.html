@@ -34,13 +34,13 @@
         </div>
 
         <div class="p-col-12 p-grid">
-            <div class="p-col-12 p-md-4 ">
+            <div class="p-col-12 p-md-3">
                 <legend>Permitir Dependentes?</legend>
                 <div class="p-field-radiobutton">
                     <div class="radioButton">
                         <p-radioButton
                             name="permitirDependentes" 
-                            formControlName="vitimaDeAcidente" 
+                            formControlName="permitirDependentes" 
                             value="false" 
                             required>
                         </p-radioButton>
@@ -48,8 +48,226 @@
                     </div>
                     <div class="radioButton">
                         <p-radioButton 
-                            name="vitimaDeAcidente" 
-                            formControlName="vitimaDeAcidente" 
+                            name="permitirDependentes" 
+                            formControlName="permitirDependentes" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Exige término?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="exigeTermino" 
+                            formControlName="exigeTermino" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="exigeTermino" 
+                            formControlName="exigeTermino" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Gera matrícula?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="geraMatricula" 
+                            formControlName="geraMatricula" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="geraMatricula" 
+                            formControlName="geraMatriculas" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <span class="p-float-label">
+                    <input type="text" pInputText formControlName="matricula" />
+                    <label>Matrícula</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-md-3">
+                <legend>Exige Centro de Atividade?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="exigeCentroDeAtividade" 
+                            formControlName="exigeCentroDeAtividade" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="exigeCentroDeAtividade" 
+                            formControlName="exigeCentroDeAtividade" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Exige Ocupação?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="exigeOcupacao" 
+                            formControlName="exigeOcupacao" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="exigeOcupacao" 
+                            formControlName="exigeOcupacao" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Transfere Starh?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="transfereStarh" 
+                            formControlName="transfereStarh" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="transfereStarh" 
+                            formControlName="transfereStarh" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-md-3">
+                <legend>Permite Duplos?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="permiteDuplos" 
+                            formControlName="permiteDuplos" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="permiteDuplos" 
+                            formControlName="permiteDuplos" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Exige CPF RG?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="exigeCpfRg" 
+                            formControlName="exigeCpfRg" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="exigeCpfRg" 
+                            formControlName="exigeCpfRg" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Gestão Desempenho?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="gestaoDesempenho" 
+                            formControlName="gestaoDesempenho" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="gestaoDesempenho" 
+                            formControlName="gestaoDesempenho" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <legend>Emite Contrato?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="emiteContrato" 
+                            formControlName="emiteContrato" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="emiteContrato" 
+                            formControlName="emiteContrato" 
                             value="true">
                         </p-radioButton>
                         <label class="label-radioButton">Sim</label>
@@ -78,7 +296,6 @@
                 </span>
             </div>
         </div>
-
     </div>
     <!-- <div class="p-grid p-jc-end">
             <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"
