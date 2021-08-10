@@ -131,12 +131,12 @@ public class EmergenciaService {
     public Page<Emergencia> filtraConsultaEmergencial(Pageable pageable, String numeroConsulta, String grade, String pacienteId,String profissional, String especialidade, String clinicaCentral, String dataConsulta) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder,"grade",grade);
-        filter(queryBuilder, "numeroConsulta",numeroConsulta);
+        filter(queryBuilder, NUMERO_CONSULTA,numeroConsulta);
         filter(queryBuilder, "pacienteId", pacienteId);
         filter(queryBuilder, "profissional",especialidade);
         filter(queryBuilder, "especialidade",profissional);
         filter(queryBuilder ,"clinicaCentralId",clinicaCentral);
-        filter(queryBuilder,"dataHoraDaConsulta",dataConsulta);
+        filter(queryBuilder,DATA_HORA_CONSULTA,dataConsulta);
         SearchQuery query = new NativeSearchQueryBuilder()
             .withQuery(queryBuilder)
             .withPageable(pageable)
