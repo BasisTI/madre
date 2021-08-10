@@ -7,7 +7,7 @@ import java.io.Serializable;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.SolicitacaoExame} entity.
  */
 public class SolicitacaoExameDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -19,7 +19,6 @@ public class SolicitacaoExameDTO implements Serializable {
     @NotNull
     private Boolean pedidoPrimeiroExame;
 
-    
     public Long getId() {
         return id;
     }

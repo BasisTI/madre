@@ -1,18 +1,16 @@
 import { OpcaoDropdown } from '@shared/dropdown/opcao.dropdown';
-import { OPCAO_SELECIONE } from '@shared/dropdown/opcao.selecione';
 
 export const SituationDropdown: OpcaoDropdown[] = [
-    OPCAO_SELECIONE,
     {
         label: 'A Coletar',
-        value: '1',
+        value: 'A_COLETAR',
     },
     {
         label: 'Area Executora',
-        value: '2',
+        value: 'AREA_EXECUTORA',
     },
     {
         label: 'Coletado',
-        value: '3',
+        value: 'COLETADO',
     },
 ];

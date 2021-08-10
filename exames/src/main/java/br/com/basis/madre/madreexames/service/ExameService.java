@@ -13,7 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -103,5 +105,10 @@ public class ExameService {
         log.debug("Request to search for a page of Exames for query {}", query);
         return exameSearchRepository.search(queryStringQuery(query), pageable)
             .map(exameMapper::toDto);
+    }
+
+    public List<ExameDTO> buscaExamesPorGrupo(Long id) {
+        return exameRepository.findByGrupoAgendamentoExamesId(id).stream()
+            .map(exameMapper::toDto).collect(Collectors.toList());
     }
 }

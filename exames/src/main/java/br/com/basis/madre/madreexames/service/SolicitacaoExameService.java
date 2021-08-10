@@ -3,7 +3,9 @@ package br.com.basis.madre.madreexames.service;
 import br.com.basis.madre.madreexames.domain.SolicitacaoExame;
 import br.com.basis.madre.madreexames.repository.SolicitacaoExameRepository;
 import br.com.basis.madre.madreexames.repository.search.SolicitacaoExameSearchRepository;
+import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameDTO;
+import br.com.basis.madre.madreexames.service.mapper.SolicitacaoExameCompletoMapper;
 import br.com.basis.madre.madreexames.service.mapper.SolicitacaoExameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,23 +34,26 @@ public class SolicitacaoExameService {
 
     private final SolicitacaoExameSearchRepository solicitacaoExameSearchRepository;
 
-    public SolicitacaoExameService(SolicitacaoExameRepository solicitacaoExameRepository, SolicitacaoExameMapper solicitacaoExameMapper, SolicitacaoExameSearchRepository solicitacaoExameSearchRepository) {
+    private final SolicitacaoExameCompletoMapper solicitacaoExameCompletoMapper;
+
+    public SolicitacaoExameService(SolicitacaoExameRepository solicitacaoExameRepository, SolicitacaoExameMapper solicitacaoExameMapper, SolicitacaoExameSearchRepository solicitacaoExameSearchRepository, SolicitacaoExameCompletoMapper solicitacaoExameCompletoMapper) {
         this.solicitacaoExameRepository = solicitacaoExameRepository;
         this.solicitacaoExameMapper = solicitacaoExameMapper;
         this.solicitacaoExameSearchRepository = solicitacaoExameSearchRepository;
+        this.solicitacaoExameCompletoMapper = solicitacaoExameCompletoMapper;
     }
 
     /**
      * Save a solicitacaoExame.
      *
-     * @param solicitacaoExameDTO the entity to save.
+     * @param solicitacaoExameCompletoDTO the entity to save.
      * @return the persisted entity.
      */
-    public SolicitacaoExameDTO save(SolicitacaoExameDTO solicitacaoExameDTO) {
-        log.debug("Request to save SolicitacaoExame : {}", solicitacaoExameDTO);
-        SolicitacaoExame solicitacaoExame = solicitacaoExameMapper.toEntity(solicitacaoExameDTO);
+    public SolicitacaoExameCompletoDTO save(SolicitacaoExameCompletoDTO solicitacaoExameCompletoDTO) {
+        log.debug("Request to save SolicitacaoExame : {}", solicitacaoExameCompletoDTO);
+        SolicitacaoExame solicitacaoExame = solicitacaoExameCompletoMapper.toEntity(solicitacaoExameCompletoDTO);
         solicitacaoExame = solicitacaoExameRepository.save(solicitacaoExame);
-        SolicitacaoExameDTO result = solicitacaoExameMapper.toDto(solicitacaoExame);
+        SolicitacaoExameCompletoDTO result = solicitacaoExameCompletoMapper.toDto(solicitacaoExame);
         solicitacaoExameSearchRepository.save(solicitacaoExame);
         return result;
     }
