@@ -9,6 +9,7 @@ import { routes } from './exames.routes';
 import { ExameComponent } from './components/exames/components/exame/exame.component';
 import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from './components/exames/exames.component';
+import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ExamesComponent } from './components/exames/exames.component';
         AtendimentoDiversoComponent,
         ExameComponent,
         TabelaExamesComponent,
+        FormularioExameComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
