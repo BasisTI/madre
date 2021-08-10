@@ -27,26 +27,89 @@
                     </span>
                 </div>
 
-                <div class="p-md-2 p-fluid">
-                    Material
-                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <p-dropdown [options]="materiais" [optionLabel]="'nome'"
-                            [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                            pTooltip="Selecione o material">
-                        </p-dropdown>
-                    </span>
+
+
+
+
+
+
+                <div class="p-col-12 p-grid">
+
+
+                    <div class="p-md-2 p-col-12">
+                        Material
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <p-dropdown [options]="materiais" [optionLabel]="'nome'"
+                                [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                                pTooltip="Selecione o material">
+                            </p-dropdown>
+                        </span>
+                    </div>
+
+                    <div class="p-md-2 p-col-12">
+                        Tipo de amostra
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <p-dropdown [options]="amostras" [optionLabel]="'nome'"
+                                [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                                pTooltip="Selecione o tipo de amostra">
+                            </p-dropdown>
+                        </span>
+                    </div>
+
+                    <div class="p-md-2 p-col-12" [formGroup]="cadastrarExame">
+                        <label for="situacao">Situação:</label>
+                        <p-dropdown placeholder="Selecione" [options]="situacao" formControlName="ativo"></p-dropdown>
+                    </div>
+
+
                 </div>
 
-                <div class="p-md-2 p-fluid">
-                    Tipo de amostra
-                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <p-dropdown [options]="amostras" [optionLabel]="'nome'"
-                            [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                            pTooltip="Selecione o tipo de amostra">
-                        </p-dropdown>
-                    </span>
-                </div>
+                                        
+                    <div class="p-col-12 p-grid" [formGroup]="cadastrarExame">
+                                <div class="p-col-12 p-md-2">
 
+                                    Impressão
+                                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                                        <p-radioButton name="impressao" value=true
+                                            label="Sim" class="separator-radio" formControlName="impressao">
+                                        </p-radioButton>
+                    
+                                        <p-radioButton name="impressao" value=false
+                                            label="Não" formControlName="impressao">
+                                        </p-radioButton>
+                                        
+                                    </div>
+                                </div>
+                                        
+                                <div class="p-col-12 p-md-2" [formGroup]="cadastrarExame">   
+                                    Consiste Interfaceamento
+                                    <div class="radioButton radio">
+                                        <p-radioButton name="consisteInterfaceamento" value=true
+                                            label="Sim" class="separator-radio" formControlName="consisteInterfaceamento">
+                                        </p-radioButton>
+                    
+                                        <p-radioButton name="consisteInterfaceamento" value=false
+                                            label="Não" formControlName="consisteInterfaceamento">
+                                        </p-radioButton>
+                                
+                                    </div>
+                                </div>
+
+
+                                <div class="p-col-12 p-md-2" [formGroup]="cadastrarExame">
+
+                                    Anexar Documentos
+                                    <div class="radioButton radio">
+                                        <p-radioButton class="separator-radio" name="anexaDocumentos" value=true
+                                           label="Sim" formControlName="anexaDocumentos">
+                                        </p-radioButton>
+                                        <p-radioButton name="anexaDocumentos" value=false
+                                            label="Não" formControlName="anexaDocumentos">
+                                        </p-radioButton>
+                                    </div>
+                                </div>  
+                        
+                    </div>
 
                 <div class="p-col-12 p-grid p-d-flex">
                     <div class="p-md-2">

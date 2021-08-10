@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { SituacaoExame } from "../../models/dropdowns/situacao.dropdown";
 import { Amostra } from '../../models/subjects/amostra';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Material } from '../../models/subjects/material';
@@ -18,12 +19,18 @@ export class FormularioExameComponent implements OnInit {
   materiais: Material[] = [];
   amostras: Amostra[] = [];
 
+  teste: boolean;
 
+  situacao = SituacaoExame;
 
   cadastrarExame = this.fb.group({
     nome: [null, Validators.required],
     nomeUsual: [null, Validators.required],
-    sigla: [null, Validators.required]
+    sigla: [null, Validators.required],
+    ativo: [null, Validators.required],
+    impressao: [null, Validators.required],
+    consisteInterfaceamento: [null, Validators.required],
+    anexaDocumentos: [null, Validators.required]
   });
 
 
@@ -37,7 +44,12 @@ export class FormularioExameComponent implements OnInit {
     let cadastro: ExamModel = {
       nome: cadastroExame.nome,
       nomeUsual: cadastroExame.nomeUsual,
-      sigla: cadastroExame.sigla
+      sigla: cadastroExame.sigla,
+      ativo: cadastroExame.ativo,
+      impressao: cadastroExame.impressao,
+      consisteInterfaceamento: cadastroExame.consisteInterfaceamento,
+      anexaDocumentos: cadastroExame.anexaDocumentos
+
     };
 
     console.log(cadastroExame);
