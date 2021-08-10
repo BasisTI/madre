@@ -51,6 +51,18 @@ public class ExameResourceIT {
     private static final String DEFAULT_SIGLA = "AAAAAAAAAA";
     private static final String UPDATED_SIGLA = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ATIVO = false;
+    private static final Boolean UPDATED_ATIVO = true;
+
+    private static final Boolean DEFAULT_IMPRESSAO = false;
+    private static final Boolean UPDATED_IMPRESSAO = true;
+
+    private static final Boolean DEFAULT_CONSISTE_INTERFACEAMENTO = false;
+    private static final Boolean UPDATED_CONSISTE_INTERFACEAMENTO = true;
+
+    private static final Boolean DEFAULT_ANEXA_DOCUMENTOS = false;
+    private static final Boolean UPDATED_ANEXA_DOCUMENTOS = true;
+
     @Autowired
     private ExameRepository exameRepository;
 
@@ -86,7 +98,11 @@ public class ExameResourceIT {
         Exame exame = new Exame()
             .nome(DEFAULT_NOME)
             .nomeUsual(DEFAULT_NOME_USUAL)
-            .sigla(DEFAULT_SIGLA);
+            .sigla(DEFAULT_SIGLA)
+            .ativo(DEFAULT_ATIVO)
+            .impressao(DEFAULT_IMPRESSAO)
+            .consisteInterfaceamento(DEFAULT_CONSISTE_INTERFACEAMENTO)
+            .anexaDocumentos(DEFAULT_ANEXA_DOCUMENTOS);
         return exame;
     }
     /**
@@ -99,7 +115,11 @@ public class ExameResourceIT {
         Exame exame = new Exame()
             .nome(UPDATED_NOME)
             .nomeUsual(UPDATED_NOME_USUAL)
-            .sigla(UPDATED_SIGLA);
+            .sigla(UPDATED_SIGLA)
+            .ativo(UPDATED_ATIVO)
+            .impressao(UPDATED_IMPRESSAO)
+            .consisteInterfaceamento(UPDATED_CONSISTE_INTERFACEAMENTO)
+            .anexaDocumentos(UPDATED_ANEXA_DOCUMENTOS);
         return exame;
     }
 
@@ -126,6 +146,10 @@ public class ExameResourceIT {
         assertThat(testExame.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testExame.getNomeUsual()).isEqualTo(DEFAULT_NOME_USUAL);
         assertThat(testExame.getSigla()).isEqualTo(DEFAULT_SIGLA);
+        assertThat(testExame.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testExame.isImpressao()).isEqualTo(DEFAULT_IMPRESSAO);
+        assertThat(testExame.isConsisteInterfaceamento()).isEqualTo(DEFAULT_CONSISTE_INTERFACEAMENTO);
+        assertThat(testExame.isAnexaDocumentos()).isEqualTo(DEFAULT_ANEXA_DOCUMENTOS);
 
         // Validate the Exame in Elasticsearch
         verify(mockExameSearchRepository, times(1)).save(testExame);
@@ -208,7 +232,11 @@ public class ExameResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(exame.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].nomeUsual").value(hasItem(DEFAULT_NOME_USUAL)))
-            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)));
+            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].impressao").value(hasItem(DEFAULT_IMPRESSAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].consisteInterfaceamento").value(hasItem(DEFAULT_CONSISTE_INTERFACEAMENTO.booleanValue())))
+            .andExpect(jsonPath("$.[*].anexaDocumentos").value(hasItem(DEFAULT_ANEXA_DOCUMENTOS.booleanValue())));
     }
     
     @Test
@@ -224,7 +252,11 @@ public class ExameResourceIT {
             .andExpect(jsonPath("$.id").value(exame.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
             .andExpect(jsonPath("$.nomeUsual").value(DEFAULT_NOME_USUAL))
-            .andExpect(jsonPath("$.sigla").value(DEFAULT_SIGLA));
+            .andExpect(jsonPath("$.sigla").value(DEFAULT_SIGLA))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.impressao").value(DEFAULT_IMPRESSAO.booleanValue()))
+            .andExpect(jsonPath("$.consisteInterfaceamento").value(DEFAULT_CONSISTE_INTERFACEAMENTO.booleanValue()))
+            .andExpect(jsonPath("$.anexaDocumentos").value(DEFAULT_ANEXA_DOCUMENTOS.booleanValue()));
     }
     @Test
     @Transactional
@@ -249,7 +281,11 @@ public class ExameResourceIT {
         updatedExame
             .nome(UPDATED_NOME)
             .nomeUsual(UPDATED_NOME_USUAL)
-            .sigla(UPDATED_SIGLA);
+            .sigla(UPDATED_SIGLA)
+            .ativo(UPDATED_ATIVO)
+            .impressao(UPDATED_IMPRESSAO)
+            .consisteInterfaceamento(UPDATED_CONSISTE_INTERFACEAMENTO)
+            .anexaDocumentos(UPDATED_ANEXA_DOCUMENTOS);
         ExameDTO exameDTO = exameMapper.toDto(updatedExame);
 
         restExameMockMvc.perform(put("/api/exames")
@@ -264,6 +300,10 @@ public class ExameResourceIT {
         assertThat(testExame.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testExame.getNomeUsual()).isEqualTo(UPDATED_NOME_USUAL);
         assertThat(testExame.getSigla()).isEqualTo(UPDATED_SIGLA);
+        assertThat(testExame.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testExame.isImpressao()).isEqualTo(UPDATED_IMPRESSAO);
+        assertThat(testExame.isConsisteInterfaceamento()).isEqualTo(UPDATED_CONSISTE_INTERFACEAMENTO);
+        assertThat(testExame.isAnexaDocumentos()).isEqualTo(UPDATED_ANEXA_DOCUMENTOS);
 
         // Validate the Exame in Elasticsearch
         verify(mockExameSearchRepository, times(1)).save(testExame);
@@ -328,6 +368,10 @@ public class ExameResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(exame.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].nomeUsual").value(hasItem(DEFAULT_NOME_USUAL)))
-            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)));
+            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].impressao").value(hasItem(DEFAULT_IMPRESSAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].consisteInterfaceamento").value(hasItem(DEFAULT_CONSISTE_INTERFACEAMENTO.booleanValue())))
+            .andExpect(jsonPath("$.[*].anexaDocumentos").value(hasItem(DEFAULT_ANEXA_DOCUMENTOS.booleanValue())));
     }
 }

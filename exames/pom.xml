@@ -738,7 +738,7 @@
                         <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                         <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://localhost:5432/madreexames</url>
+                        <url>jdbc:postgresql://localhost:5438/madreexames</url>
                         <defaultSchemaName></defaultSchemaName>
                         <username>madreexames</username>
                         <password></password>

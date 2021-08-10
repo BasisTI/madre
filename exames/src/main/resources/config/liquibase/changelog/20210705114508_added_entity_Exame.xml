@@ -24,6 +24,18 @@
             <column name="sigla" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="ativo" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="impressao" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="consiste_interfaceamento" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="anexa_documentos" type="boolean">
+                <constraints nullable="true" />
+            </column>
             <column name="material_exame_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -60,6 +72,10 @@
             <column name="nome" type="string"/>
             <column name="nome_usual" type="string"/>
             <column name="sigla" type="string"/>
+            <column name="ativo" type="boolean"/>
+            <column name="impressao" type="boolean"/>
+            <column name="consiste_interfaceamento" type="boolean"/>
+            <column name="anexa_documentos" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
