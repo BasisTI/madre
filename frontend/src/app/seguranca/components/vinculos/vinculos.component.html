@@ -1,1 +1,88 @@
-<p>vinculos works!</p>
+<h1>Vínculos</h1>
+
+<!-- <form #form [formGroup]="formServidor" (ngSubmit)="submit()"> -->
+<div class="card">
+    <div class="p-col-12 p-grid">
+        <div class="p-md-12">
+            <h2 class="sub-title">Cadastro de Vínculos</h2>
+
+            <div class="p-col-12 p-grid">
+                <div class="p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="codigo" />
+                        <label>Código</label>
+                    </span>
+                    <!-- <p-message severity="error" text="Nome do servidor obrigatório" *ngIf="
+                                formServidor.controls['codigo'].errors?.required &&
+                                formServidor.controls['codigo'].touched">
+                        </p-message> -->
+                </div>
+                <div class="p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="descricao" />
+                        <label>Descrição</label>
+                    </span>
+                </div>
+                <div class="p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="situacaoDoServidor" formControlName="situacao">
+                        </p-dropdown>
+                        <label>Situação</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-md-4 ">
+                <legend>Permitir Dependentes?</legend>
+                <div class="p-field-radiobutton">
+                    <div class="radioButton">
+                        <p-radioButton
+                            name="permitirDependentes" 
+                            formControlName="vitimaDeAcidente" 
+                            value="false" 
+                            required>
+                        </p-radioButton>
+                        <label class="label-radioButton">Não</label>
+                    </div>
+                    <div class="radioButton">
+                        <p-radioButton 
+                            name="vitimaDeAcidente" 
+                            formControlName="vitimaDeAcidente" 
+                            value="true">
+                        </p-radioButton>
+                        <label class="label-radioButton">Sim</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-md-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText formControlName="numerosDeDiasAdmissao" />
+                    <label>Números de Dias Admissão</label>
+                </span>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText formControlName="tituloMasculino" />
+                    <label>Título Masculino</label>
+                </span>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText formControlName="tituloFeminino" />
+                    <label>Título Feminino</label>
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <!-- <div class="p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"
+                [disabled]="!valid()"></button>
+        </div> -->
+</div>
+<!-- </form> -->
