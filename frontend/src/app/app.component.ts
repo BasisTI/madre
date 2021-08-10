@@ -333,6 +333,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             icon: 'add',
                             routerLink: ['/seguranca/servidores'],
                         },
+                        {
+                            label: 'Cadastrar Vínculos',
+                            icon: 'add',
+                            routerLink: ['/seguranca/vinculos'],
+                        },
                     ],
                 },
                 
