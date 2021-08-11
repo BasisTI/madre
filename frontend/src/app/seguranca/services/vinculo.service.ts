@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
 import { ListaVinculosServidor } from '../models/dropdowns/lista-vinculo-servidor';
 import { Vinculo } from '../models/dropdowns/vinculo-model';
+import { VinculoModel } from '../models/vinculo-model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,12 @@ export class VinculoService{
     );
   }
 
+  alterarVinculo(vinculo: VinculoModel): Observable<any> {
+    return this.client.put(`${this.resource}`, vinculo);
+  }
+
+  cadastrarVinculo(vinculo) {
+    return this.client.post(this.resource, vinculo);
+  }
+  
 }
