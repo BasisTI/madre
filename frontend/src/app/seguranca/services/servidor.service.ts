@@ -27,6 +27,6 @@ export class ServidorService{
 
   cadastrarServidor(servidor) {
     return this.client.post(this.resource, servidor);
-}
+  }
 
 }
