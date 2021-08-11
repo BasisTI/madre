@@ -82,7 +82,7 @@ export class VinculosComponent implements OnInit {
     } 
   }
 
-  limpar() {
+  limparMatricula() {
     this.formVinculo.controls.matricula.setValue(null)
   }
 
