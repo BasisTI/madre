@@ -23,6 +23,9 @@ export class FormularioExameComponent implements OnInit {
 
   situacao = SituacaoExame;
 
+  materialSelecionado: number;
+  amostraSelecionada: number;
+
   cadastrarExame = this.fb.group({
     nome: [null, Validators.required],
     nomeUsual: [null, Validators.required],
@@ -35,7 +38,14 @@ export class FormularioExameComponent implements OnInit {
 
 
   valid(): boolean {
-    return this.cadastrarExame.valid;
+    if(this.cadastrarExame.valid && this.amostraSelecionada && this.materialSelecionado)
+      return true;
+    else
+    return false;
+  }
+
+  limpar() {
+    this.cadastrarExame.reset();
   }
 
   cadastrar(){
@@ -45,16 +55,18 @@ export class FormularioExameComponent implements OnInit {
       nome: cadastroExame.nome,
       nomeUsual: cadastroExame.nomeUsual,
       sigla: cadastroExame.sigla,
+      materialExameId: this.materialSelecionado,
+      amostraExameId: this.amostraSelecionada,
       ativo: cadastroExame.ativo,
       impressao: cadastroExame.impressao,
       consisteInterfaceamento: cadastroExame.consisteInterfaceamento,
       anexaDocumentos: cadastroExame.anexaDocumentos
-
     };
 
     console.log(cadastroExame);
 
     this.exameService.cadastrarExame(cadastro).subscribe();
+    this.cadastrarExame.reset();
   }
 
 

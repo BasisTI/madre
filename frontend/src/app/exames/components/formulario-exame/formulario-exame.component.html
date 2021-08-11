@@ -39,7 +39,7 @@
                     <div class="p-md-2 p-col-12">
                         Material
                         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <p-dropdown [options]="materiais" [optionLabel]="'nome'"
+                            <p-dropdown [(ngModel)]="materialSelecionado" [options]="materiais" [optionLabel]="'nome'"
                                 [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                                 pTooltip="Selecione o material">
                             </p-dropdown>
@@ -49,7 +49,7 @@
                     <div class="p-md-2 p-col-12">
                         Tipo de amostra
                         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <p-dropdown [options]="amostras" [optionLabel]="'nome'"
+                            <p-dropdown [(ngModel)]="amostraSelecionada" [options]="amostras" [optionLabel]="'nome'"
                                 [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                                 pTooltip="Selecione o tipo de amostra">
                             </p-dropdown>
@@ -113,10 +113,10 @@
 
                 <div class="p-col-12 p-grid p-d-flex">
                     <div class="p-md-2">
-                        <button pButton type="button" label="Salvar" icon="pi pi-save" (click)="cadastrar()"></button>
+                        <button pButton type="button" label="Salvar" icon="pi pi-save" (click)="cadastrar()" [disabled]="!valid()"></button>
                     </div>
                     <div class="p-md-2">
-                        <button pButton type="button" label="Limpar"  icon="pi pi-times"></button>
+                        <button pButton type="button" label="Limpar"  icon="pi pi-times" (click)="limpar()"></button>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ export class ExamModel {
         public consisteInterfaceamento?: boolean,
         public anexaDocumentos?: boolean,
         public materialExameId?: number,
-        public material?: string,
+        public materialExameNome?: string,
         public amostraExameId?: number,
         public amostraExameNome?: string,
     ) { }
