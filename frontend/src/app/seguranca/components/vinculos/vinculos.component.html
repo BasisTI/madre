@@ -96,7 +96,8 @@
                                 name="geraMatricula" 
                                 formControlName="geraMatricula" 
                                 value="false" 
-                                required>
+                                required
+                                (click)="limpar()">
                             </p-radioButton>
                             <label class="label-radioButton">Não</label>
                         </div>
@@ -111,9 +112,9 @@
                     </div>
                 </div>
 
-                <div class="p-col-12 p-md-3" *ngIf="formVinculo.controls['geraMatricula'].value == 'true'">
+                <div class="p-col-12 p-md-3">
                     <div nInputMask label="Matrícula" formControlName="matricula" mask="9999999" 
-                        tooltip="Digite a matrícula." required>
+                        tooltip="Digite a matrícula." *ngIf="formVinculo.controls['geraMatricula'].value == 'true'" required>
                     </div>
                     <p-message severity="error" text="Campo matrícula obrigatório" *ngIf="
                             formVinculo.controls['matricula'].errors?.required &&

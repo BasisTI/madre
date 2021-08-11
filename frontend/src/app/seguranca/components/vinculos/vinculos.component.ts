@@ -39,7 +39,7 @@ export class VinculosComponent implements OnInit {
 
   situacaoDoServidor = OPCOES_DE_SITUACOES;
 
-  teste = false;
+  obrigadorio = "";
 
   ngOnInit(): void {
   }
@@ -79,7 +79,11 @@ export class VinculosComponent implements OnInit {
       this.vinculoService.cadastrarVinculo(vinculo).subscribe((e) => {
         this.formVinculo.reset();
       });
-    }
-    
+    } 
   }
+
+  limpar() {
+    this.formVinculo.controls.matricula.setValue(null)
+  }
+
 }
