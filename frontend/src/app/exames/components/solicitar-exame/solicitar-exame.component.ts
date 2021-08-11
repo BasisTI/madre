@@ -93,12 +93,11 @@ export class SolicitarExameComponent implements OnInit {
       if(itens.length > 0) {
           itens.length = 0;
       }
+      this.limpar();
   }
 
   limpar() {
-    this.solicitarExame.controls.usoAntimicrobianos24h.setValue(null)
-    this.solicitarExame.controls.infoClinica.setValue(null)
-    this.solicitarExame.controls.pedidoPrimeiroExame.setValue(null)
+    this.solicitarExame.reset();
   }
 
 }
