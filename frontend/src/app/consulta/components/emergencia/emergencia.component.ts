@@ -34,19 +34,19 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
     formEmergencia = this.fb.group({
         numeroConsulta: [''],
         dataHoraDaConsulta: ['', Validators.required],
-        grade: [''],
+        grade: ['', Validators.required],
         prontuario: [''],
         nome: [''],
-        numeroDeSala: [''],
-        turno: [''],
-        tipoPagador: [''],
+        numeroSala: [''],
+        turno: ['', Validators.required],
+        tipoPagador: ['', Validators.required],
         especialidade: [''],
         profissional: [''],
-        convenio: [''],
-        clinicaCentralId: [''],
-        observacao: [''],
-        justificativa: [''],
-        gradesDiponiveis: ['true'],
+        convenio: ['', Validators.required],
+        clinicaCentralId: ['', Validators.required],
+        observacoes: ['', Validators.required],
+        justificativa: ['', Validators.required],
+        gradesDisponiveis: [null, Validators.required]
     });
 
     localizacao = CALENDAR_LOCALE;
@@ -75,6 +75,10 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         this.buscaProfissional();
     }
 
+    valid(): boolean {
+        return this.formEmergencia.valid;
+    }
+
     cadastrarConsultas() {
         const cadConsulta = this.formEmergencia.value;
         const consultasEmergencia: ConsultaEmergenciaModel = {
@@ -83,18 +87,18 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
             grade: cadConsulta.grade,
             prontuario: cadConsulta.prontuario,
             nome: cadConsulta.nome,
-            numeroDeSala: cadConsulta.numeroDeSala,
+            numeroSala: cadConsulta.numeroSala,
             turno: cadConsulta.turno,
             tipoPagador: cadConsulta.tipoPagador,
             especialidade: cadConsulta.especialidade.especialidade,
             profissional: cadConsulta.profissional.nome,
             clinicaCentralId: cadConsulta.clinicaCentralId,
-            observacao: cadConsulta.observacao,
+            observacoes: cadConsulta.observacoes,
             justificativa: cadConsulta.justificativa,
             condicaoDeAtendimentoId: cadConsulta.condicaoDeAtendimentoId,
             formaDeAgendamentoId: cadConsulta.formaDeAgendamentoId,
             pacienteId: cadConsulta.nome.id,
-            gradesDiponiveis: cadConsulta.gradesDiponiveis,
+            gradesDisponiveis: cadConsulta.gradesDisponiveis,
             url: cadConsulta.url,
             id: cadConsulta.id,
         };

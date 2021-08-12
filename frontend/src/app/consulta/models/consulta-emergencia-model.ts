@@ -6,16 +6,16 @@ export interface ConsultaEmergenciaModel {
     grade: number;
     prontuario: string;
     nome: string;
-    numeroDeSala: string;
+    numeroSala: string;
     turno: string;
     tipoPagador: string;
     especialidade: string;
     profissional: number;
     clinicaCentralId: number;
-    observacao: string;
+    observacoes: string;
     justificativa: string;
     condicaoDeAtendimentoId: number;
     formaDeAgendamentoId: number;
     pacienteId: number;
-    gradesDiponiveis: boolean;
+    gradesDisponiveis: boolean;
 }

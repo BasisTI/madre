@@ -3,14 +3,15 @@
     <form [formGroup]="formEmergencia" (ngSubmit)="cadastrarConsultas()">
         <div class="p-grid p-fluid">
             <div class="p-col-12 p-grid">
-                <div class="p-md-2 p-sm-12">
+
+                <div class="p-col-12 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText formControlName="numeroConsulta" />
                         <label>Nº da Consulta</label>
                     </span>
                 </div>
 
-                <div class="p-md-2 p-sm-12">
+                <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
                         <p-calendar [locale]="localizacao" [yearRange]="anosDisponiveis" [dateFormat]="formatoDeData"
                             monthNavigator="true" yearNavigator="true" formControlName="dataHoraDaConsulta"
@@ -18,26 +19,27 @@
                         <label>Data da Consulta</label>
                     </span>
                 </div>
-                <div class="p-md-2 p-sm-12">
+
+                <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText formControlName="grade" />
                         <label>Grade</label>
                     </span>
                 </div>
-                <div class="p-md-4 p-sm-12">
+
+                <div class="p-md-2 p-md-3">
                     <p-button label="Acessar Calendário" icon="pi pi-calendar" type="button"
                         [routerLink]="['/consulta/consulta-calendario']"></p-button>
                 </div>
 
-                <div class="p-col-12 p-grid"></div>
-                <div class="p-md-2 p-sm-12">
+                <div class="p-md-2 p-md-3">
                     <span class="md-inputfield p-float-label">
                         <input pInputText disabled="true" formControlName="prontuario" />
                         <label>Prontuário</label>
                     </span>
                 </div>
 
-                <div class="p-md-5 p-sm-12">
+                <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
                         <p-autoComplete field="nome" [suggestions]="pacientes" formControlName="nome"
                             (completeMethod)="listarPacientes()" (onSelect)="aoSelecionarPaciente($event)"
@@ -45,27 +47,31 @@
                         <label>Nome</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid"></div>
-                <div class="p-col-12 p-grid">
-                    <span class="p-md-2 p-float-label">
-                        <input type="text" pInputText formControlName="numeroDeSala" />
+
+                <div class="p-md-2 p-md-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="numeroSala" />
                         <label>Nº de sala</label>
                     </span>
+                </div>
 
-                    <span class="p-md-3 p-float-label">
+                <div class="p-md-2 p-md-3">
+                    <span class="p-float-label">
                         <p-dropdown [filter]="true" [options]="opcaoTurno" formControlName="turno"></p-dropdown>
                         <label>Turno</label>
                     </span>
+                </div>
 
-                    <span class="p-md-4 p-float-label">
+                <div class="p-md-2 p-md-3">
+                    <span class="p-float-label">
                         <p-dropdown [filter]="true" [options]="opcaoTipoPagador" formControlName="tipoPagador">
                         </p-dropdown>
                         <label>Tipo Pagador</label>
                     </span>
                 </div>
-                <div class="p-col-12 p-grid"></div>
 
-                <div class="p-md-3 p-sm-12">
+
+                <div class="p-md-2 p-md-3">
                     <span class="md-inputfield p-float-label">
                         <p-dropdown optionLabel="especialidade" [options]="especialidades"
                             formControlName="especialidade" [filter]="true">
@@ -73,7 +79,8 @@
                         <label>Especialidade</label>
                     </span>
                 </div>
-                <div class="p-md-3 p-sm-12">
+
+                <div class="p-md-3 p-md-3">
                     <span class="md-inputfield p-float-label">
                         <p-dropdown optionLabel="nome" [options]="crm" formControlName="profissional" [filter]="true">
                         </p-dropdown>
@@ -81,29 +88,29 @@
                     </span>
                 </div>
 
-                <div class="p-col-12 p-grid"></div>
-                <div class="p-md-2 p-sm-12">
+                <div class="p-md-3 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText formControlName="convenio" />
                         <label>Convênio</label>
                     </span>
                 </div>
-                <div class="p-md-2 p-sm-12">
+
+                <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText formControlName="clinicaCentralId" />
                         <label>Cód. Central</label>
                     </span>
                 </div>
 
-                <div class="p-col-12 p-grid"></div>
-                <div class="p-md-4 p-sm-12">
+                <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText pTooltip="Escreva uma observação para consulta."
-                            formControlName="observacao" />
+                            formControlName="observacoes" />
                         <label>Observação</label>
                     </span>
                 </div>
-                <div class="p-md-4 p-sm-12">
+
+                <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText pTooltip="Escreva um justificativa para consulta."
                             formControlName="justificativa" />
@@ -111,13 +118,19 @@
                     </span>
                 </div>
 
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-12">
-                        <p-radioButton formControlName="gradesDiponiveis" label="Grades Diponíveis " pRadioButton>
+                <div class="p-md-2 p-md-3">
+                    Grades disponíveis
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <p-radioButton name="gradesDisponiveis" value=true style="margin-right: 5px;"
+                            label="Sim" class="separator-radio" formControlName="gradesDisponiveis">
                         </p-radioButton>
+
+                        <p-radioButton name="gradesDisponiveis" value=false
+                            label="Não" formControlName="gradesDisponiveis">
+                        </p-radioButton>
+
                     </div>
                 </div>
-
                 <div class="p-col-12 p-grid">
                     <div class="p-md-3">
                         <button pButton type="button" label="Cancelar" pTooltip="Cancelar marcação de consulta."
@@ -125,7 +138,7 @@
                     </div>
                     <div class="p-md-3">
                         <button pButton type="submit" label="Salvar"
-                            pTooltip="Salvar marcação de consulta."></button>
+                            pTooltip="Salvar marcação de consulta." [disabled]="!valid()"></button>
                     </div>
                 </div>
             </div>
