@@ -2,7 +2,7 @@ entity Exame {
 nome String required
 nomeUsual String
 sigla String required
-ativo Boolean
+ativo Boolean required
 impressao Boolean
 consisteInterfaceamento Boolean
 anexaDocumentos Boolean
