@@ -19,11 +19,10 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "one-to-many",
       "otherEntityName": "ocupacaoDeCargo",
       "otherEntityRelationshipName": "cargo",
-      "relationshipName": "ocupacaoDeCargo",
-      "otherEntityField": "id"
+      "relationshipName": "ocupacaoDeCargo"
     }
   ],
   "changelogDate": "20210730174449",
