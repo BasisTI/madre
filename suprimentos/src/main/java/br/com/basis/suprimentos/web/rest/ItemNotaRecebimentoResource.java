@@ -54,7 +54,7 @@ public class ItemNotaRecebimentoResource {
             .body(result);
     }
 
-    @PutMapping("/itens-nota-recebimento")
+    @PutMapping("/itens-nota-recebimento/{id}")
     public ResponseEntity<ItemNotaRecebimentoDTO> updateItemNotaRecebimento(@Valid @RequestBody ItemNotaRecebimentoDTO itemNotaRecebimentoDTO) throws URISyntaxException {
         log.debug("REST request to update ItemNotaRecebimento : {}", itemNotaRecebimentoDTO);
         if (itemNotaRecebimentoDTO.getId() == null) {

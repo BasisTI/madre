@@ -1,6 +1,7 @@
 package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.service.SolicitacaoExameService;
+import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameCompletoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameDTO;
 
@@ -55,12 +56,12 @@ public class SolicitacaoExameResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/solicitacao-exames")
-    public ResponseEntity<SolicitacaoExameDTO> createSolicitacaoExame(@Valid @RequestBody SolicitacaoExameDTO solicitacaoExameDTO) throws URISyntaxException {
-        log.debug("REST request to save SolicitacaoExame : {}", solicitacaoExameDTO);
-        if (solicitacaoExameDTO.getId() != null) {
+    public ResponseEntity<SolicitacaoExameCompletoDTO> createSolicitacaoExame(@Valid @RequestBody SolicitacaoExameCompletoDTO solicitacaoExameCompletoDTO) throws URISyntaxException {
+        log.debug("REST request to save SolicitacaoExame : {}", solicitacaoExameCompletoDTO);
+        if (solicitacaoExameCompletoDTO.getId() != null) {
             throw new BadRequestAlertException("A new solicitacaoExame cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        SolicitacaoExameDTO result = solicitacaoExameService.save(solicitacaoExameDTO);
+        SolicitacaoExameCompletoDTO result = solicitacaoExameService.save(solicitacaoExameCompletoDTO);
         return ResponseEntity.created(new URI("/api/solicitacao-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -76,14 +77,14 @@ public class SolicitacaoExameResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/solicitacao-exames")
-    public ResponseEntity<SolicitacaoExameDTO> updateSolicitacaoExame(@Valid @RequestBody SolicitacaoExameDTO solicitacaoExameDTO) throws URISyntaxException {
-        log.debug("REST request to update SolicitacaoExame : {}", solicitacaoExameDTO);
-        if (solicitacaoExameDTO.getId() == null) {
+    public ResponseEntity<SolicitacaoExameCompletoDTO> updateSolicitacaoExame(@Valid @RequestBody SolicitacaoExameCompletoDTO solicitacaoExameCompletoDTO) throws URISyntaxException {
+        log.debug("REST request to update SolicitacaoExame : {}", solicitacaoExameCompletoDTO);
+        if (solicitacaoExameCompletoDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        SolicitacaoExameDTO result = solicitacaoExameService.save(solicitacaoExameDTO);
+        SolicitacaoExameCompletoDTO result = solicitacaoExameService.save(solicitacaoExameCompletoDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, solicitacaoExameDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, solicitacaoExameCompletoDTO.getId().toString()))
             .body(result);
     }
 

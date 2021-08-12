@@ -66,6 +66,7 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
         
     }
     private idadePaciente(dtNascimento: Date) {
+      
         if (dtNascimento) {
             const idade = moment().diff(moment(dtNascimento), 'years');
 
@@ -73,7 +74,6 @@ export class FormularioTriagemComponent implements OnInit, OnDestroy {
                 this.idade = 'Menos de 1 ano';
                 return;
             }
-
             this.idade = String(idade);
 
             return;

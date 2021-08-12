@@ -5,6 +5,7 @@ import br.com.basis.consulta.domain.Emergencia;
 import br.com.basis.consulta.repository.EmergenciaRepository;
 import br.com.basis.consulta.repository.search.EmergenciaSearchRepository;
 import br.com.basis.consulta.service.EmergenciaService;
+import br.com.basis.consulta.service.ExportarEmergenciaService;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
 import br.com.basis.consulta.service.mapper.EmergenciaMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
@@ -91,6 +92,10 @@ public class EmergenciaResourceIT {
     @Autowired
     private EmergenciaService emergenciaService;
 
+    @Autowired
+    private ExportarEmergenciaService exportarEmergenciaService;
+
+
     /**
      * This repository is mocked in the br.com.basis.consulta.repository.search test package.
      *
@@ -121,7 +126,7 @@ public class EmergenciaResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EmergenciaResource emergenciaResource = new EmergenciaResource(emergenciaService,mockEmergenciaSearchRepository);
+        final EmergenciaResource emergenciaResource = new EmergenciaResource(emergenciaService, exportarEmergenciaService);
         this.restEmergenciaMockMvc = MockMvcBuilders.standaloneSetup(emergenciaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

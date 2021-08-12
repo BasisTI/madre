@@ -69,7 +69,7 @@
                                         <div class="p-md-2">
                                             <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                                                 <input pInputText type="number" formControlName="quantidadeReceber" />
-                                                <label>Quantidade a Receber</label>
+                                                <label>Quantidade a Receber </label>
                                             </span>
                                         </div>
                                         <div class="p-md-2">
@@ -123,7 +123,7 @@
                         </p-fieldset>
                         <div class="p-md-2"></div>
                         <div class="p-md-4">
-                            <button pButton label="Gravar" (click)="gravar()" [disabled]="formGroup.invalid"></button>
+                            <button pButton label="Gravar" [disabled]="formGroup.invalid" (click)="gravar()"></button>
                         </div>
                         <div class="p-md-4">
                             <button pButton label="Limpar"></button>

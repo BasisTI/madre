@@ -54,17 +54,20 @@ public class ItemNotaRecebimento implements Serializable {
     @Column(name = "valor_total", precision = 21, scale = 2, nullable = false)
     private BigDecimal valorTotal;
 
+
     @ManyToOne
     @JsonIgnoreProperties("itemNotaRecebimentos")
     private Recebimento recebimento;
 
-    @ManyToOne(optional = false)
+
     @NotNull
+    @ManyToOne(optional = false)
     @JsonIgnoreProperties("itemNotaRecebimentos")
     private MarcaComercial marcaComercial;
 
-    @ManyToOne(optional = false)
+
     @NotNull
+    @ManyToOne(optional = false)
     @JsonIgnoreProperties("itemNotaRecebimentos")
     private Material material;
 

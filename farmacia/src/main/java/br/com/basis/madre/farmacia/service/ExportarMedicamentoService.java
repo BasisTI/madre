@@ -1,5 +1,6 @@
 package br.com.basis.madre.farmacia.service;
 
+import br.com.basis.madre.farmacia.domain.Medicamento;
 import br.com.basis.madre.farmacia.repository.MedicamentoRepository;
 import br.com.basis.madre.farmacia.service.dto.MedicamentoDTO;
 import lombok.RequiredArgsConstructor;
@@ -28,15 +29,6 @@ public class ExportarMedicamentoService {
     private final MedicamentoService medicamentoService;
     private final MedicamentoRepository medicamentoRepository;
 
-    private void estilizarPlanilha(CellStyle estilo, XSSFFont fonte, Boolean negrito) {
-        estilo = workbook.createCellStyle();
-        fonte = workbook.createFont();
-        fonte.setBold(negrito);
-        fonte.setFontHeight(12);
-        estilo.setFont(fonte);
-        estilo.getVerticalAlignment();
-    }
-
     private void escreverHeaderRow() {
         Row row = sheet.createRow(0);
         Cell cell;
@@ -45,6 +37,7 @@ public class ExportarMedicamentoService {
         XSSFFont fonte = workbook.createFont();
         fonte.setBold(true);
         fonte.setFontHeight(12);
+        fonte.setFontName("Sans Serif");
         estilo.setFont(fonte);
         estilo.getVerticalAlignment();
 
@@ -82,16 +75,14 @@ public class ExportarMedicamentoService {
         CellStyle estilo = workbook.createCellStyle();
         XSSFFont fonte = workbook.createFont();
         fonte.setFontHeight(12);
+        fonte.setFontName("Arial");
         estilo.setFont(fonte);
-        String medicamentoQuery = "select * from medicamento where ativo = true";
 
-
-        int contaMedicamentos = medicamentoRepository.countByAtivoIsTrue().intValue();
+        int contaMedicamentos = medicamentoRepository.countAllByIdIsNotNull().intValue();
 
         Pageable medicamentos = PageRequest.of(0, contaMedicamentos);
 
-
-        for (MedicamentoDTO medicamento : medicamentoService.search(medicamentoQuery, medicamentos)) {
+        for (MedicamentoDTO medicamento : medicamentoService.buscarTodosMedicamentos(medicamentos)) {
             Row row = sheet.createRow(rowCount++);
 
             escreverColunas(row, estilo, 0, medicamento.getNome());
@@ -100,7 +91,6 @@ public class ExportarMedicamentoService {
             escreverColunas(row, estilo, 3, medicamento.getUnidadeId().getNome());
             escreverColunas(row, estilo, 4, medicamento.getApresentacaoId().getNome());
             escreverColunas(row, estilo, 5, medicamento.isAtivo() ? "Ativo" : "Inativo");
-
         }
     }
 

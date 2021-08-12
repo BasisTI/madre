@@ -5,10 +5,10 @@ export const OPCOES_DE_SITUACOES: OpcaoCombo[] = [
     OPCAO_SELECIONE,
     {
         label: 'Ativo',
-        value: 'ATIVO',
+        value: true,
     },
     {
         label: 'Inativo',
-        value: 'INATIVO',
+        value: false,
     },
 ];

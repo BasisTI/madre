@@ -20,6 +20,8 @@ public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
 
     @Mapping(source = "materialExameId", target = "materialExame")
     @Mapping(source = "amostraExameId", target = "amostraExame")
+    @Mapping(target = "grupoAgendamentoExames", ignore = true)
+    @Mapping(target = "removeGrupoAgendamentoExame", ignore = true)
     Exame toEntity(ExameDTO exameDTO);
 
     default Exame fromId(Long id) {

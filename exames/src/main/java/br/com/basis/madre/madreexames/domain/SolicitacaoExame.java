@@ -39,7 +39,7 @@ public class SolicitacaoExame implements Serializable {
     @Column(name = "pedido_primeiro_exame", nullable = false)
     private Boolean pedidoPrimeiroExame;
 
-    @OneToMany(mappedBy = "solicitacaoExame")
+    @OneToMany(mappedBy = "solicitacaoExame", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<ItemSolicitacaoExame> solicitacaoExames = new HashSet<>();
 

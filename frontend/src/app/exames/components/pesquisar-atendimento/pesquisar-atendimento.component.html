@@ -21,7 +21,9 @@
                     Nome
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input type="text" pInputText class="p-inputtext"
-                        pTooltip="Digite o nome do paciente." />
+
+                            pTooltip="Digite o nome do paciente." />
+
                         <label>Lorem ipsum</label>
                     </span>
                 </div>
@@ -29,8 +31,11 @@
                 <div class="p-md-2 p-fluid" pTooltip="Selecione a origem do atendimento.">
                     Origem
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+
+
                         <p-dropdown label="Pedido para 1° exame ou comparativo" 
-                        [options]="unidadesFuncionais"
+                        [options]="origens"
+
                         [optionLabel]="'nome'"
                         [optionValue]="'id'">
                         </p-dropdown>
@@ -54,7 +59,15 @@
                 <div class="p-md-2 p-fluid">
                     Unidade Funcional
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                        <p-dropdown [options]="unidadesFuncionais" pTooltip="Selecione a unidade de internação.">
+
+                        <p-dropdown [options]="unidades"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [showClear]="true"
+                        pTooltip="Selecione a unidade de internação.">
+
                         </p-dropdown>
                     </span>
                 </div>
@@ -62,7 +75,9 @@
                 <div class="p-col-12 p-grid p-d-flex p-jc-center">
                     <div class="p-md-4">
                         <button pButton type="button" label="Pesquisar" icon="pi pi-search"
+
                             (click)="datatable.refresh()"
+
                             bTooltip="Pesquisar paciente por nome."></button>
                     </div>
                     <div class="p-md-4">
