@@ -30,7 +30,7 @@ export class FormularioExameComponent implements OnInit {
     nome: [null, Validators.required],
     nomeUsual: [null, Validators.required],
     sigla: [null, Validators.required],
-    ativo: [null, Validators.required],
+    ativo: [true, Validators.required],
     impressao: [null, Validators.required],
     consisteInterfaceamento: [null, Validators.required],
     anexaDocumentos: [null, Validators.required]
