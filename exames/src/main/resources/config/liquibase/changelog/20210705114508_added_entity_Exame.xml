@@ -6,7 +6,6 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
     <!--
         Added the entity Exame.
     -->
@@ -37,7 +36,7 @@
     <changeSet id="20210705114508-1-relations" author="jhipster">
 
     </changeSet>
-    
+
     <changeSet id="20210705114508-1-sequence" author="jhipster">
         <createSequence sequenceName="seq_exame" startValue="1050" incrementBy="50" />
     </changeSet>

@@ -7,13 +7,10 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    <!--
-        Added the entity Exame.
-    -->
-    <changeSet id="20210812090408-1" author="jhipster">
-        <createTable tableName="exame">
+    <changeSet id="20210812090408-1" author="alexandre">
+        <addColumn tableName="exame">
             <column name="ativo" type="boolean">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="impressao" type="boolean">
                 <constraints nullable="true" />
@@ -25,14 +22,14 @@
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
-        </createTable>
+        </addColumn>
     </changeSet>
 
-    <changeSet id="20210812090408-1-relations" author="jhipster">
+    <changeSet id="20210812090408-1-relations" author="alexandre">
 
     </changeSet>
 
-    <changeSet id="20210812090408-1-sequence" author="jhipster">
+    <changeSet id="20210812090408-1-sequence" author="alexandre">
         <createSequence sequenceName="seq_exame" startValue="1050" incrementBy="50" />
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
