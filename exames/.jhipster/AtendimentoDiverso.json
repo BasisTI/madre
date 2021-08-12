@@ -13,13 +13,13 @@
     },
     {
       "fieldName": "origemAmostra",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldType": "OrigemAmostra",
+      "fieldValues": "HUMANO,NAO_HUMANO"
     },
     {
       "fieldName": "tipoAmostra",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldType": "TipoAmostra",
+      "fieldValues": "DOADOR,RECEPTOR"
     },
     {
       "fieldName": "identificacao",
@@ -53,8 +53,8 @@
     },
     {
       "fieldName": "sexo",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldType": "Sexo",
+      "fieldValues": "FEMININO,MASCULINO,IGNORADO"
     }
   ],
   "relationships": [

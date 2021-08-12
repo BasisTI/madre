@@ -3,6 +3,9 @@ package br.com.basis.madre.madreexames.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
+import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
+import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.AtendimentoDiverso} entity.
@@ -17,11 +20,9 @@ public class AtendimentoDiversoDTO implements Serializable {
     @NotNull
     private Integer unidadeExecutoraId;
 
-    @NotNull
-    private String origemAmostra;
+    private OrigemAmostra origemAmostra;
 
-    @NotNull
-    private String tipoAmostra;
+    private TipoAmostra tipoAmostra;
 
     @NotNull
     private String identificacao;
@@ -41,8 +42,7 @@ public class AtendimentoDiversoDTO implements Serializable {
     @NotNull
     private LocalDate dataNascimento;
 
-    @NotNull
-    private String sexo;
+    private Sexo sexo;
 
 
     private Long laboratorioId;
@@ -81,19 +81,19 @@ public class AtendimentoDiversoDTO implements Serializable {
         this.unidadeExecutoraId = unidadeExecutoraId;
     }
 
-    public String getOrigemAmostra() {
+    public OrigemAmostra getOrigemAmostra() {
         return origemAmostra;
     }
 
-    public void setOrigemAmostra(String origemAmostra) {
+    public void setOrigemAmostra(OrigemAmostra origemAmostra) {
         this.origemAmostra = origemAmostra;
     }
 
-    public String getTipoAmostra() {
+    public TipoAmostra getTipoAmostra() {
         return tipoAmostra;
     }
 
-    public void setTipoAmostra(String tipoAmostra) {
+    public void setTipoAmostra(TipoAmostra tipoAmostra) {
         this.tipoAmostra = tipoAmostra;
     }
 
@@ -145,11 +145,11 @@ public class AtendimentoDiversoDTO implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 

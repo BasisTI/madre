@@ -29,4 +29,5 @@
     <include file="config/liquibase/changelog/20210729174828_alterar_atendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210729190512_remover_Constraint_AtendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210805133654_alterar_atendimentoDiverso_informacoesComplementares.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210811155714_alterar_atendimentoDiverso_CamposEnum.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

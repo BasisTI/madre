@@ -1,15 +1,15 @@
 entity AtendimentoDiverso {
 codigo Integer required
 unidadeExecutoraId Integer required
-origemAmostra String required
-tipoAmostra String required
+origemAmostra OrigemAmostra
+tipoAmostra TipoAmostra
 identificacao String required
 dataSoro LocalDate required
 material String required
 especialidadeId Integer required
 centroAtividadeId Integer required
 dataNascimento LocalDate required
-sexo String required
+sexo Sexo
 }
 
 
@@ -55,24 +55,32 @@ convenioPlano ConvenioPlano
 observacao String required
 }
 
+enum Sexo {
+FEMININO, MASCULINO, IGNORADO
+}
+enum TipoAmostra {
+DOADOR, RECEPTOR
+}
+enum OrigemAmostra {
+HUMANO, NAO_HUMANO
+}
 enum ConvenioPlano {
-SUS_internacao, SUS_planoAmbulatorio
+SUS_INTERNACAO, SUS_PLANOAMBULATORIO
 }
 enum FormaEnvio {
-Correio, Fax
+CORREIO, FAX
 }
 enum Raca {
-Branca, Preta, Parda, Amarela, Indigena
+BRANCA, PRETA, PARDA, AMARELA, INDIGENA
 }
 enum GrupoSanguineo {
-O, A, B, AB, Indeterminado
+O, A, B, AB, INDETERMINADO
 }
 
 relationship ManyToOne {
 AtendimentoDiverso{laboratorio(nome)} to LaboratorioExterno
 AtendimentoDiverso{controle(codigo)} to ControleQualidade
 AtendimentoDiverso{cadaver(nome)} to Cadaver
-
 }
 
 

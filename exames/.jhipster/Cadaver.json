@@ -19,12 +19,12 @@
     {
       "fieldName": "raca",
       "fieldType": "Raca",
-      "fieldValues": "Branca,Preta,Parda,Amarela,Indigena"
+      "fieldValues": "BRANCA,PRETA,PARDA,AMARELA,INDIGENA"
     },
     {
       "fieldName": "grupoSanguineo",
       "fieldType": "GrupoSanguineo",
-      "fieldValues": "O,A,B,AB,Indeterminado"
+      "fieldValues": "O,A,B,AB,INDETERMINADO"
     },
     {
       "fieldName": "dataRemocao",
@@ -64,7 +64,7 @@
     {
       "fieldName": "convenioPlano",
       "fieldType": "ConvenioPlano",
-      "fieldValues": "SUS_internacao,SUS_planoAmbulatorio"
+      "fieldValues": "SUS_INTERNACAO,SUS_PLANOAMBULATORIO"
     },
     {
       "fieldName": "observacao",

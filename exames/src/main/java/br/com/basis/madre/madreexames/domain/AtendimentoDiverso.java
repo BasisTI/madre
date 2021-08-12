@@ -11,6 +11,12 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
+
+import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
+
+import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
+
 /**
  * A AtendimentoDiverso.
  */
@@ -35,13 +41,13 @@ public class AtendimentoDiverso implements Serializable {
     @Column(name = "unidade_executora_id", nullable = false)
     private Integer unidadeExecutoraId;
 
-    @NotNull
-    @Column(name = "origem_amostra", nullable = false)
-    private String origemAmostra;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "origem_amostra")
+    private OrigemAmostra origemAmostra;
 
-    @NotNull
-    @Column(name = "tipo_amostra", nullable = false)
-    private String tipoAmostra;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_amostra")
+    private TipoAmostra tipoAmostra;
 
     @NotNull
     @Column(name = "identificacao", nullable = false)
@@ -67,9 +73,9 @@ public class AtendimentoDiverso implements Serializable {
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    @NotNull
-    @Column(name = "sexo", nullable = false)
-    private String sexo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sexo")
+    private Sexo sexo;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "atendimentoDiversos", allowSetters = true)
@@ -118,29 +124,29 @@ public class AtendimentoDiverso implements Serializable {
         this.unidadeExecutoraId = unidadeExecutoraId;
     }
 
-    public String getOrigemAmostra() {
+    public OrigemAmostra getOrigemAmostra() {
         return origemAmostra;
     }
 
-    public AtendimentoDiverso origemAmostra(String origemAmostra) {
+    public AtendimentoDiverso origemAmostra(OrigemAmostra origemAmostra) {
         this.origemAmostra = origemAmostra;
         return this;
     }
 
-    public void setOrigemAmostra(String origemAmostra) {
+    public void setOrigemAmostra(OrigemAmostra origemAmostra) {
         this.origemAmostra = origemAmostra;
     }
 
-    public String getTipoAmostra() {
+    public TipoAmostra getTipoAmostra() {
         return tipoAmostra;
     }
 
-    public AtendimentoDiverso tipoAmostra(String tipoAmostra) {
+    public AtendimentoDiverso tipoAmostra(TipoAmostra tipoAmostra) {
         this.tipoAmostra = tipoAmostra;
         return this;
     }
 
-    public void setTipoAmostra(String tipoAmostra) {
+    public void setTipoAmostra(TipoAmostra tipoAmostra) {
         this.tipoAmostra = tipoAmostra;
     }
 
@@ -222,16 +228,16 @@ public class AtendimentoDiverso implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public AtendimentoDiverso sexo(String sexo) {
+    public AtendimentoDiverso sexo(Sexo sexo) {
         this.sexo = sexo;
         return this;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 

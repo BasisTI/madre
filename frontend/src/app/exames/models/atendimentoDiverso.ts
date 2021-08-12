@@ -4,7 +4,7 @@ export class AtendimentoDiverso {
 
     public codigo: number;
 
-    public unidadeExecutoraId : number;
+    public unidadeExecutoraId : String;
 
     public origemAmostra : String;
 
@@ -25,7 +25,7 @@ export class AtendimentoDiverso {
     public sexo : String;
 
     public projetoId:number;
-
+    
     public laboratorioId:number;
 
     public controleId:number;

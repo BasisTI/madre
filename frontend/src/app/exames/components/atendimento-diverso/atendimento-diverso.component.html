@@ -4,16 +4,17 @@
     <h1>Manter atendimento diverso</h1>
     <div id="codigo" >
       <span id="grupo">
-        <label> Unidade Executora:  </label> <br>
+        <label> Unidade Executora: </label> <br>
         <p-dropdown 
-        [options]="unidadesFuncionais" [optionLabel]="'nome'" [optionValue]="'id'" [(ngModel)]= "valor" 
-        
+        placeholder="Selecione" 
+        [options]="unidadesFuncionais" [optionLabel]="'nome'" [optionValue]="'id'"  
+        formControlName="unidadeExecutoraId" 
         ></p-dropdown>
       </span>
 
       <span id="grupo" >
         <label > Codigo:  </label> <br>
-        <input type="text"  formControlName="codigo" pInputText/>
+        <input type="text" formControlName="codigo" pInputText/>
       </span>
     </div>
   
@@ -24,6 +25,7 @@
           <label> Laboratorio Externo: </label> <br>
         </span>
         <p-dropdown 
+        placeholder="Selecione"
         [options]="laboratorios" [optionLabel]="'nome'" [optionValue]="'id'"
         formControlName="laboratorioId"
         ></p-dropdown>
@@ -34,6 +36,7 @@
           <label> Controle de qualidade: </label> <br>
         </span>
         <p-dropdown 
+        placeholder="Selecione"
         [options]="controles" [optionLabel]="'material'" [optionValue]="'id'"
         formControlName="controleId"
         ></p-dropdown>
@@ -44,6 +47,7 @@
           <label> Cadavér: </label> <br>
         </span>
         <p-dropdown
+          placeholder="Selecione"
           [options]="cadavers" [optionLabel]="'nome'" [optionValue]="'id'"
           formControlName="cadaverId"
         ></p-dropdown>
@@ -55,27 +59,26 @@
         <span id="grupo">
           <label> Origem Amostra: </label> <br>
           <p-dropdown 
-          [options]="OrigemAmostra" [(ngModel)]="selectedOrigem" formControlName="origemAmostra"
+          placeholder="Selecione" [options]="origemAmostraDropdown" formControlName="origemAmostra"
           ></p-dropdown>
         </span>
         <span id="grupo">
           <label> Tipo
              Amostra: </label> <br>
           <p-dropdown
-           [options]="TipoAmostra" [(ngModel)]="selectedTipo" 
-           formControlName="tipoAmostra"
+           placeholder="Selecione" [options]="tipoAmostraDropdown" formControlName="tipoAmostra"
            ></p-dropdown>
         </span>
 
         <span id="grupo">
           <label> Identificação:  </label> <br>
-          <input type="text" formControlName="identificacao" pInputText /> <br>
+          <input type="text"  formControlName="identificacao" pInputText /> <br>
         </span>
 
         <span id="grupo">
           <label> Data Soro: </label> <br>
           <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
-            [readonlyInput]="true" dateFormat="dd/mm/yy" formControlName="dataSoro"></p-calendar >
+            [readonlyInput]="true" dateFormat="dd/mm/yy"   formControlName="dataSoro"></p-calendar >
         </span>
       </div>
       <div>
@@ -89,6 +92,7 @@
         <span id="grupo"> <br>
           <label> Especialidade: </label> <br>
           <p-dropdown 
+          placeholder="Selecione"
           [options]="especialidades" [optionLabel]="'especialidade'" [optionValue]="'id'"
           formControlName="especialidadeId"
           ></p-dropdown>
@@ -99,6 +103,7 @@
         <span id="grupo"> <br>
           <label> Centro de Atividades: </label> <br>
           <p-dropdown 
+          placeholder="Selecione"
           [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
           formControlName="centroAtividadeId"
           ></p-dropdown> <br>
@@ -109,9 +114,11 @@
         <span id="grupo">
           <label> Nome Paciente Externo: </label> <br>
           <p-dropdown 
+          placeholder="Selecione"
           [options]="cadastros" [optionLabel]="'nome'" [optionValue]="'id'"
           ></p-dropdown>
         </span>
+
         <span id="grupo">
           <label> Data Nascimento: </label > <br>
           <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
@@ -119,17 +126,16 @@
             
         </span>
         <span id="grupo">
-          <label> Sexo:  </label> <br>
+          <label> Sexo: </label> <br>
           <p-dropdown 
-          [options]="Sexo" [(ngModel)]="selectedSexo" formControlName="sexo"
+          placeholder="Selecione" [options]="sexoDropdown" formControlName="sexo"
           ></p-dropdown>
         </span>
       </div>
     
     </p-fieldset> <br>
-    <button pButton type="submit" label="Gravar" icon="ui-icon-search" bTooltip="Gravar atendimento-diverso."
+    <button pButton type="submit" [disabled]="!valid()" label="Gravar" icon="ui-icon-search" bTooltip="Gravar atendimento-diverso." 
       ></button>
     </p-fieldset>
  </div>
 </form>
-

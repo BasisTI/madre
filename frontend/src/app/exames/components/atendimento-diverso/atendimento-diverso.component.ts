@@ -16,7 +16,9 @@ import { UnidadeFuncionalService } from '../../services/unidade-funcional.servic
 import { PacientesService } from '../../services/paciente.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AtendimentoDiversoService } from '../../services/atendimentodiverso.service';
-
+import { TipoAmostraDropdown } from "../../models/dropdowns/tipoAmostra.dropdown";
+import { OrigemAmostraDropdown } from "../../models/dropdowns/origemAmostra.dropdown";
+import { SexoDropdown } from "../../models/dropdowns/sexo.dropdown";
 
 @Component({
   selector: 'app-atendimento-diverso',
@@ -34,16 +36,9 @@ export class AtendimentoDiversoComponent implements OnInit {
   unidadesFuncionais: UnidadeFuncional[];
   cadastros: PreCadastroModel[];
 
-  TipoAmostra: string[] = ["Doador","Receptor"];
-  selectedTipo: string; 
-
-  OrigemAmostra: string[] = ["Humano","Não Humano"];
-  selectedOrigem: string;
-
-  Sexo: string[] = ["Feminino","Masculino","Ignorado"];
-  selectedSexo: string;
-
-  valor: number;
+  tipoAmostraDropdown = TipoAmostraDropdown;
+  origemAmostraDropdown = OrigemAmostraDropdown;
+  sexoDropdown = SexoDropdown;
 
   cadastroAtendimentoDiverso :FormGroup
 
@@ -62,7 +57,10 @@ export class AtendimentoDiversoComponent implements OnInit {
 
      ngOnInit() : void{
       this.cadastroAtendimentoDiverso = this.fb.group({
+
         codigo: [null, Validators.required],
+
+        unidadeExecutoraId : [null],
 
         origemAmostra : [null],
 
@@ -122,14 +120,14 @@ export class AtendimentoDiversoComponent implements OnInit {
     return this.cadastroAtendimentoDiverso.valid;
   }
 
-    cadastrar() { 
-      if (!this.cadastroAtendimentoDiverso.valid){
-        this.pageNotificationService.addErrorMessage('preencher o campo codigo')
-        return;
-      }
-      let atendimentoDiverso = this.cadastroAtendimentoDiverso.value;
+  cadastrar() { 
+    if (!this.cadastroAtendimentoDiverso.valid){
+      this.pageNotificationService.addErrorMessage('preencher o campo codigo')
+      return;
+    }
+    let atendimentoDiverso = this.cadastroAtendimentoDiverso.value;
 
-    this.atendimentoDiversoService.cadastrarAtendimento(atendimentoDiverso).subscribe();
-}
+  this.atendimentoDiversoService.cadastrarAtendimento(atendimentoDiverso).subscribe();
+  }
 }
 

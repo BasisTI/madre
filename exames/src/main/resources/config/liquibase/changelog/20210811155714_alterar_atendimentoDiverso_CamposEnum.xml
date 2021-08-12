@@ -1,0 +1,235 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="basis (generated)" id="1628697439579-1">
+        <createSequence incrementBy="50" sequenceName="seq_atendimento_diverso" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-2">
+        <createSequence incrementBy="50" sequenceName="seq_cadaver" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-3">
+        <createSequence incrementBy="50" sequenceName="seq_controle_qualidade" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-4">
+        <createSequence incrementBy="50" sequenceName="seq_exame" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-5">
+        <createSequence incrementBy="50" sequenceName="seq_item_solicitacao_exame" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-6">
+        <createSequence incrementBy="50" sequenceName="seq_laboratorio_externo" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-7">
+        <createSequence incrementBy="50" sequenceName="seq_material" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-8">
+        <createSequence incrementBy="50" sequenceName="seq_projeto_de_pesquisa" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-9">
+        <createSequence incrementBy="50" sequenceName="seq_recomendacao" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-10">
+        <createSequence incrementBy="50" sequenceName="seq_sinonimo" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-11">
+        <createSequence incrementBy="50" sequenceName="seq_solicitacao_exame" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-12">
+        <createSequence incrementBy="50" sequenceName="seq_tipo_amostra" startValue="1"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-13">
+        <createTable tableName="atendimento_diverso">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="atendimento_diversoPK"/>
+            </column>
+            <column name="centro_atividade_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_nascimento" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_soro" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="especialidade_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="identificacao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="material" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="origem_amostra" type="VARCHAR(255)"/>
+            <column name="sexo" type="VARCHAR(255)"/>
+            <column name="tipo_amostra" type="VARCHAR(255)"/>
+            <column name="unidade_executora_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cadaver_id" type="BIGINT"/>
+            <column name="controle_id" type="BIGINT"/>
+            <column name="laboratorio_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-14">
+        <createTable tableName="cadaver">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="cadaverPK"/>
+            </column>
+            <column name="causa_obito" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo_plano" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="convenio_plano" type="VARCHAR(255)"/>
+            <column name="data_nascimento" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_remocao" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grupo_sanguineo" type="VARCHAR(255)"/>
+            <column name="lido_por" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="observacao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="procedencia" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="raca" type="VARCHAR(255)"/>
+            <column name="realizado_por" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="retirada" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-15">
+        <createTable tableName="controle_qualidade">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="controle_qualidadePK"/>
+            </column>
+            <column name="codigo" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo_convenio" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo_plano" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="convenio_plano" type="VARCHAR(255)"/>
+            <column name="material" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-18">
+        <createTable tableName="laboratorio_externo">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="laboratorio_externoPK"/>
+            </column>
+            <column name="cep" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cgc" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo_convenio" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo_plano" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="convenio_plano" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endereco" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fax" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="forma_envio" type="VARCHAR(255)"/>
+            <column name="municipio" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sigla" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-19">
+        <createTable tableName="material">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="materialPK"/>
+            </column>
+            <column name="codigo" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-20">
+        <createTable tableName="projeto_de_pesquisa">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="projeto_de_pesquisaPK"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-24">
+        <createTable tableName="tipo_amostra">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tipo_amostraPK"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-25">
+        <addForeignKeyConstraint baseColumnNames="laboratorio_id" baseTableName="atendimento_diverso" constraintName="FK3i4myed6kgnndr6ltfdp997ug" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="laboratorio_externo" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-27">
+        <addForeignKeyConstraint baseColumnNames="controle_id" baseTableName="atendimento_diverso" constraintName="FK6wrf2bng24b9yfrwmsl3kaomn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="controle_qualidade" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-28">
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="recomendacao" constraintName="FKcf8t7h88nqc62sk11m2kopqh5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="material" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-29">
+        <addForeignKeyConstraint baseColumnNames="cadaver_id" baseTableName="atendimento_diverso" constraintName="FKfhd9vvp2lk3kejusep449s51" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="cadaver" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-32">
+        <addForeignKeyConstraint baseColumnNames="material_exame_id" baseTableName="exame" constraintName="FKqxm98bu2n2fpex0vprnuyverw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="material" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1628697439579-33">
+        <addForeignKeyConstraint baseColumnNames="amostra_exame_id" baseTableName="exame" constraintName="FKrrjfm7tkk9jbt5hcc7dvhadsx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tipo_amostra" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

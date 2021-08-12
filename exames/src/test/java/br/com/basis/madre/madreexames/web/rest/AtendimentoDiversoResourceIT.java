@@ -35,6 +35,9 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
+import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
+import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
 /**
  * Integration tests for the {@link AtendimentoDiversoResource} REST controller.
  */
@@ -50,11 +53,11 @@ public class AtendimentoDiversoResourceIT {
     private static final Integer DEFAULT_UNIDADE_EXECUTORA_ID = 1;
     private static final Integer UPDATED_UNIDADE_EXECUTORA_ID = 2;
 
-    private static final String DEFAULT_ORIGEM_AMOSTRA = "AAAAAAAAAA";
-    private static final String UPDATED_ORIGEM_AMOSTRA = "BBBBBBBBBB";
+    private static final OrigemAmostra DEFAULT_ORIGEM_AMOSTRA = OrigemAmostra.HUMANO;
+    private static final OrigemAmostra UPDATED_ORIGEM_AMOSTRA = OrigemAmostra.NAO_HUMANO;
 
-    private static final String DEFAULT_TIPO_AMOSTRA = "AAAAAAAAAA";
-    private static final String UPDATED_TIPO_AMOSTRA = "BBBBBBBBBB";
+    private static final TipoAmostra DEFAULT_TIPO_AMOSTRA = TipoAmostra.DOADOR;
+    private static final TipoAmostra UPDATED_TIPO_AMOSTRA = TipoAmostra.RECEPTOR;
 
     private static final String DEFAULT_IDENTIFICACAO = "AAAAAAAAAA";
     private static final String UPDATED_IDENTIFICACAO = "BBBBBBBBBB";
@@ -74,8 +77,8 @@ public class AtendimentoDiversoResourceIT {
     private static final LocalDate DEFAULT_DATA_NASCIMENTO = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATA_NASCIMENTO = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_SEXO = "AAAAAAAAAA";
-    private static final String UPDATED_SEXO = "BBBBBBBBBB";
+    private static final Sexo DEFAULT_SEXO = Sexo.FEMININO;
+    private static final Sexo UPDATED_SEXO = Sexo.MASCULINO;
 
     @Autowired
     private AtendimentoDiversoRepository atendimentoDiversoRepository;
@@ -247,46 +250,6 @@ public class AtendimentoDiversoResourceIT {
 
     @Test
     @Transactional
-    public void checkOrigemAmostraIsRequired() throws Exception {
-        int databaseSizeBeforeTest = atendimentoDiversoRepository.findAll().size();
-        // set the field null
-        atendimentoDiverso.setOrigemAmostra(null);
-
-        // Create the AtendimentoDiverso, which fails.
-        AtendimentoDiversoDTO atendimentoDiversoDTO = atendimentoDiversoMapper.toDto(atendimentoDiverso);
-
-
-        restAtendimentoDiversoMockMvc.perform(post("/api/atendimento-diversos")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(atendimentoDiversoDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<AtendimentoDiverso> atendimentoDiversoList = atendimentoDiversoRepository.findAll();
-        assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkTipoAmostraIsRequired() throws Exception {
-        int databaseSizeBeforeTest = atendimentoDiversoRepository.findAll().size();
-        // set the field null
-        atendimentoDiverso.setTipoAmostra(null);
-
-        // Create the AtendimentoDiverso, which fails.
-        AtendimentoDiversoDTO atendimentoDiversoDTO = atendimentoDiversoMapper.toDto(atendimentoDiverso);
-
-
-        restAtendimentoDiversoMockMvc.perform(post("/api/atendimento-diversos")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(atendimentoDiversoDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<AtendimentoDiverso> atendimentoDiversoList = atendimentoDiversoRepository.findAll();
-        assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkIdentificacaoIsRequired() throws Exception {
         int databaseSizeBeforeTest = atendimentoDiversoRepository.findAll().size();
         // set the field null
@@ -407,26 +370,6 @@ public class AtendimentoDiversoResourceIT {
 
     @Test
     @Transactional
-    public void checkSexoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = atendimentoDiversoRepository.findAll().size();
-        // set the field null
-        atendimentoDiverso.setSexo(null);
-
-        // Create the AtendimentoDiverso, which fails.
-        AtendimentoDiversoDTO atendimentoDiversoDTO = atendimentoDiversoMapper.toDto(atendimentoDiverso);
-
-
-        restAtendimentoDiversoMockMvc.perform(post("/api/atendimento-diversos")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(atendimentoDiversoDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<AtendimentoDiverso> atendimentoDiversoList = atendimentoDiversoRepository.findAll();
-        assertThat(atendimentoDiversoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllAtendimentoDiversos() throws Exception {
         // Initialize the database
         atendimentoDiversoRepository.saveAndFlush(atendimentoDiverso);
@@ -438,15 +381,15 @@ public class AtendimentoDiversoResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(atendimentoDiverso.getId().intValue())))
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
-            .andExpect(jsonPath("$.[*].origemAmostra").value(hasItem(DEFAULT_ORIGEM_AMOSTRA)))
-            .andExpect(jsonPath("$.[*].tipoAmostra").value(hasItem(DEFAULT_TIPO_AMOSTRA)))
+            .andExpect(jsonPath("$.[*].origemAmostra").value(hasItem(DEFAULT_ORIGEM_AMOSTRA.toString())))
+            .andExpect(jsonPath("$.[*].tipoAmostra").value(hasItem(DEFAULT_TIPO_AMOSTRA.toString())))
             .andExpect(jsonPath("$.[*].identificacao").value(hasItem(DEFAULT_IDENTIFICACAO)))
             .andExpect(jsonPath("$.[*].dataSoro").value(hasItem(DEFAULT_DATA_SORO.toString())))
             .andExpect(jsonPath("$.[*].material").value(hasItem(DEFAULT_MATERIAL)))
             .andExpect(jsonPath("$.[*].especialidadeId").value(hasItem(DEFAULT_ESPECIALIDADE_ID)))
             .andExpect(jsonPath("$.[*].centroAtividadeId").value(hasItem(DEFAULT_CENTRO_ATIVIDADE_ID)))
             .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
-            .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO)));
+            .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())));
     }
     
     @Test
@@ -462,15 +405,15 @@ public class AtendimentoDiversoResourceIT {
             .andExpect(jsonPath("$.id").value(atendimentoDiverso.getId().intValue()))
             .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.unidadeExecutoraId").value(DEFAULT_UNIDADE_EXECUTORA_ID))
-            .andExpect(jsonPath("$.origemAmostra").value(DEFAULT_ORIGEM_AMOSTRA))
-            .andExpect(jsonPath("$.tipoAmostra").value(DEFAULT_TIPO_AMOSTRA))
+            .andExpect(jsonPath("$.origemAmostra").value(DEFAULT_ORIGEM_AMOSTRA.toString()))
+            .andExpect(jsonPath("$.tipoAmostra").value(DEFAULT_TIPO_AMOSTRA.toString()))
             .andExpect(jsonPath("$.identificacao").value(DEFAULT_IDENTIFICACAO))
             .andExpect(jsonPath("$.dataSoro").value(DEFAULT_DATA_SORO.toString()))
             .andExpect(jsonPath("$.material").value(DEFAULT_MATERIAL))
             .andExpect(jsonPath("$.especialidadeId").value(DEFAULT_ESPECIALIDADE_ID))
             .andExpect(jsonPath("$.centroAtividadeId").value(DEFAULT_CENTRO_ATIVIDADE_ID))
             .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO.toString()))
-            .andExpect(jsonPath("$.sexo").value(DEFAULT_SEXO));
+            .andExpect(jsonPath("$.sexo").value(DEFAULT_SEXO.toString()));
     }
     @Test
     @Transactional
@@ -590,14 +533,14 @@ public class AtendimentoDiversoResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(atendimentoDiverso.getId().intValue())))
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
-            .andExpect(jsonPath("$.[*].origemAmostra").value(hasItem(DEFAULT_ORIGEM_AMOSTRA)))
-            .andExpect(jsonPath("$.[*].tipoAmostra").value(hasItem(DEFAULT_TIPO_AMOSTRA)))
+            .andExpect(jsonPath("$.[*].origemAmostra").value(hasItem(DEFAULT_ORIGEM_AMOSTRA.toString())))
+            .andExpect(jsonPath("$.[*].tipoAmostra").value(hasItem(DEFAULT_TIPO_AMOSTRA.toString())))
             .andExpect(jsonPath("$.[*].identificacao").value(hasItem(DEFAULT_IDENTIFICACAO)))
             .andExpect(jsonPath("$.[*].dataSoro").value(hasItem(DEFAULT_DATA_SORO.toString())))
             .andExpect(jsonPath("$.[*].material").value(hasItem(DEFAULT_MATERIAL)))
             .andExpect(jsonPath("$.[*].especialidadeId").value(hasItem(DEFAULT_ESPECIALIDADE_ID)))
             .andExpect(jsonPath("$.[*].centroAtividadeId").value(hasItem(DEFAULT_CENTRO_ATIVIDADE_ID)))
             .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
-            .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO)));
+            .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())));
     }
 }
