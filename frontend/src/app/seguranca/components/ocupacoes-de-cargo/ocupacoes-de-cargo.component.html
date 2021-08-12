@@ -1,1 +1,105 @@
-<p>ocupacoes-de-cargo works!</p>
+<h1>Cargos</h1>
+
+<form #form [formGroup]="formOcupacoesDeCargo" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-12">
+                <h2 class="sub-title">Cadastrar Ocupações do Cargo</h2>
+
+                <div class="p-col-12 p-grid">
+                    <div class="p-col-12 p-md-4">
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="codigo" />
+                            <label>Código</label>
+                        </span>
+                        <p-message severity="error" text="Código do vínculo obrigatório" *ngIf="
+                            formOcupacoesDeCargo.controls['codigo'].errors?.required &&
+                            formOcupacoesDeCargo.controls['codigo'].touched">
+                        </p-message>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="descricao" />
+                            <label>Descrição</label>
+                        </span>
+                        <p-message severity="error" text="Descrição do vínculo obrigatório" *ngIf="
+                            formOcupacoesDeCargo.controls['descricao'].errors?.required &&
+                            formOcupacoesDeCargo.controls['descricao'].touched">
+                        </p-message>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="cargos" [optionLabel]="'descricao'" [optionValue]="'id'"></p-dropdown>
+                        <label>Cargos</label>
+                    </span>
+                </div>
+                <div class="p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="situacaoDoServidor" formControlName="situacao">
+                        </p-dropdown>
+                        <label>Situação</label>
+                    </span>
+                    <p-message severity="error" text="Situação do vínculo obrigatório" *ngIf="
+                        formOcupacoesDeCargo.controls['situacao'].errors?.required &&
+                        formOcupacoesDeCargo.controls['situacao'].touched">
+                    </p-message>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-col">
+                    <legend>Informar CBO?</legend>
+                    <div class="p-field-radiobutton">
+                        <div class="radioButton">
+                            <p-radioButton 
+                                name="informarCbo" 
+                                formControlName="informarCbo" 
+                                value="true"
+                                label="Sim">
+                            </p-radioButton>
+                        </div>
+                        <div class="radioButton">
+                            <p-radioButton
+                                name="informarCbo" 
+                                formControlName="informarCbo" 
+                                value="false" 
+                                label="Não"
+                                required>
+                            </p-radioButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col">
+                    <legend>Informar CNS?</legend>
+                    <div class="p-field-radiobutton">
+                        <div class="radioButton">
+                            <p-radioButton 
+                                name="informarCns" 
+                                formControlName="informarCns" 
+                                value="true"
+                                label="Sim">
+                            </p-radioButton>
+                        </div>
+                        <div class="radioButton">
+                            <p-radioButton
+                                name="informarCns" 
+                                formControlName="informarCns" 
+                                value="false"
+                                label="Não" 
+                                required>
+                            </p-radioButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"
+                [disabled]="!valid()">
+            </button>
+        </div>
+    </div>
+</form>
