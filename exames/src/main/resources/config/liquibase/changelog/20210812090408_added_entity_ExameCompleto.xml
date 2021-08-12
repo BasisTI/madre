@@ -9,50 +9,19 @@
 
     <changeSet id="20210812090408-1" author="alexandre">
         <addColumn tableName="exame">
-            <column name="ativo" type="boolean">
-                <constraints nullable="true" />
+            <column name="ativo" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false" />
             </column>
-            <column name="impressao" type="boolean">
-                <constraints nullable="true" />
+            <column name="impressao" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false" />
             </column>
-            <column name="consiste_interfaceamento" type="boolean">
-                <constraints nullable="true" />
+            <column name="consiste_interfaceamento" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false" />
             </column>
-            <column name="anexa_documentos" type="boolean">
-                <constraints nullable="true" />
+            <column name="anexa_documentos" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false" />
             </column>
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </addColumn>
-    </changeSet>
-
-    <changeSet id="20210812090408-1-relations" author="alexandre">
-
-    </changeSet>
-
-    <changeSet id="20210812090408-1-sequence" author="alexandre">
-        <createSequence sequenceName="seq_exame" startValue="1050" incrementBy="50" />
-    </changeSet>
-    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
-
-    <!--
-        Load sample data generated with Faker.js
-        - This data can be easily edited using a CSV editor (or even MS Excel) and
-          is located in the 'src/main/resources/config/liquibase/fake-data' directory
-        - By default this data is applied when running with the JHipster 'dev' profile.
-          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
-          Spring Boot configuration key.
-    -->
-    <changeSet id="20210812090408-1-data" author="jhipster" context="faker">
-        <loadData
-            file="config/liquibase/fake-data/exame.csv"
-            separator=";"
-            tableName="exame">
-            <column name="ativo" type="boolean"/>
-            <column name="impressao" type="boolean"/>
-            <column name="consiste_interfaceamento" type="boolean"/>
-            <column name="anexa_documentos" type="boolean"/>
-            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
-        </loadData>
     </changeSet>
 
 </databaseChangeLog>

@@ -3,9 +3,9 @@ nome String required
 nomeUsual String
 sigla String required
 ativo Boolean required
-impressao Boolean
-consisteInterfaceamento Boolean
-anexaDocumentos Boolean
+impressao Boolean required
+consisteInterfaceamento Boolean required
+anexaDocumentos Boolean required
 }
 
 entity Material {
