@@ -24,6 +24,8 @@ export class OcupacoesDeCargoComponent implements OnInit {
 
   cargos: Cargos[] = [];
 
+  cargoTeste: number;
+
   situacaoDoServidor = OPCOES_DE_SITUACOES;
 
   constructor( 
@@ -49,8 +51,10 @@ export class OcupacoesDeCargoComponent implements OnInit {
       situacao: occ.situacao,
       informarCbo: occ.informarCbo,
       informarCns: occ.informarCns,
+      cargoId: this.cargoTeste,
     };
-    
+    console.log(ocupacoesDeCargo)
+
     if (this.formOcupacoesDeCargo.value.id != 0) {
       this.ocupacoesDeCargoService.alterarOcupacoesDeCargo(ocupacoesDeCargo).subscribe((e) => {
         this.formOcupacoesDeCargo.reset();

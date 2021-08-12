@@ -1,16 +1,18 @@
 
 export class OcupacoesDeCargoModel {
     constructor(
-        id: number,
+        public id?: number,
 
-        codigo: number,
+        public codigo?: number,
 
-        descricao: string,
+        public descricao?: string,
 
-        situacao: boolean,
+        public situacao?: boolean,
 
-        informarCbo: boolean,
+        public informarCbo?: boolean,
 
-        informarCns: boolean,
+        public informarCns?: boolean,
+
+        public cargoId?: number, 
     ) { }
 }
