@@ -18,6 +18,14 @@ public class ExameDTO implements Serializable {
     @NotNull
     private String sigla;
 
+    private Boolean ativo;
+
+    private Boolean impressao;
+
+    private Boolean consisteInterfaceamento;
+
+    private Boolean anexaDocumentos;
+
 
     private Long materialExameId;
 
@@ -57,6 +65,38 @@ public class ExameDTO implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
+    }
+
+    public Boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Boolean isImpressao() {
+        return impressao;
+    }
+
+    public void setImpressao(Boolean impressao) {
+        this.impressao = impressao;
+    }
+
+    public Boolean isConsisteInterfaceamento() {
+        return consisteInterfaceamento;
+    }
+
+    public void setConsisteInterfaceamento(Boolean consisteInterfaceamento) {
+        this.consisteInterfaceamento = consisteInterfaceamento;
+    }
+
+    public Boolean isAnexaDocumentos() {
+        return anexaDocumentos;
+    }
+
+    public void setAnexaDocumentos(Boolean anexaDocumentos) {
+        this.anexaDocumentos = anexaDocumentos;
     }
 
     public Long getMaterialExameId() {
@@ -116,6 +156,10 @@ public class ExameDTO implements Serializable {
             ", nome='" + getNome() + "'" +
             ", nomeUsual='" + getNomeUsual() + "'" +
             ", sigla='" + getSigla() + "'" +
+            ", ativo='" + isAtivo() + "'" +
+            ", impressao='" + isImpressao() + "'" +
+            ", consisteInterfaceamento='" + isConsisteInterfaceamento() + "'" +
+            ", anexaDocumentos='" + isAnexaDocumentos() + "'" +
             ", materialExameId=" + getMaterialExameId() +
             ", materialExameNome='" + getMaterialExameNome() + "'" +
             ", amostraExameId=" + getAmostraExameId() +

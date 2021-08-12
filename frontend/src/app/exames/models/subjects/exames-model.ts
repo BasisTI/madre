@@ -1,22 +1,16 @@
-export interface IExamModel {
-    id?: number;
-    nome?: string;
-    nomeusual?: string;
-    sigla?: string;
-    materialExameId?: number;
-    material?: string;
-    amostraExameId?: number;
-    amostraExameNome?: string;
-}
-
-export class ExamModel implements IExamModel {
-    public id: number;
-    public nome: string;
-    public nomeusual: string;
-    public sigla: string;
-    public materialExameId: number;
-    public material: string;
-    public amostraExameId: number;
-    public amostraExameNome: string;
-
+export class ExamModel {
+    constructor(
+        public id?: number,
+        public nome?: string,
+        public nomeUsual?: string,
+        public sigla?: string,
+        public ativo?: boolean,
+        public impressao?: boolean,
+        public consisteInterfaceamento?: boolean,
+        public anexaDocumentos?: boolean,
+        public materialExameId?: number,
+        public materialExameNome?: string,
+        public amostraExameId?: number,
+        public amostraExameNome?: string,
+    ) { }
 }

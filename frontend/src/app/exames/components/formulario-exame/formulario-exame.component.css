@@ -1,0 +1,16 @@
+.radio {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.separator-radio {
+    margin-right: 5px;
+}
+
+.radioButton {
+    margin: 5px 0 0 5px;
+}
+    
+.label-radioButton {
+    margin: 5px;
+}

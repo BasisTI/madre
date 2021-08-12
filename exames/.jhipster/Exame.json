@@ -14,6 +14,22 @@
       "fieldName": "sigla",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "impressao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "consisteInterfaceamento",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "anexaDocumentos",
+      "fieldType": "Boolean"
     }
   ],
   "relationships": [

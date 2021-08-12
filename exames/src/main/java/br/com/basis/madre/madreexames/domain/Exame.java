@@ -40,6 +40,18 @@ public class Exame implements Serializable {
     @Column(name = "sigla", nullable = false)
     private String sigla;
 
+    @Column(name = "ativo")
+    private Boolean ativo;
+
+    @Column(name = "impressao")
+    private Boolean impressao;
+
+    @Column(name = "consiste_interfaceamento")
+    private Boolean consisteInterfaceamento;
+
+    @Column(name = "anexa_documentos")
+    private Boolean anexaDocumentos;
+
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
     private Material materialExame;
@@ -99,6 +111,58 @@ public class Exame implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
+    }
+
+    public Boolean isAtivo() {
+        return ativo;
+    }
+
+    public Exame ativo(Boolean ativo) {
+        this.ativo = ativo;
+        return this;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Boolean isImpressao() {
+        return impressao;
+    }
+
+    public Exame impressao(Boolean impressao) {
+        this.impressao = impressao;
+        return this;
+    }
+
+    public void setImpressao(Boolean impressao) {
+        this.impressao = impressao;
+    }
+
+    public Boolean isConsisteInterfaceamento() {
+        return consisteInterfaceamento;
+    }
+
+    public Exame consisteInterfaceamento(Boolean consisteInterfaceamento) {
+        this.consisteInterfaceamento = consisteInterfaceamento;
+        return this;
+    }
+
+    public void setConsisteInterfaceamento(Boolean consisteInterfaceamento) {
+        this.consisteInterfaceamento = consisteInterfaceamento;
+    }
+
+    public Boolean isAnexaDocumentos() {
+        return anexaDocumentos;
+    }
+
+    public Exame anexaDocumentos(Boolean anexaDocumentos) {
+        this.anexaDocumentos = anexaDocumentos;
+        return this;
+    }
+
+    public void setAnexaDocumentos(Boolean anexaDocumentos) {
+        this.anexaDocumentos = anexaDocumentos;
     }
 
     public Material getMaterialExame() {
@@ -177,6 +241,10 @@ public class Exame implements Serializable {
             ", nome='" + getNome() + "'" +
             ", nomeUsual='" + getNomeUsual() + "'" +
             ", sigla='" + getSigla() + "'" +
+            ", ativo='" + isAtivo() + "'" +
+            ", impressao='" + isImpressao() + "'" +
+            ", consisteInterfaceamento='" + isConsisteInterfaceamento() + "'" +
+            ", anexaDocumentos='" + isAnexaDocumentos() + "'" +
             "}";
     }
 }
