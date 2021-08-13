@@ -3,3 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.separator-radio {
+    margin-right: 5px;
+}

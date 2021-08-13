@@ -79,6 +79,11 @@
                             (click)="listar()"></button>
                     </div>
                     <div class="p-md-2">
+                        <button pButton type="button" label="Exportar"
+                            pTooltip="Exportar arquivo de consultas."
+                            (click)="exportarConsultas()"></button>
+                    </div>
+                    <div class="p-md-2">
                         <button pButton type="button" label="Limpar" pTooltip="Limpar pesquisa de consultas."
                             (click)="limparPesquisa()"></button>
                     </div>
@@ -98,13 +103,6 @@
                     <p-column field="profissional" header="Profissional"></p-column>
                     <p-column field="situacaoAtendimento" header="Sit. Atend."></p-column>
                 </basis-datatable>
-            </div>
-            <div class="p-col-12 p-grid">
-                <div class="p-md-2">
-                    <button pButton type="button" label="Exportar"
-                        pTooltip="Exportar arquivo de consultas."
-                        (click)="exportarConsultas()"></button>
-                </div>
             </div>
         </div>
     </form>
