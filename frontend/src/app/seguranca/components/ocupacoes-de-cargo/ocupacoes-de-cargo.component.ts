@@ -20,11 +20,10 @@ export class OcupacoesDeCargoComponent implements OnInit {
     situacao: ['', Validators.required],
     informarCbo: [''],
     informarCns: [''],
+    cargoId: [''],
   })
 
   cargos: Cargos[] = [];
-
-  cargoTeste: number;
 
   situacaoDoServidor = OPCOES_DE_SITUACOES;
 
@@ -51,7 +50,7 @@ export class OcupacoesDeCargoComponent implements OnInit {
       situacao: occ.situacao,
       informarCbo: occ.informarCbo,
       informarCns: occ.informarCns,
-      cargoId: this.cargoTeste,
+      cargoId: occ.cargoId,
     };
     console.log(ocupacoesDeCargo)
 
