@@ -1,0 +1,53 @@
+<div class="p-col-12 card card-w-title">
+    <h1>Cadastrar Matérial de Análise</h1>
+
+    <div class="container" [formGroup]="materialDeAnalise">
+        <div style="display: flex; flex-direction: row;">
+            <span class="p-float-label inputStyle">
+                <input type="text" pInputText formControlName="nome"/>
+                <label>Nome do material...</label>
+            </span>
+            <span class="dropdownStyle"  pTooltip="Selecione o estado atual do material de análise">
+                <p-dropdown [options]="atividade" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+            </span>
+        </div>
+        <div class="switchFields">
+            <span class="switchDiv" pTooltip="Selecione se o material cadastrado é coletável">
+                coletável:
+                <div class="radioDisplay">
+                    <p-radioButton value=true formControlName="coletavel"></p-radioButton>
+                    <label class="radionStyle">Sim</label>
+                    <p-radioButton value=false formControlName="coletavel"></p-radioButton>
+                    <label class="radionStyle">Não</label>
+                </div>
+            </span>
+            <span class="switchDiv" pTooltip="Selecione se deve exigir informação do material de análise por extenso quando for solicitar um exame.">
+                Exige Material de análise:
+                <div class="radioDisplay" >
+                    <p-radioButton class="radionStyle" value=true formControlName="exigeInformacao"></p-radioButton>
+                    <label class="radionStyle">Sim</label>
+                    <p-radioButton class="radionStyle" value=false formControlName="exigeInformacao"></p-radioButton>
+                    <label class="radionStyle">Não</label>
+                </div>
+            </span>
+            <span class="switchDiv"  pTooltip="Selecione so matiral de análise é do tipo urina ou não.">
+                Urina:
+                <div class="radioDisplay">
+                    <p-radioButton class="radionStyle" value=true formControlName="urina"></p-radioButton>
+                    <label class="radionStyle">Sim</label>
+                    <p-radioButton class="radionStyle" value=false formControlName="urina"></p-radioButton>
+                    <label class="radionStyle">Não</label>
+                </div>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="buttonDiv">
+    <div>
+        <button (click)="cadastrar()" [disabled]="!validarCampos()" pButton type="button" label="Salvar" icon="pi pi-save"></button>
+    </div>
+    <div>
+        <button (click)="limpar()" pButton type="button" label="Limpar" icon="pi pi-times"></button>
+    </div>
+</div>
