@@ -18,12 +18,16 @@ public class ExameDTO implements Serializable {
     @NotNull
     private String sigla;
 
+    @NotNull
     private Boolean ativo;
 
+    @NotNull
     private Boolean impressao;
 
+    @NotNull
     private Boolean consisteInterfaceamento;
 
+    @NotNull
     private Boolean anexaDocumentos;
 
 

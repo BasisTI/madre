@@ -221,6 +221,86 @@ public class ExameResourceIT {
 
     @Test
     @Transactional
+    public void checkAtivoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = exameRepository.findAll().size();
+        // set the field null
+        exame.setAtivo(null);
+
+        // Create the Exame, which fails.
+        ExameDTO exameDTO = exameMapper.toDto(exame);
+
+
+        restExameMockMvc.perform(post("/api/exames")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(exameDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Exame> exameList = exameRepository.findAll();
+        assertThat(exameList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkImpressaoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = exameRepository.findAll().size();
+        // set the field null
+        exame.setImpressao(null);
+
+        // Create the Exame, which fails.
+        ExameDTO exameDTO = exameMapper.toDto(exame);
+
+
+        restExameMockMvc.perform(post("/api/exames")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(exameDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Exame> exameList = exameRepository.findAll();
+        assertThat(exameList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkConsisteInterfaceamentoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = exameRepository.findAll().size();
+        // set the field null
+        exame.setConsisteInterfaceamento(null);
+
+        // Create the Exame, which fails.
+        ExameDTO exameDTO = exameMapper.toDto(exame);
+
+
+        restExameMockMvc.perform(post("/api/exames")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(exameDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Exame> exameList = exameRepository.findAll();
+        assertThat(exameList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkAnexaDocumentosIsRequired() throws Exception {
+        int databaseSizeBeforeTest = exameRepository.findAll().size();
+        // set the field null
+        exame.setAnexaDocumentos(null);
+
+        // Create the Exame, which fails.
+        ExameDTO exameDTO = exameMapper.toDto(exame);
+
+
+        restExameMockMvc.perform(post("/api/exames")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(exameDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Exame> exameList = exameRepository.findAll();
+        assertThat(exameList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllExames() throws Exception {
         // Initialize the database
         exameRepository.saveAndFlush(exame);

@@ -7,8 +7,23 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "codigo",
-      "fieldType": "Integer",
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "coletavel",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "exigeInformacao",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "urina",
+      "fieldType": "Boolean",
       "fieldValidateRules": ["required"]
     }
   ],

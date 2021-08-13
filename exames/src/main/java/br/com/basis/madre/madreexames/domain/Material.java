@@ -32,8 +32,20 @@ public class Material implements Serializable {
     private String nome;
 
     @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
+    @Column(name = "ativo", nullable = false)
+    private Boolean ativo;
+
+    @NotNull
+    @Column(name = "coletavel", nullable = false)
+    private Boolean coletavel;
+
+    @NotNull
+    @Column(name = "exige_informacao", nullable = false)
+    private Boolean exigeInformacao;
+
+    @NotNull
+    @Column(name = "urina", nullable = false)
+    private Boolean urina;
 
     @OneToMany(mappedBy = "material")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -61,17 +73,56 @@ public class Material implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public Boolean isAtivo() {
+        return ativo;
     }
 
-    public Material codigo(Integer codigo) {
-        this.codigo = codigo;
+    public Material ativo(Boolean ativo) {
+        this.ativo = ativo;
         return this;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Boolean isColetavel() {
+        return coletavel;
+    }
+
+    public Material coletavel(Boolean coletavel) {
+        this.coletavel = coletavel;
+        return this;
+    }
+
+    public void setColetavel(Boolean coletavel) {
+        this.coletavel = coletavel;
+    }
+
+    public Boolean isExigeInformacao() {
+        return exigeInformacao;
+    }
+
+    public Material exigeInformacao(Boolean exigeInformacao) {
+        this.exigeInformacao = exigeInformacao;
+        return this;
+    }
+
+    public void setExigeInformacao(Boolean exigeInformacao) {
+        this.exigeInformacao = exigeInformacao;
+    }
+
+    public Boolean isUrina() {
+        return urina;
+    }
+
+    public Material urina(Boolean urina) {
+        this.urina = urina;
+        return this;
+    }
+
+    public void setUrina(Boolean urina) {
+        this.urina = urina;
     }
 
     public Set<Recomendacao> getMaterials() {
@@ -122,7 +173,10 @@ public class Material implements Serializable {
         return "Material{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
-            ", codigo=" + getCodigo() +
+            ", ativo='" + isAtivo() + "'" +
+            ", coletavel='" + isColetavel() + "'" +
+            ", exigeInformacao='" + isExigeInformacao() + "'" +
+            ", urina='" + isUrina() + "'" +
             "}";
     }
 }
