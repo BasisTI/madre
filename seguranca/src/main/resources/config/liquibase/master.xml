@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
 
-    <include file="config/liquibase/changelog/20210730173449_added_entity_Servidor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173549_added_entity_Ramal.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173649_added_entity_GrupoFuncional.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173749_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173849_added_entity_Documentos.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173949_added_entity_OrgaoEmissor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174049_added_entity_UF.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174149_added_entity_Telefone.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174249_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174349_added_entity_Municipio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174449_added_entity_Cargo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174549_added_entity_OcupacaoDeCargo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174649_added_entity_Vinculo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174749_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20210730173449_added_entity_constraints_Servidor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173649_added_entity_constraints_GrupoFuncional.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173749_added_entity_constraints_Pessoa.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730173949_added_entity_constraints_OrgaoEmissor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174149_added_entity_constraints_Telefone.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174249_added_entity_constraints_Endereco.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174349_added_entity_constraints_Municipio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174449_added_entity_CargoCerto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174549_added_entity_OcupacaoDeCargoCompleto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174549_added_entity_constraints_OcupacaoDeCargo.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173449_added_entity_Servidor.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173549_added_entity_Ramal.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173649_added_entity_GrupoFuncional.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173749_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173849_added_entity_Documentos.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173949_added_entity_OrgaoEmissor.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174049_added_entity_UF.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174149_added_entity_Telefone.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174249_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174349_added_entity_Municipio.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174449_added_entity_Cargo.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174549_added_entity_OcupacaoDeCargo.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174649_added_entity_Vinculo.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174749_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
+<!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+<include file="config/liquibase/changelog/20210730173449_added_entity_constraints_Servidor.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173649_added_entity_constraints_GrupoFuncional.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173749_added_entity_constraints_Pessoa.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730173949_added_entity_constraints_OrgaoEmissor.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174149_added_entity_constraints_Telefone.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174249_added_entity_constraints_Endereco.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174349_added_entity_constraints_Municipio.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174449_added_entity_CargoCerto.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174549_added_entity_OcupacaoDeCargoCompleto.xml" relativeToChangelogFile="false"/>
+<include file="config/liquibase/changelog/20210730174549_added_entity_constraints_OcupacaoDeCargo.xml" relativeToChangelogFile="false"/>
 
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+<!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
