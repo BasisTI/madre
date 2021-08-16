@@ -229,10 +229,15 @@ export class AppComponent implements AfterViewInit, OnInit {
                             routerLink: ['exames/formulario-exame']
                         },
                         {
+                            label: 'Listar Solicitações',
+                            icon: 'add',
+                            routerLink: ['exames/listar-solicitacoes'],
+                        },
+                        {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
-                        },
+                        }
                     ]
                 },
                 {

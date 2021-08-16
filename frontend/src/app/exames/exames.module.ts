@@ -10,6 +10,7 @@ import { ExameComponent } from './components/exames/components/exame/exame.compo
 import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
+import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormularioExameComponent } from './components/formulario-exame/formular
         ExameComponent,
         TabelaExamesComponent,
         FormularioExameComponent,
+        ListarSolicitacoesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

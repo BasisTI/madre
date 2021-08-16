@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pageable } from '@shared/pageable';
+import { Observable } from 'rxjs';
 import { SolicitacaoExame } from '../models/subjects/solicitacao-exame';
 
 @Injectable({
@@ -7,6 +9,7 @@ import { SolicitacaoExame } from '../models/subjects/solicitacao-exame';
 })
 export class SolicitacaoExameService {
     private readonly apiUrl = '/madreexames/api/solicitacao-exames';
+    private readonly api = '/madreexames/api';
 
     constructor(private httpService: HttpClient) {}
 
@@ -14,5 +17,21 @@ export class SolicitacaoExameService {
         console.log(solicitacao);
 
         return this.httpService.post(this.apiUrl, solicitacao);
+    }
+
+    public getSolicitacao(
+        id: string,
+        infoClinica: string,
+        usoAntimicrobianos24h: string,
+        pedidoPrimeiroExame: string,
+    ): Observable<SolicitacaoExame[]> {
+        return this.httpService.get<SolicitacaoExame[]>(`${this.api}/solicitacao-exames`, {
+            params: new HttpParams()
+                .set('id', id)
+                .set('infoClinica', infoClinica )
+                .set('usoAntimicrobianos24h', usoAntimicrobianos24h)
+                .set('pedidoPrimeiroExame', pedidoPrimeiroExame),
+                
+        });
     }
 }
