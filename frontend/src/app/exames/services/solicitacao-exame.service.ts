@@ -21,16 +21,14 @@ export class SolicitacaoExameService {
 
     public getSolicitacao(
         id: string,
-        infoClinica: string,
-        usoAntimicrobianos24h: string,
         pedidoPrimeiroExame: string,
+        usoAntimicrobianos24h: string,
     ): Observable<SolicitacaoExame[]> {
-        return this.httpService.get<SolicitacaoExame[]>(`${this.api}/solicitacao-exames`, {
+        return this.httpService.get<SolicitacaoExame[]>(`${this.api}/_search/solicitacoes-exames`, {
             params: new HttpParams()
                 .set('id', id)
-                .set('infoClinica', infoClinica )
+                .set('pedidoPrimeiroExame', pedidoPrimeiroExame)
                 .set('usoAntimicrobianos24h', usoAntimicrobianos24h)
-                .set('pedidoPrimeiroExame', pedidoPrimeiroExame),
                 
         });
     }

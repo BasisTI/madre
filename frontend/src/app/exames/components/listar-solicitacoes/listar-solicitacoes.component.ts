@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { SolicitacaoExame } from '../../models/subjects/solicitacao-exame';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
 
@@ -20,7 +19,6 @@ export class ListarSolicitacoesComponent implements OnInit {
 
   constructor(private solicitacaoService: SolicitacaoExameService) {
     this.results = [
-      {label: 'Selecione'},
       {label: 'Sim', value: 'true'},
       {label: 'Não', value: 'false'}
     ];
@@ -32,7 +30,7 @@ export class ListarSolicitacoesComponent implements OnInit {
 
   listar(){
     this.solicitacaoService
-      .getSolicitacao(this.id, this.infoClinica,this.usoAntimicrobianos24h, this.pedidoPrimeiroExame)
+      .getSolicitacao(this.id, this.pedidoPrimeiroExame, this.usoAntimicrobianos24h)
       .subscribe((response) => {
         this.solicitacao = response;
       });
@@ -46,24 +44,5 @@ export class ListarSolicitacoesComponent implements OnInit {
   limparPesquisa(){
 
   }
-
-//   btnClick(event: DatatableClickEvent) {
-//     switch (event.button) {
-//         case 'edit': {
-//             this.abrirEditar(event.selection);
-//            break;
-//         }
-//         case 'view': {
-//             this.abrirVisualizar(event.selection);
-//             break;
-//         }
-//         case 'delete': {
-//             this.confirmDelete(event.selection);
-//         }
-//         default: {
-//             break;
-//          }
-//     }
-// }
 
 }

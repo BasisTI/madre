@@ -19,9 +19,17 @@
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
                         pTooltip="Informe se é uma solicitação do primeiro exame"
-                        [(ngModel)]="situacao"
+                        [(ngModel)]="pedidoPrimeiroExame"
                         [options]="results"
                         placeholder="Primeiro Exame"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip="Filtrar por Antimicrobianos usados nas últimas 24 horas"
+                        [(ngModel)]="usoAntimicrobianos24h"
+                        [options]="results"
+                        placeholder="Antimicrobianos 24h"
                     ></p-dropdown>
                 </div>
             </div>
@@ -64,7 +72,7 @@
                         <p-column header="Info. Clínicas" field="infoClinica"></p-column>
                         <p-column header="Antimicrobianos 24h" field="usoAntimicrobianos24h">
                             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span> {{ rowData[col.field] === true ? 'Sim' : 'Inativo' }}</span>
+                            <span> {{ rowData[col.field] === true ? 'Sim' : 'Não' }}</span>
                             </ng-template>
                         </p-column>  
                         <p-column header="Pedido exame" field="pedidoPrimeiroExame">
