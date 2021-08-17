@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitacaoExame } from '../../models/subjects/solicitacao-exame';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-listar-solicitacoes',
   templateUrl: './listar-solicitacoes.component.html',
@@ -38,7 +38,28 @@ export class ListarSolicitacoesComponent implements OnInit {
   }
 
   exportarSolicitacoes(){
+    this.solicitacaoService.exportarSolicitacoes().subscribe(x => {
+      const blob = new Blob([x], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
 
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob)
+          return;
+      }
+      const data = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = data;
+      let dataAtual: Date = new Date();
+      let formattedDate = (moment( dataAtual)).format('DD-MM-YYYY_HH-mm-ss')
+      let nomeArquivo: string = 'solicitacoes_' + formattedDate + '.xlsx';
+
+      link.download = nomeArquivo;
+      link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}))
+
+      setTimeout(function() {
+          window.URL.revokeObjectURL(data);
+          link.remove
+      }, 100)
+  })
   }
 
   limparPesquisa(){

@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface SolicitacaoExameRepository extends JpaRepository<SolicitacaoExame, Long> {
+
+    Long countAllByIdIsNotNull();
 }
