@@ -10,7 +10,10 @@ anexaDocumentos Boolean required
 
 entity Material {
 nome String required
-codigo Integer required
+ativo Boolean required
+coletavel Boolean required
+exigeInformacao Boolean required
+urina Boolean required
 }
 
 entity Recomendacao {

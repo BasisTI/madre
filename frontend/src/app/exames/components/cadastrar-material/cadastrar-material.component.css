@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputStyle{
+    width: 40%;
+}
+
+.dropdownStyle{
+    width: 200px;
+    margin-left: 20px;
+}
+
+.switchDiv{
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+
+.switchFields{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    justify-content: space-around;
+}
+
+.radionStyle{
+    margin: 5px;
+}
+
+.radioDisplay{
+    display: flex;
+    flex-direction: row;
+}

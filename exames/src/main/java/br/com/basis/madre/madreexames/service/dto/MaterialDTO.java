@@ -14,7 +14,16 @@ public class MaterialDTO implements Serializable {
     private String nome;
 
     @NotNull
-    private Integer codigo;
+    private Boolean ativo;
+
+    @NotNull
+    private Boolean coletavel;
+
+    @NotNull
+    private Boolean exigeInformacao;
+
+    @NotNull
+    private Boolean urina;
 
     
     public Long getId() {
@@ -33,12 +42,36 @@ public class MaterialDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public Boolean isAtivo() {
+        return ativo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Boolean isColetavel() {
+        return coletavel;
+    }
+
+    public void setColetavel(Boolean coletavel) {
+        this.coletavel = coletavel;
+    }
+
+    public Boolean isExigeInformacao() {
+        return exigeInformacao;
+    }
+
+    public void setExigeInformacao(Boolean exigeInformacao) {
+        this.exigeInformacao = exigeInformacao;
+    }
+
+    public Boolean isUrina() {
+        return urina;
+    }
+
+    public void setUrina(Boolean urina) {
+        this.urina = urina;
     }
 
     @Override
@@ -64,7 +97,10 @@ public class MaterialDTO implements Serializable {
         return "MaterialDTO{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
-            ", codigo=" + getCodigo() +
+            ", ativo='" + isAtivo() + "'" +
+            ", coletavel='" + isColetavel() + "'" +
+            ", exigeInformacao='" + isExigeInformacao() + "'" +
+            ", urina='" + isUrina() + "'" +
             "}";
     }
 }
