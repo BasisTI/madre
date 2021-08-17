@@ -9,12 +9,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link OcupacaoDeCargo} and its DTO {@link OcupacaoDeCargoDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {CargoMapper.class})
 public interface OcupacaoDeCargoMapper extends EntityMapper<OcupacaoDeCargoDTO, OcupacaoDeCargo> {
 
+    @Mapping(source = "cargo.id", target = "cargoId")
+    OcupacaoDeCargoDTO toDto(OcupacaoDeCargo ocupacaoDeCargo);
 
-    @Mapping(target = "cargos", ignore = true)
-    @Mapping(target = "removeCargo", ignore = true)
+    @Mapping(source = "cargoId", target = "cargo")
     OcupacaoDeCargo toEntity(OcupacaoDeCargoDTO ocupacaoDeCargoDTO);
 
     default OcupacaoDeCargo fromId(Long id) {

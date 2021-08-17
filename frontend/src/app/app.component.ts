@@ -343,6 +343,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             icon: 'add',
                             routerLink: ['/seguranca/vinculos'],
                         },
+                        {
+                            label: 'Cadastrar Ocupações do Cargo',
+                            icon: 'add',
+                            routerLink: ['/seguranca/ocupacoes-de-cargo'],
+                        },
                     ],
                 },
                 

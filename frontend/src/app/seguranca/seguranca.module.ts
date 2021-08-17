@@ -6,13 +6,15 @@ import { ServidoresComponent } from "./components/servidores/servidores.componen
 import { routes } from "./seguranca.routes";
 import { FormularioServidorComponent } from './components/servidores/formulario-servidor/formulario-servidor.component';
 import { VinculosComponent } from './components/vinculos/vinculos.component';
+import { OcupacoesDeCargoComponent } from './components/ocupacoes-de-cargo/ocupacoes-de-cargo.component';
 
 
 @NgModule({
     declarations: [
         ServidoresComponent,
         FormularioServidorComponent,
-        VinculosComponent
+        VinculosComponent,
+        OcupacoesDeCargoComponent
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
