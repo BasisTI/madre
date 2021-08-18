@@ -16,6 +16,52 @@ exigeInformacao Boolean required
 urina Boolean required
 }
 
+entity MaterialDeExame {
+nome String required
+ativo Boolean required
+npo Boolean
+jejum Boolean
+exigePreparo Boolean
+exigeDieta Boolean
+informaNumeroDeColetas Boolean
+geraItemDeSolicitacao Boolean
+exigeIntervaloDeColeta Boolean
+exigeRegiaoAnatomica Boolean
+ingestaoDeMedicamento Boolean
+dependenteDeExame Boolean
+analisadoPelaCII Boolean
+interesseDaCOMEDI Boolean
+exigeImpressao Boolean
+apareceResultado Boolean
+contaCelulas Boolean
+limiteDeSolicitacao Boolean
+formaDeRespiracao Boolean
+automatico Boolean
+exigeDadosComplementares Boolean
+natureza String required
+sumario String required
+tempoJejum Integer
+intervaloMinimo Integer
+unidadeDeTempo String
+validade Integer
+agendamentoMinimo Integer
+tempoLimiteDaSolicitacao Integer
+unidadeDeTempoDaSolicitacao String
+numeroDeAmostras Integer
+numeroDeAmostrasPadrao Integer
+diasLimiteDefault Integer
+tempoLimiteDefault Integer
+numeroDeAmostrarPorIntervalo Integer
+tempoLimiteDeAmostraPorIntervalo Integer
+unidadeLimiteDeTempoDoPeriodo String
+permiteSolicitacaoPosAlta Boolean required
+tempoPermitidoParaSolicitarPosAlta Integer
+tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras Integer
+cartaDeColeta String
+laboratoriaTercerizado Boolean
+naoCancelaExamaAposAlta Boolean
+}
+
 entity Recomendacao {
 descricao String required
 avisoResponsavel Boolean required
@@ -73,7 +119,8 @@ SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
 }
 
 relationship ManyToOne {
-Exame{materialExame(nome)} to Material,
+MaterialDeExame{material(nome)} to Material
+Exame{materialExame(nome)} to MaterialDeExame,
 Sinonimo{sinonimo(nome)} to Exame,
 Exame{amostraExame(nome)} to TipoAmostra,
 ItemSolicitacaoExame{itemSolicitacaoExame(situacao)} to Exame

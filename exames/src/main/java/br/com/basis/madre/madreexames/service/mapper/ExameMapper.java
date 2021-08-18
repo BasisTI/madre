@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Exame} and its DTO {@link ExameDTO}.
  */
-@Mapper(componentModel = "spring", uses = {MaterialMapper.class, TipoAmostraMapper.class})
+@Mapper(componentModel = "spring", uses = {MaterialDeExameMapper.class, TipoAmostraMapper.class})
 public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
 
     @Mapping(source = "materialExame.id", target = "materialExameId")

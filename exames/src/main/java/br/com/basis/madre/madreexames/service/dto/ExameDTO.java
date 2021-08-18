@@ -107,16 +107,16 @@ public class ExameDTO implements Serializable {
         return materialExameId;
     }
 
-    public void setMaterialExameId(Long materialId) {
-        this.materialExameId = materialId;
+    public void setMaterialExameId(Long materialDeExameId) {
+        this.materialExameId = materialDeExameId;
     }
 
     public String getMaterialExameNome() {
         return materialExameNome;
     }
 
-    public void setMaterialExameNome(String materialNome) {
-        this.materialExameNome = materialNome;
+    public void setMaterialExameNome(String materialDeExameNome) {
+        this.materialExameNome = materialDeExameNome;
     }
 
     public Long getAmostraExameId() {

@@ -58,7 +58,7 @@ public class Exame implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
-    private Material materialExame;
+    private MaterialDeExame materialExame;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
@@ -169,17 +169,17 @@ public class Exame implements Serializable {
         this.anexaDocumentos = anexaDocumentos;
     }
 
-    public Material getMaterialExame() {
+    public MaterialDeExame getMaterialExame() {
         return materialExame;
     }
 
-    public Exame materialExame(Material material) {
-        this.materialExame = material;
+    public Exame materialExame(MaterialDeExame materialDeExame) {
+        this.materialExame = materialDeExame;
         return this;
     }
 
-    public void setMaterialExame(Material material) {
-        this.materialExame = material;
+    public void setMaterialExame(MaterialDeExame materialDeExame) {
+        this.materialExame = materialDeExame;
     }
 
     public TipoAmostra getAmostraExame() {
