@@ -17,19 +17,23 @@
     },
     {
       "fieldName": "ativo",
-      "fieldType": "Boolean"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "impressao",
-      "fieldType": "Boolean"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "consisteInterfaceamento",
-      "fieldType": "Boolean"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "anexaDocumentos",
-      "fieldType": "Boolean"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [

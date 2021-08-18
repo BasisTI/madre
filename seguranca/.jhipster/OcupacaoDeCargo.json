@@ -27,10 +27,11 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "cargo",
       "otherEntityRelationshipName": "ocupacaoDeCargo",
-      "relationshipName": "cargo"
+      "relationshipName": "cargo",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20210730174549",

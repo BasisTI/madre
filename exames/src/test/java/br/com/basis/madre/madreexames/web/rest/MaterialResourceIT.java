@@ -45,8 +45,17 @@ public class MaterialResourceIT {
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_CODIGO = 1;
-    private static final Integer UPDATED_CODIGO = 2;
+    private static final Boolean DEFAULT_ATIVO = false;
+    private static final Boolean UPDATED_ATIVO = true;
+
+    private static final Boolean DEFAULT_COLETAVEL = false;
+    private static final Boolean UPDATED_COLETAVEL = true;
+
+    private static final Boolean DEFAULT_EXIGE_INFORMACAO = false;
+    private static final Boolean UPDATED_EXIGE_INFORMACAO = true;
+
+    private static final Boolean DEFAULT_URINA = false;
+    private static final Boolean UPDATED_URINA = true;
 
     @Autowired
     private MaterialRepository materialRepository;
@@ -82,7 +91,10 @@ public class MaterialResourceIT {
     public static Material createEntity(EntityManager em) {
         Material material = new Material()
             .nome(DEFAULT_NOME)
-            .codigo(DEFAULT_CODIGO);
+            .ativo(DEFAULT_ATIVO)
+            .coletavel(DEFAULT_COLETAVEL)
+            .exigeInformacao(DEFAULT_EXIGE_INFORMACAO)
+            .urina(DEFAULT_URINA);
         return material;
     }
     /**
@@ -94,7 +106,10 @@ public class MaterialResourceIT {
     public static Material createUpdatedEntity(EntityManager em) {
         Material material = new Material()
             .nome(UPDATED_NOME)
-            .codigo(UPDATED_CODIGO);
+            .ativo(UPDATED_ATIVO)
+            .coletavel(UPDATED_COLETAVEL)
+            .exigeInformacao(UPDATED_EXIGE_INFORMACAO)
+            .urina(UPDATED_URINA);
         return material;
     }
 
@@ -119,7 +134,10 @@ public class MaterialResourceIT {
         assertThat(materialList).hasSize(databaseSizeBeforeCreate + 1);
         Material testMaterial = materialList.get(materialList.size() - 1);
         assertThat(testMaterial.getNome()).isEqualTo(DEFAULT_NOME);
-        assertThat(testMaterial.getCodigo()).isEqualTo(DEFAULT_CODIGO);
+        assertThat(testMaterial.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testMaterial.isColetavel()).isEqualTo(DEFAULT_COLETAVEL);
+        assertThat(testMaterial.isExigeInformacao()).isEqualTo(DEFAULT_EXIGE_INFORMACAO);
+        assertThat(testMaterial.isUrina()).isEqualTo(DEFAULT_URINA);
 
         // Validate the Material in Elasticsearch
         verify(mockMaterialSearchRepository, times(1)).save(testMaterial);
@@ -171,10 +189,70 @@ public class MaterialResourceIT {
 
     @Test
     @Transactional
-    public void checkCodigoIsRequired() throws Exception {
+    public void checkAtivoIsRequired() throws Exception {
         int databaseSizeBeforeTest = materialRepository.findAll().size();
         // set the field null
-        material.setCodigo(null);
+        material.setAtivo(null);
+
+        // Create the Material, which fails.
+        MaterialDTO materialDTO = materialMapper.toDto(material);
+
+
+        restMaterialMockMvc.perform(post("/api/materials")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Material> materialList = materialRepository.findAll();
+        assertThat(materialList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkColetavelIsRequired() throws Exception {
+        int databaseSizeBeforeTest = materialRepository.findAll().size();
+        // set the field null
+        material.setColetavel(null);
+
+        // Create the Material, which fails.
+        MaterialDTO materialDTO = materialMapper.toDto(material);
+
+
+        restMaterialMockMvc.perform(post("/api/materials")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Material> materialList = materialRepository.findAll();
+        assertThat(materialList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkExigeInformacaoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = materialRepository.findAll().size();
+        // set the field null
+        material.setExigeInformacao(null);
+
+        // Create the Material, which fails.
+        MaterialDTO materialDTO = materialMapper.toDto(material);
+
+
+        restMaterialMockMvc.perform(post("/api/materials")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(materialDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Material> materialList = materialRepository.findAll();
+        assertThat(materialList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkUrinaIsRequired() throws Exception {
+        int databaseSizeBeforeTest = materialRepository.findAll().size();
+        // set the field null
+        material.setUrina(null);
 
         // Create the Material, which fails.
         MaterialDTO materialDTO = materialMapper.toDto(material);
@@ -201,7 +279,10 @@ public class MaterialResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(material.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)));
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].coletavel").value(hasItem(DEFAULT_COLETAVEL.booleanValue())))
+            .andExpect(jsonPath("$.[*].exigeInformacao").value(hasItem(DEFAULT_EXIGE_INFORMACAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].urina").value(hasItem(DEFAULT_URINA.booleanValue())));
     }
     
     @Test
@@ -216,7 +297,10 @@ public class MaterialResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(material.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
-            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO));
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.coletavel").value(DEFAULT_COLETAVEL.booleanValue()))
+            .andExpect(jsonPath("$.exigeInformacao").value(DEFAULT_EXIGE_INFORMACAO.booleanValue()))
+            .andExpect(jsonPath("$.urina").value(DEFAULT_URINA.booleanValue()));
     }
     @Test
     @Transactional
@@ -240,7 +324,10 @@ public class MaterialResourceIT {
         em.detach(updatedMaterial);
         updatedMaterial
             .nome(UPDATED_NOME)
-            .codigo(UPDATED_CODIGO);
+            .ativo(UPDATED_ATIVO)
+            .coletavel(UPDATED_COLETAVEL)
+            .exigeInformacao(UPDATED_EXIGE_INFORMACAO)
+            .urina(UPDATED_URINA);
         MaterialDTO materialDTO = materialMapper.toDto(updatedMaterial);
 
         restMaterialMockMvc.perform(put("/api/materials")
@@ -253,7 +340,10 @@ public class MaterialResourceIT {
         assertThat(materialList).hasSize(databaseSizeBeforeUpdate);
         Material testMaterial = materialList.get(materialList.size() - 1);
         assertThat(testMaterial.getNome()).isEqualTo(UPDATED_NOME);
-        assertThat(testMaterial.getCodigo()).isEqualTo(UPDATED_CODIGO);
+        assertThat(testMaterial.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testMaterial.isColetavel()).isEqualTo(UPDATED_COLETAVEL);
+        assertThat(testMaterial.isExigeInformacao()).isEqualTo(UPDATED_EXIGE_INFORMACAO);
+        assertThat(testMaterial.isUrina()).isEqualTo(UPDATED_URINA);
 
         // Validate the Material in Elasticsearch
         verify(mockMaterialSearchRepository, times(1)).save(testMaterial);
@@ -317,6 +407,9 @@ public class MaterialResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(material.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)));
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].coletavel").value(hasItem(DEFAULT_COLETAVEL.booleanValue())))
+            .andExpect(jsonPath("$.[*].exigeInformacao").value(hasItem(DEFAULT_EXIGE_INFORMACAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].urina").value(hasItem(DEFAULT_URINA.booleanValue())));
     }
 }

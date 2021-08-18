@@ -13,6 +13,7 @@ import { FormularioExameComponent } from './components/formulario-exame/formular
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 
 
+
 @NgModule({
     declarations: [
         PesquisarAtendimentoComponent,

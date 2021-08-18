@@ -1,5 +1,6 @@
 package br.com.basis.madre.seguranca.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,8 +9,6 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A OcupacaoDeCargo.
@@ -45,9 +44,9 @@ public class OcupacaoDeCargo implements Serializable {
     @Column(name = "informar_cns")
     private Boolean informarCns;
 
-    @OneToMany(mappedBy = "ocupacaoDeCargo")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Cargo> cargos = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = "ocupacaoDeCargos", allowSetters = true)
+    private Cargo cargo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -123,29 +122,17 @@ public class OcupacaoDeCargo implements Serializable {
         this.informarCns = informarCns;
     }
 
-    public Set<Cargo> getCargos() {
-        return cargos;
+    public Cargo getCargo() {
+        return cargo;
     }
 
-    public OcupacaoDeCargo cargos(Set<Cargo> cargos) {
-        this.cargos = cargos;
+    public OcupacaoDeCargo cargo(Cargo cargo) {
+        this.cargo = cargo;
         return this;
     }
 
-    public OcupacaoDeCargo addCargo(Cargo cargo) {
-        this.cargos.add(cargo);
-        cargo.setOcupacaoDeCargo(this);
-        return this;
-    }
-
-    public OcupacaoDeCargo removeCargo(Cargo cargo) {
-        this.cargos.remove(cargo);
-        cargo.setOcupacaoDeCargo(null);
-        return this;
-    }
-
-    public void setCargos(Set<Cargo> cargos) {
-        this.cargos = cargos;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

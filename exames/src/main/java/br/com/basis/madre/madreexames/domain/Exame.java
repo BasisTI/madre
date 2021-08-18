@@ -40,16 +40,20 @@ public class Exame implements Serializable {
     @Column(name = "sigla", nullable = false)
     private String sigla;
 
-    @Column(name = "ativo")
+    @NotNull
+    @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
-    @Column(name = "impressao")
+    @NotNull
+    @Column(name = "impressao", nullable = false)
     private Boolean impressao;
 
-    @Column(name = "consiste_interfaceamento")
+    @NotNull
+    @Column(name = "consiste_interfaceamento", nullable = false)
     private Boolean consisteInterfaceamento;
 
-    @Column(name = "anexa_documentos")
+    @NotNull
+    @Column(name = "anexa_documentos", nullable = false)
     private Boolean anexaDocumentos;
 
     @ManyToOne

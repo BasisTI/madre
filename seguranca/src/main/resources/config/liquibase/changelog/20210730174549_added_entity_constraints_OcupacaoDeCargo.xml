@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity OcupacaoDeCargo.
+    -->
+    <changeSet id="20210730174549-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cargo_id"
+                                 baseTableName="ocupacao_de_cargo"
+                                 constraintName="fk_ocupacao_de_cargo_cargo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cargo"/>
+
+    </changeSet>
+</databaseChangeLog>
