@@ -1,0 +1,77 @@
+{
+  "name": "HorarioAgendado",
+  "fields": [
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "horafim",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroDeHorarios",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dia",
+      "fieldType": "Dia",
+      "fieldValues": "DOMINGO,SEGUNDA_FEIRA,TERCA_FEIRA,QUARTA_FEIRA,QUINTA_FEITA,SEXTA_FEIRA,SABADO",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "duracao",
+      "fieldType": "Duration"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "exclusivo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "tipoDeMarcacao",
+      "otherEntityRelationshipName": "horarioAgendado",
+      "relationshipName": "horarioAgendado",
+      "otherEntityField": "dia",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "horarioLivre",
+      "otherEntityRelationshipName": "horarioAgendado",
+      "relationshipName": "horarioAgendadoLivre"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gradeDeAgendamento",
+      "otherEntityRelationshipName": "gradeHorario",
+      "relationshipName": "gradeDeAgendamento",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210818154725",
+  "entityTableName": "horario_agendado",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

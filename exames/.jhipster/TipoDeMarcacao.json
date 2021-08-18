@@ -1,0 +1,34 @@
+{
+  "name": "TipoDeMarcacao",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tipoDeMarcacao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210818155025",
+  "entityTableName": "tipo_de_marcacao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

@@ -1,0 +1,67 @@
+{
+  "name": "GradeDeAgendamento",
+  "fields": [
+    {
+      "fieldName": "grade",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "unidadeExecutoraId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "responsavelId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "sala",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "gradeDeAgendamento",
+      "otherEntityField": "grade",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "gradeExame"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "grupoAgendamentoExame",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "gradeGrupoExame"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "horarioAgendado",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "gradeHorario"
+    }
+  ],
+  "changelogDate": "20210818154625",
+  "entityTableName": "grade_de_agendamento",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

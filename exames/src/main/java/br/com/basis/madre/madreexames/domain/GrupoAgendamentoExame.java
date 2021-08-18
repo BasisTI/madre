@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -51,6 +52,10 @@ public class GrupoAgendamentoExame implements Serializable {
                joinColumns = @JoinColumn(name = "grupo_agendamento_exame_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "exame_id", referencedColumnName = "id"))
     private Set<Exame> exames = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "gradeGrupoExames", allowSetters = true)
+    private GradeDeAgendamento gradeDeAgendamento;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -149,6 +154,19 @@ public class GrupoAgendamentoExame implements Serializable {
 
     public void setExames(Set<Exame> exames) {
         this.exames = exames;
+    }
+
+    public GradeDeAgendamento getGradeDeAgendamento() {
+        return gradeDeAgendamento;
+    }
+
+    public GrupoAgendamentoExame gradeDeAgendamento(GradeDeAgendamento gradeDeAgendamento) {
+        this.gradeDeAgendamento = gradeDeAgendamento;
+        return this;
+    }
+
+    public void setGradeDeAgendamento(GradeDeAgendamento gradeDeAgendamento) {
+        this.gradeDeAgendamento = gradeDeAgendamento;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

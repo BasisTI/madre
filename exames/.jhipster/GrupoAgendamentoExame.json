@@ -33,6 +33,13 @@
       "relationshipName": "exame",
       "otherEntityField": "nome",
       "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gradeDeAgendamento",
+      "otherEntityRelationshipName": "gradeGrupoExame",
+      "relationshipName": "gradeDeAgendamento",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20210714162530",

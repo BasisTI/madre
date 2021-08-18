@@ -26,6 +26,8 @@ public class GrupoAgendamentoExameDTO implements Serializable {
     private Boolean ativo;
 
     private Set<ExameDTO> exames = new HashSet<>();
+
+    private Long gradeDeAgendamentoId;
     
     public Long getId() {
         return id;
@@ -83,6 +85,14 @@ public class GrupoAgendamentoExameDTO implements Serializable {
         this.exames = exames;
     }
 
+    public Long getGradeDeAgendamentoId() {
+        return gradeDeAgendamentoId;
+    }
+
+    public void setGradeDeAgendamentoId(Long gradeDeAgendamentoId) {
+        this.gradeDeAgendamentoId = gradeDeAgendamentoId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,6 +121,7 @@ public class GrupoAgendamentoExameDTO implements Serializable {
             ", calcularOcupacao='" + isCalcularOcupacao() + "'" +
             ", ativo='" + isAtivo() + "'" +
             ", exames='" + getExames() + "'" +
+            ", gradeDeAgendamentoId=" + getGradeDeAgendamentoId() +
             "}";
     }
 }

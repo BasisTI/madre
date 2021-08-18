@@ -52,6 +52,13 @@
       "otherEntityField": "nome"
     },
     {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gradeDeAgendamento",
+      "otherEntityRelationshipName": "gradeExame",
+      "relationshipName": "gradeDeAgendamento",
+      "otherEntityField": "id"
+    },
+    {
       "relationshipType": "many-to-many",
       "otherEntityName": "grupoAgendamentoExame",
       "otherEntityRelationshipName": "exame",
