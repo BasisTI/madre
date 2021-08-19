@@ -56,6 +56,10 @@ public class Exame implements Serializable {
     @Column(name = "anexa_documentos", nullable = false)
     private Boolean anexaDocumentos;
 
+    @OneToMany(mappedBy = "exame")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<GradeDeAgendamento> exameGrades = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
     private Material materialExame;
@@ -63,10 +67,6 @@ public class Exame implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
     private TipoAmostra amostraExame;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "gradeExames", allowSetters = true)
-    private GradeDeAgendamento gradeDeAgendamento;
 
     @ManyToMany(mappedBy = "exames")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -173,6 +173,31 @@ public class Exame implements Serializable {
         this.anexaDocumentos = anexaDocumentos;
     }
 
+    public Set<GradeDeAgendamento> getExameGrades() {
+        return exameGrades;
+    }
+
+    public Exame exameGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
+        this.exameGrades = gradeDeAgendamentos;
+        return this;
+    }
+
+    public Exame addExameGrade(GradeDeAgendamento gradeDeAgendamento) {
+        this.exameGrades.add(gradeDeAgendamento);
+        gradeDeAgendamento.setExame(this);
+        return this;
+    }
+
+    public Exame removeExameGrade(GradeDeAgendamento gradeDeAgendamento) {
+        this.exameGrades.remove(gradeDeAgendamento);
+        gradeDeAgendamento.setExame(null);
+        return this;
+    }
+
+    public void setExameGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
+        this.exameGrades = gradeDeAgendamentos;
+    }
+
     public Material getMaterialExame() {
         return materialExame;
     }
@@ -197,19 +222,6 @@ public class Exame implements Serializable {
 
     public void setAmostraExame(TipoAmostra tipoAmostra) {
         this.amostraExame = tipoAmostra;
-    }
-
-    public GradeDeAgendamento getGradeDeAgendamento() {
-        return gradeDeAgendamento;
-    }
-
-    public Exame gradeDeAgendamento(GradeDeAgendamento gradeDeAgendamento) {
-        this.gradeDeAgendamento = gradeDeAgendamento;
-        return this;
-    }
-
-    public void setGradeDeAgendamento(GradeDeAgendamento gradeDeAgendamento) {
-        this.gradeDeAgendamento = gradeDeAgendamento;
     }
 
     public Set<GrupoAgendamentoExame> getGrupoAgendamentoExames() {

@@ -81,7 +81,7 @@ codigoDaSala Integer required
 identificacaoDaSala String required
 locacaoDaSala String required
 ativo Boolean required
-unidadeExecutoraId	 String
+unidadeExecutoraId Integer
 }
 
 entity TipoDeMarcacao {
@@ -101,14 +101,14 @@ SABADO
 }
 
 relationship OneToMany {
-GradeDeAgendamento{gradeExame(grade)} to Exame,
-GradeDeAgendamento{gradeGrupoExame(grade)} to GrupoAgendamentoExame
 GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
 HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
+Sala{salaGrade(identificacaoDaSala)} to GradeDeAgendamento
+Exame{exameGrade(nome)} to GradeDeAgendamento
+GrupoAgendamentoExame{grupoExameGrade(nome)} to GradeDeAgendamento
 }
 
 relationship OneToOne {
-GradeDeAgendamento{gradeDeAgendamento(grade)} to Sala
 HorarioAgendado{horarioAgendado(dia)} to TipoDeMarcacao
 }
 

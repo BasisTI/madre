@@ -23,30 +23,31 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "sala",
-      "otherEntityRelationshipName": "gradeDeAgendamento",
-      "relationshipName": "gradeDeAgendamento",
-      "otherEntityField": "grade",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "exame",
-      "otherEntityRelationshipName": "gradeDeAgendamento",
-      "relationshipName": "gradeExame"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "grupoAgendamentoExame",
-      "otherEntityRelationshipName": "gradeDeAgendamento",
-      "relationshipName": "gradeGrupoExame"
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "horarioAgendado",
       "otherEntityRelationshipName": "gradeDeAgendamento",
       "relationshipName": "gradeHorario"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sala",
+      "otherEntityRelationshipName": "salaGrade",
+      "relationshipName": "sala",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "exameGrade",
+      "relationshipName": "exame",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "grupoAgendamentoExame",
+      "otherEntityRelationshipName": "grupoExameGrade",
+      "relationshipName": "grupoAgendamentoExame",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20210818154625",

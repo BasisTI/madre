@@ -9,20 +9,19 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link GradeDeAgendamento} and its DTO {@link GradeDeAgendamentoDTO}.
  */
-@Mapper(componentModel = "spring", uses = {SalaMapper.class})
+@Mapper(componentModel = "spring", uses = {SalaMapper.class, ExameMapper.class, GrupoAgendamentoExameMapper.class})
 public interface GradeDeAgendamentoMapper extends EntityMapper<GradeDeAgendamentoDTO, GradeDeAgendamento> {
 
-    @Mapping(source = "gradeDeAgendamento.id", target = "gradeDeAgendamentoId")
-    @Mapping(source = "gradeDeAgendamento.grade", target = "gradeDeAgendamentoGrade")
+    @Mapping(source = "sala.id", target = "salaId")
+    @Mapping(source = "exame.id", target = "exameId")
+    @Mapping(source = "grupoAgendamentoExame.id", target = "grupoAgendamentoExameId")
     GradeDeAgendamentoDTO toDto(GradeDeAgendamento gradeDeAgendamento);
 
-    @Mapping(source = "gradeDeAgendamentoId", target = "gradeDeAgendamento")
-    @Mapping(target = "gradeExames", ignore = true)
-    @Mapping(target = "removeGradeExame", ignore = true)
-    @Mapping(target = "gradeGrupoExames", ignore = true)
-    @Mapping(target = "removeGradeGrupoExame", ignore = true)
     @Mapping(target = "gradeHorarios", ignore = true)
     @Mapping(target = "removeGradeHorario", ignore = true)
+    @Mapping(source = "salaId", target = "sala")
+    @Mapping(source = "exameId", target = "exame")
+    @Mapping(source = "grupoAgendamentoExameId", target = "grupoAgendamentoExame")
     GradeDeAgendamento toEntity(GradeDeAgendamentoDTO gradeDeAgendamentoDTO);
 
     default GradeDeAgendamento fromId(Long id) {

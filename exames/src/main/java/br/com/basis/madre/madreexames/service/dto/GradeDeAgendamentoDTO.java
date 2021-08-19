@@ -22,9 +22,11 @@ public class GradeDeAgendamentoDTO implements Serializable {
     private Boolean ativo;
 
 
-    private Long gradeDeAgendamentoId;
+    private Long salaId;
 
-    private String gradeDeAgendamentoGrade;
+    private Long exameId;
+
+    private Long grupoAgendamentoExameId;
     
     public Long getId() {
         return id;
@@ -66,20 +68,28 @@ public class GradeDeAgendamentoDTO implements Serializable {
         this.ativo = ativo;
     }
 
-    public Long getGradeDeAgendamentoId() {
-        return gradeDeAgendamentoId;
+    public Long getSalaId() {
+        return salaId;
     }
 
-    public void setGradeDeAgendamentoId(Long salaId) {
-        this.gradeDeAgendamentoId = salaId;
+    public void setSalaId(Long salaId) {
+        this.salaId = salaId;
     }
 
-    public String getGradeDeAgendamentoGrade() {
-        return gradeDeAgendamentoGrade;
+    public Long getExameId() {
+        return exameId;
     }
 
-    public void setGradeDeAgendamentoGrade(String salaGrade) {
-        this.gradeDeAgendamentoGrade = salaGrade;
+    public void setExameId(Long exameId) {
+        this.exameId = exameId;
+    }
+
+    public Long getGrupoAgendamentoExameId() {
+        return grupoAgendamentoExameId;
+    }
+
+    public void setGrupoAgendamentoExameId(Long grupoAgendamentoExameId) {
+        this.grupoAgendamentoExameId = grupoAgendamentoExameId;
     }
 
     @Override
@@ -108,8 +118,9 @@ public class GradeDeAgendamentoDTO implements Serializable {
             ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
             ", responsavelId=" + getResponsavelId() +
             ", ativo='" + isAtivo() + "'" +
-            ", gradeDeAgendamentoId=" + getGradeDeAgendamentoId() +
-            ", gradeDeAgendamentoGrade='" + getGradeDeAgendamentoGrade() + "'" +
+            ", salaId=" + getSalaId() +
+            ", exameId=" + getExameId() +
+            ", grupoAgendamentoExameId=" + getGrupoAgendamentoExameId() +
             "}";
     }
 }

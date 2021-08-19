@@ -24,8 +24,8 @@
     <include file="config/liquibase/changelog/20210818154825_added_entity_HorarioLivre.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818154925_added_entity_Sala.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818155025_added_entity_TipoDeMarcacao.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210705114508_added_entity_ExameAgendamento.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210714162530_added_entity_GrupoAgendamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210812090408_added_entity_ExameCompleto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210705114608_added_entity_Material_Atualizado.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20210705114508_added_entity_constraints_Exame.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705114708_added_entity_constraints_Recomendacao.xml" relativeToChangelogFile="false"/>
@@ -34,13 +34,8 @@
     <include file="config/liquibase/changelog/20210705120218_added_entity_constraints_AtendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705120318_added_entity_constraints_InformacoesComplementares.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210714162530_added_entity_constraints_GrupoAgendamentoExame.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210812090408_added_entity_ExameCompleto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210705114608_added_entity_Material_Atualizado.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818154625_added_entity_constraints_GradeDeAgendamento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818154725_added_entity_constraints_HorarioAgendado.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818154825_added_entity_constraints_HorarioLivre.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210705114508_added_entity_constraints_ExameAgendamento.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210714162530_added_entity_constraints_GrupoAgendamento.xml" relativeToChangelogFile="false"/>
-
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

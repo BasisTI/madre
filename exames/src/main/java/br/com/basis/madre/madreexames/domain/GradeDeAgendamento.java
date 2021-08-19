@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -42,21 +43,21 @@ public class GradeDeAgendamento implements Serializable {
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Sala gradeDeAgendamento;
-
-    @OneToMany(mappedBy = "gradeDeAgendamento")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Exame> gradeExames = new HashSet<>();
-
-    @OneToMany(mappedBy = "gradeDeAgendamento")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<GrupoAgendamentoExame> gradeGrupoExames = new HashSet<>();
-
     @OneToMany(mappedBy = "gradeDeAgendamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<HorarioAgendado> gradeHorarios = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "salaGrades", allowSetters = true)
+    private Sala sala;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "exameGrades", allowSetters = true)
+    private Exame exame;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "grupoExameGrades", allowSetters = true)
+    private GrupoAgendamentoExame grupoAgendamentoExame;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -119,69 +120,6 @@ public class GradeDeAgendamento implements Serializable {
         this.ativo = ativo;
     }
 
-    public Sala getGradeDeAgendamento() {
-        return gradeDeAgendamento;
-    }
-
-    public GradeDeAgendamento gradeDeAgendamento(Sala sala) {
-        this.gradeDeAgendamento = sala;
-        return this;
-    }
-
-    public void setGradeDeAgendamento(Sala sala) {
-        this.gradeDeAgendamento = sala;
-    }
-
-    public Set<Exame> getGradeExames() {
-        return gradeExames;
-    }
-
-    public GradeDeAgendamento gradeExames(Set<Exame> exames) {
-        this.gradeExames = exames;
-        return this;
-    }
-
-    public GradeDeAgendamento addGradeExame(Exame exame) {
-        this.gradeExames.add(exame);
-        exame.setGradeDeAgendamento(this);
-        return this;
-    }
-
-    public GradeDeAgendamento removeGradeExame(Exame exame) {
-        this.gradeExames.remove(exame);
-        exame.setGradeDeAgendamento(null);
-        return this;
-    }
-
-    public void setGradeExames(Set<Exame> exames) {
-        this.gradeExames = exames;
-    }
-
-    public Set<GrupoAgendamentoExame> getGradeGrupoExames() {
-        return gradeGrupoExames;
-    }
-
-    public GradeDeAgendamento gradeGrupoExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.gradeGrupoExames = grupoAgendamentoExames;
-        return this;
-    }
-
-    public GradeDeAgendamento addGradeGrupoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.gradeGrupoExames.add(grupoAgendamentoExame);
-        grupoAgendamentoExame.setGradeDeAgendamento(this);
-        return this;
-    }
-
-    public GradeDeAgendamento removeGradeGrupoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.gradeGrupoExames.remove(grupoAgendamentoExame);
-        grupoAgendamentoExame.setGradeDeAgendamento(null);
-        return this;
-    }
-
-    public void setGradeGrupoExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.gradeGrupoExames = grupoAgendamentoExames;
-    }
-
     public Set<HorarioAgendado> getGradeHorarios() {
         return gradeHorarios;
     }
@@ -205,6 +143,45 @@ public class GradeDeAgendamento implements Serializable {
 
     public void setGradeHorarios(Set<HorarioAgendado> horarioAgendados) {
         this.gradeHorarios = horarioAgendados;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public GradeDeAgendamento sala(Sala sala) {
+        this.sala = sala;
+        return this;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public Exame getExame() {
+        return exame;
+    }
+
+    public GradeDeAgendamento exame(Exame exame) {
+        this.exame = exame;
+        return this;
+    }
+
+    public void setExame(Exame exame) {
+        this.exame = exame;
+    }
+
+    public GrupoAgendamentoExame getGrupoAgendamentoExame() {
+        return grupoAgendamentoExame;
+    }
+
+    public GradeDeAgendamento grupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
+        this.grupoAgendamentoExame = grupoAgendamentoExame;
+        return this;
+    }
+
+    public void setGrupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
+        this.grupoAgendamentoExame = grupoAgendamentoExame;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

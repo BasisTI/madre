@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Sala.
@@ -42,7 +44,11 @@ public class Sala implements Serializable {
     private Boolean ativo;
 
     @Column(name = "unidade_executora_id")
-    private String unidadeExecutoraId;
+    private Integer unidadeExecutoraId;
+
+    @OneToMany(mappedBy = "sala")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<GradeDeAgendamento> salaGrades = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -105,17 +111,42 @@ public class Sala implements Serializable {
         this.ativo = ativo;
     }
 
-    public String getUnidadeExecutoraId() {
+    public Integer getUnidadeExecutoraId() {
         return unidadeExecutoraId;
     }
 
-    public Sala unidadeExecutoraId(String unidadeExecutoraId) {
+    public Sala unidadeExecutoraId(Integer unidadeExecutoraId) {
         this.unidadeExecutoraId = unidadeExecutoraId;
         return this;
     }
 
-    public void setUnidadeExecutoraId(String unidadeExecutoraId) {
+    public void setUnidadeExecutoraId(Integer unidadeExecutoraId) {
         this.unidadeExecutoraId = unidadeExecutoraId;
+    }
+
+    public Set<GradeDeAgendamento> getSalaGrades() {
+        return salaGrades;
+    }
+
+    public Sala salaGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
+        this.salaGrades = gradeDeAgendamentos;
+        return this;
+    }
+
+    public Sala addSalaGrade(GradeDeAgendamento gradeDeAgendamento) {
+        this.salaGrades.add(gradeDeAgendamento);
+        gradeDeAgendamento.setSala(this);
+        return this;
+    }
+
+    public Sala removeSalaGrade(GradeDeAgendamento gradeDeAgendamento) {
+        this.salaGrades.remove(gradeDeAgendamento);
+        gradeDeAgendamento.setSala(null);
+        return this;
+    }
+
+    public void setSalaGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
+        this.salaGrades = gradeDeAgendamentos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -144,7 +175,7 @@ public class Sala implements Serializable {
             ", identificacaoDaSala='" + getIdentificacaoDaSala() + "'" +
             ", locacaoDaSala='" + getLocacaoDaSala() + "'" +
             ", ativo='" + isAtivo() + "'" +
-            ", unidadeExecutoraId='" + getUnidadeExecutoraId() + "'" +
+            ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
             "}";
     }
 }
