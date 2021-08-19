@@ -22,7 +22,7 @@ public class SalaDTO implements Serializable {
     @NotNull
     private Boolean ativo;
 
-    private String unidadeExecutoraId;
+    private Integer unidadeExecutoraId;
 
     
     public Long getId() {
@@ -65,11 +65,11 @@ public class SalaDTO implements Serializable {
         this.ativo = ativo;
     }
 
-    public String getUnidadeExecutoraId() {
+    public Integer getUnidadeExecutoraId() {
         return unidadeExecutoraId;
     }
 
-    public void setUnidadeExecutoraId(String unidadeExecutoraId) {
+    public void setUnidadeExecutoraId(Integer unidadeExecutoraId) {
         this.unidadeExecutoraId = unidadeExecutoraId;
     }
 
@@ -99,7 +99,7 @@ public class SalaDTO implements Serializable {
             ", identificacaoDaSala='" + getIdentificacaoDaSala() + "'" +
             ", locacaoDaSala='" + getLocacaoDaSala() + "'" +
             ", ativo='" + isAtivo() + "'" +
-            ", unidadeExecutoraId='" + getUnidadeExecutoraId() + "'" +
+            ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
             "}";
     }
 }

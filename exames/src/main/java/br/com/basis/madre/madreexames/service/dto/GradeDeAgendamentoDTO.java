@@ -22,9 +22,7 @@ public class GradeDeAgendamentoDTO implements Serializable {
     private Boolean ativo;
 
 
-    private Long gradeDeAgendamentoId;
-
-    private String gradeDeAgendamentoGrade;
+    private Long salaId;
     
     public Long getId() {
         return id;
@@ -66,20 +64,12 @@ public class GradeDeAgendamentoDTO implements Serializable {
         this.ativo = ativo;
     }
 
-    public Long getGradeDeAgendamentoId() {
-        return gradeDeAgendamentoId;
+    public Long getSalaId() {
+        return salaId;
     }
 
-    public void setGradeDeAgendamentoId(Long salaId) {
-        this.gradeDeAgendamentoId = salaId;
-    }
-
-    public String getGradeDeAgendamentoGrade() {
-        return gradeDeAgendamentoGrade;
-    }
-
-    public void setGradeDeAgendamentoGrade(String salaGrade) {
-        this.gradeDeAgendamentoGrade = salaGrade;
+    public void setSalaId(Long salaId) {
+        this.salaId = salaId;
     }
 
     @Override
@@ -108,8 +98,7 @@ public class GradeDeAgendamentoDTO implements Serializable {
             ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
             ", responsavelId=" + getResponsavelId() +
             ", ativo='" + isAtivo() + "'" +
-            ", gradeDeAgendamentoId=" + getGradeDeAgendamentoId() +
-            ", gradeDeAgendamentoGrade='" + getGradeDeAgendamentoGrade() + "'" +
+            ", salaId=" + getSalaId() +
             "}";
     }
 }

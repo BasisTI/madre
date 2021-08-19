@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SituacaoExame } from "../../models/dropdowns/situacao.dropdown";
+import { SituacaoAtivo } from "../../models/dropdowns/situacao.dropdown";
 import { Amostra } from '../../models/subjects/amostra';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Material } from '../../models/subjects/material';
@@ -21,7 +21,7 @@ export class FormularioExameComponent implements OnInit {
 
   teste: boolean;
 
-  situacao = SituacaoExame;
+  situacaoExame = SituacaoAtivo;
 
   materialSelecionado: number;
   amostraSelecionada: number;
@@ -49,9 +49,9 @@ export class FormularioExameComponent implements OnInit {
   }
 
   cadastrar(){
-    let cadastroExame = this.cadastrarExame.value;
+    const cadastroExame = this.cadastrarExame.value;
 
-    let cadastro: ExamModel = {
+    const cadastro: ExamModel = {
       nome: cadastroExame.nome,
       nomeUsual: cadastroExame.nomeUsual,
       sigla: cadastroExame.sigla,

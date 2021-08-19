@@ -27,8 +27,8 @@
             <column name="ativo" type="boolean">
                 <constraints nullable="false" />
             </column>
-            <column name="grade_de_agendamento_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_grade_de_agendamento_grade_de_agendamento_id" />
+            <column name="sala_id" type="bigint">
+                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>

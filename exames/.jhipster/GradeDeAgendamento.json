@@ -23,14 +23,6 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "sala",
-      "otherEntityRelationshipName": "gradeDeAgendamento",
-      "relationshipName": "gradeDeAgendamento",
-      "otherEntityField": "grade",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "exame",
       "otherEntityRelationshipName": "gradeDeAgendamento",
@@ -47,6 +39,13 @@
       "otherEntityName": "horarioAgendado",
       "otherEntityRelationshipName": "gradeDeAgendamento",
       "relationshipName": "gradeHorario"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sala",
+      "otherEntityRelationshipName": "salaGrade",
+      "relationshipName": "sala",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20210818154625",

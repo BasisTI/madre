@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -42,10 +43,6 @@ public class GradeDeAgendamento implements Serializable {
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Sala gradeDeAgendamento;
-
     @OneToMany(mappedBy = "gradeDeAgendamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Exame> gradeExames = new HashSet<>();
@@ -57,6 +54,10 @@ public class GradeDeAgendamento implements Serializable {
     @OneToMany(mappedBy = "gradeDeAgendamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<HorarioAgendado> gradeHorarios = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "salaGrades", allowSetters = true)
+    private Sala sala;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -117,19 +118,6 @@ public class GradeDeAgendamento implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Sala getGradeDeAgendamento() {
-        return gradeDeAgendamento;
-    }
-
-    public GradeDeAgendamento gradeDeAgendamento(Sala sala) {
-        this.gradeDeAgendamento = sala;
-        return this;
-    }
-
-    public void setGradeDeAgendamento(Sala sala) {
-        this.gradeDeAgendamento = sala;
     }
 
     public Set<Exame> getGradeExames() {
@@ -205,6 +193,19 @@ public class GradeDeAgendamento implements Serializable {
 
     public void setGradeHorarios(Set<HorarioAgendado> horarioAgendados) {
         this.gradeHorarios = horarioAgendados;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public GradeDeAgendamento sala(Sala sala) {
+        this.sala = sala;
+        return this;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

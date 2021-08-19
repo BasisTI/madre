@@ -12,17 +12,16 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {SalaMapper.class})
 public interface GradeDeAgendamentoMapper extends EntityMapper<GradeDeAgendamentoDTO, GradeDeAgendamento> {
 
-    @Mapping(source = "gradeDeAgendamento.id", target = "gradeDeAgendamentoId")
-    @Mapping(source = "gradeDeAgendamento.grade", target = "gradeDeAgendamentoGrade")
+    @Mapping(source = "sala.id", target = "salaId")
     GradeDeAgendamentoDTO toDto(GradeDeAgendamento gradeDeAgendamento);
 
-    @Mapping(source = "gradeDeAgendamentoId", target = "gradeDeAgendamento")
     @Mapping(target = "gradeExames", ignore = true)
     @Mapping(target = "removeGradeExame", ignore = true)
     @Mapping(target = "gradeGrupoExames", ignore = true)
     @Mapping(target = "removeGradeGrupoExame", ignore = true)
     @Mapping(target = "gradeHorarios", ignore = true)
     @Mapping(target = "removeGradeHorario", ignore = true)
+    @Mapping(source = "salaId", target = "sala")
     GradeDeAgendamento toEntity(GradeDeAgendamentoDTO gradeDeAgendamentoDTO);
 
     default GradeDeAgendamento fromId(Long id) {

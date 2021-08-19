@@ -23,10 +23,17 @@
     },
     {
       "fieldName": "unidadeExecutoraId",
-      "fieldType": "String"
+      "fieldType": "Integer"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "gradeDeAgendamento",
+      "otherEntityRelationshipName": "sala",
+      "relationshipName": "salaGrade"
+    }
+  ],
   "changelogDate": "20210818154925",
   "entityTableName": "sala",
   "dto": "mapstruct",

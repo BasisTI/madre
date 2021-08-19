@@ -54,8 +54,8 @@ public class SalaResourceIT {
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
 
-    private static final String DEFAULT_UNIDADE_EXECUTORA_ID = "AAAAAAAAAA";
-    private static final String UPDATED_UNIDADE_EXECUTORA_ID = "BBBBBBBBBB";
+    private static final Integer DEFAULT_UNIDADE_EXECUTORA_ID = 1;
+    private static final Integer UPDATED_UNIDADE_EXECUTORA_ID = 2;
 
     @Autowired
     private SalaRepository salaRepository;

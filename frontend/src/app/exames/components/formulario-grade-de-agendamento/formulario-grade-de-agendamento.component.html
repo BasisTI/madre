@@ -1,0 +1,93 @@
+<div class="p-col-12 card card-w-title">
+    <h1>
+      Manter Grade de Agendamento
+    </h1>
+    <div class="p-grid">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+                Grade
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <input type="text" pInputText class="p-inputtext" formControlName="grade"/>
+                </span>
+            </div>
+
+            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+                Unidade executora
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <p-dropdown [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                        [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione"
+                        pTooltip="Informe a unidade executora." formControlName="unidadeExecutoraId">
+                    </p-dropdown>
+                </span>
+            </div>
+            
+            <div class="p-md-2 p-col-12" [formGroup]="cadastroGrade">
+                <label for="situacao">Situação</label>
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+
+                    <p-dropdown [options]="" formControlName="ativo"[showClear]="true"
+                    pTooltip="Informe a Situação da grade de exames." 
+                    [options]="situacaoGrade" placeholder="Selecione"></p-dropdown>
+                </span>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-grid">
+
+            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+                Identificação da sala
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <p-dropdown [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'" [filter]="true"
+                        [resetFilterOnHide]="true" [showClear]="true" formControlName="salaId"
+                        pTooltip="Informe a unidade executora." placeholder="Selecione">
+                    </p-dropdown>
+                </span>
+            </div>
+
+            <div class="p-md-2 p-fluid">
+                Grupo de exames
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <p-dropdown [options]="" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                        [resetFilterOnHide]="true" [showClear]="true"
+                        pTooltip="Informe a unidade executora.">
+                    </p-dropdown>
+                </span>
+            </div>
+
+            <div class="p-md-2 p-fluid">
+                Exame
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <p-dropdown [options]="" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                        [resetFilterOnHide]="true" [showClear]="true"
+                        pTooltip="Informe a unidade executora.">
+                    </p-dropdown>
+                </span>
+            </div>
+
+                        
+        </div>
+
+        <div class="p-col-12 p-grid">
+        
+            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+                Responsável
+                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <p-dropdown [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                        [resetFilterOnHide]="true" [showClear]="true" formControlName="responsavelId"
+                        pTooltip="Informe a unidade executora." placeholder="Selecione">
+                    </p-dropdown>
+                </span>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-grid p-d-flex">
+            <div class="p-md-2">
+                <button pButton type="button" label="Salvar" icon="pi pi-save" (click)="cadastrarGradeDeAgendamento()" [disabled]="!validarFormulario()"></button>
+            </div>
+            <div class="p-md-2">
+                <button pButton type="button" label="Limpar"  icon="pi pi-times" (click)="limparFormulario()"></button>
+            </div>
+        </div>
+    </div>
+
+  </div>

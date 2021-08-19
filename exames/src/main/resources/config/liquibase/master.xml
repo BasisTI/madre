@@ -42,5 +42,6 @@
     <include file="config/liquibase/changelog/20210705114508_added_entity_constraints_ExameAgendamento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210714162530_added_entity_constraints_GrupoAgendamento.xml" relativeToChangelogFile="false"/>
 
+    <include file="config/liquibase/changelog/20210818154925_added_entity_constraints_Sala.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
