@@ -13,8 +13,8 @@ import org.mapstruct.*;
 public interface SalaMapper extends EntityMapper<SalaDTO, Sala> {
 
 
-    @Mapping(target = "salaGrades", ignore = true)
-    @Mapping(target = "removeSalaGrade", ignore = true)
+    @Mapping(target = "salaExecutoras", ignore = true)
+    @Mapping(target = "removeSalaExecutora", ignore = true)
     Sala toEntity(SalaDTO salaDTO);
 
     default Sala fromId(Long id) {

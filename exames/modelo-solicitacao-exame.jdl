@@ -103,7 +103,7 @@ SABADO
 relationship OneToMany {
 GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
 HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
-Sala{salaGrade(identificacaoDaSala)} to GradeDeAgendamento
+Sala{salaExecutora(identificacaoDaSala)} to GradeDeAgendamento
 Exame{exameGrade(nome)} to GradeDeAgendamento
 GrupoAgendamentoExame{grupoExameGrade(nome)} to GradeDeAgendamento
 }

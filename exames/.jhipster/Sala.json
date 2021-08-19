@@ -31,7 +31,7 @@
       "relationshipType": "one-to-many",
       "otherEntityName": "gradeDeAgendamento",
       "otherEntityRelationshipName": "sala",
-      "relationshipName": "salaGrade"
+      "relationshipName": "salaExecutora"
     }
   ],
   "changelogDate": "20210818154925",

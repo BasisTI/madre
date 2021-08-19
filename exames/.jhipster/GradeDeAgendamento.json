@@ -31,7 +31,7 @@
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "sala",
-      "otherEntityRelationshipName": "salaGrade",
+      "otherEntityRelationshipName": "salaExecutora",
       "relationshipName": "sala",
       "otherEntityField": "id"
     },

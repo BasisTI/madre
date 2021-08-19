@@ -48,7 +48,7 @@ public class Sala implements Serializable {
 
     @OneToMany(mappedBy = "sala")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<GradeDeAgendamento> salaGrades = new HashSet<>();
+    private Set<GradeDeAgendamento> salaExecutoras = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -124,29 +124,29 @@ public class Sala implements Serializable {
         this.unidadeExecutoraId = unidadeExecutoraId;
     }
 
-    public Set<GradeDeAgendamento> getSalaGrades() {
-        return salaGrades;
+    public Set<GradeDeAgendamento> getSalaExecutoras() {
+        return salaExecutoras;
     }
 
-    public Sala salaGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
-        this.salaGrades = gradeDeAgendamentos;
+    public Sala salaExecutoras(Set<GradeDeAgendamento> gradeDeAgendamentos) {
+        this.salaExecutoras = gradeDeAgendamentos;
         return this;
     }
 
-    public Sala addSalaGrade(GradeDeAgendamento gradeDeAgendamento) {
-        this.salaGrades.add(gradeDeAgendamento);
+    public Sala addSalaExecutora(GradeDeAgendamento gradeDeAgendamento) {
+        this.salaExecutoras.add(gradeDeAgendamento);
         gradeDeAgendamento.setSala(this);
         return this;
     }
 
-    public Sala removeSalaGrade(GradeDeAgendamento gradeDeAgendamento) {
-        this.salaGrades.remove(gradeDeAgendamento);
+    public Sala removeSalaExecutora(GradeDeAgendamento gradeDeAgendamento) {
+        this.salaExecutoras.remove(gradeDeAgendamento);
         gradeDeAgendamento.setSala(null);
         return this;
     }
 
-    public void setSalaGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
-        this.salaGrades = gradeDeAgendamentos;
+    public void setSalaExecutoras(Set<GradeDeAgendamento> gradeDeAgendamentos) {
+        this.salaExecutoras = gradeDeAgendamentos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
