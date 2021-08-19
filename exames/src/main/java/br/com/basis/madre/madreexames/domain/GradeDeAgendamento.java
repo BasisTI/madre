@@ -59,6 +59,10 @@ public class GradeDeAgendamento implements Serializable {
     @JsonIgnoreProperties(value = "grupoExameGrades", allowSetters = true)
     private GrupoAgendamentoExame grupoAgendamentoExame;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = "salaGrades", allowSetters = true)
+    private Sala sala;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -182,6 +186,19 @@ public class GradeDeAgendamento implements Serializable {
 
     public void setGrupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
         this.grupoAgendamentoExame = grupoAgendamentoExame;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public GradeDeAgendamento sala(Sala sala) {
+        this.sala = sala;
+        return this;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
