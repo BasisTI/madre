@@ -14,3 +14,8 @@
 .label-radioButton {
     margin: 5px;
 }
+
+.inputNumber {
+    display: flex;
+    flex-direction: column;
+}
