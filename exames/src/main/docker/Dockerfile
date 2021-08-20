@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jre-hotspot
+FROM openjdk:8-jre-alpine
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \
@@ -21,7 +21,6 @@ USER jhipster
 
 ENTRYPOINT ["./entrypoint.sh"]
 
-EXPOSE 8087 5701/udp
+EXPOSE 8081 5701/udp
 
 ADD *.jar app.jar
-

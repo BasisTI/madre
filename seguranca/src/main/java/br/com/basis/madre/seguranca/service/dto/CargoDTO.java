@@ -19,8 +19,6 @@ public class CargoDTO implements Serializable {
     @NotNull
     private Boolean situacao;
 
-
-    private Long ocupacaoDeCargoId;
     
     public Long getId() {
         return id;
@@ -54,14 +52,6 @@ public class CargoDTO implements Serializable {
         this.situacao = situacao;
     }
 
-    public Long getOcupacaoDeCargoId() {
-        return ocupacaoDeCargoId;
-    }
-
-    public void setOcupacaoDeCargoId(Long ocupacaoDeCargoId) {
-        this.ocupacaoDeCargoId = ocupacaoDeCargoId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -87,7 +77,6 @@ public class CargoDTO implements Serializable {
             ", codigo=" + getCodigo() +
             ", descricao='" + getDescricao() + "'" +
             ", situacao='" + isSituacao() + "'" +
-            ", ocupacaoDeCargoId=" + getOcupacaoDeCargoId() +
             "}";
     }
 }

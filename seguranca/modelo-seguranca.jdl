@@ -172,7 +172,7 @@ enum TipoDoContato {
 relationship OneToMany {
 	Pessoa{endereco(cep)} to Endereco,
 	Pessoa{telefone(numero)} to Telefone,
-	OcupacaoDeCargo{cargo(descricao)} to Cargo,
+	Cargo{ocupacaoDeCargo(descricao)} to OcupacaoDeCargo,
     Servidor{grupofuncional(descricao)} to GrupoFuncional
 }
 

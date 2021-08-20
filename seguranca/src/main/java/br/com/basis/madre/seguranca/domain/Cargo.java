@@ -1,6 +1,5 @@
 package br.com.basis.madre.seguranca.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,6 +8,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Cargo.
@@ -38,9 +39,9 @@ public class Cargo implements Serializable {
     @Column(name = "situacao", nullable = false)
     private Boolean situacao;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "cargos", allowSetters = true)
-    private OcupacaoDeCargo ocupacaoDeCargo;
+    @OneToMany(mappedBy = "cargo")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<OcupacaoDeCargo> ocupacaoDeCargos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -90,17 +91,29 @@ public class Cargo implements Serializable {
         this.situacao = situacao;
     }
 
-    public OcupacaoDeCargo getOcupacaoDeCargo() {
-        return ocupacaoDeCargo;
+    public Set<OcupacaoDeCargo> getOcupacaoDeCargos() {
+        return ocupacaoDeCargos;
     }
 
-    public Cargo ocupacaoDeCargo(OcupacaoDeCargo ocupacaoDeCargo) {
-        this.ocupacaoDeCargo = ocupacaoDeCargo;
+    public Cargo ocupacaoDeCargos(Set<OcupacaoDeCargo> ocupacaoDeCargos) {
+        this.ocupacaoDeCargos = ocupacaoDeCargos;
         return this;
     }
 
-    public void setOcupacaoDeCargo(OcupacaoDeCargo ocupacaoDeCargo) {
-        this.ocupacaoDeCargo = ocupacaoDeCargo;
+    public Cargo addOcupacaoDeCargo(OcupacaoDeCargo ocupacaoDeCargo) {
+        this.ocupacaoDeCargos.add(ocupacaoDeCargo);
+        ocupacaoDeCargo.setCargo(this);
+        return this;
+    }
+
+    public Cargo removeOcupacaoDeCargo(OcupacaoDeCargo ocupacaoDeCargo) {
+        this.ocupacaoDeCargos.remove(ocupacaoDeCargo);
+        ocupacaoDeCargo.setCargo(null);
+        return this;
+    }
+
+    public void setOcupacaoDeCargos(Set<OcupacaoDeCargo> ocupacaoDeCargos) {
+        this.ocupacaoDeCargos = ocupacaoDeCargos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

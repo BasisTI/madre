@@ -27,6 +27,9 @@
     <include file="config/liquibase/changelog/20210730174149_added_entity_constraints_Telefone.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210730174249_added_entity_constraints_Endereco.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210730174349_added_entity_constraints_Municipio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210730174449_added_entity_constraints_Cargo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210730174449_added_entity_CargoCerto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210730174549_added_entity_OcupacaoDeCargoCompleto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210730174549_added_entity_constraints_OcupacaoDeCargo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
+    
