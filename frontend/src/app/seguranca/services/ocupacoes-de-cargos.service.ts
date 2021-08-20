@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
+import { OcupacaoDeCargo } from '../models/dropdowns/ocupacao-de-cargo';
 import { OcupacoesDeCargoModel } from '../models/ocupacoes-de-cargo-model';
 
 @Injectable({
@@ -21,5 +22,9 @@ export class OcupacoesDeCargoService{
   cadastrarOcupacoesDeCargo(ocupacoesDeCargo) {
     return this.client.post(this.resource, ocupacoesDeCargo);
   }
+
+  getOcupacoesDeCargo():Observable<Array<OcupacaoDeCargo>> {
+    return this.client.get<Array<OcupacaoDeCargo>>(`${this.resource}`);
+}
   
 }
