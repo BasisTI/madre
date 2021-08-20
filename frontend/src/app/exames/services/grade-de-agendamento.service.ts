@@ -1,0 +1,47 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { GradesDeAgendamento } from '../models/subjects/grades-de-agendamento';
+import { Sala } from '../models/subjects/sala';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GradeDeAgendamentoService {
+
+  private readonly URL = '/madreexames/api'
+
+  constructor(
+    private client: HttpClient
+  ) { }
+
+  public getGradesDeAgendamento(
+    grade: string,
+    unidadeExecutoraId: string,
+    ativo: string,
+    salaId: string,
+    grupoAgendamentoExameId: string,
+    exameId: string,
+    responsavelId: string
+  ): Observable<GradesDeAgendamento[]> {
+    return this.client.get<GradesDeAgendamento[]>(`${this.URL}/grade-de-agendamentos`, {
+      params: new HttpParams()
+        .set('grade', grade)
+        .set('unidadeExecutoraId', unidadeExecutoraId)
+        .set('ativo', ativo)
+        .set('salaId', salaId)
+        .set('grupoAgendamentoExameId', grupoAgendamentoExameId)
+        .set('exameId', exameId)
+        .set('responsavelId', responsavelId)
+    });
+  }
+
+  public getSalas(): Observable<Array<Sala>> {
+    return this.client.get<Array<Sala>>(`${this.URL}/salas`);
+  }
+
+  cadastrarGrade(gradeDeAgendamento: GradesDeAgendamento) {
+    return this.client.post(`${this.URL}/grade-de-agendamentos`, gradeDeAgendamento);
+  }
+
+}

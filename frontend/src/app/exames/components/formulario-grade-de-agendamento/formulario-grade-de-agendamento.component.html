@@ -81,11 +81,29 @@
         </div>
 
         <div class="p-col-12 p-grid p-d-flex">
-            <div class="p-md-2">
-                <button pButton type="button" label="Salvar" icon="pi pi-save" (click)="cadastrarGradeDeAgendamento()" [disabled]="!validarFormulario()"></button>
+            
+            <div class="p-md-2 p-sm-12">
+                <button
+                    pButton type="button" icon="pi pi-save" 
+                    (click)="cadastrarGradeDeAgendamento()" 
+                    [disabled]="!validarFormulario()"
+                    routerLink="/listar-grade-exame"
+                    label="Salvar"
+                ></button>
             </div>
-            <div class="p-md-2">
-                <button pButton type="button" label="Limpar"  icon="pi pi-times" (click)="limparFormulario()"></button>
+            <div class="p-md-2 p-sm-12">
+                <button
+                    pButton type="button" icon="pi pi-times"
+                    label="Limpar" (click)="limparFormulario()"
+                ></button>
+            </div>
+            <div class="p-md-2 p-sm-12">
+                <button
+                    pButton
+                    type="button"
+                    routerLink="/listar-grade-exame"
+                    label="Voltar"
+                ></button>
             </div>
         </div>
     </div>

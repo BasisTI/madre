@@ -1,0 +1,108 @@
+<div class="card">
+    <h1>Pesquisar Grades de Exames</h1>
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-grid">
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input
+                        pInputText
+                        type="text"
+                        pTooltip="Informe o número da grade para pesquisa"
+                        [(ngModel)]="grade"
+                        />
+                        <label>Grade</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip="Informe a Unidade Executora para a pesquisa de grades"
+                        [(ngModel)]="unidadeExecutoraId"
+                        [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'"
+                        placeholder="Unidade executora"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip="Informe a situação para a pesquisa de grades"
+                        [(ngModel)]="ativo"
+                        [options]="situacaoGrade"
+                        placeholder="Situação da grade"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip=""
+                        [(ngModel)]="salaId"
+                        [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'"
+                        placeholder="Identificação da sala"
+                    ></p-dropdown>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip=""
+                        [(ngModel)]="grupoAgendamentoExameId"
+                        [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'"
+                        placeholder="Grupo de exames"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip=""
+                        [(ngModel)]="exameId"
+                        [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'"
+                        placeholder="Exame"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip=""
+                        [(ngModel)]="responsavelId"
+                        [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'id'"
+                        placeholder="Responsável"
+                    ></p-dropdown>
+                </div>
+            </div>
+                
+
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        label="Pesquisar"
+                        icon="pi pi-search"
+                        (click)="listarGrades()"
+                    ></button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        routerLink="/formulario-grade-agendamento"
+                        label="Nova grade"Primeiro Exame
+                    ></button>
+                </div>
+                    <basis-datatable [verticalButtons]="false" #datatable
+                        type="memory" [value]="gradeAgendamento" sortField="brand">
+                        <p-column header="Grade" field="grade"></p-column>
+                        <p-column header="Unid. Executora" field="unidadeExecutoraId"></p-column>
+                        <p-column header="Sala" field="salaId"> </p-column>  
+                        <p-column header="Grupo" field="grupoAgendamentoExameId"> </p-column>  
+                        <p-column header="Exame" field="exameId"> </p-column>  
+                        <p-column header="Responsável" field="responsavelId"> </p-column>  
+                        <p-column header="Situação" field="ativo">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span> {{ rowData[col.field] === "true" ? 'Ativo' : 'Inativo' }} </span>
+                            </ng-template>
+                        </p-column>
+                    </basis-datatable>
+
+            </div>
+        </div>
+    </div>
+</div> 

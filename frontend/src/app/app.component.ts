@@ -246,7 +246,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         {
                             label: 'Grades de Agendamento de Exames',
                             icon: 'add',
-                            routerLink: ['formulario-grade-agendamento']
+                            routerLink: ['listar-grade-exame']
                         },
                         {
                             label: 'Solicitar Exame',
