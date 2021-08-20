@@ -48,12 +48,18 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     responsavelId: [null, Validators.required],
     ativo: [null, Validators.required],
     salaId: [null, Validators.required],
-    exameId: [null, Validators.required],
-    grupoAgendamentoExameId: [null, Validators.required]
+    exameId: [null],
+    grupoAgendamentoExameId: [null]
   });
 
   validarFormulario(): boolean {
-    return this.cadastroGrade.valid
+    if (this.cadastroGrade.valid && (this.cadastroGrade
+        .get('exameId').value != null || this.cadastroGrade
+        .get('grupoAgendamentoExameId').value != null)){
+          return true; 
+        } else {
+          return false
+        }
   }
   
   limparFormulario() {
