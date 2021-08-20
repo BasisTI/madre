@@ -4,10 +4,10 @@
     <div class="p-md-12">
         <h2 class="sub-title">Pesquisar Graduações do Servidor</h2>
         <div class="p-col-12 p-grid">
-            <div class="p-col-12 p-md-4">
+            <div class="p-md-6 p-lg-4">
                 <span class="p-float-label">
-                    <p-dropdown [options]="matriculaDoServidor" >
-                    </p-dropdown>
+                    <p-autoComplete field="matricula" [suggestions]="listaServidor"
+                        (completeMethod)="buscaServidor($event)" [dropdown]="true"></p-autoComplete>
                     <label>Matrícula</label>
                 </span>
             </div>
@@ -22,7 +22,7 @@
                     <input type="text" pInputText disabled />
                     <label>Nome</label>
                 </span>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
