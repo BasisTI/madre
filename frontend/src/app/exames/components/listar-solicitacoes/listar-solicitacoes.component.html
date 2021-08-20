@@ -1,0 +1,88 @@
+<div class="card">
+    <h1>Listar solicitações de exame</h1>
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-grid">
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input
+                        pInputText
+                        type="text"
+                        pTooltip="Informe o código da solicitação"
+                        [(ngModel)]="id"
+                        />
+                        <label>Código</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip="Informe se é uma solicitação do primeiro exame"
+                        [(ngModel)]="pedidoPrimeiroExame"
+                        [options]="results"
+                        placeholder="Primeiro Exame"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        pTooltip="Filtrar por Antimicrobianos usados nas últimas 24 horas"
+                        [(ngModel)]="usoAntimicrobianos24h"
+                        [options]="results"
+                        placeholder="Antimicrobianos 24h"
+                    ></p-dropdown>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        label="Pesquisar"
+                        icon="pi pi-search"
+                        (click)="listar()"
+                    ></button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        routerLink="/solicitar-exame"
+                        label="Nova solicitação"
+                    ></button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton type="button"
+                        label="Exportar"
+                        (click)="exportarSolicitacoes()">
+                    </button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                    pButton
+                    type="button"
+                    label="Limpar"
+                    (click)="limparPesquisa()"
+                    ></button>
+                </div>
+                    <basis-datatable [verticalButtons]="false" #datatable
+                        type="memory" [value]="solicitacao" sortField="brand">
+                        <p-column header="Código" field="id" [sortable]="true"></p-column>
+                        <p-column header="Info. Clínicas" field="infoClinica"></p-column>
+                        <p-column header="Antimicrobianos 24h" field="usoAntimicrobianos24h">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span> {{ rowData[col.field] === true ? 'Sim' : 'Não' }}</span>
+                            </ng-template>
+                        </p-column>  
+                        <p-column header="Pedido exame" field="pedidoPrimeiroExame">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span> {{ rowData[col.field] === "true" ? '1º Exame' : 'Comparativo' }} </span>
+                            </ng-template>
+                        </p-column>
+                    </basis-datatable>
+
+            </div>
+        </div>
+    </div>
+</div>
