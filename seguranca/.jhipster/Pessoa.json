@@ -1,0 +1,109 @@
+{
+  "name": "Pessoa",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomeDaMae",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomeDoPai",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "Sexo",
+      "fieldValues": "MASCULINO,FEMININO,IGNORADO",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivil",
+      "fieldValues": "CASADO,SOLTEIRO,SEPARADO,DESQUITADO,UNIAO_ESTAVEL,VIUVO,OUTRO"
+    },
+    {
+      "fieldName": "dataDeNascimento",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nascionalidade",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "naturalidade",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "grauDeInstrucao",
+      "fieldType": "GrauDeInstrucao",
+      "fieldValues": "NENHUM,IGNORADO,PRIMEIRO_GRAU_INCOMPLETO,PRIMEIRO_GRAU_COMPLETO,SEGUNDO_GRAU_INCOMPLETO,SEGUNDO_GRAU_COMPLETO,SUPERIOR_INCOMPLETO,SUPERIOR_COMPLETO"
+    },
+    {
+      "fieldName": "nomeUsual",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "documentos",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "documenetos",
+      "otherEntityField": "numeroDaIdentidade",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "cargo",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "cargo",
+      "otherEntityField": "descricao",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "endereco"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "telefone",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "telefone"
+    }
+  ],
+  "changelogDate": "20210730173749",
+  "entityTableName": "pessoa",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

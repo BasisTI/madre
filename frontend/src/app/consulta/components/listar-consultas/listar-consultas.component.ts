@@ -7,6 +7,8 @@ import { ConsultaEmergencia } from '../../consulta-emergencia-model';
 import { ConsultaService } from '../../consulta.service';
 import { ConsultaEmergenciaModel } from '../../models/consulta-emergencia-model';
 import { PacienteModel } from '../../models/paciente-model';
+import * as moment from 'moment';
+
 
 @Component({
     selector: 'app-listar-consultas',
@@ -86,6 +88,31 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
         this.listarEspecialidade();
         this.listarPacientes();
         this.listaProfissional();
+    }
+
+    public exportarConsultas() {
+        this.consultaService.exportarConsultas().subscribe(x => {
+            const blob = new Blob([x], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(blob);
+                return;
+            }
+            const data = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = data;
+            let dataAtual: Date = new Date();
+            let dataFormatada = (moment(dataAtual)).format('DD-MM-YYYY_HH-mm-ss');
+            let nomeArquivo: string = 'emergencias_' + dataFormatada + '.xlsx';
+
+            link.download = nomeArquivo;
+            link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
+
+            setTimeout(function() {
+                window.URL.revokeObjectURL(data);
+                link.remove;
+            }, 100);
+        });
     }
 
     listar() {

@@ -26,6 +26,7 @@
         <module>suprimentos</module>
         <module>internacao</module>
         <module>exames</module>
+        <module>seguranca</module>
     </modules>
 
 </project>

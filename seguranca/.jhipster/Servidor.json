@@ -1,0 +1,127 @@
+{
+  "name": "Servidor",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "matricula",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codigoStarh",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "inicioDoVinculo",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fimDoVinculo",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "situacaoDoServidor",
+      "fieldType": "SituacaoDoServidor",
+      "fieldValues": "RESIDENTE,PROFESSOR"
+    },
+    {
+      "fieldName": "centroDeAtividadeIdLotacao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "centroDeAtividadeIdAtuacao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ocupacao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cargaHoraria",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tipoDeRemuneracao",
+      "fieldType": "TipoDeRemuneracao",
+      "fieldValues": "MENSALISTA,HORISTA"
+    },
+    {
+      "fieldName": "idade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tempoDeContrato",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "funcaoDoCracha",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chefeDoCentroDeAtividade",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "vinculo",
+      "otherEntityRelationshipName": "servidor",
+      "relationshipName": "vinculo",
+      "otherEntityField": "descricao",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "servidor",
+      "relationshipName": "pessoa",
+      "otherEntityField": "codigo",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "ramal",
+      "otherEntityRelationshipName": "servidor",
+      "relationshipName": "ramal",
+      "otherEntityField": "numero",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "grupoFuncional",
+      "otherEntityRelationshipName": "servidor",
+      "relationshipName": "grupofuncional"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "servidor",
+      "relationshipName": "usuario",
+      "otherEntityField": "login"
+    }
+  ],
+  "changelogDate": "20210730173449",
+  "entityTableName": "servidor",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

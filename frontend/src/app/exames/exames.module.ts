@@ -6,16 +6,19 @@ import { AtendimentoDiversoComponent } from "./components/atendimento-diverso/at
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
+import { ExameComponent } from './components/exames/components/exame/exame.component';
+import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from './components/exames/exames.component';
-
 
 
 @NgModule({
     declarations: [
         PesquisarAtendimentoComponent,
         SolicitarExameComponent,
+        ExamesComponent,
         AtendimentoDiversoComponent,
-        ExamesComponent
+        ExameComponent,
+        TabelaExamesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

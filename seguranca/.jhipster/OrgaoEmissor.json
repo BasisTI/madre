@@ -1,0 +1,33 @@
+{
+  "name": "OrgaoEmissor",
+  "fields": [
+    {
+      "fieldName": "valor",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "documentos",
+      "otherEntityRelationshipName": "orgaoEmissor",
+      "relationshipName": "documentos",
+      "otherEntityField": "numeroDaIdentidade"
+    }
+  ],
+  "changelogDate": "20210730173949",
+  "entityTableName": "orgao_emissor",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

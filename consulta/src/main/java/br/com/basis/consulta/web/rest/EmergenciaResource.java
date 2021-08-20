@@ -3,6 +3,7 @@ package br.com.basis.consulta.web.rest;
 import br.com.basis.consulta.domain.Emergencia;
 import br.com.basis.consulta.repository.search.EmergenciaSearchRepository;
 import br.com.basis.consulta.service.EmergenciaService;
+import br.com.basis.consulta.service.ExportarEmergenciaService;
 import br.com.basis.consulta.service.dto.EmergenciaDTO;
 import br.com.basis.consulta.service.projection.CalendarioResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -30,7 +31,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -47,17 +50,17 @@ public class EmergenciaResource {
     private final Logger log = LoggerFactory.getLogger(EmergenciaResource.class);
 
     private static final String ENTITY_NAME = "madreconsultaEmergencia";
-    private static final String PAGE = "page";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final EmergenciaService emergenciaService;
-    private final EmergenciaSearchRepository emergenciaSearchRepository;
+    private final ExportarEmergenciaService exportarEmergenciaService;
 
-    public EmergenciaResource(EmergenciaService emergenciaService, EmergenciaSearchRepository emergenciaSearchRepository) {
+    private final EmergenciaService emergenciaService;
+
+    public EmergenciaResource(EmergenciaService emergenciaService, ExportarEmergenciaService exportarEmergenciaService) {
         this.emergenciaService = emergenciaService;
-        this.emergenciaSearchRepository = emergenciaSearchRepository;
+        this.exportarEmergenciaService = exportarEmergenciaService;
     }
 
     /**
@@ -179,6 +182,11 @@ public class EmergenciaResource {
     public ResponseEntity<List<CalendarioResumo>> buscarCalendarioResumo(Pageable pageable) {
         log.debug("REST request to get all Triagens");
         return ResponseEntity.ok(emergenciaService.buscarCalendarioResumo(pageable).getContent());
+    }
+
+    @GetMapping("/consultas-emergencias/exportar")
+    public void exportEmergencias(HttpServletResponse response) throws IOException {
+        exportarEmergenciaService.exportar(response);
     }
 
 }

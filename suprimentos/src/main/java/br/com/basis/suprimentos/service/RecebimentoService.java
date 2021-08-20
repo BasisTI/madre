@@ -27,12 +27,19 @@ public class RecebimentoService {
     private final RecebimentoMapper recebimentoMapper;
     private final RecebimentoSearchRepository recebimentoSearchRepository;
 
+    @Transactional
     public RecebimentoDTO save(RecebimentoDTO recebimentoDTO) {
         log.debug("Request to save Recebimento : {}", recebimentoDTO);
         Recebimento recebimento = recebimentoMapper.toEntity(recebimentoDTO);
         final Recebimento recebimentoSalvo = recebimentoRepository.save(recebimento);
-        RecebimentoDTO result = recebimentoMapper.toDto(recebimentoSalvo);
         recebimentoSearchRepository.save(recebimentoSalvo);
+
+        recebimentoSalvo.getItensNotaRecebimentos().forEach(item -> {
+            item.setRecebimento(recebimentoSalvo);
+            itemNotaRecebimentoRepository.save(item);
+        });
+        recebimentoSalvo.setItensNotaRecebimentos(null);
+        RecebimentoDTO result = recebimentoMapper.toDto(recebimentoSalvo);
 
         return result;
     }

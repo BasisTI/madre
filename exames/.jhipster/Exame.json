@@ -30,6 +30,14 @@
       "otherEntityRelationshipName": "exame",
       "relationshipName": "amostraExame",
       "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "grupoAgendamentoExame",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "grupoAgendamentoExame",
+      "otherEntityField": "nome",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20210705114508",

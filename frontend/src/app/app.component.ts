@@ -231,7 +231,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                     ]
                 },
                 {
-                    label: 'Farmacia',
+                    label: 'Farmácia',
                     icon: 'icon-farmacia',
                     items: [
                         {
@@ -324,6 +324,23 @@ export class AppComponent implements AfterViewInit, OnInit {
 
                     ],
                 },
+                {
+                    label: 'Segurança',
+                    icon: 'add',
+                    items: [
+                        {
+                            label: 'Servidores',
+                            icon: 'add',
+                            routerLink: ['/seguranca/servidores'],
+                        },
+                        {
+                            label: 'Cadastrar Vínculos',
+                            icon: 'add',
+                            routerLink: ['/seguranca/vinculos'],
+                        },
+                    ],
+                },
+                
             ]}
 
         ];

@@ -1,19 +1,22 @@
 export interface IExamModel {
     id?: number;
     nome?: string;
-    material?: string;
-    tipo?: String;
-    unidade?: String;
+    nomeusual?: string;
     sigla?: string;
-    composto?: string;
+    materialExameId?: number;
+    material?: string;
+    amostraExameId?: number;
+    amostraExameNome?: string;
 }
 
 export class ExamModel implements IExamModel {
-    public id?: number;
-    public nome?: string;
-    public material?: string;
-    public tipo?: String;
-    public unidade?: String;
-    public sigla?: string;
-    public composto?: string;
+    public id: number;
+    public nome: string;
+    public nomeusual: string;
+    public sigla: string;
+    public materialExameId: number;
+    public material: string;
+    public amostraExameId: number;
+    public amostraExameNome: string;
+
 }

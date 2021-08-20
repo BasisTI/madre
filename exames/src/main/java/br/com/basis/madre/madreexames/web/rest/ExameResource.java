@@ -142,4 +142,12 @@ public class ExameResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+    @GetMapping("/exames/grupos/{id}")
+    public ResponseEntity<List<ExameDTO>> buscaExamesPorGrupo(@PathVariable Long id) {
+        log.debug("REST request para retornar os Exames por Grupo");
+        List<ExameDTO> exames = exameService.buscaExamesPorGrupo(id);
+        return ResponseEntity.ok().body(exames);
+    }
+
 }
