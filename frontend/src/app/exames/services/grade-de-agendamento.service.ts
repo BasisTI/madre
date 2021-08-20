@@ -24,7 +24,7 @@ export class GradeDeAgendamentoService {
     exameId: string,
     responsavelId: string
   ): Observable<GradesDeAgendamento[]> {
-    return this.client.get<GradesDeAgendamento[]>(`${this.URL}/grade-de-agendamentos`, {
+    return this.client.get<GradesDeAgendamento[]>(`${this.URL}/_search/grades-de-agendamento`, {
       params: new HttpParams()
         .set('grade', grade)
         .set('unidadeExecutoraId', unidadeExecutoraId)

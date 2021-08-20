@@ -142,4 +142,23 @@ public class GradeDeAgendamentoResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+        @GetMapping("/_search/grades-de-agendamento")
+    public ResponseEntity<List<GradeDeAgendamentoDTO>> obterTodasGrades(Pageable pageable,
+        @RequestParam(name = "grade", required = false) String grade,
+        @RequestParam(name = "unidadeExecutoraId", required = false) String unidadeExecutoraId,
+        @RequestParam(name = "ativo", required = false) String ativo,
+        @RequestParam(name = "salaId", required = false) String salaId,
+        @RequestParam(name = "grupoAgendamentoExameId", required = false) String grupoAgendamentoExameId,
+        @RequestParam(name = "exameId", required = false) String exameId,
+        @RequestParam(name = "responsavelId", required = false) String responsavelId
+    ){
+        log.debug("Request REST para obter uma página de Grades de agendamento de exame.");
+        Page<GradeDeAgendamentoDTO> page = gradeDeAgendamentoService.filtraGradeAgendamento(
+            pageable, grade, unidadeExecutoraId, ativo, salaId, grupoAgendamentoExameId, exameId, responsavelId);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
 }

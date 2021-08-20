@@ -5,11 +5,16 @@ import br.com.basis.madre.madreexames.repository.GradeDeAgendamentoRepository;
 import br.com.basis.madre.madreexames.repository.search.GradeDeAgendamentoSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.GradeDeAgendamentoDTO;
 import br.com.basis.madre.madreexames.service.mapper.GradeDeAgendamentoMapper;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -103,5 +108,27 @@ public class GradeDeAgendamentoService {
         log.debug("Request to search for a page of GradeDeAgendamentos for query {}", query);
         return gradeDeAgendamentoSearchRepository.search(queryStringQuery(query), pageable)
             .map(gradeDeAgendamentoMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<GradeDeAgendamentoDTO> filtraGradeAgendamento(Pageable pageable, String grade, String unidadeExecutoraId, String ativo, String salaId, String grupoAgendamentoExameId, String exameId, String responsavelId) {
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, "grade", grade);
+        filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
+        filter(queryBuilder, "salaId", salaId);
+        filter(queryBuilder, "grupoAgendamentoExameId", grupoAgendamentoExameId);
+        filter(queryBuilder, "exameId", exameId);
+        filter(queryBuilder, "responsavelId", responsavelId);
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+        return gradeDeAgendamentoSearchRepository.search(query).map(gradeDeAgendamentoMapper::toDto);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name,valueName));
+        }
     }
 }

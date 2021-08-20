@@ -19,7 +19,7 @@
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
                         pTooltip="Informe a Unidade Executora para a pesquisa de grades"
-                        [(ngModel)]="unidadeExecutoraId"
+                        [(ngModel)]="unidadeExecutoraId" showClear="true"
                         [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'"
                         placeholder="Unidade executora"
                     ></p-dropdown>
@@ -91,7 +91,11 @@
                         type="memory" [value]="gradeAgendamento" sortField="brand">
                         <p-column header="Grade" field="grade"></p-column>
                         <p-column header="Unid. Executora" field="unidadeExecutoraId"></p-column>
-                        <p-column header="Sala" field="salaId"> </p-column>  
+                        <p-column header="Sala" field="salaId">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                <span> {{ rowData.ativo }}</span>
+                            </ng-template>
+                        </p-column>  
                         <p-column header="Grupo" field="grupoAgendamentoExameId"> </p-column>  
                         <p-column header="Exame" field="exameId"> </p-column>  
                         <p-column header="Responsável" field="responsavelId"> </p-column>  

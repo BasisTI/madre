@@ -30,7 +30,7 @@ export class ListarGradeDeExameComponent implements OnInit {
   exameId: string = '';
   responsavelId: string = '';
   results = [];
-
+ 
   gradeAgendamento: GradesDeAgendamento[];
   unidadesExecutoras: UnidadeFuncional[] = [];
   pessoas: Pessoa[] = [];
@@ -78,7 +78,7 @@ export class ListarGradeDeExameComponent implements OnInit {
       this.ativo, this.salaId, this.grupoAgendamentoExameId, this.exameId, this.responsavelId)
       .subscribe((response) => {
         this.gradeAgendamento = response;
-      });
+       });
   }
 
 }
