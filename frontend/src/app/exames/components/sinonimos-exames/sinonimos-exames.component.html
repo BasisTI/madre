@@ -1,0 +1,60 @@
+<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="cadastrar()">  
+    <div id="card" class="p-grid" >
+      <p-fieldset>
+        <h1>Sinônimos de Exames</h1>
+        <p-fieldset>
+              <div id="codigo" >
+                <div >
+                  <span id="grupo" >
+                    <label > Sinônimos:  </label> <br>
+                    <input type="text" formControlName="nome"  pInputText />
+                  </span>
+                </div>
+                <div id="codigo" >  
+                  <span  id="grupo"> <br>
+                  <label> Situação: </label> <br>
+                  <p-dropdown 
+                  placeholder="Selecione" [options]="situacaoExame" formControlName="situacao"
+                  ></p-dropdown>
+                  </span> 
+                </div>
+              </div>
+
+                  <basis-datatable
+                        #datatable
+                        type="server"
+                        [url]="searchUrl"
+                        [rows]="5"
+                        [value]="sinonimos"
+                        [disableView]="true"
+                        [disableEdit]="true"
+                        [disableDelete]="true"
+                    >
+                        <p-column header="Código" field="id"></p-column>
+                        <p-column header="Sinônimo" field="nome"></p-column>
+                        <p-column header="Situação" field="situacao"></p-column>
+                        <p-column header="Ação" field=""></p-column>
+
+                        <basis-datatable-button
+                        name="edit"
+                        icon="pi pi-pencil"
+                        [disabled]="datatable.selectedRow == null"
+                        class="p-button-success">
+                      </basis-datatable-button>
+                       
+                      <basis-datatable-button
+                          class="p-button-danger"
+                          [disabled]="datatable.selectedRow == null"
+                          name="delete"
+                          icon="pi pi-trash">
+                      </basis-datatable-button>  
+                      
+                    </basis-datatable>
+        
+                    
+        </p-fieldset> <br>
+          <button pButton type="submit" label="Gravar" icon="ui-icon-search" bTooltip="Gravar Sinônimo de exames." 
+          ></button>
+        </p-fieldset>
+    </div>
+    </form>
