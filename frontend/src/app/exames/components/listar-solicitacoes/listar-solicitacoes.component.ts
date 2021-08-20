@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SolicitacaoExame } from '../../models/subjects/solicitacao-exame';
 import { SolicitacaoExameService } from '../../services/solicitacao-exame.service';
 import * as moment from 'moment';
+
 @Component({
   selector: 'app-listar-solicitacoes',
   templateUrl: './listar-solicitacoes.component.html',
@@ -60,6 +61,7 @@ export class ListarSolicitacoesComponent implements OnInit {
           link.remove
       }, 100)
   })
+
   }
 
   limparPesquisa(){

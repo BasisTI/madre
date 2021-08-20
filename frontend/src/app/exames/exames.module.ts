@@ -14,7 +14,6 @@ import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/li
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 
 
-
 @NgModule({
     declarations: [
         PesquisarAtendimentoComponent,
@@ -24,8 +23,8 @@ import { CadastrarMaterialComponent } from './components/cadastrar-material/cada
         ExameComponent,
         TabelaExamesComponent,
         FormularioExameComponent,
-        ListarSolicitacoesComponent
         CadastrarMaterialComponent,
+        ListarSolicitacoesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
