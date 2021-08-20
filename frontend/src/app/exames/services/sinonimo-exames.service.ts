@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root',
 })
-export class sinonimosExamesService {
+export class SinonimosExamesService {
     private readonly apiUrl = '/madreexames/api/sinonimos';
 
     constructor(private httpService: HttpClient) {}

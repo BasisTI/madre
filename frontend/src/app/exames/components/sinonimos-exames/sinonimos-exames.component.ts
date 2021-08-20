@@ -2,15 +2,12 @@ import { Sinonimos } from './../../models/subjects/sinonimos';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SituacaoExame } from "../../models/dropdowns/situacao.dropdown";
-import { sinonimosExamesService } from "../../services/sinonimo-exames.service";
+import { SinonimosExamesService } from "../../services/sinonimo-exames.service";
 import { ExamesService } from "../../services//exames.service";
 import { ExamModel } from '../../models/subjects/exames-model';
-import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
-import { ElasticQuery } from '@shared/elastic-query'
-import { BreadcrumbService } from '@nuvem/primeng-components';
-import { ViewChild } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-sinonimos-exames',
@@ -18,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./sinonimos-exames.component.css']
 })
 export class SinonimosExamesComponent implements OnInit {
-
+  @Input() formGroup: FormGroup;
   sinonimos: Sinonimos[];
   exames: ExamModel[] = [];
   situacaoExame = SituacaoExame; 
@@ -28,18 +25,14 @@ export class SinonimosExamesComponent implements OnInit {
 
 
   constructor(
-    private sinonimosService: sinonimosExamesService,
+    private SinonimosService: SinonimosExamesService,
     private fb: FormBuilder,
     private examesService: ExamesService,
     private confirmationService: ConfirmationService,
     private route: ActivatedRoute,
     private router: Router, 
-    private service: sinonimosExamesService,
-    private breadcrumbService: BreadcrumbService,
+  
     ) { }
-    elasticQuery: ElasticQuery = new ElasticQuery();
-    @ViewChild(DatatableComponent) datatable: DatatableComponent;
-    
 
   ngOnInit(): void {
     this.cadastroSinonimoExames = this.fb.group({
@@ -49,10 +42,10 @@ export class SinonimosExamesComponent implements OnInit {
       situacao: [null, Validators.required],
   });
 
-    this.sinonimosService.GetSinonimos().subscribe((response)=>{
+    this.SinonimosService.GetSinonimos().subscribe((response)=>{
       this.sinonimos = response; 
 
-    this.sinonimosService.GetSinonimos()
+    this.SinonimosService.GetSinonimos()
     });
     
     
@@ -65,16 +58,7 @@ export class SinonimosExamesComponent implements OnInit {
 
     let sinonimosExames = this.cadastroSinonimoExames.value;
 
-  this.sinonimosService.cadastrarSinonimos(sinonimosExames).subscribe();
+    this.SinonimosService.cadastrarSinonimos(sinonimosExames).subscribe();
   }
-  pesquisar(){
-    this.datatable.refresh(this.elasticQuery.query);
-    
-  } 
-
-  ngOnDestroy(): void {
-    this.breadcrumbService.reset();
-}
-  
-  
+   
 }
