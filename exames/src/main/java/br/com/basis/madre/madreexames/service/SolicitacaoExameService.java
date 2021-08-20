@@ -7,11 +7,18 @@ import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.SolicitacaoExameCompletoMapper;
 import br.com.basis.madre.madreexames.service.mapper.SolicitacaoExameMapper;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilder;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +42,8 @@ public class SolicitacaoExameService {
     private final SolicitacaoExameSearchRepository solicitacaoExameSearchRepository;
 
     private final SolicitacaoExameCompletoMapper solicitacaoExameCompletoMapper;
+
+    private final String[] includes = new String[]{"id", "infoClinica", "pedidoPrimeiroExame", "usoAntimicrobianos24h"};
 
     public SolicitacaoExameService(SolicitacaoExameRepository solicitacaoExameRepository, SolicitacaoExameMapper solicitacaoExameMapper, SolicitacaoExameSearchRepository solicitacaoExameSearchRepository, SolicitacaoExameCompletoMapper solicitacaoExameCompletoMapper) {
         this.solicitacaoExameRepository = solicitacaoExameRepository;
@@ -108,5 +117,35 @@ public class SolicitacaoExameService {
         log.debug("Request to search for a page of SolicitacaoExames for query {}", query);
         return solicitacaoExameSearchRepository.search(queryStringQuery(query), pageable)
             .map(solicitacaoExameMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<SolicitacaoExame> filtraSolicitacaoExame(Pageable pageable, String id, String pedidoPrimeiroExame, String usoAntimicrobianos24h) {
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, "id", id);
+        filter(queryBuilder, "pedidoPrimeiroExame", pedidoPrimeiroExame);
+        filter(queryBuilder, "usoAntimicrobianos24h", usoAntimicrobianos24h);
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+        return solicitacaoExameSearchRepository.search(query);
+    }
+
+    public Page<SolicitacaoExameDTO> buscarTodasSolicitacoes(Pageable pageable) {
+        NativeSearchQuery nativeSearchQueryBuilder = new NativeSearchQueryBuilder()
+
+            .withSourceFilter(new FetchSourceFilterBuilder().withIncludes(includes).build())
+            .withPageable(pageable)
+            .build();
+
+        return solicitacaoExameSearchRepository.search(nativeSearchQueryBuilder)
+            .map(solicitacaoExameCompletoMapper::toDto);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name,valueName));
+        }
     }
 }

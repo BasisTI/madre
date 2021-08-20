@@ -234,6 +234,14 @@
                     <groupId>commons-logging</groupId>
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.hdrhistogram</groupId>
+                    <artifactId>HdrHistogram</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.carrotsearch</groupId>
+                    <artifactId>hppc</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <!-- log4j2-mock needed to create embedded elasticsearch instance with SLF4J -->
@@ -298,6 +306,12 @@
             <artifactId>archunit-junit5-engine</artifactId>
             <version>${archunit-junit5.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-compress</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
@@ -307,6 +321,12 @@
             <groupId>org.testcontainers</groupId>
             <artifactId>kafka</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-compress</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.zalando</groupId>
@@ -436,6 +456,18 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.0</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-compress</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
@@ -777,6 +809,11 @@
                             <groupId>io.github.jhipster</groupId>
                             <artifactId>jhipster-framework</artifactId>
                             <version>${jhipster-dependencies.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.poi</groupId>
+                            <artifactId>poi</artifactId>
+                            <version>4.1.0</version>
                         </dependency>
                     </dependencies>
                 </plugin>
