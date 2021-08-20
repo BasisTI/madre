@@ -1,0 +1,70 @@
+{
+  "name": "Graduacao",
+  "fields": [
+    {
+      "fieldName": "curso",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoGraduacao",
+      "fieldValues": "EM_ANDAMENTO,CONCLUIDA,INTERROMPIDA",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "anoInicio",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "anoFim",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "semestre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nroRegConselho",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "servidor",
+      "otherEntityRelationshipName": "graduacao",
+      "relationshipName": "servidor",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tiposDeQualificacao",
+      "otherEntityRelationshipName": "graduacaoQualificacao",
+      "relationshipName": "tiposDeQualificacao",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "instituicao",
+      "otherEntityRelationshipName": "graduacaoInstituicao",
+      "relationshipName": "instituicao",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210820161215",
+  "entityTableName": "graduacao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

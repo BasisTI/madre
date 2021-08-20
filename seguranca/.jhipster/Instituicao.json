@@ -1,0 +1,49 @@
+{
+  "name": "Instituicao",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "interno",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "graduacao",
+      "otherEntityRelationshipName": "instituicao",
+      "relationshipName": "graduacaoInstituicao"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "conselhosProfissionais",
+      "otherEntityRelationshipName": "tiposDeQualificacao",
+      "relationshipName": "conselhosProfissionais",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210820161415",
+  "entityTableName": "instituicao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

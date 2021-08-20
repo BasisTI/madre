@@ -101,6 +101,10 @@ public class Servidor implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<GrupoFuncional> grupofuncionals = new HashSet<>();
 
+    @OneToMany(mappedBy = "servidor")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Graduacao> graduacaos = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties(value = "servidors", allowSetters = true)
     private Usuario usuario;
@@ -384,6 +388,31 @@ public class Servidor implements Serializable {
 
     public void setGrupofuncionals(Set<GrupoFuncional> grupoFuncionals) {
         this.grupofuncionals = grupoFuncionals;
+    }
+
+    public Set<Graduacao> getGraduacaos() {
+        return graduacaos;
+    }
+
+    public Servidor graduacaos(Set<Graduacao> graduacaos) {
+        this.graduacaos = graduacaos;
+        return this;
+    }
+
+    public Servidor addGraduacao(Graduacao graduacao) {
+        this.graduacaos.add(graduacao);
+        graduacao.setServidor(this);
+        return this;
+    }
+
+    public Servidor removeGraduacao(Graduacao graduacao) {
+        this.graduacaos.remove(graduacao);
+        graduacao.setServidor(null);
+        return this;
+    }
+
+    public void setGraduacaos(Set<Graduacao> graduacaos) {
+        this.graduacaos = graduacaos;
     }
 
     public Usuario getUsuario() {
