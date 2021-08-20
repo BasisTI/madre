@@ -229,14 +229,14 @@ export class AppComponent implements AfterViewInit, OnInit {
                             routerLink: ['exames/formulario-exame']
                         },
                         {
+                            label: 'Listar Solicitações',
+                            icon: 'add',
+                            routerLink: ['exames/listar-solicitacoes'],
+                        },
+                        {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
-                        },
-                        {
-                            label: 'Cadastrar Matérial de Análise',
-                            icon: 'add',
-                            routerLink: ['exames/cadastrar-material'],
                         }
                     ]
                 },
@@ -352,6 +352,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Cadastrar Ocupações do Cargo',
                             icon: 'add',
                             routerLink: ['/seguranca/ocupacoes-de-cargo'],
+                        },
+                        {
+                            label: 'Cadastrar Cargos',
+                            icon: 'add',
+                            routerLink: ['/seguranca/cargos'],
                         },
                     ],
                 },

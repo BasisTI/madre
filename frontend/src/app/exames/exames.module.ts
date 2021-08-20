@@ -10,6 +10,7 @@ import { ExameComponent } from './components/exames/components/exame/exame.compo
 import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
+import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
@@ -27,6 +28,7 @@ import { ExamesFormComponent } from './components/exames-form/exames-form.compon
         CadastrarMaterialComponent,
         SinonimosExamesComponent,
         ExamesFormComponent,
+        ListarSolicitacoesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

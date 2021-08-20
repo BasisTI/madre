@@ -1,0 +1,50 @@
+<h1>Segurança</h1>
+
+<form #form [formGroup]="formCargo" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="p-col-12 p-grid">
+            <div class="p-md-12">
+                <h2 class="sub-title">Cadastrar Cargo</h2>
+
+                <div class="p-col-12 p-grid">
+                    <div class="p-col-12 p-md-4">
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="codigo" />
+                            <label>Código</label>
+                        </span>
+                        <p-message severity="error" text="Código do cargo obrigatório" *ngIf="
+                            formCargo.controls['codigo'].errors?.required &&
+                            formCargo.controls['codigo'].touched">
+                        </p-message>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="descricao" />
+                            <label>Descrição</label>
+                        </span>
+                        <p-message severity="error" text="Descrição do cargo obrigatório" *ngIf="
+                            formCargo.controls['descricao'].errors?.required &&
+                            formCargo.controls['descricao'].touched">
+                        </p-message>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <span class="p-float-label">
+                            <p-dropdown [options]="situacaoDoServidor" formControlName="situacao">
+                            </p-dropdown>
+                            <label>Situação</label>
+                        </span>
+                        <p-message severity="error" text="Situação do cargo obrigatório" *ngIf="
+                            formCargo.controls['situacao'].errors?.required &&
+                            formCargo.controls['situacao'].touched">
+                        </p-message>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de cargo"
+                [disabled]="!valid()">
+            </button>
+        </div>
+    </div>
+</form>
