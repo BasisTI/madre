@@ -8,6 +8,7 @@ import { FormularioServidorComponent } from './components/servidores/formulario-
 import { VinculosComponent } from './components/vinculos/vinculos.component';
 import { OcupacoesDeCargoComponent } from './components/ocupacoes-de-cargo/ocupacoes-de-cargo.component';
 import { CargosComponent } from './components/cargos/cargos.component';
+import { GraduacoesDeServidoresComponent } from './components/graduacoes-de-servidores/graduacoes-de-servidores.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CargosComponent } from './components/cargos/cargos.component';
         FormularioServidorComponent,
         VinculosComponent,
         OcupacoesDeCargoComponent,
-        CargosComponent
+        CargosComponent,
+        GraduacoesDeServidoresComponent
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

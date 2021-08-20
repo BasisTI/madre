@@ -358,6 +358,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             icon: 'add',
                             routerLink: ['/seguranca/cargos'],
                         },
+                        {
+                            label: 'Graduações de Servidores',
+                            icon: 'add',
+                            routerLink: ['/seguranca/graduacoes-de-servidores'],
+                        },
                     ],
                 },
                 
