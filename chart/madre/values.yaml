@@ -22,6 +22,8 @@ madrecliente:
     - farmacia
     - suprimentos
     - madreconsulta
+    - seguranca
+    - exames
 
 gateway:
   name: gateway
@@ -121,6 +123,34 @@ madreconsulta:
         url: jdbc:postgresql://pgsql-madre/madre
         username: consulta
         password: consulta
+
+seguranca:
+  name: seguranca
+  image:
+    repository: basis-registry.basis.com.br/madre/madreseguranca
+    tag: latest
+  ports:
+    port: 8081
+  configmap:
+    spring:
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: seguranca
+        password: seguranca
+
+exames:
+  name: exames
+  image:
+    repository: basis-registry.basis.com.br/madre/madreexames
+    tag: latest
+  ports:
+    port: 8081
+  configmap:
+    spring:
+      datasource:
+        url: jdbc:postgresql://pgsql-madre/madre
+        username: exames
+        password: exames
 
 comum:
   imagePullSecrets:

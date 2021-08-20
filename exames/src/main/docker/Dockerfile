@@ -1,9 +1,11 @@
-FROM adoptopenjdk:11-jre-hotspot
+FROM openjdk:8-jre-alpine
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \
     JAVA_OPTS="" \
     TZ="America/Sao_Paulo"
+
+RUN apk add --no-cache msttcorefonts-installer fontconfig && update-ms-fonts
 
 RUN apk update && \
     apk add --no-cache tzdata && \
@@ -19,7 +21,6 @@ USER jhipster
 
 ENTRYPOINT ["./entrypoint.sh"]
 
-EXPOSE 8087 5701/udp
+EXPOSE 8081 5701/udp
 
 ADD *.jar app.jar
-

@@ -11,7 +11,7 @@ import { TabelaExamesComponent } from './components/exames/components/tabela-exa
 import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
-
+import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/li
         ExameComponent,
         TabelaExamesComponent,
         FormularioExameComponent,
+        CadastrarMaterialComponent,
         ListarSolicitacoesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],

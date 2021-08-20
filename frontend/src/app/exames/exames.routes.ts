@@ -4,7 +4,7 @@ import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-
 import {AtendimentoDiversoComponent} from "./components/atendimento-diverso/atendimento-diverso.component";
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
-
+import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 
 export const routes: Routes = [
     {
@@ -26,5 +26,9 @@ export const routes: Routes = [
     {
         path: 'listar-solicitacoes',
         component: ListarSolicitacoesComponent,
+    },
+    {
+        path: 'cadastrar-material',
+        component: CadastrarMaterialComponent,
     }
 ];

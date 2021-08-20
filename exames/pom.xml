@@ -451,6 +451,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.0</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
     <build>
@@ -791,6 +797,16 @@
                             <groupId>io.github.jhipster</groupId>
                             <artifactId>jhipster-framework</artifactId>
                             <version>${jhipster-dependencies.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.poi</groupId>
+                            <artifactId>poi</artifactId>
+                            <version>4.1.0</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.poi</groupId>
+                            <artifactId>poi-ooxml</artifactId>
+                            <version>4.1.0</version>
                         </dependency>
                     </dependencies>
                 </plugin>

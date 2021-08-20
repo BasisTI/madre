@@ -32,4 +32,9 @@ export class SolicitacaoExameService {
                 
         });
     }
+
+    exportarSolicitacoes(): Observable<Blob> {
+        return this.httpService.get(`${this.apiUrl}/exportar`, {responseType: 'blob'});
+    }
+
 }
