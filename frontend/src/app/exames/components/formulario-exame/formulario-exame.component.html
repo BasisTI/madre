@@ -158,19 +158,6 @@
                         <p-dropdown [options]="sumario" placeholder="Selecione" formControlName="sumario"></p-dropdown>
                     </span>
                 </div>
-                <div class="p-col">
-                    Permitir solicitação pós-alta:
-                    <div class="radioButton radio">
-                        <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=true
-                            label="Sim">
-                        </p-radioButton>
-
-                        <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=false
-                            label="Não">
-                        </p-radioButton>
-
-                    </div>
-                </div>
             </div>
             <div class="p-grid">
                 <div class="p-col">
@@ -406,9 +393,22 @@
 
                     </div>
                 </div>
+                <div class="p-col">
+                    Permitir solicitação pós-alta:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=true
+                            label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=false
+                            label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
             </div>
 
-            <h2>Tempo e número de amostras</h2>
+            <h2>Tempo intervalo e quantidade das amostras</h2>
 
             <div class="p-grid">
                 <div class="p-col inputNumber p-float-label">
