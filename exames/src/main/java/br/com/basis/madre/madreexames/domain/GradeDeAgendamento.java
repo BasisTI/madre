@@ -29,10 +29,6 @@ public class GradeDeAgendamento implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "grade", nullable = false)
-    private String grade;
-
-    @NotNull
     @Column(name = "unidade_executora_id", nullable = false)
     private Integer unidadeExecutoraId;
 
@@ -48,12 +44,12 @@ public class GradeDeAgendamento implements Serializable {
     private Set<HorarioAgendado> gradeHorarios = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "salaExecutoras", allowSetters = true)
-    private Sala sala;
+    @JsonIgnoreProperties(value = "gradeDeAgendamentos", allowSetters = true)
+    private Exame exameGrade;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "exameGrades", allowSetters = true)
-    private Exame exame;
+    @JsonIgnoreProperties(value = "gradeDeAgendamentos", allowSetters = true)
+    private Sala salaGrade;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "grupoExameGrades", allowSetters = true)
@@ -66,19 +62,6 @@ public class GradeDeAgendamento implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public GradeDeAgendamento grade(String grade) {
-        this.grade = grade;
-        return this;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
     }
 
     public Integer getUnidadeExecutoraId() {
@@ -145,30 +128,30 @@ public class GradeDeAgendamento implements Serializable {
         this.gradeHorarios = horarioAgendados;
     }
 
-    public Sala getSala() {
-        return sala;
+    public Exame getExameGrade() {
+        return exameGrade;
     }
 
-    public GradeDeAgendamento sala(Sala sala) {
-        this.sala = sala;
+    public GradeDeAgendamento exameGrade(Exame exame) {
+        this.exameGrade = exame;
         return this;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setExameGrade(Exame exame) {
+        this.exameGrade = exame;
     }
 
-    public Exame getExame() {
-        return exame;
+    public Sala getSalaGrade() {
+        return salaGrade;
     }
 
-    public GradeDeAgendamento exame(Exame exame) {
-        this.exame = exame;
+    public GradeDeAgendamento salaGrade(Sala sala) {
+        this.salaGrade = sala;
         return this;
     }
 
-    public void setExame(Exame exame) {
-        this.exame = exame;
+    public void setSalaGrade(Sala sala) {
+        this.salaGrade = sala;
     }
 
     public GrupoAgendamentoExame getGrupoAgendamentoExame() {
@@ -206,7 +189,6 @@ public class GradeDeAgendamento implements Serializable {
     public String toString() {
         return "GradeDeAgendamento{" +
             "id=" + getId() +
-            ", grade='" + getGrade() + "'" +
             ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
             ", responsavelId=" + getResponsavelId() +
             ", ativo='" + isAtivo() + "'" +

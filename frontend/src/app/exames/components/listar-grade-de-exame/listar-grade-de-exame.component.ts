@@ -21,7 +21,7 @@ import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
 })
 export class ListarGradeDeExameComponent implements OnInit {
 
-  grade: string = '';
+  id: string = '';
   unidadeExecutoraId: string = '';
   ativo: string = '';
   gradeDeAgendamentoId: string = '';
@@ -74,7 +74,7 @@ export class ListarGradeDeExameComponent implements OnInit {
   }
 
   listarGrades() {
-    this.gradeAgendamentoService.getGradesDeAgendamento(this.grade, this.unidadeExecutoraId,
+    this.gradeAgendamentoService.getGradesDeAgendamento(this.id, this.unidadeExecutoraId,
       this.ativo, this.salaId, this.grupoAgendamentoExameId, this.exameId, this.responsavelId)
       .subscribe((response) => {
         this.gradeAgendamento = response;

@@ -4,13 +4,7 @@
     </h1>
     <div class="p-grid">
         <div class="p-col-12 p-grid">
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
-                Grade
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <input type="text" pInputText class="p-inputtext" formControlName="grade"/>
-                </span>
-            </div>
-
+            
             <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
                 Unidade executora
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
@@ -30,19 +24,19 @@
                     [options]="situacaoGrade" placeholder="Selecione"></p-dropdown>
                 </span>
             </div>
-        </div>
 
-        <div class="p-col-12 p-grid">
-
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+            <div class="p-md-2 p-fluid">
                 Identificação da sala
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" formControlName="salaId"
+                        [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="salaSelecionada"
                         pTooltip="Informe a unidade executora." placeholder="Selecione">
                     </p-dropdown>
                 </span>
             </div>
+        </div>
+
+        <div class="p-col-12 p-grid">
 
             <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
                 Grupo de exames
@@ -54,21 +48,16 @@
                 </span>
             </div>
 
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+            <div class="p-md-2 p-fluid">
                 Exame
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" formControlName="exameId"
+                        [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="exameSelecionado"
                         pTooltip="Informe a unidade executora." placeholder="Selecione">
                     </p-dropdown>
                 </span>
             </div>
 
-                        
-        </div>
-
-        <div class="p-col-12 p-grid">
-        
             <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
                 Responsável
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
@@ -77,15 +66,16 @@
                         pTooltip="Informe a unidade executora." placeholder="Selecione">
                     </p-dropdown>
                 </span>
-            </div>
+            </div>           
         </div>
+
 
         <div class="p-col-12 p-grid p-d-flex">
             
             <div class="p-md-2 p-sm-12">
                 <button
                     pButton type="button" icon="pi pi-save" 
-                    (click)="cadastrarGradeDeAgendamento()" 
+                    (click)="cadastrarGradeDeAgendamento()"
                     [disabled]="!validarFormulario()"
                     routerLink="/listar-grade-exame"
                     label="Salvar"

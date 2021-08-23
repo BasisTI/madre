@@ -18,8 +18,6 @@ public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
     @Mapping(source = "amostraExame.nome", target = "amostraExameNome")
     ExameDTO toDto(Exame exame);
 
-    @Mapping(target = "exameGrades", ignore = true)
-    @Mapping(target = "removeExameGrade", ignore = true)
     @Mapping(source = "materialExameId", target = "materialExame")
     @Mapping(source = "amostraExameId", target = "amostraExame")
     @Mapping(target = "grupoAgendamentoExames", ignore = true)

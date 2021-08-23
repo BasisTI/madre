@@ -26,14 +26,7 @@
       "fieldType": "Integer"
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "gradeDeAgendamento",
-      "otherEntityRelationshipName": "sala",
-      "relationshipName": "salaExecutora"
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20210818154925",
   "entityTableName": "sala",
   "dto": "mapstruct",

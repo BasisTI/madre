@@ -2,7 +2,6 @@ package br.com.basis.madre.madreexames.repository;
 
 import br.com.basis.madre.madreexames.domain.Exame;
 
-import br.com.basis.madre.madreexames.service.dto.ExameDTO;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

@@ -1,12 +1,13 @@
 export class GradesDeAgendamento {
     constructor(
         public id?: number,
-        public grade?: string,
         public unidadeExecutoraId?: number,
         public responsavelId?: number,
         public ativo?: boolean,
-        public gradeDeAgendamentoId?: number,
-        public salaId?: number,
+        public exameGradeId?: number,
+        public exameGradeNome?: string,
+        public salaGradeId?: number,
+        public salaGradeIdentificacaoDaSala?: string,
         public exameId?: number,
         public grupoAgendamentoExameId?: number
     ) { }

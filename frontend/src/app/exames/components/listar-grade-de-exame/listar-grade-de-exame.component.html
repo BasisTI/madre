@@ -11,7 +11,7 @@
                         pInputText
                         type="text"
                         pTooltip="Informe o número da grade para pesquisa"
-                        [(ngModel)]="grade"
+                        [(ngModel)]="id"
                         />
                         <label>Grade</label>
                     </span>
@@ -89,19 +89,15 @@
                 </div>
                     <basis-datatable [verticalButtons]="false" #datatable
                         type="memory" [value]="gradeAgendamento" sortField="brand">
-                        <p-column header="Grade" field="grade"></p-column>
+                        <p-column header="Grade" field="id"></p-column>
                         <p-column header="Unid. Executora" field="unidadeExecutoraId"></p-column>
-                        <p-column header="Sala" field="salaId">
-                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                <span> {{ rowData.ativo }}</span>
-                            </ng-template>
-                        </p-column>  
+                        <p-column header="Sala" field="salaGradeId"></p-column>  
                         <p-column header="Grupo" field="grupoAgendamentoExameId"> </p-column>  
-                        <p-column header="Exame" field="exameId"> </p-column>  
+                        <p-column header="Exame" field="exameGradeId"> </p-column>  
                         <p-column header="Responsável" field="responsavelId"> </p-column>  
                         <p-column header="Situação" field="ativo">
                             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                            <span> {{ rowData[col.field] === "true" ? 'Ativo' : 'Inativo' }} </span>
+                            <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>
                             </ng-template>
                         </p-column>
                     </basis-datatable>

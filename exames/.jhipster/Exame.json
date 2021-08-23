@@ -38,12 +38,6 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "gradeDeAgendamento",
-      "otherEntityRelationshipName": "exame",
-      "relationshipName": "exameGrade"
-    },
-    {
       "relationshipType": "many-to-one",
       "otherEntityName": "material",
       "otherEntityRelationshipName": "exame",

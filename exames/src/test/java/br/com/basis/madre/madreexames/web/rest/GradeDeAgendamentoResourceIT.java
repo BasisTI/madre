@@ -42,9 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class GradeDeAgendamentoResourceIT {
 
-    private static final String DEFAULT_GRADE = "AAAAAAAAAA";
-    private static final String UPDATED_GRADE = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_UNIDADE_EXECUTORA_ID = 1;
     private static final Integer UPDATED_UNIDADE_EXECUTORA_ID = 2;
 
@@ -87,7 +84,6 @@ public class GradeDeAgendamentoResourceIT {
      */
     public static GradeDeAgendamento createEntity(EntityManager em) {
         GradeDeAgendamento gradeDeAgendamento = new GradeDeAgendamento()
-            .grade(DEFAULT_GRADE)
             .unidadeExecutoraId(DEFAULT_UNIDADE_EXECUTORA_ID)
             .responsavelId(DEFAULT_RESPONSAVEL_ID)
             .ativo(DEFAULT_ATIVO);
@@ -101,7 +97,6 @@ public class GradeDeAgendamentoResourceIT {
      */
     public static GradeDeAgendamento createUpdatedEntity(EntityManager em) {
         GradeDeAgendamento gradeDeAgendamento = new GradeDeAgendamento()
-            .grade(UPDATED_GRADE)
             .unidadeExecutoraId(UPDATED_UNIDADE_EXECUTORA_ID)
             .responsavelId(UPDATED_RESPONSAVEL_ID)
             .ativo(UPDATED_ATIVO);
@@ -128,7 +123,6 @@ public class GradeDeAgendamentoResourceIT {
         List<GradeDeAgendamento> gradeDeAgendamentoList = gradeDeAgendamentoRepository.findAll();
         assertThat(gradeDeAgendamentoList).hasSize(databaseSizeBeforeCreate + 1);
         GradeDeAgendamento testGradeDeAgendamento = gradeDeAgendamentoList.get(gradeDeAgendamentoList.size() - 1);
-        assertThat(testGradeDeAgendamento.getGrade()).isEqualTo(DEFAULT_GRADE);
         assertThat(testGradeDeAgendamento.getUnidadeExecutoraId()).isEqualTo(DEFAULT_UNIDADE_EXECUTORA_ID);
         assertThat(testGradeDeAgendamento.getResponsavelId()).isEqualTo(DEFAULT_RESPONSAVEL_ID);
         assertThat(testGradeDeAgendamento.isAtivo()).isEqualTo(DEFAULT_ATIVO);
@@ -160,26 +154,6 @@ public class GradeDeAgendamentoResourceIT {
         verify(mockGradeDeAgendamentoSearchRepository, times(0)).save(gradeDeAgendamento);
     }
 
-
-    @Test
-    @Transactional
-    public void checkGradeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = gradeDeAgendamentoRepository.findAll().size();
-        // set the field null
-        gradeDeAgendamento.setGrade(null);
-
-        // Create the GradeDeAgendamento, which fails.
-        GradeDeAgendamentoDTO gradeDeAgendamentoDTO = gradeDeAgendamentoMapper.toDto(gradeDeAgendamento);
-
-
-        restGradeDeAgendamentoMockMvc.perform(post("/api/grade-de-agendamentos")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(gradeDeAgendamentoDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<GradeDeAgendamento> gradeDeAgendamentoList = gradeDeAgendamentoRepository.findAll();
-        assertThat(gradeDeAgendamentoList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -232,7 +206,6 @@ public class GradeDeAgendamentoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(gradeDeAgendamento.getId().intValue())))
-            .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE)))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
             .andExpect(jsonPath("$.[*].responsavelId").value(hasItem(DEFAULT_RESPONSAVEL_ID)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
@@ -249,7 +222,6 @@ public class GradeDeAgendamentoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(gradeDeAgendamento.getId().intValue()))
-            .andExpect(jsonPath("$.grade").value(DEFAULT_GRADE))
             .andExpect(jsonPath("$.unidadeExecutoraId").value(DEFAULT_UNIDADE_EXECUTORA_ID))
             .andExpect(jsonPath("$.responsavelId").value(DEFAULT_RESPONSAVEL_ID))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
@@ -275,7 +247,6 @@ public class GradeDeAgendamentoResourceIT {
         // Disconnect from session so that the updates on updatedGradeDeAgendamento are not directly saved in db
         em.detach(updatedGradeDeAgendamento);
         updatedGradeDeAgendamento
-            .grade(UPDATED_GRADE)
             .unidadeExecutoraId(UPDATED_UNIDADE_EXECUTORA_ID)
             .responsavelId(UPDATED_RESPONSAVEL_ID)
             .ativo(UPDATED_ATIVO);
@@ -290,7 +261,6 @@ public class GradeDeAgendamentoResourceIT {
         List<GradeDeAgendamento> gradeDeAgendamentoList = gradeDeAgendamentoRepository.findAll();
         assertThat(gradeDeAgendamentoList).hasSize(databaseSizeBeforeUpdate);
         GradeDeAgendamento testGradeDeAgendamento = gradeDeAgendamentoList.get(gradeDeAgendamentoList.size() - 1);
-        assertThat(testGradeDeAgendamento.getGrade()).isEqualTo(UPDATED_GRADE);
         assertThat(testGradeDeAgendamento.getUnidadeExecutoraId()).isEqualTo(UPDATED_UNIDADE_EXECUTORA_ID);
         assertThat(testGradeDeAgendamento.getResponsavelId()).isEqualTo(UPDATED_RESPONSAVEL_ID);
         assertThat(testGradeDeAgendamento.isAtivo()).isEqualTo(UPDATED_ATIVO);
@@ -356,7 +326,6 @@ public class GradeDeAgendamentoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(gradeDeAgendamento.getId().intValue())))
-            .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE)))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
             .andExpect(jsonPath("$.[*].responsavelId").value(hasItem(DEFAULT_RESPONSAVEL_ID)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));

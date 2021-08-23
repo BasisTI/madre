@@ -8,17 +8,17 @@
     -->
     <changeSet id="20210818154625-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="sala_id"
+        <addForeignKeyConstraint baseColumnNames="exame_grade_id"
                                  baseTableName="grade_de_agendamento"
-                                 constraintName="fk_grade_de_agendamento_sala_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="sala"/>
-
-        <addForeignKeyConstraint baseColumnNames="exame_id"
-                                 baseTableName="grade_de_agendamento"
-                                 constraintName="fk_grade_de_agendamento_exame_id"
+                                 constraintName="fk_grade_de_agendamento_exame_grade_id"
                                  referencedColumnNames="id"
                                  referencedTableName="exame"/>
+
+        <addForeignKeyConstraint baseColumnNames="sala_grade_id"
+                                 baseTableName="grade_de_agendamento"
+                                 constraintName="fk_grade_de_agendamento_sala_grade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sala"/>
 
         <addForeignKeyConstraint baseColumnNames="grupo_agendamento_exame_id"
                                  baseTableName="grade_de_agendamento"

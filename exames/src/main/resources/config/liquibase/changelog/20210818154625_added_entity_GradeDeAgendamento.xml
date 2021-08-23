@@ -15,9 +15,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="grade" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
             <column name="unidade_executora_id" type="integer">
                 <constraints nullable="false" />
             </column>
@@ -27,10 +24,10 @@
             <column name="ativo" type="boolean">
                 <constraints nullable="false" />
             </column>
-            <column name="sala_id" type="bigint">
+            <column name="exame_grade_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="exame_id" type="bigint">
+            <column name="sala_grade_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="grupo_agendamento_exame_id" type="bigint">
@@ -63,7 +60,6 @@
                   separator=";"
                   tableName="grade_de_agendamento">
             <column name="id" type="numeric"/>
-            <column name="grade" type="string"/>
             <column name="unidade_executora_id" type="numeric"/>
             <column name="responsavel_id" type="numeric"/>
             <column name="ativo" type="boolean"/>

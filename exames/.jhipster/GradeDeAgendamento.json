@@ -2,11 +2,6 @@
   "name": "GradeDeAgendamento",
   "fields": [
     {
-      "fieldName": "grade",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "unidadeExecutoraId",
       "fieldType": "Integer",
       "fieldValidateRules": ["required"]
@@ -30,17 +25,17 @@
     },
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "sala",
-      "otherEntityRelationshipName": "salaExecutora",
-      "relationshipName": "sala",
-      "otherEntityField": "id"
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "exameGrade",
+      "otherEntityField": "nome"
     },
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "exame",
-      "otherEntityRelationshipName": "exameGrade",
-      "relationshipName": "exame",
-      "otherEntityField": "id"
+      "otherEntityName": "sala",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "salaGrade",
+      "otherEntityField": "identificacaoDaSala"
     },
     {
       "relationshipType": "many-to-one",

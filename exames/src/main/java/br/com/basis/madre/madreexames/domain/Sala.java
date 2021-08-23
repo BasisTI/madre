@@ -46,10 +46,6 @@ public class Sala implements Serializable {
     @Column(name = "unidade_executora_id")
     private Integer unidadeExecutoraId;
 
-    @OneToMany(mappedBy = "sala")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<GradeDeAgendamento> salaExecutoras = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -122,31 +118,6 @@ public class Sala implements Serializable {
 
     public void setUnidadeExecutoraId(Integer unidadeExecutoraId) {
         this.unidadeExecutoraId = unidadeExecutoraId;
-    }
-
-    public Set<GradeDeAgendamento> getSalaExecutoras() {
-        return salaExecutoras;
-    }
-
-    public Sala salaExecutoras(Set<GradeDeAgendamento> gradeDeAgendamentos) {
-        this.salaExecutoras = gradeDeAgendamentos;
-        return this;
-    }
-
-    public Sala addSalaExecutora(GradeDeAgendamento gradeDeAgendamento) {
-        this.salaExecutoras.add(gradeDeAgendamento);
-        gradeDeAgendamento.setSala(this);
-        return this;
-    }
-
-    public Sala removeSalaExecutora(GradeDeAgendamento gradeDeAgendamento) {
-        this.salaExecutoras.remove(gradeDeAgendamento);
-        gradeDeAgendamento.setSala(null);
-        return this;
-    }
-
-    public void setSalaExecutoras(Set<GradeDeAgendamento> gradeDeAgendamentos) {
-        this.salaExecutoras = gradeDeAgendamentos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

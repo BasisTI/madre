@@ -54,7 +54,6 @@ ativo Boolean required
 }
 
 entity GradeDeAgendamento {
-grade String required
 unidadeExecutoraId Integer required
 responsavelId Integer
 ativo Boolean required
@@ -100,18 +99,6 @@ SEXTA_FEIRA,
 SABADO
 }
 
-relationship OneToMany {
-GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
-HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
-Sala{salaExecutora(identificacaoDaSala)} to GradeDeAgendamento
-Exame{exameGrade(nome)} to GradeDeAgendamento
-GrupoAgendamentoExame{grupoExameGrade(nome)} to GradeDeAgendamento
-}
-
-relationship OneToOne {
-HorarioAgendado{horarioAgendado(dia)} to TipoDeMarcacao
-}
-
 enum Responsavel {
 COLETADOR, SOLICITANTE, PACIENTE
 }
@@ -124,12 +111,21 @@ enum Situacao {
 A_COLETAR, AREA_EXECUTORA, COLETADO
 }
 
+relationship OneToOne {
+HorarioAgendado{horarioAgendado(dia)} to TipoDeMarcacao
+}
+
 relationship OneToMany {
 Material{material(nome)} to Recomendacao,
 SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
+GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
+HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
+GrupoAgendamentoExame{grupoExameGrade(nome)} to GradeDeAgendamento
 }
 
 relationship ManyToOne {
+GradeDeAgendamento{exameGrade(nome)} to Exame
+GradeDeAgendamento{salaGrade(identificacaoDaSala)} to Sala
 Exame{materialExame(nome)} to Material,
 Sinonimo{sinonimo(nome)} to Exame,
 Exame{amostraExame(nome)} to TipoAmostra,

@@ -33,27 +33,26 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   unidadesExecutoras: UnidadeFuncional[] = [];
   pessoas: Pessoa[] = [];
-  salas: Sala[] = [];
   gruposDeExame: GrupoModel[] = [];
-  exames: ExamModel[] = [];
   responsaveis: Responsavel[] = [];
+  salas: Sala[] = [];
+  exames: ExamModel[] = [];
+
+  exameSelecionado: number;
+  salaSelecionada: number;
 
   situacaoGrade = SituacaoAtivo;
   
 
   cadastroGrade = this.fb.group({
-    grade: [null, Validators.required],
     unidadeExecutoraId: [null, Validators.required],
     responsavelId: [null, Validators.required],
     ativo: [null, Validators.required],
-    salaId: [null, Validators.required],
-    exameId: [null],
     grupoAgendamentoExameId: [null]
   });
 
   validarFormulario(): boolean {
-    if (this.cadastroGrade.valid && (this.cadastroGrade
-        .get('exameId').value != null || this.cadastroGrade
+    if (this.cadastroGrade.valid && (this.exameSelecionado || this.cadastroGrade
         .get('grupoAgendamentoExameId').value != null)){
           return true; 
         } else {
@@ -69,12 +68,11 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     const cadastroGradeValor = this.cadastroGrade.value;
 
     const cadastro: GradesDeAgendamento = {
-      grade: cadastroGradeValor.grade,
       unidadeExecutoraId: cadastroGradeValor.unidadeExecutoraId,
       responsavelId: cadastroGradeValor.responsavelId,
       ativo: cadastroGradeValor.ativo,
-      salaId: cadastroGradeValor.salaId,
-      exameId: cadastroGradeValor.exameId,
+      salaGradeId: this.salaSelecionada,
+      exameGradeId: this.exameSelecionado,
       grupoAgendamentoExameId: cadastroGradeValor.grupoAgendamentoExameId
     };
 
