@@ -10,7 +10,7 @@
                         <input
                         pInputText
                         type="text"
-                        pTooltip="Informe o número da grade para pesquisa"
+                        pTooltip="Informe o número da grade"
                         [(ngModel)]="id"
                         />
                         <label>Grade</label>
@@ -18,15 +18,15 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe a Unidade Executora para a pesquisa de grades"
-                        [(ngModel)]="unidadeExecutoraId" showClear="true"
-                        [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'"
-                        placeholder="Unidade executora"
+                        pTooltip="Informe a Unidade Executora"
+                        [(ngModel)]="unidadeExecutoraId" [filter]="true"
+                        [resetFilterOnHide]="true" [options]="unidadesExecutoras" [optionLabel]="'nome'"
+                        [optionValue]="'id'" placeholder="Unidade executora"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe a situação para a pesquisa de grades"
+                        pTooltip="Informe a situação"
                         [(ngModel)]="ativo"
                         [options]="situacaoGrade"
                         placeholder="Situação da grade"
@@ -34,8 +34,8 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip=""
-                        [(ngModel)]="salaId"
+                        pTooltip="Informe o código ou número da sala"
+                        [(ngModel)]="salaId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'"
                         placeholder="Identificação da sala"
                     ></p-dropdown>
@@ -44,24 +44,24 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip=""
-                        [(ngModel)]="grupoAgendamentoExameId"
+                        pTooltip="Informe o código ou descrição do grupo de exames"
+                        [(ngModel)]="grupoAgendamentoExameId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'"
                         placeholder="Grupo de exames"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip=""
-                        [(ngModel)]="exameId"
+                        pTooltip="Informe o código ou descrição do exame"
+                        [(ngModel)]="exameId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'"
                         placeholder="Exame"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip=""
-                        [(ngModel)]="responsavelId"
+                        pTooltip="Informe a matrícula ou o nome do responsável"
+                        [(ngModel)]="responsavelId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'id'"
                         placeholder="Responsável"
                     ></p-dropdown>
