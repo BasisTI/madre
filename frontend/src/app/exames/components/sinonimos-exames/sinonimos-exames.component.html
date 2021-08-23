@@ -7,15 +7,15 @@
                     <input type="text" formControlName="nome"  pInputText />
                   </span>
                  
-                    <span id="grupo" > <br>
+                    <span id="grupo" > 
                     <label> Situação: </label> <br>
                     <p-dropdown 
                     placeholder="Selecione" [options]="situacaoExame" formControlName="situacao"
                     ></p-dropdown>
                     </span> 
                   </div>
-
-                  <basis-datatable
+                  <div id="table">
+                  <basis-datatable id="table"
                         #datatable
                         type="server"
                         [url]="searchUrl"
@@ -31,21 +31,23 @@
                         <p-column header="Ação" field=""></p-column>
 
                         <basis-datatable-button
-                        name="edit"
-                        icon="pi pi-pencil"
-                        [disabled]="datatable.selectedRow == null"
-                        class="p-button-success">
-                        </basis-datatable-button>
-                       
-                        <basis-datatable-button 
-                            class="p-button-danger"
-                            [disabled]="datatable.selectedRow == null"
-                            name="delete"
-                            icon="pi pi-trash">
-                          </basis-datatable-button>  
-                          </basis-datatable>
-     
+                          name="edit"
+                          icon="pi pi-pencil"
+                          [disabled]="datatable.selectedRow == null"
+                          class="p-button-success">
+                          </basis-datatable-button>
+                        
+                          <basis-datatable-button 
+                              class="p-button-danger"
+                              [disabled]="datatable.selectedRow == null"
+                              name="delete"
+                              icon="pi pi-trash">
+                            </basis-datatable-button>  
+                        </basis-datatable>
+                    </div>
+        <div id="table">
         <button pButton type="submit" label="Gravar" icon="ui-icon-search" bTooltip="Gravar Sinônimo de exames." 
           ></button>
+        </div>
     </div>
     </form>
