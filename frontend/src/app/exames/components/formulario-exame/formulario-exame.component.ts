@@ -4,11 +4,15 @@ import { SituacaoExame } from "../../models/dropdowns/situacao.dropdown";
 import { Amostra } from '../../models/subjects/amostra';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Material } from '../../models/subjects/material';
+import { MaterialDeAnalise } from '../../models/subjects/material-de-analise';
+import { MaterialDeExames } from '../../models/subjects/material-de-exames';
 import { ExamesService } from '../../services/exames.service';
 import { atividadeDropdown } from '../../models/dropdowns/atividade.dropdown';
 import { naturezaDropdown } from '../../models/dropdowns/natureza.dropdown';
 import { sumarioDropdown } from '../../models/dropdowns/sumario.dropdown';
-import { unidadeTempoDropdown } from '../../models/dropdowns/unidadeDeTempo.dropdown'
+import { unidadeTempoDropdown } from '../../models/dropdowns/unidadeDeTempo.dropdown';
+import { MaterialDeAnaliseService } from '../../services/material-de-analise.service';
+import { MaterialDeExamesService } from '../../services/material-de-exames.service';
 @Component({
   selector: 'app-formulario-exame',
   templateUrl: './formulario-exame.component.html',
@@ -17,7 +21,10 @@ import { unidadeTempoDropdown } from '../../models/dropdowns/unidadeDeTempo.drop
 export class FormularioExameComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-    private exameService: ExamesService) { }
+    private exameService: ExamesService,
+    private materialDeAnaliseService: MaterialDeAnaliseService,
+    private materialDeExamesService: MaterialDeExamesService,
+    ) { }
 
   materiais: Material[] = [];
   amostras: Amostra[] = [];
@@ -40,8 +47,7 @@ export class FormularioExameComponent implements OnInit {
   });
 
   // Material
-  cadastrarMaterial = this.fb.group({
-    nome: [null, Validators.required],
+  materialForm = this.fb.group({
     ativo: [null, Validators.required],
     npo: [null, Validators.required],
     jejum: [null, Validators.required],
@@ -78,18 +84,31 @@ export class FormularioExameComponent implements OnInit {
     numeroDeAmostrarPorIntervalo: [null, Validators.required],
     tempoLimiteDeAmostraPorIntervalo: [null, Validators.required],
     unidadeLimiteDeTempoDoPeriodo: [null, Validators.required],
-    permiteSolicitacaoPosAlta: [null, Validators.required],
+    permiteSolicitacaoPosAlta: [null, Validators.required], // opa
     tempoPermitidoParaSolicitarPosAlta: [null, Validators.required],
     tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras: [null, Validators.required],
     cartaDeColeta: [null, Validators.required],
-    laboratoriaTercerizado: [null, Validators.required],
-    naoCancelaExamaAposAlta: [null, Validators.required],
+    laboratorioTercerizado: [null, Validators.required],
+    naoCancelaExameAposAlta: [null, Validators.required],
+    materialId: [null, Validators.required],
   })
 
   atividade = atividadeDropdown;
   natureza = naturezaDropdown;
   sumario = sumarioDropdown;
   unidadeDeTempoOptions = unidadeTempoDropdown;
+  materiaisDeAnalise: MaterialDeAnalise[] = [];
+  booleanDropdown = [
+    {
+      label: "sim",
+      value: "SIM"
+    },
+    {
+      label: "não",
+      value: "NAO"
+    }
+  ]
+
 
   valid(): boolean {
     if (this.cadastrarExame.valid && this.amostraSelecionada && this.materialSelecionado)
@@ -117,10 +136,74 @@ export class FormularioExameComponent implements OnInit {
       anexaDocumentos: cadastroExame.anexaDocumentos
     };
 
-    console.log(cadastroExame);
-
     this.exameService.cadastrarExame(cadastro).subscribe();
     this.cadastrarExame.reset();
+  }
+
+  validarMaterial(): boolean {
+    return this.materialForm.valid;
+  }
+
+  cadastrarMaterial() {
+    let materialPreenchido = this.materialForm.value;
+
+    let materialObjeto: MaterialDeAnalise = this.materiaisDeAnalise.find((elem) => elem.id = materialPreenchido.materialId)
+
+    let materialDeExames: MaterialDeExames = {
+      nome: materialObjeto.nome,
+      ativo: materialPreenchido.ativo,
+      npo: materialPreenchido.npo,
+      jejum: materialPreenchido.jejum,
+      exigePreparo: materialPreenchido.exigePreparo,
+      exigeDieta: materialPreenchido.exigeDieta,
+      informaNumeroDeColetas: materialPreenchido.informaNumeroDeColetas,
+      geraItemDeSolicitacao: materialPreenchido.geraItemDeSolicitacao,
+      exigeIntervaloDeColeta: materialPreenchido.exigeIntervaloDeColeta,
+      exigeRegiaoAnatomica: materialPreenchido.exigeRegiaoAnatomica,
+      ingestaoDeMedicamento: materialPreenchido.ingestaoDeMedicamento,
+      dependenteDeExame: materialPreenchido.dependenteDeExame,
+      analisadoPelaCII: materialPreenchido.analisadoPelaCII,
+      interesseDaCOMEDI: materialPreenchido.interesseDaCOMEDI,
+      exigeImpressao: materialPreenchido.exigeImpressao,
+      apareceResultado: materialPreenchido.apareceResultado,
+      contaCelulas: materialPreenchido.contaCelulas,
+      limiteDeSolicitacao: materialPreenchido.limiteDeSolicitacao,
+      formaDeRespiracao: materialPreenchido.formaDeRespiracao,
+      automatico: materialPreenchido.automatico,
+      exigeDadosComplementares: materialPreenchido.exigeDadosComplementares,
+      natureza: materialPreenchido.natureza,
+      sumario: materialPreenchido.sumario,
+      tempoJejum: materialPreenchido.tempoJejum,
+      intervaloMinimo: materialPreenchido.intervaloMinimo,
+      unidadeDeTempo: materialPreenchido.unidadeDeTempo,
+      validade: materialPreenchido.validade,
+      agendamentoMinimo: materialPreenchido.agendamentoMinimo,
+      tempoLimiteDaSolicitacao: materialPreenchido.tempoLimiteDaSolicitacao,
+      unidadeDeTempoDaSolicitacao: materialPreenchido.unidadeDeTempoDaSolicitacao,
+      numeroDeAmostras: materialPreenchido.numeroDeAmostras,
+      numeroDeAmostrasPadrao: materialPreenchido.numeroDeAmostrasPadrao,
+      diasLimiteDefault: materialPreenchido.diasLimiteDefault,
+      tempoLimiteDefault: materialPreenchido.tempoLimiteDefault,
+      numeroDeAmostrarPorIntervalo: materialPreenchido.numeroDeAmostrarPorIntervalo,
+      tempoLimiteDeAmostraPorIntervalo: materialPreenchido.tempoLimiteDeAmostraPorIntervalo,
+      unidadeLimiteDeTempoDoPeriodo: materialPreenchido.unidadeLimiteDeTempoDoPeriodo,
+      permiteSolicitacaoPosAlta: materialPreenchido.permiteSolicitacaoPosAlta,
+      tempoPermitidoParaSolicitarPosAlta: materialPreenchido.tempoPermitidoParaSolicitarPosAlta,
+      tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras: materialPreenchido.tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras,
+      cartaDeColeta: materialPreenchido.cartaDeColeta,
+      laboratoriaTercerizado: materialPreenchido.laboratoriaTercerizado,
+      naoCancelaExamaAposAlta: materialPreenchido.naoCancelaExamaAposAlta,
+      materialId: materialPreenchido.materialId,
+      materialNome: materialObjeto.nome,
+    }
+
+    this.materialDeExamesService.cadastrarMaterialDeExame(materialDeExames).subscribe();
+    this.materialForm.reset();
+
+  }
+
+  limparMaterial() {
+    this.materialForm.reset();
   }
 
 
@@ -132,6 +215,10 @@ export class FormularioExameComponent implements OnInit {
     this.exameService.getAmostras().subscribe((response) => {
       this.amostras = response;
     });
+
+    this.materialDeAnaliseService.pegarMaterial().subscribe((response) => {
+      this.materiaisDeAnalise = response;
+    })
   }
 
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { MaterialDeAnalise } from '../models/subjects/material-de-analise';
 
 @Injectable({
@@ -14,6 +15,10 @@ export class MaterialDeAnaliseService {
     console.log(material);
 
     return this.httpService.post(this.apiURL, material);
+  }
+
+  pegarMaterial(): Observable<Array<MaterialDeAnalise>> {
+    return this.httpService.get<Array<MaterialDeAnalise>>(this.apiURL);
   }
 
 }
