@@ -111,8 +111,8 @@ export class AtendimentoDiversoComponent implements OnInit {
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
         this.especialidades = response; 
        });
-       this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
-       this.unidadesFuncionais = response; 
+       this.unidadeFuncionalService.GetUnidades().subscribe((response)=>{
+       // this.unidadesFuncionais = response; 
       });
   }
 
