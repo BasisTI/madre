@@ -29,6 +29,7 @@ import { ExamesFormComponent } from './components/exames-form/exames-form.compon
         SinonimosExamesComponent,
         ExamesFormComponent,
         ListarSolicitacoesComponent,
+        MaterialExamesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

@@ -14,3 +14,14 @@
 .label-radioButton {
     margin: 5px;
 }
+
+.inputNumber {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
