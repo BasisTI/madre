@@ -12,6 +12,8 @@ import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
+import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
+import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { CadastrarMaterialComponent } from './components/cadastrar-material/cada
         TabelaExamesComponent,
         FormularioExameComponent,
         CadastrarMaterialComponent,
+        SinonimosExamesComponent,
+        ExamesFormComponent,
         ListarSolicitacoesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
