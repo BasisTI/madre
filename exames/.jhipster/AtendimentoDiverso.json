@@ -7,57 +7,77 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "descricao",
+      "fieldName": "unidadeExecutoraId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "origemAmostra",
+      "fieldType": "OrigemAmostra",
+      "fieldValues": "HUMANO,NAO_HUMANO"
+    },
+    {
+      "fieldName": "tipoAmostra",
+      "fieldType": "TipoAmostra",
+      "fieldValues": "DOADOR,RECEPTOR"
+    },
+    {
+      "fieldName": "identificacao",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataSoro",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "material",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "especialidadeId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "centroAtividadeId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "Sexo",
+      "fieldValues": "FEMININO,MASCULINO,IGNORADO"
     }
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "informacoesComplementares",
-      "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "informacoes",
-      "otherEntityField": "codigo",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "projetoDePesquisa",
-      "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "projeto",
-      "otherEntityField": "nome",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "laboratorioExterno",
       "otherEntityRelationshipName": "atendimentoDiverso",
       "relationshipName": "laboratorio",
-      "otherEntityField": "nome",
-      "ownerSide": true
+      "otherEntityField": "nome"
     },
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "controleQualidade",
       "otherEntityRelationshipName": "atendimentoDiverso",
       "relationshipName": "controle",
-      "otherEntityField": "codigo",
-      "ownerSide": true
+      "otherEntityField": "codigo"
     },
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "cadaver",
       "otherEntityRelationshipName": "atendimentoDiverso",
       "relationshipName": "cadaver",
-      "otherEntityField": "nome",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "informacoesComplementares",
-      "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso"
+      "otherEntityField": "nome"
     }
   ],
   "changelogDate": "20210705120218",

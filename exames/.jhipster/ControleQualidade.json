@@ -24,7 +24,7 @@
     {
       "fieldName": "convenioPlano",
       "fieldType": "ConvenioPlano",
-      "fieldValues": "SUS_internacao,SUS_planoAmbulatorio"
+      "fieldValues": "SUS_INTERNACAO,SUS_PLANOAMBULATORIO"
     }
   ],
   "relationships": [],
