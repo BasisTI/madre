@@ -331,7 +331,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
-
+                        
                     ],
                 },
                 {
@@ -342,6 +342,21 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Servidores',
                             icon: 'add',
                             routerLink: ['/seguranca/servidores'],
+                        },
+                        {
+                            label: 'Cadastro de Servidores',
+                            icon: 'add',
+                            routerLink: ['/seguranca/formulario-servidor'],
+                        },
+                        {
+                            label: 'Pesquisa de Graduações de Servidores',
+                            icon: 'add',
+                            routerLink: ['/seguranca/graduacoes-de-servidores'],
+                        },
+                        {
+                            label: 'Cadastro de Graduações',
+                            icon: 'add',
+                            routerLink: ['/seguranca/formulario-graduacoes-de-servidores'],
                         },
                         {
                             label: 'Cadastrar Vínculos',
@@ -357,11 +372,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Cadastrar Cargos',
                             icon: 'add',
                             routerLink: ['/seguranca/cargos'],
-                        },
-                        {
-                            label: 'Graduações de Servidores',
-                            icon: 'add',
-                            routerLink: ['/seguranca/graduacoes-de-servidores'],
                         },
                     ],
                 },
