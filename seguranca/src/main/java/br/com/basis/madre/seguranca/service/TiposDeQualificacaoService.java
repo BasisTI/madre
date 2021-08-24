@@ -5,6 +5,8 @@ import br.com.basis.madre.seguranca.repository.TiposDeQualificacaoRepository;
 import br.com.basis.madre.seguranca.repository.search.TiposDeQualificacaoSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.TiposDeQualificacaoDTO;
 import br.com.basis.madre.seguranca.service.mapper.TiposDeQualificacaoMapper;
+import br.com.basis.madre.seguranca.service.projection.TiposDeQualificacaoResumo;
+import br.com.basis.madre.seguranca.service.projection.VinculoResumo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -103,5 +105,9 @@ public class TiposDeQualificacaoService {
         log.debug("Request to search for a page of TiposDeQualificacaos for query {}", query);
         return tiposDeQualificacaoSearchRepository.search(queryStringQuery(query), pageable)
             .map(tiposDeQualificacaoMapper::toDto);
+    }
+
+    public Page<TiposDeQualificacaoResumo> findAllProjectedTiposDeQualificacaoBy(String descricao, Pageable pageable) {
+        return tiposDeQualificacaoRepository.findAllProjectedTiposDeQualificacaoResumoByDescricaoContainingIgnoreCase(descricao, pageable);
     }
 }

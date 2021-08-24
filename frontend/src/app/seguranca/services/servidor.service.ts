@@ -4,7 +4,7 @@ import { Pageable } from '@shared/pageable';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
 import { ListaServidor } from '../models/dropdowns/lista-servidor';
-import { Servidor } from '../models/dropdowns/servidor-model';
+import { Servidor } from '../models/servidor-resumo-model';
 import { ServidorModel } from '../models/servidor-model';
 
 

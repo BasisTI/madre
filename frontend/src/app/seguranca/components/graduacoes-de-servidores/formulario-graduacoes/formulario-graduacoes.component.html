@@ -1,0 +1,103 @@
+<h1>Segurança</h1>
+
+<form #form [formGroup]="formGraduacao" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="p-md-12">
+            <h2 class="sub-title">Cadastrar Graduação do Servidor</h2>
+            <div class="p-col-12 p-grid">
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled name="vinculo" />
+                        <label>Vínculo</label>
+                    </span>
+                </div>
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled name="matricula" />
+                        <label>Matrícula</label>
+                    </span>
+                </div>
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled name="nome" />
+                        <label>Nome</label>
+                    </span>
+                </div>
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled name="pessoa" />
+                        <label>Pessoa</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                        <p-autoComplete field="descricao" [suggestions]="listaTiposDeQualificao"
+                            (completeMethod)="buscaCurso($event)" [dropdown]="true" formControlName="curso">
+                        </p-autoComplete>
+                        <label>Curso</label>
+                    </span>
+                    <!-- <p-message severity="error" text="Curso obrigatório" *ngIf="
+                        formServidor.controls['curso'].errors?.required &&
+                        formServidor.controls['curso'].touched">
+                    </p-message> -->
+                </div>
+                <div class="p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                        <p-autoComplete field="descricao" [suggestions]="listaInstituicao"
+                            (completeMethod)="buscaInstituicao($event)" [dropdown]="true" formControlName="instituicao">
+                        </p-autoComplete>
+                        <label>Instituição</label>
+                    </span>
+                    <!-- <p-message severity="error" text="Instituição de graduação obrigatória" *ngIf="
+                        formServidor.controls['instituicao'].errors?.required &&
+                        formServidor.controls['instituicao'].touched">
+                    </p-message> -->
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacaoDaGraduacao">
+                        </p-dropdown>
+                        <label>Situação</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2050"
+                            [showIcon]="true" inputId="icon" formControlName="anoInicio"></p-calendar>
+                        <label>Ano início</label>
+                    </span>
+                    <!-- <p-message severity="error" text="Início do Vínculo obrigatório" *ngIf="
+                            formServidor.controls['inicioDoVinculo'].errors?.required &&
+                            formServidor.controls['inicioDoVinculo'].touched">
+                </p-message> -->
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2050"
+                            [showIcon]="true" inputId="icon" formControlName="anoFim"></p-calendar>
+                        <label>Ano Fim</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="semestre" />
+                        <label>Semestre</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="nroRegConselho" />
+                        <label>Número de Registro do Conselho</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="p-md-12 p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar"></button>
+        </div>
+    </div>
+</form>

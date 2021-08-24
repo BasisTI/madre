@@ -2,6 +2,9 @@ package br.com.basis.madre.seguranca.repository;
 
 import br.com.basis.madre.seguranca.domain.TiposDeQualificacao;
 
+import br.com.basis.madre.seguranca.service.projection.TiposDeQualificacaoResumo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +14,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface TiposDeQualificacaoRepository extends JpaRepository<TiposDeQualificacao, Long> {
+    Page<TiposDeQualificacaoResumo> findAllProjectedTiposDeQualificacaoResumoByDescricaoContainingIgnoreCase(String descricao, Pageable pageable);
 }

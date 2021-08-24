@@ -1,6 +1,8 @@
 package br.com.basis.madre.seguranca.web.rest;
 
 import br.com.basis.madre.seguranca.service.InstituicaoService;
+import br.com.basis.madre.seguranca.service.projection.InstituicaoResumo;
+import br.com.basis.madre.seguranca.service.projection.VinculoResumo;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.seguranca.service.dto.InstituicaoDTO;
 
@@ -141,5 +143,10 @@ public class InstituicaoResource {
         Page<InstituicaoDTO> page = instituicaoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-        }
+    }
+
+    @GetMapping("/instituicaos/_resumo")
+    public ResponseEntity<Page<InstituicaoResumo>> findAllProjectedInstituicaoResumoBy(@RequestParam(required = false,defaultValue = "") String descricao, Pageable pageable) {
+        return ResponseEntity.ok(instituicaoService.findAllProjectedInstituicaoResumoBy(descricao,pageable));
+    }
 }

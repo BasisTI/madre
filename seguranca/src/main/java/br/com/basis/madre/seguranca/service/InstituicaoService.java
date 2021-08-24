@@ -5,6 +5,8 @@ import br.com.basis.madre.seguranca.repository.InstituicaoRepository;
 import br.com.basis.madre.seguranca.repository.search.InstituicaoSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.InstituicaoDTO;
 import br.com.basis.madre.seguranca.service.mapper.InstituicaoMapper;
+import br.com.basis.madre.seguranca.service.projection.InstituicaoResumo;
+import br.com.basis.madre.seguranca.service.projection.VinculoResumo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -103,5 +105,9 @@ public class InstituicaoService {
         log.debug("Request to search for a page of Instituicaos for query {}", query);
         return instituicaoSearchRepository.search(queryStringQuery(query), pageable)
             .map(instituicaoMapper::toDto);
+    }
+
+    public Page<InstituicaoResumo> findAllProjectedInstituicaoResumoBy(String descricao, Pageable pageable) {
+        return instituicaoRepository.findAllProjectedInstituicaoResumoByDescricaoContainingIgnoreCase(descricao, pageable);
     }
 }

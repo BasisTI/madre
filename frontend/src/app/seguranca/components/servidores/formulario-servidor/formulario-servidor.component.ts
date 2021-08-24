@@ -7,7 +7,6 @@ import { CentroAtividade } from '@suprimentos/models/centro-atividade';
 import { CentroAtividadeService } from '@suprimentos/services/centro-atividade.service';
 import { OPCOES_DE_TIPO_DE_REMUNERACAO } from 'src/app/seguranca/models/dropdowns/opcoes-de-remuneracao';
 import { OPCOES_DE_SITUACOES_SERVIDOR } from 'src/app/seguranca/models/dropdowns/opcoes-de-situacoes';
-import { GrupoFuncional } from 'src/app/seguranca/models/dropdowns/grupo-funcional-model';
 import { GrupoFuncionalService } from 'src/app/seguranca/services/grupo-funcional.service';
 import { LoginService } from 'src/app/seguranca/services/login.service';
 import { PessoaService } from 'src/app/seguranca/services/pessoa.service';
@@ -15,15 +14,16 @@ import { RamalService } from 'src/app/seguranca/services/ramal.service';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 import { VinculoService } from 'src/app/seguranca/services/vinculo.service';
 import { moment } from 'fullcalendar';
-import { Pessoa } from 'src/app/seguranca/models/dropdowns/pessoa-model';
-import { Login } from 'src/app/seguranca/models/dropdowns/login-model';
-import { Vinculo } from 'src/app/seguranca/models/dropdowns/vinculo-model';
 import { Ramal } from 'src/app/seguranca/models/dropdowns/ramal';
 import { ListaPessoasServidor } from 'src/app/seguranca/models/dropdowns/lista-pessoa-servidor';
 import { ServidorModel } from 'src/app/seguranca/models/servidor-model';
 import { ListaVinculosServidor } from 'src/app/seguranca/models/dropdowns/lista-vinculo-servidor';
 import { OcupacaoDeCargo } from 'src/app/seguranca/models/dropdowns/ocupacao-de-cargo';
 import { OcupacoesDeCargoService } from 'src/app/seguranca/services/ocupacoes-de-cargos.service';
+import { Pessoa } from 'src/app/seguranca/models/pessoa-model';
+import { Login } from 'src/app/seguranca/models/login-model';
+import { Vinculo } from 'src/app/seguranca/models/vinculo-resumo-model';
+import { GrupoFuncional } from 'src/app/seguranca/models/grupo-funcional-model';
 
 
 @Component({

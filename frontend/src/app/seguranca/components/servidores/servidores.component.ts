@@ -8,8 +8,8 @@ import { ViewChild } from '@angular/core';
 import { DatatableComponent } from '@nuvem/primeng-components';
 import { ElasticQuery } from '@shared/elastic-query';
 import { OPCOES_DE_SITUACOES } from '@internacao/formulario-unidades/models/dropwdowns/types/opcoes-de-situacoes';
-import { Pessoa } from '../../models/dropdowns/pessoa-model';
-import { Vinculo } from '../../models/dropdowns/vinculo-model';
+import { Pessoa } from '../../models/pessoa-model';
+import { Vinculo } from '../../models/vinculo-resumo-model';
 import { OcupacaoDeCargo } from '../../models/dropdowns/ocupacao-de-cargo';
 import { OcupacoesDeCargoService } from '../../services/ocupacoes-de-cargos.service';
 @Component({
