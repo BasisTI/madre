@@ -1,5 +1,7 @@
 export class GraduacaoModel {
     constructor(
+        public id?: string,
+        
         public curso?: string,
 
         public instituicao?: string,
@@ -8,7 +10,7 @@ export class GraduacaoModel {
 
         public anoFim?: Date,
 
-        public situacaoDaGraduacao?: boolean,
+        public situacao?: boolean,
 
         public semestre?: string,
 

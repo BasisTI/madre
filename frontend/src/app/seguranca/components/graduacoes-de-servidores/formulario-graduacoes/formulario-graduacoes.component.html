@@ -57,7 +57,7 @@
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacaoDaGraduacao">
+                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacao">
                         </p-dropdown>
                         <label>Situação</label>
                     </span>
@@ -96,8 +96,9 @@
                 </div>
             </div>
         </div>
-        <div class="p-md-12 p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar"></button>
+        <div class="p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro"
+                [disabled]="!valid()"></button>
         </div>
     </div>
 </form>
