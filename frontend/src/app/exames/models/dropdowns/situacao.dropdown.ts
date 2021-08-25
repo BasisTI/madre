@@ -6,7 +6,7 @@ export const SituacaoAtivo: OpcaoDropdown[] = [
         value: 'true',
     },
     {
-        label: 'inativo',
+        label: 'Inativo',
         value: 'false',
     }
 ];

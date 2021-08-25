@@ -40,6 +40,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   exameSelecionado: number;
   salaSelecionada: number;
+  grupoSelecionado: number;
 
   situacaoGrade = SituacaoAtivo;
   
@@ -48,7 +49,8 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     unidadeExecutoraId: [null, Validators.required],
     responsavelId: [null, Validators.required],
     ativo: [null, Validators.required],
-    grupoAgendamentoExameId: [null]
+    exameGradeId: [null],
+    salaGradeId: [null]
   });
 
   validarFormulario(): boolean {
@@ -66,14 +68,20 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   
   cadastrarGradeDeAgendamento(){
     const cadastroGradeValor = this.cadastroGrade.value;
+    console.log(`nome exame: ${this.exames[cadastroGradeValor.exameGradeId-1].nome}`);
+    console.log(`nome sala: ${this.salas[this.salaSelecionada-1].identificacaoDaSala}`);
 
     const cadastro: GradesDeAgendamento = {
       unidadeExecutoraId: cadastroGradeValor.unidadeExecutoraId,
       responsavelId: cadastroGradeValor.responsavelId,
       ativo: cadastroGradeValor.ativo,
       salaGradeId: this.salaSelecionada,
-      exameGradeId: this.exameSelecionado,
-      grupoAgendamentoExameId: cadastroGradeValor.grupoAgendamentoExameId
+      salaGradeIdentificacaoDaSala: this.salas[this.salaSelecionada-1].identificacaoDaSala,
+      exameGradeId: cadastroGradeValor.exameGradeId,
+      exameGradeNome: this.exames[cadastroGradeValor.exameGradeId-1].nome,
+      grupoAgendamentoExameId: this.grupoSelecionado,
+      // responsavelNome: this.responsaveis[cadastroGradeValor.responsavelId-1].nomeDoResponsavel,
+      // unidadeExecutoraNome: this.unidadesExecutoras[cadastroGradeValor.unidadeExecutoraId-1].nome
     };
 
     console.log(cadastroGradeValor);

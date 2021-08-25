@@ -18,7 +18,6 @@ import java.util.Set;
 @Entity
 @Table(name = "grade_de_agendamento")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "gradedeagendamento")
 public class GradeDeAgendamento implements Serializable {
 
     private static final long serialVersionUID = 1L;

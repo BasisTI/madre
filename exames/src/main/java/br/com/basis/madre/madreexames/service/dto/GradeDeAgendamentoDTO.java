@@ -6,8 +6,9 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.GradeDeAgendamento} entity.
  */
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-gradedeagendamento")
 public class GradeDeAgendamentoDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -18,7 +19,6 @@ public class GradeDeAgendamentoDTO implements Serializable {
     @NotNull
     private Boolean ativo;
 
-
     private Long exameGradeId;
 
     private String exameGradeNome;
@@ -28,7 +28,21 @@ public class GradeDeAgendamentoDTO implements Serializable {
     private String salaGradeIdentificacaoDaSala;
 
     private Long grupoAgendamentoExameId;
-    
+
+    public GradeDeAgendamentoDTO(Long id, Integer unidadeExecutoraId, Integer responsavelId, Boolean ativo, Long exameGradeId, String exameGradeNome, Long salaGradeId, String salaGradeIdentificacaoDaSala, Long grupoAgendamentoExameId) {
+        this.id = id;
+        this.unidadeExecutoraId = unidadeExecutoraId;
+        this.responsavelId = responsavelId;
+        this.ativo = ativo;
+        this.exameGradeId = exameGradeId;
+        this.exameGradeNome = exameGradeNome;
+        this.salaGradeId = salaGradeId;
+        this.salaGradeIdentificacaoDaSala = salaGradeIdentificacaoDaSala;
+        this.grupoAgendamentoExameId = grupoAgendamentoExameId;
+    }
+
+    public GradeDeAgendamentoDTO() { }
+
     public Long getId() {
         return id;
     }

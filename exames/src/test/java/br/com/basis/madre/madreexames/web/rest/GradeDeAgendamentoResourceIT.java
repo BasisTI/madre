@@ -128,7 +128,7 @@ public class GradeDeAgendamentoResourceIT {
         assertThat(testGradeDeAgendamento.isAtivo()).isEqualTo(DEFAULT_ATIVO);
 
         // Validate the GradeDeAgendamento in Elasticsearch
-        verify(mockGradeDeAgendamentoSearchRepository, times(1)).save(testGradeDeAgendamento);
+        verify(mockGradeDeAgendamentoSearchRepository, times(1)).save(gradeDeAgendamentoDTO);
     }
 
     @Test
@@ -151,7 +151,7 @@ public class GradeDeAgendamentoResourceIT {
         assertThat(gradeDeAgendamentoList).hasSize(databaseSizeBeforeCreate);
 
         // Validate the GradeDeAgendamento in Elasticsearch
-        verify(mockGradeDeAgendamentoSearchRepository, times(0)).save(gradeDeAgendamento);
+        verify(mockGradeDeAgendamentoSearchRepository, times(0)).save(gradeDeAgendamentoDTO);
     }
 
 
@@ -210,7 +210,7 @@ public class GradeDeAgendamentoResourceIT {
             .andExpect(jsonPath("$.[*].responsavelId").value(hasItem(DEFAULT_RESPONSAVEL_ID)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getGradeDeAgendamento() throws Exception {
@@ -266,7 +266,7 @@ public class GradeDeAgendamentoResourceIT {
         assertThat(testGradeDeAgendamento.isAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the GradeDeAgendamento in Elasticsearch
-        verify(mockGradeDeAgendamentoSearchRepository, times(1)).save(testGradeDeAgendamento);
+        verify(mockGradeDeAgendamentoSearchRepository, times(1)).save(gradeDeAgendamentoDTO);
     }
 
     @Test
@@ -288,7 +288,7 @@ public class GradeDeAgendamentoResourceIT {
         assertThat(gradeDeAgendamentoList).hasSize(databaseSizeBeforeUpdate);
 
         // Validate the GradeDeAgendamento in Elasticsearch
-        verify(mockGradeDeAgendamentoSearchRepository, times(0)).save(gradeDeAgendamento);
+        verify(mockGradeDeAgendamentoSearchRepository, times(0)).save(gradeDeAgendamentoDTO);
     }
 
     @Test
@@ -318,8 +318,9 @@ public class GradeDeAgendamentoResourceIT {
         // Configure the mock search repository
         // Initialize the database
         gradeDeAgendamentoRepository.saveAndFlush(gradeDeAgendamento);
+        GradeDeAgendamentoDTO gradeDeAgendamentoDTO = gradeDeAgendamentoMapper.toDto(gradeDeAgendamento);
         when(mockGradeDeAgendamentoSearchRepository.search(queryStringQuery("id:" + gradeDeAgendamento.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(gradeDeAgendamento), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(gradeDeAgendamentoDTO), PageRequest.of(0, 1), 1));
 
         // Search the gradeDeAgendamento
         restGradeDeAgendamentoMockMvc.perform(get("/api/_search/grade-de-agendamentos?query=id:" + gradeDeAgendamento.getId()))

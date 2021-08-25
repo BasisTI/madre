@@ -10,7 +10,7 @@
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
                         [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione"
-                        pTooltip="Informe a unidade executora" formControlName="unidadeExecutoraId">
+                        formControlName="unidadeExecutoraId">
                     </p-dropdown>
                 </span>
             </div>
@@ -20,7 +20,6 @@
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
 
                     <p-dropdown [options]="" formControlName="ativo"[showClear]="true"
-                    pTooltip="Informe a Situação da grade de exames" 
                     [options]="situacaoGrade" placeholder="Selecione"></p-dropdown>
                 </span>
             </div>
@@ -30,7 +29,7 @@
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'" [filter]="true"
                         [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="salaSelecionada"
-                        pTooltip="Informe o código ou número da sala" placeholder="Selecione">
+                        placeholder="Selecione">
                     </p-dropdown>
                 </span>
             </div>
@@ -38,22 +37,22 @@
 
         <div class="p-col-12 p-grid">
 
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+            <div class="p-md-2 p-fluid">
                 Grupo de exames
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" formControlName="grupoAgendamentoExameId"
-                        pTooltip="Informe o código ou descrição do grupo de exames" placeholder="Selecione">
+                        [resetFilterOnHide]="true" [showClear]="true"
+                        [(ngModel)]="grupoSelecionado" placeholder="Selecione">
                     </p-dropdown>
                 </span>
             </div>
 
-            <div class="p-md-2 p-fluid">
+            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
                 Exame
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="exameSelecionado"
-                        pTooltip="Informe o código ou descrição do exame" placeholder="Selecione">
+                        [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="exameSelecionado" 
+                        formControlName="exameGradeId" placeholder="Selecione">
                     </p-dropdown>
                 </span>
             </div>
@@ -62,8 +61,8 @@
                 Responsável
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                     <p-dropdown [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" formControlName="responsavelId"
-                        pTooltip="Informe a matrícula ou o nome do responsável" placeholder="Selecione">
+                        [resetFilterOnHide]="true" [showClear]="true" 
+                        formControlName="responsavelId" placeholder="Selecione">
                     </p-dropdown>
                 </span>
             </div>           

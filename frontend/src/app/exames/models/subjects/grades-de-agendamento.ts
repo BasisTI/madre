@@ -9,6 +9,8 @@ export class GradesDeAgendamento {
         public salaGradeId?: number,
         public salaGradeIdentificacaoDaSala?: string,
         public exameId?: number,
-        public grupoAgendamentoExameId?: number
+        public grupoAgendamentoExameId?: number,
+        public responsavelNome?: string,
+        public unidadeExecutoraNome?: string
     ) { }
 }

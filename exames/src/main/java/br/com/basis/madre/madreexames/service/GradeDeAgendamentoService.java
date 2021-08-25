@@ -53,8 +53,8 @@ public class GradeDeAgendamentoService {
         log.debug("Request to save GradeDeAgendamento : {}", gradeDeAgendamentoDTO);
         GradeDeAgendamento gradeDeAgendamento = gradeDeAgendamentoMapper.toEntity(gradeDeAgendamentoDTO);
         gradeDeAgendamento = gradeDeAgendamentoRepository.save(gradeDeAgendamento);
-        GradeDeAgendamentoDTO result = gradeDeAgendamentoMapper.toDto(gradeDeAgendamento);
-        gradeDeAgendamentoSearchRepository.save(gradeDeAgendamento);
+        GradeDeAgendamentoDTO result = gradeDeAgendamentoRepository.buscaPorId(gradeDeAgendamento.getId());
+        gradeDeAgendamentoSearchRepository.save(result);
         return result;
     }
 
@@ -106,8 +106,7 @@ public class GradeDeAgendamentoService {
     @Transactional(readOnly = true)
     public Page<GradeDeAgendamentoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of GradeDeAgendamentos for query {}", query);
-        return gradeDeAgendamentoSearchRepository.search(queryStringQuery(query), pageable)
-            .map(gradeDeAgendamentoMapper::toDto);
+        return gradeDeAgendamentoSearchRepository.search(queryStringQuery(query), pageable);
     }
 
     @Transactional(readOnly = true)
@@ -115,6 +114,7 @@ public class GradeDeAgendamentoService {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, "id", id);
         filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
+        filter(queryBuilder, "ativo", ativo);
         filter(queryBuilder, "salaGradeId", salaGradeId);
         filter(queryBuilder, "grupoAgendamentoExameId", grupoAgendamentoExameId);
         filter(queryBuilder, "exameGradeId", exameGradeId);
@@ -123,7 +123,7 @@ public class GradeDeAgendamentoService {
             .withQuery(queryBuilder)
             .withPageable(pageable)
             .build();
-        return gradeDeAgendamentoSearchRepository.search(query).map(gradeDeAgendamentoMapper::toDto);
+        return gradeDeAgendamentoSearchRepository.search(query);
     }
 
     private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {

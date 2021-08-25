@@ -41,6 +41,8 @@ export class ListarGradeDeExameComponent implements OnInit {
 
   situacaoGrade = SituacaoAtivo;
 
+  searchUrl:string = 'madreexames/api/_search/grades-de-agendamento';
+
 
   constructor(private gradeAgendamentoService: GradeDeAgendamentoService,
     private unidadeFuncionalService: UnidadeFuncionalService,
