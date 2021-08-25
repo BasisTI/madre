@@ -1,5 +1,7 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import lombok.AllArgsConstructor;
+
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.GradeDeAgendamento} entity.
  */
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-gradedeagendamento")
+@AllArgsConstructor
 public class GradeDeAgendamentoDTO implements Serializable {
 
     private Long id;
@@ -23,23 +26,13 @@ public class GradeDeAgendamentoDTO implements Serializable {
 
     private String exameGradeNome;
 
+    private Long grupoGradeId;
+
+    private String grupoGradeNome;
+
     private Long salaGradeId;
 
     private String salaGradeIdentificacaoDaSala;
-
-    private Long grupoAgendamentoExameId;
-
-    public GradeDeAgendamentoDTO(Long id, Integer unidadeExecutoraId, Integer responsavelId, Boolean ativo, Long exameGradeId, String exameGradeNome, Long salaGradeId, String salaGradeIdentificacaoDaSala, Long grupoAgendamentoExameId) {
-        this.id = id;
-        this.unidadeExecutoraId = unidadeExecutoraId;
-        this.responsavelId = responsavelId;
-        this.ativo = ativo;
-        this.exameGradeId = exameGradeId;
-        this.exameGradeNome = exameGradeNome;
-        this.salaGradeId = salaGradeId;
-        this.salaGradeIdentificacaoDaSala = salaGradeIdentificacaoDaSala;
-        this.grupoAgendamentoExameId = grupoAgendamentoExameId;
-    }
 
     public GradeDeAgendamentoDTO() { }
 
@@ -91,6 +84,22 @@ public class GradeDeAgendamentoDTO implements Serializable {
         this.exameGradeNome = exameNome;
     }
 
+    public Long getGrupoGradeId() {
+        return grupoGradeId;
+    }
+
+    public void setGrupoGradeId(Long grupoGradeId) {
+        this.grupoGradeId = grupoGradeId;
+    }
+
+    public String getGrupoGradeNome() {
+        return grupoGradeNome;
+    }
+
+    public void setGrupoGradeNome(String grupoGradeNome) {
+        this.grupoGradeNome = grupoGradeNome;
+    }
+
     public Long getSalaGradeId() {
         return salaGradeId;
     }
@@ -105,14 +114,6 @@ public class GradeDeAgendamentoDTO implements Serializable {
 
     public void setSalaGradeIdentificacaoDaSala(String salaIdentificacaoDaSala) {
         this.salaGradeIdentificacaoDaSala = salaIdentificacaoDaSala;
-    }
-
-    public Long getGrupoAgendamentoExameId() {
-        return grupoAgendamentoExameId;
-    }
-
-    public void setGrupoAgendamentoExameId(Long grupoAgendamentoExameId) {
-        this.grupoAgendamentoExameId = grupoAgendamentoExameId;
     }
 
     @Override
@@ -144,7 +145,8 @@ public class GradeDeAgendamentoDTO implements Serializable {
             ", exameGradeNome='" + getExameGradeNome() + "'" +
             ", salaGradeId=" + getSalaGradeId() +
             ", salaGradeIdentificacaoDaSala='" + getSalaGradeIdentificacaoDaSala() + "'" +
-            ", grupoAgendamentoExameId=" + getGrupoAgendamentoExameId() +
+            ", grupoGradeId=" + getGrupoGradeId() +
+            ", grupoGradeNome" + getGrupoGradeNome() + "''" +
             "}";
     }
 }

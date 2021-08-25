@@ -3,24 +3,16 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
-    <!--
-        Added the constraints for entity GradeDeAgendamento.
-    -->
-    <changeSet id="20210818154625-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="exame_grade_id"
+    <changeSet id="20210818154625-2" author="alexandre">
+
+        <addForeignKeyConstraint baseColumnNames="grupo_grade_id"
                                  baseTableName="grade_de_agendamento"
-                                 constraintName="fk_grade_de_agendamento_exame_grade_id"
+                                 constraintName="fk_grade_de_agendamento_grupo_grade_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="exame"/>
+                                 referencedTableName="grupo_agendamento_exame"/>
 
-        <addForeignKeyConstraint baseColumnNames="sala_grade_id"
-                                 baseTableName="grade_de_agendamento"
-                                 constraintName="fk_grade_de_agendamento_sala_grade_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="sala"/>
-
-        <addForeignKeyConstraint baseColumnNames="grupo_agendamento_exame_id"
+        <dropForeignKeyConstraint baseColumnNames="grupo_agendamento_exame_id"
                                  baseTableName="grade_de_agendamento"
                                  constraintName="fk_grade_de_agendamento_grupo_agendamento_exame_id"
                                  referencedColumnNames="id"

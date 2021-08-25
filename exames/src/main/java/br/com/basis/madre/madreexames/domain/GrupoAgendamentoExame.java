@@ -45,10 +45,6 @@ public class GrupoAgendamentoExame implements Serializable {
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
 
-    @OneToMany(mappedBy = "grupoAgendamentoExame")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<GradeDeAgendamento> grupoExameGrades = new HashSet<>();
-
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinTable(name = "grupo_agendamento_exame_exame",
@@ -128,31 +124,6 @@ public class GrupoAgendamentoExame implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Set<GradeDeAgendamento> getGrupoExameGrades() {
-        return grupoExameGrades;
-    }
-
-    public GrupoAgendamentoExame grupoExameGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
-        this.grupoExameGrades = gradeDeAgendamentos;
-        return this;
-    }
-
-    public GrupoAgendamentoExame addGrupoExameGrade(GradeDeAgendamento gradeDeAgendamento) {
-        this.grupoExameGrades.add(gradeDeAgendamento);
-        gradeDeAgendamento.setGrupoAgendamentoExame(this);
-        return this;
-    }
-
-    public GrupoAgendamentoExame removeGrupoExameGrade(GradeDeAgendamento gradeDeAgendamento) {
-        this.grupoExameGrades.remove(gradeDeAgendamento);
-        gradeDeAgendamento.setGrupoAgendamentoExame(null);
-        return this;
-    }
-
-    public void setGrupoExameGrades(Set<GradeDeAgendamento> gradeDeAgendamentos) {
-        this.grupoExameGrades = gradeDeAgendamentos;
     }
 
     public Set<Exame> getExames() {

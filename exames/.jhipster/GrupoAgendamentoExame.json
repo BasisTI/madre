@@ -4,12 +4,16 @@
     {
       "fieldName": "nome",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "codigo",
       "fieldType": "Integer",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "agendarEmConjunto",
@@ -22,16 +26,12 @@
     {
       "fieldName": "ativo",
       "fieldType": "Boolean",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
   "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "gradeDeAgendamento",
-      "otherEntityRelationshipName": "grupoAgendamentoExame",
-      "relationshipName": "grupoExameGrade"
-    },
     {
       "relationshipType": "many-to-many",
       "otherEntityName": "exame",

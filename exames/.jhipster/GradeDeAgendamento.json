@@ -32,17 +32,17 @@
     },
     {
       "relationshipType": "many-to-one",
+      "otherEntityName": "grupoAgendamentoExame",
+      "otherEntityRelationshipName": "gradeDeAgendamento",
+      "relationshipName": "grupoGrade",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
       "otherEntityName": "sala",
       "otherEntityRelationshipName": "gradeDeAgendamento",
       "relationshipName": "salaGrade",
       "otherEntityField": "identificacaoDaSala"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "grupoAgendamentoExame",
-      "otherEntityRelationshipName": "grupoExameGrade",
-      "relationshipName": "grupoAgendamentoExame",
-      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20210818154625",

@@ -120,11 +120,11 @@ Material{material(nome)} to Recomendacao,
 SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
 GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
 HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
-GrupoAgendamentoExame{grupoExameGrade(nome)} to GradeDeAgendamento
 }
 
 relationship ManyToOne {
 GradeDeAgendamento{exameGrade(nome)} to Exame
+GradeDeAgendamento{grupoGrade(nome)} to GrupoAgendamentoExame
 GradeDeAgendamento{salaGrade(identificacaoDaSala)} to Sala
 Exame{materialExame(nome)} to Material,
 Sinonimo{sinonimo(nome)} to Exame,

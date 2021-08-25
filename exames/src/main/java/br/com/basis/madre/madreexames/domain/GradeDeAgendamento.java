@@ -18,6 +18,7 @@ import java.util.Set;
 @Entity
 @Table(name = "grade_de_agendamento")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "gradedeagendamento")
 public class GradeDeAgendamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,11 +49,11 @@ public class GradeDeAgendamento implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "gradeDeAgendamentos", allowSetters = true)
-    private Sala salaGrade;
+    private GrupoAgendamentoExame grupoGrade;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "grupoExameGrades", allowSetters = true)
-    private GrupoAgendamentoExame grupoAgendamentoExame;
+    @JsonIgnoreProperties(value = "gradeDeAgendamentos", allowSetters = true)
+    private Sala salaGrade;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -140,6 +141,19 @@ public class GradeDeAgendamento implements Serializable {
         this.exameGrade = exame;
     }
 
+    public GrupoAgendamentoExame getGrupoGrade() {
+        return grupoGrade;
+    }
+
+    public GradeDeAgendamento grupoGrade(GrupoAgendamentoExame grupoAgendamentoExame) {
+        this.grupoGrade = grupoAgendamentoExame;
+        return this;
+    }
+
+    public void setGrupoGrade(GrupoAgendamentoExame grupoAgendamentoExame) {
+        this.grupoGrade = grupoAgendamentoExame;
+    }
+
     public Sala getSalaGrade() {
         return salaGrade;
     }
@@ -151,19 +165,6 @@ public class GradeDeAgendamento implements Serializable {
 
     public void setSalaGrade(Sala sala) {
         this.salaGrade = sala;
-    }
-
-    public GrupoAgendamentoExame getGrupoAgendamentoExame() {
-        return grupoAgendamentoExame;
-    }
-
-    public GradeDeAgendamento grupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.grupoAgendamentoExame = grupoAgendamentoExame;
-        return this;
-    }
-
-    public void setGrupoAgendamentoExame(GrupoAgendamentoExame grupoAgendamentoExame) {
-        this.grupoAgendamentoExame = grupoAgendamentoExame;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
