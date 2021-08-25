@@ -344,21 +344,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                             routerLink: ['/seguranca/servidores'],
                         },
                         {
-                            label: 'Cadastro de Servidores',
-                            icon: 'add',
-                            routerLink: ['/seguranca/formulario-servidor'],
-                        },
-                        {
-                            label: 'Pesquisa de Graduações de Servidores',
-                            icon: 'add',
-                            routerLink: ['/seguranca/graduacoes-de-servidores'],
-                        },
-                        {
-                            label: 'Cadastro de Graduações',
-                            icon: 'add',
-                            routerLink: ['/seguranca/formulario-graduacoes-de-servidores'],
-                        },
-                        {
                             label: 'Cadastrar Vínculos',
                             icon: 'add',
                             routerLink: ['/seguranca/vinculos'],

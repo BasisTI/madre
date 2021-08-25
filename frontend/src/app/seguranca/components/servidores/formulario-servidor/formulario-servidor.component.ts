@@ -20,10 +20,10 @@ import { ServidorModel } from 'src/app/seguranca/models/servidor-model';
 import { ListaVinculosServidor } from 'src/app/seguranca/models/dropdowns/lista-vinculo-servidor';
 import { OcupacaoDeCargo } from 'src/app/seguranca/models/dropdowns/ocupacao-de-cargo';
 import { OcupacoesDeCargoService } from 'src/app/seguranca/services/ocupacoes-de-cargos.service';
-import { Pessoa } from 'src/app/seguranca/models/pessoa-model';
 import { Login } from 'src/app/seguranca/models/login-model';
 import { Vinculo } from 'src/app/seguranca/models/vinculo-resumo-model';
 import { GrupoFuncional } from 'src/app/seguranca/models/grupo-funcional-model';
+import { Pessoa } from 'src/app/seguranca/models/pessoa-resumo-model';
 
 
 @Component({
@@ -109,7 +109,7 @@ export class FormularioServidorComponent implements OnInit {
   opcoesDeTipoDeRemuneracao = OPCOES_DE_TIPO_DE_REMUNERACAO;
 
   ngOnInit(): void {
-    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, dataDeNascimento: null, nome: "Selecione" }) });
+    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, dataDeNascimento: null, nome: "Selecione", codigo: null }) });
     this.loginService.getUsuario().subscribe((response) => { this.login = response; this.login.unshift({ id: null, login: "Selecione" }) });
     this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id: null, descricao: "Selecione", matricula: null }) });
     this.centrosService.getCentros().subscribe((response) => { this.centros = response; this.centros.unshift({ id: null, descricao: "Selecione" }) });

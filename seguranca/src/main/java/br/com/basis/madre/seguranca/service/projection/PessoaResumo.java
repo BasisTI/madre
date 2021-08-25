@@ -9,5 +9,6 @@ import java.time.LocalDate;
 public interface PessoaResumo {
     Long getId();
     String getNome();
-    LocalDate getDataDeNascimento();
+    Long getCodigo();
+
 }

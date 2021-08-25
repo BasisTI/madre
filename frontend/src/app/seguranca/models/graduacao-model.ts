@@ -16,5 +16,11 @@ export class GraduacaoModel {
 
         public nroRegConselho?: string,
 
+        public servidorId?: number,
+
+        public tiposDeQualificacaoId?: number,
+
+        public instituicaoId?: number,
+
        ) {}
 }
