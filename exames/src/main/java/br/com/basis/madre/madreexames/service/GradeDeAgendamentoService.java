@@ -4,6 +4,8 @@ import br.com.basis.madre.madreexames.domain.GradeDeAgendamento;
 import br.com.basis.madre.madreexames.repository.GradeDeAgendamentoRepository;
 import br.com.basis.madre.madreexames.repository.search.GradeDeAgendamentoSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.GradeDeAgendamentoDTO;
+import br.com.basis.madre.madreexames.service.integracao.InternacaoClient;
+import br.com.basis.madre.madreexames.service.integracao.SegurancaClient;
 import br.com.basis.madre.madreexames.service.mapper.GradeDeAgendamentoMapper;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -31,13 +33,19 @@ public class GradeDeAgendamentoService {
 
     private final Logger log = LoggerFactory.getLogger(GradeDeAgendamentoService.class);
 
+    private final SegurancaClient segurancaClient;
+
+    private final InternacaoClient internacaoClient;
+
     private final GradeDeAgendamentoRepository gradeDeAgendamentoRepository;
 
     private final GradeDeAgendamentoMapper gradeDeAgendamentoMapper;
 
     private final GradeDeAgendamentoSearchRepository gradeDeAgendamentoSearchRepository;
 
-    public GradeDeAgendamentoService(GradeDeAgendamentoRepository gradeDeAgendamentoRepository, GradeDeAgendamentoMapper gradeDeAgendamentoMapper, GradeDeAgendamentoSearchRepository gradeDeAgendamentoSearchRepository) {
+    public GradeDeAgendamentoService(SegurancaClient segurancaClient, InternacaoClient internacaoClient, GradeDeAgendamentoRepository gradeDeAgendamentoRepository, GradeDeAgendamentoMapper gradeDeAgendamentoMapper, GradeDeAgendamentoSearchRepository gradeDeAgendamentoSearchRepository) {
+        this.segurancaClient = segurancaClient;
+        this.internacaoClient = internacaoClient;
         this.gradeDeAgendamentoRepository = gradeDeAgendamentoRepository;
         this.gradeDeAgendamentoMapper = gradeDeAgendamentoMapper;
         this.gradeDeAgendamentoSearchRepository = gradeDeAgendamentoSearchRepository;
@@ -54,6 +62,8 @@ public class GradeDeAgendamentoService {
         GradeDeAgendamento gradeDeAgendamento = gradeDeAgendamentoMapper.toEntity(gradeDeAgendamentoDTO);
         gradeDeAgendamento = gradeDeAgendamentoRepository.save(gradeDeAgendamento);
         GradeDeAgendamentoDTO result = gradeDeAgendamentoRepository.buscaPorId(gradeDeAgendamento.getId());
+        result.setUnidadeExecutoraNome(internacaoClient.getUnidadeFuncional(gradeDeAgendamentoDTO.getUnidadeExecutoraId()).getNome());
+        result.setResponsavelNome(segurancaClient.getPessoa(gradeDeAgendamentoDTO.getResponsavelId()).getNome());
         gradeDeAgendamentoSearchRepository.save(result);
         return result;
     }

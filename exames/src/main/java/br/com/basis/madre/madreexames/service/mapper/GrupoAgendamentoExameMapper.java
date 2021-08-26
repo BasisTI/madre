@@ -13,10 +13,7 @@ import org.mapstruct.*;
 public interface GrupoAgendamentoExameMapper extends EntityMapper<GrupoAgendamentoExameDTO, GrupoAgendamentoExame> {
 
 
-    @Mapping(target = "grupoExameGrades", ignore = true)
-    @Mapping(target = "removeGrupoExameGrade", ignore = true)
     @Mapping(target = "removeExame", ignore = true)
-    GrupoAgendamentoExame toEntity(GrupoAgendamentoExameDTO grupoAgendamentoExameDTO);
 
     default GrupoAgendamentoExame fromId(Long id) {
         if (id == null) {

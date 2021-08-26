@@ -90,11 +90,11 @@
                     <basis-datatable [url]="searchUrl" [verticalButtons]="false" #datatable
                         type="memory" [value]="gradeAgendamento" sortField="brand">
                         <p-column header="Grade" field="id"></p-column>
-                        <p-column header="Unid. Executora" field="unidadeExecutoraId"></p-column>
+                        <p-column header="Unid. Executora" field="unidadeExecutoraNome"></p-column>
                         <p-column header="Sala" field="salaGradeIdentificacaoDaSala"></p-column>  
                         <p-column header="Grupo" field="grupoGradeNome"> </p-column>  
                         <p-column header="Exame" field="exameGradeNome"> </p-column>  
-                        <p-column header="Responsável" field="responsavelId"> </p-column>  
+                        <p-column header="Responsável" field="responsavelNome"> </p-column>  
                         <p-column header="Situação" field="ativo">
                             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                             <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>

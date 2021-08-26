@@ -437,6 +437,18 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>br.com.basis.madre.seguranca</groupId>
+            <artifactId>madreseguranca</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>br.com.basis.madre</groupId>
+            <artifactId>internacao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
     <build>
@@ -987,6 +999,7 @@
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-devtools</artifactId>
+                    <scope>runtime</scope>
                     <optional>true</optional>
                 </dependency>
             </dependencies>

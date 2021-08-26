@@ -78,7 +78,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       exameGradeId: cadastroGradeValor.exameGradeId,
       exameGradeNome: this.exames[cadastroGradeValor.exameGradeId-1].nome,
       grupoGradeId: this.grupoSelecionado,
-      grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome
+      grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome,
       // responsavelNome: this.responsaveis[cadastroGradeValor.responsavelId-1].nomeDoResponsavel,
       // unidadeExecutoraNome: this.unidadesExecutoras[cadastroGradeValor.unidadeExecutoraId-1].nome
     };

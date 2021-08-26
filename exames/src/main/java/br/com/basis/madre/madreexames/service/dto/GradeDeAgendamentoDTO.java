@@ -1,6 +1,7 @@
 package br.com.basis.madre.madreexames.service.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  */
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-gradedeagendamento")
 @AllArgsConstructor
+@NoArgsConstructor
 public class GradeDeAgendamentoDTO implements Serializable {
 
     private Long id;
@@ -34,7 +36,22 @@ public class GradeDeAgendamentoDTO implements Serializable {
 
     private String salaGradeIdentificacaoDaSala;
 
-    public GradeDeAgendamentoDTO() { }
+    private String responsavelNome;
+
+    private String unidadeExecutoraNome;
+
+    public GradeDeAgendamentoDTO(Long id, Integer unidadeExecutoraId, Integer responsavelId, Boolean ativo, Long exameGradeId, String exameGradeNome, Long grupoGradeId, String grupoGradeNome, Long salaGradeId, String salaGradeIdentificacaoDaSala) {
+        this.id = id;
+        this.unidadeExecutoraId = unidadeExecutoraId;
+        this.responsavelId = responsavelId;
+        this.ativo = ativo;
+        this.exameGradeId = exameGradeId;
+        this.exameGradeNome = exameGradeNome;
+        this.grupoGradeId = grupoGradeId;
+        this.grupoGradeNome = grupoGradeNome;
+        this.salaGradeId = salaGradeId;
+        this.salaGradeIdentificacaoDaSala = salaGradeIdentificacaoDaSala;
+    }
 
     public Long getId() {
         return id;
@@ -116,6 +133,22 @@ public class GradeDeAgendamentoDTO implements Serializable {
         this.salaGradeIdentificacaoDaSala = salaIdentificacaoDaSala;
     }
 
+    public String getResponsavelNome() {
+        return responsavelNome;
+    }
+
+    public void setResponsavelNome(String responsavelNome) {
+        this.responsavelNome = responsavelNome;
+    }
+
+    public String getUnidadeExecutoraNome() {
+        return unidadeExecutoraNome;
+    }
+
+    public void setUnidadeExecutoraNome(String unidadeExecutoraNome) {
+        this.unidadeExecutoraNome = unidadeExecutoraNome;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -137,16 +170,18 @@ public class GradeDeAgendamentoDTO implements Serializable {
     @Override
     public String toString() {
         return "GradeDeAgendamentoDTO{" +
-            "id=" + getId() +
-            ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
-            ", responsavelId=" + getResponsavelId() +
-            ", ativo='" + isAtivo() + "'" +
-            ", exameGradeId=" + getExameGradeId() +
-            ", exameGradeNome='" + getExameGradeNome() + "'" +
-            ", salaGradeId=" + getSalaGradeId() +
-            ", salaGradeIdentificacaoDaSala='" + getSalaGradeIdentificacaoDaSala() + "'" +
-            ", grupoGradeId=" + getGrupoGradeId() +
-            ", grupoGradeNome" + getGrupoGradeNome() + "''" +
-            "}";
+            "id=" + id +
+            ", unidadeExecutoraId=" + unidadeExecutoraId +
+            ", responsavelId=" + responsavelId +
+            ", ativo=" + ativo +
+            ", exameGradeId=" + exameGradeId +
+            ", exameGradeNome='" + exameGradeNome + '\'' +
+            ", grupoGradeId=" + grupoGradeId +
+            ", grupoGradeNome='" + grupoGradeNome + '\'' +
+            ", salaGradeId=" + salaGradeId +
+            ", salaGradeIdentificacaoDaSala='" + salaGradeIdentificacaoDaSala + '\'' +
+            ", responsavelNome='" + responsavelNome + '\'' +
+            ", unidadeExecutoraNome='" + unidadeExecutoraNome + '\'' +
+            '}';
     }
 }
