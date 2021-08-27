@@ -9,5 +9,6 @@ public interface ServidorResumo {
     String getMatricula();
     Long getVinculoId();
     Long getPessoaId();
+    String getPessoaNome();
 
 }
