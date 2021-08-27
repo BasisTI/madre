@@ -44,7 +44,7 @@ export class AtendimentoDiversoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cadaverService: CadaverService, 
+    private cadaverService: CadaverService,
     private controleQualidadeservice: ControleQualidadeservice,
     private laboratorioExternoService: LaboratorioExternoService,
     private centroService: CentroService,
@@ -75,7 +75,7 @@ export class AtendimentoDiversoComponent implements OnInit {
         especialidadeId : [null],
 
         centroAtividadeId : [null],
-        
+
         dataNascimento : [null],
 
         sexo : [null],
@@ -88,16 +88,16 @@ export class AtendimentoDiversoComponent implements OnInit {
 
     });
 
-       this.cadaverService.GetCadaver().subscribe((response)=>{
-         this.cadavers = response; 
+       this.cadaverService.getCadaver().subscribe((response)=>{
+         this.cadavers = response;
        });
 
        this.controleQualidadeservice.GetControleQualidade().subscribe((response)=>{
-        this.controles = response; 
+        this.controles = response;
        });
 
        this.laboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
-        this.laboratorios = response; 
+        this.laboratorios = response;
        });
 
        this.centroService.getListaDeCentros().subscribe((response)=>{
@@ -109,18 +109,18 @@ export class AtendimentoDiversoComponent implements OnInit {
        });
 
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
-        this.especialidades = response; 
+        this.especialidades = response;
        });
-       this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
-       this.unidadesFuncionais = response; 
-      });
+      //  this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
+      //  this.unidadesFuncionais = response;
+      // });
   }
 
   valid(): boolean {
     return this.cadastroAtendimentoDiverso.valid;
   }
 
-  cadastrar() { 
+  cadastrar() {
     if (!this.cadastroAtendimentoDiverso.valid){
       this.pageNotificationService.addErrorMessage('preencher o campo codigo')
       return;

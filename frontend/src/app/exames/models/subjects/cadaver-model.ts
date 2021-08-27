@@ -1,18 +1,18 @@
 export class CadaverModel {
-    codigo?:number;
-    nome?:string;
-    data_nascimento?:number;
-    raca?:string;
-    grupo_sanguineo?:string;
-    data_remocao?:number;
-    causa_obito?:string;
-    realizado_por?:string;
-    lido_por?:string;
-    procedencia?:string;
-    retirada?:string;
-    codigo_plano?:string;
-    convenio_plano?:string;
-    observacao?:string;
+    constructor(
+        public nome?: string,
+        public dataNascimento?: number,
+        public raca?: string,
+        public grupoSanguineo?: string,
+        public dataRemocao?: number,
+        public causaObito?: string,
+        public realizadoPor?: string,
+        public lidoPor?: string,
+        public procedenciaId?: number,
+        public retiradaId?: number,
+        public codigoConvenioId?: number,
+        public observacao?: string
+    )  {}
 }
 
 
