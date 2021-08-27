@@ -6,26 +6,27 @@
                 <div class="p-col-3">
                     <span class="p-float-label">
                         <p-autoComplete field="matricula" [suggestions]="listaServidor"
-                            (completeMethod)="buscaServidor($event)" [dropdown]="true" formControlName="servidor">
+                            (completeMethod)="buscaServidor($event)" [dropdown]="true" formControlName="matriculaServidor"
+                            (onSelect)="aoSelecionarMatricula($event)">
                         </p-autoComplete>
                         <label>Matrícula</label>
                     </span>
                 </div>
                 <div class="p-col-3">
                     <span class="p-float-label">
-                        <input type="text" pInputText disabled formControlName="vinculo" />
+                        <input type="text" pInputText disabled formControlName="vinculoId" />
                         <label>Vínculo</label>
                     </span>
                 </div>
                 <div class="p-col-3">
                     <span class="p-float-label">
-                        <input type="text" pInputText disabled formControlName="nome" />
+                        <input type="text" pInputText disabled formControlName="nomePessoa" />
                         <label>Nome</label>
                     </span>
                 </div>
                 <div class="p-col-3">
                     <span class="p-float-label">
-                        <input type="text" pInputText disabled formControlName="pessoa" />
+                        <input type="text" pInputText disabled formControlName="pessoaId" />
                         <label>Pessoa</label>
                     </span>
                 </div>

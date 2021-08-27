@@ -6,7 +6,6 @@ import { ListaTiposDeQualificacao } from 'src/app/seguranca/models/dropdowns/lis
 import { OPCOES_DE_SITUACOES_GRADUACAO } from 'src/app/seguranca/models/dropdowns/opcoes-de-situacoes-graduacao';
 import { GraduacaoModel } from 'src/app/seguranca/models/graduacao-model';
 import { Pessoa } from 'src/app/seguranca/models/pessoa-resumo-model';
-import { ServidorModel } from 'src/app/seguranca/models/servidor-model';
 import { Servidor } from 'src/app/seguranca/models/servidor-resumo-model';
 import { Vinculo } from 'src/app/seguranca/models/vinculo-resumo-model';
 import { GraduacaoService } from 'src/app/seguranca/services/graduacao.service';
@@ -35,12 +34,11 @@ export class FormularioGraduacoesComponent implements OnInit {
   situacaoDaGraduacao = OPCOES_DE_SITUACOES_GRADUACAO;
   listaServidor = new Array<ListaServidor>();
 
-
   formGraduacao = this.fb.group({
-    servidor: [''],
-    vinculo: [''],
-    nome: [''],
-    pessoa: [''],
+    matriculaServidor: [''],
+    vinculoId: [''],
+    nomePessoa: [''],
+    pessoaId: [''],
     id: [''],
     curso: ['', Validators.required],
     instituicao: ['', Validators.required],
@@ -84,7 +82,7 @@ export class FormularioGraduacoesComponent implements OnInit {
       situacao: grad.situacao,
       semestre: grad.semestre,
       nroRegConselho: grad.nroRegConselho,
-      servidorId: grad.servidor?.id,
+      servidorId: grad.matriculaServidor?.id,
       instituicaoId: grad.instituicao?.id,
       tiposDeQualificacaoId: grad.curso?.id,
     };
@@ -95,7 +93,6 @@ export class FormularioGraduacoesComponent implements OnInit {
       });
     } else {
       this.graduacaoService.cadastrarServidor(graduacao).subscribe((e) => {
-        console.log(graduacao.servidorId)
         this.formGraduacao.reset();
       });
     }
@@ -104,4 +101,12 @@ export class FormularioGraduacoesComponent implements OnInit {
   valid(): boolean {
     return this.formGraduacao.valid;
   }
+
+  aoSelecionarMatricula(servidor: Servidor): void{
+    console.log(servidor.pessoaId);
+    this.formGraduacao.controls['vinculoId'].setValue(servidor.vinculoId);
+    // this.formGraduacao.controls['nomePessoa'].setValue(pessoa.nome);
+    this.formGraduacao.controls['pessoaId'].setValue(servidor.pessoaId);
+  }
+
 }

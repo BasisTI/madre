@@ -1,11 +1,13 @@
 export interface IServidor {
+    id?: number;
     matricula?: string;
-    codigo?: number;
     vinculoId?: number;
+    pessoaId?: number;
 }
 
 export class Servidor implements IServidor {
+    public id: number;
     public matricula: string;
-    public codigo: number;
     public vinculoId: number;
+    public pessoaId: number;
 }

@@ -6,8 +6,11 @@ export interface IPessoa {
 }
 
 export class Pessoa implements IPessoa {
-    public nome: string;
-    public id: number;
-    public codigo: number;
-    public dataDeNascimento: Date;
+    constructor( 
+        public nome?: string,
+        public id?: number,
+        public codigo?: number,
+        public dataDeNascimento?: Date,
+
+    ){}
 }
