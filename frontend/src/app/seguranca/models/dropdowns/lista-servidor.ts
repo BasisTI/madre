@@ -3,4 +3,5 @@ export interface ListaServidor {
     matricula: string;
     vinculoId: number;
     pessoaId: number;
+    pessoaNome: number;
 }

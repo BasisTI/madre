@@ -5,9 +5,7 @@ import { ListaServidor } from 'src/app/seguranca/models/dropdowns/lista-servidor
 import { ListaTiposDeQualificacao } from 'src/app/seguranca/models/dropdowns/lista-tipo-de-qualificacao';
 import { OPCOES_DE_SITUACOES_GRADUACAO } from 'src/app/seguranca/models/dropdowns/opcoes-de-situacoes-graduacao';
 import { GraduacaoModel } from 'src/app/seguranca/models/graduacao-model';
-import { Pessoa } from 'src/app/seguranca/models/pessoa-resumo-model';
 import { Servidor } from 'src/app/seguranca/models/servidor-resumo-model';
-import { Vinculo } from 'src/app/seguranca/models/vinculo-resumo-model';
 import { GraduacaoService } from 'src/app/seguranca/services/graduacao.service';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 import { TiposDeQualificaoService } from 'src/app/seguranca/services/tipo-de-qualificacao.service';
@@ -103,10 +101,8 @@ export class FormularioGraduacoesComponent implements OnInit {
   }
 
   aoSelecionarMatricula(servidor: Servidor): void{
-    console.log(servidor.pessoaId);
     this.formGraduacao.controls['vinculoId'].setValue(servidor.vinculoId);
-    // this.formGraduacao.controls['nomePessoa'].setValue(pessoa.nome);
+    this.formGraduacao.controls['nomePessoa'].setValue(servidor.pessoaNome);
     this.formGraduacao.controls['pessoaId'].setValue(servidor.pessoaId);
   }
-
 }
