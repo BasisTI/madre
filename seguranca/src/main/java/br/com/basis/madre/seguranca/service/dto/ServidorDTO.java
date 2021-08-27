@@ -54,7 +54,7 @@ public class ServidorDTO implements Serializable {
 
     private Long pessoaId;
 
-    private String pessoaCodigo;
+    private String pessoaNome;
 
     private Long ramalId;
 
@@ -224,12 +224,12 @@ public class ServidorDTO implements Serializable {
         this.pessoaId = pessoaId;
     }
 
-    public String getPessoaCodigo() {
-        return pessoaCodigo;
+    public String getPessoaNome() {
+        return pessoaNome;
     }
 
-    public void setPessoaCodigo(String pessoaCodigo) {
-        this.pessoaCodigo = pessoaCodigo;
+    public void setPessoaNome(String pessoaNome) {
+        this.pessoaNome = pessoaNome;
     }
 
     public Long getRamalId() {
@@ -305,7 +305,7 @@ public class ServidorDTO implements Serializable {
             ", vinculoId=" + getVinculoId() +
             ", vinculoDescricao='" + getVinculoDescricao() + "'" +
             ", pessoaId=" + getPessoaId() +
-            ", pessoaCodigo='" + getPessoaCodigo() + "'" +
+            ", pessoaNome='" + getPessoaNome() + "'" +
             ", ramalId=" + getRamalId() +
             ", ramalNumero='" + getRamalNumero() + "'" +
             ", usuarioId=" + getUsuarioId() +

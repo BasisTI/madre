@@ -84,7 +84,7 @@
       "otherEntityName": "pessoa",
       "otherEntityRelationshipName": "servidor",
       "relationshipName": "pessoa",
-      "otherEntityField": "codigo",
+      "otherEntityField": "nome",
       "ownerSide": true
     },
     {

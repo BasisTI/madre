@@ -47,9 +47,9 @@ public class PessoaDTO implements Serializable {
     private String email;
 
 
-    private Long documenetosId;
+    private Long documentosId;
 
-    private String documenetosNumeroDaIdentidade;
+    private String documentosNumeroDaIdentidade;
 
     private Long cargoId;
 
@@ -159,20 +159,20 @@ public class PessoaDTO implements Serializable {
         this.email = email;
     }
 
-    public Long getDocumenetosId() {
-        return documenetosId;
+    public Long getDocumentosId() {
+        return documentosId;
     }
 
-    public void setDocumenetosId(Long documentosId) {
-        this.documenetosId = documentosId;
+    public void setDocumentosId(Long documentosId) {
+        this.documentosId = documentosId;
     }
 
-    public String getDocumenetosNumeroDaIdentidade() {
-        return documenetosNumeroDaIdentidade;
+    public String getDocumentosNumeroDaIdentidade() {
+        return documentosNumeroDaIdentidade;
     }
 
-    public void setDocumenetosNumeroDaIdentidade(String documentosNumeroDaIdentidade) {
-        this.documenetosNumeroDaIdentidade = documentosNumeroDaIdentidade;
+    public void setDocumentosNumeroDaIdentidade(String documentosNumeroDaIdentidade) {
+        this.documentosNumeroDaIdentidade = documentosNumeroDaIdentidade;
     }
 
     public Long getCargoId() {
@@ -225,8 +225,8 @@ public class PessoaDTO implements Serializable {
             ", grauDeInstrucao='" + getGrauDeInstrucao() + "'" +
             ", nomeUsual='" + getNomeUsual() + "'" +
             ", email='" + getEmail() + "'" +
-            ", documenetosId=" + getDocumenetosId() +
-            ", documenetosNumeroDaIdentidade='" + getDocumenetosNumeroDaIdentidade() + "'" +
+            ", documentosId=" + getDocumentosId() +
+            ", documentosNumeroDaIdentidade='" + getDocumentosNumeroDaIdentidade() + "'" +
             ", cargoId=" + getCargoId() +
             ", cargoDescricao='" + getCargoDescricao() + "'" +
             "}";

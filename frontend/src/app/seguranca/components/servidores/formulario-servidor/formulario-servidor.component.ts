@@ -138,7 +138,7 @@ export class FormularioServidorComponent implements OnInit {
       tempoDeContrato: form.tempoDeContrato,
       funcaoDoCracha: form.funcaoDoCracha,
       chefeDoCentroDeAtividade: form.chefeDoCentroDeAtividade,
-      vinculoId: form.vinculo,
+      vinculoId: form.vinculo?.id,
       pessoaId: form.codigo?.id,
       ramalId: form.ramal,
       usuarioId: form.login

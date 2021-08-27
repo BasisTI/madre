@@ -13,6 +13,8 @@ import { Pessoa } from 'src/app/seguranca/models/dropdowns/pessoa-model';
 import { Sala } from '../../models/subjects/sala';
 import { ExamesService } from '../../services/exames.service';
 import { GruposExamesService } from '../../services/grupos-exames.service';
+import { Servidor } from 'src/app/seguranca/models/dropdowns/servidor-model';
+import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 
 @Component({
   selector: 'app-formulario-grade-de-agendamento',
@@ -26,15 +28,14 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private gradeAgendamentoService: GradeDeAgendamentoService,
               private unidadeFuncionalService: UnidadeFuncionalService,
-              private pessoaService: PessoaService,
+              private servidorService: ServidorService,
               private exameService: ExamesService,
               private grupoExameService: GruposExamesService) { }
   
 
   unidadesExecutoras: UnidadeFuncional[] = [];
-  pessoas: Pessoa[] = [];
+  servidores: Servidor[] = [];
   gruposDeExame: GrupoModel[] = [];
-  responsaveis: Responsavel[] = [];
   salas: Sala[] = [];
   exames: ExamModel[] = [];
 
@@ -50,7 +51,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     responsavelId: [null, Validators.required],
     ativo: [null, Validators.required],
     exameGradeId: [null],
-    salaGradeId: [null]
+    salaGradeId: [null, Validators.required]
   });
 
   validarFormulario(): boolean {
@@ -79,7 +80,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       exameGradeNome: this.exames[cadastroGradeValor.exameGradeId-1].nome,
       grupoGradeId: this.grupoSelecionado,
       grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome,
-      // responsavelNome: this.responsaveis[cadastroGradeValor.responsavelId-1].nomeDoResponsavel,
+      // responsavelNome: this.servidores[cadastroGradeValor.responsavelId-1].matricula,
       // unidadeExecutoraNome: this.unidadesExecutoras[cadastroGradeValor.unidadeExecutoraId-1].nome
     };
 
@@ -95,8 +96,8 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       this.unidadesExecutoras = response;
     });
 
-    this.pessoaService.getPessoa().subscribe((response) => {
-      this.pessoas = response;
+    this.servidorService.getServidor().subscribe((response) => {
+      this.servidores = response;
     });
 
     this.gradeAgendamentoService.getSalas().subscribe((response) => {

@@ -60,8 +60,8 @@
             <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
                 Responsável
                 <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-dropdown [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" 
+                    <p-dropdown [options]="servidores" [optionLabel]="'matricula'" [optionValue]="'id'"
+                        [resetFilterOnHide]="true" [showClear]="true" [filter]="true"
                         formControlName="responsavelId" placeholder="Selecione">
                     </p-dropdown>
                 </span>
@@ -75,7 +75,6 @@
                 <button
                     pButton type="button" icon="pi pi-save" 
                     (click)="cadastrarGradeDeAgendamento()"
-                    [disabled]="!validarFormulario()"
                     routerLink="/listar-grade-exame"
                     label="Salvar"
                 ></button>
