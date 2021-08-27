@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "conselhos_profissionais")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "conselhosprofissionais")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-conselhosprofissionais")
 public class ConselhosProfissionais implements Serializable {
 
     private static final long serialVersionUID = 1L;

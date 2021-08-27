@@ -23,7 +23,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.TipoDeRemuneracao;
 @Entity
 @Table(name = "servidor")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "servidor")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-servidor")
 public class Servidor implements Serializable {
 
     private static final long serialVersionUID = 1L;

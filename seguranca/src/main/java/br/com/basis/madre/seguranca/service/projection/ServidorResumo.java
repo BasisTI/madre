@@ -7,5 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public interface ServidorResumo {
     Long getId();
     String getMatricula();
+    Long getVinculoId();
+    Long getPessoaId();
 
 }

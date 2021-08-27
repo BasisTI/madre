@@ -19,7 +19,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.TipoQualificacao;
 @Entity
 @Table(name = "tipos_de_qualificacao")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "tiposdequalificacao")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-tiposdequalificacao")
 public class TiposDeQualificacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
