@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A MaterialDeExame.
@@ -159,6 +161,10 @@ public class MaterialDeExame implements Serializable {
 
     @Column(name = "nao_cancela_exama_apos_alta")
     private Boolean naoCancelaExamaAposAlta;
+
+    @OneToMany(mappedBy = "materialDeExame")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<AmostraDeMaterial> amostras = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "materialDeExames", allowSetters = true)
@@ -730,6 +736,31 @@ public class MaterialDeExame implements Serializable {
 
     public void setNaoCancelaExamaAposAlta(Boolean naoCancelaExamaAposAlta) {
         this.naoCancelaExamaAposAlta = naoCancelaExamaAposAlta;
+    }
+
+    public Set<AmostraDeMaterial> getAmostras() {
+        return amostras;
+    }
+
+    public MaterialDeExame amostras(Set<AmostraDeMaterial> amostraDeMaterials) {
+        this.amostras = amostraDeMaterials;
+        return this;
+    }
+
+    public MaterialDeExame addAmostra(AmostraDeMaterial amostraDeMaterial) {
+        this.amostras.add(amostraDeMaterial);
+        amostraDeMaterial.setMaterialDeExame(this);
+        return this;
+    }
+
+    public MaterialDeExame removeAmostra(AmostraDeMaterial amostraDeMaterial) {
+        this.amostras.remove(amostraDeMaterial);
+        amostraDeMaterial.setMaterialDeExame(null);
+        return this;
+    }
+
+    public void setAmostras(Set<AmostraDeMaterial> amostraDeMaterials) {
+        this.amostras = amostraDeMaterials;
     }
 
     public Material getMaterial() {

@@ -16,6 +16,8 @@ public interface MaterialDeExameMapper extends EntityMapper<MaterialDeExameDTO, 
     @Mapping(source = "material.nome", target = "materialNome")
     MaterialDeExameDTO toDto(MaterialDeExame materialDeExame);
 
+    @Mapping(target = "amostras", ignore = true)
+    @Mapping(target = "removeAmostra", ignore = true)
     @Mapping(source = "materialId", target = "material")
     MaterialDeExame toEntity(MaterialDeExameDTO materialDeExameDTO);
 

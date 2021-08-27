@@ -34,10 +34,6 @@ public class ExameDTO implements Serializable {
     private Long materialExameId;
 
     private String materialExameNome;
-
-    private Long amostraExameId;
-
-    private String amostraExameNome;
     
     public Long getId() {
         return id;
@@ -119,22 +115,6 @@ public class ExameDTO implements Serializable {
         this.materialExameNome = materialDeExameNome;
     }
 
-    public Long getAmostraExameId() {
-        return amostraExameId;
-    }
-
-    public void setAmostraExameId(Long tipoAmostraId) {
-        this.amostraExameId = tipoAmostraId;
-    }
-
-    public String getAmostraExameNome() {
-        return amostraExameNome;
-    }
-
-    public void setAmostraExameNome(String tipoAmostraNome) {
-        this.amostraExameNome = tipoAmostraNome;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,8 +146,6 @@ public class ExameDTO implements Serializable {
             ", anexaDocumentos='" + isAnexaDocumentos() + "'" +
             ", materialExameId=" + getMaterialExameId() +
             ", materialExameNome='" + getMaterialExameNome() + "'" +
-            ", amostraExameId=" + getAmostraExameId() +
-            ", amostraExameNome='" + getAmostraExameNome() + "'" +
             "}";
     }
 }

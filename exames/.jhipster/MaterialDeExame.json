@@ -181,6 +181,12 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "amostraDeMaterial",
+      "otherEntityRelationshipName": "materialDeExame",
+      "relationshipName": "amostra"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "material",
       "otherEntityRelationshipName": "materialDeExame",

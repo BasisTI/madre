@@ -60,10 +60,6 @@ public class Exame implements Serializable {
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
     private MaterialDeExame materialExame;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "exames", allowSetters = true)
-    private TipoAmostra amostraExame;
-
     @ManyToMany(mappedBy = "exames")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
@@ -180,19 +176,6 @@ public class Exame implements Serializable {
 
     public void setMaterialExame(MaterialDeExame materialDeExame) {
         this.materialExame = materialDeExame;
-    }
-
-    public TipoAmostra getAmostraExame() {
-        return amostraExame;
-    }
-
-    public Exame amostraExame(TipoAmostra tipoAmostra) {
-        this.amostraExame = tipoAmostra;
-        return this;
-    }
-
-    public void setAmostraExame(TipoAmostra tipoAmostra) {
-        this.amostraExame = tipoAmostra;
     }
 
     public Set<GrupoAgendamentoExame> getGrupoAgendamentoExames() {

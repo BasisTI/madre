@@ -45,13 +45,6 @@
       "otherEntityField": "nome"
     },
     {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "tipoAmostra",
-      "otherEntityRelationshipName": "exame",
-      "relationshipName": "amostraExame",
-      "otherEntityField": "nome"
-    },
-    {
       "relationshipType": "many-to-many",
       "otherEntityName": "grupoAgendamentoExame",
       "otherEntityRelationshipName": "exame",
