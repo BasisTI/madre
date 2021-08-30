@@ -8,6 +8,12 @@ import { sumarioDropdown } from '../../models/dropdowns/sumario.dropdown';
 import { unidadeTempoDropdown } from '../../models/dropdowns/unidadeDeTempo.dropdown';
 import { MaterialDeAnaliseService } from '../../services/material-de-analise.service';
 import { MaterialDeExamesService } from '../../services/material-de-exames.service';
+import { AmostraDeMaterial } from '../../models/subjects/amostraDeMaterial'
+import { Anticoagulante } from '../../models/subjects/anticoagulante';
+import { Recipiente } from '../../models/subjects/recipiente';
+import { origemDropdown } from '../../models/dropdowns/origem.dropdown';
+import { ResponsavelDropdown } from '../../models/dropdowns/responsavel.dropdown';
+import { UnidadeMedidaDropdown } from '../../models/dropdowns/unidadeMedida.dropdown';
 @Component({
   selector: 'app-material-exames',
   templateUrl: './material-exames.component.html',
@@ -20,7 +26,7 @@ export class MaterialExamesComponent implements OnInit {
     private materialDeExamesService: MaterialDeExamesService,
     ) { }
 
-  // Material
+  // Material de Exame
   materialForm = this.fb.group({
     ativo: [null, Validators.required],
     npo: [null, Validators.required],
@@ -72,6 +78,34 @@ export class MaterialExamesComponent implements OnInit {
   sumario = sumarioDropdown;
   unidadeDeTempoOptions = unidadeTempoDropdown;
   materiaisDeAnalise: MaterialDeAnalise[] = [];
+
+  // Amostra
+  amostraForm = this.fb.group({
+    id: [null, Validators.required],
+    nome: [null, Validators.required],
+    origem: [null, Validators.required],
+    numeroDeAmostras: [null, Validators.required], 
+    volumeDaAmostra: [null, Validators.required],
+    unidadeDeMedida: [null, Validators.required],
+    responsavel: [null, Validators.required],
+    congelado: [null, Validators.required],
+    unidadeFuncionalId: [null, Validators.required],
+    amostraRecipienteId: [null, Validators.required],
+    amostraRecipienteNome: [null, Validators.required],
+    amostraAnticoagulanteId: [null, Validators.required],
+    amostraAnticoagulanteNome: [null, Validators.required],
+    amostraMaterialId: [null, Validators.required],
+    amostraMaterialNome: [null, Validators.required],
+    materialDeExameId: [null, Validators.required],
+  })
+  
+  anticoagulantes: Anticoagulante[] = [];
+  recipientes: Recipiente[] = [];
+  unidadesFuncionais: any[] = [];
+  responsaveis = ResponsavelDropdown;
+  origens = origemDropdown;
+  unidadeMedida = UnidadeMedidaDropdown;
+
   booleanDropdown = [
     {
       label: "sim",
@@ -153,6 +187,12 @@ export class MaterialExamesComponent implements OnInit {
   ngOnInit(): void {
     this.materialDeAnaliseService.pegarMaterial().subscribe((response) => {
       this.materiaisDeAnalise = response;
+    })
+    this.materialDeExamesService.pegarAnticoagulantes().subscribe((response) => {
+      this.anticoagulantes = response;
+    })
+    this.materialDeExamesService.pegarRecipientes().subscribe((response) => {
+      this.recipientes = response;
     })
   }
 

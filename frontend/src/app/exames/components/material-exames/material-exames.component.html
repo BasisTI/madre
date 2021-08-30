@@ -1,395 +1,523 @@
 <div class="card card-w-title" [formGroup]="materialForm">
-    <h1>Cadastro de Material de Exames</h1>
+    <h1>Material de Análise de Exames</h1>
 
-    <div class="p-grid">
-        <div class="p-col">
-            Material
-            <span style="margin-top: 5px;">
-                <p-dropdown formControlName="materialId" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
-                    [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                    pTooltip="Selecione o material">
-                </p-dropdown>
-            </span>
-        </div>
-        <div class="p-col">
-            Situação
-            <span class="dropdownStyle">
-                <p-dropdown [options]="atividade" placeholder="Selecione" formControlName="ativo"></p-dropdown>
-            </span>
-        </div>
-        <div class="p-col">
-            Natureza
-            <span class="dropdownStyle">
-                <p-dropdown [options]="natureza" placeholder="Selecione" formControlName="natureza">
-                </p-dropdown>
-            </span>
-        </div>
-        <div class="p-col">
-            Sumário de exames
-            <span class="dropdownStyle">
-                <p-dropdown [options]="sumario" placeholder="Selecione" formControlName="sumario"></p-dropdown>
-            </span>
-        </div>
-    </div>
-    <div class="p-grid">
-        <div class="p-col">
-            Exige NPO:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="npo" class="radioButton" value=true label="Sim">
-                </p-radioButton>
+    <p-accordion>
+        <p-accordionTab header="Cadastro de Material de Exames" [selected]="true">
 
-                <p-radioButton formControlName="npo" class="radioButton" value=false label="Não">
-                </p-radioButton>
+            <div class="p-grid">
+                <div class="p-col">
+                    Material
+                    <span style="margin-top: 5px;">
+                        <p-dropdown formControlName="materialId" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
+                            [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                            pTooltip="Selecione o material">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col">
+                    Situação
+                    <span class="dropdownStyle">
+                        <p-dropdown [options]="atividade" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col">
+                    Natureza
+                    <span class="dropdownStyle">
+                        <p-dropdown [options]="natureza" placeholder="Selecione" formControlName="natureza">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col">
+                    Sumário de exames
+                    <span class="dropdownStyle">
+                        <p-dropdown [options]="sumario" placeholder="Selecione" formControlName="sumario"></p-dropdown>
+                    </span>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col">
+                    Exige NPO:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="npo" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="npo" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Exige jejum:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="jejum" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="jejum" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Exige preparo:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="exigePreparo" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="exigePreparo" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Exige dieta adequada:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="exigeDieta" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="exigeDieta" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col">
+                    Exige informar o número de coletas:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="informaNumeroDeColetas" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="informaNumeroDeColetas" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Deve gerar novo item de solicitação para coletas:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="geraItemDeSolicitacao" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="geraItemDeSolicitacao" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Exige informar intervalo do cadastro de coletas:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="exigeIntervaloDeColeta" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="exigeIntervaloDeColeta" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Exige Informar a região anatômica:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="exigeRegiaoAnatomica" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="exigeRegiaoAnatomica" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col">
+                    Exige Informar se o paciente ingere medicamento:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="ingestaoDeMedicamento" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="ingestaoDeMedicamento" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    O material é dependênte de exame:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="dependenteDeExame" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="dependenteDeExame" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    É de interesse da COMEDI:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="interesseDaCOMEDI" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="interesseDaCOMEDI" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Deve ser impresso no ticket do paciente:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="exigeImpressao" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="exigeImpressao" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col">
+                    Exige aparecer os resultados:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="apareceResultado" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="apareceResultado" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Pertence ao contador de células:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="contaCelulas" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="contaCelulas" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Pode sofre limitação na solicitação de exame:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="limiteDeSolicitacao" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="limiteDeSolicitacao" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Exige informa a forma de respiração do paciente:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="formaDeRespiracao" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="formaDeRespiracao" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col">
+                    Auto Solicitação:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="automatico" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="automatico" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Necessita de informações complementares:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="exigeDadosComplementares" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="exigeDadosComplementares" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    É Analisado pela CII:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="analisadoPelaCII" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="analisadoPelaCII" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    Permitir solicitação pós-alta:
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+            </div>
+
+            <h2>Tempo intervalo e quantidade das amostras</h2>
+
+            <div class="p-grid">
+                <div class="p-col inputNumber p-float-label">
+                    <input type="number" pInputText formControlName="tempoJejum">
+                    <label>Tempo jejum/NPO</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+                    <input name="IMS" type="number" pInputText formControlName="intervaloMinimo">
+                    <label>Intervalo mínimo entre as solicitações</label>
+                </div>
+                <div class="p-col inputNumber">
+                    <p-dropdown [options]="unidadeDeTempoOptions" placeholder="unidade de tempo do intervalo minimo"
+                        formControlName="unidadeDeTempo">
+                    </p-dropdown>
+                </div>
+
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="validade">
+                    <label>Dias até o vencimento do exame</label>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="agendamentoMinimo">
+                    <label>intervalo de tempo entre agendamentos</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input name="IMS" type="number" pInputText formControlName="tempoLimiteDaSolicitacao">
+                    <label>tempo limite de solicitação</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+                    <p-dropdown [options]="unidadeDeTempoOptions" placeholder="unidade de tempo da solicitaçãp"
+                        formControlName="unidadeDeTempoDaSolicitacao">
+
+                    </p-dropdown>
+                </div>
+
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="numeroDeAmostras">
+                    <label>Número de amostras possíveis</label>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="numeroDeAmostrasPadrao">
+                    <label>Número de amostras padrão</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input name="IMS" type="number" pInputText formControlName="diasLimiteDefault">
+                    <label>Tempo padrão para solicitar amostras (dias)</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="tempoLimiteDefault">
+                    <label>tempo padrão para solicitar amostras (horas)</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="numeroDeAmostrarPorIntervalo">
+                    <label>Limite de amostras por intervalo</label>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col inputNumber p-float-label">
+                    <p-dropdown [options]="unidadeDeTempoOptions" placeholder="Unidade de tempo do período"
+                        formControlName="unidadeLimiteDeTempoDoPeriodo">
+
+                    </p-dropdown>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="tempoPermitidoParaSolicitarPosAlta">
+                    <label>Tempo para solicitar exame pós-alta</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras">
+                    <label>Tempo para solicitar exame pela área executora</label>
+                </div>
+                <div class="p-col inputNumber p-float-label">
+
+                    <input type="number" pInputText formControlName="tempoLimiteDeAmostraPorIntervalo">
+                    <label>Tempo Limite de amostra por intervalo</label>
+                </div>
+            </div>
+
+            <h3>Informações Adicionais</h3>
+
+            <div class="p-grid">
+                <div class="p-col">
+                    <p-dropdown [options]="booleanDropdown" placeholder="Emite carta de coleta" formControlName="cartaDeColeta">
+
+                    </p-dropdown>
+                </div>
+                <div class="p-col">
+                    Laboratório terceirizado?
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="laboratorioTercerizado" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="laboratorioTercerizado" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
+                <div class="p-col">
+                    cancela exame pós-alta
+                    <div class="radioButton radio">
+                        <p-radioButton formControlName="naoCancelaExameAposAlta" class="radioButton" value=true label="Sim">
+                        </p-radioButton>
+
+                        <p-radioButton formControlName="naoCancelaExameAposAlta" class="radioButton" value=false label="Não">
+                        </p-radioButton>
+
+                    </div>
+                </div>
 
             </div>
-        </div>
-        <div class="p-col">
-            Exige jejum:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="jejum" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="jejum" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
+        </p-accordionTab>
+    <p-accordionTab header="Amostras" [selected]="false">
+        <div class="p-grid" [formGroup]="amostraForm">
+            <div class="p-col">
+                Origem
+                <span class="dropdownStyle">
+                    <p-dropdown [options]="origens" placeholder="Selecione" formControlName=""></p-dropdown>
+                </span>
+            </div>
+            <div class="p-col">
+                Material de análise
+                <span style="margin-top: 5px;">
+                    <p-dropdown formControlName="materialId" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
+                        [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                        pTooltip="Selecione o material">
+                    </p-dropdown>
+                </span>
             </div>
         </div>
-        <div class="p-col">
-            Exige preparo:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="exigePreparo" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="exigePreparo" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
+        <div class="p-grid">
+            <div class="p-col">
+                Recipiente
+                <span style="margin-top: 5px;">
+                    <p-dropdown formControlName="materialId" [options]="recipientes" [optionLabel]="'nome'"
+                        [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                        pTooltip="Selecione o material">
+                    </p-dropdown>
+                </span>
+            </div>
+            <div class="p-col">
+                Anticoagulante
+                <span style="margin-top: 5px;">
+                    <p-dropdown formControlName="materialId" [options]="anticoagulantes" [optionLabel]="'nome'"
+                        [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                        pTooltip="Selecione o material">
+                    </p-dropdown>
+                </span>
+            </div>
+            <div class="p-col">
+                Unidade de Coleta
+                <span style="margin-top: 5px;">
+                    <p-dropdown formControlName="materialId" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
+                        [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
+                        pTooltip="Selecione o material">
+                    </p-dropdown>
+                </span>
             </div>
         </div>
-        <div class="p-col">
-            Exige dieta adequada:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="exigeDieta" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="exigeDieta" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
+        <div class="p-grid">
+            <div class="p-col">
+                Unidade de medida da amostra
+                <span class="dropdownStyle">
+                    <p-dropdown [options]="unidadeMedida" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                </span>
+            </div>
+            <div class="p-col">
+                Responsável da coleta
+                <span class="dropdownStyle">
+                    <p-dropdown [options]="responsaveis" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                </span>
+            </div>
+            <div class="p-col">
+                Congela
+                <span class="dropdownStyle">
+                    <p-dropdown [options]="atividade" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                </span>
             </div>
         </div>
-    </div>
+        <div class="p-grid">
+            <div class="p-col inputNumber p-float-label">
 
-    <div class="p-grid">
-        <div class="p-col">
-            Exige informar o número de coletas:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="informaNumeroDeColetas" class="radioButton" value=true label="Sim">
-                </p-radioButton>
+                <input type="number" pInputText formControlName="numeroDeAmostrasPadrao">
+                <label>Número de coletas</label>
+            </div>
+            <div class="p-col inputNumber p-float-label">
 
-                <p-radioButton formControlName="informaNumeroDeColetas" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
+                <input type="number" pInputText formControlName="numeroDeAmostrasPadrao">
+                <label>volume da amostra</label>
             </div>
         </div>
-        <div class="p-col">
-            Deve gerar novo item de solicitação para coletas:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="geraItemDeSolicitacao" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="geraItemDeSolicitacao" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
+        <div class="p-grid p-justify-start">
+            <button style="margin-top: 15px;" class="p-col-2" pButton type="button" label="Adicionar" icon="pi pi-save"
+                [disabled]="false"></button>
         </div>
-        <div class="p-col">
-            Exige informar intervalo do cadastro de coletas:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="exigeIntervaloDeColeta" class="radioButton" value=true label="Sim">
-                </p-radioButton>
+    </p-accordionTab>
+</p-accordion>
 
-                <p-radioButton formControlName="exigeIntervaloDeColeta" class="radioButton" value=false label="Não">
-                </p-radioButton>
+<p-table #dt [rows]="20"
+        [paginator]="true"
+        [rowHover]="true"
+        dataKey="id"
+        [value]=""
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th> Origem </th>
+                <th> Material de Análise </th>
+                <th> Recipiente	</th>
+                <th> Anticoagulante </th>
+                <th> Unidade de Coleta </th>
+                <th> Ação</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item >
+            <tr>
+                <td> {{item}} </td>
+                <td> {{item}} </td>
+                <td> {{item}} </td>
+                <td> {{item}} </td>
+                <td> {{item}} </td>
+                <td>
+                    <button
+                        pButton
+                        pRipple
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-warning"
+                        (click)="removerItem(item.index)"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 
-            </div>
-        </div>
-        <div class="p-col">
-            Exige Informar a região anatômica:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="exigeRegiaoAnatomica" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="exigeRegiaoAnatomica" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="p-grid">
-        <div class="p-col">
-            Exige Informar se o paciente ingere medicamento:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="ingestaoDeMedicamento" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="ingestaoDeMedicamento" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            O material é dependênte de exame:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="dependenteDeExame" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="dependenteDeExame" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            É de interesse da COMEDI:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="interesseDaCOMEDI" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="interesseDaCOMEDI" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            Deve ser impresso no ticket do paciente:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="exigeImpressao" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="exigeImpressao" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="p-grid">
-        <div class="p-col">
-            Exige aparecer os resultados:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="apareceResultado" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="apareceResultado" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            Pertence ao contador de células:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="contaCelulas" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="contaCelulas" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            Pode sofre limitação na solicitação de exame:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="limiteDeSolicitacao" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="limiteDeSolicitacao" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            Exige informa a forma de respiração do paciente:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="formaDeRespiracao" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="formaDeRespiracao" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-    </div>
-    <div class="p-grid">
-        <div class="p-col">
-            Auto Solicitação:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="automatico" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="automatico" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            Necessita de informações complementares:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="exigeDadosComplementares" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="exigeDadosComplementares" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            É Analisado pela CII:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="analisadoPelaCII" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="analisadoPelaCII" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            Permitir solicitação pós-alta:
-            <div class="radioButton radio">
-                <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="permiteSolicitacaoPosAlta" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-    </div>
-
-    <h2>Tempo intervalo e quantidade das amostras</h2>
-
-    <div class="p-grid">
-        <div class="p-col inputNumber p-float-label">
-            <input type="number" pInputText formControlName="tempoJejum">
-            <label>Tempo jejum/NPO</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-            <input name="IMS" type="number" pInputText formControlName="intervaloMinimo">
-            <label>Intervalo mínimo entre as solicitações</label>
-        </div>
-        <div class="p-col inputNumber">
-            <p-dropdown [options]="unidadeDeTempoOptions" placeholder="unidade de tempo do intervalo minimo"
-                formControlName="unidadeDeTempo">
-            </p-dropdown>
-        </div>
-
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="validade">
-            <label>Dias até o vencimento do exame</label>
-        </div>
-    </div>
-    <div class="p-grid">
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="agendamentoMinimo">
-            <label>intervalo de tempo entre agendamentos</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input name="IMS" type="number" pInputText formControlName="tempoLimiteDaSolicitacao">
-            <label>tempo limite de solicitação</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-            <p-dropdown [options]="unidadeDeTempoOptions" placeholder="unidade de tempo da solicitaçãp"
-                formControlName="unidadeDeTempoDaSolicitacao">
-
-            </p-dropdown>
-        </div>
-
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="numeroDeAmostras">
-            <label>Número de amostras possíveis</label>
-        </div>
-    </div>
-    <div class="p-grid">
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="numeroDeAmostrasPadrao">
-            <label>Número de amostras padrão</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input name="IMS" type="number" pInputText formControlName="diasLimiteDefault">
-            <label>Tempo padrão para solicitar amostras (dias)</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="tempoLimiteDefault">
-            <label>tempo padrão para solicitar amostras (horas)</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="numeroDeAmostrarPorIntervalo">
-            <label>Limite de amostras por intervalo</label>
-        </div>
-    </div>
-    <div class="p-grid">
-        <div class="p-col inputNumber p-float-label">
-            <p-dropdown [options]="unidadeDeTempoOptions" placeholder="Unidade de tempo do período"
-                formControlName="unidadeLimiteDeTempoDoPeriodo">
-
-            </p-dropdown>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="tempoPermitidoParaSolicitarPosAlta">
-            <label>Tempo para solicitar exame pós-alta</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras">
-            <label>Tempo para solicitar exame pela área executora</label>
-        </div>
-        <div class="p-col inputNumber p-float-label">
-
-            <input type="number" pInputText formControlName="tempoLimiteDeAmostraPorIntervalo">
-            <label>Tempo Limite de amostra por intervalo</label>
-        </div>
-    </div>
-
-    <h3>Informações Adicionais</h3>
-
-    <div class="p-grid">
-        <div class="p-col">
-            <p-dropdown [options]="booleanDropdown" placeholder="Emite carta de coleta" formControlName="cartaDeColeta">
-
-            </p-dropdown>
-        </div>
-        <div class="p-col">
-            Laboratório terceirizado?
-            <div class="radioButton radio">
-                <p-radioButton formControlName="laboratorioTercerizado" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="laboratorioTercerizado" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-        <div class="p-col">
-            cancela exame pós-alta
-            <div class="radioButton radio">
-                <p-radioButton formControlName="naoCancelaExameAposAlta" class="radioButton" value=true label="Sim">
-                </p-radioButton>
-
-                <p-radioButton formControlName="naoCancelaExameAposAlta" class="radioButton" value=false label="Não">
-                </p-radioButton>
-
-            </div>
-        </div>
-
-    </div>
 </div>
 
 <div class="p-grid p-d-flex">
