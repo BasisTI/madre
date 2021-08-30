@@ -63,7 +63,7 @@ public class GradeDeAgendamentoService {
         gradeDeAgendamento = gradeDeAgendamentoRepository.save(gradeDeAgendamento);
         GradeDeAgendamentoDTO result = gradeDeAgendamentoRepository.buscaPorId(gradeDeAgendamento.getId());
         result.setUnidadeExecutoraNome(internacaoClient.getUnidadeFuncional(gradeDeAgendamentoDTO.getUnidadeExecutoraId()).getNome());
-        result.setResponsavelNome(segurancaClient.getServidor(gradeDeAgendamentoDTO.getResponsavelId()).getPessoa().toString());
+        result.setResponsavelNome(segurancaClient.getServidor(gradeDeAgendamentoDTO.getResponsavelId()).getPessoaNome());
         gradeDeAgendamentoSearchRepository.save(result);
         return result;
     }

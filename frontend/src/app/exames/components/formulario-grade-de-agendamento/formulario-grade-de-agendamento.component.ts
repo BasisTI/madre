@@ -80,8 +80,6 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       exameGradeNome: this.exames[cadastroGradeValor.exameGradeId-1].nome,
       grupoGradeId: this.grupoSelecionado,
       grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome,
-      // responsavelNome: this.servidores[cadastroGradeValor.responsavelId-1].matricula,
-      // unidadeExecutoraNome: this.unidadesExecutoras[cadastroGradeValor.unidadeExecutoraId-1].nome
     };
 
     console.log(cadastroGradeValor);

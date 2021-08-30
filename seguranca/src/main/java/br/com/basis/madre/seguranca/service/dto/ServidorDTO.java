@@ -5,12 +5,15 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import br.com.basis.madre.seguranca.domain.enumeration.SituacaoDoServidor;
 import br.com.basis.madre.seguranca.domain.enumeration.TipoDeRemuneracao;
+import lombok.ToString;
 
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Servidor} entity.
  */
+
+@ToString
 public class ServidorDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -54,6 +57,8 @@ public class ServidorDTO implements Serializable {
 
     private Long pessoaId;
 
+    private String pessoaCodigo;
+
     private String pessoaNome;
 
     private Long ramalId;
@@ -63,7 +68,7 @@ public class ServidorDTO implements Serializable {
     private Long usuarioId;
 
     private String usuarioLogin;
-    
+
     public Long getId() {
         return id;
     }
@@ -279,37 +284,5 @@ public class ServidorDTO implements Serializable {
     @Override
     public int hashCode() {
         return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "ServidorDTO{" +
-            "id=" + getId() +
-            ", codigo=" + getCodigo() +
-            ", matricula='" + getMatricula() + "'" +
-            ", codigoStarh='" + getCodigoStarh() + "'" +
-            ", inicioDoVinculo='" + getInicioDoVinculo() + "'" +
-            ", fimDoVinculo='" + getFimDoVinculo() + "'" +
-            ", situacao='" + isSituacao() + "'" +
-            ", situacaoDoServidor='" + getSituacaoDoServidor() + "'" +
-            ", centroDeAtividadeIdLotacao=" + getCentroDeAtividadeIdLotacao() +
-            ", centroDeAtividadeIdAtuacao=" + getCentroDeAtividadeIdAtuacao() +
-            ", ocupacao='" + getOcupacao() + "'" +
-            ", cargaHoraria='" + getCargaHoraria() + "'" +
-            ", tipoDeRemuneracao='" + getTipoDeRemuneracao() + "'" +
-            ", idade='" + getIdade() + "'" +
-            ", tempoDeContrato='" + getTempoDeContrato() + "'" +
-            ", funcaoDoCracha='" + getFuncaoDoCracha() + "'" +
-            ", chefeDoCentroDeAtividade='" + getChefeDoCentroDeAtividade() + "'" +
-            ", vinculoId=" + getVinculoId() +
-            ", vinculoDescricao='" + getVinculoDescricao() + "'" +
-            ", pessoaId=" + getPessoaId() +
-            ", pessoaNome='" + getPessoaNome() + "'" +
-            ", ramalId=" + getRamalId() +
-            ", ramalNumero='" + getRamalNumero() + "'" +
-            ", usuarioId=" + getUsuarioId() +
-            ", usuarioLogin='" + getUsuarioLogin() + "'" +
-            "}";
     }
 }
