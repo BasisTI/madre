@@ -47,7 +47,6 @@ export class FormularioGraduacoesComponent implements OnInit {
     nroRegConselho: [''],
   })
 
-
   ngOnInit(): void {
   }
 
@@ -100,9 +99,14 @@ export class FormularioGraduacoesComponent implements OnInit {
     return this.formGraduacao.valid;
   }
 
-  aoSelecionarMatricula(servidor: Servidor): void{
+  aoSelecionarMatricula(servidor: Servidor): void {
     this.formGraduacao.controls['vinculoId'].setValue(servidor.vinculoId);
     this.formGraduacao.controls['nomePessoa'].setValue(servidor.pessoaNome);
     this.formGraduacao.controls['pessoaId'].setValue(servidor.pessoaId);
+  }
+
+  limpaCampos() {
+    this.formGraduacao.controls.anoFim.setValue(null);
+    this.formGraduacao.controls.nroRegConselho.setValue(null);
   }
 }

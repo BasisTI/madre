@@ -6,8 +6,8 @@
                 <div class="p-col-3">
                     <span class="p-float-label">
                         <p-autoComplete field="matricula" [suggestions]="listaServidor"
-                            (completeMethod)="buscaServidor($event)" [dropdown]="true" formControlName="matriculaServidor"
-                            (onSelect)="aoSelecionarMatricula($event)">
+                            (completeMethod)="buscaServidor($event)" [dropdown]="true"
+                            formControlName="matriculaServidor" (onSelect)="aoSelecionarMatricula($event)" required>
                         </p-autoComplete>
                         <label>Matrícula</label>
                     </span>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacao">
+                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacao" (click)="limpaCampos()">
                         </p-dropdown>
                         <label>Situação</label>
                     </span>
@@ -59,16 +59,17 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2100"
+                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="1900:2100"
                             [showIcon]="true" inputId="icon" formControlName="anoInicio"></p-calendar>
                         <label>Ano início</label>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
-                    <span class="p-float-label">
-                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2100"
-                            [showIcon]="true" inputId="icon" formControlName="anoFim"></p-calendar>
-                        <label>Ano Fim</label>
+                    <span class="p-float-label" *ngIf="formGraduacao.controls['situacao'].value == 'INTERROMPIDA' ||
+                        formGraduacao.controls['situacao'].value == 'CONCLUIDA'">
+                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="1900:2100"
+                            [showIcon]="true" inputId="icon" formControlName="anoFim" required></p-calendar>
+                        <label>Ano fim</label>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
@@ -78,10 +79,10 @@
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
-                    <span class="p-float-label">
-                        <input type="text" pInputText formControlName="nroRegConselho" />
+                    <div class="p-float-label" *ngIf="formGraduacao.controls['situacao'].value == 'CONCLUIDA'">
+                        <input type="text" pInputText formControlName="nroRegConselho" required/>
                         <label>Número de Registro do Conselho</label>
-                    </span>
+                    </div>
                 </div>
             </div>
         </div>
