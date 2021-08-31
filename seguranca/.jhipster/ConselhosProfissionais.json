@@ -1,0 +1,54 @@
+{
+  "name": "ConselhosProfissionais",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tituloMasculino",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tituloFeminino",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "instituicao",
+      "otherEntityRelationshipName": "conselhosProfissionais",
+      "relationshipName": "tiposDeQualificacao"
+    }
+  ],
+  "changelogDate": "20210820161515",
+  "entityTableName": "conselhos_profissionais",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

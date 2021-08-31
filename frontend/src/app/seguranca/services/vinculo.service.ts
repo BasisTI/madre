@@ -5,7 +5,7 @@ import { Pageable } from '@shared/pageable';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
 import { ListaVinculosServidor } from '../models/dropdowns/lista-vinculo-servidor';
-import { Vinculo } from '../models/dropdowns/vinculo-model';
+import { Vinculo } from '../models/vinculo-resumo-model';
 import { VinculoModel } from '../models/vinculo-model';
 
 @Injectable({

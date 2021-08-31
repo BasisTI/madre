@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "documentos")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "documentos")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-documentos")
 public class Documentos implements Serializable {
 
     private static final long serialVersionUID = 1L;

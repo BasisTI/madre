@@ -15,7 +15,7 @@ public interface ServidorMapper extends EntityMapper<ServidorDTO, Servidor> {
     @Mapping(source = "vinculo.id", target = "vinculoId")
     @Mapping(source = "vinculo.descricao", target = "vinculoDescricao")
     @Mapping(source = "pessoa.id", target = "pessoaId")
-    @Mapping(source = "pessoa.codigo", target = "pessoaCodigo")
+    @Mapping(source = "pessoa.nome", target = "pessoaNome")
     @Mapping(source = "ramal.id", target = "ramalId")
     @Mapping(source = "ramal.numero", target = "ramalNumero")
     @Mapping(source = "usuario.id", target = "usuarioId")
@@ -27,6 +27,8 @@ public interface ServidorMapper extends EntityMapper<ServidorDTO, Servidor> {
     @Mapping(source = "ramalId", target = "ramal")
     @Mapping(target = "grupofuncionals", ignore = true)
     @Mapping(target = "removeGrupofuncional", ignore = true)
+    @Mapping(target = "graduacaos", ignore = true)
+    @Mapping(target = "removeGraduacao", ignore = true)
     @Mapping(source = "usuarioId", target = "usuario")
     Servidor toEntity(ServidorDTO servidorDTO);
 

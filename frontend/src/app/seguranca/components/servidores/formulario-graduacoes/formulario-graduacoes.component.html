@@ -1,0 +1,93 @@
+<form #form [formGroup]="formGraduacao" (ngSubmit)="submit()">
+    <div class="card">
+        <div class="p-md-12">
+            <h2 class="sub-title">Cadastrar Graduação do Servidor</h2>
+            <div class="p-col-12 p-grid">
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <p-autoComplete field="matricula" [suggestions]="listaServidor"
+                            (completeMethod)="buscaServidor($event)" [dropdown]="true"
+                            formControlName="matriculaServidor" (onSelect)="aoSelecionarMatricula($event)" required>
+                        </p-autoComplete>
+                        <label>Matrícula</label>
+                    </span>
+                </div>
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled formControlName="vinculoId" />
+                        <label>Vínculo</label>
+                    </span>
+                </div>
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled formControlName="nomePessoa" />
+                        <label>Nome</label>
+                    </span>
+                </div>
+                <div class="p-col-3">
+                    <span class="p-float-label">
+                        <input type="text" pInputText disabled formControlName="pessoaId" />
+                        <label>Pessoa</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                        <p-autoComplete field="descricao" [suggestions]="listaTiposDeQualificao"
+                            (completeMethod)="buscaCurso($event)" [dropdown]="true" formControlName="curso">
+                        </p-autoComplete>
+                        <label>Curso</label>
+                    </span>
+                </div>
+                <div class="p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                        <p-autoComplete field="descricao" [suggestions]="listaInstituicao"
+                            (completeMethod)="buscaInstituicao($event)" [dropdown]="true" formControlName="instituicao">
+                        </p-autoComplete>
+                        <label>Instituição</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacao" (click)="limpaCampos()">
+                        </p-dropdown>
+                        <label>Situação</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText formControlName="semestre" />
+                        <label>Semestre</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label">
+                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="1900:2100"
+                            [showIcon]="true" inputId="icon" formControlName="anoInicio"></p-calendar>
+                        <label>Ano início</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <span class="p-float-label" *ngIf="formGraduacao.controls['situacao'].value == 'INTERROMPIDA' ||
+                        formGraduacao.controls['situacao'].value == 'CONCLUIDA'">
+                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="1900:2100"
+                            [showIcon]="true" inputId="icon" formControlName="anoFim" required></p-calendar>
+                        <label>Ano fim</label>
+                    </span>
+                </div>
+                <div class="p-md-3 p-sm-12">
+                    <div class="p-float-label" *ngIf="formGraduacao.controls['situacao'].value == 'CONCLUIDA'">
+                        <input type="text" pInputText formControlName="nroRegConselho" required/>
+                        <label>Número de Registro do Conselho</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-grid p-jc-end">
+            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro" [disabled]="!valid()"></button>
+        </div>
+    </div>
+</form>

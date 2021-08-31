@@ -1,8 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pageable } from '@shared/pageable';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
-import { Servidor } from '../models/dropdowns/servidor-model';
+import { ListaServidor } from '../models/dropdowns/lista-servidor';
+import { Servidor } from '../models/servidor-resumo-model';
 import { ServidorModel } from '../models/servidor-model';
 
 
@@ -27,6 +29,15 @@ export class ServidorService{
 
   cadastrarServidor(servidor) {
     return this.client.post(this.resource, servidor);
+  }
+
+  getResultServidor(event): Observable<Pageable<ListaServidor>> {
+    return this.client.get<Pageable<ListaServidor>>(
+        `${this.resource}/_resumo`,
+        {
+            params: new HttpParams().set('matricula', event).set('sort', 'matricula'),
+        },
+    );
   }
 
 }
