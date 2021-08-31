@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GrupoModel } from "../models/subjects/grupo-model";
 import { HttpClient } from '@angular/common/http';
 import { api } from '@internacao/api';
 import { Observable } from 'rxjs';
@@ -18,8 +17,8 @@ export class UnidadeFuncionalService {
     private client: HttpClient
   ) { }
 
-  public GetUnidades(): Observable<Array<GrupoModel>> {
-    return this.client.get<Array<GrupoModel>>(this.unidadesUrl);
+  public GetUnidades(): Observable<Array<UnidadeFuncional>> {
+    return this.client.get<Array<UnidadeFuncional>>(this.unidadesUrl);
   }
 
 }
