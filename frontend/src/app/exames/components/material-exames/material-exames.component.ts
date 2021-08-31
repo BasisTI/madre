@@ -80,31 +80,31 @@ export class MaterialExamesComponent implements OnInit {
   materiaisDeAnalise: MaterialDeAnalise[] = [];
 
   // Amostra
+  ListaDeAmostras: AmostraDeMaterial[] = [];
+  anticoagulantes: Anticoagulante[] = [];
+  recipientes: Recipiente[] = [];
+  unidadesFuncionais: any[] = []; // falta
+  responsaveis = ResponsavelDropdown;
+  origens = origemDropdown;
+  unidadeMedida = UnidadeMedidaDropdown;
+
   amostraForm = this.fb.group({
-    id: [null, Validators.required],
-    nome: [null, Validators.required],
+    id: [null],
+    nome: [null],
     origem: [null, Validators.required],
     numeroDeAmostras: [null, Validators.required], 
     volumeDaAmostra: [null, Validators.required],
     unidadeDeMedida: [null, Validators.required],
     responsavel: [null, Validators.required],
     congelado: [null, Validators.required],
-    unidadeFuncionalId: [null, Validators.required],
+    unidadeFuncionalId: [null, Validators.required], // tratar
     amostraRecipienteId: [null, Validators.required],
-    amostraRecipienteNome: [null, Validators.required],
+    amostraRecipienteNome: [null],
     amostraAnticoagulanteId: [null, Validators.required],
-    amostraAnticoagulanteNome: [null, Validators.required],
+    amostraAnticoagulanteNome: [null],
     amostraMaterialId: [null, Validators.required],
-    amostraMaterialNome: [null, Validators.required],
-    materialDeExameId: [null, Validators.required],
+    amostraMaterialNome: [null],
   })
-  
-  anticoagulantes: Anticoagulante[] = [];
-  recipientes: Recipiente[] = [];
-  unidadesFuncionais: any[] = [];
-  responsaveis = ResponsavelDropdown;
-  origens = origemDropdown;
-  unidadeMedida = UnidadeMedidaDropdown;
 
   booleanDropdown = [
     {
@@ -119,6 +119,39 @@ export class MaterialExamesComponent implements OnInit {
 
   validarMaterial(): boolean {
     return this.materialForm.valid;
+  }
+
+  validarAmostra(): boolean {
+    return this.amostraForm.valid;
+  }
+
+  adicionarAmostra() {
+
+    let amostra = this.amostraForm.value;
+
+    let nomeMaterial = this.materiaisDeAnalise.find((elem)=> elem.id == amostra.amostraMaterialId);
+    let nomeAnticoagulante = this.anticoagulantes.find((elem)=> elem.id == amostra.amostraAnticoagulanteId);
+    let nomeRecipiente = this.recipientes.find((elem)=> elem.id == amostra.amostraRecipienteId);
+
+    let amostraCompleta: AmostraDeMaterial = {
+      nome: nomeMaterial.nome,
+      origem: amostra.origem,
+      numeroDeAmostras: amostra.numeroDeAmostras, 
+      volumeDaAmostra: amostra.volumeDaAmostra,
+      unidadeDeMedida: amostra.unidadeDeMedida,
+      responsavel: amostra.responsavel,
+      congelado: amostra.congelado,
+      unidadeFuncionalId: amostra.unidadeFuncionalId,
+      amostraRecipienteId: amostra.amostraRecipienteId,
+      amostraRecipienteNome: nomeRecipiente.nome,
+      amostraAnticoagulanteId: amostra.amostraAnticoagulanteId,
+      amostraAnticoagulanteNome: nomeAnticoagulante.nome,
+      amostraMaterialId: amostra.amostraMaterialId,
+      amostraMaterialNome: nomeMaterial.nome,
+    }
+
+    this.ListaDeAmostras.push(amostraCompleta);
+    this.amostraForm.reset();
   }
 
   cadastrarMaterial() {
@@ -172,6 +205,7 @@ export class MaterialExamesComponent implements OnInit {
       naoCancelaExamaAposAlta: materialPreenchido.naoCancelaExamaAposAlta,
       materialId: materialPreenchido.materialId,
       materialNome: materialObjeto.nome,
+      amostras: this.ListaDeAmostras,
     }
 
     this.materialDeExamesService.cadastrarMaterialDeExame(materialDeExames).subscribe();
@@ -182,7 +216,6 @@ export class MaterialExamesComponent implements OnInit {
   limparMaterial() {
     this.materialForm.reset();
   }
-
 
   ngOnInit(): void {
     this.materialDeAnaliseService.pegarMaterial().subscribe((response) => {

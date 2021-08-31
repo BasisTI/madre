@@ -399,83 +399,88 @@
             <div class="p-col">
                 Origem
                 <span class="dropdownStyle">
-                    <p-dropdown [options]="origens" placeholder="Selecione" formControlName=""></p-dropdown>
+                    <p-dropdown [options]="origens" placeholder="Selecione" formControlName="origem"></p-dropdown>
                 </span>
             </div>
             <div class="p-col">
                 Material de análise
                 <span style="margin-top: 5px;">
-                    <p-dropdown formControlName="materialId" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
+                    <p-dropdown formControlName="amostraMaterialId" placeholder="Selecione" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
                         [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                         pTooltip="Selecione o material">
                     </p-dropdown>
                 </span>
             </div>
         </div>
-        <div class="p-grid">
+        <div class="p-grid" [formGroup]="amostraForm">
             <div class="p-col">
                 Recipiente
                 <span style="margin-top: 5px;">
-                    <p-dropdown formControlName="materialId" [options]="recipientes" [optionLabel]="'nome'"
+                    <p-dropdown formControlName="amostraRecipienteId" placeholder="Selecione" [options]="recipientes" [optionLabel]="'nome'"
                         [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                        pTooltip="Selecione o material">
+                        pTooltip="Selecione o recipiente">
                     </p-dropdown>
                 </span>
             </div>
             <div class="p-col">
                 Anticoagulante
                 <span style="margin-top: 5px;">
-                    <p-dropdown formControlName="materialId" [options]="anticoagulantes" [optionLabel]="'nome'"
+                    <p-dropdown formControlName="amostraAnticoagulanteId" placeholder="Selecione" [options]="anticoagulantes" [optionLabel]="'nome'"
                         [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                        pTooltip="Selecione o material">
+                        pTooltip="Selecione o anticoagulante">
                     </p-dropdown>
                 </span>
             </div>
             <div class="p-col">
                 Unidade de Coleta
                 <span style="margin-top: 5px;">
-                    <p-dropdown formControlName="materialId" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
+                    <p-dropdown formControlName="unidadeFuncionalId" placeholder="Selecione" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
                         [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                        pTooltip="Selecione o material">
+                        pTooltip="Selecione a unidade funcional">
                     </p-dropdown>
                 </span>
             </div>
         </div>
-        <div class="p-grid">
+        <div class="p-grid" [formGroup]="amostraForm">
             <div class="p-col">
                 Unidade de medida da amostra
                 <span class="dropdownStyle">
-                    <p-dropdown [options]="unidadeMedida" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                    <p-dropdown [options]="unidadeMedida" placeholder="Selecione" formControlName="unidadeDeMedida"></p-dropdown>
                 </span>
             </div>
             <div class="p-col">
                 Responsável da coleta
                 <span class="dropdownStyle">
-                    <p-dropdown [options]="responsaveis" placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                    <p-dropdown [options]="responsaveis" placeholder="Selecione" formControlName="responsavel"></p-dropdown>
                 </span>
             </div>
             <div class="p-col">
-                Congela
-                <span class="dropdownStyle">
-                    <p-dropdown [options]="atividade" placeholder="Selecione" formControlName="ativo"></p-dropdown>
-                </span>
+                Exige congelamento:
+                <div class="radioButton radio">
+                    <p-radioButton formControlName="congelado" class="radioButton" value=true label="Sim">
+                    </p-radioButton>
+
+                    <p-radioButton formControlName="congelado" class="radioButton" value=false label="Não">
+                    </p-radioButton>
+
+                </div>
             </div>
         </div>
-        <div class="p-grid">
+        <div class="p-grid" [formGroup]="amostraForm">
             <div class="p-col inputNumber p-float-label">
 
-                <input type="number" pInputText formControlName="numeroDeAmostrasPadrao">
-                <label>Número de coletas</label>
+                <input type="number" pInputText formControlName="numeroDeAmostras">
+                <label>Número de amostras</label>
             </div>
             <div class="p-col inputNumber p-float-label">
 
-                <input type="number" pInputText formControlName="numeroDeAmostrasPadrao">
+                <input type="number" pInputText formControlName="volumeDaAmostra">
                 <label>volume da amostra</label>
             </div>
         </div>
         <div class="p-grid p-justify-start">
-            <button style="margin-top: 15px;" class="p-col-2" pButton type="button" label="Adicionar" icon="pi pi-save"
-                [disabled]="false"></button>
+            <button class="p-col-2" pButton type="button" label="Adicionar" icon="pi pi-save" (click)="adicionarAmostra()"
+                [disabled]="!validarAmostra()"></button>
         </div>
     </p-accordionTab>
 </p-accordion>
@@ -484,7 +489,7 @@
         [paginator]="true"
         [rowHover]="true"
         dataKey="id"
-        [value]=""
+        [value]="ListaDeAmostras"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [showCurrentPageReport]="true"
     >
@@ -494,26 +499,14 @@
                 <th> Material de Análise </th>
                 <th> Recipiente	</th>
                 <th> Anticoagulante </th>
-                <th> Unidade de Coleta </th>
-                <th> Ação</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item >
             <tr>
-                <td> {{item}} </td>
-                <td> {{item}} </td>
-                <td> {{item}} </td>
-                <td> {{item}} </td>
-                <td> {{item}} </td>
-                <td>
-                    <button
-                        pButton
-                        pRipple
-                        icon="pi pi-trash"
-                        class="p-button-rounded p-button-warning"
-                        (click)="removerItem(item.index)"
-                    ></button>
-                </td>
+                <td> {{item.origem}} </td>
+                <td> {{item.amostraMaterialNome}} </td>
+                <td> {{item.amostraRecipienteNome}} </td>
+                <td> {{item.amostraAnticoagulanteNome}}</td>
             </tr>
         </ng-template>
     </p-table>

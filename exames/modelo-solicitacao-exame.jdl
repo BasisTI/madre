@@ -111,11 +111,6 @@ nome String required
 situacao Boolean
 }
 
-entity Sinonimo {
-nome String required
-situacao Boolean
-}
-
 entity GrupoAgendamentoExame {
 nome String required
 codigo Integer required

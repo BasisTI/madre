@@ -1,3 +1,4 @@
+import { AmostraDeMaterial } from "./amostraDeMaterial";
 export interface IMaterialDeExames {
     nome?: String;
     ativo?: Boolean;
@@ -44,6 +45,7 @@ export interface IMaterialDeExames {
     naoCancelaExamaAposAlta?: Boolean;
     materialId?: Number;
     materialNome?: String;
+    amostras?: AmostraDeMaterial[];
 
 }
 
@@ -93,4 +95,5 @@ export class MaterialDeExames implements IMaterialDeExames {
     public naoCancelaExamaAposAlta?: Boolean;
     public materialId?: Number;
     public materialNome?: String;
+    public amostras?: AmostraDeMaterial[];
 }
