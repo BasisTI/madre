@@ -25,9 +25,6 @@ public class TipoDeMarcacao implements Serializable {
     @SequenceGenerator(name = "seqTipoDeMarcacao")
     private Long id;
 
-    @Column(name = "codigo")
-    private Integer codigo;
-
     @Column(name = "tipo_de_marcacao")
     private String tipoDeMarcacao;
 
@@ -42,19 +39,6 @@ public class TipoDeMarcacao implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public TipoDeMarcacao codigo(Integer codigo) {
-        this.codigo = codigo;
-        return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public String getTipoDeMarcacao() {
@@ -105,7 +89,6 @@ public class TipoDeMarcacao implements Serializable {
     public String toString() {
         return "TipoDeMarcacao{" +
             "id=" + getId() +
-            ", codigo=" + getCodigo() +
             ", tipoDeMarcacao='" + getTipoDeMarcacao() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";

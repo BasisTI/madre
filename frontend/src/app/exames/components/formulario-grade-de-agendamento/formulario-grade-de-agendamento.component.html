@@ -1,99 +1,91 @@
-<div class="p-col-12 card card-w-title">
-    <h1>
-      Manter Grade de Agendamento
-    </h1>
-    <div class="p-grid">
-        <div class="p-col-12 p-grid">
+<div class="p-col-12 p-grid">
             
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
-                Unidade executora
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-dropdown [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione"
-                        formControlName="unidadeExecutoraId">
-                    </p-dropdown>
-                </span>
-            </div>
-            
-            <div class="p-md-2 p-col-12" [formGroup]="cadastroGrade">
-                <label for="situacao">Situação</label>
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+    <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+        Unidade executora
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione"
+                formControlName="unidadeExecutoraId">
+            </p-dropdown>
+        </span>
+    </div>
+    
+    <div class="p-md-2 p-col-12" [formGroup]="cadastroGrade">
+        <label for="situacao">Situação</label>
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
 
-                    <p-dropdown [options]="" formControlName="ativo"[showClear]="true"
-                    [options]="situacaoGrade" placeholder="Selecione"></p-dropdown>
-                </span>
-            </div>
-
-            <div class="p-md-2 p-fluid">
-                Identificação da sala
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-dropdown [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="salaSelecionada"
-                        placeholder="Selecione">
-                    </p-dropdown>
-                </span>
-            </div>
-        </div>
-
-        <div class="p-col-12 p-grid">
-
-            <div class="p-md-2 p-fluid">
-                Grupo de exames
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-dropdown [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true"
-                        [(ngModel)]="grupoSelecionado" placeholder="Selecione">
-                    </p-dropdown>
-                </span>
-            </div>
-
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
-                Exame
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-dropdown [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                        [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="exameSelecionado" 
-                        formControlName="exameGradeId" placeholder="Selecione">
-                    </p-dropdown>
-                </span>
-            </div>
-
-            <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
-                Responsável
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-dropdown [options]="servidores" [optionLabel]="'matricula'" [optionValue]="'id'"
-                        [resetFilterOnHide]="true" [showClear]="true" [filter]="true"
-                        formControlName="responsavelId" placeholder="Selecione">
-                    </p-dropdown>
-                </span>
-            </div>           
-        </div>
-
-
-        <div class="p-col-12 p-grid p-d-flex">
-            
-            <div class="p-md-2 p-sm-12">
-                <button
-                    pButton type="button" icon="pi pi-save" 
-                    (click)="cadastrarGradeDeAgendamento()"
-                    routerLink="/listar-grade-exame"
-                    label="Salvar"
-                ></button>
-            </div>
-            <div class="p-md-2 p-sm-12">
-                <button
-                    pButton type="button" icon="pi pi-times"
-                    label="Limpar" (click)="limparFormulario()"
-                ></button>
-            </div>
-            <div class="p-md-2 p-sm-12">
-                <button
-                    pButton
-                    type="button"
-                    routerLink="/listar-grade-exame"
-                    label="Voltar"
-                ></button>
-            </div>
-        </div>
+            <p-dropdown [options]="" formControlName="ativo"[showClear]="true"
+            [options]="situacaoGrade" placeholder="Selecione"></p-dropdown>
+        </span>
     </div>
 
-  </div>
+    <div class="p-md-2 p-fluid">
+        Identificação da sala
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'" [filter]="true"
+                [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="salaSelecionada"
+                placeholder="Selecione">
+            </p-dropdown>
+        </span>
+    </div>
+</div>
+
+<div class="p-col-12 p-grid">
+
+    <div class="p-md-2 p-fluid">
+        Grupo de exames
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                [resetFilterOnHide]="true" [showClear]="true"
+                [(ngModel)]="grupoSelecionado" placeholder="Selecione">
+            </p-dropdown>
+        </span>
+    </div>
+
+    <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+        Exame
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="exameSelecionado" 
+                formControlName="exameGradeId" placeholder="Selecione">
+            </p-dropdown>
+        </span>
+    </div>
+
+    <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
+        Responsável
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="servidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
+                [resetFilterOnHide]="true" [showClear]="true" [filter]="true"
+                formControlName="responsavelId" placeholder="Selecione">
+            </p-dropdown>
+        </span>
+    </div>           
+</div>
+
+
+<div class="p-col-12 p-grid p-d-flex">
+    
+    <div class="p-md-2 p-sm-12">
+        <button
+            pButton type="button" icon="pi pi-save" 
+            (click)="cadastrarGradeDeAgendamento()"
+            routerLink="/listar-grade-exame"
+            label="Salvar"
+        ></button>
+    </div>
+    <div class="p-md-2 p-sm-12">
+        <button
+            pButton type="button" icon="pi pi-times"
+            label="Limpar" (click)="limparFormulario()"
+        ></button>
+    </div>
+    <div class="p-md-2 p-sm-12">
+        <button
+            pButton
+            type="button"
+            routerLink="/listar-grade-exame"
+            label="Voltar"
+        ></button>
+    </div>
+</div>

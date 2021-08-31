@@ -61,10 +61,10 @@ ativo Boolean required
 
 entity HorarioAgendado {
 horaInicio Instant required
-horafim Instant required
+horaFim Instant
 numeroDeHorarios Integer
 dia Dia required
-duracao Duration
+duracao Duration required
 ativo Boolean required
 exclusivo Boolean required
 }
@@ -84,7 +84,6 @@ unidadeExecutoraId Integer
 }
 
 entity TipoDeMarcacao {
-codigo Integer
 tipoDeMarcacao String
 ativo Boolean required
 }
@@ -94,7 +93,7 @@ DOMINGO,
 SEGUNDA_FEIRA,
 TERCA_FEIRA,
 QUARTA_FEIRA,
-QUINTA_FEITA,
+QUINTA_FEIRA,
 SEXTA_FEIRA,
 SABADO
 }

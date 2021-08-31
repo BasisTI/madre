@@ -1,0 +1,101 @@
+<div class="p-col-12 p-grid">
+            
+    <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
+        Horário início
+        <p-calendar [(ngModel)]="horarioInicio" [timeOnly]="true" 
+        inputId="horarioInicio" formControlName="horaInicio">
+        </p-calendar>
+    </div>  
+
+    <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
+        Horário fim
+        <p-calendar [(ngModel)]="horarioFim" [timeOnly]="true" 
+        inputId="horarioFim" formControlName="horaFim">
+        </p-calendar>
+    </div>
+    
+    <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
+        Nº de horários
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;" 
+        formControlName="numeroDeHorarios">
+            <input type="number" pInputText>
+        </span>
+    </div>
+
+    <div class="p-md-2 p-fluid">
+        Dia
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="dia" [showClear]="true" placeholder="Selecione"
+                [resetFilterOnHide]="true" [(ngModel)]="diaSelecionado">
+            </p-dropdown>
+        </span>
+    </div>
+</div>
+
+<div class="p-col-12 p-grid">
+
+    <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
+        Duração
+        <p-calendar [(ngModel)]="duracao" [timeOnly]="true" inputId="duracao"
+        formControlName="duracao">
+        </p-calendar>
+    </div>
+
+    <div class="p-md-2 p-fluid">
+        Tipo de marcação
+        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+            <p-dropdown [options]="tiposDeMarcacao" [optionLabel]="'tipoDeMarcacao'" [optionValue]="'id'" [filter]="true"
+                [resetFilterOnHide]="true" [showClear]="true" 
+                placeholder="Selecione">
+            </p-dropdown>
+        </span>
+    </div>
+
+    <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
+        Ativo
+        <div style="margin-top: 5px; margin-bottom: 10px;">
+            <p-radioButton name="ativo" value="true" label="Sim" class="separator-radio" 
+            formControlName="ativo"></p-radioButton>
+            <p-radioButton name="ativo" value="false" label="Não" class="separator-radio" 
+            formControlName="ativo"></p-radioButton>
+            
+        </div>
+    </div>   
+    
+    <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
+        Exclusivo
+        <div style="margin-top: 5px; margin-bottom: 10px;">
+            <p-radioButton name="exclusivo" value="true" label="Sim" class="separator-radio" 
+            formControlName="exclusivo"></p-radioButton>
+            <p-radioButton name="exclusivo" value="false" label="Não" class="separator-radio" 
+            formControlName="exclusivo"></p-radioButton>
+            
+        </div>
+    </div>  
+</div>
+
+
+<div class="p-col-12 p-grid p-d-flex">
+    
+    <div class="p-md-2 p-sm-12">
+        <button
+            pButton type="button" icon="pi pi-check" 
+            (click)="agendarHorarioGrade()"
+            [disabled]="!validarFormulario()"
+            label="Gerar disponibilidade"
+        ></button>
+    </div>
+    <div class="p-md-2 p-sm-12">
+        <button
+            pButton type="button"
+            label="Limpar" icon="pi pi-times"
+            (click)="limparFormulario()"
+        ></button>
+    </div>
+    <div class="p-md-2 p-sm-12">
+        <button
+            pButton type="button" label="Voltar"
+            routerLink="/listar-grade-exame"
+        ></button>
+    </div>
+</div>

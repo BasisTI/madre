@@ -42,9 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class TipoDeMarcacaoResourceIT {
 
-    private static final Integer DEFAULT_CODIGO = 1;
-    private static final Integer UPDATED_CODIGO = 2;
-
     private static final String DEFAULT_TIPO_DE_MARCACAO = "AAAAAAAAAA";
     private static final String UPDATED_TIPO_DE_MARCACAO = "BBBBBBBBBB";
 
@@ -84,7 +81,6 @@ public class TipoDeMarcacaoResourceIT {
      */
     public static TipoDeMarcacao createEntity(EntityManager em) {
         TipoDeMarcacao tipoDeMarcacao = new TipoDeMarcacao()
-            .codigo(DEFAULT_CODIGO)
             .tipoDeMarcacao(DEFAULT_TIPO_DE_MARCACAO)
             .ativo(DEFAULT_ATIVO);
         return tipoDeMarcacao;
@@ -97,7 +93,6 @@ public class TipoDeMarcacaoResourceIT {
      */
     public static TipoDeMarcacao createUpdatedEntity(EntityManager em) {
         TipoDeMarcacao tipoDeMarcacao = new TipoDeMarcacao()
-            .codigo(UPDATED_CODIGO)
             .tipoDeMarcacao(UPDATED_TIPO_DE_MARCACAO)
             .ativo(UPDATED_ATIVO);
         return tipoDeMarcacao;
@@ -123,7 +118,6 @@ public class TipoDeMarcacaoResourceIT {
         List<TipoDeMarcacao> tipoDeMarcacaoList = tipoDeMarcacaoRepository.findAll();
         assertThat(tipoDeMarcacaoList).hasSize(databaseSizeBeforeCreate + 1);
         TipoDeMarcacao testTipoDeMarcacao = tipoDeMarcacaoList.get(tipoDeMarcacaoList.size() - 1);
-        assertThat(testTipoDeMarcacao.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testTipoDeMarcacao.getTipoDeMarcacao()).isEqualTo(DEFAULT_TIPO_DE_MARCACAO);
         assertThat(testTipoDeMarcacao.isAtivo()).isEqualTo(DEFAULT_ATIVO);
 
@@ -186,7 +180,6 @@ public class TipoDeMarcacaoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tipoDeMarcacao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].tipoDeMarcacao").value(hasItem(DEFAULT_TIPO_DE_MARCACAO)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
@@ -202,7 +195,6 @@ public class TipoDeMarcacaoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(tipoDeMarcacao.getId().intValue()))
-            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.tipoDeMarcacao").value(DEFAULT_TIPO_DE_MARCACAO))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
     }
@@ -227,7 +219,6 @@ public class TipoDeMarcacaoResourceIT {
         // Disconnect from session so that the updates on updatedTipoDeMarcacao are not directly saved in db
         em.detach(updatedTipoDeMarcacao);
         updatedTipoDeMarcacao
-            .codigo(UPDATED_CODIGO)
             .tipoDeMarcacao(UPDATED_TIPO_DE_MARCACAO)
             .ativo(UPDATED_ATIVO);
         TipoDeMarcacaoDTO tipoDeMarcacaoDTO = tipoDeMarcacaoMapper.toDto(updatedTipoDeMarcacao);
@@ -241,7 +232,6 @@ public class TipoDeMarcacaoResourceIT {
         List<TipoDeMarcacao> tipoDeMarcacaoList = tipoDeMarcacaoRepository.findAll();
         assertThat(tipoDeMarcacaoList).hasSize(databaseSizeBeforeUpdate);
         TipoDeMarcacao testTipoDeMarcacao = tipoDeMarcacaoList.get(tipoDeMarcacaoList.size() - 1);
-        assertThat(testTipoDeMarcacao.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testTipoDeMarcacao.getTipoDeMarcacao()).isEqualTo(UPDATED_TIPO_DE_MARCACAO);
         assertThat(testTipoDeMarcacao.isAtivo()).isEqualTo(UPDATED_ATIVO);
 
@@ -306,7 +296,6 @@ public class TipoDeMarcacaoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tipoDeMarcacao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].tipoDeMarcacao").value(hasItem(DEFAULT_TIPO_DE_MARCACAO)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }

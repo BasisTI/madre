@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { GradesDeAgendamento } from '../models/subjects/grades-de-agendamento';
 import { Sala } from '../models/subjects/sala';
+import { TipoDeMarcacao } from '../models/subjects/tipo-de-marcacao';
+import { HorarioAgendado } from '../models/subjects/horario-agendado';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +42,16 @@ export class GradeDeAgendamentoService {
     return this.client.get<Array<Sala>>(`${this.URL}/salas`);
   }
 
+  public getTiposDeMarcacao(): Observable<Array<TipoDeMarcacao>> {
+    return this.client.get<Array<TipoDeMarcacao>>(`${this.URL}/tipo-de-marcacaos`);
+  }
+
   cadastrarGrade(gradeDeAgendamento: GradesDeAgendamento) {
     return this.client.post(`${this.URL}/grade-de-agendamentos`, gradeDeAgendamento);
+  }
+
+  cadastrarHorarioGrade(horarioGrade: HorarioAgendado) {
+    return this.client.post(`${this.URL}/horario-agendados`, horarioGrade);
   }
 
 }

@@ -16,14 +16,14 @@ public class HorarioAgendadoDTO implements Serializable {
     @NotNull
     private Instant horaInicio;
 
-    @NotNull
-    private Instant horafim;
+    private Instant horaFim;
 
     private Integer numeroDeHorarios;
 
     @NotNull
     private Dia dia;
 
+    @NotNull
     private Duration duracao;
 
     @NotNull
@@ -55,12 +55,12 @@ public class HorarioAgendadoDTO implements Serializable {
         this.horaInicio = horaInicio;
     }
 
-    public Instant getHorafim() {
-        return horafim;
+    public Instant getHoraFim() {
+        return horaFim;
     }
 
-    public void setHorafim(Instant horafim) {
-        this.horafim = horafim;
+    public void setHoraFim(Instant horaFim) {
+        this.horaFim = horaFim;
     }
 
     public Integer getNumeroDeHorarios() {
@@ -150,7 +150,7 @@ public class HorarioAgendadoDTO implements Serializable {
         return "HorarioAgendadoDTO{" +
             "id=" + getId() +
             ", horaInicio='" + getHoraInicio() + "'" +
-            ", horafim='" + getHorafim() + "'" +
+            ", horaFim='" + getHoraFim() + "'" +
             ", numeroDeHorarios=" + getNumeroDeHorarios() +
             ", dia='" + getDia() + "'" +
             ", duracao='" + getDuracao() + "'" +

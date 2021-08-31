@@ -62,7 +62,7 @@
                     <p-dropdown
                         pTooltip="Informe a matrícula ou o nome do responsável"
                         [(ngModel)]="responsavelId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="pessoas" [optionLabel]="'nome'" [optionValue]="'id'"
+                        [options]="servidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
                         placeholder="Responsável"
                     ></p-dropdown>
                 </div>
@@ -83,7 +83,7 @@
                     <button
                         pButton
                         type="button"
-                        routerLink="/formulario-grade-agendamento"
+                        routerLink="/manter-grade-agendamento"
                         label="Nova grade"Primeiro Exame
                     ></button>
                 </div>

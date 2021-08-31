@@ -2,10 +2,6 @@
   "name": "TipoDeMarcacao",
   "fields": [
     {
-      "fieldName": "codigo",
-      "fieldType": "Integer"
-    },
-    {
       "fieldName": "tipoDeMarcacao",
       "fieldType": "String"
     },

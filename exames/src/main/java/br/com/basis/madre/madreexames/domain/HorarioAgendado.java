@@ -36,9 +36,8 @@ public class HorarioAgendado implements Serializable {
     @Column(name = "hora_inicio", nullable = false)
     private Instant horaInicio;
 
-    @NotNull
-    @Column(name = "horafim", nullable = false)
-    private Instant horafim;
+    @Column(name = "hora_fim")
+    private Instant horaFim;
 
     @Column(name = "numero_de_horarios")
     private Integer numeroDeHorarios;
@@ -48,7 +47,8 @@ public class HorarioAgendado implements Serializable {
     @Column(name = "dia", nullable = false)
     private Dia dia;
 
-    @Column(name = "duracao")
+    @NotNull
+    @Column(name = "duracao", nullable = false)
     private Duration duracao;
 
     @NotNull
@@ -93,17 +93,17 @@ public class HorarioAgendado implements Serializable {
         this.horaInicio = horaInicio;
     }
 
-    public Instant getHorafim() {
-        return horafim;
+    public Instant getHoraFim() {
+        return horaFim;
     }
 
-    public HorarioAgendado horafim(Instant horafim) {
-        this.horafim = horafim;
+    public HorarioAgendado horaFim(Instant horaFim) {
+        this.horaFim = horaFim;
         return this;
     }
 
-    public void setHorafim(Instant horafim) {
-        this.horafim = horafim;
+    public void setHoraFim(Instant horaFim) {
+        this.horaFim = horaFim;
     }
 
     public Integer getNumeroDeHorarios() {
@@ -245,7 +245,7 @@ public class HorarioAgendado implements Serializable {
         return "HorarioAgendado{" +
             "id=" + getId() +
             ", horaInicio='" + getHoraInicio() + "'" +
-            ", horafim='" + getHorafim() + "'" +
+            ", horaFim='" + getHoraFim() + "'" +
             ", numeroDeHorarios=" + getNumeroDeHorarios() +
             ", dia='" + getDia() + "'" +
             ", duracao='" + getDuracao() + "'" +

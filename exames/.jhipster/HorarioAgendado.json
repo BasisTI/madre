@@ -7,9 +7,8 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "horafim",
-      "fieldType": "Instant",
-      "fieldValidateRules": ["required"]
+      "fieldName": "horaFim",
+      "fieldType": "Instant"
     },
     {
       "fieldName": "numeroDeHorarios",
@@ -18,12 +17,13 @@
     {
       "fieldName": "dia",
       "fieldType": "Dia",
-      "fieldValues": "DOMINGO,SEGUNDA_FEIRA,TERCA_FEIRA,QUARTA_FEIRA,QUINTA_FEITA,SEXTA_FEIRA,SABADO",
+      "fieldValues": "DOMINGO,SEGUNDA_FEIRA,TERCA_FEIRA,QUARTA_FEIRA,QUINTA_FEIRA,SEXTA_FEIRA,SABADO",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "duracao",
-      "fieldType": "Duration"
+      "fieldType": "Duration",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "ativo",

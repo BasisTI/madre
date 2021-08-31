@@ -10,8 +10,6 @@ public class TipoDeMarcacaoDTO implements Serializable {
     
     private Long id;
 
-    private Integer codigo;
-
     private String tipoDeMarcacao;
 
     @NotNull
@@ -24,14 +22,6 @@ public class TipoDeMarcacaoDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public String getTipoDeMarcacao() {
@@ -72,7 +62,6 @@ public class TipoDeMarcacaoDTO implements Serializable {
     public String toString() {
         return "TipoDeMarcacaoDTO{" +
             "id=" + getId() +
-            ", codigo=" + getCodigo() +
             ", tipoDeMarcacao='" + getTipoDeMarcacao() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";

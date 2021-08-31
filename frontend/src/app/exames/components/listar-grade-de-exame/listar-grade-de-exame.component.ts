@@ -3,7 +3,6 @@ import { PessoaService } from 'src/app/seguranca/services/pessoa.service';
 import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento';
 import { GrupoModel } from '../../models/subjects/grupo-model';
 import { ExamModel } from '../../models/subjects/exames-model';
-import { Pessoa } from 'src/app/seguranca/models/dropdowns/pessoa-model';
 import { Responsavel } from '../../models/subjects/responsavel-model';
 import { Sala } from '../../models/subjects/sala';
 import { UnidadeFuncional } from '../../models/subjects/unidade-model';
@@ -12,6 +11,8 @@ import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.s
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
+import { Servidor } from 'src/app/seguranca/models/dropdowns/servidor-model';
+import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class ListarGradeDeExameComponent implements OnInit {
  
   gradeAgendamento: GradesDeAgendamento[];
   unidadesExecutoras: UnidadeFuncional[] = [];
-  pessoas: Pessoa[] = [];
+  servidores: Servidor[] = [];
   salas: Sala[] = [];
   gruposDeExame: GrupoModel[] = [];
   exames: ExamModel[] = [];
@@ -46,7 +47,7 @@ export class ListarGradeDeExameComponent implements OnInit {
 
   constructor(private gradeAgendamentoService: GradeDeAgendamentoService,
     private unidadeFuncionalService: UnidadeFuncionalService,
-    private pessoaService: PessoaService,
+    private servidorService: ServidorService,
     private exameService: ExamesService,
     private grupoExameService: GruposExamesService) { }
 
@@ -56,8 +57,8 @@ export class ListarGradeDeExameComponent implements OnInit {
       this.unidadesExecutoras = response;
     });
 
-    this.pessoaService.getPessoa().subscribe((response) => {
-      this.pessoas = response;
+    this.servidorService.getServidor().subscribe((response) => {
+      this.servidores = response;
     });
 
     this.gradeAgendamentoService.getSalas().subscribe((response) => {

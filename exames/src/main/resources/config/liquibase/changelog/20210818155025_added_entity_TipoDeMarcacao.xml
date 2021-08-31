@@ -15,9 +15,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="codigo" type="integer">
-                <constraints nullable="true" />
-            </column>
             <column name="tipo_de_marcacao" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -51,7 +48,6 @@
                   separator=";"
                   tableName="tipo_de_marcacao">
             <column name="id" type="numeric"/>
-            <column name="codigo" type="numeric"/>
             <column name="tipo_de_marcacao" type="string"/>
             <column name="ativo" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

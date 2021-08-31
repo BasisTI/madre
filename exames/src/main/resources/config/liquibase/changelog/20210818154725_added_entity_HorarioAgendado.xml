@@ -18,8 +18,8 @@
             <column name="hora_inicio" type="datetime">
                 <constraints nullable="false" />
             </column>
-            <column name="horafim" type="datetime">
-                <constraints nullable="false" />
+            <column name="hora_fim" type="datetime">
+                <constraints nullable="true" />
             </column>
             <column name="numero_de_horarios" type="integer">
                 <constraints nullable="true" />
@@ -28,7 +28,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="duracao" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <column name="ativo" type="boolean">
                 <constraints nullable="false" />
@@ -45,7 +45,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="horario_agendado" columnName="hora_inicio" columnDataType="datetime"/>
-        <dropDefaultValue tableName="horario_agendado" columnName="horafim" columnDataType="datetime"/>
+        <dropDefaultValue tableName="horario_agendado" columnName="hora_fim" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20210818154725-1-relations" author="jhipster">
@@ -72,7 +72,7 @@
                   tableName="horario_agendado">
             <column name="id" type="numeric"/>
             <column name="hora_inicio" type="datetime"/>
-            <column name="horafim" type="datetime"/>
+            <column name="hora_fim" type="datetime"/>
             <column name="numero_de_horarios" type="numeric"/>
             <column name="dia" type="string"/>
             <column name="duracao" type="numeric"/>

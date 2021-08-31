@@ -49,8 +49,8 @@ public class HorarioAgendadoResourceIT {
     private static final Instant DEFAULT_HORA_INICIO = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_HORA_INICIO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Instant DEFAULT_HORAFIM = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_HORAFIM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_HORA_FIM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_HORA_FIM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Integer DEFAULT_NUMERO_DE_HORARIOS = 1;
     private static final Integer UPDATED_NUMERO_DE_HORARIOS = 2;
@@ -101,7 +101,7 @@ public class HorarioAgendadoResourceIT {
     public static HorarioAgendado createEntity(EntityManager em) {
         HorarioAgendado horarioAgendado = new HorarioAgendado()
             .horaInicio(DEFAULT_HORA_INICIO)
-            .horafim(DEFAULT_HORAFIM)
+            .horaFim(DEFAULT_HORA_FIM)
             .numeroDeHorarios(DEFAULT_NUMERO_DE_HORARIOS)
             .dia(DEFAULT_DIA)
             .duracao(DEFAULT_DURACAO)
@@ -118,7 +118,7 @@ public class HorarioAgendadoResourceIT {
     public static HorarioAgendado createUpdatedEntity(EntityManager em) {
         HorarioAgendado horarioAgendado = new HorarioAgendado()
             .horaInicio(UPDATED_HORA_INICIO)
-            .horafim(UPDATED_HORAFIM)
+            .horaFim(UPDATED_HORA_FIM)
             .numeroDeHorarios(UPDATED_NUMERO_DE_HORARIOS)
             .dia(UPDATED_DIA)
             .duracao(UPDATED_DURACAO)
@@ -148,7 +148,7 @@ public class HorarioAgendadoResourceIT {
         assertThat(horarioAgendadoList).hasSize(databaseSizeBeforeCreate + 1);
         HorarioAgendado testHorarioAgendado = horarioAgendadoList.get(horarioAgendadoList.size() - 1);
         assertThat(testHorarioAgendado.getHoraInicio()).isEqualTo(DEFAULT_HORA_INICIO);
-        assertThat(testHorarioAgendado.getHorafim()).isEqualTo(DEFAULT_HORAFIM);
+        assertThat(testHorarioAgendado.getHoraFim()).isEqualTo(DEFAULT_HORA_FIM);
         assertThat(testHorarioAgendado.getNumeroDeHorarios()).isEqualTo(DEFAULT_NUMERO_DE_HORARIOS);
         assertThat(testHorarioAgendado.getDia()).isEqualTo(DEFAULT_DIA);
         assertThat(testHorarioAgendado.getDuracao()).isEqualTo(DEFAULT_DURACAO);
@@ -205,10 +205,10 @@ public class HorarioAgendadoResourceIT {
 
     @Test
     @Transactional
-    public void checkHorafimIsRequired() throws Exception {
+    public void checkDiaIsRequired() throws Exception {
         int databaseSizeBeforeTest = horarioAgendadoRepository.findAll().size();
         // set the field null
-        horarioAgendado.setHorafim(null);
+        horarioAgendado.setDia(null);
 
         // Create the HorarioAgendado, which fails.
         HorarioAgendadoDTO horarioAgendadoDTO = horarioAgendadoMapper.toDto(horarioAgendado);
@@ -225,10 +225,10 @@ public class HorarioAgendadoResourceIT {
 
     @Test
     @Transactional
-    public void checkDiaIsRequired() throws Exception {
+    public void checkDuracaoIsRequired() throws Exception {
         int databaseSizeBeforeTest = horarioAgendadoRepository.findAll().size();
         // set the field null
-        horarioAgendado.setDia(null);
+        horarioAgendado.setDuracao(null);
 
         // Create the HorarioAgendado, which fails.
         HorarioAgendadoDTO horarioAgendadoDTO = horarioAgendadoMapper.toDto(horarioAgendado);
@@ -295,7 +295,7 @@ public class HorarioAgendadoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(horarioAgendado.getId().intValue())))
             .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
-            .andExpect(jsonPath("$.[*].horafim").value(hasItem(DEFAULT_HORAFIM.toString())))
+            .andExpect(jsonPath("$.[*].horaFim").value(hasItem(DEFAULT_HORA_FIM.toString())))
             .andExpect(jsonPath("$.[*].numeroDeHorarios").value(hasItem(DEFAULT_NUMERO_DE_HORARIOS)))
             .andExpect(jsonPath("$.[*].dia").value(hasItem(DEFAULT_DIA.toString())))
             .andExpect(jsonPath("$.[*].duracao").value(hasItem(DEFAULT_DURACAO.toString())))
@@ -315,7 +315,7 @@ public class HorarioAgendadoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(horarioAgendado.getId().intValue()))
             .andExpect(jsonPath("$.horaInicio").value(DEFAULT_HORA_INICIO.toString()))
-            .andExpect(jsonPath("$.horafim").value(DEFAULT_HORAFIM.toString()))
+            .andExpect(jsonPath("$.horaFim").value(DEFAULT_HORA_FIM.toString()))
             .andExpect(jsonPath("$.numeroDeHorarios").value(DEFAULT_NUMERO_DE_HORARIOS))
             .andExpect(jsonPath("$.dia").value(DEFAULT_DIA.toString()))
             .andExpect(jsonPath("$.duracao").value(DEFAULT_DURACAO.toString()))
@@ -344,7 +344,7 @@ public class HorarioAgendadoResourceIT {
         em.detach(updatedHorarioAgendado);
         updatedHorarioAgendado
             .horaInicio(UPDATED_HORA_INICIO)
-            .horafim(UPDATED_HORAFIM)
+            .horaFim(UPDATED_HORA_FIM)
             .numeroDeHorarios(UPDATED_NUMERO_DE_HORARIOS)
             .dia(UPDATED_DIA)
             .duracao(UPDATED_DURACAO)
@@ -362,7 +362,7 @@ public class HorarioAgendadoResourceIT {
         assertThat(horarioAgendadoList).hasSize(databaseSizeBeforeUpdate);
         HorarioAgendado testHorarioAgendado = horarioAgendadoList.get(horarioAgendadoList.size() - 1);
         assertThat(testHorarioAgendado.getHoraInicio()).isEqualTo(UPDATED_HORA_INICIO);
-        assertThat(testHorarioAgendado.getHorafim()).isEqualTo(UPDATED_HORAFIM);
+        assertThat(testHorarioAgendado.getHoraFim()).isEqualTo(UPDATED_HORA_FIM);
         assertThat(testHorarioAgendado.getNumeroDeHorarios()).isEqualTo(UPDATED_NUMERO_DE_HORARIOS);
         assertThat(testHorarioAgendado.getDia()).isEqualTo(UPDATED_DIA);
         assertThat(testHorarioAgendado.getDuracao()).isEqualTo(UPDATED_DURACAO);
@@ -431,7 +431,7 @@ public class HorarioAgendadoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(horarioAgendado.getId().intValue())))
             .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
-            .andExpect(jsonPath("$.[*].horafim").value(hasItem(DEFAULT_HORAFIM.toString())))
+            .andExpect(jsonPath("$.[*].horaFim").value(hasItem(DEFAULT_HORA_FIM.toString())))
             .andExpect(jsonPath("$.[*].numeroDeHorarios").value(hasItem(DEFAULT_NUMERO_DE_HORARIOS)))
             .andExpect(jsonPath("$.[*].dia").value(hasItem(DEFAULT_DIA.toString())))
             .andExpect(jsonPath("$.[*].duracao").value(hasItem(DEFAULT_DURACAO.toString())))
