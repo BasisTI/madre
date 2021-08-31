@@ -3,11 +3,11 @@ import { Time } from "@angular/common";
 export class HorarioAgendado {
     constructor(
         public id?: number,
-        public horaInicio?: Time,
-        public horaFim?: Time,
+        public horaInicio?: Date,
+        public horaFim?: Date,
         public numeroDeHorarios?: number,
         public dia?: string,
-        public duracao?: Time,
+        public duracao?: moment.Duration,
         public ativo?: boolean,
         public exclusivo?: boolean,
         public horarioAgendadoId?: number,

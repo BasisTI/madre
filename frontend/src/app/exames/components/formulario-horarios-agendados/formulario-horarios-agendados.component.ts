@@ -1,7 +1,7 @@
 import { Time } from '@angular/common';
-import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
 import { HorarioAgendado } from '../../models/subjects/horario-agendado';
 import { TipoDeMarcacao } from '../../models/subjects/tipo-de-marcacao';
@@ -57,17 +57,23 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   agendarHorarioGrade() {
     const cadastroHorario = this.agendarHorario.value;
 
+    let dataDuracao: Date = cadastroHorario.duracao;
+
+    let valorDuracao: moment.Duration = moment.duration({
+      milliseconds: dataDuracao.getMilliseconds(),
+      seconds: dataDuracao.getSeconds(),
+      minutes: dataDuracao.getMinutes(),
+      hours: dataDuracao.getHours()});
+
     const cadastro: HorarioAgendado = {
       horaInicio: cadastroHorario.horaInicio,
       horaFim: cadastroHorario.horaFim,
       numeroDeHorarios: cadastroHorario.numeroDeHorarios,
       dia: this.diaSelecionado,
-      duracao: cadastroHorario.duracao,
+      duracao: valorDuracao,
       ativo: cadastroHorario.ativo,
       exclusivo: cadastroHorario.exclusivo
     };
-
-    console.log(cadastroHorario);
 
     this.gradeService.cadastrarHorarioGrade(cadastro).subscribe();
     this.agendarHorario.reset();
