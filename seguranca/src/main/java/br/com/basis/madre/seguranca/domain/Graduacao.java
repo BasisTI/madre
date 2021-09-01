@@ -4,8 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.Enumerated;
+import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
