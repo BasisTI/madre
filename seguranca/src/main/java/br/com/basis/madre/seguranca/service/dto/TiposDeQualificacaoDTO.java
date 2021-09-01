@@ -1,14 +1,16 @@
 package br.com.basis.madre.seguranca.service.dto;
 
-import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import br.com.basis.madre.seguranca.domain.enumeration.TipoQualificacao;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.TiposDeQualificacao} entity.
  */
 public class TiposDeQualificacaoDTO implements Serializable {
-    
+
     private Long id;
 
     private String descricao;
@@ -20,7 +22,7 @@ public class TiposDeQualificacaoDTO implements Serializable {
     @NotNull
     private Boolean situacao;
 
-    
+
     public Long getId() {
         return id;
     }
