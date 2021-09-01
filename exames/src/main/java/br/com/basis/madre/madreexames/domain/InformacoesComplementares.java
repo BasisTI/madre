@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "informacoes_complementares")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "informacoescomplementares")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-informacoescomplementares")
 public class InformacoesComplementares implements Serializable {
 
     private static final long serialVersionUID = 1L;

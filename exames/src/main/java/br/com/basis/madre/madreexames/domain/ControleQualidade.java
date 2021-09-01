@@ -17,7 +17,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 @Entity
 @Table(name = "controle_qualidade")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "controlequalidade")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-controlequalidade")
 public class ControleQualidade implements Serializable {
 
     private static final long serialVersionUID = 1L;

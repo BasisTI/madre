@@ -20,7 +20,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Abrangencia;
 @Entity
 @Table(name = "recomendacao")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "recomendacao")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-recomendacao")
 public class Recomendacao implements Serializable {
 
     private static final long serialVersionUID = 1L;

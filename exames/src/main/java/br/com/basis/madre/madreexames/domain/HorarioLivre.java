@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "horario_livre")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "horariolivre")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-horariolivre")
 public class HorarioLivre implements Serializable {
 
     private static final long serialVersionUID = 1L;

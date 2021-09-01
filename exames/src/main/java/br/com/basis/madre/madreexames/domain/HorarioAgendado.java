@@ -22,7 +22,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Dia;
 @Entity
 @Table(name = "horario_agendado")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "horarioagendado")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-horarioagendado")
 public class HorarioAgendado implements Serializable {
 
     private static final long serialVersionUID = 1L;

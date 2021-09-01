@@ -19,7 +19,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Situacao;
 @Entity
 @Table(name = "item_solicitacao_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "itemsolicitacaoexame")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-itemsolicitacaoexame")
 public class ItemSolicitacaoExame implements Serializable {
 
     private static final long serialVersionUID = 1L;

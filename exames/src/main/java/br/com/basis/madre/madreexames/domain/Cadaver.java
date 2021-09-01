@@ -22,7 +22,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 @Entity
 @Table(name = "cadaver")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "cadaver")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-cadaver")
 public class Cadaver implements Serializable {
 
     private static final long serialVersionUID = 1L;

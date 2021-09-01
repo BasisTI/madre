@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.GradeDeAgendamento} entity.
  */
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-gradedeagendamento")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-gradedeagendamento")
 @AllArgsConstructor
 @NoArgsConstructor
 public class GradeDeAgendamentoDTO implements Serializable {

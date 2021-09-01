@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "sinonimo")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "sinonimo")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-sinonimo")
 public class Sinonimo implements Serializable {
 
     private static final long serialVersionUID = 1L;
