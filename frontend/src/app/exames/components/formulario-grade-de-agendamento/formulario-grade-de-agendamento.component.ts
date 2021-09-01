@@ -35,6 +35,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   gruposDeExame: GrupoModel[] = [];
   salas: Sala[] = [];
   exames: ExamModel[] = [];
+  gradeTeste: any;
 
   exameSelecionado: number;
   salaSelecionada: number;
@@ -48,6 +49,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     responsavelId: [null, Validators.required],
     ativo: [null, Validators.required],
     exameGradeId: [null],
+    grupoGradeId: [null],
     salaGradeId: [null, Validators.required]
   });
 
@@ -78,12 +80,11 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       grupoGradeId: this.grupoSelecionado,
       grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome,
     };
-
-    console.log(cadastroGradeValor);
-
-    this.gradeAgendamentoService.cadastrarGrade(cadastro).subscribe();
-    this.cadastroGrade.reset();
     
+    this.gradeAgendamentoService.cadastrarGrade(cadastro).subscribe((res) => {
+      console.log(res);
+    });
+    this.cadastroGrade.reset();
   }
 
   ngOnInit(): void {

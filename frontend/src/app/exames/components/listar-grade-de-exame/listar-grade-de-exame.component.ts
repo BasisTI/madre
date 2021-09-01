@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PessoaService } from 'src/app/seguranca/services/pessoa.service';
 import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento';
 import { GrupoModel } from '../../models/subjects/grupo-model';
 import { ExamModel } from '../../models/subjects/exames-model';

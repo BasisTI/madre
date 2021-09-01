@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { MessageService } from 'primeng/api';
 import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
 import { HorarioAgendado } from '../../models/subjects/horario-agendado';
 import { TipoDeMarcacao } from '../../models/subjects/tipo-de-marcacao';
@@ -13,20 +14,20 @@ import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.s
   styleUrls: ['./formulario-horarios-agendados.component.css']
 })
 export class FormularioHorariosAgendadosComponent implements OnInit {
-  horarioInicio: Time;
-  horarioFim: Time;
-  duracao: Time;
-  dia = DiaSemana;
-  tiposDeMarcacao: TipoDeMarcacao[] = [];
 
+  horarioInicio: Date;
+  horaFim: Date;
+  duracao: Time;
+  duracaoPadrao = new Date('December 31, 2021 00:30:00');
+  dia = DiaSemana;
   diaSelecionado: string;
+  tiposDeMarcacao: TipoDeMarcacao[] = [];
+  numeroDeHorarios: number;
 
   constructor(private gradeService: GradeDeAgendamentoService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder, private msg: MessageService) { }
 
   ngOnInit(): void {
-    console.log(new Date);
-    
     this.gradeService.getTiposDeMarcacao().subscribe((response) => {
       this.tiposDeMarcacao = response;
     });
@@ -36,23 +37,10 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     horaInicio: [null, Validators.required],
     horaFim: [null],
     numeroDeHorarios: [null],
-    // dia: [null, Validators.required],
     duracao: [null, Validators.required],
     ativo: [null, Validators.required],
     exclusivo: [null, Validators.required]
   });
-
-  validarFormulario(): boolean {
-    if (this.agendarHorario.valid && this.diaSelecionado)
-      return true;
-    else
-      return false;
-  }
-
-  limparFormulario() {
-    this.agendarHorario.reset();
-    this.diaSelecionado = null;
-  }
 
   agendarHorarioGrade() {
     const cadastroHorario = this.agendarHorario.value;
@@ -60,10 +48,10 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     let dataDuracao: Date = cadastroHorario.duracao;
 
     let valorDuracao: moment.Duration = moment.duration({
-      milliseconds: dataDuracao.getMilliseconds(),
       seconds: dataDuracao.getSeconds(),
       minutes: dataDuracao.getMinutes(),
-      hours: dataDuracao.getHours()});
+      hours: dataDuracao.getHours()
+    });
 
     const cadastro: HorarioAgendado = {
       horaInicio: cadastroHorario.horaInicio,
@@ -75,9 +63,38 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
       exclusivo: cadastroHorario.exclusivo
     };
 
+
+    if (this.numeroDeHorarios != null && this.horaFim != null) {
+      this.msg.add({
+        severity: 'error', summary: 'Erro no preenchimento',
+        detail: 'Não informar hora fim e número de horários ao mesmo tempo.'
+      })
+      return;
+    }
+
+    if (moment(this.horarioInicio).isAfter(this.horaFim)) {
+      this.msg.add({
+        severity: 'error', summary: 'Erro no preenchimento',
+        detail: 'Hora fim deve ser depois de hora início.'
+      })
+      return;
+    }
+
     this.gradeService.cadastrarHorarioGrade(cadastro).subscribe();
     this.agendarHorario.reset();
   }
 
+  validarFormulario(): boolean {
+    if (this.agendarHorario.valid && this.diaSelecionado)
+      return true;
+    else
+      return false;
+  }
+
+
+  limparFormulario() {
+    this.agendarHorario.reset();
+    this.diaSelecionado = null;
+  }
 
 }

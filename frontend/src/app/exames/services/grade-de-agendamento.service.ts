@@ -46,6 +46,10 @@ export class GradeDeAgendamentoService {
     return this.client.get<Array<TipoDeMarcacao>>(`${this.URL}/tipo-de-marcacaos`);
   }
 
+  public getHorariosAgendados(): Observable<Array<HorarioAgendado>> {
+    return this.client.get<Array<HorarioAgendado>>(`${this.URL}/_search/horarios-agendados`);
+  }
+
   cadastrarGrade(gradeDeAgendamento: GradesDeAgendamento) {
     return this.client.post(`${this.URL}/grade-de-agendamentos`, gradeDeAgendamento);
   }

@@ -7,6 +7,7 @@ import { CadastrarMaterialComponent } from './components/cadastrar-material/cada
 import { FormularioGradeDeAgendamentoComponent } from './components/formulario-grade-de-agendamento/formulario-grade-de-agendamento.component';
 import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
+import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 
 
 export const routes: Routes = [
@@ -37,5 +38,9 @@ export const routes: Routes = [
     {
         path: 'listar-grade-exame',
         component: ListarGradeDeExameComponent
+    },
+    {
+        path: 'listar-horarios-agendados',
+        component: TabelaHorariosAgendadosComponent
     }
 ];

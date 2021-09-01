@@ -15,6 +15,8 @@ import { FormularioGradeDeAgendamentoComponent } from './components/formulario-g
 import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { FormularioHorariosAgendadosComponent } from './components/formulario-horarios-agendados/formulario-horarios-agendados.component';
+import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
+import { DurationPipe } from './components/exames/pipes/duration.pipe';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { FormularioHorariosAgendadosComponent } from './components/formulario-ho
         ListarGradeDeExameComponent,
         GradeAgendamentosComponent,
         FormularioHorariosAgendadosComponent,
+        TabelaHorariosAgendadosComponent,
+        DurationPipe
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
