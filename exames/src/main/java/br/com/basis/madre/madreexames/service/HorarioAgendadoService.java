@@ -5,11 +5,17 @@ import br.com.basis.madre.madreexames.repository.HorarioAgendadoRepository;
 import br.com.basis.madre.madreexames.repository.search.HorarioAgendadoSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.HorarioAgendadoDTO;
 import br.com.basis.madre.madreexames.service.mapper.HorarioAgendadoMapper;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -103,5 +109,30 @@ public class HorarioAgendadoService {
         log.debug("Request to search for a page of HorarioAgendados for query {}", query);
         return horarioAgendadoSearchRepository.search(queryStringQuery(query), pageable)
             .map(horarioAgendadoMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<HorarioAgendado> filtraHorarioAgendado(Pageable pageable, String id, String horaInicio, String horaFim,
+       String numeroDeHorarios, String dia, String duracao, String ativo, String exclusivo) {
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, "id", id);
+        filter(queryBuilder, "horaInicio", horaInicio);
+        filter(queryBuilder, "horaFim", horaFim);
+        filter(queryBuilder, "numeroDeHorarios", numeroDeHorarios);
+        filter(queryBuilder, "dia", dia);
+        filter(queryBuilder, "duracao", duracao);
+        filter(queryBuilder, "ativo", ativo);
+        filter(queryBuilder, "exclusivo", exclusivo);
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+        return horarioAgendadoSearchRepository.search(query);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name,valueName));
+        }
     }
 }

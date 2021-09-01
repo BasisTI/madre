@@ -12,6 +12,9 @@
             <column name="sala_grade_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="grupo_agendamento_exame_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
         </dropColumn>
 
         <addColumn tableName="grade_de_agendamento">

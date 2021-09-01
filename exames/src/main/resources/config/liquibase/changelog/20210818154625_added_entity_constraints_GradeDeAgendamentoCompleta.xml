@@ -12,11 +12,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="grupo_agendamento_exame"/>
 
-        <dropForeignKeyConstraint baseColumnNames="grupo_agendamento_exame_id"
-                                 baseTableName="grade_de_agendamento"
-                                 constraintName="fk_grade_de_agendamento_grupo_agendamento_exame_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="grupo_agendamento_exame"/>
-
     </changeSet>
 </databaseChangeLog>

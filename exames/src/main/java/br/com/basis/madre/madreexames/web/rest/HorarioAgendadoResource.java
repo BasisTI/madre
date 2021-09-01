@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.web.rest;
 
+import br.com.basis.madre.madreexames.domain.HorarioAgendado;
 import br.com.basis.madre.madreexames.service.HorarioAgendadoService;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.madreexames.service.dto.HorarioAgendadoDTO;
@@ -142,4 +143,23 @@ public class HorarioAgendadoResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+    @GetMapping("/_search/horarios-agendados")
+    public ResponseEntity<List<HorarioAgendado>> obterTodosHorarios(Pageable pageable,
+        @RequestParam(name = "id", required = false) String id,
+        @RequestParam(name = "horaInicio", required = false) String horaInicio,
+        @RequestParam(name = "horaFim", required = false) String horaFim,
+        @RequestParam(name = "numeroDeHorarios", required = false) String numeroDeHorarios,
+        @RequestParam(name = "dia", required = false) String dia,
+        @RequestParam(name = "duracao", required = false) String duracao,
+        @RequestParam(name = "ativo", required = false) String ativo,
+        @RequestParam(name = "exclusivo", required = false) String exclusivo
+    ) {
+        log.debug("Request REST para obter uma página de solicitações de exame.");
+        Page<HorarioAgendado> page = horarioAgendadoService.filtraHorarioAgendado(pageable, id, horaInicio, horaFim,
+            numeroDeHorarios, dia, duracao, ativo, exclusivo);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
 }
