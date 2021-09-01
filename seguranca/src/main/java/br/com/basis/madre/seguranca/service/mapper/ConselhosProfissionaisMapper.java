@@ -1,10 +1,12 @@
 package br.com.basis.madre.seguranca.service.mapper;
 
 
-import br.com.basis.madre.seguranca.domain.*;
-import br.com.basis.madre.seguranca.service.dto.ConselhosProfissionaisDTO;
 
-import org.mapstruct.*;
+import br.com.basis.madre.seguranca.domain.ConselhosProfissionais;
+import br.com.basis.madre.seguranca.service.dto.ConselhosProfissionaisDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
 
 /**
  * Mapper for the entity {@link ConselhosProfissionais} and its DTO {@link ConselhosProfissionaisDTO}.
