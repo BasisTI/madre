@@ -1,6 +1,7 @@
 package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.service.MaterialDeExameService;
+import br.com.basis.madre.madreexames.service.dto.MaterialDeExameCompletoDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.madreexames.service.dto.MaterialDeExameDTO;
 
@@ -50,18 +51,18 @@ public class MaterialDeExameResource {
     /**
      * {@code POST  /material-de-exames} : Create a new materialDeExame.
      *
-     * @param materialDeExameDTO the materialDeExameDTO to create.
+     * @param materialDeExameCompletoDTO the materialDeExameDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new materialDeExameDTO, or with status {@code 400 (Bad Request)} if the materialDeExame has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/material-de-exames")
-    public ResponseEntity<MaterialDeExameDTO> createMaterialDeExame(@Valid @RequestBody MaterialDeExameDTO materialDeExameDTO) throws URISyntaxException {
-        log.debug("REST request to save MaterialDeExame : {}", materialDeExameDTO);
-        if (materialDeExameDTO.getId() != null) {
+    public ResponseEntity<MaterialDeExameCompletoDTO> createMaterialDeExame(@Valid @RequestBody MaterialDeExameCompletoDTO materialDeExameCompletoDTO) throws URISyntaxException {
+        log.debug("REST request to save MaterialDeExame : {}", materialDeExameCompletoDTO);
+        if (materialDeExameCompletoDTO.getId() != null) {
             throw new BadRequestAlertException("A new materialDeExame cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        MaterialDeExameDTO result = materialDeExameService.save(materialDeExameDTO);
-        return ResponseEntity.created(new URI("/api/material-de-exames/" + result.getId()))
+        MaterialDeExameCompletoDTO result = materialDeExameService.save(materialDeExameCompletoDTO);
+        return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -69,21 +70,21 @@ public class MaterialDeExameResource {
     /**
      * {@code PUT  /material-de-exames} : Updates an existing materialDeExame.
      *
-     * @param materialDeExameDTO the materialDeExameDTO to update.
+     * @param materialDeExameCompletoDTO the materialDeExameDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated materialDeExameDTO,
      * or with status {@code 400 (Bad Request)} if the materialDeExameDTO is not valid,
      * or with status {@code 500 (Internal Server Error)} if the materialDeExameDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/material-de-exames")
-    public ResponseEntity<MaterialDeExameDTO> updateMaterialDeExame(@Valid @RequestBody MaterialDeExameDTO materialDeExameDTO) throws URISyntaxException {
-        log.debug("REST request to update MaterialDeExame : {}", materialDeExameDTO);
-        if (materialDeExameDTO.getId() == null) {
+    public ResponseEntity<MaterialDeExameCompletoDTO> updateMaterialDeExame(@Valid @RequestBody MaterialDeExameCompletoDTO materialDeExameCompletoDTO) throws URISyntaxException {
+        log.debug("REST request to update MaterialDeExame : {}", materialDeExameCompletoDTO);
+        if (materialDeExameCompletoDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        MaterialDeExameDTO result = materialDeExameService.save(materialDeExameDTO);
+        MaterialDeExameCompletoDTO result = materialDeExameService.save(materialDeExameCompletoDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, materialDeExameDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, materialDeExameCompletoDTO.getId().toString()))
             .body(result);
     }
 

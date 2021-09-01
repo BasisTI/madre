@@ -162,7 +162,7 @@ public class MaterialDeExame implements Serializable {
     @Column(name = "nao_cancela_exama_apos_alta")
     private Boolean naoCancelaExamaAposAlta;
 
-    @OneToMany(mappedBy = "materialDeExame")
+    @OneToMany(mappedBy = "materialDeExame", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<AmostraDeMaterial> amostras = new HashSet<>();
 

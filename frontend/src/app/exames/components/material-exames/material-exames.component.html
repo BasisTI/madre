@@ -434,7 +434,7 @@
             <div class="p-col">
                 Unidade de Coleta
                 <span style="margin-top: 5px;">
-                    <p-dropdown formControlName="unidadeFuncionalId" placeholder="Selecione" [options]="materiaisDeAnalise" [optionLabel]="'nome'"
+                    <p-dropdown formControlName="unidadeFuncionalId" placeholder="Selecione" [options]="unidadesFuncionais" [optionLabel]="'nome'"
                         [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                         pTooltip="Selecione a unidade funcional">
                     </p-dropdown>
@@ -481,6 +481,11 @@
         <div class="p-grid p-justify-start">
             <button class="p-col-2" pButton type="button" label="Adicionar" icon="pi pi-save" (click)="adicionarAmostra()"
                 [disabled]="!validarAmostra()"></button>
+        </div>
+        <div class="p-grid">
+            <button
+                class="p-col-2" pButton type="button" label="Limpar" icon="pi pi-save" (click)="limparAmostras()"
+            ></button>
         </div>
     </p-accordionTab>
 </p-accordion>

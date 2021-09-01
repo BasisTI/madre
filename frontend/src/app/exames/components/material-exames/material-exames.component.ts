@@ -14,6 +14,8 @@ import { Recipiente } from '../../models/subjects/recipiente';
 import { origemDropdown } from '../../models/dropdowns/origem.dropdown';
 import { ResponsavelDropdown } from '../../models/dropdowns/responsavel.dropdown';
 import { UnidadeMedidaDropdown } from '../../models/dropdowns/unidadeMedida.dropdown';
+import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
+import { GrupoModel } from '../../models/subjects/grupo-model';
 @Component({
   selector: 'app-material-exames',
   templateUrl: './material-exames.component.html',
@@ -24,6 +26,7 @@ export class MaterialExamesComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private materialDeAnaliseService: MaterialDeAnaliseService,
     private materialDeExamesService: MaterialDeExamesService,
+    private unidadeDuncionalService: UnidadeFuncionalService,
     ) { }
 
   // Material de Exame
@@ -83,7 +86,7 @@ export class MaterialExamesComponent implements OnInit {
   ListaDeAmostras: AmostraDeMaterial[] = [];
   anticoagulantes: Anticoagulante[] = [];
   recipientes: Recipiente[] = [];
-  unidadesFuncionais: any[] = []; // falta
+  unidadesFuncionais: GrupoModel[] = [];
   responsaveis = ResponsavelDropdown;
   origens = origemDropdown;
   unidadeMedida = UnidadeMedidaDropdown;
@@ -154,6 +157,10 @@ export class MaterialExamesComponent implements OnInit {
     this.amostraForm.reset();
   }
 
+  limparAmostras() {
+    this.ListaDeAmostras = [];
+  }
+
   cadastrarMaterial() {
     let materialPreenchido = this.materialForm.value;
 
@@ -210,6 +217,7 @@ export class MaterialExamesComponent implements OnInit {
 
     this.materialDeExamesService.cadastrarMaterialDeExame(materialDeExames).subscribe();
     this.materialForm.reset();
+    this.ListaDeAmostras = [];
 
   }
 
@@ -226,6 +234,9 @@ export class MaterialExamesComponent implements OnInit {
     })
     this.materialDeExamesService.pegarRecipientes().subscribe((response) => {
       this.recipientes = response;
+    })
+    this.unidadeDuncionalService.GetUnidades().subscribe((response) => {
+      this.unidadesFuncionais = response;
     })
   }
 

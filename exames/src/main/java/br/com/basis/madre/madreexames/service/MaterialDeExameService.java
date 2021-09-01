@@ -4,6 +4,8 @@ import br.com.basis.madre.madreexames.domain.MaterialDeExame;
 import br.com.basis.madre.madreexames.repository.MaterialDeExameRepository;
 import br.com.basis.madre.madreexames.repository.search.MaterialDeExameSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.MaterialDeExameDTO;
+import br.com.basis.madre.madreexames.service.dto.MaterialDeExameCompletoDTO;
+import br.com.basis.madre.madreexames.service.mapper.MaterialDeExameCompletoMapper;
 import br.com.basis.madre.madreexames.service.mapper.MaterialDeExameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 /**
  * Service Implementation for managing {@link MaterialDeExame}.
  */
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service
 @Transactional
 public class MaterialDeExameService {
@@ -32,23 +35,27 @@ public class MaterialDeExameService {
 
     private final MaterialDeExameSearchRepository materialDeExameSearchRepository;
 
-    public MaterialDeExameService(MaterialDeExameRepository materialDeExameRepository, MaterialDeExameMapper materialDeExameMapper, MaterialDeExameSearchRepository materialDeExameSearchRepository) {
+    private final MaterialDeExameCompletoMapper materialDeExameCompletoMapper;
+
+    public MaterialDeExameService(MaterialDeExameRepository materialDeExameRepository, MaterialDeExameMapper materialDeExameMapper, MaterialDeExameSearchRepository materialDeExameSearchRepository, MaterialDeExameCompletoMapper materialDeExameCompletoMapper) {
+
         this.materialDeExameRepository = materialDeExameRepository;
         this.materialDeExameMapper = materialDeExameMapper;
         this.materialDeExameSearchRepository = materialDeExameSearchRepository;
+        this.materialDeExameCompletoMapper = materialDeExameCompletoMapper;
     }
 
     /**
      * Save a materialDeExame.
      *
-     * @param materialDeExameDTO the entity to save.
+     * @param materialDeExameCompletoDTO the entity to save.
      * @return the persisted entity.
      */
-    public MaterialDeExameDTO save(MaterialDeExameDTO materialDeExameDTO) {
-        log.debug("Request to save MaterialDeExame : {}", materialDeExameDTO);
-        MaterialDeExame materialDeExame = materialDeExameMapper.toEntity(materialDeExameDTO);
+    public MaterialDeExameCompletoDTO save(MaterialDeExameCompletoDTO materialDeExameCompletoDTO) {
+        log.debug("Request to save MaterialDeExame : {}", materialDeExameCompletoDTO);
+        MaterialDeExame materialDeExame = materialDeExameCompletoMapper.toEntity(materialDeExameCompletoDTO);
         materialDeExame = materialDeExameRepository.save(materialDeExame);
-        MaterialDeExameDTO result = materialDeExameMapper.toDto(materialDeExame);
+        MaterialDeExameCompletoDTO result = materialDeExameCompletoMapper.toDto(materialDeExame);
         materialDeExameSearchRepository.save(materialDeExame);
         return result;
     }
