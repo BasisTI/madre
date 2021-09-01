@@ -29,7 +29,6 @@ export class MaterialExamesComponent implements OnInit {
     private unidadeDuncionalService: UnidadeFuncionalService,
     ) { }
 
-  // Material de Exame
   materialForm = this.fb.group({
     ativo: [null, Validators.required],
     npo: [null, Validators.required],
@@ -42,7 +41,7 @@ export class MaterialExamesComponent implements OnInit {
     exigeRegiaoAnatomica: [null, Validators.required],
     ingestaoDeMedicamento: [null, Validators.required],
     dependenteDeExame: [null, Validators.required],
-    analisadoPelaCII: [null, Validators.required], // faltou
+    analisadoPelaCII: [null, Validators.required],
     interesseDaCOMEDI: [null, Validators.required],
     exigeImpressao: [null, Validators.required],
     apareceResultado: [null, Validators.required],
@@ -53,7 +52,7 @@ export class MaterialExamesComponent implements OnInit {
     exigeDadosComplementares: [null, Validators.required],
     natureza: [null, Validators.required],
     sumario: [null, Validators.required],
-    tempoJejum: [null, Validators.required], // aki
+    tempoJejum: [null, Validators.required],
     intervaloMinimo: [null, Validators.required],
     unidadeDeTempo: [null, Validators.required],
     validade: [null, Validators.required],
@@ -67,7 +66,7 @@ export class MaterialExamesComponent implements OnInit {
     numeroDeAmostrarPorIntervalo: [null, Validators.required],
     tempoLimiteDeAmostraPorIntervalo: [null, Validators.required],
     unidadeLimiteDeTempoDoPeriodo: [null, Validators.required],
-    permiteSolicitacaoPosAlta: [null, Validators.required], // opa
+    permiteSolicitacaoPosAlta: [null, Validators.required],
     tempoPermitidoParaSolicitarPosAlta: [null, Validators.required],
     tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras: [null, Validators.required],
     cartaDeColeta: [null, Validators.required],
@@ -82,7 +81,6 @@ export class MaterialExamesComponent implements OnInit {
   unidadeDeTempoOptions = unidadeTempoDropdown;
   materiaisDeAnalise: MaterialDeAnalise[] = [];
 
-  // Amostra
   ListaDeAmostras: AmostraDeMaterial[] = [];
   anticoagulantes: Anticoagulante[] = [];
   recipientes: Recipiente[] = [];
@@ -100,7 +98,7 @@ export class MaterialExamesComponent implements OnInit {
     unidadeDeMedida: [null, Validators.required],
     responsavel: [null, Validators.required],
     congelado: [null, Validators.required],
-    unidadeFuncionalId: [null, Validators.required], // tratar
+    unidadeFuncionalId: [null, Validators.required],
     amostraRecipienteId: [null, Validators.required],
     amostraRecipienteNome: [null],
     amostraAnticoagulanteId: [null, Validators.required],
