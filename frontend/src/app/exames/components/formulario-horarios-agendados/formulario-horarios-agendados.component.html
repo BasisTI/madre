@@ -1,16 +1,27 @@
 <div class="p-col-12 p-grid">
-            
+    <div class="p-md-2 p-fluid">
+        <span><b>Grade de Exame</b>: {{grade.id}} </span>
+    </div>
+    <div class="p-md-2 p-fluid">
+        <span><b>Unidade Executora</b>: {{grade.unidadeExecutoraNome}} </span>
+    </div>
+    <div class="p-md-2 p-fluid">
+        <span><b>Grupo</b>: {{grade.grupoGradeNome}} </span>
+    </div>
+</div>
+
+<div class="p-col-12 p-grid">
     <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
         Horário início
         <p-calendar [(ngModel)]="horarioInicio" [timeOnly]="true" 
-        inputId="horarioInicio" formControlName="horaInicio">
+        inputId="horarioInicio" formControlName="horaInicio" [defaultDate]="horaInicioPadrao">
         </p-calendar>
     </div>  
 
     <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
         Horário fim
         <p-calendar [(ngModel)]="horaFim" [timeOnly]="true" 
-        inputId="horarioFim" formControlName="horaFim">
+        inputId="horarioFim" formControlName="horaFim" [defaultDate]="horaFimPadrao">
         </p-calendar>
     </div>
     
@@ -70,7 +81,7 @@
             formControlName="exclusivo"></p-radioButton>
             
         </div>
-    </div>  
+    </div>     
 </div>
 
 
@@ -81,7 +92,7 @@
             pButton type="button" icon="pi pi-check" 
             (click)="agendarHorarioGrade()"
             [disabled]="!validarFormulario()"
-            label="Gerar disponibilidade"
+            label="Gerar"
         ></button>
     </div>
     <div class="p-md-2 p-sm-12">
@@ -99,4 +110,4 @@
     </div>
 </div>
 
-<app-tabela-horarios-agendados></app-tabela-horarios-agendados>
+<app-tabela-horarios-agendados #appTabelaHorarios></app-tabela-horarios-agendados>

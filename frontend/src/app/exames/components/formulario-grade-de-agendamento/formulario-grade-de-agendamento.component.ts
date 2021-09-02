@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UnidadeFuncional } from '../../models/subjects/unidade-model';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
@@ -20,29 +20,31 @@ import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 })
 export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
- 
+  unidadesExecutoras: UnidadeFuncional[] = [];
+  servidores: Servidor[] = [];
+  gruposDeExame: GrupoModel[] = [];
+  salas: Sala[] = [];
+  exames: ExamModel[] = [];
+  
+  exameSelecionado: number;
+  salaSelecionada: number;
+  grupoSelecionado: number;
+  gradeId: number;
+  
+  situacaoGrade = SituacaoAtivo;
 
+  @Input()
+  grade: GradesDeAgendamento;
+
+  @Output()
+  gradeSalva = new EventEmitter<GradesDeAgendamento>();
+  
   constructor(private fb: FormBuilder,
               private gradeAgendamentoService: GradeDeAgendamentoService,
               private unidadeFuncionalService: UnidadeFuncionalService,
               private servidorService: ServidorService,
               private exameService: ExamesService,
               private grupoExameService: GruposExamesService) { }
-  
-
-  unidadesExecutoras: UnidadeFuncional[] = [];
-  servidores: Servidor[] = [];
-  gruposDeExame: GrupoModel[] = [];
-  salas: Sala[] = [];
-  exames: ExamModel[] = [];
-  gradeTeste: any;
-
-  exameSelecionado: number;
-  salaSelecionada: number;
-  grupoSelecionado: number;
-
-  situacaoGrade = SituacaoAtivo;
-  
 
   cadastroGrade = this.fb.group({
     unidadeExecutoraId: [null, Validators.required],
@@ -50,7 +52,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     ativo: [null, Validators.required],
     exameGradeId: [null],
     grupoGradeId: [null],
-    salaGradeId: [null, Validators.required]
+    salaGradeId: [null, Validators.required],
   });
 
   validarFormulario(): boolean {
@@ -69,7 +71,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   cadastrarGradeDeAgendamento(){
     const cadastroGradeValor = this.cadastroGrade.value;
 
-    const cadastro: GradesDeAgendamento = {
+    this.grade = {
       unidadeExecutoraId: cadastroGradeValor.unidadeExecutoraId,
       responsavelId: cadastroGradeValor.responsavelId,
       ativo: cadastroGradeValor.ativo,
@@ -81,8 +83,9 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome,
     };
     
-    this.gradeAgendamentoService.cadastrarGrade(cadastro).subscribe((res) => {
-      console.log(res);
+    this.gradeAgendamentoService.cadastrarGrade(this.grade).subscribe((response) => {
+      Object.assign(this.grade, response);
+      this.gradeSalva.emit(this.grade)
     });
     this.cadastroGrade.reset();
   }

@@ -1,9 +1,10 @@
 import { Time } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
 import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
+import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento';
 import { HorarioAgendado } from '../../models/subjects/horario-agendado';
 import { TipoDeMarcacao } from '../../models/subjects/tipo-de-marcacao';
 import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.service';
@@ -19,10 +20,16 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   horaFim: Date;
   duracao: Time;
   duracaoPadrao = new Date('December 31, 2021 00:30:00');
+  horaInicioPadrao = new Date('December 31, 2020 12:00:00');
+  horaFimPadrao = new Date('December 31, 2021 12:30:00');
   dia = DiaSemana;
   diaSelecionado: string;
   tiposDeMarcacao: TipoDeMarcacao[] = [];
   numeroDeHorarios: number;
+
+
+  @Input()
+  grade: GradesDeAgendamento;
 
   constructor(private gradeService: GradeDeAgendamentoService,
     private fb: FormBuilder, private msg: MessageService) { }
@@ -48,7 +55,6 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     let dataDuracao: Date = cadastroHorario.duracao;
 
     let valorDuracao: moment.Duration = moment.duration({
-      seconds: dataDuracao.getSeconds(),
       minutes: dataDuracao.getMinutes(),
       hours: dataDuracao.getHours()
     });
@@ -60,7 +66,8 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
       dia: this.diaSelecionado,
       duracao: valorDuracao,
       ativo: cadastroHorario.ativo,
-      exclusivo: cadastroHorario.exclusivo
+      exclusivo: cadastroHorario.exclusivo,
+      gradeDeAgendamentoId: this.grade.id
     };
 
 
@@ -72,7 +79,7 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
       return;
     }
 
-    if (moment(this.horarioInicio).isAfter(this.horaFim)) {
+    if (moment(this.horarioInicio).isAfter(this.horaFim) && this.horaFim != null) {
       this.msg.add({
         severity: 'error', summary: 'Erro no preenchimento',
         detail: 'Hora fim deve ser depois de hora início.'
