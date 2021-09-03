@@ -11,26 +11,6 @@
 </div>
 
 <div class="p-col-12 p-grid">
-    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
-        Horário início
-        <p-calendar [(ngModel)]="horarioInicio" [timeOnly]="true" 
-        inputId="horarioInicio" formControlName="horaInicio" [defaultDate]="horaInicioPadrao">
-        </p-calendar>
-    </div>  
-
-    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
-        Horário fim
-        <p-calendar [(ngModel)]="horaFim" [timeOnly]="true" 
-        inputId="horarioFim" formControlName="horaFim" [defaultDate]="horaFimPadrao">
-        </p-calendar>
-    </div>
-    
-    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
-        Nº de horários
-        <span class="md-inputfield p-float-label">
-            <input type="number" [(ngModel)]="numeroDeHorarios" formControlName="numeroDeHorarios" pInputText>
-        </span>
-    </div>
 
     <div class="p-md-2 p-fluid">
         Dia
@@ -39,16 +19,6 @@
                 [resetFilterOnHide]="true" [(ngModel)]="diaSelecionado">
             </p-dropdown>
         </span>
-    </div>
-</div>
-
-<div class="p-col-12 p-grid">
-
-    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
-        Duração
-        <p-calendar [(ngModel)]="duracao" [timeOnly]="true" inputId="duracao"
-        formControlName="duracao" [defaultDate]="duracaoPadrao" [stepMinute]="5">
-        </p-calendar>
     </div>
 
     <div class="p-md-2 p-fluid">
@@ -70,8 +40,8 @@
             formControlName="ativo"></p-radioButton>
             
         </div>
-    </div>   
-    
+    </div> 
+
     <div class="p-md-2 p-fluid" [formGroup]="agendarHorario">
         Exclusivo
         <div class="sm-top-margin mid-bottom-margin">
@@ -79,9 +49,41 @@
             formControlName="exclusivo"></p-radioButton>
             <p-radioButton name="exclusivo" value="false" label="Não" class="separator-radio" 
             formControlName="exclusivo"></p-radioButton>
-            
         </div>
-    </div>     
+    </div>   
+    
+</div>
+
+<div class="p-col-12 p-grid">
+
+    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
+        Horário início
+        <p-calendar [(ngModel)]="horarioInicio" [timeOnly]="true" 
+        inputId="horarioInicio" formControlName="horaInicio" [defaultDate]="horaInicioPadrao">
+        </p-calendar>
+    </div> 
+
+    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
+        Horário fim
+        <p-calendar [(ngModel)]="horaFim" [timeOnly]="true" 
+        inputId="horarioFim" formControlName="horaFim" [defaultDate]="horaFimPadrao">
+        </p-calendar>
+    </div>
+
+    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
+        Duração
+        <p-calendar [(ngModel)]="duracao" [timeOnly]="true" inputId="duracao"
+        formControlName="duracao" [defaultDate]="duracaoPadrao" [stepMinute]="5">
+        </p-calendar>
+    </div>
+
+    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
+        Nº de horários
+        <span class="md-inputfield p-float-label">
+            <input type="number" [(ngModel)]="numeroDeHorarios" formControlName="numeroDeHorarios" pInputText>
+        </span>
+    </div>
+    
 </div>
 
 
