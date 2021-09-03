@@ -87,8 +87,8 @@
                         label="Nova grade"Primeiro Exame
                     ></button>
                 </div>
-                    <basis-datatable [url]="searchUrl" [verticalButtons]="false" #datatable
-                        type="memory" [value]="gradeAgendamento" sortField="brand">
+                    <basis-datatable [url]="searchUrl" #datatable [disableView]="true"
+                    [disableEdit]="true" [disableDelete]="true" type="memory" [value]="gradeAgendamento" sortField="brand">
                         <p-column header="Grade" field="id"></p-column>
                         <p-column header="Unid. Executora" field="unidadeExecutoraNome"></p-column>
                         <p-column header="Sala" field="salaGradeIdentificacaoDaSala"></p-column>  
@@ -100,6 +100,34 @@
                             <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>
                             </ng-template>
                         </p-column>
+
+                        <basis-datatable-button 
+                            name="editar" bTooltip="Editar"
+                            icon="pi pi-pencil" class="p-button-info"
+                            [disabled]="datatable.selectedRow == null">
+                        </basis-datatable-button>
+
+                        <basis-datatable-button 
+                            name="agendar" bTooltip="Manter horários de agenda de exames"
+                            icon="pi pi-clock" class="p-button-info"
+                            [disabled]="datatable.selectedRow == null"
+                            >
+                        </basis-datatable-button>
+                        
+                        <basis-datatable-button 
+                        name="disponibilizar" bTooltip="Gerar disponibilizade"
+                        icon="pi pi-calendar-plus" class="p-button-info"
+                        [disabled]="datatable.selectedRow == null"
+                        >
+                    </basis-datatable-button>
+                    
+                    <basis-datatable-button 
+                        name="excluir" bTooltip="Excluir"
+                        icon="pi pi-trash" class="p-button-info"
+                        [disabled]="datatable.selectedRow == null"
+                        >
+                    </basis-datatable-button>
+
                     </basis-datatable>
 
             </div>

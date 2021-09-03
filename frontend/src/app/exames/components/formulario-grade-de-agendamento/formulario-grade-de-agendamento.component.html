@@ -19,25 +19,25 @@
         </span>
     </div>
 
-    <div class="p-md-2 p-fluid">
+    <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Identificação da sala
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
             <p-dropdown [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'" [filter]="true"
-                [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="salaSelecionada"
+                [resetFilterOnHide]="true" [showClear]="true" formControlName="salaGradeId"
                 placeholder="Selecione">
             </p-dropdown>
         </span>
     </div>
 </div>
 
-<div class="p-col-12 p-grid" [formGroup]="cadastroGrade">
+<div class="p-col-12 p-grid">
 
-    <div class="p-md-2 p-fluid">
+    <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Grupo de exames
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
             <p-dropdown [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
                 [resetFilterOnHide]="true" [showClear]="true" formControlName="grupoGradeId"
-                [(ngModel)]="grupoSelecionado" placeholder="Selecione">
+                placeholder="Selecione">
             </p-dropdown>
         </span>
     </div>
@@ -46,7 +46,7 @@
         Exame
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
             <p-dropdown [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                [resetFilterOnHide]="true" [showClear]="true" [(ngModel)]="exameSelecionado" 
+                [resetFilterOnHide]="true" [showClear]="true"
                 formControlName="exameGradeId" placeholder="Selecione">
             </p-dropdown>
         </span>
@@ -65,14 +65,19 @@
 
 
 <div class="p-col-12 p-grid p-d-flex">
+
+    <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
     
     <div class="p-md-2 p-sm-12">
         <button
-            pButton type="button" icon="pi pi-save" 
+            icon="pi pi-save"
+            pButton type="button"
             (click)="cadastrarGradeDeAgendamento()"
+            [disabled]="!validarFormulario()"
             label="Salvar"
         ></button>
     </div>
+
     <div class="p-md-2 p-sm-12">
         <button
             pButton type="button" icon="pi pi-times"

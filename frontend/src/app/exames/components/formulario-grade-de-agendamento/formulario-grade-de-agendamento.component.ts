@@ -12,6 +12,8 @@ import { ExamesService } from '../../services/exames.service';
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { Servidor } from 'src/app/seguranca/models/dropdowns/servidor-model';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-grade-de-agendamento',
@@ -25,12 +27,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   gruposDeExame: GrupoModel[] = [];
   salas: Sala[] = [];
   exames: ExamModel[] = [];
-  
-  exameSelecionado: number;
-  salaSelecionada: number;
-  grupoSelecionado: number;
-  gradeId: number;
-  
+
   situacaoGrade = SituacaoAtivo;
 
   @Input()
@@ -38,13 +35,17 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   @Output()
   gradeSalva = new EventEmitter<GradesDeAgendamento>();
-  
+
   constructor(private fb: FormBuilder,
-              private gradeAgendamentoService: GradeDeAgendamentoService,
-              private unidadeFuncionalService: UnidadeFuncionalService,
-              private servidorService: ServidorService,
-              private exameService: ExamesService,
-              private grupoExameService: GruposExamesService) { }
+    private gradeAgendamentoService: GradeDeAgendamentoService,
+    private unidadeFuncionalService: UnidadeFuncionalService,
+    private servidorService: ServidorService,
+    private exameService: ExamesService,
+    private grupoExameService: GruposExamesService,
+    private confirmacaoService: ConfirmationService,
+    private router: Router,
+    private msg: MessageService) { }
+
 
   cadastroGrade = this.fb.group({
     unidadeExecutoraId: [null, Validators.required],
@@ -56,38 +57,56 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   });
 
   validarFormulario(): boolean {
-    if (this.cadastroGrade.valid && (this.exameSelecionado || this.cadastroGrade
-        .get('grupoGradeId').value != null)){
-          return true; 
-        } else {
-          return false
-        }
+    if (this.cadastroGrade.valid && (this.cadastroGrade
+      .get('grupoGradeId').value != null || this.cadastroGrade
+        .get('exameGradeId').value != null)) {
+      return true;
+    }
   }
-  
+
   limparFormulario() {
-    this.cadastroGrade.reset();    
+    this.cadastroGrade.reset();
   }
-  
-  cadastrarGradeDeAgendamento(){
+
+  confirmarGravacaoDaGrade() {
+    this.confirmacaoService.confirm({
+      message: 'Gostaria de agendar horários para esta grade agora?',
+      header: 'Salvar grade',
+      icon: 'pi pi-question',
+      accept: () => {
+        this.msg.add({
+          severity: 'info',
+          detail: "Acesse 'Horários Agendados' para marcar horários nessa grade."
+        });
+      },
+      reject: () => {
+        this.router.navigate(['/listar-grade-exame']);
+      }
+    });
+  }
+
+  cadastrarGradeDeAgendamento() {
     const cadastroGradeValor = this.cadastroGrade.value;
 
     this.grade = {
       unidadeExecutoraId: cadastroGradeValor.unidadeExecutoraId,
       responsavelId: cadastroGradeValor.responsavelId,
       ativo: cadastroGradeValor.ativo,
-      salaGradeId: this.salaSelecionada,
-      salaGradeIdentificacaoDaSala: this.salas[this.salaSelecionada-1].identificacaoDaSala,
+      salaGradeId: cadastroGradeValor.salaGradeId,
+      salaGradeIdentificacaoDaSala: this.salas[cadastroGradeValor.salaGradeId - 1].identificacaoDaSala,
       exameGradeId: cadastroGradeValor.exameGradeId,
-      exameGradeNome: this.exames[cadastroGradeValor.exameGradeId-1].nome,
-      grupoGradeId: this.grupoSelecionado,
-      grupoGradeNome: this.gruposDeExame[this.grupoSelecionado-1].nome,
+      exameGradeNome: this.exames[cadastroGradeValor.exameGradeId - 1].nome,
+      grupoGradeId: cadastroGradeValor.grupoGradeId,
+      grupoGradeNome: this.gruposDeExame[cadastroGradeValor.grupoGradeId - 1].nome,
     };
-    
+
     this.gradeAgendamentoService.cadastrarGrade(this.grade).subscribe((response) => {
       Object.assign(this.grade, response);
       this.gradeSalva.emit(this.grade)
     });
+
     this.cadastroGrade.reset();
+    this.confirmarGravacaoDaGrade();
   }
 
   ngOnInit(): void {
