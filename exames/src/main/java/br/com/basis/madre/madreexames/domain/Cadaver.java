@@ -14,8 +14,6 @@ import br.com.basis.madre.madreexames.domain.enumeration.Raca;
 
 import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-
 /**
  * A Cadaver.
  */
@@ -31,10 +29,6 @@ public class Cadaver implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCadaver")
     @SequenceGenerator(name = "seqCadaver")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
 
     @NotNull
     @Column(name = "nome", nullable = false)
@@ -69,20 +63,16 @@ public class Cadaver implements Serializable {
     private String lidoPor;
 
     @NotNull
-    @Column(name = "procedencia", nullable = false)
-    private String procedencia;
+    @Column(name = "procedencia_id", nullable = false)
+    private Integer procedenciaId;
 
     @NotNull
-    @Column(name = "retirada", nullable = false)
-    private String retirada;
+    @Column(name = "retirada_id", nullable = false)
+    private Integer retiradaId;
 
     @NotNull
-    @Column(name = "codigo_plano", nullable = false)
-    private String codigoPlano;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "convenio_plano")
-    private ConvenioPlano convenioPlano;
+    @Column(name = "codigo_convenio_id", nullable = false)
+    private Integer codigoConvenioId;
 
     @NotNull
     @Column(name = "observacao", nullable = false)
@@ -95,19 +85,6 @@ public class Cadaver implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public Cadaver codigo(Integer codigo) {
-        this.codigo = codigo;
-        return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -214,56 +191,43 @@ public class Cadaver implements Serializable {
         this.lidoPor = lidoPor;
     }
 
-    public String getProcedencia() {
-        return procedencia;
+    public Integer getProcedenciaId() {
+        return procedenciaId;
     }
 
-    public Cadaver procedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public Cadaver procedenciaId(Integer procedenciaId) {
+        this.procedenciaId = procedenciaId;
         return this;
     }
 
-    public void setProcedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public void setProcedenciaId(Integer procedenciaId) {
+        this.procedenciaId = procedenciaId;
     }
 
-    public String getRetirada() {
-        return retirada;
+    public Integer getRetiradaId() {
+        return retiradaId;
     }
 
-    public Cadaver retirada(String retirada) {
-        this.retirada = retirada;
+    public Cadaver retiradaId(Integer retiradaId) {
+        this.retiradaId = retiradaId;
         return this;
     }
 
-    public void setRetirada(String retirada) {
-        this.retirada = retirada;
+    public void setRetiradaId(Integer retiradaId) {
+        this.retiradaId = retiradaId;
     }
 
-    public String getCodigoPlano() {
-        return codigoPlano;
+    public Integer getCodigoConvenioId() {
+        return codigoConvenioId;
     }
 
-    public Cadaver codigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public Cadaver codigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
         return this;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
-    }
-
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
-    }
-
-    public Cadaver convenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
-        return this;
-    }
-
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public void setCodigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
     }
 
     public String getObservacao() {
@@ -301,7 +265,6 @@ public class Cadaver implements Serializable {
     public String toString() {
         return "Cadaver{" +
             "id=" + getId() +
-            ", codigo=" + getCodigo() +
             ", nome='" + getNome() + "'" +
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", raca='" + getRaca() + "'" +
@@ -310,10 +273,9 @@ public class Cadaver implements Serializable {
             ", causaObito='" + getCausaObito() + "'" +
             ", realizadoPor='" + getRealizadoPor() + "'" +
             ", lidoPor='" + getLidoPor() + "'" +
-            ", procedencia='" + getProcedencia() + "'" +
-            ", retirada='" + getRetirada() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", procedenciaId=" + getProcedenciaId() +
+            ", retiradaId=" + getRetiradaId() +
+            ", codigoConvenioId=" + getCodigoConvenioId() +
             ", observacao='" + getObservacao() + "'" +
             "}";
     }

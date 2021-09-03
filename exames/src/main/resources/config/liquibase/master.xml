@@ -34,4 +34,7 @@
     <include file="config/liquibase/changelog/20210729190512_remover_Constraint_AtendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210805133654_alterar_atendimentoDiverso_informacoesComplementares.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210811155714_alterar_atendimentoDiverso_CamposEnum.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210705120718_added_entity_CadaverAtualizado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210705120618_added_entity_ControleQualidadeAtualizado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210705120518_added_entity_LaboratorioExternoAtualizado.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

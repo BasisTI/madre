@@ -2,7 +2,6 @@ package br.com.basis.madre.madreexames.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
 
 /**
@@ -46,9 +45,9 @@ public class LaboratorioExternoDTO implements Serializable {
     private String codigoConvenio;
 
     @NotNull
-    private String codigoPlano;
+    private Integer codigoConvenioId;
 
-    private ConvenioPlano convenioPlano;
+    private Integer convenioPlanoId;
 
     private FormaEnvio formaEnvio;
 
@@ -149,20 +148,20 @@ public class LaboratorioExternoDTO implements Serializable {
         this.codigoConvenio = codigoConvenio;
     }
 
-    public String getCodigoPlano() {
-        return codigoPlano;
+    public Integer getCodigoConvenioId() {
+        return codigoConvenioId;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public void setCodigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
     }
 
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
+    public Integer getConvenioPlanoId() {
+        return convenioPlanoId;
     }
 
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public void setConvenioPlanoId(Integer convenioPlanoId) {
+        this.convenioPlanoId = convenioPlanoId;
     }
 
     public FormaEnvio getFormaEnvio() {
@@ -206,8 +205,8 @@ public class LaboratorioExternoDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", cgc='" + getCgc() + "'" +
             ", codigoConvenio='" + getCodigoConvenio() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", codigoConvenioId=" + getCodigoConvenioId() +
+            ", convenioPlanoId=" + getConvenioPlanoId() +
             ", formaEnvio='" + getFormaEnvio() + "'" +
             "}";
     }

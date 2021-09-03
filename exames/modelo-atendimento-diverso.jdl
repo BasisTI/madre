@@ -25,8 +25,8 @@ fax Integer required
 email String required
 cgc String required
 codigoConvenio String required
-codigoPlano String required
-convenioPlano ConvenioPlano
+codigoConvenioId Integer required
+convenioPlanoId Integer
 formaEnvio FormaEnvio
 }
 
@@ -34,12 +34,11 @@ entity ControleQualidade {
 codigo Integer required
 material String required
 codigoConvenio String required
-codigoPlano String required
-convenioPlano ConvenioPlano
+codigoConvenioId Integer required
+convenioPlanoId Integer
 }
 
 entity Cadaver {
-codigo Integer required
 nome String required
 dataNascimento LocalDate required
 raca Raca
@@ -48,10 +47,9 @@ dataRemocao LocalDate required
 causaObito String required
 realizadoPor String required
 lidoPor String required
-procedencia String required
-retirada String required
-codigoPlano String required
-convenioPlano ConvenioPlano
+procedenciaId Integer required
+retiradaId Integer required
+codigoConvenioId Integer required
 observacao String required
 }
 
@@ -64,9 +62,7 @@ DOADOR, RECEPTOR
 enum OrigemAmostra {
 HUMANO, NAO_HUMANO
 }
-enum ConvenioPlano {
-SUS_INTERNACAO, SUS_PLANOAMBULATORIO
-}
+
 enum FormaEnvio {
 CORREIO, FAX
 }

@@ -17,14 +17,13 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "codigoPlano",
-      "fieldType": "String",
+      "fieldName": "codigoConvenioId",
+      "fieldType": "Integer",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "convenioPlano",
-      "fieldType": "ConvenioPlano",
-      "fieldValues": "SUS_INTERNACAO,SUS_PLANOAMBULATORIO"
+      "fieldName": "convenioPlanoId",
+      "fieldType": "Integer"
     }
   ],
   "relationships": [],

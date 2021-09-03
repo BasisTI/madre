@@ -5,7 +5,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.Raca;
 import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Cadaver} entity.
@@ -13,9 +12,6 @@ import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 public class CadaverDTO implements Serializable {
     
     private Long id;
-
-    @NotNull
-    private Integer codigo;
 
     @NotNull
     private String nome;
@@ -40,15 +36,13 @@ public class CadaverDTO implements Serializable {
     private String lidoPor;
 
     @NotNull
-    private String procedencia;
+    private Integer procedenciaId;
 
     @NotNull
-    private String retirada;
+    private Integer retiradaId;
 
     @NotNull
-    private String codigoPlano;
-
-    private ConvenioPlano convenioPlano;
+    private Integer codigoConvenioId;
 
     @NotNull
     private String observacao;
@@ -60,14 +54,6 @@ public class CadaverDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -134,36 +120,28 @@ public class CadaverDTO implements Serializable {
         this.lidoPor = lidoPor;
     }
 
-    public String getProcedencia() {
-        return procedencia;
+    public Integer getProcedenciaId() {
+        return procedenciaId;
     }
 
-    public void setProcedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public void setProcedenciaId(Integer procedenciaId) {
+        this.procedenciaId = procedenciaId;
     }
 
-    public String getRetirada() {
-        return retirada;
+    public Integer getRetiradaId() {
+        return retiradaId;
     }
 
-    public void setRetirada(String retirada) {
-        this.retirada = retirada;
+    public void setRetiradaId(Integer retiradaId) {
+        this.retiradaId = retiradaId;
     }
 
-    public String getCodigoPlano() {
-        return codigoPlano;
+    public Integer getCodigoConvenioId() {
+        return codigoConvenioId;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
-    }
-
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
-    }
-
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public void setCodigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
     }
 
     public String getObservacao() {
@@ -196,7 +174,6 @@ public class CadaverDTO implements Serializable {
     public String toString() {
         return "CadaverDTO{" +
             "id=" + getId() +
-            ", codigo=" + getCodigo() +
             ", nome='" + getNome() + "'" +
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", raca='" + getRaca() + "'" +
@@ -205,10 +182,9 @@ public class CadaverDTO implements Serializable {
             ", causaObito='" + getCausaObito() + "'" +
             ", realizadoPor='" + getRealizadoPor() + "'" +
             ", lidoPor='" + getLidoPor() + "'" +
-            ", procedencia='" + getProcedencia() + "'" +
-            ", retirada='" + getRetirada() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", procedenciaId=" + getProcedenciaId() +
+            ", retiradaId=" + getRetiradaId() +
+            ", codigoConvenioId=" + getCodigoConvenioId() +
             ", observacao='" + getObservacao() + "'" +
             "}";
     }

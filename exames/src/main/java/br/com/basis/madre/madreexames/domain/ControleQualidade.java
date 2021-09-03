@@ -9,8 +9,6 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-
 /**
  * A ControleQualidade.
  */
@@ -40,12 +38,11 @@ public class ControleQualidade implements Serializable {
     private String codigoConvenio;
 
     @NotNull
-    @Column(name = "codigo_plano", nullable = false)
-    private String codigoPlano;
+    @Column(name = "codigo_convenio_id", nullable = false)
+    private Integer codigoConvenioId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "convenio_plano")
-    private ConvenioPlano convenioPlano;
+    @Column(name = "convenio_plano_id")
+    private Integer convenioPlanoId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -95,30 +92,30 @@ public class ControleQualidade implements Serializable {
         this.codigoConvenio = codigoConvenio;
     }
 
-    public String getCodigoPlano() {
-        return codigoPlano;
+    public Integer getCodigoConvenioId() {
+        return codigoConvenioId;
     }
 
-    public ControleQualidade codigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public ControleQualidade codigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
         return this;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public void setCodigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
     }
 
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
+    public Integer getConvenioPlanoId() {
+        return convenioPlanoId;
     }
 
-    public ControleQualidade convenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public ControleQualidade convenioPlanoId(Integer convenioPlanoId) {
+        this.convenioPlanoId = convenioPlanoId;
         return this;
     }
 
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public void setConvenioPlanoId(Integer convenioPlanoId) {
+        this.convenioPlanoId = convenioPlanoId;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -146,8 +143,8 @@ public class ControleQualidade implements Serializable {
             ", codigo=" + getCodigo() +
             ", material='" + getMaterial() + "'" +
             ", codigoConvenio='" + getCodigoConvenio() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", codigoConvenioId=" + getCodigoConvenioId() +
+            ", convenioPlanoId=" + getConvenioPlanoId() +
             "}";
     }
 }

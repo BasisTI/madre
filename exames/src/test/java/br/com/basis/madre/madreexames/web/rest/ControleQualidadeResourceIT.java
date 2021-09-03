@@ -33,7 +33,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 /**
  * Integration tests for the {@link ControleQualidadeResource} REST controller.
  */
@@ -52,11 +51,11 @@ public class ControleQualidadeResourceIT {
     private static final String DEFAULT_CODIGO_CONVENIO = "AAAAAAAAAA";
     private static final String UPDATED_CODIGO_CONVENIO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CODIGO_PLANO = "AAAAAAAAAA";
-    private static final String UPDATED_CODIGO_PLANO = "BBBBBBBBBB";
+    private static final Integer DEFAULT_CODIGO_CONVENIO_ID = 1;
+    private static final Integer UPDATED_CODIGO_CONVENIO_ID = 2;
 
-    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_internacao;
-    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_planoAmbulatorio;
+    private static final Integer DEFAULT_CONVENIO_PLANO_ID = 1;
+    private static final Integer UPDATED_CONVENIO_PLANO_ID = 2;
 
     @Autowired
     private ControleQualidadeRepository controleQualidadeRepository;
@@ -94,8 +93,8 @@ public class ControleQualidadeResourceIT {
             .codigo(DEFAULT_CODIGO)
             .material(DEFAULT_MATERIAL)
             .codigoConvenio(DEFAULT_CODIGO_CONVENIO)
-            .codigoPlano(DEFAULT_CODIGO_PLANO)
-            .convenioPlano(DEFAULT_CONVENIO_PLANO);
+            .codigoConvenioId(DEFAULT_CODIGO_CONVENIO_ID)
+            .convenioPlanoId(DEFAULT_CONVENIO_PLANO_ID);
         return controleQualidade;
     }
     /**
@@ -109,8 +108,8 @@ public class ControleQualidadeResourceIT {
             .codigo(UPDATED_CODIGO)
             .material(UPDATED_MATERIAL)
             .codigoConvenio(UPDATED_CODIGO_CONVENIO)
-            .codigoPlano(UPDATED_CODIGO_PLANO)
-            .convenioPlano(UPDATED_CONVENIO_PLANO);
+            .codigoConvenioId(UPDATED_CODIGO_CONVENIO_ID)
+            .convenioPlanoId(UPDATED_CONVENIO_PLANO_ID);
         return controleQualidade;
     }
 
@@ -137,8 +136,8 @@ public class ControleQualidadeResourceIT {
         assertThat(testControleQualidade.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testControleQualidade.getMaterial()).isEqualTo(DEFAULT_MATERIAL);
         assertThat(testControleQualidade.getCodigoConvenio()).isEqualTo(DEFAULT_CODIGO_CONVENIO);
-        assertThat(testControleQualidade.getCodigoPlano()).isEqualTo(DEFAULT_CODIGO_PLANO);
-        assertThat(testControleQualidade.getConvenioPlano()).isEqualTo(DEFAULT_CONVENIO_PLANO);
+        assertThat(testControleQualidade.getCodigoConvenioId()).isEqualTo(DEFAULT_CODIGO_CONVENIO_ID);
+        assertThat(testControleQualidade.getConvenioPlanoId()).isEqualTo(DEFAULT_CONVENIO_PLANO_ID);
 
         // Validate the ControleQualidade in Elasticsearch
         verify(mockControleQualidadeSearchRepository, times(1)).save(testControleQualidade);
@@ -230,10 +229,10 @@ public class ControleQualidadeResourceIT {
 
     @Test
     @Transactional
-    public void checkCodigoPlanoIsRequired() throws Exception {
+    public void checkCodigoConvenioIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = controleQualidadeRepository.findAll().size();
         // set the field null
-        controleQualidade.setCodigoPlano(null);
+        controleQualidade.setCodigoConvenioId(null);
 
         // Create the ControleQualidade, which fails.
         ControleQualidadeDTO controleQualidadeDTO = controleQualidadeMapper.toDto(controleQualidade);
@@ -262,8 +261,8 @@ public class ControleQualidadeResourceIT {
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].material").value(hasItem(DEFAULT_MATERIAL)))
             .andExpect(jsonPath("$.[*].codigoConvenio").value(hasItem(DEFAULT_CODIGO_CONVENIO)))
-            .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
-            .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())));
+            .andExpect(jsonPath("$.[*].codigoConvenioId").value(hasItem(DEFAULT_CODIGO_CONVENIO_ID)))
+            .andExpect(jsonPath("$.[*].convenioPlanoId").value(hasItem(DEFAULT_CONVENIO_PLANO_ID)));
     }
     
     @Test
@@ -280,8 +279,8 @@ public class ControleQualidadeResourceIT {
             .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.material").value(DEFAULT_MATERIAL))
             .andExpect(jsonPath("$.codigoConvenio").value(DEFAULT_CODIGO_CONVENIO))
-            .andExpect(jsonPath("$.codigoPlano").value(DEFAULT_CODIGO_PLANO))
-            .andExpect(jsonPath("$.convenioPlano").value(DEFAULT_CONVENIO_PLANO.toString()));
+            .andExpect(jsonPath("$.codigoConvenioId").value(DEFAULT_CODIGO_CONVENIO_ID))
+            .andExpect(jsonPath("$.convenioPlanoId").value(DEFAULT_CONVENIO_PLANO_ID));
     }
     @Test
     @Transactional
@@ -307,8 +306,8 @@ public class ControleQualidadeResourceIT {
             .codigo(UPDATED_CODIGO)
             .material(UPDATED_MATERIAL)
             .codigoConvenio(UPDATED_CODIGO_CONVENIO)
-            .codigoPlano(UPDATED_CODIGO_PLANO)
-            .convenioPlano(UPDATED_CONVENIO_PLANO);
+            .codigoConvenioId(UPDATED_CODIGO_CONVENIO_ID)
+            .convenioPlanoId(UPDATED_CONVENIO_PLANO_ID);
         ControleQualidadeDTO controleQualidadeDTO = controleQualidadeMapper.toDto(updatedControleQualidade);
 
         restControleQualidadeMockMvc.perform(put("/api/controle-qualidades")
@@ -323,8 +322,8 @@ public class ControleQualidadeResourceIT {
         assertThat(testControleQualidade.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testControleQualidade.getMaterial()).isEqualTo(UPDATED_MATERIAL);
         assertThat(testControleQualidade.getCodigoConvenio()).isEqualTo(UPDATED_CODIGO_CONVENIO);
-        assertThat(testControleQualidade.getCodigoPlano()).isEqualTo(UPDATED_CODIGO_PLANO);
-        assertThat(testControleQualidade.getConvenioPlano()).isEqualTo(UPDATED_CONVENIO_PLANO);
+        assertThat(testControleQualidade.getCodigoConvenioId()).isEqualTo(UPDATED_CODIGO_CONVENIO_ID);
+        assertThat(testControleQualidade.getConvenioPlanoId()).isEqualTo(UPDATED_CONVENIO_PLANO_ID);
 
         // Validate the ControleQualidade in Elasticsearch
         verify(mockControleQualidadeSearchRepository, times(1)).save(testControleQualidade);
@@ -390,7 +389,7 @@ public class ControleQualidadeResourceIT {
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].material").value(hasItem(DEFAULT_MATERIAL)))
             .andExpect(jsonPath("$.[*].codigoConvenio").value(hasItem(DEFAULT_CODIGO_CONVENIO)))
-            .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
-            .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())));
+            .andExpect(jsonPath("$.[*].codigoConvenioId").value(hasItem(DEFAULT_CODIGO_CONVENIO_ID)))
+            .andExpect(jsonPath("$.[*].convenioPlanoId").value(hasItem(DEFAULT_CONVENIO_PLANO_ID)));
     }
 }

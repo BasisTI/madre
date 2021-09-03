@@ -33,7 +33,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
 /**
  * Integration tests for the {@link LaboratorioExternoResource} REST controller.
@@ -77,14 +76,14 @@ public class LaboratorioExternoResourceIT {
     private static final String DEFAULT_CODIGO_CONVENIO = "AAAAAAAAAA";
     private static final String UPDATED_CODIGO_CONVENIO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CODIGO_PLANO = "AAAAAAAAAA";
-    private static final String UPDATED_CODIGO_PLANO = "BBBBBBBBBB";
+    private static final Integer DEFAULT_CODIGO_CONVENIO_ID = 1;
+    private static final Integer UPDATED_CODIGO_CONVENIO_ID = 2;
 
-    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_internacao;
-    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_planoAmbulatorio;
+    private static final Integer DEFAULT_CONVENIO_PLANO_ID = 1;
+    private static final Integer UPDATED_CONVENIO_PLANO_ID = 2;
 
-    private static final FormaEnvio DEFAULT_FORMA_ENVIO = FormaEnvio.Correio;
-    private static final FormaEnvio UPDATED_FORMA_ENVIO = FormaEnvio.Fax;
+    private static final FormaEnvio DEFAULT_FORMA_ENVIO = FormaEnvio.CORREIO;
+    private static final FormaEnvio UPDATED_FORMA_ENVIO = FormaEnvio.FAX;
 
     @Autowired
     private LaboratorioExternoRepository laboratorioExternoRepository;
@@ -130,8 +129,8 @@ public class LaboratorioExternoResourceIT {
             .email(DEFAULT_EMAIL)
             .cgc(DEFAULT_CGC)
             .codigoConvenio(DEFAULT_CODIGO_CONVENIO)
-            .codigoPlano(DEFAULT_CODIGO_PLANO)
-            .convenioPlano(DEFAULT_CONVENIO_PLANO)
+            .codigoConvenioId(DEFAULT_CODIGO_CONVENIO_ID)
+            .convenioPlanoId(DEFAULT_CONVENIO_PLANO_ID)
             .formaEnvio(DEFAULT_FORMA_ENVIO);
         return laboratorioExterno;
     }
@@ -154,8 +153,8 @@ public class LaboratorioExternoResourceIT {
             .email(UPDATED_EMAIL)
             .cgc(UPDATED_CGC)
             .codigoConvenio(UPDATED_CODIGO_CONVENIO)
-            .codigoPlano(UPDATED_CODIGO_PLANO)
-            .convenioPlano(UPDATED_CONVENIO_PLANO)
+            .codigoConvenioId(UPDATED_CODIGO_CONVENIO_ID)
+            .convenioPlanoId(UPDATED_CONVENIO_PLANO_ID)
             .formaEnvio(UPDATED_FORMA_ENVIO);
         return laboratorioExterno;
     }
@@ -191,8 +190,8 @@ public class LaboratorioExternoResourceIT {
         assertThat(testLaboratorioExterno.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testLaboratorioExterno.getCgc()).isEqualTo(DEFAULT_CGC);
         assertThat(testLaboratorioExterno.getCodigoConvenio()).isEqualTo(DEFAULT_CODIGO_CONVENIO);
-        assertThat(testLaboratorioExterno.getCodigoPlano()).isEqualTo(DEFAULT_CODIGO_PLANO);
-        assertThat(testLaboratorioExterno.getConvenioPlano()).isEqualTo(DEFAULT_CONVENIO_PLANO);
+        assertThat(testLaboratorioExterno.getCodigoConvenioId()).isEqualTo(DEFAULT_CODIGO_CONVENIO_ID);
+        assertThat(testLaboratorioExterno.getConvenioPlanoId()).isEqualTo(DEFAULT_CONVENIO_PLANO_ID);
         assertThat(testLaboratorioExterno.getFormaEnvio()).isEqualTo(DEFAULT_FORMA_ENVIO);
 
         // Validate the LaboratorioExterno in Elasticsearch
@@ -445,10 +444,10 @@ public class LaboratorioExternoResourceIT {
 
     @Test
     @Transactional
-    public void checkCodigoPlanoIsRequired() throws Exception {
+    public void checkCodigoConvenioIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = laboratorioExternoRepository.findAll().size();
         // set the field null
-        laboratorioExterno.setCodigoPlano(null);
+        laboratorioExterno.setCodigoConvenioId(null);
 
         // Create the LaboratorioExterno, which fails.
         LaboratorioExternoDTO laboratorioExternoDTO = laboratorioExternoMapper.toDto(laboratorioExterno);
@@ -485,8 +484,8 @@ public class LaboratorioExternoResourceIT {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].cgc").value(hasItem(DEFAULT_CGC)))
             .andExpect(jsonPath("$.[*].codigoConvenio").value(hasItem(DEFAULT_CODIGO_CONVENIO)))
-            .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
-            .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())))
+            .andExpect(jsonPath("$.[*].codigoConvenioId").value(hasItem(DEFAULT_CODIGO_CONVENIO_ID)))
+            .andExpect(jsonPath("$.[*].convenioPlanoId").value(hasItem(DEFAULT_CONVENIO_PLANO_ID)))
             .andExpect(jsonPath("$.[*].formaEnvio").value(hasItem(DEFAULT_FORMA_ENVIO.toString())));
     }
     
@@ -512,8 +511,8 @@ public class LaboratorioExternoResourceIT {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.cgc").value(DEFAULT_CGC))
             .andExpect(jsonPath("$.codigoConvenio").value(DEFAULT_CODIGO_CONVENIO))
-            .andExpect(jsonPath("$.codigoPlano").value(DEFAULT_CODIGO_PLANO))
-            .andExpect(jsonPath("$.convenioPlano").value(DEFAULT_CONVENIO_PLANO.toString()))
+            .andExpect(jsonPath("$.codigoConvenioId").value(DEFAULT_CODIGO_CONVENIO_ID))
+            .andExpect(jsonPath("$.convenioPlanoId").value(DEFAULT_CONVENIO_PLANO_ID))
             .andExpect(jsonPath("$.formaEnvio").value(DEFAULT_FORMA_ENVIO.toString()));
     }
     @Test
@@ -548,8 +547,8 @@ public class LaboratorioExternoResourceIT {
             .email(UPDATED_EMAIL)
             .cgc(UPDATED_CGC)
             .codigoConvenio(UPDATED_CODIGO_CONVENIO)
-            .codigoPlano(UPDATED_CODIGO_PLANO)
-            .convenioPlano(UPDATED_CONVENIO_PLANO)
+            .codigoConvenioId(UPDATED_CODIGO_CONVENIO_ID)
+            .convenioPlanoId(UPDATED_CONVENIO_PLANO_ID)
             .formaEnvio(UPDATED_FORMA_ENVIO);
         LaboratorioExternoDTO laboratorioExternoDTO = laboratorioExternoMapper.toDto(updatedLaboratorioExterno);
 
@@ -573,8 +572,8 @@ public class LaboratorioExternoResourceIT {
         assertThat(testLaboratorioExterno.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testLaboratorioExterno.getCgc()).isEqualTo(UPDATED_CGC);
         assertThat(testLaboratorioExterno.getCodigoConvenio()).isEqualTo(UPDATED_CODIGO_CONVENIO);
-        assertThat(testLaboratorioExterno.getCodigoPlano()).isEqualTo(UPDATED_CODIGO_PLANO);
-        assertThat(testLaboratorioExterno.getConvenioPlano()).isEqualTo(UPDATED_CONVENIO_PLANO);
+        assertThat(testLaboratorioExterno.getCodigoConvenioId()).isEqualTo(UPDATED_CODIGO_CONVENIO_ID);
+        assertThat(testLaboratorioExterno.getConvenioPlanoId()).isEqualTo(UPDATED_CONVENIO_PLANO_ID);
         assertThat(testLaboratorioExterno.getFormaEnvio()).isEqualTo(UPDATED_FORMA_ENVIO);
 
         // Validate the LaboratorioExterno in Elasticsearch
@@ -649,8 +648,8 @@ public class LaboratorioExternoResourceIT {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].cgc").value(hasItem(DEFAULT_CGC)))
             .andExpect(jsonPath("$.[*].codigoConvenio").value(hasItem(DEFAULT_CODIGO_CONVENIO)))
-            .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
-            .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())))
+            .andExpect(jsonPath("$.[*].codigoConvenioId").value(hasItem(DEFAULT_CODIGO_CONVENIO_ID)))
+            .andExpect(jsonPath("$.[*].convenioPlanoId").value(hasItem(DEFAULT_CONVENIO_PLANO_ID)))
             .andExpect(jsonPath("$.[*].formaEnvio").value(hasItem(DEFAULT_FORMA_ENVIO.toString())));
     }
 }

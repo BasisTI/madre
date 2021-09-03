@@ -2,7 +2,6 @@ package br.com.basis.madre.madreexames.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.ControleQualidade} entity.
@@ -21,9 +20,9 @@ public class ControleQualidadeDTO implements Serializable {
     private String codigoConvenio;
 
     @NotNull
-    private String codigoPlano;
+    private Integer codigoConvenioId;
 
-    private ConvenioPlano convenioPlano;
+    private Integer convenioPlanoId;
 
     
     public Long getId() {
@@ -58,20 +57,20 @@ public class ControleQualidadeDTO implements Serializable {
         this.codigoConvenio = codigoConvenio;
     }
 
-    public String getCodigoPlano() {
-        return codigoPlano;
+    public Integer getCodigoConvenioId() {
+        return codigoConvenioId;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public void setCodigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
     }
 
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
+    public Integer getConvenioPlanoId() {
+        return convenioPlanoId;
     }
 
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public void setConvenioPlanoId(Integer convenioPlanoId) {
+        this.convenioPlanoId = convenioPlanoId;
     }
 
     @Override
@@ -99,8 +98,8 @@ public class ControleQualidadeDTO implements Serializable {
             ", codigo=" + getCodigo() +
             ", material='" + getMaterial() + "'" +
             ", codigoConvenio='" + getCodigoConvenio() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", codigoConvenioId=" + getCodigoConvenioId() +
+            ", convenioPlanoId=" + getConvenioPlanoId() +
             "}";
     }
 }

@@ -2,11 +2,6 @@
   "name": "Cadaver",
   "fields": [
     {
-      "fieldName": "codigo",
-      "fieldType": "Integer",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "nome",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
@@ -47,24 +42,19 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "procedencia",
-      "fieldType": "String",
+      "fieldName": "procedenciaId",
+      "fieldType": "Integer",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "retirada",
-      "fieldType": "String",
+      "fieldName": "retiradaId",
+      "fieldType": "Integer",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "codigoPlano",
-      "fieldType": "String",
+      "fieldName": "codigoConvenioId",
+      "fieldType": "Integer",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "convenioPlano",
-      "fieldType": "ConvenioPlano",
-      "fieldValues": "SUS_INTERNACAO,SUS_PLANOAMBULATORIO"
     },
     {
       "fieldName": "observacao",

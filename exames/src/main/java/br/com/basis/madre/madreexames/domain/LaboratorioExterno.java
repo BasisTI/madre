@@ -9,8 +9,6 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-
 import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
 
 /**
@@ -74,12 +72,11 @@ public class LaboratorioExterno implements Serializable {
     private String codigoConvenio;
 
     @NotNull
-    @Column(name = "codigo_plano", nullable = false)
-    private String codigoPlano;
+    @Column(name = "codigo_convenio_id", nullable = false)
+    private Integer codigoConvenioId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "convenio_plano")
-    private ConvenioPlano convenioPlano;
+    @Column(name = "convenio_plano_id")
+    private Integer convenioPlanoId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "forma_envio")
@@ -237,30 +234,30 @@ public class LaboratorioExterno implements Serializable {
         this.codigoConvenio = codigoConvenio;
     }
 
-    public String getCodigoPlano() {
-        return codigoPlano;
+    public Integer getCodigoConvenioId() {
+        return codigoConvenioId;
     }
 
-    public LaboratorioExterno codigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public LaboratorioExterno codigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
         return this;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
+    public void setCodigoConvenioId(Integer codigoConvenioId) {
+        this.codigoConvenioId = codigoConvenioId;
     }
 
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
+    public Integer getConvenioPlanoId() {
+        return convenioPlanoId;
     }
 
-    public LaboratorioExterno convenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public LaboratorioExterno convenioPlanoId(Integer convenioPlanoId) {
+        this.convenioPlanoId = convenioPlanoId;
         return this;
     }
 
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
+    public void setConvenioPlanoId(Integer convenioPlanoId) {
+        this.convenioPlanoId = convenioPlanoId;
     }
 
     public FormaEnvio getFormaEnvio() {
@@ -309,8 +306,8 @@ public class LaboratorioExterno implements Serializable {
             ", email='" + getEmail() + "'" +
             ", cgc='" + getCgc() + "'" +
             ", codigoConvenio='" + getCodigoConvenio() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", codigoConvenioId=" + getCodigoConvenioId() +
+            ", convenioPlanoId=" + getConvenioPlanoId() +
             ", formaEnvio='" + getFormaEnvio() + "'" +
             "}";
     }
