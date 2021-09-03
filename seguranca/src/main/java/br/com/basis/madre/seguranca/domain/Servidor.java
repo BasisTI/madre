@@ -391,11 +391,11 @@ public class Servidor implements Serializable {
     }
 
     public Set<Graduacao> getGraduacaos() {
-        return graduacaos;
+        return new HashSet<>(graduacaos);
     }
 
     public Servidor graduacaos(Set<Graduacao> graduacaos) {
-        this.graduacaos = graduacaos;
+        this.graduacaos = new HashSet<>(graduacaos);
         return this;
     }
 
@@ -412,7 +412,7 @@ public class Servidor implements Serializable {
     }
 
     public void setGraduacaos(Set<Graduacao> graduacaos) {
-        this.graduacaos = graduacaos;
+        this.graduacaos = new HashSet<>(this.graduacaos);
     }
 
     public Usuario getUsuario() {

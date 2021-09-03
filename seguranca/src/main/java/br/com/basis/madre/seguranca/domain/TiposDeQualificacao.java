@@ -120,11 +120,11 @@ public class TiposDeQualificacao implements Serializable {
     }
 
     public Set<Graduacao> getGraduacaoQualificacaos() {
-        return graduacaoQualificacaos;
+        return new HashSet<>(graduacaoQualificacaos);
     }
 
     public TiposDeQualificacao graduacaoQualificacaos(Set<Graduacao> graduacaos) {
-        this.graduacaoQualificacaos = graduacaos;
+        this.graduacaoQualificacaos = new HashSet<>(graduacaos);
         return this;
     }
 
@@ -141,7 +141,7 @@ public class TiposDeQualificacao implements Serializable {
     }
 
     public void setGraduacaoQualificacaos(Set<Graduacao> graduacaos) {
-        this.graduacaoQualificacaos = graduacaos;
+        this.graduacaoQualificacaos = new HashSet<>(graduacaos);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

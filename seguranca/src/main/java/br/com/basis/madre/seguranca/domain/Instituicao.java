@@ -106,11 +106,11 @@ public class Instituicao implements Serializable {
     }
 
     public Set<Graduacao> getGraduacaoInstituicaos() {
-        return graduacaoInstituicaos;
+        return new HashSet<>(this.graduacaoInstituicaos);
     }
 
     public Instituicao graduacaoInstituicaos(Set<Graduacao> graduacaos) {
-        this.graduacaoInstituicaos = graduacaos;
+        this.graduacaoInstituicaos = new HashSet<>(graduacaos);
         return this;
     }
 
@@ -127,7 +127,7 @@ public class Instituicao implements Serializable {
     }
 
     public void setGraduacaoInstituicaos(Set<Graduacao> graduacaos) {
-        this.graduacaoInstituicaos = graduacaos;
+        this.graduacaoInstituicaos = new HashSet<>(graduacaos);
     }
 
     public ConselhosProfissionais getConselhosProfissionais() {
