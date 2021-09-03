@@ -1,15 +1,16 @@
 package br.com.basis.madre.seguranca.service.dto;
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import br.com.basis.madre.seguranca.domain.enumeration.SituacaoGraduacao;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Graduacao} entity.
  */
 public class GraduacaoDTO implements Serializable {
-    
+
     private Long id;
 
     private String curso;
@@ -32,7 +33,7 @@ public class GraduacaoDTO implements Serializable {
     private Long tiposDeQualificacaoId;
 
     private Long instituicaoId;
-    
+
     public Long getId() {
         return id;
     }

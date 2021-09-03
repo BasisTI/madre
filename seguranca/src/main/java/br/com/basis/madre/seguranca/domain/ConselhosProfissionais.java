@@ -3,10 +3,17 @@ package br.com.basis.madre.seguranca.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -139,11 +146,11 @@ public class ConselhosProfissionais implements Serializable {
     }
 
     public Set<Instituicao> getTiposDeQualificacaos() {
-        return tiposDeQualificacaos;
+        return new HashSet<>(this.tiposDeQualificacaos);
     }
 
     public ConselhosProfissionais tiposDeQualificacaos(Set<Instituicao> instituicaos) {
-        this.tiposDeQualificacaos = instituicaos;
+        this.tiposDeQualificacaos = new HashSet<>(instituicaos);
         return this;
     }
 
@@ -160,7 +167,7 @@ public class ConselhosProfissionais implements Serializable {
     }
 
     public void setTiposDeQualificacaos(Set<Instituicao> instituicaos) {
-        this.tiposDeQualificacaos = instituicaos;
+        this.tiposDeQualificacaos = new HashSet<>(instituicaos);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

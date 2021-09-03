@@ -1,13 +1,13 @@
 package br.com.basis.madre.seguranca.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.ConselhosProfissionais} entity.
  */
 public class ConselhosProfissionaisDTO implements Serializable {
-    
+
     private Long id;
 
     private Integer codigo;
@@ -24,7 +24,7 @@ public class ConselhosProfissionaisDTO implements Serializable {
 
     private Boolean situacao;
 
-    
+
     public Long getId() {
         return id;
     }

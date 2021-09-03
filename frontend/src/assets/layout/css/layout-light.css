@@ -3270,6 +3270,12 @@ body .p-overlay-badge .p-badge {
   height: 34px;
 }
 
+.icon-seguranca {
+  background: url(../images/icon-seguranca.png) no-repeat;
+  width: 34px;
+  height: 34px;
+}
+
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem>a>ul>li>a {
   background: #1FAAEE;
 }

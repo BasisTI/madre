@@ -1,10 +1,11 @@
 package br.com.basis.madre.seguranca.service.mapper;
 
 
-import br.com.basis.madre.seguranca.domain.*;
+import br.com.basis.madre.seguranca.domain.Graduacao;
 import br.com.basis.madre.seguranca.service.dto.GraduacaoDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
 
 /**
  * Mapper for the entity {@link Graduacao} and its DTO {@link GraduacaoDTO}.

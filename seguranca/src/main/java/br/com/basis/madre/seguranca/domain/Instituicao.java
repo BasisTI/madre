@@ -4,8 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.GenerationType;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
@@ -96,11 +106,11 @@ public class Instituicao implements Serializable {
     }
 
     public Set<Graduacao> getGraduacaoInstituicaos() {
-        return graduacaoInstituicaos;
+        return new HashSet<>(this.graduacaoInstituicaos);
     }
 
     public Instituicao graduacaoInstituicaos(Set<Graduacao> graduacaos) {
-        this.graduacaoInstituicaos = graduacaos;
+        this.graduacaoInstituicaos = new HashSet<>(graduacaos);
         return this;
     }
 
@@ -117,7 +127,7 @@ public class Instituicao implements Serializable {
     }
 
     public void setGraduacaoInstituicaos(Set<Graduacao> graduacaos) {
-        this.graduacaoInstituicaos = graduacaos;
+        this.graduacaoInstituicaos = new HashSet<>(graduacaos);
     }
 
     public ConselhosProfissionais getConselhosProfissionais() {
