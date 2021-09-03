@@ -6,44 +6,13 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Instituicao} entity.
  */
-public class InstituicaoDTO implements Serializable {
-
-    private Long id;
-
-    private Integer codigo;
-
-    @NotNull
-    private String descricao;
+public class InstituicaoDTO extends DTOgenericoComDescricao implements Serializable {
 
     @NotNull
     private Boolean interno;
 
 
     private Long conselhosProfissionaisId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
     public Boolean isInterno() {
         return interno;
