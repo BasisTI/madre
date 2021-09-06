@@ -1,19 +1,19 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.TipoAmostra} entity.
  */
 public class TipoAmostraDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
     private String nome;
 
-    
+
     public Long getId() {
         return id;
     }

@@ -15,7 +15,7 @@ import { origemDropdown } from '../../models/dropdowns/origem.dropdown';
 import { ResponsavelDropdown } from '../../models/dropdowns/responsavel.dropdown';
 import { UnidadeMedidaDropdown } from '../../models/dropdowns/unidadeMedida.dropdown';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
-import { GrupoModel } from '../../models/subjects/grupo-model';
+import { UnidadeFuncional } from '../../models/subjects/unidade-model';
 @Component({
   selector: 'app-material-exames',
   templateUrl: './material-exames.component.html',
@@ -84,7 +84,7 @@ export class MaterialExamesComponent implements OnInit {
   ListaDeAmostras: AmostraDeMaterial[] = [];
   anticoagulantes: Anticoagulante[] = [];
   recipientes: Recipiente[] = [];
-  unidadesFuncionais: GrupoModel[] = [];
+  unidadesFuncionais: UnidadeFuncional[] = [];
   responsaveis = ResponsavelDropdown;
   origens = origemDropdown;
   unidadeMedida = UnidadeMedidaDropdown;

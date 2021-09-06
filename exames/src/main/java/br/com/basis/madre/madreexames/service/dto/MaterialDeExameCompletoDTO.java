@@ -1,5 +1,7 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 public class MaterialDeExameCompletoDTO extends MaterialDeExameDTO {
@@ -7,10 +9,12 @@ public class MaterialDeExameCompletoDTO extends MaterialDeExameDTO {
     private  Set<AmostraDeMaterialDTO> amostras;
 
     public Set<AmostraDeMaterialDTO> getAmostras() {
-        return amostras;
+        Set<AmostraDeMaterialDTO> listaAmostra = amostras;
+        return listaAmostra;
     }
 
     public void setAmostras(Set<AmostraDeMaterialDTO> amostras) {
-        this.amostras = amostras;
+        amostras = new HashSet<>(amostras);
+        this.amostras = Collections.unmodifiableSet(amostras);
     }
 }

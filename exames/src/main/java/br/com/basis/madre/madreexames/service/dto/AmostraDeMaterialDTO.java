@@ -1,6 +1,6 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.OrigemTipoAmostra;
 import br.com.basis.madre.madreexames.domain.enumeration.UnidadeDeMedida;
@@ -10,7 +10,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Responsavel;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.AmostraDeMaterial} entity.
  */
 public class AmostraDeMaterialDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -49,7 +49,7 @@ public class AmostraDeMaterialDTO implements Serializable {
     private String amostraMaterialNome;
 
     private Long materialDeExameId;
-    
+
     public Long getId() {
         return id;
     }
