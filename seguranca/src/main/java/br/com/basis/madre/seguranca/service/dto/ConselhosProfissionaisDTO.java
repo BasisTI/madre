@@ -6,14 +6,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.ConselhosProfissionais} entity.
  */
-public class ConselhosProfissionaisDTO implements Serializable {
-
-    private Long id;
-
-    private Integer codigo;
-
-    @NotNull
-    private String nome;
+public class ConselhosProfissionaisDTO extends DominioComNome implements Serializable {
 
     @NotNull
     private String sigla;
@@ -23,31 +16,6 @@ public class ConselhosProfissionaisDTO implements Serializable {
     private String tituloFeminino;
 
     private Boolean situacao;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getSigla() {
         return sigla;
