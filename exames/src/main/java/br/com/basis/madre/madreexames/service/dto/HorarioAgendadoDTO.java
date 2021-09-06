@@ -2,7 +2,9 @@ package br.com.basis.madre.madreexames.service.dto;
 
 import java.time.Instant;
 import java.time.Duration;
-import javax.validation.constraints.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.Dia;
 
@@ -10,7 +12,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Dia;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.HorarioAgendado} entity.
  */
 public class HorarioAgendadoDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -18,6 +20,7 @@ public class HorarioAgendadoDTO implements Serializable {
 
     private Instant horaFim;
 
+    @Positive
     private Integer numeroDeHorarios;
 
     @NotNull
@@ -38,7 +41,7 @@ public class HorarioAgendadoDTO implements Serializable {
     private String horarioAgendadoDia;
 
     private Long gradeDeAgendamentoId;
-    
+
     public Long getId() {
         return id;
     }
@@ -137,6 +140,16 @@ public class HorarioAgendadoDTO implements Serializable {
         }
 
         return id != null && id.equals(((HorarioAgendadoDTO) o).id);
+    }
+
+    @AssertTrue(message = "Hora fim deve ser depois de hora início")
+    private boolean isHoraInicioAntesDeHoraFim() {
+        return getHoraFim() == null || getHoraInicio().isBefore(getHoraFim());
+    }
+
+    @AssertTrue(message = "Não informar hora fim e número de horários ao mesmo tempo")
+    private boolean isHoraFimOuNumeroDeHorariosPreenchido() {
+        return getHoraFim() != null ^ getNumeroDeHorarios() != null;
     }
 
     @Override
