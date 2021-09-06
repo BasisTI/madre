@@ -1,15 +1,10 @@
 package br.com.basis.madre.seguranca.service.dto;
 
-import javax.validation.constraints.NotNull;
-
-public class DTOgenericoParaClassesComDescricao {
+public class DominioBase {
 
     Long id;
 
     private Integer codigo;
-
-    @NotNull
-    private String descricao;
 
     public Long getId() {
         return id;
@@ -27,11 +22,4 @@ public class DTOgenericoParaClassesComDescricao {
         this.codigo = codigo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 }
