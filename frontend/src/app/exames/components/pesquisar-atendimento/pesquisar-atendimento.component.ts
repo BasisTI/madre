@@ -19,7 +19,7 @@ export class PesquisarAtendimentoComponent implements OnInit {
   origens: OrigemDaInternacao[] = [];
 
   ngOnInit(): void {
-    this.unidadeFuncionalService.GetUnidades().subscribe((response) => {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
       this.unidades = response;
     });
 

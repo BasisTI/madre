@@ -14,7 +14,7 @@ export class CadaverService {
   constructor(
     private client: HttpClient
   ) { }
-  public GetCadaver(): Observable<Array<CadaverModel>> {
+  public getCadaver(): Observable<Array<CadaverModel>> {
     return this.client.get<Array<CadaverModel>>(`${this.grupoURL}/cadavers`);
   }
 }

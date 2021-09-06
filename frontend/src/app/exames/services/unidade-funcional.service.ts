@@ -17,7 +17,7 @@ export class UnidadeFuncionalService {
     private client: HttpClient
   ) { }
 
-  public GetUnidades(): Observable<Array<UnidadeFuncional>> {
+  public getUnidades(): Observable<Array<UnidadeFuncional>> {
     return this.client.get<Array<UnidadeFuncional>>(this.unidadesUrl);
   }
 
