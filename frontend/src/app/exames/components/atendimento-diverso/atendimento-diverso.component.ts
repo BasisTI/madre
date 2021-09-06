@@ -88,15 +88,15 @@ export class AtendimentoDiversoComponent implements OnInit {
 
     });
 
-       this.cadaverService.GetCadaver().subscribe((response)=>{
+       this.cadaverService.getCadaver().subscribe((response)=>{
          this.cadavers = response; 
        });
 
-       this.controleQualidadeservice.GetControleQualidade().subscribe((response)=>{
+       this.controleQualidadeservice.getControleQualidade().subscribe((response)=>{
         this.controles = response; 
        });
 
-       this.laboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
+       this.laboratorioExternoService.getLaboratorioExterno().subscribe((response)=>{
         this.laboratorios = response; 
        });
 
@@ -111,7 +111,7 @@ export class AtendimentoDiversoComponent implements OnInit {
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
         this.especialidades = response; 
        });
-       this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
+       this.unidadeFuncionalService.getUnidades().subscribe((response)=>{
        this.unidadesFuncionais = response; 
       });
   }

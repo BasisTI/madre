@@ -44,7 +44,7 @@ export class SolicitarExameComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.unidadeFuncionalService.GetUnidades().subscribe((response) => {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
       this.unidades = response;
     });
 
