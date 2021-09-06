@@ -10,7 +10,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.GrauDeInstrucao;
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Pessoa} entity.
  */
-public class PessoaDTO extends DTOGenericoConselhosProfissionaisEPessoa implements Serializable {
+public class PessoaDTO extends DominioComNome implements Serializable {
 
     @NotNull
     private String nomeDaMae;

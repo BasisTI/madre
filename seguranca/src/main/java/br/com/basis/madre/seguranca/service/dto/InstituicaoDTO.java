@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Instituicao} entity.
  */
-public class InstituicaoDTO extends DTOgenericoParaClassesComDescricao implements Serializable {
+public class InstituicaoDTO extends DominioComDescricao implements Serializable {
 
     @NotNull
     private Boolean interno;

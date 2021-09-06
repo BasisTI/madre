@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.GrupoFuncional} entity.
  */
-public class GrupoFuncionalDTO extends DTOgenericoParaClassesComDescricao implements Serializable {
+public class GrupoFuncionalDTO extends DominioComDescricao implements Serializable {
 
     private Long servidorId;
 
