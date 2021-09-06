@@ -2,7 +2,7 @@ package br.com.basis.madre.seguranca.service.dto;
 
 import javax.validation.constraints.NotNull;
 
-public class DTOgenericoComDescricao {
+public class DTOgenericoParaClassesComDescricao {
 
     Long id;
 
