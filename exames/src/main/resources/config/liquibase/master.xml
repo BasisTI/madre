@@ -29,9 +29,15 @@
     <include file="config/liquibase/changelog/20210714162530_added_entity_constraints_GrupoAgendamentoExame.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210812090408_added_entity_ExameCompleto.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705114608_added_entity_Material_Atualizado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210818172959_added_entity_MaterialDeExame.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210818172959_added_entity_constraints_MaterialDeExame.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="config/liquibase/changelog/20210729174828_alterar_atendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210729190512_remover_Constraint_AtendimentoDiverso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210805133654_alterar_atendimentoDiverso_informacoesComplementares.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210811155714_alterar_atendimentoDiverso_CamposEnum.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210827165951_added_entity_Recipiente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210827170051_added_entity_Anticoagulante.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210827170151_added_entity_AmostraDeMaterial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210827170151_added_entity_constraints_AmostraDeMaterial.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -39,16 +39,9 @@
   "relationships": [
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "material",
+      "otherEntityName": "materialDeExame",
       "otherEntityRelationshipName": "exame",
       "relationshipName": "materialExame",
-      "otherEntityField": "nome"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "tipoAmostra",
-      "otherEntityRelationshipName": "exame",
-      "relationshipName": "amostraExame",
       "otherEntityField": "nome"
     },
     {

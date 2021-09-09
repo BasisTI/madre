@@ -16,6 +16,53 @@ exigeInformacao Boolean required
 urina Boolean required
 }
 
+entity MaterialDeExame {
+nome String required
+ativo Boolean required
+npo Boolean
+jejum Boolean
+exigePreparo Boolean
+exigeDieta Boolean
+informaNumeroDeColetas Boolean
+geraItemDeSolicitacao Boolean
+exigeIntervaloDeColeta Boolean
+exigeRegiaoAnatomica Boolean
+ingestaoDeMedicamento Boolean
+dependenteDeExame Boolean
+analisadoPelaCII Boolean
+interesseDaCOMEDI Boolean
+exigeImpressao Boolean
+apareceResultado Boolean
+contaCelulas Boolean
+limiteDeSolicitacao Boolean
+formaDeRespiracao Boolean
+automatico Boolean
+exigeDadosComplementares Boolean
+natureza String required
+sumario String required
+tempoJejum Integer
+intervaloMinimo Integer
+unidadeDeTempo String
+validade Integer
+agendamentoMinimo Integer
+tempoLimiteDaSolicitacao Integer
+unidadeDeTempoDaSolicitacao String
+numeroDeAmostras Integer
+numeroDeAmostrasPadrao Integer
+diasLimiteDefault Integer
+tempoLimiteDefault Integer
+numeroDeAmostrarPorIntervalo Integer
+tempoLimiteDeAmostraPorIntervalo Integer
+unidadeLimiteDeTempoDoPeriodo String
+permiteSolicitacaoPosAlta Boolean required
+tempoPermitidoParaSolicitarPosAlta Integer
+tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras Integer
+cartaDeColeta String
+laboratoriaTercerizado Boolean
+naoCancelaExamaAposAlta Boolean
+
+}
+
 entity Recomendacao {
 descricao String required
 avisoResponsavel Boolean required
@@ -23,8 +70,26 @@ responsavel Responsavel
 abrangencia Abrangencia
 }
 
-entity TipoAmostra {
+entity Recipiente {
 nome String required
+anticoagulante Boolean required
+ativo Boolean required
+}
+
+entity Anticoagulante {
+nome String required
+ativo Boolean required
+}
+
+entity AmostraDeMaterial {
+nome String required
+origem OrigemTipoAmostra required
+numeroDeAmostras Integer required
+volumeDaAmostra Integer
+unidadeDeMedida UnidadeDeMedida required
+responsavel Responsavel required
+congelado Boolean required
+unidadeFuncionalId Integer
 }
 
 entity ItemSolicitacaoExame {
@@ -36,6 +101,7 @@ situacao Situacao required
 entity SolicitacaoExame {
 id Integer required
 infoClinica String required
+
 usoAntimicrobianos24h Boolean required
 pedidoPrimeiroExame Boolean required
 }
@@ -54,6 +120,10 @@ ativo Boolean required
 
 }
 
+enum OrigemTipoAmostra {
+NASCIMENTO, AMBULATORIO, INTERNACAO, URGENCIA, PACIENTE, DOACAO, HOSPITAL, CIRURGIA
+}
+
 enum Responsavel {
 COLETADOR, SOLICITANTE, PACIENTE
 }
@@ -66,17 +136,24 @@ enum Situacao {
 A_COLETAR, AREA_EXECUTORA, COLETADO
 }
 
+enum UnidadeDeMedida {
+	MILILITRO, FRASCO
+}
+
 relationship OneToMany {
 Material{material(nome)} to Recomendacao,
 SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
-
+MaterialDeExame{amostra(nome)} to AmostraDeMaterial
 }
 
 relationship ManyToOne {
-Exame{materialExame(nome)} to Material,
+MaterialDeExame{material(nome)} to Material,
+Exame{materialExame(nome)} to MaterialDeExame,
 Sinonimo{sinonimo(nome)} to Exame,
-Exame{amostraExame(nome)} to TipoAmostra,
-ItemSolicitacaoExame{itemSolicitacaoExame(situacao)} to Exame
+ItemSolicitacaoExame{itemSolicitacaoExame(situacao)} to Exame,
+AmostraDeMaterial{amostraRecipiente(nome)} to Recipiente
+AmostraDeMaterial{amostraAnticoagulante(nome)} to Anticoagulante
+AmostraDeMaterial{amostraMaterial(nome)} to Material
 }
 
 relationship ManyToMany {

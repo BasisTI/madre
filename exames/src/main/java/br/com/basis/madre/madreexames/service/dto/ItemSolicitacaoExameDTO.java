@@ -1,7 +1,7 @@
 package br.com.basis.madre.madreexames.service.dto;
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.Situacao;
 
@@ -9,7 +9,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Situacao;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.ItemSolicitacaoExame} entity.
  */
 public class ItemSolicitacaoExameDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -27,7 +27,7 @@ public class ItemSolicitacaoExameDTO implements Serializable {
     private String itemSolicitacaoExameSituacao;
 
     private Long solicitacaoExameId;
-    
+
     public Long getId() {
         return id;
     }
