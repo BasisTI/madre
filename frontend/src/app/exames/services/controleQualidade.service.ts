@@ -13,7 +13,7 @@ export class ControleQualidadeservice {
   constructor(
     private client: HttpClient
   ) { }
-  public GetControleQualidade(): Observable<Array<ControleQualidadeModel>> {
+  public getControleQualidade(): Observable<Array<ControleQualidadeModel>> {
     return this.client.get<Array<ControleQualidadeModel>>(`${this.grupoURL}/controle-qualidades`);
   }
 }

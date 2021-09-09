@@ -4,7 +4,7 @@ import { Pageable } from '@shared/pageable';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
 import { ListaPessoasServidor } from '../models/dropdowns/lista-pessoa-servidor';
-import { Pessoa } from '../models/dropdowns/pessoa-model';
+import { Pessoa } from '../models/pessoa-resumo-model';
 
 
 @Injectable({

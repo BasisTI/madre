@@ -17,7 +17,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.TipoDoContato;
 @Entity
 @Table(name = "telefone")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "telefone")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-telefone")
 public class Telefone implements Serializable {
 
     private static final long serialVersionUID = 1L;

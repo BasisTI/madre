@@ -331,12 +331,12 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
-
+                        
                     ],
                 },
                 {
                     label: 'Segurança',
-                    icon: 'add',
+                    icon: 'icon-seguranca',
                     items: [
                         {
                             label: 'Servidores',

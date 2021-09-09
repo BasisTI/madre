@@ -14,7 +14,7 @@ export class LaboratorioExternoService {
   constructor(
     private client: HttpClient
   ) { }
-  public GetLaboratorioExterno(): Observable<Array<LaboratorioExternoModel>> {
+  public getLaboratorioExterno(): Observable<Array<LaboratorioExternoModel>> {
     return this.client.get<Array<LaboratorioExternoModel>>(`${this.grupoURL}/laboratorio-externos`);
   }
 }

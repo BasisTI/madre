@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "grupo_funcional")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "grupofuncional")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-grupofuncional")
 public class GrupoFuncional implements Serializable {
 
     private static final long serialVersionUID = 1L;

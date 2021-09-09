@@ -5,6 +5,7 @@ import br.com.basis.madre.seguranca.repository.ServidorRepository;
 import br.com.basis.madre.seguranca.repository.search.ServidorSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.ServidorDTO;
 import br.com.basis.madre.seguranca.service.mapper.ServidorMapper;
+import br.com.basis.madre.seguranca.service.projection.ServidorResumo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,4 +105,9 @@ public class ServidorService {
         return servidorSearchRepository.search(queryStringQuery(query), pageable)
             .map(servidorMapper::toDto);
     }
+
+    public Page<ServidorResumo> findAllProjectedServidorResumoBy(String matricula, Pageable pageable) {
+        return servidorRepository.findAllProjectedServidorResumoByMatriculaContainingIgnoreCase(matricula, pageable);
+    }
+
 }

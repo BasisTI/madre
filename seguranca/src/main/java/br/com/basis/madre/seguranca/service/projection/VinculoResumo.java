@@ -8,5 +8,6 @@ public interface VinculoResumo {
     Long getId();
     String getDescricao();
     Long getMatricula();
+    Long getCodigo();
 
 }

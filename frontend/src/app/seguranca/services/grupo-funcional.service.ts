@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/app/seguranca/api';
-import { GrupoFuncional } from '../models/dropdowns/grupo-funcional-model';
+import { GrupoFuncional } from '../models/grupo-funcional-model';
 
 @Injectable({
   providedIn: 'root'
