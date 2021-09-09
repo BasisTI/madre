@@ -38,18 +38,17 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "tipoDeMarcacao",
-      "otherEntityRelationshipName": "horarioAgendado",
-      "relationshipName": "horarioAgendado",
-      "otherEntityField": "dia",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "horarioLivre",
       "otherEntityRelationshipName": "horarioAgendado",
       "relationshipName": "horarioAgendadoLivre"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tipoDeMarcacao",
+      "otherEntityRelationshipName": "horarioAgendado",
+      "relationshipName": "tipoHorario",
+      "otherEntityField": "tipoDeMarcacao"
     },
     {
       "relationshipType": "many-to-one",

@@ -39,5 +39,7 @@
     <include file="config/liquibase/changelog/20210818154725_added_entity_constraints_HorarioAgendado.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818154825_added_entity_constraints_HorarioLivre.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210818154625_added_entity_constraints_GradeDeAgendamentoCompleta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210818154725_added_entity_HorarioAgendadoNovo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210818154725_added_entity_constraints_HorarioAgendadoNovo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

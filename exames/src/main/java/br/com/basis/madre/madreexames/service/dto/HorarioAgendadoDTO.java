@@ -2,9 +2,7 @@ package br.com.basis.madre.madreexames.service.dto;
 
 import java.time.Instant;
 import java.time.Duration;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.Dia;
 
@@ -20,7 +18,6 @@ public class HorarioAgendadoDTO implements Serializable {
 
     private Instant horaFim;
 
-    @Positive
     private Integer numeroDeHorarios;
 
     @NotNull
@@ -36,9 +33,9 @@ public class HorarioAgendadoDTO implements Serializable {
     private Boolean exclusivo;
 
 
-    private Long horarioAgendadoId;
+    private Long tipoHorarioId;
 
-    private String horarioAgendadoDia;
+    private String tipoHorarioTipoDeMarcacao;
 
     private Long gradeDeAgendamentoId;
 
@@ -106,20 +103,20 @@ public class HorarioAgendadoDTO implements Serializable {
         this.exclusivo = exclusivo;
     }
 
-    public Long getHorarioAgendadoId() {
-        return horarioAgendadoId;
+    public Long getTipoHorarioId() {
+        return tipoHorarioId;
     }
 
-    public void setHorarioAgendadoId(Long tipoDeMarcacaoId) {
-        this.horarioAgendadoId = tipoDeMarcacaoId;
+    public void setTipoHorarioId(Long tipoDeMarcacaoId) {
+        this.tipoHorarioId = tipoDeMarcacaoId;
     }
 
-    public String getHorarioAgendadoDia() {
-        return horarioAgendadoDia;
+    public String getTipoHorarioTipoDeMarcacao() {
+        return tipoHorarioTipoDeMarcacao;
     }
 
-    public void setHorarioAgendadoDia(String tipoDeMarcacaoDia) {
-        this.horarioAgendadoDia = tipoDeMarcacaoDia;
+    public void setTipoHorarioTipoDeMarcacao(String tipoDeMarcacaoTipoDeMarcacao) {
+        this.tipoHorarioTipoDeMarcacao = tipoDeMarcacaoTipoDeMarcacao;
     }
 
     public Long getGradeDeAgendamentoId() {
@@ -169,8 +166,8 @@ public class HorarioAgendadoDTO implements Serializable {
             ", duracao='" + getDuracao() + "'" +
             ", ativo='" + isAtivo() + "'" +
             ", exclusivo='" + isExclusivo() + "'" +
-            ", horarioAgendadoId=" + getHorarioAgendadoId() +
-            ", horarioAgendadoDia='" + getHorarioAgendadoDia() + "'" +
+            ", tipoHorarioId=" + getTipoHorarioId() +
+            ", tipoHorarioTipoDeMarcacao='" + getTipoHorarioTipoDeMarcacao() + "'" +
             ", gradeDeAgendamentoId=" + getGradeDeAgendamentoId() +
             "}";
     }

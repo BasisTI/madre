@@ -22,7 +22,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Dia;
 @Entity
 @Table(name = "horario_agendado")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-horarioagendado")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "horarioagendado")
 public class HorarioAgendado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,13 +59,13 @@ public class HorarioAgendado implements Serializable {
     @Column(name = "exclusivo", nullable = false)
     private Boolean exclusivo;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private TipoDeMarcacao horarioAgendado;
-
     @OneToMany(mappedBy = "horarioAgendado")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<HorarioLivre> horarioAgendadoLivres = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "horarioAgendados", allowSetters = true)
+    private TipoDeMarcacao tipoHorario;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "gradeHorarios", allowSetters = true)
@@ -171,19 +171,6 @@ public class HorarioAgendado implements Serializable {
         this.exclusivo = exclusivo;
     }
 
-    public TipoDeMarcacao getHorarioAgendado() {
-        return horarioAgendado;
-    }
-
-    public HorarioAgendado horarioAgendado(TipoDeMarcacao tipoDeMarcacao) {
-        this.horarioAgendado = tipoDeMarcacao;
-        return this;
-    }
-
-    public void setHorarioAgendado(TipoDeMarcacao tipoDeMarcacao) {
-        this.horarioAgendado = tipoDeMarcacao;
-    }
-
     public Set<HorarioLivre> getHorarioAgendadoLivres() {
         return horarioAgendadoLivres;
     }
@@ -207,6 +194,19 @@ public class HorarioAgendado implements Serializable {
 
     public void setHorarioAgendadoLivres(Set<HorarioLivre> horarioLivres) {
         this.horarioAgendadoLivres = horarioLivres;
+    }
+
+    public TipoDeMarcacao getTipoHorario() {
+        return tipoHorario;
+    }
+
+    public HorarioAgendado tipoHorario(TipoDeMarcacao tipoDeMarcacao) {
+        this.tipoHorario = tipoDeMarcacao;
+        return this;
+    }
+
+    public void setTipoHorario(TipoDeMarcacao tipoDeMarcacao) {
+        this.tipoHorario = tipoDeMarcacao;
     }
 
     public GradeDeAgendamento getGradeDeAgendamento() {

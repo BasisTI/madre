@@ -12,14 +12,14 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {TipoDeMarcacaoMapper.class, GradeDeAgendamentoMapper.class})
 public interface HorarioAgendadoMapper extends EntityMapper<HorarioAgendadoDTO, HorarioAgendado> {
 
-    @Mapping(source = "horarioAgendado.id", target = "horarioAgendadoId")
-    @Mapping(source = "horarioAgendado.dia", target = "horarioAgendadoDia")
+    @Mapping(source = "tipoHorario.id", target = "tipoHorarioId")
+    @Mapping(source = "tipoHorario.tipoDeMarcacao", target = "tipoHorarioTipoDeMarcacao")
     @Mapping(source = "gradeDeAgendamento.id", target = "gradeDeAgendamentoId")
     HorarioAgendadoDTO toDto(HorarioAgendado horarioAgendado);
 
-    @Mapping(source = "horarioAgendadoId", target = "horarioAgendado")
     @Mapping(target = "horarioAgendadoLivres", ignore = true)
     @Mapping(target = "removeHorarioAgendadoLivre", ignore = true)
+    @Mapping(source = "tipoHorarioId", target = "tipoHorario")
     @Mapping(source = "gradeDeAgendamentoId", target = "gradeDeAgendamento")
     HorarioAgendado toEntity(HorarioAgendadoDTO horarioAgendadoDTO);
 

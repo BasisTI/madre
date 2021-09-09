@@ -110,10 +110,6 @@ enum Situacao {
 A_COLETAR, AREA_EXECUTORA, COLETADO
 }
 
-relationship OneToOne {
-HorarioAgendado{horarioAgendado(dia)} to TipoDeMarcacao
-}
-
 relationship OneToMany {
 Material{material(nome)} to Recomendacao,
 SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
@@ -125,6 +121,7 @@ relationship ManyToOne {
 GradeDeAgendamento{exameGrade(nome)} to Exame
 GradeDeAgendamento{grupoGrade(nome)} to GrupoAgendamentoExame
 GradeDeAgendamento{salaGrade(identificacaoDaSala)} to Sala
+HorarioAgendado{tipoHorario(tipoDeMarcacao)} to TipoDeMarcacao
 Exame{materialExame(nome)} to Material,
 Sinonimo{sinonimo(nome)} to Exame,
 Exame{amostraExame(nome)} to TipoAmostra,
