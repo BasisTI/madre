@@ -233,7 +233,7 @@ export class MaterialExamesComponent implements OnInit {
     this.materialDeExamesService.pegarRecipientes().subscribe((response) => {
       this.recipientes = response;
     })
-    this.unidadeDuncionalService.GetUnidades().subscribe((response) => {
+    this.unidadeDuncionalService.getUnidades().subscribe((response) => {
       this.unidadesFuncionais = response;
     })
   }
