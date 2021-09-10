@@ -1,7 +1,7 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.HorarioAgendado;
 import br.com.basis.madre.madreexames.service.dto.HorarioAgendadoDTO;
 
 import org.mapstruct.*;

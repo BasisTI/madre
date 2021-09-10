@@ -10,18 +10,18 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link HorarioAgendado}.
@@ -54,9 +54,30 @@ public class HorarioAgendadoService {
         log.debug("Request to save HorarioAgendado : {}", horarioAgendadoDTO);
         HorarioAgendado horarioAgendado = horarioAgendadoMapper.toEntity(horarioAgendadoDTO);
         horarioAgendado = horarioAgendadoRepository.save(horarioAgendado);
-        HorarioAgendadoDTO result = horarioAgendadoMapper.toDto(horarioAgendado);
-        horarioAgendadoSearchRepository.save(horarioAgendado);
+        HorarioAgendadoDTO result = horarioAgendadoRepository.buscaPorId(horarioAgendado.getId());
+        calcularHoraFinal(result, horarioAgendadoDTO);
+//        calcularNumeroDeHorarios(result, horarioAgendadoDTO);
+        horarioAgendadoSearchRepository.save(result);
         return result;
+    }
+
+    public void calcularHoraFinal(HorarioAgendadoDTO result, HorarioAgendadoDTO horarioAgendadoDTO) {
+        if (horarioAgendadoDTO.getHoraFim() == null) {
+            result.setHoraFim(horarioAgendadoDTO.getHoraInicio()
+                    .plus(horarioAgendadoDTO.getDuracao()
+                        .toMinutes() * horarioAgendadoDTO.getNumeroDeHorarios(), ChronoUnit.MINUTES));
+        }
+    }
+
+    public void calcularNumeroDeHorarios(HorarioAgendadoDTO result, HorarioAgendadoDTO horarioAgendadoDTO) {
+        if (horarioAgendadoDTO.getNumeroDeHorarios() == null) {
+            Duration intervaloInicioFim = Duration.between(horarioAgendadoDTO.getHoraInicio(),
+                horarioAgendadoDTO.getHoraFim());
+            result.setNumeroDeHorarios((int) ((int) intervaloInicioFim.minus(intervaloInicioFim
+                .minusSeconds(intervaloInicioFim.getSeconds()))
+                .toMinutes() / horarioAgendadoDTO.getDuracao().toMinutes()));
+
+        }
     }
 
     /**
@@ -107,12 +128,11 @@ public class HorarioAgendadoService {
     @Transactional(readOnly = true)
     public Page<HorarioAgendadoDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of HorarioAgendados for query {}", query);
-        return horarioAgendadoSearchRepository.search(queryStringQuery(query), pageable)
-            .map(horarioAgendadoMapper::toDto);
+        return horarioAgendadoSearchRepository.search(queryStringQuery(query), pageable);
     }
 
     @Transactional(readOnly = true)
-    public Page<HorarioAgendado> filtraHorarioAgendado(Pageable pageable, String id, String horaInicio, String horaFim,
+    public Page<HorarioAgendadoDTO> filtraHorarioAgendado(Pageable pageable, String id, String horaInicio, String horaFim,
        String numeroDeHorarios, String dia, String duracao, String ativo, String exclusivo) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, "id", id);

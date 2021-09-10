@@ -20,8 +20,7 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   horaFim: Date;
   duracao: Time;
   duracaoPadrao = new Date('December 31, 2021 00:30:00');
-  horaInicioPadrao = new Date('December 31, 2020 12:00:00');
-  horaFimPadrao = new Date('December 31, 2021 12:30:00');
+  horaPadrao = new Date('December 31, 2020 12:00:00');
   dia = DiaSemana;
   diaSelecionado: string;
   tiposDeMarcacao: TipoDeMarcacao[] = [];

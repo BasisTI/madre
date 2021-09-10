@@ -12,7 +12,6 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -22,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing {@link GradeDeAgendamento}.
@@ -43,7 +42,10 @@ public class GradeDeAgendamentoService {
 
     private final GradeDeAgendamentoSearchRepository gradeDeAgendamentoSearchRepository;
 
-    public GradeDeAgendamentoService(SegurancaClient segurancaClient, InternacaoClient internacaoClient, GradeDeAgendamentoRepository gradeDeAgendamentoRepository, GradeDeAgendamentoMapper gradeDeAgendamentoMapper, GradeDeAgendamentoSearchRepository gradeDeAgendamentoSearchRepository) {
+    public GradeDeAgendamentoService(SegurancaClient segurancaClient, InternacaoClient internacaoClient,
+                                     GradeDeAgendamentoRepository gradeDeAgendamentoRepository,
+                                     GradeDeAgendamentoMapper gradeDeAgendamentoMapper,
+                                     GradeDeAgendamentoSearchRepository gradeDeAgendamentoSearchRepository) {
         this.segurancaClient = segurancaClient;
         this.internacaoClient = internacaoClient;
         this.gradeDeAgendamentoRepository = gradeDeAgendamentoRepository;
@@ -62,8 +64,10 @@ public class GradeDeAgendamentoService {
         GradeDeAgendamento gradeDeAgendamento = gradeDeAgendamentoMapper.toEntity(gradeDeAgendamentoDTO);
         gradeDeAgendamento = gradeDeAgendamentoRepository.save(gradeDeAgendamento);
         GradeDeAgendamentoDTO result = gradeDeAgendamentoRepository.buscaPorId(gradeDeAgendamento.getId());
-        result.setUnidadeExecutoraNome(internacaoClient.getUnidadeFuncional(gradeDeAgendamentoDTO.getUnidadeExecutoraId()).getNome());
-        result.setResponsavelNome(segurancaClient.getServidor(gradeDeAgendamentoDTO.getResponsavelId()).getPessoaNome());
+        result.setUnidadeExecutoraNome(internacaoClient.getUnidadeFuncional(gradeDeAgendamentoDTO
+            .getUnidadeExecutoraId()).getNome());
+        result.setResponsavelNome(segurancaClient.getServidor(gradeDeAgendamentoDTO.getResponsavelId())
+            .getPessoaNome());
         gradeDeAgendamentoSearchRepository.save(result);
         return result;
     }

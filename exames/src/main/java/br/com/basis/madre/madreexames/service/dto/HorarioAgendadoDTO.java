@@ -1,14 +1,23 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import java.time.Instant;
-import java.time.Duration;
-import javax.validation.constraints.*;
-import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.Dia;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.HorarioAgendado} entity.
  */
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-horarioagendado")
+@NoArgsConstructor
+@AllArgsConstructor
 public class HorarioAgendadoDTO implements Serializable {
 
     private Long id;
@@ -18,6 +27,7 @@ public class HorarioAgendadoDTO implements Serializable {
 
     private Instant horaFim;
 
+    @Min(1)
     private Integer numeroDeHorarios;
 
     @NotNull
@@ -38,6 +48,14 @@ public class HorarioAgendadoDTO implements Serializable {
     private String tipoHorarioTipoDeMarcacao;
 
     private Long gradeDeAgendamentoId;
+
+    public HorarioAgendadoDTO(Long id, Instant horaInicio, Instant horaFim, Integer numeroDeHorarios, Dia dia) {
+        this.id = id;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
+        this.numeroDeHorarios = numeroDeHorarios;
+        this.dia = dia;
+    }
 
     public Long getId() {
         return id;
@@ -145,8 +163,8 @@ public class HorarioAgendadoDTO implements Serializable {
     }
 
     @AssertTrue(message = "Não informar hora fim e número de horários ao mesmo tempo")
-    private boolean isHoraFimOuNumeroDeHorariosPreenchido() {
-        return getHoraFim() != null ^ getNumeroDeHorarios() != null;
+    private boolean isHoraFimOuNumeroDeHorariosNulo() {
+        return getHoraFim() == null ^ getNumeroDeHorarios() == null;
     }
 
     @Override

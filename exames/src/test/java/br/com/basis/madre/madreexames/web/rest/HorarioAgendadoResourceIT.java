@@ -2,15 +2,14 @@ package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.MadreexamesApp;
 import br.com.basis.madre.madreexames.domain.HorarioAgendado;
+import br.com.basis.madre.madreexames.domain.enumeration.Dia;
 import br.com.basis.madre.madreexames.repository.HorarioAgendadoRepository;
 import br.com.basis.madre.madreexames.repository.search.HorarioAgendadoSearchRepository;
 import br.com.basis.madre.madreexames.service.HorarioAgendadoService;
 import br.com.basis.madre.madreexames.service.dto.HorarioAgendadoDTO;
 import br.com.basis.madre.madreexames.service.mapper.HorarioAgendadoMapper;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import java.time.Duration;
 import java.time.Instant;
@@ -32,11 +32,16 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import br.com.basis.madre.madreexames.domain.enumeration.Dia;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 /**
  * Integration tests for the {@link HorarioAgendadoResource} REST controller.
  */
@@ -156,7 +161,7 @@ public class HorarioAgendadoResourceIT {
         assertThat(testHorarioAgendado.isExclusivo()).isEqualTo(DEFAULT_EXCLUSIVO);
 
         // Validate the HorarioAgendado in Elasticsearch
-        verify(mockHorarioAgendadoSearchRepository, times(1)).save(testHorarioAgendado);
+        verify(mockHorarioAgendadoSearchRepository, times(1)).save(horarioAgendadoDTO);
     }
 
     @Test
@@ -179,7 +184,7 @@ public class HorarioAgendadoResourceIT {
         assertThat(horarioAgendadoList).hasSize(databaseSizeBeforeCreate);
 
         // Validate the HorarioAgendado in Elasticsearch
-        verify(mockHorarioAgendadoSearchRepository, times(0)).save(horarioAgendado);
+        verify(mockHorarioAgendadoSearchRepository, times(0)).save(horarioAgendadoDTO);
     }
 
 
@@ -302,7 +307,7 @@ public class HorarioAgendadoResourceIT {
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
             .andExpect(jsonPath("$.[*].exclusivo").value(hasItem(DEFAULT_EXCLUSIVO.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getHorarioAgendado() throws Exception {
@@ -370,7 +375,7 @@ public class HorarioAgendadoResourceIT {
         assertThat(testHorarioAgendado.isExclusivo()).isEqualTo(UPDATED_EXCLUSIVO);
 
         // Validate the HorarioAgendado in Elasticsearch
-        verify(mockHorarioAgendadoSearchRepository, times(1)).save(testHorarioAgendado);
+        verify(mockHorarioAgendadoSearchRepository, times(1)).save(horarioAgendadoDTO);
     }
 
     @Test
@@ -392,7 +397,7 @@ public class HorarioAgendadoResourceIT {
         assertThat(horarioAgendadoList).hasSize(databaseSizeBeforeUpdate);
 
         // Validate the HorarioAgendado in Elasticsearch
-        verify(mockHorarioAgendadoSearchRepository, times(0)).save(horarioAgendado);
+        verify(mockHorarioAgendadoSearchRepository, times(0)).save(horarioAgendadoDTO);
     }
 
     @Test
@@ -422,8 +427,9 @@ public class HorarioAgendadoResourceIT {
         // Configure the mock search repository
         // Initialize the database
         horarioAgendadoRepository.saveAndFlush(horarioAgendado);
+        HorarioAgendadoDTO horarioAgendadoDTO = horarioAgendadoMapper.toDto(horarioAgendado);
         when(mockHorarioAgendadoSearchRepository.search(queryStringQuery("id:" + horarioAgendado.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(horarioAgendado), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(horarioAgendadoDTO), PageRequest.of(0, 1), 1));
 
         // Search the horarioAgendado
         restHorarioAgendadoMockMvc.perform(get("/api/_search/horario-agendados?query=id:" + horarioAgendado.getId()))
