@@ -1,8 +1,9 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.ControleQualidade} entity.

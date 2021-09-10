@@ -1,11 +1,12 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import java.time.LocalDate;
+import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
+import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
+import br.com.basis.madre.madreexames.domain.enumeration.Raca;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.Raca;
-import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
+import java.time.LocalDate;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Cadaver} entity.

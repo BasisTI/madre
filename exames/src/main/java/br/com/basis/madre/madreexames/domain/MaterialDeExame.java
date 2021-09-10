@@ -4,10 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -739,11 +746,11 @@ public class MaterialDeExame implements Serializable {
     }
 
     public Set<AmostraDeMaterial> getAmostras() {
-        return amostras;
+        return new HashSet<>(this.amostras);
     }
 
     public MaterialDeExame amostras(Set<AmostraDeMaterial> amostraDeMaterials) {
-        this.amostras = amostraDeMaterials;
+        this.amostras = new HashSet<>(amostraDeMaterials);
         return this;
     }
 
@@ -760,7 +767,7 @@ public class MaterialDeExame implements Serializable {
     }
 
     public void setAmostras(Set<AmostraDeMaterial> amostraDeMaterials) {
-        this.amostras = amostraDeMaterials;
+        this.amostras = new HashSet<>(amostraDeMaterials);
     }
 
     public Material getMaterial() {
