@@ -25,7 +25,7 @@ import java.util.Set;
 @Table(name = "grupo_agendamento_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "grupoagendamentoexame")
-public class GrupoAgendamentoExame implements Serializable {
+public class GrupoAgendamentoExame extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,10 +33,6 @@ public class GrupoAgendamentoExame implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGrupoAgendamentoExame")
     @SequenceGenerator(name = "seqGrupoAgendamentoExame")
     private Long id;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
 
     @NotNull
     @Column(name = "codigo", nullable = false)
@@ -47,10 +43,6 @@ public class GrupoAgendamentoExame implements Serializable {
 
     @Column(name = "calcular_ocupacao")
     private Boolean calcularOcupacao;
-
-    @NotNull
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -68,17 +60,9 @@ public class GrupoAgendamentoExame implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public GrupoAgendamentoExame nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Integer getCodigo() {
@@ -120,17 +104,9 @@ public class GrupoAgendamentoExame implements Serializable {
         this.calcularOcupacao = calcularOcupacao;
     }
 
-    public Boolean isAtivo() {
-        return ativo;
-    }
-
     public GrupoAgendamentoExame ativo(Boolean ativo) {
-        this.ativo = ativo;
+        this.setAtivo(ativo);
         return this;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
     }
 
     public Set<Exame> getExames() {

@@ -1,8 +1,11 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.Collections;
 import java.util.Set;
 
+@EqualsAndHashCode
 public class SolicitacaoExameCompletoDTO extends SolicitacaoExameDTO {
 
     private Set<ItemSolicitacaoExameDTO> solicitacaoExames;

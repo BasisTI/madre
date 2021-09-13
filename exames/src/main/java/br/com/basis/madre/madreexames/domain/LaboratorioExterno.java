@@ -24,7 +24,7 @@ import java.io.Serializable;
 @Table(name = "laboratorio_externo")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "laboratorioexterno")
-public class LaboratorioExterno implements Serializable {
+public class LaboratorioExterno extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,14 +32,6 @@ public class LaboratorioExterno implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqLaboratorioExterno")
     @SequenceGenerator(name = "seqLaboratorioExterno")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
 
     @NotNull
     @Column(name = "sigla", nullable = false)
@@ -98,30 +90,14 @@ public class LaboratorioExterno implements Serializable {
         this.id = id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public LaboratorioExterno codigo(Integer codigo) {
-        this.codigo = codigo;
+        this.setCodigo(codigo);
         return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public LaboratorioExterno nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getSigla() {

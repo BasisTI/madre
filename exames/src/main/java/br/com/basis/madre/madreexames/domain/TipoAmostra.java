@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Table(name = "tipo_amostra")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "tipoamostra")
-public class TipoAmostra implements Serializable {
+public class TipoAmostra extends DomainBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,10 +28,6 @@ public class TipoAmostra implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqTipoAmostra")
     @SequenceGenerator(name = "seqTipoAmostra")
     private Long id;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -42,17 +38,9 @@ public class TipoAmostra implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public TipoAmostra nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

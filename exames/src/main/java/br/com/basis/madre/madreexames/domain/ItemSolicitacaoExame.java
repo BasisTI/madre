@@ -50,7 +50,7 @@ public class ItemSolicitacaoExame implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "itemSolicitacaoExames", allowSetters = true)
-    private Exame itemSolicitacaoExame;
+    private Exame exame;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "solicitacaoExames", allowSetters = true)
@@ -104,17 +104,17 @@ public class ItemSolicitacaoExame implements Serializable {
         this.situacao = situacao;
     }
 
-    public Exame getItemSolicitacaoExame() {
-        return itemSolicitacaoExame;
+    public Exame getExame() {
+        return exame;
     }
 
     public ItemSolicitacaoExame itemSolicitacaoExame(Exame exame) {
-        this.itemSolicitacaoExame = exame;
+        this.exame = exame;
         return this;
     }
 
-    public void setItemSolicitacaoExame(Exame exame) {
-        this.itemSolicitacaoExame = exame;
+    public void setExame(Exame exame) {
+        this.exame = exame;
     }
 
     public SolicitacaoExame getSolicitacaoExame() {

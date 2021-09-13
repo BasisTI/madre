@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Table(name = "recipiente")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "recipiente")
-public class Recipiente implements Serializable {
+public class Recipiente extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,16 +30,8 @@ public class Recipiente implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
-
-    @NotNull
     @Column(name = "anticoagulante", nullable = false)
     private Boolean anticoagulante;
-
-    @NotNull
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -50,17 +42,9 @@ public class Recipiente implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public Recipiente nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Boolean isAnticoagulante() {
@@ -76,18 +60,11 @@ public class Recipiente implements Serializable {
         this.anticoagulante = anticoagulante;
     }
 
-    public Boolean isAtivo() {
-        return ativo;
-    }
-
     public Recipiente ativo(Boolean ativo) {
-        this.ativo = ativo;
+        this.setAtivo(ativo);
         return this;
     }
 
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

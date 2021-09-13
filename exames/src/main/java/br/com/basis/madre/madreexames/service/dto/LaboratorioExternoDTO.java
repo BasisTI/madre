@@ -1,6 +1,5 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
 
 import javax.validation.constraints.NotNull;
@@ -9,15 +8,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.LaboratorioExterno} entity.
  */
-public class LaboratorioExternoDTO implements Serializable {
-
-    private Long id;
-
-    @NotNull
-    private Integer codigo;
-
-    @NotNull
-    private String nome;
+public class LaboratorioExternoDTO extends DominioConvenioPlano implements Serializable {
 
     @NotNull
     private String sigla;
@@ -43,40 +34,7 @@ public class LaboratorioExternoDTO implements Serializable {
     @NotNull
     private String cgc;
 
-    @NotNull
-    private String codigoConvenio;
-
-    @NotNull
-    private String codigoPlano;
-
-    private ConvenioPlano convenioPlano;
-
     private FormaEnvio formaEnvio;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getSigla() {
         return sigla;
@@ -142,30 +100,6 @@ public class LaboratorioExternoDTO implements Serializable {
         this.cgc = cgc;
     }
 
-    public String getCodigoConvenio() {
-        return codigoConvenio;
-    }
-
-    public void setCodigoConvenio(String codigoConvenio) {
-        this.codigoConvenio = codigoConvenio;
-    }
-
-    public String getCodigoPlano() {
-        return codigoPlano;
-    }
-
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
-    }
-
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
-    }
-
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
-    }
-
     public FormaEnvio getFormaEnvio() {
         return formaEnvio;
     }
@@ -183,7 +117,7 @@ public class LaboratorioExternoDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((LaboratorioExternoDTO) o).id);
+        return getId() != null && getId().equals(((LaboratorioExternoDTO) o).getId());
     }
 
     @Override

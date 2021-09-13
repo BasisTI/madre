@@ -40,7 +40,7 @@ public class Sinonimo implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "sinonimos", allowSetters = true)
-    private Exame sinonimo;
+    private Exame exame;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -77,17 +77,17 @@ public class Sinonimo implements Serializable {
         this.situacao = situacao;
     }
 
-    public Exame getSinonimo() {
-        return sinonimo;
+    public Exame getExame() {
+        return exame;
     }
 
     public Sinonimo sinonimo(Exame exame) {
-        this.sinonimo = exame;
+        this.exame = exame;
         return this;
     }
 
-    public void setSinonimo(Exame exame) {
-        this.sinonimo = exame;
+    public void setExame(Exame exame) {
+        this.exame = exame;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

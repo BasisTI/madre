@@ -28,7 +28,7 @@ import java.time.LocalDate;
 @Table(name = "atendimento_diverso")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "atendimentodiverso")
-public class AtendimentoDiverso implements Serializable {
+public class AtendimentoDiverso extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,10 +36,6 @@ public class AtendimentoDiverso implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAtendimentoDiverso")
     @SequenceGenerator(name = "seqAtendimentoDiverso")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
 
     @NotNull
     @Column(name = "unidade_executora_id", nullable = false)
@@ -102,17 +98,9 @@ public class AtendimentoDiverso implements Serializable {
         this.id = id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public AtendimentoDiverso codigo(Integer codigo) {
-        this.codigo = codigo;
+        this.setCodigo(codigo);
         return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public Integer getUnidadeExecutoraId() {

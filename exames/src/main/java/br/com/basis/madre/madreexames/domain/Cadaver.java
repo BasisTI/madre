@@ -26,7 +26,7 @@ import java.time.LocalDate;
 @Table(name = "cadaver")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "cadaver")
-public class Cadaver implements Serializable {
+public class Cadaver extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,14 +34,6 @@ public class Cadaver implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCadaver")
     @SequenceGenerator(name = "seqCadaver")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
 
     @NotNull
     @Column(name = "data_nascimento", nullable = false)
@@ -100,30 +92,14 @@ public class Cadaver implements Serializable {
         this.id = id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public Cadaver codigo(Integer codigo) {
-        this.codigo = codigo;
+        this.setCodigo(codigo);
         return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Cadaver nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public LocalDate getDataNascimento() {
