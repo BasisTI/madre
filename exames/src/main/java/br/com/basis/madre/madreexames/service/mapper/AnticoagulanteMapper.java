@@ -1,10 +1,9 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.Anticoagulante;
 import br.com.basis.madre.madreexames.service.dto.AnticoagulanteDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link Anticoagulante} and its DTO {@link AnticoagulanteDTO}.

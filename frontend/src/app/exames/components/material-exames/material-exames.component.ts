@@ -26,7 +26,7 @@ export class MaterialExamesComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private materialDeAnaliseService: MaterialDeAnaliseService,
     private materialDeExamesService: MaterialDeExamesService,
-    private unidadeDuncionalService: UnidadeFuncionalService,
+    private unidadeFuncionalService: UnidadeFuncionalService,
     ) { }
 
   materialForm = this.fb.group({
@@ -233,7 +233,7 @@ export class MaterialExamesComponent implements OnInit {
     this.materialDeExamesService.pegarRecipientes().subscribe((response) => {
       this.recipientes = response;
     })
-    this.unidadeDuncionalService.getUnidades().subscribe((response) => {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
       this.unidadesFuncionais = response;
     })
   }

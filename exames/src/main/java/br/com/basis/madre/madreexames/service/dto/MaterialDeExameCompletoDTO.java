@@ -1,9 +1,12 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+@EqualsAndHashCode
 public class MaterialDeExameCompletoDTO extends MaterialDeExameDTO {
 
     private  Set<AmostraDeMaterialDTO> amostras;
@@ -17,4 +20,5 @@ public class MaterialDeExameCompletoDTO extends MaterialDeExameDTO {
         amostras = new HashSet<>(amostras);
         this.amostras = Collections.unmodifiableSet(amostras);
     }
+
 }

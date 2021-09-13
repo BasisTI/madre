@@ -1,15 +1,20 @@
 package br.com.basis.madre.madreexames.domain;
 
+import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 
 /**
  * A ControleQualidade.
@@ -18,7 +23,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 @Table(name = "controle_qualidade")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "controlequalidade")
-public class ControleQualidade implements Serializable {
+public class ControleQualidade extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +31,6 @@ public class ControleQualidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqControleQualidade")
     @SequenceGenerator(name = "seqControleQualidade")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
 
     @NotNull
     @Column(name = "material", nullable = false)
@@ -56,17 +57,9 @@ public class ControleQualidade implements Serializable {
         this.id = id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public ControleQualidade codigo(Integer codigo) {
-        this.codigo = codigo;
+        this.setCodigo(codigo);
         return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public String getMaterial() {

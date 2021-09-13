@@ -3,10 +3,17 @@ package br.com.basis.madre.madreexames.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +25,7 @@ import java.util.Set;
 @Table(name = "grupo_agendamento_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "grupoagendamentoexame")
-public class GrupoAgendamentoExame implements Serializable {
+public class GrupoAgendamentoExame extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +33,6 @@ public class GrupoAgendamentoExame implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGrupoAgendamentoExame")
     @SequenceGenerator(name = "seqGrupoAgendamentoExame")
     private Long id;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
 
     @NotNull
     @Column(name = "codigo", nullable = false)
@@ -40,10 +43,6 @@ public class GrupoAgendamentoExame implements Serializable {
 
     @Column(name = "calcular_ocupacao")
     private Boolean calcularOcupacao;
-
-    @NotNull
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -61,17 +60,9 @@ public class GrupoAgendamentoExame implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public GrupoAgendamentoExame nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Integer getCodigo() {
@@ -113,25 +104,17 @@ public class GrupoAgendamentoExame implements Serializable {
         this.calcularOcupacao = calcularOcupacao;
     }
 
-    public Boolean isAtivo() {
-        return ativo;
-    }
-
     public GrupoAgendamentoExame ativo(Boolean ativo) {
-        this.ativo = ativo;
+        this.setAtivo(ativo);
         return this;
     }
 
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
     public Set<Exame> getExames() {
-        return exames;
+        return new HashSet<>(this.exames);
     }
 
     public GrupoAgendamentoExame exames(Set<Exame> exames) {
-        this.exames = exames;
+        this.exames = new HashSet<>(exames);
         return this;
     }
 
@@ -148,7 +131,7 @@ public class GrupoAgendamentoExame implements Serializable {
     }
 
     public void setExames(Set<Exame> exames) {
-        this.exames = exames;
+        this.exames = new HashSet<>(exames);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

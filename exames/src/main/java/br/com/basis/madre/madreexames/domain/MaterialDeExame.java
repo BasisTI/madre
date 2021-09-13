@@ -4,10 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +26,7 @@ import java.util.Set;
 @Table(name = "material_de_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "materialdeexame")
-public class MaterialDeExame implements Serializable {
+public class MaterialDeExame extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,14 +34,6 @@ public class MaterialDeExame implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMaterialDeExame")
     @SequenceGenerator(name = "seqMaterialDeExame")
     private Long id;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
-
-    @NotNull
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo;
 
     @Column(name = "npo")
     private Boolean npo;
@@ -179,30 +178,14 @@ public class MaterialDeExame implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public MaterialDeExame nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Boolean isAtivo() {
-        return ativo;
     }
 
     public MaterialDeExame ativo(Boolean ativo) {
-        this.ativo = ativo;
+        this.setAtivo(ativo);
         return this;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
     }
 
     public Boolean isNpo() {
@@ -739,11 +722,11 @@ public class MaterialDeExame implements Serializable {
     }
 
     public Set<AmostraDeMaterial> getAmostras() {
-        return amostras;
+        return new HashSet<>(this.amostras);
     }
 
     public MaterialDeExame amostras(Set<AmostraDeMaterial> amostraDeMaterials) {
-        this.amostras = amostraDeMaterials;
+        this.amostras = new HashSet<>(amostraDeMaterials);
         return this;
     }
 
@@ -760,7 +743,7 @@ public class MaterialDeExame implements Serializable {
     }
 
     public void setAmostras(Set<AmostraDeMaterial> amostraDeMaterials) {
-        this.amostras = amostraDeMaterials;
+        this.amostras = new HashSet<>(amostraDeMaterials);
     }
 
     public Material getMaterial() {

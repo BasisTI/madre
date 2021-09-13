@@ -1,21 +1,25 @@
 package br.com.basis.madre.madreexames.domain;
 
+import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
+import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
+import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
-
-import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
-
-import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
 
 /**
  * A AtendimentoDiverso.
@@ -24,7 +28,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
 @Table(name = "atendimento_diverso")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "atendimentodiverso")
-public class AtendimentoDiverso implements Serializable {
+public class AtendimentoDiverso extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,10 +36,6 @@ public class AtendimentoDiverso implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAtendimentoDiverso")
     @SequenceGenerator(name = "seqAtendimentoDiverso")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
 
     @NotNull
     @Column(name = "unidade_executora_id", nullable = false)
@@ -98,17 +98,9 @@ public class AtendimentoDiverso implements Serializable {
         this.id = id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public AtendimentoDiverso codigo(Integer codigo) {
-        this.codigo = codigo;
+        this.setCodigo(codigo);
         return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public Integer getUnidadeExecutoraId() {
