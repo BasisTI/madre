@@ -7,7 +7,7 @@
             <app-formulario-grade-de-agendamento [grade]="grade" (gradeSalva)="onGradeSalva($event)"></app-formulario-grade-de-agendamento>
         </p-tabPanel>
 
-        <p-tabPanel header="Horários Agendados">
+        <p-tabPanel *ngIf="grade.id !== undefined" header="Horários Agendados">
             <app-formulario-horarios-agendados [grade]="grade"></app-formulario-horarios-agendados>
         </p-tabPanel>
 

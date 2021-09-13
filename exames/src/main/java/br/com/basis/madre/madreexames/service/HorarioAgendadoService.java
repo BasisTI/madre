@@ -56,7 +56,7 @@ public class HorarioAgendadoService {
         horarioAgendado = horarioAgendadoRepository.save(horarioAgendado);
         HorarioAgendadoDTO result = horarioAgendadoRepository.buscaPorId(horarioAgendado.getId());
         calcularHoraFinal(result, horarioAgendadoDTO);
-//        calcularNumeroDeHorarios(result, horarioAgendadoDTO);
+        calcularNumeroDeHorarios(result, horarioAgendadoDTO);
         horarioAgendadoSearchRepository.save(result);
         return result;
     }
