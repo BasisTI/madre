@@ -2,12 +2,12 @@
     type="memory" [value]="horariosAgendados">
     <p-column header="Hora início" field="horaInicio">
         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-            <span>{{rowData[col.field] | date: 'H:mm'}}</span>
+            <span>{{rowData[col.field] | date: 'H:mm':'GMT'}}</span>
         </ng-template>
     </p-column>
     <p-column header="Hora fim" field="horaFim">
         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-            <span>{{rowData[col.field] | date: 'H:mm'}}</span>
+            <span>{{rowData[col.field] | date: 'H:mm':'GMT'}}</span>
         </ng-template>
     </p-column>
     <p-column header="Nº horários" field="numeroDeHorarios"></p-column>
