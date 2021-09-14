@@ -1,6 +1,7 @@
 import { Time } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CadastroClinica } from '@internacao/cadastro-clinicas/clinica/cadastro-clinica.service';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
 import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
@@ -59,8 +60,8 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     });
 
     const cadastro: HorarioAgendado = {
-      horaFim: new Date(Date.UTC(this.horaFim.getFullYear(),this.horaFim.getMonth(),
-        this.horaFim.getDate(), this.horaFim.getHours(), this.horaFim.getMinutes())),
+      horaFim: this.horaFim != null ? new Date(Date.UTC(this.horaFim.getFullYear(),this.horaFim.getMonth(),
+        this.horaFim.getDate(), this.horaFim.getHours(), this.horaFim.getMinutes())) : null,
       horaInicio: new Date(Date.UTC(this.horaInicio.getFullYear(),this.horaInicio.getMonth(),
         this.horaInicio.getDate(), this.horaInicio.getHours(), this.horaInicio.getMinutes())),
       numeroDeHorarios: cadastroHorario.numeroDeHorarios,
@@ -70,7 +71,6 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
       exclusivo: cadastroHorario.exclusivo,
       gradeDeAgendamentoId: this.grade.id
     };
-
 
     if (this.numeroDeHorarios != null && this.horaFim != null) {
       this.msg.add({
@@ -89,7 +89,7 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     }
 
     this.gradeService.cadastrarHorarioGrade(cadastro).subscribe();
-    this.agendarHorario.reset();
+    this.limparFormulario();
   }
 
   validarFormulario(): boolean {
