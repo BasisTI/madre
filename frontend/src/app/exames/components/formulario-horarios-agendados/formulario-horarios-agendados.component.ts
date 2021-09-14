@@ -16,7 +16,7 @@ import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.s
 })
 export class FormularioHorariosAgendadosComponent implements OnInit {
 
-  horarioInicio: Date;
+  horaInicio: Date;
   horaFim: Date;
   duracao: Time;
   duracaoPadrao = new Date('December 31, 2021 00:30:00');
@@ -59,8 +59,10 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     });
 
     const cadastro: HorarioAgendado = {
-      horaInicio: cadastroHorario.horaInicio,
-      horaFim: cadastroHorario.horaFim,
+      horaFim: new Date(Date.UTC(this.horaFim.getFullYear(),this.horaFim.getMonth(),
+        this.horaFim.getDate(), this.horaFim.getHours(), this.horaFim.getMinutes())),
+      horaInicio: new Date(Date.UTC(this.horaInicio.getFullYear(),this.horaInicio.getMonth(),
+        this.horaInicio.getDate(), this.horaInicio.getHours(), this.horaInicio.getMinutes())),
       numeroDeHorarios: cadastroHorario.numeroDeHorarios,
       dia: this.diaSelecionado,
       duracao: valorDuracao,
@@ -78,7 +80,7 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
       return;
     }
 
-    if (moment(this.horarioInicio).isAfter(this.horaFim) && this.horaFim != null) {
+    if (moment(this.horaInicio).isAfter(this.horaFim) && this.horaFim != null) {
       this.msg.add({
         severity: 'error', summary: 'Erro no preenchimento',
         detail: 'Hora fim deve ser depois de hora início.'

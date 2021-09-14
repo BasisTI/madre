@@ -186,7 +186,6 @@ public class HorarioAgendadoDTO implements Serializable {
             ", exclusivo='" + isExclusivo() + "'" +
             ", tipoHorarioId=" + getTipoHorarioId() +
             ", tipoHorarioTipoDeMarcacao='" + getTipoHorarioTipoDeMarcacao() + "'" +
-
             ", gradeDeAgendamentoId=" + getGradeDeAgendamentoId() +
             "}";
     }

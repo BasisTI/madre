@@ -56,17 +56,17 @@
 
 <div class="p-col-12 p-grid">
 
-    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
+    <div class="p-md-2 p-fluid sm-top-margin">
         Horário início
-        <p-calendar [(ngModel)]="horarioInicio" [timeOnly]="true" [stepMinute]="5"
-        inputId="horarioInicio" formControlName="horaInicio" [defaultDate]="horaPadrao">
+        <p-calendar [(ngModel)]="horaInicio" [timeOnly]="true" [stepMinute]="5"
+        inputId="horarioInicio" [defaultDate]="horaPadrao">
         </p-calendar>
     </div> 
 
-    <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="agendarHorario">
+    <div class="p-md-2 p-fluid sm-top-margin">
         Horário fim
         <p-calendar [(ngModel)]="horaFim" [timeOnly]="true" [stepMinute]="5"
-        inputId="horarioFim" formControlName="horaFim" [defaultDate]="horaPadrao">
+        inputId="horarioFim" [defaultDate]="horaPadrao">
         </p-calendar>
     </div>
 
@@ -93,7 +93,6 @@
         <button
             pButton type="button" icon="pi pi-check" 
             (click)="agendarHorarioGrade()"
-            [disabled]="!validarFormulario()"
             label="Gerar"
         ></button>
     </div>
