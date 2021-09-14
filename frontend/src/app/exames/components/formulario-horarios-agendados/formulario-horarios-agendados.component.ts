@@ -40,8 +40,8 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   }
 
   agendarHorario = this.fb.group({
-    horaInicio: [null, Validators.required],
-    horaFim: [null],
+    // horaInicio: [null],
+    // horaFim: [null],
     numeroDeHorarios: [null],
     duracao: [null, Validators.required],
     ativo: [null, Validators.required],
@@ -93,7 +93,7 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   }
 
   validarFormulario(): boolean {
-    if (this.agendarHorario.valid && this.diaSelecionado)
+    if (this.agendarHorario.valid && (this.diaSelecionado &&this.horaInicio))
       return true;
     else
       return false;
@@ -103,6 +103,8 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   limparFormulario() {
     this.agendarHorario.reset();
     this.diaSelecionado = null;
+    this.horaFim = null;
+    this.horaInicio = null;
   }
 
 }
