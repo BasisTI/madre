@@ -217,7 +217,7 @@ relationship OneToMany {
     ConselhosProfissionais {tiposDeQualificacao(descriacao)} to Instituicao
 	TiposDeQualificacao {graduacaoQualificacao(descricao)} to Graduacao
     Instituicao {graduacaoInstituicao(descricao)} to Graduacao
-    
+    Ramal {servidorRamal(matricula)} to Servidor
 }
 
 relationship ManyToOne {
@@ -231,9 +231,7 @@ relationship OneToOne {
 	Pessoa {documenetos(numeroDaIdentidade)} to Documentos
     Servidor {vinculo(descricao)} to Vinculo
     Servidor {pessoa(codigo)} to Pessoa
-    Pessoa {cargo(descricao)} to Cargo
-    Servidor {ramal(numero)} to Ramal
-    
+    Pessoa {cargo(descricao)} to Cargo   
 }
 
 dto * with mapstruct

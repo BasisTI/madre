@@ -4,10 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -23,7 +34,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.TipoDeRemuneracao;
 @Entity
 @Table(name = "servidor")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-servidor")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "servidor")
 public class Servidor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -93,10 +104,6 @@ public class Servidor implements Serializable {
     @JoinColumn(unique = true)
     private Pessoa pessoa;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Ramal ramal;
-
     @OneToMany(mappedBy = "servidor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<GrupoFuncional> grupofuncionals = new HashSet<>();
@@ -108,6 +115,10 @@ public class Servidor implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "servidors", allowSetters = true)
     private Usuario usuario;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "servidorRamals", allowSetters = true)
+    private Ramal ramal;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -352,25 +363,12 @@ public class Servidor implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public Ramal getRamal() {
-        return ramal;
-    }
-
-    public Servidor ramal(Ramal ramal) {
-        this.ramal = ramal;
-        return this;
-    }
-
-    public void setRamal(Ramal ramal) {
-        this.ramal = ramal;
-    }
-
     public Set<GrupoFuncional> getGrupofuncionals() {
-        return grupofuncionals;
+        return new HashSet<>(grupofuncionals);
     }
 
     public Servidor grupofuncionals(Set<GrupoFuncional> grupoFuncionals) {
-        this.grupofuncionals = grupoFuncionals;
+        this.grupofuncionals = new HashSet<>(grupoFuncionals);
         return this;
     }
 
@@ -387,7 +385,7 @@ public class Servidor implements Serializable {
     }
 
     public void setGrupofuncionals(Set<GrupoFuncional> grupoFuncionals) {
-        this.grupofuncionals = grupoFuncionals;
+        this.grupofuncionals = new HashSet<>(grupoFuncionals);
     }
 
     public Set<Graduacao> getGraduacaos() {
@@ -412,7 +410,7 @@ public class Servidor implements Serializable {
     }
 
     public void setGraduacaos(Set<Graduacao> graduacaos) {
-        this.graduacaos = new HashSet<>(this.graduacaos);
+        this.graduacaos = new HashSet<>(graduacaos);
     }
 
     public Usuario getUsuario() {
@@ -426,6 +424,19 @@ public class Servidor implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Ramal getRamal() {
+        return ramal;
+    }
+
+    public Servidor ramal(Ramal ramal) {
+        this.ramal = ramal;
+        return this;
+    }
+
+    public void setRamal(Ramal ramal) {
+        this.ramal = ramal;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

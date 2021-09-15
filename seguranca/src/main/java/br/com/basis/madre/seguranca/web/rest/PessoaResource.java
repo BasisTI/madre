@@ -1,7 +1,7 @@
 package br.com.basis.madre.seguranca.web.rest;
 
 import br.com.basis.madre.seguranca.service.PessoaService;
-import br.com.basis.madre.seguranca.service.projection.PessoaResumo;
+import br.com.basis.madre.seguranca.service.projection.PessoaCadastrada;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
 
@@ -14,15 +14,25 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.seguranca.domain.Pessoa}.
@@ -140,8 +150,8 @@ public class PessoaResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/pessoas/_resumo")
-    public ResponseEntity<Page<PessoaResumo>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome, Pageable pageable) {
+    @GetMapping("/pessoas/cadastradas")
+    public ResponseEntity<Page<PessoaCadastrada>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome, Pageable pageable) {
         return ResponseEntity.ok(pessoaService.findAllProjectedPessoaResumoBy(nome,pageable));
     }
 }

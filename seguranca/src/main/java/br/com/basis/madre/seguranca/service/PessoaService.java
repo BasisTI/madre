@@ -5,7 +5,7 @@ import br.com.basis.madre.seguranca.repository.PessoaRepository;
 import br.com.basis.madre.seguranca.repository.search.PessoaSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
 import br.com.basis.madre.seguranca.service.mapper.PessoaMapper;
-import br.com.basis.madre.seguranca.service.projection.PessoaResumo;
+import br.com.basis.madre.seguranca.service.projection.PessoaCadastrada;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -106,7 +106,7 @@ public class PessoaService {
             .map(pessoaMapper::toDto);
     }
 
-    public Page<PessoaResumo> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
-        return pessoaRepository.findAllProjectedPessoaResumoByNomeContainingIgnoreCase(nome, pageable);
+    public Page<PessoaCadastrada> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
+        return pessoaRepository.findPessoasCadastradas(nome, pageable);
     }
 }

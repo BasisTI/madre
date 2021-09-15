@@ -88,14 +88,6 @@
       "ownerSide": true
     },
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "ramal",
-      "otherEntityRelationshipName": "servidor",
-      "relationshipName": "ramal",
-      "otherEntityField": "numero",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "grupoFuncional",
       "otherEntityRelationshipName": "servidor",
@@ -113,6 +105,13 @@
       "otherEntityRelationshipName": "servidor",
       "relationshipName": "usuario",
       "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ramal",
+      "otherEntityRelationshipName": "servidorRamal",
+      "relationshipName": "ramal",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20210730173449",

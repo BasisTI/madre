@@ -8,5 +8,4 @@ public interface PessoaCadastrada {
     Long getId();
     String getNome();
     Long getCodigo();
-
 }

@@ -10,7 +10,14 @@
       "fieldType": "Boolean"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "servidor",
+      "otherEntityRelationshipName": "ramal",
+      "relationshipName": "servidorRamal"
+    }
+  ],
   "changelogDate": "20210730173549",
   "entityTableName": "ramal",
   "dto": "mapstruct",
