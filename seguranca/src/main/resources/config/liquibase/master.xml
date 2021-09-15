@@ -6,6 +6,7 @@
 
 
     <include file="config/liquibase/changelog/20210730173449_added_entity_Servidor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210730173449_added_entity_ServidorCerto.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210730173549_added_entity_Ramal.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210730173649_added_entity_GrupoFuncional.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210730173749_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
