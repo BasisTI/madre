@@ -55,4 +55,5 @@
     <include file="config/liquibase/changelog/20210827170151_added_entity_AmostraDeMaterial.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210827170151_added_entity_constraints_AmostraDeMaterial.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210910151332_renomear_colunas_exame.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210818155025_added_entity_TipoDeMarcacaoAtualizado.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

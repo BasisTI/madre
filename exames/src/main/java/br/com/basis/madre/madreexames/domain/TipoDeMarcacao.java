@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "tipo_de_marcacao")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-tipodemarcacao")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "tipodemarcacao")
 public class TipoDeMarcacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,8 +25,8 @@ public class TipoDeMarcacao implements Serializable {
     @SequenceGenerator(name = "seqTipoDeMarcacao")
     private Long id;
 
-    @Column(name = "tipo_de_marcacao")
-    private String tipoDeMarcacao;
+    @Column(name = "tipo_de_marcacao_nome")
+    private String tipoDeMarcacaoNome;
 
     @NotNull
     @Column(name = "ativo", nullable = false)
@@ -41,17 +41,17 @@ public class TipoDeMarcacao implements Serializable {
         this.id = id;
     }
 
-    public String getTipoDeMarcacao() {
-        return tipoDeMarcacao;
+    public String getTipoDeMarcacaoNome() {
+        return tipoDeMarcacaoNome;
     }
 
-    public TipoDeMarcacao tipoDeMarcacao(String tipoDeMarcacao) {
-        this.tipoDeMarcacao = tipoDeMarcacao;
+    public TipoDeMarcacao tipoDeMarcacaoNome(String tipoDeMarcacaoNome) {
+        this.tipoDeMarcacaoNome = tipoDeMarcacaoNome;
         return this;
     }
 
-    public void setTipoDeMarcacao(String tipoDeMarcacao) {
-        this.tipoDeMarcacao = tipoDeMarcacao;
+    public void setTipoDeMarcacaoNome(String tipoDeMarcacaoNome) {
+        this.tipoDeMarcacaoNome = tipoDeMarcacaoNome;
     }
 
     public Boolean isAtivo() {
@@ -89,7 +89,7 @@ public class TipoDeMarcacao implements Serializable {
     public String toString() {
         return "TipoDeMarcacao{" +
             "id=" + getId() +
-            ", tipoDeMarcacao='" + getTipoDeMarcacao() + "'" +
+            ", tipoDeMarcacaoNome='" + getTipoDeMarcacaoNome() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }

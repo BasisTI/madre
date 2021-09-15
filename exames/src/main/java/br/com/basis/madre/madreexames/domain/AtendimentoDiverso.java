@@ -3,7 +3,6 @@ package br.com.basis.madre.madreexames.domain;
 import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
 import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
 import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
-import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

@@ -2,13 +2,15 @@
   "name": "TipoDeMarcacao",
   "fields": [
     {
-      "fieldName": "tipoDeMarcacao",
+      "fieldName": "tipoDeMarcacaoNome",
       "fieldType": "String"
     },
     {
       "fieldName": "ativo",
       "fieldType": "Boolean",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
   "relationships": [],

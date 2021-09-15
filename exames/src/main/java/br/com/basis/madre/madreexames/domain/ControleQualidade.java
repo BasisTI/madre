@@ -1,7 +1,6 @@
 package br.com.basis.madre.madreexames.domain;
 
 import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 

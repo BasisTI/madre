@@ -42,8 +42,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class TipoDeMarcacaoResourceIT {
 
-    private static final String DEFAULT_TIPO_DE_MARCACAO = "AAAAAAAAAA";
-    private static final String UPDATED_TIPO_DE_MARCACAO = "BBBBBBBBBB";
+    private static final String DEFAULT_TIPO_DE_MARCACAO_NOME = "AAAAAAAAAA";
+    private static final String UPDATED_TIPO_DE_MARCACAO_NOME = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
@@ -81,7 +81,7 @@ public class TipoDeMarcacaoResourceIT {
      */
     public static TipoDeMarcacao createEntity(EntityManager em) {
         TipoDeMarcacao tipoDeMarcacao = new TipoDeMarcacao()
-            .tipoDeMarcacao(DEFAULT_TIPO_DE_MARCACAO)
+            .tipoDeMarcacaoNome(DEFAULT_TIPO_DE_MARCACAO_NOME)
             .ativo(DEFAULT_ATIVO);
         return tipoDeMarcacao;
     }
@@ -93,7 +93,7 @@ public class TipoDeMarcacaoResourceIT {
      */
     public static TipoDeMarcacao createUpdatedEntity(EntityManager em) {
         TipoDeMarcacao tipoDeMarcacao = new TipoDeMarcacao()
-            .tipoDeMarcacao(UPDATED_TIPO_DE_MARCACAO)
+            .tipoDeMarcacaoNome(UPDATED_TIPO_DE_MARCACAO_NOME)
             .ativo(UPDATED_ATIVO);
         return tipoDeMarcacao;
     }
@@ -118,7 +118,7 @@ public class TipoDeMarcacaoResourceIT {
         List<TipoDeMarcacao> tipoDeMarcacaoList = tipoDeMarcacaoRepository.findAll();
         assertThat(tipoDeMarcacaoList).hasSize(databaseSizeBeforeCreate + 1);
         TipoDeMarcacao testTipoDeMarcacao = tipoDeMarcacaoList.get(tipoDeMarcacaoList.size() - 1);
-        assertThat(testTipoDeMarcacao.getTipoDeMarcacao()).isEqualTo(DEFAULT_TIPO_DE_MARCACAO);
+        assertThat(testTipoDeMarcacao.getTipoDeMarcacaoNome()).isEqualTo(DEFAULT_TIPO_DE_MARCACAO_NOME);
         assertThat(testTipoDeMarcacao.isAtivo()).isEqualTo(DEFAULT_ATIVO);
 
         // Validate the TipoDeMarcacao in Elasticsearch
@@ -180,7 +180,7 @@ public class TipoDeMarcacaoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tipoDeMarcacao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoDeMarcacao").value(hasItem(DEFAULT_TIPO_DE_MARCACAO)))
+            .andExpect(jsonPath("$.[*].tipoDeMarcacaoNome").value(hasItem(DEFAULT_TIPO_DE_MARCACAO_NOME)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
     
@@ -195,7 +195,7 @@ public class TipoDeMarcacaoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(tipoDeMarcacao.getId().intValue()))
-            .andExpect(jsonPath("$.tipoDeMarcacao").value(DEFAULT_TIPO_DE_MARCACAO))
+            .andExpect(jsonPath("$.tipoDeMarcacaoNome").value(DEFAULT_TIPO_DE_MARCACAO_NOME))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
     }
     @Test
@@ -219,7 +219,7 @@ public class TipoDeMarcacaoResourceIT {
         // Disconnect from session so that the updates on updatedTipoDeMarcacao are not directly saved in db
         em.detach(updatedTipoDeMarcacao);
         updatedTipoDeMarcacao
-            .tipoDeMarcacao(UPDATED_TIPO_DE_MARCACAO)
+            .tipoDeMarcacaoNome(UPDATED_TIPO_DE_MARCACAO_NOME)
             .ativo(UPDATED_ATIVO);
         TipoDeMarcacaoDTO tipoDeMarcacaoDTO = tipoDeMarcacaoMapper.toDto(updatedTipoDeMarcacao);
 
@@ -232,7 +232,7 @@ public class TipoDeMarcacaoResourceIT {
         List<TipoDeMarcacao> tipoDeMarcacaoList = tipoDeMarcacaoRepository.findAll();
         assertThat(tipoDeMarcacaoList).hasSize(databaseSizeBeforeUpdate);
         TipoDeMarcacao testTipoDeMarcacao = tipoDeMarcacaoList.get(tipoDeMarcacaoList.size() - 1);
-        assertThat(testTipoDeMarcacao.getTipoDeMarcacao()).isEqualTo(UPDATED_TIPO_DE_MARCACAO);
+        assertThat(testTipoDeMarcacao.getTipoDeMarcacaoNome()).isEqualTo(UPDATED_TIPO_DE_MARCACAO_NOME);
         assertThat(testTipoDeMarcacao.isAtivo()).isEqualTo(UPDATED_ATIVO);
 
         // Validate the TipoDeMarcacao in Elasticsearch
@@ -296,7 +296,7 @@ public class TipoDeMarcacaoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tipoDeMarcacao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoDeMarcacao").value(hasItem(DEFAULT_TIPO_DE_MARCACAO)))
+            .andExpect(jsonPath("$.[*].tipoDeMarcacaoNome").value(hasItem(DEFAULT_TIPO_DE_MARCACAO_NOME)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 }

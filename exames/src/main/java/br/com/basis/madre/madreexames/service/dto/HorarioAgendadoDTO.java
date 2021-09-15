@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.HorarioAgendado} entity.

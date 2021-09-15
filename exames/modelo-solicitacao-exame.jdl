@@ -150,7 +150,7 @@ unidadeExecutoraId Integer
 }
 
 entity TipoDeMarcacao {
-tipoDeMarcacao String
+tipoDeMarcacaoNome String
 ativo Boolean required
 }
 

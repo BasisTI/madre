@@ -10,7 +10,7 @@ public class TipoDeMarcacaoDTO implements Serializable {
     
     private Long id;
 
-    private String tipoDeMarcacao;
+    private String tipoDeMarcacaoNome;
 
     @NotNull
     private Boolean ativo;
@@ -24,12 +24,12 @@ public class TipoDeMarcacaoDTO implements Serializable {
         this.id = id;
     }
 
-    public String getTipoDeMarcacao() {
-        return tipoDeMarcacao;
+    public String getTipoDeMarcacaoNome() {
+        return tipoDeMarcacaoNome;
     }
 
-    public void setTipoDeMarcacao(String tipoDeMarcacao) {
-        this.tipoDeMarcacao = tipoDeMarcacao;
+    public void setTipoDeMarcacaoNome(String tipoDeMarcacaoNome) {
+        this.tipoDeMarcacaoNome = tipoDeMarcacaoNome;
     }
 
     public Boolean isAtivo() {
@@ -62,7 +62,7 @@ public class TipoDeMarcacaoDTO implements Serializable {
     public String toString() {
         return "TipoDeMarcacaoDTO{" +
             "id=" + getId() +
-            ", tipoDeMarcacao='" + getTipoDeMarcacao() + "'" +
+            ", tipoDeMarcacaoNome='" + getTipoDeMarcacaoNome() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }
