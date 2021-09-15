@@ -12,7 +12,7 @@ public class KafkaProperties {
 
     private String bootStrapServers = "localhost:9092";
 
-    private String bootStrapName = "bootstrap.servers";
+    private static final String bootStrapName = "bootstrap.servers";
 
     private Map<String, String> consumer = new HashMap<>();
 
