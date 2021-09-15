@@ -3,6 +3,7 @@ package br.com.basis.madre.madreexames.domain;
 import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
 import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
 import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
+import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -28,7 +29,7 @@ import java.time.LocalDate;
 @Table(name = "atendimento_diverso")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-atendimentodiverso")
-public class AtendimentoDiverso implements Serializable {
+public class AtendimentoDiverso extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -25,7 +25,7 @@ import java.util.Set;
 @Table(name = "grupo_agendamento_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-grupoagendamentoexame")
-public class GrupoAgendamentoExame implements Serializable {
+public class GrupoAgendamentoExame extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

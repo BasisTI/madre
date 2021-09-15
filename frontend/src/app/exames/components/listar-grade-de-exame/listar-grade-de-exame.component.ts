@@ -10,7 +10,7 @@ import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.s
 import { GruposExamesService } from '../../services/grupos-exames.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
-import { Servidor } from 'src/app/seguranca/models/dropdowns/servidor-model';
+import { ListaServidor } from 'src/app/seguranca/models/dropdowns/lista-servidor';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 
 
@@ -33,7 +33,7 @@ export class ListarGradeDeExameComponent implements OnInit {
  
   gradeAgendamento: GradesDeAgendamento[];
   unidadesExecutoras: UnidadeFuncional[] = [];
-  servidores: Servidor[] = [];
+  servidores: ListaServidor[] = [];
   salas: Sala[] = [];
   gruposDeExame: GrupoModel[] = [];
   exames: ExamModel[] = [];
@@ -52,7 +52,7 @@ export class ListarGradeDeExameComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.unidadeFuncionalService.GetUnidades().subscribe((response) => {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
       this.unidadesExecutoras = response;
     });
 

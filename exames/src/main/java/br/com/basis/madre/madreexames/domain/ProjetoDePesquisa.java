@@ -1,5 +1,6 @@
 package br.com.basis.madre.madreexames.domain;
 
+import br.com.basis.madre.seguranca.service.dto.DominioBase;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -20,7 +21,7 @@ import java.io.Serializable;
 @Table(name = "projeto_de_pesquisa")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-projetodepesquisa")
-public class ProjetoDePesquisa implements Serializable {
+public class ProjetoDePesquisa extends DomainBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

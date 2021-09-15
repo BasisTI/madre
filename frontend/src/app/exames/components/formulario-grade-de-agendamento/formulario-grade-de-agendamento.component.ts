@@ -10,7 +10,7 @@ import { UnidadeFuncionalService } from '../../services/unidade-funcional.servic
 import { Sala } from '../../models/subjects/sala';
 import { ExamesService } from '../../services/exames.service';
 import { GruposExamesService } from '../../services/grupos-exames.service';
-import { Servidor } from 'src/app/seguranca/models/dropdowns/servidor-model';
+import { ListaServidor } from 'src/app/seguranca/models/dropdowns/lista-servidor';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
 export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   unidadesExecutoras: UnidadeFuncional[] = [];
-  servidores: Servidor[] = [];
+  servidores: ListaServidor[] = [];
   gruposDeExame: GrupoModel[] = [];
   salas: Sala[] = [];
   exames: ExamModel[] = [];
@@ -110,7 +110,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.unidadeFuncionalService.GetUnidades().subscribe((response) => {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
       this.unidadesExecutoras = response;
     });
 
