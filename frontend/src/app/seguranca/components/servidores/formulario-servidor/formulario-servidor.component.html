@@ -1,4 +1,3 @@
-<h1>Servidores</h1>
 
 <form #form [formGroup]="formServidor" (ngSubmit)="submit()">
     <div class="card">
@@ -117,7 +116,7 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="ocupacao" [optionLabel]="'valor'" [optionValue]="'id'"
+                        <p-dropdown [options]="ocupacaoDeCargos" [optionLabel]="'descricao'" [optionValue]="'id'"
                             formControlName="ocupacao"></p-dropdown>
                         <label>Ocupação</label>
                     </span>

@@ -249,6 +249,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             routerLink: ['listar-grade-exame']
                         },
                         {
+                            label: 'Listar Solicitações',
+                            icon: 'add',
+                            routerLink: ['exames/listar-solicitacoes'],
+                        },
+                        {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
@@ -346,12 +351,12 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
-
+                        
                     ],
                 },
                 {
                     label: 'Segurança',
-                    icon: 'add',
+                    icon: 'icon-seguranca',
                     items: [
                         {
                             label: 'Servidores',
@@ -367,6 +372,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Cadastrar Ocupações do Cargo',
                             icon: 'add',
                             routerLink: ['/seguranca/ocupacoes-de-cargo'],
+                        },
+                        {
+                            label: 'Cadastrar Cargos',
+                            icon: 'add',
+                            routerLink: ['/seguranca/cargos'],
                         },
                     ],
                 },

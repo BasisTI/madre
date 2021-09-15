@@ -5,11 +5,8 @@ import { OPCOES_DE_SITUACOES } from '@internacao/formulario-unidades/models/drop
 import { CALENDAR_LOCALE } from '@nuvem/primeng-components';
 import { CentroAtividade } from '@suprimentos/models/centro-atividade';
 import { CentroAtividadeService } from '@suprimentos/services/centro-atividade.service';
-import { OcupacaoService } from 'src/app/pacientes/formulario/dados-pessoais/ocupacao.service';
-import { Ocupacao } from 'src/app/pacientes/models/dropdowns/types/ocupacao';
 import { OPCOES_DE_TIPO_DE_REMUNERACAO } from 'src/app/seguranca/models/dropdowns/opcoes-de-remuneracao';
 import { OPCOES_DE_SITUACOES_SERVIDOR } from 'src/app/seguranca/models/dropdowns/opcoes-de-situacoes';
-import { GrupoFuncional } from 'src/app/seguranca/models/dropdowns/grupo-funcional-model';
 import { GrupoFuncionalService } from 'src/app/seguranca/services/grupo-funcional.service';
 import { LoginService } from 'src/app/seguranca/services/login.service';
 import { PessoaService } from 'src/app/seguranca/services/pessoa.service';
@@ -17,13 +14,16 @@ import { RamalService } from 'src/app/seguranca/services/ramal.service';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 import { VinculoService } from 'src/app/seguranca/services/vinculo.service';
 import { moment } from 'fullcalendar';
-import { Pessoa } from 'src/app/seguranca/models/dropdowns/pessoa-model';
-import { Login } from 'src/app/seguranca/models/dropdowns/login-model';
-import { Vinculo } from 'src/app/seguranca/models/dropdowns/vinculo-model';
 import { Ramal } from 'src/app/seguranca/models/dropdowns/ramal';
 import { ListaPessoasServidor } from 'src/app/seguranca/models/dropdowns/lista-pessoa-servidor';
 import { ServidorModel } from 'src/app/seguranca/models/servidor-model';
 import { ListaVinculosServidor } from 'src/app/seguranca/models/dropdowns/lista-vinculo-servidor';
+import { OcupacaoDeCargo } from 'src/app/seguranca/models/dropdowns/ocupacao-de-cargo';
+import { OcupacoesDeCargoService } from 'src/app/seguranca/services/ocupacoes-de-cargos.service';
+import { Login } from 'src/app/seguranca/models/login-model';
+import { Vinculo } from 'src/app/seguranca/models/vinculo-resumo-model';
+import { GrupoFuncional } from 'src/app/seguranca/models/grupo-funcional-model';
+import { Pessoa } from 'src/app/seguranca/models/pessoa-resumo-model';
 
 
 @Component({
@@ -38,7 +38,7 @@ export class FormularioServidorComponent implements OnInit {
   vinculo: Vinculo[] = [];
   ramal: Ramal[] = [];
   centros: CentroAtividade[];
-  ocupacao: Ocupacao[];
+  ocupacaoDeCargos: OcupacaoDeCargo[];
   grupoFuncional: GrupoFuncional[] = [];
 
 
@@ -99,7 +99,7 @@ export class FormularioServidorComponent implements OnInit {
     private loginService: LoginService,
     private vinculoService: VinculoService,
     private centrosService: CentroAtividadeService,
-    private ocupacaoService: OcupacaoService,
+    private ocupacoesDeCargoService: OcupacoesDeCargoService,
     private grupoFuncionalService: GrupoFuncionalService,
     private ramalService: RamalService,
     private fb: FormBuilder,
@@ -109,11 +109,11 @@ export class FormularioServidorComponent implements OnInit {
   opcoesDeTipoDeRemuneracao = OPCOES_DE_TIPO_DE_REMUNERACAO;
 
   ngOnInit(): void {
-    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, dataDeNascimento: null, nome: "Selecione" }) });
+    this.pessoasService.getPessoa().subscribe((response) => { this.pessoas = response; this.pessoas.unshift({ id: null, dataDeNascimento: null, nome: "Selecione", codigo: null }) });
     this.loginService.getUsuario().subscribe((response) => { this.login = response; this.login.unshift({ id: null, login: "Selecione" }) });
     this.vinculoService.getVinculo().subscribe((response) => { this.vinculo = response; this.vinculo.unshift({ id: null, descricao: "Selecione", matricula: null }) });
     this.centrosService.getCentros().subscribe((response) => { this.centros = response; this.centros.unshift({ id: null, descricao: "Selecione" }) });
-    this.ocupacaoService.getOcupacoes().subscribe((response) => { this.ocupacao = response; this.ocupacao.unshift({ id: null, valor: "Selecione" }) });
+    this.ocupacoesDeCargoService.getOcupacoesDeCargo().subscribe((response) => { this.ocupacaoDeCargos = response; this.ocupacaoDeCargos.unshift({ id: null, descricao: "Selecione" }) });
     this.grupoFuncionalService.getGrupoFuncional().subscribe((response) => { this.grupoFuncional = response; this.grupoFuncional.unshift({ id: null, descricao: "Selecione" }) });
     this.ramalService.getRamal().subscribe((response) => { this.ramal = response; this.ramal.unshift({ id: null, numero: "Selecione" }) });
   }

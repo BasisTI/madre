@@ -3,10 +3,16 @@ package br.com.basis.madre.madreexames.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -92,11 +98,11 @@ public class SolicitacaoExame implements Serializable {
     }
 
     public Set<ItemSolicitacaoExame> getSolicitacaoExames() {
-        return solicitacaoExames;
+        return new HashSet<>(this.solicitacaoExames);
     }
 
     public SolicitacaoExame solicitacaoExames(Set<ItemSolicitacaoExame> itemSolicitacaoExames) {
-        this.solicitacaoExames = itemSolicitacaoExames;
+        this.solicitacaoExames = new HashSet<>(itemSolicitacaoExames);
         return this;
     }
 
@@ -113,7 +119,7 @@ public class SolicitacaoExame implements Serializable {
     }
 
     public void setSolicitacaoExames(Set<ItemSolicitacaoExame> itemSolicitacaoExames) {
-        this.solicitacaoExames = itemSolicitacaoExames;
+        this.solicitacaoExames = new HashSet<>(itemSolicitacaoExames);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

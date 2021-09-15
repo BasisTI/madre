@@ -27,6 +27,8 @@ public interface ServidorMapper extends EntityMapper<ServidorDTO, Servidor> {
     @Mapping(source = "ramalId", target = "ramal")
     @Mapping(target = "grupofuncionals", ignore = true)
     @Mapping(target = "removeGrupofuncional", ignore = true)
+    @Mapping(target = "graduacaos", ignore = true)
+    @Mapping(target = "removeGraduacao", ignore = true)
     @Mapping(source = "usuarioId", target = "usuario")
     Servidor toEntity(ServidorDTO servidorDTO);
 

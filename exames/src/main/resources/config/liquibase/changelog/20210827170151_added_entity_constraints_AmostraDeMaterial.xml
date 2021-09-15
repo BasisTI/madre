@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity AmostraDeMaterial.
+    -->
+    <changeSet id="20210827170151-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="amostra_recipiente_id"
+                                 baseTableName="amostra_de_material"
+                                 constraintName="fk_amostra_de_material_amostra_recipiente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="recipiente"/>
+
+        <addForeignKeyConstraint baseColumnNames="amostra_anticoagulante_id"
+                                 baseTableName="amostra_de_material"
+                                 constraintName="fk_amostra_de_material_amostra_anticoagulante_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="anticoagulante"/>
+
+        <addForeignKeyConstraint baseColumnNames="amostra_material_id"
+                                 baseTableName="amostra_de_material"
+                                 constraintName="fk_amostra_de_material_amostra_material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"/>
+
+        <addForeignKeyConstraint baseColumnNames="material_de_exame_id"
+                                 baseTableName="amostra_de_material"
+                                 constraintName="fk_amostra_de_material_material_de_exame_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material_de_exame"/>
+
+    </changeSet>
+</databaseChangeLog>

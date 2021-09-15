@@ -1,0 +1,46 @@
+{
+  "name": "TiposDeQualificacao",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoQualificacao",
+      "fieldValues": "CCC,CSC"
+    },
+    {
+      "fieldName": "conselho",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "graduacao",
+      "otherEntityRelationshipName": "tiposDeQualificacao",
+      "relationshipName": "graduacaoQualificacao"
+    }
+  ],
+  "changelogDate": "20210820161315",
+  "entityTableName": "tipos_de_qualificacao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreseguranca",
+  "applications": "*",
+  "microserviceName": "madreseguranca",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

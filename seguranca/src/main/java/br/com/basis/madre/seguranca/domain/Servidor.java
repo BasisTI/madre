@@ -23,7 +23,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.TipoDeRemuneracao;
 @Entity
 @Table(name = "servidor")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "servidor")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-servidor")
 public class Servidor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,6 +100,10 @@ public class Servidor implements Serializable {
     @OneToMany(mappedBy = "servidor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<GrupoFuncional> grupofuncionals = new HashSet<>();
+
+    @OneToMany(mappedBy = "servidor")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Graduacao> graduacaos = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "servidors", allowSetters = true)
@@ -384,6 +388,31 @@ public class Servidor implements Serializable {
 
     public void setGrupofuncionals(Set<GrupoFuncional> grupoFuncionals) {
         this.grupofuncionals = grupoFuncionals;
+    }
+
+    public Set<Graduacao> getGraduacaos() {
+        return new HashSet<>(graduacaos);
+    }
+
+    public Servidor graduacaos(Set<Graduacao> graduacaos) {
+        this.graduacaos = new HashSet<>(graduacaos);
+        return this;
+    }
+
+    public Servidor addGraduacao(Graduacao graduacao) {
+        this.graduacaos.add(graduacao);
+        graduacao.setServidor(this);
+        return this;
+    }
+
+    public Servidor removeGraduacao(Graduacao graduacao) {
+        this.graduacaos.remove(graduacao);
+        graduacao.setServidor(null);
+        return this;
+    }
+
+    public void setGraduacaos(Set<Graduacao> graduacaos) {
+        this.graduacaos = new HashSet<>(this.graduacaos);
     }
 
     public Usuario getUsuario() {

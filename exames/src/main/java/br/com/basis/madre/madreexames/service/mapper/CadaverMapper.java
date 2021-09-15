@@ -1,10 +1,9 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.Cadaver;
 import br.com.basis.madre.madreexames.service.dto.CadaverDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link Cadaver} and its DTO {@link CadaverDTO}.

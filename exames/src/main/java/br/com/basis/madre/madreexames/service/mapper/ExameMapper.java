@@ -1,25 +1,22 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.Exame;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Exame} and its DTO {@link ExameDTO}.
  */
-@Mapper(componentModel = "spring", uses = {MaterialMapper.class, TipoAmostraMapper.class})
+@Mapper(componentModel = "spring", uses = {MaterialDeExameMapper.class})
 public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
 
     @Mapping(source = "materialExame.id", target = "materialExameId")
     @Mapping(source = "materialExame.nome", target = "materialExameNome")
-    @Mapping(source = "amostraExame.id", target = "amostraExameId")
-    @Mapping(source = "amostraExame.nome", target = "amostraExameNome")
     ExameDTO toDto(Exame exame);
 
     @Mapping(source = "materialExameId", target = "materialExame")
-    @Mapping(source = "amostraExameId", target = "amostraExame")
     @Mapping(target = "grupoAgendamentoExames", ignore = true)
     @Mapping(target = "removeGrupoAgendamentoExame", ignore = true)
     Exame toEntity(ExameDTO exameDTO);

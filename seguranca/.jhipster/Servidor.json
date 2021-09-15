@@ -102,6 +102,12 @@
       "relationshipName": "grupofuncional"
     },
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "graduacao",
+      "otherEntityRelationshipName": "servidor",
+      "relationshipName": "graduacao"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "usuario",
       "otherEntityRelationshipName": "servidor",

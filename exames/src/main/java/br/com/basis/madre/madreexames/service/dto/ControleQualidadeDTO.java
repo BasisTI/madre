@@ -1,46 +1,15 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.ControleQualidade} entity.
  */
-public class ControleQualidadeDTO implements Serializable {
-    
-    private Long id;
-
-    @NotNull
-    private Integer codigo;
+public class ControleQualidadeDTO extends DominioConvenioPlano implements Serializable {
 
     @NotNull
     private String material;
-
-    @NotNull
-    private String codigoConvenio;
-
-    @NotNull
-    private String codigoPlano;
-
-    private ConvenioPlano convenioPlano;
-
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
 
     public String getMaterial() {
         return material;
@@ -48,30 +17,6 @@ public class ControleQualidadeDTO implements Serializable {
 
     public void setMaterial(String material) {
         this.material = material;
-    }
-
-    public String getCodigoConvenio() {
-        return codigoConvenio;
-    }
-
-    public void setCodigoConvenio(String codigoConvenio) {
-        this.codigoConvenio = codigoConvenio;
-    }
-
-    public String getCodigoPlano() {
-        return codigoPlano;
-    }
-
-    public void setCodigoPlano(String codigoPlano) {
-        this.codigoPlano = codigoPlano;
-    }
-
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
-    }
-
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
     }
 
     @Override
@@ -83,7 +28,7 @@ public class ControleQualidadeDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((ControleQualidadeDTO) o).id);
+        return getId() != null && getId().equals(((ControleQualidadeDTO) o).getId());
     }
 
     @Override

@@ -126,6 +126,45 @@ entity Usuario {
     login String
 }
 
+entity Graduacao {
+	curso String 
+	situacao SituacaoGraduacao required
+	anoInicio LocalDate required
+	anoFim LocalDate
+	semestre String
+	nroRegConselho String
+}
+
+entity TiposDeQualificacao {
+	descricao String
+	tipo TipoQualificacao
+	conselho String
+	situacao Boolean required
+}
+
+entity Instituicao {
+	codigo Integer 
+	descricao String required 
+	interno Boolean required
+}
+
+entity ConselhosProfissionais {
+	codigo Integer
+	nome String required
+	sigla String required
+	tituloMasculino String 
+	tituloFeminino String 
+	situacao Boolean	
+}
+
+enum TipoQualificacao {
+	CCC, CSC
+}
+
+enum SituacaoGraduacao {
+	EM_ANDAMENTO, CONCLUIDA, INTERROMPIDA
+}
+
 enum TipoDeRemuneracao {
 	MENSALISTA, HORISTA
 }
@@ -174,6 +213,11 @@ relationship OneToMany {
 	Pessoa{telefone(numero)} to Telefone,
 	Cargo{ocupacaoDeCargo(descricao)} to OcupacaoDeCargo,
     Servidor{grupofuncional(descricao)} to GrupoFuncional
+    Servidor{graduacao(curso)} to Graduacao
+    ConselhosProfissionais {tiposDeQualificacao(descriacao)} to Instituicao
+	TiposDeQualificacao {graduacaoQualificacao(descricao)} to Graduacao
+    Instituicao {graduacaoInstituicao(descricao)} to Graduacao
+    
 }
 
 relationship ManyToOne {

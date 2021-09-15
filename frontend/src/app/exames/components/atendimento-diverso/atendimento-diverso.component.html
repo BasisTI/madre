@@ -1,118 +1,141 @@
-<div class="p-col-12 card card-w-title">
-  <h1>Pesquisar atendimento diverso</h1>
-  <div id="codigo">
-    <span id="grupo">
-      <label> Unidade Executora: </label> <br>
+<form [formGroup]="cadastroAtendimentoDiverso" (ngSubmit)="cadastrar()">  
+<div id="card" >
+  <p-fieldset >
+    <h1>Manter atendimento diverso</h1>
+    <div id="codigo" >
+      <span id="grupo">
+        <label> Unidade Executora: </label> <br>
+        <p-dropdown 
+        placeholder="Selecione" 
+        [options]="unidadesFuncionais" [optionLabel]="'nome'" [optionValue]="'id'"  
+        formControlName="unidadeExecutoraId" 
+        ></p-dropdown>
+      </span>
 
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
-    </span>
-    <span id="grupo">
-      <label> Codigo: </label> <br>
-      <input type="text" pInputText />
-    </span>
-  </div>
-
-  <p-fieldset id="atendendimento" legend="Tipo Atendimento">
-
-    <div class="atend">
-      <span id="grupo">
-        <label> Projeto de pesquisa: </label> <br>
-      </span>
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
-    </div>
-    <div class="atend">
-      <span id="grupo">
-        <label> Laboratorio Externo: </label> <br>
-      </span>
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
-    </div>
-    <div class="atend">
-      <span id="grupo">
-        <label> Controle de qualidade: </label> <br>
-      </span>
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
-    </div>
-    <div class="atend">
-      <span id="grupo">
-        <label> Cadavér: </label> <br>
-      </span>
-      <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
-    </div>
-
-  </p-fieldset>
-
-  <p-fieldset legend="Informações complementares ">
-    <div id="codigo">
-      <span id="grupo">
-        <label> Origem Amostra: </label> <br>
-        <p-dropdown [options]="OrigemAmostra" [(ngModel)]="selectedOrigem"></p-dropdown>
-      </span>
-      <span id="grupo">
-        <label> Tipo Amostra: </label> <br>
-        <p-dropdown [options]="TipoAmostra" [(ngModel)]="selectedTipo"></p-dropdown>
-      </span>
-      <span id="grupo">
-        <label> Identificação: </label> <br>
-        <input type="text" pInputText /> <br>
-      </span>
-      <span id="grupo">
-        <label> Data Soro: </label> <br>
-        <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
-          [readonlyInput]="true" dateFormat="dd/mm/yy"></p-calendar>
+      <span id="grupo" >
+        <label > Codigo:  </label> <br>
+        <input type="text" formControlName="codigo" pInputText/>
       </span>
     </div>
-    <div>
-      <span id="grupo"> <br>
-        <label> Material: </label> <br>
-        <input type="text" pInputText />
-      </span>
-    </div>
-    <div>
-      <span id="grupo"> <br>
-        <label> Especialidade: </label> <br>
-        <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown>
-      </span>
-    </div>
-    <div>
-      <span id="grupo"> <br>
-        <label> Centro de Atividades: </label> <br>
-        <p-dropdown [options]="teste" [(ngModel)]="selectedTeste"></p-dropdown> <br>
-      </span>
-    </div>
+  
+    <p-fieldset legend="Tipo Atendimento">
 
+      <div class="atend">
+        <span id="grupo">
+          <label> Laboratorio Externo: </label> <br>
+        </span>
+        <p-dropdown 
+        placeholder="Selecione"
+        [options]="laboratorios" [optionLabel]="'nome'" [optionValue]="'id'"
+        formControlName="laboratorioId"
+        ></p-dropdown>
+      </div>
 
-    <button pButton type="button" label="Pesquisar Fonetica" icon="ui-icon-search" bTooltip="Pesquisar Fonetica."
-      (click)="pesquisar()"></button>
+      <div class="atend">
+        <span id="grupo">
+          <label> Controle de qualidade: </label> <br>
+        </span>
+        <p-dropdown 
+        placeholder="Selecione"
+        [options]="controles" [optionLabel]="'material'" [optionValue]="'id'"
+        formControlName="controleId"
+        ></p-dropdown>
+      </div>
 
-    <div id="codigo">
-      <span id="grupo">
-        <label> Prontuario: </label> <br>
-        <input type="text" pInputText />
-      </span>
-      <span style="display: flex; flex-direction: column; width: 15%">
-        <label> Codigo: </label> <br>
-        <input type="text" pInputText /><br>
-      </span>
-    </div>
-    <div id="codigo">
-      <span id="grupo">
-        <label> Nome Paciente Externo: </label> <br>
-        <input type="text" pInputText />
-      </span>
-      <span id="grupo">
-        <label> Data Nascimento: </label> <br>
-        <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
-          [readonlyInput]="true" dateFormat="dd/mm/yy"></p-calendar>
-      </span>
-      <span id="grupo">
-        <label> Sexo: </label> <br>
-        <p-dropdown [options]="Sexo" [(ngModel)]="selectedSexo"></p-dropdown>
-      </span>
-    </div>
+      <div class="atend">
+        <span id="grupo">
+          <label> Cadavér: </label> <br>
+        </span>
+        <p-dropdown
+          placeholder="Selecione"
+          [options]="cadavers" [optionLabel]="'nome'" [optionValue]="'id'"
+          formControlName="cadaverId"
+        ></p-dropdown>
+      </div>
+    </p-fieldset>
 
-  </p-fieldset> <br>
+    <p-fieldset legend="Informações complementares ">
+      <div id="codigo">
+        <span id="grupo">
+          <label> Origem Amostra: </label> <br>
+          <p-dropdown 
+          placeholder="Selecione" [options]="origemAmostraDropdown" formControlName="origemAmostra"
+          ></p-dropdown>
+        </span>
+        <span id="grupo">
+          <label> Tipo
+             Amostra: </label> <br>
+          <p-dropdown
+           placeholder="Selecione" [options]="tipoAmostraDropdown" formControlName="tipoAmostra"
+           ></p-dropdown>
+        </span>
 
-  <button pButton type="button" label="Gravar" icon="ui-icon-search" bTooltip="Pesquisar atendimento-diverso."
-    (click)="pesquisar()"></button>
+        <span id="grupo">
+          <label> Identificação:  </label> <br>
+          <input type="text"  formControlName="identificacao" pInputText /> <br>
+        </span>
 
-</div>
+        <span id="grupo">
+          <label> Data Soro: </label> <br>
+          <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
+            [readonlyInput]="true" dateFormat="dd/mm/yy"   formControlName="dataSoro"></p-calendar >
+        </span>
+      </div>
+      <div>
+        <span id="grupo"> <br>
+          <label> Material: </label> <br>
+          <input type="text" pInputText formControlName="material" />
+        </span>
+      </div>
+
+      <div>
+        <span id="grupo"> <br>
+          <label> Especialidade: </label> <br>
+          <p-dropdown 
+          placeholder="Selecione"
+          [options]="especialidades" [optionLabel]="'especialidade'" [optionValue]="'id'"
+          formControlName="especialidadeId"
+          ></p-dropdown>
+        </span>
+      </div>
+
+      <div>
+        <span id="grupo"> <br>
+          <label> Centro de Atividades: </label> <br>
+          <p-dropdown 
+          placeholder="Selecione"
+          [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
+          formControlName="centroAtividadeId"
+          ></p-dropdown> <br>
+        </span>
+      </div>
+
+      <div id="codigo">
+        <span id="grupo">
+          <label> Nome Paciente Externo: </label> <br>
+          <p-dropdown 
+          placeholder="Selecione"
+          [options]="cadastros" [optionLabel]="'nome'" [optionValue]="'id'"
+          ></p-dropdown>
+        </span>
+
+        <span id="grupo">
+          <label> Data Nascimento: </label > <br>
+          <p-calendar class="calendar-input" showIcon="true" icon="pi pi-calendar"
+            [readonlyInput]="true" dateFormat="dd/mm/yy"  formControlName="dataNascimento"></p-calendar>
+            
+        </span>
+        <span id="grupo">
+          <label> Sexo: </label> <br>
+          <p-dropdown 
+          placeholder="Selecione" [options]="sexoDropdown" formControlName="sexo"
+          ></p-dropdown>
+        </span>
+      </div>
+    
+    </p-fieldset> <br>
+    <button pButton type="submit" [disabled]="!valid()" label="Gravar" icon="ui-icon-search" bTooltip="Gravar atendimento-diverso." 
+      ></button>
+    </p-fieldset>
+ </div>
+</form>

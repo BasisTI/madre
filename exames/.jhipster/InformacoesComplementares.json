@@ -2,24 +2,67 @@
   "name": "InformacoesComplementares",
   "fields": [
     {
+      "fieldName": "origemAmostra",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tipoAmostra",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identificacao",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataSoro",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "material",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "especialidade",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "centroAtividade",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "prontuario",
       "fieldType": "Integer",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "codigo",
-      "fieldType": "Integer"
-    }
-  ],
-  "relationships": [
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
     {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "atendimentoDiverso",
-      "otherEntityRelationshipName": "atendimentoDiverso",
-      "relationshipName": "atendimentoDiverso",
-      "otherEntityField": "id"
+      "fieldName": "nomePaciente",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     }
   ],
+  "relationships": [],
   "changelogDate": "20210705120318",
   "entityTableName": "informacoes_complementares",
   "dto": "mapstruct",

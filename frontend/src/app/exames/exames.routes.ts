@@ -2,13 +2,12 @@ import { Routes } from '@angular/router';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
 import {AtendimentoDiversoComponent} from "./components/atendimento-diverso/atendimento-diverso.component";
-import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
+import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
-import { FormularioGradeDeAgendamentoComponent } from './components/formulario-grade-de-agendamento/formulario-grade-de-agendamento.component';
 import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
-
+import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 
 export const routes: Routes = [
     {
@@ -25,7 +24,11 @@ export const routes: Routes = [
     },
     {
         path: 'formulario-exame',
-        component: FormularioExameComponent,
+        component: ExamesFormComponent,
+    },
+    {
+        path: 'listar-solicitacoes',
+        component: ListarSolicitacoesComponent,
     },
     {
         path: 'cadastrar-material',

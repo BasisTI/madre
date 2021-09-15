@@ -1,10 +1,9 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.ControleQualidade;
 import br.com.basis.madre.madreexames.service.dto.ControleQualidadeDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link ControleQualidade} and its DTO {@link ControleQualidadeDTO}.
