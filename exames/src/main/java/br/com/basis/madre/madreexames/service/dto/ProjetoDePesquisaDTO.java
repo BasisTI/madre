@@ -8,11 +8,6 @@ import java.io.Serializable;
  */
 public class ProjetoDePesquisaDTO extends DominioIdNome implements Serializable {
 
-    private Long id;
-
-    @NotNull
-    private String nome;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -22,7 +17,7 @@ public class ProjetoDePesquisaDTO extends DominioIdNome implements Serializable 
             return false;
         }
 
-        return id != null && id.equals(((ProjetoDePesquisaDTO) o).id);
+        return getId() != null && getId().equals(((ProjetoDePesquisaDTO) o).getId());
     }
 
     @Override
