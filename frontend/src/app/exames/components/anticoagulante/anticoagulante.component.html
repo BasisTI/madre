@@ -1,0 +1,36 @@
+<div class="p-grid p-fluid"> 
+    <div class="p-col-12 p-grid">
+    
+        <div class="card card-w-title">
+            <h1>Cadastro Anticoagulante</h1>
+            <div class="p-grid">
+                <div class="p-col-12 p-grid">
+
+                    <!--Descrição-->
+                    <div class="p-md-6 p-col-12">
+                        Nome
+                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <p-dropdown pTooltip="Selecione"></p-dropdown>
+                        </span>
+                    </div>
+
+                    <!--Ativos-->
+                    <div class="p-md-2 p-col-12" style="margin-top: 5px;">
+                        <label for="situacao">Situação:</label>
+                        <p-dropdown placeholder="Selecione" formControlName="ativo"></p-dropdown>
+                    </div>
+                </div>
+
+                    <!--Botão Salvar e Cancelar-->
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2 p-sm-5">
+                        <button pButton type="button" label="Salvar"></button>
+                    </div>
+                    <div class="p-md-2 p-sm-5">
+                        <button pButton type="button" label="Cancelar" (click)="cancelar()"></button>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ import { LaboratorioExternoService } from '../../services/laboratorioExterno.ser
 import { LaboratorioExternoModel } from '../../models/subjects/laboratorioExterno-model';
 import { CentroService } from '@internacao/formulario-unidades/services/centro-de-atividade.service';
 import { CentroDeAtividade } from '@internacao/formulario-unidades/models/dropwdowns/centro-de-atividade';
-import { UnidadeFuncional } from '../../models/subjects/unidade-funcional-model';
+import { UnidadeFuncional } from '../../models/subjects/unidade-model';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { PacientesService } from '../../services/paciente.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
