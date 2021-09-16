@@ -13,7 +13,7 @@ import org.mapstruct.*;
 public interface HorarioAgendadoMapper extends EntityMapper<HorarioAgendadoDTO, HorarioAgendado> {
 
     @Mapping(source = "tipoHorario.id", target = "tipoHorarioId")
-    @Mapping(source = "tipoHorario.tipoDeMarcacao", target = "tipoHorarioTipoDeMarcacao")
+    @Mapping(source = "tipoHorario.tipoDeMarcacaoNome", target = "tipoHorarioTipoDeMarcacao")
     @Mapping(source = "gradeDeAgendamento.id", target = "gradeDeAgendamentoId")
     HorarioAgendadoDTO toDto(HorarioAgendado horarioAgendado);
 
