@@ -12,14 +12,14 @@ public class KafkaProperties {
 
     private String bootStrapServers = "localhost:9092";
 
-    private static final String bootStrapName = "bootstrap.servers";
+    private static final String BOOTSTRAPNAME = "bootstrap.servers";
 
     private Map<String, String> consumer = new HashMap<>();
 
     private Map<String, String> producer = new HashMap<>();
 
     public String getBootStrapServers() {
-        return bootStrapServers;
+        return BOOTSTRAPNAME;
     }
 
     public void setBootStrapServers(String bootStrapServers) {
@@ -28,8 +28,8 @@ public class KafkaProperties {
 
     public Map<String, Object> getConsumerProps() {
         Map<String, Object> properties = new HashMap<>(this.consumer);
-        if (!properties.containsKey(bootStrapName)) {
-            properties.put(bootStrapName, this.bootStrapServers);
+        if (!properties.containsKey(BOOTSTRAPNAME)) {
+            properties.put(BOOTSTRAPNAME, this.bootStrapServers);
         }
         return properties;
     }
@@ -40,8 +40,8 @@ public class KafkaProperties {
 
     public Map<String, Object> getProducerProps() {
         Map<String, Object> properties = new HashMap<>(this.producer);
-        if (!properties.containsKey(bootStrapName)) {
-            properties.put(bootStrapName, this.bootStrapServers);
+        if (!properties.containsKey(BOOTSTRAPNAME)) {
+            properties.put(BOOTSTRAPNAME, this.bootStrapServers);
         }
         return properties;
     }
