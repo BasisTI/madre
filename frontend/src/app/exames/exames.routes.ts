@@ -2,10 +2,11 @@ import { Routes } from '@angular/router';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
 import {AtendimentoDiversoComponent} from "./components/atendimento-diverso/atendimento-diverso.component";
-import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
-import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
+import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
+import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
+import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 
 export const routes: Routes = [
@@ -32,5 +33,17 @@ export const routes: Routes = [
     {
         path: 'cadastrar-material',
         component: CadastrarMaterialComponent,
+    },
+    {
+        path: 'manter-grade-agendamento',
+        component: GradeAgendamentosComponent
+    },
+    {
+        path: 'listar-grade-exame',
+        component: ListarGradeDeExameComponent
+    },
+    {
+        path: 'listar-horarios-agendados',
+        component: TabelaHorariosAgendadosComponent
     }
 ];

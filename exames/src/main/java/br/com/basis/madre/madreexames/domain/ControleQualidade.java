@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "controle_qualidade")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "controlequalidade")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-controlequalidade")
 public class ControleQualidade extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;

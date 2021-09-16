@@ -116,7 +116,7 @@ public class UnidadeFuncionalResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the
      * unidadeFuncionalDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/unidades-funcionais{id}")
+    @GetMapping("/unidades-funcionais/{id}")
     public ResponseEntity<UnidadeFuncionalDTO> getUnidadeFuncional(@PathVariable Long id) {
         log.debug("REST request to get UnidadeFuncional : {}", id);
         Optional<UnidadeFuncionalDTO> unidadeFuncionalDTO = unidadeFuncionalService.findOne(id);
