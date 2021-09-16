@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public interface GradeDeAgendamentoRepository extends JpaRepository<GradeDeAgendamento, Long> {
 
     @Query("select new br.com.basis.madre.madreexames.service.dto.GradeDeAgendamentoDTO(g.id, g.unidadeExecutoraId, " +
-        "g.responsavelId, g.ativo, e.id, e.nome,gp.id, gp.nome, s.id, s.identificacaoDaSala) " +
+        "g.responsavelId, g.ativo, e.nome, gp.nome, s.identificacaoDaSala) " +
         "from GradeDeAgendamento g join g.exameGrade e join g.salaGrade s join g.grupoGrade gp where g.id = :id")
     GradeDeAgendamentoDTO buscaPorId(@Param("id") Long id);
 

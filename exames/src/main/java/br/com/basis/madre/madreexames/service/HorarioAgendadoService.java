@@ -132,15 +132,13 @@ public class HorarioAgendadoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<HorarioAgendadoDTO> filtraHorarioAgendado(Pageable pageable, String id, String horaInicio, String horaFim,
-       String numeroDeHorarios, String dia, String duracao, String ativo, String exclusivo) {
+    public Page<HorarioAgendadoDTO> filtraHorarioAgendado(Pageable pageable, String id, String horaInicio,
+       String numeroDeHorarios, String dia, String ativo, String exclusivo) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, "id", id);
         filter(queryBuilder, "horaInicio", horaInicio);
-        filter(queryBuilder, "horaFim", horaFim);
         filter(queryBuilder, "numeroDeHorarios", numeroDeHorarios);
         filter(queryBuilder, "dia", dia);
-        filter(queryBuilder, "duracao", duracao);
         filter(queryBuilder, "ativo", ativo);
         filter(queryBuilder, "exclusivo", exclusivo);
         SearchQuery query = new NativeSearchQueryBuilder()

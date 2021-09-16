@@ -124,12 +124,11 @@ public class GradeDeAgendamentoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<GradeDeAgendamentoDTO> filtraGradeAgendamento(Pageable pageable, String id, String unidadeExecutoraId, String ativo, String salaGradeId, String grupoAgendamentoExameId, String exameGradeId, String responsavelId) {
+    public Page<GradeDeAgendamentoDTO>  filtraGradeAgendamento(Pageable pageable, String id, String unidadeExecutoraId, String ativo, String grupoAgendamentoExameId, String exameGradeId, String responsavelId) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, "id", id);
         filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
         filter(queryBuilder, "ativo", ativo);
-        filter(queryBuilder, "salaGradeId", salaGradeId);
         filter(queryBuilder, "grupoAgendamentoExameId", grupoAgendamentoExameId);
         filter(queryBuilder, "exameGradeId", exameGradeId);
         filter(queryBuilder, "responsavelId", responsavelId);
