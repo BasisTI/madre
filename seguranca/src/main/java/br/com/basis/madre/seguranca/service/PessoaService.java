@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Locale;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -107,6 +108,6 @@ public class PessoaService {
     }
 
     public Page<PessoaCadastrada> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
-        return pessoaRepository.findPessoasCadastradas(nome, pageable);
+        return pessoaRepository.findPessoasCadastradas(nome.toUpperCase(), pageable);
     }
 }
