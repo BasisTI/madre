@@ -31,7 +31,7 @@ entity Pessoa {
 	codigo Integer required
 	nome String required
 	nomeDaMae String required
-	nomeDoPai String 
+	nomeDoPai String
 	sexo Sexo required
 	estadoCivil EstadoCivil
 	dataDeNascimento LocalDate required
@@ -55,17 +55,17 @@ entity Documentos {
 }
 
 entity OrgaoEmissor {
-    valor String 
+    valor String
 }
 
 entity UF {
-    unidadeFederativa String 
+    unidadeFederativa String
     sigla String
 }
 
 entity Telefone {
-    ddd String 
-    numero String 
+    ddd String
+    numero String
     tipo TipoDoContato
     observacao String
     ramal String
@@ -89,13 +89,13 @@ entity Municipio {
 
 entity Cargo {
 	codigo Integer required
-	descricao String required 
+	descricao String required
 	situacao Boolean required
 }
 
 entity OcupacaoDeCargo {
 	codigo Integer required
-    descricao String required 
+    descricao String required
 	situacao Boolean required
 	informarCbo Boolean
     informarCns Boolean
@@ -103,18 +103,18 @@ entity OcupacaoDeCargo {
 
 entity Vinculo {
     codigo Integer required
-    descricao String required 
+    descricao String required
     situacao Boolean required
-    infDependente Boolean 
-    exTermino Boolean 
-    geraMatricula Boolean 
-    exCentroAtividade Boolean 
-    exOcupacao Boolean 
-    transfereStarh Boolean 
-    permiteDuplos Boolean 
-    exCpfRg Boolean 
-    gestapDesempenho Boolean 
-    emiteContrato Boolean 
+    infDependente Boolean
+    exTermino Boolean
+    geraMatricula Boolean
+    exCentroAtividade Boolean
+    exOcupacao Boolean
+    transfereStarh Boolean
+    permiteDuplos Boolean
+    exCpfRg Boolean
+    gestapDesempenho Boolean
+    emiteContrato Boolean
     numerosDeDiasAdmissao String
     tituloMasculino String
     tituloFeminino String
@@ -123,7 +123,7 @@ entity Vinculo {
 
 entity Usuario {
 	codigo Integer required
-    login String 
+    login String
 }
 
 entity Graduacao {
@@ -185,7 +185,7 @@ enum Sexo {
 }
 
 enum EstadoCivil {
-	CASADO, SOLTEIRO, SEPARADO, DESQUITADO, 
+	CASADO, SOLTEIRO, SEPARADO, DESQUITADO,
 	UNIAO_ESTAVEL, VIUVO, OUTRO
 }
 
@@ -228,12 +228,12 @@ relationship ManyToOne {
 }
 
 relationship OneToOne {
-	Pessoa {documenetos(numeroDaIdentidade)} to Documentos
+	Pessoa {documentos(numeroDaIdentidade)} to Documentos
     Servidor {vinculo(descricao)} to Vinculo
-    Servidor {pessoa(codigo)} to Pessoa
+    Servidor {pessoa(nome)} to Pessoa
     Pessoa {cargo(descricao)} to Cargo
     Servidor {ramal(numero)} to Ramal
-    
+
 }
 
 dto * with mapstruct

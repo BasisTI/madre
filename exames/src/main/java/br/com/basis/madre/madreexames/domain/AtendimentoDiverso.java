@@ -27,7 +27,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "atendimento_diverso")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "atendimentodiverso")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-atendimentodiverso")
 public class AtendimentoDiverso extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;

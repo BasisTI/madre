@@ -2,6 +2,7 @@ package br.com.basis.madre.madreexames.domain;
 
 import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
+import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -23,7 +24,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "laboratorio_externo")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "laboratorioexterno")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-laboratorioexterno")
 public class LaboratorioExterno extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;

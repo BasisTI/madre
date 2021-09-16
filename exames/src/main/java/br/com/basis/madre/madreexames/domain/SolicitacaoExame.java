@@ -23,7 +23,7 @@ import java.util.Set;
 @Entity
 @Table(name = "solicitacao_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "solicitacaoexame")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-solicitacaoexame")
 public class SolicitacaoExame implements Serializable {
 
     private static final long serialVersionUID = 1L;

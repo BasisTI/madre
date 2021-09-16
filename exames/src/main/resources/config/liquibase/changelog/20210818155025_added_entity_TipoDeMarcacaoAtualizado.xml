@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity TipoDeMarcacao.
+    -->
+    <changeSet id="20210818155025-2" author="jhipster">
+        <dropColumn tableName="tipo_de_marcacao">
+            <column name="tipo_de_marcacao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </dropColumn>
+        <addColumn tableName="tipo_de_marcacao">
+            <column name="tipo_de_marcacao_nome" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20210818155025-2-data" author="jhipster" context="faker">
+        <loadData
+            file="config/liquibase/fake-data/tipo_de_marcacao_novo.csv"
+            separator=";"
+            tableName="tipo_de_marcacao">
+            <column name="id" type="numeric"/>
+            <column name="tipo_de_marcacao_nome" type="string"/>
+            <column name="ativo" type="boolean"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
