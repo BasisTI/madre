@@ -55,8 +55,8 @@ public class ControleQualidadeResourceIT {
     private static final String DEFAULT_CODIGO_PLANO = "AAAAAAAAAA";
     private static final String UPDATED_CODIGO_PLANO = "BBBBBBBBBB";
 
-    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_internacao;
-    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_planoAmbulatorio;
+    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_INTERNACAO;
+    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_PLANO_AMBULATORIO;
 
     @Autowired
     private ControleQualidadeRepository controleQualidadeRepository;
@@ -265,7 +265,7 @@ public class ControleQualidadeResourceIT {
             .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
             .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getControleQualidade() throws Exception {

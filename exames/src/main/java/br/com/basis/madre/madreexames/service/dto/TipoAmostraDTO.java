@@ -6,29 +6,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.TipoAmostra} entity.
  */
-public class TipoAmostraDTO implements Serializable {
-
-    private Long id;
-
-    @NotNull
-    private String nome;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+public class TipoAmostraDTO extends DominioIdNome implements Serializable {
 
     @Override
     public boolean equals(Object o) {
@@ -39,7 +17,7 @@ public class TipoAmostraDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((TipoAmostraDTO) o).id);
+        return getId() != null && getId().equals(((TipoAmostraDTO) o).getId());
     }
 
     @Override
