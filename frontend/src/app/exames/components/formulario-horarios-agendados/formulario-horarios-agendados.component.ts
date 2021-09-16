@@ -1,7 +1,6 @@
 import { Time } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CadastroClinica } from '@internacao/cadastro-clinicas/clinica/cadastro-clinica.service';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
 import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
@@ -41,8 +40,6 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   }
 
   agendarHorario = this.fb.group({
-    // horaInicio: [null],
-    // horaFim: [null],
     numeroDeHorarios: [null],
     duracao: [null, Validators.required],
     ativo: [null, Validators.required],
@@ -98,7 +95,6 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     else
       return false;
   }
-
 
   limparFormulario() {
     this.agendarHorario.reset();

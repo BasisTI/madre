@@ -21,7 +21,6 @@ export class GradeDeAgendamentoService {
     id: string,
     unidadeExecutoraId: string,
     ativo: string,
-    salaGradeId: string,
     grupoAgendamentoExameId: string,
     exameGradeId: string,
     responsavelId: string
@@ -31,7 +30,6 @@ export class GradeDeAgendamentoService {
         .set('id', id)
         .set('unidadeExecutoraId', unidadeExecutoraId)
         .set('ativo', ativo)
-        .set('salaGradeId', salaGradeId)
         .set('grupoAgendamentoExameId', grupoAgendamentoExameId)
         .set('exameGradeId', exameGradeId)
         .set('responsavelId', responsavelId)

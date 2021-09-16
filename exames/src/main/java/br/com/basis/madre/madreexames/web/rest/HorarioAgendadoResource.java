@@ -151,16 +151,14 @@ public class HorarioAgendadoResource {
     public ResponseEntity<List<HorarioAgendadoDTO>> obterTodosHorarios(Pageable pageable,
         @RequestParam(name = "id", required = false) String id,
         @RequestParam(name = "horaInicio", required = false) String horaInicio,
-        @RequestParam(name = "horaFim", required = false) String horaFim,
         @RequestParam(name = "numeroDeHorarios", required = false) String numeroDeHorarios,
         @RequestParam(name = "dia", required = false) String dia,
-        @RequestParam(name = "duracao", required = false) String duracao,
         @RequestParam(name = "ativo", required = false) String ativo,
         @RequestParam(name = "exclusivo", required = false) String exclusivo
     ) {
         log.debug("Request REST para obter uma página de solicitações de exame.");
-        Page<HorarioAgendadoDTO> page = horarioAgendadoService.filtraHorarioAgendado(pageable, id, horaInicio, horaFim,
-            numeroDeHorarios, dia, duracao, ativo, exclusivo);
+        Page<HorarioAgendadoDTO> page = horarioAgendadoService.filtraHorarioAgendado(pageable, id, horaInicio,
+            numeroDeHorarios, dia, ativo, exclusivo);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

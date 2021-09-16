@@ -77,7 +77,7 @@ export class ListarGradeDeExameComponent implements OnInit {
 
   listarGrades() {
     this.gradeAgendamentoService.getGradesDeAgendamento(this.id, this.unidadeExecutoraId,
-      this.ativo, this.salaId, this.grupoAgendamentoExameId, this.exameId, this.responsavelId)
+      this.ativo, this.grupoAgendamentoExameId, this.exameId, this.responsavelId)
       .subscribe((response) => {
         this.gradeAgendamento = response;
        });

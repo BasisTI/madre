@@ -1,7 +1,5 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import lombok.EqualsAndHashCode;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,9 +21,15 @@ public class MaterialDeExameCompletoDTO extends MaterialDeExameDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         MaterialDeExameCompletoDTO that = (MaterialDeExameCompletoDTO) o;
         return Objects.equals(amostras, that.amostras);
     }

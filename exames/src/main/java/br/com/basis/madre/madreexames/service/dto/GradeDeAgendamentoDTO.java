@@ -40,16 +40,14 @@ public class GradeDeAgendamentoDTO implements Serializable {
 
     private String unidadeExecutoraNome;
 
-    public GradeDeAgendamentoDTO(Long id, Integer unidadeExecutoraId, Integer responsavelId, Boolean ativo, Long exameGradeId, String exameGradeNome, Long grupoGradeId, String grupoGradeNome, Long salaGradeId, String salaGradeIdentificacaoDaSala) {
+    public GradeDeAgendamentoDTO(Long id, Integer unidadeExecutoraId, Integer responsavelId, Boolean ativo,
+                                 String exameGradeNome, String grupoGradeNome, String salaGradeIdentificacaoDaSala) {
         this.id = id;
         this.unidadeExecutoraId = unidadeExecutoraId;
         this.responsavelId = responsavelId;
         this.ativo = ativo;
-        this.exameGradeId = exameGradeId;
         this.exameGradeNome = exameGradeNome;
-        this.grupoGradeId = grupoGradeId;
         this.grupoGradeNome = grupoGradeNome;
-        this.salaGradeId = salaGradeId;
         this.salaGradeIdentificacaoDaSala = salaGradeIdentificacaoDaSala;
     }
 
