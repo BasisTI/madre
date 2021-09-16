@@ -1,15 +1,16 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.Responsavel;
 import br.com.basis.madre.madreexames.domain.enumeration.Abrangencia;
+import br.com.basis.madre.madreexames.domain.enumeration.Responsavel;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Recomendacao} entity.
  */
 public class RecomendacaoDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -24,7 +25,7 @@ public class RecomendacaoDTO implements Serializable {
 
 
     private Long materialId;
-    
+
     public Long getId() {
         return id;
     }

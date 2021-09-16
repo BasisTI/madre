@@ -80,11 +80,11 @@ public class LaboratorioExternoResourceIT {
     private static final String DEFAULT_CODIGO_PLANO = "AAAAAAAAAA";
     private static final String UPDATED_CODIGO_PLANO = "BBBBBBBBBB";
 
-    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_internacao;
-    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_planoAmbulatorio;
+    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_INTERNACAO;
+    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_PLANO_AMBULATORIO;
 
-    private static final FormaEnvio DEFAULT_FORMA_ENVIO = FormaEnvio.Correio;
-    private static final FormaEnvio UPDATED_FORMA_ENVIO = FormaEnvio.Fax;
+    private static final FormaEnvio DEFAULT_FORMA_ENVIO = FormaEnvio.CORREIO;
+    private static final FormaEnvio UPDATED_FORMA_ENVIO = FormaEnvio.FAX;
 
     @Autowired
     private LaboratorioExternoRepository laboratorioExternoRepository;
@@ -489,7 +489,7 @@ public class LaboratorioExternoResourceIT {
             .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())))
             .andExpect(jsonPath("$.[*].formaEnvio").value(hasItem(DEFAULT_FORMA_ENVIO.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getLaboratorioExterno() throws Exception {

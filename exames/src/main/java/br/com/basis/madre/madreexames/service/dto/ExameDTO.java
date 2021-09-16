@@ -1,13 +1,13 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Exame} entity.
  */
 public class ExameDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -35,10 +35,6 @@ public class ExameDTO implements Serializable {
 
     private String materialExameNome;
 
-    private Long amostraExameId;
-
-    private String amostraExameNome;
-    
     public Long getId() {
         return id;
     }
@@ -107,32 +103,16 @@ public class ExameDTO implements Serializable {
         return materialExameId;
     }
 
-    public void setMaterialExameId(Long materialId) {
-        this.materialExameId = materialId;
+    public void setMaterialExameId(Long materialDeExameId) {
+        this.materialExameId = materialDeExameId;
     }
 
     public String getMaterialExameNome() {
         return materialExameNome;
     }
 
-    public void setMaterialExameNome(String materialNome) {
-        this.materialExameNome = materialNome;
-    }
-
-    public Long getAmostraExameId() {
-        return amostraExameId;
-    }
-
-    public void setAmostraExameId(Long tipoAmostraId) {
-        this.amostraExameId = tipoAmostraId;
-    }
-
-    public String getAmostraExameNome() {
-        return amostraExameNome;
-    }
-
-    public void setAmostraExameNome(String tipoAmostraNome) {
-        this.amostraExameNome = tipoAmostraNome;
+    public void setMaterialExameNome(String materialDeExameNome) {
+        this.materialExameNome = materialDeExameNome;
     }
 
     @Override
@@ -166,8 +146,6 @@ public class ExameDTO implements Serializable {
             ", anexaDocumentos='" + isAnexaDocumentos() + "'" +
             ", materialExameId=" + getMaterialExameId() +
             ", materialExameNome='" + getMaterialExameNome() + "'" +
-            ", amostraExameId=" + getAmostraExameId() +
-            ", amostraExameNome='" + getAmostraExameNome() + "'" +
             "}";
     }
 }

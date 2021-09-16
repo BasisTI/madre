@@ -93,7 +93,7 @@ public class Pessoa implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Documentos documenetos;
+    private Documentos documentos;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -272,17 +272,17 @@ public class Pessoa implements Serializable {
         this.email = email;
     }
 
-    public Documentos getDocumenetos() {
-        return documenetos;
+    public Documentos getDocumentos() {
+        return documentos;
     }
 
-    public Pessoa documenetos(Documentos documentos) {
-        this.documenetos = documentos;
+    public Pessoa documentos(Documentos documentos) {
+        this.documentos = documentos;
         return this;
     }
 
-    public void setDocumenetos(Documentos documentos) {
-        this.documenetos = documentos;
+    public void setDocumentos(Documentos documentos) {
+        this.documentos = documentos;
     }
 
     public Cargo getCargo() {

@@ -1,17 +1,18 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import java.time.LocalDate;
-import javax.validation.constraints.*;
-import java.io.Serializable;
 import br.com.basis.madre.madreexames.domain.enumeration.OrigemAmostra;
-import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
 import br.com.basis.madre.madreexames.domain.enumeration.Sexo;
+import br.com.basis.madre.madreexames.domain.enumeration.TipoAmostra;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.AtendimentoDiverso} entity.
  */
 public class AtendimentoDiversoDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -56,7 +57,7 @@ public class AtendimentoDiversoDTO implements Serializable {
     private Long cadaverId;
 
     private String cadaverNome;
-    
+
     public Long getId() {
         return id;
     }

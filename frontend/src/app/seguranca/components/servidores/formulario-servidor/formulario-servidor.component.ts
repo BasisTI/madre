@@ -138,7 +138,7 @@ export class FormularioServidorComponent implements OnInit {
       funcaoDoCracha: form.funcaoDoCracha,
       chefeDoCentroDeAtividade: form.chefeDoCentroDeAtividade,
       vinculoId: form.vinculo?.id,
-      pessoaId: form.codigo?.id, 
+      pessoaId: form.codigo?.id,
       ramalId: form.ramal,
       usuarioId: form.login
     };

@@ -1,0 +1,96 @@
+{
+  "name": "AmostraDeMaterial",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "origem",
+      "fieldType": "OrigemTipoAmostra",
+      "fieldValues": "NASCIMENTO,AMBULATORIO,INTERNACAO,URGENCIA,PACIENTE,DOACAO,HOSPITAL,CIRURGIA",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "numeroDeAmostras",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "volumeDaAmostra",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unidadeDeMedida",
+      "fieldType": "UnidadeDeMedida",
+      "fieldValues": "MILILITRO,FRASCO",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "responsavel",
+      "fieldType": "Responsavel",
+      "fieldValues": "COLETADOR,SOLICITANTE,PACIENTE",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "congelado",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "unidadeFuncionalId",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "recipiente",
+      "otherEntityRelationshipName": "amostraDeMaterial",
+      "relationshipName": "amostraRecipiente",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "anticoagulante",
+      "otherEntityRelationshipName": "amostraDeMaterial",
+      "relationshipName": "amostraAnticoagulante",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "amostraDeMaterial",
+      "relationshipName": "amostraMaterial",
+      "otherEntityField": "nome"
+    }
+  ],
+  "changelogDate": "20210827170151",
+  "entityTableName": "amostra_de_material",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

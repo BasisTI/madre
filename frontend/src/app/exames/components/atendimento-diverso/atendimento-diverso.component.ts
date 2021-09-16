@@ -11,7 +11,6 @@ import { LaboratorioExternoService } from '../../services/laboratorioExterno.ser
 import { LaboratorioExternoModel } from '../../models/subjects/laboratorioExterno-model';
 import { CentroService } from '@internacao/formulario-unidades/services/centro-de-atividade.service';
 import { CentroDeAtividade } from '@internacao/formulario-unidades/models/dropwdowns/centro-de-atividade';
-import { UnidadeFuncional } from '../../models/subjects/unidade-funcional-model';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { PacientesService } from '../../services/paciente.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -19,6 +18,7 @@ import { AtendimentoDiversoService } from '../../services/atendimentodiverso.ser
 import { TipoAmostraDropdown } from "../../models/dropdowns/tipoAmostra.dropdown";
 import { OrigemAmostraDropdown } from "../../models/dropdowns/origemAmostra.dropdown";
 import { SexoDropdown } from "../../models/dropdowns/sexo.dropdown";
+import { UnidadeFuncional } from "../../models/subjects/unidade-model";
 
 @Component({
   selector: 'app-atendimento-diverso',

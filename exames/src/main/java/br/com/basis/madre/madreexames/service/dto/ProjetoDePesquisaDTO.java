@@ -1,34 +1,11 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.ProjetoDePesquisa} entity.
  */
-public class ProjetoDePesquisaDTO implements Serializable {
-    
-    private Long id;
-
-    @NotNull
-    private String nome;
-
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+public class ProjetoDePesquisaDTO extends DominioIdNome implements Serializable {
 
     @Override
     public boolean equals(Object o) {
@@ -39,7 +16,7 @@ public class ProjetoDePesquisaDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((ProjetoDePesquisaDTO) o).id);
+        return getId() != null && getId().equals(((ProjetoDePesquisaDTO) o).getId());
     }
 
     @Override

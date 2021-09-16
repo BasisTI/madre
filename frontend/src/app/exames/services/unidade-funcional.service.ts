@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from '@internacao/api';
 import { Observable } from 'rxjs';
-import { UnidadeFuncional } from '../models/subjects/unidade-funcional-model';
+import { UnidadeFuncional } from '../models/subjects/unidade-model';
 
 
 @Injectable({

@@ -1,0 +1,223 @@
+{
+  "name": "MaterialDeExame",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "npo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "jejum",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exigePreparo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exigeDieta",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "informaNumeroDeColetas",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "geraItemDeSolicitacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exigeIntervaloDeColeta",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exigeRegiaoAnatomica",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "ingestaoDeMedicamento",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dependenteDeExame",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "analisadoPelaCII",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "interesseDaCOMEDI",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exigeImpressao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "apareceResultado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "contaCelulas",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "limiteDeSolicitacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "formaDeRespiracao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "automatico",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "exigeDadosComplementares",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "natureza",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "sumario",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "tempoJejum",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "intervaloMinimo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unidadeDeTempo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "validade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "agendamentoMinimo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tempoLimiteDaSolicitacao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unidadeDeTempoDaSolicitacao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroDeAmostras",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numeroDeAmostrasPadrao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "diasLimiteDefault",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tempoLimiteDefault",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numeroDeAmostrarPorIntervalo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tempoLimiteDeAmostraPorIntervalo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unidadeLimiteDeTempoDoPeriodo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "permiteSolicitacaoPosAlta",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "tempoPermitidoParaSolicitarPosAlta",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tempoPermitidoParaSolicitarPosAltaPelasAreasExecutoras",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cartaDeColeta",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "laboratoriaTercerizado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "naoCancelaExamaAposAlta",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "amostraDeMaterial",
+      "otherEntityRelationshipName": "materialDeExame",
+      "relationshipName": "amostra",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "materialDeExame",
+      "relationshipName": "material",
+      "otherEntityField": "nome"
+    }
+  ],
+  "changelogDate": "20210818172959",
+  "entityTableName": "material_de_exame",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

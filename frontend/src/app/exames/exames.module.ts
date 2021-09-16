@@ -12,9 +12,15 @@ import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
+import { FormularioGradeDeAgendamentoComponent } from './components/formulario-grade-de-agendamento/formulario-grade-de-agendamento.component';
+import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
+import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
+import { FormularioHorariosAgendadosComponent } from './components/formulario-horarios-agendados/formulario-horarios-agendados.component';
+import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
+import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
-
+import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
 
 @NgModule({
     declarations: [
@@ -26,9 +32,16 @@ import { ExamesFormComponent } from './components/exames-form/exames-form.compon
         TabelaExamesComponent,
         FormularioExameComponent,
         CadastrarMaterialComponent,
+        FormularioGradeDeAgendamentoComponent,
+        ListarGradeDeExameComponent,
+        GradeAgendamentosComponent,
+        FormularioHorariosAgendadosComponent,
+        TabelaHorariosAgendadosComponent,
+        DurationPipe,
         SinonimosExamesComponent,
         ExamesFormComponent,
         ListarSolicitacoesComponent,
+        MaterialExamesComponent
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
