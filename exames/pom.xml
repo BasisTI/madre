@@ -311,6 +311,8 @@
                     <groupId>org.apache.commons</groupId>
                     <artifactId>commons-compress</artifactId>
                 </exclusion>
+
+
             </exclusions>
         </dependency>
         <dependency>
@@ -468,6 +470,12 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.0</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-compress</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
