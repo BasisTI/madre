@@ -19,7 +19,7 @@ public class KafkaProperties {
     private Map<String, String> producer = new HashMap<>();
 
     public String getBootStrapServers() {
-        return BOOTSTRAPNAME;
+        return bootStrapServers;
     }
 
     public void setBootStrapServers(String bootStrapServers) {
