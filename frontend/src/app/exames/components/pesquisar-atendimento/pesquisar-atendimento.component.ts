@@ -11,7 +11,7 @@ import { UnidadeFuncionalService } from '../../services/unidade-funcional.servic
 })
 export class PesquisarAtendimentoComponent implements OnInit {
 
-  constructor(private unidadeFuncionalService: UnidadeFuncionalService, 
+  constructor(private unidadeFuncionalService: UnidadeFuncionalService,
               private origemdDaInternacaoService: OrigemDaInternacaoService) { }
 
 
@@ -19,7 +19,7 @@ export class PesquisarAtendimentoComponent implements OnInit {
   origens: OrigemDaInternacao[] = [];
 
   ngOnInit(): void {
-    this.unidadeFuncionalService.GetUnidades().subscribe((response) => {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
       this.unidades = response;
     });
 

@@ -1,6 +1,6 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

@@ -1,13 +1,13 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.ControleQualidade} entity.
  */
-public class ControleQualidadeDTO implements Serializable {
-    
+public class ControleQualidadeDTO extends DominioConvenioPlano implements Serializable {
+
     private Long id;
 
     @NotNull
@@ -24,7 +24,7 @@ public class ControleQualidadeDTO implements Serializable {
 
     private Integer convenioPlanoId;
 
-    
+
     public Long getId() {
         return id;
     }

@@ -1,6 +1,6 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.GrupoAgendamentoExame} entity.
  */
 public class GrupoAgendamentoExameDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -26,7 +26,7 @@ public class GrupoAgendamentoExameDTO implements Serializable {
     private Boolean ativo;
 
     private Set<ExameDTO> exames = new HashSet<>();
-    
+
     public Long getId() {
         return id;
     }

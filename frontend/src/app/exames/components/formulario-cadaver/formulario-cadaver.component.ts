@@ -6,7 +6,7 @@ import {GrupoSanguineoDropdown} from "../../models/dropdowns/grupo-sanguineo.dro
 import {ConvenioDeSaude} from "../../models/convenioDeSaude.model";
 import {CadaverModel} from "../../models/subjects/cadaver-model";
 import {CadaverService} from "../../services/cadaver.service";
-import {Hospital} from "../../../internacao/models/hospital";
+import {Hospital} from "@internacao/models/hospital";
 import * as moment from "moment";
 import {MessageService} from "primeng/api";
 

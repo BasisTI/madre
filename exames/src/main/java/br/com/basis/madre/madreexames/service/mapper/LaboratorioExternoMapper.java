@@ -1,10 +1,9 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.LaboratorioExterno;
 import br.com.basis.madre.madreexames.service.dto.LaboratorioExternoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
 
 /**
  * Mapper for the entity {@link LaboratorioExterno} and its DTO {@link LaboratorioExternoDTO}.

@@ -1,18 +1,22 @@
 package br.com.basis.madre.madreexames.domain;
 
+import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
+import br.com.basis.madre.madreexames.domain.enumeration.Raca;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import br.com.basis.madre.madreexames.domain.enumeration.Raca;
-
-import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
 
 /**
  * A Cadaver.
@@ -21,7 +25,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
 @Table(name = "cadaver")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "cadaver")
-public class Cadaver implements Serializable {
+public class Cadaver extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -91,7 +95,7 @@ public class Cadaver implements Serializable {
         return nome;
     }
 
-    public Cadaver nome(String nome) {
+    public Cadaver codigo(String nome) {
         this.nome = nome;
         return this;
     }

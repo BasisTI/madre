@@ -19,115 +19,116 @@ import { AtendimentoDiversoService } from '../../services/atendimentodiverso.ser
 import { TipoAmostraDropdown } from "../../models/dropdowns/tipoAmostra.dropdown";
 import { OrigemAmostraDropdown } from "../../models/dropdowns/origemAmostra.dropdown";
 import { SexoDropdown } from "../../models/dropdowns/sexo.dropdown";
+import {GrupoModel} from "../../models/subjects/grupo-model";
 
 @Component({
-  selector: 'app-atendimento-diverso',
-  templateUrl: './atendimento-diverso.component.html',
-  styleUrls: ['./atendimento-diverso.component.css'],
+    selector: 'app-atendimento-diverso',
+    templateUrl: './atendimento-diverso.component.html',
+    styleUrls: ['./atendimento-diverso.component.css'],
 })
 
 export class AtendimentoDiversoComponent implements OnInit {
 
-  cadavers: CadaverModel[];
-  controles: ControleQualidadeModel[];
-  laboratorios: LaboratorioExternoModel[];
-  centros: CentroDeAtividade[];
-  especialidades: Especialidade[];
-  unidadesFuncionais: UnidadeFuncional[];
-  cadastros: PreCadastroModel[];
+    cadavers: CadaverModel[];
+    controles: ControleQualidadeModel[];
+    laboratorios: LaboratorioExternoModel[];
+    centros: CentroDeAtividade[];
+    especialidades: Especialidade[];
+    unidadesFuncionais: Array<GrupoModel>;
+    cadastros: PreCadastroModel[];
 
-  tipoAmostraDropdown = TipoAmostraDropdown;
-  origemAmostraDropdown = OrigemAmostraDropdown;
-  sexoDropdown = SexoDropdown;
+    tipoAmostraDropdown = TipoAmostraDropdown;
+    origemAmostraDropdown = OrigemAmostraDropdown;
+    sexoDropdown = SexoDropdown;
 
-  cadastroAtendimentoDiverso :FormGroup
+    cadastroAtendimentoDiverso :FormGroup
 
-  constructor(
-    private fb: FormBuilder,
-    private cadaverService: CadaverService,
-    private controleQualidadeservice: ControleQualidadeservice,
-    private laboratorioExternoService: LaboratorioExternoService,
-    private centroService: CentroService,
-    private especialidadeservice: EspecialidadeService,
-    private unidadeFuncionalService: UnidadeFuncionalService,
-    private pacientesService: PacientesService,
-    private atendimentoDiversoService: AtendimentoDiversoService,
-    private pageNotificationService: PageNotificationService
+    constructor(
+        private fb: FormBuilder,
+        private cadaverService: CadaverService,
+        private controleQualidadeservice: ControleQualidadeservice,
+        private laboratorioExternoService: LaboratorioExternoService,
+        private centroService: CentroService,
+        private especialidadeservice: EspecialidadeService,
+        private unidadeFuncionalService: UnidadeFuncionalService,
+        private pacientesService: PacientesService,
+        private atendimentoDiversoService: AtendimentoDiversoService,
+        private pageNotificationService: PageNotificationService
     ) { }
 
-     ngOnInit() : void{
-      this.cadastroAtendimentoDiverso = this.fb.group({
+    ngOnInit() : void{
+        this.cadastroAtendimentoDiverso = this.fb.group({
 
-        codigo: [null, Validators.required],
+            codigo: [null, Validators.required],
 
-        unidadeExecutoraId : [null],
+            unidadeExecutoraId : [null],
 
-        origemAmostra : [null],
+            origemAmostra : [null],
 
-        tipoAmostra : [null],
+            tipoAmostra : [null],
 
-        identificacao : [null],
+            identificacao : [null],
 
-        dataSoro : [null],
+            dataSoro : [null],
 
-        material : [null],
+            material : [null],
 
-        especialidadeId : [null],
+            especialidadeId : [null],
 
-        centroAtividadeId : [null],
+            centroAtividadeId : [null],
 
-        dataNascimento : [null],
+            dataNascimento : [null],
 
-        sexo : [null],
+            sexo : [null],
 
-        laboratorioId:[null],
+            laboratorioId:[null],
 
-        controleId:[null],
+            controleId:[null],
 
-        cadaverId:[null]
+            cadaverId:[null]
 
-    });
+        });
 
-       this.cadaverService.getCadaver().subscribe((response)=>{
-         this.cadavers = response;
-       });
+        this.cadaverService.getCadaver().subscribe((response)=>{
+            this.cadavers = response;
+        });
 
-       this.controleQualidadeservice.GetControleQualidade().subscribe((response)=>{
-        this.controles = response;
-       });
+        this.controleQualidadeservice.getControleQualidade().subscribe((response)=>{
+            this.controles = response;
+        });
 
-       this.laboratorioExternoService.GetLaboratorioExterno().subscribe((response)=>{
-        this.laboratorios = response;
-       });
+        this.laboratorioExternoService.getLaboratorioExterno().subscribe((response)=>{
+            this.laboratorios = response;
+        });
 
-       this.centroService.getListaDeCentros().subscribe((response)=>{
-         this.centros = response;
-       });
+        this.centroService.getListaDeCentros().subscribe((response)=>{
+            this.centros = response;
+        });
 
-       this.pacientesService.getPaciente().subscribe((response)=>{
-         this.cadastros = response;
-       });
+        this.pacientesService.getPaciente().subscribe((response)=>{
+            this.cadastros = response;
+        });
 
-       this.especialidadeservice.getEspecialidades().subscribe((response)=>{
-        this.especialidades = response;
-       });
-      //  this.unidadeFuncionalService.getUnidadeFuncional().subscribe((response)=>{
-      //  this.unidadesFuncionais = response;
-      // });
-  }
-
-  valid(): boolean {
-    return this.cadastroAtendimentoDiverso.valid;
-  }
-
-  cadastrar() {
-    if (!this.cadastroAtendimentoDiverso.valid){
-      this.pageNotificationService.addErrorMessage('preencher o campo codigo')
-      return;
+        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
+            this.especialidades = response;
+        });
+        this.unidadeFuncionalService.getUnidades().subscribe((response)=>{
+            this.unidadesFuncionais = response;
+        });
     }
-    let atendimentoDiverso = this.cadastroAtendimentoDiverso.value;
 
-  this.atendimentoDiversoService.cadastrarAtendimento(atendimentoDiverso).subscribe();
-  }
+    valid(): boolean {
+        return this.cadastroAtendimentoDiverso.valid;
+    }
+
+    cadastrar() {
+        if (!this.cadastroAtendimentoDiverso.valid){
+            this.pageNotificationService.addErrorMessage('preencher o campo codigo')
+            return;
+        }
+        let atendimentoDiverso = this.cadastroAtendimentoDiverso.value;
+
+        this.atendimentoDiversoService.cadastrarAtendimento(atendimentoDiverso).subscribe();
+    }
 }
 
