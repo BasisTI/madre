@@ -26,7 +26,7 @@ public class SecurityConfiguration extends SecurityConfigurationComum {
     public void configureApp(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/api/**").authenticated()
+            .antMatchers("/api/**").permitAll()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()

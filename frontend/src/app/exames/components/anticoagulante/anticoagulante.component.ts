@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AnticoagulanteService } from '../../services/anticoagulante.service';
+import { Anticoagulante } from '../../models/subjects/anticoagulante';
+import { fbind } from 'q';
+import { SituacaoExame } from '../../models/dropdowns/situacao.dropdown';
 
 @Component({
   selector: 'app-anticoagulante',
@@ -8,10 +12,38 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AntiCoagulanteComponent implements OnInit {
 
-  constructor() { }
+  nome: string;
+  ativo: boolean;
+  
+  constructor(
+    private fb: FormBuilder,
+    private anticoagulanteService: AnticoagulanteService) { }
+    
+    situacaoExame = SituacaoExame;
+    
+    ngOnInit(): void {}
+    
+    cadastrar(){
 
+      let cadastro: Anticoagulante = {
+        nome: this.nome,
+        ativo: this.ativo
+      };
 
-  ngOnInit(): void {
+      
+      this.anticoagulanteService.cadastrarAnticoagulante(cadastro).subscribe();
+      this.limparFormulario();
+    }
+    
+    limparFormulario() {
+      this.nome = null;
+      this.ativo = null;
+    }
+    
+    validarFormulario() {
+      if(this.nome && this.ativo)
+      return true;
+    }
+    
   }
 
-}
