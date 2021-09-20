@@ -11,9 +11,15 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -96,7 +102,7 @@ public class PessoaService {
     /**
      * Search for the pessoa corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -107,7 +113,18 @@ public class PessoaService {
             .map(pessoaMapper::toDto);
     }
 
-    public Page<PessoaCadastrada> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
-        return pessoaRepository.findPessoasCadastradas(nome.toUpperCase(), pageable);
+//    public Page<PessoaCadastrada> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
+//        return pessoaRepository.findPessoasCadastradas(nome.toUpperCase(), pageable);
+//    }
+
+    private static EntityManagerFactory entityManagerFactory =
+        Persistence.createEntityManagerFactory("pessoas");
+
+    public List<PessoaCadastrada> buscarPessoasCadastradas(@Param("nome") String nome) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        Query query = em.createQuery("select p.id, p.codigo, p.nome from Pessoa p where upper(p.nome) like '%:nome%' and (not (exists(select 1 from Servidor s where p.id = s.pessoa.id)))");
+        List<PessoaCadastrada> resultList = query.getResultList();
+        em.close();
+        return resultList;
     }
 }

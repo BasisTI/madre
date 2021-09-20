@@ -1,5 +1,6 @@
 package br.com.basis.madre.seguranca.web.rest;
 
+import br.com.basis.madre.seguranca.domain.Pessoa;
 import br.com.basis.madre.seguranca.service.PessoaService;
 import br.com.basis.madre.seguranca.service.projection.PessoaCadastrada;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -152,7 +153,7 @@ public class PessoaResource {
     }
 
     @GetMapping("/pessoas/cadastradas")
-    public ResponseEntity<Page<PessoaCadastrada>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome, Pageable pageable) {
-        return ResponseEntity.ok(pessoaService.findAllProjectedPessoaResumoBy(nome,pageable));
+    public ResponseEntity<List<PessoaCadastrada>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome) {
+        return ResponseEntity.ok(pessoaService.buscarPessoasCadastradas(nome));
     }
 }

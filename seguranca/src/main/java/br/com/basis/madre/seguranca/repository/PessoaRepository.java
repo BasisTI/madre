@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
-    @Query(value = "select * from pessoa p where upper(p.nome) like %:nome% and (not (exists(select 1 from servidor s where p.id = s.pessoa_id)))", nativeQuery = true)
-    Page<PessoaCadastrada> findPessoasCadastradas(@Param("nome") String nome, Pageable pageable);
+//    @Query(value = "select * from pessoa p where upper(p.nome) like %:nome% and (not (exists(select 1 from servidor s where p.id = s.pessoa_id)))", nativeQuery = true)
+//    Page<PessoaCadastrada> findPessoasCadastradas(@Param("nome") String nome, Pageable pageable);
+
 }
