@@ -21,6 +21,7 @@ import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
+import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { MaterialExamesComponent } from './components/material-exames/material-e
         SinonimosExamesComponent,
         ExamesFormComponent,
         ListarSolicitacoesComponent,
-        MaterialExamesComponent
+        MaterialExamesComponent,
+        AntiCoagulanteComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

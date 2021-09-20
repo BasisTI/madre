@@ -8,6 +8,7 @@ import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
+import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
 
 export const routes: Routes = [
     {
@@ -33,6 +34,10 @@ export const routes: Routes = [
     {
         path: 'cadastrar-material',
         component: CadastrarMaterialComponent,
+    },
+    {
+        path: 'anticoagulante',
+        component: AntiCoagulanteComponent,
     },
     {
         path: 'manter-grade-agendamento',
