@@ -1,15 +1,13 @@
 package br.com.basis.madre.madreexames.config;
 
+import br.gov.nuvem.comum.microsservico.config.SecurityConfigurationComum;
+import br.gov.nuvem.security.jwt.web.TokenProvider;
+import br.gov.nuvem.security.jwt.web.TokenResolver;
+import br.gov.nuvem.security.sso.config.AuthoritiesConstants;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
-
-import br.gov.nuvem.comum.microsservico.config.SecurityConfigurationComum;
-
-import br.gov.nuvem.security.jwt.web.TokenProvider;
-import br.gov.nuvem.security.jwt.web.TokenResolver;
-import br.gov.nuvem.security.sso.config.AuthoritiesConstants;
 
 @Configuration
 public class SecurityConfiguration extends SecurityConfigurationComum {

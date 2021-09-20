@@ -1,6 +1,5 @@
 package br.com.basis.madre.madreexames.service;
 
-import br.com.basis.madre.madreexames.domain.SolicitacaoExame;
 import br.com.basis.madre.madreexames.repository.SolicitacaoExameRepository;
 import br.com.basis.madre.madreexames.service.dto.SolicitacaoExameDTO;
 import lombok.RequiredArgsConstructor;

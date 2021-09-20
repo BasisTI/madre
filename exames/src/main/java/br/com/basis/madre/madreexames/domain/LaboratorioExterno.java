@@ -1,17 +1,22 @@
 package br.com.basis.madre.madreexames.domain;
 
+import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
+import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
+import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-
-import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
 
 /**
  * A LaboratorioExterno.
@@ -19,8 +24,8 @@ import br.com.basis.madre.madreexames.domain.enumeration.FormaEnvio;
 @Entity
 @Table(name = "laboratorio_externo")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "laboratorioexterno")
-public class LaboratorioExterno implements Serializable {
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-laboratorioexterno")
+public class LaboratorioExterno extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,14 +33,6 @@ public class LaboratorioExterno implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqLaboratorioExterno")
     @SequenceGenerator(name = "seqLaboratorioExterno")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private Integer codigo;
-
-    @NotNull
-    @Column(name = "nome", nullable = false)
-    private String nome;
 
     @NotNull
     @Column(name = "sigla", nullable = false)
@@ -94,30 +91,14 @@ public class LaboratorioExterno implements Serializable {
         this.id = id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public LaboratorioExterno codigo(Integer codigo) {
-        this.codigo = codigo;
+        this.setCodigo(codigo);
         return this;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public LaboratorioExterno nome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
         return this;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getSigla() {

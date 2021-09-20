@@ -1,10 +1,10 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.*;
+import br.com.basis.madre.madreexames.domain.AtendimentoDiverso;
 import br.com.basis.madre.madreexames.service.dto.AtendimentoDiversoDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link AtendimentoDiverso} and its DTO {@link AtendimentoDiversoDTO}.

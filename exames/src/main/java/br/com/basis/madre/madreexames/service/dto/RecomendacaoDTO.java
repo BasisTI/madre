@@ -1,9 +1,10 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import br.com.basis.madre.madreexames.domain.enumeration.Abrangencia;
+import br.com.basis.madre.madreexames.domain.enumeration.Responsavel;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.Responsavel;
-import br.com.basis.madre.madreexames.domain.enumeration.Abrangencia;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Recomendacao} entity.

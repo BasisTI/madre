@@ -6,15 +6,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Material} entity.
  */
-public class MaterialDTO implements Serializable {
-
-    private Long id;
-
-    @NotNull
-    private String nome;
-
-    @NotNull
-    private Boolean ativo;
+public class MaterialDTO extends DominioAtivo implements Serializable {
 
     @NotNull
     private Boolean coletavel;
@@ -24,31 +16,6 @@ public class MaterialDTO implements Serializable {
 
     @NotNull
     private Boolean urina;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
 
     public Boolean isColetavel() {
         return coletavel;
@@ -83,7 +50,7 @@ public class MaterialDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((MaterialDTO) o).id);
+        return getId() != null && getId().equals(((MaterialDTO) o).getId());
     }
 
     @Override

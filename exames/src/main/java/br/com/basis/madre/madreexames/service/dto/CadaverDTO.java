@@ -1,24 +1,17 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import java.time.LocalDate;
+import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
+import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
+import br.com.basis.madre.madreexames.domain.enumeration.Raca;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import br.com.basis.madre.madreexames.domain.enumeration.Raca;
-import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
+import java.time.LocalDate;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Cadaver} entity.
  */
-public class CadaverDTO implements Serializable {
-
-    private Long id;
-
-    @NotNull
-    private Integer codigo;
-
-    @NotNull
-    private String nome;
+public class CadaverDTO extends DominioCodigo implements Serializable {
 
     @NotNull
     private LocalDate dataNascimento;
@@ -52,31 +45,6 @@ public class CadaverDTO implements Serializable {
 
     @NotNull
     private String observacao;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
@@ -183,7 +151,7 @@ public class CadaverDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((CadaverDTO) o).id);
+        return getId() != null && getId().equals(((CadaverDTO) o).getId());
     }
 
     @Override

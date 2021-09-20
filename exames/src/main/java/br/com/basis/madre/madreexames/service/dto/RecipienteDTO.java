@@ -6,35 +6,13 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Recipiente} entity.
  */
-public class RecipienteDTO implements Serializable {
-
-    private Long id;
-
-    @NotNull
-    private String nome;
+public class RecipienteDTO extends DominioIdNome implements Serializable {
 
     @NotNull
     private Boolean anticoagulante;
 
     @NotNull
     private Boolean ativo;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public Boolean isAnticoagulante() {
         return anticoagulante;
@@ -61,7 +39,7 @@ public class RecipienteDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((RecipienteDTO) o).id);
+        return getId() != null && getId().equals(((RecipienteDTO) o).getId());
     }
 
     @Override

@@ -1,45 +1,11 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Anticoagulante} entity.
  */
-public class AnticoagulanteDTO implements Serializable {
-
-    private Long id;
-
-    @NotNull
-    private String nome;
-
-    @NotNull
-    private Boolean ativo;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
+public class AnticoagulanteDTO extends DominioAtivo implements Serializable {
 
     @Override
     public boolean equals(Object o) {
@@ -50,7 +16,7 @@ public class AnticoagulanteDTO implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((AnticoagulanteDTO) o).id);
+        return getId() != null && getId().equals(((AnticoagulanteDTO) o).getId());
     }
 
     @Override

@@ -1,7 +1,7 @@
 import { Sinonimos } from './../../models/subjects/sinonimos';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SituacaoExame } from "../../models/dropdowns/situacao.dropdown";
+import { SituacaoAtivo } from "../../models/dropdowns/situacao.dropdown";
 import { SinonimosExamesService } from "../../services/sinonimo-exames.service";
 import { ExamesService } from "../../services//exames.service";
 import { ExamModel } from '../../models/subjects/exames-model';
@@ -18,7 +18,7 @@ export class SinonimosExamesComponent implements OnInit {
   @Input() formGroup: FormGroup;
   sinonimos: Sinonimos[];
   exames: ExamModel[] = [];
-  situacaoExame = SituacaoExame; 
+  situacaoExame = SituacaoAtivo; 
   cadastroSinonimoExames :FormGroup;
   searchUrl = '/madreexames/api/sinonimos';
   

@@ -1,17 +1,23 @@
 package br.com.basis.madre.madreexames.domain;
 
+import br.com.basis.madre.madreexames.domain.enumeration.Situacao;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import br.com.basis.madre.madreexames.domain.enumeration.Situacao;
 
 /**
  * A ItemSolicitacaoExame.
@@ -19,7 +25,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.Situacao;
 @Entity
 @Table(name = "item_solicitacao_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "itemsolicitacaoexame")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-itemsolicitacaoexame")
 public class ItemSolicitacaoExame implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,7 +50,7 @@ public class ItemSolicitacaoExame implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "itemSolicitacaoExames", allowSetters = true)
-    private Exame itemSolicitacaoExame;
+    private Exame exame;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "solicitacaoExames", allowSetters = true)
@@ -98,17 +104,17 @@ public class ItemSolicitacaoExame implements Serializable {
         this.situacao = situacao;
     }
 
-    public Exame getItemSolicitacaoExame() {
-        return itemSolicitacaoExame;
+    public Exame getExame() {
+        return exame;
     }
 
     public ItemSolicitacaoExame itemSolicitacaoExame(Exame exame) {
-        this.itemSolicitacaoExame = exame;
+        this.exame = exame;
         return this;
     }
 
-    public void setItemSolicitacaoExame(Exame exame) {
-        this.itemSolicitacaoExame = exame;
+    public void setExame(Exame exame) {
+        this.exame = exame;
     }
 
     public SolicitacaoExame getSolicitacaoExame() {
