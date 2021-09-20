@@ -34,7 +34,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.GrauDeInstrucao;
 @Entity
 @Table(name = "pessoa")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "pessoa")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-seguranca-pessoa")
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
