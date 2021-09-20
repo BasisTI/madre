@@ -257,6 +257,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
+                        },
+                        {
+                            label: 'Anticoagulante',
+                            icon: 'add',
+                            routerLink: ['exames/anticoagulante'],
                         }
                     ]
                 },
