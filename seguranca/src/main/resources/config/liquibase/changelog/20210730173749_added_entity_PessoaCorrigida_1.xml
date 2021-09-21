@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20210730173749-2" author="alexandre">
+
+        <dropForeignKeyConstraint baseColumnNames="documenetos_id"
+                                  baseTableName="pessoa"
+                                  constraintName="fk_pessoa_documenetos_id"
+                                  referencedColumnNames="id"
+                                  referencedTableName="documentos"/>
+
+        <dropColumn tableName="pessoa">
+            <column name="documenetos_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_pessoa_documenetos_id" />
+            </column>
+        </dropColumn>
+
+    </changeSet>
+
+    <changeSet id="20210730173749-1" author="alexandre">
+
+        <addColumn tableName="pessoa">
+            <column name="documentos_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_pessoa_documentos_id" />
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="documentos_id"
+                                 baseTableName="pessoa"
+                                 constraintName="fk_pessoa_documentos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="documentos"/>
+
+    </changeSet>
+
+
+
+
+</databaseChangeLog>

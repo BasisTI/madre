@@ -56,8 +56,8 @@ public class CadaverResourceIT {
     private static final LocalDate DEFAULT_DATA_NASCIMENTO = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATA_NASCIMENTO = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Raca DEFAULT_RACA = Raca.Branca;
-    private static final Raca UPDATED_RACA = Raca.Preta;
+    private static final Raca DEFAULT_RACA = Raca.BRANCA;
+    private static final Raca UPDATED_RACA = Raca.PRETA;
 
     private static final GrupoSanguineo DEFAULT_GRUPO_SANGUINEO = GrupoSanguineo.O;
     private static final GrupoSanguineo UPDATED_GRUPO_SANGUINEO = GrupoSanguineo.A;
@@ -83,8 +83,8 @@ public class CadaverResourceIT {
     private static final String DEFAULT_CODIGO_PLANO = "AAAAAAAAAA";
     private static final String UPDATED_CODIGO_PLANO = "BBBBBBBBBB";
 
-    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_internacao;
-    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_planoAmbulatorio;
+    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_INTERNACAO;
+    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_PLANO_AMBULATORIO;
 
     private static final String DEFAULT_OBSERVACAO = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACAO = "BBBBBBBBBB";
@@ -472,7 +472,7 @@ public class CadaverResourceIT {
             .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
-    
+
     @Test
     @Transactional
     public void getCadaver() throws Exception {

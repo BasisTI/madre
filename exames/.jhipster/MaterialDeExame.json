@@ -4,12 +4,16 @@
     {
       "fieldName": "nome",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "ativo",
       "fieldType": "Boolean",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "npo",
@@ -90,12 +94,16 @@
     {
       "fieldName": "natureza",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "sumario",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "tempoJejum",
@@ -156,7 +164,9 @@
     {
       "fieldName": "permiteSolicitacaoPosAlta",
       "fieldType": "Boolean",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "tempoPermitidoParaSolicitarPosAlta",
@@ -181,10 +191,11 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "amostraDeMaterial",
       "otherEntityRelationshipName": "materialDeExame",
-      "relationshipName": "amostra"
+      "relationshipName": "amostra",
+      "otherEntityField": "nome"
     },
     {
       "relationshipType": "many-to-one",

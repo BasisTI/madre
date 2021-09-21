@@ -117,7 +117,51 @@ codigo Integer required
 agendarEmConjunto Boolean
 calcularOcupacao Boolean
 ativo Boolean required
+}
 
+entity GradeDeAgendamento {
+unidadeExecutoraId Integer required
+responsavelId Integer
+ativo Boolean required
+}
+
+entity HorarioAgendado {
+horaInicio Instant required
+horaFim Instant
+numeroDeHorarios Integer
+dia Dia required
+duracao Duration required
+ativo Boolean required
+exclusivo Boolean required
+}
+
+entity HorarioLivre {
+dataHoraInicio LocalDate required
+dataHoraFim LocalDate required
+ocupado Boolean required
+}
+
+entity Sala {
+codigoDaSala Integer required
+identificacaoDaSala String required
+locacaoDaSala String required
+ativo Boolean required
+unidadeExecutoraId Integer
+}
+
+entity TipoDeMarcacao {
+tipoDeMarcacaoNome String
+ativo Boolean required
+}
+
+enum Dia {
+DOMINGO,
+SEGUNDA_FEIRA,
+TERCA_FEIRA,
+QUARTA_FEIRA,
+QUINTA_FEIRA,
+SEXTA_FEIRA,
+SABADO
 }
 
 enum OrigemTipoAmostra {
@@ -143,10 +187,19 @@ enum UnidadeDeMedida {
 relationship OneToMany {
 Material{material(nome)} to Recomendacao,
 SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
-MaterialDeExame{amostra(nome)} to AmostraDeMaterial
+GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
+HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
 }
 
 relationship ManyToOne {
+GradeDeAgendamento{exameGrade(nome)} to Exame
+GradeDeAgendamento{grupoGrade(nome)} to GrupoAgendamentoExame
+GradeDeAgendamento{salaGrade(identificacaoDaSala)} to Sala
+HorarioAgendado{tipoHorario(tipoDeMarcacao)} to TipoDeMarcacao
+}
+
+relationship ManyToOne {
+MaterialDeExame{amostra(nome)} to AmostraDeMaterial
 MaterialDeExame{material(nome)} to Material,
 Exame{materialExame(nome)} to MaterialDeExame,
 Sinonimo{sinonimo(nome)} to Exame,

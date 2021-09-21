@@ -82,7 +82,7 @@ import { ExamesModule } from './exames/exames.module';
             useClass: HashLocationStrategy,
         },
         PrescricaoMedicaService,
-    ],
+    ], 
     bootstrap: [AppComponent],
 })
 export class AppModule {}

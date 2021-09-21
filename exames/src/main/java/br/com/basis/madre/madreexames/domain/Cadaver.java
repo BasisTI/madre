@@ -3,6 +3,7 @@ package br.com.basis.madre.madreexames.domain;
 import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
 import br.com.basis.madre.madreexames.domain.enumeration.Raca;
+import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -25,7 +26,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "cadaver")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "cadaver")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-cadaver")
 public class Cadaver extends DomainCodigo implements Serializable {
 
     private static final long serialVersionUID = 1L;

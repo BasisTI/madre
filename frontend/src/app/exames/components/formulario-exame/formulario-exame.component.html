@@ -33,7 +33,7 @@
                         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-dropdown [(ngModel)]="materialSelecionado" [options]="materiais" [optionLabel]="'nome'"
                                 [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                                pTooltip="Selecione o material">
+                                pTooltip="Selecione o material" placeholder="Selecione">
                             </p-dropdown>
                         </span>
                     </div>
@@ -43,17 +43,15 @@
                         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                             <p-dropdown [(ngModel)]="amostraSelecionada" [options]="amostras" [optionLabel]="'nome'"
                                 [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                                pTooltip="Selecione o tipo de amostra">
+                                pTooltip="Selecione o tipo de amostra" placeholder="Selecione">
                             </p-dropdown>
                         </span>
                     </div>
 
                     <div class="p-md-2 p-col-12" [formGroup]="cadastrarExame">
                         <label for="situacao">Situação:</label>
-                        <p-dropdown placeholder="Selecione" [options]="situacao" formControlName="ativo"></p-dropdown>
+                        <p-dropdown placeholder="Selecione" [options]="situacaoExame" formControlName="ativo"></p-dropdown>
                     </div>
-
-
                 </div>
 
 

@@ -12,13 +12,13 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {DocumentosMapper.class, CargoMapper.class})
 public interface PessoaMapper extends EntityMapper<PessoaDTO, Pessoa> {
 
-    @Mapping(source = "documenetos.id", target = "documenetosId")
-    @Mapping(source = "documenetos.numeroDaIdentidade", target = "documenetosNumeroDaIdentidade")
+    @Mapping(source = "documentos.id", target = "documentosId")
+    @Mapping(source = "documentos.numeroDaIdentidade", target = "documentosNumeroDaIdentidade")
     @Mapping(source = "cargo.id", target = "cargoId")
     @Mapping(source = "cargo.descricao", target = "cargoDescricao")
     PessoaDTO toDto(Pessoa pessoa);
 
-    @Mapping(source = "documenetosId", target = "documenetos")
+    @Mapping(source = "documentosId", target = "documentos")
     @Mapping(source = "cargoId", target = "cargo")
     @Mapping(target = "enderecos", ignore = true)
     @Mapping(target = "removeEndereco", ignore = true)

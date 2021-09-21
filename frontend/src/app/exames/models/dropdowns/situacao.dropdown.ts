@@ -1,12 +1,12 @@
 import { OpcaoDropdown } from '@shared/dropdown/opcao.dropdown';
 
-export const SituacaoExame: OpcaoDropdown[] = [
+export const SituacaoAtivo: OpcaoDropdown[] = [
     {
         label: 'Ativo',
         value: 'true',
     },
     {
-        label: 'inativo',
+        label: 'Inativo',
         value: 'false',
     }
 ];
