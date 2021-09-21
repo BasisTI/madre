@@ -1,21 +1,19 @@
 package br.com.basis.madre.seguranca.web.rest;
 
-import br.com.basis.madre.seguranca.domain.Pessoa;
 import br.com.basis.madre.seguranca.service.PessoaService;
-import br.com.basis.madre.seguranca.service.projection.PessoaCadastrada;
-import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
-
+import br.com.basis.madre.seguranca.service.dto.PessoasNaoCadastradasDTO;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,15 +24,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.http.ResponseEntity;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.seguranca.domain.Pessoa}.
@@ -152,8 +147,8 @@ public class PessoaResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/pessoas/cadastradas")
-    public ResponseEntity<List<PessoaCadastrada>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome) {
-        return ResponseEntity.ok(pessoaService.buscarPessoasCadastradas(nome));
+    @GetMapping("/pessoas/nao-cadastradas")
+    public ResponseEntity<Page<PessoasNaoCadastradasDTO>> findAllProjectedPessoaResumoBy(@RequestParam(required = false,defaultValue = "") String nome, Pageable pageable) {
+        return ResponseEntity.ok(pessoaService.findAllProjectedPessoaResumoBy(nome, pageable));
     }
 }
