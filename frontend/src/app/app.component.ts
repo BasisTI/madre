@@ -228,6 +228,14 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             label: 'Materiais de Análise',
                                             icon: 'add',
                                             routerLink: ['exames/cadastrar-material'],
+<<<<<<< HEAD
+                                        },
+                                        {
+                                            label: 'Recipiente',
+                                            icon: 'add',
+                                            routerLink: ['exames/cadastrar-recipiente'],
+=======
+>>>>>>> origin/master
                                         }
                                     ]
                                 }
@@ -356,7 +364,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
-                        
+
                     ],
                 },
                 {
@@ -385,7 +393,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         },
                     ],
                 },
-                
+
             ]}
 
         ];
