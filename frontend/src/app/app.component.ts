@@ -214,6 +214,31 @@ export class AppComponent implements AfterViewInit, OnInit {
                     icon: 'icon-exames',
                     items: [
                         {
+                            label: 'Gestão',
+                            items: [
+                                {
+                                    label: 'Cadastros',
+                                    items: [
+                                        {
+                                            label: 'Exames',
+                                            icon: 'add',
+                                            routerLink: ['exames/formulario-exame']
+                                        },
+                                        {
+                                            label: 'Materiais de Análise',
+                                            icon: 'add',
+                                            routerLink: ['exames/cadastrar-material'],
+                                        },
+                                        {
+                                            label: 'Recipiente',
+                                            icon: 'add',
+                                            routerLink: ['exames/cadastrar-recipiente'],
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
                             label: 'Atendimento Diverso',
                             icon: 'add',
                             routerLink: ['exames/atendimento-diverso'],
@@ -224,9 +249,9 @@ export class AppComponent implements AfterViewInit, OnInit {
                             routerLink: ['exames/pesquisar-atendimento'],
                         },
                         {
-                            label: 'Cadastrar Exame',
+                            label: 'Grades de Agendamento de Exames',
                             icon: 'add',
-                            routerLink: ['exames/formulario-exame']
+                            routerLink: ['listar-grade-exame']
                         },
                         {
                             label: 'Listar Solicitações',
@@ -237,6 +262,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
+                        },
+                        {
+                            label: 'Anticoagulante',
+                            icon: 'add',
+                            routerLink: ['exames/anticoagulante'],
                         }
                     ]
                 },
@@ -331,7 +361,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
-                        
+
                     ],
                 },
                 {
@@ -360,7 +390,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         },
                     ],
                 },
-                
+
             ]}
 
         ];

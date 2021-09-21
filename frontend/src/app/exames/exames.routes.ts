@@ -7,6 +7,7 @@ import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/li
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
+import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
 
 export const routes: Routes = [
     {
@@ -32,5 +33,9 @@ export const routes: Routes = [
     {
         path: 'cadastrar-material',
         component: CadastrarMaterialComponent,
+    },
+    {
+        path: 'cadastrar-recipiente',
+        component: CadastrarRecipientesComponent,
     }
 ];
