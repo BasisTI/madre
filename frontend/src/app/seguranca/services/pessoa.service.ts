@@ -22,7 +22,7 @@ export class PessoaService {
   
   getResultPessoas(event): Observable<Pageable<ListaPessoasServidor>> {
     return this.client.get<Pageable<ListaPessoasServidor>>(
-      `${this.resource}/cadastradas`,
+      `${this.resource}/nao-cadastradas`,
       {
         params: new HttpParams().set('nome', event).set('sort', 'nome'),
       },
