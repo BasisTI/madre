@@ -8,11 +8,8 @@ import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
-<<<<<<< HEAD
 import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
-=======
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
->>>>>>> origin/master
 
 export const routes: Routes = [
     {
@@ -40,10 +37,10 @@ export const routes: Routes = [
         component: CadastrarMaterialComponent,
     },
     {
-<<<<<<< HEAD
         path: 'cadastrar-recipiente',
         component: CadastrarRecipientesComponent,
-=======
+    },
+    {
         path: 'anticoagulante',
         component: AntiCoagulanteComponent,
     },
@@ -58,6 +55,5 @@ export const routes: Routes = [
     {
         path: 'listar-horarios-agendados',
         component: TabelaHorariosAgendadosComponent
->>>>>>> origin/master
     }
 ];

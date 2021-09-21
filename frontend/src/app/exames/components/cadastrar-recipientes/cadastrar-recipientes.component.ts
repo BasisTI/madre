@@ -1,6 +1,6 @@
+import { SituacaoAtivo } from './../../models/dropdowns/situacao.dropdown';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Anticoagulante } from './../../models/subjects/anticoagulante';
-import { SituacaoExame } from './../../models/dropdowns/situacao.dropdown';
 import { RecipienteI } from './../../models/subjects/recipiente';
 import { CadastrarRecepienteService } from './../../services/cadastrar-recipientes.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,10 +17,10 @@ export class CadastrarRecipientesComponent implements OnInit {
     anticoagulante: Anticoagulante;
     ativo: boolean;
 
-  constructor(private fb: FormBuilder,
-              private recipienteService: CadastrarRecepienteService) { }
+    constructor(private fb: FormBuilder,
+                private recipienteService: CadastrarRecepienteService) { }
 
-    situacao = SituacaoExame;
+    situacao = SituacaoAtivo;
 
     cadastrarRecipiente = this.fb.group({
         nome: [null, Validators.required],
