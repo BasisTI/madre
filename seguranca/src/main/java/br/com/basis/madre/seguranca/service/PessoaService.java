@@ -4,8 +4,9 @@ import br.com.basis.madre.seguranca.domain.Pessoa;
 import br.com.basis.madre.seguranca.repository.PessoaRepository;
 import br.com.basis.madre.seguranca.repository.search.PessoaSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
+import br.com.basis.madre.seguranca.service.dto.PessoasNaoCadastradasDTO;
 import br.com.basis.madre.seguranca.service.mapper.PessoaMapper;
-import br.com.basis.madre.seguranca.service.projection.PessoaResumo;
+import br.com.basis.madre.seguranca.service.mapper.PessoasNaoCadastradasMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.Optional;
 
@@ -31,12 +33,15 @@ public class PessoaService {
 
     private final PessoaMapper pessoaMapper;
 
+    private final PessoasNaoCadastradasMapper pessoasNaoCadastradasMapper;
+
     private final PessoaSearchRepository pessoaSearchRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper, PessoaSearchRepository pessoaSearchRepository) {
+    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper, PessoaSearchRepository pessoaSearchRepository, PessoasNaoCadastradasMapper pessoasNaoCadastradasMapper) {
         this.pessoaRepository = pessoaRepository;
         this.pessoaMapper = pessoaMapper;
         this.pessoaSearchRepository = pessoaSearchRepository;
+        this.pessoasNaoCadastradasMapper = pessoasNaoCadastradasMapper;
     }
 
     /**
@@ -95,7 +100,7 @@ public class PessoaService {
     /**
      * Search for the pessoa corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -106,7 +111,9 @@ public class PessoaService {
             .map(pessoaMapper::toDto);
     }
 
-    public Page<PessoaResumo> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
-        return pessoaRepository.findAllProjectedPessoaResumoByNomeContainingIgnoreCase(nome, pageable);
+    public Page<PessoasNaoCadastradasDTO> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
+        return pessoaRepository.buscarPessoasCadastradas(nome.toUpperCase(), pageable)
+            .map(pessoasNaoCadastradasMapper::toDto);
     }
+
 }

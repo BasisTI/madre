@@ -10,7 +10,15 @@ import br.com.basis.madre.seguranca.domain.enumeration.GrauDeInstrucao;
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Pessoa} entity.
  */
-public class PessoaDTO extends DominioComNome implements Serializable {
+public class PessoaDTO implements Serializable {
+
+    private Long id;
+
+    @NotNull
+    private Integer codigo;
+
+    @NotNull
+    private String nome;
 
     @NotNull
     private String nomeDaMae;
@@ -35,8 +43,8 @@ public class PessoaDTO extends DominioComNome implements Serializable {
 
     private String nomeUsual;
 
-    private String email;
 
+    private String email;
 
     private Long documentosId;
 
@@ -45,6 +53,30 @@ public class PessoaDTO extends DominioComNome implements Serializable {
     private Long cargoId;
 
     private String cargoDescricao;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public String getNomeDaMae() {
         return nomeDaMae;

@@ -9,5 +9,4 @@ public interface VinculoResumo {
     String getDescricao();
     Long getMatricula();
     Long getCodigo();
-
 }
