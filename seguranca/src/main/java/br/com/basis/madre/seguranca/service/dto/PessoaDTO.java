@@ -1,7 +1,7 @@
 package br.com.basis.madre.seguranca.service.dto;
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import br.com.basis.madre.seguranca.domain.enumeration.Sexo;
 import br.com.basis.madre.seguranca.domain.enumeration.EstadoCivil;
@@ -11,7 +11,7 @@ import br.com.basis.madre.seguranca.domain.enumeration.GrauDeInstrucao;
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Pessoa} entity.
  */
 public class PessoaDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -43,7 +43,7 @@ public class PessoaDTO implements Serializable {
 
     private String nomeUsual;
 
-    
+
     private String email;
 
     private Long documentosId;
@@ -53,7 +53,7 @@ public class PessoaDTO implements Serializable {
     private Long cargoId;
 
     private String cargoDescricao;
-    
+
     public Long getId() {
         return id;
     }

@@ -1,16 +1,17 @@
 package br.com.basis.madre.seguranca.service.mapper;
 
 
-import br.com.basis.madre.seguranca.domain.*;
+import br.com.basis.madre.seguranca.domain.Pessoa;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
 
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Pessoa} and its DTO {@link PessoaDTO}.
  */
 @Mapper(componentModel = "spring", uses = {DocumentosMapper.class, CargoMapper.class})
-public interface PessoaMapper extends EntityMapper<PessoaDTO, Pessoa> {
+public interface  PessoaMapper extends EntityMapper<PessoaDTO, Pessoa> {
 
     @Mapping(source = "documentos.id", target = "documentosId")
     @Mapping(source = "documentos.numeroDaIdentidade", target = "documentosNumeroDaIdentidade")

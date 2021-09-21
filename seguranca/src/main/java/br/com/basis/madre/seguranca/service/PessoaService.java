@@ -3,24 +3,18 @@ package br.com.basis.madre.seguranca.service;
 import br.com.basis.madre.seguranca.domain.Pessoa;
 import br.com.basis.madre.seguranca.repository.PessoaRepository;
 import br.com.basis.madre.seguranca.repository.search.PessoaSearchRepository;
+import br.com.basis.madre.seguranca.service.dto.PessoaCadastradaDTO;
 import br.com.basis.madre.seguranca.service.dto.PessoaDTO;
+import br.com.basis.madre.seguranca.service.mapper.PessoaCadastradaMapper;
 import br.com.basis.madre.seguranca.service.mapper.PessoaMapper;
-import br.com.basis.madre.seguranca.service.projection.PessoaCadastrada;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -38,12 +32,15 @@ public class PessoaService {
 
     private final PessoaMapper pessoaMapper;
 
+    private final PessoaCadastradaMapper pessoaCadastradaMapper;
+
     private final PessoaSearchRepository pessoaSearchRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper, PessoaSearchRepository pessoaSearchRepository) {
+    public PessoaService(PessoaRepository pessoaRepository, PessoaMapper pessoaMapper, PessoaSearchRepository pessoaSearchRepository, PessoaCadastradaMapper pessoaCadastradaMapper) {
         this.pessoaRepository = pessoaRepository;
         this.pessoaMapper = pessoaMapper;
         this.pessoaSearchRepository = pessoaSearchRepository;
+        this.pessoaCadastradaMapper = pessoaCadastradaMapper;
     }
 
     /**
@@ -113,18 +110,7 @@ public class PessoaService {
             .map(pessoaMapper::toDto);
     }
 
-//    public Page<PessoaCadastrada> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
-//        return pessoaRepository.findPessoasCadastradas(nome.toUpperCase(), pageable);
-//    }
-
-    private static EntityManagerFactory entityManagerFactory =
-        Persistence.createEntityManagerFactory("pessoas");
-
-    public List<PessoaCadastrada> buscarPessoasCadastradas(@Param("nome") String nome) {
-        EntityManager em = entityManagerFactory.createEntityManager();
-        Query query = em.createQuery("select p.id, p.codigo, p.nome from Pessoa p where upper(p.nome) like '%:nome%' and (not (exists(select 1 from Servidor s where p.id = s.pessoa.id)))");
-        List<PessoaCadastrada> resultList = query.getResultList();
-        em.close();
-        return resultList;
+    public Page<PessoaCadastradaDTO> findAllProjectedPessoaResumoBy(String nome, Pageable pageable) {
+        return pessoaRepository.buscarPessoasCadastradas(nome.toUpperCase(), pageable ).map(pessoaCadastradaMapper::toDto);
     }
 }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public interface PessoaCadastrada {
     Long getId();
+    Integer getCodigo();
     String getNome();
-    Long getCodigo();
+
 }
