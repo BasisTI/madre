@@ -10,18 +10,7 @@
                             <input type="number"  class="codigo p-inputtext" [(ngModel)]="codigoDaSala"/>
                         </span>
                     </div>
-                    <div class="p-md-4 p-col-12">   
-                        <label for="name">Unidade Executora</label>
-                        <span class="md-inputfield p-float-label">
-                            <p-dropdown
-                            pTooltip="Informe a Unidade Executora"
-                            [filter]="true"
-                            [resetFilterOnHide]="true" 
-                            placeholder="Unidade Executora"
-                            
-                            ></p-dropdown>
-                        </span>
-                    </div>
+                    <app-unidade-funcional #unidadeFuncional></app-unidade-funcional>
                 </div>
                 <div class="p-col-12 p-grid">
                     <div class="p-md-2 p-col-12">

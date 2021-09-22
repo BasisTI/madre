@@ -1,5 +1,5 @@
-import { Component, OnInit, ModuleWithProviders } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UnidadeFuncionalComponent } from './../../../shared/components/unidade-funcional/unidade-funcional.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SalasService } from '../../services/salas.service';
 import { Sala } from '../../models/subjects/sala';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
@@ -14,10 +14,12 @@ export class FormularioSalasComponent implements OnInit {
   codigoDaSala: number;
   identificacaoDaSala: string;
   localizacaoDaSala: string;
-  ativo: boolean; 
+  ativo: boolean;
+  
+  @ViewChild(UnidadeFuncionalComponent)
+  unidadeFuncional: UnidadeFuncionalComponent;
 
   constructor(
-    private fb: FormBuilder,
     private salaService: SalasService){ }
 
 
@@ -29,9 +31,11 @@ export class FormularioSalasComponent implements OnInit {
         codigoDaSala: this.codigoDaSala,
         identificacaoDaSala: this.identificacaoDaSala,
         localizacaoDaSala: this.localizacaoDaSala,
-        ativo: this.ativo
+        ativo: this.ativo,
+        unidadeExecutoraId: this.unidadeFuncional.unidadeId,
       };
-
+      
+      this.unidadeFuncional.imprimirId();
 
       this.salaService.cadastrarSala(cadastro).subscribe();
       this.limparSala();
