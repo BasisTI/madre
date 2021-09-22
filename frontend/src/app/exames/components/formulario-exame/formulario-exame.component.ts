@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SituacaoAtivo } from "../../models/dropdowns/situacao.dropdown";
 import { Amostra } from '../../models/subjects/amostra';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Material } from '../../models/subjects/material';
+import { Sinonimos } from '../../models/subjects/sinonimos';
 import { ExamesService } from '../../services/exames.service';
 
 @Component({
@@ -13,11 +14,16 @@ import { ExamesService } from '../../services/exames.service';
 })
 export class FormularioExameComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,
-              private exameService: ExamesService) { }
+  constructor(
+    private fb: FormBuilder,
+    private exameService: ExamesService
+  ) { }
 
   materiais: Material[] = [];
   amostras: Amostra[] = [];
+
+  @Input()
+  listaSinonimos: Sinonimos[];
 
   teste: boolean;
 
@@ -60,7 +66,8 @@ export class FormularioExameComponent implements OnInit {
       ativo: cadastroExame.ativo,
       impressao: cadastroExame.impressao,
       consisteInterfaceamento: cadastroExame.consisteInterfaceamento,
-      anexaDocumentos: cadastroExame.anexaDocumentos
+      anexaDocumentos: cadastroExame.anexaDocumentos,
+      sinonimos: this.listaSinonimos,
     };
 
     console.log(cadastroExame);
@@ -78,6 +85,10 @@ export class FormularioExameComponent implements OnInit {
     this.exameService.getAmostras().subscribe((response) => {
       this.amostras = response;
     });
+  }
+
+  testar() {
+    console.log(this.listaSinonimos);
   }
 
 }

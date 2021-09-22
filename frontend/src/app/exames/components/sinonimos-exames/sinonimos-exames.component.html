@@ -1,4 +1,4 @@
-<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="cadastrar()">  
+<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="adicionar();">  
     <div class="p-col-12 card card-w-title" >
         <h1>Sinônimos de Exames</h1>
               <div id="codigo" >
@@ -25,7 +25,6 @@
                         [disableEdit]="true"
                         [disableDelete]="true"
                     >
-                        <p-column header="Código" field="id"></p-column>
                         <p-column header="Sinônimo" field="nome"></p-column>
                         <p-column header="Situação" field="situacao"></p-column>
                         <p-column header="Ação" field=""></p-column>
@@ -46,8 +45,9 @@
                         </basis-datatable>
                     </div>
         <div class="table">
-        <button pButton type="submit" label="Gravar" icon="ui-icon-search" bTooltip="Gravar Sinônimo de exames." 
-          ></button>
+        <button
+          pButton type="submit" label="Adicionar" icon="ui-icon-search" [disabled]="!valid()" 
+        ></button>
         </div>
     </div>
     </form>
