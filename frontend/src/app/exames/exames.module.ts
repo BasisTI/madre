@@ -22,6 +22,7 @@ import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimo
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
+import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagula
         ListarSolicitacoesComponent,
         MaterialExamesComponent,
         AntiCoagulanteComponent,
+        FormularioSalasComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

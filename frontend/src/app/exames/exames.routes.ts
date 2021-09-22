@@ -9,6 +9,7 @@ import { GradeAgendamentosComponent } from './components/grade-agendamentos/grad
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
+import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 
 export const routes: Routes = [
     {
@@ -50,5 +51,9 @@ export const routes: Routes = [
     {
         path: 'listar-horarios-agendados',
         component: TabelaHorariosAgendadosComponent
+    },
+    {
+        path: 'formulario-salas',
+        component: FormularioSalasComponent
     }
 ];
