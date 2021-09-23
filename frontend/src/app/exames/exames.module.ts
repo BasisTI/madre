@@ -21,6 +21,7 @@ import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
+import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 
@@ -44,6 +45,7 @@ import { FormularioSalasComponent } from './components/formulario-salas/formular
         ExamesFormComponent,
         ListarSolicitacoesComponent,
         MaterialExamesComponent,
+        CadastrarRecipientesComponent,
         AntiCoagulanteComponent,
         FormularioSalasComponent,
     ],

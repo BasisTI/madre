@@ -1,17 +1,14 @@
 package br.com.basis.madre.seguranca.service.dto;
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import br.com.basis.madre.seguranca.domain.enumeration.SituacaoDoServidor;
 import br.com.basis.madre.seguranca.domain.enumeration.TipoDeRemuneracao;
-import lombok.ToString;
 
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Servidor} entity.
  */
-
-@ToString
 public class ServidorDTO implements Serializable {
 
     private Long id;
@@ -59,15 +56,11 @@ public class ServidorDTO implements Serializable {
 
     private String pessoaCodigo;
 
-    private String pessoaNome;
-
-    private Long ramalId;
-
-    private String ramalNumero;
-
     private Long usuarioId;
 
     private String usuarioLogin;
+
+    private Long ramalId;
 
     public Long getId() {
         return id;
@@ -229,28 +222,12 @@ public class ServidorDTO implements Serializable {
         this.pessoaId = pessoaId;
     }
 
-    public String getPessoaNome() {
-        return pessoaNome;
+    public String getPessoaCodigo() {
+        return pessoaCodigo;
     }
 
-    public void setPessoaNome(String pessoaNome) {
-        this.pessoaNome = pessoaNome;
-    }
-
-    public Long getRamalId() {
-        return ramalId;
-    }
-
-    public void setRamalId(Long ramalId) {
-        this.ramalId = ramalId;
-    }
-
-    public String getRamalNumero() {
-        return ramalNumero;
-    }
-
-    public void setRamalNumero(String ramalNumero) {
-        this.ramalNumero = ramalNumero;
+    public void setPessoaCodigo(String pessoaCodigo) {
+        this.pessoaCodigo = pessoaCodigo;
     }
 
     public Long getUsuarioId() {
@@ -269,6 +246,14 @@ public class ServidorDTO implements Serializable {
         this.usuarioLogin = usuarioLogin;
     }
 
+    public Long getRamalId() {
+        return ramalId;
+    }
+
+    public void setRamalId(Long ramalId) {
+        this.ramalId = ramalId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -284,5 +269,36 @@ public class ServidorDTO implements Serializable {
     @Override
     public int hashCode() {
         return 31;
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+        return "ServidorDTO{" +
+            "id=" + getId() +
+            ", codigo=" + getCodigo() +
+            ", matricula='" + getMatricula() + "'" +
+            ", codigoStarh='" + getCodigoStarh() + "'" +
+            ", inicioDoVinculo='" + getInicioDoVinculo() + "'" +
+            ", fimDoVinculo='" + getFimDoVinculo() + "'" +
+            ", situacao='" + isSituacao() + "'" +
+            ", situacaoDoServidor='" + getSituacaoDoServidor() + "'" +
+            ", centroDeAtividadeIdLotacao=" + getCentroDeAtividadeIdLotacao() +
+            ", centroDeAtividadeIdAtuacao=" + getCentroDeAtividadeIdAtuacao() +
+            ", ocupacao='" + getOcupacao() + "'" +
+            ", cargaHoraria='" + getCargaHoraria() + "'" +
+            ", tipoDeRemuneracao='" + getTipoDeRemuneracao() + "'" +
+            ", idade='" + getIdade() + "'" +
+            ", tempoDeContrato='" + getTempoDeContrato() + "'" +
+            ", funcaoDoCracha='" + getFuncaoDoCracha() + "'" +
+            ", chefeDoCentroDeAtividade='" + getChefeDoCentroDeAtividade() + "'" +
+            ", vinculoId=" + getVinculoId() +
+            ", vinculoDescricao='" + getVinculoDescricao() + "'" +
+            ", pessoaId=" + getPessoaId() +
+            ", pessoaCodigo='" + getPessoaCodigo() + "'" +
+            ", usuarioId=" + getUsuarioId() +
+            ", usuarioLogin='" + getUsuarioLogin() + "'" +
+            ", ramalId=" + getRamalId() +
+            "}";
     }
 }

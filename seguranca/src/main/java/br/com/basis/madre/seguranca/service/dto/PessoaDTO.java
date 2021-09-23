@@ -35,8 +35,8 @@ public class PessoaDTO extends DominioComNome implements Serializable {
 
     private String nomeUsual;
 
-    private String email;
 
+    private String email;
 
     private Long documentosId;
 

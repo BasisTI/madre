@@ -3,10 +3,20 @@ package br.com.basis.madre.seguranca.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -289,11 +299,11 @@ public class Pessoa implements Serializable {
     }
 
     public Set<Endereco> getEnderecos() {
-        return enderecos;
+        return new HashSet<>(this.enderecos);
     }
 
     public Pessoa enderecos(Set<Endereco> enderecos) {
-        this.enderecos = enderecos;
+        this.enderecos = new HashSet<>(enderecos);
         return this;
     }
 
@@ -310,15 +320,15 @@ public class Pessoa implements Serializable {
     }
 
     public void setEnderecos(Set<Endereco> enderecos) {
-        this.enderecos = enderecos;
+        this.enderecos = new HashSet<>(enderecos);
     }
 
     public Set<Telefone> getTelefones() {
-        return telefones;
+        return new HashSet<>(this.telefones);
     }
 
     public Pessoa telefones(Set<Telefone> telefones) {
-        this.telefones = telefones;
+        this.telefones = new HashSet<>(telefones);
         return this;
     }
 
@@ -335,7 +345,7 @@ public class Pessoa implements Serializable {
     }
 
     public void setTelefones(Set<Telefone> telefones) {
-        this.telefones = telefones;
+        this.telefones = new HashSet<>(telefones);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
