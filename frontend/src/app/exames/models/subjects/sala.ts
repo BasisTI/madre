@@ -4,7 +4,7 @@ export class Sala {
         public id?: number,
         public codigoDaSala?: number,
         public identificacaoDaSala?: string, 
-        public localizacaoDaSala?: string, 
+        public locacaoDaSala?: string, 
         public ativo?: boolean, 
         public unidadeExecutoraId?: number) {}
 }

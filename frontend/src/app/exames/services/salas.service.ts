@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SalasService {
   
-  private readonly apiUrl = '/madreexames/api/formulario-salas';
+  private readonly apiUrl = '/madreexames/api/salas';
 
   constructor(
     private httpService: HttpClient
