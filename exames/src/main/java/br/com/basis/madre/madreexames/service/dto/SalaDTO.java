@@ -7,10 +7,11 @@ import java.io.Serializable;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Sala} entity.
  */
 public class SalaDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
+    @Min(1)
     private Integer codigoDaSala;
 
     @NotNull
@@ -24,7 +25,7 @@ public class SalaDTO implements Serializable {
 
     private Integer unidadeExecutoraId;
 
-    
+
     public Long getId() {
         return id;
     }
