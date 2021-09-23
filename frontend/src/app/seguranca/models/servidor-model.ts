@@ -40,7 +40,7 @@ export class ServidorModel {
 
         public pessoaId?: number,
 
-        public pessoaCodigo?: string,
+        public pessoaCodigo?: number,
 
         public ramalId?: number,
 
