@@ -3,7 +3,9 @@ package br.com.basis.madre.madreexames.service;
 import br.com.basis.madre.madreexames.domain.Exame;
 import br.com.basis.madre.madreexames.repository.ExameRepository;
 import br.com.basis.madre.madreexames.repository.search.ExameSearchRepository;
+import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
+import br.com.basis.madre.madreexames.service.mapper.ExameCompletoMapper;
 import br.com.basis.madre.madreexames.service.mapper.ExameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,23 +33,26 @@ public class ExameService {
 
     private final ExameSearchRepository exameSearchRepository;
 
-    public ExameService(ExameRepository exameRepository, ExameMapper exameMapper, ExameSearchRepository exameSearchRepository) {
+    private final ExameCompletoMapper exameCompletoMapper;
+
+    public ExameService(ExameRepository exameRepository, ExameMapper exameMapper, ExameSearchRepository exameSearchRepository, ExameCompletoMapper exameCompletoMapper) {
         this.exameRepository = exameRepository;
         this.exameMapper = exameMapper;
         this.exameSearchRepository = exameSearchRepository;
+        this.exameCompletoMapper = exameCompletoMapper;
     }
 
     /**
      * Save a exame.
      *
-     * @param exameDTO the entity to save.
+     * @param exameCompletoDTO the entity to save.
      * @return the persisted entity.
      */
-    public ExameDTO save(ExameDTO exameDTO) {
-        log.debug("Request to save Exame : {}", exameDTO);
-        Exame exame = exameMapper.toEntity(exameDTO);
+    public ExameCompletoDTO save(ExameCompletoDTO exameCompletoDTO) {
+        log.debug("Request to save Exame : {}", exameCompletoDTO);
+        Exame exame = exameMapper.toEntity(exameCompletoDTO);
         exame = exameRepository.save(exame);
-        ExameDTO result = exameMapper.toDto(exame);
+        ExameCompletoDTO result = exameCompletoMapper.toDto(exame);
         exameSearchRepository.save(exame);
         return result;
     }
