@@ -1,0 +1,43 @@
+<div class="p-grid p-fluid">
+
+    <div class="p-col-12 p-grid">
+
+        <div class="card card-w-title">
+            <h1>Manter Tipo de Marcação </h1>
+            <div class="p-grid">
+
+                <div class="p-md-5 p-fluid" pTooltip="Informe a descrição do tipo de marcação" [formGroup]="cadastrarTipoMarcacao">
+                    Tipo de Marcação
+                    <span class="md-inputfield p-float-label" style="margin-top: 0px;">
+                        <input type="text" pInputText class="p-inputtext" formControlName="tipoDeMarcacaoNome"/>
+                    </span>
+                </div>
+
+                <div class="p-md-5 p-grid">
+                    <div class="p-col-12 p-md-4" pTooltip="Informe o ativo do tipo de marcação" [formGroup]="cadastrarTipoMarcacao">
+
+                        Ativo:
+                        <div class="ativoButton">
+                            <p-radioButton id="ativoMargin" name="ativo" value="true"
+                                label="Sim" formControlName="ativo">
+
+                            </p-radioButton> <p-radioButton name="ativo" value="false"
+                                label="Não" formControlName="ativo">
+                            </p-radioButton>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Salvar" icon="pi-pi-save" (click)="cadastrar()" [disabled]="!validTipodDeMarcacao()"></button>
+                    </div>
+
+                    <div class="p-md-2">
+                        <button pButton type="button" label="Limpar" icon="pi-pi-times" (click)="limparTipoDeMarcacao()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

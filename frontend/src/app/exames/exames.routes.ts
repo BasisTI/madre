@@ -1,3 +1,5 @@
+import { CadastrarTipoDeMarcacaoComponent } from './components/cadastrar-tipo-de-marcacao/cadastrar-tipo-de-marcacao.component';
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
@@ -39,6 +41,10 @@ export const routes: Routes = [
     {
         path: 'cadastrar-recipiente',
         component: CadastrarRecipientesComponent,
+    },
+    {
+        path: 'cadastrar-tipos-de-marcacao',
+        component: CadastrarTipoDeMarcacaoComponent,
     },
     {
         path: 'anticoagulante',
