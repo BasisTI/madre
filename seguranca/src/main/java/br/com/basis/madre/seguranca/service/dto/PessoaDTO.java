@@ -170,6 +170,11 @@ public class PessoaDTO extends DominioComNome implements Serializable {
         return id != null && id.equals(((PessoaDTO) o).id);
     }
 
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
     // prettier-ignore
     @Override
     public String toString() {
