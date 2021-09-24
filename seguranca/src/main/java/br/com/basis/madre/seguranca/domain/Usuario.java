@@ -32,6 +32,17 @@ public class Usuario implements Serializable {
     @Column(name = "login")
     private String login;
 
+    
+    @Column(name = "email", unique = true)
+    private String email;
+
+    @Column(name = "ativo")
+    private Boolean ativo;
+
+    @Size(max = 98)
+    @Column(name = "senha", length = 98)
+    private String senha;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -66,6 +77,45 @@ public class Usuario implements Serializable {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Usuario email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean isAtivo() {
+        return ativo;
+    }
+
+    public Usuario ativo(Boolean ativo) {
+        this.ativo = ativo;
+        return this;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public Usuario senha(String senha) {
+        this.senha = senha;
+        return this;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -91,6 +141,9 @@ public class Usuario implements Serializable {
             "id=" + getId() +
             ", codigo=" + getCodigo() +
             ", login='" + getLogin() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", ativo='" + isAtivo() + "'" +
+            ", senha='" + getSenha() + "'" +
             "}";
     }
 }

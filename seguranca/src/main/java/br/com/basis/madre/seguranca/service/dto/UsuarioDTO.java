@@ -16,6 +16,14 @@ public class UsuarioDTO implements Serializable {
     private String login;
 
     
+    private String email;
+
+    private Boolean ativo;
+
+    @Size(max = 98)
+    private String senha;
+
+    
     public Long getId() {
         return id;
     }
@@ -38,6 +46,30 @@ public class UsuarioDTO implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     @Override
@@ -64,6 +96,9 @@ public class UsuarioDTO implements Serializable {
             "id=" + getId() +
             ", codigo=" + getCodigo() +
             ", login='" + getLogin() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", ativo='" + isAtivo() + "'" +
+            ", senha='" + getSenha() + "'" +
             "}";
     }
 }
