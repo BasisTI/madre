@@ -10,6 +10,7 @@ import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-a
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
+import { FormularioCadaverComponent } from './components/formulario-cadaver/formulario-cadaver.component';
 
 export const routes: Routes = [
     {
@@ -55,5 +56,9 @@ export const routes: Routes = [
     {
         path: 'listar-horarios-agendados',
         component: TabelaHorariosAgendadosComponent
+    },
+    {
+        path: 'formulario-cadaver',
+        component: FormularioCadaverComponent
     }
 ];

@@ -23,6 +23,7 @@ import { ExamesFormComponent } from './components/exames-form/exames-form.compon
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
 import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
+import { FormularioCadaverComponent } from './components/formulario-cadaver/formulario-cadaver.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagula
         MaterialExamesComponent,
         CadastrarRecipientesComponent,
         AntiCoagulanteComponent,
+        FormularioCadaverComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

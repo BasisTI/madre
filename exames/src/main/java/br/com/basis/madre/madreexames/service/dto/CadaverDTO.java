@@ -10,7 +10,7 @@ import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Cadaver} entity.
  */
 public class CadaverDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -47,7 +47,7 @@ public class CadaverDTO implements Serializable {
     @NotNull
     private String observacao;
 
-    
+
     public Long getId() {
         return id;
     }
@@ -150,6 +150,11 @@ public class CadaverDTO implements Serializable {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    @AssertFalse(message = "Data de remoção deve ser após a data de nascimento")
+    private boolean isDataRemocaoAntesDeDataNascimento() {
+        return getDataRemocao().isBefore(getDataNascimento());
     }
 
     @Override
