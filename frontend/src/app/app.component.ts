@@ -239,7 +239,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             icon: 'add',
                                             routerLink: ['exames/formulario-salas'],
                                          },
-                                         {
+                                        {
                                             label: 'Recipiente',
                                             icon: 'add',
                                             routerLink: ['exames/cadastrar-recipiente'],

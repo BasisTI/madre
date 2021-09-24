@@ -22,7 +22,7 @@ import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimo
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
 import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
-import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
+import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 
 @NgModule({

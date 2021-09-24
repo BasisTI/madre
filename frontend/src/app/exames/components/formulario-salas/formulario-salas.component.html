@@ -4,23 +4,16 @@
             <h1>Salas</h1>
             <div class="p-grid">
                 <div class="p-col-12 p-grid">
-                    <div class="p-md-2 p-col-12">
-                    <label for="name">Código da Sala</label>
-                        <span class="md-inputfield p-float-label">
-                            <input type="number" min="1" class="codigo p-inputtext" 
-                            [(ngModel)]="codigoDaSala"/>
-                        </span>
-                    </div>
-                    <app-unidade-funcional #unidadeFuncional></app-unidade-funcional>
-                </div>
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-2 p-col-12">
+                    <div class="p-md-4 p-col-12">
                         <label for="name">Indentificação da Sala</label>
                         <span class="md-inputfield p-float-label">
                             <input type="text" pInputText class="p-inputtext" 
                             [(ngModel)]="identificacaoDaSala"/>
                         </span>
                     </div>
+                    <app-unidade-funcional class="p-md-4" #unidadeFuncional></app-unidade-funcional>
+                </div>
+                <div class="p-col-12 p-grid">
                     <div class="p-md-5 p-col-12">
                         <label for="name">Localização da Sala</label>
                         <span class="md-inputfield p-float-label">

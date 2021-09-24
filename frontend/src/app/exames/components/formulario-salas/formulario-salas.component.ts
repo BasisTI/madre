@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SalasService } from '../../services/salas.service';
 import { Sala } from '../../models/subjects/sala';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-formulario-salas',
@@ -12,7 +11,6 @@ import { MessageService } from 'primeng/api';
 })
 export class FormularioSalasComponent implements OnInit {
 
-  codigoDaSala: number;
   identificacaoDaSala: string;
   locacaoDaSala: string;
   ativo: boolean;
@@ -22,7 +20,7 @@ export class FormularioSalasComponent implements OnInit {
   @ViewChild(UnidadeFuncionalComponent)
   unidadeFuncional: UnidadeFuncionalComponent;
   
-  constructor(private salaService: SalasService, private msg: MessageService){ }
+  constructor(private salaService: SalasService){ }
     
     ngOnInit(): void {}
 
@@ -30,7 +28,6 @@ export class FormularioSalasComponent implements OnInit {
     cadastrar(){
 
       let cadastro: Sala = {
-        codigoDaSala: this.codigoDaSala,
         identificacaoDaSala: this.identificacaoDaSala,
         locacaoDaSala: this.locacaoDaSala,
         ativo: this.ativo,
@@ -39,17 +36,11 @@ export class FormularioSalasComponent implements OnInit {
       
       this.unidadeFuncional.imprimirId();
 
-      if(this.isCodigoDaSalaZeroOuNegativo(this.codigoDaSala)){
-        return;
-      }else {
-        this.salaService.cadastrarSala(cadastro).subscribe();
-        this.limparFormulario();
-      }
-
+      this.salaService.cadastrarSala(cadastro).subscribe();
+      this.limparFormulario();
     }
 
     limparFormulario() {
-      this.codigoDaSala = null;
       this.identificacaoDaSala = null;
       this.locacaoDaSala = null;
       this.ativo = null;
@@ -58,18 +49,8 @@ export class FormularioSalasComponent implements OnInit {
     }
 
     validarFormulario() {
-      if(this.codigoDaSala && this.identificacaoDaSala && this.locacaoDaSala && this.ativo)
+      if(this.identificacaoDaSala && this.locacaoDaSala && this.ativo)
       return true;
-    }
-
-    isCodigoDaSalaZeroOuNegativo(codigoDaSala: number): boolean {
-      if(codigoDaSala <= 0) {
-        this.msg.add({
-          severity: 'error', summary: 'Erro no preenchimento',
-          detail: 'Código da sala deve ser maior que zero'
-        });
-        return true;
-      }
     }
 
 

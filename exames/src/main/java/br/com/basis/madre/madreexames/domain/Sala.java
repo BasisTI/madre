@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
 /**
@@ -23,10 +24,6 @@ public class Sala implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqSala")
     @SequenceGenerator(name = "seqSala")
     private Long id;
-
-    @NotNull
-    @Column(name = "codigo_da_sala", nullable = false)
-    private Integer codigoDaSala;
 
     @NotNull
     @Column(name = "identificacao_da_sala", nullable = false)
@@ -50,19 +47,6 @@ public class Sala implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCodigoDaSala() {
-        return codigoDaSala;
-    }
-
-    public Sala codigoDaSala(Integer codigoDaSala) {
-        this.codigoDaSala = codigoDaSala;
-        return this;
-    }
-
-    public void setCodigoDaSala(Integer codigoDaSala) {
-        this.codigoDaSala = codigoDaSala;
     }
 
     public String getIdentificacaoDaSala() {
@@ -139,7 +123,6 @@ public class Sala implements Serializable {
     public String toString() {
         return "Sala{" +
             "id=" + getId() +
-            ", codigoDaSala=" + getCodigoDaSala() +
             ", identificacaoDaSala='" + getIdentificacaoDaSala() + "'" +
             ", locacaoDaSala='" + getLocacaoDaSala() + "'" +
             ", ativo='" + isAtivo() + "'" +
