@@ -1,17 +1,20 @@
 package br.com.basis.madre.madreexames.service.dto;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
-import br.com.basis.madre.madreexames.domain.enumeration.Raca;
-
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDate;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import br.com.basis.madre.madreexames.domain.enumeration.Raca;
+import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.Cadaver} entity.
  */
-public class CadaverDTO extends DominioCodigo implements Serializable {
+public class CadaverDTO implements Serializable {
+    
+    private Long id;
+
+    @NotNull
+    private String nome;
 
     @NotNull
     private LocalDate dataNascimento;
@@ -33,18 +36,33 @@ public class CadaverDTO extends DominioCodigo implements Serializable {
     private String lidoPor;
 
     @NotNull
-    private String procedencia;
+    private Integer procedenciaId;
 
     @NotNull
-    private String retirada;
+    private Integer retiradaId;
 
     @NotNull
-    private String codigoPlano;
-
-    private ConvenioPlano convenioPlano;
+    private Integer codigoPlano;
 
     @NotNull
     private String observacao;
+
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
@@ -102,36 +120,28 @@ public class CadaverDTO extends DominioCodigo implements Serializable {
         this.lidoPor = lidoPor;
     }
 
-    public String getProcedencia() {
-        return procedencia;
+    public Integer getProcedenciaId() {
+        return procedenciaId;
     }
 
-    public void setProcedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public void setProcedenciaId(Integer procedenciaId) {
+        this.procedenciaId = procedenciaId;
     }
 
-    public String getRetirada() {
-        return retirada;
+    public Integer getRetiradaId() {
+        return retiradaId;
     }
 
-    public void setRetirada(String retirada) {
-        this.retirada = retirada;
+    public void setRetiradaId(Integer retiradaId) {
+        this.retiradaId = retiradaId;
     }
 
-    public String getCodigoPlano() {
+    public Integer getCodigoPlano() {
         return codigoPlano;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
+    public void setCodigoPlano(Integer codigoPlano) {
         this.codigoPlano = codigoPlano;
-    }
-
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
-    }
-
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
     }
 
     public String getObservacao() {
@@ -151,7 +161,7 @@ public class CadaverDTO extends DominioCodigo implements Serializable {
             return false;
         }
 
-        return getId() != null && getId().equals(((CadaverDTO) o).getId());
+        return id != null && id.equals(((CadaverDTO) o).id);
     }
 
     @Override
@@ -164,7 +174,6 @@ public class CadaverDTO extends DominioCodigo implements Serializable {
     public String toString() {
         return "CadaverDTO{" +
             "id=" + getId() +
-            ", codigo=" + getCodigo() +
             ", nome='" + getNome() + "'" +
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", raca='" + getRaca() + "'" +
@@ -173,10 +182,9 @@ public class CadaverDTO extends DominioCodigo implements Serializable {
             ", causaObito='" + getCausaObito() + "'" +
             ", realizadoPor='" + getRealizadoPor() + "'" +
             ", lidoPor='" + getLidoPor() + "'" +
-            ", procedencia='" + getProcedencia() + "'" +
-            ", retirada='" + getRetirada() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", procedenciaId=" + getProcedenciaId() +
+            ", retiradaId=" + getRetiradaId() +
+            ", codigoPlano=" + getCodigoPlano() +
             ", observacao='" + getObservacao() + "'" +
             "}";
     }
