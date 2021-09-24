@@ -142,7 +142,6 @@ ocupado Boolean required
 }
 
 entity Sala {
-codigoDaSala Integer required
 identificacaoDaSala String required
 locacaoDaSala String required
 ativo Boolean required
