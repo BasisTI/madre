@@ -3,10 +3,18 @@ package br.com.basis.madre.seguranca.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Ramal.
@@ -29,6 +37,10 @@ public class Ramal implements Serializable {
 
     @Column(name = "urgencia")
     private Boolean urgencia;
+
+    @OneToMany(mappedBy = "ramal")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Servidor> servidorRamals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -63,6 +75,31 @@ public class Ramal implements Serializable {
 
     public void setUrgencia(Boolean urgencia) {
         this.urgencia = urgencia;
+    }
+
+    public Set<Servidor> getServidorRamals() {
+        return new HashSet<>(servidorRamals);
+    }
+
+    public Ramal servidorRamals(Set<Servidor> servidors) {
+        this.servidorRamals = new HashSet<>(servidors);
+        return this;
+    }
+
+    public Ramal addServidorRamal(Servidor servidor) {
+        this.servidorRamals.add(servidor);
+        servidor.setRamal(this);
+        return this;
+    }
+
+    public Ramal removeServidorRamal(Servidor servidor) {
+        this.servidorRamals.remove(servidor);
+        servidor.setRamal(null);
+        return this;
+    }
+
+    public void setServidorRamals(Set<Servidor> servidors) {
+        this.servidorRamals = new HashSet<>(servidors);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
