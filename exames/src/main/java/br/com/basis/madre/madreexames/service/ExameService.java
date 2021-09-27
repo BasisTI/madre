@@ -1,6 +1,7 @@
 package br.com.basis.madre.madreexames.service;
 
 import br.com.basis.madre.madreexames.domain.Exame;
+import br.com.basis.madre.madreexames.domain.Sinonimo;
 import br.com.basis.madre.madreexames.repository.ExameRepository;
 import br.com.basis.madre.madreexames.repository.search.ExameSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
@@ -50,7 +51,11 @@ public class ExameService {
      */
     public ExameCompletoDTO save(ExameCompletoDTO exameCompletoDTO) {
         log.debug("Request to save Exame : {}", exameCompletoDTO);
-        Exame exame = exameMapper.toEntity(exameCompletoDTO);
+        Exame exame = exameCompletoMapper.toEntity(exameCompletoDTO);
+        // exame.getSinonimos().stream().map(sinonimo -> sinonimo.setExame(exame));
+        for(Sinonimo sinonimo : exame.getSinonimos()){
+            sinonimo.setExame(exame);
+        }
         exame = exameRepository.save(exame);
         ExameCompletoDTO result = exameCompletoMapper.toDto(exame);
         exameSearchRepository.save(exame);
