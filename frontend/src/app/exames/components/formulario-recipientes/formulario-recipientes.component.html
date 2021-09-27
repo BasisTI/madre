@@ -4,11 +4,9 @@
 
         <div class="card card-w-title">
              <h1>Cadastrar Recipientes de Coleta</h1>
-
              <div class="p-grid">
 
                 <div class="p-md-5 p-fluid" pTooltip="Digite a descrição do Recepiente da Coleta" [formGroup]="cadastrarRecipiente">
-
                     Nome
                     <span class="md-inputfield p-float-label" style="margin-top: 0px">
                         <input type="text" pInputText class="p-inputtext" formControlName="nome"/>
@@ -16,8 +14,7 @@
 
                 </div>
 
-                <div class="p-md-7 p-grid">
-
+                <div class="p-md-5 p-grid">
                     <div class="p-col-12 p-md-4" pTooltip="Selecione se o Recipente de Coleta possui Anticoagulante" [formGroup]="cadastrarRecipiente">
 
                         Anticoagulante:
@@ -32,10 +29,11 @@
                         </div>
                    </div>
 
-                    <div class="p-col-12 p-md-2" pTooltip="Selecione o ativo do Recipiente de Coleta" [formGroup]="cadastrarRecipiente">
+
+                    <div style="margin-top: 7px;" pTooltip="Selecione o ativo do Recipiente de Coleta" [formGroup]="cadastrarRecipiente">
 
                         Ativo:
-                        <div class="ativoSim">
+                        <div style="margin-top: 9px;">
                             <p-radioButton  name="ativo" value=true
                                 label="Sim" class="separator-radio" formControlName="ativo">
                             </p-radioButton>
@@ -46,12 +44,11 @@
                         </div>
 
                     </div>
-
                 </div>
 
 
-                <div class="p-col-12 p-grid p-d-flex">
 
+                <div class="p-col-12 p-grid">
                     <div class="p-md-2">
                         <button pButton type="button" label="Salvar" icon="pi pi-save"  (click)="cadastrar()" [disabled]="!valid()"></button>
                      </div>
@@ -61,7 +58,6 @@
                     </div>
 
                 </div>
-
             </div>
          </div>
     </div>
