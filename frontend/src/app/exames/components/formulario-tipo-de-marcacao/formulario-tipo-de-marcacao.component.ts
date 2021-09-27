@@ -1,12 +1,12 @@
-import { TipoDeMarcacao } from './../../models/subjects/tipo-de-marcacao';
-import { CadastrarTiposDeMarcacaoService } from './../../services/cadastrar-tipos-de-marcacao.service';
+import { TipoDeMarcacao } from '../../models/subjects/tipo-de-marcacao';
+import { CadastrarTiposDeMarcacaoService } from '../../services/cadastrar-tipos-de-marcacao.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cadastrar-tipo-de-marcacao',
-  templateUrl: './cadastrar-tipo-de-marcacao.component.html',
-  styleUrls: ['./cadastrar-tipo-de-marcacao.component.css']
+  templateUrl: './formulario-tipo-de-marcacao.component.html',
+  styleUrls: ['./formulario-tipo-de-marcacao.component.css']
 })
 export class CadastrarTipoDeMarcacaoComponent implements OnInit {
 

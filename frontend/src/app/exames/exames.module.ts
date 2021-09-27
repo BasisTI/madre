@@ -21,9 +21,9 @@ import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
-import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
+import { CadastrarRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
-import { CadastrarTipoDeMarcacaoComponent } from './components/cadastrar-tipo-de-marcacao/cadastrar-tipo-de-marcacao.component';
+import { CadastrarTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
 
 @NgModule({
     declarations: [

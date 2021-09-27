@@ -1,4 +1,4 @@
-import { CadastrarTipoDeMarcacaoComponent } from './components/cadastrar-tipo-de-marcacao/cadastrar-tipo-de-marcacao.component';
+import { CadastrarTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
@@ -10,7 +10,7 @@ import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
-import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
+import { CadastrarRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
 
 export const routes: Routes = [
