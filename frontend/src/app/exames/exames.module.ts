@@ -24,6 +24,8 @@ import { MaterialExamesComponent } from './components/material-exames/material-e
 import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
+import { CadastrarTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
+
 
 @NgModule({
     declarations: [
@@ -48,6 +50,8 @@ import { FormularioSalasComponent } from './components/formulario-salas/formular
         CadastrarRecipientesComponent,
         AntiCoagulanteComponent,
         FormularioSalasComponent,
+        CadastrarTipoDeMarcacaoComponent,
+
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
