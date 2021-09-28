@@ -18,6 +18,7 @@ logging:
     ROOT: DEBUG
     io.github.jhipster: DEBUG
     br.com.basis.madre.madreexames: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 eureka:
   instance:

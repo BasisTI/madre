@@ -25,7 +25,10 @@ export class ExamesService {
 
     // Buscar exames por nome ou sinônimo
     public GetExamesPorNomeSinonimo(nome: string): Observable<Array<ExamModel>> {
-      return this.client.get<Array<ExamModel>>(`${this.URL}/exames/sinonimos/${nome}`);
+      return this.client.get<Array<ExamModel>>(`${this.URL}/exames/sinonimos`,
+      {
+        params: new HttpParams().set('nome', nome)
+      });
     }
 
     // Pegar os exames pelo ID

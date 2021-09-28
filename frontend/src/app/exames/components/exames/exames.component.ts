@@ -119,4 +119,17 @@ export class ExamesComponent implements OnInit {
 
     return null;
   }
+
+  buscarExame(event) {
+    console.log(event.query, "add");
+    this.examesService.GetExamesPorNomeSinonimo(event.query).subscribe((response) => {
+      this.exames = response;
+    })
+
+  }
+
+  aoSelecionarExame(event) {
+    console.log(event);
+
+  }
 }
