@@ -146,4 +146,12 @@ public class ExameResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+    @GetMapping("/exames/sinonimos/{termo}")
+    public ResponseEntity<List<ExameDTO>> filterExames(@PathVariable String termo) {
+        log.debug("REST request to search for a page of Exames for query {}", termo);
+        List<ExameDTO> exames = exameService.findAllExamesBySinonimo(termo);
+        return ResponseEntity.ok().body(exames);
+    }
+
 }

@@ -15,7 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -52,7 +54,6 @@ public class ExameService {
     public ExameCompletoDTO save(ExameCompletoDTO exameCompletoDTO) {
         log.debug("Request to save Exame : {}", exameCompletoDTO);
         Exame exame = exameCompletoMapper.toEntity(exameCompletoDTO);
-        // exame.getSinonimos().stream().map(sinonimo -> sinonimo.setExame(exame));
         for(Sinonimo sinonimo : exame.getSinonimos()){
             sinonimo.setExame(exame);
         }
@@ -113,4 +114,11 @@ public class ExameService {
         return exameSearchRepository.search(queryStringQuery(query), pageable)
             .map(exameMapper::toDto);
     }
+
+    public List<ExameDTO> findAllExamesBySinonimo(String nome) {
+        log.debug("Request to search for a page of Exames for query {}", nome);
+        return exameRepository.findByNameOrSinonimos(nome).stream()
+            .map(exameMapper::toDto).collect(Collectors.toList());
+    }
+
 }
