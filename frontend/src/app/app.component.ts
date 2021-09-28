@@ -220,6 +220,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                                     label: 'Cadastros',
                                     items: [
                                         {
+                                            label: 'Anticoagulante',
+                                            icon: 'add',
+                                            routerLink: ['exames/anticoagulante'],
+                                        },
+                                        {
                                             label: 'Exames',
                                             icon: 'add',
                                             routerLink: ['exames/formulario-exame']
@@ -230,7 +235,13 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             routerLink: ['exames/cadastrar-material'],
                                         },
                                         {
+                                            label: 'Salas',
+                                            icon: 'add',
+                                            routerLink: ['exames/formulario-salas'],
+                                         },
+                                         {
                                             label: 'Recipientes de Coleta',
+
                                             icon: 'add',
                                             routerLink: ['exames/cadastrar-recipiente'],
                                         },
@@ -267,11 +278,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
-                        },
-                        {
-                            label: 'Anticoagulante',
-                            icon: 'add',
-                            routerLink: ['exames/anticoagulante'],
                         }
                     ]
                 },
