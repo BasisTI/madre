@@ -1,116 +1,94 @@
 <div class="p-grid p-fluid">
-
     <div class="p-col-12 p-grid">
-
         <div class="card card-w-title">
             <h1>Cadastro de Exames</h1>
             <div class="p-grid">
-
-                <div class="p-md-2 p-fluid" pTooltip="Digite o nome do exame" [formGroup]="cadastrarExame">
-                    Nome
+                <div class="p-md-3 p-fluid" pTooltip="Digite o nome do exame" [formGroup]="cadastrarExame">
+                    <label>Nome</label>
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input type="text" pInputText class="p-inputtext" formControlName="nome"/>
                     </span>
                 </div>
-
-                <div class="p-md-2 p-fluid" pTooltip="Digite o nome usual do exame" [formGroup]="cadastrarExame">
-                    Nome usual
+                <div class="p-md-3 p-fluid" pTooltip="Digite o nome usual do exame" [formGroup]="cadastrarExame">
+                    <label>Nome usual</label>
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input type="text" pInputText class="p-inputtext" formControlName="nomeUsual"/>
                     </span>
                 </div>
-
-                <div class="p-md-2 p-fluid" pTooltip="Digite a sigla do exame" [formGroup]="cadastrarExame">
-                    Sigla
+                <div class="p-md-3 p-fluid" pTooltip="Digite a sigla do exame" [formGroup]="cadastrarExame">
+                    <label>Sigla</label>
                     <span class="md-inputfield p-float-label" style="margin-top: 5px;">
                         <input type="text" pInputText class="p-inputtext" formControlName="sigla"/>
                     </span>
                 </div>
-
                 <div class="p-col-12 p-grid">
-                    <div class="p-md-2 p-col-12">
-                        Material
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <div class="p-md-3 p-col-12">
+                        <label style="margin-top: 5px;">Material</label>
+                        <span class="md-inputfield p-float-label">
                             <p-dropdown [(ngModel)]="materialSelecionado" [options]="materiais" [optionLabel]="'nome'"
                                 [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                                 pTooltip="Selecione o material" placeholder="Selecione">
                             </p-dropdown>
                         </span>
                     </div>
-
-                    <div class="p-md-2 p-col-12">
-                        Tipo de amostra
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <div class="p-md-3 p-col-12">
+                        <label style="margin-top: 5px;">Tipo de amostra</label>
+                        <span class="md-inputfield p-float-label">
                             <p-dropdown [(ngModel)]="amostraSelecionada" [options]="amostras" [optionLabel]="'nome'"
                                 [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
                                 pTooltip="Selecione o tipo de amostra" placeholder="Selecione">
                             </p-dropdown>
                         </span>
                     </div>
-
-                    <div class="p-md-2 p-col-12" [formGroup]="cadastrarExame">
-                        <label for="situacao">Situação:</label>
+                    <div class="p-md-3 p-col-12" [formGroup]="cadastrarExame">
+                        <label for="situacao" style="margin-top: 5px;">Situação:</label>
                         <p-dropdown placeholder="Selecione" [options]="situacaoExame" formControlName="ativo"></p-dropdown>
                     </div>
                 </div>
-
-
-                    <div class="p-col-12 p-grid" [formGroup]="cadastrarExame">
-                                <div class="p-col-12 p-md-2">
-
-                                    Impressão
-                                    <div style="margin-top: 5px; margin-bottom: 10px;">
-                                        <p-radioButton name="impressao" value=true
-                                            label="Sim" class="separator-radio" formControlName="impressao">
-                                        </p-radioButton>
-
-                                        <p-radioButton name="impressao" value=false
-                                            label="Não" formControlName="impressao">
-                                        </p-radioButton>
-
-                                    </div>
-                                </div>
-
-                                <div class="p-col-12 p-md-2" [formGroup]="cadastrarExame">
-                                    Consiste Interfaceamento
-                                    <div style="margin-right: 5px;" class="radioButton radio">
-                                        <p-radioButton name="consisteInterfaceamento" value=true
-                                            label="Sim" class="separator-radio" formControlName="consisteInterfaceamento">
-                                        </p-radioButton>
-
-                                        <p-radioButton name="consisteInterfaceamento" value=false
-                                            label="Não" formControlName="consisteInterfaceamento">
-                                        </p-radioButton>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="p-col-12 p-md-2" [formGroup]="cadastrarExame">
-
-                                    Anexar Documentos
-                                    <div class="radioButton radio">
-                                        <p-radioButton class="separator-radio" name="anexaDocumentos" value=true
-                                           label="Sim" formControlName="anexaDocumentos">
-                                        </p-radioButton>
-                                        <p-radioButton name="anexaDocumentos" value=false
-                                            label="Não" formControlName="anexaDocumentos">
-                                        </p-radioButton>
-                                    </div>
-                                </div>
-
+                <div class="p-col-12 p-grid" [formGroup]="cadastrarExame">
+                    <div class="p-md-3 p-col-12">
+                        <label>Impressão</label>
+                        <div style="margin-top: 5px; margin-bottom: 10px;">
+                            <p-radioButton name="impressao" value=true
+                                label="Sim" class="separator-radio" formControlName="impressao">
+                            </p-radioButton>
+                            <p-radioButton name="impressao" value=false
+                                label="Não" formControlName="impressao">
+                            </p-radioButton>
+                        </div>
                     </div>
-
+                    <div class="p-md-3 p-col-12" [formGroup]="cadastrarExame">
+                        <label>Consiste Interfaceamento</label>
+                        <div style="margin-right: 5px;" class="radioButton radio">
+                            <p-radioButton name="consisteInterfaceamento" value=true
+                                label="Sim" class="separator-radio" formControlName="consisteInterfaceamento">
+                            </p-radioButton>
+                            <p-radioButton name="consisteInterfaceamento" value=false
+                                label="Não" formControlName="consisteInterfaceamento">
+                            </p-radioButton>
+                        </div>
+                    </div>
+                    <div class="p-md-3 p-col-12" [formGroup]="cadastrarExame">
+                        <label>Anexar Documentos</label>
+                        <div class="radioButton radio">
+                            <p-radioButton class="separator-radio" name="anexaDocumentos" value=true
+                                label="Sim" formControlName="anexaDocumentos">
+                            </p-radioButton>
+                            <p-radioButton name="anexaDocumentos" value=false
+                                label="Não" formControlName="anexaDocumentos">
+                            </p-radioButton>
+                        </div>
+                    </div>
+                </div>
                 <div class="p-col-12 p-grid p-d-flex">
-                    <div class="p-md-2">
+                    <div class="p-md-2 p-sm-5">
                         <button pButton type="button" label="Salvar" icon="pi pi-save" (click)="cadastrar()" [disabled]="!valid()"></button>
                     </div>
-                    <div class="p-md-2">
+                    <div class="p-md-2 p-sm-5">
                         <button pButton type="button" label="Limpar"  icon="pi pi-times" (click)="limpar()"></button>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

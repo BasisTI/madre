@@ -1,9 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
-
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
 import { LoginSuccessComponent } from '@nuvem/angular-base';
 import { ModuleWithProviders } from '@angular/core';
-
 export const routes: Routes = [
     {
         path: 'prescricao-medica',
