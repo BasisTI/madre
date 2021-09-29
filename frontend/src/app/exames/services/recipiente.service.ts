@@ -1,4 +1,4 @@
-import { RecipienteI } from './../models/subjects/recipiente';
+import { RecipienteI } from '../models/subjects/recipiente';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 
-export class CadastrarRecepienteService {
+export class RecipienteService {
 
     private readonly URL = 'madreexames/api';
 

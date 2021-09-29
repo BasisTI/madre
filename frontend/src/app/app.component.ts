@@ -243,12 +243,12 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             label: 'Recipientes de Coleta',
 
                                             icon: 'add',
-                                            routerLink: ['exames/cadastrar-recipiente'],
+                                            routerLink: ['exames/formulario-recipiente'],
                                         },
                                         {
                                             label: 'Tipos de Marcação',
                                             icon: 'add',
-                                            routerLink: ['exames/cadastrar-tipos-de-marcacao'],
+                                            routerLink: ['exames/formulario-tipos-de-marcacao'],
                                         }
                                     ]
                                 }
