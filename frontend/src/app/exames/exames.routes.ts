@@ -1,5 +1,4 @@
-import { CadastrarTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
-import { Component } from '@angular/core';
+import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
 import { Routes } from '@angular/router';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
@@ -11,10 +10,9 @@ import { GradeAgendamentosComponent } from './components/grade-agendamentos/grad
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 
-import { CadastrarRecipientesComponent } from './components/cadastrar-recipientes/cadastrar-recipientes.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
-import { CadastrarRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
+import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 
 
 export const routes: Routes = [
@@ -43,12 +41,12 @@ export const routes: Routes = [
         component: CadastrarMaterialComponent,
     },
     {
-        path: 'cadastrar-recipiente',
-        component: CadastrarRecipientesComponent,
+        path: 'formulario-recipiente',
+        component: FormularioRecipientesComponent,
     },
     {
-        path: 'cadastrar-tipos-de-marcacao',
-        component: CadastrarTipoDeMarcacaoComponent,
+        path: 'formulario-tipos-de-marcacao',
+        component: FormularioTipoDeMarcacaoComponent,
     },
     {
         path: 'anticoagulante',

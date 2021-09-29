@@ -1,5 +1,5 @@
 import { TipoDeMarcacao } from '../../models/subjects/tipo-de-marcacao';
-import { CadastrarTiposDeMarcacaoService } from '../../services/cadastrar-tipos-de-marcacao.service';
+import { TiposDeMarcacaoService } from '../../services/tipos-de-marcacao.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './formulario-tipo-de-marcacao.component.html',
   styleUrls: ['./formulario-tipo-de-marcacao.component.css']
 })
-export class CadastrarTipoDeMarcacaoComponent implements OnInit {
+export class FormularioTipoDeMarcacaoComponent implements OnInit {
 
     tipoDeMarcacaoNome: string;
     ativo: boolean;
 
   constructor(private fb: FormBuilder,
-              private tipoMarcacaoService: CadastrarTiposDeMarcacaoService) { }
+              private tipoMarcacaoService: TiposDeMarcacaoService) { }
 
 
    cadastrarTipoMarcacao = this.fb.group({

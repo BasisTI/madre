@@ -1,11 +1,11 @@
-import { TipoDeMarcacao } from './../models/subjects/tipo-de-marcacao';
+import { TipoDeMarcacao } from '../models/subjects/tipo-de-marcacao';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CadastrarTiposDeMarcacaoService {
+export class TiposDeMarcacaoService {
 
     private readonly URL = 'madreexames/api';
 
