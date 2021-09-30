@@ -3,6 +3,7 @@ package br.com.basis.madre.seguranca.service;
 import br.com.basis.madre.seguranca.domain.Usuario;
 import br.com.basis.madre.seguranca.repository.UsuarioRepository;
 import br.com.basis.madre.seguranca.repository.search.UsuarioSearchRepository;
+import br.com.basis.madre.seguranca.service.dto.MensagemDeLoginDTO;
 import br.com.basis.madre.seguranca.service.dto.UsuarioDTO;
 import br.com.basis.madre.seguranca.service.mapper.UsuarioMapper;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,10 +34,13 @@ public class UsuarioService {
 
     private final UsuarioSearchRepository usuarioSearchRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, UsuarioSearchRepository usuarioSearchRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, UsuarioSearchRepository usuarioSearchRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
         this.usuarioSearchRepository = usuarioSearchRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -103,5 +108,23 @@ public class UsuarioService {
         log.debug("Request to search for a page of Usuarios for query {}", query);
         return usuarioSearchRepository.search(queryStringQuery(query), pageable)
             .map(usuarioMapper::toDto);
+    }
+
+    public MensagemDeLoginDTO validaSenha(UsuarioDTO usuarioDTO) {
+        MensagemDeLoginDTO mensagemDeLoginDTO = new MensagemDeLoginDTO();
+        Usuario usuario = usuarioRepository.findByLogin(usuarioDTO.getLogin());
+        if(usuario == null){
+            mensagemDeLoginDTO.setMsgDeErro("Usuario não encontrado");
+            mensagemDeLoginDTO.setAutenticado(false);
+        } else {
+            boolean autenticado = passwordEncoder.matches(usuario.getSenha(), usuarioDTO.getSenha());
+           if(autenticado) {
+               mensagemDeLoginDTO.setAutenticado(autenticado);
+           } else {
+               mensagemDeLoginDTO.setMsgDeErro("Senha incorreta");
+               mensagemDeLoginDTO.setAutenticado(autenticado);
+           }
+        }
+        return mensagemDeLoginDTO;
     }
 }

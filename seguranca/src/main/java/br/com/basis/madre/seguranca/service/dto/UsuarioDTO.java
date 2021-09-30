@@ -7,7 +7,6 @@ import java.io.Serializable;
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Usuario} entity.
  */
 public class UsuarioDTO implements Serializable {
-    
     private Long id;
 
     @NotNull
@@ -15,7 +14,6 @@ public class UsuarioDTO implements Serializable {
 
     private String login;
 
-    
     private String email;
 
     private Boolean ativo;
@@ -23,7 +21,6 @@ public class UsuarioDTO implements Serializable {
     @Size(max = 98)
     private String senha;
 
-    
     public Long getId() {
         return id;
     }
