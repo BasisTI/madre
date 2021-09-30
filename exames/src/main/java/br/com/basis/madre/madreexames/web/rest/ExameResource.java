@@ -1,8 +1,10 @@
 package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.service.ExameService;
+import br.com.basis.madre.madreexames.service.dto.ExameBuscaDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
+import br.com.basis.madre.madreexames.service.mapper.ExameCompletoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -155,9 +157,9 @@ public class ExameResource {
 //    }
 
     @GetMapping("/exames/sinonimos")
-    public ResponseEntity<List<ExameDTO>> filterExames(@RequestParam(required = false, defaultValue = "") String nome) {
+    public ResponseEntity<List<ExameCompletoDTO>> filterExames(@RequestParam(required = false, defaultValue = "") String nome) {
         log.debug("REST request to search for a page of Exames for query {}", nome, "teste");
-        List<ExameDTO> exames = exameService.findAllExamesBySinonimo(nome);
+        List<ExameCompletoDTO> exames = exameService.findAllExamesBySinonimo(nome);
         return ResponseEntity.ok().body(exames);
     }
 

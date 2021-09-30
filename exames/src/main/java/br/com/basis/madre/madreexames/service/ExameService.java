@@ -4,6 +4,7 @@ import br.com.basis.madre.madreexames.domain.Exame;
 import br.com.basis.madre.madreexames.domain.Sinonimo;
 import br.com.basis.madre.madreexames.repository.ExameRepository;
 import br.com.basis.madre.madreexames.repository.search.ExameSearchRepository;
+import br.com.basis.madre.madreexames.service.dto.ExameBuscaDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.ExameCompletoMapper;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -115,10 +117,11 @@ public class ExameService {
             .map(exameMapper::toDto);
     }
 
-    public List<ExameDTO> findAllExamesBySinonimo(String nome) {
+    public List<ExameCompletoDTO> findAllExamesBySinonimo(String nome) {
         log.debug("Request to search for a page of Exames for query {}", nome);
-        return exameRepository.findByNameOrSinonimos(nome).stream()
-            .map(exameMapper::toDto).collect(Collectors.toList());
+        System.out.println(nome + "yukio");
+        return exameRepository.findByNameOrSinonimos(nome.toUpperCase(Locale.ROOT)).stream()
+            .map(exameCompletoMapper::toDto).collect(Collectors.toList());
     }
 
 }

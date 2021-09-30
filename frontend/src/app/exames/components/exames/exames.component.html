@@ -30,45 +30,48 @@
                         <label style="margin-bottom: 10px">Exame:</label>
                         <p-autoComplete
                             field="nome"
-                            [(ngModel)] = "selectedExamID"
+                            [(ngModel)]="selectedExamID"
                             [suggestions]="exames"
                             (completeMethod)="buscarExame($event)"
                             (onSelect)="aoSelecionarExame($event)"
                             [dropdown]="true"
-                        ></p-autoComplete>
-                        <!-- <p-dropdown [(ngModel)]="selectedExamID" [options]="exames" [optionLabel]="'nomeUsual'" [optionValue]="'id'"
-                filter="true" placeholder="Buscar...">
-                <ng-template let-exames pTemplate="item">
-                  <div *ngIf="exames.id == 1"
-                    style="width: 100%; display: flex; flex-direction: row; background-color: lightblue;">
-                    <span
-                      class="celula">Nome
-                      Usual</span>
-                    <span
-                      class="celula">Material</span>
-                    <span
-                      class="celula">Amostra
-                      do Exame</span>
-                    <span
-                      class="celula">Sigla</span>
-                    <span
-                      class="celula">Nome
-                      do Exame</span>
-                  </div>
-                  <div style="width: 80vw; display: flex; flex-direction: row;">
-                    <span
-                      class="celulaContent">{{exames.nomeUsual}}{{i}}</span>
-                    <span
-                      class="celulaContent">{{exames.material}}</span>
-                    <span
-                      class="celulaContent">{{exames.amostraExameNome}}</span>
-                    <span
-                      class="celulaContent">{{exames.sigla}}</span>
-                    <span
-                      class="celulaContent">{{exames.nome}}</span>
-                  </div>
-                </ng-template>
-              </p-dropdown> -->
+                        >
+                            <ng-template let-exames pTemplate="item">
+                                <div
+                                    style="
+                                        width: 100%;    
+                                        display: flex;
+                                        flex-direction: row;
+                                        background-color: lightblue;
+                                    "
+                                >
+                                    <th class="celula">
+                                        Nome Usual
+                                    </th>
+                                    <th class="celula">
+                                        Material
+                                    </th>
+                                    <th class="celula">
+                                        Amostha do Exame
+                                    </th>
+                                    <th class="celula">
+                                        Sigla
+                                    </th>
+                                    <th class="celula">
+                                        Nome do Exame
+                                    </th>
+                                </div>
+                                <div style="width: 80vw; display: flex; flex-direction: row">
+                                    <span class="celulaContent">{{ exames.nomeUsual }}{{ i }}</span>
+                                    <span class="celulaContent">{{ exames.material }}</span>
+                                    <span class="celulaContent">{{
+                                        exames.amostraExamesNome
+                                    }}</span>
+                                    <span class="celulaContent">{{ exames.sigla }}</span>
+                                    <span class="celulaContent">{{ exames.nome }}</span>
+                                </div>
+                            </ng-template>
+                        </p-autoComplete>
                     </span>
 
                     <span class="data-field-3" [formGroup]="itemSolicitacaoPorExame">

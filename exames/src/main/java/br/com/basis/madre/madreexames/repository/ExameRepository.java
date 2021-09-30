@@ -15,6 +15,6 @@ import java.util.List;
 @Repository
 public interface ExameRepository extends JpaRepository<Exame, Long> {
 
-    @Query(value = "select e from Exame e where upper(e.nome) like %:termo% or exists(select 1 from Sinonimo s where s.exame = e and upper(s.nome) like %:termo%)")
-    List<Exame> findByNameOrSinonimos(@Param("termo") String termo);
+    @Query(value = "select e from Exame e where upper(e.nome) like %:nome% or exists(select 1 from Sinonimo s where (s.exame = e and upper(s.nome) like %:nome%))")
+    List<Exame> findByNameOrSinonimos(@Param("nome") String nome);
 }
