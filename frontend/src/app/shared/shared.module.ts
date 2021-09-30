@@ -13,6 +13,7 @@ import { PRIMENG_IMPORTS } from '../primeng-imports';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { CidComponent } from './cid/cid.component';
 import { ArvoreComponent } from './cid/arvore-cid/arvore.component';
+import { UnidadeFuncionalComponent } from './components/unidade-funcional/unidade-funcional.component';
 
 /* jhipster-needle-add-shared-service-import - JHipster will add shared services imports here */
 
@@ -25,7 +26,7 @@ import { ArvoreComponent } from './cid/arvore-cid/arvore.component';
         TriStateCheckboxModule,
         CrudModule,
     ],
-    declarations: [MessageComponent, CidComponent, ArvoreComponent],
+    declarations: [MessageComponent, CidComponent, ArvoreComponent, UnidadeFuncionalComponent],
     providers: [JhiDateUtils],
     exports: [
         ReactiveFormsModule,
@@ -36,8 +37,8 @@ import { ArvoreComponent } from './cid/arvore-cid/arvore.component';
         CrudModule,
         MessageComponent,
         CidComponent,
-        ArvoreComponent
-
+        ArvoreComponent,
+        UnidadeFuncionalComponent
     ],
 })
 export class SharedModule {}

@@ -11,9 +11,6 @@ public class SalaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private Integer codigoDaSala;
-
-    @NotNull
     private String identificacaoDaSala;
 
     @NotNull
@@ -31,14 +28,6 @@ public class SalaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCodigoDaSala() {
-        return codigoDaSala;
-    }
-
-    public void setCodigoDaSala(Integer codigoDaSala) {
-        this.codigoDaSala = codigoDaSala;
     }
 
     public String getIdentificacaoDaSala() {
@@ -95,7 +84,6 @@ public class SalaDTO implements Serializable {
     public String toString() {
         return "SalaDTO{" +
             "id=" + getId() +
-            ", codigoDaSala=" + getCodigoDaSala() +
             ", identificacaoDaSala='" + getIdentificacaoDaSala() + "'" +
             ", locacaoDaSala='" + getLocacaoDaSala() + "'" +
             ", ativo='" + isAtivo() + "'" +

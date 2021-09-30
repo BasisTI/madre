@@ -220,6 +220,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                                     label: 'Cadastros',
                                     items: [
                                         {
+                                            label: 'Anticoagulante',
+                                            icon: 'add',
+                                            routerLink: ['exames/anticoagulante'],
+                                        },
+                                        {
                                             label: 'Exames',
                                             icon: 'add',
                                             routerLink: ['exames/formulario-exame']
@@ -230,15 +235,25 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             routerLink: ['exames/cadastrar-material'],
                                         },
                                         {
-                                            label: 'Recipiente',
+                                            label: 'Salas',
                                             icon: 'add',
-                                            routerLink: ['exames/cadastrar-recipiente'],
+                                            routerLink: ['exames/formulario-salas'],
                                         },
                                         {
                                             label: 'Cadáver',
                                             icon: 'add',
                                             routerLink: ['exames/formulario-cadaver'],
-                                        }
+                                            },
+                                         {
+                                            label: 'Recipientes de Coleta',
+                                            icon: 'add',
+                                            routerLink: ['exames/formulario-recipiente'],
+                                        },
+                                        {
+                                            label: 'Tipos de Marcação',
+                                            icon: 'add',
+                                            routerLink: ['exames/formulario-tipos-de-marcacao'],
+                                        },
                                     ]
                                 }
                             ]
@@ -267,11 +282,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                             label: 'Solicitar Exame',
                             icon: 'add',
                             routerLink: ['exames/solicitar-exame'],
-                        },
-                        {
-                            label: 'Anticoagulante',
-                            icon: 'add',
-                            routerLink: ['exames/anticoagulante'],
                         }
                     ]
                 },
