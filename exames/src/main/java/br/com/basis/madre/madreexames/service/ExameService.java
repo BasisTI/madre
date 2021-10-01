@@ -4,7 +4,6 @@ import br.com.basis.madre.madreexames.domain.Exame;
 import br.com.basis.madre.madreexames.domain.Sinonimo;
 import br.com.basis.madre.madreexames.repository.ExameRepository;
 import br.com.basis.madre.madreexames.repository.search.ExameSearchRepository;
-import br.com.basis.madre.madreexames.service.dto.ExameBuscaDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.ExameCompletoMapper;
@@ -119,7 +118,6 @@ public class ExameService {
 
     public List<ExameCompletoDTO> findAllExamesBySinonimo(String nome) {
         log.debug("Request to search for a page of Exames for query {}", nome);
-        System.out.println(nome + "yukio");
         return exameRepository.findByNameOrSinonimos(nome.toUpperCase(Locale.ROOT)).stream()
             .map(exameCompletoMapper::toDto).collect(Collectors.toList());
     }
