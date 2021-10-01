@@ -148,13 +148,6 @@ public class ExameResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
 
-//    @GetMapping("/exames/sinonimos/{termo}")
-//    public ResponseEntity<List<ExameDTO>> filterExamesByQuery(@PathVariable String termo) {
-//        log.debug("REST request to search for a page of Exames for query {}", termo);
-//        List<ExameDTO> exames = exameService.findAllExamesBySinonimo(termo);
-//        return ResponseEntity.ok().body(exames);
-//    }
-
     @GetMapping("/exames/sinonimos")
     public ResponseEntity<List<ExameCompletoDTO>> filterExames(@RequestParam(required = false, defaultValue = "") String nome) {
         log.debug("REST request to search for a page of Exames for query {}", nome, "teste");
