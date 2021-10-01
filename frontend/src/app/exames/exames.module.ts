@@ -25,6 +25,7 @@ import { FormularioRecipientesComponent } from './components/formulario-recipien
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
+import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-recomendacoes-de-exames/grupos-de-recomendacoes-de-exames.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-
         AntiCoagulanteComponent,
         FormularioSalasComponent,
         FormularioTipoDeMarcacaoComponent,
+        GruposDeRecomendacoesDeExamesComponent,
 
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
