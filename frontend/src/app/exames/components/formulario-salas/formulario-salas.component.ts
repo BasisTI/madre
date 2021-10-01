@@ -11,8 +11,8 @@ import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
 })
 export class FormularioSalasComponent implements OnInit {
 
-  identificacaoDaSala: string;
-  locacaoDaSala: string;
+  nome: string;
+  locacao: string;
   ativo: boolean;
 
   situacaoExame = SituacaoAtivo;
@@ -28,8 +28,8 @@ export class FormularioSalasComponent implements OnInit {
     cadastrar(){
 
       let cadastro: Sala = {
-        identificacaoDaSala: this.identificacaoDaSala,
-        locacaoDaSala: this.locacaoDaSala,
+        nome: this.nome,
+        locacao: this.locacao,
         ativo: this.ativo,
         unidadeExecutoraId: this.unidadeFuncional.unidadeId,
       };
@@ -41,15 +41,15 @@ export class FormularioSalasComponent implements OnInit {
     }
 
     limparFormulario() {
-      this.identificacaoDaSala = null;
-      this.locacaoDaSala = null;
+      this.nome = null;
+      this.locacao = null;
       this.ativo = null;
       this.unidadeFuncional.unidadeId = null
       
     }
 
     validarFormulario() {
-      if(this.identificacaoDaSala && this.locacaoDaSala && this.ativo)
+      if(this.nome && this.nome && this.ativo)
       return true;
     }
 
