@@ -1,3 +1,4 @@
+import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
 import { Routes } from '@angular/router';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
@@ -7,8 +8,10 @@ import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
-import { AntiCoagulanteComponent } from './components/anticoagulante/anticoagulante.component';
 import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
+import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
+import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
+import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +39,14 @@ export const routes: Routes = [
         component: GuiaMaterialComponent,
     },
     {
+        path: 'formulario-recipiente',
+        component: FormularioRecipientesComponent,
+    },
+    {
+        path: 'formulario-tipos-de-marcacao',
+        component: FormularioTipoDeMarcacaoComponent,
+    },
+    {
         path: 'anticoagulante',
         component: AntiCoagulanteComponent,
     },
@@ -50,5 +61,9 @@ export const routes: Routes = [
     {
         path: 'listar-horarios-agendados',
         component: TabelaHorariosAgendadosComponent
+    },
+    {
+        path: 'formulario-salas',
+        component: FormularioSalasComponent
     }
 ];

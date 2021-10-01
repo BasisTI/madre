@@ -10,24 +10,22 @@ import { Pessoa } from '../models/pessoa-resumo-model';
 @Injectable({
   providedIn: 'root'
 })
-export class PessoaService{
+export class PessoaService {
 
   private readonly resource = `${api}/pessoas`;
 
-
-  constructor(private client: HttpClient) {}
+  constructor(private client: HttpClient) { }
 
   public getPessoa(): Observable<Array<Pessoa>> {
     return this.client.get<Array<Pessoa>>(`${this.resource}`);
   }
-
+  
   getResultPessoas(event): Observable<Pageable<ListaPessoasServidor>> {
     return this.client.get<Pageable<ListaPessoasServidor>>(
-        `${this.resource}/_resumo`,
-        {
-            params: new HttpParams().set('nome', event).set('sort', 'nome'),
-        },
+      `${this.resource}/nao-cadastradas`,
+      {
+        params: new HttpParams().set('nome', event).set('sort', 'nome'),
+      },
     );
   }
-
 }

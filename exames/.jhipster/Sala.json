@@ -2,11 +2,6 @@
   "name": "Sala",
   "fields": [
     {
-      "fieldName": "codigoDaSala",
-      "fieldType": "Integer",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "identificacaoDaSala",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
