@@ -35,40 +35,32 @@
                             (completeMethod)="buscarExame($event)"
                             (onSelect)="aoSelecionarExame($event)"
                             [dropdown]="true"
+                            [autoZIndex]
                         >
                             <ng-template let-exames pTemplate="item">
-                                <div
-                                    style="
-                                        width: 100%;    
-                                        display: flex;
-                                        flex-direction: row;
-                                        background-color: lightblue;
-                                    "
-                                >
-                                    <th class="celula">
-                                        Nome Usual
-                                    </th>
-                                    <th class="celula">
-                                        Material
-                                    </th>
-                                    <th class="celula">
-                                        Amostha do Exame
-                                    </th>
-                                    <th class="celula">
-                                        Sigla
-                                    </th>
-                                    <th class="celula">
-                                        Nome do Exame
-                                    </th>
+                                <div style="width: 100%; display: flex; flex-direction: row">
+                                    <th class="celula">Nome Usual</th>
+                                    <th class="celula">Material</th>
+                                    <th class="celula">Amostra do Exame</th>
+                                    <th class="celula">Sigla</th>
+                                    <th class="celula">Nome do Exame</th>
                                 </div>
                                 <div style="width: 80vw; display: flex; flex-direction: row">
-                                    <span class="celulaContent">{{ exames.nomeUsual }}{{ i }}</span>
-                                    <span class="celulaContent">{{ exames.material }}</span>
                                     <span class="celulaContent">{{
-                                        exames.amostraExamesNome
+                                        exames.nomeUsual ? exames.nomeUsual : '-'
                                     }}</span>
-                                    <span class="celulaContent">{{ exames.sigla }}</span>
-                                    <span class="celulaContent">{{ exames.nome }}</span>
+                                    <span class="celulaContent2">{{
+                                        exames.material ? exames.material : '-'
+                                    }}</span>
+                                    <span class="celulaContent">{{
+                                        exames.amostraExamesNome ? exames.amostraExamesNome : '-'
+                                    }}</span>
+                                    <span class="celulaContent2">{{
+                                        exames.sigla ? exames.sigla : '-'
+                                    }}</span>
+                                    <span class="celulaContent">{{
+                                        exames.nome ? exames.nome : '-'
+                                    }}</span>
                                 </div>
                             </ng-template>
                         </p-autoComplete>
