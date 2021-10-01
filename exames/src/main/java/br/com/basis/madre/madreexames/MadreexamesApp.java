@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
 @Slf4j
 @SpringBootApplication
 @EnableFeignClients
-@EnableConfigurationProperties({ LiquibaseProperties.class})
+@EnableConfigurationProperties({LiquibaseProperties.class})
 @RequiredArgsConstructor
 public class MadreexamesApp implements InitializingBean {
 

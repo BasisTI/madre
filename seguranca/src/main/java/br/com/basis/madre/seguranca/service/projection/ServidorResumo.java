@@ -10,5 +10,4 @@ public interface ServidorResumo {
     Long getVinculoId();
     Long getPessoaId();
     String getPessoaNome();
-
 }

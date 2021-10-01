@@ -25,7 +25,6 @@ import { Vinculo } from 'src/app/seguranca/models/vinculo-resumo-model';
 import { GrupoFuncional } from 'src/app/seguranca/models/grupo-funcional-model';
 import { Pessoa } from 'src/app/seguranca/models/pessoa-resumo-model';
 
-
 @Component({
   selector: 'app-formulario-servidor',
   templateUrl: './formulario-servidor.component.html',
@@ -63,14 +62,14 @@ export class FormularioServidorComponent implements OnInit {
     codigoStarh: [''],
     inicioDoVinculo: ['', Validators.required],
     fimDoVinculo: [''],
-    situacao: [''],
-    situacaoDoServidor: [''],
+    situacao: ['', Validators.required],
+    situacaoDoServidor: ['', Validators.required],
     centroDeAtividadeIdLotacao: ['', Validators.required],
     centroDeAtividadeIdAtuacao: [''],
     ocupacao: ['', Validators.compose([Validators.required])],
     grupoFuncional: [''],
     cargaHoraria: [''],
-    tipoDeRemuneracao: [''],
+    tipoDeRemuneracao: ['', Validators.required],
     idade: [''],
     tempoDeContrato: [''],
     funcaoDoCracha: [''],
@@ -161,9 +160,7 @@ export class FormularioServidorComponent implements OnInit {
   }
 
   aoSelecionarUmaPessoa(pessoa: Pessoa): void {
-
     const idade = this.calculaIdade(pessoa.dataDeNascimento);
-
     this.formServidor.controls['idade'].setValue(idade)
   }
 
