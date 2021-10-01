@@ -5,18 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -62,6 +55,10 @@ public class Exame implements Serializable {
     @NotNull
     @Column(name = "anexa_documentos", nullable = false)
     private Boolean anexaDocumentos;
+
+    @OneToMany(mappedBy = "exame")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<GradeAgendamentoExame> gradeDoExames = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
@@ -172,6 +169,31 @@ public class Exame implements Serializable {
         this.anexaDocumentos = anexaDocumentos;
     }
 
+    public Set<GradeAgendamentoExame> getGradeDoExames() {
+        return gradeDoExames;
+    }
+
+    public Exame gradeDoExames(Set<GradeAgendamentoExame> gradeAgendamentoExames) {
+        this.gradeDoExames = gradeAgendamentoExames;
+        return this;
+    }
+
+    public Exame addGradeDoExame(GradeAgendamentoExame gradeAgendamentoExame) {
+        this.gradeDoExames.add(gradeAgendamentoExame);
+        gradeAgendamentoExame.setExame(this);
+        return this;
+    }
+
+    public Exame removeGradeDoExame(GradeAgendamentoExame gradeAgendamentoExame) {
+        this.gradeDoExames.remove(gradeAgendamentoExame);
+        gradeAgendamentoExame.setExame(null);
+        return this;
+    }
+
+    public void setGradeDoExames(Set<GradeAgendamentoExame> gradeAgendamentoExames) {
+        this.gradeDoExames = gradeAgendamentoExames;
+    }
+
     public MaterialDeExame getMaterialExame() {
         return materialExame;
     }
@@ -186,11 +208,11 @@ public class Exame implements Serializable {
     }
 
     public Set<GrupoAgendamentoExame> getGrupoAgendamentoExames() {
-        return new HashSet<>(grupoAgendamentoExames);
+        return grupoAgendamentoExames;
     }
 
     public Exame grupoAgendamentoExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        this.grupoAgendamentoExames = new HashSet<>(grupoAgendamentoExames);
+        this.grupoAgendamentoExames = grupoAgendamentoExames;
         return this;
     }
 
@@ -207,8 +229,7 @@ public class Exame implements Serializable {
     }
 
     public void setGrupoAgendamentoExames(Set<GrupoAgendamentoExame> grupoAgendamentoExames) {
-        grupoAgendamentoExames = new HashSet<>(grupoAgendamentoExames);
-        this.grupoAgendamentoExames = Collections.unmodifiableSet(grupoAgendamentoExames);
+        this.grupoAgendamentoExames = grupoAgendamentoExames;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

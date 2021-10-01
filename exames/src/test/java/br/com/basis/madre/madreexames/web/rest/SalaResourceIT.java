@@ -42,11 +42,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class SalaResourceIT {
 
-    private static final String DEFAULT_IDENTIFICACAO_DA_SALA = "AAAAAAAAAA";
-    private static final String UPDATED_IDENTIFICACAO_DA_SALA = "BBBBBBBBBB";
+    private static final String DEFAULT_NOME = "AAAAAAAAAA";
+    private static final String UPDATED_NOME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_LOCACAO_DA_SALA = "AAAAAAAAAA";
-    private static final String UPDATED_LOCACAO_DA_SALA = "BBBBBBBBBB";
+    private static final String DEFAULT_LOCACAO = "AAAAAAAAAA";
+    private static final String UPDATED_LOCACAO = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
@@ -87,8 +87,8 @@ public class SalaResourceIT {
      */
     public static Sala createEntity(EntityManager em) {
         Sala sala = new Sala()
-            .identificacaoDaSala(DEFAULT_IDENTIFICACAO_DA_SALA)
-            .locacaoDaSala(DEFAULT_LOCACAO_DA_SALA)
+            .nome(DEFAULT_NOME)
+            .locacao(DEFAULT_LOCACAO)
             .ativo(DEFAULT_ATIVO)
             .unidadeExecutoraId(DEFAULT_UNIDADE_EXECUTORA_ID);
         return sala;
@@ -101,8 +101,8 @@ public class SalaResourceIT {
      */
     public static Sala createUpdatedEntity(EntityManager em) {
         Sala sala = new Sala()
-            .identificacaoDaSala(UPDATED_IDENTIFICACAO_DA_SALA)
-            .locacaoDaSala(UPDATED_LOCACAO_DA_SALA)
+            .nome(UPDATED_NOME)
+            .locacao(UPDATED_LOCACAO)
             .ativo(UPDATED_ATIVO)
             .unidadeExecutoraId(UPDATED_UNIDADE_EXECUTORA_ID);
         return sala;
@@ -128,8 +128,8 @@ public class SalaResourceIT {
         List<Sala> salaList = salaRepository.findAll();
         assertThat(salaList).hasSize(databaseSizeBeforeCreate + 1);
         Sala testSala = salaList.get(salaList.size() - 1);
-        assertThat(testSala.getIdentificacaoDaSala()).isEqualTo(DEFAULT_IDENTIFICACAO_DA_SALA);
-        assertThat(testSala.getLocacaoDaSala()).isEqualTo(DEFAULT_LOCACAO_DA_SALA);
+        assertThat(testSala.getNome()).isEqualTo(DEFAULT_NOME);
+        assertThat(testSala.getLocacao()).isEqualTo(DEFAULT_LOCACAO);
         assertThat(testSala.isAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testSala.getUnidadeExecutoraId()).isEqualTo(DEFAULT_UNIDADE_EXECUTORA_ID);
 
@@ -163,10 +163,10 @@ public class SalaResourceIT {
 
     @Test
     @Transactional
-    public void checkIdentificacaoDaSalaIsRequired() throws Exception {
+    public void checkNomeIsRequired() throws Exception {
         int databaseSizeBeforeTest = salaRepository.findAll().size();
         // set the field null
-        sala.setIdentificacaoDaSala(null);
+        sala.setNome(null);
 
         // Create the Sala, which fails.
         SalaDTO salaDTO = salaMapper.toDto(sala);
@@ -183,10 +183,10 @@ public class SalaResourceIT {
 
     @Test
     @Transactional
-    public void checkLocacaoDaSalaIsRequired() throws Exception {
+    public void checkLocacaoIsRequired() throws Exception {
         int databaseSizeBeforeTest = salaRepository.findAll().size();
         // set the field null
-        sala.setLocacaoDaSala(null);
+        sala.setLocacao(null);
 
         // Create the Sala, which fails.
         SalaDTO salaDTO = salaMapper.toDto(sala);
@@ -232,8 +232,8 @@ public class SalaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sala.getId().intValue())))
-            .andExpect(jsonPath("$.[*].identificacaoDaSala").value(hasItem(DEFAULT_IDENTIFICACAO_DA_SALA)))
-            .andExpect(jsonPath("$.[*].locacaoDaSala").value(hasItem(DEFAULT_LOCACAO_DA_SALA)))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].locacao").value(hasItem(DEFAULT_LOCACAO)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)));
     }
@@ -249,8 +249,8 @@ public class SalaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(sala.getId().intValue()))
-            .andExpect(jsonPath("$.identificacaoDaSala").value(DEFAULT_IDENTIFICACAO_DA_SALA))
-            .andExpect(jsonPath("$.locacaoDaSala").value(DEFAULT_LOCACAO_DA_SALA))
+            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
+            .andExpect(jsonPath("$.locacao").value(DEFAULT_LOCACAO))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.unidadeExecutoraId").value(DEFAULT_UNIDADE_EXECUTORA_ID));
     }
@@ -275,8 +275,8 @@ public class SalaResourceIT {
         // Disconnect from session so that the updates on updatedSala are not directly saved in db
         em.detach(updatedSala);
         updatedSala
-            .identificacaoDaSala(UPDATED_IDENTIFICACAO_DA_SALA)
-            .locacaoDaSala(UPDATED_LOCACAO_DA_SALA)
+            .nome(UPDATED_NOME)
+            .locacao(UPDATED_LOCACAO)
             .ativo(UPDATED_ATIVO)
             .unidadeExecutoraId(UPDATED_UNIDADE_EXECUTORA_ID);
         SalaDTO salaDTO = salaMapper.toDto(updatedSala);
@@ -290,8 +290,8 @@ public class SalaResourceIT {
         List<Sala> salaList = salaRepository.findAll();
         assertThat(salaList).hasSize(databaseSizeBeforeUpdate);
         Sala testSala = salaList.get(salaList.size() - 1);
-        assertThat(testSala.getIdentificacaoDaSala()).isEqualTo(UPDATED_IDENTIFICACAO_DA_SALA);
-        assertThat(testSala.getLocacaoDaSala()).isEqualTo(UPDATED_LOCACAO_DA_SALA);
+        assertThat(testSala.getNome()).isEqualTo(UPDATED_NOME);
+        assertThat(testSala.getLocacao()).isEqualTo(UPDATED_LOCACAO);
         assertThat(testSala.isAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testSala.getUnidadeExecutoraId()).isEqualTo(UPDATED_UNIDADE_EXECUTORA_ID);
 
@@ -356,8 +356,8 @@ public class SalaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sala.getId().intValue())))
-            .andExpect(jsonPath("$.[*].identificacaoDaSala").value(hasItem(DEFAULT_IDENTIFICACAO_DA_SALA)))
-            .andExpect(jsonPath("$.[*].locacaoDaSala").value(hasItem(DEFAULT_LOCACAO_DA_SALA)))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].locacao").value(hasItem(DEFAULT_LOCACAO)))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)));
     }

@@ -11,10 +11,10 @@ public class SalaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String identificacaoDaSala;
+    private String nome;
 
     @NotNull
-    private String locacaoDaSala;
+    private String locacao;
 
     @NotNull
     private Boolean ativo;
@@ -30,20 +30,20 @@ public class SalaDTO implements Serializable {
         this.id = id;
     }
 
-    public String getIdentificacaoDaSala() {
-        return identificacaoDaSala;
+    public String getNome() {
+        return nome;
     }
 
-    public void setIdentificacaoDaSala(String identificacaoDaSala) {
-        this.identificacaoDaSala = identificacaoDaSala;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getLocacaoDaSala() {
-        return locacaoDaSala;
+    public String getLocacao() {
+        return locacao;
     }
 
-    public void setLocacaoDaSala(String locacaoDaSala) {
-        this.locacaoDaSala = locacaoDaSala;
+    public void setLocacao(String locacao) {
+        this.locacao = locacao;
     }
 
     public Boolean isAtivo() {
@@ -84,8 +84,8 @@ public class SalaDTO implements Serializable {
     public String toString() {
         return "SalaDTO{" +
             "id=" + getId() +
-            ", identificacaoDaSala='" + getIdentificacaoDaSala() + "'" +
-            ", locacaoDaSala='" + getLocacaoDaSala() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", locacao='" + getLocacao() + "'" +
             ", ativo='" + isAtivo() + "'" +
             ", unidadeExecutoraId=" + getUnidadeExecutoraId() +
             "}";

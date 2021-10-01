@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A TipoDeMarcacao.
@@ -25,12 +27,17 @@ public class TipoDeMarcacao implements Serializable {
     @SequenceGenerator(name = "seqTipoDeMarcacao")
     private Long id;
 
-    @Column(name = "tipo_de_marcacao_nome")
-    private String tipoDeMarcacaoNome;
+    @NotNull
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo;
+
+    @OneToMany(mappedBy = "tipoDeMarcacao")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<HorarioExame> horarioMarcados = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -41,17 +48,17 @@ public class TipoDeMarcacao implements Serializable {
         this.id = id;
     }
 
-    public String getTipoDeMarcacaoNome() {
-        return tipoDeMarcacaoNome;
+    public String getNome() {
+        return nome;
     }
 
-    public TipoDeMarcacao tipoDeMarcacaoNome(String tipoDeMarcacaoNome) {
-        this.tipoDeMarcacaoNome = tipoDeMarcacaoNome;
+    public TipoDeMarcacao nome(String nome) {
+        this.nome = nome;
         return this;
     }
 
-    public void setTipoDeMarcacaoNome(String tipoDeMarcacaoNome) {
-        this.tipoDeMarcacaoNome = tipoDeMarcacaoNome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Boolean isAtivo() {
@@ -65,6 +72,31 @@ public class TipoDeMarcacao implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Set<HorarioExame> getHorarioMarcados() {
+        return horarioMarcados;
+    }
+
+    public TipoDeMarcacao horarioMarcados(Set<HorarioExame> horarioExames) {
+        this.horarioMarcados = horarioExames;
+        return this;
+    }
+
+    public TipoDeMarcacao addHorarioMarcado(HorarioExame horarioExame) {
+        this.horarioMarcados.add(horarioExame);
+        horarioExame.setTipoDeMarcacao(this);
+        return this;
+    }
+
+    public TipoDeMarcacao removeHorarioMarcado(HorarioExame horarioExame) {
+        this.horarioMarcados.remove(horarioExame);
+        horarioExame.setTipoDeMarcacao(null);
+        return this;
+    }
+
+    public void setHorarioMarcados(Set<HorarioExame> horarioExames) {
+        this.horarioMarcados = horarioExames;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -89,7 +121,7 @@ public class TipoDeMarcacao implements Serializable {
     public String toString() {
         return "TipoDeMarcacao{" +
             "id=" + getId() +
-            ", tipoDeMarcacaoNome='" + getTipoDeMarcacaoNome() + "'" +
+            ", nome='" + getNome() + "'" +
             ", ativo='" + isAtivo() + "'" +
             "}";
     }

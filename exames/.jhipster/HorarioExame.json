@@ -1,0 +1,60 @@
+{
+  "name": "HorarioExame",
+  "fields": [
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "horaFim",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "livre",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "exclusivo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tipoDeMarcacao",
+      "otherEntityRelationshipName": "horarioMarcado",
+      "relationshipName": "tipoDeMarcacao",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gradeAgendamentoExame",
+      "otherEntityRelationshipName": "horarioDaGrade",
+      "relationshipName": "gradeAgendamentoExame",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210930160825",
+  "entityTableName": "horario_exame",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

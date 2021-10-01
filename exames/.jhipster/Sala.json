@@ -2,12 +2,12 @@
   "name": "Sala",
   "fields": [
     {
-      "fieldName": "identificacaoDaSala",
+      "fieldName": "nome",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "locacaoDaSala",
+      "fieldName": "locacao",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
@@ -21,7 +21,14 @@
       "fieldType": "Integer"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "gradeAgendamentoExame",
+      "otherEntityRelationshipName": "sala",
+      "relationshipName": "gradeDaSala"
+    }
+  ],
   "changelogDate": "20210818154925",
   "entityTableName": "sala",
   "dto": "mapstruct",

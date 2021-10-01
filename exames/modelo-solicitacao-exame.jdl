@@ -119,48 +119,44 @@ calcularOcupacao Boolean
 ativo Boolean required
 }
 
-entity GradeDeAgendamento {
-unidadeExecutoraId Integer required
-responsavelId Integer
-ativo Boolean required
-}
-
-entity HorarioAgendado {
+entity GradeAgendamentoExame {
+dataInicio LocalDate required
+dataFim LocalDate required
 horaInicio Instant required
 horaFim Instant
+dia String required
 numeroDeHorarios Integer
-dia Dia required
 duracao Duration required
+ativo Boolean required
+unidadeExecutoraId Integer required
+responsavelId Integer required
+}
+
+entity HorarioExame {
+horaInicio Instant required
+horaFim Instant
+livre Boolean required
 ativo Boolean required
 exclusivo Boolean required
 }
 
-entity HorarioLivre {
-dataHoraInicio LocalDate required
-dataHoraFim LocalDate required
-ocupado Boolean required
-}
-
 entity Sala {
-identificacaoDaSala String required
-locacaoDaSala String required
+nome String required
+locacao String required
 ativo Boolean required
 unidadeExecutoraId Integer
 }
 
 entity TipoDeMarcacao {
-tipoDeMarcacaoNome String
+nome String required
 ativo Boolean required
 }
 
-enum Dia {
-DOMINGO,
-SEGUNDA_FEIRA,
-TERCA_FEIRA,
-QUARTA_FEIRA,
-QUINTA_FEIRA,
-SEXTA_FEIRA,
-SABADO
+relationship OneToMany {
+Exame{gradeDoExame(nome)} to GradeAgendamentoExame
+Sala{gradeDaSala(nome)} to GradeAgendamentoExame
+TipoDeMarcacao{horarioMarcado(nome)} to HorarioExame
+GradeAgendamentoExame{horarioDaGrade(grade)} to HorarioExame
 }
 
 enum OrigemTipoAmostra {
@@ -180,21 +176,12 @@ A_COLETAR, AREA_EXECUTORA, COLETADO
 }
 
 enum UnidadeDeMedida {
-	MILILITRO, FRASCO
+MILILITRO, FRASCO
 }
 
 relationship OneToMany {
 Material{material(nome)} to Recomendacao,
 SolicitacaoExame{solicitacaoExame(infoClinica)} to ItemSolicitacaoExame
-GradeDeAgendamento{gradeHorario(grade)} to HorarioAgendado
-HorarioAgendado{horarioAgendadoLivre(dia)} to HorarioLivre
-}
-
-relationship ManyToOne {
-GradeDeAgendamento{exameGrade(nome)} to Exame
-GradeDeAgendamento{grupoGrade(nome)} to GrupoAgendamentoExame
-GradeDeAgendamento{salaGrade(identificacaoDaSala)} to Sala
-HorarioAgendado{tipoHorario(tipoDeMarcacao)} to TipoDeMarcacao
 }
 
 relationship ManyToOne {

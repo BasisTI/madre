@@ -17,8 +17,8 @@
             </column>
         </dropColumn>
         <addColumn tableName="tipo_de_marcacao">
-            <column name="tipo_de_marcacao_nome" type="varchar(255)">
-                <constraints nullable="true" />
+            <column name="nome" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
         </addColumn>
     </changeSet>
