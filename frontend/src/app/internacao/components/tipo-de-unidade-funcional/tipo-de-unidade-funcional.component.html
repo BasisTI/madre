@@ -1,0 +1,42 @@
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="card card-w-title">
+            <h1>Cadastrar Tipos para Unidades Funcionais</h1>
+            <div class="p-grid">
+                <div
+                    class="p-md-5 p-fluid"
+                    pTooltip="Informe a descrição do tipo de unidade funcional"
+                    [formGroup]="cadastrarTipoUnidadeFuncional"
+                >
+                    Nome:
+                    <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                        <input type="text" pInputText class="p-inputtext" formControlName="nome" />
+                    </span>
+                </div>
+
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
+                        <button
+                            pButton
+                            type="button"
+                            label="Salvar"
+                            icon="pi pi-save"
+                            (click)="cadastrar()"
+                            [disabled]="!validarTipoUnidadeFuncional()"
+                        ></button>
+                    </div>
+
+                    <div class="p-md-2">
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            icon="pi pi-times"
+                            (click)="limparTipoUnidadeFuncional()"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
