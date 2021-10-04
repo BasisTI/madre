@@ -12,7 +12,7 @@ import { AbrangeciaDropdown } from '../../models/dropdowns/abrangencia.dropdown'
   templateUrl: './grupos-de-recomendacoes-de-exames.component.html',
   styleUrls: ['./grupos-de-recomendacoes-de-exames.component.css']
 })
-export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
+export class GruposDeRecomendacoesDeExamesComponent{
   descricao: string;
   responsavel: string;
   abrangencia: string;
@@ -47,8 +47,4 @@ export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
     if(this.descricao && this.responsavel && this.abrangencia && this.avisoResponsavel)
     return true;
   }
-    
-  ngOnInit(): void {
-  }
-
 }
