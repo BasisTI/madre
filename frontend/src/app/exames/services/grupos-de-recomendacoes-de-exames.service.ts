@@ -4,7 +4,7 @@ import { RecomendacoesExames } from '../models/subjects/grupos-de-recomendacoes-
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn:'root'
 })
 export class GruposDeRecomendacoesDeExamesService {
 

@@ -16,7 +16,7 @@ export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
   descricao: string;
   responsavel: string;
   abrangencia: string;
-  ativo: boolean;
+  avisoResponsavel: boolean;
 
   responsaveis = ResponsavelDropdown;
   abrangencia1 = AbrangeciaDropdown;
@@ -29,7 +29,7 @@ export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
       descricao: this.descricao,
       responsavel: this.responsavel,
       abrangencia: this.abrangencia,
-      ativo: this.ativo,
+      avisoResponsavel: this.avisoResponsavel,
     };
     
     this.gruposDeRecomendacoesDeExamesService.cadastrarGrupos(cadastro).subscribe();
@@ -40,11 +40,11 @@ export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
     this.descricao = null;
     this.responsavel = null;
     this.abrangencia = null;
-    this.ativo = null;
+    this.avisoResponsavel = null;
   }
 
   validarFormulario() {
-    if(this.descricao && this.responsavel && this.abrangencia && this.ativo)
+    if(this.descricao && this.responsavel && this.abrangencia && this.avisoResponsavel)
     return true;
   }
     

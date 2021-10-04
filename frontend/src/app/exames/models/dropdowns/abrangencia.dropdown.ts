@@ -4,11 +4,11 @@ import { OpcaoDropdown } from '@shared/dropdown/opcao.dropdown';
 export const AbrangeciaDropdown: OpcaoDropdown[] = [
     {
         label: 'Ambulatório',
-        value: 'AMBULATÓRIO',
+        value: 'AMBULATORIO',
     },
     {
         label: 'Internação',
-        value: 'INTERNAÇÃO',
+        value: 'INTERNACAO',
     },
     {
         label: 'Ambos',

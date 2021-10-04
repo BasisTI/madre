@@ -11,10 +11,10 @@
                         </span>
                     </div>
                     <div class="p-md-3 p-col-12">
-                        <label>Ativo:</label> 
+                        <label>Aviso Responsável</label> 
                         <div class="ativo">
-                            <p-radioButton class="ativosim" [(ngModel)]="ativo" name="situacao" value=true label="Sim"></p-radioButton>
-                            <p-radioButton [(ngModel)]="ativo" name="situacao" value=false label="Não"></p-radioButton>
+                            <p-radioButton class="ativosim" [(ngModel)]="avisoResponsavel" name="situacao" value=true label="Sim"></p-radioButton>
+                            <p-radioButton [(ngModel)]="avisoResponsavel" name="situacao" value=false label="Não"></p-radioButton>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     <div class="p-md-4 p-col-12">
                         <label>Responsável</label>
                         <span>
-                            <p-dropdown formControlName="materialId"
+                            <p-dropdown
                                 [(ngModel)]="responsavel"
                                 [options]="responsaveis"
                                 [filter]="true"
@@ -35,7 +35,7 @@
                     <div class="p-md-4 p-col-12">
                         <label>Abrangência</label>
                         <span>
-                            <p-dropdown formControlName="materialId" 
+                            <p-dropdown 
                                 [(ngModel)]="abrangencia"
                                 [options]="abrangencia1"
                                 [filter]="true"

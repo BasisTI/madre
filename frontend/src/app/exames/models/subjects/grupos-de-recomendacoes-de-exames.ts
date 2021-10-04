@@ -3,7 +3,7 @@ export interface IRecomendacoesExames {
         descricao?: string,
         responsavel?: string, 
         abrangencia?: string, 
-        ativo?: boolean;
+        avisoResponsavel?: boolean;
 }
 
 
@@ -13,5 +13,5 @@ export class RecomendacoesExames implements IRecomendacoesExames{
         public descricao?: string,
         public responsavel?: string, 
         public abrangencia?: string, 
-        public ativo?: boolean) {}
+        public avisoResponsavel?: boolean) {}
 }
