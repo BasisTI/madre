@@ -1,3 +1,4 @@
+import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-funcional/tipo-de-unidade-funcional.component';
 import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
 import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
 import { BloqueioDeLeitoComponent } from './components/bloqueio-de-leito/bloqueio-de-leito.component';
@@ -50,5 +51,9 @@ export const routes: Routes = [
     {
         path: 'cadastro-clinicas',
         component: ClinicaComponent
+    },
+    {
+        path: 'tipo-unidade-funcional',
+        component: TipoDeUnidadeFuncionalComponent,
     }
 ];

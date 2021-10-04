@@ -207,6 +207,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 },
                             ],
                         },
+                        {
+                            label: 'Tipos de Unidades Funionais',
+                            icon: 'add',
+                            routerLink: ['internacao/tipo-unidade-funcional'],
+                        },
                     ],
                 },
                 {
@@ -235,21 +240,20 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             routerLink: ['exames/cadastrar-material'],
                                         },
                                         {
+                                            label: 'Recipientes de Coleta',
+                                            icon: 'add',
+                                            routerLink: ['exames/formulario-recipiente'],
+                                        },
+                                        {
                                             label: 'Salas',
                                             icon: 'add',
                                             routerLink: ['exames/formulario-salas'],
-                                         },
-                                         {
-                                            label: 'Recipientes de Coleta',
-
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-recipiente'],
                                         },
                                         {
                                             label: 'Tipos de Marcação',
                                             icon: 'add',
                                             routerLink: ['exames/formulario-tipos-de-marcacao'],
-                                        }
+                                        },
                                     ]
                                 }
                             ]
