@@ -11,11 +11,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.env.Environment;
 
+@Slf4j
 @SpringBootApplication
 @EnableFeignClients
 @EnableConfigurationProperties({LiquibaseProperties.class})
 @RequiredArgsConstructor
-@Slf4j
 public class MadreexamesApp implements InitializingBean {
 
     private final Environment env;

@@ -1,9 +1,12 @@
 package br.com.basis.madre.madreexames.service;
 
 import br.com.basis.madre.madreexames.domain.Exame;
+import br.com.basis.madre.madreexames.domain.Sinonimo;
 import br.com.basis.madre.madreexames.repository.ExameRepository;
 import br.com.basis.madre.madreexames.repository.search.ExameSearchRepository;
+import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
+import br.com.basis.madre.madreexames.service.mapper.ExameCompletoMapper;
 import br.com.basis.madre.madreexames.service.mapper.ExameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +15,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
@@ -31,23 +37,29 @@ public class ExameService {
 
     private final ExameSearchRepository exameSearchRepository;
 
-    public ExameService(ExameRepository exameRepository, ExameMapper exameMapper, ExameSearchRepository exameSearchRepository) {
+    private final ExameCompletoMapper exameCompletoMapper;
+
+    public ExameService(ExameRepository exameRepository, ExameMapper exameMapper, ExameSearchRepository exameSearchRepository, ExameCompletoMapper exameCompletoMapper) {
         this.exameRepository = exameRepository;
         this.exameMapper = exameMapper;
         this.exameSearchRepository = exameSearchRepository;
+        this.exameCompletoMapper = exameCompletoMapper;
     }
 
     /**
      * Save a exame.
      *
-     * @param exameDTO the entity to save.
+     * @param exameCompletoDTO the entity to save.
      * @return the persisted entity.
      */
-    public ExameDTO save(ExameDTO exameDTO) {
-        log.debug("Request to save Exame : {}", exameDTO);
-        Exame exame = exameMapper.toEntity(exameDTO);
+    public ExameCompletoDTO save(ExameCompletoDTO exameCompletoDTO) {
+        log.debug("Request to save Exame : {}", exameCompletoDTO);
+        Exame exame = exameCompletoMapper.toEntity(exameCompletoDTO);
+        for(Sinonimo sinonimo : exame.getSinonimos()){
+            sinonimo.setExame(exame);
+        }
         exame = exameRepository.save(exame);
-        ExameDTO result = exameMapper.toDto(exame);
+        ExameCompletoDTO result = exameCompletoMapper.toDto(exame);
         exameSearchRepository.save(exame);
         return result;
     }
@@ -103,4 +115,11 @@ public class ExameService {
         return exameSearchRepository.search(queryStringQuery(query), pageable)
             .map(exameMapper::toDto);
     }
+
+    public List<ExameCompletoDTO> findAllExamesBySinonimo(String nome) {
+        log.debug("Request to search for a page of Exames for query {}", nome);
+        return exameRepository.findByNameOrSinonimos(nome.toUpperCase(Locale.ROOT)).stream()
+            .map(exameCompletoMapper::toDto).collect(Collectors.toList());
+    }
+
 }

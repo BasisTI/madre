@@ -21,11 +21,11 @@ import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
+import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
-
 
 @NgModule({
     declarations: [
@@ -49,9 +49,9 @@ import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-
         MaterialExamesComponent,
         FormularioRecipientesComponent,
         AntiCoagulanteComponent,
+        GuiaMaterialComponent,
         FormularioSalasComponent,
         FormularioTipoDeMarcacaoComponent,
-
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
