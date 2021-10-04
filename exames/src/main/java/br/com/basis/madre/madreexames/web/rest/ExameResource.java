@@ -3,7 +3,6 @@ package br.com.basis.madre.madreexames.web.rest;
 import br.com.basis.madre.madreexames.service.ExameService;
 import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
-import br.com.basis.madre.madreexames.service.mapper.ExameCompletoMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;

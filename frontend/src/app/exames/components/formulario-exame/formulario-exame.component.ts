@@ -87,8 +87,4 @@ export class FormularioExameComponent implements OnInit {
     });
   }
 
-  testar() {
-    console.log(this.listaSinonimos);
-  }
-
 }

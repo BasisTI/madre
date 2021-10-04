@@ -13,7 +13,6 @@ import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 
-
 export const routes: Routes = [
     {
         path: 'pesquisar-atendimento',
