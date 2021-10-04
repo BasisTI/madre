@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -62,6 +64,10 @@ public class Exame implements Serializable {
     @NotNull
     @Column(name = "anexa_documentos", nullable = false)
     private Boolean anexaDocumentos;
+
+    @OneToMany(mappedBy = "exame", cascade = CascadeType.ALL)
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Sinonimo> sinonimos = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "exames", allowSetters = true)
@@ -210,6 +216,32 @@ public class Exame implements Serializable {
         grupoAgendamentoExames = new HashSet<>(grupoAgendamentoExames);
         this.grupoAgendamentoExames = Collections.unmodifiableSet(grupoAgendamentoExames);
     }
+
+    public Set<Sinonimo> getSinonimos() {
+        return sinonimos;
+    }
+
+    public void setSinonimos(Set<Sinonimo> sinonimos) {
+        this.sinonimos = sinonimos;
+    }
+
+    public Exame addSinonimo(Sinonimo sinonimo) {
+        this.sinonimos.add(sinonimo);
+        sinonimo.setExame(this);
+        return this;
+    }
+
+    public Exame removeSinonimo(Sinonimo sinonimo) {
+        this.sinonimos.remove(sinonimo);
+        sinonimo.setExame(null);
+        return this;
+    }
+
+    public Exame exame(Set<Sinonimo> sinonimos) {
+        this.sinonimos = sinonimos;
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
