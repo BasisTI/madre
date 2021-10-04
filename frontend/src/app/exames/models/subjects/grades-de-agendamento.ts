@@ -1,17 +1,19 @@
-export class GradesDeAgendamento {
+import * as momento from "moment";
+
+export class GradeDeAgendamentoExame {
     constructor(
         public id?: number,
+        public dataInicio?: Date,
+        public dataFim?: Date,
+        public horaInicio?: Date,
+        public horaFim?: Date,
+        public dia?: string,
+        public numeroDeHorarios?: number,
+        public duracao?: moment.Duration,
+        public ativo?: boolean,
         public unidadeExecutoraId?: number,
         public responsavelId?: number,
-        public ativo?: boolean,
-        public exameGradeId?: number,
-        public exameGradeNome?: string,
-        public salaGradeId?: number,
-        public salaGradeIdentificacaoDaSala?: string,
         public exameId?: number,
-        public grupoGradeId?: number,
-        public grupoGradeNome?: string,
-        public responsavelNome?: string,
-        public unidadeExecutoraNome?: string
+        public salaId?: number
     ) { }
 }
