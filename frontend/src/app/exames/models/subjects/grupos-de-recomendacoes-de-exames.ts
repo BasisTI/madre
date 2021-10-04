@@ -1,8 +1,8 @@
 export interface IRecomendacoesExames {
         id?: number,
-        descricaoId?: string,
-        responsavelId?: number, 
-        abrangenciaId?: number, 
+        descricao?: string,
+        responsavel?: string, 
+        abrangencia?: string, 
         ativo?: boolean;
 }
 
@@ -10,8 +10,8 @@ export interface IRecomendacoesExames {
 export class RecomendacoesExames implements IRecomendacoesExames{
     constructor(
         public id?: number,
-        public descricaoId?: string,
-        public responsavelId?: number, 
-        public abrangenciaId?: number, 
+        public descricao?: string,
+        public responsavel?: string, 
+        public abrangencia?: string, 
         public ativo?: boolean) {}
 }

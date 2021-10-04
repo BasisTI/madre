@@ -3,6 +3,7 @@ import { RecomendacoesExames } from './../../models/subjects/grupos-de-recomenda
 import { GruposDeRecomendacoesDeExamesService } from './../../services/grupos-de-recomendacoes-de-exames.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { AbrangeciaDropdown } from '../../models/dropdowns/abrangencia.dropdown';
 
 
 
@@ -12,21 +13,22 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./grupos-de-recomendacoes-de-exames.component.css']
 })
 export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
-  descricaoId: string;
-  responsavelId: number;
-  abrangenciaId: number;
+  descricao: string;
+  responsavel: string;
+  abrangencia: string;
   ativo: boolean;
 
   responsaveis = ResponsavelDropdown;
+  abrangencia1 = AbrangeciaDropdown;
   
   constructor(private fb: FormBuilder,
     private gruposDeRecomendacoesDeExamesService: GruposDeRecomendacoesDeExamesService) { }
   
   cadastrar(){
     let cadastro: RecomendacoesExames = {
-      descricaoId: this.descricaoId,
-      responsavelId: this.responsavelId,
-      abrangenciaId: this.abrangenciaId,
+      descricao: this.descricao,
+      responsavel: this.responsavel,
+      abrangencia: this.abrangencia,
       ativo: this.ativo,
     };
     
@@ -35,14 +37,14 @@ export class GruposDeRecomendacoesDeExamesComponent implements OnInit {
   }
 
   limparFormulario(){
-    this.descricaoId = null;
-    this.responsavelId = null;
-    this.abrangenciaId = null;
+    this.descricao = null;
+    this.responsavel = null;
+    this.abrangencia = null;
     this.ativo = null;
   }
 
   validarFormulario() {
-    if(this.descricaoId && this.responsavelId && this.abrangenciaId && this.ativo)
+    if(this.descricao && this.responsavel && this.abrangencia && this.ativo)
     return true;
   }
     
