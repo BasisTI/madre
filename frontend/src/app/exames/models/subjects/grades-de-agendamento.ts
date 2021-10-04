@@ -1,4 +1,4 @@
-import * as momento from "moment";
+import { Dia } from "./dia";
 
 export class GradeDeAgendamentoExame {
     constructor(
@@ -7,7 +7,7 @@ export class GradeDeAgendamentoExame {
         public dataFim?: Date,
         public horaInicio?: Date,
         public horaFim?: Date,
-        public dia?: string,
+        public dias?: Array<Dia>,
         public numeroDeHorarios?: number,
         public duracao?: moment.Duration,
         public ativo?: boolean,

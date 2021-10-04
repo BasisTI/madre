@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { UnidadeFuncionalComponent } from '@shared/components/unidade-funcional/unidade-funcional.component';
 import { HorarioAgendado } from '../../models/subjects/horario-agendado';
+import { Dia } from '../../models/subjects/dia';
 @Component({
   selector: 'app-formulario-grade-de-agendamento',
   templateUrl: './formulario-grade-de-agendamento.component.html',
@@ -32,8 +33,8 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   dataMinima: Date = new Date();
   horaPadrao = new Date('December 31, 2020 12:00:00');
 
-  opcoesDia = DiaSemana;
-  dia: string;
+  dias: Array<Dia>;
+  diasSelecionados: Array<Dia>;
 
   unidadeSelecionada: number;
 
@@ -109,7 +110,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       dataFim: this.dataFim,
       horaInicio: this.horaInicio,
       horaFim: this.horaFim,
-      dia: this.dia,
+      dias: this.dias,
       numeroDeHorarios: cadastroGradeValor.numeroDeHorarios,
       ativo: cadastroGradeValor.ativo,
       unidadeExecutoraId: this.unidadeSelecionada,
@@ -166,10 +167,19 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     this.exameService.GetExames().subscribe((response) => {
       this.exames = response;
     });
+  }
 
+  listarDias() {
+    this.gradeAgendamentoService.getDias().subscribe((response) => {
+      this.dias = response;
+    });
   }
 
   ngOnInit(): void {
+    this.listarDias();
+    console.log('Dias: ', this.dias);
+    
+
     this.listarUnidades();
 
     this.listarServidores();

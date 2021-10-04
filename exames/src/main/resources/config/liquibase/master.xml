@@ -25,6 +25,7 @@
     <include file="config/liquibase/changelog/20210705114608_added_entity_Material_Atualizado.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210930160725_added_entity_GradeAgendamentoExame.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210930160825_added_entity_HorarioExame.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211004132653_added_entity_Dia.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20210705114508_added_entity_constraints_Exame.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210705114708_added_entity_constraints_Recomendacao.xml" relativeToChangelogFile="false"/>

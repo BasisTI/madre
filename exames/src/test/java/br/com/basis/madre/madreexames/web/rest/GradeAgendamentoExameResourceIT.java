@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -59,9 +60,6 @@ public class GradeAgendamentoExameResourceIT {
     private static final Instant DEFAULT_HORA_FIM = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_HORA_FIM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final String DEFAULT_DIA = "AAAAAAAAAA";
-    private static final String UPDATED_DIA = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_NUMERO_DE_HORARIOS = 1;
     private static final Integer UPDATED_NUMERO_DE_HORARIOS = 2;
 
@@ -80,8 +78,14 @@ public class GradeAgendamentoExameResourceIT {
     @Autowired
     private GradeAgendamentoExameRepository gradeAgendamentoExameRepository;
 
+    @Mock
+    private GradeAgendamentoExameRepository gradeAgendamentoExameRepositoryMock;
+
     @Autowired
     private GradeAgendamentoExameMapper gradeAgendamentoExameMapper;
+
+    @Mock
+    private GradeAgendamentoExameService gradeAgendamentoExameServiceMock;
 
     @Autowired
     private GradeAgendamentoExameService gradeAgendamentoExameService;
@@ -114,7 +118,6 @@ public class GradeAgendamentoExameResourceIT {
             .dataFim(DEFAULT_DATA_FIM)
             .horaInicio(DEFAULT_HORA_INICIO)
             .horaFim(DEFAULT_HORA_FIM)
-            .dia(DEFAULT_DIA)
             .numeroDeHorarios(DEFAULT_NUMERO_DE_HORARIOS)
             .duracao(DEFAULT_DURACAO)
             .ativo(DEFAULT_ATIVO)
@@ -134,7 +137,6 @@ public class GradeAgendamentoExameResourceIT {
             .dataFim(UPDATED_DATA_FIM)
             .horaInicio(UPDATED_HORA_INICIO)
             .horaFim(UPDATED_HORA_FIM)
-            .dia(UPDATED_DIA)
             .numeroDeHorarios(UPDATED_NUMERO_DE_HORARIOS)
             .duracao(UPDATED_DURACAO)
             .ativo(UPDATED_ATIVO)
@@ -167,7 +169,6 @@ public class GradeAgendamentoExameResourceIT {
         assertThat(testGradeAgendamentoExame.getDataFim()).isEqualTo(DEFAULT_DATA_FIM);
         assertThat(testGradeAgendamentoExame.getHoraInicio()).isEqualTo(DEFAULT_HORA_INICIO);
         assertThat(testGradeAgendamentoExame.getHoraFim()).isEqualTo(DEFAULT_HORA_FIM);
-        assertThat(testGradeAgendamentoExame.getDia()).isEqualTo(DEFAULT_DIA);
         assertThat(testGradeAgendamentoExame.getNumeroDeHorarios()).isEqualTo(DEFAULT_NUMERO_DE_HORARIOS);
         assertThat(testGradeAgendamentoExame.getDuracao()).isEqualTo(DEFAULT_DURACAO);
         assertThat(testGradeAgendamentoExame.isAtivo()).isEqualTo(DEFAULT_ATIVO);
@@ -248,26 +249,6 @@ public class GradeAgendamentoExameResourceIT {
         int databaseSizeBeforeTest = gradeAgendamentoExameRepository.findAll().size();
         // set the field null
         gradeAgendamentoExame.setHoraInicio(null);
-
-        // Create the GradeAgendamentoExame, which fails.
-        GradeAgendamentoExameDTO gradeAgendamentoExameDTO = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
-
-
-        restGradeAgendamentoExameMockMvc.perform(post("/api/grade-agendamento-exames")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(gradeAgendamentoExameDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<GradeAgendamentoExame> gradeAgendamentoExameList = gradeAgendamentoExameRepository.findAll();
-        assertThat(gradeAgendamentoExameList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkDiaIsRequired() throws Exception {
-        int databaseSizeBeforeTest = gradeAgendamentoExameRepository.findAll().size();
-        // set the field null
-        gradeAgendamentoExame.setDia(null);
 
         // Create the GradeAgendamentoExame, which fails.
         GradeAgendamentoExameDTO gradeAgendamentoExameDTO = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
@@ -377,12 +358,31 @@ public class GradeAgendamentoExameResourceIT {
             .andExpect(jsonPath("$.[*].dataFim").value(hasItem(DEFAULT_DATA_FIM.toString())))
             .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
             .andExpect(jsonPath("$.[*].horaFim").value(hasItem(DEFAULT_HORA_FIM.toString())))
-            .andExpect(jsonPath("$.[*].dia").value(hasItem(DEFAULT_DIA)))
             .andExpect(jsonPath("$.[*].numeroDeHorarios").value(hasItem(DEFAULT_NUMERO_DE_HORARIOS)))
             .andExpect(jsonPath("$.[*].duracao").value(hasItem(DEFAULT_DURACAO.toString())))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
             .andExpect(jsonPath("$.[*].responsavelId").value(hasItem(DEFAULT_RESPONSAVEL_ID)));
+    }
+    
+    @SuppressWarnings({"unchecked"})
+    public void getAllGradeAgendamentoExamesWithEagerRelationshipsIsEnabled() throws Exception {
+        when(gradeAgendamentoExameServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restGradeAgendamentoExameMockMvc.perform(get("/api/grade-agendamento-exames?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(gradeAgendamentoExameServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllGradeAgendamentoExamesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(gradeAgendamentoExameServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restGradeAgendamentoExameMockMvc.perform(get("/api/grade-agendamento-exames?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(gradeAgendamentoExameServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -400,7 +400,6 @@ public class GradeAgendamentoExameResourceIT {
             .andExpect(jsonPath("$.dataFim").value(DEFAULT_DATA_FIM.toString()))
             .andExpect(jsonPath("$.horaInicio").value(DEFAULT_HORA_INICIO.toString()))
             .andExpect(jsonPath("$.horaFim").value(DEFAULT_HORA_FIM.toString()))
-            .andExpect(jsonPath("$.dia").value(DEFAULT_DIA))
             .andExpect(jsonPath("$.numeroDeHorarios").value(DEFAULT_NUMERO_DE_HORARIOS))
             .andExpect(jsonPath("$.duracao").value(DEFAULT_DURACAO.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
@@ -432,7 +431,6 @@ public class GradeAgendamentoExameResourceIT {
             .dataFim(UPDATED_DATA_FIM)
             .horaInicio(UPDATED_HORA_INICIO)
             .horaFim(UPDATED_HORA_FIM)
-            .dia(UPDATED_DIA)
             .numeroDeHorarios(UPDATED_NUMERO_DE_HORARIOS)
             .duracao(UPDATED_DURACAO)
             .ativo(UPDATED_ATIVO)
@@ -453,7 +451,6 @@ public class GradeAgendamentoExameResourceIT {
         assertThat(testGradeAgendamentoExame.getDataFim()).isEqualTo(UPDATED_DATA_FIM);
         assertThat(testGradeAgendamentoExame.getHoraInicio()).isEqualTo(UPDATED_HORA_INICIO);
         assertThat(testGradeAgendamentoExame.getHoraFim()).isEqualTo(UPDATED_HORA_FIM);
-        assertThat(testGradeAgendamentoExame.getDia()).isEqualTo(UPDATED_DIA);
         assertThat(testGradeAgendamentoExame.getNumeroDeHorarios()).isEqualTo(UPDATED_NUMERO_DE_HORARIOS);
         assertThat(testGradeAgendamentoExame.getDuracao()).isEqualTo(UPDATED_DURACAO);
         assertThat(testGradeAgendamentoExame.isAtivo()).isEqualTo(UPDATED_ATIVO);
@@ -525,7 +522,6 @@ public class GradeAgendamentoExameResourceIT {
             .andExpect(jsonPath("$.[*].dataFim").value(hasItem(DEFAULT_DATA_FIM.toString())))
             .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
             .andExpect(jsonPath("$.[*].horaFim").value(hasItem(DEFAULT_HORA_FIM.toString())))
-            .andExpect(jsonPath("$.[*].dia").value(hasItem(DEFAULT_DIA)))
             .andExpect(jsonPath("$.[*].numeroDeHorarios").value(hasItem(DEFAULT_NUMERO_DE_HORARIOS)))
             .andExpect(jsonPath("$.[*].duracao").value(hasItem(DEFAULT_DURACAO.toString())))
             .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))

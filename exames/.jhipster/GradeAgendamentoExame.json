@@ -21,11 +21,6 @@
       "fieldType": "Instant"
     },
     {
-      "fieldName": "dia",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "numeroDeHorarios",
       "fieldType": "Integer"
     },
@@ -56,6 +51,14 @@
       "otherEntityName": "horarioExame",
       "otherEntityRelationshipName": "gradeAgendamentoExame",
       "relationshipName": "horarioDaGrade"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "dia",
+      "otherEntityRelationshipName": "gradeAgendamentoExame",
+      "relationshipName": "dia",
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",

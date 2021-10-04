@@ -124,12 +124,15 @@ dataInicio LocalDate required
 dataFim LocalDate required
 horaInicio Instant required
 horaFim Instant
-dia String required
 numeroDeHorarios Integer
 duracao Duration required
 ativo Boolean required
 unidadeExecutoraId Integer required
 responsavelId Integer required
+}
+
+entity Dia {
+nome String
 }
 
 entity HorarioExame {
@@ -157,6 +160,10 @@ Exame{gradeDoExame(nome)} to GradeAgendamentoExame
 Sala{gradeDaSala(nome)} to GradeAgendamentoExame
 TipoDeMarcacao{horarioMarcado(nome)} to HorarioExame
 GradeAgendamentoExame{horarioDaGrade(grade)} to HorarioExame
+}
+
+relationship ManyToMany {
+GradeAgendamentoExame {dia} to Dia {gradeAgendamentoExame}
 }
 
 enum OrigemTipoAmostra {

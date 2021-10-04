@@ -95,11 +95,11 @@
     </div>
 
     <div class="p-md-2 p-fluid">
-        Dia
+        Dias
         <span class="md-inputfield p-float-label sm-top-margin">
-            <p-dropdown [options]="opcoesDia" [showClear]="true" placeholder="Selecione"
-                [resetFilterOnHide]="true" [(ngModel)]="dia">
-            </p-dropdown>
+            <p-multiSelect [options]="dias" [(ngModel)]="diasSelecionados" defaultLabel="Selecione" optionLabel="nome"
+            display="chip">
+            </p-multiSelect>
         </span>
     </div>
 </div>

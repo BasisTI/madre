@@ -4,7 +4,6 @@ import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 import br.com.basis.madre.madreexames.repository.GradeAgendamentoExameRepository;
 import br.com.basis.madre.madreexames.repository.search.GradeAgendamentoExameSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
-import br.com.basis.madre.madreexames.service.dto.HorarioExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,13 +33,10 @@ public class GradeAgendamentoExameService {
 
     private final GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository;
 
-    private final HorarioExameService horarioExameService;
-
-    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository, GradeAgendamentoExameMapper gradeAgendamentoExameMapper, GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository, HorarioExameService horarioExameService) {
+    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository, GradeAgendamentoExameMapper gradeAgendamentoExameMapper, GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository) {
         this.gradeAgendamentoExameRepository = gradeAgendamentoExameRepository;
         this.gradeAgendamentoExameMapper = gradeAgendamentoExameMapper;
         this.gradeAgendamentoExameSearchRepository = gradeAgendamentoExameSearchRepository;
-        this.horarioExameService = horarioExameService;
     }
 
     /**
@@ -81,6 +77,15 @@ public class GradeAgendamentoExameService {
 
 
     /**
+     * Get all the gradeAgendamentoExames with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<GradeAgendamentoExameDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return gradeAgendamentoExameRepository.findAllWithEagerRelationships(pageable).map(gradeAgendamentoExameMapper::toDto);
+    }
+
+    /**
      * Get one gradeAgendamentoExame by id.
      *
      * @param id the id of the entity.
@@ -89,7 +94,7 @@ public class GradeAgendamentoExameService {
     @Transactional(readOnly = true)
     public Optional<GradeAgendamentoExameDTO> findOne(Long id) {
         log.debug("Request to get GradeAgendamentoExame : {}", id);
-        return gradeAgendamentoExameRepository.findById(id)
+        return gradeAgendamentoExameRepository.findOneWithEagerRelationships(id)
             .map(gradeAgendamentoExameMapper::toDto);
     }
 

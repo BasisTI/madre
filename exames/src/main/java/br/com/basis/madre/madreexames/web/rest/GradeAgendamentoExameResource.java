@@ -61,7 +61,6 @@ public class GradeAgendamentoExameResource {
             throw new BadRequestAlertException("A new gradeAgendamentoExame cannot already have an ID", ENTITY_NAME, "idexists");
         }
         GradeAgendamentoExameDTO result = gradeAgendamentoExameService.save(gradeAgendamentoExameDTO);
-
         return ResponseEntity.created(new URI("/api/grade-agendamento-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -92,12 +91,18 @@ public class GradeAgendamentoExameResource {
      * {@code GET  /grade-agendamento-exames} : get all the gradeAgendamentoExames.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of gradeAgendamentoExames in body.
      */
     @GetMapping("/grade-agendamento-exames")
-    public ResponseEntity<List<GradeAgendamentoExameDTO>> getAllGradeAgendamentoExames(Pageable pageable) {
+    public ResponseEntity<List<GradeAgendamentoExameDTO>> getAllGradeAgendamentoExames(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of GradeAgendamentoExames");
-        Page<GradeAgendamentoExameDTO> page = gradeAgendamentoExameService.findAll(pageable);
+        Page<GradeAgendamentoExameDTO> page;
+        if (eagerload) {
+            page = gradeAgendamentoExameService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = gradeAgendamentoExameService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

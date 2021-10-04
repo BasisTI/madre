@@ -1,17 +1,14 @@
 package br.com.basis.madre.madreexames.service.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Duration;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.GradeAgendamentoExame} entity.
@@ -32,9 +29,6 @@ public class GradeAgendamentoExameDTO implements Serializable {
 
     private Instant horaFim;
 
-    @NotNull
-    private String dia;
-
     @Min(1)
     private Integer numeroDeHorarios;
 
@@ -50,6 +44,7 @@ public class GradeAgendamentoExameDTO implements Serializable {
     @NotNull
     private Integer responsavelId;
 
+    private Set<DiaDTO> dias = new HashSet<>();
 
     private Long exameId;
 

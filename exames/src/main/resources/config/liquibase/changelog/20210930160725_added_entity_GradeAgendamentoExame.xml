@@ -27,9 +27,6 @@
             <column name="hora_fim" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="dia" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
             <column name="numero_de_horarios" type="integer">
                 <constraints nullable="true" />
             </column>
@@ -59,6 +56,17 @@
 
     <changeSet id="20210930160725-1-relations" author="jhipster">
 
+        <createTable tableName="grade_agendamento_exame_dia">
+            <column name="dia_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grade_agendamento_exame_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="grade_agendamento_exame_id, dia_id" tableName="grade_agendamento_exame_dia"/>
+        
     </changeSet>
     
     <changeSet id="20210930160725-1-sequence" author="jhipster">
@@ -84,7 +92,6 @@
             <column name="data_fim" type="date"/>
             <column name="hora_inicio" type="datetime"/>
             <column name="hora_fim" type="datetime"/>
-            <column name="dia" type="string"/>
             <column name="numero_de_horarios" type="numeric"/>
             <column name="duracao" type="numeric"/>
             <column name="ativo" type="boolean"/>

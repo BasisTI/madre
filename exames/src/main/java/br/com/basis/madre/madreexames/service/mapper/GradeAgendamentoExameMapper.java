@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link GradeAgendamentoExame} and its DTO {@link GradeAgendamentoExameDTO}.
  */
-@Mapper(componentModel = "spring", uses = {ExameMapper.class, SalaMapper.class})
+@Mapper(componentModel = "spring", uses = {DiaMapper.class, ExameMapper.class, SalaMapper.class})
 public interface GradeAgendamentoExameMapper extends EntityMapper<GradeAgendamentoExameDTO, GradeAgendamentoExame> {
 
     @Mapping(source = "exame.id", target = "exameId")
@@ -18,6 +18,7 @@ public interface GradeAgendamentoExameMapper extends EntityMapper<GradeAgendamen
 
     @Mapping(target = "horarioDaGrades", ignore = true)
     @Mapping(target = "removeHorarioDaGrade", ignore = true)
+    @Mapping(target = "removeDia", ignore = true)
     @Mapping(source = "exameId", target = "exame")
     @Mapping(source = "salaId", target = "sala")
     GradeAgendamentoExame toEntity(GradeAgendamentoExameDTO gradeAgendamentoExameDTO);

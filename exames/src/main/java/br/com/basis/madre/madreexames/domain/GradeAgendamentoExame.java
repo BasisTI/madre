@@ -46,10 +46,6 @@ public class GradeAgendamentoExame implements Serializable {
     @Column(name = "hora_fim")
     private Instant horaFim;
 
-    @NotNull
-    @Column(name = "dia", nullable = false)
-    private String dia;
-
     @Column(name = "numero_de_horarios")
     private Integer numeroDeHorarios;
 
@@ -72,6 +68,13 @@ public class GradeAgendamentoExame implements Serializable {
     @OneToMany(mappedBy = "gradeAgendamentoExame")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<HorarioExame> horarioDaGrades = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JoinTable(name = "grade_agendamento_exame_dia",
+               joinColumns = @JoinColumn(name = "grade_agendamento_exame_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "dia_id", referencedColumnName = "id"))
+    private Set<Dia> dias = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "gradeDoExames", allowSetters = true)
@@ -140,19 +143,6 @@ public class GradeAgendamentoExame implements Serializable {
 
     public void setHoraFim(Instant horaFim) {
         this.horaFim = horaFim;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public GradeAgendamentoExame dia(String dia) {
-        this.dia = dia;
-        return this;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
     }
 
     public Integer getNumeroDeHorarios() {
@@ -245,6 +235,31 @@ public class GradeAgendamentoExame implements Serializable {
         this.horarioDaGrades = horarioExames;
     }
 
+    public Set<Dia> getDias() {
+        return dias;
+    }
+
+    public GradeAgendamentoExame dias(Set<Dia> dias) {
+        this.dias = dias;
+        return this;
+    }
+
+    public GradeAgendamentoExame addDia(Dia dia) {
+        this.dias.add(dia);
+        dia.getGradeAgendamentoExames().add(this);
+        return this;
+    }
+
+    public GradeAgendamentoExame removeDia(Dia dia) {
+        this.dias.remove(dia);
+        dia.getGradeAgendamentoExames().remove(this);
+        return this;
+    }
+
+    public void setDias(Set<Dia> dias) {
+        this.dias = dias;
+    }
+
     public Exame getExame() {
         return exame;
     }
@@ -297,7 +312,6 @@ public class GradeAgendamentoExame implements Serializable {
             ", dataFim='" + getDataFim() + "'" +
             ", horaInicio='" + getHoraInicio() + "'" +
             ", horaFim='" + getHoraFim() + "'" +
-            ", dia='" + getDia() + "'" +
             ", numeroDeHorarios=" + getNumeroDeHorarios() +
             ", duracao='" + getDuracao() + "'" +
             ", ativo='" + isAtivo() + "'" +

@@ -5,6 +5,7 @@ import { GradeDeAgendamentoExame } from '../models/subjects/grades-de-agendament
 import { Sala } from '../models/subjects/sala';
 import { TipoDeMarcacao } from '../models/subjects/tipo-de-marcacao';
 import { HorarioAgendado } from '../models/subjects/horario-agendado';
+import { Dia } from '../models/subjects/dia';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,9 @@ export class GradeDeAgendamentoService {
 
   public getTiposDeMarcacao(): Observable<Array<TipoDeMarcacao>> {
     return this.client.get<Array<TipoDeMarcacao>>(`${this.URL}/tipo-de-marcacaos`);
+  }
+  public getDias(): Observable<Dia[]> {
+    return this.client.get<Dia[]>(`${this.URL}/dias`);
   }
 
   public getHorariosAgendados(): Observable<Array<HorarioAgendado>> {
