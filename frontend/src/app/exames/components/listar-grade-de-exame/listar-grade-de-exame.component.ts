@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento';
+import { GradeDeAgendamentoExame } from '../../models/subjects/grades-de-agendamento';
 import { GrupoModel } from '../../models/subjects/grupo-model';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Responsavel } from '../../models/subjects/responsavel-model';
@@ -31,7 +31,7 @@ export class ListarGradeDeExameComponent implements OnInit {
   responsavelId: string = '';
   results = [];
  
-  gradeAgendamento: GradesDeAgendamento[];
+  gradeAgendamento: GradeDeAgendamentoExame[];
   unidadesExecutoras: UnidadeFuncional[] = [];
   servidores: ListaServidor[] = [];
   salas: Sala[] = [];

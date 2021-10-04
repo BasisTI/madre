@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/api';
 import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
-import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento';
+import { GradeDeAgendamentoExame } from '../../models/subjects/grades-de-agendamento';
 import { HorarioAgendado } from '../../models/subjects/horario-agendado';
 import { TipoDeMarcacao } from '../../models/subjects/tipo-de-marcacao';
 import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.service';
@@ -20,15 +20,14 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
   horaFim: Date;
   duracao: Time;
   duracaoPadrao = new Date('December 31, 2021 00:30:00');
-  horaPadrao = new Date('December 31, 2020 12:00:00');
+  
   dia = DiaSemana;
-  diaSelecionado: string;
   tiposDeMarcacao: TipoDeMarcacao[] = [];
   numeroDeHorarios: number;
 
 
   @Input()
-  grade: GradesDeAgendamento;
+  grade: GradeDeAgendamentoExame;
 
   constructor(private gradeService: GradeDeAgendamentoService,
     private fb: FormBuilder, private msg: MessageService) { }
@@ -61,12 +60,8 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
         this.horaFim.getDate(), this.horaFim.getHours(), this.horaFim.getMinutes())) : null,
       horaInicio: new Date(Date.UTC(this.horaInicio.getFullYear(),this.horaInicio.getMonth(),
         this.horaInicio.getDate(), this.horaInicio.getHours(), this.horaInicio.getMinutes())),
-      numeroDeHorarios: cadastroHorario.numeroDeHorarios,
-      dia: this.diaSelecionado,
-      duracao: valorDuracao,
       ativo: cadastroHorario.ativo,
       exclusivo: cadastroHorario.exclusivo,
-      gradeDeAgendamentoId: this.grade.id
     };
 
     if (this.numeroDeHorarios != null && this.horaFim != null) {
@@ -89,16 +84,9 @@ export class FormularioHorariosAgendadosComponent implements OnInit {
     this.limparFormulario();
   }
 
-  validarFormulario(): boolean {
-    if (this.agendarHorario.valid && (this.diaSelecionado &&this.horaInicio))
-      return true;
-    else
-      return false;
-  }
 
   limparFormulario() {
     this.agendarHorario.reset();
-    this.diaSelecionado = null;
     this.horaFim = null;
     this.horaInicio = null;
   }

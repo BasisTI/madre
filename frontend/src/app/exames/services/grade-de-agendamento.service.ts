@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { GradesDeAgendamento } from '../models/subjects/grades-de-agendamento';
+import { GradeDeAgendamentoExame } from '../models/subjects/grades-de-agendamento';
 import { Sala } from '../models/subjects/sala';
 import { TipoDeMarcacao } from '../models/subjects/tipo-de-marcacao';
 import { HorarioAgendado } from '../models/subjects/horario-agendado';
@@ -24,8 +24,8 @@ export class GradeDeAgendamentoService {
     grupoAgendamentoExameId: string,
     exameGradeId: string,
     responsavelId: string
-  ): Observable<GradesDeAgendamento[]> {
-    return this.client.get<GradesDeAgendamento[]>(`${this.URL}/_search/grades-de-agendamento`, {
+  ): Observable<GradeDeAgendamentoExame[]> {
+    return this.client.get<GradeDeAgendamentoExame[]>(`${this.URL}/_search/grades-de-agendamento`, {
       params: new HttpParams()
         .set('id', id)
         .set('unidadeExecutoraId', unidadeExecutoraId)
@@ -40,6 +40,14 @@ export class GradeDeAgendamentoService {
     return this.client.get<Array<Sala>>(`${this.URL}/salas`);
   }
 
+  public getSalasPorUnidade(unidadeExecutoraId: string, ativo: string): Observable<Array<Sala>> {
+    return this.client.get<Array<Sala>>(`${this.URL}/_search/salas-por-unidade`, {
+      params: new HttpParams()
+        .set('unidadeExecutoraId', unidadeExecutoraId)
+        .set('ativo', ativo)
+    });
+  }
+
   public getTiposDeMarcacao(): Observable<Array<TipoDeMarcacao>> {
     return this.client.get<Array<TipoDeMarcacao>>(`${this.URL}/tipo-de-marcacaos`);
   }
@@ -48,8 +56,8 @@ export class GradeDeAgendamentoService {
     return this.client.get<Array<HorarioAgendado>>(`${this.URL}/_search/horarios-agendados`);
   }
 
-  cadastrarGrade(gradeDeAgendamento: GradesDeAgendamento) {
-    return this.client.post(`${this.URL}/grade-de-agendamentos`, gradeDeAgendamento);
+  cadastrarGrade(gradeDeAgendamento: GradeDeAgendamentoExame) {
+    return this.client.post(`${this.URL}/grade-agendamento-exames`, gradeDeAgendamento);
   }
 
   cadastrarHorarioGrade(horarioGrade: HorarioAgendado) {

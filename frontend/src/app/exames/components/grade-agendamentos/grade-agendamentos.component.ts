@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento';
+import { GradeDeAgendamentoExame } from '../../models/subjects/grades-de-agendamento';
 
 @Component({
   selector: 'app-grade-agendamentos',
@@ -8,18 +8,18 @@ import { GradesDeAgendamento } from '../../models/subjects/grades-de-agendamento
 })
 export class GradeAgendamentosComponent implements OnInit {
 
-  private gradeCadastrada: GradesDeAgendamento = {};
+  private gradeCadastrada: GradeDeAgendamentoExame = {};
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public get grade(): GradesDeAgendamento {
+  public get grade(): GradeDeAgendamentoExame {
     return this.gradeCadastrada;
   }
 
-  onGradeSalva(gradeSalva: GradesDeAgendamento){
+  onGradeSalva(gradeSalva: GradeDeAgendamentoExame){
     this.gradeCadastrada = gradeSalva;
     console.log(gradeSalva);
   }
