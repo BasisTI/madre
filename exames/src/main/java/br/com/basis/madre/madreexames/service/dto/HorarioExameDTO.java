@@ -1,5 +1,8 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -7,8 +10,10 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link br.com.basis.madre.madreexames.domain.HorarioExame} entity.
  */
+@EqualsAndHashCode
+@ToString
 public class HorarioExameDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -29,7 +34,7 @@ public class HorarioExameDTO implements Serializable {
     private Long tipoDeMarcacaoId;
 
     private Long gradeAgendamentoExameId;
-    
+
     public Long getId() {
         return id;
     }
@@ -94,35 +99,9 @@ public class HorarioExameDTO implements Serializable {
         this.gradeAgendamentoExameId = gradeAgendamentoExameId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof HorarioExameDTO)) {
-            return false;
-        }
-
-        return id != null && id.equals(((HorarioExameDTO) o).id);
+    @AssertTrue(message = "Hora fim deve ser depois de hora início")
+    private boolean isHoraInicioAntesDeHoraFim() {
+        return getHoraInicio().isBefore(getHoraFim());
     }
 
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "HorarioExameDTO{" +
-            "id=" + getId() +
-            ", horaInicio='" + getHoraInicio() + "'" +
-            ", horaFim='" + getHoraFim() + "'" +
-            ", livre='" + isLivre() + "'" +
-            ", ativo='" + isAtivo() + "'" +
-            ", exclusivo='" + isExclusivo() + "'" +
-            ", tipoDeMarcacaoId=" + getTipoDeMarcacaoId() +
-            ", gradeAgendamentoExameId=" + getGradeAgendamentoExameId() +
-            "}";
-    }
 }

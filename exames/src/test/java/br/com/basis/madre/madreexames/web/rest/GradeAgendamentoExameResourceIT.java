@@ -384,7 +384,7 @@ public class GradeAgendamentoExameResourceIT {
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
             .andExpect(jsonPath("$.[*].responsavelId").value(hasItem(DEFAULT_RESPONSAVEL_ID)));
     }
-    
+
     @Test
     @Transactional
     public void getGradeAgendamentoExame() throws Exception {

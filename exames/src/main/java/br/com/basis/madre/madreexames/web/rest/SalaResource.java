@@ -138,4 +138,15 @@ public class SalaResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+    @GetMapping("/_search/salas-por-unidade")
+    public ResponseEntity<List<SalaDTO>> filtrarSalasPorUnidade(Pageable pageable,
+        @RequestParam(name = "unidadeExecutoraId", required = true) String unidadeExecutoraId,
+        @RequestParam(name = "ativo", required = true) String ativo) {
+        log.debug("Request REST para obter uma página de salas filtradas por unidadeExecutoraId");
+        Page<SalaDTO> page = salaService.filtrarSalasPorUnidade(pageable, unidadeExecutoraId, ativo);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
 }

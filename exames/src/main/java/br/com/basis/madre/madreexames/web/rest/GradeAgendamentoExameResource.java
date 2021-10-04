@@ -61,6 +61,7 @@ public class GradeAgendamentoExameResource {
             throw new BadRequestAlertException("A new gradeAgendamentoExame cannot already have an ID", ENTITY_NAME, "idexists");
         }
         GradeAgendamentoExameDTO result = gradeAgendamentoExameService.save(gradeAgendamentoExameDTO);
+
         return ResponseEntity.created(new URI("/api/grade-agendamento-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);

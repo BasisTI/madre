@@ -4,6 +4,7 @@ import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 import br.com.basis.madre.madreexames.repository.GradeAgendamentoExameRepository;
 import br.com.basis.madre.madreexames.repository.search.GradeAgendamentoExameSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
+import br.com.basis.madre.madreexames.service.dto.HorarioExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -32,10 +34,13 @@ public class GradeAgendamentoExameService {
 
     private final GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository;
 
-    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository, GradeAgendamentoExameMapper gradeAgendamentoExameMapper, GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository) {
+    private final HorarioExameService horarioExameService;
+
+    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository, GradeAgendamentoExameMapper gradeAgendamentoExameMapper, GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository, HorarioExameService horarioExameService) {
         this.gradeAgendamentoExameRepository = gradeAgendamentoExameRepository;
         this.gradeAgendamentoExameMapper = gradeAgendamentoExameMapper;
         this.gradeAgendamentoExameSearchRepository = gradeAgendamentoExameSearchRepository;
+        this.horarioExameService = horarioExameService;
     }
 
     /**
@@ -46,11 +51,19 @@ public class GradeAgendamentoExameService {
      */
     public GradeAgendamentoExameDTO save(GradeAgendamentoExameDTO gradeAgendamentoExameDTO) {
         log.debug("Request to save GradeAgendamentoExame : {}", gradeAgendamentoExameDTO);
+        calcularDuracaoDeHorarios(gradeAgendamentoExameDTO);
         GradeAgendamentoExame gradeAgendamentoExame = gradeAgendamentoExameMapper.toEntity(gradeAgendamentoExameDTO);
         gradeAgendamentoExame = gradeAgendamentoExameRepository.save(gradeAgendamentoExame);
         GradeAgendamentoExameDTO result = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
         gradeAgendamentoExameSearchRepository.save(gradeAgendamentoExame);
         return result;
+    }
+
+    public void calcularDuracaoDeHorarios(GradeAgendamentoExameDTO gradeAgendamentoExameDTO) {
+        Duration intervaloInicioFim = Duration.between(gradeAgendamentoExameDTO.getHoraInicio(),
+            gradeAgendamentoExameDTO.getHoraFim());
+        gradeAgendamentoExameDTO.setDuracao(intervaloInicioFim.dividedBy(gradeAgendamentoExameDTO
+            .getNumeroDeHorarios()));
     }
 
     /**
