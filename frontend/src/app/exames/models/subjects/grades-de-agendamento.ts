@@ -12,8 +12,12 @@ export class GradeDeAgendamentoExame {
         public duracao?: moment.Duration,
         public ativo?: boolean,
         public unidadeExecutoraId?: number,
+        public unidadeNome?: string,
         public responsavelId?: number,
+        public responsavelNome?: string,
         public exameId?: number,
-        public salaId?: number
+        public exameNome?: string,
+        public salaId?: number,
+        public salaNome?: string
     ) { }
 }

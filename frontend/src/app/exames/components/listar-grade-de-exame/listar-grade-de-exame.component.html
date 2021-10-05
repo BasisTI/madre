@@ -20,7 +20,7 @@
                     <p-dropdown
                         pTooltip="Informe a Unidade Executora"
                         [(ngModel)]="unidadeExecutoraId" [filter]="true"
-                        [resetFilterOnHide]="true" [options]="unidadesExecutoras" [optionLabel]="'nome'"
+                        [resetFilterOnHide]="true" [options]="listaUnidadesExecutoras" [optionLabel]="'nome'"
                         [optionValue]="'id'" placeholder="Unidade executora"
                     ></p-dropdown>
                 </div>
@@ -32,29 +32,21 @@
                         placeholder="Situação da grade"
                     ></p-dropdown>
                 </div>
-                <div class="p-md-2 p-sm-12">
-                    <p-dropdown
-                        pTooltip="Informe o código ou número da sala"
-                        [(ngModel)]="salaId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="salas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'"
-                        placeholder="Identificação da sala"
-                    ></p-dropdown>
-                </div>
             </div>
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe o código ou descrição do grupo de exames"
-                        [(ngModel)]="grupoAgendamentoExameId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="gruposDeExame" [optionLabel]="'nome'" [optionValue]="'id'"
-                        placeholder="Grupo de exames"
+                        pTooltip="Informe o código ou número da sala"
+                        [(ngModel)]="salaId" [filter]="true" [resetFilterOnHide]="true"
+                        [options]="listaSalas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'"
+                        placeholder="Identificação da sala"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
                         pTooltip="Informe o código ou descrição do exame"
                         [(ngModel)]="exameId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'"
+                        [options]="listaExames" [optionLabel]="'nome'" [optionValue]="'id'"
                         placeholder="Exame"
                     ></p-dropdown>
                 </div>
@@ -62,7 +54,7 @@
                     <p-dropdown
                         pTooltip="Informe a matrícula ou o nome do responsável"
                         [(ngModel)]="responsavelId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="servidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
+                        [options]="listaServidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
                         placeholder="Responsável"
                     ></p-dropdown>
                 </div>
@@ -87,14 +79,38 @@
                         label="Nova grade"Primeiro Exame
                     ></button>
                 </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        (click)="limparFiltros()"
+                        label="Limpar filtros"Primeiro Exame
+                    ></button>
+                </div>
                     <basis-datatable [url]="searchUrl" #datatable [disableView]="true"
-                    [disableEdit]="true" [disableDelete]="true" type="memory" [value]="gradeAgendamento" sortField="brand">
+                    [disableEdit]="true" [disableDelete]="true" type="memory" [value]="listaGrades" sortField="brand">
                         <p-column header="Grade" field="id"></p-column>
-                        <p-column header="Unid. Executora" field="unidadeExecutoraNome"></p-column>
-                        <p-column header="Sala" field="salaGradeIdentificacaoDaSala"></p-column>  
-                        <p-column header="Grupo" field="grupoGradeNome"> </p-column>  
-                        <p-column header="Exame" field="exameGradeNome"> </p-column>  
-                        <p-column header="Responsável" field="responsavelNome"> </p-column>  
+                        <p-column header="Início" field="horaInicio">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column header="Fim" field="horaFim">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column header="Duração" field="duracao">
+                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                <span>{{rowData[col.field] | duration}}</span>
+                            </ng-template>
+                        </p-column>  
+                        <p-column header="Nº de horários" field="numeroDeHorarios"> </p-column>  
+                        <p-column header="Dias" field="listaGrades">
+                            <!-- <ng-template let-col let-grade="rowData" let-ri="rowIndex" pTemplate="body">
+                                <span *ngFor="let grade of listaGrades; index as i">{{listaGrades[1].dias[1].nome}}</span>
+                            </ng-template> -->
+                        </p-column>  
                         <p-column header="Situação" field="ativo">
                             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                             <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>

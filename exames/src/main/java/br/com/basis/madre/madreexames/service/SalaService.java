@@ -110,6 +110,7 @@ public class SalaService {
             .map(salaMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
     public Page<SalaDTO> filtrarSalasPorUnidade(Pageable pageable, String unidadeExecutoraId, String ativo) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);

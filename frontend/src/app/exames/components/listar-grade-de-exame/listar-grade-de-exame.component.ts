@@ -24,20 +24,18 @@ export class ListarGradeDeExameComponent implements OnInit {
   id: string = '';
   unidadeExecutoraId: string = '';
   ativo: string = '';
-  gradeDeAgendamentoId: string = '';
+  duracao: string = '';
   salaId: string = '';
-  grupoAgendamentoExameId: string = '';
   exameId: string = '';
   responsavelId: string = '';
   results = [];
  
-  gradeAgendamento: GradeDeAgendamentoExame[];
-  unidadesExecutoras: UnidadeFuncional[] = [];
-  servidores: ListaServidor[] = [];
-  salas: Sala[] = [];
-  gruposDeExame: GrupoModel[] = [];
-  exames: ExamModel[] = [];
-  responsaveis: Responsavel[] = [];
+  listaGrades: GradeDeAgendamentoExame[];
+  listaUnidadesExecutoras: UnidadeFuncional[] = [];
+  listaServidores: ListaServidor[] = [];
+  listaSalas: Sala[] = [];
+  listaExames: ExamModel[] = [];
+  listaResponsaveis: Responsavel[] = [];
 
   situacaoGrade = SituacaoAtivo;
 
@@ -45,42 +43,63 @@ export class ListarGradeDeExameComponent implements OnInit {
 
 
   constructor(private gradeAgendamentoService: GradeDeAgendamentoService,
-    private unidadeFuncionalService: UnidadeFuncionalService,
-    private servidorService: ServidorService,
-    private exameService: ExamesService,
-    private grupoExameService: GruposExamesService) { }
+              private unidadeFuncionalService: UnidadeFuncionalService,
+              private servidorService: ServidorService,
+              private exameService: ExamesService) { }
 
 
   ngOnInit(): void {
-    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
-      this.unidadesExecutoras = response;
-    });
+    this.listarUnidades();
 
-    this.servidorService.getServidor().subscribe((response) => {
-      this.servidores = response;
-    });
+    this.listarServidores();
 
-    this.gradeAgendamentoService.getSalas().subscribe((response) => {
-      this.salas = response;
-    });
+    this.listarSalas();
 
-    this.exameService.GetExames().subscribe((response) => {
-      this.exames = response;
-    });
-
-    this.grupoExameService.GetGrupos().subscribe((response) => {
-      this.gruposDeExame = response;
-    });
+    this.listarExames();
 
     this.listarGrades();
   }
 
+  limparFiltros(){
+    /* this.id = '';
+    this.unidadeExecutoraId = '';
+    this.ativo = '';
+    this.duracao = '';
+    this.salaId = '';
+    this.exameId = '';
+    this.responsavelId = ''; */
+    console.log('Dias: ', this.listaGrades[5].dias[1].nome);
+  }
+
   listarGrades() {
     this.gradeAgendamentoService.getGradesDeAgendamento(this.id, this.unidadeExecutoraId,
-      this.ativo, this.grupoAgendamentoExameId, this.exameId, this.responsavelId)
+      this.ativo, this.duracao, this.exameId, this.responsavelId, this.salaId)
       .subscribe((response) => {
-        this.gradeAgendamento = response;
+        this.listaGrades = response;
        });
   }
 
+  listarExames() {
+    this.exameService.getExames().subscribe((response) => {
+      this.listaExames = response;
+    });
+  }
+
+  listarSalas() {
+    this.gradeAgendamentoService.getSalas().subscribe((response) => {
+      this.listaSalas = response;
+    });
+  }
+
+  listarServidores() {
+    this.servidorService.getServidor().subscribe((response) => {
+      this.listaServidores = response;
+    });
+  }
+
+  listarUnidades() {
+    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
+      this.listaUnidadesExecutoras = response;
+    });
+  }
 }

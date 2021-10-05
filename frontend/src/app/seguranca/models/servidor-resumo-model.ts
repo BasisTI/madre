@@ -3,7 +3,7 @@ export interface IServidor {
     matricula?: string;
     vinculoId?: number;
     pessoaId?: number;
-    pessoaNome?: number;
+    pessoaNome?: string;
 }
 
 export class Servidor implements IServidor {
@@ -11,5 +11,5 @@ export class Servidor implements IServidor {
     public matricula: string;
     public vinculoId: number;
     public pessoaId: number;
-    public pessoaNome: number;
+    public pessoaNome: string;
 }

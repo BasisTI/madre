@@ -2,6 +2,7 @@ package br.com.basis.madre.madreexames.repository;
 
 import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 
+import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -16,6 +17,11 @@ import java.util.Optional;
  */
 @Repository
 public interface GradeAgendamentoExameRepository extends JpaRepository<GradeAgendamentoExame, Long> {
+
+    /*@Query("select new br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO(g.id, g.ativo, " +
+        "g.unidadeExecutoraId, g.responsavelId, g.exameNome, g.salaNome) from GradeAgendamentoExame g join g.")
+    GradeAgendamentoExameDTO buscaPorId(@Param("id") Long id);*/
+
 
     @Query(value = "select distinct gradeAgendamentoExame from GradeAgendamentoExame gradeAgendamentoExame left join fetch gradeAgendamentoExame.dias",
         countQuery = "select count(distinct gradeAgendamentoExame) from GradeAgendamentoExame gradeAgendamentoExame")

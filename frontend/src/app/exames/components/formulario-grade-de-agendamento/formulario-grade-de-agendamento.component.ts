@@ -7,7 +7,6 @@ import { ExamModel } from '../../models/subjects/exames-model';
 import { GradeDeAgendamentoExame } from '../../models/subjects/grades-de-agendamento';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { Sala } from '../../models/subjects/sala';
-import { DiaSemana } from '../../models/dropdowns/dia.dropdown';
 import { ExamesService } from '../../services/exames.service';
 import { ListaServidor } from 'src/app/seguranca/models/dropdowns/lista-servidor';
 import { ServidorService } from 'src/app/seguranca/services/servidor.service';
@@ -40,11 +39,10 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   horariosDaGrade: Array<HorarioAgendado>;
 
-
-  unidadesExecutoras: UnidadeFuncional[] = [];
-  servidores: ListaServidor[] = [];
-  salas: Sala[] = [];
-  exames: ExamModel[] = [];
+  listaUnidades: UnidadeFuncional[] = [];
+  listaServidores: ListaServidor[] = [];
+  listaSalas: Sala[] = [];
+  listaExames: ExamModel[] = [];
 
   situacaoGrade = SituacaoAtivo;
 
@@ -71,7 +69,8 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   });
 
   validarFormulario(): boolean {
-    if (this.cadastroGrade.valid) {
+    if (this.cadastroGrade.valid && this.horaFim && this.horaInicio && this.dataFim && this.dataInicio && this
+      .unidadeSelecionada && this.diasSelecionados) {
       return true;
     }
   }
@@ -108,16 +107,16 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     const gradeExame: GradeDeAgendamentoExame = {
       dataInicio: this.dataInicio,
       dataFim: this.dataFim,
-      horaInicio: this.horaInicio,
-      horaFim: this.horaFim,
-      dias: this.dias,
+      horaInicio: this.gerarHora(this.horaInicio, this.dataInicio),
+      horaFim: this.gerarHora(this.horaFim, this.dataFim),
+      dias: this.diasSelecionados,
       numeroDeHorarios: cadastroGradeValor.numeroDeHorarios,
       ativo: cadastroGradeValor.ativo,
       unidadeExecutoraId: this.unidadeSelecionada,
       responsavelId: cadastroGradeValor.responsavelId,
       exameId: cadastroGradeValor.exameId,
       salaId: cadastroGradeValor.salaId,
-      duracao: this.gerarDuracao(30)
+      duracao: this.gerarDuracao(30),
     };
 
     if (this.isInicioDepoisDeFim(this.horaInicio, this.horaFim)) {
@@ -138,6 +137,13 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     }
   }
 
+  gerarHora(hora: Date, data: Date): Date {
+    let horaGerada = new Date(Date.UTC(data.getFullYear(), data.getMonth(), data.getDate(), hora.getHours(), 
+    hora.getMinutes()));
+
+    return horaGerada;
+  }
+
   gerarDuracao(minutos: number): moment.Duration {
     let valorDuracao = moment.duration({
       minutes: minutos
@@ -147,25 +153,25 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   listarUnidades() {
     this.unidadeFuncionalService.getUnidades().subscribe((response) => {
-      this.unidadesExecutoras = response;
+      this.listaUnidades = response;
     });
   }
 
   listarServidores() {
     this.servidorService.getServidor().subscribe((response) => {
-      this.servidores = response;
+      this.listaServidores = response;
     });
   }
 
   listarSalas() {
     this.gradeAgendamentoService.getSalasPorUnidade(this.unidadeSelecionada.toString(), 'true').subscribe((response) => {
-      this.salas = response;
+      this.listaSalas = response;
     });
   }
 
   listarExames() {
-    this.exameService.GetExames().subscribe((response) => {
-      this.exames = response;
+    this.exameService.getExames().subscribe((response) => {
+      this.listaExames = response;
     });
   }
 

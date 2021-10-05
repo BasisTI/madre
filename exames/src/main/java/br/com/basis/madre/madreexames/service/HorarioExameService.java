@@ -1,8 +1,10 @@
 package br.com.basis.madre.madreexames.service;
 
+import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 import br.com.basis.madre.madreexames.domain.HorarioExame;
 import br.com.basis.madre.madreexames.repository.HorarioExameRepository;
 import br.com.basis.madre.madreexames.repository.search.HorarioExameSearchRepository;
+import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
 import br.com.basis.madre.madreexames.service.dto.HorarioExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.HorarioExameMapper;
 import org.slf4j.Logger;
@@ -13,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -51,6 +55,30 @@ public class HorarioExameService {
         HorarioExameDTO result = horarioExameMapper.toDto(horarioExame);
         horarioExameSearchRepository.save(horarioExame);
         return result;
+    }
+
+    public void gerarHorariosDaGrade(GradeAgendamentoExame gradeAgendamentoExame) {
+        Instant novaHoraInicio = null;
+
+        for (int i = 0; i < gradeAgendamentoExame.getNumeroDeHorarios(); i++) {
+            HorarioExame horarioExame = new HorarioExame();
+            if (i == 0) {
+                horarioExame.setHoraInicio(gradeAgendamentoExame.getHoraInicio());
+            } else {
+                horarioExame.setHoraInicio(novaHoraInicio);
+            }
+            horarioExame.setHoraFim(horarioExame.getHoraInicio().plus(gradeAgendamentoExame.getDuracao()));
+            horarioExame.setAtivo(gradeAgendamentoExame.isAtivo());
+            horarioExame.setLivre(true);
+            horarioExame.setExclusivo(false);
+            horarioExame.setGradeAgendamentoExame(gradeAgendamentoExame);
+            novaHoraInicio = horarioExame.getHoraFim().plus(1, ChronoUnit.MINUTES);
+
+            horarioExame = horarioExameRepository.save(horarioExame);
+            horarioExameSearchRepository.save(horarioExame);
+
+            log.debug("Request to save HorarioExame a partir da grade : {}", horarioExame);
+        }
     }
 
     /**

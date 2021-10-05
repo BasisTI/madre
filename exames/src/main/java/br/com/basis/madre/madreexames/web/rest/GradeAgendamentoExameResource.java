@@ -1,6 +1,9 @@
 package br.com.basis.madre.madreexames.web.rest;
 
+import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 import br.com.basis.madre.madreexames.service.GradeAgendamentoExameService;
+import br.com.basis.madre.madreexames.service.HorarioExameService;
+import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
 
@@ -13,7 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +25,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link br.com.basis.madre.madreexames.domain.GradeAgendamentoExame}.
@@ -43,8 +42,15 @@ public class GradeAgendamentoExameResource {
 
     private final GradeAgendamentoExameService gradeAgendamentoExameService;
 
-    public GradeAgendamentoExameResource(GradeAgendamentoExameService gradeAgendamentoExameService) {
+    private final HorarioExameService horarioExameService;
+
+    private final GradeAgendamentoExameMapper gradeAgendamentoExameMapper;
+
+    public GradeAgendamentoExameResource(GradeAgendamentoExameService gradeAgendamentoExameService,
+                                         HorarioExameService horarioExameService, GradeAgendamentoExameMapper gradeAgendamentoExameMapper) {
         this.gradeAgendamentoExameService = gradeAgendamentoExameService;
+        this.horarioExameService = horarioExameService;
+        this.gradeAgendamentoExameMapper = gradeAgendamentoExameMapper;
     }
 
     /**
@@ -61,6 +67,8 @@ public class GradeAgendamentoExameResource {
             throw new BadRequestAlertException("A new gradeAgendamentoExame cannot already have an ID", ENTITY_NAME, "idexists");
         }
         GradeAgendamentoExameDTO result = gradeAgendamentoExameService.save(gradeAgendamentoExameDTO);
+        GradeAgendamentoExame gradeAgendamentoExame = gradeAgendamentoExameMapper.toEntity(result);
+        horarioExameService.gerarHorariosDaGrade(gradeAgendamentoExame);
         return ResponseEntity.created(new URI("/api/grade-agendamento-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -148,4 +156,23 @@ public class GradeAgendamentoExameResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+    @GetMapping("/_search/grades-de-agendamento")
+    public ResponseEntity<List<GradeAgendamentoExameDTO>> obterTodasAsGrades(Pageable pageable,
+         @RequestParam(name = "id", required = false) String id,
+         @RequestParam(name = "unidadeExecutoraId", required = false) String unidadeExecutoraId,
+         @RequestParam(name = "ativo", required = false) String ativo,
+         @RequestParam(name = "duracao", required = false) String duracao,
+         @RequestParam(name = "responsavelId", required = false) String responsavelId,
+         @RequestParam(name = "exameId", required = false) String exameId,
+         @RequestParam(name = "salaId", required = false) String salaId
+         ) {
+        log.debug("Request REST para obter uma lista de grades de agendamento de exames");
+        Page<GradeAgendamentoExameDTO> page = gradeAgendamentoExameService.filtrarGradeAgendamento(
+          pageable, id, unidadeExecutoraId, ativo, duracao, responsavelId, exameId, salaId);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+
+    }
 }

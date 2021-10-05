@@ -5,15 +5,22 @@ import br.com.basis.madre.madreexames.repository.GradeAgendamentoExameRepository
 import br.com.basis.madre.madreexames.repository.search.GradeAgendamentoExameSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -33,7 +40,9 @@ public class GradeAgendamentoExameService {
 
     private final GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository;
 
-    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository, GradeAgendamentoExameMapper gradeAgendamentoExameMapper, GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository) {
+    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository,
+                                        GradeAgendamentoExameMapper gradeAgendamentoExameMapper,
+                                        GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository) {
         this.gradeAgendamentoExameRepository = gradeAgendamentoExameRepository;
         this.gradeAgendamentoExameMapper = gradeAgendamentoExameMapper;
         this.gradeAgendamentoExameSearchRepository = gradeAgendamentoExameSearchRepository;
@@ -56,8 +65,14 @@ public class GradeAgendamentoExameService {
     }
 
     public void calcularDuracaoDeHorarios(GradeAgendamentoExameDTO gradeAgendamentoExameDTO) {
-        Duration intervaloInicioFim = Duration.between(gradeAgendamentoExameDTO.getHoraInicio(),
-            gradeAgendamentoExameDTO.getHoraFim());
+        LocalTime horaInicio = LocalTime.of(gradeAgendamentoExameDTO.getHoraInicio().atZone(ZoneId.systemDefault())
+            .getHour(), gradeAgendamentoExameDTO.getHoraInicio().atZone(ZoneId.systemDefault()).getMinute());
+
+        LocalTime horaFim = LocalTime.of(gradeAgendamentoExameDTO.getHoraFim().atZone(ZoneId.systemDefault())
+            .getHour(), gradeAgendamentoExameDTO.getHoraFim().atZone(ZoneId.systemDefault()).getMinute());
+
+        Duration intervaloInicioFim = Duration.between(horaInicio, horaFim);
+
         gradeAgendamentoExameDTO.setDuracao(intervaloInicioFim.dividedBy(gradeAgendamentoExameDTO
             .getNumeroDeHorarios()));
     }
@@ -121,5 +136,30 @@ public class GradeAgendamentoExameService {
         log.debug("Request to search for a page of GradeAgendamentoExames for query {}", query);
         return gradeAgendamentoExameSearchRepository.search(queryStringQuery(query), pageable)
             .map(gradeAgendamentoExameMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<GradeAgendamentoExameDTO> filtrarGradeAgendamento(Pageable pageable, String id,
+        String unidadeExecutoraId, String ativo, String duracao, String responsavelId, String exameId, String salaId) {
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, "id", id);
+        filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
+        filter(queryBuilder, "ativo", ativo);
+        filter(queryBuilder, "duracao", duracao);
+        filter(queryBuilder, "responsavelId", responsavelId);
+        filter(queryBuilder, "exameId", exameId);
+        filter(queryBuilder, "salaId", salaId);
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+
+        return gradeAgendamentoExameSearchRepository.search(query).map(gradeAgendamentoExameMapper::toDto);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name, valueName));
+        }
     }
 }

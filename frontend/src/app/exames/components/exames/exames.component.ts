@@ -59,7 +59,7 @@ export class ExamesComponent implements OnInit {
     this.gruposExamesService.GetGrupos().subscribe((response) => {
       this.groups = response;
     })
-    this.examesService.GetExames().subscribe((response) => {
+    this.examesService.getExames().subscribe((response) => {
       this.exames = response;
     })
 

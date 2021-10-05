@@ -52,9 +52,9 @@
     <div class="p-md-2 p-fluid">
         Unidade executora
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="unidadesExecutoras" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione"
-                [(ngModel)]="unidadeSelecionada" (onChange)="listarSalas()">
+            <p-dropdown [options]="listaUnidades" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+                [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione" [(ngModel)]="unidadeSelecionada"
+                (onChange)="listarSalas()">
             </p-dropdown>
         </span>
     </div>
@@ -62,7 +62,7 @@
     <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Identificação da sala
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="salas" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+            <p-dropdown [options]="listaSalas" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
                 [resetFilterOnHide]="true" [showClear]="true" formControlName="salaId" placeholder="Selecione"
                 [disabled]="unidadeSelecionada==null">
             </p-dropdown>
@@ -78,7 +78,7 @@
     <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Exame
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="exames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
+            <p-dropdown [options]="listaExames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
                 [resetFilterOnHide]="true" [showClear]="true" formControlName="exameId" placeholder="Selecione">
             </p-dropdown>
         </span>
@@ -87,7 +87,7 @@
     <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Responsável
         <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="servidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
+            <p-dropdown [options]="listaServidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
                 [resetFilterOnHide]="true" [showClear]="true" [filter]="true" formControlName="responsavelId"
                 placeholder="Selecione">
             </p-dropdown>
@@ -97,8 +97,8 @@
     <div class="p-md-2 p-fluid">
         Dias
         <span class="md-inputfield p-float-label sm-top-margin">
-            <p-multiSelect [options]="dias" [(ngModel)]="diasSelecionados" defaultLabel="Selecione" optionLabel="nome"
-            display="chip">
+            <p-multiSelect [options]="dias" [(ngModel)]="diasSelecionados" defaultLabel="Selecione"
+                [optionLabel]="'nome'.toLowerCase()" display="chip">
             </p-multiSelect>
         </span>
     </div>
@@ -111,8 +111,8 @@
     <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
 
     <div class="p-md-2 p-sm-12">
-        <button icon="pi pi-save" pButton type="button" (click)="cadastrarGradeDeAgendamento()"
-           label="Salvar"></button>
+        <button icon="pi pi-save" pButton type="button" (click)="cadastrarGradeDeAgendamento()" label="Salvar"
+        [disabled]="!validarFormulario()"></button>
     </div>
 
     <div class="p-md-2 p-sm-12">
