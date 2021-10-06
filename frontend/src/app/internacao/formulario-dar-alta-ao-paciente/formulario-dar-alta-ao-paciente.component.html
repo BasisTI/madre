@@ -1,0 +1,53 @@
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="card card-w-title">
+            <h1>Dar Alta ao Paciente</h1>
+            <div class="p-grid">
+                <div
+                    class="p-md-1 p-fluid"
+                    pTooltip="Informe a descrição do Protuario"
+                    [formGroup]="formularioDarAltaPaciente"
+                >
+                    Protuário:
+                    <span class="md-inputfield p-float-label">
+                        <input type="text" pInputText class="p-inputtext" formControlName="prontuario">
+                    </span>
+                </div>
+
+                <div
+                    class="p-md-4 p-fluid"
+                    pTooltip="Informe o seu Nome"
+                    [formGroup]="formularioDarAltaPaciente"
+                >
+                    Nome:
+                    <span class="md-inputfield p-float-label">
+                        <input type="text" pInputText class="p-inputtext" formControlName="nome">
+                    </span>
+                </div>
+
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2">
+                        <button
+                            pButton
+                            type="button"
+                            label="Salvar"
+                            icon="pi pi-save"
+                            (click)="formulario()"
+                            [disabled]="!validaFormulario()"
+                        ></button>
+                    </div>
+
+                    <div class="p-md-2">
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            icon="pi pi-times"
+                            (click)="limpaFormulario()"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

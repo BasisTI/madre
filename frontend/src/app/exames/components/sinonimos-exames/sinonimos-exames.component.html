@@ -1,4 +1,4 @@
-<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="adicionar();">  
+<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="adicionar();">
     <div class="p-col-12 card card-w-title" >
         <h1>Sinônimos de Exames</h1>
               <div id="codigo" >
@@ -6,13 +6,13 @@
                     <label > Sinônimos:  </label> <br>
                     <input type="text" formControlName="nome"  pInputText />
                   </span>
-                 
-                    <span id="grupo" > 
+
+                    <span id="grupo" >
                     <label> Situação: </label> <br>
-                    <p-dropdown 
+                    <p-dropdown
                     placeholder="Selecione" [options]="situacaoExame" formControlName="situacao"
                     ></p-dropdown>
-                    </span> 
+                    </span>
                   </div>
                   <div class="table">
                   <basis-datatable id="table"
@@ -35,18 +35,18 @@
                           [disabled]="datatable.selectedRow == null"
                           class="p-button-success">
                           </basis-datatable-button>
-                        
-                          <basis-datatable-button 
+
+                          <basis-datatable-button
                               class="p-button-danger"
                               [disabled]="datatable.selectedRow == null"
                               name="delete"
                               icon="pi pi-trash">
-                            </basis-datatable-button>  
+                            </basis-datatable-button>
                         </basis-datatable>
                     </div>
         <div class="table">
         <button
-          pButton type="submit" label="Adicionar" icon="ui-icon-search" [disabled]="!valid()" 
+          pButton type="submit" label="Adicionar" icon="ui-icon-search" [disabled]="!valid()"
         ></button>
         </div>
     </div>

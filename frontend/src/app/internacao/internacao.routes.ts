@@ -1,3 +1,4 @@
+import { DarAltaAoPacienteComponent } from './formulario-dar-alta-ao-paciente/formulario-dar-alta-ao-paciente.component';
 import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-funcional/tipo-de-unidade-funcional.component';
 import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
 import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
@@ -55,5 +56,9 @@ export const routes: Routes = [
     {
         path: 'tipo-unidade-funcional',
         component: TipoDeUnidadeFuncionalComponent,
+    },
+    {
+        path: 'dar-alta-ao-paciente',
+        component: DarAltaAoPacienteComponent,
     }
 ];
