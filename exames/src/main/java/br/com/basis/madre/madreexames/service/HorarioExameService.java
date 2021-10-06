@@ -72,7 +72,7 @@ public class HorarioExameService {
             horarioExame.setLivre(true);
             horarioExame.setExclusivo(false);
             horarioExame.setGradeAgendamentoExame(gradeAgendamentoExame);
-            novaHoraInicio = horarioExame.getHoraFim().plus(1, ChronoUnit.MINUTES);
+            novaHoraInicio = horarioExame.getHoraFim().plus(1, ChronoUnit.MILLIS);
 
             horarioExame = horarioExameRepository.save(horarioExame);
             horarioExameSearchRepository.save(horarioExame);
