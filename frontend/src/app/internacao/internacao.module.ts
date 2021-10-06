@@ -36,6 +36,7 @@ import { CardPacienteComponent } from './components/card-paciente/card-paciente.
 import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cirurgia.component';
 import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
 import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-funcional/tipo-de-unidade-funcional.component';
+import { FormularioTransferirPacienteComponent } from './components/formulario-transferir-paciente/formulario-transferir-paciente.component';
 
 @NgModule({
     declarations: [
@@ -72,6 +73,7 @@ import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-fu
         CirurgiaComponent,
         ClinicaComponent,
         TipoDeUnidadeFuncionalComponent,
+        FormularioTransferirPacienteComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

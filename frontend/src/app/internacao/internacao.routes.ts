@@ -10,6 +10,7 @@ import { ReservaDeLeitoComponent } from './components/reserva-de-leito/reserva-d
 import { Routes } from '@angular/router';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
+import { FormularioTransferirPacienteComponent } from './components/formulario-transferir-paciente/formulario-transferir-paciente.component';
 
 export const routes: Routes = [
     {
@@ -55,5 +56,10 @@ export const routes: Routes = [
     {
         path: 'tipo-unidade-funcional',
         component: TipoDeUnidadeFuncionalComponent,
-    }
+    },
+    {
+        path: 'formulario-transferir-paciente',
+        component: FormularioTransferirPacienteComponent,
+    },
+
 ];

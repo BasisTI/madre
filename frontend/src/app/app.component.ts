@@ -208,6 +208,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             ],
                         },
                         {
+                            label: 'Transferir Paciente',
+                            icon: 'add',
+                            routerLink: ['internacao/formulario-transferir-paciente'],
+                        },
+                        {
                             label: 'Tipos de Unidades Funionais',
                             icon: 'add',
                             routerLink: ['internacao/tipo-unidade-funcional'],

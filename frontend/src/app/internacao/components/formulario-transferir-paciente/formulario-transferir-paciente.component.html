@@ -1,0 +1,23 @@
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="card card-w-title">
+            <h1>Transferir Paciente</h1>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-6 p-col-12">
+                    <label>Prontuário</label>
+                    <span class="md-inputfield p-float-label">
+                        <input type="text" pInputText class="p-inputtext" [(ngModel)]="descricao"/>
+                    </span>
+                </div>
+            </div>
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-5">
+                    <button pButton type="button" label="Salvar" icon="pi pi-save" [disabled]="!validarFormulario()" (click)="cadastrar()"></button>
+                </div>
+                <div class="p-md-2 p-sm-5">
+                    <button pButton type="button" label="Limpar" icon="pi pi-times" (click)="limparFormulario()"></button>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>    
