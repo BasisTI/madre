@@ -1,7 +1,6 @@
 package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
-import br.com.basis.madre.madreexames.service.GeraHorariosGradeService;
 import br.com.basis.madre.madreexames.service.GradeAgendamentoExameService;
 import br.com.basis.madre.madreexames.service.HorarioExameService;
 import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
@@ -47,8 +46,6 @@ public class GradeAgendamentoExameResource {
 
     private final HorarioExameService horarioExameService;
 
-    private final GeraHorariosGradeService geraHorariosGradeService;
-
     private final GradeAgendamentoExameMapper gradeAgendamentoExameMapper;
 
     /**
@@ -66,8 +63,8 @@ public class GradeAgendamentoExameResource {
         }
         GradeAgendamentoExameDTO result = gradeAgendamentoExameService.save(gradeAgendamentoExameDTO);
         GradeAgendamentoExame gradeAgendamentoExame = gradeAgendamentoExameMapper.toEntity(result);
-        horarioExameService.gerarHorariosDaGrade(gradeAgendamentoExame);
-        geraHorariosGradeService.buscarDiasCompativeis(result);
+//        horarioExameService.gerarHorariosDaGrade(gradeAgendamentoExame);
+        horarioExameService.buscarDiasCompativeis(gradeAgendamentoExame);
         return ResponseEntity.created(new URI("/api/grade-agendamento-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);

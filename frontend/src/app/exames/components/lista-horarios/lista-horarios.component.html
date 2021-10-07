@@ -17,12 +17,12 @@
     type="memory" [value]="horariosAgendados">
     <p-column header="Hora início" field="horaInicio">
         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-            <span>{{rowData[col.field] | date: 'H:mm':'GMT'}}</span>
+            <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
         </ng-template>
     </p-column>
     <p-column header="Hora fim" field="horaFim">
         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-            <span>{{rowData[col.field] | date: 'H:mm':'GMT'}}</span>
+            <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
         </ng-template>
     </p-column>
     <p-column header="Tipo de marcação" field="tipoDeMarcacaoId"></p-column>
