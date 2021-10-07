@@ -4,11 +4,11 @@
     </h1>
     <p-tabView>
         <p-tabPanel header="Grade de Agendamento">
-            <app-formulario-grade-de-agendamento></app-formulario-grade-de-agendamento>
+            <app-formulario-grade-de-agendamento [grade]="grade" (gradeSalva)="onGradeSalva($event)"></app-formulario-grade-de-agendamento>
         </p-tabPanel>
 
-        <p-tabPanel header="Horários Agendados">
-            <app-formulario-horarios-agendados [grade]="grade"></app-formulario-horarios-agendados>
+        <p-tabPanel *ngIf="grade.id !== undefined" header="Horários">
+            <app-lista-horarios [grade]="grade"></app-lista-horarios>
         </p-tabPanel>
 
     </p-tabView>

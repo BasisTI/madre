@@ -1,0 +1,44 @@
+<div class="p-col-12 p-grid">
+    <div class="p-md-2 p-fluid">
+        <span><b>Grade de Exame</b>: {{grade.id}} </span>
+    </div>
+    <div class="p-md-2 p-fluid">
+        <span><b>Nº de horários</b>: {{grade.numeroDeHorarios}} </span>
+    </div>
+    <div class="p-md-2 p-fluid">
+        <span><b>Início</b>: {{grade.horaInicio | date:'dd/M/yyyy, H:mm':'GMT'}} </span>
+    </div>
+    <div class="p-md-2 p-fluid">
+        <span><b>Fim</b>: {{grade.horaFim | date:'dd/M/yyyy, H:mm':'GMT'}} </span>
+    </div>
+</div>
+
+<basis-datatable [url]="" [verticalButtons]="false" #datatable
+    type="memory" [value]="horariosAgendados">
+    <p-column header="Hora início" field="horaInicio">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+            <span>{{rowData[col.field] | date: 'H:mm':'GMT'}}</span>
+        </ng-template>
+    </p-column>
+    <p-column header="Hora fim" field="horaFim">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+            <span>{{rowData[col.field] | date: 'H:mm':'GMT'}}</span>
+        </ng-template>
+    </p-column>
+    <p-column header="Tipo de marcação" field="tipoDeMarcacaoId"></p-column>
+    <p-column header="Livre" field="livre">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+            <span>{{rowData[col.field] === true ? 'Sim' : 'Não'}}</span>
+        </ng-template>
+    </p-column>
+    <p-column header="Exclusivo" field="exclusivo">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+            <span>{{rowData[col.field] === true ? 'Sim' : 'Não'}}</span>
+        </ng-template>
+    </p-column>
+    <p-column header="Situação" field="ativo">
+        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+            <span>{{rowData[col.field] === true ? 'Ativo' : 'Inativo'}}</span>
+        </ng-template>
+    </p-column>
+</basis-datatable>

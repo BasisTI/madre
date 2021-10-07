@@ -142,4 +142,22 @@ public class HorarioExameResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+        @GetMapping("/_search/horarios-exame")
+    public ResponseEntity<List<HorarioExameDTO>> obterHorarios(Pageable pageable,
+           @RequestParam(name = "id", required = false) String id,
+           @RequestParam(name = "livre", required = false) String livre,
+           @RequestParam(name = "ativo", required = false) String ativo,
+           @RequestParam(name = "exclusivo", required = false) String exclusivo,
+           @RequestParam(name = "tipoDeMarcacaoId", required = false) String tipoDeMarcacaoId,
+           @RequestParam(name = "gradeAgendamentoExameId") String gradeAgendamentoExameId) {
+        log.debug("Request REST para obter uma página de horários de exame");
+        Page<HorarioExameDTO> page = horarioExameService.filtraHorariosExame(
+            pageable, id, livre, ativo, exclusivo, tipoDeMarcacaoId, gradeAgendamentoExameId);
+        HttpHeaders headers = PaginationUtil
+            .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        }
+
+
 }

@@ -1,4 +1,4 @@
-export class HorarioAgendado {
+export class HorarioExame {
     constructor(
         public id?: number,
         public horaInicio?: Date,

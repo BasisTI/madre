@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { GradeDeAgendamentoExame } from '../models/subjects/grades-de-agendamento';
 import { Sala } from '../models/subjects/sala';
 import { TipoDeMarcacao } from '../models/subjects/tipo-de-marcacao';
-import { HorarioAgendado } from '../models/subjects/horario-agendado';
+import { HorarioExame } from '../models/subjects/horario-agendado';
 import { Dia } from '../models/subjects/dia';
 
 @Injectable({
@@ -58,15 +58,18 @@ export class GradeDeAgendamentoService {
     return this.client.get<Dia[]>(`${this.URL}/dias`);
   }
 
-  public getHorariosAgendados(): Observable<Array<HorarioAgendado>> {
-    return this.client.get<Array<HorarioAgendado>>(`${this.URL}/_search/horarios-agendados`);
+  public getHorariosExame(gradeAgendamentoExameId: string): Observable<Array<HorarioExame>> {
+    return this.client.get<Array<HorarioExame>>(`${this.URL}/_search/horarios-exame`, {
+      params: new HttpParams()
+      .set('gradeAgendamentoExameId', gradeAgendamentoExameId)
+    });
   }
 
   cadastrarGrade(gradeDeAgendamento: GradeDeAgendamentoExame) {
     return this.client.post(`${this.URL}/grade-agendamento-exames`, gradeDeAgendamento);
   }
 
-  cadastrarHorarioGrade(horarioGrade: HorarioAgendado) {
+  cadastrarHorarioGrade(horarioGrade: HorarioExame) {
     return this.client.post(`${this.URL}/horario-agendados`, horarioGrade);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UnidadeFuncional } from '../../models/subjects/unidade-model';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
@@ -14,7 +14,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { UnidadeFuncionalComponent } from '@shared/components/unidade-funcional/unidade-funcional.component';
-import { HorarioAgendado } from '../../models/subjects/horario-agendado';
+import { HorarioExame } from '../../models/subjects/horario-agendado';
 import { Dia } from '../../models/subjects/dia';
 @Component({
   selector: 'app-formulario-grade-de-agendamento',
@@ -25,19 +25,15 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   dataInicio: Date;
   dataFim: Date;
-
   horaInicio: Date;
   horaFim: Date;
-
   dataMinima: Date = new Date();
   horaPadrao = new Date('December 31, 2020 12:00:00');
 
   dias: Array<Dia>;
   diasSelecionados: Array<Dia>;
-
+  horariosDaGrade: Array<HorarioExame>;
   unidadeSelecionada: number;
-
-  horariosDaGrade: Array<HorarioAgendado>;
 
   listaUnidades: UnidadeFuncional[] = [];
   listaServidores: ListaServidor[] = [];
@@ -46,6 +42,13 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
 
   situacaoGrade = SituacaoAtivo;
 
+  gradeId: number;
+
+  @Input()
+  grade: GradeDeAgendamentoExame;
+
+  @Output()
+  gradeSalva = new EventEmitter<GradeDeAgendamentoExame>();
 
   constructor(private fb: FormBuilder,
     private gradeAgendamentoService: GradeDeAgendamentoService,
@@ -82,6 +85,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     this.dataFim = null;
     this.dataInicio = null;
     this.unidadeSelecionada = null;
+    this.diasSelecionados = null;
   }
 
   confirmarGravacaoDaGrade() {
@@ -92,7 +96,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
       accept: () => {
         this.msg.add({
           severity: 'info',
-          detail: "Acesse 'Horários Agendados' para marcar horários nessa grade."
+          detail: "Acesse 'Horários' para marcar horários nessa grade."
         });
       },
       reject: () => {
@@ -104,7 +108,7 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
   cadastrarGradeDeAgendamento() {
     const cadastroGradeValor = this.cadastroGrade.value;
 
-    const gradeExame: GradeDeAgendamentoExame = {
+    this.grade = {
       dataInicio: this.dataInicio,
       dataFim: this.dataFim,
       horaInicio: this.gerarHora(this.horaInicio, this.dataInicio),
@@ -122,8 +126,12 @@ export class FormularioGradeDeAgendamentoComponent implements OnInit {
     if (this.isInicioDepoisDeFim(this.horaInicio, this.horaFim)) {
       return;
     } else {
-      this.gradeAgendamentoService.cadastrarGrade(gradeExame).subscribe();
-      this.cadastroGrade.reset();
+      this.gradeAgendamentoService.cadastrarGrade(this.grade).subscribe((response) => {
+        Object.assign(this.grade, response);
+        this.gradeSalva.emit(this.grade);
+      });
+      this.limparFormulario();
+      this.confirmarGravacaoDaGrade();
     }
   }
 

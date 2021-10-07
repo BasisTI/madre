@@ -15,7 +15,7 @@ import { CadastrarMaterialComponent } from './components/cadastrar-material/cada
 import { FormularioGradeDeAgendamentoComponent } from './components/formulario-grade-de-agendamento/formulario-grade-de-agendamento.component';
 import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
-import { FormularioHorariosAgendadosComponent } from './components/formulario-horarios-agendados/formulario-horarios-agendados.component';
+import { ListaHorariosComponent } from './components/lista-horarios/lista-horarios.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
@@ -40,7 +40,7 @@ import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-
         FormularioGradeDeAgendamentoComponent,
         ListarGradeDeExameComponent,
         GradeAgendamentosComponent,
-        FormularioHorariosAgendadosComponent,
+        ListaHorariosComponent,
         TabelaHorariosAgendadosComponent,
         DurationPipe,
         SinonimosExamesComponent,
