@@ -1,3 +1,5 @@
+import { Sinonimos } from "./sinonimos";
+
 export class ExamModel {
     constructor(
         public id?: number,
@@ -12,5 +14,6 @@ export class ExamModel {
         public materialExameNome?: string,
         public amostraExameId?: number,
         public amostraExameNome?: string,
+        public sinonimos?: Sinonimos[],
     ) { }
 }

@@ -1,6 +1,7 @@
 package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.service.ExameService;
+import br.com.basis.madre.madreexames.service.dto.ExameCompletoDTO;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -53,17 +54,17 @@ public class ExameResource {
     /**
      * {@code POST  /exames} : Create a new exame.
      *
-     * @param exameDTO the exameDTO to create.
+     * @param exameCompletoDTO the exameDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new exameDTO, or with status {@code 400 (Bad Request)} if the exame has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/exames")
-    public ResponseEntity<ExameDTO> createExame(@Valid @RequestBody ExameDTO exameDTO) throws URISyntaxException {
-        log.debug("REST request to save Exame : {}", exameDTO);
-        if (exameDTO.getId() != null) {
+    public ResponseEntity<ExameCompletoDTO> createExame(@Valid @RequestBody ExameCompletoDTO exameCompletoDTO) throws URISyntaxException {
+        log.debug("REST request to save Exame : {}", exameCompletoDTO);
+        if (exameCompletoDTO.getId() != null) {
             throw new BadRequestAlertException("A new exame cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        ExameDTO result = exameService.save(exameDTO);
+        ExameCompletoDTO result = exameService.save(exameCompletoDTO);
         return ResponseEntity.created(new URI("/api/exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -72,21 +73,21 @@ public class ExameResource {
     /**
      * {@code PUT  /exames} : Updates an existing exame.
      *
-     * @param exameDTO the exameDTO to update.
+     * @param exameCompletoDTO the exameDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated exameDTO,
      * or with status {@code 400 (Bad Request)} if the exameDTO is not valid,
      * or with status {@code 500 (Internal Server Error)} if the exameDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/exames")
-    public ResponseEntity<ExameDTO> updateExame(@Valid @RequestBody ExameDTO exameDTO) throws URISyntaxException {
-        log.debug("REST request to update Exame : {}", exameDTO);
-        if (exameDTO.getId() == null) {
+    public ResponseEntity<ExameCompletoDTO> updateExame(@Valid @RequestBody ExameCompletoDTO exameCompletoDTO) throws URISyntaxException {
+        log.debug("REST request to update Exame : {}", exameCompletoDTO);
+        if (exameCompletoDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        ExameDTO result = exameService.save(exameDTO);
+        ExameCompletoDTO result = exameService.save(exameCompletoDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, exameDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, exameCompletoDTO.getId().toString()))
             .body(result);
     }
 
@@ -145,4 +146,12 @@ public class ExameResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
+
+    @GetMapping("/exames/sinonimos")
+    public ResponseEntity<List<ExameCompletoDTO>> filterExames(@RequestParam(required = false, defaultValue = "") String nome) {
+        log.debug("REST request to search for a page of Exames for query {}", nome, "teste");
+        List<ExameCompletoDTO> exames = exameService.findAllExamesBySinonimo(nome);
+        return ResponseEntity.ok().body(exames);
+    }
+
 }

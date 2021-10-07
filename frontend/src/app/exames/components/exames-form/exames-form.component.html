@@ -1,16 +1,14 @@
     <div class="card card-w-title">
         <p-tabView>
             <p-tabPanel header="Cadastro de Exames">
-                <app-formulario-exame></app-formulario-exame>
+                <app-formulario-exame [listaSinonimos]='sinonimos'></app-formulario-exame>
             </p-tabPanel>
             <p-tabPanel header="Sinônimos de Exames">
-                <app-sinonimos-exames> </app-sinonimos-exames>
+                <app-sinonimos-exames #appSinonimos> </app-sinonimos-exames>
             </p-tabPanel>
             <p-tabPanel header="Materiais de Análise">
                 <app-cadastrar-material></app-cadastrar-material>
             </p-tabPanel>
-            <p-tabPanel header="Materiais de Análise de Exame">
-                <app-material-exames></app-material-exames>
-            </p-tabPanel>
         </p-tabView>
     </div>
+    
