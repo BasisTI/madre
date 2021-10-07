@@ -1,6 +1,7 @@
 package br.com.basis.madre.madreexames.web.rest;
 
 import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
+import br.com.basis.madre.madreexames.service.GeraHorariosGradeService;
 import br.com.basis.madre.madreexames.service.GradeAgendamentoExameService;
 import br.com.basis.madre.madreexames.service.HorarioExameService;
 import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
@@ -10,6 +11,7 @@ import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +32,7 @@ import java.util.Optional;
  * REST controller for managing {@link br.com.basis.madre.madreexames.domain.GradeAgendamentoExame}.
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class GradeAgendamentoExameResource {
 
@@ -44,14 +47,9 @@ public class GradeAgendamentoExameResource {
 
     private final HorarioExameService horarioExameService;
 
-    private final GradeAgendamentoExameMapper gradeAgendamentoExameMapper;
+    private final GeraHorariosGradeService geraHorariosGradeService;
 
-    public GradeAgendamentoExameResource(GradeAgendamentoExameService gradeAgendamentoExameService,
-                                         HorarioExameService horarioExameService, GradeAgendamentoExameMapper gradeAgendamentoExameMapper) {
-        this.gradeAgendamentoExameService = gradeAgendamentoExameService;
-        this.horarioExameService = horarioExameService;
-        this.gradeAgendamentoExameMapper = gradeAgendamentoExameMapper;
-    }
+    private final GradeAgendamentoExameMapper gradeAgendamentoExameMapper;
 
     /**
      * {@code POST  /grade-agendamento-exames} : Create a new gradeAgendamentoExame.
@@ -69,6 +67,7 @@ public class GradeAgendamentoExameResource {
         GradeAgendamentoExameDTO result = gradeAgendamentoExameService.save(gradeAgendamentoExameDTO);
         GradeAgendamentoExame gradeAgendamentoExame = gradeAgendamentoExameMapper.toEntity(result);
         horarioExameService.gerarHorariosDaGrade(gradeAgendamentoExame);
+        geraHorariosGradeService.buscarDiasCompativeis(result);
         return ResponseEntity.created(new URI("/api/grade-agendamento-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
