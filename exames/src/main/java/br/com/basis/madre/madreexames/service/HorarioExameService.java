@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.sort.SortBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,7 +62,7 @@ public class HorarioExameService {
     }
 
     Instant horaInicioPrimeiroHorario;
-    LocalDate dataInicioGradeVerificacao;
+    LocalDate novaData;
     LocalDate dataPadraoGrade;
 
     public void gerarHorariosDaGrade(GradeAgendamentoExame gradeAgendamentoExame) {
@@ -77,7 +78,7 @@ public class HorarioExameService {
 
             //Resetando dataInicio da grade para não salvar a gradeAgendamentoExame com início errado em HorarioExame
             gradeAgendamentoExame.setDataInicio(dataPadraoGrade);
-            horaInicioPrimeiroHorario = obterDataInicioHorario(dataInicioGradeVerificacao, horaInicioPrimeiroHorario).plusMillis(1);
+            horaInicioPrimeiroHorario = obterDataInicioHorario(novaData, horaInicioPrimeiroHorario).plusMillis(1);
 
             if (i == 0) {
                 horarioExame.setHoraInicio(horaInicioPrimeiroHorario);
@@ -92,7 +93,7 @@ public class HorarioExameService {
             horarioExameSearchRepository.save(horarioExame);
 
             //voltar datainicio da grade para novaData
-            gradeAgendamentoExame.setDataInicio(dataInicioGradeVerificacao);
+            gradeAgendamentoExame.setDataInicio(novaData);
             log.debug("Request to save HorarioExame a partir da grade : {}", horarioExame);
         }
     }
@@ -104,7 +105,7 @@ public class HorarioExameService {
     }
 
     public void buscarDiasCompativeis(GradeAgendamentoExame gradeAgendamentoExame) {
-        dataInicioGradeVerificacao = gradeAgendamentoExame.getDataInicio();
+        novaData = gradeAgendamentoExame.getDataInicio();
         List<Long> comparacao = new ArrayList<>();
 
         if (gradeAgendamentoExame.getDias().toString().contains("SEGUNDA")) {
@@ -141,7 +142,7 @@ public class HorarioExameService {
                 if (gradeAgendamentoExame.getDataInicio().getDayOfWeek().getValue() == numeroComparacao) {
                     System.err.println("Dia: " + gradeAgendamentoExame.getDataInicio()
                         .getDayOfWeek() + " em: " + gradeAgendamentoExame.getDataInicio());
-                    dataInicioGradeVerificacao = gradeAgendamentoExame.getDataInicio();
+                    novaData = gradeAgendamentoExame.getDataInicio();
                     gerarHorariosDaGrade(gradeAgendamentoExame);
                 }
             }
@@ -217,6 +218,7 @@ public class HorarioExameService {
         filter(queryBuilder, "tipoDeMarcacaoId", tipoDeMarcacaoId);
         filter(queryBuilder, "gradeAgendamentoExame.id", gradeAgendamentoExameId);
         SearchQuery query = new NativeSearchQueryBuilder()
+            .withSort(SortBuilders.fieldSort("horaInicio"))
             .withQuery(queryBuilder)
             .withPageable(pageable)
             .build();

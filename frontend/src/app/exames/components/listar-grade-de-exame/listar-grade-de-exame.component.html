@@ -107,9 +107,9 @@
                         </p-column>  
                         <p-column header="Nº de horários" field="numeroDeHorarios"> </p-column>  
                         <p-column header="Dias" field="listaGrades">
-                            <!-- <ng-template let-col let-grade="rowData" let-ri="rowIndex" pTemplate="body">
-                                <span *ngFor="let grade of listaGrades; index as i">{{listaGrades[1].dias[1].nome}}</span>
-                            </ng-template> -->
+                            <ng-template let-col let-grade="rowData" pTemplate="body">
+                                <span *ngFor="let grade of listaGrades; let i = index">{{grade[i].dias[i].nome}}</span>
+                            </ng-template>
                         </p-column>  
                         <p-column header="Situação" field="ativo">
                             <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
