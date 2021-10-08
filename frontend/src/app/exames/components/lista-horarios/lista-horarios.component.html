@@ -14,13 +14,13 @@
 </div>
 
 <basis-datatable [url]="" [verticalButtons]="false" #datatable
-    type="memory" [value]="horariosAgendados">
-    <p-column header="Hora início" field="horaInicio">
+    type="memory" [value]="horariosAgendados" sortField="horaInicio" sortOrder="1">
+    <p-column header="Início" field="horaInicio" [sortable]="true">
         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
             <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
         </ng-template>
     </p-column>
-    <p-column header="Hora fim" field="horaFim">
+    <p-column header="Fim" field="horaFim">
         <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
             <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
         </ng-template>

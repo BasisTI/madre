@@ -4,7 +4,6 @@ import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 import br.com.basis.madre.madreexames.domain.HorarioExame;
 import br.com.basis.madre.madreexames.repository.HorarioExameRepository;
 import br.com.basis.madre.madreexames.repository.search.HorarioExameSearchRepository;
-import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
 import br.com.basis.madre.madreexames.service.dto.HorarioExameDTO;
 import br.com.basis.madre.madreexames.service.mapper.HorarioExameMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
@@ -61,46 +59,52 @@ public class HorarioExameService {
         horarioExameSearchRepository.save(horarioExame);
         return result;
     }
-    Instant novaHoraInicio;
+
+    Instant horaInicioPrimeiroHorario;
+    LocalDate dataInicioGradeVerificacao;
+    LocalDate dataPadraoGrade;
 
     public void gerarHorariosDaGrade(GradeAgendamentoExame gradeAgendamentoExame) {
-    novaHoraInicio = gradeAgendamentoExame.getHoraInicio();
+        horaInicioPrimeiroHorario = gradeAgendamentoExame.getHoraInicio();
+        Instant horaInicioHorarioSeguinte = gradeAgendamentoExame.getHoraInicio();
 
         for (int i = 0; i < gradeAgendamentoExame.getNumeroDeHorarios(); i++) {
             HorarioExame horarioExame = new HorarioExame();
-            if (i == 0) {
-                horarioExame.setHoraInicio(gradeAgendamentoExame.getHoraInicio());
-            } else {
-                horarioExame.setHoraInicio(novaHoraInicio);
-            }
-            horarioExame.setHoraFim(horarioExame.getHoraInicio().plus(gradeAgendamentoExame.getDuracao()));
             horarioExame.setAtivo(gradeAgendamentoExame.isAtivo());
             horarioExame.setLivre(true);
             horarioExame.setExclusivo(false);
             horarioExame.setGradeAgendamentoExame(gradeAgendamentoExame);
-            novaHoraInicio = obterDataInicioHorario(novaData, novaHoraInicio);
-            novaHoraInicio = obterDataInicioHorario(novaData, novaHoraInicio).plus(1, ChronoUnit.MILLIS);
-            horarioExame.setHoraInicio(novaHoraInicio);
+
+            //Resetando dataInicio da grade para não salvar a gradeAgendamentoExame com início errado em HorarioExame
+            gradeAgendamentoExame.setDataInicio(dataPadraoGrade);
+            horaInicioPrimeiroHorario = obterDataInicioHorario(dataInicioGradeVerificacao, horaInicioPrimeiroHorario).plusMillis(1);
+
+            if (i == 0) {
+                horarioExame.setHoraInicio(horaInicioPrimeiroHorario);
+            } else {
+                horarioExame.setHoraInicio(horaInicioHorarioSeguinte);
+            }
+
+            horarioExame.setHoraFim(horarioExame.getHoraInicio().plus(gradeAgendamentoExame.getDuracao()));
+            horaInicioHorarioSeguinte = horarioExame.getHoraFim().plusMillis(1);
 
             horarioExame = horarioExameRepository.save(horarioExame);
             horarioExameSearchRepository.save(horarioExame);
 
+            //voltar datainicio da grade para novaData
+            gradeAgendamentoExame.setDataInicio(dataInicioGradeVerificacao);
             log.debug("Request to save HorarioExame a partir da grade : {}", horarioExame);
         }
     }
 
-    LocalDate novaData;
-
     public Instant obterDataInicioHorario(LocalDate data, Instant hora) {
         String horaDaData = hora.toString().substring(hora.toString().indexOf("T"));
 
-        Instant dataCompleta = Instant.parse(data.toString().concat(horaDaData));
-
-        return dataCompleta;
+        return Instant.parse(data.toString().concat(horaDaData));
     }
 
     public void buscarDiasCompativeis(GradeAgendamentoExame gradeAgendamentoExame) {
-    novaData = gradeAgendamentoExame.getDataInicio();
+        dataInicioGradeVerificacao = gradeAgendamentoExame.getDataInicio();
         List<Long> comparacao = new ArrayList<>();
 
         if (gradeAgendamentoExame.getDias().toString().contains("SEGUNDA")) {
@@ -126,17 +130,18 @@ public class HorarioExameService {
         }
 
         LocalDate dataInicioCopia = gradeAgendamentoExame.getDataInicio();
+        dataPadraoGrade = dataInicioCopia;
 
         while (!gradeAgendamentoExame.getDataInicio().isAfter(gradeAgendamentoExame.getDataFim())) {
             Long numeroComparacao;
 
-            for (Long nDias: comparacao) {
+            for (Long nDias : comparacao) {
                 numeroComparacao = nDias;
 
                 if (gradeAgendamentoExame.getDataInicio().getDayOfWeek().getValue() == numeroComparacao) {
                     System.err.println("Dia: " + gradeAgendamentoExame.getDataInicio()
                         .getDayOfWeek() + " em: " + gradeAgendamentoExame.getDataInicio());
-                    novaData = gradeAgendamentoExame.getDataInicio();
+                    dataInicioGradeVerificacao = gradeAgendamentoExame.getDataInicio();
                     gerarHorariosDaGrade(gradeAgendamentoExame);
                 }
             }
@@ -190,7 +195,7 @@ public class HorarioExameService {
     /**
      * Search for the horarioExame corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +64,6 @@ public class GradeAgendamentoExameResource {
         }
         GradeAgendamentoExameDTO result = gradeAgendamentoExameService.save(gradeAgendamentoExameDTO);
         GradeAgendamentoExame gradeAgendamentoExame = gradeAgendamentoExameMapper.toEntity(result);
-//        horarioExameService.gerarHorariosDaGrade(gradeAgendamentoExame);
         horarioExameService.buscarDiasCompativeis(gradeAgendamentoExame);
         return ResponseEntity.created(new URI("/api/grade-agendamento-exames/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
