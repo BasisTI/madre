@@ -210,7 +210,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                         {
                             label: 'Dar Alta ao Paciente',
                             icon: 'add',
-                            routerLink: ['internacao/dar-alta-ao-paciente']
+                            routerLink: ['internacao/listar-dar-alta-ao-paciente']
                         },
                         {
                             label: 'Tipos de Unidades Funcionais',

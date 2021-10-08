@@ -19,4 +19,5 @@ export class PacienteService {
     public obterPacientePorProntuario(prontuario: number): Observable<Paciente> {
         return this.client.get<Paciente>(`${this.resource}/prontuario/${prontuario}`);
     }
+
 }
