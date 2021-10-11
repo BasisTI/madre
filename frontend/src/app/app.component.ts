@@ -213,6 +213,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                             routerLink: ['internacao/listar-dar-alta-ao-paciente']
                         },
                         {
+                            label: 'Teste',
+                            icon: 'add',
+                            routerLink: ['internacao/formulario-dar-alta-ao-paciente'],
+                        },
+                        {
                             label: 'Tipos de Unidades Funcionais',
                             icon: 'add',
                             routerLink: ['internacao/tipo-unidade-funcional'],

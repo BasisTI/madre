@@ -61,5 +61,9 @@ export const routes: Routes = [
     {
         path: 'listar-dar-alta-ao-paciente',
         component: ListarDarAltaPacientesComponent,
+    },
+    {
+        path:'formulario-dar-alta-ao-paciente',
+        component: DarAltaAoPacienteComponent,
     }
 ];

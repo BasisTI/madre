@@ -76,6 +76,7 @@ import { ListarDarAltaPacientesComponent } from './components/listar-dar-alta-pa
         TipoDeUnidadeFuncionalComponent,
         DarAltaAoPacienteComponent,
         ListarDarAltaPacientesComponent,
+        DarAltaAoPacienteComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
