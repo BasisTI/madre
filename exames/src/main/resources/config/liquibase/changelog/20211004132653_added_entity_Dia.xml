@@ -41,7 +41,7 @@
     -->
     <changeSet id="20211004132653-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/dia_novo.csv"
+                  file="config/liquibase/fake-data/dia_semana.csv"
                   separator=";"
                   tableName="dia">
             <column name="id" type="numeric"/>

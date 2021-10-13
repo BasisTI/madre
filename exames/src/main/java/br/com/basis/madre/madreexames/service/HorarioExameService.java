@@ -108,25 +108,25 @@ public class HorarioExameService {
         novaData = gradeAgendamentoExame.getDataInicio();
         List<Long> comparacao = new ArrayList<>();
 
-        if (gradeAgendamentoExame.getDias().toString().contains("SEGUNDA")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Segunda")) {
             comparacao.add(1L);
         }
-        if (gradeAgendamentoExame.getDias().toString().contains("TERCA")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Terça")) {
             comparacao.add(2L);
         }
-        if (gradeAgendamentoExame.getDias().toString().contains("QUARTA")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Quarta")) {
             comparacao.add(3L);
         }
-        if (gradeAgendamentoExame.getDias().toString().contains("QUINTA")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Quinta")) {
             comparacao.add(4L);
         }
-        if (gradeAgendamentoExame.getDias().toString().contains("SEXTA")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Sexta")) {
             comparacao.add(5L);
         }
-        if (gradeAgendamentoExame.getDias().toString().contains("SABADO")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Sábado")) {
             comparacao.add(6L);
         }
-        if (gradeAgendamentoExame.getDias().toString().contains("DOMINGO")) {
+        if (gradeAgendamentoExame.getDias().toString().contains("Domingo")) {
             comparacao.add(7L);
         }
 
