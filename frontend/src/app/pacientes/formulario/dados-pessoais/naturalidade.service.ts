@@ -22,4 +22,14 @@ export class NaturalidadeService extends CrudServiceNuvem<number, Naturalidade> 
         });
     }
 
+    pesquisaMunicipios(idUf: number, nome: string): Observable<Naturalidade[]> {
+            let params = new HttpParams();
+            params = params.append('ufId', idUf.toString());
+            params = params.append('nome', nome);
+            params = params.set('size', '50');
+            return this.httpClient.get<Naturalidade[]>('pacientes/api/pesquisa/municipios',{
+                params: params,
+            });
+        }
+
 }

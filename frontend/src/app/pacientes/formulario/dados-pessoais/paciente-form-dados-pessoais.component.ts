@@ -50,7 +50,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
 
     ngOnInit() {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
-        
+
 
             if(this.formGroup.get('etniaId').value != null){
                 this.etniaService.find(this.formGroup.get('etniaId').value).subscribe(res => {
@@ -63,12 +63,12 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
                     this.formGroup.patchValue({racaId: res});
                 });
             }
-            
+
             if(this.formGroup.get('estadoCivilId').value != null){
                 this.estadoCivilService.find(this.formGroup.get('estadoCivilId').value).subscribe(res => {
                     this.formGroup.patchValue({estadoCivilId: res});
                 });
-            }   
+            }
 
             if(this.formGroup.get('horaDeNascimento').value != null){
                 var date = new Date(this.formGroup.get('horaDeNascimento').value);
@@ -108,7 +108,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
             this.aoSelecionarDataDeNascimento();
 
     }
-    
+
 
     aoSelecionarDataDeNascimento() {
         const { dataDeNascimento } = this.formGroup.value;
@@ -138,7 +138,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
 
     searchUnidade(event) {
         this.naturalidadeService
-            .getListaDeNaturalidades(this.formGroup.value.ufId.id, event.query)
+            .pesquisaMunicipios(this.formGroup.value.ufId.id, event.query)
             .subscribe((res) => {
                 this.naturalidades = res;
             });
