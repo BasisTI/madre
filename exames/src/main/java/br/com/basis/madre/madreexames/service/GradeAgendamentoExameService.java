@@ -4,7 +4,10 @@ import br.com.basis.madre.madreexames.domain.GradeAgendamentoExame;
 import br.com.basis.madre.madreexames.repository.GradeAgendamentoExameRepository;
 import br.com.basis.madre.madreexames.repository.search.GradeAgendamentoExameSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO;
+import br.com.basis.madre.madreexames.service.integration.InternacaoClient;
+import br.com.basis.madre.madreexames.service.integration.SegurancaClient;
 import br.com.basis.madre.madreexames.service.mapper.GradeAgendamentoExameMapper;
+import lombok.RequiredArgsConstructor;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -30,6 +33,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  */
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class GradeAgendamentoExameService {
 
     private final Logger log = LoggerFactory.getLogger(GradeAgendamentoExameService.class);
@@ -40,13 +44,10 @@ public class GradeAgendamentoExameService {
 
     private final GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository;
 
-    public GradeAgendamentoExameService(GradeAgendamentoExameRepository gradeAgendamentoExameRepository,
-                                        GradeAgendamentoExameMapper gradeAgendamentoExameMapper,
-                                        GradeAgendamentoExameSearchRepository gradeAgendamentoExameSearchRepository) {
-        this.gradeAgendamentoExameRepository = gradeAgendamentoExameRepository;
-        this.gradeAgendamentoExameMapper = gradeAgendamentoExameMapper;
-        this.gradeAgendamentoExameSearchRepository = gradeAgendamentoExameSearchRepository;
-    }
+    private final InternacaoClient internacaoClient;
+
+    private final SegurancaClient segurancaClient;
+
 
     /**
      * Save a gradeAgendamentoExame.
@@ -58,10 +59,31 @@ public class GradeAgendamentoExameService {
         log.debug("Request to save GradeAgendamentoExame : {}", gradeAgendamentoExameDTO);
         calcularDuracaoDeHorarios(gradeAgendamentoExameDTO);
         GradeAgendamentoExame gradeAgendamentoExame = gradeAgendamentoExameMapper.toEntity(gradeAgendamentoExameDTO);
-        gradeAgendamentoExame = gradeAgendamentoExameRepository.save(gradeAgendamentoExame);
-        GradeAgendamentoExameDTO result = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
-        gradeAgendamentoExameSearchRepository.save(gradeAgendamentoExame);
+        gradeAgendamentoExameRepository.save(gradeAgendamentoExame);
+        GradeAgendamentoExameDTO result = gradeAgendamentoExameRepository.buscaPorId(gradeAgendamentoExame.getId());
+        result.setResponsavelNome("calígula");
+        passarDadosParaResult(result, gradeAgendamentoExame);
+        result.setUnidadeNome(internacaoClient.getUnidadeFuncional(gradeAgendamentoExameDTO.getUnidadeExecutoraId()).getNome());
+        result.setResponsavelNome(segurancaClient.getServidor(gradeAgendamentoExameDTO.getResponsavelId())
+            .getPessoaNome());
+
+        gradeAgendamentoExameSearchRepository.save(result);
         return result;
+    }
+
+    public void passarDadosParaResult(GradeAgendamentoExameDTO result, GradeAgendamentoExame fonte) {
+        result.setHoraInicio(fonte.getHoraInicio());
+        result.setHoraFim(fonte.getHoraFim());
+        result.setDataInicio(fonte.getDataInicio());
+        result.setDataFim(fonte.getDataFim());
+        result.setSalaId(fonte.getSala().getId());
+        result.setExameId(fonte.getExame().getId());
+        result.setDias(fonte.getDias());
+        result.setResponsavelId(fonte.getResponsavelId());
+        result.setNumeroDeHorarios(fonte.getNumeroDeHorarios());
+        result.setAtivo(fonte.isAtivo());
+        result.setDuracao(fonte.getDuracao());
+//        result.setExameNome(fonte.getExame().getNome());
     }
 
     public void calcularDuracaoDeHorarios(GradeAgendamentoExameDTO gradeAgendamentoExameDTO) {
@@ -134,8 +156,7 @@ public class GradeAgendamentoExameService {
     @Transactional(readOnly = true)
     public Page<GradeAgendamentoExameDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of GradeAgendamentoExames for query {}", query);
-        return gradeAgendamentoExameSearchRepository.search(queryStringQuery(query), pageable)
-            .map(gradeAgendamentoExameMapper::toDto);
+        return gradeAgendamentoExameSearchRepository.search(queryStringQuery(query), pageable);
     }
 
     @Transactional(readOnly = true)
@@ -154,7 +175,7 @@ public class GradeAgendamentoExameService {
             .withPageable(pageable)
             .build();
 
-        return gradeAgendamentoExameSearchRepository.search(query).map(gradeAgendamentoExameMapper::toDto);
+        return gradeAgendamentoExameSearchRepository.search(query);
     }
 
     private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {

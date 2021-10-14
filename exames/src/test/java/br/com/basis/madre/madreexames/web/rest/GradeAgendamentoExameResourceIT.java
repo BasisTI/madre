@@ -176,7 +176,7 @@ public class GradeAgendamentoExameResourceIT {
         assertThat(testGradeAgendamentoExame.getResponsavelId()).isEqualTo(DEFAULT_RESPONSAVEL_ID);
 
         // Validate the GradeAgendamentoExame in Elasticsearch
-        verify(mockGradeAgendamentoExameSearchRepository, times(1)).save(testGradeAgendamentoExame);
+        verify(mockGradeAgendamentoExameSearchRepository, times(1)).save(gradeAgendamentoExameDTO);
     }
 
     @Test
@@ -199,7 +199,7 @@ public class GradeAgendamentoExameResourceIT {
         assertThat(gradeAgendamentoExameList).hasSize(databaseSizeBeforeCreate);
 
         // Validate the GradeAgendamentoExame in Elasticsearch
-        verify(mockGradeAgendamentoExameSearchRepository, times(0)).save(gradeAgendamentoExame);
+        verify(mockGradeAgendamentoExameSearchRepository, times(0)).save(gradeAgendamentoExameDTO);
     }
 
 
@@ -249,6 +249,26 @@ public class GradeAgendamentoExameResourceIT {
         int databaseSizeBeforeTest = gradeAgendamentoExameRepository.findAll().size();
         // set the field null
         gradeAgendamentoExame.setHoraInicio(null);
+
+        // Create the GradeAgendamentoExame, which fails.
+        GradeAgendamentoExameDTO gradeAgendamentoExameDTO = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
+
+
+        restGradeAgendamentoExameMockMvc.perform(post("/api/grade-agendamento-exames")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(gradeAgendamentoExameDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<GradeAgendamentoExame> gradeAgendamentoExameList = gradeAgendamentoExameRepository.findAll();
+        assertThat(gradeAgendamentoExameList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkHoraFimIsRequired() throws Exception {
+        int databaseSizeBeforeTest = gradeAgendamentoExameRepository.findAll().size();
+        // set the field null
+        gradeAgendamentoExame.setHoraFim(null);
 
         // Create the GradeAgendamentoExame, which fails.
         GradeAgendamentoExameDTO gradeAgendamentoExameDTO = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
@@ -364,7 +384,7 @@ public class GradeAgendamentoExameResourceIT {
             .andExpect(jsonPath("$.[*].unidadeExecutoraId").value(hasItem(DEFAULT_UNIDADE_EXECUTORA_ID)))
             .andExpect(jsonPath("$.[*].responsavelId").value(hasItem(DEFAULT_RESPONSAVEL_ID)));
     }
-    
+
     @SuppressWarnings({"unchecked"})
     public void getAllGradeAgendamentoExamesWithEagerRelationshipsIsEnabled() throws Exception {
         when(gradeAgendamentoExameServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
@@ -458,7 +478,7 @@ public class GradeAgendamentoExameResourceIT {
         assertThat(testGradeAgendamentoExame.getResponsavelId()).isEqualTo(UPDATED_RESPONSAVEL_ID);
 
         // Validate the GradeAgendamentoExame in Elasticsearch
-        verify(mockGradeAgendamentoExameSearchRepository, times(1)).save(testGradeAgendamentoExame);
+        verify(mockGradeAgendamentoExameSearchRepository, times(1)).save(gradeAgendamentoExameDTO);
     }
 
     @Test
@@ -480,7 +500,7 @@ public class GradeAgendamentoExameResourceIT {
         assertThat(gradeAgendamentoExameList).hasSize(databaseSizeBeforeUpdate);
 
         // Validate the GradeAgendamentoExame in Elasticsearch
-        verify(mockGradeAgendamentoExameSearchRepository, times(0)).save(gradeAgendamentoExame);
+        verify(mockGradeAgendamentoExameSearchRepository, times(0)).save(gradeAgendamentoExameDTO);
     }
 
     @Test
@@ -510,8 +530,9 @@ public class GradeAgendamentoExameResourceIT {
         // Configure the mock search repository
         // Initialize the database
         gradeAgendamentoExameRepository.saveAndFlush(gradeAgendamentoExame);
+        GradeAgendamentoExameDTO gradeAgendamentoExameDTO = gradeAgendamentoExameMapper.toDto(gradeAgendamentoExame);
         when(mockGradeAgendamentoExameSearchRepository.search(queryStringQuery("id:" + gradeAgendamentoExame.getId()), PageRequest.of(0, 20)))
-            .thenReturn(new PageImpl<>(Collections.singletonList(gradeAgendamentoExame), PageRequest.of(0, 1), 1));
+            .thenReturn(new PageImpl<>(Collections.singletonList(gradeAgendamentoExameDTO), PageRequest.of(0, 1), 1));
 
         // Search the gradeAgendamentoExame
         restGradeAgendamentoExameMockMvc.perform(get("/api/_search/grade-agendamento-exames?query=id:" + gradeAgendamentoExame.getId()))

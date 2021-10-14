@@ -1,4 +1,4 @@
-package br.com.basis.madre.madreexames.service.integracao;
+package br.com.basis.madre.madreexames.service.integration;
 
 import br.com.basis.madre.madreexames.service.dto.integracao.ServidorDTO;
 import org.springframework.cloud.openfeign.FeignClient;

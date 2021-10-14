@@ -21,7 +21,6 @@ import java.util.Set;
 @Entity
 @Table(name = "grade_agendamento_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-gradeagendamentoexame")
 public class GradeAgendamentoExame implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,7 +43,7 @@ public class GradeAgendamentoExame implements Serializable {
     private Instant horaInicio;
 
     @NotNull
-    @Column(name = "hora_fim")
+    @Column(name = "hora_fim", nullable = false)
     private Instant horaFim;
 
     @Column(name = "numero_de_horarios")

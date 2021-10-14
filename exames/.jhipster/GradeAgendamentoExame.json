@@ -18,7 +18,8 @@
     },
     {
       "fieldName": "horaFim",
-      "fieldType": "Instant"
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "numeroDeHorarios",

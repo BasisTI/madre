@@ -16,7 +16,7 @@ public interface ServidorMapper extends EntityMapper<ServidorDTO, Servidor> {
     @Mapping(source = "vinculo.id", target = "vinculoId")
     @Mapping(source = "vinculo.descricao", target = "vinculoDescricao")
     @Mapping(source = "pessoa.id", target = "pessoaId")
-    @Mapping(source = "pessoa.codigo", target = "pessoaCodigo")
+    @Mapping(source = "pessoa.nome", target = "pessoaNome")
     @Mapping(source = "usuario.id", target = "usuarioId")
     @Mapping(source = "usuario.login", target = "usuarioLogin")
     @Mapping(source = "ramal.id", target = "ramalId")

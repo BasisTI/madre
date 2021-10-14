@@ -18,9 +18,9 @@ import java.util.Optional;
 @Repository
 public interface GradeAgendamentoExameRepository extends JpaRepository<GradeAgendamentoExame, Long> {
 
-    /*@Query("select new br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO(g.id, g.ativo, " +
-        "g.unidadeExecutoraId, g.responsavelId, g.exameNome, g.salaNome) from GradeAgendamentoExame g join g.")
-    GradeAgendamentoExameDTO buscaPorId(@Param("id") Long id);*/
+    @Query("select new br.com.basis.madre.madreexames.service.dto.GradeAgendamentoExameDTO(g.id, g.responsavelId, g.unidadeExecutoraId, e.nome, s.nome) from GradeAgendamentoExame " +
+        "g join g.exame e join g.sala s where g.id = :id")
+    GradeAgendamentoExameDTO buscaPorId(@Param("id") Long id);
 
 
     @Query(value = "select distinct gradeAgendamentoExame from GradeAgendamentoExame gradeAgendamentoExame left join fetch gradeAgendamentoExame.dias",

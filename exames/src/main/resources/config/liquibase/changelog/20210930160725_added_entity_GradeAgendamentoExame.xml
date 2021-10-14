@@ -25,7 +25,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="hora_fim" type="datetime">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <column name="numero_de_horarios" type="integer">
                 <constraints nullable="true" />

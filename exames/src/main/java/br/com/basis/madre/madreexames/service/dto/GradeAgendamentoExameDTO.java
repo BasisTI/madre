@@ -1,7 +1,9 @@
 package br.com.basis.madre.madreexames.service.dto;
 
+import br.com.basis.madre.madreexames.domain.Dia;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -16,6 +18,7 @@ import java.util.Set;
  */
 @Data
 @NoArgsConstructor
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-gradeagendamentoexame")
 public class GradeAgendamentoExameDTO implements Serializable {
 
     private Long id;
@@ -51,7 +54,7 @@ public class GradeAgendamentoExameDTO implements Serializable {
 
     private String responsavelNome;
 
-    private Set<DiaDTO> dias = new HashSet<>();
+    private Set<Dia> dias = new HashSet<>();
 
     private Long exameId;
 
@@ -61,10 +64,8 @@ public class GradeAgendamentoExameDTO implements Serializable {
 
     private String salaNome;
 
-    public GradeAgendamentoExameDTO(Long id, Boolean ativo, Integer unidadeExecutoraId, Integer responsavelId,
-                                    String exameNome, String salaNome) {
+    public GradeAgendamentoExameDTO(Long id, Integer unidadeExecutoraId, Integer responsavelId, String exameNome, String salaNome) {
         this.id = id;
-        this.ativo = ativo;
         this.unidadeExecutoraId = unidadeExecutoraId;
         this.responsavelId = responsavelId;
         this.exameNome = exameNome;
