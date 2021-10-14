@@ -61,19 +61,19 @@ export class ListarGradeDeExameComponent implements OnInit {
   }
 
   limparFiltros(){
-    /* this.id = '';
+    this.id = '';
     this.unidadeExecutoraId = '';
     this.ativo = '';
     this.duracao = '';
     this.salaId = '';
     this.exameId = '';
-    this.responsavelId = ''; */
+    this.responsavelId = '';
     console.log('Dias: ', this.listaGrades[5].dias[1].nome);
   }
 
   listarGrades() {
     this.gradeAgendamentoService.getGradesDeAgendamento(this.id, this.unidadeExecutoraId,
-      this.ativo, this.duracao, this.exameId, this.responsavelId, this.salaId)
+      this.ativo, this.duracao, this.responsavelId, this.exameId, this.salaId)
       .subscribe((response) => {
         this.listaGrades = response;
        });

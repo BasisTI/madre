@@ -18,7 +18,6 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe a Unidade Executora"
                         [(ngModel)]="unidadeExecutoraId" [filter]="true"
                         [resetFilterOnHide]="true" [options]="listaUnidadesExecutoras" [optionLabel]="'nome'"
                         [optionValue]="'id'" placeholder="Unidade executora"
@@ -26,7 +25,6 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe a situação"
                         [(ngModel)]="ativo"
                         [options]="situacaoGrade"
                         placeholder="Situação da grade"
@@ -36,7 +34,6 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe o código ou número da sala"
                         [(ngModel)]="salaId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="listaSalas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'"
                         placeholder="Identificação da sala"
@@ -44,7 +41,6 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe o código ou descrição do exame"
                         [(ngModel)]="exameId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="listaExames" [optionLabel]="'nome'" [optionValue]="'id'"
                         placeholder="Exame"
@@ -52,7 +48,6 @@
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        pTooltip="Informe a matrícula ou o nome do responsável"
                         [(ngModel)]="responsavelId" [filter]="true" [resetFilterOnHide]="true"
                         [options]="listaServidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
                         placeholder="Responsável"
@@ -100,10 +95,7 @@
                                 <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
                             </ng-template>
                         </p-column>
-                        <p-column header="Duração" field="duracao">
-                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                <span>{{rowData[col.field] | duration}}</span>
-                            </ng-template>
+                        <p-column header="Responsável" field="responsavelNome">
                         </p-column>  
                         <p-column header="Nº de horários" field="numeroDeHorarios"> </p-column>  
                         <p-column header="Dias" field="listaGrades">
