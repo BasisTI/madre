@@ -1,6 +1,7 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.MunicipioService;
+import br.com.basis.madre.service.dto.FiltroPesquisaMunicipio;
 import br.com.basis.madre.service.dto.MunicipioDTO;
 import br.com.basis.madre.service.projection.MunicipioUF;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
@@ -149,6 +150,22 @@ public class MunicipioResource {
         municipioService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil
             .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * {@code SEARCH  /pesquisa/municipios} : search for the municipio corresponding to
+     * the query.
+     *
+     * @param filtro    the query of the municipio search.
+     * @param pageable the pagination information.
+     * @return the result of the search.
+     */
+    @GetMapping("/pesquisa/municipios")
+    public ResponseEntity<List<MunicipioDTO>> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
+        Page<MunicipioDTO> page = municipioService
+            .findMunicipioComFiltro(filtro ,pageable);
+        return ResponseEntity.ok(page.getContent());
+
     }
 
     /**
