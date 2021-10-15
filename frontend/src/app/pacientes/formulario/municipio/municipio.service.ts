@@ -30,4 +30,15 @@ export class MunicipioService extends CrudServiceNuvem<number, Municipio> {
             params: params,
         });
     }
+
+    pesquisaMunicipios(ufId: number, nome: string): Observable<Municipio[]> {
+        let params = new HttpParams();
+        params = params.append('ufId', ufId.toString());
+        params = params.append('nome', nome);
+        params = params.set('size', '50');
+        return this.httpClient.get<Municipio[]>('pacientes/api/pesquisa/municipios',{
+            params: params,
+        });
+    }
+
 }

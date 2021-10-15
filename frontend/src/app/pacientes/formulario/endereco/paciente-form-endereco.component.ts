@@ -6,7 +6,7 @@ import { CepService } from "./cep.service";
 import { UfService } from "../municipio/uf.service";
 import { MunicipioService } from "../municipio/municipio.service";
 import { UF } from "../../models/dropdowns/types/uf";
-import { MunicipioUF } from "../../models/dropdowns/types/municipio-uf";
+import { Municipio } from "../../models/dropdowns/types/municipio";
 import { CEP } from "./cep.model";
 
 
@@ -20,11 +20,11 @@ export class PacienteEnderecoFormComponent {
     public enderecos: any =  FormArray;
 
     public enderecoValido: boolean = false;
-    
+
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
     ufs: UF[] = [];
-    municipios: MunicipioUF[] = [];
+    municipios: Municipio[] = [];
     ceps: CEP[] = [];
 
     endereco = this.fb.group({
@@ -93,13 +93,14 @@ export class PacienteEnderecoFormComponent {
     aoSelecionarUF() {
         this.endereco.controls.municipioId.setValue(null);
         this.municipioService
-            .getListaDeMunicipiosUF(this.endereco.value.uf.id, '')
+            .pesquisaMunicipios(this.endereco.value.uf.id, '')
             .subscribe((res) => (this.municipios = res));
     }
 
     searchUnidade(event) {
+        console.log(event)
         this.municipioService
-            .getListaDeMunicipiosUF(this.endereco.value.uf.id, event.query)
+            .pesquisaMunicipios(this.endereco.value.uf.id, event.query)
             .subscribe((res) => {
                 this.municipios = res;
             });
