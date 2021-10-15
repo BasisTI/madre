@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -104,6 +105,7 @@ public class HorarioExameService {
         return Instant.parse(data.toString().concat(horaDaData));
     }
 
+    @Async
     public void buscarDiasCompativeis(GradeAgendamentoExame gradeAgendamentoExame) {
         novaData = gradeAgendamentoExame.getDataInicio();
         List<Long> comparacao = new ArrayList<>();
@@ -140,18 +142,12 @@ public class HorarioExameService {
                 numeroComparacao = nDias;
 
                 if (gradeAgendamentoExame.getDataInicio().getDayOfWeek().getValue() == numeroComparacao) {
-                    System.err.println("Dia: " + gradeAgendamentoExame.getDataInicio()
-                        .getDayOfWeek() + " em: " + gradeAgendamentoExame.getDataInicio());
                     novaData = gradeAgendamentoExame.getDataInicio();
                     gerarHorariosDaGrade(gradeAgendamentoExame);
                 }
             }
             gradeAgendamentoExame.setDataInicio(gradeAgendamentoExame.getDataInicio().plus(1, ChronoUnit.DAYS));
-
         }
-
-        System.err.println(comparacao);
-
         gradeAgendamentoExame.setDataInicio(dataInicioCopia);
     }
 
