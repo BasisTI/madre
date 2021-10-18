@@ -21,16 +21,6 @@ export class MunicipioService extends CrudServiceNuvem<number, Municipio> {
         return this.http.get(`pacientes/api/municipios/${id}`);
     }
 
-    getListaDeMunicipiosUF(idUf: number, nome: string): Observable<MunicipioUF[]> {
-        let params = new HttpParams();
-        params = params.append('idUf', idUf.toString());
-        params = params.append('nome', nome);
-        params = params.set('size', '50');
-        return this.httpClient.get<MunicipioUF[]>('pacientes/api/municipios/filtragem', {
-            params: params,
-        });
-    }
-
     pesquisaMunicipios(ufId: number, nome: string): Observable<Municipio[]> {
         let params = new HttpParams();
         params = params.append('ufId', ufId.toString());
