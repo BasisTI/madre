@@ -42,6 +42,7 @@ public class Usuario implements Serializable {
     @Column(name = "email", unique = true)
     private String email;
 
+    @NotNull
     @Column(name = "ativo")
     private Boolean ativo;
 
