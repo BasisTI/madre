@@ -124,10 +124,26 @@ public class MunicipioService {
 
     @Transactional(readOnly = true)
     public Page<MunicipioDTO> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
+        Page<MunicipioDTO> municipioDTO = filterWithWords(filtro, pageable);
+        return municipioDTO.getTotalElements() > 0 ? municipioDTO : filterWithRegexp(filtro, pageable);
+    }
 
+    private Page<MunicipioDTO> filterWithWords(FiltroPesquisaMunicipio filtro, Pageable pageable){
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, UFID, filtro.getUfId());
         filter(queryBuilder, "nome", filtro.getNome());
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+
+        return  municipioSearchRepository.search(query).map(municipioMapper::toDto);
+    }
+
+    private Page<MunicipioDTO> filterWithRegexp(FiltroPesquisaMunicipio filtro, Pageable pageable){
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, UFID, filtro.getUfId());
+        filterMatchRegexpQuery(queryBuilder, "nome", filtro.getNome().toLowerCase() + ".*");
         SearchQuery query = new NativeSearchQueryBuilder()
             .withQuery(queryBuilder)
             .withPageable(pageable)
