@@ -114,14 +114,14 @@ public class UsuarioService {
         MensagemDeLoginDTO mensagemDeLoginDTO = new MensagemDeLoginDTO();
         Optional<Usuario> usuario = usuarioRepository.findByLogin(usuarioDTO.getLogin());
         if(!usuario.isPresent()){
-            mensagemDeLoginDTO.setMsgDeErro("Usuario não encontrado");
+            mensagemDeLoginDTO.setMsgDeErro("Usuario inválido");
             mensagemDeLoginDTO.setAutenticado(false);
         } else {
             boolean autenticado = passwordEncoder.matches(usuario.get().getSenha(), usuarioDTO.getSenha());
            if(autenticado) {
                mensagemDeLoginDTO.setAutenticado(autenticado);
            } else {
-               mensagemDeLoginDTO.setMsgDeErro("Senha incorreta");
+               mensagemDeLoginDTO.setMsgDeErro("Usuário ou senha inválido");
                mensagemDeLoginDTO.setAutenticado(autenticado);
            }
         }
