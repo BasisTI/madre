@@ -149,7 +149,7 @@ public class UsuarioResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @PostMapping("/public")
+    @PostMapping("/public/autenticar")
     public ResponseEntity<MensagemDeLoginDTO> autentifica(@RequestBody UsuarioDTO usuarioDTO) {
         MensagemDeLoginDTO mensagemDeLoginDTO = usuarioService.validaSenha(usuarioDTO);
         return ResponseEntity.ok().body(mensagemDeLoginDTO);
