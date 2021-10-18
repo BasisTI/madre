@@ -27,7 +27,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "cirurgia")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "cirurgia")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-internacao-cirurgia")
 public class Cirurgia implements Serializable {
 
     private static final long serialVersionUID = 1L;

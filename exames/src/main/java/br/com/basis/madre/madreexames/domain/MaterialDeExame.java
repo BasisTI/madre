@@ -25,7 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "material_de_exame")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "materialdeexame")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-materialdeexame")
 public class MaterialDeExame extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;

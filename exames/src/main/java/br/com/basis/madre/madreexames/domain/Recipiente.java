@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "recipiente")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "recipiente")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-recipiente")
 public class Recipiente extends DomainAtivo implements Serializable {
 
     private static final long serialVersionUID = 1L;

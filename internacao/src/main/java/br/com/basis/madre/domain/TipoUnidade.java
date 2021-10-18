@@ -24,7 +24,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table(name = "tipo_unidade")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "tipounidade")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-internacao-tipounidade")
 public class TipoUnidade implements Serializable {
 
     private static final long serialVersionUID = 1L;

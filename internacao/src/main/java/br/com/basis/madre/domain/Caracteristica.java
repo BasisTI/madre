@@ -29,7 +29,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "caracteristica")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "caracteristica")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-internacao-caracteristica")
 public class Caracteristica implements Serializable {
 
     private static final long serialVersionUID = 1L;
