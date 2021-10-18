@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Leito } from '@internacao/models/leito';
 import { Observable } from 'rxjs';
 import { api } from './../api';
+import { ListaLeito } from '@internacao/models/leito-model';
 
 @Injectable({
     providedIn: 'root',
@@ -30,5 +31,9 @@ export class LeitoService {
 
     obterLeitosNaoLiberados(): Observable<Array<Leito>> {
         return this.client.get<Array<Leito>>(`${this._resource$}/situacao/nao-liberados`);
+    }
+
+    listarLeitos(): Observable<Array<ListaLeito>> {
+        return this.client.get<Array<ListaLeito>>(`${this._resource$}`);
     }
 }

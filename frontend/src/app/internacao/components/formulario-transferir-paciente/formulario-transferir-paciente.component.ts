@@ -1,34 +1,24 @@
-import { Component } from '@angular/core';
-import { FormularioTransferirPaciente } from '@internacao/models/transferir-paciente';
-import { FormularioTransferirPacienteService } from '@internacao/services/formulario-transferir-paciente.service';
+import { Component, OnInit } from '@angular/core';
+import { LeitoService } from '@internacao/services/leito.service';
+import { ListaLeito } from '@internacao/models/leito-model';
 
 @Component({
   selector: 'app-formulario-transferir-paciente',
   templateUrl: './formulario-transferir-paciente.component.html',
   styleUrls: ['./formulario-transferir-paciente.component.css']
 })
-export class FormularioTransferirPacienteComponent{
+export class FormularioTransferirPacienteComponent implements OnInit{
 
-  constructor(
-    private formularioTransferirPacienteService: FormularioTransferirPacienteService) {  }
 
-  descricao: string;
+  listarLeito: ListaLeito[];
+  
+  constructor( private leitoService:LeitoService, ) {  }
 
-  cadastrar(){
-    let cadastro: FormularioTransferirPaciente = {
-      descricao: this.descricao
-    };
-
-    this.formularioTransferirPacienteService.cadastrarTransferirPaciente(cadastro).subscribe();
-    this.limparFormulario();
+  listarGrade(){
+    this.leitoService.listarLeitos().subscribe((response) => {
+      this.listarLeito = response;
+    });
   }
-
-  limparFormulario() {
-    this.descricao = null;
-  }
-
-  validarFormulario() {
-    if(this.descricao)
-    return true;
-  }
+  
+  ngOnInit(): void { this.listarGrade(); }
 }
