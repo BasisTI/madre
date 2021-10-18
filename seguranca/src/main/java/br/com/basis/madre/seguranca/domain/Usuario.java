@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
     @Column(name = "login")
     private String login;
 
-
+    @NotNull
     @Column(name = "email", unique = true)
     private String email;
 
