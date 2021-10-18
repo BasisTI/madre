@@ -98,9 +98,9 @@ export class PacienteEnderecoFormComponent {
     }
 
     searchUnidade(event) {
-        console.log(event)
+        console.log('this.endereco: ', this.endereco)
         this.municipioService
-            .pesquisaMunicipios(this.endereco.value.uf.id, event.query)
+            .pesquisaMunicipios(this.endereco.value.uf.id, this.endereco.value.municipioId.nome ? this.endereco.value.municipioId.nome : this.endereco.value.municipioId)
             .subscribe((res) => {
                 this.municipios = res;
             });

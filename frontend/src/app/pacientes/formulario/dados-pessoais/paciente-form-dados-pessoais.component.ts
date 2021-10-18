@@ -138,7 +138,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
 
     searchUnidade(event) {
         this.naturalidadeService
-            .pesquisaMunicipios(this.formGroup.value.ufId.id, event.query)
+            .pesquisaMunicipios(this.formGroup.value.ufId.id, this.formGroup.value.naturalidadeId.nome ? this.formGroup.value.naturalidadeId.nome : this.formGroup.value.naturalidadeId)
             .subscribe((res) => {
                 this.naturalidades = res;
             });
