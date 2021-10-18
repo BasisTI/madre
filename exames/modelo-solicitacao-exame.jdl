@@ -166,6 +166,20 @@ relationship ManyToMany {
 GradeAgendamentoExame {dia} to Dia {gradeAgendamentoExame}
 }
 
+entity ProcessoAssincronoGrade {
+dataInicio Instant
+dataTermino Instant
+ultimaAtualizacao Instant
+qtdHorariosParaCriar Integer
+totalDeHorariosCriados Integer
+totalCompleto Double
+status Status
+}
+
+enum Status {
+INICIADO, COMPLETO, INTERROMPIDO
+}
+
 enum OrigemTipoAmostra {
 NASCIMENTO, AMBULATORIO, INTERNACAO, URGENCIA, PACIENTE, DOACAO, HOSPITAL, CIRURGIA
 }
