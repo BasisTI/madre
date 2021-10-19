@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GradeDeAgendamentoExame } from '../../models/subjects/grades-de-agendamento';
-import { GrupoModel } from '../../models/subjects/grupo-model';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Responsavel } from '../../models/subjects/responsavel-model';
 import { Sala } from '../../models/subjects/sala';
 import { UnidadeFuncional } from '../../models/subjects/unidade-model';
 import { ExamesService } from '../../services/exames.service';
 import { GradeDeAgendamentoService } from '../../services/grade-de-agendamento.service';
-import { GruposExamesService } from '../../services/grupos-exames.service';
 import { UnidadeFuncionalService } from '../../services/unidade-funcional.service';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
 import { ListaServidor } from 'src/app/seguranca/models/dropdowns/lista-servidor';
@@ -15,11 +13,11 @@ import { ServidorService } from 'src/app/seguranca/services/servidor.service';
 
 
 @Component({
-  selector: 'app-listar-grade-de-exame',
-  templateUrl: './listar-grade-de-exame.component.html',
-  styleUrls: ['./listar-grade-de-exame.component.css']
+  selector: 'app-lista-grade-de-exame',
+  templateUrl: './lista-grade-de-exame.component.html',
+  styleUrls: ['./lista-grade-de-exame.component.css']
 })
-export class ListarGradeDeExameComponent implements OnInit {
+export class ListaGradeDeExameComponent implements OnInit {
 
   id: string = '';
   unidadeExecutoraId: string = '';
@@ -50,13 +48,9 @@ export class ListarGradeDeExameComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarUnidades();
-
     this.listarServidores();
-
     this.listarSalas();
-
     this.listarExames();
-
     this.listarGrades();
   }
 

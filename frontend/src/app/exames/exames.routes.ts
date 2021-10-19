@@ -5,7 +5,7 @@ import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-
 import {AtendimentoDiversoComponent} from "./components/atendimento-diverso/atendimento-diverso.component";
 import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
-import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
+import { ListaGradeDeExameComponent } from './components/lista-grade-de-exame/lista-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
@@ -58,7 +58,7 @@ export const routes: Routes = [
     },
     {
         path: 'listar-grade-exame',
-        component: ListarGradeDeExameComponent
+        component: ListaGradeDeExameComponent
     },
     {
         path: 'listar-horarios-agendados',
