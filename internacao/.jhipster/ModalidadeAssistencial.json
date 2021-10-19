@@ -1,25 +1,26 @@
 {
-    "name": "ModalidadeAssistencial",
-    "fields": [
-        {
-            "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        }
-    ],
-    "relationships": [],
-    "changelogDate": "20200429130309",
-    "entityTableName": "modalidade_assistencial",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "clientRootFolder": "internacao",
-    "applications": "*",
-    "skipClient": true,
-    "microserviceName": "internacao"
+  "name": "ModalidadeAssistencial",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200429130309",
+  "entityTableName": "modalidade_assistencial",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "internacao",
+  "applications": "*",
+  "skipClient": true,
+  "microserviceName": "internacao",
+  "embedded": false
 }

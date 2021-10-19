@@ -1,40 +1,41 @@
 {
-    "name": "Equipe",
-    "fields": [
-        {
-            "fieldName": "numeroDoConselho",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "especialidade",
-            "otherEntityRelationshipName": "equipe",
-            "relationshipName": "especialidade",
-            "otherEntityField": "id"
-        }
-    ],
-    "changelogDate": "20200429130314",
-    "entityTableName": "equipe",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "clientRootFolder": "internacao",
-    "applications": "*",
-    "skipClient": true,
-    "microserviceName": "internacao"
+  "name": "Equipe",
+  "fields": [
+    {
+      "fieldName": "numeroDoConselho",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "especialidade",
+      "otherEntityRelationshipName": "equipe",
+      "relationshipName": "especialidade",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200429130314",
+  "entityTableName": "equipe",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "internacao",
+  "applications": "*",
+  "skipClient": true,
+  "microserviceName": "internacao",
+  "embedded": false
 }

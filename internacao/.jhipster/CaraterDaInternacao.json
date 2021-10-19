@@ -1,25 +1,26 @@
 {
-    "name": "CaraterDaInternacao",
-    "fields": [
-        {
-            "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        }
-    ],
-    "relationships": [],
-    "changelogDate": "20200503221913",
-    "entityTableName": "carater_da_internacao",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "clientRootFolder": "internacao",
-    "applications": "*",
-    "skipClient": true,
-    "microserviceName": "internacao"
+  "name": "CaraterDaInternacao",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200503221913",
+  "entityTableName": "carater_da_internacao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "internacao",
+  "applications": "*",
+  "skipClient": true,
+  "microserviceName": "internacao",
+  "embedded": false
 }

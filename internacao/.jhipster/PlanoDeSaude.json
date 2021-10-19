@@ -1,25 +1,26 @@
 {
-    "name": "PlanoDeSaude",
-    "fields": [
-        {
-            "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        }
-    ],
-    "relationships": [],
-    "changelogDate": "20200429130307",
-    "entityTableName": "plano_de_saude",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "clientRootFolder": "internacao",
-    "applications": "*",
-    "skipClient": true,
-    "microserviceName": "internacao"
+  "name": "PlanoDeSaude",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200429130307",
+  "entityTableName": "plano_de_saude",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "internacao",
+  "applications": "*",
+  "skipClient": true,
+  "microserviceName": "internacao",
+  "embedded": false
 }

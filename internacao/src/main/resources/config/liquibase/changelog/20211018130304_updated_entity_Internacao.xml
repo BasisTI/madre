@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20211018130304-1" author="jhipster">
+        <addColumn tableName="internacao">
+            <column name="ativo" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="true" />
+            </column>
+            <column name="data_da_alta" type="date" defaultValueDate="2021-01-01">
+                <constraints nullable="true" />
+            </column>
+            <column name="previsao_de_alta" type="date" defaultValueDate="2021-02-02">
+                <constraints nullable="true" />
+            </column>
+            <column name="tipo_de_alta" type="varchar(255)" defaultValueSequenceNext="OBITO">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

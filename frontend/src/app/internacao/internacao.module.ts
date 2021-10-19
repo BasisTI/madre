@@ -1,3 +1,4 @@
+import { DarAltaAoPacienteComponent } from './components/dar-alta-ao-paciente/dar-alta-ao-paciente.component';
 import { PrescricaoEnfermagemComponent } from './formulario-unidades/components/prescricao-enfermagem/prescricao-enfermagem.component';
 import { PrescricaoMedicaUnidadeComponent } from './formulario-unidades/components/prescricao-medica-unidade/prescricao-medica-unidade.component';
 import { CadastroUnidadesComponent } from './formulario-unidades/components/cadastro-unidades/cadastro-unidades.component';
@@ -36,7 +37,7 @@ import { CardPacienteComponent } from './components/card-paciente/card-paciente.
 import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cirurgia.component';
 import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
 import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-funcional/tipo-de-unidade-funcional.component';
-import { DarAltaAoPacienteComponent } from './formulario-dar-alta-ao-paciente/formulario-dar-alta-ao-paciente.component';
+import { FormularioDarAltaAoPacienteComponent } from './formulario-dar-alta-ao-paciente/formulario-dar-alta-ao-paciente.component';
 import { ListarDarAltaPacientesComponent } from './components/listar-dar-alta-pacientes/listar-dar-alta-pacientes.component';
 
 @NgModule({
@@ -74,9 +75,10 @@ import { ListarDarAltaPacientesComponent } from './components/listar-dar-alta-pa
         CirurgiaComponent,
         ClinicaComponent,
         TipoDeUnidadeFuncionalComponent,
-        DarAltaAoPacienteComponent,
         ListarDarAltaPacientesComponent,
+        FormularioDarAltaAoPacienteComponent,
         DarAltaAoPacienteComponent,
+
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './formulario-dar-alta-ao-paciente.component.html',
   styleUrls: ['./formulario-dar-alta-ao-paciente.component.css']
 })
-export class DarAltaAoPacienteComponent implements OnInit {
+export class FormularioDarAltaAoPacienteComponent implements OnInit {
 
   constructor( ) {}
   ngOnInit(): void {

@@ -8,6 +8,8 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200429130304_added_entity_Internacao.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211018130304_updated_entity_Internacao.xml"
+             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200429130305_added_entity_Procedencia.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200429130306_added_entity_ConvenioDeSaude.xml"

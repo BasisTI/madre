@@ -1,0 +1,11 @@
+id;prioridade;justificativa;data_da_internacao;diferenca_de_classe;solicitar_prontuario;ativo;data_da_alta;previsao_de_alta;tipo_de_alta
+1;ELETIVA;solutions Streets Wells;2020-04-29;false;true;true;2020-04-29;2020-04-29;PERMANENCIA
+2;ELETIVA;Lithuania;2020-04-28;true;false;false;2020-04-28;2020-04-28;ALTA_MEDICA
+3;ELETIVA;Analyst hybrid overriding;2020-04-29;true;false;true;2020-04-29;2020-04-28;OBITO
+4;ELETIVA;panel;2020-04-28;true;false;true;2020-04-29;2020-04-28;EVASAO
+5;ELETIVA;composite circuit Front-line;2020-04-29;true;true;true;2020-04-29;2020-04-29;OBITO
+6;ELETIVA;transition invoice application;2020-04-29;false;true;true;2020-04-29;2020-04-29;ALTA_MEDICA
+7;ELETIVA;port Berkshire invoice;2020-04-29;true;true;true;2020-04-29;2020-04-28;ALTA_MEDICA
+8;ELETIVA;Oregon copy;2020-04-29;false;false;false;2020-04-28;2020-04-29;ALTA_MEDICA
+9;ELETIVA;Credit Card Account Administrator;2020-04-28;false;false;true;2020-04-28;2020-04-29;EVASAO
+10;ELETIVA;Adaptive program Som;2020-04-28;false;true;true;2020-04-29;2020-04-28;INDICIPLINA

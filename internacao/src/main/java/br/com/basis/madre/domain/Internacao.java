@@ -1,6 +1,7 @@
 package br.com.basis.madre.domain;
 
 import br.com.basis.madre.domain.enumeration.Prioridade;
+import br.com.basis.madre.domain.enumeration.TipoDeAlta;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -20,6 +21,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 @Data
@@ -59,6 +61,19 @@ public class Internacao implements Serializable {
 
     @Column(name = "solicitar_prontuario")
     private Boolean solicitarProntuario;
+
+    @Column(name = "data_da_alta")
+    private LocalDate dataDaAlta;
+
+    @Column(name = "previsao_de_alta")
+    private LocalDate previsaoDeAlta;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_de_alta")
+    private TipoDeAlta tipoDeAlta;
+
+    @Column(name = "ativo")
+    private Boolean ativo;
 
     @ManyToOne
     private Leito leito;
@@ -186,4 +201,23 @@ public class Internacao implements Serializable {
         return this;
     }
 
+    public Internacao ativo(Boolean ativo){
+        this.ativo = ativo;
+        return this;
+    }
+
+    public Internacao dataDaAlta(LocalDate dataDaAlta){
+        this.dataDaAlta = dataDaAlta;
+        return this;
+    }
+
+    public Internacao previsaoDeAlta(LocalDate previsaoDeAlta){
+        this.previsaoDeAlta = previsaoDeAlta;
+        return this;
+    }
+
+    public Internacao tipoDeAlta(TipoDeAlta tipoDeAlta){
+        this.tipoDeAlta = tipoDeAlta;
+        return this;
+    }
 }

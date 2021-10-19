@@ -2,58 +2,47 @@ package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.InternacaoApp;
 import br.com.basis.madre.domain.Internacao;
-import br.com.basis.madre.domain.enumeration.Prioridade;
 import br.com.basis.madre.repository.InternacaoRepository;
 import br.com.basis.madre.repository.search.InternacaoSearchRepository;
 import br.com.basis.madre.service.InternacaoService;
 import br.com.basis.madre.service.dto.InternacaoDTO;
 import br.com.basis.madre.service.mapper.InternacaoMapper;
-import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
-
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.Collections;
 import java.util.List;
 
-import static br.com.basis.madre.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-;
-
+import br.com.basis.madre.domain.enumeration.Prioridade;
+import br.com.basis.madre.domain.enumeration.TipoDeAlta;
 /**
  * Integration tests for the {@link InternacaoResource} REST controller.
  */
 @SpringBootTest(classes = InternacaoApp.class)
+@ExtendWith(MockitoExtension.class)
+@AutoConfigureMockMvc
+@WithMockUser
 public class InternacaoResourceIT {
 
     private static final Prioridade DEFAULT_PRIORIDADE = Prioridade.ELETIVA;
@@ -70,6 +59,18 @@ public class InternacaoResourceIT {
 
     private static final Boolean DEFAULT_SOLICITAR_PRONTUARIO = false;
     private static final Boolean UPDATED_SOLICITAR_PRONTUARIO = true;
+
+    private static final Boolean DEFAULT_ATIVO = false;
+    private static final Boolean UPDATED_ATIVO = true;
+
+    private static final LocalDate DEFAULT_DATA_DA_ALTA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATA_DA_ALTA = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_PREVISAO_DE_ALTA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_PREVISAO_DE_ALTA = LocalDate.now(ZoneId.systemDefault());
+
+    private static final TipoDeAlta DEFAULT_TIPO_DE_ALTA = TipoDeAlta.OBITO;
+    private static final TipoDeAlta UPDATED_TIPO_DE_ALTA = TipoDeAlta.ALTA_MEDICA;
 
     @Autowired
     private InternacaoRepository internacaoRepository;
@@ -89,39 +90,16 @@ public class InternacaoResourceIT {
     private InternacaoSearchRepository mockInternacaoSearchRepository;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
-
-    @Autowired
-    private ExceptionTranslator exceptionTranslator;
-
-    @Autowired
     private EntityManager em;
 
     @Autowired
-    private Validator validator;
-
     private MockMvc restInternacaoMockMvc;
 
     private Internacao internacao;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final InternacaoResource internacaoResource = new InternacaoResource(internacaoService);
-        this.restInternacaoMockMvc = MockMvcBuilders.standaloneSetup(internacaoResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
-
     /**
      * Create an entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -131,13 +109,16 @@ public class InternacaoResourceIT {
             .justificativa(DEFAULT_JUSTIFICATIVA)
             .dataDaInternacao(DEFAULT_DATA_DA_INTERNACAO)
             .diferencaDeClasse(DEFAULT_DIFERENCA_DE_CLASSE)
-            .solicitarProntuario(DEFAULT_SOLICITAR_PRONTUARIO);
+            .solicitarProntuario(DEFAULT_SOLICITAR_PRONTUARIO)
+            .ativo(DEFAULT_ATIVO)
+            .dataDaAlta(DEFAULT_DATA_DA_ALTA)
+            .previsaoDeAlta(DEFAULT_PREVISAO_DE_ALTA)
+            .tipoDeAlta(DEFAULT_TIPO_DE_ALTA);
         return internacao;
     }
-
     /**
      * Create an updated entity for this test.
-     * <p>
+     *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -147,7 +128,11 @@ public class InternacaoResourceIT {
             .justificativa(UPDATED_JUSTIFICATIVA)
             .dataDaInternacao(UPDATED_DATA_DA_INTERNACAO)
             .diferencaDeClasse(UPDATED_DIFERENCA_DE_CLASSE)
-            .solicitarProntuario(UPDATED_SOLICITAR_PRONTUARIO);
+            .solicitarProntuario(UPDATED_SOLICITAR_PRONTUARIO)
+            .ativo(UPDATED_ATIVO)
+            .dataDaAlta(UPDATED_DATA_DA_ALTA)
+            .previsaoDeAlta(UPDATED_PREVISAO_DE_ALTA)
+            .tipoDeAlta(UPDATED_TIPO_DE_ALTA);
         return internacao;
     }
 
@@ -160,11 +145,10 @@ public class InternacaoResourceIT {
     @Transactional
     public void createInternacao() throws Exception {
         int databaseSizeBeforeCreate = internacaoRepository.findAll().size();
-
         // Create the Internacao
         InternacaoDTO internacaoDTO = internacaoMapper.toDto(internacao);
         restInternacaoMockMvc.perform(post("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isCreated());
 
@@ -177,6 +161,10 @@ public class InternacaoResourceIT {
         assertThat(testInternacao.getDataDaInternacao()).isEqualTo(DEFAULT_DATA_DA_INTERNACAO);
         assertThat(testInternacao.isDiferencaDeClasse()).isEqualTo(DEFAULT_DIFERENCA_DE_CLASSE);
         assertThat(testInternacao.isSolicitarProntuario()).isEqualTo(DEFAULT_SOLICITAR_PRONTUARIO);
+        assertThat(testInternacao.getAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testInternacao.getDataDaAlta()).isEqualTo(DEFAULT_DATA_DA_ALTA);
+        assertThat(testInternacao.getPrevisaoDeAlta()).isEqualTo(DEFAULT_PREVISAO_DE_ALTA);
+        assertThat(testInternacao.getTipoDeAlta()).isEqualTo(DEFAULT_TIPO_DE_ALTA);
 
         // Validate the Internacao in Elasticsearch
         verify(mockInternacaoSearchRepository, times(1)).save(testInternacao);
@@ -193,7 +181,7 @@ public class InternacaoResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restInternacaoMockMvc.perform(post("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isBadRequest());
 
@@ -216,8 +204,9 @@ public class InternacaoResourceIT {
         // Create the Internacao, which fails.
         InternacaoDTO internacaoDTO = internacaoMapper.toDto(internacao);
 
+
         restInternacaoMockMvc.perform(post("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isBadRequest());
 
@@ -235,8 +224,9 @@ public class InternacaoResourceIT {
         // Create the Internacao, which fails.
         InternacaoDTO internacaoDTO = internacaoMapper.toDto(internacao);
 
+
         restInternacaoMockMvc.perform(post("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isBadRequest());
 
@@ -254,8 +244,9 @@ public class InternacaoResourceIT {
         // Create the Internacao, which fails.
         InternacaoDTO internacaoDTO = internacaoMapper.toDto(internacao);
 
+
         restInternacaoMockMvc.perform(post("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isBadRequest());
 
@@ -272,13 +263,17 @@ public class InternacaoResourceIT {
         // Get all the internacaoList
         restInternacaoMockMvc.perform(get("/api/internacaos?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(internacao.getId().intValue())))
             .andExpect(jsonPath("$.[*].prioridade").value(hasItem(DEFAULT_PRIORIDADE.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)))
             .andExpect(jsonPath("$.[*].dataDaInternacao").value(hasItem(DEFAULT_DATA_DA_INTERNACAO.toString())))
             .andExpect(jsonPath("$.[*].diferencaDeClasse").value(hasItem(DEFAULT_DIFERENCA_DE_CLASSE.booleanValue())))
-            .andExpect(jsonPath("$.[*].solicitarProntuario").value(hasItem(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue())));
+            .andExpect(jsonPath("$.[*].solicitarProntuario").value(hasItem(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].dataDaAlta").value(hasItem(DEFAULT_DATA_DA_ALTA.toString())))
+            .andExpect(jsonPath("$.[*].previsaoDeAlta").value(hasItem(DEFAULT_PREVISAO_DE_ALTA.toString())))
+            .andExpect(jsonPath("$.[*].tipoDeAlta").value(hasItem(DEFAULT_TIPO_DE_ALTA.toString())));
     }
 
     @Test
@@ -290,15 +285,18 @@ public class InternacaoResourceIT {
         // Get the internacao
         restInternacaoMockMvc.perform(get("/api/internacaos/{id}", internacao.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(internacao.getId().intValue()))
             .andExpect(jsonPath("$.prioridade").value(DEFAULT_PRIORIDADE.toString()))
             .andExpect(jsonPath("$.justificativa").value(DEFAULT_JUSTIFICATIVA))
             .andExpect(jsonPath("$.dataDaInternacao").value(DEFAULT_DATA_DA_INTERNACAO.toString()))
             .andExpect(jsonPath("$.diferencaDeClasse").value(DEFAULT_DIFERENCA_DE_CLASSE.booleanValue()))
-            .andExpect(jsonPath("$.solicitarProntuario").value(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue()));
+            .andExpect(jsonPath("$.solicitarProntuario").value(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue()))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.dataDaAlta").value(DEFAULT_DATA_DA_ALTA.toString()))
+            .andExpect(jsonPath("$.previsaoDeAlta").value(DEFAULT_PREVISAO_DE_ALTA.toString()))
+            .andExpect(jsonPath("$.tipoDeAlta").value(DEFAULT_TIPO_DE_ALTA.toString()));
     }
-
     @Test
     @Transactional
     public void getNonExistingInternacao() throws Exception {
@@ -324,11 +322,15 @@ public class InternacaoResourceIT {
             .justificativa(UPDATED_JUSTIFICATIVA)
             .dataDaInternacao(UPDATED_DATA_DA_INTERNACAO)
             .diferencaDeClasse(UPDATED_DIFERENCA_DE_CLASSE)
-            .solicitarProntuario(UPDATED_SOLICITAR_PRONTUARIO);
+            .solicitarProntuario(UPDATED_SOLICITAR_PRONTUARIO)
+            .ativo(UPDATED_ATIVO)
+            .dataDaAlta(UPDATED_DATA_DA_ALTA)
+            .previsaoDeAlta(UPDATED_PREVISAO_DE_ALTA)
+            .tipoDeAlta(UPDATED_TIPO_DE_ALTA);
         InternacaoDTO internacaoDTO = internacaoMapper.toDto(updatedInternacao);
 
         restInternacaoMockMvc.perform(put("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isOk());
 
@@ -341,6 +343,10 @@ public class InternacaoResourceIT {
         assertThat(testInternacao.getDataDaInternacao()).isEqualTo(UPDATED_DATA_DA_INTERNACAO);
         assertThat(testInternacao.isDiferencaDeClasse()).isEqualTo(UPDATED_DIFERENCA_DE_CLASSE);
         assertThat(testInternacao.isSolicitarProntuario()).isEqualTo(UPDATED_SOLICITAR_PRONTUARIO);
+        assertThat(testInternacao.getAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testInternacao.getDataDaAlta()).isEqualTo(UPDATED_DATA_DA_ALTA);
+        assertThat(testInternacao.getPrevisaoDeAlta()).isEqualTo(UPDATED_PREVISAO_DE_ALTA);
+        assertThat(testInternacao.getTipoDeAlta()).isEqualTo(UPDATED_TIPO_DE_ALTA);
 
         // Validate the Internacao in Elasticsearch
         verify(mockInternacaoSearchRepository, times(1)).save(testInternacao);
@@ -356,7 +362,7 @@ public class InternacaoResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restInternacaoMockMvc.perform(put("/api/internacaos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(internacaoDTO)))
             .andExpect(status().isBadRequest());
 
@@ -378,7 +384,7 @@ public class InternacaoResourceIT {
 
         // Delete the internacao
         restInternacaoMockMvc.perform(delete("/api/internacaos/{id}", internacao.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
@@ -392,20 +398,26 @@ public class InternacaoResourceIT {
     @Test
     @Transactional
     public void searchInternacao() throws Exception {
+        // Configure the mock search repository
         // Initialize the database
         internacaoRepository.saveAndFlush(internacao);
         when(mockInternacaoSearchRepository.search(queryStringQuery("id:" + internacao.getId()), PageRequest.of(0, 20)))
             .thenReturn(new PageImpl<>(Collections.singletonList(internacao), PageRequest.of(0, 1), 1));
+
         // Search the internacao
         restInternacaoMockMvc.perform(get("/api/_search/internacaos?query=id:" + internacao.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(internacao.getId().intValue())))
             .andExpect(jsonPath("$.[*].prioridade").value(hasItem(DEFAULT_PRIORIDADE.toString())))
             .andExpect(jsonPath("$.[*].justificativa").value(hasItem(DEFAULT_JUSTIFICATIVA)))
             .andExpect(jsonPath("$.[*].dataDaInternacao").value(hasItem(DEFAULT_DATA_DA_INTERNACAO.toString())))
             .andExpect(jsonPath("$.[*].diferencaDeClasse").value(hasItem(DEFAULT_DIFERENCA_DE_CLASSE.booleanValue())))
-            .andExpect(jsonPath("$.[*].solicitarProntuario").value(hasItem(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue())));
+            .andExpect(jsonPath("$.[*].solicitarProntuario").value(hasItem(DEFAULT_SOLICITAR_PRONTUARIO.booleanValue())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].dataDaAlta").value(hasItem(DEFAULT_DATA_DA_ALTA.toString())))
+            .andExpect(jsonPath("$.[*].previsaoDeAlta").value(hasItem(DEFAULT_PREVISAO_DE_ALTA.toString())))
+            .andExpect(jsonPath("$.[*].tipoDeAlta").value(hasItem(DEFAULT_TIPO_DE_ALTA.toString())));
     }
 
     @Test

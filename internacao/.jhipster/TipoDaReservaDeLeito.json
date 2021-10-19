@@ -1,25 +1,26 @@
 {
-    "name": "TipoDaReservaDeLeito",
-    "fields": [
-        {
-            "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        }
-    ],
-    "relationships": [],
-    "changelogDate": "20200506165819",
-    "entityTableName": "tipo_da_reserva_de_leito",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "clientRootFolder": "internacao",
-    "applications": "*",
-    "skipClient": true,
-    "microserviceName": "internacao"
+  "name": "TipoDaReservaDeLeito",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200506165819",
+  "entityTableName": "tipo_da_reserva_de_leito",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "internacao",
+  "applications": "*",
+  "skipClient": true,
+  "microserviceName": "internacao",
+  "embedded": false
 }

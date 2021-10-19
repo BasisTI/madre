@@ -18,6 +18,10 @@ entity Internacao {
     dataDaInternacao LocalDate required
     diferencaDeClasse Boolean
     solicitarProntuario Boolean
+    ativo Boolean
+    dataDaAlta LocalDate
+    previsaoDeAlta LocalDate
+    tipoDeAlta TipoDeAlta
 }
 
 entity CaraterDaInternacao {
@@ -98,6 +102,11 @@ entity CID {
 enum Prioridade {
     ELETIVA,
     URGENCIA
+}
+
+enum TipoDeAlta {
+    OBITO, ALTA_MEDICA, TRANSFERENCIA_PARA_OUTRO_HOSPITAL,
+    DESISTENCIA_DO_TRATAMENTO, EVASAO, INDICIPLINA, PERMANENCIA
 }
 
 relationship ManyToOne {

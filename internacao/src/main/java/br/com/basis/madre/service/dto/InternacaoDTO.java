@@ -1,10 +1,12 @@
 package br.com.basis.madre.service.dto;
 
 import br.com.basis.madre.domain.enumeration.Prioridade;
+import br.com.basis.madre.domain.enumeration.TipoDeAlta;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 @Data
@@ -51,5 +53,13 @@ public class InternacaoDTO implements Serializable {
     private Long localDeAtendimentoId;
 
     private Long caraterDaInternacaoId;
+
+    private Boolean ativo;
+
+    private LocalDate dataDaAlta;
+
+    private LocalDate previsaoDeAlta;
+
+    private TipoDeAlta tipoDeAlta;
 
 }
