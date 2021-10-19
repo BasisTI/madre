@@ -25,7 +25,7 @@ export class FormularioCadaverComponent implements OnInit{
     dataNascimento: Date;
 
     ngOnInit(): void {
-      this.listarConvenios();  
+      this.listarConvenios();
 
       this.listarHospitais();
     }
@@ -52,7 +52,7 @@ export class FormularioCadaverComponent implements OnInit{
 
     cadastro(){
       let cadastroObito = this.cadastrarObito.value;
-      
+
       let cadastro: CadaverModel= {
         nome: cadastroObito.nome,
             dataNascimento: this.dataNascimento,
@@ -67,7 +67,7 @@ export class FormularioCadaverComponent implements OnInit{
             codigoPlano:cadastroObito.codigoPlano,
             observacao: cadastroObito.observacao,
           }
-          
+
           if (moment(this.dataNascimento).isAfter(cadastroObito.dataRemocao)){
             this.msg.add({
               severity:'error', summary:'Erro no preenchimento',
@@ -75,7 +75,7 @@ export class FormularioCadaverComponent implements OnInit{
             })
             return;
           }
-          
+
           this.cadaverService.cadastrarObito(cadastro).subscribe();
           this.limparFormulario();
         }
@@ -98,5 +98,6 @@ export class FormularioCadaverComponent implements OnInit{
 
         limparFormulario() {
             this.cadastrarObito.reset()
+            this.dataNascimento = null;
         }
 }
