@@ -12,11 +12,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+@Slf4j
 @SpringBootApplication
 @EnableFeignClients
 @EnableConfigurationProperties({LiquibaseProperties.class})
 @RequiredArgsConstructor
-@Slf4j
 @EnableAsync
 public class MadreexamesApp implements InitializingBean {
 

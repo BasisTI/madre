@@ -137,14 +137,17 @@ public class SalaResource {
         Page<SalaDTO> page = salaService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-        }
+    }
 
-    @GetMapping("/_search/salas-por-unidade")
+    @GetMapping("/_search/listar-salas")
     public ResponseEntity<List<SalaDTO>> filtrarSalasPorUnidade(Pageable pageable,
-        @RequestParam(name = "unidadeExecutoraId", required = true) String unidadeExecutoraId,
-        @RequestParam(name = "ativo", required = true) String ativo) {
+        @RequestParam(name = "id", required = false) String id,
+        @RequestParam(name = "nome", required = false) String nome,
+        @RequestParam(name = "locacao", required = false) String locacao,
+        @RequestParam(name = "ativo") String ativo,
+        @RequestParam(name = "unidadeExecutoraId") String unidadeExecutoraId) {
         log.debug("Request REST para obter uma página de salas filtradas por unidadeExecutoraId");
-        Page<SalaDTO> page = salaService.filtrarSalasPorUnidade(pageable, unidadeExecutoraId, ativo);
+        Page<SalaDTO> page = salaService.filtrarSalasPorUnidade(pageable, id, nome, locacao, ativo, unidadeExecutoraId);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

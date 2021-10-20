@@ -99,7 +99,7 @@ public class SalaService {
     /**
      * Search for the sala corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -110,11 +110,14 @@ public class SalaService {
             .map(salaMapper::toDto);
     }
 
-    @Transactional(readOnly = true)
-    public Page<SalaDTO> filtrarSalasPorUnidade(Pageable pageable, String unidadeExecutoraId, String ativo) {
+    public Page<SalaDTO> filtrarSalasPorUnidade(Pageable pageable, String id, String nome, String locacao, String ativo,
+                                                String unidadeExecutoraId) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
-        filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
+        filter(queryBuilder, "id", id);
+        filter(queryBuilder, "nome", nome);
+        filter(queryBuilder, "locacao", locacao);
         filter(queryBuilder, "ativo", ativo);
+        filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
         SearchQuery query = new NativeSearchQueryBuilder()
             .withQuery(queryBuilder)
             .withPageable(pageable)

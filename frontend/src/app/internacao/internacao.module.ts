@@ -35,6 +35,7 @@ import { routes } from './internacao.routes';
 import { CardPacienteComponent } from './components/card-paciente/card-paciente.component';
 import { CirurgiaComponent } from './formulario-unidades/components/cirurgia/cirurgia.component';
 import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component';
+import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-funcional/tipo-de-unidade-funcional.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component'
         PrescricaoEnfermagemComponent,
         CirurgiaComponent,
         ClinicaComponent,
+        TipoDeUnidadeFuncionalComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

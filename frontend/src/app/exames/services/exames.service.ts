@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ExamModel } from '../models/subjects/exames-model';
 import { Material } from '../models/subjects/material';
 import { Amostra } from '../models/subjects/amostra';
@@ -21,11 +21,17 @@ export class ExamesService {
         return this.client.get<Array<ExamModel>>(`${this.URL}/exames/grupos/${id}`);
     }
 
+    public getExamesPorNomeSinonimo(nome: string): Observable<Array<ExamModel>> {
+        return this.client.get<Array<ExamModel>>(`${this.URL}/exames/sinonimos`, {
+            params: new HttpParams().set('nome', nome),
+        });
+    }
+
     public getExamesPorId(id: number): Observable<ExamModel> {
         return this.client.get<ExamModel>(`${this.URL}/exames/${id}`);
     }
 
-    public cadastrarExame(exame: ExamModel) {
+    cadastrarExame(exame: ExamModel) {
         return this.client.post(`${this.URL}/exames`, exame);
     }
 

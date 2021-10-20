@@ -4,10 +4,10 @@ import { PesquisarAtendimentoComponent } from './components/pesquisar-atendiment
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
 import { AtendimentoDiversoComponent } from './components/atendimento-diverso/atendimento-diverso.component';
 import { ListaSolicitacoesComponent } from './components/lista-solicitacoes/lista-solicitacoes.component';
-import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 import { ListaGradeDeExameComponent } from './components/lista-grade-de-exame/lista-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
+import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalaComponent as FormularioSalaComponent } from './components/formulario-sala/formulario-sala.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
@@ -36,7 +36,7 @@ export const routes: Routes = [
     },
     {
         path: 'cadastrar-material',
-        component: CadastrarMaterialComponent,
+        component: GuiaMaterialComponent,
     },
     {
         path: 'formulario-recipiente',

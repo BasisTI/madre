@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
 import { Amostra } from '../../models/subjects/amostra';
 import { ExamModel } from '../../models/subjects/exames-model';
 import { Material } from '../../models/subjects/material';
+import { Sinonimos } from '../../models/subjects/sinonimos';
 import { ExamesService } from '../../services/exames.service';
 
 @Component({
@@ -16,6 +17,9 @@ export class FormularioExameComponent implements OnInit {
 
     materiais: Material[] = [];
     amostras: Amostra[] = [];
+
+    @Input()
+    listaSinonimos: Sinonimos[];
 
     teste: boolean;
 
@@ -57,12 +61,13 @@ export class FormularioExameComponent implements OnInit {
             impressao: cadastroExame.impressao,
             consisteInterfaceamento: cadastroExame.consisteInterfaceamento,
             anexaDocumentos: cadastroExame.anexaDocumentos,
+            sinonimos: this.listaSinonimos,
         };
 
         console.log(cadastroExame);
 
         this.exameService.cadastrarExame(cadastro).subscribe();
-        this.limpar();
+        this.cadastrarExame.reset();
     }
 
     ngOnInit(): void {

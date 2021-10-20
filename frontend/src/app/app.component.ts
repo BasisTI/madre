@@ -213,6 +213,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                                     },
                                 ],
                             },
+                            {
+                                label: 'Tipos de Unidades Funionais',
+                                icon: 'add',
+                                routerLink: ['internacao/tipo-unidade-funcional'],
+                            },
                         ],
                     },
                     {
@@ -236,20 +241,19 @@ export class AppComponent implements AfterViewInit, OnInit {
                                                 routerLink: ['exames/formulario-exame'],
                                             },
                                             {
-                                                label: 'Materiais de Análise',
+                                                label: 'Materiais',
                                                 icon: 'add',
                                                 routerLink: ['exames/cadastrar-material'],
                                             },
                                             {
-                                                label: 'Salas',
-                                                icon: 'add',
-                                                routerLink: ['exames/formulario-sala'],
-                                            },
-                                            {
                                                 label: 'Recipientes de Coleta',
-
                                                 icon: 'add',
                                                 routerLink: ['exames/formulario-recipiente'],
+                                            },
+                                            {
+                                                label: 'Salas',
+                                                icon: 'add',
+                                                routerLink: ['exames/formulario-salas'],
                                             },
                                             {
                                                 label: 'Tipos de Marcação',
@@ -271,10 +275,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 routerLink: ['exames/pesquisar-atendimento'],
                             },
                             {
-                                label: 'Pesquisar Salas',
-                                routerLink: ['exames/listar-salas'],
-                            },
-                            {
                                 label: 'Grades de Agendamento de Exames',
                                 icon: 'add',
                                 routerLink: ['listar-grade-exame'],
@@ -282,7 +282,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                             {
                                 label: 'Listar Solicitações',
                                 icon: 'add',
-                                routerLink: ['exames/lista-solicitacoes'],
+                                routerLink: ['exames/listar-solicitacoes'],
                             },
                             {
                                 label: 'Solicitar Exame',
