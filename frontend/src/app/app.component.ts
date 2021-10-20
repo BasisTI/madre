@@ -275,6 +275,11 @@ export class AppComponent implements AfterViewInit, OnInit {
                                 routerLink: ['exames/pesquisar-atendimento'],
                             },
                             {
+                                label: 'Pesquisar Salas',
+                                icon: 'add',
+                                routerLink: ['exames/listar-salas'],
+                            },
+                            {
                                 label: 'Grades de Agendamento de Exames',
                                 icon: 'add',
                                 routerLink: ['listar-grade-exame'],

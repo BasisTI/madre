@@ -25,6 +25,7 @@ import { FormularioRecipientesComponent } from './components/formulario-recipien
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalaComponent } from './components/formulario-sala/formulario-sala.component';
 import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
+import { ListaSalasComponent } from './components/lista-salas/lista-salas.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-
         GuiaMaterialComponent,
         FormularioSalaComponent,
         FormularioTipoDeMarcacaoComponent,
+        ListaSalasComponent
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
