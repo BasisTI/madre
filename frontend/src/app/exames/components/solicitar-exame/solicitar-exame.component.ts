@@ -12,92 +12,93 @@ import { TabelaExamesComponent } from '../exames/components/tabela-exames/tabela
 import { ExamesComponent } from '../exames/exames.component';
 
 @Component({
-  selector: 'app-solicitar-exame',
-  templateUrl: './solicitar-exame.component.html',
-  styleUrls: ['./solicitar-exame.component.css']
+    selector: 'app-solicitar-exame',
+    templateUrl: './solicitar-exame.component.html',
+    styleUrls: ['./solicitar-exame.component.css'],
 })
 export class SolicitarExameComponent implements OnInit {
+    itensSolicitacaoExame: ItemSolicitacaoExame[] = [];
+    itemSolicitacao: ItemSolicitacaoExame;
+    position: string;
 
-  itensSolicitacaoExame: ItemSolicitacaoExame[] = [];
-  itemSolicitacao: ItemSolicitacaoExame;
-  position: string;
+    @ViewChild(ExamesComponent) appExames: ExamesComponent;
 
-  @ViewChild(ExamesComponent) appExames: ExamesComponent
+    @ViewChild(TabelaExamesComponent) appTabela: TabelaExamesComponent;
 
-  @ViewChild(TabelaExamesComponent) appTabela: TabelaExamesComponent
+    constructor(
+        private fb: FormBuilder,
+        private unidadeFuncionalService: UnidadeFuncionalService,
+        private responsavelService: ResponsavelService,
+        private solicitacaoExameService: SolicitacaoExameService,
+        private mensagem: MessageService,
+    ) {}
 
-  constructor(private fb: FormBuilder,
-              private unidadeFuncionalService: UnidadeFuncionalService,
-              private responsavelService: ResponsavelService,
-              private solicitacaoExameService: SolicitacaoExameService,
-              private mensagem: MessageService,
-              ) { }
+    unidades: UnidadeFuncional[] = [];
+    responsaveis: Responsavel[] = [];
 
-  unidades: UnidadeFuncional[] = [];
-  responsaveis: Responsavel[] = [];
-
-  solicitarExame = this.fb.group({
-    infoClinica: [null, Validators.required],
-    usoAntimicrobianos24h: [null, Validators.required],
-    pedidoPrimeiroExame: [null, Validators.required],
-  });
-
-
-  ngOnInit(): void {
-    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
-      this.unidades = response;
+    solicitarExame = this.fb.group({
+        infoClinica: [null, Validators.required],
+        usoAntimicrobianos24h: [null, Validators.required],
+        pedidoPrimeiroExame: [null, Validators.required],
     });
 
-    this.responsavelService.getResponsavel().subscribe((response) => {
-      this.responsaveis = response;
-    });
-  }
+    ngOnInit(): void {
+        this.unidadeFuncionalService.getUnidades().subscribe((response) => {
+            this.unidades = response;
+        });
 
-  valid(): boolean {
-    return this.solicitarExame.valid;
-  }
-
-  cadastrar() {
-
-    let itens = this.appExames.pegarItensSolicitacaoExame();
-
-    if(itens == null) {
-      this.mensagem.add({severity:'info', summary: 'Info', detail: 'Por favor, adicione um exame para completar a solicitação!'});
-      return;
+        this.responsavelService.getResponsavel().subscribe((response) => {
+            this.responsaveis = response;
+        });
     }
 
-    itens.map((element) => {
-      this.itemSolicitacao = {
-        urgente: element.urgente,
-        situacao: element.situacao,
-        dataProgramada: element.dataProgramada,
-        itemSolicitacaoExameId: element.exame.id,
-      }
+    valid(): boolean {
+        return this.solicitarExame.valid;
+    }
 
-      this.itensSolicitacaoExame.push(this.itemSolicitacao)
-    });
+    cadastrar() {
+        let itens = this.appExames.pegarItensSolicitacaoExame();
 
-    let solicitacaoExame = this.solicitarExame.value;
+        if (itens == null) {
+            this.mensagem.add({
+                severity: 'info',
+                summary: 'Info',
+                detail: 'Por favor, adicione um exame para completar a solicitação!',
+            });
+            return;
+        }
 
-    let solicitacao: SolicitacaoExame = {
-      infoClinica: solicitacaoExame.infoClinica,
-      usoAntimicrobianos24h: solicitacaoExame.usoAntimicrobianos24h,
-      pedidoPrimeiroExame: solicitacaoExame.pedidoPrimeiroExame,
-      solicitacaoExames: this.itensSolicitacaoExame
-    };
+        itens.map((element) => {
+            this.itemSolicitacao = {
+                urgente: element.urgente,
+                situacao: element.situacao,
+                dataProgramada: element.dataProgramada,
+                itemSolicitacaoExameId: element.exame.id,
+            };
 
-    console.log(solicitacao);
+            this.itensSolicitacaoExame.push(this.itemSolicitacao);
+        });
 
-    this.solicitacaoExameService.solicitarExame(solicitacao).subscribe();
+        let solicitacaoExame = this.solicitarExame.value;
 
-      if(itens.length > 0) {
-          itens.length = 0;
-      }
-      this.limpar();
-  }
+        let solicitacao: SolicitacaoExame = {
+            infoClinica: solicitacaoExame.infoClinica,
+            usoAntimicrobianos24h: solicitacaoExame.usoAntimicrobianos24h,
+            pedidoPrimeiroExame: solicitacaoExame.pedidoPrimeiroExame,
+            solicitacaoExames: this.itensSolicitacaoExame,
+        };
 
-  limpar() {
-    this.solicitarExame.reset();
-  }
+        console.log(solicitacao);
 
+        this.solicitacaoExameService.solicitarExame(solicitacao).subscribe();
+
+        if (itens.length > 0) {
+            itens.length = 0;
+        }
+        this.limpar();
+    }
+
+    limpar() {
+        this.solicitarExame.reset();
+    }
 }

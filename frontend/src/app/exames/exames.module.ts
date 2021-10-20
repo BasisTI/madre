@@ -10,13 +10,12 @@ import { ExameComponent } from './components/exames/components/exame/exame.compo
 import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
-import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
+import { ListaSolicitacoesComponent } from './components/lista-solicitacoes/lista-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 import { FormularioGradeDeAgendamentoComponent } from './components/formulario-grade-de-agendamento/formulario-grade-de-agendamento.component';
 import { ListaGradeDeExameComponent } from './components/lista-grade-de-exame/lista-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { ListaHorariosComponent } from './components/lista-horarios/lista-horarios.component';
-import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
@@ -41,11 +40,10 @@ import { ListaSalasComponent } from './components/lista-salas/lista-salas.compon
         ListaGradeDeExameComponent,
         GradeAgendamentosComponent,
         ListaHorariosComponent,
-        TabelaHorariosAgendadosComponent,
         DurationPipe,
         SinonimosExamesComponent,
         ExamesFormComponent,
-        ListarSolicitacoesComponent,
+        ListaSolicitacoesComponent,
         MaterialExamesComponent,
         FormularioRecipientesComponent,
         AntiCoagulanteComponent,

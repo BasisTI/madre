@@ -1,64 +1,97 @@
 <div class="p-grid p-fluid">
-
-     <div class="p-col-12 p-grid">
-
+    <div class="p-col-12 p-grid">
         <div class="card card-w-title">
-             <h1>Cadastrar Recipientes de Coleta</h1>
-             <div class="p-grid">
-
-                <div class="p-md-5 p-fluid" pTooltip="Digite a descrição do Recepiente da Coleta" [formGroup]="cadastrarRecipiente">
+            <h1>Cadastrar Recipientes de Coleta</h1>
+            <div class="p-grid">
+                <div
+                    class="p-md-4 p-fluid"
+                    pTooltip="Digite a descrição do Recepiente da Coleta"
+                    [formGroup]="cadastrarRecipiente"
+                >
                     Nome
                     <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                        <input type="text" pInputText class="p-inputtext" formControlName="nome"/>
+                        <input type="text" pInputText class="p-inputtext" formControlName="nome" />
                     </span>
-
                 </div>
 
-                <div class="p-md-5 p-grid">
-                    <div class="p-col-12 p-md-4" pTooltip="Selecione se o Recipente de Coleta possui Anticoagulante" [formGroup]="cadastrarRecipiente">
-
+                <div class="p-md-4 p-grid">
+                    <div
+                        class="p-col-12 p-md-4"
+                        pTooltip="Selecione se o Recipente de Coleta possui Anticoagulante"
+                        [formGroup]="cadastrarRecipiente"
+                    >
                         Anticoagulante:
-                        <div style="margin-top: 10px;">
-                            <p-radioButton id="margin1" name="anticoagulante" value=true
-                                label="Sim" formControlName="anticoagulante">
+                        <div style="margin-top: 10px">
+                            <p-radioButton
+                                id="margin1"
+                                name="anticoagulante"
+                                value="true"
+                                label="Sim"
+                                formControlName="anticoagulante"
+                            >
                             </p-radioButton>
 
-                            <p-radioButton name="anticoagulante" value=false
-                                label="Não" formControlName="anticoagulante">
+                            <p-radioButton
+                                name="anticoagulante"
+                                value="false"
+                                label="Não"
+                                formControlName="anticoagulante"
+                            >
                             </p-radioButton>
                         </div>
-                   </div>
+                    </div>
 
-
-                    <div style="margin-top: 7px;" pTooltip="Selecione o ativo do Recipiente de Coleta" [formGroup]="cadastrarRecipiente">
-
+                    <div
+                        style="margin-top: 7px"
+                        pTooltip="Selecione o ativo do Recipiente de Coleta"
+                        [formGroup]="cadastrarRecipiente"
+                    >
                         Ativo:
-                        <div style="margin-top: 9px;">
-                            <p-radioButton  name="ativo" value=true
-                                label="Sim" class="separator-radio" formControlName="ativo">
+                        <div style="margin-top: 9px">
+                            <p-radioButton
+                                name="ativo"
+                                value="true"
+                                label="Sim"
+                                class="separator-radio"
+                                formControlName="ativo"
+                            >
                             </p-radioButton>
 
-                            <p-radioButton class="ativoNao"  name="ativo" value=false
-                                label="Não" formControlName="ativo">
+                            <p-radioButton
+                                class="ativoNao"
+                                name="ativo"
+                                value="false"
+                                label="Não"
+                                formControlName="ativo"
+                            >
                             </p-radioButton>
                         </div>
-
                     </div>
                 </div>
-
-
 
                 <div class="p-col-12 p-grid">
                     <div class="p-md-2">
-                        <button pButton type="button" label="Salvar" icon="pi pi-save"  (click)="cadastrar()" [disabled]="!valid()"></button>
-                     </div>
-
-                     <div class="p-md-2">
-                         <button pButton type="button" label="Limpar" icon="pi pi-times" (click)="limparResipiente()"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Salvar"
+                            icon="pi pi-save"
+                            (click)="cadastrar()"
+                            [disabled]="!valid()"
+                        ></button>
                     </div>
 
+                    <div class="p-md-2">
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            icon="pi pi-times"
+                            (click)="limparResipiente()"
+                        ></button>
+                    </div>
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </div>

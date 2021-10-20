@@ -1,95 +1,149 @@
 <div class="p-col-12 p-grid">
-
     <div class="p-md-2 p-fluid">
         Data inicial
-        <p-calendar inputId="dataInicial" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
-            yearRange="2021:2030" [defaultDate]="" [(ngModel)]="dataInicio" [minDate]="dataMinima" [maxDate]="dataFim">
+        <p-calendar
+            inputId="dataInicial"
+            dateFormat="dd/mm/yy"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2021:2030"
+            [defaultDate]=""
+            [(ngModel)]="dataInicio"
+            [minDate]="dataMinima"
+            [maxDate]="dataFim"
+        >
         </p-calendar>
     </div>
 
     <div class="p-md-2 p-fluid">
         Data final
-        <p-calendar inputId="dataFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true"
-            yearRange="2021:2030" [defaultDate]="" [(ngModel)]="dataFim" [minDate]="dataInicio">
+        <p-calendar
+            inputId="dataFinal"
+            dateFormat="dd/mm/yy"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2021:2030"
+            [defaultDate]=""
+            [(ngModel)]="dataFim"
+            [minDate]="dataInicio"
+        >
         </p-calendar>
     </div>
 
     <div class="p-md-2 p-fluid sm-top-margin">
         Horário início
-        <p-calendar [(ngModel)]="horaInicio" [timeOnly]="true" [stepMinute]="5" inputId="horarioInicio"
-            [defaultDate]="horaPadrao">
+        <p-calendar
+            [(ngModel)]="horaInicio"
+            [timeOnly]="true"
+            [stepMinute]="5"
+            inputId="horarioInicio"
+            [defaultDate]="horaPadrao"
+        >
         </p-calendar>
     </div>
 
     <div class="p-md-2 p-fluid sm-top-margin">
         Horário fim
-        <p-calendar [(ngModel)]="horaFim" [timeOnly]="true" [stepMinute]="5" inputId="horarioFim"
-            [defaultDate]="horaPadrao">
+        <p-calendar
+            [(ngModel)]="horaFim"
+            [timeOnly]="true"
+            [stepMinute]="5"
+            inputId="horarioFim"
+            [defaultDate]="horaPadrao"
+        >
         </p-calendar>
     </div>
-
-
 </div>
 
 <div class="p-col-12 p-grid">
-
     <div class="p-md-2 p-fluid sm-top-margin" [formGroup]="cadastroGrade">
         Nº de Horários por dia
         <span class="md-inputfield p-float-label">
-            <input type="number" [min]="1" formControlName="numeroDeHorarios" pInputText>
+            <input type="number" [min]="1" formControlName="numeroDeHorarios" pInputText />
         </span>
     </div>
 
     <div class="p-md-2 p-col-12" [formGroup]="cadastroGrade">
         <label for="situacao">Situação</label>
-        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-
-            <p-dropdown [options]="" formControlName="ativo" [showClear]="true" [options]="situacaoGrade"
-                placeholder="Selecione"></p-dropdown>
+        <span class="md-inputfield p-float-label" style="margin-top: 5px">
+            <p-dropdown
+                [options]=""
+                formControlName="ativo"
+                [showClear]="true"
+                [options]="situacaoGrade"
+                placeholder="Selecione"
+            ></p-dropdown>
         </span>
     </div>
 
     <div class="p-md-2 p-fluid">
         Unidade executora
-        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="listaUnidades" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                [resetFilterOnHide]="true" [showClear]="true" placeholder="Selecione" [(ngModel)]="unidadeSelecionada"
-                (onChange)="listarSalas()">
+        <span class="md-inputfield p-float-label" style="margin-top: 5px">
+            <p-dropdown
+                [options]="listaUnidades"
+                [optionLabel]="'nome'"
+                [optionValue]="'id'"
+                [filter]="true"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                placeholder="Selecione"
+                [(ngModel)]="unidadeSelecionada"
+                (onChange)="listarSalas()"
+            >
             </p-dropdown>
         </span>
     </div>
 
     <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Identificação da sala
-        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="listaSalas" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                [resetFilterOnHide]="true" [showClear]="true" formControlName="salaId" placeholder="Selecione"
-                [disabled]="unidadeSelecionada==null">
+        <span class="md-inputfield p-float-label" style="margin-top: 5px">
+            <p-dropdown
+                [options]="listaSalas"
+                [optionLabel]="'nome'"
+                [optionValue]="'id'"
+                [filter]="true"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                formControlName="salaId"
+                placeholder="Selecione"
+                [disabled]="unidadeSelecionada == null"
+            >
             </p-dropdown>
         </span>
     </div>
-
 </div>
 
-
-
 <div class="p-col-12 p-grid">
-
     <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Exame
-        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="listaExames" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                [resetFilterOnHide]="true" [showClear]="true" formControlName="exameId" placeholder="Selecione">
+        <span class="md-inputfield p-float-label" style="margin-top: 5px">
+            <p-dropdown
+                [options]="listaExames"
+                [optionLabel]="'nome'"
+                [optionValue]="'id'"
+                [filter]="true"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                formControlName="exameId"
+                placeholder="Selecione"
+            >
             </p-dropdown>
         </span>
     </div>
 
     <div class="p-md-2 p-fluid" [formGroup]="cadastroGrade">
         Responsável
-        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-            <p-dropdown [options]="listaServidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
-                [resetFilterOnHide]="true" [showClear]="true" [filter]="true" formControlName="responsavelId"
-                placeholder="Selecione">
+        <span class="md-inputfield p-float-label" style="margin-top: 5px">
+            <p-dropdown
+                [options]="listaServidores"
+                [optionLabel]="'pessoaNome'"
+                [optionValue]="'id'"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                [filter]="true"
+                formControlName="responsavelId"
+                placeholder="Selecione"
+            >
             </p-dropdown>
         </span>
     </div>
@@ -97,26 +151,40 @@
     <div class="p-md-2 p-fluid">
         Dias
         <span class="md-inputfield p-float-label sm-top-margin">
-            <p-multiSelect [options]="dias" [(ngModel)]="diasSelecionados" defaultLabel="Selecione"
-                [optionLabel]="'nome'.toLowerCase()" display="chip">
+            <p-multiSelect
+                [options]="dias"
+                [(ngModel)]="diasSelecionados"
+                defaultLabel="Selecione"
+                [optionLabel]="'nome'.toLowerCase()"
+                display="chip"
+            >
             </p-multiSelect>
         </span>
     </div>
 </div>
 
-
-
 <div class="p-col-12 p-grid p-d-flex">
-
     <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
 
     <div class="p-md-2 p-sm-12">
-        <button icon="pi pi-save" pButton type="button" (click)="cadastrarGradeDeAgendamento()" label="Salvar"
-        [disabled]="!validarFormulario()"></button>
+        <button
+            icon="pi pi-save"
+            pButton
+            type="button"
+            (click)="cadastrarGradeDeAgendamento()"
+            label="Salvar"
+            [disabled]="!validarFormulario()"
+        ></button>
     </div>
 
     <div class="p-md-2 p-sm-12">
-        <button pButton type="button" icon="pi pi-times" label="Limpar" (click)="limparFormulario()"></button>
+        <button
+            pButton
+            type="button"
+            icon="pi pi-times"
+            label="Limpar"
+            (click)="limparFormulario()"
+        ></button>
     </div>
     <div class="p-md-2 p-sm-12">
         <button pButton type="button" routerLink="/listar-grade-exame" label="Voltar"></button>

@@ -1,138 +1,167 @@
 <p-toast position="top-left" key="tl"></p-toast>
 
 <div class="p-grid p-fluid">
-
     <div class="p-col-12 p-grid">
-
         <div class="card card-w-title">
             <h1>Solicitar Exames</h1>
 
-                <div class="p-grid p-fluid">
+            <div class="p-grid p-fluid">
+                <div class="p-md-1 p-fluid">
+                    Prontuário
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Consulta
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Nome / Nome Social do Paciente
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum dolor sit amet</label>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Idade
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="number" pInputText class="p-inputtext" disabled />
+                        <label>Lorem</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Data/Hora Atendimento
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="datetime" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum doloro</label>
+                    </span>
+                </div>
+                <div class="p-md-1 p-fluid">
+                    Origem
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-fluid">
+                    Localização
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <input type="text" pInputText class="p-inputtext" disabled />
+                        <label>Lorem ipsum</label>
+                    </span>
+                </div>
 
+                <div class="p-md-2 p-fluid">
+                    Unidade Funcional
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <p-dropdown
+                            [options]="unidades"
+                            [optionLabel]="'nome'"
+                            [optionValue]="'id'"
+                            [filter]="true"
+                            [resetFilterOnHide]="true"
+                            [showClear]="true"
+                            pTooltip="Selecione a unidade de internação."
+                        >
+                        </p-dropdown>
+                    </span>
+                </div>
 
-                    <div class="p-md-1 p-fluid">
-                        Prontuário
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="text" pInputText class="p-inputtext" disabled />
-                            <label>Lorem ipsum</label>
-                        </span>
-                    </div>
-                    <div class="p-md-2 p-fluid">
-                        Consulta
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="text" pInputText class="p-inputtext" disabled />
-                            <label>Lorem ipsum</label>
-                        </span>
-                    </div>
-                    <div class="p-md-2 p-fluid">
-                        Nome / Nome Social do Paciente
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="text" pInputText class="p-inputtext" disabled />
-                            <label>Lorem ipsum dolor sit amet</label>
-                        </span>
-                    </div>
-                    <div class="p-md-1 p-fluid">
-                        Idade
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="number" pInputText class="p-inputtext" disabled />
-                            <label>Lorem</label>
-                        </span>
-                    </div>
-                    <div class="p-md-2 p-fluid">
-                        Data/Hora Atendimento
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="datetime" pInputText class="p-inputtext" disabled />
-                            <label>Lorem ipsum doloro</label>
-                        </span>
-                    </div>
-                    <div class="p-md-1 p-fluid">
-                        Origem
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="text" pInputText class="p-inputtext" disabled />
-                            <label>Lorem</label>
-                        </span>
-                    </div>
-                    <div class="p-md-2 p-fluid">
-                        Localização
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <input type="text" pInputText class="p-inputtext" disabled />
-                            <label>Lorem ipsum</label>
-                        </span>
-                    </div>
+                <div class="p-md-2 p-fluid">
+                    Responsável
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <p-dropdown
+                            [options]="responsaveis"
+                            [optionLabel]="'nomeDoResponsavel'"
+                            [optionValue]="'id'"
+                            [filter]="true"
+                            [resetFilterOnHide]="true"
+                            [showClear]="true"
+                            pTooltip="Selecione a unidade de internação."
+                        >
+                        </p-dropdown>
+                    </span>
+                </div>
 
-                    <div class="p-md-2 p-fluid">
-                        Unidade Funcional
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <p-dropdown [options]="unidades" [optionLabel]="'nome'" [optionValue]="'id'" [filter]="true"
-                                [resetFilterOnHide]="true" [showClear]="true"
-                                pTooltip="Selecione a unidade de internação.">
-                            </p-dropdown>
-                        </span>
-                    </div>
+                <div class="p-inputtextarea p-fluid" [formGroup]="solicitarExame">
+                    Informações Clínicas
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                        <textarea
+                            pInputTextarea
+                            [rows]="5"
+                            autoResize="autoResize"
+                            pTooltip="Digite as informações clínicas do paciente."
+                            formControlName="infoClinica"
+                        >
+                        </textarea>
+                        <label>Digite as informações clínicas do paciente.</label>
+                    </span>
+                </div>
 
-                    <div class="p-md-2 p-fluid">
-                        Responsável
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                            <p-dropdown [options]="responsaveis" [optionLabel]="'nomeDoResponsavel'"
-                                [optionValue]="'id'" [filter]="true" [resetFilterOnHide]="true" [showClear]="true"
-                                pTooltip="Selecione a unidade de internação.">
-                            </p-dropdown>
-                        </span>
+                <div style="margin-top: 10px" [formGroup]="solicitarExame">
+                    Paciente utiliza antimicrobianos a mais de 24 horas:
+                    <div style="margin-top: 5px; margin-bottom: 10px">
+                        <p-radioButton
+                            name="usoAntimicrobianos24h"
+                            value="true"
+                            label="Sim"
+                            formControlName="usoAntimicrobianos24h"
+                            class="separator-radio"
+                        >
+                        </p-radioButton>
+
+                        <p-radioButton
+                            name="usoAntimicrobianos24h"
+                            value="false"
+                            label="Não"
+                            formControlName="usoAntimicrobianos24h"
+                        >
+                        </p-radioButton>
                     </div>
 
-                    <div class="p-inputtextarea p-fluid" [formGroup]="solicitarExame">
-                        Informações Clínicas
-                        <span class="md-inputfield p-float-label" style="margin-top: 5px; ">
-                            <textarea pInputTextarea [rows]="5" autoResize="autoResize"
-                                pTooltip="Digite as informações clínicas do paciente." formControlName="infoClinica">
-                                        </textarea>
-                            <label>Digite as informações clínicas do paciente.</label>
-                        </span>
-                    </div>
+                    Pedido para 1° exame ou comparativo:
+                    <div style="margin-top: 5px; margin-bottom: 10px" [formGroup]="solicitarExame">
+                        <p-radioButton
+                            name="pedidoPrimeiroExame"
+                            value="true"
+                            label="1º Exame"
+                            formControlName="pedidoPrimeiroExame"
+                            class="separator-radio"
+                        >
+                        </p-radioButton>
 
-                    <div style="margin-top: 10px" [formGroup]="solicitarExame">
-                        Paciente utiliza antimicrobianos a mais de 24 horas:
-                        <div style="margin-top: 5px; margin-bottom: 10px;">
-                            <p-radioButton name="usoAntimicrobianos24h" value=true
-                                label="Sim" formControlName="usoAntimicrobianos24h" class="separator-radio">
-                            </p-radioButton>
-
-                            <p-radioButton name="usoAntimicrobianos24h" value=false
-                                label="Não" formControlName="usoAntimicrobianos24h">
-                            </p-radioButton>
-                        </div>
-
-                        Pedido para 1° exame ou comparativo:
-                        <div style="margin-top: 5px; margin-bottom: 10px;" [formGroup]="solicitarExame">
-                            <p-radioButton name="pedidoPrimeiroExame" value=true
-                                label="1º Exame" formControlName="pedidoPrimeiroExame" class="separator-radio">
-                            </p-radioButton>
-
-                            <p-radioButton
-                                name="pedidoPrimeiroExame"
-                                value=false
-                                label="Comparativo"
-                                formControlName="pedidoPrimeiroExame"
-                            >
-                            </p-radioButton>
-                        </div>
-
+                        <p-radioButton
+                            name="pedidoPrimeiroExame"
+                            value="false"
+                            label="Comparativo"
+                            formControlName="pedidoPrimeiroExame"
+                        >
+                        </p-radioButton>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
-<app-exames #appExames ></app-exames>
+<app-exames #appExames></app-exames>
 
 <div class="buttonDiv">
     <div class="p-md-2">
-        <button pButton type="submit" [disabled]="!valid()" label="Salvar"
-            icon="pi pi-save" 
-            (click)="cadastrar()"></button>
+        <button
+            pButton
+            type="submit"
+            [disabled]="!valid()"
+            label="Salvar"
+            icon="pi pi-save"
+            (click)="cadastrar()"
+        ></button>
     </div>
     <div class="p-md-2">
-        <button pButton type="text" label="Limpar" 
-        icon="pi pi-times" (click)="limpar()"
-        ></button>
+        <button pButton type="text" label="Limpar" icon="pi pi-times" (click)="limpar()"></button>
     </div>
 </div>

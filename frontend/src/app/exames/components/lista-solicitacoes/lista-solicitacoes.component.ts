@@ -4,11 +4,11 @@ import { SolicitacaoExameService } from '../../services/solicitacao-exame.servic
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-listar-solicitacoes',
-  templateUrl: './listar-solicitacoes.component.html',
-  styleUrls: ['./listar-solicitacoes.component.css']
+  selector: 'app-lista-solicitacoes',
+  templateUrl: './lista-solicitacoes.component.html',
+  styleUrls: ['./lista-solicitacoes.component.css']
 })
-export class ListarSolicitacoesComponent implements OnInit {
+export class ListaSolicitacoesComponent implements OnInit {
 
   id: string = '';
   pedidoPrimeiroExame: string = '';

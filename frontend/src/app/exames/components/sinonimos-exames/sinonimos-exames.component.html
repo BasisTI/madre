@@ -1,53 +1,63 @@
-<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="cadastrar()">  
-    <div class="p-col-12 card card-w-title" >
+<form [formGroup]="cadastroSinonimoExames" (ngSubmit)="cadastrar()">
+    <div class="p-col-12 card card-w-title">
         <h1>Sinônimos de Exames</h1>
-              <div id="codigo" >
-                  <span id="grupo" >
-                    <label > Sinônimos:  </label> <br>
-                    <input type="text" formControlName="nome"  pInputText />
-                  </span>
-                 
-                    <span id="grupo" > 
-                    <label> Situação: </label> <br>
-                    <p-dropdown 
-                    placeholder="Selecione" [options]="situacaoExame" formControlName="situacao"
-                    ></p-dropdown>
-                    </span> 
-                  </div>
-                  <div class="table">
-                  <basis-datatable id="table"
-                        #datatable
-                        type="server"
-                        [url]="searchUrl"
-                        [rows]="5"
-                        [value]="sinonimos"
-                        [disableView]="true"
-                        [disableEdit]="true"
-                        [disableDelete]="true"
-                    >
-                        <p-column header="Código" field="id"></p-column>
-                        <p-column header="Sinônimo" field="nome"></p-column>
-                        <p-column header="Situação" field="situacao"></p-column>
-                        <p-column header="Ação" field=""></p-column>
+        <div id="codigo">
+            <span id="grupo">
+                <label> Sinônimos: </label> <br />
+                <input type="text" formControlName="nome" pInputText />
+            </span>
 
-                        <basis-datatable-button
-                          name="edit"
-                          icon="pi pi-pencil"
-                          [disabled]="datatable.selectedRow == null"
-                          class="p-button-success">
-                          </basis-datatable-button>
-                        
-                          <basis-datatable-button 
-                              class="p-button-danger"
-                              [disabled]="datatable.selectedRow == null"
-                              name="delete"
-                              icon="pi pi-trash">
-                            </basis-datatable-button>  
-                        </basis-datatable>
-                    </div>
+            <span id="grupo">
+                <label> Situação: </label> <br />
+                <p-dropdown
+                    placeholder="Selecione"
+                    [options]="situacaoExame"
+                    formControlName="situacao"
+                ></p-dropdown>
+            </span>
+        </div>
         <div class="table">
-        <button pButton type="submit" label="Gravar" icon="ui-icon-search" bTooltip="Gravar Sinônimo de exames." 
-          ></button>
+            <basis-datatable
+                id="table"
+                #datatable
+                type="server"
+                [url]="searchUrl"
+                [rows]="5"
+                [value]="sinonimos"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+            >
+                <p-column header="Código" field="id"></p-column>
+                <p-column header="Sinônimo" field="nome"></p-column>
+                <p-column header="Situação" field="situacao"></p-column>
+                <p-column header="Ação" field=""></p-column>
+
+                <basis-datatable-button
+                    name="edit"
+                    icon="pi pi-pencil"
+                    [disabled]="datatable.selectedRow == null"
+                    class="p-button-success"
+                >
+                </basis-datatable-button>
+
+                <basis-datatable-button
+                    class="p-button-danger"
+                    [disabled]="datatable.selectedRow == null"
+                    name="delete"
+                    icon="pi pi-trash"
+                >
+                </basis-datatable-button>
+            </basis-datatable>
+        </div>
+        <div class="table">
+            <button
+                pButton
+                type="submit"
+                label="Gravar"
+                icon="ui-icon-search"
+                bTooltip="Gravar Sinônimo de exames."
+            ></button>
         </div>
     </div>
-    </form>
+</form>
