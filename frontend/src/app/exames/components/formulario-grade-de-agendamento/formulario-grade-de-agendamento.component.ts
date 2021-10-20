@@ -16,190 +16,203 @@ import * as moment from 'moment';
 import { UnidadeFuncionalComponent } from '@shared/components/unidade-funcional/unidade-funcional.component';
 import { HorarioExame } from '../../models/subjects/horario-agendado';
 import { Dia } from '../../models/subjects/dia';
+import { SalasService } from '../../services/sala.service';
+
 @Component({
-  selector: 'app-formulario-grade-de-agendamento',
-  templateUrl: './formulario-grade-de-agendamento.component.html',
-  styleUrls: ['./formulario-grade-de-agendamento.component.css']
+    selector: 'app-formulario-grade-de-agendamento',
+    templateUrl: './formulario-grade-de-agendamento.component.html',
+    styleUrls: ['./formulario-grade-de-agendamento.component.css'],
 })
 export class FormularioGradeDeAgendamentoComponent implements OnInit {
+    dataInicio: Date;
+    dataFim: Date;
+    horaInicio: Date;
+    horaFim: Date;
+    dataMinima: Date = new Date();
+    horaPadrao = new Date('December 31, 2020 12:00:00');
 
-  dataInicio: Date;
-  dataFim: Date;
-  horaInicio: Date;
-  horaFim: Date;
-  dataMinima: Date = new Date();
-  horaPadrao = new Date('December 31, 2020 12:00:00');
+    dias: Array<Dia>;
+    diasSelecionados: Array<Dia>;
+    horariosDaGrade: Array<HorarioExame>;
+    unidadeSelecionada: number;
 
-  dias: Array<Dia>;
-  diasSelecionados: Array<Dia>;
-  horariosDaGrade: Array<HorarioExame>;
-  unidadeSelecionada: number;
+    listaUnidades: UnidadeFuncional[] = [];
+    listaServidores: ListaServidor[] = [];
+    listaSalas: Sala[] = [];
+    listaExames: ExamModel[] = [];
 
-  listaUnidades: UnidadeFuncional[] = [];
-  listaServidores: ListaServidor[] = [];
-  listaSalas: Sala[] = [];
-  listaExames: ExamModel[] = [];
+    situacaoGrade = SituacaoAtivo;
 
-  situacaoGrade = SituacaoAtivo;
+    gradeId: number;
 
-  gradeId: number;
+    @Input()
+    grade: GradeDeAgendamentoExame;
 
-  @Input()
-  grade: GradeDeAgendamentoExame;
+    @Output()
+    gradeSalva = new EventEmitter<GradeDeAgendamentoExame>();
 
-  @Output()
-  gradeSalva = new EventEmitter<GradeDeAgendamentoExame>();
+    constructor(
+        private fb: FormBuilder,
+        private gradeAgendamentoService: GradeDeAgendamentoService,
+        private unidadeFuncionalService: UnidadeFuncionalService,
+        private servidorService: ServidorService,
+        private exameService: ExamesService,
+        private salaService: SalasService,
+        private confirmacaoService: ConfirmationService,
+        private router: Router,
+        private msg: MessageService,
+    ) {}
 
-  constructor(private fb: FormBuilder,
-    private gradeAgendamentoService: GradeDeAgendamentoService,
-    private unidadeFuncionalService: UnidadeFuncionalService,
-    private servidorService: ServidorService,
-    private exameService: ExamesService,
-    private confirmacaoService: ConfirmationService,
-    private router: Router,
-    private msg: MessageService) { }
-
-  
     @ViewChild(UnidadeFuncionalComponent)
     unidadeFuncional: UnidadeFuncionalComponent;
 
-  cadastroGrade = this.fb.group({
-    numeroDeHorarios: [null, Validators.required],
-    ativo: [null, Validators.required],
-    responsavelId: [null, Validators.required],
-    exameId: [null, Validators.required],
-    salaId: [null, Validators.required],
-  });
+    cadastroGrade = this.fb.group({
+        numeroDeHorarios: [null, Validators.required],
+        ativo: [null, Validators.required],
+        responsavelId: [null, Validators.required],
+        exameId: [null, Validators.required],
+        salaId: [null, Validators.required],
+    });
 
-  validarFormulario(): boolean {
-    if (this.cadastroGrade.valid && this.horaFim && this.horaInicio && this.dataFim && this.dataInicio && this
-      .unidadeSelecionada && this.diasSelecionados) {
-      return true;
+    validarFormulario(): boolean {
+        if (
+            this.cadastroGrade.valid &&
+            this.horaFim &&
+            this.horaInicio &&
+            this.dataFim &&
+            this.dataInicio &&
+            this.unidadeSelecionada &&
+            this.diasSelecionados
+        ) {
+            return true;
+        }
     }
-  }
 
-  limparFormulario() {
-    this.cadastroGrade.reset();
-    this.horaFim = null;
-    this.horaInicio = null;
-    this.dataFim = null;
-    this.dataInicio = null;
-    this.unidadeSelecionada = null;
-    this.diasSelecionados = null;
-  }
+    limparFormulario() {
+        this.cadastroGrade.reset();
+        this.horaFim = null;
+        this.horaInicio = null;
+        this.dataFim = null;
+        this.dataInicio = null;
+        this.unidadeSelecionada = null;
+        this.diasSelecionados = null;
+    }
 
-  confirmarGravacaoDaGrade() {
-    this.confirmacaoService.confirm({
-      message: 'Gostaria de agendar horários para esta grade agora?',
-      header: 'Salvar grade',
-      icon: 'pi pi-question',
-      accept: () => {
-        this.msg.add({
-          severity: 'info',
-          detail: "Acesse 'Horários' para marcar horários nessa grade."
+    confirmarGravacaoDaGrade() {
+        this.confirmacaoService.confirm({
+            message: 'Gostaria de agendar horários para esta grade agora?',
+            header: 'Salvar grade',
+            icon: 'pi pi-question',
+            accept: () => {
+                this.msg.add({
+                    severity: 'info',
+                    detail: "Acesse 'Horários' para marcar horários nessa grade.",
+                });
+            },
+            reject: () => {
+                this.router.navigate(['/listar-grade-exame']);
+            },
         });
-      },
-      reject: () => {
-        this.router.navigate(['/listar-grade-exame']);
-      }
-    });
-  }
-
-  cadastrarGradeDeAgendamento() {
-    const cadastroGradeValor = this.cadastroGrade.value;
-
-    this.grade = {
-      dataInicio: this.dataInicio,
-      dataFim: this.dataFim,
-      horaInicio: this.gerarHora(this.horaInicio, this.dataInicio),
-      horaFim: this.gerarHora(this.horaFim, this.dataFim),
-      dias: this.diasSelecionados,
-      numeroDeHorarios: cadastroGradeValor.numeroDeHorarios,
-      ativo: cadastroGradeValor.ativo,
-      unidadeExecutoraId: this.unidadeSelecionada,
-      responsavelId: cadastroGradeValor.responsavelId,
-      exameId: cadastroGradeValor.exameId,
-      salaId: cadastroGradeValor.salaId,
-      duracao: this.gerarDuracao(30),
-    };
-
-    if (this.isInicioDepoisDeFim(this.horaInicio, this.horaFim)) {
-      return;
-    } else {
-      this.gradeAgendamentoService.cadastrarGrade(this.grade).subscribe((response) => {
-        Object.assign(this.grade, response);
-        this.gradeSalva.emit(this.grade);
-      });
-      this.limparFormulario();
-      this.confirmarGravacaoDaGrade();
     }
-  }
 
-  isInicioDepoisDeFim(inicio: Date, fim: Date): boolean {
-    if (moment(inicio).isAfter(fim)) {
-      this.msg.add({
-        severity: 'error', summary: 'Erro no preenchimento',
-        detail: 'Hora fim deve ser depois de hora início.'
-      });
-      return true;
+    cadastrarGradeDeAgendamento() {
+        const cadastroGradeValor = this.cadastroGrade.value;
+
+        this.grade = {
+            dataInicio: this.dataInicio,
+            dataFim: this.dataFim,
+            horaInicio: this.gerarHora(this.horaInicio, this.dataInicio),
+            horaFim: this.gerarHora(this.horaFim, this.dataFim),
+            dias: this.diasSelecionados,
+            numeroDeHorarios: cadastroGradeValor.numeroDeHorarios,
+            ativo: cadastroGradeValor.ativo,
+            unidadeExecutoraId: this.unidadeSelecionada,
+            responsavelId: cadastroGradeValor.responsavelId,
+            exameId: cadastroGradeValor.exameId,
+            salaId: cadastroGradeValor.salaId,
+            duracao: this.gerarDuracao(30),
+        };
+
+        if (this.isInicioDepoisDeFim(this.horaInicio, this.horaFim)) {
+            return;
+        } else {
+            this.gradeAgendamentoService.cadastrarGrade(this.grade).subscribe((response) => {
+                Object.assign(this.grade, response);
+                this.gradeSalva.emit(this.grade);
+            });
+            this.limparFormulario();
+            this.confirmarGravacaoDaGrade();
+        }
     }
-  }
 
-  gerarHora(hora: Date, data: Date): Date {
-    let horaGerada = new Date(Date.UTC(data.getFullYear(), data.getMonth(), data.getDate(), hora.getHours(), 
-    hora.getMinutes()));
+    isInicioDepoisDeFim(inicio: Date, fim: Date): boolean {
+        if (moment(inicio).isAfter(fim)) {
+            this.msg.add({
+                severity: 'error',
+                summary: 'Erro no preenchimento',
+                detail: 'Hora fim deve ser depois de hora início.',
+            });
+            return true;
+        }
+    }
 
-    return horaGerada;
-  }
+    gerarHora(hora: Date, data: Date): Date {
+        let horaGerada = new Date(
+            Date.UTC(
+                data.getFullYear(),
+                data.getMonth(),
+                data.getDate(),
+                hora.getHours(),
+                hora.getMinutes(),
+            ),
+        );
 
-  gerarDuracao(minutos: number): moment.Duration {
-    let valorDuracao = moment.duration({
-      minutes: minutos
-    });
-    return valorDuracao;
-  }
+        return horaGerada;
+    }
 
-  listarUnidades() {
-    this.unidadeFuncionalService.getUnidades().subscribe((response) => {
-      this.listaUnidades = response;
-    });
-  }
+    gerarDuracao(minutos: number): moment.Duration {
+        let valorDuracao = moment.duration({
+            minutes: minutos,
+        });
+        return valorDuracao;
+    }
 
-  listarServidores() {
-    this.servidorService.getServidor().subscribe((response) => {
-      this.listaServidores = response;
-    });
-  }
+    listarUnidades() {
+        this.unidadeFuncionalService.getUnidades().subscribe((response) => {
+            this.listaUnidades = response;
+        });
+    }
 
-  listarSalas() {
-    this.gradeAgendamentoService.getSalasPorUnidade(this.unidadeSelecionada.toString(), 'true').subscribe((response) => {
-      this.listaSalas = response;
-    });
-  }
+    listarServidores() {
+        this.servidorService.getServidor().subscribe((response) => {
+            this.listaServidores = response;
+        });
+    }
 
-  listarExames() {
-    this.exameService.getExames().subscribe((response) => {
-      this.listaExames = response;
-    });
-  }
+    listarSalas() {
+        this.salaService
+            .getSalasPorUnidade(this.unidadeSelecionada.toString(), 'true')
+            .subscribe((response) => {
+                this.listaSalas = response;
+            });
+    }
 
-  listarDias() {
-    this.gradeAgendamentoService.getDias().subscribe((response) => {
-      this.dias = response;
-    });
-  }
+    listarExames() {
+        this.exameService.getExames().subscribe((response) => {
+            this.listaExames = response;
+        });
+    }
 
-  ngOnInit(): void {
-    this.listarDias();
-    console.log('Dias: ', this.dias);
-    
+    listarDias() {
+        this.gradeAgendamentoService.getDias().subscribe((response) => {
+            this.dias = response;
+        });
+    }
 
-    this.listarUnidades();
-
-    this.listarServidores();
-
-    this.listarExames();
-  }
-
-
+    ngOnInit(): void {
+        this.listarDias();
+        this.listarUnidades();
+        this.listarServidores();
+        this.listarExames();
+    }
 }

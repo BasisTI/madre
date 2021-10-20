@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
-import { AtendimentoDiversoComponent } from "./components/atendimento-diverso/atendimento-diverso.component";
+import { AtendimentoDiversoComponent } from './components/atendimento-diverso/atendimento-diverso.component';
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
@@ -23,9 +23,9 @@ import { ExamesFormComponent } from './components/exames-form/exames-form.compon
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
-import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
+import { FormularioSalaComponent } from './components/formulario-sala/formulario-sala.component';
 import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
-
+import { ListaSalasComponent } from './components/lista-salas/lista-salas.component';
 
 @NgModule({
     declarations: [
@@ -49,9 +49,10 @@ import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-
         MaterialExamesComponent,
         FormularioRecipientesComponent,
         AntiCoagulanteComponent,
-        FormularioSalasComponent,
+        FormularioSalaComponent,
         FormularioTipoDeMarcacaoComponent,
+        ListaSalasComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
-export class ExamesModule { }
+export class ExamesModule {}

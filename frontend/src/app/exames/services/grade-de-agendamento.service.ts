@@ -43,14 +43,6 @@ export class GradeDeAgendamentoService {
     return this.client.get<Array<Sala>>(`${this.URL}/salas`);
   }
 
-  public getSalasPorUnidade(unidadeExecutoraId: string, ativo: string): Observable<Array<Sala>> {
-    return this.client.get<Array<Sala>>(`${this.URL}/_search/salas-por-unidade`, {
-      params: new HttpParams()
-        .set('unidadeExecutoraId', unidadeExecutoraId)
-        .set('ativo', ativo)
-    });
-  }
-
   public getTiposDeMarcacao(): Observable<Array<TipoDeMarcacao>> {
     return this.client.get<Array<TipoDeMarcacao>>(`${this.URL}/tipo-de-marcacaos`);
   }

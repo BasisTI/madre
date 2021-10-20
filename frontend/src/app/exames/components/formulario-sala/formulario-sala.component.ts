@@ -1,15 +1,15 @@
-import { UnidadeFuncionalComponent } from './../../../shared/components/unidade-funcional/unidade-funcional.component';
+import { UnidadeFuncionalComponent } from '../../../shared/components/unidade-funcional/unidade-funcional.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SalasService } from '../../services/salas.service';
+import { SalasService } from '../../services/sala.service';
 import { Sala } from '../../models/subjects/sala';
 import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
 
 @Component({
-  selector: 'app-formulario-salas',
-  templateUrl: './formulario-salas.component.html',
-  styleUrls: ['./formulario-salas.component.css']
+  selector: 'app-formulario-sala',
+  templateUrl: './formulario-sala.component.html',
+  styleUrls: ['./formulario-sala.component.css']
 })
-export class FormularioSalasComponent implements OnInit {
+export class FormularioSalaComponent implements OnInit {
 
   nome: string;
   locacao: string;

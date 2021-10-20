@@ -11,8 +11,9 @@ import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-a
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
-import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
+import { FormularioSalaComponent as FormularioSalaComponent } from './components/formulario-sala/formulario-sala.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
+import { ListaSalasComponent } from './components/lista-salas/lista-salas.component';
 
 
 export const routes: Routes = [
@@ -65,7 +66,11 @@ export const routes: Routes = [
         component: TabelaHorariosAgendadosComponent
     },
     {
-        path: 'formulario-salas',
-        component: FormularioSalasComponent
+        path: 'formulario-sala',
+        component: FormularioSalaComponent
+    },
+    {
+        path: 'listar-salas',
+        component: ListaSalasComponent
     }
 ];

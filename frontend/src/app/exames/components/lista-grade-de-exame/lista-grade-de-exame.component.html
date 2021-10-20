@@ -3,24 +3,21 @@
     <div class="p-grid p-fluid">
         <div class="p-col-12 p-grid">
             <div class="p-col-12 p-grid">
-            </div>
-            <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <input
-                        pInputText
-                        type="text"
-                        pTooltip="Informe o número da grade"
-                        [(ngModel)]="id"
-                        />
+                        <input pInputText type="text" [(ngModel)]="id" />
                         <label>Grade</label>
                     </span>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        [(ngModel)]="unidadeExecutoraId" [filter]="true"
-                        [resetFilterOnHide]="true" [options]="listaUnidadesExecutoras" [optionLabel]="'nome'"
-                        [optionValue]="'id'" placeholder="Unidade executora"
+                        [(ngModel)]="unidadeExecutoraId"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [options]="listaUnidadesExecutoras"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'"
+                        placeholder="Unidade executora"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
@@ -34,27 +31,38 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        [(ngModel)]="salaId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="listaSalas" [optionLabel]="'identificacaoDaSala'" [optionValue]="'id'"
+                        [(ngModel)]="salaId"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [options]="listaSalas"
+                        [optionLabel]="'identificacaoDaSala'"
+                        [optionValue]="'id'"
                         placeholder="Identificação da sala"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        [(ngModel)]="exameId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="listaExames" [optionLabel]="'nome'" [optionValue]="'id'"
+                        [(ngModel)]="exameId"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [options]="listaExames"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'"
                         placeholder="Exame"
                     ></p-dropdown>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <p-dropdown
-                        [(ngModel)]="responsavelId" [filter]="true" [resetFilterOnHide]="true"
-                        [options]="listaServidores" [optionLabel]="'pessoaNome'" [optionValue]="'id'"
+                        [(ngModel)]="responsavelId"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [options]="listaServidores"
+                        [optionLabel]="'pessoaNome'"
+                        [optionValue]="'id'"
                         placeholder="Responsável"
                     ></p-dropdown>
                 </div>
             </div>
-                
 
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
@@ -71,7 +79,9 @@
                         pButton
                         type="button"
                         routerLink="/manter-grade-agendamento"
-                        label="Nova grade"Primeiro Exame
+                        label="Nova grade"
+                        Primeiro
+                        Exame
                     ></button>
                 </div>
                 <div class="p-md-2 p-sm-12">
@@ -79,66 +89,84 @@
                         pButton
                         type="button"
                         (click)="limparFiltros()"
-                        label="Limpar filtros"Primeiro Exame
+                        label="Limpar filtros"
+                        Primeiro
+                        Exame
                     ></button>
                 </div>
-                    <basis-datatable [url]="searchUrl" #datatable [disableView]="true"
-                    [disableEdit]="true" [disableDelete]="true" type="memory" [value]="listaGrades" sortField="brand">
-                        <p-column header="Grade" field="id"></p-column>
-                        <p-column header="Início" field="horaInicio">
-                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
-                            </ng-template>
-                        </p-column>
-                        <p-column header="Fim" field="horaFim">
-                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                                <span>{{rowData[col.field] | date:'dd/M/yyyy, H:mm':'GMT'}}</span>
-                            </ng-template>
-                        </p-column>
-                        <p-column header="Responsável" field="responsavelNome">
-                        </p-column>  
-                        <p-column header="Nº de horários" field="numeroDeHorarios"> </p-column>  
-                        <p-column header="Dias" field="listaGrades">
-                            <ng-template let-col let-grade="rowData" pTemplate="body">
-                                <span *ngFor="let grade of listaGrades; let i = index">{{grade[i].dias[i].nome}}</span>
-                            </ng-template>
-                        </p-column>  
-                        <p-column header="Situação" field="ativo">
-                            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                <basis-datatable
+                    [url]="searchUrl"
+                    #datatable
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                    type="memory"
+                    [value]="listaGrades"
+                    sortField="brand"
+                >
+                    <p-column header="Grade" field="id"></p-column>
+                    <p-column header="Início" field="horaInicio">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field] | date: 'dd/M/yyyy, H:mm':'GMT' }}</span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Fim" field="horaFim">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span>{{ rowData[col.field] | date: 'dd/M/yyyy, H:mm':'GMT' }}</span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Responsável" field="responsavelNome"> </p-column>
+                    <p-column header="Nº de horários" field="numeroDeHorarios"> </p-column>
+                    <p-column header="Dias" field="listaGrades">
+                        <ng-template let-col let-grade="rowData" pTemplate="body">
+                            <span *ngFor="let grade of listaGrades; let i = index">{{
+                                grade[i].dias[i].nome
+                            }}</span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Situação" field="ativo">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
                             <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>
-                            </ng-template>
-                        </p-column>
+                        </ng-template>
+                    </p-column>
 
-                        <basis-datatable-button 
-                            name="editar" bTooltip="Editar"
-                            icon="pi pi-pencil" class="p-button-info"
-                            [disabled]="datatable.selectedRow == null">
-                        </basis-datatable-button>
-
-                        <basis-datatable-button 
-                            name="agendar" bTooltip="Manter horários de agenda de exames"
-                            icon="pi pi-clock" class="p-button-info"
-                            [disabled]="datatable.selectedRow == null"
-                            >
-                        </basis-datatable-button>
-                        
-                        <basis-datatable-button 
-                        name="disponibilizar" bTooltip="Gerar disponibilizade"
-                        icon="pi pi-calendar-plus" class="p-button-info"
+                    <basis-datatable-button
+                        name="editar"
+                        bTooltip="Editar"
+                        icon="pi pi-pencil"
+                        class="p-button-info"
                         [disabled]="datatable.selectedRow == null"
-                        >
-                    </basis-datatable-button>
-                    
-                    <basis-datatable-button 
-                        name="excluir" bTooltip="Excluir"
-                        icon="pi pi-trash" class="p-button-info"
-                        [disabled]="datatable.selectedRow == null"
-                        >
+                    >
                     </basis-datatable-button>
 
-                    </basis-datatable>
+                    <basis-datatable-button
+                        name="agendar"
+                        bTooltip="Manter horários de agenda de exames"
+                        icon="pi pi-clock"
+                        class="p-button-info"
+                        [disabled]="datatable.selectedRow == null"
+                    >
+                    </basis-datatable-button>
 
+                    <basis-datatable-button
+                        name="disponibilizar"
+                        bTooltip="Gerar disponibilizade"
+                        icon="pi pi-calendar-plus"
+                        class="p-button-info"
+                        [disabled]="datatable.selectedRow == null"
+                    >
+                    </basis-datatable-button>
+
+                    <basis-datatable-button
+                        name="excluir"
+                        bTooltip="Excluir"
+                        icon="pi pi-trash"
+                        class="p-button-info"
+                        [disabled]="datatable.selectedRow == null"
+                    >
+                    </basis-datatable-button>
+                </basis-datatable>
             </div>
         </div>
     </div>
-</div> 
+</div>
