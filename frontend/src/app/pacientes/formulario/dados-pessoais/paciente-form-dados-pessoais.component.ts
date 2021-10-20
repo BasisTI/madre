@@ -132,7 +132,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
     aoSelecionarUF() {
         this.formGroup.controls.naturalidadeId.setValue(null);
         this.naturalidadeService
-            .getListaDeNaturalidades(this.formGroup.value.ufId.id, '')
+            .pesquisaMunicipios(this.formGroup.value.ufId.id, '')
             .subscribe((res) => (this.naturalidades = res));
     }
 

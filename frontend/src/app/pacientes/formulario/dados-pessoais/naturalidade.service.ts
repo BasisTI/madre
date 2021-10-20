@@ -12,21 +12,11 @@ export class NaturalidadeService extends CrudServiceNuvem<number, Naturalidade> 
         super('pacientes/api/municipios', httpClient);
     }
 
-    getListaDeNaturalidades(idUf: number, nome: string): Observable<Naturalidade[]> {
-        let params = new HttpParams();
-        params = params.append('idUf', idUf.toString());
-        params = params.append('nome', nome);
-        params = params.set('size', '50');
-        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/naturalidade',{
-            params: params,
-        });
-    }
-
     pesquisaMunicipios(idUf: number, nome: string): Observable<Naturalidade[]> {
             let params = new HttpParams();
             params = params.append('ufId', idUf.toString());
             params = params.append('nome', nome);
-            params = params.set('size', '50');
+            params = params.set('size', '1000');
             return this.httpClient.get<Naturalidade[]>('pacientes/api/pesquisa/municipios',{
                 params: params,
             });
