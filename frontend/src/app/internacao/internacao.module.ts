@@ -39,7 +39,6 @@ import { ClinicaComponent } from './cadastro-clinicas/clinica/clinica.component'
 import { TipoDeUnidadeFuncionalComponent } from './components/tipo-de-unidade-funcional/tipo-de-unidade-funcional.component';
 import { FormularioDarAltaAoPacienteComponent } from './formulario-dar-alta-ao-paciente/formulario-dar-alta-ao-paciente.component';
 import { ListarDarAltaPacientesComponent } from './components/listar-dar-alta-pacientes/listar-dar-alta-pacientes.component';
-
 @NgModule({
     declarations: [
         SolicitacaoDeInternacaoComponent,

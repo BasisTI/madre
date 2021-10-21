@@ -1,14 +1,14 @@
 <div class="card">
     <h1>Lista de PAcientes Internados</h1>
 
-    <div class="p-grid">
+    <!-- <div class="p-grid">
         <div
             class="p-md-2 p-fluid"
             pTooltip="Informe a descrição do tipo de unidade funcional"
         >
             Prontuário
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" formControlName="nome" />
+                <input type="text" pInputText class="p-inputtext"/>
             </span>
         </div>
 
@@ -18,52 +18,42 @@
             >
                 Nome:
                 <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                    <input type="text" pInputText class="p-inputtext" formControlName="nome" />
+                    <input type="text" pInputText class="p-inputtext"/>
                 </span>
             </div>
-    </div>
+    </div> -->
 
-    <div class="p-col-12 p-grid">
+    <!-- <div class="p-col-12 p-grid">
         <div class="p-md-2">
             <button
                 pButton
                 type="button"
                 label="Pesquisar"
                 icon="pi pi-search"
-                (click)="lista()"
+                (click)="null"
                 [disabled]="null"
             ></button>
-        </div>
-
-        <div class="p-md-2 p-sm-12">
-            <button
-                pButton
-                type="button"
-                routerLink="/manter-dar-alta-ao-paciente"
-                label="Dar Alta"
-            >
-
-            </button>
-        </div>
-
-
+        </div> -->
 
     <div class="p-col-12 p-grid">
-       <basis-datatable>
-            <p-column header="Data Alta" field="null"></p-column>
-            <p-column header="Data Inter" field="null"></p-column>
+        <basis-datatable
+            [url]="seachUrl"
+            #datatable
+            [disableView]="true"
+            [disableEdit]="true"
+            [disableDelete]="true"
+            type="memory"
+            [value]="listaInternacoes"
+            sortField="brand"
+        >
+            <p-column header="Data Alta" field="dataDaAlta"></p-column>
+            <p-column header="Data Inter" field="dataDaInternacao"></p-column>
             <p-column header="Leito" field="leitoNome"></p-column>
             <p-column header="Quarto" field="null"></p-column>
             <p-column header="Unid Funcio" field="unidadeFuncionalNome"></p-column>
             <p-column header="Especialidade" field="especialidadeNome"></p-column>
             <p-column header="Conv/Plano" field="conveniDeSaudeNome"></p-column>
             <p-column header="Professor" field="null"></p-column>
-
-            <basis-datatable-button
-                name="acao" bTooltip="acao"
-                icon="pi pi-pencil" class="p-button-info" routerLink="internacao/formulario-dar-alta-ao-paciente">
-            </basis-datatable-button>
-       </basis-datatable>
-
+        </basis-datatable>
     </div>
 </div>

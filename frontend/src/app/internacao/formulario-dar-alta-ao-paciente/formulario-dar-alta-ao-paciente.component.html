@@ -8,7 +8,7 @@
         >
             Prontuário
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" formControlName="nome" />
+                <input type="text" pInputText class="p-inputtext"  />
             </span>
         </div>
 
@@ -18,7 +18,7 @@
         >
             Nome:
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" formControlName="nome" />
+                <input type="text" pInputText class="p-inputtext"/>
             </span>
       </div>
 
@@ -31,14 +31,19 @@
             pTooltip="Informe a descrição do tipo de alta administrativa"
 
             >
-            Tipo Alta Admin
-            <span class="md-inputfield p-float-label">
-            <input  type="text" pInputText class="p-inputtext"/>
+            Tipo de ALta
+            <span class="p-float-label">
+               <p-dropdown
+                [options]="tiposdeAltas"
+                placeholder="Selecione"
+                formControlName="tipoDeAlta"
+                >
+               </p-dropdown>
             </span>
 
         </div>
 
-        <div
+        <!-- <div
             class="p-md-1 p-fluid"
             pTooltip="Informe a descrição do atestado de óbito"
             >
@@ -48,7 +53,7 @@
                 <input type="text" pInputText class="p-inputtext"/>
             </span>
 
-        </div>
+        </div> -->
 
     </div>
 
@@ -73,7 +78,7 @@
 
         </div>
 
-        <div
+       <!--  <div
             class="p-md-2 p-fluid" style="margin-right: 50px;"
             pTooltip="Informe a descrição do tipo"
             >
@@ -83,7 +88,7 @@
                 <input type="text" pInputText class="p-inputtext"/>
             </span>
 
-        </div>
+        </div> -->
 
         <div class="p-md-2 p-sm-12" style="margin-top: 15px;">
 
@@ -99,14 +104,14 @@
                     [monthNavigator]="true"
                     formControlName="null"
                 ></p-calendar>
-                <label>Data e Hora Saida</label>
+                <label>Previsão de ALta</label>
             </span>
 
         </div>
 
     </div>
 
-    <div class="p-grid">
+    <!-- <div class="p-grid">
 
         <div
         class="p-md-2 p-fluid"
@@ -119,7 +124,7 @@
         </span>
 
           </div>
-    </div>
+    </div> -->
 
     <div class="p-col-12 p-grid" style="margin-bottom: 10px;">
 

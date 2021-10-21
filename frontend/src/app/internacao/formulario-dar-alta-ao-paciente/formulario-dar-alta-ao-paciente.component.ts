@@ -1,3 +1,7 @@
+import { TipoDeAltaDropdown } from './../models/dropdowns/tipo-de-alta.dropdown';
+import { DarAltaAoPaciente } from '@internacao/models/dar-alta-ao-paciente';
+import { FormularioDarAltaAoPacienteService } from './../services/formulario-dar-alta-ao-paciente.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioDarAltaAoPacienteComponent implements OnInit {
 
-  constructor( ) {}
-  ngOnInit(): void {
-  }
+  constructor( private fb: FormBuilder,
+                private formualrioDarAltaService: FormularioDarAltaAoPacienteService ) {}
+
+    tiposdeAltas = TipoDeAltaDropdown;
+
+    altaForm = this.fb.group({
+        tipoDeAlta: [null, Validators.required],
+    })
+
+    cadastra() {
+        let cadastro = this.altaForm.value
+
+        let darAlta: DarAltaAoPaciente = {
+            tipoDeAlta: cadastro.tipoDeAlta
+        }
+    }
 
 
+
+
+
+    ngOnInit(): void {}
 
 }

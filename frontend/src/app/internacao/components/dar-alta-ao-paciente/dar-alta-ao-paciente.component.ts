@@ -15,12 +15,4 @@ export class DarAltaAoPacienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public get alta():DarAltaAoPaciente {
-      return this.altaCadastrada
-  }
-
-  AltaSalva(salvarAlta: DarAltaAoPaciente){
-      this.altaCadastrada = salvarAlta;
-      console.log(salvarAlta);
-  }
 }
