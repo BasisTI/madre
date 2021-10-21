@@ -2,15 +2,15 @@
     <div class="p-col-12 p-grid">
         <div class="card card-w-title">
             <h1>Salas</h1>
-            <div class="p-grid">
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-4 p-col-12">
+            <div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
                         <label for="name">Indentificação da Sala</label>
                         <span class="md-inputfield p-float-label">
                             <input type="text" pInputText class="p-inputtext" [(ngModel)]="nome" />
                         </span>
                     </div>
-                    <div class="p-md-4 p-col-12">
+                    <div class="p-field p-col-12 p-md-6">
                         <label for="name">Localização da Sala</label>
                         <span class="md-inputfield p-float-label">
                             <input
@@ -22,11 +22,14 @@
                         </span>
                     </div>
                 </div>
-                <div class="p-col-12 p-grid">
-                    <app-unidade-funcional class="p-md-4" #unidadeFuncional></app-unidade-funcional>
+                <div class="p-fluid p-formgrid p-grid">
+                    <app-unidade-funcional
+                        class="p-field p-col-12 p-md-6"
+                        #unidadeFuncional
+                    ></app-unidade-funcional>
                     <div class="p-md-4 p-col-12">
                         <label>Ativo:</label>
-                        <div class="ativo">
+                        <div class="ativo p-field-checkbox">
                             <p-radioButton
                                 class="sim"
                                 [(ngModel)]="ativo"
