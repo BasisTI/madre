@@ -2,45 +2,50 @@
     <div class="p-grid p-fluid">
         <div class="p-col-12 p-grid">
             <div class="p-md-1">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-autoComplete [suggestions]="documentos" (completeMethod)="obterDocumentoPeloNumero($event)"
-                        [dropdown]="true" (onSelect)="aoSelecionarUmNumero($event)" field="numeroDocumento">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                    <p-autoComplete
+                        [suggestions]="documentos"
+                        (completeMethod)="obterDocumentoPeloNumero($event)"
+                        [dropdown]="true"
+                        (onSelect)="aoSelecionarUmNumero($event)"
+                        field="numeroDocumento"
+                    >
                     </p-autoComplete>
                     <label>Número</label>
                 </span>
             </div>
             <div class="p-md-1">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input pInputText type="text" formControlName="serie" />
                     <label>Série</label>
                 </span>
             </div>
             <div class="p-md-2">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input pInputText type="text" formControlName="tipoNotaFiscal" />
                     <label>Tipo de Nota Fiscal</label>
                 </span>
             </div>
             <div class="p-md-2">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input pInputText type="text" formControlName="dataEmissao" />
                     <label>Data de Emissão</label>
                 </span>
             </div>
             <div class="p-md-1">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input pInputText type="text" formControlName="dataEntrada" />
                     <label>Data de Entrada</label>
                 </span>
             </div>
             <div class="p-md-1">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input pInputText type="text" formControlName="valorTotal" />
                     <label>R$ Valor</label>
                 </span>
             </div>
             <div class="p-md-2">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input pInputText type="text" formControlName="valorComprometido" />
                     <label>Valor Comprometido</label>
                 </span>

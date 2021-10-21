@@ -1,4 +1,8 @@
-<div class="layout-wrapper" [ngClass]="{'p-input-filled': config.inputStyle === 'filled', 'p-ripple-disabled': !config.ripple,
+<div
+    class="layout-wrapper"
+    [ngClass]="{
+        'p-input-filled': config.inputStyle === 'filled',
+        'p-ripple-disabled': !config.ripple,
         'layout-menu-static': menuService.isStatic(),
         'layout-menu-overlay': menuService.isOverlay(),
         'layout-menu-horizontal': menuService.isHorizontal(),
@@ -6,9 +10,10 @@
         'layout-menu-active': menuActive,
         'layout-menu-mobile-active': mobileMenuActive,
         'layout-topbar-mobile-active': mobileTopbarActive,
-        'layout-rtl': config.isRTL}" [class]="'layout-menu-' + config.menuTheme + ' layout-topbar-' + config.topbarTheme">
-
-       
+        'layout-rtl': config.isRTL
+    }"
+    [class]="'layout-menu-' + config.menuTheme + ' layout-topbar-' + config.topbarTheme"
+>
     <app-topbar></app-topbar>
 
     <div class="menu-wrapper" (click)="onMenuClick($event)">
@@ -19,11 +24,11 @@
 
     <div class="layout-main">
         <div class="layout-content">
-           <!-- <breadcrumb></breadcrumb> --> 
+            <!-- <breadcrumb></breadcrumb> -->
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>
-    </div>  
+    </div>
     <basis-page-notification></basis-page-notification>
     <div class="layout-mask"></div>
 </div>

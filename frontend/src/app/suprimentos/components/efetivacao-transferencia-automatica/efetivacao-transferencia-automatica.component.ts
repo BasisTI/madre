@@ -1,15 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-efetivacao-transferencia-automatica',
     templateUrl: './efetivacao-transferencia-automatica.component.html',
 })
 export class EfetivacaoTransferenciaAutomaticaComponent implements OnInit {
+    constructor() {}
 
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
-
+    ngOnInit(): void {}
 }

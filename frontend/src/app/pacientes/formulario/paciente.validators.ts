@@ -1,9 +1,7 @@
-
-import { FormGroup, ValidationErrors, AbstractControl, ValidatorFn } from "@angular/forms";
+import { FormGroup, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
 
 export class PacienteValidators {
-
-    static validarNumero(control: AbstractControl) : ValidationErrors | null {
+    static validarNumero(control: AbstractControl): ValidationErrors | null {
         let cns = control.value;
         cns = cns.replace(/\D/g, '');
 
@@ -23,14 +21,16 @@ export class PacienteValidators {
         return soma % 11 === 0 ? null : { customCns: true };
     }
 
-    static nomeDoResponsavelAndObservacaoRequired(control: AbstractControl): ValidationErrors | null {
+    static nomeDoResponsavelAndObservacaoRequired(
+        control: AbstractControl,
+    ): ValidationErrors | null {
         if (
             control.parent &&
             (control.parent.get('nomeDoResponsavel').value ||
                 control.parent.get('observacao').value) &&
             !control.value
         ) {
-            return { 'required': true };
+            return { required: true };
         }
 
         return null;
@@ -76,5 +76,4 @@ export class PacienteValidators {
         }
         return null;
     }
-
 }

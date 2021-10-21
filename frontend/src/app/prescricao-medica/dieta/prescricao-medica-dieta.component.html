@@ -14,8 +14,12 @@
                             </div>
                             <div class="p-md-6">
                                 <span class="md-inputfield p-float-label">
-                                    <p-calendar [locale]="calendarLocale" formControlName="dataPrescricao"
-                                        dateFormat="dd/mm/yy" disabled="true">
+                                    <p-calendar
+                                        [locale]="calendarLocale"
+                                        formControlName="dataPrescricao"
+                                        dateFormat="dd/mm/yy"
+                                        disabled="true"
+                                    >
                                     </p-calendar>
                                     <label>Data Prescrição</label>
                                 </span>
@@ -25,8 +29,14 @@
                         <div class="p-col-12 p-grid">
                             <div class="p-md-12">
                                 <span class="md-inputfield p-float-label">
-                                    <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
-                                        id="observacao" formControlName="observacao"></textarea>
+                                    <textarea
+                                        [rows]="6"
+                                        [cols]="30"
+                                        pInputTextarea
+                                        autoResize="autoResize"
+                                        id="observacao"
+                                        formControlName="observacao"
+                                    ></textarea>
                                     <label>Observações</label>
                                 </span>
                             </div>
@@ -37,17 +47,28 @@
                                 <label>Bomba Infusão?</label>
                             </div>
                             <div class="p-md-1">
-                                <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao"
-                                    formControlName="bombaInfusao" pRadioButton>
+                                <p-radioButton
+                                    id="sim"
+                                    type="radio"
+                                    value="true"
+                                    name="bombaInfusao"
+                                    formControlName="bombaInfusao"
+                                    pRadioButton
+                                >
                                 </p-radioButton>
                                 <label class="p-ml-2">Sim</label>
                             </div>
                             <div class="p-md-1">
-                                <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao"
-                                    formControlName="bombaInfusao" pRadioButton>
+                                <p-radioButton
+                                    id="nao"
+                                    type="radio"
+                                    value="false"
+                                    name="bombaInfusao"
+                                    formControlName="bombaInfusao"
+                                    pRadioButton
+                                >
                                 </p-radioButton>
                                 <label class="p-ml-2">Não</label>
-
                             </div>
                         </div>
                     </div>
@@ -58,12 +79,17 @@
                 <form [formGroup]="itemPrescricaoDieta" (ngSubmit)="incluirItem()">
                     <div class="p-grid">
                         <div class="p-col-12 p-grid">
-
                             <div class="p-md-12">
                                 <span class="md-inputfield p-float-label">
-                                    <p-dropdown [autoWidth]="false" [filter]="true"
+                                    <p-dropdown
+                                        [autoWidth]="false"
+                                        [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado."
-                                        [options]="tiposItens" formControlName="tipoItemDieta" required #descricaoItem>
+                                        [options]="tiposItens"
+                                        formControlName="tipoItemDieta"
+                                        required
+                                        #descricaoItem
+                                    >
                                     </p-dropdown>
                                     <label>Tipo Item</label>
                                 </span>
@@ -80,14 +106,17 @@
 
                             <div class="p-md-6">
                                 <span class="md-inputfield p-float-label">
-                                    <p-dropdown [autoWidth]="false" [filter]="true"
+                                    <p-dropdown
+                                        [autoWidth]="false"
+                                        [filter]="true"
                                         emptyFilterMessage="Nenhum registro encontrado."
-                                        [options]="listaUnidadeDieta" formControlName="tipoUnidadeDieta">
+                                        [options]="listaUnidadeDieta"
+                                        formControlName="tipoUnidadeDieta"
+                                    >
                                     </p-dropdown>
                                     <label>Unidade</label>
                                 </span>
                             </div>
-
                         </div>
 
                         <div class="p-col-12 p-grid">
@@ -100,9 +129,14 @@
 
                             <div class="p-md-5">
                                 <span class="md-inputfield p-float-label">
-                                    <p-dropdown [autoWidth]="false" [filter]="true"
-                                        emptyFilterMessage="Nenhum registro encontrado." [options]="tiposAprazamentos"
-                                        formControlName="tipoAprazamento" #descricaoAprazamento>
+                                    <p-dropdown
+                                        [autoWidth]="false"
+                                        [filter]="true"
+                                        emptyFilterMessage="Nenhum registro encontrado."
+                                        [options]="tiposAprazamentos"
+                                        formControlName="tipoAprazamento"
+                                        #descricaoAprazamento
+                                    >
                                     </p-dropdown>
                                     <label>Aprazamento</label>
                                 </span>
@@ -116,38 +150,77 @@
                             </div>
                         </div>
                         <div class="p-md-6">
-                            <button label="Adicionar" pButton name="adicionar-item" type="submit"
-                                [disabled]="itemPrescricaoDieta.invalid">
-                            </button>
+                            <button
+                                label="Adicionar"
+                                pButton
+                                name="adicionar-item"
+                                type="submit"
+                                [disabled]="itemPrescricaoDieta.invalid"
+                            ></button>
                         </div>
 
                         <div class="p-col-12 p-grid"></div>
 
                         <div class="p-col-12 p-grid">
-                            <basis-datatable [verticalButtons]="false" type="memory" [value]="itensDieta" [disableView]="true"
-                                [disableEdit]="true" [disableDelete]="true">
+                            <basis-datatable
+                                [verticalButtons]="false"
+                                type="memory"
+                                [value]="itensDieta"
+                                [disableView]="true"
+                                [disableEdit]="true"
+                                [disableDelete]="true"
+                            >
                                 <p-column header="Item" field="tipoItemDieta">
-                                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                    <ng-template
+                                        let-col="col"
+                                        let-rowData="rowData"
+                                        pTemplate="body"
+                                    >
                                         <span>
-                                            {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                            {{
+                                                rowData[col.field] === null ||
+                                                rowData[col.field] === undefined
+                                                    ? undefined
+                                                    : rowData[col.field].descricao
+                                            }}</span
+                                        >
                                     </ng-template>
                                 </p-column>
                                 <p-column header="Quantidade" field="quantidade"></p-column>
                                 <p-column header="Unidade" field="tipoUnidadeDieta">
-                                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                    <ng-template
+                                        let-col="col"
+                                        let-rowData="rowData"
+                                        pTemplate="body"
+                                    >
                                         <span>
-                                            {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].sigla }}</span>
+                                            {{
+                                                rowData[col.field] === null ||
+                                                rowData[col.field] === undefined
+                                                    ? undefined
+                                                    : rowData[col.field].sigla
+                                            }}</span
+                                        >
                                     </ng-template>
                                 </p-column>
                                 <p-column header="Frequência" field="frequencia"></p-column>
                                 <p-column header="Aprazamento" field="tipoAprazamento">
-                                    <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                    <ng-template
+                                        let-col="col"
+                                        let-rowData="rowData"
+                                        pTemplate="body"
+                                    >
                                         <span>
-                                            {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                            {{
+                                                rowData[col.field] === null ||
+                                                rowData[col.field] === undefined
+                                                    ? undefined
+                                                    : rowData[col.field].descricao
+                                            }}</span
+                                        >
                                     </ng-template>
                                 </p-column>
                                 <p-column header="Número vezes" field="numeroVezes"></p-column>
-
                             </basis-datatable>
                         </div>
                     </div>
@@ -157,9 +230,7 @@
 
         <div class="p-col-12 p-grid">
             <div class="p-md-6">
-                <button pButton type="submit" label="Prescrever">
-                </button>
-
+                <button pButton type="submit" label="Prescrever"></button>
             </div>
         </div>
     </form>

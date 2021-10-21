@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DatatableClickEvent } from '@nuvem/primeng-components';
 import { RequisicaoMaterialService } from '@suprimentos/services/requisicao-material.service';
 
@@ -11,7 +10,6 @@ export class RequisicaoMaterialNaoEfetivadaComponent implements OnInit {
     public url: string;
 
     constructor(
-        private router: Router,
         private requisicaoMaterialService: RequisicaoMaterialService,
     ) {}
 

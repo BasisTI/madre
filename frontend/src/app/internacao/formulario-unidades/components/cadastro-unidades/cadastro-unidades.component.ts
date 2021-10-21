@@ -10,7 +10,6 @@ import { Unidade } from './../../models/unidade';
 import { Almoxarifado } from './../../models/dropwdowns/almoxarifado';
 import { CaracteristicaService } from './../../services/caracteristica.service';
 import { Caracteristica } from './../../models/dropwdowns/caracteristicas';
-import { OPCOES_DE_UNIDADE_TEMPO } from './../../models/dropwdowns/types/opcoes-de-unidade-tempo';
 import { OPCOES_DE_SITUACOES } from './../../models/dropwdowns/types/opcoes-de-situacoes';
 import { TipoUnidadeService } from './../../services/tipo-unidade.service';
 import { TipoUnidade } from './../../models/dropwdowns/TipoUnidade';

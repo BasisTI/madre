@@ -52,19 +52,15 @@ export class ConsultaCalendarioComponent implements OnInit, OnDestroy {
                 console.log(' !!!');
             },
 
-    
             events: (events) => {
-               this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
+                this.consultaService.obterConsultaCalendario().subscribe((eventos) => {
                     eventos.forEach((element) => {
-    
-                     element.url = `#/consulta/detalha-consulta/${element.id}`;
-                     
+                        element.url = `#/consulta/detalha-consulta/${element.id}`;
                     });
-                   this.events = eventos
+                    this.events = eventos;
                 });
             },
         };
-
     }
 
     ngOnDestroy(): void {

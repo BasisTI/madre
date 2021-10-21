@@ -6,25 +6,22 @@ import { OcupacaoDeCargo } from '../models/dropdowns/ocupacao-de-cargo';
 import { OcupacoesDeCargoModel } from '../models/ocupacoes-de-cargo-model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class OcupacoesDeCargoService{
+export class OcupacoesDeCargoService {
+    private readonly resource = `${api}/ocupacao-de-cargos`;
 
-  private readonly resource = `${api}/ocupacao-de-cargos`;
+    constructor(private client: HttpClient) {}
 
+    alterarOcupacoesDeCargo(ocupacoesDeCargo: OcupacoesDeCargoModel): Observable<any> {
+        return this.client.put(`${this.resource}`, ocupacoesDeCargo);
+    }
 
-  constructor(private client: HttpClient) {}
+    cadastrarOcupacoesDeCargo(ocupacoesDeCargo) {
+        return this.client.post(this.resource, ocupacoesDeCargo);
+    }
 
-  alterarOcupacoesDeCargo(ocupacoesDeCargo: OcupacoesDeCargoModel): Observable<any> {
-    return this.client.put(`${this.resource}`, ocupacoesDeCargo);
-  }
-
-  cadastrarOcupacoesDeCargo(ocupacoesDeCargo) {
-    return this.client.post(this.resource, ocupacoesDeCargo);
-  }
-
-  getOcupacoesDeCargo():Observable<Array<OcupacaoDeCargo>> {
-    return this.client.get<Array<OcupacaoDeCargo>>(`${this.resource}`);
-}
-  
+    getOcupacoesDeCargo(): Observable<Array<OcupacaoDeCargo>> {
+        return this.client.get<Array<OcupacaoDeCargo>>(`${this.resource}`);
+    }
 }

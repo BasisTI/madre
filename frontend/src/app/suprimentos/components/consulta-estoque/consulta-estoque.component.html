@@ -6,35 +6,48 @@
                 <form [formGroup]="consultaForm" class="p-md-12">
                     <div class="p-col-12 p-grid">
                         <div class="p-md-3">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-autoComplete [suggestions]="almoxarifados"
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                                <p-autoComplete
+                                    [suggestions]="almoxarifados"
                                     (completeMethod)="obterAlmoxarifadoPorDescricao($event.query)"
-                                    [forceSelection]="true" [dropdown]="true" formControlName="almoxarifado"
-                                    field="descricao"></p-autoComplete>
+                                    [forceSelection]="true"
+                                    [dropdown]="true"
+                                    formControlName="almoxarifado"
+                                    field="descricao"
+                                ></p-autoComplete>
                                 <label>Almoxarifado</label>
                             </span>
                         </div>
                         <div class="p-md-3">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-autoComplete [suggestions]="fornecedores"
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                                <p-autoComplete
+                                    [suggestions]="fornecedores"
                                     (completeMethod)="getFornecedoresPorNomeFantasia($event.query)"
-                                    [forceSelection]="true" [dropdown]="true" formControlName="fornecedor"
-                                    field="nomeFantasia"></p-autoComplete>
+                                    [forceSelection]="true"
+                                    [dropdown]="true"
+                                    formControlName="fornecedor"
+                                    field="nomeFantasia"
+                                ></p-autoComplete>
                                 <label>Fornecedor</label>
                             </span>
                         </div>
                     </div>
                     <div class="p-col-12 p-grid">
                         <div class="p-md-2">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-autoComplete [suggestions]="materiais"
-                                    (completeMethod)="obterMateriaisPorNome($event.query)" [forceSelection]="true"
-                                    [dropdown]="true" formControlName="material" field="nome"></p-autoComplete>
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                                <p-autoComplete
+                                    [suggestions]="materiais"
+                                    (completeMethod)="obterMateriaisPorNome($event.query)"
+                                    [forceSelection]="true"
+                                    [dropdown]="true"
+                                    formControlName="material"
+                                    field="nome"
+                                ></p-autoComplete>
                                 <label>Material</label>
                             </span>
                         </div>
                         <div class="p-md-2">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
                                 <input type="text" pInputText class="p-inputtext" disabled />
                                 <label>Termo Livre</label>
                             </span>
@@ -42,51 +55,85 @@
                         <div class="p-md-1">
                             <label>Estocável</label>
                             <div class="p-col-12 p-grid">
-                                <p-radioButton name="estocavel" [value]="true" label="Sim" formControlName="estocavel">
+                                <p-radioButton
+                                    name="estocavel"
+                                    [value]="true"
+                                    label="Sim"
+                                    formControlName="estocavel"
+                                >
                                 </p-radioButton>
                             </div>
                             <div class="p-col-12 p-grid">
-                                <p-radioButton name="estocavel" [value]="false" formControlName="estocavel" label="Não">
+                                <p-radioButton
+                                    name="estocavel"
+                                    [value]="false"
+                                    formControlName="estocavel"
+                                    label="Não"
+                                >
                                 </p-radioButton>
                             </div>
                         </div>
                         <div class="p-md-1">
                             <label>Ativo</label>
                             <div class="p-col-12 p-grid">
-                                <p-radioButton name="ativo" [value]="true" label="Sim" formControlName="ativo">
+                                <p-radioButton
+                                    name="ativo"
+                                    [value]="true"
+                                    label="Sim"
+                                    formControlName="ativo"
+                                >
                                 </p-radioButton>
                             </div>
                             <div class="p-col-12 p-grid">
-                                <p-radioButton name="ativo" [value]="false" label="Não" formControlName="ativo">
+                                <p-radioButton
+                                    name="ativo"
+                                    [value]="false"
+                                    label="Não"
+                                    formControlName="ativo"
+                                >
                                 </p-radioButton>
                             </div>
                         </div>
                     </div>
                     <div class="p-col-12 p-grid">
                         <div class="p-md-2">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-autoComplete [suggestions]="unidadesMedida"
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                                <p-autoComplete
+                                    [suggestions]="unidadesMedida"
                                     (completeMethod)="obterUnidadeMedidaPorDescricao($event.query)"
-                                    [forceSelection]="true" [dropdown]="true" formControlName="unidade"
-                                    [disabled]="consultaForm.value.material" field="descricao"></p-autoComplete>
+                                    [forceSelection]="true"
+                                    [dropdown]="true"
+                                    formControlName="unidade"
+                                    [disabled]="consultaForm.value.material"
+                                    field="descricao"
+                                ></p-autoComplete>
                                 <label>Unidade</label>
                             </span>
                         </div>
                         <div class="p-md-2">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-autoComplete [suggestions]="grupos"
-                                    (completeMethod)="obterGruposPorDescricao($event.query)" [forceSelection]="true"
-                                    [dropdown]="true" formControlName="grupo" [disabled]="consultaForm.value.material"
-                                    field="descricao"></p-autoComplete>
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                                <p-autoComplete
+                                    [suggestions]="grupos"
+                                    (completeMethod)="obterGruposPorDescricao($event.query)"
+                                    [forceSelection]="true"
+                                    [dropdown]="true"
+                                    formControlName="grupo"
+                                    [disabled]="consultaForm.value.material"
+                                    field="descricao"
+                                ></p-autoComplete>
                                 <label>Grupo</label>
                             </span>
                         </div>
                         <div class="p-md-2">
-                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                <p-autoComplete [suggestions]="classificacoes"
-                                    (completeMethod)="getClassificacoesPorDescricao($event.query)" [dropdown]="true"
-                                    formControlName="classificacao" [disabled]="consultaForm.value.material"
-                                    field="descricao"></p-autoComplete>
+                            <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                                <p-autoComplete
+                                    [suggestions]="classificacoes"
+                                    (completeMethod)="getClassificacoesPorDescricao($event.query)"
+                                    [dropdown]="true"
+                                    formControlName="classificacao"
+                                    [disabled]="consultaForm.value.material"
+                                    field="descricao"
+                                ></p-autoComplete>
                                 <label>Classificação Material</label>
                             </span>
                         </div>
@@ -94,15 +141,33 @@
                 </form>
                 <div class="p-col-12 p-grid p-jc-center">
                     <div class="p-md-3">
-                        <button pButton type="button" label="Pesquisar" icon="pi pi-search"
-                            (click)="pesquisar()"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="pi pi-search"
+                            (click)="pesquisar()"
+                        ></button>
                     </div>
                     <div class="p-md-3">
-                        <button pButton type="button" label="Limpar" icon="pi pi-minus" (click)="limpar()"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            icon="pi pi-minus"
+                            (click)="limpar()"
+                        ></button>
                     </div>
                 </div>
-                <basis-datatable [verticalButtons]="false" type="server" [url]="api" [disableDelete]="true" [disableEdit]="true"
-                    [disableView]="true" #datatable>
+                <basis-datatable
+                    [verticalButtons]="false"
+                    type="server"
+                    [url]="api"
+                    [disableDelete]="true"
+                    [disableEdit]="true"
+                    [disableView]="true"
+                    #datatable
+                >
                     <p-column header="Almox." field="nomeAlmoxarifado"> </p-column>
                     <p-column header="Forn." field="nomeFantasia"> </p-column>
                     <p-column header="Material" field="nomeMaterial"> </p-column>

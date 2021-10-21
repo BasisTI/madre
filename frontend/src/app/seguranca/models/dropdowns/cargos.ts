@@ -6,5 +6,4 @@ export interface ICargos {
 export class Cargos implements ICargos {
     public id: number;
     public descricao: string;
-
 }

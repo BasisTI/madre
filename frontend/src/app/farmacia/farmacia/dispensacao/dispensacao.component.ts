@@ -4,7 +4,13 @@ import { FarmaciaService } from './../farmacia.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { DatatableClickEvent, BreadcrumbService, DatatablePaginationParameters, DatatableComponent, PageNotificationService } from '@nuvem/primeng-components';
+import {
+    DatatableClickEvent,
+    BreadcrumbService,
+    DatatablePaginationParameters,
+    DatatableComponent,
+    PageNotificationService,
+} from '@nuvem/primeng-components';
 import { ElasticQuery } from 'src/app/shared/elastic-query';
 
 @Component({
@@ -13,11 +19,10 @@ import { ElasticQuery } from 'src/app/shared/elastic-query';
     styleUrls: ['./dispensacao.component.css'],
 })
 export class DispensacaoComponent implements OnInit {
-
     paginationParameters: DatatablePaginationParameters;
     @ViewChild(DatatableComponent) dataTable: DatatableComponent;
     tipoPrescricaoSelecionada: Prescricaos = new Prescricaos();
-    
+
     Prescricao: Prescricao[];
     data: Date;
     nome = '';
@@ -51,14 +56,15 @@ export class DispensacaoComponent implements OnInit {
             .getPrescricao(this.nome, this.dataInicio, this.local)
             .subscribe((res) => (this.Prescricao = res.content));
         this.dataInicio = '';
-        
     }
 
-    constructor(private service: FarmaciaService, 
-                private breadcrumbService: BreadcrumbService,
-                private pageNotificationService: PageNotificationService,
-                private router: Router,
-                private confirmationService: ConfirmationService) {}
+    constructor(
+        private service: FarmaciaService,
+        private breadcrumbService: BreadcrumbService,
+        private pageNotificationService: PageNotificationService,
+        private router: Router,
+        private confirmationService: ConfirmationService,
+    ) {}
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
@@ -68,17 +74,15 @@ export class DispensacaoComponent implements OnInit {
         this.service
             .getPrescricao(this.nome, this.dataInicio, this.local)
             .subscribe((res) => (this.Prescricao = res.content));
-            this.listar();
+        this.listar();
     }
 
     public limparPesquisa() {
-        
         this.nome = '';
         this.dataInicio = '';
         this.data = null;
         this.listar();
     }
-
 
     abrirEditar(tipoPrescricaoSelecionada: Prescricaos) {
         this.router.navigate(['/dispensacao-medica', tipoPrescricaoSelecionada.id, 'edit']);
@@ -90,13 +94,13 @@ export class DispensacaoComponent implements OnInit {
 
     confirmDelete(tipoPrescricaoSelecionada: Prescricaos) {
         this.confirmationService.confirm({
-            message: "Tem certeza que deseja excluir o registro?",
+            message: 'Tem certeza que deseja excluir o registro?',
             accept: () => {
-                    this.service.deleteP(tipoPrescricaoSelecionada.id).subscribe(() => {
+                this.service.deleteP(tipoPrescricaoSelecionada.id).subscribe(() => {
                     this.pageNotificationService.addDeleteMsg();
                     this.listar();
                 });
-            }
+            },
         });
     }
 
@@ -111,7 +115,7 @@ export class DispensacaoComponent implements OnInit {
             }
             default: {
                 break;
-             }
+            }
         }
     }
 }

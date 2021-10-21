@@ -11,7 +11,7 @@
                         <label>Nome</label>
                     </span>
                 </div>
-    
+
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
                         <p-calendar dateFormat="yy-mm-dd" [(ngModel)]="data"></p-calendar>
@@ -21,60 +21,37 @@
             </div>
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
-                    <button
-                        pButton
-                        type="button"
-                        label="Pesquisar"
-                        icon="pi pi-search"
-                        (click)="listar()"
-                    ></button>
+                    <button pButton type="button" label="Pesquisar" icon="pi pi-search" (click)="listar()"></button>
                 </div>
                 <div class="p-md-2 p-sm-12">
-                    <button 
-                        pButton type="button"
-                        label="Limpar"
-                        (click)="limparPesquisa()">
+                    <button pButton type="button" label="Limpar" (click)="limparPesquisa()">
                     </button>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <button pButton type="button" label="Exportar"></button>
                 </div>
             </div>
-            <basis-datatable type="memory" 
-                    [value]="Prescricao" 
-                    sortField="brand"
-                    [disableView]="true"
-                    [disableEdit]="true"
-                    [disableDelete]="true"
-                    (buttonClick)="btnClick($event)"
-                    #datatable>
-    
+            <basis-datatable type="memory" [value]="Prescricao" sortField="brand" [disableView]="true"
+                [disableEdit]="true" [disableDelete]="true" (buttonClick)="btnClick($event)" #datatable>
+
                 <p-column header="Paciente" field="nome" [sortable]="true"></p-column>
                 <p-column header="Início Prescrição" field="dataInicio"></p-column>
-            
-                <basis-datatable-button
-                    ng-reflect-b-tooltip="Escolha um registro para visualizar"
-                    class="ng-star-inserted"
-                    [disabled]="datatable.selectedRow == null"
-                    name="view"
-                    icon="pi pi-eye">
+
+                <basis-datatable-button ng-reflect-b-tooltip="Escolha um registro para visualizar"
+                    class="ng-star-inserted" [disabled]="datatable.selectedRow == null" name="view" icon="pi pi-eye">
                 </basis-datatable-button>
-            
-                <basis-datatable-button
-                    class="p-button-danger"
-                    [disabled]="datatable.selectedRow == null"
-                    (buttonClick)="btnClick($event)"
-                    name="delete"
-                    icon="pi pi-trash">
-                </basis-datatable-button>        
+
+                <basis-datatable-button class="p-button-danger" [disabled]="datatable.selectedRow == null"
+                    (buttonClick)="btnClick($event)" name="delete" icon="pi pi-trash">
+                </basis-datatable-button>
             </basis-datatable>
-        
-        <p-confirmDialog #dialog header="Confirmação" icon="pi pi-exclamation-triangle">
-            <p-footer>
-                <button type="button" pButton icon="pi pi-times" label="Não" (click)="dialog.reject()"></button>
-                <button type="button" pButton icon="pi pi-check" label="Sim" (click)="dialog.accept()"></button>
-            </p-footer>
-        </p-confirmDialog>
+
+            <p-confirmDialog #dialog header="Confirmação" icon="pi pi-exclamation-triangle">
+                <p-footer>
+                    <button type="button" pButton icon="pi pi-times" label="Não" (click)="dialog.reject()"></button>
+                    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="dialog.accept()"></button>
+                </p-footer>
+            </p-confirmDialog>
         </div>
     </div>
 </div>

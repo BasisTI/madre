@@ -8,13 +8,16 @@ import { PacienteFormComponent } from './paciente-form.component';
 import { PacienteListComponent } from './paciente-list.component';
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      crudRouteBuilder("paciente", PacienteComponent, PacienteListComponent, PacienteFormComponent)
-    ])
-  ],
-  exports: [
-    RouterModule
-  ]
+    imports: [
+        RouterModule.forChild([
+            crudRouteBuilder(
+                'paciente',
+                PacienteComponent,
+                PacienteListComponent,
+                PacienteFormComponent,
+            ),
+        ]),
+    ],
+    exports: [RouterModule],
 })
-export class PacienteRoutingModule { }
+export class PacienteRoutingModule {}
