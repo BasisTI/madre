@@ -253,7 +253,7 @@ export class AppComponent implements AfterViewInit, OnInit {
                                             {
                                                 label: 'Salas',
                                                 icon: 'add',
-                                                routerLink: ['exames/formulario-salas'],
+                                                routerLink: ['exames/formulario-sala'],
                                             },
                                             {
                                                 label: 'Tipos de Marcação',
