@@ -3,7 +3,9 @@ package br.com.basis.madre.web.rest;
 import br.com.basis.madre.service.MunicipioService;
 import br.com.basis.madre.service.dto.FiltroPesquisaMunicipio;
 import br.com.basis.madre.service.dto.MunicipioDTO;
+import br.com.basis.madre.service.dto.PaginationDTO;
 import br.com.basis.madre.service.projection.MunicipioUF;
+import br.com.basis.madre.web.rest.util.ResponsePaginationUtil;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -41,6 +43,8 @@ public class MunicipioResource {
 
     private final Logger log = LoggerFactory.getLogger(MunicipioResource.class);
 
+    ResponsePaginationUtil responsePaginationUtil;
+
     private static final String ENTITY_NAME = "pacientesMunicipio";
 
     @Value("${jhipster.clientApp.name}")
@@ -48,8 +52,9 @@ public class MunicipioResource {
 
     private final MunicipioService municipioService;
 
-    public MunicipioResource(MunicipioService municipioService) {
+    public MunicipioResource(MunicipioService municipioService, ResponsePaginationUtil responsePaginationUtil) {
         this.municipioService = municipioService;
+        this.responsePaginationUtil = responsePaginationUtil;
     }
 
     /**
@@ -161,10 +166,11 @@ public class MunicipioResource {
      * @return the result of the search.
      */
     @GetMapping("/pesquisa/municipios")
-    public ResponseEntity<List<MunicipioDTO>> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
+    public ResponseEntity<PaginationDTO> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
         Page<MunicipioDTO> page = municipioService
             .findMunicipioComFiltro(filtro ,pageable);
-        return ResponseEntity.ok(page.getContent());
+        PaginationDTO paginationDTO = responsePaginationUtil.generatePagination(page, "/api/pesquisa/municipios", page.getContent(), filtro);
+        return ResponseEntity.ok(paginationDTO);
 
     }
 
