@@ -2,7 +2,7 @@
     <div class="p-col-12">
         <h4 class="p-md-12 p-sm-12" >Dados Pessoais</h4>
     </div>
-    
+
     <div class="p-col-8 p-grid">
         <div nInputText label="Nome Completo" formControlName="nome" class="p-md-5 p-sm-12"></div>
         <div nInputText label="Nome Social" formControlName="nomeSocial" class="p-md-4 p-sm-12"></div>
@@ -34,8 +34,7 @@
         </div>
         <div nAutoComplete [service]="nacionalidadeService" field="valor" formControlName="nacionalidadeId" label="Nacionalidade" class="p-md-4 p-sm-12"></div>
     </div>
-   
-    
+
     <div class="p-col-8 p-grid">
         <div class="p-md-2 p-sm-12">
             <span class="p-float-label">
@@ -50,13 +49,14 @@
                 ></p-dropdown>
             </span>
         </div>
-        
+
         <div class="p-md-2 p-sm-12">
             <span class="md-inputfield p-float-label">
                 <p-autoComplete
                     (completeMethod)="searchUnidade($event)"
                     [disabled]="!formGroup.value.ufId"
                     field="nome"
+                    [onHide]="onHideAutocomplete()"
                     [suggestions]="naturalidades"
                     [dropdown]="true"
                     formControlName="naturalidadeId">
@@ -73,5 +73,5 @@
         <div nAutoComplete [service]="religiaoService" field="valor" formControlName="religiaoId" label="Religião" class="p-md-4 p-sm-12"></div>
         <div nInputText maxlength="254" type="email" label="E-mail" formControlName="email" class="p-md-8 p-sm-12"></div>
     </div>
-    
+
 </div>

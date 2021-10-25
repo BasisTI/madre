@@ -1,7 +1,8 @@
 import { UfService } from './uf.service';
 import { Naturalidade } from './../../models/dropdowns/types/naturalidade';
+import { Pagination } from './../../../shared/pagination';
 import { UF } from './../../models/dropdowns/types/uf';
-import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import { AfterViewInit, Component, Input, OnInit, Renderer2 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 import * as moment from 'moment';
@@ -17,6 +18,9 @@ import { NaturalidadeService } from "./naturalidade.service";
 import { OcupacaoService } from "./ocupacao.service";
 import { ReligiaoService } from "./religiao.service";
 import { DateComponent } from '@fullcalendar/core';
+
+import { FiltroMunicipioModel } from './../../models/municipio.filtro.model';
+
 
 @Component({
     selector: 'paciente-form-dados-pessoais',
@@ -35,8 +39,13 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
 
     ufs: UF[] = [];
     naturalidades: Naturalidade[] = [];
+    filtroMunicipioModel: FiltroMunicipioModel;
+    pagination: Pagination<any, any>;
+    isListen: boolean = false;
+    pagesGet: Array<number> = [];
 
     constructor(
+        private renderer: Renderer2,
         public racaService: RacaService,
         public etniaService: EtniaService,
         public estadoCivilService: EstadoCivilService,
@@ -129,19 +138,87 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
         this.idade = '';
     }
 
+
     aoSelecionarUF() {
-        this.formGroup.controls.naturalidadeId.setValue(null);
+       this.formGroup.controls.naturalidadeId.setValue(null);
         this.naturalidadeService
-            .pesquisaMunicipios(this.formGroup.value.ufId.id, '')
-            .subscribe((res) => (this.naturalidades = res));
+            .pesquisaMunicipios(this.formGroup.value.ufId.id, '', 0)
+            .subscribe((res) => {
+                this.pagination = res;
+                this.naturalidades = res.content;
+                if(! this.isListen){
+                    this.listenScrollPanel();
+                }
+            });
     }
 
     searchUnidade(event) {
-        this.naturalidadeService
-            .pesquisaMunicipios(this.formGroup.value.ufId.id, this.formGroup.value.naturalidadeId.nome ? this.formGroup.value.naturalidadeId.nome : this.formGroup.value.naturalidadeId)
-            .subscribe((res) => {
-                this.naturalidades = res;
-            });
+
+        const page = this.getPage();
+
+        if(page !== null && !this.pagesGet.includes(page)){
+            //adiciona a pagina no array pagesGet para evitar requests multiplos para a mesma pagina;
+            this.pagesGet.push(page);
+
+            //busca os dados do municipio pela pagina: page
+            this.naturalidadeService
+                .pesquisaMunicipios(this.formGroup.value.ufId.id, this.formGroup.value.naturalidadeId ? this.formGroup.value.naturalidadeId.nome ? this.formGroup.value.naturalidadeId.nome : this.formGroup.value.naturalidadeId : '', page)
+                .subscribe((res) => {
+                    this.pagination = res;
+                    if(this.pagination.currentPage > 0){
+                        //caso seja retornado a currentPage > 0, os dados retornados serão adicionado à naturalidades
+                        this.pagination.content.forEach((v) => {
+                            if(this.naturalidades.filter(e => e.id === v.id).length === 0){
+                                this.naturalidades.push(v)
+                            }
+                        });
+                        //Gera um evento click no input do autocomplete para atualizar os dados na lista do dropdown
+                        const input = <HTMLElement>document.body.querySelector(".p-component.ng-star-inserted.p-autocomplete-dd-input");
+                        input.click();
+                    }else{
+                        //caso seja retornado a currentPage = 0, naturalidades irá conter apenas os dados dessa página
+                        this.naturalidades = res.content;
+                    }
+                    if(! this.isListen){
+                        this.listenScrollPanel();
+                    }
+                });
+        }
+    }
+
+    listenScrollPanel() {
+        setTimeout(() => {
+            const panel = <HTMLElement>document.body.querySelector(".p-autocomplete-panel.p-component");
+            if (panel) {
+              this.renderer.listen(panel, 'scroll', event => {
+                if ((event.target.scrollHeight - event.target.clientHeight) === event.target.scrollTop) {
+                    //chama o método searchUnidade() para buscar a próxima página quando o scroll do autocomplete chegar ao fim
+                    this.searchUnidade(null);
+                }
+              });
+              this.isListen = true;
+            }
+        }, 1000);
+    }
+
+    getPage(){
+        var page = 0;
+        let nome: string = this.formGroup.value.naturalidadeId ? this.formGroup.value.naturalidadeId.nome ? this.formGroup.value.naturalidadeId.nome : this.formGroup.value.naturalidadeId : '';
+        if(this.pagination !== null && this.naturalidades !== null && this.pagination.params.ufId == this.formGroup.value.ufId.id && this.pagination.params.nome == nome){
+            page = this.pagination.nextPage;
+        }else{
+            this.resetPagesGet();
+        }
+        return page;
+    }
+
+    onHideAutocomplete(){
+        this.isListen = false;
+        this.pagesGet = [];
+    }
+
+    resetPagesGet(){
+        this.pagesGet = [];
     }
 
 }
