@@ -1,4 +1,4 @@
-import { BaseEntity } from "@shared/base-entity";
+import { BaseEntity } from '@shared/base-entity';
 
 export interface Medicamento {
     id: number;
@@ -29,17 +29,16 @@ export class Medicamentos implements BaseEntity {
         public ativo?: boolean,
 
         public apresentacao?: {
-            id: number,
+            id: number;
             nome: string;
         },
         public unidade?: {
-            id: number,
+            id: number;
             nome: string;
         },
         public tipo?: {
-            id: number,
+            id: number;
             nome: string;
         },
-    )
-    {}
+    ) {}
 }

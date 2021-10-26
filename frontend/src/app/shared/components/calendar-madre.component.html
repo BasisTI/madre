@@ -1,5 +1,12 @@
-<span #notification form-notification class="md-inputfield p-float-label" [name]="name" [form]="form">
-    <p-calendar #input
+<span
+    #notification
+    form-notification
+    class="md-inputfield p-float-label"
+    [name]="name"
+    [form]="form"
+>
+    <p-calendar
+        #input
         [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
         [name]="name"
         [formControl]="formControl"
@@ -10,7 +17,8 @@
         [monthNavigator]="monthNavigator"
         [yearNavigator]="yearNavigator"
         (onBlur)="onBlurEvent($event)"
-        (onSelect)="onSelectEvent($event)">
+        (onSelect)="onSelectEvent($event)"
+    >
     </p-calendar>
     <label [for]="name" [innerHTML]="label"></label>
     <nValidationMessage [control]="formControl" *ngIf="!notification.message"></nValidationMessage>

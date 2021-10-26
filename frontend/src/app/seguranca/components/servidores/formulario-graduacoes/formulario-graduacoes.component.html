@@ -5,9 +5,15 @@
             <div class="p-col-12 p-grid">
                 <div class="p-col-3">
                     <span class="p-float-label">
-                        <p-autoComplete field="matricula" [suggestions]="listaServidor"
-                            (completeMethod)="buscaServidor($event)" [dropdown]="true"
-                            formControlName="matriculaServidor" (onSelect)="aoSelecionarMatricula($event)" required>
+                        <p-autoComplete
+                            field="matricula"
+                            [suggestions]="listaServidor"
+                            (completeMethod)="buscaServidor($event)"
+                            [dropdown]="true"
+                            formControlName="matriculaServidor"
+                            (onSelect)="aoSelecionarMatricula($event)"
+                            required
+                        >
                         </p-autoComplete>
                         <label>Matrícula</label>
                     </span>
@@ -34,23 +40,37 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-6 p-lg-3">
                     <span class="p-float-label">
-                        <p-autoComplete field="descricao" [suggestions]="listaTiposDeQualificao"
-                            (completeMethod)="buscaCurso($event)" [dropdown]="true" formControlName="curso">
+                        <p-autoComplete
+                            field="descricao"
+                            [suggestions]="listaTiposDeQualificao"
+                            (completeMethod)="buscaCurso($event)"
+                            [dropdown]="true"
+                            formControlName="curso"
+                        >
                         </p-autoComplete>
                         <label>Curso</label>
                     </span>
                 </div>
                 <div class="p-md-6 p-lg-3">
                     <span class="p-float-label">
-                        <p-autoComplete field="descricao" [suggestions]="listaInstituicao"
-                            (completeMethod)="buscaInstituicao($event)" [dropdown]="true" formControlName="instituicao">
+                        <p-autoComplete
+                            field="descricao"
+                            [suggestions]="listaInstituicao"
+                            (completeMethod)="buscaInstituicao($event)"
+                            [dropdown]="true"
+                            formControlName="instituicao"
+                        >
                         </p-autoComplete>
                         <label>Instituição</label>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="situacaoDaGraduacao" formControlName="situacao" (click)="limpaCampos()">
+                        <p-dropdown
+                            [options]="situacaoDaGraduacao"
+                            formControlName="situacao"
+                            (click)="limpaCampos()"
+                        >
                         </p-dropdown>
                         <label>Situação</label>
                     </span>
@@ -65,29 +85,58 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="1900:2100"
-                            [showIcon]="true" inputId="icon" formControlName="anoInicio"></p-calendar>
+                        <p-calendar
+                            view="month"
+                            dateFormat="mm/yy"
+                            [yearNavigator]="true"
+                            yearRange="1900:2100"
+                            [showIcon]="true"
+                            inputId="icon"
+                            formControlName="anoInicio"
+                        ></p-calendar>
                         <label>Ano início</label>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
-                    <span class="p-float-label" *ngIf="formGraduacao.controls['situacao'].value == 'INTERROMPIDA' ||
-                        formGraduacao.controls['situacao'].value == 'CONCLUIDA'">
-                        <p-calendar view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="1900:2100"
-                            [showIcon]="true" inputId="icon" formControlName="anoFim" required></p-calendar>
+                    <span
+                        class="p-float-label"
+                        *ngIf="
+                            formGraduacao.controls['situacao'].value == 'INTERROMPIDA' ||
+                            formGraduacao.controls['situacao'].value == 'CONCLUIDA'
+                        "
+                    >
+                        <p-calendar
+                            view="month"
+                            dateFormat="mm/yy"
+                            [yearNavigator]="true"
+                            yearRange="1900:2100"
+                            [showIcon]="true"
+                            inputId="icon"
+                            formControlName="anoFim"
+                            required
+                        ></p-calendar>
                         <label>Ano fim</label>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
-                    <div class="p-float-label" *ngIf="formGraduacao.controls['situacao'].value == 'CONCLUIDA'">
-                        <input type="text" pInputText formControlName="nroRegConselho" required/>
+                    <div
+                        class="p-float-label"
+                        *ngIf="formGraduacao.controls['situacao'].value == 'CONCLUIDA'"
+                    >
+                        <input type="text" pInputText formControlName="nroRegConselho" required />
                         <label>Número de Registro do Conselho</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro" [disabled]="!valid()"></button>
+            <button
+                pButton
+                type="submit"
+                label="Salvar"
+                pTooltip="Salvar registro"
+                [disabled]="!valid()"
+            ></button>
         </div>
     </div>
 </form>

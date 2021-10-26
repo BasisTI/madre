@@ -1,8 +1,6 @@
 import {
     CrudModule,
-    CrudResolveGuard,
     DatatableModule,
-    PageNotificationModule,
 } from '@nuvem/primeng-components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -38,7 +36,7 @@ import { UnidadeFuncionalComponent } from './components/unidade-funcional/unidad
         MessageComponent,
         CidComponent,
         ArvoreComponent,
-        UnidadeFuncionalComponent
+        UnidadeFuncionalComponent,
     ],
 })
 export class SharedModule {}

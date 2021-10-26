@@ -8,25 +8,39 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-6">
                                     <span class="md-inputfield p-float-label">
-                                        <input formControlName="nome" type="text" pInputText disabled />
+                                        <input
+                                            formControlName="nome"
+                                            type="text"
+                                            pInputText
+                                            disabled
+                                        />
                                         <label>Paciente</label>
                                     </span>
                                 </div>
 
                                 <div class="p-md-6">
                                     <span class="md-inputfield p-float-label">
-                                        <p-calendar [locale]="calendarLocale" formControlName="dataPrescricao"
-                                            dateFormat="dd/mm/yy" disabled="true"></p-calendar>
+                                        <p-calendar
+                                            [locale]="calendarLocale"
+                                            formControlName="dataPrescricao"
+                                            dateFormat="dd/mm/yy"
+                                            disabled="true"
+                                        ></p-calendar>
                                         <label>Data Prescrição</label>
                                     </span>
                                 </div>
-
                             </div>
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-12">
                                     <span class="md-inputfield p-float-label">
-                                        <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
-                                            id="observacao" formControlName="observacao"></textarea>
+                                        <textarea
+                                            [rows]="6"
+                                            [cols]="30"
+                                            pInputTextarea
+                                            autoResize="autoResize"
+                                            id="observacao"
+                                            formControlName="observacao"
+                                        ></textarea>
                                         <label>Observações</label>
                                     </span>
                                 </div>
@@ -41,13 +55,23 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-8">
                                     <span class="md-inputfield p-float-label">
-                                        <p-autoComplete field="nome" [suggestions]="medicamentos"
+                                        <p-autoComplete
+                                            field="nome"
+                                            [suggestions]="medicamentos"
                                             (completeMethod)="carregarMedicamentos($event)"
-                                            formControlName="idMedicamento" [dropdown]="true" dataKey="id">
+                                            formControlName="idMedicamento"
+                                            [dropdown]="true"
+                                            dataKey="id"
+                                        >
                                         </p-autoComplete>
                                         <label>Medicamentos</label>
-                                        <app-message [control]="itemPrescricaoMedicamento.get('idMedicamento')"
-                                            error="required" text="Campo é obrigatório"></app-message>
+                                        <app-message
+                                            [control]="
+                                                itemPrescricaoMedicamento.get('idMedicamento')
+                                            "
+                                            error="required"
+                                            text="Campo é obrigatório"
+                                        ></app-message>
                                     </span>
                                 </div>
                             </div>
@@ -58,18 +82,24 @@
                                     <span class="md-inputfield p-float-label">
                                         <input type="number" pInputText formControlName="dose" />
                                         <label>Dose</label>
-                                        <app-message [control]="itemPrescricaoMedicamento.get('dose')" error="required"
-                                            text="Campo é obrigatório"></app-message>
-
+                                        <app-message
+                                            [control]="itemPrescricaoMedicamento.get('dose')"
+                                            error="required"
+                                            text="Campo é obrigatório"
+                                        ></app-message>
                                     </span>
                                 </div>
 
                                 <div class="p-md-2">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown  [filter]="true"
+                                        <p-dropdown
+                                            [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaUnidadeDose" formControlName="unidadeDose" required
-                                            #unidadeDose>
+                                            [options]="listaUnidadeDose"
+                                            formControlName="unidadeDose"
+                                            required
+                                            #unidadeDose
+                                        >
                                         </p-dropdown>
                                         <label>Unidade</label>
                                     </span>
@@ -77,10 +107,14 @@
 
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown  [filter]="true"
+                                        <p-dropdown
+                                            [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaViasAdministracao" formControlName="viasAdministracao"
-                                            required #viaAdministracao>
+                                            [options]="listaViasAdministracao"
+                                            formControlName="viasAdministracao"
+                                            required
+                                            #viaAdministracao
+                                        >
                                         </p-dropdown>
                                         <label>Via</label>
                                     </span>
@@ -90,34 +124,51 @@
                                     <label>Todas Vias?</label>
                                 </div>
                                 <div class="p-md-1">
-                                    <p-radioButton id="sim" type="radio" value="true" name="todasVias"
-                                        formControlName="todasVias" pRadioButton>
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="todasVias"
+                                        formControlName="todasVias"
+                                        pRadioButton
+                                    >
                                     </p-radioButton>
                                     <label class="p-ml-2">Sim</label>
                                 </div>
                                 <div class="p-md-1">
-                                    <p-radioButton id="nao" type="radio" value="false" name="todasVias"
-                                        formControlName="todasVias" pRadioButton>
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="todasVias"
+                                        formControlName="todasVias"
+                                        pRadioButton
+                                    >
                                     </p-radioButton>
                                     <label class="p-ml-2">Não</label>
                                 </div>
-
                             </div>
 
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-2">
                                     <span class="md-inputfield p-float-label">
-
-                                        <input type="number" pInputText formControlName="frequencia" />
+                                        <input
+                                            type="number"
+                                            pInputText
+                                            formControlName="frequencia"
+                                        />
                                         <label>Frequência</label>
                                     </span>
                                 </div>
 
                                 <div class="p-md-5">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown  [filter]="true"
+                                        <p-dropdown
+                                            [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaTipoAprazamento" formControlName="tipoAprazamento">
+                                            [options]="listaTipoAprazamento"
+                                            formControlName="tipoAprazamento"
+                                        >
                                         </p-dropdown>
                                         <label>Tipo de Aprazamento</label>
                                     </span>
@@ -125,9 +176,13 @@
 
                                 <div class="p-md-5">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown  [filter]="true" [options]="listaDiluente"
-                                            emptyFilterMessage="Nenhum registro encontrado." formControlName="diluente"
-                                            #diluente>
+                                        <p-dropdown
+                                            [filter]="true"
+                                            [options]="listaDiluente"
+                                            emptyFilterMessage="Nenhum registro encontrado."
+                                            formControlName="diluente"
+                                            #diluente
+                                        >
                                         </p-dropdown>
                                         <label>Diluente</label>
                                     </span>
@@ -137,7 +192,7 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <input type="number" pInputText formControlName="volume"/>
+                                        <input type="number" pInputText formControlName="volume" />
                                         <label>Volume (ml)</label>
                                     </span>
                                     <small>Informe o volume do diluente</small>
@@ -145,15 +200,22 @@
 
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <input type="number" pInputText formControlName="tempoInfusao" />
+                                        <input
+                                            type="number"
+                                            pInputText
+                                            formControlName="tempoInfusao"
+                                        />
                                         <label>Correr em</label>
                                     </span>
                                 </div>
 
                                 <div class="p-md-6">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown [options]="listaUnidadeTempo" formControlName="unidadeTempo"
-                                            #unidadeTempo>
+                                        <p-dropdown
+                                            [options]="listaUnidadeTempo"
+                                            formControlName="unidadeTempo"
+                                            #unidadeTempo
+                                        >
                                         </p-dropdown>
                                         <label>Unidade Tempo</label>
                                     </span>
@@ -162,16 +224,23 @@
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <input type="number" pInputText formControlName="velocidadeInfusao" />
+                                        <input
+                                            type="number"
+                                            pInputText
+                                            formControlName="velocidadeInfusao"
+                                        />
                                         <label>Velocidade de Infusão</label>
                                     </span>
                                 </div>
 
                                 <div class="p-md-5">
                                     <span class="md-inputfield p-float-label">
-                                        <p-dropdown  [filter]="true"
+                                        <p-dropdown
+                                            [filter]="true"
                                             emptyFilterMessage="Nenhum registro encontrado."
-                                            [options]="listaUnidadeInfusao" formControlName="unidadeInfusao">
+                                            [options]="listaUnidadeInfusao"
+                                            formControlName="unidadeInfusao"
+                                        >
                                         </p-dropdown>
                                         <label>Unidade Infusão</label>
                                     </span>
@@ -181,25 +250,39 @@
                                     <label>Bomba Infusão?</label>
                                 </div>
                                 <div class="p-md-1">
-                                    <p-radioButton id="sim" type="radio" value="true" name="bombaInfusao"
-                                        formControlName="bombaInfusao" pRadioButton>
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="bombaInfusao"
+                                        formControlName="bombaInfusao"
+                                        pRadioButton
+                                    >
                                     </p-radioButton>
                                     <label class="p-ml-2">Sim</label>
                                 </div>
                                 <div class="p-md-1">
-                                    <p-radioButton id="nao" type="radio" value="false" name="bombaInfusao"
-                                        formControlName="bombaInfusao" pRadioButton>
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="bombaInfusao"
+                                        formControlName="bombaInfusao"
+                                        pRadioButton
+                                    >
                                     </p-radioButton>
                                     <label class="p-ml-2">Não</label>
-
                                 </div>
                             </div>
 
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-3">
                                     <span class="md-inputfield p-float-label">
-                                        <p-calendar type="text" timeOnly="true"
-                                            formControlName="inicioAdministracao"></p-calendar>
+                                        <p-calendar
+                                            type="text"
+                                            timeOnly="true"
+                                            formControlName="inicioAdministracao"
+                                        ></p-calendar>
                                         <label>Início Adm.</label>
                                     </span>
                                 </div>
@@ -208,88 +291,166 @@
                                     <label>Necessária Observação?</label>
                                 </div>
                                 <div class="p-md-1">
-                                    <p-radioButton id="sim" type="radio" value="true" name="condicaoNecessaria"
-                                        pRadioButton formControlName="condicaoNecessaria">
+                                    <p-radioButton
+                                        id="sim"
+                                        type="radio"
+                                        value="true"
+                                        name="condicaoNecessaria"
+                                        pRadioButton
+                                        formControlName="condicaoNecessaria"
+                                    >
                                     </p-radioButton>
                                     <label class="p-ml-2">Sim</label>
                                 </div>
                                 <div class="p-md-1">
-                                    <p-radioButton id="nao" type="radio" value="false" name="condicaoNecessaria"
-                                        pRadioButton formControlName="condicaoNecessaria">
+                                    <p-radioButton
+                                        id="nao"
+                                        type="radio"
+                                        value="false"
+                                        name="condicaoNecessaria"
+                                        pRadioButton
+                                        formControlName="condicaoNecessaria"
+                                    >
                                     </p-radioButton>
                                     <label class="p-ml-2">Não</label>
-
                                 </div>
                             </div>
 
                             <div class="p-col-12 p-grid">
                                 <div class="p-md-12">
                                     <span class="md-inputfield p-float-label">
-                                        <textarea [rows]="6" [cols]="30" pInputTextarea autoResize="autoResize"
-                                            id="observacaoCondicao" formControlName="observacaoCondicao"></textarea>
+                                        <textarea
+                                            [rows]="6"
+                                            [cols]="30"
+                                            pInputTextarea
+                                            autoResize="autoResize"
+                                            id="observacaoCondicao"
+                                            formControlName="observacaoCondicao"
+                                        ></textarea>
                                         <label>Observações</label>
                                     </span>
                                 </div>
                             </div>
 
                             <div class="p-md-6">
-                                <button label="Adicionar" pButton name="adicionar-item" type="submit"
-                                    [disabled]="itemPrescricaoMedicamento.invalid">
-                                </button>
+                                <button
+                                    label="Adicionar"
+                                    pButton
+                                    name="adicionar-item"
+                                    type="submit"
+                                    [disabled]="itemPrescricaoMedicamento.invalid"
+                                ></button>
                             </div>
 
                             <div class="p-col-12 p-grid">
-                                <basis-datatable type="memory" [value]="itensPrescricaoMedicamento" [disableView]="true"
-                                    [disableEdit]="true" [disableDelete]="true" [verticalButtons]="false">
+                                <basis-datatable
+                                    type="memory"
+                                    [value]="itensPrescricaoMedicamento"
+                                    [disableView]="true"
+                                    [disableEdit]="true"
+                                    [disableDelete]="true"
+                                    [verticalButtons]="false"
+                                >
                                     <p-column header="Medicamentos" field="idMedicamento">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <ng-template
+                                            let-col="col"
+                                            let-rowData="rowData"
+                                            pTemplate="body"
+                                        >
                                             <span>
-                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].nome }}</span>
+                                                {{
+                                                    rowData[col.field] === null ||
+                                                    rowData[col.field] === undefined
+                                                        ? undefined
+                                                        : rowData[col.field].nome
+                                                }}</span
+                                            >
                                         </ng-template>
                                     </p-column>
-
 
                                     <p-column header="Dose" field="dose"></p-column>
 
                                     <p-column header="Unidade" field="unidadeDose">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <ng-template
+                                            let-col="col"
+                                            let-rowData="rowData"
+                                            pTemplate="body"
+                                        >
                                             <span>
-                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined :rowData[col.field].descricao }}</span>
+                                                {{
+                                                    rowData[col.field] === null ||
+                                                    rowData[col.field] === undefined
+                                                        ? undefined
+                                                        : rowData[col.field].descricao
+                                                }}</span
+                                            >
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Via" field="viasAdministracao">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <ng-template
+                                            let-col="col"
+                                            let-rowData="rowData"
+                                            pTemplate="body"
+                                        >
                                             <span>
-                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                                {{
+                                                    rowData[col.field] === null ||
+                                                    rowData[col.field] === undefined
+                                                        ? undefined
+                                                        : rowData[col.field].descricao
+                                                }}</span
+                                            >
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Frequencia" field="frequencia"></p-column>
 
                                     <p-column header="Aprazamento" field="tipoAprazamento">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <ng-template
+                                            let-col="col"
+                                            let-rowData="rowData"
+                                            pTemplate="body"
+                                        >
                                             <span>
-                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                                {{
+                                                    rowData[col.field] === null ||
+                                                    rowData[col.field] === undefined
+                                                        ? undefined
+                                                        : rowData[col.field].descricao
+                                                }}</span
+                                            >
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Diluente" field="diluente">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <ng-template
+                                            let-col="col"
+                                            let-rowData="rowData"
+                                            pTemplate="body"
+                                        >
                                             <span>
-                                                {{ rowData[col.field] === null || rowData[col.field] === undefined ? undefined : rowData[col.field].descricao }}</span>
+                                                {{
+                                                    rowData[col.field] === null ||
+                                                    rowData[col.field] === undefined
+                                                        ? undefined
+                                                        : rowData[col.field].descricao
+                                                }}</span
+                                            >
                                         </ng-template>
                                     </p-column>
 
                                     <p-column header="Início Adm." field="inicioAdministracao">
-                                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                                        <ng-template
+                                            let-col="col"
+                                            let-rowData="rowData"
+                                            pTemplate="body"
+                                        >
                                             <span> {{ rowData[col.field] | date: 'hh:mm' }}</span>
                                         </ng-template>
                                     </p-column>
-
                                 </basis-datatable>
                             </div>
-
                         </div>
                     </form>
                 </p-accordionTab>

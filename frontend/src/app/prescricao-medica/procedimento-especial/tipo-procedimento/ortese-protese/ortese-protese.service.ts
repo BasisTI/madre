@@ -4,16 +4,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class OrtesesProteseService {
-
     private baseUrl = 'prescricao/api';
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     listarOrtesesproteses(): Observable<Array<TipoProcedimento>> {
-        return this.http.get<Array<TipoProcedimento>>(`${this.baseUrl}/tipo-procedimento/orteses-proteses`);
-
+        return this.http.get<Array<TipoProcedimento>>(
+            `${this.baseUrl}/tipo-procedimento/orteses-proteses`,
+        );
     }
 }

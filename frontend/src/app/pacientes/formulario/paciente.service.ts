@@ -1,23 +1,21 @@
 import { BlockUiService } from '@nuvem/angular-base';
-import { Injectable } from "@angular/core";
-import { CrudService } from "@nuvem/primeng-components";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { CrudService } from '@nuvem/primeng-components';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Paciente } from "./paciente.model";
-import { Observable } from "rxjs";
+import { Paciente } from './paciente.model';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PacienteService implements CrudService<number, Paciente> {
-
     uriServico: string = '/pacientes/api/pacientes';
     uri: string = `${this.uriServico}/lista-de-pacientes-elastic`;
     uriProntuario: string = `${this.uriServico}/prontuario`;
-    uriFormulario: string =`${this.uriServico}/formulario`;
+    uriFormulario: string = `${this.uriServico}/formulario`;
 
-    constructor(private http: HttpClient, private blockUiService: BlockUiService) {
-    }
+    constructor(private http: HttpClient, private blockUiService: BlockUiService) {}
 
-    formatEntity(paciente: Paciente){
+    formatEntity(paciente: Paciente) {
         let entity: any = {
             ...paciente,
             ocupacaoId: paciente.ocupacaoId?.id,
@@ -40,24 +38,24 @@ export class PacienteService implements CrudService<number, Paciente> {
             documento: {
                 ...paciente.documento,
                 orgaoEmissorId: paciente.documento.orgaoEmissorId?.id,
-                ufId: paciente.documento.ufId?.id
+                ufId: paciente.documento.ufId?.id,
             },
-        }
+        };
         entity.enderecos.forEach((endereco) => {
             endereco.municipioId = endereco.municipioId.id;
             endereco.bairro = endereco.bairro;
             endereco.cep = endereco.cep;
             endereco.logradouro = endereco.logradouro;
-            endereco.numero =  endereco.numero;
+            endereco.numero = endereco.numero;
             endereco.complemento = endereco.complemento;
             endereco.bairro = endereco.bairro;
             endereco.correspondencia = endereco.correspondencia;
             endereco.tipoDoEndereco = endereco.tipoDoEndereco;
-          });
+        });
 
         return entity;
     }
-    
+
     save(paciente: Paciente): Observable<Paciente> {
         return this.http.post<Paciente>(this.uriServico, this.formatEntity(paciente));
     }
@@ -74,17 +72,20 @@ export class PacienteService implements CrudService<number, Paciente> {
         return this.http.delete<Paciente>(`${this.uriServico}/${id}`);
     }
 
-    findAll(entity: Paciente): Observable<Paciente>{
-        const params = new HttpParams().set('nome', entity.nome).set('prontuario', entity.prontuario);
+    findAll(entity: Paciente): Observable<Paciente> {
+        const params = new HttpParams()
+            .set('nome', entity.nome)
+            .set('prontuario', entity.prontuario);
         return this.http.get<Paciente>(`${this.uri}`, { params });
     }
 
     public geraRelatorioPaciente(id: number): Observable<string> {
         this.blockUiService.show();
-        this.http.request('get', `${this.uriFormulario}/${id}`, {
-            responseType: 'blob',
-        }).subscribe(
-            (response) => {
+        this.http
+            .request('get', `${this.uriFormulario}/${id}`, {
+                responseType: 'blob',
+            })
+            .subscribe((response) => {
                 const mediaType = 'application/pdf';
                 const blob = new Blob([response], { type: mediaType });
                 const fileURL = window.URL.createObjectURL(blob);
@@ -97,5 +98,4 @@ export class PacienteService implements CrudService<number, Paciente> {
             });
         return null;
     }
-
 }

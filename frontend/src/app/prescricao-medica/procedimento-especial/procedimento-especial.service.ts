@@ -4,13 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class ProcedimentoEspecialService {
-
-    constructor(private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) {}
 
     baseUrl = '/prescricao/api';
 
@@ -18,4 +15,3 @@ export class ProcedimentoEspecialService {
         return this.http.post(`${this.baseUrl}/prescricao-procedimentos`, prescricao);
     }
 }
-
