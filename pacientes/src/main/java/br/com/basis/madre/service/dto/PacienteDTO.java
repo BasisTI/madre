@@ -72,4 +72,6 @@ public class PacienteDTO implements Serializable {
 
     private GenitoresDTO genitores;
 
+    private CartaoSUSDTO cartaoSUS;
+
 }
