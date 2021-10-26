@@ -26,7 +26,6 @@ import { CalendarMadreComponent } from '../../shared/components/calendar-madre.c
 import { RacaService } from './dados-pessoais/raca.service';
 import { EstadoCivilService } from './dados-pessoais/estado-civil.service';
 import { NacionalidadeService } from './dados-pessoais/nacionalidade.service';
-import { NaturalidadeService } from './dados-pessoais/naturalidade.service';
 import { EtniaService } from './dados-pessoais/etnia.service';
 import { OcupacaoService } from './dados-pessoais/ocupacao.service';
 import { ReligiaoService } from './dados-pessoais/religiao.service';
@@ -41,7 +40,7 @@ import {TabViewModule} from 'primeng/tabview';
 
 
 @NgModule({
-  imports: [ 
+  imports: [
     PRIMENG_IMPORTS,
     CrudModule,
     CommonModule,
@@ -53,7 +52,7 @@ import {TabViewModule} from 'primeng/tabview';
     FormNotificationModule,
     TabViewModule
   ],
-  declarations: [ 
+  declarations: [
     PacienteComponent,
     PacienteFormComponent,
     PacienteListComponent,
@@ -66,7 +65,7 @@ import {TabViewModule} from 'primeng/tabview';
     PacienteEnderecoFormComponent,
     CalendarMadreComponent,
   ],
-  providers: [ 
+  providers: [
     PacienteService,
     { provide: CRUD_SERVICE, useExisting: PacienteService },
     CrudResolveGuard,
@@ -75,7 +74,6 @@ import {TabViewModule} from 'primeng/tabview';
     EtniaService,
     EstadoCivilService,
     NacionalidadeService,
-    NaturalidadeService,
     OcupacaoService,
     ReligiaoService,
     GrauDeParentescoService,

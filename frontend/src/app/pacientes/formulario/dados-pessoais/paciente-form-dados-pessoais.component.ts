@@ -1,5 +1,5 @@
 import { UfService } from './uf.service';
-import { Naturalidade } from './../../models/dropdowns/types/naturalidade';
+import { Municipio } from "../../models/dropdowns/types/municipio";
 import { Pagination } from './../../../shared/pagination';
 import { UF } from './../../models/dropdowns/types/uf';
 import { AfterViewInit, Component, Input, OnInit, Renderer2 } from "@angular/core";
@@ -14,10 +14,10 @@ import { RacaService } from "./raca.service";
 import { EtniaService } from "./etnia.service";
 import { EstadoCivilService } from "./estado-civil.service";
 import { NacionalidadeService } from "./nacionalidade.service";
-import { NaturalidadeService } from "./naturalidade.service";
 import { OcupacaoService } from "./ocupacao.service";
 import { ReligiaoService } from "./religiao.service";
 import { DateComponent } from '@fullcalendar/core';
+import { MunicipioService } from "../municipio/municipio.service";
 
 import { FiltroMunicipioModel } from './../../models/municipio.filtro.model';
 
@@ -38,7 +38,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
     uf = '';
 
     ufs: UF[] = [];
-    naturalidades: Naturalidade[] = [];
+    municipios: Municipio[] = [];
     filtroMunicipioModel: FiltroMunicipioModel;
     pagination: Pagination<any, any>;
     isListen: boolean = false;
@@ -51,9 +51,9 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
         public estadoCivilService: EstadoCivilService,
         public nacionalidadeService: NacionalidadeService,
         public ufService: UfService,
-        public naturalidadeService: NaturalidadeService,
         public ocupacaoService: OcupacaoService,
         public religiaoService: ReligiaoService,
+        public municipioService: MunicipioService,
     ) {
     }
 
@@ -97,7 +97,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
             }
 
             if(this.formGroup.get('naturalidadeId').value != null){
-                this.naturalidadeService.find(this.formGroup.get('naturalidadeId').value).subscribe(res => {
+                this.municipioService.find(this.formGroup.get('naturalidadeId').value).subscribe(res => {
                     this.formGroup.patchValue({naturalidadeId: res});
                 });
             }
@@ -141,11 +141,11 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
 
     aoSelecionarUF() {
        this.formGroup.controls.naturalidadeId.setValue(null);
-        this.naturalidadeService
+        this.municipioService
             .pesquisaMunicipios(this.formGroup.value.ufId.id, '', 0)
             .subscribe((res) => {
                 this.pagination = res;
-                this.naturalidades = res.content;
+                this.municipios = res.content;
                 if(! this.isListen){
                     this.listenScrollPanel();
                 }
@@ -161,15 +161,15 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
             this.pagesGet.push(page);
 
             //busca os dados do municipio pela pagina: page
-            this.naturalidadeService
+            this.municipioService
                 .pesquisaMunicipios(this.formGroup.value.ufId.id, this.formGroup.value.naturalidadeId ? this.formGroup.value.naturalidadeId.nome ? this.formGroup.value.naturalidadeId.nome : this.formGroup.value.naturalidadeId : '', page)
                 .subscribe((res) => {
                     this.pagination = res;
                     if(this.pagination.currentPage > 0){
                         //caso seja retornado a currentPage > 0, os dados retornados serão adicionado à naturalidades
                         this.pagination.content.forEach((v) => {
-                            if(this.naturalidades.filter(e => e.id === v.id).length === 0){
-                                this.naturalidades.push(v)
+                            if(this.municipios.filter(e => e.id === v.id).length === 0){
+                                this.municipios.push(v)
                             }
                         });
                         //Gera um evento click no input do autocomplete para atualizar os dados na lista do dropdown
@@ -177,7 +177,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
                         input.click();
                     }else{
                         //caso seja retornado a currentPage = 0, naturalidades irá conter apenas os dados dessa página
-                        this.naturalidades = res.content;
+                        this.municipios = res.content;
                     }
                     if(! this.isListen){
                         this.listenScrollPanel();
@@ -204,7 +204,7 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
     getPage(){
         var page = 0;
         let nome: string = this.formGroup.value.naturalidadeId ? this.formGroup.value.naturalidadeId.nome ? this.formGroup.value.naturalidadeId.nome : this.formGroup.value.naturalidadeId : '';
-        if(this.pagination !== null && this.naturalidades !== null && this.pagination.params.ufId == this.formGroup.value.ufId.id && this.pagination.params.nome == nome){
+        if(this.pagination !== null && this.municipios !== null && this.pagination.params.ufId == this.formGroup.value.ufId.id && this.pagination.params.nome == nome){
             page = this.pagination.nextPage;
         }else{
             this.resetPagesGet();
