@@ -1,8 +1,13 @@
 <form [formGroup]="itemPrescricaoProcedimento">
     <div class="p-md-6">
         <span class="md-inputfield p-float-label">
-            <p-dropdown [filter]="true" InputText [options]="listaOrtesesProteses" formControlName="tipoProcedimentoId"
-                #orteseProtese>
+            <p-dropdown
+                [filter]="true"
+                InputText
+                [options]="listaOrtesesProteses"
+                formControlName="tipoProcedimentoId"
+                #orteseProtese
+            >
             </p-dropdown>
             <label>Órteses/Próteses</label>
         </span>
@@ -15,4 +20,3 @@
         </span>
     </div>
 </form>
-

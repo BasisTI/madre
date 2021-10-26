@@ -5,13 +5,14 @@ import { ModuleWithProviders } from '@angular/core';
 export const procedimentoEspecialRoute: Routes = [
     {
         path: 'prescricao-medica/procedimento-especial',
-        component: ProcedimentoEspecialComponent
+        component: ProcedimentoEspecialComponent,
     },
 
     {
         path: 'prescricao-medica/procedimento-especial/:id',
-        component: ProcedimentoEspecialComponent
+        component: ProcedimentoEspecialComponent,
     },
 ];
 
-export const ProcedimentoEspecialRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(procedimentoEspecialRoute);
+export const ProcedimentoEspecialRoutes: ModuleWithProviders<RouterModule> =
+    RouterModule.forRoot(procedimentoEspecialRoute);

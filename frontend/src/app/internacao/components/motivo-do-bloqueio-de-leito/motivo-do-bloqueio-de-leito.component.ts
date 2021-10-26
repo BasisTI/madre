@@ -2,7 +2,6 @@ import { MotivoDoBloqueioDeLeitoService } from './../../services/motivo-do-bloqu
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MotivoDoBloqueioDeLeito } from '@internacao/models/motivo-do-bloqueio-de-leito';
-import { OrigemDaReservaDeLeitoService } from '@internacao/services/origem-da-reserva-de-leito.service';
 import { EntityAutoComplete } from '@shared/entity-autocomplete.component';
 
 @Component({

@@ -1,14 +1,16 @@
 import { Medicamento, Medicamentos } from './Medicamento';
-import { Prescricao } from './../dispensacao/prescricao';
 import { FarmaciaService } from './../farmacia.service';
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DatatableClickEvent, DatatablePaginationParameters, DatatableComponent, PageNotificationService } from '@nuvem/primeng-components';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+    DatatableClickEvent,
+    DatatablePaginationParameters,
+    DatatableComponent,
+    PageNotificationService,
+} from '@nuvem/primeng-components';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { ElasticQuery } from 'src/app/shared/elastic-query';
 import * as moment from 'moment';
-
 
 @Component({
     selector: 'app-medicamentos',
@@ -16,7 +18,6 @@ import * as moment from 'moment';
     styleUrls: ['./medicamentos.component.css'],
 })
 export class MedicamentosComponent implements OnInit {
-
     paginationParameters: DatatablePaginationParameters;
     @ViewChild(DatatableComponent) dataTable: DatatableComponent;
     tipoMedicamentoSelecionada: Medicamentos = new Medicamentos();
@@ -29,7 +30,6 @@ export class MedicamentosComponent implements OnInit {
     '';
     elasticQuery: ElasticQuery = new ElasticQuery();
 
-
     listar() {
         this.service
             .getMedicamentos(this.codigo, this.descricao, this.situacao)
@@ -39,10 +39,12 @@ export class MedicamentosComponent implements OnInit {
         this.situacao = '';
     }
 
-    constructor(private service: FarmaciaService,
+    constructor(
+        private service: FarmaciaService,
         private router: Router,
         private pageNotificationService: PageNotificationService,
-        private confirmationService: ConfirmationService) {
+        private confirmationService: ConfirmationService,
+    ) {
         this.results = [
             { label: 'Selecione Situação' },
             { label: 'Ativo', value: 'true' },
@@ -62,30 +64,33 @@ export class MedicamentosComponent implements OnInit {
         this.dataTable.filter();
     }
 
-    public exportarMedicamentos(){
-        this.service.exportarMedicamentos().subscribe(x => {
-            const blob = new Blob([x], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-
+    public exportarMedicamentos() {
+        this.service.exportarMedicamentos().subscribe((x) => {
+            const blob = new Blob([x], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            });
 
             if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(blob)
+                window.navigator.msSaveOrOpenBlob(blob);
                 return;
             }
             const data = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = data;
             let dataAtual: Date = new Date();
-            let formattedDate = (moment( dataAtual)).format('DD-MM-YYYY_HH-mm-ss')
+            let formattedDate = moment(dataAtual).format('DD-MM-YYYY_HH-mm-ss');
             let nomeArquivo: string = 'medicamentos_' + formattedDate + '.xlsx';
 
             link.download = nomeArquivo;
-            link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}))
+            link.dispatchEvent(
+                new MouseEvent('click', { bubbles: true, cancelable: true, view: window }),
+            );
 
-            setTimeout(function() {
+            setTimeout(function () {
                 window.URL.revokeObjectURL(data);
-                link.remove
-            }, 100)
-        })
+                link.remove;
+            }, 100);
+        });
     }
 
     public recarregarDataTable() {
@@ -102,13 +107,13 @@ export class MedicamentosComponent implements OnInit {
 
     confirmDelete(tipoMedicamentoSelecionada: Medicamentos) {
         this.confirmationService.confirm({
-            message: "Tem certeza que deseja excluir o registro?",
+            message: 'Tem certeza que deseja excluir o registro?',
             accept: () => {
-                    this.service.delete(tipoMedicamentoSelecionada.id).subscribe(() => {
+                this.service.delete(tipoMedicamentoSelecionada.id).subscribe(() => {
                     this.pageNotificationService.addDeleteMsg();
                     this.listar();
                 });
-            }
+            },
         });
     }
 
@@ -116,7 +121,7 @@ export class MedicamentosComponent implements OnInit {
         switch (event.button) {
             case 'edit': {
                 this.abrirEditar(event.selection);
-               break;
+                break;
             }
             case 'view': {
                 this.abrirVisualizar(event.selection);
@@ -127,7 +132,7 @@ export class MedicamentosComponent implements OnInit {
             }
             default: {
                 break;
-             }
+            }
         }
     }
 
@@ -138,5 +143,4 @@ export class MedicamentosComponent implements OnInit {
             this.abrirEditar(this.tipoMedicamentoSelecionada);
         }
     }
-
 }

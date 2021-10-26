@@ -25,10 +25,9 @@ import { FiltroMunicipioModel } from './../../models/municipio.filtro.model';
 @Component({
     selector: 'paciente-form-dados-pessoais',
     templateUrl: './paciente-form-dados-pessoais.component.html',
-    styleUrls: ['paciente-form-dados-pessoais.component.css']
+    styleUrls: ['paciente-form-dados-pessoais.component.css'],
 })
-export class PacienteDadosPessoaisFormComponent implements OnInit{
-
+export class PacienteDadosPessoaisFormComponent implements OnInit {
     @Input()
     public formGroup: FormGroup;
 
@@ -79,45 +78,61 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
                 });
             }
 
-            if(this.formGroup.get('horaDeNascimento').value != null){
-                var date = new Date(this.formGroup.get('horaDeNascimento').value);
-                this.formGroup.patchValue({horaDeNascimento: new Date(this.formGroup.get('horaDeNascimento').value)});
-            }
+        if (this.formGroup.get('racaId').value != null) {
+            this.racaService.find(this.formGroup.get('racaId').value).subscribe((res) => {
+                this.formGroup.patchValue({ racaId: res });
+            });
+        }
 
-            if(this.formGroup.get('nacionalidadeId').value != null){
-                this.nacionalidadeService.find(this.formGroup.get('nacionalidadeId').value).subscribe(res => {
-                    this.formGroup.patchValue({nacionalidadeId: res});
+        if (this.formGroup.get('estadoCivilId').value != null) {
+            this.estadoCivilService
+                .find(this.formGroup.get('estadoCivilId').value)
+                .subscribe((res) => {
+                    this.formGroup.patchValue({ estadoCivilId: res });
                 });
-            }
+        }
 
-            if(this.formGroup.get('ufId').value != null){
-                this.ufService.find(this.formGroup.get('ufId').value).subscribe(res => {
-                    this.formGroup.patchValue({ufId: res});
+        if (this.formGroup.get('horaDeNascimento').value != null) {
+            var date = new Date(this.formGroup.get('horaDeNascimento').value);
+            this.formGroup.patchValue({
+                horaDeNascimento: new Date(this.formGroup.get('horaDeNascimento').value),
+            });
+        }
+
+        if(this.formGroup.get('naturalidadeId').value != null){
+            this.municipioService.find(this.formGroup.get('naturalidadeId').value).subscribe(res => {
+                this.formGroup.patchValue({naturalidadeId: res});
+            });
+        }
+
+        if (this.formGroup.get('ufId').value != null) {
+            this.ufService.find(this.formGroup.get('ufId').value).subscribe((res) => {
+                this.formGroup.patchValue({ ufId: res });
+            });
+        }
+
+        if (this.formGroup.get('naturalidadeId').value != null) {
+            this.municipioService
+                .find(this.formGroup.get('naturalidadeId').value)
+                .subscribe((res) => {
+                    this.formGroup.patchValue({ naturalidadeId: res });
                 });
-            }
+        }
 
-            if(this.formGroup.get('naturalidadeId').value != null){
-                this.municipioService.find(this.formGroup.get('naturalidadeId').value).subscribe(res => {
-                    this.formGroup.patchValue({naturalidadeId: res});
-                });
-            }
+        if (this.formGroup.get('ocupacaoId').value != null) {
+            this.ocupacaoService.find(this.formGroup.get('ocupacaoId').value).subscribe((res) => {
+                this.formGroup.patchValue({ ocupacaoId: res });
+            });
+        }
 
-            if(this.formGroup.get('ocupacaoId').value != null){
-                this.ocupacaoService.find(this.formGroup.get('ocupacaoId').value).subscribe(res => {
-                    this.formGroup.patchValue({ocupacaoId: res});
-                });
-            }
+        if (this.formGroup.get('religiaoId').value != null) {
+            this.religiaoService.find(this.formGroup.get('religiaoId').value).subscribe((res) => {
+                this.formGroup.patchValue({ religiaoId: res });
+            });
+        }
 
-            if(this.formGroup.get('religiaoId').value != null){
-                this.religiaoService.find(this.formGroup.get('religiaoId').value).subscribe(res => {
-                    this.formGroup.patchValue({religiaoId: res});
-                });
-            }
-
-            this.aoSelecionarDataDeNascimento();
-
+        this.aoSelecionarDataDeNascimento();
     }
-
 
     aoSelecionarDataDeNascimento() {
         const { dataDeNascimento } = this.formGroup.value;
@@ -220,5 +235,4 @@ export class PacienteDadosPessoaisFormComponent implements OnInit{
     resetPagesGet(){
         this.pagesGet = [];
     }
-
 }

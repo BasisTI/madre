@@ -26,7 +26,7 @@ export class CardPacienteComponent implements OnInit {
      * TODO: Deve ser substituído por 'prontuário'
      */
     @Input() private prontuario: number;
-    
+
     private paciente: Paciente;
 
     constructor(private pacienteService: PacienteService) {}

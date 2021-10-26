@@ -1,15 +1,18 @@
 import { Router } from '@angular/router';
-import { BreadcrumbService, DatatableComponent, DatatableClickEvent } from '@nuvem/primeng-components';
+import {
+    BreadcrumbService,
+    DatatableComponent,
+    DatatableClickEvent,
+} from '@nuvem/primeng-components';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { PrescricaoMedicaService } from './prescricao-medica.service';
 
 @Component({
     selector: 'app-prescricao-medica',
     templateUrl: './prescricao-medica.component.html',
-    styleUrls: ['./prescricao-medica.component.css']
+    styleUrls: ['./prescricao-medica.component.css'],
 })
 export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
-
     @ViewChild('datatable') datatable: DatatableComponent;
     pacienteSelecionado: any;
 
@@ -20,17 +23,13 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     searchUrl = 'prescricao/api/pacientes';
 
     constructor(
-
         public prescricaoMedicaService: PrescricaoMedicaService,
         private breadcrumbService: BreadcrumbService,
         private router: Router,
-
-    ) { }
-
+    ) {}
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([{ label: 'Prescrição Médica' }]);
-
     }
 
     listar() {
@@ -38,11 +37,10 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
     }
 
     pesquisar() {
-        this.datatable.refresh({ nome: this.nome })
+        this.datatable.refresh({ nome: this.nome });
     }
 
     btnClick(event: DatatableClickEvent) {
-
         if (!event.selection) {
             return;
         }
@@ -55,7 +53,10 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
                 break;
 
             case 'prescrever-procedimento':
-                this.router.navigate(['/prescricao-medica/procedimento-especial', event.selection.id]);
+                this.router.navigate([
+                    '/prescricao-medica/procedimento-especial',
+                    event.selection.id,
+                ]);
                 break;
 
             case 'prescrever-diagnostico':
@@ -64,14 +65,10 @@ export class PrescricaoMedicaComponent implements OnInit, OnDestroy {
             case 'listar-prescricoes':
                 this.router.navigate(['/prescricao-medica/lista', event.selection.id]);
                 break;
-
         }
-
     }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
     }
-
-
 }

@@ -1,4 +1,3 @@
-
 export class Telefone {
     constructor(
         public id: number,
@@ -95,7 +94,7 @@ export class Paciente {
         public observacao: string,
         public ocupacaoId: number | any,
         public religiaoId: number | any,
-        public ufId: number | any, 
+        public ufId: number | any,
         public naturalidadeId: number | any,
         public etniaId: number | any,
         public nacionalidadeId: number | any,
@@ -110,7 +109,6 @@ export class Paciente {
         public responsavel: PacienteResponsavel,
         public documento: PacienteDocumento,
         public certidao: PacienteCertidao,
-        public prontuario: number | any
+        public prontuario: number | any,
     ) {}
-
 }

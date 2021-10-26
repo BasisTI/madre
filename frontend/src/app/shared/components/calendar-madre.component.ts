@@ -3,12 +3,11 @@ import { provideValueAccessor } from "@nuvem/angular-base";
 import { CalendarComponent } from '@nuvem/primeng-components';
 
 @Component({
-    selector: "[madreCalendar]",
-    templateUrl: "./calendar-madre.component.html",
-    providers: [ provideValueAccessor(CalendarMadreComponent) ],
+    selector: '[madreCalendar]',
+    templateUrl: './calendar-madre.component.html',
+    providers: [provideValueAccessor(CalendarMadreComponent)],
 })
 export class CalendarMadreComponent extends CalendarComponent {
-
     maxDate = new Date();
     yearRange = `1900:${this.maxDate.getFullYear()}`;
     monthNavigator = true;
@@ -25,5 +24,4 @@ export class CalendarMadreComponent extends CalendarComponent {
     onSelectEvent(event) {
         this.onSelect.emit(event);
     }
-
 }

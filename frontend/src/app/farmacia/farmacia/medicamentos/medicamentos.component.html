@@ -2,8 +2,7 @@
     <h1>Medicamentos</h1>
     <div class="p-grid p-fluid">
         <div class="p-col-12 p-grid">
-            <div class="p-col-12 p-grid">
-            </div>
+            <div class="p-col-12 p-grid"></div>
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
@@ -51,33 +50,36 @@
                         pButton
                         type="button"
                         routerLink="/cadastrar-medicamento"
-                        label="Cadastrar">
-                    </button>
+                        label="Cadastrar"
+                    ></button>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <button
-                        pButton type="button"
+                        pButton
+                        type="button"
                         label="Exportar"
-                        (click)="exportarMedicamentos()">
-                    </button>
+                        (click)="exportarMedicamentos()"
+                    ></button>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <button
-                        pButton type="button"
+                        pButton
+                        type="button"
                         label="Limpar"
-                        (click)="limparPesquisa()">
-                    </button>
+                        (click)="limparPesquisa()"
+                    ></button>
                 </div>
             </div>
-            <basis-datatable type="memory"
-                    [value]="medicamento"
-                    sortField="brand"
-                    [disableView]="true"
-                    [disableEdit]="true"
-                    [disableDelete]="true"
-                    (buttonClick)="btnClick($event)"
-                    #datatable>
-
+            <basis-datatable
+                type="memory"
+                [value]="medicamento"
+                sortField="brand"
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+                (buttonClick)="btnClick($event)"
+                #datatable
+            >
                 <p-column header="Descrição" field="descricao" [sortable]="true"></p-column>
                 <p-column header="Concentração" field="concentracao"></p-column>
                 <p-column header="Unidade" field="unidade">
@@ -112,7 +114,8 @@
                     name="edit"
                     icon="pi pi-pencil"
                     [disabled]="datatable.selectedRow == null"
-                    class="p-button-success">
+                    class="p-button-success"
+                >
                 </basis-datatable-button>
 
                 <basis-datatable-button
@@ -121,7 +124,8 @@
                     class="ng-star-inserted"
                     [disabled]="datatable.selectedRow == null"
                     name="view"
-                    icon="pi pi-eye">
+                    icon="pi pi-eye"
+                >
                 </basis-datatable-button>
 
                 <basis-datatable-button
@@ -129,14 +133,27 @@
                     [disabled]="datatable.selectedRow == null"
                     (buttonClick)="btnClick($event)"
                     name="delete"
-                    icon="pi pi-trash">
+                    icon="pi pi-trash"
+                >
                 </basis-datatable-button>
             </basis-datatable>
 
             <p-confirmDialog #dialog header="Confirmação" icon="pi pi-exclamation-triangle">
                 <p-footer>
-                    <button type="button" pButton icon="pi pi-times" label="Não" (click)="dialog.reject()"></button>
-                    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="dialog.accept()"></button>
+                    <button
+                        type="button"
+                        pButton
+                        icon="pi pi-times"
+                        label="Não"
+                        (click)="dialog.reject()"
+                    ></button>
+                    <button
+                        type="button"
+                        pButton
+                        icon="pi pi-check"
+                        label="Sim"
+                        (click)="dialog.accept()"
+                    ></button>
                 </p-footer>
             </p-confirmDialog>
         </div>

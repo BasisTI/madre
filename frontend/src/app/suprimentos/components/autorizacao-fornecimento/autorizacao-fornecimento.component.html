@@ -2,27 +2,31 @@
     <div class="p-grid p-fluid">
         <div class="p-col-12 p-grid">
             <div class="p-md-2">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                    <p-autoComplete [suggestions]="autorizacoes"
-                        (completeMethod)="obterAutorizacaoFornecimentoPeloNumero($event)" [dropdown]="true"
-                        (onSelect)="aoSelecionarUmaAutorizacao($event)" field="numero"></p-autoComplete>
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
+                    <p-autoComplete
+                        [suggestions]="autorizacoes"
+                        (completeMethod)="obterAutorizacaoFornecimentoPeloNumero($event)"
+                        [dropdown]="true"
+                        (onSelect)="aoSelecionarUmaAutorizacao($event)"
+                        field="numero"
+                    ></p-autoComplete>
                     <label>Número AF</label>
                 </span>
             </div>
             <div class="p-md-2">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input type="text" pInputText formControlName="complemento" />
                     <label>Complemento AF</label>
                 </span>
             </div>
             <div class="p-md-1">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input type="text" pInputText formControlName="fornecedor" />
                     <label>Fornecedor</label>
                 </span>
             </div>
             <div class="p-md-1">
-                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                     <input type="text" pInputText formControlName="tipoItem" />
                     <label>Tipo Item</label>
                 </span>

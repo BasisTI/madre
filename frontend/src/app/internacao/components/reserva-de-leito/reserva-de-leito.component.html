@@ -1,7 +1,7 @@
 <div class="card">
     <h1>Reservar Leito</h1>
     <form [formGroup]="formGroup">
-    <div class="p-grid p-fluid">
+        <div class="p-grid p-fluid">
             <!-- Leito -->
             <div class="p-col-12 p-grid">
                 <div class="p-md-4 p-sm-12">
@@ -11,7 +11,8 @@
                         situacao="liberado"
                         name="leito"
                         label="Leito"
-                        (select)="aoSelecionarLeito($event)">
+                        (select)="aoSelecionarLeito($event)"
+                    >
                     </app-leito>
                 </div>
             </div>
@@ -23,7 +24,8 @@
                             [parentFormGroup]="formGroup"
                             [required]="true"
                             name="tipoDaReserva"
-                            label="Tipo da Reserva">
+                            label="Tipo da Reserva"
+                        >
                         </app-tipo-de-reserva-de-leito>
                     </span>
                 </div>

@@ -22,6 +22,5 @@ export class Prescricaos implements BaseEntity {
         public dataInicio?: Date,
         public dataFim?: Date,
         public local?: string,
-    )
-    {}
+    ) {}
 }

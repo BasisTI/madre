@@ -18,18 +18,21 @@ export class CidComponent implements OnInit {
     @Output() public select = new EventEmitter();
     public cids: SelectItem[];
 
-    constructor(private cidService: CidService) {
-    }
+    constructor(private cidService: CidService) {}
 
     ngOnInit(): void {
-        this.cidService.getPais().subscribe(cids => this.cids = this.cidService.getSelectItemArrayFrom(cids));
+        this.cidService
+            .getPais()
+            .subscribe((cids) => (this.cids = this.cidService.getSelectItemArrayFrom(cids)));
     }
 
     public getFilhosPeloIdDoPai(id: number): void {
-        this.cidService.getFilhosPeloIdDoPai(id).subscribe(cids => this.cids = this.cidService.getSelectItemArrayFrom(cids));
+        this.cidService
+            .getFilhosPeloIdDoPai(id)
+            .subscribe((cids) => (this.cids = this.cidService.getSelectItemArrayFrom(cids)));
     }
 
-    public aoSelecionarCid(evento: { originalEvent: MouseEvent, value: CID }): void {
+    public aoSelecionarCid(evento: { originalEvent: MouseEvent; value: CID }): void {
         this.select.emit(evento.value);
     }
 

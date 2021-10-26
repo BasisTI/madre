@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 import { CadastroMedicamentoComponent } from './cadastro-medicamento/cadastro-medicamento.component';
 import { MedicamentosComponent } from './medicamentos/medicamentos.component';
 import { MedicamentoDetailComponent } from './medicamento-detail/medicamento-detail.component';
-import { DispensacaoDetailComponent} from './dispensacao-detail/dispensacao-detail.component';
+import { DispensacaoDetailComponent } from './dispensacao-detail/dispensacao-detail.component';
 
 export const Farmacia: Routes = [
     {
@@ -20,7 +20,7 @@ export const Farmacia: Routes = [
         component: MedicamentosComponent,
     },
     {
-        path: 'medicamentos/:id/edit', 
+        path: 'medicamentos/:id/edit',
         component: CadastroMedicamentoComponent,
     },
     {
@@ -28,11 +28,11 @@ export const Farmacia: Routes = [
         component: MedicamentoDetailComponent,
     },
     {
-        path: 'dispensacaos/:id/edit', 
+        path: 'dispensacaos/:id/edit',
         component: DispensacaoComponent,
     },
     {
         path: 'dispensacaos/:id/view',
         component: DispensacaoDetailComponent,
-    }
+    },
 ];

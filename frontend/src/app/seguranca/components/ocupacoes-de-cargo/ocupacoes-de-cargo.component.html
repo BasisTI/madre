@@ -12,9 +12,14 @@
                             <input type="text" pInputText formControlName="codigo" />
                             <label>Código</label>
                         </span>
-                        <p-message severity="error" text="Código da ocupação obrigatório" *ngIf="
-                            formOcupacoesDeCargo.controls['codigo'].errors?.required &&
-                            formOcupacoesDeCargo.controls['codigo'].touched">
+                        <p-message
+                            severity="error"
+                            text="Código da ocupação obrigatório"
+                            *ngIf="
+                                formOcupacoesDeCargo.controls['codigo'].errors?.required &&
+                                formOcupacoesDeCargo.controls['codigo'].touched
+                            "
+                        >
                         </p-message>
                     </div>
                     <div class="p-col-12 p-md-6">
@@ -22,18 +27,28 @@
                             <input type="text" pInputText formControlName="descricao" />
                             <label>Descrição</label>
                         </span>
-                        <p-message severity="error" text="Descrição da ocupação obrigatória" *ngIf="
-                            formOcupacoesDeCargo.controls['descricao'].errors?.required &&
-                            formOcupacoesDeCargo.controls['descricao'].touched">
+                        <p-message
+                            severity="error"
+                            text="Descrição da ocupação obrigatória"
+                            *ngIf="
+                                formOcupacoesDeCargo.controls['descricao'].errors?.required &&
+                                formOcupacoesDeCargo.controls['descricao'].touched
+                            "
+                        >
                         </p-message>
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-col-12 p-grid">
                 <div class="p-col-12 p-md-6">
                     <span class="p-float-label">
-                        <p-dropdown formControlName="cargoId" [options]="cargos" [optionLabel]="'descricao'" [optionValue]="'id'"></p-dropdown>
+                        <p-dropdown
+                            formControlName="cargoId"
+                            [options]="cargos"
+                            [optionLabel]="'descricao'"
+                            [optionValue]="'id'"
+                        ></p-dropdown>
                         <label>Cargos</label>
                     </span>
                 </div>
@@ -43,9 +58,14 @@
                         </p-dropdown>
                         <label>Situação</label>
                     </span>
-                    <p-message severity="error" text="Situação da ocupação obrigatória" *ngIf="
-                        formOcupacoesDeCargo.controls['situacao'].errors?.required &&
-                        formOcupacoesDeCargo.controls['situacao'].touched">
+                    <p-message
+                        severity="error"
+                        text="Situação da ocupação obrigatória"
+                        *ngIf="
+                            formOcupacoesDeCargo.controls['situacao'].errors?.required &&
+                            formOcupacoesDeCargo.controls['situacao'].touched
+                        "
+                    >
                     </p-message>
                 </div>
             </div>
@@ -54,20 +74,22 @@
                     <legend>Informar CBO?</legend>
                     <div class="p-field-radiobutton">
                         <div class="radioButton">
-                            <p-radioButton 
-                                name="informarCbo" 
-                                formControlName="informarCbo" 
+                            <p-radioButton
+                                name="informarCbo"
+                                formControlName="informarCbo"
                                 value="true"
-                                label="Sim">
+                                label="Sim"
+                            >
                             </p-radioButton>
                         </div>
                         <div class="radioButton">
                             <p-radioButton
-                                name="informarCbo" 
-                                formControlName="informarCbo" 
-                                value="false" 
+                                name="informarCbo"
+                                formControlName="informarCbo"
+                                value="false"
                                 label="Não"
-                                required>
+                                required
+                            >
                             </p-radioButton>
                         </div>
                     </div>
@@ -76,30 +98,36 @@
                     <legend>Informar CNS?</legend>
                     <div class="p-field-radiobutton">
                         <div class="radioButton">
-                            <p-radioButton 
-                                name="informarCns" 
-                                formControlName="informarCns" 
+                            <p-radioButton
+                                name="informarCns"
+                                formControlName="informarCns"
                                 value="true"
-                                label="Sim">
+                                label="Sim"
+                            >
                             </p-radioButton>
                         </div>
                         <div class="radioButton">
                             <p-radioButton
-                                name="informarCns" 
-                                formControlName="informarCns" 
+                                name="informarCns"
+                                formControlName="informarCns"
                                 value="false"
-                                label="Não" 
-                                required>
+                                label="Não"
+                                required
+                            >
                             </p-radioButton>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
         <div class="p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de ocupação"
-                [disabled]="!valid()">
-            </button>
+            <button
+                pButton
+                type="submit"
+                label="Salvar"
+                pTooltip="Salvar registro de ocupação"
+                [disabled]="!valid()"
+            ></button>
         </div>
     </div>
 </form>

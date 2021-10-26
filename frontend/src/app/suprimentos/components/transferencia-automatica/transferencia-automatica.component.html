@@ -4,22 +4,38 @@
         <div class="p-col-12 p-grid">
             <div class="p-grid">
                 <div class="p-md-12 p-fluid">
-                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
                         <input type="text" pInputText class="p-inputtext" />
                         <label>Placeholder</label>
                     </span>
                 </div>
                 <div class="p-col-12 p-grid p-jc-center">
                     <div class="p-md-3">
-                        <button pButton type="button" label="Pesquisar" icon="pi pi-search"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            icon="pi pi-search"
+                        ></button>
                     </div>
                     <div class="p-md-3">
-                        <button pButton type="button" label="Nova Transferência"
-                            [routerLink]="['/transferencias-automaticas/nova']" icon="pi pi-add"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Nova Transferência"
+                            [routerLink]="['/transferencias-automaticas/nova']"
+                            icon="pi pi-add"
+                        ></button>
                     </div>
                 </div>
-                <basis-datatable type="server" [url]="datatableUrl" [disableDelete]="false" [disableEdit]="true"
-                    [disableView]="true" #datatable>
+                <basis-datatable
+                    type="server"
+                    [url]="datatableUrl"
+                    [disableDelete]="false"
+                    [disableEdit]="true"
+                    [disableView]="true"
+                    #datatable
+                >
                     <p-column header="Almoxarifado Origem" field="origem">
                         <ng-template let-data="rowData" pTemplate="body">
                             {{ data.origem.descricao }}

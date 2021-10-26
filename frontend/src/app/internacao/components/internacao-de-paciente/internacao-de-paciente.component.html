@@ -4,7 +4,10 @@
             <form [formGroup]="formGroup">
                 <div class="p-col-12 p-grid">
                     <ng-template [ngIf]="solicitacao.pacienteId">
-                        <app-card-paciente class="p-md-12" [prontuario]="solicitacao.pacienteId"></app-card-paciente>
+                        <app-card-paciente
+                            class="p-md-12"
+                            [prontuario]="solicitacao.pacienteId"
+                        ></app-card-paciente>
                     </ng-template>
                 </div>
                 <div class="p-col-12 p-grid">
@@ -54,7 +57,12 @@
                 </div>
                 <div class="p-col-12 p-grid">
                     <div class="p-md-5">
-                        <app-crm [parentFormGroup]="formGroup" [required]="true" name="crm" label="CRM">
+                        <app-crm
+                            [parentFormGroup]="formGroup"
+                            [required]="true"
+                            name="crm"
+                            label="CRM"
+                        >
                         </app-crm>
                     </div>
                 </div>
@@ -144,38 +152,38 @@
                         </span>
                     </div>
                     <div class="p-md-3">
-                        <label style="margin: 3px;">Diferença de Classe?</label>
+                        <label style="margin: 3px">Diferença de Classe?</label>
                         <p-radioButton
                             name="diferencaDeClasse"
                             [value]="true"
                             formControlName="diferencaDeClasse"
                         ></p-radioButton>
-                        <label style="margin: 3px;">Sim</label>
+                        <label style="margin: 3px">Sim</label>
                         <p-radioButton
                             name="diferencaDeClasse"
                             [value]="false"
                             formControlName="diferencaDeClasse"
                         ></p-radioButton>
-                        <label style="margin: 3px;">Não</label>
+                        <label style="margin: 3px">Não</label>
                     </div>
                     <div class="p-md-3">
-                        <label style="margin: 3px;">Solicitar Prontuário?</label>
+                        <label style="margin: 3px">Solicitar Prontuário?</label>
                         <p-radioButton
                             name="solicitarProntuario"
                             [value]="true"
                             formControlName="solicitarProntuario"
                         ></p-radioButton>
-                        <label style="margin: 3px;">Sim</label>
+                        <label style="margin: 3px">Sim</label>
                         <p-radioButton
                             name="solicitarProntuario"
                             [value]="false"
                             formControlName="solicitarProntuario"
                         ></p-radioButton>
-                        <label style="margin: 3px;">Não</label>
+                        <label style="margin: 3px">Não</label>
                     </div>
                 </div>
                 <!-- Justificativa -->
-                <div class="p-md-12 ">
+                <div class="p-md-12">
                     <label>Justificativa</label>
                     <textarea
                         pInputTextarea
@@ -198,4 +206,3 @@
         </p-fieldset>
     </div>
 </div>
-

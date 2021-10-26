@@ -9,7 +9,12 @@ import { PacienteFormComponent } from './paciente-form.component';
 import { PacienteListComponent } from './paciente-list.component';
 import { PacienteService } from './paciente.service';
 
-import { CrudModule, CRUD_SERVICE, CrudResolveGuard, FormNotificationModule } from '@nuvem/primeng-components';
+import {
+    CrudModule,
+    CRUD_SERVICE,
+    CrudResolveGuard,
+    FormNotificationModule,
+} from '@nuvem/primeng-components';
 
 import { DatatableModule } from '@nuvem/primeng-components';
 
@@ -36,8 +41,7 @@ import { MotivoDoCadastroService } from './cartao-sus/motivo-do-cadastro.service
 import { UfService } from './municipio/uf.service';
 import { MunicipioService } from './municipio/municipio.service';
 import { CepService } from './endereco/cep.service';
-import {TabViewModule} from 'primeng/tabview';
-
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   imports: [
@@ -85,4 +89,4 @@ import {TabViewModule} from 'primeng/tabview';
     CepService,
   ]
 })
-export class PacienteModule { }
+export class PacienteModule {}

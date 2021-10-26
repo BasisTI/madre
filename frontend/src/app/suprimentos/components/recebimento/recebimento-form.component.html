@@ -6,28 +6,42 @@
                 <div class="p-col-12 p-grid">
                     <p-fieldset legend="Nota Fiscal de Entrada">
                         <app-documento-fiscal-entrada
-                            [parentFormGroup]="formGroup.controls.documentoFiscal">
+                            [parentFormGroup]="formGroup.controls.documentoFiscal"
+                        >
                         </app-documento-fiscal-entrada>
                     </p-fieldset>
                 </div>
                 <div class="p-col-12 p-grid">
                     <p-fieldset legend="Com Autorização de Fornecimento?">
-                        <div style="margin: 0px 10px; display: inline;">
-                            <p-radioButton label="Sim" name="af" [value]="true"
-                                [(ngModel)]="comAutorizacaoFornecimento"></p-radioButton>
+                        <div style="margin: 0px 10px; display: inline">
+                            <p-radioButton
+                                label="Sim"
+                                name="af"
+                                [value]="true"
+                                [(ngModel)]="comAutorizacaoFornecimento"
+                            ></p-radioButton>
                         </div>
-                        <div style="margin: 0px 10px; display: inline;">
-                            <p-radioButton label="Não" name="af" [value]="false"
-                                [(ngModel)]="comAutorizacaoFornecimento" (onClick)="aoMarcarNaoParaAF()">
+                        <div style="margin: 0px 10px; display: inline">
+                            <p-radioButton
+                                label="Não"
+                                name="af"
+                                [value]="false"
+                                [(ngModel)]="comAutorizacaoFornecimento"
+                                (onClick)="aoMarcarNaoParaAF()"
+                            >
                             </p-radioButton>
                         </div>
                     </p-fieldset>
                 </div>
                 <div class="p-col-12 p-grid" *ngIf="comAutorizacaoFornecimento">
-                    <p-fieldset legend="
+                    <p-fieldset
+                        legend="
                             Autorização de Fornecimento
-                        ">
-                        <app-autorizacao-fornecimento [parentFormGroup]="formGroup.controls.autorizacaoFornecimento">
+                        "
+                    >
+                        <app-autorizacao-fornecimento
+                            [parentFormGroup]="formGroup.controls.autorizacaoFornecimento"
+                        >
                         </app-autorizacao-fornecimento>
                     </p-fieldset>
                 </div>
@@ -35,8 +49,12 @@
                     <p-fieldset legend="Itens de Entrega AF" *ngIf="comAutorizacaoFornecimento">
                         <div class="p-col-12 p-grid">
                             <div class="p-md-2">
-                                <button pButton label="Gravar" [disabled]="formGroup.invalid"
-                                    (click)="gravar()"></button>
+                                <button
+                                    pButton
+                                    label="Gravar"
+                                    [disabled]="formGroup.invalid"
+                                    (click)="gravar()"
+                                ></button>
                             </div>
                         </div>
                     </p-fieldset>
@@ -47,61 +65,117 @@
                                 <form [formGroup]="itemForm">
                                     <div class="p-col-12 p-grid">
                                         <div class="p-md-2">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                                <p-autoComplete [suggestions]="materiais" (completeMethod)="
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
+                                                <p-autoComplete
+                                                    [suggestions]="materiais"
+                                                    (completeMethod)="
                                                         obterMateriaisPeloNome($event)
-                                                    " [dropdown]="true" field="nome" formControlName="material">
+                                                    "
+                                                    [dropdown]="true"
+                                                    field="nome"
+                                                    formControlName="material"
+                                                >
                                                 </p-autoComplete>
                                                 <label>Material</label>
                                             </span>
                                         </div>
                                         <div class="p-md-2">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                                <p-autoComplete [suggestions]="marcasComerciais" (completeMethod)="
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
+                                                <p-autoComplete
+                                                    [suggestions]="marcasComerciais"
+                                                    (completeMethod)="
                                                         obterMarcaComercialPorDescricao($event)
-                                                    " [dropdown]="true" field="descricao"
-                                                    formControlName="marcaComercial"></p-autoComplete>
+                                                    "
+                                                    [dropdown]="true"
+                                                    field="descricao"
+                                                    formControlName="marcaComercial"
+                                                ></p-autoComplete>
                                                 <label>Marca Comercial</label>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="p-col-12 p-grid">
                                         <div class="p-md-2">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                                <input pInputText type="number" formControlName="quantidadeReceber" />
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
+                                                <input
+                                                    pInputText
+                                                    type="number"
+                                                    formControlName="quantidadeReceber"
+                                                />
                                                 <label>Quantidade a Receber </label>
                                             </span>
                                         </div>
                                         <div class="p-md-2">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                                <p-autoComplete [suggestions]="unidadesMedida" (completeMethod)="
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
+                                                <p-autoComplete
+                                                    [suggestions]="unidadesMedida"
+                                                    (completeMethod)="
                                                         obterUnidadeMedidaPorDescricao($event)
-                                                    " [dropdown]="true" field="descricao"
-                                                    formControlName="unidadeMedida"></p-autoComplete>
+                                                    "
+                                                    [dropdown]="true"
+                                                    field="descricao"
+                                                    formControlName="unidadeMedida"
+                                                ></p-autoComplete>
                                                 <label>Unidade de Medida</label>
                                             </span>
                                         </div>
                                         <div class="p-md-2">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                                <input pInputText type="text" formControlName="quantidadeConvertida" />
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
+                                                <input
+                                                    pInputText
+                                                    type="text"
+                                                    formControlName="quantidadeConvertida"
+                                                />
                                                 <label>Quantidade Convertida</label>
                                             </span>
                                         </div>
                                         <div class="p-md-1">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
-                                                <input pInputText type="text" formControlName="valorTotal" />
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
+                                                <input
+                                                    pInputText
+                                                    type="text"
+                                                    formControlName="valorTotal"
+                                                />
                                                 <label>Valor Total</label>
                                             </span>
                                         </div>
                                         <div class="p-md-2">
-                                            <button pButton label="Adicionar" icon="pi pi-add"
-                                                [disabled]="itemForm.invalid" (click)="adicionarItemALista()"></button>
+                                            <button
+                                                pButton
+                                                label="Adicionar"
+                                                icon="pi pi-add"
+                                                [disabled]="itemForm.invalid"
+                                                (click)="adicionarItemALista()"
+                                            ></button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <basis-datatable type="memory" [disableDelete]="true" [disableEdit]="true"
-                                [disableView]="true" [value]="itens">
+                            <basis-datatable
+                                type="memory"
+                                [disableDelete]="true"
+                                [disableEdit]="true"
+                                [disableView]="true"
+                                [value]="itens"
+                            >
                                 <p-column header="Material" field="material">
                                     <ng-template let-col let-material="rowData" pTemplate="body">
                                         {{ material.material.nome }}
@@ -112,7 +186,10 @@
                                         {{ marca.marcaComercial.descricao }}
                                     </ng-template>
                                 </p-column>
-                                <p-column header="Quantidade a Receber" field="quantidadeReceber"></p-column>
+                                <p-column
+                                    header="Quantidade a Receber"
+                                    field="quantidadeReceber"
+                                ></p-column>
                                 <p-column header="Unidade de Medida" field="unidadeMedida">
                                     <ng-template let-col let-unidade="rowData" pTemplate="body">
                                         {{ unidade.unidadeMedida.descricao }}
@@ -123,7 +200,12 @@
                         </p-fieldset>
                         <div class="p-md-2"></div>
                         <div class="p-md-4">
-                            <button pButton label="Gravar" [disabled]="formGroup.invalid" (click)="gravar()"></button>
+                            <button
+                                pButton
+                                label="Gravar"
+                                [disabled]="formGroup.invalid"
+                                (click)="gravar()"
+                            ></button>
                         </div>
                         <div class="p-md-4">
                             <button pButton label="Limpar"></button>

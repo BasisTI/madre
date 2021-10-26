@@ -4,7 +4,7 @@
             <h1>Solicitar Internação</h1>
             <div class="p-grid">
                 <div class="p-md-12 p-fluid">
-                    <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                    <span class="md-inputfield p-float-label" style="margin-top: 5px">
                         <input
                             type="text"
                             pInputText
@@ -56,7 +56,8 @@
                     [disableEdit]="true"
                     [disableDelete]="true"
                     (buttonClick)="onButtonClick($event)"
-                    #datatable>
+                    #datatable
+                >
                     <p-column header="Identificador" field="id"></p-column>
                     <p-column header="Nome" field="nome" [sortable]="true"></p-column>
                     <p-column header="Data de Nascimento" field="dataDeNascimento">
