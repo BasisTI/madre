@@ -58,16 +58,6 @@ public class MunicipioResource {
     }
 
     /**
-     * Write documentation
-     */
-    @GetMapping("/municipios/naturalidade")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNaturalidade(@RequestParam(required = false)Long idUf,String nome, Pageable pageable) {
-        Page<MunicipioUF> page = municipioService
-            .findAllProjectedMunicipioUFByNaturalidade(idUf, nome ,pageable);
-        return ResponseEntity.ok(page.getContent());
-    }
-
-    /**
      * {@code POST  /municipios} : Create a new municipio.
      *
      * @param municipioDTO the municipioDTO to create.

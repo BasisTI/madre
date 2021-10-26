@@ -112,16 +112,6 @@ public class MunicipioService {
             .map(municipioMapper::toDto);
     }
 
-    /**
-     *  Write documentation
-     */
-
-    public Page<MunicipioUF> findAllProjectedMunicipioUFByNaturalidade(Long idUf, String nome, Pageable pageable) {
-        UF uf = new UF();
-        uf.setId(idUf);
-        return municipioRepository.findByNomeContainsIgnoreCaseAndUf(nome,uf,pageable);
-    }
-
     @Transactional(readOnly = true)
     public Page<MunicipioDTO> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
         Page<MunicipioDTO> municipioDTO = filterWithWords(filtro, pageable);
