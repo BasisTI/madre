@@ -83,7 +83,6 @@ public class GradeAgendamentoExameService {
         result.setNumeroDeHorarios(fonte.getNumeroDeHorarios());
         result.setAtivo(fonte.isAtivo());
         result.setDuracao(fonte.getDuracao());
-//        result.setExameNome(fonte.getExame().getNome());
     }
 
     public void calcularDuracaoDeHorarios(GradeAgendamentoExameDTO gradeAgendamentoExameDTO) {
