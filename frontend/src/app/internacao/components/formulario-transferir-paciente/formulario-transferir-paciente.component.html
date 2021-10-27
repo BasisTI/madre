@@ -1,12 +1,44 @@
 <div class="card card-w-title">
     <h1>Transferir Paciente</h1>
     <div class="p-col-12 p-grid">
-        <basis-datatable [value]="listarLeito">
-            <p-column header="Nome" field=""></p-column>
-            <p-column header="Internação" field=""></p-column>
+        <basis-datatable
+            [value]="internacoes"
+            [disableView]="true"
+            [disableEdit]="true"
+            [disableDelete]="true"
+            sortField="brand"
+        >
+            <p-column header="Nome" field="pacienteId"></p-column>
+            <p-column header="Internação" field="dataDaInternacao"></p-column>
             <p-column header="Transferência" field=""></p-column>
-            <p-column header="Leito" field="nome"></p-column>
+            <p-column header="Leito" field="leitoId"></p-column>
             <p-column header="Quarto" field=""></p-column>
+            <p-column header="Unidade" field=""></p-column>
+            <p-column header="Especialidade" field="especialidadeId"></p-column>
+            <p-column header="Convênio" field="convenioId"></p-column>
+            <basis-datatable-button
+                name="editar"
+                bTooltip="Transferir"
+                icon="pi pi-pencil"
+                class="p-button-success"
+            >
+                >
+            </basis-datatable-button>
+            <basis-datatable-button
+                name="view"
+                bTooltip="Visualizar"
+                icon="pi pi-eye"
+                class="ng-star-inserted"
+            >
+                >
+            </basis-datatable-button>
+            <basis-datatable-button
+                name="deletar"
+                bTooltip="Deletar"
+                icon="pi pi-trash"
+                class="p-button-danger"
+            >
+            </basis-datatable-button>
         </basis-datatable>
     </div>
 </div>
