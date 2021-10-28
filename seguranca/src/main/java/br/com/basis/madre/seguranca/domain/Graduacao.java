@@ -18,7 +18,6 @@ import javax.persistence.EnumType;
 import javax.validation.constraints.NotNull;
 
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.LocalDate;
 
