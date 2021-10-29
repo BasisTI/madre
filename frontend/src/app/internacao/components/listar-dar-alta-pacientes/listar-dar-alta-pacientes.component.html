@@ -1,59 +1,67 @@
 <div class="card">
     <h1>Lista de PAcientes Internados</h1>
 
-    <!-- <div class="p-grid">
-        <div
-            class="p-md-2 p-fluid"
-            pTooltip="Informe a descrição do tipo de unidade funcional"
-        >
+    <div class="p-grid">
+        <div class="p-md-2 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
             Prontuário
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext"/>
+                <input type="text" pInputText class="p-inputtext" />
             </span>
         </div>
 
-            <div
-                class="p-md-4 p-fluid"
-                pTooltip="Informe a descrição do tipo de unidade funcional"
-            >
-                Nome:
-                <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                    <input type="text" pInputText class="p-inputtext"/>
-                </span>
-            </div>
-    </div> -->
+        <div class="p-md-4 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
+            Nome:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input type="text" pInputText class="p-inputtext" />
+            </span>
+        </div>
+    </div>
 
-    <!-- <div class="p-col-12 p-grid">
+    <div class="p-col-12 p-grid">
         <div class="p-md-2">
             <button
                 pButton
                 type="button"
                 label="Pesquisar"
                 icon="pi pi-search"
+                (click)="listarInternacoes()"
+                [disabled]="null"
+            ></button>
+        </div>
+
+        <!-- <div class="p-md-2">
+            <button
+                pButton
+                type="button"
+                label="Dar Alta ao Paciente"
+                icon=""
                 (click)="null"
                 [disabled]="null"
+                routerLink="internacao/formulario-dar-alta-ao-paciente"
             ></button>
         </div> -->
 
-    <div class="p-col-12 p-grid">
-        <basis-datatable
-            [url]="seachUrl"
-            #datatable
-            [disableView]="true"
-            [disableEdit]="true"
-            [disableDelete]="true"
-            type="memory"
-            [value]="listaInternacoes"
-            sortField="brand"
-        >
-            <p-column header="Data Alta" field="dataDaAlta"></p-column>
-            <p-column header="Data Inter" field="dataDaInternacao"></p-column>
-            <p-column header="Leito" field="leitoNome"></p-column>
-            <p-column header="Quarto" field="null"></p-column>
-            <p-column header="Unid Funcio" field="unidadeFuncionalNome"></p-column>
-            <p-column header="Especialidade" field="especialidadeNome"></p-column>
-            <p-column header="Conv/Plano" field="conveniDeSaudeNome"></p-column>
-            <p-column header="Professor" field="null"></p-column>
-        </basis-datatable>
+        <div class="p-col-12 p-grid">
+            <basis-datatable
+                [url]="seachUrl"
+                #datatable
+                [disableView]="true"
+                [disableEdit]="true"
+                [disableDelete]="true"
+                type="memory"
+                [value]="listaInternacoes"
+                sortField="brand"
+            >
+                <p-column header="ID" field="id"></p-column>
+                <p-column header="Data Alta" field="dataDaAlta"></p-column>
+                <p-column header="Data Inter" field="dataDaInternacao"></p-column>
+                <p-column header="Leito" field="leitoNome"></p-column>
+                <p-column header="Quarto" field="null"></p-column>
+                <p-column header="Unid Funcio" field="null"></p-column>
+                <p-column header="Especialidade" field="especialidadeId"></p-column>
+                <p-column header="Conv/Plano" field="convenioNome"></p-column>
+                <p-column header="Professor" field="null"></p-column>
+            </basis-datatable>
+        </div>
     </div>
 </div>

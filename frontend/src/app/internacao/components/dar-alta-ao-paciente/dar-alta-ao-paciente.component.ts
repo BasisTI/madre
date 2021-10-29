@@ -1,18 +1,22 @@
-import { DarAltaAoPaciente } from './../../models/dar-alta-ao-paciente';
-import { Component, OnInit } from '@angular/core';
+import { DarAltaAoPaciente } from '@internacao/models/dar-alta-ao-paciente';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dar-alta-ao-paciente',
-  templateUrl: './dar-alta-ao-paciente.component.html',
-  styleUrls: ['./dar-alta-ao-paciente.component.css']
+    selector: 'app-dar-alta-ao-paciente',
+    templateUrl: './dar-alta-ao-paciente.component.html',
+    styleUrls: ['./dar-alta-ao-paciente.component.css'],
 })
-export class DarAltaAoPacienteComponent implements OnInit {
+export class DarAltaAoPacienteComponent {
+    private altaCadastrada: DarAltaAoPaciente = {};
 
-    private altaCadastrada: DarAltaAoPaciente = {}
+    constructor() {}
 
-  constructor() { }
+    public get alta(): DarAltaAoPaciente {
+        return this.altaCadastrada;
+    }
 
-  ngOnInit(): void {
-  }
-
+    onAltaSalva(salvaAlta: DarAltaAoPaciente) {
+        this.altaCadastrada = salvaAlta;
+        console.log(salvaAlta);
+    }
 }

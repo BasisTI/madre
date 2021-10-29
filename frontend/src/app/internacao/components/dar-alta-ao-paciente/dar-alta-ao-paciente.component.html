@@ -1,10 +1,12 @@
 <div class="p-col-12 card card-w-title">
-    <h1>
-        Manter Dar Alta ao PAciente
-    </h1>
+    <h1>Manter Dar Alta ao PAciente</h1>
     <p-tabView>
         <p-tabPanel header="Formulario Dar alta ao Paciente">
-            <app-formulario-dar-alta-ao-paciente></app-formulario-dar-alta-ao-paciente>
+            <app-formulario-dar-alta-ao-paciente
+                [alta]="alta"
+                (salvaAlta)="onAltaSalva($event)"
+            ></app-formulario-dar-alta-ao-paciente>
         </p-tabPanel>
     </p-tabView>
-</div>>
+</div>
+>

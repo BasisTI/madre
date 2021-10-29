@@ -2,45 +2,49 @@
     <h1>Dados da Alta do Paciente</h1>
 
     <div class="p-grid">
-        <div
-            class="p-md-2 p-fluid"
-            pTooltip="Informe a descrição do tipo de unidade funcional"
-        >
+        <div class="p-md-2 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
             Prontuário
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext"  />
+                <input type="text" pInputText class="p-inputtext" />
             </span>
         </div>
 
-        <div
-            class="p-md-4 p-fluid"
-            pTooltip="Informe a descrição do tipo de unidade funcional"
-        >
+        <div class="p-md-4 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
             Nome:
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext"/>
+                <input type="text" pInputText class="p-inputtext" />
             </span>
-      </div>
-
+        </div>
     </div>
 
     <div class="p-grid">
-
-        <div
-            class="p-md-2 p-fluid"
-            pTooltip="Informe a descrição do tipo de alta administrativa"
-
-            >
-            Tipo de ALta
+        <div class="p-md-2 p-fluid" pTooltip="Informe a descrição do tipo de alta administrativa">
+            Tipo de Alta
             <span class="p-float-label">
-               <p-dropdown
-                [options]="tiposdeAltas"
-                placeholder="Selecione"
-                formControlName="tipoDeAlta"
+                <p-dropdown
+                    [options]="tiposDeAltas"
+                    placeholder="Selecione"
+                    formControlName="tipoDeAlta"
                 >
-               </p-dropdown>
+                </p-dropdown>
             </span>
+        </div>
 
+        <div class="p-md-2 p-sm-12" style="margin-top: 15px">
+            <span class="p-float-label">
+                <p-calendar
+                    [locale]="null"
+                    [yearRange]="null"
+                    dateFormat="dd/mm/yy"
+                    showTime="true"
+                    hourFormat="24"
+                    showButtonBar="true"
+                    [yearNavigator]="true"
+                    [monthNavigator]="true"
+                    formControlName="null"
+                ></p-calendar>
+                <label>Data da Internação</label>
+            </span>
         </div>
 
         <!-- <div
@@ -54,13 +58,10 @@
             </span>
 
         </div> -->
-
     </div>
 
     <div class="p-grid">
-
-        <div class="p-md-2 p-sm-12" style="margin-top: 15px;">
-
+        <div class="p-md-2 p-sm-12" style="margin-top: 15px">
             <span class="p-float-label">
                 <p-calendar
                     [locale]="null"
@@ -75,10 +76,9 @@
                 ></p-calendar>
                 <label>Data e Hora Alta</label>
             </span>
-
         </div>
 
-       <!--  <div
+        <!--  <div
             class="p-md-2 p-fluid" style="margin-right: 50px;"
             pTooltip="Informe a descrição do tipo"
             >
@@ -90,8 +90,7 @@
 
         </div> -->
 
-        <div class="p-md-2 p-sm-12" style="margin-top: 15px;">
-
+        <div class="p-md-2 p-sm-12" style="margin-top: 15px">
             <span class="p-float-label">
                 <p-calendar
                     [locale]="null"
@@ -106,9 +105,7 @@
                 ></p-calendar>
                 <label>Previsão de ALta</label>
             </span>
-
         </div>
-
     </div>
 
     <!-- <div class="p-grid">
@@ -126,26 +123,19 @@
           </div>
     </div> -->
 
-    <div class="p-col-12 p-grid" style="margin-bottom: 10px;">
-
+    <div class="p-col-12 p-grid" style="margin-bottom: 10px">
         <div class="p-md-2 p-sm-12">
             <button
                 pButton
                 type="button"
                 label="Registrar Alta"
                 icon="pi pi-save"
-                (click)="null"
+                (click)="cadastraDarAlta()"
             ></button>
         </div>
 
         <div class="p-md-2 p-sm-12">
-            <button
-                pButton
-                type="button"
-                label="Limpar"
-                icon="pi pi-"
-                (click)="null"
-            ></button>
+            <button pButton type="button" label="Limpar" icon="pi pi-" (click)="(null)"></button>
         </div>
     </div>
 </div>

@@ -15,7 +15,7 @@
             <column name="previsao_de_alta" type="date" defaultValueDate="2021-02-02">
                 <constraints nullable="true" />
             </column>
-            <column name="tipo_de_alta" type="varchar(255)" defaultValueSequenceNext="OBITO">
+            <column name="tipo_de_alta" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
         </addColumn>
