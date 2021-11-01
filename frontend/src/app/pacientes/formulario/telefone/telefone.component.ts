@@ -61,6 +61,7 @@ export class TelefoneComponent implements OnInit {
       observacao: form.observacao,
     };
     this.telefones.push(telefone);
+    this.telefone.reset();
     console.log(this.telefones.value)
   }
 
