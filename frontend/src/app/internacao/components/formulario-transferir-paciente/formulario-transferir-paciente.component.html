@@ -1,44 +1,205 @@
-<div class="card card-w-title">
+<div class="card">
     <h1>Transferir Paciente</h1>
-    <div class="p-col-12 p-grid">
-        <basis-datatable
-            [value]="internacoes"
-            [disableView]="true"
-            [disableEdit]="true"
-            [disableDelete]="true"
-            sortField="brand"
-        >
-            <p-column header="Nome" field="pacienteId"></p-column>
-            <p-column header="Internação" field="dataDaInternacao"></p-column>
-            <p-column header="Transferência" field=""></p-column>
-            <p-column header="Leito" field="leitoId"></p-column>
-            <p-column header="Quarto" field=""></p-column>
-            <p-column header="Unidade" field=""></p-column>
-            <p-column header="Especialidade" field="especialidadeId"></p-column>
-            <p-column header="Convênio" field="convenioId"></p-column>
-            <basis-datatable-button
-                name="editar"
-                bTooltip="Transferir"
-                icon="pi pi-pencil"
-                class="p-button-success"
-            >
-                >
-            </basis-datatable-button>
-            <basis-datatable-button
-                name="view"
-                bTooltip="Visualizar"
-                icon="pi pi-eye"
-                class="ng-star-inserted"
-            >
-                >
-            </basis-datatable-button>
-            <basis-datatable-button
-                name="deletar"
-                bTooltip="Deletar"
-                icon="pi pi-trash"
-                class="p-button-danger"
-            >
-            </basis-datatable-button>
-        </basis-datatable>
-    </div>
+    <p-table
+        responsiveLayout="scroll"
+        [value]="internacoes"
+        selectionMode="single"
+        [(selection)]="selectedinternacoes"
+        dataKey="id"
+        styleClass="p-datatable-customers"
+        [rows]="10"
+        [paginator]="true"
+        stateStorage="session"
+        stateKey="statedemo-session"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th field="pacienteId">Name</th>
+                <th field="dataDaInternacao">Internação</th>
+                <th field="">Transferência</th>
+                <th field="leitoId">Leito</th>
+                <th field="">Quarto</th>
+                <th field="">Unidade</th>
+                <th field="especialidadeId">Especialidade</th>
+                <th field="convenioId">Convênio</th>
+                <th field="">Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-internacoes>
+            <tr [pSelectableRow]="internacoes">
+                <td>{{ internacoes.pacienteId }}</td>
+                <td>{{ internacoes.dataDaInternacao }}</td>
+                <td>{{ internacoes.transferencia }}</td>
+                <td>{{ internacoes.leitoId }}</td>
+                <td>{{ internacoes.quarto }}</td>
+                <td>{{ internacoes.unidade }}</td>
+                <td>{{ internacoes.especialidadeId }}</td>
+                <td>{{ internacoes.convenioId }}</td>
+                <td class="p-col-12">
+                    <button
+                        class="col-4"
+                        pButton
+                        pRipple
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-success"
+                        (click)="edit"
+                        name="edit"
+                    ></button>
+                    <button
+                        class="col-4"
+                        pButton
+                        pRipple
+                        icon="pi pi-eye"
+                        class="p-button-rounded ng-star-inserted"
+                        (click)="visualizarDadosTransferir(internacao)"
+                    ></button>
+                    <button
+                        class="col-4"
+                        pButton
+                        pRipple
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-danger"
+                        (click)="deleteProduct(product)"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+
+<!--Modal-->
+<p-dialog
+    [(visible)]="internacaoDialog"
+    [style]="{ width: '750px' }"
+    header="Dados da Internação"
+    [modal]="true"
+    styleClass="p-fluid"
+>
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="pacienteId">Nome</label>
+            <input
+                type="text"
+                pInputText id="pacienteId"
+                [(ngModel)]="internacoes.pacienteId"
+                required
+                autofocus
+            />
+            <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                >Name is required.</small
+            >
+        </div>
+        <div class="p-col-12 p-grid p-fluid">
+            <div class="p-md-4 p-sm-12">
+                <label for="name">Internação</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+            <div class="p-md-4 p-sm-12">
+                <label for="name">Transferência</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+            <div class="p-md-4 p-sm-12">
+                <label for="name">Leito</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+        </div>
+        <div class="p-col-12 p-grid p-fluid">
+            <div class="p-md-2 p-sm-12">
+                <label for="name">Quarto</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+            <div class="p-md-4 p-sm-12">
+                <label for="name">Unidade</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+            <div class="p-md-3 p-sm-12">
+                <label for="name">Especialidade</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+            <div class="p-md-3 p-sm-12">
+                <label for="name">Convênio</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="internacoes.pacienteId"
+                    required
+                    autofocus
+                />
+                <small class="p-invalid" *ngIf="submitted && !internacoes.pacienteId"
+                    >Name is required.</small
+                >
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button
+            pButton
+            pRipple
+            label="Fechar"
+            icon="pi pi-times"
+            class="p-button"
+            (click)="hideDialog()"
+        ></button>
+    </ng-template>
+</p-dialog>

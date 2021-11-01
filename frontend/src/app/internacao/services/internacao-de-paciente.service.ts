@@ -10,6 +10,7 @@ import { api } from '@internacao/api';
 })
 export class InternacaoDePacienteService {
     private readonly resource = `${api}/internacoes`;
+    private readonly apiUrl = '/internacoes/api';
 
     constructor(private client: HttpClient) {}
 
@@ -42,5 +43,9 @@ export class InternacaoDePacienteService {
     }
     listarGradeTransferiPaciente(): Observable<Array<Internacao>> {
         return this.client.get<Array<Internacao>>(`${this.resource}`)
+    }
+
+    find(id: number): Observable<Array<Internacao>> {
+        return this.client.get<Array<Internacao>>(`${this.apiUrl}/internacoes/${id}`);
     }
 }

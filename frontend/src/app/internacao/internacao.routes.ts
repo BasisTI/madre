@@ -11,6 +11,7 @@ import { Routes } from '@angular/router';
 import { SolicitacaoDeInternacaoComponent } from './components/solicitacao-de-internacao/solicitacao-de-internacao.component';
 import { SolicitacoesDeInternacaoComponent } from './components/solicitacoes-de-internacao/solicitacoes-de-internacao.component';
 import { FormularioTransferirPacienteComponent } from './components/formulario-transferir-paciente/formulario-transferir-paciente.component';
+import { FormularioDadosInternacaoComponent } from './components/formulario-dados-internacao/formulario-dados-internacao.component';
 
 export const routes: Routes = [
     {
@@ -60,6 +61,10 @@ export const routes: Routes = [
     {
         path: 'formulario-transferir-paciente',
         component: FormularioTransferirPacienteComponent,
+    },
+    {
+        path: 'formulario-dados-internacao',
+        component: FormularioDadosInternacaoComponent,
     },
 
 ];

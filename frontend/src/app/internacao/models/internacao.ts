@@ -28,6 +28,7 @@ export interface IInternacao {
     solicitarProntuario: boolean;
     justificativa: string;
     leito: ILeito;
+    
 }
 
 export class Internacao implements IInternacao {
