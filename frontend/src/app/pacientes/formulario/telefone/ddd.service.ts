@@ -1,18 +1,25 @@
-import { CrudServiceNuvem } from '@nuvem/primeng-components';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DDD } from '../../models/dropdowns/types/DDD';
+import { Observable } from 'rxjs';
+import { Pageable } from '@shared/pageable';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DDDService extends CrudServiceNuvem<number, DDD>{
+export class DDDService{
 
-  uriServico: string = '/pacientes/api/list/ddd';
+  private readonly resource = `pacientes/api/list/ddd`;
 
-  constructor(private httpClient: HttpClient) {
-    super('/pacientes/api/list/ddd', httpClient);
+  constructor(private client: HttpClient) {}
+
+  getResultDDD(event): Observable<Array<DDD>> {
+    return this.client.get<Array<DDD>>(
+        `${this.resource}`,
+        {
+            params: new HttpParams().set('valor', event).set('sort', 'valor'),
+        },
+    );
   }
   
 }

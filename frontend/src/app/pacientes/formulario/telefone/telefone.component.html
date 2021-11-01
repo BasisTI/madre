@@ -1,0 +1,52 @@
+<form [formGroup]="telefone" (ngSubmit)="adicionarTelefoneALista()">
+    <div class="p-grid responsividade">
+        <div class="p-md-3 p-sm-12">
+            <span class="p-float-label">
+                <p-dropdown [options]="tiposDeTelefone" formControlName="tipo" (onChange)="tipoDeMascara($event)">
+                </p-dropdown>
+                <label>Tipos De Telefone</label>
+            </span>
+        </div>
+
+        <div class="p-md-2 p-sm-12">
+            <span class="p-float-label">
+                <p-autoComplete field="valor" [suggestions]="listaDDD" formControlName="ddd"
+                    (completeMethod)="buscaDDD($event)" [dropdown]="true"></p-autoComplete>
+                <label>DDD</label>
+            </span>
+        </div>
+
+        <div class="p-md-3 p-sm-12">
+            <span class="p-float-label">
+                <p-inputMask type="text" formControlName="numero" mask="{{mascara}}"></p-inputMask>
+                <label>Telefone</label>
+            </span>
+        </div>
+
+        <div class="p-md-4 p-sm-12">
+            <span class="p-float-label">
+                <input type="text" pInputText formControlName="observacao" />
+                <label>Observação</label>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-12">
+            <p-button label="Adicionar" type="button" (onClick)="adicionarTelefoneALista()">
+            </p-button>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-12">
+            <basis-datatable type="memory" [verticalButtons]="false" [value]="telefones" #datatable>
+                <p-column header="Tipo" field="tipo"></p-column>
+                <p-column header="DDD" field="ddd"></p-column>
+                <p-column header="Telefone" field="numero"></p-column>
+                <p-column header="Observação" field="observacao"></p-column>
+            </basis-datatable>
+        </div>
+    </div>
+</form>

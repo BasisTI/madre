@@ -4,6 +4,7 @@ import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 import { GrauDeParentescoService } from "./grau-de-parentesco.service";
 import { FormGroup } from "@angular/forms";
 
+
 @Component({
     selector: 'paciente-form-responsavel',
     templateUrl: './paciente-form-responsavel.component.html',
@@ -12,9 +13,13 @@ import { FormGroup } from "@angular/forms";
 export class PacienteResponsavelFormComponent {
     @Input() formGroup: FormGroup;
 
+    @Input()
+    telefones: any = [];
+
     opcoesDeGrauDeParentesco = [OPCAO_SELECIONE];
 
-    constructor(public grauDeParentescoService: GrauDeParentescoService) {
+    constructor(
+        public grauDeParentescoService: GrauDeParentescoService) {
     }
 
     ngOnInit(): void {

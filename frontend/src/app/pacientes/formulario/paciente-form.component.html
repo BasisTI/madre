@@ -7,7 +7,7 @@
             <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
         </p-tabPanel>
         <p-tabPanel header="Contatos do Paciente">
-            <paciente-form-telefone [formGroup]="paciente"> </paciente-form-telefone>
+            <app-telefone [formGroup]="paciente" ></app-telefone>
         </p-tabPanel>
         <p-tabPanel header="Endereço">
             <paciente-form-endereco [enderecos]="paciente.get('enderecos')"></paciente-form-endereco>

@@ -19,7 +19,6 @@ import { PacienteResponsavelFormComponent } from './responsavel/paciente-form-re
 import { PacienteDocumentosFormComponent } from './documentos/paciente-form-documentos.component';
 import { PacienteCertidaoFormComponent } from './certidao/paciente-form-certidao.component';
 import { PacienteCartaoSusFormComponent } from './cartao-sus/paciente-form-cartao-sus.component';
-import { PacienteTelefoneFormComponent } from './telefone/paciente-form-telefone.component';
 import { PacienteEnderecoFormComponent } from './endereco/paciente-form-endereco.component';
 
 import { CalendarMadreComponent } from '../../shared/components/calendar-madre.component';
@@ -38,6 +37,7 @@ import { UfService } from './municipio/uf.service';
 import { MunicipioService } from './municipio/municipio.service';
 import { CepService } from './endereco/cep.service';
 import {TabViewModule} from 'primeng/tabview';
+import { TelefoneComponent } from './telefone/telefone.component';
 
 
 @NgModule({
@@ -62,9 +62,9 @@ import {TabViewModule} from 'primeng/tabview';
     PacienteDocumentosFormComponent,
     PacienteCertidaoFormComponent,
     PacienteCartaoSusFormComponent,
-    PacienteTelefoneFormComponent,
     PacienteEnderecoFormComponent,
     CalendarMadreComponent,
+    TelefoneComponent,
   ],
   providers: [ 
     PacienteService,
