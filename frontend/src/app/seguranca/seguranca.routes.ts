@@ -10,7 +10,7 @@ export const routes: Routes = [
     { path: 'formulario-servidor', component: FormularioServidorComponent },
     { path: 'vinculos', component: VinculosComponent },
     { path: 'ocupacoes-de-cargo', component: OcupacoesDeCargoComponent },
-    { path: 'cargos', component: CargosComponent},
+    { path: 'cargos', component: CargosComponent },
     { path: 'formulario-graduacoes-de-servidores', component: FormularioGraduacoesComponent },
-    { path: 'servidores', component: ServidoresComponent }
+    { path: 'servidores', component: ServidoresComponent },
 ];

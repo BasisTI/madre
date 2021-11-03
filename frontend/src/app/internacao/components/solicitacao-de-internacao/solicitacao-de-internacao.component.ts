@@ -62,11 +62,9 @@ export class SolicitacaoDeInternacaoComponent implements OnInit, OnDestroy {
         ]);
 
         this.paciente.id = Number(this.route.snapshot.params['id']);
-        this.pacienteService
-            .obterPacientePorId(this.paciente.id)
-            .subscribe((paciente) => {
-                this.paciente = paciente;
-            });
+        this.pacienteService.obterPacientePorId(this.paciente.id).subscribe((paciente) => {
+            this.paciente = paciente;
+        });
     }
 
     ngOnDestroy(): void {

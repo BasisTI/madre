@@ -12,7 +12,7 @@ export class UfService extends CrudServiceNuvem<number, UF> {
         super('pacientes/api/ufs', httpClient);
     }
 
-    getUfById(id: number){
+    getUfById(id: number) {
         return this.http.get(`pacientes/api/ufs/${id}`);
     }
 

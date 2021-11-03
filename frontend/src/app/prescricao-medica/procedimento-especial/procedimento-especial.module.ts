@@ -8,26 +8,11 @@ import { CirurgiasLeitoComponent } from './tipo-procedimento/cirurgias-leito/cir
 import { OrteseProteseComponent } from './tipo-procedimento/ortese-protese/ortese-protese.component';
 
 @NgModule({
-    imports: [
-        ProcedimentoEspecialRoutes,
-        SharedModule,
-        HttpClientModule,
-        AutoCompleteModule
-
-    ],
-    declarations: [
-        DiversosComponent,
-        CirurgiasLeitoComponent,
-        OrteseProteseComponent
-    ],
+    imports: [ProcedimentoEspecialRoutes, SharedModule, HttpClientModule, AutoCompleteModule],
+    declarations: [DiversosComponent, CirurgiasLeitoComponent, OrteseProteseComponent],
     providers: [],
 
-    exports: [
-        DiversosComponent,
-        CirurgiasLeitoComponent,
-        OrteseProteseComponent
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    exports: [DiversosComponent, CirurgiasLeitoComponent, OrteseProteseComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
-export class ProcedimentoEspecialModule { }
+export class ProcedimentoEspecialModule {}

@@ -22,8 +22,6 @@ import { ListaPrescricaoService } from './lista-prescricao/lista-prescricao.serv
 import { DiagnosticoComponent } from './diagnostico/diagnostico.component';
 import { DiagnosticoService } from './diagnostico/diagnostico.service';
 
-
-
 @NgModule({
     imports: [
         SharedModule,
@@ -33,7 +31,7 @@ import { DiagnosticoService } from './diagnostico/diagnostico.service';
         HttpClientModule,
         ReactiveFormsModule,
         PrescricaoMedicaDietaModule,
-        ProcedimentoEspecialModule
+        ProcedimentoEspecialModule,
     ],
     declarations: [
         PrescricaoMedicaComponent,
@@ -43,7 +41,6 @@ import { DiagnosticoService } from './diagnostico/diagnostico.service';
         DiagnosticoComponent,
     ],
     providers: [PrescricaoMedicaService, ListaPrescricaoService, DiagnosticoService],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
 export class PrescricaoMedicaModule {}

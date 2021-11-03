@@ -5,17 +5,14 @@ import { api } from 'src/app/seguranca/api';
 import { Ramal } from '../models/dropdowns/ramal';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class RamalService{
+export class RamalService {
+    private readonly resource = `${api}/ramals`;
 
-  private readonly resource = `${api}/ramals`;
+    constructor(private client: HttpClient) {}
 
-
-  constructor(private client: HttpClient) {}
-
-  public getRamal(): Observable<Array<Ramal>> {
-    return this.client.get<Array<Ramal>>(`${this.resource}`);
-  }
-
+    public getRamal(): Observable<Array<Ramal>> {
+        return this.client.get<Array<Ramal>>(`${this.resource}`);
+    }
 }

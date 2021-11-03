@@ -15,7 +15,6 @@ import * as moment from 'moment';
     templateUrl: './listar-consultas.component.html',
 })
 export class ListarConsultasComponent implements OnInit, OnDestroy {
-
     public crm = new Array<CRM>();
 
     public especialidades = new Array<Especialidade>();
@@ -36,7 +35,7 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
 
     @ViewChild('datatable')
     public datatable: DatatableComponent;
- 
+
     consultas: ConsultaEmergencia[];
 
     listaConsultas = this.fb.group({
@@ -67,11 +66,20 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
     anosDisponiveis = `2010:${this.dataLimite.getFullYear()}`;
     formatoDeData = 'dd/mm/yy';
 
-    constructor(private fb: FormBuilder, private breadcrumbService: BreadcrumbService, private consultaService: ConsultaService) {}
+    constructor(
+        private fb: FormBuilder,
+        private breadcrumbService: BreadcrumbService,
+        private consultaService: ConsultaService,
+    ) {}
 
-    formatarData(){
-        this.dataConsulta= ((this.data.getUTCFullYear() ) + "-" + ("0" + (this.data.getMonth() + 1)).slice(-2) + "-" + ("0" + this.data.getDate()).slice(-2));
-     }
+    formatarData() {
+        this.dataConsulta =
+            this.data.getUTCFullYear() +
+            '-' +
+            ('0' + (this.data.getMonth() + 1)).slice(-2) +
+            '-' +
+            ('0' + this.data.getDate()).slice(-2);
+    }
 
     ngOnInit(): void {
         this.breadcrumbService.setItems([
@@ -91,8 +99,10 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
     }
 
     public exportarConsultas() {
-        this.consultaService.exportarConsultas().subscribe(x => {
-            const blob = new Blob([x], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+        this.consultaService.exportarConsultas().subscribe((x) => {
+            const blob = new Blob([x], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            });
 
             if (window.navigator && window.navigator.msSaveOrOpenBlob) {
                 window.navigator.msSaveOrOpenBlob(blob);
@@ -102,13 +112,15 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
             const link = document.createElement('a');
             link.href = data;
             let dataAtual: Date = new Date();
-            let dataFormatada = (moment(dataAtual)).format('DD-MM-YYYY_HH-mm-ss');
+            let dataFormatada = moment(dataAtual).format('DD-MM-YYYY_HH-mm-ss');
             let nomeArquivo: string = 'emergencias_' + dataFormatada + '.xlsx';
 
             link.download = nomeArquivo;
-            link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
+            link.dispatchEvent(
+                new MouseEvent('click', { bubbles: true, cancelable: true, view: window }),
+            );
 
-            setTimeout(function() {
+            setTimeout(function () {
                 window.URL.revokeObjectURL(data);
                 link.remove;
             }, 100);
@@ -117,26 +129,35 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
 
     listar() {
         if (this.data != null) {
-             this.formatarData();
+            this.formatarData();
         }
         this.consultaService
-            .getConsulta(this.grade, this.numeroConsulta, this.prontuario, this.clinicaCentralId, this.dataConsulta,this.especialidade, this.profissional, this.paciente)
+            .getConsulta(
+                this.grade,
+                this.numeroConsulta,
+                this.prontuario,
+                this.clinicaCentralId,
+                this.dataConsulta,
+                this.especialidade,
+                this.profissional,
+                this.paciente,
+            )
             .subscribe((response) => {
-              this.consulta = response;  
+                this.consulta = response;
             });
-    } 
-    
+    }
+
     public limparPesquisa() {
-        this.listaConsultas.reset()
-        this.grade = "";
-        this.numeroConsulta = "";
-        this.prontuario = "";
-        this.clinicaCentralId = "";
+        this.listaConsultas.reset();
+        this.grade = '';
+        this.numeroConsulta = '';
+        this.prontuario = '';
+        this.clinicaCentralId = '';
         this.data = null;
-        this.dataConsulta = "";
-        this.especialidade ="";
-        this.profissional ="";
-        this.paciente = "";
+        this.dataConsulta = '';
+        this.especialidade = '';
+        this.profissional = '';
+        this.paciente = '';
         this.listar();
     }
 
@@ -152,37 +173,38 @@ export class ListarConsultasComponent implements OnInit, OnDestroy {
         });
     }
 
-    listarEspecialidade(){
-        this.consultaService.buscarEspecialidades().subscribe((especialidades: Array<Especialidade>)=> {
-            this.especialidades = especialidades;
-        })
+    listarEspecialidade() {
+        this.consultaService
+            .buscarEspecialidades()
+            .subscribe((especialidades: Array<Especialidade>) => {
+                this.especialidades = especialidades;
+            });
     }
 
-    selecionarProfissional(event){
-        this.crm.forEach(element => {
-            this.profissional = element.nome
+    selecionarProfissional(event) {
+        this.crm.forEach((element) => {
+            this.profissional = element.nome;
         });
     }
 
-    selecionarEspecialidade(event){
-        this.especialidade = (<HTMLElement>event.target.value);
-         this.especialidades.forEach(element =>{
-             if (element.especialidade === this.especialidade) {
-                 this.especialidade = element.especialidade
-             }
-         });
+    selecionarEspecialidade(event) {
+        this.especialidade = <HTMLElement>event.target.value;
+        this.especialidades.forEach((element) => {
+            if (element.especialidade === this.especialidade) {
+                this.especialidade = element.especialidade;
+            }
+        });
+    }
 
-     }
-
-    selecionarPaciente(event){
-        this.paciente = (<HTMLElement>event.target.value);
-         this.pacientes.forEach(element =>{
-             if (element.nome === this.paciente) {
-                 this.paciente = element.id
-                 this.prontuario = element.prontuario;
-             }
-         });
-     }
+    selecionarPaciente(event) {
+        this.paciente = <HTMLElement>event.target.value;
+        this.pacientes.forEach((element) => {
+            if (element.nome === this.paciente) {
+                this.paciente = element.id;
+                this.prontuario = element.prontuario;
+            }
+        });
+    }
 
     ngOnDestroy(): void {
         this.breadcrumbService.reset();

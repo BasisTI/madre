@@ -12,9 +12,14 @@
                             <input type="text" pInputText formControlName="codigo" />
                             <label>Código</label>
                         </span>
-                        <p-message severity="error" text="Código do cargo obrigatório" *ngIf="
-                            formCargo.controls['codigo'].errors?.required &&
-                            formCargo.controls['codigo'].touched">
+                        <p-message
+                            severity="error"
+                            text="Código do cargo obrigatório"
+                            *ngIf="
+                                formCargo.controls['codigo'].errors?.required &&
+                                formCargo.controls['codigo'].touched
+                            "
+                        >
                         </p-message>
                     </div>
                     <div class="p-col-12 p-md-4">
@@ -22,9 +27,14 @@
                             <input type="text" pInputText formControlName="descricao" />
                             <label>Descrição</label>
                         </span>
-                        <p-message severity="error" text="Descrição do cargo obrigatório" *ngIf="
-                            formCargo.controls['descricao'].errors?.required &&
-                            formCargo.controls['descricao'].touched">
+                        <p-message
+                            severity="error"
+                            text="Descrição do cargo obrigatório"
+                            *ngIf="
+                                formCargo.controls['descricao'].errors?.required &&
+                                formCargo.controls['descricao'].touched
+                            "
+                        >
                         </p-message>
                     </div>
                     <div class="p-col-12 p-md-4">
@@ -33,18 +43,27 @@
                             </p-dropdown>
                             <label>Situação</label>
                         </span>
-                        <p-message severity="error" text="Situação do cargo obrigatório" *ngIf="
-                            formCargo.controls['situacao'].errors?.required &&
-                            formCargo.controls['situacao'].touched">
+                        <p-message
+                            severity="error"
+                            text="Situação do cargo obrigatório"
+                            *ngIf="
+                                formCargo.controls['situacao'].errors?.required &&
+                                formCargo.controls['situacao'].touched
+                            "
+                        >
                         </p-message>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
         <div class="p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de cargo"
-                [disabled]="!valid()">
-            </button>
+            <button
+                pButton
+                type="submit"
+                label="Salvar"
+                pTooltip="Salvar registro de cargo"
+                [disabled]="!valid()"
+            ></button>
         </div>
     </div>
 </form>

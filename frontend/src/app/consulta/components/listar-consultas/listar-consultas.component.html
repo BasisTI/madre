@@ -5,93 +5,143 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <input type="text" pInputText pTooltip="Digite o número da consulta." formControlName="consulta"
-                            [(ngModel)]="numeroConsulta" />
+                        <input
+                            type="text"
+                            pInputText
+                            pTooltip="Digite o número da consulta."
+                            formControlName="consulta"
+                            [(ngModel)]="numeroConsulta"
+                        />
                         <label>Consulta</label>
                     </span>
                 </div>
                 <div class="p-md-6 p-sm-12">
                     <span class="p-float-label">
-                        <p-autoComplete 
-                            field="nome" 
-                            [suggestions]="pacientes" 
+                        <p-autoComplete
+                            field="nome"
+                            [suggestions]="pacientes"
                             formControlName="nome"
-                            (completeMethod)="listarPacientes()" 
+                            (completeMethod)="listarPacientes()"
                             (onBlur)="selecionarPaciente($event)"
-                            [dropdown]="true">
+                            [dropdown]="true"
+                        >
                         </p-autoComplete>
                         <label>Nome Paciente</label>
                     </span>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <input pInputText 
-                            disabled="true" 
-                            [(ngModel)]="prontuario" 
-                            formControlName="prontuario"/>
+                        <input
+                            pInputText
+                            disabled="true"
+                            [(ngModel)]="prontuario"
+                            formControlName="prontuario"
+                        />
                         <label>Prontuário</label>
                     </span>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <input type="text" pTooltip="Digite a grade." pInputText formControlName="grade"
-                            [(ngModel)]="grade" />
+                        <input
+                            type="text"
+                            pTooltip="Digite a grade."
+                            pInputText
+                            formControlName="grade"
+                            [(ngModel)]="grade"
+                        />
                         <label>Grade</label>
                     </span>
                 </div>
                 <div class="p-col-12 p-grid"></div>
                 <div class="p-md-3 p-sm-12">
                     <span class="md-inputfield p-float-label">
-                        <p-dropdown optionLabel="nome" [options]="crm" [filter]="true"
-                            InputText formControlName="profissional" (onClick)="selecionarProfissional($event)">
+                        <p-dropdown
+                            optionLabel="nome"
+                            [options]="crm"
+                            [filter]="true"
+                            InputText
+                            formControlName="profissional"
+                            (onClick)="selecionarProfissional($event)"
+                        >
                         </p-dropdown>
                         <label>Pofissional</label>
                     </span>
                 </div>
                 <div class="p-md-5 p-sm-12">
                     <span class="p-float-label">
-                        <p-autoComplete field="especialidade" [suggestions]="especialidades"
-                            formControlName="especialidade" (completeMethod)="listarEspecialidade()"
-                            (onBlur)="selecionarEspecialidade($event)" [dropdown]="true"></p-autoComplete>
+                        <p-autoComplete
+                            field="especialidade"
+                            [suggestions]="especialidades"
+                            formControlName="especialidade"
+                            (completeMethod)="listarEspecialidade()"
+                            (onBlur)="selecionarEspecialidade($event)"
+                            [dropdown]="true"
+                        ></p-autoComplete>
                         <label>Especialidade</label>
                     </span>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <input type="text" pInputText pTooltip="Digite Código Central." formControlName="codigoCentral"
-                            [(ngModel)]="clinicaCentralId" />
+                        <input
+                            type="text"
+                            pInputText
+                            pTooltip="Digite Código Central."
+                            formControlName="codigoCentral"
+                            [(ngModel)]="clinicaCentralId"
+                        />
                         <label>Código Central</label>
                     </span>
                 </div>
                 <div class="p-md-2 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar [locale]="localizacao" 
-                            dateFormat="dd/mm/yy" 
+                        <p-calendar
+                            [locale]="localizacao"
+                            dateFormat="dd/mm/yy"
                             formControlName="dataFinal"
-                            [(ngModel)]="data">
+                            [(ngModel)]="data"
+                        >
                         </p-calendar>
                         <label>Data da Consulta</label>
                     </span>
                 </div>
                 <div class="p-col-12 p-grid">
                     <div class="p-md-2">
-                        <button pButton type="button" label="Pesquisar" pTooltip="Pesquisar consultas de paciente."
-                            (click)="listar()"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Pesquisar"
+                            pTooltip="Pesquisar consultas de paciente."
+                            (click)="listar()"
+                        ></button>
                     </div>
                     <div class="p-md-2">
-                        <button pButton type="button" label="Exportar"
+                        <button
+                            pButton
+                            type="button"
+                            label="Exportar"
                             pTooltip="Exportar arquivo de consultas."
-                            (click)="exportarConsultas()"></button>
+                            (click)="exportarConsultas()"
+                        ></button>
                     </div>
                     <div class="p-md-2">
-                        <button pButton type="button" label="Limpar" pTooltip="Limpar pesquisa de consultas."
-                            (click)="limparPesquisa()"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            pTooltip="Limpar pesquisa de consultas."
+                            (click)="limparPesquisa()"
+                        ></button>
                     </div>
                 </div>
             </div>
             <div class="p-md-12">
-                <basis-datatable [verticalButtons]="false" #datatable
-                    type="memory" [value]="consulta" sortField="brand">
+                <basis-datatable
+                    [verticalButtons]="false"
+                    #datatable
+                    type="memory"
+                    [value]="consulta"
+                    sortField="brand"
+                >
                     <p-column field="numeroConsulta" header="Consultas"></p-column>
                     <p-column field="dataHoraDaConsulta" header="Data/Hora"></p-column>
                     <p-column field="condicaoDeAtendimentoId" header="Cond. Atend."></p-column>

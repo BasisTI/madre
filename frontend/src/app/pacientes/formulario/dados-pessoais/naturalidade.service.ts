@@ -17,9 +17,8 @@ export class NaturalidadeService extends CrudServiceNuvem<number, Naturalidade> 
         params = params.append('idUf', idUf.toString());
         params = params.append('nome', nome);
         params = params.set('size', '50');
-        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/naturalidade',{
+        return this.httpClient.get<Naturalidade[]>('pacientes/api/municipios/naturalidade', {
             params: params,
         });
     }
-
 }

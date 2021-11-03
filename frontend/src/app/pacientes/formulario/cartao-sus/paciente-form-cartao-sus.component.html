@@ -1,17 +1,68 @@
 <div class="p-grid p-fluid" [formGroup]="formGroup">
     <div class="p-col-12 p-grid" formGroupName="cartaoSUS">
-        <div nInputMask label="Número" formControlName="numero" mask="999999999999999" placeholder="___ ____ ____ ____" tooltip="Informe o número do Cartão SUS (CNS)." class="p-md-2"></div>
-        <div nAutoComplete [service]="justificativaService" field="valor" formControlName="justificativaId" label="Justificativa da Ausência CNS" class="p-md-3"></div>
-        <div nAutoComplete [service]="motivoDoCadastroService" field="valor" formControlName="motivoDoCadastroId" label="Motivo Cadastro" class="p-md-2"></div>
-        <div nDropdown label="Doc. Referência" [options]="opcoesDeDocumentoDeReferencia" formControlName="documentoDeReferencia" class="p-md-2"></div>
-        <div nInputMask label="Cartão Nacional Saúde Mãe" formControlName="cartaoNacionalSaudeMae" mask="999999999999999" placeholder="___ ____ ____ ____" tooltip="Informe o CNS da mãe do paciente." class="p-md-3"></div>
+        <div
+            nInputMask
+            label="Número"
+            formControlName="numero"
+            mask="999999999999999"
+            placeholder="___ ____ ____ ____"
+            tooltip="Informe o número do Cartão SUS (CNS)."
+            class="p-md-2"
+        ></div>
+        <div
+            nAutoComplete
+            [service]="justificativaService"
+            field="valor"
+            formControlName="justificativaId"
+            label="Justificativa da Ausência CNS"
+            class="p-md-3"
+        ></div>
+        <div
+            nAutoComplete
+            [service]="motivoDoCadastroService"
+            field="valor"
+            formControlName="motivoDoCadastroId"
+            label="Motivo Cadastro"
+            class="p-md-2"
+        ></div>
+        <div
+            nDropdown
+            label="Doc. Referência"
+            [options]="opcoesDeDocumentoDeReferencia"
+            formControlName="documentoDeReferencia"
+            class="p-md-2"
+        ></div>
+        <div
+            nInputMask
+            label="Cartão Nacional Saúde Mãe"
+            formControlName="cartaoNacionalSaudeMae"
+            mask="999999999999999"
+            placeholder="___ ____ ____ ____"
+            tooltip="Informe o CNS da mãe do paciente."
+            class="p-md-3"
+        ></div>
     </div>
     <div class="p-md-12">
         <p-fieldset legend="Se Naturalizado Brasileiro">
             <div class="p-col-12 p-grid" formGroupName="cartaoSUS">
-                <div madreCalendar label="Data de Entrada no Brasil" formControlName="dataDeEntradaNoBrasil" class="p-md-4 p-sm-12"></div>
-                <div madreCalendar label="Data de Naturalização" formControlName="dataDeNaturalizacao" class="p-md-4 p-sm-12"></div>
-                <div nInputText label="Portaria" formControlName="portaria" class="p-md-4 p-sm-12"></div>
+                <div
+                    madreCalendar
+                    label="Data de Entrada no Brasil"
+                    formControlName="dataDeEntradaNoBrasil"
+                    class="p-md-4 p-sm-12"
+                ></div>
+                <div
+                    madreCalendar
+                    label="Data de Naturalização"
+                    formControlName="dataDeNaturalizacao"
+                    class="p-md-4 p-sm-12"
+                ></div>
+                <div
+                    nInputText
+                    label="Portaria"
+                    formControlName="portaria"
+                    class="p-md-4 p-sm-12"
+                ></div>
             </div>
         </p-fieldset>
     </div>

@@ -1,4 +1,8 @@
-import { BreadcrumbService, DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
+import {
+    BreadcrumbService,
+    DatatableClickEvent,
+    DatatableComponent,
+} from '@nuvem/primeng-components';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';

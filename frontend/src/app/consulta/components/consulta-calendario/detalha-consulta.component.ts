@@ -6,7 +6,6 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultaEmergenciaModel } from '../../models/consulta-emergencia-model';
 
-
 @Component({
     selector: 'app-detalha-consulta',
     templateUrl: './detalha-consulta.component.html',
@@ -79,14 +78,15 @@ export class DetalhaConsultaComponent implements OnInit, OnDestroy {
             });
     }
 
-    carregarPaciente(){
-      this.consultaService.buscarPacientesPorId(this.detalharConsultas.value.pacienteId).subscribe((paciente: PacienteModel) =>{
-        this.detalharConsultas.controls['nome'].setValue(paciente.nome);
-        this.detalharConsultas.controls['prontuario'].setValue(paciente.prontuario);
-      });
-
+    carregarPaciente() {
+        this.consultaService
+            .buscarPacientesPorId(this.detalharConsultas.value.pacienteId)
+            .subscribe((paciente: PacienteModel) => {
+                this.detalharConsultas.controls['nome'].setValue(paciente.nome);
+                this.detalharConsultas.controls['prontuario'].setValue(paciente.prontuario);
+            });
     }
-    
+
     ngOnDestroy(): void {
         this.breadcrumbService.reset();
     }

@@ -46,7 +46,7 @@ export class EmergenciaComponent implements OnInit, OnDestroy {
         clinicaCentralId: ['', Validators.required],
         observacoes: ['', Validators.required],
         justificativa: ['', Validators.required],
-        gradesDisponiveis: [null, Validators.required]
+        gradesDisponiveis: [null, Validators.required],
     });
 
     localizacao = CALENDAR_LOCALE;

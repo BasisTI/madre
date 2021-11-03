@@ -7,37 +7,29 @@ import { ListaServidor } from '../models/dropdowns/lista-servidor';
 import { Servidor } from '../models/servidor-resumo-model';
 import { ServidorModel } from '../models/servidor-model';
 
-
-
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class ServidorService{
+export class ServidorService {
+    private readonly resource = `${api}/servidors`;
 
-  private readonly resource = `${api}/servidors`;
+    constructor(private client: HttpClient) {}
 
+    getServidor(): Observable<Array<Servidor>> {
+        return this.client.get<Array<Servidor>>(`${this.resource}`);
+    }
 
-  constructor(private client: HttpClient) {}
+    alterarServidor(servidor: ServidorModel): Observable<any> {
+        return this.client.put(`${this.resource}`, servidor);
+    }
 
-  getServidor(): Observable<Array<Servidor>> {
-    return this.client.get<Array<Servidor>>(`${this.resource}`);
-  }
+    cadastrarServidor(servidor) {
+        return this.client.post(this.resource, servidor);
+    }
 
-  alterarServidor(servidor: ServidorModel): Observable<any> {
-    return this.client.put(`${this.resource}`, servidor);
-  }
-
-  cadastrarServidor(servidor) {
-    return this.client.post(this.resource, servidor);
-  }
-
-  getResultServidor(event): Observable<Pageable<ListaServidor>> {
-    return this.client.get<Pageable<ListaServidor>>(
-        `${this.resource}/_resumo`,
-        {
+    getResultServidor(event): Observable<Pageable<ListaServidor>> {
+        return this.client.get<Pageable<ListaServidor>>(`${this.resource}/_resumo`, {
             params: new HttpParams().set('matricula', event).set('sort', 'matricula'),
-        },
-    );
-  }
-
+        });
+    }
 }

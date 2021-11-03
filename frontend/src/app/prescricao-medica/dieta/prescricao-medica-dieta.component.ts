@@ -10,11 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-prescricao-medica-dieta',
     templateUrl: './prescricao-medica-dieta.component.html',
-    styleUrls: ['./prescricao-medica-dieta.component.css']
+    styleUrls: ['./prescricao-medica-dieta.component.css'],
 })
-
 export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
-
     public paciente = {};
     public dietas: any[];
     public searchUrl = 'prescricao/api/prescricao-dieta';
@@ -24,14 +22,13 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
     public itensDieta: ItemPrescricaoDieta[] = [];
     public calendarLocale = CALENDAR_LOCALE;
 
-
     prescricaoDieta = this.fb.group({
         idPaciente: [null],
         nome: [null],
         tipo: 'DIETA',
         dataPrescricao: [new Date()],
         bombaInfusao: [null],
-        observacao: [null]
+        observacao: [null],
     });
 
     itemPrescricaoDieta = this.fb.group({
@@ -40,9 +37,8 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         frequencia: [null],
         tipoUnidadeDieta: [null],
         tipoAprazamento: [null],
-        numeroVezes: [null]
+        numeroVezes: [null],
     });
-
 
     constructor(
         private breadcrumbService: BreadcrumbService,
@@ -50,15 +46,13 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
         private prescricaoMedicaService: PrescricaoMedicaService,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        private router: Router
-    ) { }
-
-
+        private router: Router,
+    ) {}
 
     ngOnInit() {
         this.breadcrumbService.setItems([
             { label: 'Prescrição Médica', routerLink: 'prescricao-medica' },
-            { label: 'Dieta', }
+            { label: 'Dieta' },
         ]);
 
         const codigoPaciente = this.route.snapshot.params['id'];
@@ -67,88 +61,73 @@ export class PrescricaoMedicaDietaComponent implements OnInit, OnDestroy {
             this.carregarPaciente(codigoPaciente);
         }
 
-
         this.carregarTipoItem();
         this.carregarTipoAprazamento();
         this.carregarTipoUnidade();
-
     }
-
 
     carregarPaciente(id: number) {
-        this.prescricaoMedicaService.buscarIdPaciente(id)
-            .subscribe(paciente => {
+        this.prescricaoMedicaService.buscarIdPaciente(id).subscribe((paciente) => {
+            this.paciente = paciente;
+            this.prescricaoDieta.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
 
-                this.paciente = paciente;
-                this.prescricaoDieta.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
-
-                console.log(paciente);
-
-            });
+            console.log(paciente);
+        });
     }
 
-
     carregarTipoItem() {
-        return this.prescricaoMedicaDietaService.listarTiposItens()
-            .subscribe(tiposItens => {
-                this.tiposItens = tiposItens.map(item => {
-                    return { label: item.descricao, value: item };
-                });
-
+        return this.prescricaoMedicaDietaService.listarTiposItens().subscribe((tiposItens) => {
+            this.tiposItens = tiposItens.map((item) => {
+                return { label: item.descricao, value: item };
             });
+        });
     }
 
     carregarTipoAprazamento() {
-        return this.prescricaoMedicaDietaService.listarTiposAprazamentos()
-            .subscribe(tiposAprazamentos => {
-                this.tiposAprazamentos = tiposAprazamentos.map(tipo => {
+        return this.prescricaoMedicaDietaService
+            .listarTiposAprazamentos()
+            .subscribe((tiposAprazamentos) => {
+                this.tiposAprazamentos = tiposAprazamentos.map((tipo) => {
                     return { label: tipo.descricao, value: tipo };
                 });
             });
     }
 
     carregarTipoUnidade() {
-        return this.prescricaoMedicaDietaService.listarTipoUnidade()
-            .subscribe(tiposDeUnidade => {
-                this.listaUnidadeDieta = tiposDeUnidade.map(tipo => {
-                    return { label: tipo.descricao, value: tipo };
-                });
+        return this.prescricaoMedicaDietaService.listarTipoUnidade().subscribe((tiposDeUnidade) => {
+            this.listaUnidadeDieta = tiposDeUnidade.map((tipo) => {
+                return { label: tipo.descricao, value: tipo };
             });
+        });
     }
 
     incluirItem() {
         if (this.itemPrescricaoDieta.valid) {
-
             this.itensDieta.push(this.itemPrescricaoDieta.value);
             this.itemPrescricaoDieta.reset();
         }
-
     }
 
     prescrever() {
-
         const prescricao = this.prescricaoDieta.value;
 
         const prescricaoDieta = Object.assign({}, prescricao, {
-            itens: this.itensDieta
+            itens: this.itensDieta,
         });
 
         this.prescricaoMedicaDietaService.adicionar(prescricaoDieta).subscribe(
             (resposta) => {
                 this.router.navigate(['/prescricao-medica/lista/', prescricaoDieta.idPaciente]);
                 console.log(resposta);
-
             },
             (erro) => {
                 console.error(erro);
             },
         );
         this.itensDieta = [];
-
     }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
     }
-
 }

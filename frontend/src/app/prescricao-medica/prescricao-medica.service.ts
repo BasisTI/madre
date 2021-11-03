@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PrescricaoMedicaService {
     private readonly baseUrl = '/prescricao/api';
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     buscarIdPaciente(id: number): Observable<any> {
         return this.http.get(`${this.baseUrl}/pacientes/${id}`);
@@ -18,11 +18,8 @@ export class PrescricaoMedicaService {
     pesquisaPaciente(query: string): Observable<any> {
         const params = new HttpParams().set('nome', query);
 
-        return this.http.get(
-            `${this.baseUrl}/pacientes`,
-            {
-                params,
-            },
-        );
+        return this.http.get(`${this.baseUrl}/pacientes`, {
+            params,
+        });
     }
 }

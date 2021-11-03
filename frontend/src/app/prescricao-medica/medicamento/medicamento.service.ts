@@ -4,24 +4,19 @@ import { Diluente } from './models/diluente';
 import { TipoAprazamento } from './models/tipoAprazamento';
 import { ViasAdministracao } from './models/viasAdministracao';
 import { UnidadeDose } from './models/unidadeDose';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Medicamentos } from 'src/app/farmacia/farmacia/medicamentos/Medicamento';
-import { DatatableComponent } from '@nuvem/primeng-components';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class MedicamentoService {
-
-    urlFarmacia = '/farmacia/api'
+    urlFarmacia = '/farmacia/api';
     baseUrl = '/prescricao/api';
-    sortUrl= '?sort=descricao';
+    sortUrl = '?sort=descricao';
 
-    constructor(private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) {}
 
     listarMedicamentos(nome: string): Observable<any> {
         return this.http.get(`${this.urlFarmacia}/_search/medicamentos?nome=${nome}`);
@@ -31,16 +26,20 @@ export class MedicamentoService {
         return this.http.get(`${this.baseUrl}/lista-medicamentos`);
     }
 
-    listarUnidadeDose(): Observable<Array<UnidadeDose>>{
+    listarUnidadeDose(): Observable<Array<UnidadeDose>> {
         return this.http.get<Array<UnidadeDose>>(`${this.baseUrl}/unidade-doses${this.sortUrl}`);
     }
 
-    listarViaAdministracao(): Observable<Array<ViasAdministracao>>{
-        return this.http.get<Array<ViasAdministracao>>(`${this.baseUrl}/vias-administracaos${this.sortUrl}`);
+    listarViaAdministracao(): Observable<Array<ViasAdministracao>> {
+        return this.http.get<Array<ViasAdministracao>>(
+            `${this.baseUrl}/vias-administracaos${this.sortUrl}`,
+        );
     }
 
     listarTiposAprazamentos(): Observable<Array<TipoAprazamento>> {
-        return this.http.get<Array<TipoAprazamento>>(`${this.baseUrl}/tipo-aprazamentos${this.sortUrl}`);
+        return this.http.get<Array<TipoAprazamento>>(
+            `${this.baseUrl}/tipo-aprazamentos${this.sortUrl}`,
+        );
     }
 
     listarDiluentes(): Observable<Array<Diluente>> {
@@ -48,12 +47,12 @@ export class MedicamentoService {
     }
 
     listarUnidadeInfusao(): Observable<Array<UnidadeInfusao>> {
-        return this.http.get<Array<UnidadeInfusao>>(`${this.baseUrl}/unidade-infusaos${this.sortUrl}`);
+        return this.http.get<Array<UnidadeInfusao>>(
+            `${this.baseUrl}/unidade-infusaos${this.sortUrl}`,
+        );
     }
 
-    prescreverMedicamento(prescricao: PrescricaoMedicamento){
+    prescreverMedicamento(prescricao: PrescricaoMedicamento) {
         return this.http.post(`${this.baseUrl}/prescricao-medicamentos`, prescricao);
     }
-
-    
 }
