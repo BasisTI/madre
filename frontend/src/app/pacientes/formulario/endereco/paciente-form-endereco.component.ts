@@ -20,7 +20,8 @@ export class PacienteEnderecoFormComponent {
     public enderecos: any =  FormArray;
 
     public enderecoValido: boolean = false;
-    
+    public correspondencia: boolean = true;
+
     opcoesDeTipoDeEndereco = OPCOES_DE_TIPO_DE_ENDERECO;
 
     ufs: UF[] = [];
