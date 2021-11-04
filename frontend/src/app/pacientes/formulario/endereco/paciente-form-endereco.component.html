@@ -1,107 +1,131 @@
 <div class="p-grid p-fluid" [formGroup]="endereco">
-    <div class="p-col-12 p-grid">
-        <div nInputText label="CEP" required formControlName="cep" (onBlur)="consultaCEP($event)" class="p-md-6 p-sm-12"></div>
-        <div class="p-md-6 p-sm-12">
-            <span class="p-float-label">
-                <p-dropdown
-                    (onChange)="aoSelecionarUF()"
-                    [options]="ufs"
-                    optionLabel="sigla"
-                    formControlName="uf"
-                    [filter]="true"
-                    placeholder="UF"
-                    required
-                ></p-dropdown>
-            </span>
+    <p-fieldset legend="Adicionar Endereço">
+        <div class="p-fluid p-formgrid p-grid">
+            <div
+                nInputText
+                label="CEP"
+                required
+                formControlName="cep"
+                (onBlur)="consultaCEP($event)"
+                class="p-md-4 p-sm-12">
+            </div>
+            <div class="p-md-4 p-sm-12">
+                <span class="p-float-label">
+                    <p-dropdown
+                        (onChange)="aoSelecionarUF()"
+                        [options]="ufs"
+                        optionLabel="sigla"
+                        formControlName="uf"
+                        [filter]="true"
+                        placeholder="UF"
+                        required
+                    ></p-dropdown>
+                </span>
+            </div>
+            <div class="p-md-4 p-sm-12">
+                <span class="md-inputfield p-float-label">
+                    <p-autoComplete
+                        (completeMethod)="searchUnidade($event)"
+                        [disabled]="!endereco.value.uf"
+                        field="nome"
+                        [suggestions]="municipios"
+                        [dropdown]="true"
+                        formControlName="municipioId"></p-autoComplete>
+                    <label>Municípios</label>
+                </span>
+            </div>
         </div>
-    </div>
-    <div class="p-col-12 p-grid">
-        <div class="p-md-2 p-sm-12">
-            <span class="md-inputfield p-float-label">
-                <p-autoComplete
-                    (completeMethod)="searchUnidade($event)"
-                    [disabled]="!endereco.value.uf"
-                    field="nome"
-                    [suggestions]="municipios"
-                    [dropdown]="true"
-                    autocomplete="disabled"
-                    formControlName="municipioId">
-                </p-autoComplete>
-                <label>Municípios</label>
-            </span>
+        <div class="p-fluid p-formgrid p-grid">
+            <div
+                nInputText
+                label="Bairro"
+                required
+                formControlName="bairro"
+                class="p-md-4 p-sm-12">
+            </div>
+            <div
+                nInputText
+                label="Logradouro"
+                formControlName="logradouro"
+                class="p-md-8 p-sm-12"
+                required>
+            </div>
         </div>
-        <div nInputText label="Logradouro" formControlName="logradouro" class="p-md-4 p-sm-12" required></div>
-        <div nDropdown label="Tipo de Endereço" [options]="opcoesDeTipoDeEndereco" required formControlName="tipoDoEndereco" class="p-md-6 p-sm-12"></div>
-    </div>
-    <div class="p-col-12 p-grid p-fluid">
-        <div nInputText label="Número" required formControlName="numero" class="p-md-2"></div>
-        <div nInputText label="Complemento" formControlName="complemento" class="p-md-4"></div>
-        <div nInputText label="Bairro" required formControlName="bairro" class="p-md-6"></div>
-    </div>
-    <div class="p-col-12 p-grid">
-        <div class="p-md-2">Correspondência?</div>
-        <div class="p-md-2">
-            <p-radioButton
-                id="sim"
-                type="radio"
-                [value]="true"
-                name="correspondencia"
-                formControlName="correspondencia"
-                pRadioButton>
-            </p-radioButton>
-            <label>Sim</label>
-        </div>
-        <div class="p-md-2">
-            <p-radioButton
-                id="nao"
-                type="radio"
-                [value]="false"
-                name="correspondencia"
-                formControlName="correspondencia"
-                pRadioButton>
-            </p-radioButton>
-            <label>Não</label>
-        </div>
-    </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div
+                nInputText
+                label="Número"
+                required
+                formControlName="numero"
+                class="p-md-2">
+            </div>
+            <div
+                nInputText
+                label="Complemento"
+                formControlName="complemento"
+                class="p-md-5">
+            </div>
+            <div
+                nDropdown
+                label="Tipo de Endereço"
+                [options]="opcoesDeTipoDeEndereco"
+                required=""
+                formControlName="tipoDoEndereco"
+                class="p-md-3 p-sm-12">
+            </div>
+            <div class="p-field p-col p-col-12 p-md-2">
+                <label>Correpondência?</label>
+                <div>
+                    <p-inputSwitch formControlName="correspondencia" [(ngModel)]="correspondencia"></p-inputSwitch>
+                    <span *ngIf="correspondencia"> Sim</span>
+                    <span *ngIf="!correspondencia"> Não</span>
+                </div>
 
-    <div *ngIf="!enderecoValido">
-        <p-button
-            label="Adicionar"
-            [disabled]="endereco.invalid"
-            type="button"
-            (onClick)="adicionarEnderecoALista()"
-            [style.margin-left]="20"
-            [style.width]="90">
-        </p-button>
-    </div>
-    <div *ngIf="enderecoValido">
-        <p-button
-        [disabled]="endereco.invalid"
-        label="Editar"
-        type="button"
-        (onClick)="atualizarEdicao()"
-        [style.margin-left]="20"
-        [style.width]="90">
-        </p-button>
-    </div>
-    <basis-datatable type="memory" [disableView]="true" [value]="enderecos.value" (buttonClick)="datatableClick($event)">
-        <p-column header="Município" field="municipioId">
-            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                <span> {{ rowData.municipioId?.nome }}</span>
-            </ng-template>
-        </p-column>
-        <p-column header="CEP" field="cep"></p-column>
-        <p-column header="UF" field="uf">
-            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                <span> {{ rowData.uf?.unidadeFederativa }}</span>
-            </ng-template>
-        </p-column>
-        <p-column header="Bairro" field="bairro"></p-column>
-        <p-column header="Tipo" field="tipoDoEndereco"></p-column>
-        <p-column header="Correspondência" field="correspondencia">
-            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
-                <span> {{ rowData.correspondencia | check }}</span>
-            </ng-template>
-        </p-column>
-    </basis-datatable>
+            </div>
+        </div>
+
+
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="center-text p-col p-col-12">
+                <div *ngIf="!enderecoValido" class="p-field p-col p-col-4">
+                    <p-button
+                        label="Adicionar"
+                        [disabled]="endereco.invalid"
+                        type="button"
+                        (onClick)="adicionarEnderecoALista()">
+                    </p-button>
+                </div>
+                <div *ngIf="enderecoValido" class="p-field p-col p-col-4">
+                    <p-button
+                    [disabled]="endereco.invalid"
+                    label="Editar"
+                    type="button"
+                    (onClick)="atualizarEdicao()">
+                    </p-button>
+                </div>
+            </div>
+        </div>
+    </p-fieldset>
+    <p-fieldset legend="Lista de Endereços">
+        <basis-datatable type="memory" [disableView]="true" [value]="enderecos.value" (buttonClick)="datatableClick($event)">
+            <p-column header="Município" field="municipioId">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData.municipioId?.nome }}</span>
+                </ng-template>
+            </p-column>
+            <p-column header="CEP" field="cep"></p-column>
+            <p-column header="UF" field="uf">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData.uf?.unidadeFederativa }}</span>
+                </ng-template>
+            </p-column>
+            <p-column header="Bairro" field="bairro"></p-column>
+            <p-column header="Tipo" field="tipoDoEndereco"></p-column>
+            <p-column header="Correspondência" field="correspondencia">
+                <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                    <span> {{ rowData.correspondencia | check }}</span>
+                </ng-template>
+            </p-column>
+        </basis-datatable>
+    </p-fieldset>
 </div>

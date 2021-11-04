@@ -12,7 +12,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {CartaoSUSMapper.class, ResponsavelMapper.class, DocumentoMapper.class, CertidaoMapper.class, OcupacaoMapper.class, ReligiaoMapper.class, MunicipioMapper.class, EtniaMapper.class, GenitoresMapper.class, NacionalidadeMapper.class, RacaMapper.class, EstadoCivilMapper.class})
 public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
 
-    @Mapping(source = "cartaoSUS.id", target = "cartaoSUSId")
     @Mapping(source = "responsavel.id", target = "responsavelId")
     @Mapping(source = "documento.id", target = "documentoId")
     @Mapping(source = "certidao.id", target = "certidaoId")
@@ -26,7 +25,6 @@ public interface PacienteMapper extends EntityMapper<PacienteDTO, Paciente> {
     @Mapping(source = "prontuario", target = "prontuario")
     PacienteDTO toDto(Paciente paciente);
 
-    @Mapping(source = "cartaoSUSId", target = "cartaoSUS")
     @Mapping(target = "telefones", ignore = true)
     @Mapping(target = "enderecos", ignore = true)
     @Mapping(target = "removeEndereco", ignore = true)
