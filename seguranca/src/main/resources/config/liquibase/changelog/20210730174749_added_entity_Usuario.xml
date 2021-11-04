@@ -21,6 +21,15 @@
             <column name="login" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_usuario_email" />
+            </column>
+            <column name="ativo" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="senha" type="varchar(98)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -50,6 +59,9 @@
             <column name="id" type="numeric"/>
             <column name="codigo" type="numeric"/>
             <column name="login" type="string"/>
+            <column name="email" type="string"/>
+            <column name="ativo" type="boolean"/>
+            <column name="senha" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

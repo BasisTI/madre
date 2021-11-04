@@ -1,7 +1,10 @@
 package br.com.basis.madre.seguranca.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
@@ -33,4 +36,8 @@ public class SecurityConfiguration extends SecurityConfigurationComum {
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Argon2PasswordEncoder();
+    }
 }

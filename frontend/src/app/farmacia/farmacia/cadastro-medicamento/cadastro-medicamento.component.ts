@@ -40,7 +40,6 @@ export class CadastroMedicamentoComponent implements OnInit {
                     this.results = data;
                 });
         }
-
     }
     searchUnidade(event) {
         if (event) {
@@ -51,12 +50,14 @@ export class CadastroMedicamentoComponent implements OnInit {
     }
     searchApresentacao(event) {
         if (event) {
-            this.service.getResultApresentacao(event.query).subscribe((data: Array<Apresentacao>) => {
-                this.apresentacao = data;
-            });
+            this.service
+                .getResultApresentacao(event.query)
+                .subscribe((data: Array<Apresentacao>) => {
+                    this.apresentacao = data;
+                });
         }
     }
-    handleDropdown(event) { }
+    handleDropdown(event) {}
 
     constructor(
         private service: FarmaciaService,
@@ -64,25 +65,24 @@ export class CadastroMedicamentoComponent implements OnInit {
         private breadcrumbService: BreadcrumbService,
         private router: Router,
         private route: ActivatedRoute,
-        private confirmationService: ConfirmationService) { }
+        private confirmationService: ConfirmationService,
+    ) {}
 
     ngOnInit(): void {
-
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((params) => {
             if (params['id']) {
-                this.service.find(params['id']).subscribe(medicamento => {
+                this.service.find(params['id']).subscribe((medicamento) => {
                     this.form.patchValue(medicamento);
                     this.medicamento = medicamento;
                 });
             }
-        })
+        });
 
         this.medicamentoId = this.route.snapshot.params['id'];
 
         this.searchApresentacao(event);
         this.searchUnidade(event);
         this.searchTipoMedicamento(event);
-
     }
 
     submit() {
@@ -92,12 +92,9 @@ export class CadastroMedicamentoComponent implements OnInit {
         } else {
             this.service.cadastrar(this.medicamento).subscribe();
         }
-
     }
 
     carregarMedicamento(id: number) {
-        this.service.find(id).subscribe((medicamento) => {
-        });
+        this.service.find(id).subscribe((medicamento) => {});
     }
-
 }

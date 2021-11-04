@@ -2,10 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DDD } from '../../models/dropdowns/types/DDD';
 import { Observable } from 'rxjs';
-import { Pageable } from '@shared/pageable';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class DDDService{
 

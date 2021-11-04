@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 import { OPCAO_SELECIONE } from '../../models/dropdowns/opcao-selecione';
 import { GrauDeParentescoService } from "./grau-de-parentesco.service";
@@ -12,7 +12,7 @@ import { Telefone } from "../paciente.model";
 @Component({
     selector: 'paciente-form-responsavel',
     templateUrl: './paciente-form-responsavel.component.html',
-    styleUrls: ['paciente-form-responsavel.component.css']
+    styleUrls: ['paciente-form-responsavel.component.css'],
 })
 export class PacienteResponsavelFormComponent {
     @Input() formGroup: FormGroup;

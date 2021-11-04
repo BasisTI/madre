@@ -124,6 +124,9 @@ entity Vinculo {
 entity Usuario {
 	codigo Integer required
     login String
+    email String unique
+    ativo Boolean
+    senha String maxlength(98)    
 }
 
 entity Graduacao {

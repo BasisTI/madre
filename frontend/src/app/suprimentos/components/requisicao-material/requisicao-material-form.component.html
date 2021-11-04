@@ -7,7 +7,7 @@
                     <form [formGroup]="requisicaoForm">
                         <div class="p-col-12 p-grid">
                             <div class="p-md-4">
-                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                                     <p-autoComplete
                                         [suggestions]="centros"
                                         (completeMethod)="obterCentrosPorDescricao($event.query)"
@@ -20,7 +20,7 @@
                                 </span>
                             </div>
                             <div class="p-md-4">
-                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                                     <p-autoComplete
                                         [suggestions]="centros"
                                         (completeMethod)="obterCentrosPorDescricao($event.query)"
@@ -35,7 +35,7 @@
                         </div>
                         <div class="p-col-12 p-grid">
                             <div class="p-md-4">
-                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                                     <p-autoComplete
                                         [suggestions]="almoxarifados"
                                         (completeMethod)="
@@ -50,7 +50,7 @@
                                 </span>
                             </div>
                             <div class="p-md-4">
-                                <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                                <span class="md-inputfield p-float-label" style="margin-top: 5px">
                                     <p-autoComplete
                                         [suggestions]="grupos"
                                         (completeMethod)="obterGruposPorDescricao($event.query)"
@@ -78,7 +78,10 @@
                                 <div class="p-col-12 p-grid">
                                     <form [formGroup]="itemForm">
                                         <div class="p-md-4">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
                                                 <p-autoComplete
                                                     [suggestions]="materiais"
                                                     (completeMethod)="
@@ -93,7 +96,10 @@
                                             </span>
                                         </div>
                                         <div class="p-md-2">
-                                            <span class="md-inputfield p-float-label" style="margin-top: 5px;">
+                                            <span
+                                                class="md-inputfield p-float-label"
+                                                style="margin-top: 5px"
+                                            >
                                                 <input
                                                     type="number"
                                                     pInputText

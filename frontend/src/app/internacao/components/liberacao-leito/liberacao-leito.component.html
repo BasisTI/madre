@@ -5,8 +5,14 @@
             <!-- Leito -->
             <div class="p-col-12 p-grid">
                 <div class="p-md-4 p-sm-12">
-                    <app-leito [parentFormGroup]="formGroup" [required]="true" situacao="ocupado" name="leito"
-                        label="Leito" (select)="aoSelecionarLeito($event)">
+                    <app-leito
+                        [parentFormGroup]="formGroup"
+                        [required]="true"
+                        situacao="ocupado"
+                        name="leito"
+                        label="Leito"
+                        (select)="aoSelecionarLeito($event)"
+                    >
                     </app-leito>
                 </div>
             </div>
@@ -14,9 +20,17 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-4 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar [locale]="pCalendarConfig.localidade" [yearRange]="pCalendarConfig.anosDisponiveis"
-                            dateFormat="dd/mm/yy" showTime="true" hourFormat="24" showButtonBar="true"
-                            [yearNavigator]="true" [monthNavigator]="true" formControlName="dataDoLancamento">
+                        <p-calendar
+                            [locale]="pCalendarConfig.localidade"
+                            [yearRange]="pCalendarConfig.anosDisponiveis"
+                            dateFormat="dd/mm/yy"
+                            showTime="true"
+                            hourFormat="24"
+                            showButtonBar="true"
+                            [yearNavigator]="true"
+                            [monthNavigator]="true"
+                            formControlName="dataDoLancamento"
+                        >
                         </p-calendar>
                         <label>Data do Lançamento</label>
                     </span>
@@ -26,16 +40,25 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-4 p-sm-12">
                     <span class="p-float-label">
-                        <textarea pInputTextarea [rows]="3" [cols]="30" autoResize="false"
-                            formControlName="justificativa"></textarea>
+                        <textarea
+                            pInputTextarea
+                            [rows]="3"
+                            [cols]="30"
+                            autoResize="false"
+                            formControlName="justificativa"
+                        ></textarea>
                         <label>Justificativa</label>
                     </span>
                 </div>
             </div>
             <div class="p-col-12 p-grid">
                 <div class="p-md-4 p-sm-12">
-                    <p-button label="Liberar Leito" icon="pi pi-check" [disabled]="formGroup.invalid"
-                        (click)="liberarLeito()"></p-button>
+                    <p-button
+                        label="Liberar Leito"
+                        icon="pi pi-check"
+                        [disabled]="formGroup.invalid"
+                        (click)="liberarLeito()"
+                    ></p-button>
                 </div>
             </div>
         </div>

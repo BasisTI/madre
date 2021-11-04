@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
  * An utility service for date.
  */
 @Injectable({
-    providedIn: "root"
+    providedIn: 'root',
 })
 export class JhiDateUtils {
     private pattern = 'yyyy-MM-dd';

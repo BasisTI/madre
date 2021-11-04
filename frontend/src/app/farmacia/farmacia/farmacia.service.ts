@@ -7,16 +7,13 @@ import { Prescricao, Prescricaos } from './dispensacao/prescricao';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apresentacao } from './cadastro-medicamento/apresentacao';
-import { BlockUiService } from '@nuvem/angular-base';
-
-
 
 @Injectable({
     providedIn: 'root',
 })
 export class FarmaciaService {
-    medicamento: Medicamentos = new Medicamentos;
-    prescricao: Prescricaos = new Prescricaos;
+    medicamento: Medicamentos = new Medicamentos();
+    prescricao: Prescricaos = new Prescricaos();
     constructor(private httpServe: HttpClient) {}
     private readonly apiUrl = '/farmacia/api';
     private readonly api = '/farmacia/api/medicamentos';
@@ -112,7 +109,7 @@ export class FarmaciaService {
     }
 
     exportarMedicamentos(): Observable<Blob> {
-        return this.httpServe.get(`${this.apiUrl}/medicamentos/exportar`, {responseType: 'blob'});
+        return this.httpServe.get(`${this.apiUrl}/medicamentos/exportar`, { responseType: 'blob' });
     }
 
     find(id: number): Observable<Medicamentos> {

@@ -9,7 +9,12 @@ import { PacienteFormComponent } from './paciente-form.component';
 import { PacienteListComponent } from './paciente-list.component';
 import { PacienteService } from './paciente.service';
 
-import { CrudModule, CRUD_SERVICE, CrudResolveGuard, FormNotificationModule } from '@nuvem/primeng-components';
+import {
+    CrudModule,
+    CRUD_SERVICE,
+    CrudResolveGuard,
+    FormNotificationModule,
+} from '@nuvem/primeng-components';
 
 import { DatatableModule } from '@nuvem/primeng-components';
 
@@ -36,7 +41,7 @@ import { MotivoDoCadastroService } from './cartao-sus/motivo-do-cadastro.service
 import { UfService } from './municipio/uf.service';
 import { MunicipioService } from './municipio/municipio.service';
 import { CepService } from './endereco/cep.service';
-import {TabViewModule} from 'primeng/tabview';
+import { TabViewModule } from 'primeng/tabview';
 import { TelefoneComponent } from './telefone/telefone.component';
 
 
@@ -71,20 +76,20 @@ import { TelefoneComponent } from './telefone/telefone.component';
     { provide: CRUD_SERVICE, useExisting: PacienteService },
     CrudResolveGuard,
 
-    RacaService,
-    EtniaService,
-    EstadoCivilService,
-    NacionalidadeService,
-    NaturalidadeService,
-    OcupacaoService,
-    ReligiaoService,
-    GrauDeParentescoService,
-    OrgaoEmissorService,
-    JustificativaService,
-    MotivoDoCadastroService,
-    UfService,
-    MunicipioService,
-    CepService,
-  ]
+        RacaService,
+        EtniaService,
+        EstadoCivilService,
+        NacionalidadeService,
+        NaturalidadeService,
+        OcupacaoService,
+        ReligiaoService,
+        GrauDeParentescoService,
+        OrgaoEmissorService,
+        JustificativaService,
+        MotivoDoCadastroService,
+        UfService,
+        MunicipioService,
+        CepService,
+    ],
 })
-export class PacienteModule { }
+export class PacienteModule {}

@@ -8,28 +8,25 @@ import { DiagnosticoComponent } from './diagnostico/diagnostico.component';
 export const prescricaoMedica: Routes = [
     {
         path: 'prescricao-medica',
-        component: PrescricaoMedicaComponent
+        component: PrescricaoMedicaComponent,
     },
 
     {
         path: 'prescricao-medica/dieta/:id',
-        component: PrescricaoMedicaDietaComponent
+        component: PrescricaoMedicaDietaComponent,
     },
 
     {
         path: 'prescricao-medica/medicamento/:id',
-        component: MedicamentoComponent
+        component: MedicamentoComponent,
     },
     {
         path: 'prescricao-medica/diagnostico/:id',
-        component: DiagnosticoComponent
+        component: DiagnosticoComponent,
     },
 
     {
         path: 'prescricao-medica/lista/:id',
-        component: ListaPrescricaoComponent
+        component: ListaPrescricaoComponent,
     },
-
 ];
-
-
