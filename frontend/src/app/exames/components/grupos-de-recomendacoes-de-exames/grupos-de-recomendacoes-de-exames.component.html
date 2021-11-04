@@ -1,0 +1,61 @@
+<div class="recomendacoes p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="card card-w-title">
+            <h1>Cadastrar Grupos de Recomendações dos Exames</h1>
+            <div class="p-grid">
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-6 p-col-12">
+                        <label>Descrição</label>
+                        <span class="md-inputfield p-float-label">
+                            <input type="text" pInputText class="p-inputtext" [(ngModel)]="descricao"/>
+                        </span>
+                    </div>
+                    <div class="p-md-3 p-col-12">
+                        <label>Aviso Responsável</label> 
+                        <div class="ativo">
+                            <p-radioButton class="ativosim" [(ngModel)]="avisoResponsavel" name="situacao" value=true label="Sim"></p-radioButton>
+                            <p-radioButton [(ngModel)]="avisoResponsavel" name="situacao" value=false label="Não"></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdwon p-col-12 p-grid">
+                    <div class="p-md-4 p-col-12">
+                        <label>Responsável</label>
+                        <span>
+                            <p-dropdown
+                                [(ngModel)]="responsavel"
+                                [options]="responsaveis"
+                                [filter]="true"
+                                [resetFilterOnHide]="true"
+                                [showClear]="true"  
+                                placeholder="Selecione">
+                            </p-dropdown>
+                        </span>
+                    </div>
+                    <div class="p-md-4 p-col-12">
+                        <label>Abrangência</label>
+                        <span>
+                            <p-dropdown 
+                                [(ngModel)]="abrangencia"
+                                [options]="abrangencia1"
+                                [filter]="true"
+                                [resetFilterOnHide]="true"
+                                [showClear]="true"
+                                placeholder="Selecione">
+                            </p-dropdown>
+                        </span>
+                    </div>
+                </div>
+                <div class="dropdwon p-col-12 p-grid">
+                    <div class="p-md-2 p-sm-5">
+                        <button pButton type="button" label="Salvar" icon="pi pi-save" [disabled]="!validarFormulario()" (click)="cadastrar()"></button>
+                    </div>
+                    <div class="p-md-2 p-sm-5">
+                        <button pButton type="button" label="Limpar" icon="pi pi-times" (click)="limparFormulario()"></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
