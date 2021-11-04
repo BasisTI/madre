@@ -70,5 +70,8 @@ public class PacienteDTO implements Serializable {
 
     private Long estadoCivilId;
 
+    private GenitoresDTO genitores;
+
+    private CartaoSUSDTO cartaoSUS;
 
 }
