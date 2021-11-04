@@ -1,89 +1,169 @@
 <div class="p-grid p-fluid" [formGroup]="formGroup">
-    <div class="p-col-12">
-        <h4 class="p-md-12 p-sm-12">Dados Pessoais</h4>
-    </div>
-
-    <div class="p-col-8 p-grid">
-        <div nInputText label="Nome Completo" formControlName="nome" class="p-md-5 p-sm-12"></div>
-        <div
-            nInputText
-            label="Nome Social"
-            formControlName="nomeSocial"
-            class="p-md-4 p-sm-12"
-        ></div>
-        <div
-            nDropdown
-            label="Sexo"
-            [options]="opcoesDeSexo"
-            formControlName="sexo"
-            class="p-md-3 p-sm-12"
-        ></div>
-    </div>
-    <div class="p-col-4 p-grid">
-        <div
-            nAutoComplete
-            [service]="racaService"
-            field="valor"
-            formControlName="racaId"
-            label="Raça/Cor"
-            class="p-md-4 p-sm-12"
-        ></div>
-        <div
-            nAutoComplete
-            [service]="etniaService"
-            field="valor"
-            formControlName="etniaId"
-            label="Etnia"
-            class="p-md-4 p-sm-12"
-        ></div>
-        <div
-            nAutoComplete
-            [service]="estadoCivilService"
-            field="valor"
-            formControlName="estadoCivilId"
-            label="Estado Civil"
-            class="p-md-4 p-sm-12"
-        ></div>
-    </div>
-    <div class="p-col-8 p-grid" formGroupName="genitores">
-        <div
-            nInputMask
-            mask="9999999/9"
-            tooltip="Digite o número do prontuário da mãe do paciente."
-            placeholder="_______/_"
-            label="Prontuário da Mãe"
-            formControlName="prontuarioDaMae"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div
-            nInputText
-            label="Nome da Mãe"
-            formControlName="nomeDaMae"
-            class="p-md-5 p-sm-12"
-        ></div>
-        <div
-            nInputText
-            label="Nome do Pai"
-            formControlName="nomeDoPai"
-            class="p-md-5 p-sm-12"
-        ></div>
-    </div>
-    <div class="p-col-4 p-grid">
-        <div
-            madreCalendar
-            label="Data de Nascimento"
-            formControlName="dataDeNascimento"
-            class="p-md-2 p-sm-12"
-            (onSelect)="aoSelecionarDataDeNascimento()"
-            (onBlur)="aoSelecionarDataDeNascimento()"
-        ></div>
-        <div class="p-md-2 p-sm-12">
-            <span class="p-float-label">
-                <p-calendar timeOnly="true" formControlName="horaDeNascimento"></p-calendar>
-                <label>Hora do Nascimento</label>
-            </span>
+    <p-fieldset legend="Dados Pessoais">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-md-12 p-lg-5">
+                <div
+                    nInputText label="Nome Completo"
+                    formControlName="nome"
+                    required>
+                </div>
+                <p-message
+                    severity="error"
+                    text="Nome do paciente é obrigatório"
+                    *ngIf="formGroup.controls['nome'].errors?.required &&
+                        formGroup.controls['nome'].touched">
+                </p-message>
+            </div>
+            <div
+                nInputText
+                label="Nome Social"
+                formControlName="nomeSocial"
+                class="p-md-4 p-sm-12"
+            ></div>
+            <div class="p-md-12 p-lg-3">
+                <div
+                    nInputText
+                    maxlength="254"
+                    type="email"
+                    label="E-mail"
+                    required
+                    formControlName="email"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="O E-mail é obrigatório"
+                    *ngIf="formGroup.controls['email'].errors?.required &&
+                        formGroup.controls['email'].touched">
+                </p-message>
+            </div>
         </div>
-        <div class="p-md-4 p-sm-12">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-md-12 p-lg-2">
+                <div
+                    nDropdown
+                    label="Sexo"
+                    required
+                    [options]="opcoesDeSexo"
+                    formControlName="sexo"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="O Sexo é obrigatório"
+                    *ngIf="formGroup.controls['sexo'].errors?.required &&
+                        formGroup.controls['sexo'].touched">
+                </p-message>
+            </div>
+            <div class="p-md-12 p-lg-2">
+                <div
+                    nAutoComplete
+                    [service]="racaService"
+                    field="valor"
+                    required
+                    formControlName="racaId"
+                    label="Raça/Cor"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="A Cor/Raça é obrigatório"
+                    *ngIf="formGroup.controls['racaId'].errors?.required &&
+                        formGroup.controls['racaId'].touched">
+                </p-message>
+            </div>
+            <div class="p-md-12 p-lg-4">
+                <div
+                    nAutoComplete
+                    [service]="etniaService"
+                    field="valor"
+                    required
+                    formControlName="etniaId"
+                    label="Etnia"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="A etnia é obrigatório"
+                    *ngIf="formGroup.controls['etniaId'].errors?.required &&
+                        formGroup.controls['etniaId'].touched">
+                </p-message>
+            </div>
+            <div class="p-md-12 p-lg-4">
+                <div
+                    nAutoComplete
+                    [service]="estadoCivilService"
+                    field="valor"
+                    required
+                    formControlName="estadoCivilId"
+                    label="Estado Civil"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="O estado civil é obrigatório"
+                    *ngIf="formGroup.controls['estadoCivilId'].errors?.required &&
+                        formGroup.controls['estadoCivilId'].touched">
+                </p-message>
+            </div>
+        </div>
+        <div class="p-fluid p-formgrid p-grid" formGroupName="genitores">
+            <div class="p-md-12 p-lg-2">
+                <div
+                    nInputMask
+                    label="Prontuário da Mãe"
+                    mask="9999999/9"
+                    formControlName="prontuarioDaMae">
+                </div>
+            </div>
+            <div class="p-md-12 p-lg-5">
+                <div
+                    nInputText
+                    required
+                    label="Nome da Mãe"
+                    formControlName="nomeDaMae"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="Nome da mãe é obrigatório"
+                    *ngIf="formGroup.controls['genitores'].controls['nomeDaMae'].errors?.required &&
+                            formGroup.controls['genitores'].controls['nomeDaMae'].touched">
+                </p-message>
+            </div>
+            <div class="p-md-12 p-lg-5">
+                <div
+                    nInputText
+                    required
+                    label="Nome do Pai"
+                    formControlName="nomeDoPai"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="Nome do pai é obrigatório"
+                    *ngIf="formGroup.controls['genitores'].controls['nomeDoPai'].errors?.required &&
+                            formGroup.controls['genitores'].controls['nomeDoPai'].touched">
+                </p-message>
+            </div>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-md-12 p-lg-2">
+                <div
+                    madreCalendar
+                    label="Data de Nascimento"
+                    required
+                    formControlName="dataDeNascimento"
+                    (onSelect)="aoSelecionarDataDeNascimento()"
+                    (onBlur)="aoSelecionarDataDeNascimento()"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="A data de nascimento é obrigatório"
+                    *ngIf="formGroup.controls['dataDeNascimento'].errors?.required &&
+                        formGroup.controls['dataDeNascimento'].touched">
+                </p-message>
+            </div>
+            <div class="p-md-2 p-sm-12">
+                <span class="p-float-label">
+                    <p-calendar timeOnly="true" formControlName="horaDeNascimento"></p-calendar>
+                    <label>Hora do Nascimento</label>
+                </span>
+            </div>
+            <div class="p-md-1 p-sm-12">
             <span class="md-inputfield p-float-label">
                 <input
                     pInputText
@@ -96,80 +176,83 @@
                 />
                 <label>Idade</label>
             </span>
+            </div>
+            <div class="p-md-12 p-lg-3">
+                <div
+                    nAutoComplete
+                    [service]="nacionalidadeService"
+                    field="valor"
+                    required
+                    formControlName="nacionalidadeId"
+                    label="Nacionalidade"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="A nacionalidade é obrigatório"
+                    *ngIf="formGroup.controls['nacionalidadeId'].errors?.required &&
+                        formGroup.controls['nacionalidadeId'].touched">
+                </p-message>
+            </div>
+            <div class="p-md-1 p-sm-12">
+                <span class="p-float-label">
+                    <p-dropdown
+                        (onChange)="aoSelecionarUF()"
+                        [disabled]="!formGroup.value.nacionalidadeId"
+                        [options]="ufs"
+                        optionLabel="sigla"
+                        formControlName="ufId"
+                        [filter]="true"
+                        placeholder="UF"
+                    ></p-dropdown>
+                </span>
+            </div>
+            <div class="p-md-3 p-sm-12">
+                <span class="md-inputfield p-float-label">
+                    <p-autoComplete
+                        (completeMethod)="searchUnidade($event)"
+                        [disabled]="!formGroup.value.ufId"
+                        field="nome"
+                        [suggestions]="naturalidades"
+                        [dropdown]="true"
+                        formControlName="naturalidadeId"
+                    >
+                    </p-autoComplete>
+                    <label>Naturalidade</label>
+                </span>
+            </div>
         </div>
-        <div
-            nAutoComplete
-            [service]="nacionalidadeService"
-            field="valor"
-            formControlName="nacionalidadeId"
-            label="Nacionalidade"
-            class="p-md-4 p-sm-12"
-        ></div>
-    </div>
-
-    <div class="p-col-8 p-grid">
-        <div class="p-md-2 p-sm-12">
-            <span class="p-float-label">
-                <p-dropdown
-                    (onChange)="aoSelecionarUF()"
-                    [disabled]="!formGroup.value.nacionalidadeId"
-                    [options]="ufs"
-                    optionLabel="sigla"
-                    formControlName="ufId"
-                    [filter]="true"
-                    placeholder="UF"
-                ></p-dropdown>
-            </span>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-md-12 p-lg-4">
+                <div
+                    nDropdown
+                    label="Grau de Instrução"
+                    required
+                    [options]="opcoesDeGrauDeInstrucao"
+                    formControlName="grauDeInstrucao"
+                ></div>
+                <p-message
+                    severity="error"
+                    text="O grau de instrução é obrigatório"
+                    *ngIf="formGroup.controls['grauDeInstrucao'].errors?.required &&
+                        formGroup.controls['grauDeInstrucao'].touched">
+                </p-message>
+            </div>
+            <div
+                nAutoComplete
+                [service]="ocupacaoService"
+                field="valor"
+                formControlName="ocupacaoId"
+                label="Ocupação"
+                class="p-md-5 p-sm-12"
+            ></div>
+           <div
+                nAutoComplete
+                [service]="religiaoService"
+                field="valor"
+                formControlName="religiaoId"
+                label="Religião"
+                class="p-md-3 p-sm-12"
+            ></div>
         </div>
-
-        <div class="p-md-2 p-sm-12">
-            <span class="md-inputfield p-float-label">
-                <p-autoComplete
-                    (completeMethod)="searchUnidade($event)"
-                    [disabled]="!formGroup.value.ufId"
-                    field="nome"
-                    [suggestions]="naturalidades"
-                    [dropdown]="true"
-                    formControlName="naturalidadeId"
-                >
-                </p-autoComplete>
-                <label>Naturalidade</label>
-            </span>
-        </div>
-
-        <div
-            nDropdown
-            label="Grau de Instrução"
-            [options]="opcoesDeGrauDeInstrucao"
-            formControlName="grauDeInstrucao"
-            class="p-md-3 p-sm-12"
-        ></div>
-        <div
-            nAutoComplete
-            [service]="ocupacaoService"
-            field="valor"
-            formControlName="ocupacaoId"
-            label="Ocupação"
-            class="p-md-5 p-sm-12"
-        ></div>
-    </div>
-
-    <div class="p-col-4 p-grid">
-        <div
-            nAutoComplete
-            [service]="religiaoService"
-            field="valor"
-            formControlName="religiaoId"
-            label="Religião"
-            class="p-md-4 p-sm-12"
-        ></div>
-        <div
-            nInputText
-            maxlength="254"
-            type="email"
-            label="E-mail"
-            formControlName="email"
-            class="p-md-8 p-sm-12"
-        ></div>
-    </div>
+    </p-fieldset>
 </div>

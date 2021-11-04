@@ -1,39 +1,56 @@
 <div class="p-grid p-fluid" [formGroup]="formGroup">
-    <h4 class="p-md-6 p-sm-12">Certidão</h4>
-    <div class="p-col-12 p-grid" formGroupName="certidao">
-        <div
-            nInputText
-            label="Número da Certidão"
-            formControlName="registroDeNascimento"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div
-            nDropdown
-            label="Tipo de Certidão"
-            [options]="opcoesDeTipoDeCertidao"
-            formControlName="tipoDaCertidao"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div
-            nInputText
-            label="Nome do Cartório"
-            formControlName="nomeDoCartorio"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div nInputText label="Livro" formControlName="livro" class="p-md-1 p-sm-12"></div>
-        <div nInputText label="Folhas" formControlName="folhas" class="p-md-1 p-sm-12"></div>
-        <div nInputText label="Termo" formControlName="termo" class="p-md-1 p-sm-12"></div>
-        <div
-            madreCalendar
-            label="Data de Emissão"
-            formControlName="dataDeEmissao"
-            class="p-md-1 p-sm-12"
-        ></div>
-        <div
-            nInputText
-            label="Número da DN"
-            formControlName="numeroDaDeclaracaoDeNascimento"
-            class="p-md-2 p-sm-12"
-        ></div>
-    </div>
+    <p-fieldset legend="Certidão" formGroupName="certidao">
+        <div class="p-fluid p-formgrid p-grid" >
+            <div
+                nInputText
+                label="Número da Certidão"
+                formControlName="registroDeNascimento"
+                class="p-md-4 p-sm-12"
+            ></div>
+            <div
+                nDropdown
+                label="Tipo de Certidão"
+                [options]="opcoesDeTipoDeCertidao"
+                formControlName="tipoDaCertidao"
+                class="p-md-4 p-sm-12"
+            ></div>
+            <div
+                nInputText
+                label="Nome do Cartório"
+                formControlName="nomeDoCartorio"
+                class="p-md-4 p-sm-12"
+            ></div>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div
+                nInputText
+                label="Livro"
+                formControlName="livro"
+                class="p-md-3 p-sm-12">
+            </div>
+            <div
+                nInputText
+                label="Folhas"
+                formControlName="folhas"
+                class="p-md-2 p-sm-12">
+            </div>
+            <div nInputText
+                 label="Termo"
+                 formControlName="termo"
+                 class="p-md-2 p-sm-12">
+            </div>
+            <div
+                madreCalendar
+                label="Data de Emissão"
+                formControlName="dataDeEmissao"
+                class="p-md-2 p-sm-12"
+            ></div>
+            <div
+                nInputText
+                label="Número da DN"
+                formControlName="numeroDaDeclaracaoDeNascimento"
+                class="p-md-3 p-sm-12"
+            ></div>
+        </div>
+    </p-fieldset>
 </div>
