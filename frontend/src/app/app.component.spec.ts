@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -7,10 +6,10 @@ import { AppTopbarComponent } from './app.topbar.component';
 import { AppRightpanelComponent } from './app.rightpanel.component';
 import { AppInlineProfileComponent } from './app.profile.component';
 import { AppFooterComponent } from './app.footer.component';
-import { AppBreadcrumbComponent } from './app.breadcrumb.component';
-import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
-import { BreadcrumbService } from './breadcrumb.service';
+import { AppBreadcrumbComponent } from 'url/';
+import { AppMenuComponent, AppSubMenuComponent } from 'url/';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import {BreadcrumbService} from "@nuvem/primeng-components";
 
 describe('AppComponent', () => {
     beforeEach(() => {

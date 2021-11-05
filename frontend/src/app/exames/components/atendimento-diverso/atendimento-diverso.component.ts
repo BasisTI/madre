@@ -1,8 +1,8 @@
 import { PageNotificationService } from '@nuvem/primeng-components';
-import { PreCadastroModel } from './../../../pacientes/models/pre-cadastro-model';
+import { PreCadastroModel } from '../../../pacientes/models/pre-cadastro-model';
 import { EspecialidadeService } from '@internacao/services/especialidade.service';
-import { Especialidade } from './../../../internacao/models/especialidade';
-import { CadaverModel } from './../../models/subjects/cadaver-model';
+import { Especialidade } from '@internacao/models/especialidade';
+import { CadaverModel } from '../../models/subjects/cadaver-model';
 import { Component, OnInit } from '@angular/core';
 import { CadaverService } from '../../services/cadaver.service';
 import { ControleQualidadeservice } from '../../services/controleQualidade.service';
@@ -44,7 +44,7 @@ export class AtendimentoDiversoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cadaverService: CadaverService, 
+    private cadaverService: CadaverService,
     private controleQualidadeservice: ControleQualidadeservice,
     private laboratorioExternoService: LaboratorioExternoService,
     private centroService: CentroService,
@@ -75,7 +75,7 @@ export class AtendimentoDiversoComponent implements OnInit {
         especialidadeId : [null],
 
         centroAtividadeId : [null],
-        
+
         dataNascimento : [null],
 
         sexo : [null],
@@ -89,15 +89,15 @@ export class AtendimentoDiversoComponent implements OnInit {
     });
 
        this.cadaverService.getCadaver().subscribe((response)=>{
-         this.cadavers = response; 
+         this.cadavers = response;
        });
 
        this.controleQualidadeservice.getControleQualidade().subscribe((response)=>{
-        this.controles = response; 
+        this.controles = response;
        });
 
        this.laboratorioExternoService.getLaboratorioExterno().subscribe((response)=>{
-        this.laboratorios = response; 
+        this.laboratorios = response;
        });
 
        this.centroService.getListaDeCentros().subscribe((response)=>{
@@ -109,10 +109,10 @@ export class AtendimentoDiversoComponent implements OnInit {
        });
 
        this.especialidadeservice.getEspecialidades().subscribe((response)=>{
-        this.especialidades = response; 
+        this.especialidades = response;
        });
        this.unidadeFuncionalService.getUnidades().subscribe((response)=>{
-       this.unidadesFuncionais = response; 
+       this.unidadesFuncionais = response;
       });
   }
 
@@ -120,7 +120,7 @@ export class AtendimentoDiversoComponent implements OnInit {
     return this.cadastroAtendimentoDiverso.valid;
   }
 
-  cadastrar() { 
+  cadastrar() {
     if (!this.cadastroAtendimentoDiverso.valid){
       this.pageNotificationService.addErrorMessage('preencher o campo codigo')
       return;

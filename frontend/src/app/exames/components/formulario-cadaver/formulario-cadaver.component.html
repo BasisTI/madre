@@ -1,0 +1,138 @@
+<div class="p-col-12 p-grid">
+    <div class="p-d-flex p-fluid">
+
+        <div class="card card-w-title">
+
+            <h1>Cadastro de Cadáver</h1>
+
+            <div class="p-d-flex">
+
+
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-3" pTooltip="Digite o nome do cadáver" [formGroup]="cadastrarObito">
+                        Nome
+                        <span class="md-inputfield p-float" style="margin-top: 5px;">
+                        <input type="text" pInputText class="p-inputtext" formControlName="nome"/>
+                    </span>
+                    </div>
+                        <div class="p-md-3" pTooltip="Data de nascimento">
+                            Data Nascimento
+                            <p-calendar
+                                dateFormat="dd/mm/yy"
+                                [(ngModel)]="dataNascimento"
+                                [yearNavigator]="true"
+                                [monthNavigator]="true"
+                                yearRange="1900:2022"
+                            ></p-calendar>
+                        </div>
+                            <div class="p-md-2" style="margin-top: 5px;" [formGroup]="cadastrarObito">
+                            Raça
+                            <p-dropdown placeholder="Selecione" [options]="raca" formControlName="raca"></p-dropdown>
+                        </div>
+                            <div class="p-md-2" style="margin-top: 5px;" [formGroup]="cadastrarObito">
+                            Grupo Sanguíneo
+                            <p-dropdown placeholder="Selecione" [options]="sanguineo" formControlName="grupoSanguineo"></p-dropdown>
+                        </div>
+                            <div class="p-md-2" style="margin-top: 5px;" pTooltip="Digite o código do Plano" [formGroup]="cadastrarObito">
+                            Convênio/Plano
+                            <p-dropdown placeholder="Selecione"
+                                        [options]="conveniosDeSaude" [optionLabel]="'nome'" [optionValue]="'id'"
+                                        formControlName="codigoPlano"
+                            ></p-dropdown>
+                        </div>
+
+
+
+                        <div class="p-md-3" pTooltip="Por quem foi realizado" [formGroup]="cadastrarObito">
+                        Realizado por
+                        <span class="md-inputfield p-float"
+                              style="margin-top: 5px;">
+                        <input type="text"
+                               pInputText class="p-inputtext"
+                               formControlName="realizadoPor"/>
+                    </span>
+                    </div>
+
+                        <div class="p-md-3" pTooltip="Lido por" [formGroup]="cadastrarObito">
+                        Lido por
+                        <span class="md-inputfield p-float"
+                              style="margin-top: 5px;">
+                        <input type="text"
+                               pInputText class="p-inputtext"
+                               formControlName="lidoPor"/>
+                    </span>
+                    </div>
+                    <div class="p-md-2" pTooltip="Data de remoção do cadáver" [formGroup]="cadastrarObito">
+                        Data Remoção
+                        <p-calendar
+                            dateFormat="dd/mm/yy"
+                            formControlName="dataRemocao"
+                            [monthNavigator]="true"
+                            [minDate]="dataNascimento"
+                        ></p-calendar>
+                    </div>
+
+                        <div class="p-md-2" pTooltip="Procêdencia" [formGroup]="cadastrarObito">
+                            Procedência
+                            <p-dropdown placeholder="Selecione"
+                                        [options]="hospitais" [optionLabel]="'nome'" [optionValue]="'id'"
+                                        formControlName="procedenciaId"
+                            ></p-dropdown>
+                    </div>
+                        <div class="p-md-2" pTooltip="Retirada" [formGroup]="cadastrarObito">
+                            Retirada
+                            <p-dropdown placeholder="Selecione"
+                                        [options]="hospitais" [optionLabel]="'nome'" [optionValue]="'id'"
+                                        formControlName="retiradaId"
+                            ></p-dropdown>
+                        </div>
+
+
+
+                <div class="p-col-12 p-grid">
+                        <div class="p-md-6" [formGroup]="cadastrarObito">
+                        Observações
+                        <span class="md-inputfield p-float-label">
+                            <textarea pInputTextarea [rows]="3" [cols]="30"
+                                      pTooltip="Digite a causa do Óbito."
+                                      formControlName="observacao">
+                            </textarea>
+                    </span>
+                    </div>
+
+                        <div class="p-md-6" [formGroup]="cadastrarObito">
+                            Causa Óbito
+                            <span class="md-inputfield p-float-label">
+                            <textarea pInputTextarea [rows]="3" [cols]="30"
+                                      pTooltip="Digite a causa do Óbito."formControlName="causaObito">
+                            </textarea>
+                    </span>
+                        </div>
+
+
+
+                        <div class="p-md-2">
+                            <button pButton
+                                    type="button"
+                                    label="Salvar"
+                                    icon="pi pi-save"
+                                    [disabled]="!validarFormulario()"
+                                    (click)="cadastro()"
+                            ></button>
+
+                    </div>
+                        <div class="p-md-2">
+                            <button pButton
+                                    type="button"
+                                    label="Limpar"
+                                    icon="pi pi-times"
+                                    (click)="limparFormulario()"
+                            ></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity Cadaver.
     -->
@@ -64,7 +64,7 @@
     <changeSet id="20210705120718-1-relations" author="jhipster">
 
     </changeSet>
-    
+
     <changeSet id="20210705120718-1-sequence" author="jhipster">
         <createSequence sequenceName="seq_cadaver" startValue="1050" incrementBy="50" />
     </changeSet>
@@ -80,7 +80,7 @@
     -->
     <changeSet id="20210705120718-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/cadaver.csv"
+                  file="config/liquibase/fake-data/cadaver_novo.csv"
                   separator=";"
                   tableName="cadaver">
             <column name="id" type="numeric"/>

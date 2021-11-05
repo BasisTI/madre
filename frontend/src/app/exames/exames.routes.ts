@@ -8,10 +8,12 @@ import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
+import { FormularioCadaverComponent } from './components/formulario-cadaver/formulario-cadaver.component';
 import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
+import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-recomendacoes-de-exames/grupos-de-recomendacoes-de-exames.component';
 
 export const routes: Routes = [
     {
@@ -63,7 +65,15 @@ export const routes: Routes = [
         component: TabelaHorariosAgendadosComponent
     },
     {
+        path: 'formulario-cadaver',
+        component: FormularioCadaverComponent
+    },
+    {
         path: 'formulario-salas',
         component: FormularioSalasComponent
+    },
+    {
+        path: 'grupo-de-recomendacoes-de-exames',
+        component: GruposDeRecomendacoesDeExamesComponent
     }
 ];

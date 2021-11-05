@@ -37,7 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import br.com.basis.madre.madreexames.domain.enumeration.Raca;
 import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 /**
  * Integration tests for the {@link CadaverResource} REST controller.
  */
@@ -46,9 +45,6 @@ import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
 @AutoConfigureMockMvc
 @WithMockUser
 public class CadaverResourceIT {
-
-    private static final Integer DEFAULT_CODIGO = 1;
-    private static final Integer UPDATED_CODIGO = 2;
 
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
@@ -74,17 +70,14 @@ public class CadaverResourceIT {
     private static final String DEFAULT_LIDO_POR = "AAAAAAAAAA";
     private static final String UPDATED_LIDO_POR = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PROCEDENCIA = "AAAAAAAAAA";
-    private static final String UPDATED_PROCEDENCIA = "BBBBBBBBBB";
+    private static final Integer DEFAULT_PROCEDENCIA_ID = 1;
+    private static final Integer UPDATED_PROCEDENCIA_ID = 2;
 
-    private static final String DEFAULT_RETIRADA = "AAAAAAAAAA";
-    private static final String UPDATED_RETIRADA = "BBBBBBBBBB";
+    private static final Integer DEFAULT_RETIRADA_ID = 1;
+    private static final Integer UPDATED_RETIRADA_ID = 2;
 
-    private static final String DEFAULT_CODIGO_PLANO = "AAAAAAAAAA";
-    private static final String UPDATED_CODIGO_PLANO = "BBBBBBBBBB";
-
-    private static final ConvenioPlano DEFAULT_CONVENIO_PLANO = ConvenioPlano.SUS_INTERNACAO;
-    private static final ConvenioPlano UPDATED_CONVENIO_PLANO = ConvenioPlano.SUS_PLANO_AMBULATORIO;
+    private static final Integer DEFAULT_CODIGO_PLANO = 1;
+    private static final Integer UPDATED_CODIGO_PLANO = 2;
 
     private static final String DEFAULT_OBSERVACAO = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACAO = "BBBBBBBBBB";
@@ -122,7 +115,6 @@ public class CadaverResourceIT {
      */
     public static Cadaver createEntity(EntityManager em) {
         Cadaver cadaver = new Cadaver()
-            .codigo(DEFAULT_CODIGO)
             .nome(DEFAULT_NOME)
             .dataNascimento(DEFAULT_DATA_NASCIMENTO)
             .raca(DEFAULT_RACA)
@@ -131,10 +123,9 @@ public class CadaverResourceIT {
             .causaObito(DEFAULT_CAUSA_OBITO)
             .realizadoPor(DEFAULT_REALIZADO_POR)
             .lidoPor(DEFAULT_LIDO_POR)
-            .procedencia(DEFAULT_PROCEDENCIA)
-            .retirada(DEFAULT_RETIRADA)
+            .procedenciaId(DEFAULT_PROCEDENCIA_ID)
+            .retiradaId(DEFAULT_RETIRADA_ID)
             .codigoPlano(DEFAULT_CODIGO_PLANO)
-            .convenioPlano(DEFAULT_CONVENIO_PLANO)
             .observacao(DEFAULT_OBSERVACAO);
         return cadaver;
     }
@@ -146,7 +137,6 @@ public class CadaverResourceIT {
      */
     public static Cadaver createUpdatedEntity(EntityManager em) {
         Cadaver cadaver = new Cadaver()
-            .codigo(UPDATED_CODIGO)
             .nome(UPDATED_NOME)
             .dataNascimento(UPDATED_DATA_NASCIMENTO)
             .raca(UPDATED_RACA)
@@ -155,10 +145,9 @@ public class CadaverResourceIT {
             .causaObito(UPDATED_CAUSA_OBITO)
             .realizadoPor(UPDATED_REALIZADO_POR)
             .lidoPor(UPDATED_LIDO_POR)
-            .procedencia(UPDATED_PROCEDENCIA)
-            .retirada(UPDATED_RETIRADA)
+            .procedenciaId(UPDATED_PROCEDENCIA_ID)
+            .retiradaId(UPDATED_RETIRADA_ID)
             .codigoPlano(UPDATED_CODIGO_PLANO)
-            .convenioPlano(UPDATED_CONVENIO_PLANO)
             .observacao(UPDATED_OBSERVACAO);
         return cadaver;
     }
@@ -183,7 +172,6 @@ public class CadaverResourceIT {
         List<Cadaver> cadaverList = cadaverRepository.findAll();
         assertThat(cadaverList).hasSize(databaseSizeBeforeCreate + 1);
         Cadaver testCadaver = cadaverList.get(cadaverList.size() - 1);
-        assertThat(testCadaver.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testCadaver.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testCadaver.getDataNascimento()).isEqualTo(DEFAULT_DATA_NASCIMENTO);
         assertThat(testCadaver.getRaca()).isEqualTo(DEFAULT_RACA);
@@ -192,10 +180,9 @@ public class CadaverResourceIT {
         assertThat(testCadaver.getCausaObito()).isEqualTo(DEFAULT_CAUSA_OBITO);
         assertThat(testCadaver.getRealizadoPor()).isEqualTo(DEFAULT_REALIZADO_POR);
         assertThat(testCadaver.getLidoPor()).isEqualTo(DEFAULT_LIDO_POR);
-        assertThat(testCadaver.getProcedencia()).isEqualTo(DEFAULT_PROCEDENCIA);
-        assertThat(testCadaver.getRetirada()).isEqualTo(DEFAULT_RETIRADA);
+        assertThat(testCadaver.getProcedenciaId()).isEqualTo(DEFAULT_PROCEDENCIA_ID);
+        assertThat(testCadaver.getRetiradaId()).isEqualTo(DEFAULT_RETIRADA_ID);
         assertThat(testCadaver.getCodigoPlano()).isEqualTo(DEFAULT_CODIGO_PLANO);
-        assertThat(testCadaver.getConvenioPlano()).isEqualTo(DEFAULT_CONVENIO_PLANO);
         assertThat(testCadaver.getObservacao()).isEqualTo(DEFAULT_OBSERVACAO);
 
         // Validate the Cadaver in Elasticsearch
@@ -225,26 +212,6 @@ public class CadaverResourceIT {
         verify(mockCadaverSearchRepository, times(0)).save(cadaver);
     }
 
-
-    @Test
-    @Transactional
-    public void checkCodigoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = cadaverRepository.findAll().size();
-        // set the field null
-        cadaver.setCodigo(null);
-
-        // Create the Cadaver, which fails.
-        CadaverDTO cadaverDTO = cadaverMapper.toDto(cadaver);
-
-
-        restCadaverMockMvc.perform(post("/api/cadavers")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(cadaverDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Cadaver> cadaverList = cadaverRepository.findAll();
-        assertThat(cadaverList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -368,10 +335,10 @@ public class CadaverResourceIT {
 
     @Test
     @Transactional
-    public void checkProcedenciaIsRequired() throws Exception {
+    public void checkProcedenciaIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = cadaverRepository.findAll().size();
         // set the field null
-        cadaver.setProcedencia(null);
+        cadaver.setProcedenciaId(null);
 
         // Create the Cadaver, which fails.
         CadaverDTO cadaverDTO = cadaverMapper.toDto(cadaver);
@@ -388,10 +355,10 @@ public class CadaverResourceIT {
 
     @Test
     @Transactional
-    public void checkRetiradaIsRequired() throws Exception {
+    public void checkRetiradaIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = cadaverRepository.findAll().size();
         // set the field null
-        cadaver.setRetirada(null);
+        cadaver.setRetiradaId(null);
 
         // Create the Cadaver, which fails.
         CadaverDTO cadaverDTO = cadaverMapper.toDto(cadaver);
@@ -457,7 +424,6 @@ public class CadaverResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cadaver.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
             .andExpect(jsonPath("$.[*].raca").value(hasItem(DEFAULT_RACA.toString())))
@@ -466,13 +432,12 @@ public class CadaverResourceIT {
             .andExpect(jsonPath("$.[*].causaObito").value(hasItem(DEFAULT_CAUSA_OBITO)))
             .andExpect(jsonPath("$.[*].realizadoPor").value(hasItem(DEFAULT_REALIZADO_POR)))
             .andExpect(jsonPath("$.[*].lidoPor").value(hasItem(DEFAULT_LIDO_POR)))
-            .andExpect(jsonPath("$.[*].procedencia").value(hasItem(DEFAULT_PROCEDENCIA)))
-            .andExpect(jsonPath("$.[*].retirada").value(hasItem(DEFAULT_RETIRADA)))
+            .andExpect(jsonPath("$.[*].procedenciaId").value(hasItem(DEFAULT_PROCEDENCIA_ID)))
+            .andExpect(jsonPath("$.[*].retiradaId").value(hasItem(DEFAULT_RETIRADA_ID)))
             .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
-            .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
-
+    
     @Test
     @Transactional
     public void getCadaver() throws Exception {
@@ -484,7 +449,6 @@ public class CadaverResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(cadaver.getId().intValue()))
-            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
             .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO.toString()))
             .andExpect(jsonPath("$.raca").value(DEFAULT_RACA.toString()))
@@ -493,10 +457,9 @@ public class CadaverResourceIT {
             .andExpect(jsonPath("$.causaObito").value(DEFAULT_CAUSA_OBITO))
             .andExpect(jsonPath("$.realizadoPor").value(DEFAULT_REALIZADO_POR))
             .andExpect(jsonPath("$.lidoPor").value(DEFAULT_LIDO_POR))
-            .andExpect(jsonPath("$.procedencia").value(DEFAULT_PROCEDENCIA))
-            .andExpect(jsonPath("$.retirada").value(DEFAULT_RETIRADA))
+            .andExpect(jsonPath("$.procedenciaId").value(DEFAULT_PROCEDENCIA_ID))
+            .andExpect(jsonPath("$.retiradaId").value(DEFAULT_RETIRADA_ID))
             .andExpect(jsonPath("$.codigoPlano").value(DEFAULT_CODIGO_PLANO))
-            .andExpect(jsonPath("$.convenioPlano").value(DEFAULT_CONVENIO_PLANO.toString()))
             .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO));
     }
     @Test
@@ -520,7 +483,6 @@ public class CadaverResourceIT {
         // Disconnect from session so that the updates on updatedCadaver are not directly saved in db
         em.detach(updatedCadaver);
         updatedCadaver
-            .codigo(UPDATED_CODIGO)
             .nome(UPDATED_NOME)
             .dataNascimento(UPDATED_DATA_NASCIMENTO)
             .raca(UPDATED_RACA)
@@ -529,10 +491,9 @@ public class CadaverResourceIT {
             .causaObito(UPDATED_CAUSA_OBITO)
             .realizadoPor(UPDATED_REALIZADO_POR)
             .lidoPor(UPDATED_LIDO_POR)
-            .procedencia(UPDATED_PROCEDENCIA)
-            .retirada(UPDATED_RETIRADA)
+            .procedenciaId(UPDATED_PROCEDENCIA_ID)
+            .retiradaId(UPDATED_RETIRADA_ID)
             .codigoPlano(UPDATED_CODIGO_PLANO)
-            .convenioPlano(UPDATED_CONVENIO_PLANO)
             .observacao(UPDATED_OBSERVACAO);
         CadaverDTO cadaverDTO = cadaverMapper.toDto(updatedCadaver);
 
@@ -545,7 +506,6 @@ public class CadaverResourceIT {
         List<Cadaver> cadaverList = cadaverRepository.findAll();
         assertThat(cadaverList).hasSize(databaseSizeBeforeUpdate);
         Cadaver testCadaver = cadaverList.get(cadaverList.size() - 1);
-        assertThat(testCadaver.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testCadaver.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testCadaver.getDataNascimento()).isEqualTo(UPDATED_DATA_NASCIMENTO);
         assertThat(testCadaver.getRaca()).isEqualTo(UPDATED_RACA);
@@ -554,10 +514,9 @@ public class CadaverResourceIT {
         assertThat(testCadaver.getCausaObito()).isEqualTo(UPDATED_CAUSA_OBITO);
         assertThat(testCadaver.getRealizadoPor()).isEqualTo(UPDATED_REALIZADO_POR);
         assertThat(testCadaver.getLidoPor()).isEqualTo(UPDATED_LIDO_POR);
-        assertThat(testCadaver.getProcedencia()).isEqualTo(UPDATED_PROCEDENCIA);
-        assertThat(testCadaver.getRetirada()).isEqualTo(UPDATED_RETIRADA);
+        assertThat(testCadaver.getProcedenciaId()).isEqualTo(UPDATED_PROCEDENCIA_ID);
+        assertThat(testCadaver.getRetiradaId()).isEqualTo(UPDATED_RETIRADA_ID);
         assertThat(testCadaver.getCodigoPlano()).isEqualTo(UPDATED_CODIGO_PLANO);
-        assertThat(testCadaver.getConvenioPlano()).isEqualTo(UPDATED_CONVENIO_PLANO);
         assertThat(testCadaver.getObservacao()).isEqualTo(UPDATED_OBSERVACAO);
 
         // Validate the Cadaver in Elasticsearch
@@ -621,7 +580,6 @@ public class CadaverResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cadaver.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
             .andExpect(jsonPath("$.[*].raca").value(hasItem(DEFAULT_RACA.toString())))
@@ -630,10 +588,9 @@ public class CadaverResourceIT {
             .andExpect(jsonPath("$.[*].causaObito").value(hasItem(DEFAULT_CAUSA_OBITO)))
             .andExpect(jsonPath("$.[*].realizadoPor").value(hasItem(DEFAULT_REALIZADO_POR)))
             .andExpect(jsonPath("$.[*].lidoPor").value(hasItem(DEFAULT_LIDO_POR)))
-            .andExpect(jsonPath("$.[*].procedencia").value(hasItem(DEFAULT_PROCEDENCIA)))
-            .andExpect(jsonPath("$.[*].retirada").value(hasItem(DEFAULT_RETIRADA)))
+            .andExpect(jsonPath("$.[*].procedenciaId").value(hasItem(DEFAULT_PROCEDENCIA_ID)))
+            .andExpect(jsonPath("$.[*].retiradaId").value(hasItem(DEFAULT_RETIRADA_ID)))
             .andExpect(jsonPath("$.[*].codigoPlano").value(hasItem(DEFAULT_CODIGO_PLANO)))
-            .andExpect(jsonPath("$.[*].convenioPlano").value(hasItem(DEFAULT_CONVENIO_PLANO.toString())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO)));
     }
 }

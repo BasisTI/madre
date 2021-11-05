@@ -39,7 +39,6 @@ convenioPlano ConvenioPlano
 }
 
 entity Cadaver {
-codigo Integer required
 nome String required
 dataNascimento LocalDate required
 raca Raca
@@ -48,10 +47,9 @@ dataRemocao LocalDate required
 causaObito String required
 realizadoPor String required
 lidoPor String required
-procedencia String required
-retirada String required
-codigoPlano String required
-convenioPlano ConvenioPlano
+procedenciaId Integer required
+retiradaId Integer required
+codigoPlano Integer required
 observacao String required
 }
 
