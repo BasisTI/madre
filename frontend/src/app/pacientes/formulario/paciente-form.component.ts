@@ -46,7 +46,7 @@ export class PacienteFormComponent  implements OnInit{
             estadoCivilId: [null, Validators.required],
             grauDeInstrucao: [null, Validators.required],
             sexo: [null, Validators.required],
-            telefones: this.fb.array([]),
+            telefones: [null],
             enderecos: this.fb.array([]),
             genitores: this.fb.group({
                 id: [null],
@@ -112,6 +112,9 @@ export class PacienteFormComponent  implements OnInit{
     }
 
     ngAfterViewInit() {
+        if(this.paciente.value.id !== null){
+            this.title = 'Editar dados do Paciente';
+        }
          //Remover class p-inputtext de inputmask para remover linha duplicada
         const elements = document.querySelectorAll("p-inputmask");
         elements.forEach((el) => {
