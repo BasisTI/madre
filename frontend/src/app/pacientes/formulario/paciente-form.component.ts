@@ -58,7 +58,7 @@ export class PacienteFormComponent  implements OnInit{
                 id: [null],
                 numero: ['',[Validators.required, PacienteValidators.validarNumero]],
                 documentoDeReferencia: [null],
-                cartaoNacionalSaudeMae: ['', PacienteValidators.validarNumero],
+                cartaoNacionalSaudeMae: [PacienteValidators.validarNumero],
                 dataDeEntradaNoBrasil: [null],
                 dataDeNaturalizacao: [null],
                 portaria: [null],
