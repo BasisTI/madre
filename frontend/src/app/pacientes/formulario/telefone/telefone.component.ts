@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DatatableComponent } from '@nuvem/primeng-components';
 import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tipo-de-telefone';
 import { DDD } from '../../models/dropdowns/types/DDD';
@@ -14,7 +14,7 @@ import { DDDService } from './ddd.service';
 export class TelefoneComponent implements OnInit {
 
   @Input()
-  telefones: any = [];
+  public formGroup: FormGroup;
 
   @ViewChild(DatatableComponent)
   datatable: DatatableComponent;
@@ -52,7 +52,7 @@ export class TelefoneComponent implements OnInit {
 
   adicionarTelefoneALista() {
     const form = this.telefone.value;
-    this.telefone.patchValue({ indice: this.telefones.length });
+    this.telefone.patchValue({ indice: this.formGroup.value.telefones.length });
     const telefone: Telefone = {
       id: form.id,
       ddd: form.ddd.valor,
@@ -60,9 +60,9 @@ export class TelefoneComponent implements OnInit {
       tipo: form.tipo,
       observacao: form.observacao,
     };
-    this.telefones.push(telefone);
+
+    this.formGroup.value.telefones.push(telefone);
     this.telefone.reset();
-    console.log(this.telefones.value)
   }
 
   tipoDeMascara(event) {

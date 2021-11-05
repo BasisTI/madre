@@ -1,4 +1,4 @@
-<form [formGroup]="telefone" (ngSubmit)="adicionarTelefoneALista()">
+<form [formGroup]="telefone" (ngSubmit)="adicionarTelefoneALista()" >
     <p-fieldset legend="Adicionar Contato">
         <div class="p-fluid p-formgrid p-grid">
             <div class="p-md-3 p-sm-12">
@@ -54,7 +54,7 @@
 
     <p-fieldset legend="Lista de Contatos">
         <div class="p-col-12">
-            <basis-datatable type="memory" [verticalButtons]="false" [value]="telefones" #datatable>
+            <basis-datatable type="memory" [verticalButtons]="false" [value]="formGroup.value.telefones" #datatable>
                 <p-column header="Tipo" field="tipo"></p-column>
                 <p-column header="DDD" field="ddd"></p-column>
                 <p-column header="Telefone" field="numero"></p-column>
