@@ -10,7 +10,11 @@
             <paciente-form-certidao [formGroup]="paciente"></paciente-form-certidao>
             <paciente-form-documentos [formGroup]="paciente"></paciente-form-documentos>
         </p-tabPanel>
-        <p-tabPanel header="Contatos do Paciente">
+        <p-tabPanel>
+            <ng-template pTemplate="header">
+                <i class="pi pi-phone" [style]="{ 'margin-right': '10px' }"></i>
+                <span>Contatos do Paciente</span>
+            </ng-template>
             <app-telefone [formGroup]="paciente"></app-telefone>
         </p-tabPanel>
         <p-tabPanel>
