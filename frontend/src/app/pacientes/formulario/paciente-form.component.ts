@@ -69,7 +69,7 @@ export class PacienteFormComponent  implements OnInit{
                 {
                     id: [null],
                     nomeDoResponsavel: [null],
-                    telefones: this.fb.array([]),
+                    telefones: [null],
                     observacao: [null],
                     grauDeParentescoId: [null],
                 },
