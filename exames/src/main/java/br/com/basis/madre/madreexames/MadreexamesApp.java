@@ -10,12 +10,14 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @Slf4j
 @SpringBootApplication
 @EnableFeignClients
 @EnableConfigurationProperties({LiquibaseProperties.class})
 @RequiredArgsConstructor
+@EnableAsync
 public class MadreexamesApp implements InitializingBean {
 
     private final Environment env;

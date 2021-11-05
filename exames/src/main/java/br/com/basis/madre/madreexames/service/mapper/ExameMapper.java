@@ -1,10 +1,10 @@
 package br.com.basis.madre.madreexames.service.mapper;
 
 
-import br.com.basis.madre.madreexames.domain.Exame;
+import br.com.basis.madre.madreexames.domain.*;
 import br.com.basis.madre.madreexames.service.dto.ExameDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
+import org.mapstruct.*;
 
 /**
  * Mapper for the entity {@link Exame} and its DTO {@link ExameDTO}.
@@ -16,6 +16,8 @@ public interface ExameMapper extends EntityMapper<ExameDTO, Exame> {
     @Mapping(source = "materialExame.nome", target = "materialExameNome")
     ExameDTO toDto(Exame exame);
 
+    @Mapping(target = "gradeDoExames", ignore = true)
+    @Mapping(target = "removeGradeDoExame", ignore = true)
     @Mapping(source = "materialExameId", target = "materialExame")
     @Mapping(target = "grupoAgendamentoExames", ignore = true)
     @Mapping(target = "removeGrupoAgendamentoExame", ignore = true)

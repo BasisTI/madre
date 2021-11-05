@@ -6,13 +6,12 @@
 
 #codigo {
     height: min-content;
-    margin: 0px 0px 0px 0px; 
+    margin: 0px 0px 0px 0px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-
 }
-.table{
+.table {
     margin-top: 20px;
 }

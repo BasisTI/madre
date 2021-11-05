@@ -1,0 +1,90 @@
+<div class="card">
+    <h1>Pesquisar Grades de Exames</h1>
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-grid">
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input pInputText type="number" min="1" [(ngModel)]="id" />
+                        <label>Código</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <span class="p-float-label">
+                        <input pInputText type="text" [(ngModel)]="nome" />
+                        <label>Nome</label>
+                    </span>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        [(ngModel)]="unidadeExecutoraId"
+                        [filter]="true"
+                        [resetFilterOnHide]="true"
+                        [options]="unidades"
+                        [optionLabel]="'nome'"
+                        [optionValue]="'id'"
+                        placeholder="Unidade executora"
+                    ></p-dropdown>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <p-dropdown
+                        [(ngModel)]="ativo"
+                        [options]="situacaoSala"
+                        placeholder="Situação da sala"
+                    ></p-dropdown>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-grid">
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        label="Pesquisar"
+                        icon="pi pi-search"
+                        (click)="listarSalas()"
+                    ></button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        routerLink="/formulario-sala"
+                        label="Nova sala"
+                        Primeiro
+                        Exame
+                    ></button>
+                </div>
+                <div class="p-md-2 p-sm-12">
+                    <button
+                        pButton
+                        type="button"
+                        (click)="limparFiltros()"
+                        label="Limpar filtros"
+                        Primeiro
+                        Exame
+                    ></button>
+                </div>
+                <basis-datatable
+                    [url]="searchUrl"
+                    #datatable
+                    [disableView]="true"
+                    [disableEdit]="true"
+                    [disableDelete]="true"
+                    type="memory"
+                    [value]="salas"
+                >
+                    <p-column header="Código" field="id"></p-column>
+                    <p-column header="Nome" field="nome"> </p-column>
+                    <p-column header="Locação" field="locacao"> </p-column>
+                    <p-column header="Situação" field="ativo">
+                        <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                            <span> {{ rowData[col.field] === true ? 'Ativo' : 'Inativo' }} </span>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Unidade" field="unidadeExecutoraId"> </p-column>
+                </basis-datatable>
+            </div>
+        </div>
+    </div>
+</div>

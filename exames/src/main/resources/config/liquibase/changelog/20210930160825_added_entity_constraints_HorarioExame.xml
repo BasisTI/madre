@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity HorarioExame.
+    -->
+    <changeSet id="20210930160825-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tipo_de_marcacao_id"
+                                 baseTableName="horario_exame"
+                                 constraintName="fk_horario_exame_tipo_de_marcacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_de_marcacao"/>
+
+        <addForeignKeyConstraint baseColumnNames="grade_agendamento_exame_id"
+                                 baseTableName="horario_exame"
+                                 constraintName="fk_horario_exame_grade_agendamento_exame_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grade_agendamento_exame"/>
+
+    </changeSet>
+</databaseChangeLog>

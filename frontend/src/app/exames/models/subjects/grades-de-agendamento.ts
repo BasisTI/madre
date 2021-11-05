@@ -1,17 +1,23 @@
-export class GradesDeAgendamento {
+import { Dia } from "./dia";
+
+export class GradeDeAgendamentoExame {
     constructor(
         public id?: number,
-        public unidadeExecutoraId?: number,
-        public responsavelId?: number,
+        public dataInicio?: Date,
+        public dataFim?: Date,
+        public horaInicio?: Date,
+        public horaFim?: Date,
+        public dias?: Array<Dia>,
+        public numeroDeHorarios?: number,
+        public duracao?: moment.Duration,
         public ativo?: boolean,
-        public exameGradeId?: number,
-        public exameGradeNome?: string,
-        public salaGradeId?: number,
-        public salaGradeIdentificacaoDaSala?: string,
-        public exameId?: number,
-        public grupoGradeId?: number,
-        public grupoGradeNome?: string,
+        public unidadeExecutoraId?: number,
+        public unidadeNome?: string,
+        public responsavelId?: number,
         public responsavelNome?: string,
-        public unidadeExecutoraNome?: string
+        public exameId?: number,
+        public exameNome?: string,
+        public salaId?: number,
+        public salaNome?: string
     ) { }
 }

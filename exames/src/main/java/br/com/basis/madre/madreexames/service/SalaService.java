@@ -5,11 +5,16 @@ import br.com.basis.madre.madreexames.repository.SalaRepository;
 import br.com.basis.madre.madreexames.repository.search.SalaSearchRepository;
 import br.com.basis.madre.madreexames.service.dto.SalaDTO;
 import br.com.basis.madre.madreexames.service.mapper.SalaMapper;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -94,7 +99,7 @@ public class SalaService {
     /**
      * Search for the sala corresponding to the query.
      *
-     * @param query the query of the search.
+     * @param query    the query of the search.
      * @param pageable the pagination information.
      * @return the list of entities.
      */
@@ -103,5 +108,26 @@ public class SalaService {
         log.debug("Request to search for a page of Salas for query {}", query);
         return salaSearchRepository.search(queryStringQuery(query), pageable)
             .map(salaMapper::toDto);
+    }
+
+    public Page<SalaDTO> filtrarSalasPorUnidade(Pageable pageable, String id, String nome, String locacao, String ativo,
+                                                String unidadeExecutoraId) {
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, "id", id);
+        filter(queryBuilder, "nome", nome);
+        filter(queryBuilder, "locacao", locacao);
+        filter(queryBuilder, "ativo", ativo);
+        filter(queryBuilder, "unidadeExecutoraId", unidadeExecutoraId);
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+        return salaSearchRepository.search(query).map(salaMapper::toDto);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name, valueName));
+        }
     }
 }

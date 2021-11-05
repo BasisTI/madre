@@ -1,53 +1,46 @@
 import { Sinonimos } from './../../models/subjects/sinonimos';
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SituacaoAtivo } from "../../models/dropdowns/situacao.dropdown";
-import { SinonimosExamesService } from "../../services/sinonimo-exames.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { SituacaoAtivo } from '../../models/dropdowns/situacao.dropdown';
 
 @Component({
-  selector: 'app-sinonimos-exames',
-  templateUrl: './sinonimos-exames.component.html',
-  styleUrls: ['./sinonimos-exames.component.css']
+    selector: 'app-sinonimos-exames',
+    templateUrl: './sinonimos-exames.component.html',
+    styleUrls: ['./sinonimos-exames.component.css'],
 })
 export class SinonimosExamesComponent implements OnInit {
-  sinonimo: Sinonimos;
-  sinonimos: Sinonimos[] = [];
-  situacaoExame = SituacaoAtivo; 
-  
-  cadastroSinonimoExames = this.fb.group({
-    nome:[null, Validators.required],
-    situacao: [null, Validators.required],
-  });
+    sinonimo: Sinonimos;
+    sinonimos: Sinonimos[] = [];
+    situacaoExame = SituacaoAtivo;
 
-
-  constructor(
-    private SinonimosService: SinonimosExamesService,
-    private fb: FormBuilder, 
-  ) { }
-
-  ngOnInit(): void {
-    this.cadastroSinonimoExames = this.fb.group({
-      nome:[null, Validators.required],
-      situacao: [null, Validators.required],
+    cadastroSinonimoExames = this.fb.group({
+        nome: [null, Validators.required],
+        situacao: [null, Validators.required],
     });
-  }
 
-  valid(): boolean {
-    return this.cadastroSinonimoExames.valid;
-  }
+    constructor(private fb: FormBuilder) {}
 
-  adicionar() { 
-
-    let sinonimoExames = this.cadastroSinonimoExames.value;
-
-    let sinonimoAdicionado: Sinonimos = {
-      nome: sinonimoExames.nome,
-      situacao: sinonimoExames.situacao,
+    ngOnInit(): void {
+        this.cadastroSinonimoExames = this.fb.group({
+            nome: [null, Validators.required],
+            situacao: [null, Validators.required],
+        });
     }
 
-    this.sinonimos.push(sinonimoAdicionado);
+    valid(): boolean {
+        return this.cadastroSinonimoExames.valid;
+    }
 
-    this.cadastroSinonimoExames.reset();
-  }
-   
+    adicionar() {
+        let sinonimoExames = this.cadastroSinonimoExames.value;
+
+        let sinonimoAdicionado: Sinonimos = {
+            nome: sinonimoExames.nome,
+            situacao: sinonimoExames.situacao,
+        };
+
+        this.sinonimos.push(sinonimoAdicionado);
+
+        this.cadastroSinonimoExames.reset();
+    }
 }

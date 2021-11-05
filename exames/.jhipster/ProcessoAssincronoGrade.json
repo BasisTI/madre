@@ -1,0 +1,50 @@
+{
+  "name": "ProcessoAssincronoGrade",
+  "fields": [
+    {
+      "fieldName": "dataInicio",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataTermino",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ultimaAtualizacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "qtdHorariosParaCriar",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalDeHorariosCriados",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalCompleto",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "INICIADO,COMPLETO,INTERROMPIDO"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20211015132038",
+  "entityTableName": "processo_assincrono_grade",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

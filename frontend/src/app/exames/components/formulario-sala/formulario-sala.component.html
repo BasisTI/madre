@@ -1,0 +1,73 @@
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-grid">
+        <div class="card card-w-title">
+            <h1>Salas</h1>
+            <div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="name">Indentificação da Sala</label>
+                        <span class="md-inputfield p-float-label">
+                            <input type="text" pInputText class="p-inputtext" [(ngModel)]="nome" />
+                        </span>
+                    </div>
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="name">Localização da Sala</label>
+                        <span class="md-inputfield p-float-label">
+                            <input
+                                type="text"
+                                pInputText
+                                class="p-inputtext"
+                                [(ngModel)]="locacao"
+                            />
+                        </span>
+                    </div>
+                </div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <app-unidade-funcional
+                        class="p-field p-col-12 p-md-6"
+                        #unidadeFuncional
+                    ></app-unidade-funcional>
+                    <div class="p-md-4 p-col-12">
+                        <label>Ativo:</label>
+                        <div class="ativo p-field-checkbox">
+                            <p-radioButton
+                                class="sim"
+                                [(ngModel)]="ativo"
+                                name="situacao"
+                                value="true"
+                                label="Sim"
+                            ></p-radioButton>
+                            <p-radioButton
+                                [(ngModel)]="ativo"
+                                name="situacao"
+                                value="false"
+                                label="Não"
+                            ></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-grid">
+                    <div class="p-md-2 p-sm-5">
+                        <button
+                            pButton
+                            type="button"
+                            label="Salvar"
+                            icon="pi pi-save"
+                            [disabled]="!validarFormulario()"
+                            (click)="cadastrar()"
+                        ></button>
+                    </div>
+                    <div class="p-md-2 p-sm-5">
+                        <button
+                            pButton
+                            type="button"
+                            label="Limpar"
+                            icon="pi pi-times"
+                            (click)="limparFormulario()"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

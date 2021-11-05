@@ -1,0 +1,94 @@
+{
+  "name": "GradeAgendamentoExame",
+  "fields": [
+    {
+      "fieldName": "dataInicio",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataFim",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "horaFim",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroDeHorarios",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "duracao",
+      "fieldType": "Duration",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "unidadeExecutoraId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "responsavelId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "horarioExame",
+      "otherEntityRelationshipName": "gradeAgendamentoExame",
+      "relationshipName": "horarioDaGrade"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "dia",
+      "otherEntityRelationshipName": "gradeAgendamentoExame",
+      "relationshipName": "dia",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "exame",
+      "otherEntityRelationshipName": "gradeDoExame",
+      "relationshipName": "exame",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sala",
+      "otherEntityRelationshipName": "gradeDaSala",
+      "relationshipName": "sala",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210930160725",
+  "entityTableName": "grade_agendamento_exame",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "madreexames",
+  "applications": "*",
+  "microserviceName": "madreexames",
+  "skipClient": true,
+  "searchEngine": "elasticsearch",
+  "databaseType": "sql"
+}

@@ -2,18 +2,24 @@
   "name": "TipoDeMarcacao",
   "fields": [
     {
-      "fieldName": "tipoDeMarcacaoNome",
-      "fieldType": "String"
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "ativo",
       "fieldType": "Boolean",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "horarioExame",
+      "otherEntityRelationshipName": "tipoDeMarcacao",
+      "relationshipName": "horarioMarcado"
+    }
+  ],
   "changelogDate": "20210818155025",
   "entityTableName": "tipo_de_marcacao",
   "dto": "mapstruct",

@@ -1,0 +1,11 @@
+.ativo {
+    display: block;
+    margin-top: 0.625rem;
+}
+.sim {
+    margin-right: 0.313rem;
+}
+
+.nao {
+    margin-left: 0.625rem;
+}

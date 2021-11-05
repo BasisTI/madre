@@ -3,9 +3,9 @@ import { Sinonimos } from '../../models/subjects/sinonimos';
 import { SinonimosExamesComponent } from '../sinonimos-exames/sinonimos-exames.component';
 
 @Component({
-  selector: 'app-exames-form',
-  templateUrl: './exames-form.component.html',
-  styleUrls: ['./exames-form.component.css']
+    selector: 'app-exames-form',
+    templateUrl: './exames-form.component.html',
+    styleUrls: ['./exames-form.component.css'],
 })
 export class ExamesFormComponent implements OnInit, AfterViewInit {
 

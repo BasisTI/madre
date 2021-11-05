@@ -5,10 +5,14 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import br.com.basis.madre.seguranca.domain.enumeration.SituacaoDoServidor;
 import br.com.basis.madre.seguranca.domain.enumeration.TipoDeRemuneracao;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * A DTO for the {@link br.com.basis.madre.seguranca.domain.Servidor} entity.
  */
+@ToString
+@EqualsAndHashCode
 public class ServidorDTO implements Serializable {
 
     private Long id;
@@ -47,14 +51,13 @@ public class ServidorDTO implements Serializable {
 
     private String chefeDoCentroDeAtividade;
 
-
     private Long vinculoId;
 
     private String vinculoDescricao;
 
     private Long pessoaId;
 
-    private String pessoaCodigo;
+    private String pessoaNome;
 
     private Long usuarioId;
 
@@ -222,12 +225,12 @@ public class ServidorDTO implements Serializable {
         this.pessoaId = pessoaId;
     }
 
-    public String getPessoaCodigo() {
-        return pessoaCodigo;
+    public String getPessoaNome() {
+        return pessoaNome;
     }
 
-    public void setPessoaCodigo(String pessoaCodigo) {
-        this.pessoaCodigo = pessoaCodigo;
+    public void setPessoaNome(String pessoaNome) {
+        this.pessoaNome = pessoaNome;
     }
 
     public Long getUsuarioId() {
@@ -254,51 +257,4 @@ public class ServidorDTO implements Serializable {
         this.ramalId = ramalId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof ServidorDTO)) {
-            return false;
-        }
-
-        return id != null && id.equals(((ServidorDTO) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "ServidorDTO{" +
-            "id=" + getId() +
-            ", codigo=" + getCodigo() +
-            ", matricula='" + getMatricula() + "'" +
-            ", codigoStarh='" + getCodigoStarh() + "'" +
-            ", inicioDoVinculo='" + getInicioDoVinculo() + "'" +
-            ", fimDoVinculo='" + getFimDoVinculo() + "'" +
-            ", situacao='" + isSituacao() + "'" +
-            ", situacaoDoServidor='" + getSituacaoDoServidor() + "'" +
-            ", centroDeAtividadeIdLotacao=" + getCentroDeAtividadeIdLotacao() +
-            ", centroDeAtividadeIdAtuacao=" + getCentroDeAtividadeIdAtuacao() +
-            ", ocupacao='" + getOcupacao() + "'" +
-            ", cargaHoraria='" + getCargaHoraria() + "'" +
-            ", tipoDeRemuneracao='" + getTipoDeRemuneracao() + "'" +
-            ", idade='" + getIdade() + "'" +
-            ", tempoDeContrato='" + getTempoDeContrato() + "'" +
-            ", funcaoDoCracha='" + getFuncaoDoCracha() + "'" +
-            ", chefeDoCentroDeAtividade='" + getChefeDoCentroDeAtividade() + "'" +
-            ", vinculoId=" + getVinculoId() +
-            ", vinculoDescricao='" + getVinculoDescricao() + "'" +
-            ", pessoaId=" + getPessoaId() +
-            ", pessoaCodigo='" + getPessoaCodigo() + "'" +
-            ", usuarioId=" + getUsuarioId() +
-            ", usuarioLogin='" + getUsuarioLogin() + "'" +
-            ", ramalId=" + getRamalId() +
-            "}";
-    }
 }

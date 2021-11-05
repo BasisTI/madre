@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PesquisarAtendimentoComponent } from './components/pesquisar-atendimento/pesquisar-atendimento.component';
 import { SolicitarExameComponent } from './components/solicitar-exame/solicitar-exame.component';
-import { AtendimentoDiversoComponent } from "./components/atendimento-diverso/atendimento-diverso.component";
+import { AtendimentoDiversoComponent } from './components/atendimento-diverso/atendimento-diverso.component';
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './exames.routes';
@@ -10,13 +10,12 @@ import { ExameComponent } from './components/exames/components/exame/exame.compo
 import { TabelaExamesComponent } from './components/exames/components/tabela-exames/tabela-exames.component';
 import { ExamesComponent } from './components/exames/exames.component';
 import { FormularioExameComponent } from './components/formulario-exame/formulario-exame.component';
-import { ListarSolicitacoesComponent } from './components/listar-solicitacoes/listar-solicitacoes.component';
+import { ListaSolicitacoesComponent } from './components/lista-solicitacoes/lista-solicitacoes.component';
 import { CadastrarMaterialComponent } from './components/cadastrar-material/cadastrar-material.component';
 import { FormularioGradeDeAgendamentoComponent } from './components/formulario-grade-de-agendamento/formulario-grade-de-agendamento.component';
-import { ListarGradeDeExameComponent } from './components/listar-grade-de-exame/listar-grade-de-exame.component';
+import { ListaGradeDeExameComponent } from './components/lista-grade-de-exame/lista-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
-import { FormularioHorariosAgendadosComponent } from './components/formulario-horarios-agendados/formulario-horarios-agendados.component';
-import { TabelaHorariosAgendadosComponent } from './components/tabela-horarios-agendados/tabela-horarios-agendados.component';
+import { ListaHorariosComponent } from './components/lista-horarios/lista-horarios.component';
 import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
@@ -25,8 +24,9 @@ import { FormularioCadaverComponent } from './components/formulario-cadaver/form
 import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
-import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
+import { FormularioSalaComponent } from './components/formulario-sala/formulario-sala.component';
 import { FormularioTipoDeMarcacaoComponent } from './components/formulario-tipo-de-marcacao/formulario-tipo-de-marcacao.component';
+import { ListaSalasComponent } from './components/lista-salas/lista-salas.component';
 import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-recomendacoes-de-exames/grupos-de-recomendacoes-de-exames.component';
 
 @NgModule({
@@ -40,23 +40,23 @@ import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-r
         FormularioExameComponent,
         CadastrarMaterialComponent,
         FormularioGradeDeAgendamentoComponent,
-        ListarGradeDeExameComponent,
+        ListaGradeDeExameComponent,
         GradeAgendamentosComponent,
-        FormularioHorariosAgendadosComponent,
-        TabelaHorariosAgendadosComponent,
+        ListaHorariosComponent,
         DurationPipe,
         SinonimosExamesComponent,
         ExamesFormComponent,
-        ListarSolicitacoesComponent,
+        ListaSolicitacoesComponent,
         MaterialExamesComponent,
         FormularioRecipientesComponent,
         AntiCoagulanteComponent,
         FormularioCadaverComponent,
         GuiaMaterialComponent,
-        FormularioSalasComponent,
+        FormularioSalaComponent,
         FormularioTipoDeMarcacaoComponent,
+        ListaSalasComponent,
         GruposDeRecomendacoesDeExamesComponent,
     ],
     imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
-export class ExamesModule { }
+export class ExamesModule {}

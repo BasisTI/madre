@@ -27,7 +27,7 @@ export class ExameComponent implements OnInit, OnChanges {
 
   // Métodos
   listarExames() {
-    this.exameService.GetExamesPorGrupo(this.grupoID).subscribe((response) => {
+    this.exameService.getExamesPorGrupo(this.grupoID).subscribe((response) => {
       this.exames = response;
     })
   }

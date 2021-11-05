@@ -13,6 +13,9 @@ import org.mapstruct.*;
 public interface TipoDeMarcacaoMapper extends EntityMapper<TipoDeMarcacaoDTO, TipoDeMarcacao> {
 
 
+    @Mapping(target = "horarioMarcados", ignore = true)
+    @Mapping(target = "removeHorarioMarcado", ignore = true)
+    TipoDeMarcacao toEntity(TipoDeMarcacaoDTO tipoDeMarcacaoDTO);
 
     default TipoDeMarcacao fromId(Long id) {
         if (id == null) {

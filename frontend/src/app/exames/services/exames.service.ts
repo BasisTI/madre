@@ -13,26 +13,21 @@ export class ExamesService {
 
     constructor(private client: HttpClient) {}
 
-    // Pegar todos os exames
-    public GetExames(): Observable<Array<ExamModel>> {
+    public getExames(): Observable<Array<ExamModel>> {
         return this.client.get<Array<ExamModel>>(`${this.URL}/exames`);
     }
 
-    // Pegar os exames pelo ID do grupo
-    public GetExamesPorGrupo(id: number): Observable<Array<ExamModel>> {
+    public getExamesPorGrupo(id: number): Observable<Array<ExamModel>> {
         return this.client.get<Array<ExamModel>>(`${this.URL}/exames/grupos/${id}`);
     }
 
-    // Buscar exames por nome ou sinônimo
-    public GetExamesPorNomeSinonimo(nome: string): Observable<Array<ExamModel>> {
-      return this.client.get<Array<ExamModel>>(`${this.URL}/exames/sinonimos`,
-      {
-        params: new HttpParams().set('nome', nome)
-      });
+    public getExamesPorNomeSinonimo(nome: string): Observable<Array<ExamModel>> {
+        return this.client.get<Array<ExamModel>>(`${this.URL}/exames/sinonimos`, {
+            params: new HttpParams().set('nome', nome),
+        });
     }
 
-    // Pegar os exames pelo ID
-    public GetExamesPorId(id: number): Observable<ExamModel> {
+    public getExamesPorId(id: number): Observable<ExamModel> {
         return this.client.get<ExamModel>(`${this.URL}/exames/${id}`);
     }
 

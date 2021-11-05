@@ -1,4 +1,4 @@
-id;tipo_de_marcacao_nome;ativo
+id;nome;ativo
 1;Tipo 1;true
 2;Tipo 2;true
 3;Tipo 3;true

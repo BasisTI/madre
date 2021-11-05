@@ -32,7 +32,7 @@ export class TabelaExamesComponent implements OnInit, OnChanges {
   salvarItems() {
     this.itemsRecebidos.forEach((element) => {
 
-      this.examesService.GetExamesPorId(element.itemSolicitacaoExameId).subscribe((res) => {
+      this.examesService.getExamesPorId(element.itemSolicitacaoExameId).subscribe((res) => {
 
         this.itemSolicitacao = {
           urgente: element.urgente,

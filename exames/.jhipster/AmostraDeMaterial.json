@@ -4,24 +4,18 @@
     {
       "fieldName": "nome",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "origem",
       "fieldType": "OrigemTipoAmostra",
       "fieldValues": "NASCIMENTO,AMBULATORIO,INTERNACAO,URGENCIA,PACIENTE,DOACAO,HOSPITAL,CIRURGIA",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "numeroDeAmostras",
       "fieldType": "Integer",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "volumeDaAmostra",
@@ -31,24 +25,18 @@
       "fieldName": "unidadeDeMedida",
       "fieldType": "UnidadeDeMedida",
       "fieldValues": "MILILITRO,FRASCO",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "responsavel",
       "fieldType": "Responsavel",
       "fieldValues": "COLETADOR,SOLICITANTE,PACIENTE",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "congelado",
       "fieldType": "Boolean",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "unidadeFuncionalId",

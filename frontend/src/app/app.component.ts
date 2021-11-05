@@ -1,16 +1,21 @@
-import { Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnInit, NgZone } from '@angular/core';
+import {
+    Component,
+    AfterViewInit,
+    ElementRef,
+    Renderer2,
+    ViewChild,
+    OnInit,
+    NgZone,
+} from '@angular/core';
 import { ScrollPanel } from 'primeng/scrollpanel';
-import { MenusService, MenuOrientation } from '@nuvem/primeng-components';
+import { MenusService } from '@nuvem/primeng-components';
 import { PrimeNGConfig } from 'primeng/api';
-import { Router } from '@angular/router';
-// @import { local_hospital } from 'material-icons/iconfont/material-icons.css';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html'
+    templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit, OnInit {
-
     config = {
         topbarTheme: 'teal',
         menuTheme: 'light',
@@ -65,370 +70,355 @@ export class AppComponent implements AfterViewInit, OnInit {
         public zone: NgZone,
         public menuService: MenusService,
         private primengConfig: PrimeNGConfig,
-        private router: Router) { }
+    ) {}
 
     ngOnInit() {
-
         this.menuActive = this.menuService.isStatic() && !this.menuService.isMobile;
         this.primengConfig.ripple = true;
         this.menuService.itens = [
-            { label: '', items: [
-                { label: 'HOME', icon: 'icon-home', routerLink: ['/'],url:'' },
-                {
-                    label: 'Pacientes',
-                    icon: 'icon-pacientes',
-                    items: [
-                        {
-                            label: 'Pesquisa de Paciente',
-                            icon: 'add',
-                            routerLink: ['/paciente/list'],
-                            url:'src/assets/layout/images/icon.png',
-                        },
-                        {
-                            label: 'Cadastro de Paciente',
-                            icon: 'add',
-                            routerLink: ['/paciente/save'],
-                        }
-                    ],
-                },
-                {
-                    label: 'Triagem',
-                    icon: 'icon-triagem',
-                    items: [
-                        {
-                            label: 'Pré-Cadastro',
-                            icon: 'view_headline',
-                            items: [
-                                {
-                                    label: 'Listar Pré-Cadastro',
-                                    icon: 'add',
-                                    routerLink: ['pacientes/lista-pre-cadastro'],
-                                },
-                                {
-                                    label: 'Incluir Pré-Cadastro',
-                                    icon: 'add',
-                                    routerLink: ['pacientes/pre-cadastro'],
-                                },
-                            ],
-                        },
-                        {
-                            label: 'Triagem',
-                            icon: 'add',
-                            routerLink: ['pacientes/triagem'],
-                        },
-                    ],
-                },
-                {
-                    label: 'Marcar Consultas',
-                    icon: 'icon-marcar-consultas',
-                    items: [
-                        {
-                            label: 'Listar Consultas',
-                            icon: 'add',
-                            routerLink: ['consulta/listar-consultas'],
-                        },
-                        {
-                            label: 'Calendário',
-                            icon: 'add',
-                            routerLink: ['consulta/consulta-calendario'],
-                        },
-                        {
-                            label: 'Emergência',
-                            icon: 'add',
-                            routerLink: ['consulta/emergencia'],
-                        },
-                    ],
-                },
+            {
+                label: '',
+                items: [
+                    { label: 'HOME', icon: 'icon-home', routerLink: ['/'], url: '' },
+                    {
+                        label: 'Pacientes',
+                        icon: 'icon-pacientes',
+                        items: [
+                            {
+                                label: 'Pesquisa de Paciente',
+                                icon: 'add',
+                                routerLink: ['/paciente/list'],
+                                url: 'src/assets/layout/images/icon.png',
+                            },
+                            {
+                                label: 'Cadastro de Paciente',
+                                icon: 'add',
+                                routerLink: ['/paciente/save'],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Triagem',
+                        icon: 'icon-triagem',
+                        items: [
+                            {
+                                label: 'Pré-Cadastro',
+                                icon: 'view_headline',
+                                items: [
+                                    {
+                                        label: 'Listar Pré-Cadastro',
+                                        icon: 'add',
+                                        routerLink: ['pacientes/lista-pre-cadastro'],
+                                    },
+                                    {
+                                        label: 'Incluir Pré-Cadastro',
+                                        icon: 'add',
+                                        routerLink: ['pacientes/pre-cadastro'],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Triagem',
+                                icon: 'add',
+                                routerLink: ['pacientes/triagem'],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Marcar Consultas',
+                        icon: 'icon-marcar-consultas',
+                        items: [
+                            {
+                                label: 'Listar Consultas',
+                                icon: 'add',
+                                routerLink: ['consulta/listar-consultas'],
+                            },
+                            {
+                                label: 'Calendário',
+                                icon: 'add',
+                                routerLink: ['consulta/consulta-calendario'],
+                            },
+                            {
+                                label: 'Emergência',
+                                icon: 'add',
+                                routerLink: ['consulta/emergencia'],
+                            },
+                        ],
+                    },
 
-                {
-                    label: 'Prescrição',
-                    icon: 'icon-prescricao',
-                    items: [
-                        {
-                            label: 'Médica',
-                            icon: 'add',
-                            items: [
-                                {
-                                    label: 'Prescrever',
-                                    icon: 'add',
-                                    routerLink: ['/prescricao-medica'],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    label: 'Internação',
-                    icon: 'icon-internacao',
-                    items: [
-                        {
-                            label: 'Solicitar Internação',
-                            icon: 'add',
-                            routerLink: ['internacao/lista-de-pacientes'],
-                        },
-                        {
-                            label: 'Internar Paciente',
-                            icon: 'add',
-                            routerLink: ['internacao/solicitacoes-de-internacao'],
-                        },
-                        {
-                            label: 'Cadastrar Unidade',
-                            icon: 'add',
-                            routerLink: ['internacao/cadastro-unidades'],
-                        },
-                        {
-                            label: 'Cadastrar Clínicas',
-                            icon: 'add',
-                            routerLink: ['internacao/cadastro-clinicas'],
-                        },
-                        {
-                            label: 'Leitos',
-                            icon: 'add',
-                            items: [
-                                {
-                                    label: 'Calendário',
-                                    icon: 'add',
-                                    routerLink: ['internacao/calendario-leito'],
-                                },
-                                {
-                                    label: 'Reservar Leito',
-                                    icon: 'add',
-                                    routerLink: ['internacao/reserva-de-leito'],
-                                },
-                                {
-                                    label: 'Bloquear Leito',
-                                    icon: 'add',
-                                    routerLink: ['internacao/bloqueio-de-leito'],
-                                },
-                                {
-                                    label: 'Liberar Leito',
-                                    icon: 'add',
-                                    routerLink: ['internacao/liberacao-de-leito'],
-                                },
-                            ],
-                        },
-                        {
-                            label: 'Tipos de Unidades Funionais',
-                            icon: 'add',
-                            routerLink: ['internacao/tipo-unidade-funcional'],
-                        },
-                    ],
-                },
-                {
-                    label: 'Exames',
-                    icon: 'icon-exames',
-                    items: [
-                        {
-                            label: 'Gestão',
-                            items: [
-                                {
-                                    label: 'Cadastros',
-                                    items: [
-                                        {
-                                            label: 'Anticoagulante',
-                                            icon: 'add',
-                                            routerLink: ['exames/anticoagulante'],
-                                        },
-                                        {
-                                            label: 'Exames',
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-exame']
-                                        },
-                                        {
-                                            label: 'Materiais',
-                                            icon: 'add',
-                                            routerLink: ['exames/cadastrar-material'],
-                                        },
-                                        {
-                                            label: 'Salas',
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-salas'],
-                                        },
-                                        {
-                                            label: 'Cadáver',
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-cadaver'],
+                    {
+                        label: 'Prescrição',
+                        icon: 'icon-prescricao',
+                        items: [
+                            {
+                                label: 'Médica',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Prescrever',
+                                        icon: 'add',
+                                        routerLink: ['/prescricao-medica'],
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Internação',
+                        icon: 'icon-internacao',
+                        items: [
+                            {
+                                label: 'Solicitar Internação',
+                                icon: 'add',
+                                routerLink: ['internacao/lista-de-pacientes'],
+                            },
+                            {
+                                label: 'Internar Paciente',
+                                icon: 'add',
+                                routerLink: ['internacao/solicitacoes-de-internacao'],
+                            },
+                            {
+                                label: 'Cadastrar Unidade',
+                                icon: 'add',
+                                routerLink: ['internacao/cadastro-unidades'],
+                            },
+                            {
+                                label: 'Cadastrar Clínicas',
+                                icon: 'add',
+                                routerLink: ['internacao/cadastro-clinicas'],
+                            },
+                            {
+                                label: 'Leitos',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Calendário',
+                                        icon: 'add',
+                                        routerLink: ['internacao/calendario-leito'],
+                                    },
+                                    {
+                                        label: 'Reservar Leito',
+                                        icon: 'add',
+                                        routerLink: ['internacao/reserva-de-leito'],
+                                    },
+                                    {
+                                        label: 'Bloquear Leito',
+                                        icon: 'add',
+                                        routerLink: ['internacao/bloqueio-de-leito'],
+                                    },
+                                    {
+                                        label: 'Liberar Leito',
+                                        icon: 'add',
+                                        routerLink: ['internacao/liberacao-de-leito'],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Tipos de Unidades Funionais',
+                                icon: 'add',
+                                routerLink: ['internacao/tipo-unidade-funcional'],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Exames',
+                        icon: 'icon-exames',
+                        items: [
+                            {
+                                label: 'Gestão',
+                                items: [
+                                    {
+                                        label: 'Cadastros',
+                                        items: [
+                                            {
+                                                label: 'Anticoagulante',
+                                                icon: 'add',
+                                                routerLink: ['exames/anticoagulante'],
                                             },
-                                         {
-                                            label: 'Recipientes de Coleta',
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-recipiente'],
-                                        },
-                                        {
-                                            label: 'Salas',
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-salas'],
-                                        },
-                                        {
-                                            label: 'Tipos de Marcação',
-                                            icon: 'add',
-                                            routerLink: ['exames/formulario-tipos-de-marcacao'],
-                                        },
-
-                                        {
-                                                label: 'Coleta',
-                                                items: [
-                                                    {
-                                                        label: 'Grupos de Recomendações de Exames',
-                                                        icon: 'add',
-                                                        routerLink: ['exames/grupo-de-recomendacoes-de-exames'],
-                                                    },
-                                            ],
-                                        },
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            label: 'Atendimento Diverso',
-                            icon: 'add',
-                            routerLink: ['exames/atendimento-diverso'],
-                        }
-                        ,{
-                            label: 'Pesquisar Atendimento',
-                            icon: 'add',
-                            routerLink: ['exames/pesquisar-atendimento'],
-                        },
-                        {
-                            label: 'Grades de Agendamento de Exames',
-                            icon: 'add',
-                            routerLink: ['listar-grade-exame']
-                        },
-                        {
-                            label: 'Listar Solicitações',
-                            icon: 'add',
-                            routerLink: ['exames/listar-solicitacoes'],
-                        },
-                        {
-                            label: 'Solicitar Exame',
-                            icon: 'add',
-                            routerLink: ['exames/solicitar-exame'],
-                        }
-                    ]
-                },
-                {
-                    label: 'Farmácia',
-                    icon: 'icon-farmacia',
-                    items: [
-                        {
-                            label: 'Dispensação medica',
-                            icon: 'add',
-                            routerLink: ['/dispensacaos'],
-                        },
-                        {
-                            label: 'Cadastro de Medicamento',
-                            icon: 'add',
-                            routerLink: ['/cadastrar-medicamento'],
-                        },
-                        {
-                            label: 'Medicamentos',
-                            icon: 'add',
-                            routerLink: ['/farmacia/medicamentos'],
-                        },
-                    ],
-                },
-                {
-                    label: 'Suprimentos',
-                    icon: 'icon-suprimentos',
-                    items: [
-                        {
-                            label: 'Almoxarifado',
-                            icon: 'add',
-                            items: [
-                                {
-                                    label: 'Recebimento',
-                                    icon: 'add',
-                                    routerLink: ['/suprimentos/recebimentos/novo'],
-                                },
-                                {
-                                    label: 'Consultar Estoque',
-                                    icon: 'add',
-                                    routerLink: ['/suprimentos/consulta-estoque'],
-                                },
-                                {
-                                    label: 'Documentos Fiscais',
-                                    icon: 'add',
-                                    items: [
-                                        {
-                                            label: 'Nota Fiscal',
-                                            icon: 'add',
-                                            routerLink: [
-                                                '/suprimentos/documentos-fiscais/notas-fiscais/nova',
-                                            ],
-                                        },
-                                    ],
-                                },
-                                {
-                                    label: 'Transferências',
-                                    icon: 'add',
-                                    items: [
-                                        {
-                                            label: 'Automáticas',
-                                            icon: 'add',
-                                            routerLink: ['/suprimentos/transferencias-automaticas'],
-                                        },
-                                        {
-                                            label: 'Efetivação',
-                                            icon: 'add',
-                                            routerLink: [
-                                                '/suprimentos/transferencias-automaticas/nao-efetivadas',
-                                            ],
-                                        },
-                                    ],
-                                },
-                                {
-                                    label: 'Requisições',
-                                    icon: 'add',
-                                    routerLink: ['/suprimentos/requisicoes-materiais'],
-                                    items: [
-                                        {
-                                            label: 'Efetivar Requisição',
-                                            icon: 'add',
-                                            routerLink: [
-                                                '/suprimentos/requisicoes-materiais/nao-efetivadas',
-                                            ],
-                                        },
-                                    ],
-                                },
-                                {
-                                    label: 'Inclusão Saldo de Estoque',
-                                    icon: 'add',
-                                    routerLink: ['/suprimentos/inclusao-saldo-estoque'],
-                                },
-                            ],
-                        },
-
-                    ],
-                },
-                {
-                    label: 'Segurança',
-                    icon: 'icon-seguranca',
-                    items: [
-                        {
-                            label: 'Servidores',
-                            icon: 'add',
-                            routerLink: ['/seguranca/servidores'],
-                        },
-                        {
-                            label: 'Cadastrar Vínculos',
-                            icon: 'add',
-                            routerLink: ['/seguranca/vinculos'],
-                        },
-                        {
-                            label: 'Cadastrar Ocupações do Cargo',
-                            icon: 'add',
-                            routerLink: ['/seguranca/ocupacoes-de-cargo'],
-                        },
-                        {
-                            label: 'Cadastrar Cargos',
-                            icon: 'add',
-                            routerLink: ['/seguranca/cargos'],
-                        },
-                    ],
-                },
-
-            ]}
-
+                                            {
+                                                label: 'Exames',
+                                                icon: 'add',
+                                                routerLink: ['exames/formulario-exame'],
+                                            },
+                                            {
+                                                label: 'Materiais',
+                                                icon: 'add',
+                                                routerLink: ['exames/cadastrar-material'],
+                                            },
+                                            {
+                                                label: 'Recipientes de Coleta',
+                                                icon: 'add',
+                                                routerLink: ['exames/formulario-recipiente'],
+                                            },
+                                            {
+                                                label: 'Salas',
+                                                icon: 'add',
+                                                routerLink: ['exames/formulario-sala'],
+                                            },
+                                            {
+                                                label: 'Tipos de Marcação',
+                                                icon: 'add',
+                                                routerLink: ['exames/formulario-tipos-de-marcacao'],
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                label: 'Atendimento Diverso',
+                                icon: 'add',
+                                routerLink: ['exames/atendimento-diverso'],
+                            },
+                            {
+                                label: 'Pesquisar Atendimento',
+                                icon: 'add',
+                                routerLink: ['exames/pesquisar-atendimento'],
+                            },
+                            {
+                                label: 'Pesquisar Salas',
+                                icon: 'add',
+                                routerLink: ['exames/listar-salas'],
+                            },
+                            {
+                                label: 'Grades de Agendamento de Exames',
+                                icon: 'add',
+                                routerLink: ['listar-grade-exame'],
+                            },
+                            {
+                                label: 'Listar Solicitações',
+                                icon: 'add',
+                                routerLink: ['exames/listar-solicitacoes'],
+                            },
+                            {
+                                label: 'Solicitar Exame',
+                                icon: 'add',
+                                routerLink: ['exames/solicitar-exame'],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Farmácia',
+                        icon: 'icon-farmacia',
+                        items: [
+                            {
+                                label: 'Dispensação medica',
+                                icon: 'add',
+                                routerLink: ['/dispensacaos'],
+                            },
+                            {
+                                label: 'Cadastro de Medicamento',
+                                icon: 'add',
+                                routerLink: ['/cadastrar-medicamento'],
+                            },
+                            {
+                                label: 'Medicamentos',
+                                icon: 'add',
+                                routerLink: ['/farmacia/medicamentos'],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Suprimentos',
+                        icon: 'icon-suprimentos',
+                        items: [
+                            {
+                                label: 'Almoxarifado',
+                                icon: 'add',
+                                items: [
+                                    {
+                                        label: 'Recebimento',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/recebimentos/novo'],
+                                    },
+                                    {
+                                        label: 'Consultar Estoque',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/consulta-estoque'],
+                                    },
+                                    {
+                                        label: 'Documentos Fiscais',
+                                        icon: 'add',
+                                        items: [
+                                            {
+                                                label: 'Nota Fiscal',
+                                                icon: 'add',
+                                                routerLink: [
+                                                    '/suprimentos/documentos-fiscais/notas-fiscais/nova',
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        label: 'Transferências',
+                                        icon: 'add',
+                                        items: [
+                                            {
+                                                label: 'Automáticas',
+                                                icon: 'add',
+                                                routerLink: [
+                                                    '/suprimentos/transferencias-automaticas',
+                                                ],
+                                            },
+                                            {
+                                                label: 'Efetivação',
+                                                icon: 'add',
+                                                routerLink: [
+                                                    '/suprimentos/transferencias-automaticas/nao-efetivadas',
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        label: 'Requisições',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/requisicoes-materiais'],
+                                        items: [
+                                            {
+                                                label: 'Efetivar Requisição',
+                                                icon: 'add',
+                                                routerLink: [
+                                                    '/suprimentos/requisicoes-materiais/nao-efetivadas',
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        label: 'Inclusão Saldo de Estoque',
+                                        icon: 'add',
+                                        routerLink: ['/suprimentos/inclusao-saldo-estoque'],
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Segurança',
+                        icon: 'icon-seguranca',
+                        items: [
+                            {
+                                label: 'Servidores',
+                                icon: 'add',
+                                routerLink: ['/seguranca/servidores'],
+                            },
+                            {
+                                label: 'Cadastrar Vínculos',
+                                icon: 'add',
+                                routerLink: ['/seguranca/vinculos'],
+                            },
+                            {
+                                label: 'Cadastrar Ocupações do Cargo',
+                                icon: 'add',
+                                routerLink: ['/seguranca/ocupacoes-de-cargo'],
+                            },
+                            {
+                                label: 'Cadastrar Cargos',
+                                icon: 'add',
+                                routerLink: ['/seguranca/cargos'],
+                            },
+                        ],
+                    },
+                ],
+            },
         ];
     }
 
@@ -439,9 +429,14 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     selectorMatches(el, selector) {
         const p = Element.prototype;
-        const f = p['matches'] || p['webkitMatchesSelector'] || p['mozMatchesSelector'] || p['msMatchesSelector'] || function (s) {
-            return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
-        };
+        const f =
+            p['matches'] ||
+            p['webkitMatchesSelector'] ||
+            p['mozMatchesSelector'] ||
+            p['msMatchesSelector'] ||
+            function (s) {
+                return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+            };
         return f.call(el, selector);
     }
 
@@ -455,7 +450,9 @@ export class AppComponent implements AfterViewInit, OnInit {
             this.addClass(inkEl, 'ink');
 
             if (this.hasClass(element, 'ripplelink') && element.querySelector('span')) {
-                element.querySelector('span').insertAdjacentHTML('afterend', '<span class=\'ink\'></span>');
+                element
+                    .querySelector('span')
+                    .insertAdjacentHTML('afterend', "<span class='ink'></span>");
             } else {
                 element.appendChild(inkEl);
             }
@@ -470,8 +467,8 @@ export class AppComponent implements AfterViewInit, OnInit {
             ink.style.width = `${d}px`;
         }
         const haltOperator = 2;
-        const x = e.pageX - this.getOffset(element).left - (ink.offsetWidth / haltOperator);
-        const y = e.pageY - this.getOffset(element).top - (ink.offsetHeight / haltOperator);
+        const x = e.pageX - this.getOffset(element).left - ink.offsetWidth / haltOperator;
+        const y = e.pageY - this.getOffset(element).top - ink.offsetHeight / haltOperator;
 
         ink.style.top = `${y}px`;
         ink.style.left = `${x}px`;
@@ -499,7 +496,10 @@ export class AppComponent implements AfterViewInit, OnInit {
         if (element.classList) {
             element.classList.remove(className);
         } else {
-            element.className = element.className.replace(new RegExp(`(^|\\b)${className.split(' ').join('|')}(\\b|$)`, 'gi'), ' ');
+            element.className = element.className.replace(
+                new RegExp(`(^|\\b)${className.split(' ').join('|')}(\\b|$)`, 'gi'),
+                ' ',
+            );
         }
     }
 
@@ -507,8 +507,18 @@ export class AppComponent implements AfterViewInit, OnInit {
         const rect = el.getBoundingClientRect();
 
         return {
-            top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
-            left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
+            top:
+                rect.top +
+                (window.pageYOffset ||
+                    document.documentElement.scrollTop ||
+                    document.body.scrollTop ||
+                    0),
+            left:
+                rect.left +
+                (window.pageXOffset ||
+                    document.documentElement.scrollLeft ||
+                    document.body.scrollLeft ||
+                    0),
         };
     }
 
@@ -574,7 +584,8 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.menuClick = true;
 
         if (this.menuService.isDesktop) {
-            this.menuService.staticMenuDesktopInactive = !this.menuService.staticMenuDesktopInactive;
+            this.menuService.staticMenuDesktopInactive =
+                !this.menuService.staticMenuDesktopInactive;
         } else {
             this.mobileMenuActive = !this.mobileMenuActive;
             if (this.mobileMenuActive) {
@@ -650,8 +661,10 @@ export class AppComponent implements AfterViewInit, OnInit {
         if (document.body.classList) {
             document.body.classList.remove('blocked-scroll');
         } else {
-            document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
-                'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            document.body.className = document.body.className.replace(
+                new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'),
+                ' ',
+            );
         }
     }
 }
