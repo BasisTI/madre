@@ -17,9 +17,6 @@ import { Telefone } from "../paciente.model";
 export class PacienteResponsavelFormComponent {
     @Input() formGroup: FormGroup;
 
-    @Input()
-    telefones: any = [];
-
     opcoesDeGrauDeParentesco = [OPCAO_SELECIONE];
 
     listaDDD = new Array<DDD>();
@@ -74,7 +71,7 @@ export class PacienteResponsavelFormComponent {
 
     adicionarTelefoneALista() {
         const form = this.telefone.value;
-        this.telefone.patchValue({ indice: this.telefones.length });
+        this.telefone.patchValue({ indice: this.formGroup.value.responsavel.telefones.length });
         const telefone: Telefone = {
             id: form.id,
             ddd: form.ddd.valor,
@@ -82,9 +79,8 @@ export class PacienteResponsavelFormComponent {
             tipo: form.tipo,
             observacao: form.observacao,
         };
-        this.telefones.push(telefone);
+        this.formGroup.value.responsavel.telefones.push(telefone);
         this.telefone.reset();
-        console.log(this.telefone)
     }
-    
+
 }

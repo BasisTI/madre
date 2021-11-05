@@ -75,7 +75,7 @@
         </p-fieldset>
 
         <p-fieldset legend="Lista de Contatos">
-            <basis-datatable type="memory" [verticalButtons]="false" [value]="telefones" #datatable>
+            <basis-datatable type="memory" [verticalButtons]="false" [value]="formGroup.value.responsavel.telefones" #datatable>
                 <p-column header="Tipo" field="tipo"></p-column>
                 <p-column header="DDD" field="ddd"></p-column>
                 <p-column header="Telefone" field="numero"></p-column>
