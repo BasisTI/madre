@@ -1,5 +1,5 @@
 import { DatatableComponent } from '@nuvem/primeng-components';
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DatatableClickEvent } from '@nuvem/primeng-components';
 
@@ -20,6 +20,7 @@ export class PacienteFormComponent  implements OnInit{
     paciente: FormGroup;
     items: MenuItem[];
     activeItem: MenuItem;
+    title: string = 'Cadastrar Novo Paciente';
 
     constructor(private fb: FormBuilder, private service: PacienteService) {
     }
@@ -45,7 +46,7 @@ export class PacienteFormComponent  implements OnInit{
             estadoCivilId: [null, Validators.required],
             grauDeInstrucao: [null, Validators.required],
             sexo: [null, Validators.required],
-            telefones: [],
+            telefones: this.fb.array([]),
             enderecos: this.fb.array([]),
             genitores: this.fb.group({
                 id: [null],
@@ -108,6 +109,14 @@ export class PacienteFormComponent  implements OnInit{
             {label: 'Cartão SUS'}
         ];
         this.activeItem = this.items[0];
+    }
+
+    ngAfterViewInit() {
+         //Remover class p-inputtext de inputmask para remover linha duplicada
+        const elements = document.querySelectorAll("p-inputmask");
+        elements.forEach((el) => {
+            el.classList.remove('p-inputtext')
+        });
     }
 
     imprimirRelatorioPaciente(id){

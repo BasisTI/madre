@@ -6,25 +6,22 @@ import { CargoModel } from '../models/cargo-model';
 import { Cargos } from '../models/dropdowns/cargos';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class CargosService{
+export class CargosService {
+    private readonly resource = `${api}/cargos`;
 
-  private readonly resource = `${api}/cargos`;
+    constructor(private client: HttpClient) {}
 
+    public getCargos(): Observable<Array<Cargos>> {
+        return this.client.get<Array<Cargos>>(`${this.resource}`);
+    }
 
-  constructor(private client: HttpClient) {}
+    alterarCargo(ocupacoesDeCargo: CargoModel): Observable<any> {
+        return this.client.put(`${this.resource}`, ocupacoesDeCargo);
+    }
 
-  public getCargos(): Observable<Array<Cargos>> {
-    return this.client.get<Array<Cargos>>(`${this.resource}`);
-  }
-
-  alterarCargo(ocupacoesDeCargo: CargoModel): Observable<any> {
-    return this.client.put(`${this.resource}`, ocupacoesDeCargo);
-  }
-
-  cadastrarCargo(ocupacoesDeCargo) {
-    return this.client.post(this.resource, ocupacoesDeCargo);
-  }
-
+    cadastrarCargo(ocupacoesDeCargo) {
+        return this.client.post(this.resource, ocupacoesDeCargo);
+    }
 }

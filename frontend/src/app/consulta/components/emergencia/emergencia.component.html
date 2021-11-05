@@ -3,7 +3,6 @@
     <form [formGroup]="formEmergencia" (ngSubmit)="cadastrarConsultas()">
         <div class="p-grid p-fluid">
             <div class="p-col-12 p-grid">
-
                 <div class="p-col-12 p-md-3">
                     <span class="p-float-label">
                         <input type="text" pInputText formControlName="numeroConsulta" />
@@ -13,9 +12,15 @@
 
                 <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
-                        <p-calendar [locale]="localizacao" [yearRange]="anosDisponiveis" [dateFormat]="formatoDeData"
-                            monthNavigator="true" yearNavigator="true" formControlName="dataHoraDaConsulta"
-                            showTime="true"></p-calendar>
+                        <p-calendar
+                            [locale]="localizacao"
+                            [yearRange]="anosDisponiveis"
+                            [dateFormat]="formatoDeData"
+                            monthNavigator="true"
+                            yearNavigator="true"
+                            formControlName="dataHoraDaConsulta"
+                            showTime="true"
+                        ></p-calendar>
                         <label>Data da Consulta</label>
                     </span>
                 </div>
@@ -28,8 +33,12 @@
                 </div>
 
                 <div class="p-md-2 p-md-3">
-                    <p-button label="Acessar Calendário" icon="pi pi-calendar" type="button"
-                        [routerLink]="['/consulta/consulta-calendario']"></p-button>
+                    <p-button
+                        label="Acessar Calendário"
+                        icon="pi pi-calendar"
+                        type="button"
+                        [routerLink]="['/consulta/consulta-calendario']"
+                    ></p-button>
                 </div>
 
                 <div class="p-md-2 p-md-3">
@@ -41,9 +50,14 @@
 
                 <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
-                        <p-autoComplete field="nome" [suggestions]="pacientes" formControlName="nome"
-                            (completeMethod)="listarPacientes()" (onSelect)="aoSelecionarPaciente($event)"
-                            [dropdown]="true"></p-autoComplete>
+                        <p-autoComplete
+                            field="nome"
+                            [suggestions]="pacientes"
+                            formControlName="nome"
+                            (completeMethod)="listarPacientes()"
+                            (onSelect)="aoSelecionarPaciente($event)"
+                            [dropdown]="true"
+                        ></p-autoComplete>
                         <label>Nome</label>
                     </span>
                 </div>
@@ -57,24 +71,35 @@
 
                 <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
-                        <p-dropdown [filter]="true" [options]="opcaoTurno" formControlName="turno"></p-dropdown>
+                        <p-dropdown
+                            [filter]="true"
+                            [options]="opcaoTurno"
+                            formControlName="turno"
+                        ></p-dropdown>
                         <label>Turno</label>
                     </span>
                 </div>
 
                 <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
-                        <p-dropdown [filter]="true" [options]="opcaoTipoPagador" formControlName="tipoPagador">
+                        <p-dropdown
+                            [filter]="true"
+                            [options]="opcaoTipoPagador"
+                            formControlName="tipoPagador"
+                        >
                         </p-dropdown>
                         <label>Tipo Pagador</label>
                     </span>
                 </div>
 
-
                 <div class="p-md-2 p-md-3">
                     <span class="md-inputfield p-float-label">
-                        <p-dropdown optionLabel="especialidade" [options]="especialidades"
-                            formControlName="especialidade" [filter]="true">
+                        <p-dropdown
+                            optionLabel="especialidade"
+                            [options]="especialidades"
+                            formControlName="especialidade"
+                            [filter]="true"
+                        >
                         </p-dropdown>
                         <label>Especialidade</label>
                     </span>
@@ -82,7 +107,12 @@
 
                 <div class="p-md-3 p-md-3">
                     <span class="md-inputfield p-float-label">
-                        <p-dropdown optionLabel="nome" [options]="crm" formControlName="profissional" [filter]="true">
+                        <p-dropdown
+                            optionLabel="nome"
+                            [options]="crm"
+                            formControlName="profissional"
+                            [filter]="true"
+                        >
                         </p-dropdown>
                         <label>Profissional</label>
                     </span>
@@ -104,41 +134,68 @@
 
                 <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
-                        <input type="text" pInputText pTooltip="Escreva uma observação para consulta."
-                            formControlName="observacoes" />
+                        <input
+                            type="text"
+                            pInputText
+                            pTooltip="Escreva uma observação para consulta."
+                            formControlName="observacoes"
+                        />
                         <label>Observação</label>
                     </span>
                 </div>
 
                 <div class="p-md-2 p-md-3">
                     <span class="p-float-label">
-                        <input type="text" pInputText pTooltip="Escreva um justificativa para consulta."
-                            formControlName="justificativa" />
+                        <input
+                            type="text"
+                            pInputText
+                            pTooltip="Escreva um justificativa para consulta."
+                            formControlName="justificativa"
+                        />
                         <label>Justificativa</label>
                     </span>
                 </div>
 
                 <div class="p-md-2 p-md-3">
                     Grades disponíveis
-                    <div style="margin-top: 5px; margin-bottom: 10px;">
-                        <p-radioButton name="gradesDisponiveis" value=true style="margin-right: 5px;"
-                            label="Sim" class="separator-radio" formControlName="gradesDisponiveis">
+                    <div style="margin-top: 5px; margin-bottom: 10px">
+                        <p-radioButton
+                            name="gradesDisponiveis"
+                            value="true"
+                            style="margin-right: 5px"
+                            label="Sim"
+                            class="separator-radio"
+                            formControlName="gradesDisponiveis"
+                        >
                         </p-radioButton>
 
-                        <p-radioButton name="gradesDisponiveis" value=false
-                            label="Não" formControlName="gradesDisponiveis">
+                        <p-radioButton
+                            name="gradesDisponiveis"
+                            value="false"
+                            label="Não"
+                            formControlName="gradesDisponiveis"
+                        >
                         </p-radioButton>
-
                     </div>
                 </div>
                 <div class="p-col-12 p-grid">
                     <div class="p-md-3">
-                        <button pButton type="button" label="Cancelar" pTooltip="Cancelar marcação de consulta."
-                            [routerLink]="['/listar-consultas']"></button>
+                        <button
+                            pButton
+                            type="button"
+                            label="Cancelar"
+                            pTooltip="Cancelar marcação de consulta."
+                            [routerLink]="['/listar-consultas']"
+                        ></button>
                     </div>
                     <div class="p-md-3">
-                        <button pButton type="submit" label="Salvar"
-                            pTooltip="Salvar marcação de consulta." [disabled]="!valid()"></button>
+                        <button
+                            pButton
+                            type="submit"
+                            label="Salvar"
+                            pTooltip="Salvar marcação de consulta."
+                            [disabled]="!valid()"
+                        ></button>
                     </div>
                 </div>
             </div>

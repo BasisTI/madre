@@ -1,5 +1,4 @@
 import { ItemDiagnostico } from './models/itemDiagnostico';
-import { CID } from '@internacao/models/cid';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PrescricaoMedicaService } from './../prescricao-medica.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,20 +9,19 @@ import { DiagnosticoService } from './diagnostico.service';
 @Component({
     selector: 'app-diagnostico',
     templateUrl: './diagnostico.component.html',
-    styleUrls: ['./diagnostico.component.css']
+    styleUrls: ['./diagnostico.component.css'],
 })
 export class DiagnosticoComponent implements OnInit, OnDestroy {
+    paciente: {};
 
-    paciente: {}
-
-    public itensDiagnostico: ItemDiagnostico[] = []
+    public itensDiagnostico: ItemDiagnostico[] = [];
 
     prescricaoDiagnostico = this.fb.group({
         idPaciente: [null, Validators.required],
         nome: [null],
         dataPrescricao: [new Date()],
         tipo: 'DIAGNOSTICO',
-        observacao: [null]
+        observacao: [null],
     });
 
     itemPrescricaoDiagnostico = this.fb.group({
@@ -37,13 +35,13 @@ export class DiagnosticoComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private prescricaoMedicaService: PrescricaoMedicaService,
         private diagnosticoService: DiagnosticoService,
-        private router: Router
-    ) { }
+        private router: Router,
+    ) {}
 
     ngOnInit() {
         this.breadcrumbService.setItems([
             { label: 'Prescrição Médica', routerLink: 'prescricao-medica' },
-            { label: 'Diagnóstico' }
+            { label: 'Diagnóstico' },
         ]);
 
         const codigoPaciente = this.route.snapshot.params['id'];
@@ -51,52 +49,46 @@ export class DiagnosticoComponent implements OnInit, OnDestroy {
         if (codigoPaciente) {
             this.carregarPaciente(codigoPaciente);
         }
-
-
     }
 
     carregarPaciente(id: number) {
-        this.prescricaoMedicaService.buscarIdPaciente(id)
-            .subscribe(paciente => {
-
-                this.paciente = paciente;
-                this.prescricaoDiagnostico.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
-
-            });
+        this.prescricaoMedicaService.buscarIdPaciente(id).subscribe((paciente) => {
+            this.paciente = paciente;
+            this.prescricaoDiagnostico.patchValue({ idPaciente: paciente.id, nome: paciente.nome });
+        });
     }
 
     incluirItem() {
         if (this.itemPrescricaoDiagnostico.valid) {
-
             this.itensDiagnostico.push(this.itemPrescricaoDiagnostico.value);
             this.itemPrescricaoDiagnostico.reset();
         }
-
     }
 
     prescrever() {
         const prescricao = this.prescricaoDiagnostico.value;
 
         const prescricaoDiagnostico = Object.assign({}, prescricao, {
-            itens: this.itensDiagnostico
+            itens: this.itensDiagnostico,
         });
 
-        prescricaoDiagnostico.itens = prescricaoDiagnostico.itens.map(item => {
+        prescricaoDiagnostico.itens = prescricaoDiagnostico.itens.map((item) => {
             if (item.idCid?.id) {
                 item.idCid = item.idCid.id;
             }
             return item;
-
         });
 
-
         if (this.itensDiagnostico.length == 0) {
-            this.prescricaoDiagnostico.invalid
+            this.prescricaoDiagnostico.invalid;
         }
 
         this.diagnosticoService.prescreverDiagnostico(prescricaoDiagnostico).subscribe(
             (resposta) => {
-                this.router.navigate(['/prescricao-medica/lista/', prescricaoDiagnostico.idPaciente]);
+                this.router.navigate([
+                    '/prescricao-medica/lista/',
+                    prescricaoDiagnostico.idPaciente,
+                ]);
                 this.itemPrescricaoDiagnostico.reset();
                 return resposta;
             },
@@ -104,13 +96,9 @@ export class DiagnosticoComponent implements OnInit, OnDestroy {
                 return erro;
             },
         );
-
-
     }
 
     ngOnDestroy() {
         this.breadcrumbService.reset();
     }
-
-
 }

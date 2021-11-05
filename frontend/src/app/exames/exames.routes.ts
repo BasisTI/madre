@@ -7,11 +7,13 @@ import { ListaSolicitacoesComponent } from './components/lista-solicitacoes/list
 import { ListaGradeDeExameComponent } from './components/lista-grade-de-exame/lista-grade-de-exame.component';
 import { GradeAgendamentosComponent } from './components/grade-agendamentos/grade-agendamentos.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
+import { FormularioCadaverComponent } from './components/formulario-cadaver/formulario-cadaver.component';
 import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalaComponent as FormularioSalaComponent } from './components/formulario-sala/formulario-sala.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { ListaSalasComponent } from './components/lista-salas/lista-salas.component';
+import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-recomendacoes-de-exames/grupos-de-recomendacoes-de-exames.component';
 
 export const routes: Routes = [
     {
@@ -65,5 +67,17 @@ export const routes: Routes = [
     {
         path: 'listar-salas',
         component: ListaSalasComponent,
+    },
+    {
+        path: 'formulario-cadaver',
+        component: FormularioCadaverComponent,
+    },
+    {
+        path: 'formulario-salas',
+        component: FormularioSalaComponent,
+    },
+    {
+        path: 'grupo-de-recomendacoes-de-exames',
+        component: GruposDeRecomendacoesDeExamesComponent,
     },
 ];

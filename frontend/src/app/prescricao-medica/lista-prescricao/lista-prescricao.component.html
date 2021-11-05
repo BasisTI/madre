@@ -12,14 +12,13 @@
             <tr [ttRow]="rowNode">
                 <td>
                     <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                    {{rowData.name}}
+                    {{ rowData.name }}
                 </td>
                 <td>
-                    {{rowData?.descricao}}
-
+                    {{ rowData?.descricao }}
                 </td>
                 <td>
-                    {{rowData?.dataPrescricao | date: 'dd/MM/yyyy'}}
+                    {{ rowData?.dataPrescricao | date: 'dd/MM/yyyy' }}
                 </td>
             </tr>
         </ng-template>

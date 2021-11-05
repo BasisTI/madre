@@ -48,6 +48,15 @@ public class UsuarioResourceIT {
     private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
     private static final String UPDATED_LOGIN = "BBBBBBBBBB";
 
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_ATIVO = false;
+    private static final Boolean UPDATED_ATIVO = true;
+
+    private static final String DEFAULT_SENHA = "AAAAAAAAAA";
+    private static final String UPDATED_SENHA = "BBBBBBBBBB";
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -82,7 +91,10 @@ public class UsuarioResourceIT {
     public static Usuario createEntity(EntityManager em) {
         Usuario usuario = new Usuario()
             .codigo(DEFAULT_CODIGO)
-            .login(DEFAULT_LOGIN);
+            .login(DEFAULT_LOGIN)
+            .email(DEFAULT_EMAIL)
+            .ativo(DEFAULT_ATIVO)
+            .senha(DEFAULT_SENHA);
         return usuario;
     }
     /**
@@ -94,7 +106,10 @@ public class UsuarioResourceIT {
     public static Usuario createUpdatedEntity(EntityManager em) {
         Usuario usuario = new Usuario()
             .codigo(UPDATED_CODIGO)
-            .login(UPDATED_LOGIN);
+            .login(UPDATED_LOGIN)
+            .email(UPDATED_EMAIL)
+            .ativo(UPDATED_ATIVO)
+            .senha(UPDATED_SENHA);
         return usuario;
     }
 
@@ -120,6 +135,9 @@ public class UsuarioResourceIT {
         Usuario testUsuario = usuarioList.get(usuarioList.size() - 1);
         assertThat(testUsuario.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testUsuario.getLogin()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(testUsuario.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testUsuario.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testUsuario.getSenha()).isEqualTo(DEFAULT_SENHA);
 
         // Validate the Usuario in Elasticsearch
         verify(mockUsuarioSearchRepository, times(1)).save(testUsuario);
@@ -181,7 +199,10 @@ public class UsuarioResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
-            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)));
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA)));
     }
     
     @Test
@@ -196,7 +217,10 @@ public class UsuarioResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(usuario.getId().intValue()))
             .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
-            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN));
+            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.senha").value(DEFAULT_SENHA));
     }
     @Test
     @Transactional
@@ -220,7 +244,10 @@ public class UsuarioResourceIT {
         em.detach(updatedUsuario);
         updatedUsuario
             .codigo(UPDATED_CODIGO)
-            .login(UPDATED_LOGIN);
+            .login(UPDATED_LOGIN)
+            .email(UPDATED_EMAIL)
+            .ativo(UPDATED_ATIVO)
+            .senha(UPDATED_SENHA);
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(updatedUsuario);
 
         restUsuarioMockMvc.perform(put("/api/usuarios")
@@ -234,6 +261,9 @@ public class UsuarioResourceIT {
         Usuario testUsuario = usuarioList.get(usuarioList.size() - 1);
         assertThat(testUsuario.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testUsuario.getLogin()).isEqualTo(UPDATED_LOGIN);
+        assertThat(testUsuario.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testUsuario.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testUsuario.getSenha()).isEqualTo(UPDATED_SENHA);
 
         // Validate the Usuario in Elasticsearch
         verify(mockUsuarioSearchRepository, times(1)).save(testUsuario);
@@ -297,6 +327,9 @@ public class UsuarioResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
-            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)));
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA)));
     }
 }

@@ -17,7 +17,6 @@ import javax.persistence.GenerationType;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

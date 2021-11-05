@@ -5,17 +5,18 @@ import { PrescricaoMedicaDietaComponent } from './../dieta/prescricao-medica-die
 export const routes: Routes = [
     {
         path: 'dieta',
-        component: PrescricaoMedicaDietaComponent
+        component: PrescricaoMedicaDietaComponent,
     },
     {
         path: 'prescricao-medica/dieta',
-        component: PrescricaoMedicaDietaComponent
+        component: PrescricaoMedicaDietaComponent,
     },
 
     {
         path: 'prescricao-medica/dieta/:id',
-        component: PrescricaoMedicaDietaComponent
+        component: PrescricaoMedicaDietaComponent,
     },
 ];
 
-export const PrescricaoMedicaDietaRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes);
+export const PrescricaoMedicaDietaRoutes: ModuleWithProviders<RouterModule> =
+    RouterModule.forRoot(routes);

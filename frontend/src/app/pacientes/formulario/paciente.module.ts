@@ -9,7 +9,12 @@ import { PacienteFormComponent } from './paciente-form.component';
 import { PacienteListComponent } from './paciente-list.component';
 import { PacienteService } from './paciente.service';
 
-import { CrudModule, CRUD_SERVICE, CrudResolveGuard, FormNotificationModule } from '@nuvem/primeng-components';
+import {
+    CrudModule,
+    CRUD_SERVICE,
+    CrudResolveGuard,
+    FormNotificationModule,
+} from '@nuvem/primeng-components';
 
 import { DatatableModule } from '@nuvem/primeng-components';
 
@@ -19,7 +24,6 @@ import { PacienteResponsavelFormComponent } from './responsavel/paciente-form-re
 import { PacienteDocumentosFormComponent } from './documentos/paciente-form-documentos.component';
 import { PacienteCertidaoFormComponent } from './certidao/paciente-form-certidao.component';
 import { PacienteCartaoSusFormComponent } from './cartao-sus/paciente-form-cartao-sus.component';
-import { PacienteTelefoneFormComponent } from './telefone/paciente-form-telefone.component';
 import { PacienteEnderecoFormComponent } from './endereco/paciente-form-endereco.component';
 
 import { CalendarMadreComponent } from '../../shared/components/calendar-madre.component';
@@ -37,7 +41,8 @@ import { MotivoDoCadastroService } from './cartao-sus/motivo-do-cadastro.service
 import { UfService } from './municipio/uf.service';
 import { MunicipioService } from './municipio/municipio.service';
 import { CepService } from './endereco/cep.service';
-import {TabViewModule} from 'primeng/tabview';
+import { TabViewModule } from 'primeng/tabview';
+import { TelefoneComponent } from './telefone/telefone.component';
 
 
 @NgModule({
@@ -62,29 +67,29 @@ import {TabViewModule} from 'primeng/tabview';
     PacienteDocumentosFormComponent,
     PacienteCertidaoFormComponent,
     PacienteCartaoSusFormComponent,
-    PacienteTelefoneFormComponent,
     PacienteEnderecoFormComponent,
     CalendarMadreComponent,
+    TelefoneComponent,
   ],
   providers: [ 
     PacienteService,
     { provide: CRUD_SERVICE, useExisting: PacienteService },
     CrudResolveGuard,
 
-    RacaService,
-    EtniaService,
-    EstadoCivilService,
-    NacionalidadeService,
-    NaturalidadeService,
-    OcupacaoService,
-    ReligiaoService,
-    GrauDeParentescoService,
-    OrgaoEmissorService,
-    JustificativaService,
-    MotivoDoCadastroService,
-    UfService,
-    MunicipioService,
-    CepService,
-  ]
+        RacaService,
+        EtniaService,
+        EstadoCivilService,
+        NacionalidadeService,
+        NaturalidadeService,
+        OcupacaoService,
+        ReligiaoService,
+        GrauDeParentescoService,
+        OrgaoEmissorService,
+        JustificativaService,
+        MotivoDoCadastroService,
+        UfService,
+        MunicipioService,
+        CepService,
+    ],
 })
-export class PacienteModule { }
+export class PacienteModule {}

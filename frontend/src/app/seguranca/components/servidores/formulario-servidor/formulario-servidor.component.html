@@ -6,14 +6,24 @@
                 <div class="p-col-12 p-grid">
                     <div class="p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-autoComplete field="nome" formControlName="codigo" [suggestions]="listaPessoasServidor"
-                                (completeMethod)="buscaPessoas($event)" (onSelect)="aoSelecionarUmaPessoa($event)"
-                                [dropdown]="true"></p-autoComplete>
+                            <p-autoComplete
+                                field="nome"
+                                formControlName="codigo"
+                                [suggestions]="listaPessoasServidor"
+                                (completeMethod)="buscaPessoas($event)"
+                                (onSelect)="aoSelecionarUmaPessoa($event)"
+                                [dropdown]="true"
+                            ></p-autoComplete>
                             <label>Nome</label>
                         </span>
-                        <p-message severity="error" text="Nome do servidor obrigatório" *ngIf="
+                        <p-message
+                            severity="error"
+                            text="Nome do servidor obrigatório"
+                            *ngIf="
                                 formServidor.controls['codigo'].errors?.required &&
-                                formServidor.controls['codigo'].touched">
+                                formServidor.controls['codigo'].touched
+                            "
+                        >
                         </p-message>
                     </div>
                     <div class="p-col-12 p-md-6 p-lg-3">
@@ -28,8 +38,12 @@
             <div class="p-col-12 p-grid">
                 <div class="p-col-12 p-md-6 p-lg-3">
                     <span class="p-float-label">
-                        <p-dropdown [options]="login" [optionLabel]="'login'" [optionValue]="'id'"
-                            formControlName="login">
+                        <p-dropdown
+                            [options]="login"
+                            [optionLabel]="'login'"
+                            [optionValue]="'id'"
+                            formControlName="login"
+                        >
                         </p-dropdown>
                         <label>Login</label>
                     </span>
@@ -37,15 +51,25 @@
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
                         <span class="p-float-label">
-                            <p-autoComplete field="descricao" formControlName="vinculo"
-                                [suggestions]="listaVinculosServidor" (completeMethod)="buscaVinculos($event)"
-                                (onSelect)="aoSelecionarUmVinculo($event)" [dropdown]="true"></p-autoComplete>
+                            <p-autoComplete
+                                field="descricao"
+                                formControlName="vinculo"
+                                [suggestions]="listaVinculosServidor"
+                                (completeMethod)="buscaVinculos($event)"
+                                (onSelect)="aoSelecionarUmVinculo($event)"
+                                [dropdown]="true"
+                            ></p-autoComplete>
                             <label>Vínculo</label>
                         </span>
                     </span>
-                    <p-message severity="error" text="Vínculo obrigatório" *ngIf="
-                        formServidor.controls['vinculo'].errors?.required &&
-                        formServidor.controls['vinculo'].touched">
+                    <p-message
+                        severity="error"
+                        text="Vínculo obrigatório"
+                        *ngIf="
+                            formServidor.controls['vinculo'].errors?.required &&
+                            formServidor.controls['vinculo'].touched
+                        "
+                    >
                     </p-message>
                 </div>
                 <div class="p-md-3 p-sm-12">
@@ -65,20 +89,39 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar formControlName="inicioDoVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
-                            monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
+                        <p-calendar
+                            formControlName="inicioDoVinculo"
+                            [locale]="localizacao"
+                            dateFormat="dd/mm/yy"
+                            monthNavigator="true"
+                            yearNavigator="true"
+                            [showIcon]="true"
+                            inputId="icon"
+                        >
                         </p-calendar>
                         <label>Início do Vínculo</label>
                     </span>
-                    <p-message severity="error" text="Início do Vínculo obrigatório" *ngIf="
-                                formServidor.controls['inicioDoVinculo'].errors?.required &&
-                                formServidor.controls['inicioDoVinculo'].touched">
+                    <p-message
+                        severity="error"
+                        text="Início do Vínculo obrigatório"
+                        *ngIf="
+                            formServidor.controls['inicioDoVinculo'].errors?.required &&
+                            formServidor.controls['inicioDoVinculo'].touched
+                        "
+                    >
                     </p-message>
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-calendar formControlName="fimDoVinculo" [locale]="localizacao" dateFormat="dd/mm/yy"
-                            monthNavigator="true" yearNavigator="true" [showIcon]="true" inputId="icon">
+                        <p-calendar
+                            formControlName="fimDoVinculo"
+                            [locale]="localizacao"
+                            dateFormat="dd/mm/yy"
+                            monthNavigator="true"
+                            yearNavigator="true"
+                            [showIcon]="true"
+                            inputId="icon"
+                        >
                         </p-calendar>
                         <label>Fim do Vínculo</label>
                     </span>
@@ -89,41 +132,66 @@
                         </p-dropdown>
                         <label>Situação</label>
                     </span>
-                    <p-message severity="error" text="Situação obrigatória" *ngIf="
+                    <p-message
+                        severity="error"
+                        text="Situação obrigatória"
+                        *ngIf="
                             formServidor.controls['situacao'].errors?.required &&
-                            formServidor.controls['situacao'].touched">
+                            formServidor.controls['situacao'].touched
+                        "
+                    >
                     </p-message>
-
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="opcoesDeSituacaoDoServidor" formControlName="situacaoDoServidor">
+                        <p-dropdown
+                            [options]="opcoesDeSituacaoDoServidor"
+                            formControlName="situacaoDoServidor"
+                        >
                         </p-dropdown>
                         <label>Situação do servidor</label>
                     </span>
-                    <p-message severity="error" text="Situação do Servidor obrigatória" *ngIf="
+                    <p-message
+                        severity="error"
+                        text="Situação do Servidor obrigatória"
+                        *ngIf="
                             formServidor.controls['situacaoDoServidor'].errors?.required &&
-                            formServidor.controls['situacaoDoServidor'].touched">
+                            formServidor.controls['situacaoDoServidor'].touched
+                        "
+                    >
                     </p-message>
                 </div>
             </div>
 
-            <div class="p-col-12 p-grid" style="align-items: center;">
+            <div class="p-col-12 p-grid" style="align-items: center">
                 <div class="p-col">
                     <span class="p-float-label">
-                        <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
-                            formControlName="centroDeAtividadeIdLotacao"></p-dropdown>
+                        <p-dropdown
+                            [options]="centros"
+                            [optionLabel]="'descricao'"
+                            [optionValue]="'id'"
+                            formControlName="centroDeAtividadeIdLotacao"
+                        ></p-dropdown>
                         <label>Centro de Atividade Lotação</label>
                     </span>
-                    <p-message severity="error" text="Centro de Atividade Lotação obrigatória" *ngIf="
+                    <p-message
+                        severity="error"
+                        text="Centro de Atividade Lotação obrigatória"
+                        *ngIf="
                             formServidor.controls['centroDeAtividadeIdLotacao'].errors?.required &&
-                            formServidor.controls['centroDeAtividadeIdLotacao'].touched">
+                            formServidor.controls['centroDeAtividadeIdLotacao'].touched
+                        "
+                    >
                     </p-message>
                 </div>
                 <div class="p-col">
                     <span class="p-col p-float-label">
-                        <p-dropdown [options]="centros" [optionLabel]="'descricao'" [optionValue]="'id'"
-                            formControlName="centroDeAtividadeIdAtuacao"></p-dropdown>
+                        <p-dropdown
+                            [options]="centros"
+                            [optionLabel]="'descricao'"
+                            [optionValue]="'id'"
+                            formControlName="centroDeAtividadeIdAtuacao"
+                        ></p-dropdown>
                         <label>Centro de Atividade Atuação</label>
                     </span>
                 </div>
@@ -132,38 +200,63 @@
             <div class="p-col-12 p-grid">
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="ocupacaoDeCargos" [optionLabel]="'descricao'" [optionValue]="'id'"
-                            formControlName="ocupacao"></p-dropdown>
+                        <p-dropdown
+                            [options]="ocupacaoDeCargos"
+                            [optionLabel]="'descricao'"
+                            [optionValue]="'id'"
+                            formControlName="ocupacao"
+                        ></p-dropdown>
                         <label>Ocupação</label>
                     </span>
-                    <p-message severity="error" text="Ocupação obrigatória" *ngIf="
+                    <p-message
+                        severity="error"
+                        text="Ocupação obrigatória"
+                        *ngIf="
                             formServidor.controls['ocupacao'].errors?.required &&
-                            formServidor.controls['ocupacao'].touched">
+                            formServidor.controls['ocupacao'].touched
+                        "
+                    >
                     </p-message>
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="grupoFuncional" [optionLabel]="'descricao'" [optionValue]="'id'"
-                            formControlName="grupoFuncional">
+                        <p-dropdown
+                            [options]="grupoFuncional"
+                            [optionLabel]="'descricao'"
+                            [optionValue]="'id'"
+                            formControlName="grupoFuncional"
+                        >
                         </p-dropdown>
                         <label>Grupo Funcional</label>
                     </span>
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="opcoesDeTipoDeRemuneracao" formControlName="tipoDeRemuneracao">
+                        <p-dropdown
+                            [options]="opcoesDeTipoDeRemuneracao"
+                            formControlName="tipoDeRemuneracao"
+                        >
                         </p-dropdown>
                         <label>Tipo de Remuneração</label>
                     </span>
-                    <p-message severity="error" text="Tipo de Remuneração obrigatório" *ngIf="
+                    <p-message
+                        severity="error"
+                        text="Tipo de Remuneração obrigatório"
+                        *ngIf="
                             formServidor.controls['tipoDeRemuneracao'].errors?.required &&
-                            formServidor.controls['tipoDeRemuneracao'].touched">
+                            formServidor.controls['tipoDeRemuneracao'].touched
+                        "
+                    >
                     </p-message>
                 </div>
                 <div class="p-md-3 p-sm-12">
                     <span class="p-float-label">
-                        <p-dropdown [options]="ramal" [optionLabel]="'numero'" [optionValue]="'id'"
-                            formControlName="ramal">
+                        <p-dropdown
+                            [options]="ramal"
+                            [optionLabel]="'numero'"
+                            [optionValue]="'id'"
+                            formControlName="ramal"
+                        >
                         </p-dropdown>
                         <label>Ramal</label>
                     </span>
@@ -198,8 +291,13 @@
             </div>
         </div>
         <div class="p-grid p-jc-end">
-            <button pButton type="submit" label="Salvar" pTooltip="Salvar registro de servidor"
-                [disabled]="!valid()"></button>
+            <button
+                pButton
+                type="submit"
+                label="Salvar"
+                pTooltip="Salvar registro de servidor"
+                [disabled]="!valid()"
+            ></button>
         </div>
     </div>
 </form>

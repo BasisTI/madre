@@ -9,34 +9,28 @@ import { Vinculo } from '../models/vinculo-resumo-model';
 import { VinculoModel } from '../models/vinculo-model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class VinculoService{
+export class VinculoService {
+    private readonly resource = `${api}/vinculos`;
 
-  private readonly resource = `${api}/vinculos`;
+    constructor(private client: HttpClient) {}
 
+    public getVinculo(): Observable<Array<Vinculo>> {
+        return this.client.get<Array<Vinculo>>(`${this.resource}`);
+    }
 
-  constructor(private client: HttpClient) {}
-
-  public getVinculo(): Observable<Array<Vinculo>> {
-    return this.client.get<Array<Vinculo>>(`${this.resource}`);
-  }
-
-  getResultVinculo(event): Observable<Pageable<ListaVinculosServidor>> {
-    return this.client.get<Pageable<ListaVinculosServidor>>(
-        `${this.resource}/_resumo`,
-        {
+    getResultVinculo(event): Observable<Pageable<ListaVinculosServidor>> {
+        return this.client.get<Pageable<ListaVinculosServidor>>(`${this.resource}/_resumo`, {
             params: new HttpParams().set('descricao', event).set('sort', 'descricao'),
-        },
-    );
-  }
+        });
+    }
 
-  alterarVinculo(vinculo: VinculoModel): Observable<any> {
-    return this.client.put(`${this.resource}`, vinculo);
-  }
+    alterarVinculo(vinculo: VinculoModel): Observable<any> {
+        return this.client.put(`${this.resource}`, vinculo);
+    }
 
-  cadastrarVinculo(vinculo) {
-    return this.client.post(this.resource, vinculo);
-  }
-  
+    cadastrarVinculo(vinculo) {
+        return this.client.post(this.resource, vinculo);
+    }
 }
