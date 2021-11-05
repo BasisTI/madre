@@ -20,6 +20,7 @@
                         "assets": ["src/assets", "src/upload.php"],
                         "styles": [
                             "node_modules/primeng/resources/primeng.min.css",
+                            "node_modules/primeicons/primeicons.css",
                             "node_modules/fullcalendar/dist/fullcalendar.min.css",
                             "node_modules/@fullcalendar/core/main.min.css",
                             "node_modules/@fullcalendar/daygrid/main.min.css",

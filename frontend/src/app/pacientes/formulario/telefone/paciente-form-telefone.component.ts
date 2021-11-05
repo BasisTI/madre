@@ -34,7 +34,7 @@ export class PacienteTelefoneFormComponent implements OnInit {
 
     public telefone = this.fb.group({
         id: [null],
-        ddd: [null, Validators.required],
+        ddd: [null],
         numero: [null],
         tipo: [null],
         observacao: [null],
@@ -57,7 +57,7 @@ export class PacienteTelefoneFormComponent implements OnInit {
             this.telefones.push(this.telefone);
             this.telefone = this.fb.group({
                 id: [null],
-                ddd: [null, Validators.required],
+                ddd: [null],
                 numero: [null],
                 tipo: [null],
                 observacao: [null],

@@ -1,49 +1,50 @@
-<div class="p-grid p-fluid" [formGroup]="telefone">
-    <div class="p-col-10 p-grid">
-        <div
-            nDropdown
-            required
-            label="Tipo de Telefone"
-            [options]="opcoesDeTipoDeTelefone"
-            formControlName="tipo"
-            (onChange)="tipoTelefone($event)"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div
-            nDropdown
-            required
-            label="DDD"
-            [service]="dddService"
-            optionLabel="valor"
-            (onChange)="atualizarDDD($event)"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div
-            nInputMask
-            required
-            [mask]="tipoMascara"
-            tooltip="Informe o telefone."
-            label="Telefone"
-            formControlName="numero"
-            class="p-md-2 p-sm-12"
-        ></div>
-        <div
-            nInputText
-            label="Observação"
-            formControlName="observacao"
-            class="p-md-6 p-sm-12"
-        ></div>
-    </div>
-    <div *ngIf="!telefone.value.indice" class="p-col-2 p-grid">
-        <div class="p-md-12 p-sm-12">
-            <p-button
-                label="Adicionar"
-                [disabled]="validarAdicionar()"
-                (onClick)="adicionarTelefoneALista()"
-            >
-            </p-button>
+<div class="p-grid p-fluid" [formGroup]="telefones">
+    <p-fieldset legend="Adicionar Contato">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-10 p-grid">
+                <div
+                    nDropdown
+                    label="Tipo de Telefone"
+                    [options]="opcoesDeTipoDeTelefone"
+                    formControlName="tipo"
+                    (onChange)="tipoTelefone($event)"
+                    class="p-md-2 p-sm-12"
+                ></div>
+                <div
+                    nDropdown
+                    label="DDD"
+                    [service]="dddService"
+                    optionLabel="valor"
+                    (onChange)="atualizarDDD($event)"
+                    class="p-md-2 p-sm-12"
+                ></div>
+                <div
+                    nInputMask
+                    [mask]="tipoMascara"
+                    tooltip="Informe o telefone."
+                    label="Telefone"
+                    formControlName="numero"
+                    class="p-md-2 p-sm-12"
+                ></div>
+                <div
+                    nInputText
+                    label="Observação"
+                    formControlName="observacao"
+                    class="p-md-6 p-sm-12"
+                ></div>
+            </div>
+            <div *ngIf="!telefone.value.indice" class="p-col-2 p-grid">
+                <div class="p-md-12 p-sm-12">
+                    <p-button
+                        label="Adicionar"
+                        [disabled]="validarAdicionar()"
+                        (onClick)="adicionarTelefoneALista()"
+                    >
+                    </p-button>
+                </div>
+            </div>
         </div>
-    </div>
+    </p-fieldset>
     <div *ngIf="validaTelefone">
         <p-button
             [disabled]="telefone.invalid"
@@ -52,16 +53,18 @@
             (onClick)="atualizarEdicao()"
         ></p-button>
     </div>
-    <basis-datatable
-        type="memory"
-        [disableView]="true"
-        [value]="telefones.value"
-        (buttonClick)="datatableClick($event)"
-        #datatable
-    >
-        <p-column header="Tipo" field="tipo"></p-column>
-        <p-column header="DDD" field="ddd"></p-column>
-        <p-column header="Telefone" field="numero"></p-column>
-        <p-column header="Observação" field="observacao"></p-column>
-    </basis-datatable>
+    <p-fieldset legend="Lista de Contatos">
+        <basis-datatable
+            type="memory"
+            [disableView]="true"
+            [value]="telefones.value"
+            (buttonClick)="datatableClick($event)"
+            #datatable>
+            <p-column header="Tipo" field="tipo"></p-column>
+            <p-column header="DDD" field="ddd"></p-column>
+            <p-column header="Telefone" field="numero"></p-column>
+            <p-column header="Observação" field="observacao"></p-column>
+        </basis-datatable>
+
+    </p-fieldset>
 </div>

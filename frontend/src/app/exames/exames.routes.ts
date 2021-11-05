@@ -13,6 +13,7 @@ import { GuiaMaterialComponent } from './components/guia-material/guia-material.
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
 import { FormularioSalasComponent } from './components/formulario-salas/formulario-salas.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
+import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-recomendacoes-de-exames/grupos-de-recomendacoes-de-exames.component';
 
 export const routes: Routes = [
     {
@@ -71,4 +72,8 @@ export const routes: Routes = [
         path: 'formulario-salas',
         component: FormularioSalasComponent
     },
+    {
+        path: 'grupo-de-recomendacoes-de-exames',
+        component: GruposDeRecomendacoesDeExamesComponent
+    }
 ];
