@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity Cadaver.
+    -->
+    <changeSet id="20210705120718-2" author="jhipster">
+        <dropColumn tableName="cadaver">
+            <column name="codigo" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="procedencia" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="retirada" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="codigo_plano" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="convenio_plano" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </dropColumn>
+    </changeSet>
+
+    <changeSet id="20210705120718-3" author="rodolfo">
+        <addColumn tableName="cadaver">
+            <column name="procedencia_id" type="integer" defaultValueNumeric="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="retirada_id" type="integer" defaultValueNumeric="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="codigo_plano" type="integer" defaultValueNumeric="1">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

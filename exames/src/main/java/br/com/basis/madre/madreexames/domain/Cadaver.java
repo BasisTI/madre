@@ -1,24 +1,18 @@
 package br.com.basis.madre.madreexames.domain;
 
-import br.com.basis.madre.madreexames.domain.enumeration.ConvenioPlano;
-import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
-import br.com.basis.madre.madreexames.domain.enumeration.Raca;
-import br.com.basis.madre.madreexames.service.dto.DominioCodigo;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import br.com.basis.madre.madreexames.domain.enumeration.Raca;
+
+import br.com.basis.madre.madreexames.domain.enumeration.GrupoSanguineo;
 
 /**
  * A Cadaver.
@@ -26,8 +20,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "cadaver")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "madre-exames-cadaver")
-public class Cadaver extends DomainCodigo implements Serializable {
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "cadaver")
+public class Cadaver implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,6 +29,10 @@ public class Cadaver extends DomainCodigo implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCadaver")
     @SequenceGenerator(name = "seqCadaver")
     private Long id;
+
+    @NotNull
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
     @NotNull
     @Column(name = "data_nascimento", nullable = false)
@@ -65,20 +63,16 @@ public class Cadaver extends DomainCodigo implements Serializable {
     private String lidoPor;
 
     @NotNull
-    @Column(name = "procedencia", nullable = false)
-    private String procedencia;
+    @Column(name = "procedencia_id", nullable = false)
+    private Integer procedenciaId;
 
     @NotNull
-    @Column(name = "retirada", nullable = false)
-    private String retirada;
+    @Column(name = "retirada_id", nullable = false)
+    private Integer retiradaId;
 
     @NotNull
     @Column(name = "codigo_plano", nullable = false)
-    private String codigoPlano;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "convenio_plano")
-    private ConvenioPlano convenioPlano;
+    private Integer codigoPlano;
 
     @NotNull
     @Column(name = "observacao", nullable = false)
@@ -93,14 +87,17 @@ public class Cadaver extends DomainCodigo implements Serializable {
         this.id = id;
     }
 
-    public Cadaver codigo(Integer codigo) {
-        this.setCodigo(codigo);
-        return this;
+    public String getNome() {
+        return nome;
     }
 
     public Cadaver nome(String nome) {
-        this.setNome(nome);
+        this.nome = nome;
         return this;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public LocalDate getDataNascimento() {
@@ -194,56 +191,43 @@ public class Cadaver extends DomainCodigo implements Serializable {
         this.lidoPor = lidoPor;
     }
 
-    public String getProcedencia() {
-        return procedencia;
+    public Integer getProcedenciaId() {
+        return procedenciaId;
     }
 
-    public Cadaver procedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public Cadaver procedenciaId(Integer procedenciaId) {
+        this.procedenciaId = procedenciaId;
         return this;
     }
 
-    public void setProcedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public void setProcedenciaId(Integer procedenciaId) {
+        this.procedenciaId = procedenciaId;
     }
 
-    public String getRetirada() {
-        return retirada;
+    public Integer getRetiradaId() {
+        return retiradaId;
     }
 
-    public Cadaver retirada(String retirada) {
-        this.retirada = retirada;
+    public Cadaver retiradaId(Integer retiradaId) {
+        this.retiradaId = retiradaId;
         return this;
     }
 
-    public void setRetirada(String retirada) {
-        this.retirada = retirada;
+    public void setRetiradaId(Integer retiradaId) {
+        this.retiradaId = retiradaId;
     }
 
-    public String getCodigoPlano() {
+    public Integer getCodigoPlano() {
         return codigoPlano;
     }
 
-    public Cadaver codigoPlano(String codigoPlano) {
+    public Cadaver codigoPlano(Integer codigoPlano) {
         this.codigoPlano = codigoPlano;
         return this;
     }
 
-    public void setCodigoPlano(String codigoPlano) {
+    public void setCodigoPlano(Integer codigoPlano) {
         this.codigoPlano = codigoPlano;
-    }
-
-    public ConvenioPlano getConvenioPlano() {
-        return convenioPlano;
-    }
-
-    public Cadaver convenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
-        return this;
-    }
-
-    public void setConvenioPlano(ConvenioPlano convenioPlano) {
-        this.convenioPlano = convenioPlano;
     }
 
     public String getObservacao() {
@@ -281,7 +265,6 @@ public class Cadaver extends DomainCodigo implements Serializable {
     public String toString() {
         return "Cadaver{" +
             "id=" + getId() +
-            ", codigo=" + getCodigo() +
             ", nome='" + getNome() + "'" +
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", raca='" + getRaca() + "'" +
@@ -290,10 +273,9 @@ public class Cadaver extends DomainCodigo implements Serializable {
             ", causaObito='" + getCausaObito() + "'" +
             ", realizadoPor='" + getRealizadoPor() + "'" +
             ", lidoPor='" + getLidoPor() + "'" +
-            ", procedencia='" + getProcedencia() + "'" +
-            ", retirada='" + getRetirada() + "'" +
-            ", codigoPlano='" + getCodigoPlano() + "'" +
-            ", convenioPlano='" + getConvenioPlano() + "'" +
+            ", procedenciaId=" + getProcedenciaId() +
+            ", retiradaId=" + getRetiradaId() +
+            ", codigoPlano=" + getCodigoPlano() +
             ", observacao='" + getObservacao() + "'" +
             "}";
     }

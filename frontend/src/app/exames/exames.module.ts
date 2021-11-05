@@ -21,6 +21,7 @@ import { DurationPipe } from './components/exames/pipes/duration.pipe';
 import { SinonimosExamesComponent } from './components/sinonimos-exames/sinonimos-exames.component';
 import { ExamesFormComponent } from './components/exames-form/exames-form.component';
 import { MaterialExamesComponent } from './components/material-exames/material-exames.component';
+import { FormularioCadaverComponent } from './components/formulario-cadaver/formulario-cadaver.component';
 import { GuiaMaterialComponent } from './components/guia-material/guia-material.component';
 import { FormularioRecipientesComponent } from './components/formulario-recipientes/formulario-recipientes.component';
 import { AntiCoagulanteComponent } from './components/formulario-anticoagulante/anticoagulante.component';
@@ -50,6 +51,7 @@ import { GruposDeRecomendacoesDeExamesComponent } from './components/grupos-de-r
         MaterialExamesComponent,
         FormularioRecipientesComponent,
         AntiCoagulanteComponent,
+        FormularioCadaverComponent,
         GuiaMaterialComponent,
         FormularioSalasComponent,
         FormularioTipoDeMarcacaoComponent,
