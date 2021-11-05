@@ -51,7 +51,7 @@
                     </ul>
                 </li>
                 <li class="layout-topbar-item">
-                    <a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
+                    <a (click)="logout()" class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle"
                         [ngClass]="{'p-mr-2': !app.config.isRTL, 'p-ml-2': app.config.isRTL}">
                         <img src="../assets/layout/images/sair.png">
                     </a>

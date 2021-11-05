@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppInlineProfileComponent } from './app.profile.component';
 import { AppRightpanelComponent } from './app.rightpanel.component';
-import { AppRoutes } from './app.routes';
 import { AppTopbarComponent } from './app.topbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,12 +37,17 @@ import { environment } from '../environments/environment';
 import { ConsultaModule } from './consulta/consulta.module';
 import { PacienteModule } from './pacientes/formulario/paciente.module';
 import { ExamesModule } from './exames/exames.module';
+import { LoginModule } from './login/login.module';
+import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app.routes';
+import { AuthGuardService } from './util/auth.guard.service';
+import { AuthService } from './util/auth.service';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
-        AppRoutes,
+        AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
         AccessbilityModule,
@@ -65,7 +69,8 @@ import { ExamesModule } from './exames/exames.module';
         ConsultaModule,
         PacienteModule,
         ConfirmDialogModule,
-        ExamesModule
+        ExamesModule,
+        LoginModule
     ],
     declarations: [
         AppComponent,
@@ -74,7 +79,7 @@ import { ExamesModule } from './exames/exames.module';
         AppRightpanelComponent,
         AppInlineProfileComponent,
         DiarioErrosComponent,
-        PreCadastroComponent,
+        PreCadastroComponent
     ],
     providers: [
         {
@@ -82,6 +87,8 @@ import { ExamesModule } from './exames/exames.module';
             useClass: HashLocationStrategy,
         },
         PrescricaoMedicaService,
+        AuthGuardService,
+        AuthService
     ], 
     bootstrap: [AppComponent],
 })
