@@ -193,7 +193,7 @@
                         formGroup.controls['nacionalidadeId'].touched">
                 </p-message>
             </div>
-            <div class="p-md-1 p-sm-12">
+            <div class="p-md-2 p-sm-12">
                 <span class="p-float-label">
                     <p-dropdown
                         (onChange)="aoSelecionarUF()"
@@ -206,19 +206,19 @@
                     ></p-dropdown>
                 </span>
             </div>
-            <div class="p-md-3 p-sm-12">
-                <span class="md-inputfield p-float-label">
-                    <p-autoComplete
-                        (completeMethod)="searchUnidade($event)"
-                        [disabled]="!formGroup.value.ufId"
-                        field="nome"
-                        [suggestions]="naturalidades"
-                        [dropdown]="true"
-                        formControlName="naturalidadeId"
-                    >
-                    </p-autoComplete>
-                    <label>Naturalidade</label>
-                </span>
+            <div class="md-inputfield p-float-label p-md-2 p-sm-12">
+                <p-autoComplete
+                    (completeMethod)="searchUnidade($event)"
+                    [disabled]="!formGroup.value.ufId"
+                    field="nome"
+                    [onHide]="onHideAutocomplete()"
+                    [suggestions]="municipios"
+                    [dropdown]="true"
+                    formControlName="naturalidadeId"
+                    class=""
+                >
+                </p-autoComplete>
+                <label>Naturalidade</label>
             </div>
         </div>
         <div class="p-fluid p-formgrid p-grid">

@@ -4,16 +4,21 @@ import br.com.basis.madre.domain.Municipio;
 import br.com.basis.madre.domain.UF;
 import br.com.basis.madre.repository.MunicipioRepository;
 import br.com.basis.madre.repository.search.MunicipioSearchRepository;
+import br.com.basis.madre.service.dto.FiltroPesquisaMunicipio;
 import br.com.basis.madre.service.dto.MunicipioDTO;
 import br.com.basis.madre.service.mapper.MunicipioMapper;
 import br.com.basis.madre.service.projection.MunicipioUF;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -26,6 +31,8 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 public class MunicipioService {
 
     private final Logger log = LoggerFactory.getLogger(MunicipioService.class);
+
+    private static final String UFID = "uf.id";
 
     private final MunicipioRepository municipioRepository;
 
@@ -105,14 +112,46 @@ public class MunicipioService {
             .map(municipioMapper::toDto);
     }
 
-    /**
-     *  Write documentation
-     */
+    @Transactional(readOnly = true)
+    public Page<MunicipioDTO> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
+        Page<MunicipioDTO> municipioDTO = filterWithWords(filtro, pageable);
+        return municipioDTO.getTotalElements() > 0 ? municipioDTO : filterWithRegexp(filtro, pageable);
+    }
 
-    public Page<MunicipioUF> findAllProjectedMunicipioUFByNaturalidade(Long idUf, String nome, Pageable pageable) {
-        UF uf = new UF();
-        uf.setId(idUf);
-        return municipioRepository.findByNomeContainsIgnoreCaseAndUf(nome,uf,pageable);
+    private Page<MunicipioDTO> filterWithWords(FiltroPesquisaMunicipio filtro, Pageable pageable){
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, UFID, filtro.getUfId());
+        filter(queryBuilder, "nome", filtro.getNome());
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+
+        return  municipioSearchRepository.search(query).map(municipioMapper::toDto);
+    }
+
+    private Page<MunicipioDTO> filterWithRegexp(FiltroPesquisaMunicipio filtro, Pageable pageable){
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        filter(queryBuilder, UFID, filtro.getUfId());
+        filterMatchRegexpQuery(queryBuilder, "nome", filtro.getNome().toLowerCase() + ".*");
+        SearchQuery query = new NativeSearchQueryBuilder()
+            .withQuery(queryBuilder)
+            .withPageable(pageable)
+            .build();
+
+        return  municipioSearchRepository.search(query).map(municipioMapper::toDto);
+    }
+
+    private void filter(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.matchQuery(name,valueName));
+        }
+    }
+
+    private void filterMatchRegexpQuery(BoolQueryBuilder queryBuilder, String name, String valueName) {
+        if (!Strings.isNullOrEmpty(valueName)) {
+            queryBuilder.must(QueryBuilders.regexpQuery(name,valueName));
+        }
     }
 
 }

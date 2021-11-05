@@ -30,7 +30,6 @@ import { CalendarMadreComponent } from '../../shared/components/calendar-madre.c
 import { RacaService } from './dados-pessoais/raca.service';
 import { EstadoCivilService } from './dados-pessoais/estado-civil.service';
 import { NacionalidadeService } from './dados-pessoais/nacionalidade.service';
-import { NaturalidadeService } from './dados-pessoais/naturalidade.service';
 import { EtniaService } from './dados-pessoais/etnia.service';
 import { OcupacaoService } from './dados-pessoais/ocupacao.service';
 import { ReligiaoService } from './dados-pessoais/religiao.service';
@@ -46,7 +45,7 @@ import { TelefoneComponent } from './telefone/telefone.component';
 
 
 @NgModule({
-  imports: [ 
+  imports: [
     PRIMENG_IMPORTS,
     CrudModule,
     CommonModule,
@@ -58,7 +57,7 @@ import { TelefoneComponent } from './telefone/telefone.component';
     FormNotificationModule,
     TabViewModule
   ],
-  declarations: [ 
+  declarations: [
     PacienteComponent,
     PacienteFormComponent,
     PacienteListComponent,
@@ -67,29 +66,31 @@ import { TelefoneComponent } from './telefone/telefone.component';
     PacienteDocumentosFormComponent,
     PacienteCertidaoFormComponent,
     PacienteCartaoSusFormComponent,
+    PacienteTelefoneFormComponent,
+    PacienteEnderecoFormComponent,
+    CalendarMadreComponent,
+  ],
+  providers: [
     PacienteEnderecoFormComponent,
     CalendarMadreComponent,
     TelefoneComponent,
-  ],
-  providers: [ 
     PacienteService,
     { provide: CRUD_SERVICE, useExisting: PacienteService },
     CrudResolveGuard,
 
-        RacaService,
-        EtniaService,
-        EstadoCivilService,
-        NacionalidadeService,
-        NaturalidadeService,
-        OcupacaoService,
-        ReligiaoService,
-        GrauDeParentescoService,
-        OrgaoEmissorService,
-        JustificativaService,
-        MotivoDoCadastroService,
-        UfService,
-        MunicipioService,
-        CepService,
-    ],
+    RacaService,
+    EtniaService,
+    EstadoCivilService,
+    NacionalidadeService,
+    OcupacaoService,
+    ReligiaoService,
+    GrauDeParentescoService,
+    OrgaoEmissorService,
+    JustificativaService,
+    MotivoDoCadastroService,
+    UfService,
+    MunicipioService,
+    CepService,
+  ]
 })
 export class PacienteModule {}

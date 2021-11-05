@@ -203,3 +203,37 @@ p-fieldset, app-procedimento, app-cid , p-accordion, form {
     width: 100%;
 }
 
+.p-fieldset .p-fieldset-legend {
+    background-color: #36aaee;
+    color: #FFF;
+}
+
+fieldset{
+    margin-top:10px;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: #2196F3;
+    height: 25px;
+    border-radius: 1rem;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    background: #FFF;
+}
+
+.p-inputswitch .p-inputswitch-slider{
+    height: 25px;
+    border-radius: 1rem;
+}
+
+.center-text {
+    text-align: center;
+    width: 100%;
+}
+
+
+div[ng-reflect-required] span label:after{
+    content: " *";
+    color: red;
+}

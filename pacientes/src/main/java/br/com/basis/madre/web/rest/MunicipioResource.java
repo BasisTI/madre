@@ -1,8 +1,11 @@
 package br.com.basis.madre.web.rest;
 
 import br.com.basis.madre.service.MunicipioService;
+import br.com.basis.madre.service.dto.FiltroPesquisaMunicipio;
 import br.com.basis.madre.service.dto.MunicipioDTO;
+import br.com.basis.madre.service.dto.PaginationDTO;
 import br.com.basis.madre.service.projection.MunicipioUF;
+import br.com.basis.madre.web.rest.util.ResponsePaginationUtil;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -40,6 +43,8 @@ public class MunicipioResource {
 
     private final Logger log = LoggerFactory.getLogger(MunicipioResource.class);
 
+    ResponsePaginationUtil responsePaginationUtil;
+
     private static final String ENTITY_NAME = "pacientesMunicipio";
 
     @Value("${jhipster.clientApp.name}")
@@ -47,18 +52,9 @@ public class MunicipioResource {
 
     private final MunicipioService municipioService;
 
-    public MunicipioResource(MunicipioService municipioService) {
+    public MunicipioResource(MunicipioService municipioService, ResponsePaginationUtil responsePaginationUtil) {
         this.municipioService = municipioService;
-    }
-
-    /**
-     * Write documentation
-     */
-    @GetMapping("/municipios/naturalidade")
-    public ResponseEntity<List<MunicipioUF>> findAllProjectedMunicipioUFByNaturalidade(@RequestParam(required = false)Long idUf,String nome, Pageable pageable) {
-        Page<MunicipioUF> page = municipioService
-            .findAllProjectedMunicipioUFByNaturalidade(idUf, nome ,pageable);
-        return ResponseEntity.ok(page.getContent());
+        this.responsePaginationUtil = responsePaginationUtil;
     }
 
     /**
@@ -149,6 +145,23 @@ public class MunicipioResource {
         municipioService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil
             .createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * {@code SEARCH  /pesquisa/municipios} : search for the municipio corresponding to
+     * the query.
+     *
+     * @param filtro    the query of the municipio search.
+     * @param pageable the pagination information.
+     * @return the result of the search.
+     */
+    @GetMapping("/pesquisa/municipios")
+    public ResponseEntity<PaginationDTO> findMunicipioComFiltro(FiltroPesquisaMunicipio filtro, Pageable pageable) {
+        Page<MunicipioDTO> page = municipioService
+            .findMunicipioComFiltro(filtro ,pageable);
+        PaginationDTO paginationDTO = responsePaginationUtil.generatePagination(page, "/api/pesquisa/municipios", page.getContent(), filtro);
+        return ResponseEntity.ok(paginationDTO);
+
     }
 
     /**
