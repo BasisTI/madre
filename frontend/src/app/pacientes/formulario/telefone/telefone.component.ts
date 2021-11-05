@@ -69,6 +69,8 @@ export class TelefoneComponent implements OnInit {
     this.tipoDeTelefoneSelecionado = event.value;
     if (this.tipoDeTelefoneSelecionado === 'CELULAR') {
       this.mascara = '9 9999-9999';
+    }else{
+        this.mascara = '9999-9999'
     }
   }
 
