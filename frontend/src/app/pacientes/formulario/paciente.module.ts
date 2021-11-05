@@ -66,9 +66,9 @@ import { TelefoneComponent } from './telefone/telefone.component';
     PacienteDocumentosFormComponent,
     PacienteCertidaoFormComponent,
     PacienteCartaoSusFormComponent,
-    PacienteTelefoneFormComponent,
     PacienteEnderecoFormComponent,
     CalendarMadreComponent,
+    TelefoneComponent,
   ],
   providers: [
     PacienteEnderecoFormComponent,
