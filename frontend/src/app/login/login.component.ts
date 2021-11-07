@@ -41,10 +41,9 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.loginService.login(this.login, this.codigo).subscribe(response => {
-      this.authService.login();
-      this.router.navigate(['/']);
-    })
+    this.loginService.login(this.login, this.codigo);
+    this.authService.login();
+    this.router.navigate(['/']);
   }
 
 }

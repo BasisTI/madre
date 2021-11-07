@@ -12,10 +12,10 @@ export class LoginService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    login(login: string, codigo: string): Observable<any>  {
+    login(login: string, codigo: string): void  {
         const credential = { login: login, codigo: codigo };
         localStorage.setItem('Logado', login);
-        return this.http.post(this.authUrl, credential);
+        //return this.http.post(this.authUrl, credential);
     }
 
     logout(): Observable<any>  {
