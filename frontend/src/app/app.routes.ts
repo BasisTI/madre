@@ -1,10 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
-import { LoginSuccessComponent } from '@nuvem/angular-base';
-import { ModuleWithProviders } from '@angular/core';
+import { AuthGuard, LoginSuccessComponent } from '@nuvem/angular-base';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './util/auth.guard.service';
 
 export const routes: Routes = [
+    { 
+        path: 'login', 
+        component: LoginComponent, 
+        data: { breadcrumb: 'Login'}
+    },
     {
         path: 'prescricao-medica',
         loadChildren: 'src/app/prescricao-medica/prescricao-medica.module#PrescricaoMedicaModule',
@@ -14,17 +21,22 @@ export const routes: Routes = [
         component: DiarioErrosComponent,
         data: { breadcrumb: 'Diário de Erros' },
     },
-    { path: 'login-success', component: LoginSuccessComponent },
+    { 
+        path: 'login-success', 
+        component: LoginSuccessComponent 
+    },
     {
         path: 'pacientes',
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
-    },
-    {
-        path: 'pre-cadastro',
-        loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+        canActivate: [AuthGuardService]
     },
     {
         path: 'triagem',
+        loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'pre-cadastro',
         loadChildren: 'src/app/pacientes/pacientes.module#PacientesModule',
     },
     {
@@ -34,10 +46,6 @@ export const routes: Routes = [
     {
         path: 'internacao',
         loadChildren: 'src/app/internacao/internacao.module#InternacaoModule',
-    },
-    {
-        path: 'exames',
-        loadChildren: 'src/app/exames/exames.module#ExamesModule',
     },
     {
         path: 'farmacia',
@@ -58,4 +66,10 @@ export const routes: Routes = [
     },
 ];
 
-export const AppRoutes: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes);
+@NgModule({
+    imports: [
+      RouterModule.forRoot(routes)
+    ],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }
