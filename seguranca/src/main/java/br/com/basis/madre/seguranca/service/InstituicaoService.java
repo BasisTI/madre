@@ -1,23 +1,22 @@
 package br.com.basis.madre.seguranca.service;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.basis.madre.seguranca.domain.Instituicao;
 import br.com.basis.madre.seguranca.repository.InstituicaoRepository;
 import br.com.basis.madre.seguranca.repository.search.InstituicaoSearchRepository;
 import br.com.basis.madre.seguranca.service.dto.InstituicaoDTO;
 import br.com.basis.madre.seguranca.service.mapper.InstituicaoMapper;
 import br.com.basis.madre.seguranca.service.projection.InstituicaoResumo;
-import br.com.basis.madre.seguranca.service.projection.VinculoResumo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing {@link Instituicao}.

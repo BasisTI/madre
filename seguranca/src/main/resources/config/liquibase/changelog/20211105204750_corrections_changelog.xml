@@ -1,0 +1,84 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="basis (generated)" id="1636145276401-19">
+        <addColumn tableName="usuario">
+            <column name="ativo" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-20">
+        <addColumn tableName="usuario">
+            <column name="email" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-21">
+        <addColumn tableName="usuario">
+            <column name="senha" type="varchar(98)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-22">
+        <addUniqueConstraint columnNames="email" constraintName="UC_USUARIOEMAIL_COL" tableName="usuario"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-23">
+        <addForeignKeyConstraint baseColumnNames="ramal_id" baseTableName="servidor" constraintName="FK618iw8xwahbr4f65mluebh415" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ramal" validate="true"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-24">
+        <dropUniqueConstraint constraintName="ux_servidor_ramal_id" tableName="servidor"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-25">
+        <dropSequence sequenceName="seq_uf"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-1">
+        <alterSequence sequenceName="seq_cargo"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-2">
+        <alterSequence sequenceName="seq_conselhos_profissionais"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-3">
+        <alterSequence sequenceName="seq_documentos"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-4">
+        <alterSequence sequenceName="seq_endereco"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-5">
+        <alterSequence sequenceName="seq_graduacao"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-6">
+        <alterSequence sequenceName="seq_grupo_funcional"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-7">
+        <alterSequence sequenceName="seq_instituicao"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-8">
+        <alterSequence sequenceName="seq_municipio"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-9">
+        <alterSequence sequenceName="seq_ocupacao_de_cargo"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-10">
+        <alterSequence sequenceName="seq_orgao_emissor"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-11">
+        <alterSequence sequenceName="seq_pessoa"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-12">
+        <alterSequence sequenceName="seq_ramal"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-13">
+        <alterSequence sequenceName="seq_servidor"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-14">
+        <alterSequence sequenceName="seq_telefone"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-15">
+        <alterSequence sequenceName="seq_tipos_de_qualificacao"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-16">
+        <alterSequence sequenceName="seq_usuario"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-17">
+        <alterSequence sequenceName="seq_vinculo"/>
+    </changeSet>
+    <changeSet author="basis (generated)" id="1636145276401-18">
+        <alterSequence sequenceName="sequf"/>
+    </changeSet>
+</databaseChangeLog>
