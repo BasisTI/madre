@@ -5,6 +5,7 @@ import { OPCOES_DE_TIPO_DE_TELEFONE } from '../../models/dropdowns/opcoes-de-tip
 import { DDD } from '../../models/dropdowns/types/DDD';
 import { Telefone } from '../paciente.model';
 import { DDDService } from './ddd.service';
+import { PacienteValidators } from "./../paciente.validators";
 
 @Component({
   selector: 'app-telefone',
@@ -52,17 +53,20 @@ export class TelefoneComponent implements OnInit {
 
   adicionarTelefoneALista() {
     const form = this.telefone.value;
-    this.telefone.patchValue({ indice: this.formGroup.value.telefones.length });
-    const telefone: Telefone = {
-      id: form.id,
-      ddd: form.ddd.valor,
-      numero: form.numero,
-      tipo: form.tipo,
-      observacao: form.observacao,
-    };
+    const validate = PacienteValidators.validateTelefone(form);
+    if(!validate.required){
+        this.telefone.patchValue({ indice: this.formGroup.value.telefones.length });
+        const telefone: Telefone = {
+          id: form.id,
+          ddd: form.ddd.valor,
+          numero: form.numero,
+          tipo: form.tipo,
+          observacao: form.observacao,
+        };
 
-    this.formGroup.value.telefones.push(telefone);
-    this.telefone.reset();
+        this.formGroup.value.telefones.unshift(telefone);
+        this.telefone.reset();
+    }
   }
 
   tipoDeMascara(event) {

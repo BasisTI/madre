@@ -1,5 +1,6 @@
 import { FormGroup, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
 
+
 export class PacienteValidators {
     static validarNumero(control: AbstractControl): ValidationErrors | null {
         let cns = control.value;
@@ -76,4 +77,29 @@ export class PacienteValidators {
         }
         return null;
     }
+
+    static validateTelefone(phone: any): ValidationErrors | null {
+
+            let validate = {
+                messages: {
+                    ddd: null,
+                    numero: null,
+                    tipo: null,
+                },
+                required: false
+            };
+            if ( !(phone.ddd && phone.ddd.id) ){
+                validate.messages.ddd = 'DDD inválido';
+                validate.required = true;
+            }
+            if ( phone.numero == '' ){
+                validate.messages.numero = 'O número é obrigatório';
+                validate.required = true;
+            }
+            if ( phone.tipo == '' ){
+                validate.messages.tipo = 'O tipo de telefone é obrigatório';
+                validate.required = true;
+            }
+            return validate;
+        }
 }

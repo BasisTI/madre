@@ -7,6 +7,7 @@ import { DDDService } from "../telefone/ddd.service";
 import { DDD } from "../../models/dropdowns/types/DDD";
 import { OPCOES_DE_TIPO_DE_TELEFONE } from "../../models/dropdowns/opcoes-de-tipo-de-telefone";
 import { Telefone } from "../paciente.model";
+import { PacienteValidators } from "./../paciente.validators";
 
 
 @Component({
@@ -66,21 +67,26 @@ export class PacienteResponsavelFormComponent {
         this.tipoDeTelefoneSelecionado = event.value;
         if (this.tipoDeTelefoneSelecionado === 'CELULAR') {
             this.mascara = '9 9999-9999';
+        }else{
+            this.mascara = '9999-9999'
         }
     }
 
     adicionarTelefoneALista() {
         const form = this.telefone.value;
-        this.telefone.patchValue({ indice: this.formGroup.value.responsavel.telefones.length });
-        const telefone: Telefone = {
-            id: form.id,
-            ddd: form.ddd.valor,
-            numero: form.numero,
-            tipo: form.tipo,
-            observacao: form.observacao,
-        };
-        this.formGroup.value.responsavel.telefones.push(telefone);
-        this.telefone.reset();
+        const validate = PacienteValidators.validateTelefone(form);
+        if(!validate.required){
+            this.telefone.patchValue({ indice: this.formGroup.value.responsavel.telefones.length });
+            const telefone: Telefone = {
+                id: form.id,
+                ddd: form.ddd.valor,
+                numero: form.numero,
+                tipo: form.tipo,
+                observacao: form.observacao,
+            };
+            this.formGroup.value.responsavel.telefones.unshift(telefone);
+            this.telefone.reset();
+        }
     }
 
 }
