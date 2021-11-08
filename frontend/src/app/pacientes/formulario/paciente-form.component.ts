@@ -46,7 +46,7 @@ export class PacienteFormComponent  implements OnInit{
             estadoCivilId: [null, Validators.required],
             grauDeInstrucao: [null, Validators.required],
             sexo: [null, Validators.required],
-            telefones: [null],
+            telefones: [[]],
             enderecos: this.fb.array([]),
             genitores: this.fb.group({
                 id: [null],
@@ -69,7 +69,7 @@ export class PacienteFormComponent  implements OnInit{
                 {
                     id: [null],
                     nomeDoResponsavel: [null],
-                    telefones: [null],
+                    telefones: [[]],
                     observacao: [null],
                     grauDeParentescoId: [null],
                 },
