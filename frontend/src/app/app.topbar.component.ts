@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { Authentication, User } from '@nuvem/angular-base';
 import { MegaMenuItem } from 'primeng/api';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { LoginService } from './login/login.service';
 
 @Component({
     selector: 'app-topbar',
@@ -23,11 +24,15 @@ export class AppTopbarComponent {
 
     activeItem: number;
 
-    constructor(public app: AppComponent, private readonly _authentication: Authentication<User>) {
+    constructor(public app: AppComponent, private readonly _authentication: Authentication<User>, private loginService: LoginService) {
     }
 
     get usuario() {
         return this._authentication.getUser();
+    }
+
+    logout() {
+        this.loginService.logout()
     }
 
 }
