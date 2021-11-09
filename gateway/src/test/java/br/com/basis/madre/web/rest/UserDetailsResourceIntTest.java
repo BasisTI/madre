@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import br.com.basis.madre.MadregatewayApp;
+import br.com.basis.madre.controller.UserJwtController;
 import br.gov.nuvem.comum.microsservico.web.rest.errors.ExceptionTranslator;
 
 @SpringBootTest(classes = MadregatewayApp.class)
@@ -37,7 +38,7 @@ public class UserDetailsResourceIntTest {
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        UserDetailsResource resource = new UserDetailsResource();
+        UserJwtController resource = new UserJwtController();
         this.restMockMvc = MockMvcBuilders.standaloneSetup(resource).setCustomArgumentResolvers(pageableArgumentResolver).setControllerAdvice(exceptionTranslator).setMessageConverters(jacksonMessageConverter, new ResourceHttpMessageConverter()).build();
     }
 

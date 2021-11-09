@@ -3,13 +3,12 @@ package br.com.basis.madre.seguranca.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import br.gov.nuvem.comum.microsservico.config.SecurityConfigurationComum;
-
 import br.gov.nuvem.security.jwt.web.TokenProvider;
 import br.gov.nuvem.security.jwt.web.TokenResolver;
 import br.gov.nuvem.security.sso.config.AuthoritiesConstants;
@@ -38,6 +37,6 @@ public class SecurityConfiguration extends SecurityConfigurationComum {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new Argon2PasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 }
