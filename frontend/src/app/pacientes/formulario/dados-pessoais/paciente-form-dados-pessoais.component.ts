@@ -56,6 +56,10 @@ export class PacienteDadosPessoaisFormComponent implements OnInit {
     ) {
     }
 
+    ngAfterViewInit() {
+    console.log(this.formGroup)
+    }
+
     ngOnInit() {
         this.ufService.getListaDeUF().subscribe((res) => (this.ufs = res));
 

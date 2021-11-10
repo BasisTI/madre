@@ -41,7 +41,11 @@ export class PacienteFormComponent  implements OnInit{
             etniaId: [null],
             ufId: [null],
             naturalidadeId: [null],
-            nacionalidadeId: [null, Validators.required],
+            nacionalidadeId: [null],
+            nacionalidade: this.fb.group({
+                 id: [null],
+                 valor: [null]
+            }),
             racaId: [null, Validators.required],
             estadoCivilId: [null, Validators.required],
             grauDeInstrucao: [null, Validators.required],

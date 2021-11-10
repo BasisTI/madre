@@ -83,6 +83,13 @@ export class PacienteCertidao {
     ) {}
 }
 
+export class PacienteNacionalidade {
+    constructor(
+        public id: number,
+        public valor: string
+    ) {}
+}
+
 export class Paciente {
     constructor(
         public id: number,
@@ -97,7 +104,7 @@ export class Paciente {
         public ufId: number | any,
         public naturalidadeId: number | any,
         public etniaId: number | any,
-        public nacionalidadeId: number | any,
+        public nacionalidade: PacienteNacionalidade,
         public racaId: number | any,
         public estadoCivilId: number | any,
         public grauDeInstrucao: string,

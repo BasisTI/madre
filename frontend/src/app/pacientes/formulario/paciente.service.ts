@@ -22,10 +22,14 @@ export class PacienteService implements CrudService<number, Paciente> {
             religiaoId: paciente.religiaoId?.id,
             naturalidadeId: paciente.naturalidadeId?.id,
             etniaId: paciente.etniaId?.id,
-            nacionalidadeId: paciente.nacionalidadeId?.id,
             racaId: paciente.racaId?.id,
             estadoCivilId: paciente.estadoCivilId?.id,
             ufId: paciente.ufId?.id,
+            nacionalidade: {
+                ...paciente.nacionalidade,
+                id: paciente.nacionalidade?.id,
+                valor: paciente.nacionalidade?.valor,
+            },
             cartaoSUS: {
                 ...paciente.cartaoSUS,
                 justificativaId: paciente.cartaoSUS.justificativaId?.id,
