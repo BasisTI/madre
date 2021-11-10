@@ -125,10 +125,10 @@ public class PacienteService {
      * @return the entity.
      */
     @Transactional(readOnly = true)
-    public Optional<PacienteInclusaoDTO> findOne(Long id) {
+    public Optional<PacienteDTO> findOne(Long id) {
         log.debug("Request to get Paciente : {}", id);
         return pacienteRepository.findById(id)
-            .map(pacienteInclusaoMapper::toDto);
+            .map(pacienteMapper::toDto);
     }
 
     @Transactional(readOnly = true)

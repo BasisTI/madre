@@ -138,9 +138,9 @@ public class PacienteResource {
      */
     @GetMapping("/pacientes/{id}")
     @Timed
-    public ResponseEntity<PacienteInclusaoDTO> getPaciente(@PathVariable Long id) {
+    public ResponseEntity<PacienteDTO> getPaciente(@PathVariable Long id) {
         log.debug("REST request to get Paciente : {}", id);
-        Optional<PacienteInclusaoDTO> pacienteDTO = pacienteService.findOne(id);
+        Optional<PacienteDTO> pacienteDTO = pacienteService.findOne(id);
         return ResponseUtil.wrapOrNotFound(pacienteDTO);
     }
 
