@@ -6,17 +6,23 @@
 
     <changeSet id="20211018130304-1" author="jhipster">
         <addColumn tableName="internacao">
-            <column name="ativo" type="boolean" defaultValueBoolean="false">
-                <constraints nullable="true" />
+            <column name="ativo" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="true"/>
             </column>
             <column name="data_da_alta" type="date" defaultValueDate="2021-01-01">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="previsao_de_alta" type="date" defaultValueDate="2021-02-02">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
-            <column name="tipo_de_alta" type="varchar(255)" >
-                <constraints nullable="true" />
+            <column name="tipo_de_alta" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="nome_paciente" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prontuario_paciente" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
         </addColumn>
     </changeSet>

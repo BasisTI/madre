@@ -1,13 +1,8 @@
 package br.com.basis.madre.domain;
 
-import br.com.basis.madre.domain.enumeration.Prioridade;
-import br.com.basis.madre.domain.enumeration.TipoDeAlta;
-import lombok.Data;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,13 +11,22 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import br.com.basis.madre.domain.enumeration.Prioridade;
+import br.com.basis.madre.domain.enumeration.TipoDeAlta;
+import lombok.Data;
 
 @Data
 @Entity
@@ -42,6 +46,14 @@ public class Internacao implements Serializable {
     @NotNull
     @Column(name = "id_paciente", nullable = false)
     private Long pacienteId;
+
+    @NotNull
+    @Column(name = "nome_paciente", nullable = false)
+    private String pacienteNome;
+
+    @NotNull
+    @Column(name = "prontuario_paciente", nullable = false)
+    private String pacienteProntuario;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -220,4 +232,13 @@ public class Internacao implements Serializable {
         this.tipoDeAlta = tipoDeAlta;
         return this;
     }
+    public Internacao pacienteNome(String pacienteNome){
+        this.pacienteNome = pacienteNome;
+        return this;
+    }
+    public Internacao pacienteProntuario(String pacienteProntuario) {
+        this.pacienteProntuario = pacienteProntuario;
+        return this;
+    }
+
 }

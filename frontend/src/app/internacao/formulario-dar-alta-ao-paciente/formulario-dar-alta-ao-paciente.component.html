@@ -2,24 +2,58 @@
     <h1>Dados da Alta do Paciente</h1>
 
     <div class="p-grid">
-        <div class="p-md-2 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
-            Prontuário
+        <div
+            class="p-md-2 p-fluid"
+            pTooltip="Informe o prontuario do paciente"
+            [formGroup]="formularioAltaPaciente"
+        >
+            Prontuário:
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" />
+                <input
+                    type="text"
+                    pInputText
+                    class="p-inputtext"
+                    formControlName="pacienteProntuario"
+                />
             </span>
         </div>
 
-        <div class="p-md-4 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
-            Nome:
+        <div
+            class="p-md-4 p-fluid"
+            pTooltip="Informe o nome do paciente"
+            [formGroup]="formularioAltaPaciente"
+        >
+            Nome do Paciente:
             <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" />
+                <input type="text" pInputText class="p-inputtext" formControlName="pacienteNome" />
+            </span>
+        </div>
+
+        <div class="p-md-1 p-fluid" [formGroup]="formularioAltaPaciente">
+            Paciente ID:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input type="text" pInputText class="p-inputtext" formControlName="pacienteId" />
+            </span>
+        </div>
+
+        <div class="p-md-1 p-fluid" [formGroup]="formularioAltaPaciente">
+            Internação ID:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input type="text" pInputText class="p-inputtext" formControlName="id" />
+            </span>
+        </div>
+
+        <div class="p-md-1 p-fluid" [formGroup]="formularioAltaPaciente">
+            Leito ID:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input type="text" pInputText class="p-inputtext" formControlName="leitoId" />
             </span>
         </div>
     </div>
 
     <div class="p-grid">
-        <div class="p-md-2 p-fluid" pTooltip="Informe a descrição do tipo de alta administrativa">
-            Tipo de Alta
+        <div class="p-md-2 p-fluid" [formGroup]="formularioAltaPaciente">
+            Tipo de Alta:
             <span class="p-float-label">
                 <p-dropdown
                     [options]="tiposDeAltas"
@@ -30,98 +64,114 @@
             </span>
         </div>
 
-        <div class="p-md-2 p-sm-12" style="margin-top: 15px">
+        <div class="p-md-2 p-fluid" [formGroup]="formularioAltaPaciente">
+            Prioridade:
+            <span class="p-float-label">
+                <p-dropdown
+                    [options]="prioridades"
+                    placeholder="Selecione"
+                    formControlName="prioridade"
+                >
+                </p-dropdown>
+            </span>
+        </div>
+
+        <div class="p-md-2 p-sm-12" style="margin-top: 15px" [formGroup]="formularioAltaPaciente">
             <span class="p-float-label">
                 <p-calendar
-                    [locale]="null"
-                    [yearRange]="null"
+                    [locale]="pCalendarConfig.localidade"
+                    [yearRange]="pCalendarConfig.anosDisponiveis"
                     dateFormat="dd/mm/yy"
                     showTime="true"
                     hourFormat="24"
                     showButtonBar="true"
                     [yearNavigator]="true"
                     [monthNavigator]="true"
-                    formControlName="null"
+                    formControlName="dataInternacao"
                 ></p-calendar>
                 <label>Data da Internação</label>
             </span>
         </div>
 
-        <!-- <div
-            class="p-md-1 p-fluid"
-            pTooltip="Informe a descrição do atestado de óbito"
-            >
+        <div style="margin-top: 20px" [formGroup]="formularioAltaPaciente">
+            Ativo:
+            <div>
+                <p-radioButton
+                    name="ativo"
+                    value="true"
+                    label="Sim"
+                    class="separator-radio"
+                    formControlName="ativo"
+                >
+                </p-radioButton>
 
-            Atestado óbito
-            <span class="md-inputfield p-float-label">
-                <input type="text" pInputText class="p-inputtext"/>
-            </span>
-
-        </div> -->
+                <p-radioButton name="ativo" value="false" label="Não" formControlName="ativo">
+                </p-radioButton>
+            </div>
+        </div>
     </div>
 
     <div class="p-grid">
-        <div class="p-md-2 p-sm-12" style="margin-top: 15px">
+        <div class="p-md-2 p-sm-12" style="margin-top: 15px" [formGroup]="formularioAltaPaciente">
             <span class="p-float-label">
                 <p-calendar
-                    [locale]="null"
-                    [yearRange]="null"
+                    [locale]="pCalendarConfig.localidade"
+                    [yearRange]="pCalendarConfig.anosDisponiveis"
                     dateFormat="dd/mm/yy"
                     showTime="true"
                     hourFormat="24"
                     showButtonBar="true"
                     [yearNavigator]="true"
                     [monthNavigator]="true"
-                    formControlName="null"
+                    formControlName="dataAlta"
                 ></p-calendar>
                 <label>Data e Hora Alta</label>
             </span>
         </div>
 
-        <!--  <div
-            class="p-md-2 p-fluid" style="margin-right: 50px;"
-            pTooltip="Informe a descrição do tipo"
-            >
-
-            Tipo
-            <span class="md-inputfield p-float-label">
-                <input type="text" pInputText class="p-inputtext"/>
-            </span>
-
-        </div> -->
-
-        <div class="p-md-2 p-sm-12" style="margin-top: 15px">
+        <div class="p-md-2 p-sm-12" style="margin-top: 15px" [formGroup]="formularioAltaPaciente">
             <span class="p-float-label">
                 <p-calendar
-                    [locale]="null"
-                    [yearRange]="null"
+                    [locale]="pCalendarConfig.localidade"
+                    [yearRange]="pCalendarConfig.anosDisponiveis"
                     dateFormat="dd/mm/yy"
                     showTime="true"
                     hourFormat="24"
                     showButtonBar="true"
                     [yearNavigator]="true"
                     [monthNavigator]="true"
-                    formControlName="null"
+                    formControlName="previsaoDeAlta"
                 ></p-calendar>
                 <label>Previsão de ALta</label>
             </span>
         </div>
+
+        <div class="p-md-3 p-fluid" [formGroup]="formularioAltaPaciente">
+            Justificativa:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input type="text" pInputText class="p-inputtext" formControlName="justificativa" />
+            </span>
+        </div>
+
+        <div class="p-md-3 p-fluid" [formGroup]="formularioAltaPaciente">
+            Especialidade:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input type="text" pInputText class="p-inputtext" formControlName="especialidade" />
+            </span>
+        </div>
+
+        <div class="p-md-3 p-fluid" [formGroup]="formularioAltaPaciente">
+            Convenio:
+            <span class="md-inputfield p-float-label" style="margin-top: 0px">
+                <input
+                    type="text"
+                    pInputText
+                    class="p-inputtext"
+                    formControlName="convenioDeSaude"
+                />
+            </span>
+        </div>
     </div>
-
-    <!-- <div class="p-grid">
-
-        <div
-        class="p-md-2 p-fluid"
-        pTooltip="Informe a descrição de transferencia"
-        >
-
-        Transfêrencias
-        <span class="md-inputfield p-float-label">
-            <input type="text" pInputText class="p-inputtext"/>
-        </span>
-
-          </div>
-    </div> -->
 
     <div class="p-col-12 p-grid" style="margin-bottom: 10px">
         <div class="p-md-2 p-sm-12">
@@ -130,12 +180,22 @@
                 type="button"
                 label="Registrar Alta"
                 icon="pi pi-save"
-                (click)="cadastraDarAlta()"
+                (click)="formularioAlta()"
+                [disabled]="!validaFormularioAlta()"
             ></button>
         </div>
 
         <div class="p-md-2 p-sm-12">
             <button pButton type="button" label="Limpar" icon="pi pi-" (click)="(null)"></button>
+        </div>
+
+        <div class="p-md-2 p-sm-12">
+            <button
+                pButton
+                type="button"
+                routerLink="/internacao/listar-dar-alta-ao-paciente"
+                label="Voltar"
+            ></button>
         </div>
     </div>
 </div>

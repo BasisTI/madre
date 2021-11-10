@@ -1,67 +1,81 @@
 <div class="card">
-    <h1>Lista de PAcientes Internados</h1>
+    <h1>Lista de Pacientes Internados</h1>
 
-    <div class="p-grid">
-        <div class="p-md-2 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
-            Prontuário
-            <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" />
-            </span>
-        </div>
+    <basis-datatable
+        [url]="seachUrl"
+        #datatable
+        [disableView]="true"
+        [disableEdit]="true"
+        [disableDelete]="true"
+        type="memory"
+        [value]="listaInternacoes"
+        (buttonClick)="modalClick($event)"
+        sortField="brand"
+    >
+        <p-column header="ID" field="id"></p-column>
+        <p-column header="Data Internação" field="dataDaInternacao">
+            `
+            <ng-template let-col="col" let-rowData="rowData" pTemplate="body">
+                <span>{{
+                    rowData[col.field] | date: 'dd/M/yyyy , HH:mm':'GMT'
+                }}</span> </ng-template
+            >`
+        </p-column>
+        <p-column header="Prontuario" field="pacienteProntuario"></p-column>
+        <p-column header="Nome Paciente" field="pacienteNome"></p-column>
+        <p-column header="Leito" field="leitoId"></p-column>
+        <p-column header="Especialidade" field="especialidadeId"></p-column>
+        <p-column header="Conv/Plano" field="convenioId"></p-column>
 
-        <div class="p-md-4 p-fluid" pTooltip="Informe a descrição do tipo de unidade funcional">
-            Nome:
-            <span class="md-inputfield p-float-label" style="margin-top: 0px">
-                <input type="text" pInputText class="p-inputtext" />
-            </span>
-        </div>
-    </div>
+        <basis-datatable-button
+            name="acao"
+            icon="pi pi-pencil"
+            [disabled]="datatable.selectedRow == null"
+            class="p-button-success"
+        ></basis-datatable-button>
 
-    <div class="p-col-12 p-grid">
-        <div class="p-md-2">
-            <button
-                pButton
-                type="button"
-                label="Pesquisar"
-                icon="pi pi-search"
-                (click)="listarInternacoes()"
-                [disabled]="null"
-            ></button>
-        </div>
+        <basis-datatable-button
+            ng-reflet-icon="pi pi-remove-red-eye"
+            ng-reflet-b-tooltip="visualizar"
+            class="ng-star-inserted"
+            [disabled]="datatable.selectedRow == null"
+            name="view"
+            icon="pi pi-eye"
+        ></basis-datatable-button>
+    </basis-datatable>
 
-        <!-- <div class="p-md-2">
-            <button
-                pButton
-                type="button"
-                label="Dar Alta ao Paciente"
-                icon=""
-                (click)="null"
-                [disabled]="null"
-                routerLink="internacao/formulario-dar-alta-ao-paciente"
-            ></button>
-        </div> -->
+    <p-dialog
+        [(visible)]="darAltaModal"
+        [style]="{ width: '46.875raw' }"
+        header="View"
+        [modal]="true"
+        styleClass="p-fluid"
+    >
+        <ng-template pTemplate="content">
+            <div class="p-fluid">
+                <label>Data da Internação</label>
+                <input
+                    type="text"
+                    pInputText
+                    [value]="darAltaModal.dataDaInternacao | date: 'dd/MM/yyyy, HH:mm':'GMT'"
+                    disabled
+                />
 
-        <div class="p-col-12 p-grid">
-            <basis-datatable
-                [url]="seachUrl"
-                #datatable
-                [disableView]="true"
-                [disableEdit]="true"
-                [disableDelete]="true"
-                type="memory"
-                [value]="listaInternacoes"
-                sortField="brand"
-            >
-                <p-column header="ID" field="id"></p-column>
-                <p-column header="Data Alta" field="dataDaAlta"></p-column>
-                <p-column header="Data Inter" field="dataDaInternacao"></p-column>
-                <p-column header="Leito" field="leitoNome"></p-column>
-                <p-column header="Quarto" field="null"></p-column>
-                <p-column header="Unid Funcio" field="null"></p-column>
-                <p-column header="Especialidade" field="especialidadeId"></p-column>
-                <p-column header="Conv/Plano" field="convenioNome"></p-column>
-                <p-column header="Professor" field="null"></p-column>
-            </basis-datatable>
-        </div>
-    </div>
+                <label>Nome do Paciente</label>
+                <input type="text" pInputText [value]="darAltaModal.pacienteNome" disabled />
+
+                <label>Prontuario</label>
+                <input type="text" pInputText [value]="darAltaModal.pacienteProntuario" disabled />
+
+                <label>Leito</label>
+                <input type="text" pInputText [value]="darAltaModal.leitoId" disabled />
+
+                <label>Especialidade</label>
+                <input type="text" pInputText [value]="darAltaModal.especialidadeId" disabled />
+
+                <label>Convenio</label>
+                <input type="text" pInputText [value]="darAltaModal.convenioId" disabled />
+            </div>
+        </ng-template>
+    </p-dialog>
 </div>

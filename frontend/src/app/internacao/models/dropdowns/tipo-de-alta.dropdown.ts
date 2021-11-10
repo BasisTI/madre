@@ -2,31 +2,31 @@ import { OpcaoDropdown } from '@shared/dropdown/opcao.dropdown';
 
 export const TipoDeAltaDropdown: OpcaoDropdown[] = [
     {
-        label: 'Obito',
+        label: 'Ôbito',
         value: 'OBITO',
     },
     {
         label: 'Alta médica',
-        value: 'ALTA_MEDICA,'
+        value: 'ALTA_MEDICA',
     },
     {
-        label:'Transferencia para outro hospital',
-        value: 'TRANSFERENCIA_PARA_OUTRO_HOSPITAL,'
+        label:'Transferência para outro hospital',
+        value: 'TRANSFERENCIA_PARA_OUTRO_HOSPITAL',
     },
     {
-        label: 'Desistencia do tratamento',
+        label: 'Desistência do tratamento',
         value: 'DESISTENCIA_DO_TRATAMENTO',
     },
     {
-        label: 'Evasao',
+        label: 'Evasão',
         value: 'EVASAO',
     },
     {
-        label: 'Indiciplina',
-        value: 'INDICIPLINA',
+        label: 'Indisciplina',
+        value: 'INDISCIPLINA',
     },
     {
-        label: 'Permanencia',
+        label: 'Permanência',
         value: 'PERMANENCIA',
     },
 ];

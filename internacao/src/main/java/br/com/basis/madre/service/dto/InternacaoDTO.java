@@ -19,6 +19,12 @@ public class InternacaoDTO implements Serializable {
     private Long pacienteId;
 
     @NotNull
+    private String pacienteNome;
+
+    @NotNull
+    private String pacienteProntuario;
+;
+    @NotNull
     private Prioridade prioridade;
 
     @NotNull
@@ -69,7 +75,7 @@ public class InternacaoDTO implements Serializable {
 
     private TipoDeAlta tipoDeAlta;
 
-   /*public InternacaoDTO (Long id, ZonedDateTime dataDaInternacao, LocalDate dataDaAlta,
+   /*protected InternacaoDTO (Long id, ZonedDateTime dataDaInternacao, LocalDate dataDaAlta,
         String leitoNome, String especialidadeNome, String convenioNome) {
 
         this.id = id;
@@ -79,42 +85,4 @@ public class InternacaoDTO implements Serializable {
         this.especialidadeNome = especialidadeNome;
         this.convenioNome = convenioNome;
     }*/
-
-    public String getLeitoNome() {
-        return leitoNome;
-    }
-
-    public void setLeitoNome(String leitoNome) {
-        this.leitoNome = leitoNome;
-    }
-
-    public String getConvenioNome() {
-        return convenioNome;
-    }
-
-    public void setConvenioNome(String convenioNome) {
-        this.convenioNome = convenioNome;
-    }
-
-    public String getEspecialidadeNome() {
-        return especialidadeNome;
-    }
-
-    public void setEspecialidadeNome(String especialidadeNome) {
-        this.especialidadeNome = especialidadeNome;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "InternacaoDTO{" +
-            "id=" + id +
-            ", dataDaInternacao=" + dataDaInternacao +
-            ", leitoNome='" + leitoNome + '\'' +
-            ", especialidadeNome='" + especialidadeNome + '\'' +
-            ", convenioNome='" + convenioNome + '\'' +
-            ", dataDaAlta=" + dataDaAlta +
-            '}';
-    }
 }

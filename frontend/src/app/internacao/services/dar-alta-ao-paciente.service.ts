@@ -16,25 +16,28 @@ export class DarAltaAoPacienteService {
         id: string,
         dataDaInternacao: string,
         dataDaAlta: string,
-        leitosId: string,
+        ativo: string,
+        leitoId: string,
         especialidadeId: string,
-        convenidoSaudeId: string,
+        convenioId: string,
+        pacienteId: string,
+        prontuario: string,
     ): Observable<DarAltaAoPaciente[]> {
         return this.httpClient.get<DarAltaAoPaciente[]>(`${this.URL}/_search/lista-internacoes`, {
             params: new HttpParams()
                 .set('id', id)
                 .set('dataDaInternacao', dataDaInternacao)
                 .set('dataDaAlta', dataDaAlta)
-                .set('leitosId', leitosId)
+                .set('ativo', ativo)
+                .set('leitoId', leitoId)
                 .set('especialidadeId', especialidadeId)
-                .set('convenidoSaudeId', convenidoSaudeId),
+                .set('convenioId', convenioId)
+                .set('pacienteId', pacienteId)
+                .set('prontuario', prontuario),
         });
     }
 
-    cadastrarAlta(darAltaAoPaciente: DarAltaAoPaciente) {
-        return this.httpClient.post(
-            `${this.URL}/formulario-dar-alta-ao-paciente`,
-            darAltaAoPaciente,
-        );
+    darAlta(darAltaAoPaciente: DarAltaAoPaciente) {
+        return this.httpClient.put(`${this.URL}/internacoes`, darAltaAoPaciente);
     }
 }

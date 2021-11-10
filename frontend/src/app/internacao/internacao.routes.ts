@@ -64,11 +64,11 @@ export const routes: Routes = [
         component: ListarDarAltaPacientesComponent,
     },
     {
-        path:'formulario-dar-alta-ao-paciente',
+        path: 'formulario-dar-alta-ao-paciente',
         component: FormularioDarAltaAoPacienteComponent,
     },
     {
-        path:'manter-dar-alta-ao-paciente',
+        path: 'manter-dar-alta-ao-paciente',
         component: DarAltaAoPacienteComponent,
     }
 ];

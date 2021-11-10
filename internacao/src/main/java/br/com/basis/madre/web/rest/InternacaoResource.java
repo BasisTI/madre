@@ -154,13 +154,14 @@ public class InternacaoResource {
         @RequestParam(name = "id", required = false) String id,
         @RequestParam(name = "dataDaInternacao", required = false) String dataDaInternacao,
         @RequestParam(name = "dataDaAlta", required = false) String dataDaAlta,
-        @RequestParam(name = "leitosId", required = false) String leitosId,
+        @RequestParam(name = "leitoId", required = false) String leitoId,
         @RequestParam(name = "especialidadeId", required = false) String especialidadeId,
-        @RequestParam(name = "convenidoSaudeId", required = false) String convenidoSaudeId
+        @RequestParam(name = "convenioId", required = false) String convenioId,
+        @RequestParam(name = "pacienteId", required = false) String pacienteId
         ) {
         log.debug("REST request to search for a page of Internacaos for query {}");
         Page<InternacaoDTO> page = internacaoService.filtrarInternacoes(
-            pageable, id , dataDaInternacao, dataDaAlta, leitosId, especialidadeId, convenidoSaudeId);
+            pageable, id , dataDaInternacao, dataDaAlta, leitoId, especialidadeId, convenioId, pacienteId);
         HttpHeaders headers = PaginationUtil
             .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

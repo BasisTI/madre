@@ -105,14 +105,15 @@ public class InternacaoService {
 
     @Transactional(readOnly = true)
     public Page<InternacaoDTO> filtrarInternacoes(Pageable pageable, String id, String dataDaInternacao,
-        String dataDaAlta, String leitosId, String especialidadeId, String convenidoSaudeId) {
+        String dataDaAlta, String leitoId, String especialidadeId, String convenioId, String pacienteId) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         filter(queryBuilder, "id", id);
         filter(queryBuilder, "dataDaInternacao", dataDaInternacao);
         filter(queryBuilder, "dataDaAlta", dataDaAlta);
-        filter(queryBuilder, "leitosId", leitosId);
+        filter(queryBuilder, "leitosId", leitoId);
         filter(queryBuilder, "especialidadeId", especialidadeId);
-        filter(queryBuilder, "convenidoSaudeId", convenidoSaudeId);
+        filter(queryBuilder, "convenioId", convenioId);
+        filter(queryBuilder, "pacienteId", pacienteId);
         SearchQuery query = new NativeSearchQueryBuilder()
             .withQuery(queryBuilder)
             .withPageable(pageable)
