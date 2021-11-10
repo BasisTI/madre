@@ -66,5 +66,4 @@ export const routes: Routes = [
         path: 'formulario-dados-internacao',
         component: FormularioDadosInternacaoComponent,
     },
-
 ];

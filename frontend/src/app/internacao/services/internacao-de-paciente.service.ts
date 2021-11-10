@@ -41,11 +41,4 @@ export class InternacaoDePacienteService {
 
         return this.client.post<Internacao>(this.resource, dto);
     }
-    listarGradeTransferiPaciente(): Observable<Array<Internacao>> {
-        return this.client.get<Array<Internacao>>(`${this.resource}`)
-    }
-
-    find(id: number): Observable<Array<Internacao>> {
-        return this.client.get<Array<Internacao>>(`${this.apiUrl}/internacoes/${id}`);
-    }
 }

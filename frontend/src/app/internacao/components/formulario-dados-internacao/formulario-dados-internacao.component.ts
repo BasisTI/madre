@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Internacao } from '@internacao/models/internacao';
-import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
-import { Medicamentos } from 'src/app/farmacia/farmacia/medicamentos/Medicamento';
+import { FormularioTransferirPacienteService } from '@internacao/services/formulario-transferir-paciente.service';
 
 @Component({
-  selector: 'app-formulario-dados-internacao',
-  templateUrl: './formulario-dados-internacao.component.html',
-  styleUrls: ['./formulario-dados-internacao.component.css']
+    selector: 'app-formulario-dados-internacao',
+    templateUrl: './formulario-dados-internacao.component.html',
+    styleUrls: ['./formulario-dados-internacao.component.css'],
 })
 export class FormularioDadosInternacaoComponent implements OnInit {
 
-  public internacao: Internacao = new Internacao;
+    constructor(
+        private internacaoDePacienteService: FormularioTransferirPacienteService,
+        private fb: FormBuilder,
+    ) {}
 
-  constructor(
-    private internacaoDePacienteService: InternacaoDePacienteService,
-    private route: ActivatedRoute,
-  ) {
-  }
+    formularioTransferirPaciente = this.fb.group({
+      id: [null],
+      pacienteId: [null, [Validators.required]],
+     });
 
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.load(params['id']);
-    });
-  }
+    // transferir() {
+    //     let alta = this.formularioTransferirPaciente.value;
+    //     let acao: Internacao = {
+    //         id: alta.id,
+    //         pacienteId: alta.pacienteId,
+    //     };
 
-  load(id) {
-    this.internacaoDePacienteService.find(id).subscribe((internacao) => {
-      this.internacao = this.internacao;
-    })
-  }
+    //     this.internacaoDePacienteService.transferirPaciente(acao).subscribe();
+    // }
+
+    ngOnInit(): void{
+    }
 }

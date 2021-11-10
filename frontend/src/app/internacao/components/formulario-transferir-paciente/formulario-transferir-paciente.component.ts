@@ -1,8 +1,10 @@
-import { InternacaoDePacienteService } from '@internacao/services/internacao-de-paciente.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Internacao } from '@internacao/models/internacao';
-import { Router } from '@angular/router';
 import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-components';
+import { Router } from '@angular/router';
+import { FormularioTransferirPacienteService } from '@internacao/services/formulario-transferir-paciente.service';
+import { ConfirmationService } from 'primeng/api';
+import { ElasticQuery } from '@shared/elastic-query';
+import { Internacao } from '@internacao/models/internacao';
 
 @Component({
     selector: 'app-formulario-transferir-paciente',
@@ -10,58 +12,53 @@ import { DatatableClickEvent, DatatableComponent } from '@nuvem/primeng-componen
     styleUrls: ['./formulario-transferir-paciente.component.css'],
 })
 export class FormularioTransferirPacienteComponent implements OnInit {
+    elasticQuery: ElasticQuery = new ElasticQuery();
+
+    @ViewChild(DatatableComponent) datatable: DatatableComponent;
+
     constructor(
-        private internacaoDePacienteService: InternacaoDePacienteService,
+        private transferirPacienteService: FormularioTransferirPacienteService,
         private router: Router,
+        private confirmationService: ConfirmationService,
     ) {}
 
-    @ViewChild(DatatableComponent) dataTable: DatatableComponent;
-
-    internacaoDialog: boolean;
-    submitted: boolean;
     internacoes: Internacao[];
-    internacao: Internacao;
+    internacaoModal: Internacao[];
+    valor = 'Não modelado';
 
-    listarTransferiPaciente() {
-        this.internacaoDePacienteService.listarGradeTransferiPaciente().subscribe((response) => {
+    listarTableTransferiPaciente() {
+        this.transferirPacienteService.listarGradeTransferiPaciente().subscribe((response) => {
             this.internacoes = response;
         });
     }
-    visualizarDadosTransferir(internacao: Internacao) {
-        this.internacao = { ...internacao };
-        this.internacaoDialog = true;
+
+    pesquisar() {
+        this.datatable.refresh(this.elasticQuery.query);
     }
 
-    hideDialog() {
-        this.internacaoDialog = false;
-        this.submitted = false;
-    }
-
-    abrirEditarTabela(internacao: Internacao) {
-        this.router.navigate(['/internacao/formulario-dados-internacao', internacao.id, 'edit']);
-    }
-
-    btnTabela(event: DatatableClickEvent) {
-        switch (event.button) {
-            case 'edit': {
-                this.abrirEditarTabela(event.selection);
-               break;
+    ModalTableClick(event: DatatableClickEvent) {
+        if (event.selection) {
+            switch (event.button) {
+                case 'edit':
+                    this.router.navigate(['/internacao/formulario-dados-internacao']);
+                    break;
+                case 'view':
+                    this.internacaoModal = event.selection;
+                    break;
+                case 'delete':
+                    this.confirmationService.confirm({
+                        message: 'Você tem certeza que deseja excluir o registro?',
+                        accept: () =>
+                            this.transferirPacienteService
+                                .delete(event.selection.id)
+                                .subscribe(() => this.pesquisar()),
+                    });
+                    break;
             }
-            default: {
-                break;
-             }
-        }
-    }
-
-    public onRowDblTabela(event) {
-        if (event.target.nodeName === 'TD') {
-            this.abrirEditarTabela(this.internacao);
-        } else if (event.target.parentNode.nodeName === 'TD') {
-            this.abrirEditarTabela(this.internacao);
         }
     }
 
     ngOnInit(): void {
-        this.listarTransferiPaciente();
+        this.listarTableTransferiPaciente();
     }
 }

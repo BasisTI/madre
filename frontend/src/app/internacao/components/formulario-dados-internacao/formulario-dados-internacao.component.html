@@ -1,119 +1,14 @@
-<div class="p-grid p-fluid">
-    <div class="p-col-12 p-grid">
-        <div class="card card-w-title">
-            <h1>Dados da Internação</h1>
-            <div class="p-grid" *ngIf="internacoes">
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-8 p-sm-12">
-                        <label for="name">Nome: {{ internacoes.nome }}</label>
-                        <span class="md-inputfield p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                </div>
-                <div class="p-col-12 p-grid p-fluid">
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Leito</label>
-                        <span class="p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Quarto</label>
-                        <span class="p-float-label">
-                            <input type="number" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Unidade</label>
-                        <span class="p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Especialidade</label>
-                        <span class="p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                </div>
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-3 p-sm-12">
-                        <label>Data da Internação:</label>
-                        <span class="p-float-label">
-                            <p-calendar dateFormat="yy-mm-dd"></p-calendar>
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label>Convênio</label>
-                        <span class="p-float-label">
-                            <input pInputText type="text" />
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<nCrudForm [form]="formularioTransferirPaciente" [formGroup]="formularioTransferirPaciente">
+    <h4>Transferir Paciente</h4>
+    <div class="p-grid p-fluid p-mb-5">
+        <div
+            [formControlName]=""
+            class="p-col-12 p-lg-6 p-md-6 p-sm-12"
+            nInputText
+            minLength="6"
+            maxLength="10"
+            required
+            label="Nome"
+        ></div>
     </div>
-</div>
-
-<div class="p-grid p-fluid">
-    <div class="p-col-12 p-grid">
-        <div class="card card-w-title">
-            <h1>Transferir Paciente</h1>
-            <div class="p-grid">
-                <div class="p-col-12 p-grid">
-                    <div class="p-md-8 p-sm-12">
-                        <label for="name">Nome</label>
-                        <span class="md-inputfield p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                </div>
-                <div class="p-col-12 p-grid p-fluid">
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Leito</label>
-                        <span class="p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Quarto</label>
-                        <span class="p-float-label">
-                            <input type="number" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label for="name">Especialidade</label>
-                        <span class="p-float-label">
-                            <input type="text" pInputText class="p-inputtext" />
-                        </span>
-                    </div>
-                    <div class="p-md-3 p-sm-12">
-                        <label>Data da Transferência</label>
-                        <span class="p-float-label">
-                            <p-calendar dateFormat="yy-mm-dd"></p-calendar>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="p-col-12 p-grid">
-    <div class="p-md-3 p-sm-12">
-        <button
-            pButton
-            type="button"
-            label="Salvar"
-            routerLink="/internacao/formulario-transferir-paciente"
-        ></button>
-    </div>
-    <div class="p-md-3 p-sm-12">
-        <button
-            pButton
-            type="button"
-            label="Cancelar"
-            routerLink="/internacao/formulario-transferir-paciente"
-        ></button>
-    </div>
-</div>
+</nCrudForm>
