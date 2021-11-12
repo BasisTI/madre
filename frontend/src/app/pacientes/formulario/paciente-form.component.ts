@@ -1,14 +1,9 @@
 import { DatatableComponent } from '@nuvem/primeng-components';
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { DatatableClickEvent } from '@nuvem/primeng-components';
-
-import { CpfCnpjValidator } from '../../shared/cpf-cnpj.validator';
-import { Paciente } from "./paciente.model";
 import { PacienteService } from "./paciente.service";
 import { PacienteValidators } from "./paciente.validators";
 import { MenuItem } from 'primeng/api';
-import {TabMenuModule} from 'primeng/tabmenu';
 
 @Component({
     selector: 'paciente-form',
@@ -82,7 +77,7 @@ export class PacienteFormComponent  implements OnInit{
                     cpf: [null],
                     pisPasep: [null],
                     cnh: [null],
-                    validadeDaCnh: [null,],
+                    validadeDaCnh: [null],
                     orgaoEmissorId: [null],
                     ufId: [null],
                 },

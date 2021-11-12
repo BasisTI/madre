@@ -21,8 +21,6 @@ export class TelefoneComponent implements OnInit {
 
   listaDDD = new Array<DDD>();
 
-  validaTelefone: boolean;
-
   tiposDeTelefone = OPCOES_DE_TIPO_DE_TELEFONE;
 
   tipoDeTelefoneSelecionado: string;
@@ -39,13 +37,13 @@ export class TelefoneComponent implements OnInit {
   });
 
 
-  constructor(private DDDService: DDDService, private fb: FormBuilder) { }
+  constructor(private dddService: DDDService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   buscaDDD(event) {
-    this.DDDService.getResultDDD(event.query).subscribe((data) => {
+    this.dddService.getResultDDD(event.query).subscribe((data) => {
       this.listaDDD = data;
     })
   }
@@ -62,7 +60,8 @@ export class TelefoneComponent implements OnInit {
     };
     this.telefones.push(telefone);
     this.telefone.reset();
-    console.log(this.telefones.value)
+    console.log(this.telefone.value)
+    console.log(telefone)
   }
 
   tipoDeMascara(event) {

@@ -3,22 +3,41 @@
 <div class="card">
     <nForm [form]="paciente">
         <div class="p-md-12 p-d-inline">
-            <div class="p-md-6" style="display: flex; width: 100%;">
-                <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%;">
-                    <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
+            <div class="p-md-6" style="display: flex; width: 100%">
+                <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%">
+                    <input
+                        type="text"
+                        pInputText
+                        class="ui-inputtext"
+                        name="filtro"
+                        [(ngModel)]="elasticQuery.value"
+                    />
                     <label>Nome do paciente</label>
                 </span>
-                <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%;">
-                    <input type="text" pInputText class="ui-inputtext" name="filtro" [(ngModel)]="elasticQuery.value" />
+                <span class="p-float-label" style="margin-top: 6px; margin-right: 6px; width: 100%">
+                    <input type="text" pInputText class="ui-inputtext" name="filtro" />
                     <label>Prontuario paciente</label>
                 </span>
                 <div class="button-margin">
-                    <button pButton type="button" label="Pesquisar" icon="ui-icon-search"
-                        bTooltip="Pesquisar paciente por nome." (click)="pesquisar()"></button>
+                    <button
+                        pButton
+                        type="button"
+                        label="Pesquisar"
+                        icon="ui-icon-search"
+                        bTooltip="Pesquisar paciente por nome."
+                        (click)="pesquisar()"
+                    ></button>
                 </div>
                 <div class="button-margin">
-                    <button pButton type="button" style="background: #009370;" label="Novo Paciente" icon="ui-icon-add"
-                        routerLink="../save" bTooltip="Cadastrar novo Paciente."></button>
+                    <button
+                        pButton
+                        type="button"
+                        style="background: #009370"
+                        label="Novo Paciente"
+                        icon="ui-icon-add"
+                        routerLink="../save"
+                        bTooltip="Cadastrar novo Paciente."
+                    ></button>
                 </div>
             </div>
         </div>
@@ -26,8 +45,13 @@
 </div>
 
 <div class="card">
-    <basis-datatable (buttonClick)="datatableClick($event)" [url]="searchUrl" [showPaginationFooter]="true" [rowsPerPageOptions]="rowsPerPageOptions">
-        <p-column header="Prontuário"field="prontuario"></p-column>
+    <basis-datatable
+        (buttonClick)="datatableClick($event)"
+        [url]="searchUrl"
+        [showPaginationFooter]="true"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+    >
+        <p-column header="Prontuário" field="prontuario"></p-column>
         <p-column header="Nome" field="nome"></p-column>
         <p-column header="Nome da Mãe" field="genitores">
             <ng-template let-data="rowData" pTemplate="body">
@@ -40,9 +64,383 @@
                 {{ data['cartaoSUS']?.numero }}
             </ng-template>
         </p-column>
-        <p-column header="Ações" field=""></p-column>
     </basis-datatable>
-    
+
+    <p-dialog header="Paciente" [(visible)]="view" [modal]="true" [style]="{ width: '90vw' }">
+        <ng-template pTemplate="content">
+            <p-tabView [style]="{ height: '40vw' }">
+                <p-tabPanel header="Dados Pessoais">
+                    <p-fieldset legend="Dados Pessoais">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Prontuário: </strong><br />{{ pacienteView.prontuario }}</span>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Nome: </strong><br />{{ pacienteView.nome }}</span>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Nome social: </strong><br />{{ pacienteView.nomeSocial }}</span>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Sexo: </strong><br />{{ pacienteView.sexo }}</span>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Raça/Cor: </strong><br />{{ pacienteView.raca.valor }}</span>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Etnia: </strong><br />{{ pacienteView.etnia.valo }}</span>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Estado civil: </strong><br />{{
+                                        pacienteView.estadoCivil.valor
+                                    }}</span
+                                >
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Prontuário da mãe: </strong><br />{{
+                                        pacienteView.genitores?.prontuarioDaMae
+                                    }}</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Nome da mãe: </strong><br />{{
+                                        pacienteView.genitores?.nomeDaMae
+                                    }}</span
+                                >
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Nome do pai: </strong><br />{{
+                                        pacienteView.genitores?.nomeDoPai
+                                    }}</span
+                                >
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Responsável: </strong><br />{{
+                                        pacienteView.responsavel?.nomeDoResponsavel
+                                    }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Data de nascimento: </strong><br />{{
+                                        pacienteView.dataDeNascimento
+                                    }}</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Hora do nascimento: </strong><br />{{
+                                        pacienteView.horaDeNascimento
+                                    }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Nacionalidade: </strong><br />{{
+                                        pacienteView.nacionalidade.valor
+                                    }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>UF: </strong><br />{{
+                                        pacienteView.unidadeFederativa?.unidadeFederativa +
+                                            ' (' +
+                                            pacienteView.unidadeFederativa?.sigla +
+                                            ')'
+                                    }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Naturalidade: </strong><br />{{
+                                        pacienteView.naturalidade.nome
+                                    }}</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Grau de Instrução: </strong></span><br />
+                                {{ pacienteView.grauDeInstrucao }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Ocupação: </strong><br />
+                                    {{ pacienteView.ocupacao.valor }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Religião: </strong> <br />
+                                    {{ pacienteView.religiao.valor }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>E-mail: </strong> <br />{{ pacienteView.email }}</span>
+                            </div>
+                        </div>
+                    </p-fieldset>
+
+                    <p-fieldset legend="Certidão">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Registro de nascimento: </strong> <br /></span>
+                                {{ pacienteView.certidao?.registroDeNascimento }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Tipo de certidão: </strong> <br /></span>
+                                {{ pacienteView.certidao?.tipoDaCertidao }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Nome do Cartório: </strong> <br /></span>
+                                {{ pacienteView.certidao?.nomeDoCartorio }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Livro: </strong> <br /></span>
+                                {{ pacienteView.certidao?.livro }}
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Folhas: </strong> <br /></span>
+                                {{ pacienteView.certidao?.folhas }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Termo: </strong> <br /></span>
+                                {{ pacienteView.certidao?.termo }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Data de emissão: </strong> <br /></span>
+                                {{ pacienteView.certidao?.dataDeEmissao }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Número da DN: </strong> <br /></span>
+                                {{ pacienteView.certidao?.numeroDaDeclaracaoDeNascimento }}
+                            </div>
+                        </div>
+                    </p-fieldset>
+
+                    <p-fieldset legend="Documentos">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Número da identidade: </strong> <br /></span>
+                                {{ pacienteView.documento?.numeroDaIdentidade }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Órgão emissor: </strong> <br /></span>
+                                {{ pacienteView.documento?.orgaoEmissor.valor }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>UF: </strong> <br /></span>
+                                {{
+                                    pacienteView.documento?.uf.unidadeFederativa +
+                                        ' (' +
+                                        pacienteView.documento?.uf.sigla +
+                                        ')'
+                                }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Data de emissão: </strong> <br /></span>
+                                {{ pacienteView.documento?.data }}
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>CPF: </strong> <br /></span> {{ pacienteView.documento?.cpf }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>PIS/PASEP: </strong> <br /></span>
+                                {{ pacienteView.documento?.pisPasep }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>CNH: </strong> <br /></span> {{ pacienteView.documento?.cnh }}
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span><strong>Validade da CNH: </strong> <br /></span>
+                                {{ pacienteView.documento?.validadeDaCnh }}
+                            </div>
+                        </div>
+                    </p-fieldset>
+                </p-tabPanel>
+
+                <p-tabPanel header="Contatos Paciente">
+                    <p-table [value]="pacienteView.telefones" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">DDD</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Observação</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-telefones>
+                            <tr>
+                                <td>{{ telefones.tipo }}</td>
+                                <td>{{ telefones.ddd }}</td>
+                                <td>{{ telefones.numero }}</td>
+                                <td>{{ telefones.observacao }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-tabPanel>
+
+                <p-tabPanel header="Endereço">
+                    <p-table [value]="pacienteView.enderecos" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th scope="col">Município</th>
+                                <th scope="col">CEP</th>
+                                <th scope="col">UF</th>
+                                <th scope="col">Bairro</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col" >Correspondência</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-enderecos>
+                            <tr>
+                                <td>{{ enderecos.municipio.nome }}</td>
+                                <td>{{ enderecos.cep }}</td>
+                                <td>{{ enderecos.municipio.uf.sigla }}</td>
+                                <td>{{ enderecos.bairro }}</td>
+                                <td>{{ enderecos.tipoDoEndereco }}</td>
+                                <td>{{ enderecos.correspondencia }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-tabPanel>
+
+                <p-tabPanel header="Responsável">
+                    <p-fieldset legend="Responsável">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Nome do responsável: </strong> <br />{{
+                                        pacienteView.responsavel.nomeDoResponsavel
+                                    }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Grau de parentesco: </strong><br />{{
+                                        pacienteView.responsavel.grauDeParentesco
+                                    }}</span
+                                >
+                            </div>
+                        </div>
+                    </p-fieldset>
+
+                    <div style="margin-top: 5px">
+                        <p-table
+                            [value]="pacienteView.responsavel.telefones"
+                            responsiveLayout="scroll"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">DDD</th>
+                                    <th scope="col">Telefone</th>
+                                    <th scope="col">Observação</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-telefones>
+                                <tr>
+                                    <td>{{ telefones.tipo }}</td>
+                                    <td>{{ telefones.ddd.valor }}</td>
+                                    <td>{{ telefones.numero }}</td>
+                                    <td>{{ telefones.observacao }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </p-tabPanel>
+
+                <p-tabPanel header="Cartão do SUS">
+                    <p-fieldset legend="Cartão do USU">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Número do cartão do USU: </strong><br />
+                                    {{ pacienteView.cartaoSUS?.numero }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Justificativa da ausência CNS: </strong><br />
+                                    {{ pacienteView.cartaoSUS?.justificativa.valor }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Doc. referência: </strong><br />
+                                    {{ pacienteView.cartaoSUS?.documentoDeReferencia }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Motivo do cadastro: </strong><br />
+                                    {{ pacienteView.cartaoSUS?.motivoDoCadastro.valor }}</span
+                                >
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-3">
+                                <span
+                                    ><strong>Cartão nascional saúde mãe: </strong><br />
+                                    {{ pacienteView.cartaoSUS?.cartaoNacionalSaudeMae }}</span
+                                >
+                            </div>
+                        </div>
+                    </p-fieldset>
+                </p-tabPanel>
+            </p-tabView>
+        </ng-template>
+    </p-dialog>
 </div>
 
-<p-confirmDialog header="Confirmar Exclusão" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog
+    header="Confirmar Exclusão"
+    acceptLabel="Sim"
+    rejectLabel="Não"
+    icon="pi pi-exclamation-triangle"
+>
+</p-confirmDialog>
